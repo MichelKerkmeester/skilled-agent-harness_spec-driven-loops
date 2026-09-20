@@ -1,5 +1,5 @@
 ---
-title: "cli-jev Feature: Dispatch guards"
+title: "cli-usage Feature: Dispatch guards"
 description: "The eight declared hard rules with their implementations and severities, and the audit dispatch shape that decides whether they are reachable at all."
 trigger_phrases:
   - "jev dispatch guards"

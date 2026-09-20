@@ -1,0 +1,36 @@
+diff --git a/specs/sk-design/z_archive/014-template-conformance/010-motion-merge/description.json b/specs/sk-design/z_archive/014-template-conformance/010-motion-merge/description.json
+index 17faa9349de..94b1218dd45 100644
+--- a/specs/sk-design/z_archive/014-template-conformance/010-motion-merge/description.json
++++ b/specs/sk-design/z_archive/014-template-conformance/010-motion-merge/description.json
+@@ -1,7 +1,7 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-design/014-template-conformance/010-motion-merge",
+-  "description": "`design-motion` (39 files, 4,175 lines — confirmed by `git ls-tree -r c1981d2b91^`) was a standalone mode with its own `SKILL.md`, `README.md`, and",
++  "specFolder": "sk-design/z_archive/014-template-conformance/010-motion-merge",
++  "description": "`design-motion` (39 files, 4,175 lines — confirmed by `git ls-tree -r c52071edb6^`) was a standalone mode with its own `SKILL.md`, `README.md`, and",
+   "keywords": [
+     "design-motion",
+     "files",
+@@ -9,18 +9,19 @@
+     "confirmed",
+     "git",
+     "ls-tree",
+-    "c1981d2b91",
++    "c52071edb6",
+     "standalone",
+     "mode",
+     "own",
+     "skill",
+     "readme"
+   ],
+-  "lastUpdated": "2026-08-15T14:40:58.350Z",
++  "lastUpdated": "2026-09-11T16:49:40.956Z",
+   "specId": "010",
+   "folderSlug": "motion-merge",
+   "parentChain": [
+     "sk-design",
++    "z_archive",
+     "014-template-conformance"
+   ],
+   "memorySequence": 0,

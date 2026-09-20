@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-09-20T09:23:18.582Z",
+  "generated": "2026-09-20T13:04:02.422Z",
   "folders": [
     {
       "specFolder": "agents/001-terminal-proof-discipline",
@@ -3970,6 +3970,174 @@
         "deprecated"
       ],
       "lastUpdated": "2026-08-30T05:43:10.197Z"
+    },
+    {
+      "specFolder": "cli-jev/001-cli-jev-creation",
+      "description": "`cli-external-orchestration` routes to seven external CLI executor modes, and every one of them conducts a session that writes into this repository",
+      "keywords": [
+        "cli-external-orchestration",
+        "routes",
+        "seven",
+        "external",
+        "cli",
+        "executor",
+        "modes",
+        "every",
+        "one",
+        "them",
+        "conducts",
+        "session",
+        "writes",
+        "repository"
+      ],
+      "lastUpdated": "2026-09-20T12:49:32.324Z"
+    },
+    {
+      "specFolder": "cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin",
+      "description": "Phase 1: jev-contract-research-and-pin",
+      "keywords": [
+        "phase",
+        "jev-contract-research-and-pin"
+      ],
+      "lastUpdated": "2026-09-20T07:39:06.149Z"
+    },
+    {
+      "specFolder": "cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet",
+      "description": "Phase 2: cli-jev-skill-packet",
+      "keywords": [
+        "phase",
+        "cli-jev-skill-packet"
+      ],
+      "lastUpdated": "2026-09-20T07:39:06.860Z"
+    },
+    {
+      "specFolder": "cli-jev/001-cli-jev-creation/003-hub-mode-registration",
+      "description": "Phase 3: hub-mode-registration",
+      "keywords": [
+        "phase",
+        "hub-mode-registration"
+      ],
+      "lastUpdated": "2026-09-20T07:39:07.579Z"
+    },
+    {
+      "specFolder": "cli-jev/001-cli-jev-creation/004-catalog-and-playbook",
+      "description": "Phase 4: catalog-and-playbook",
+      "keywords": [
+        "phase",
+        "catalog-and-playbook"
+      ],
+      "lastUpdated": "2026-09-20T07:39:08.307Z"
+    },
+    {
+      "specFolder": "cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout",
+      "description": "Phase 5: docs-governance-and-closeout",
+      "keywords": [
+        "phase",
+        "docs-governance-and-closeout"
+      ],
+      "lastUpdated": "2026-09-20T09:03:46.678Z"
+    },
+    {
+      "specFolder": "cli-jev/002-cli-jev-hub-migration",
+      "description": "The jev transport packet currently sits inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose",
+      "keywords": [
+        "jev",
+        "transport",
+        "packet",
+        "currently",
+        "sits",
+        "inside",
+        "skilled",
+        "skills",
+        "cli-external-orchestration",
+        "cli-jev",
+        "hub",
+        "whose"
+      ],
+      "lastUpdated": "2026-09-20T12:30:55.975Z"
+    },
+    {
+      "specFolder": "cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration",
+      "description": "The cli-jev creation packet (former `specs/cli-external-orchestration/074-cli-jev-creation`) records the history of a mode that is being promoted out",
+      "keywords": [
+        "cli-jev",
+        "creation",
+        "packet",
+        "former",
+        "specs",
+        "cli-external-orchestration",
+        "074-cli-jev-creation",
+        "records",
+        "history",
+        "mode",
+        "promoted"
+      ],
+      "lastUpdated": "2026-09-20T12:30:55.976Z"
+    },
+    {
+      "specFolder": "cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration",
+      "description": "The Jev transport was the eighth mode of `cli-external-orchestration`, which made its identity a row inside another hub's registry, its folder a child",
+      "keywords": [
+        "jev",
+        "transport",
+        "eighth",
+        "mode",
+        "cli-external-orchestration",
+        "identity",
+        "row",
+        "inside",
+        "another",
+        "hub",
+        "registry",
+        "folder",
+        "child"
+      ],
+      "lastUpdated": "2026-09-20T12:49:14.334Z"
+    },
+    {
+      "specFolder": "cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-09-20T11:06:03.455Z"
+    },
+    {
+      "specFolder": "cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-09-20T11:06:03.474Z"
+    },
+    {
+      "specFolder": "cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-09-20T11:06:03.466Z"
     },
     {
       "specFolder": "hooks/001-hook-docs-relocation",

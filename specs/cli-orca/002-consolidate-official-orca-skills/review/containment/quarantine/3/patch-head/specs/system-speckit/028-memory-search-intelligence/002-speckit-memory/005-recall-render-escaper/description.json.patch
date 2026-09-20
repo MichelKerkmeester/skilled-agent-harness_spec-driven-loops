@@ -1,0 +1,29 @@
+diff --git a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper/description.json b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper/description.json
+index 6d59ee9fb40..4a34a350426 100644
+--- a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper/description.json
++++ b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper/description.json
+@@ -1,4 +1,5 @@
+ {
++  "level": 2,
+   "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper",
+   "description": "The Memory MCP captures arbitrary content via `memorysave` and later renders recalled bodies directly into the consuming agent's prompt loop, with no",
+   "keywords": [
+@@ -19,7 +20,7 @@
+     "prompt",
+     "loop"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:13.738Z",
++  "lastUpdated": "2026-09-11T16:49:41.473Z",
+   "specId": "005",
+   "folderSlug": "recall-render-escaper",
+   "parentChain": [
+@@ -28,6 +29,5 @@
+     "002-speckit-memory"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": 2
+-}
++  "memoryNameHistory": []
++}
+\ No newline at end of file

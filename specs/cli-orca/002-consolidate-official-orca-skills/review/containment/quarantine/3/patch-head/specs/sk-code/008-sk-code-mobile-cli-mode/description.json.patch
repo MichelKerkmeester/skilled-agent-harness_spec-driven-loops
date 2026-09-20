@@ -1,0 +1,13 @@
+diff --git a/specs/sk-code/008-sk-code-mobile-cli-mode/description.json b/specs/sk-code/008-sk-code-mobile-cli-mode/description.json
+index d3167caa695..1873cae92bb 100644
+--- a/specs/sk-code/008-sk-code-mobile-cli-mode/description.json
++++ b/specs/sk-code/008-sk-code-mobile-cli-mode/description.json
+@@ -13,7 +13,7 @@
+     "surface",
+     "auto-load"
+   ],
+-  "lastUpdated": "2026-08-29T15:04:31.747Z",
++  "lastUpdated": "2026-09-19T11:10:00.215Z",
+   "specId": "008",
+   "folderSlug": "sk-code-mobile-cli-mode",
+   "parentChain": [

@@ -1,0 +1,26 @@
+diff --git a/specs/sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/description.json b/specs/sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/description.json
+index 6e1dcd9f8f6..aa810265b20 100644
+--- a/specs/sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/description.json
++++ b/specs/sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering",
++  "specFolder": "sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering",
+   "description": "Per-feature snippet files in feature catalogs and manual testing playbooks carry a globally sequential numeric prefix (`001-feature-name.md`,",
+   "keywords": [
+     "per-feature",
+@@ -18,11 +18,12 @@
+     "prefix",
+     "001-feature-name"
+   ],
+-  "lastUpdated": "2026-08-29T12:13:21.118Z",
++  "lastUpdated": "2026-09-11T16:49:41.032Z",
+   "specId": "013",
+   "folderSlug": "catalog-playbook-snippet-denumbering",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "016-create-diff-mode"
+   ],
+   "memorySequence": 2,

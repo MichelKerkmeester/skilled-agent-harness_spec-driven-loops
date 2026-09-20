@@ -44,6 +44,7 @@ const SKILLS_ROOT = path.join(REPO_ROOT, '.skilled', 'skills');
 
 const HUBS = [
   'cli-external-orchestration',
+  'cli-jev',
   'mcp-tooling',
   'sk-code',
   'sk-doc',

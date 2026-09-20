@@ -1,0 +1,13 @@
+diff --git a/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/description.json b/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/description.json
+index dd7638cd5d5..70d771535ed 100644
+--- a/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/description.json
++++ b/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/description.json
+@@ -17,7 +17,7 @@
+     "smartrouting",
+     "resourcemap"
+   ],
+-  "lastUpdated": "2026-08-29T15:04:31.423Z",
++  "lastUpdated": "2026-09-11T16:49:40.893Z",
+   "specId": "024",
+   "folderSlug": "sk-code-advisor-routing-and-discovery",
+   "parentChain": [

@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/026-eval-harness-extension/description.json b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/026-eval-harness-extension/description.json
+index e5be54843dd..4e6fde7837e 100644
+--- a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/026-eval-harness-extension/description.json
++++ b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/026-eval-harness-extension/description.json
+@@ -17,7 +17,7 @@
+     "honest",
+     "figure"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:13.773Z",
++  "lastUpdated": "2026-09-11T16:49:41.487Z",
+   "specId": "026",
+   "folderSlug": "eval-harness-extension",
+   "parentChain": [

@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot/description.json b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot/description.json
+index bbb33bdc23f..28947665bad 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot/description.json
+@@ -18,7 +18,7 @@
+     "stringify",
+     "call"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.313Z",
++  "lastUpdated": "2026-09-11T16:49:41.387Z",
+   "specId": "002",
+   "folderSlug": "checkpoint-v2-file-snapshot",
+   "parentChain": [

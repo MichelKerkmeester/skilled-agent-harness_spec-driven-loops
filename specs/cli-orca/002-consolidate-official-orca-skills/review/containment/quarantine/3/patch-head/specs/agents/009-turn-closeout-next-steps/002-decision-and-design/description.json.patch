@@ -1,0 +1,36 @@
+diff --git a/specs/agents/009-turn-closeout-next-steps/002-decision-and-design/description.json b/specs/agents/009-turn-closeout-next-steps/002-decision-and-design/description.json
+index dc932c2d5b5..0bd31f6afce 100644
+--- a/specs/agents/009-turn-closeout-next-steps/002-decision-and-design/description.json
++++ b/specs/agents/009-turn-closeout-next-steps/002-decision-and-design/description.json
+@@ -1,11 +1,18 @@
+ {
++  "level": "2",
+   "specFolder": "agents/009-turn-closeout-next-steps/002-decision-and-design",
+-  "description": "Phase 2: decision-and-design",
++  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+   "keywords": [
+-    "phase",
+-    "decision-and-design"
++    "broken",
++    "missing",
++    "inefficient",
++    "sentences",
++    "describing",
++    "specific",
++    "pain",
++    "point"
+   ],
+-  "lastUpdated": "2026-09-11T10:54:56.739Z",
++  "lastUpdated": "2026-09-11T17:37:37.667Z",
+   "specId": "002",
+   "folderSlug": "decision-and-design",
+   "parentChain": [
+@@ -13,6 +20,5 @@
+     "009-turn-closeout-next-steps"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "2"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

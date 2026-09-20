@@ -1,0 +1,41 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/description.json b/specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/description.json
+index 1ffa7ce0aa7..db7bb29b142 100644
+--- a/specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/description.json
+@@ -1,11 +1,23 @@
+ {
++  "level": "2",
+   "specFolder": "system-speckit/033-system-speckit-v4/043-v4-root-readme",
+-  "description": "Phase 1: v4-root-readme",
++  "description": "The root `README.md` has accumulated structural inconsistencies, stale migration residue, formatting defects, and AI writing patterns across",
+   "keywords": [
+-    "phase",
+-    "v4-root-readme"
++    "root",
++    "readme",
++    "accumulated",
++    "structural",
++    "inconsistencies",
++    "stale",
++    "migration",
++    "residue",
++    "formatting",
++    "defects",
++    "writing",
++    "patterns",
++    "across"
+   ],
+-  "lastUpdated": "2026-09-20T06:53:26.362Z",
++  "lastUpdated": "2026-09-20T11:53:32.819Z",
+   "specId": "043",
+   "folderSlug": "v4-root-readme",
+   "parentChain": [
+@@ -13,6 +25,5 @@
+     "033-system-speckit-v4"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "2"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

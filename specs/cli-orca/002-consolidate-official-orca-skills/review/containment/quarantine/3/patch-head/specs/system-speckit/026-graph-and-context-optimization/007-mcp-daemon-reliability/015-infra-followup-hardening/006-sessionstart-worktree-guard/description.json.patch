@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard/description.json b/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard/description.json
+index 4705f7443ae..bc4e2bc3724 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard/description.json
+@@ -15,7 +15,7 @@
+     "directly",
+     "shared"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.525Z",
++  "lastUpdated": "2026-09-11T16:49:41.403Z",
+   "specId": "006",
+   "folderSlug": "sessionstart-worktree-guard",
+   "parentChain": [

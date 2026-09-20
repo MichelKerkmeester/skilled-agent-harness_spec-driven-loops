@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening/description.json b/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening/description.json
+index 67516cec56f..379d19efd20 100644
+--- a/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening/description.json
++++ b/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening/description.json
+@@ -15,7 +15,7 @@
+     "consistency",
+     "defects"
+   ],
+-  "lastUpdated": "2026-09-07T16:14:52.709Z",
++  "lastUpdated": "2026-09-11T16:49:41.439Z",
+   "specId": "008",
+   "folderSlug": "router-consistency-hardening",
+   "parentChain": [

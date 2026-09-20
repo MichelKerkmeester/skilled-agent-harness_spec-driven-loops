@@ -1,0 +1,26 @@
+diff --git a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/description.json b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/description.json
+index d35140dcf99..cbf8eac6621 100644
+--- a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/description.json
++++ b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": 2,
+-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
++  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
+   "description": "After P4a, each hub's compiled generation is bound as `selectedPolicy` but nothing consumes it: there is no code that reads the manifest at route",
+   "keywords": [
+     "p4a",
+@@ -16,11 +16,12 @@
+     "manifest",
+     "route"
+   ],
+-  "lastUpdated": "2026-08-16T18:06:00.701Z",
++  "lastUpdated": "2026-09-11T16:49:41.040Z",
+   "specId": "014",
+   "folderSlug": "runtime-engine",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "019-skill-routing-refactor",
+     "015-router-unification-program"
+   ],

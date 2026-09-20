@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7248,
-    "ok": 11193,
+    "missing-frontmatter": 7264,
+    "ok": 11209,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22132,
+  "documentsScanned": 22164,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1412eef2d2d701ef947c5aab2b2c6750c1a7c332592b78abd24223e9887fc898",
+  "manifestHash": "67fa90e521786ae902be228aa13dbf6b55c4edf7690ced5a66b84004f98c9cf2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27300,
+      "ok": 27318,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -217,6 +217,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/cli-external-orchestration/changelog/v1.6.0.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.7.0.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -5238,156 +5244,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/changelog/v1.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/cli-invocation/binary-resolves-and-pins-version.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/cli-invocation/judgment-help-omits-hidden-endpoint-flag.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/cli-invocation/one-judgment-per-type-returns-typed-answer.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/cli-invocation/root-help-lists-six-subcommands.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/dispatch-guards/declared-hard-rules-refuse-violations.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/batch-request-with-no-key-exits-3.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/choice-single-option-not-refused.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/key-never-echoed-on-error-path.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/malformed-json-state-exits-2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/missing-required-flag-is-argparse-failure.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/no-key-exits-3-with-structured-json.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/refused-connection-exits-4.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/request-without-questions-exits-2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/score-single-level-not-refused.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/unknown-subcommand-is-argparse-failure.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/unreadable-state-file-exits-2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/mcp-server/handshake-and-four-tools.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/providers/auth-status-reports-key-state.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/providers/custom-provider-requires-endpoint.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/providers/invalid-provider-env-exits-2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -8632,6 +8488,216 @@
       "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"codex hook parity\""
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-jev/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-jev/benchmark/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-jev/changelog/v0.1.0.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.0.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.1.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/binary-resolves-and-pins-version.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/judgment-help-omits-hidden-endpoint-flag.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/one-judgment-per-type-returns-typed-answer.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/root-help-lists-six-subcommands.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/declared-hard-rules-refuse-violations.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/batch-request-with-no-key-exits-3.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/choice-single-option-not-refused.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/key-never-echoed-on-error-path.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/malformed-json-state-exits-2.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/missing-required-flag-is-argparse-failure.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/no-key-exits-3-with-structured-json.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/refused-connection-exits-4.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/request-without-questions-exits-2.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/score-single-level-not-refused.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/unknown-subcommand-is-argparse-failure.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/unreadable-state-file-exits-2.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/mcp-server/handshake-and-four-tools.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/auth-status-reports-key-state.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/custom-provider-requires-endpoint.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/invalid-provider-env-exits-2.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/alias-still-resolves.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-jev/shared/README.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -39479,6 +39545,36 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/hooks/001-hook-docs-relocation/fix-report-preexisting-ghosts.md",
@@ -69840,6 +69936,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/073-cli-pi-build-brief-and-blackhole/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/scratch",
       "reason": "excluded directory"
     },
     {

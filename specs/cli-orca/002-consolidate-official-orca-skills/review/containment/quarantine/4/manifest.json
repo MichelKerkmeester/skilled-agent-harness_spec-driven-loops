@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-09-20T13:25:49.837Z",
+  "entries": [
+    {
+      "path": ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md",
+      "hash": "6cc21de6e22a99e920c70c6ea0f106b20d17b9d0",
+      "content_stored": true,
+      "content_path": "content/.skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md",
+      "head_patch_path": "patch-head/.skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/graph-metadata.json",
+      "hash": "ec274ecd466aaece308015e654a586b4eb36c6df",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
+      "hash": "d9c9608ba68c44303a09df3534857509e3a1dc4f",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/graph-metadata.json",
+      "hash": "bb7bb6a1cb282f729a472093632ee9dc24d5f791",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md",
+      "hash": "3430de7ac58e0146657bdf03eb228d9847a309fb",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/graph-metadata.json",
+      "hash": "36f76438635f028fd71b68bb336a7076fa4cf245",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+      "hash": "7d690347d71016949ed97a72aff1a776676abd5d",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/spec.md.patch"
+    }
+  ]
+}

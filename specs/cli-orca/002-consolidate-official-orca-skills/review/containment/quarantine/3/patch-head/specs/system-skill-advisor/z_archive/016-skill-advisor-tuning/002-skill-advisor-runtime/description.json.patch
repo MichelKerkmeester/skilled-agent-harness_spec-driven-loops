@@ -1,0 +1,13 @@
+diff --git a/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/description.json b/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/description.json
+index 19e860c7053..0f72c515522 100644
+--- a/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/description.json
++++ b/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/description.json
+@@ -21,7 +21,7 @@
+     "drift",
+     "metrics"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:08.389Z",
++  "lastUpdated": "2026-09-11T16:49:41.324Z",
+   "specId": "002",
+   "folderSlug": "skill-advisor-runtime",
+   "parentChain": [

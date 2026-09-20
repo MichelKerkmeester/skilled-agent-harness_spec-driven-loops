@@ -1,0 +1,13 @@
+diff --git a/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding/description.json b/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding/description.json
+index bcd12153134..6e9162ad030 100644
+--- a/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding/description.json
++++ b/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding/description.json
+@@ -18,7 +18,7 @@
+     "digest",
+     "set"
+   ],
+-  "lastUpdated": "2026-08-19T19:14:44.707Z",
++  "lastUpdated": "2026-09-11T16:49:41.222Z",
+   "specId": "005",
+   "folderSlug": "mode-gate-and-contract-binding",
+   "parentChain": [

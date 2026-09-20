@@ -1,0 +1,13 @@
+diff --git a/specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory/description.json b/specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory/description.json
+index 98f8f3a9b5f..6448854df8c 100644
+--- a/specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory/description.json
++++ b/specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory/description.json
+@@ -15,7 +15,7 @@
+     "factory",
+     "implementations"
+   ],
+-  "lastUpdated": "2026-09-07T16:14:47.180Z",
++  "lastUpdated": "2026-09-11T16:49:41.316Z",
+   "specId": "005",
+   "folderSlug": "shared-embedder-logic-with-spec-memory",
+   "parentChain": [

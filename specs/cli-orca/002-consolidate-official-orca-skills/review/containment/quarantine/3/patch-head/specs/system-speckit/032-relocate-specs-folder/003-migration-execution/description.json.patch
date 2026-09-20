@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/032-relocate-specs-folder/003-migration-execution/description.json b/specs/system-speckit/032-relocate-specs-folder/003-migration-execution/description.json
+index 0993381713a..bea07f7d57e 100644
+--- a/specs/system-speckit/032-relocate-specs-folder/003-migration-execution/description.json
++++ b/specs/system-speckit/032-relocate-specs-folder/003-migration-execution/description.json
+@@ -18,7 +18,7 @@
+     "exact",
+     "literal"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:14.667Z",
++  "lastUpdated": "2026-09-11T16:49:41.556Z",
+   "specId": "003",
+   "folderSlug": "migration-execution",
+   "parentChain": [

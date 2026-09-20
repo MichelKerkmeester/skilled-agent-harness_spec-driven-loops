@@ -16,11 +16,12 @@ export const COMPILED_ROUTING_HUBS: ReadonlySet<string> = new Set([
   'mcp-tooling',
   'system-deep-loop',
   'cli-external-orchestration',
+  'cli-jev',
   'sk-doc',
 ]);
 
 // Per-hub default-on cohort. Mirrors the runtime resolver's own default-on
-// cohort (the five hubs verified compiled-serving, 0 drift — see
+// cohort (the six hubs verified compiled-serving, 0 drift — see
 // `014-runtime-engine/lib/resolve.cjs`): this enrichment shells out to the same
 // public front door (`.skilled/bin/compiled-route.cjs`), which delegates to
 // that identical resolver, so surfacing it here attaches only additive
@@ -32,6 +33,7 @@ export const DEFAULT_ON_HUBS: ReadonlySet<string> = new Set([
   'mcp-tooling',
   'system-deep-loop',
   'cli-external-orchestration',
+  'cli-jev',
   'sk-doc',
 ]);
 

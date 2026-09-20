@@ -1,0 +1,26 @@
+diff --git a/specs/system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design/description.json b/specs/system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design/description.json
+index f7490885e56..b7e56c30ec7 100644
+--- a/specs/system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design/description.json
++++ b/specs/system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "system-deep-loop/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design",
++  "specFolder": "system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design",
+   "description": "`deep-alignment` needs one adapter per standard authority so a lane scoped to `authority=sk-git` or `authority=sk-design` can run",
+   "keywords": [
+     "deep-alignment",
+@@ -16,11 +16,12 @@
+     "sk-design",
+     "run"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:02.947Z",
++  "lastUpdated": "2026-09-11T16:49:41.159Z",
+   "specId": "006",
+   "folderSlug": "adapter-sk-git-and-sk-design",
+   "parentChain": [
+     "system-deep-loop",
++    "z_archive",
+     "032-deep-alignment-mode"
+   ],
+   "memorySequence": 0,

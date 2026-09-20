@@ -1,0 +1,13 @@
+diff --git a/specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/description.json b/specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/description.json
+index 46af11f29e7..8befddb50a7 100644
+--- a/specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/description.json
++++ b/specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/description.json
+@@ -11,7 +11,7 @@
+     "one",
+     "guess"
+   ],
+-  "lastUpdated": "2026-09-08T19:07:13.652Z",
++  "lastUpdated": "2026-09-09T05:49:33.598Z",
+   "specId": "006",
+   "folderSlug": "reconcile-extension-documentation",
+   "parentChain": [

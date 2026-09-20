@@ -1,0 +1,35 @@
+diff --git a/specs/sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration/description.json b/specs/sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration/description.json
+index 59d7f7c52ab..106c6b8d726 100644
+--- a/specs/sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration/description.json
++++ b/specs/sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration/description.json
+@@ -1,13 +1,13 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-doc/028-sk-create-diagram/016-command-mirror-restoration",
+-  "description": "An earlier bulk-sync commit on this branch (`e3a66403df`) deleted the `.claude/commands` symlink and two Pi extension symlinks as part of a 902-file",
++  "specFolder": "sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration",
++  "description": "An earlier bulk-sync commit on this branch (`4d52fff993`) deleted the `.claude/commands` symlink and two Pi extension symlinks as part of a 902-file",
+   "keywords": [
+     "earlier",
+     "bulk-sync",
+     "commit",
+     "branch",
+-    "e3a66403df",
++    "4d52fff993",
+     "deleted",
+     "claude",
+     "commands",
+@@ -18,11 +18,12 @@
+     "part",
+     "902-file"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:01.888Z",
++  "lastUpdated": "2026-09-11T16:49:41.099Z",
+   "specId": "016",
+   "folderSlug": "command-mirror-restoration",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "028-sk-create-diagram"
+   ],
+   "memorySequence": 0,

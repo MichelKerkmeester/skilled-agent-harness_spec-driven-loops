@@ -1,0 +1,135 @@
+{
+  "timestamp": "2026-09-20T13:53:26.404Z",
+  "entries": [
+    {
+      "path": ".skilled/bin/compiled-routing-foundation.vitest.ts",
+      "hash": "2bbe271f2003c51993b2b0f46237bfb4fe1f51e5",
+      "content_stored": true,
+      "content_path": "content/.skilled/bin/compiled-routing-foundation.vitest.ts",
+      "head_patch_path": "patch-head/.skilled/bin/compiled-routing-foundation.vitest.ts.patch"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      "hash": "9843ddc2cd1d9affff6c8517f28dd218ef8d5e1f",
+      "content_stored": true,
+      "content_path": "content/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      "head_patch_path": "patch-head/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md",
+      "hash": "96355ff354024128211736ade61184ef4c5977a9",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/implementation-summary.md",
+      "hash": "d33e42c5f7f7b691063c2ecaaa666f3a648dddd7",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/implementation-summary.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/implementation-summary.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/plan.md",
+      "hash": "c2847b5ba351f776475db0130121b1d3279c900a",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/plan.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/plan.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/spec.md",
+      "hash": "8d57bb4e8c0655db3ff214f1029a7e5d09c4ea9a",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/spec.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/spec.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/tasks.md",
+      "hash": "9b614e7b1d86b14c03f637de7e62a8ebe574eeed",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/tasks.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/tasks.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+      "hash": "fc8319a2db73b79afb7b632f7777695174206a05",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/goal.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/graph-metadata.json",
+      "hash": "a777e95a0ae83b71dc5896dfa4ce568201af3368",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+      "hash": "8be819b380fcda82433d7d3522972ac2296a66dd",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/spec.md.patch"
+    },
+    {
+      "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/fence-state.json",
+      "hash": "5b6dd513c2320bf564565ecbafa66f2d4811ce4a",
+      "content_stored": true,
+      "content_path": "content/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/fence-state.json"
+    },
+    {
+      "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
+      "hash": "1b0a34e6c5d35f303522069ebf709676d31c2ddf",
+      "content_stored": true,
+      "content_path": "content/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json"
+    },
+    {
+      "path": ".skilled/skills/cli-jev/changelog/v0.2.0.0.md",
+      "hash": "c6a0a2a35fbe59683ec3a5528594a5119dead179",
+      "content_stored": true,
+      "content_path": "content/.skilled/skills/cli-jev/changelog/v0.2.0.0.md"
+    },
+    {
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/activation-record.json",
+      "hash": "2756da14b89232411d2b15aa81dfc79666b8421c",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/activation-record.json"
+    },
+    {
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/fence-state.json",
+      "hash": "5b6dd513c2320bf564565ecbafa66f2d4811ce4a",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/fence-state.json"
+    },
+    {
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.candidate.json",
+      "hash": "33e8a995bb26066d2415faf5f6016b678fc5ee3a",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.candidate.json"
+    },
+    {
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.json",
+      "hash": "1b0a34e6c5d35f303522069ebf709676d31c2ddf",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.json"
+    },
+    {
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.prior.json",
+      "hash": "630c2a5feed0654bf4166b7b0f116999147bf31c",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.prior.json"
+    },
+    {
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.serving-prior.json",
+      "hash": "33e8a995bb26066d2415faf5f6016b678fc5ee3a",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.serving-prior.json"
+    },
+    {
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/serving-flip-record.json",
+      "hash": "42c20530e5d4d4905ede12cec6ae9f54b7290e96",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/serving-flip-record.json"
+    }
+  ]
+}

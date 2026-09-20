@@ -1,0 +1,13 @@
+diff --git a/.skilled/skills/cli-external-orchestration/README.md b/.skilled/skills/cli-external-orchestration/README.md
+index 8c41eec281a..c3c17a91d3b 100644
+--- a/.skilled/skills/cli-external-orchestration/README.md
++++ b/.skilled/skills/cli-external-orchestration/README.md
+@@ -131,7 +131,7 @@ Use the hub when a request belongs to an external CLI runtime: full-runtime Open
+ | Document | Purpose |
+ |---|---|
+ | [`SKILL.md`](./SKILL.md) | Hub runtime instructions and routing logic |
+-| [`mode-registry.json`](./mode-registry.json) | Packet identity, tool surface and advisor routing for the eight modes |
++| [`mode-registry.json`](./mode-registry.json) | Packet identity, tool surface and advisor routing for the seven modes |
+ | [`hub-router.json`](./hub-router.json) | Signal and vocabulary routing that precedes the registry |
+ | [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: dispatch intent to the exact leaf resources the selected mode loads |
+ | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of hub dispatch capabilities |

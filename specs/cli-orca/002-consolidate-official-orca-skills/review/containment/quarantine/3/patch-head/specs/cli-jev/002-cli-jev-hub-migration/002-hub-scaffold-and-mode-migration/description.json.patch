@@ -1,0 +1,41 @@
+diff --git a/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/description.json b/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/description.json
+index f6507b4a5c1..472a1fb6c6c 100644
+--- a/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/description.json
++++ b/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/description.json
+@@ -1,11 +1,23 @@
+ {
++  "level": "1",
+   "specFolder": "cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration",
+-  "description": "Phase 2: hub-scaffold-and-mode-migration",
++  "description": "The Jev transport was the eighth mode of `cli-external-orchestration`, which made its identity a row inside another hub's registry, its folder a child",
+   "keywords": [
+-    "phase",
+-    "hub-scaffold-and-mode-migration"
++    "jev",
++    "transport",
++    "eighth",
++    "mode",
++    "cli-external-orchestration",
++    "identity",
++    "row",
++    "inside",
++    "another",
++    "hub",
++    "registry",
++    "folder",
++    "child"
+   ],
+-  "lastUpdated": "2026-09-20T11:00:12.453Z",
++  "lastUpdated": "2026-09-20T12:49:14.334Z",
+   "specId": "002",
+   "folderSlug": "hub-scaffold-and-mode-migration",
+   "parentChain": [
+@@ -13,6 +25,5 @@
+     "002-cli-jev-hub-migration"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "1"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

@@ -1,0 +1,89 @@
+{
+  "timestamp": "2026-09-20T12:37:50.781Z",
+  "entries": [
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md",
+      "hash": "c8fed6adba3e2dd46bca6b931d619f4db43acbad",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/graph-metadata.json",
+      "hash": "af73c4bb8f96a9f2bafb5bf97b0797d8822e868b",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/spec.md",
+      "hash": "61b926592f4f892dbe275fd3a7dbf3b74c0e23e2",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/spec.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/spec.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md",
+      "hash": "2be1e508660da578c51679a02d88f6292971b581",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/graph-metadata.json",
+      "hash": "a0c55228bc8aa49c5b22b147847ef47a36ed37b0",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
+      "hash": "2609e5e3ae43737de3fc1e5ac6604803ecb75da3",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/plan.md",
+      "hash": "8e3a14efdf7dfec93d7edcb2a2518f0df45f19ac",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/plan.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/plan.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md",
+      "hash": "116f0c698a89c8270cfe9e1aa65a88455ab0de75",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/tasks.md",
+      "hash": "dafeb9c634b0cbf7596c1d57e1117b4cb87e1fdf",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/tasks.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/tasks.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+      "hash": "325ea116839f91502ce5da29131d6029d53ceec5",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/goal.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/graph-metadata.json",
+      "hash": "bd6831cb90413b7341f5bc33aedcc6ff75e270bd",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+      "hash": "b3b0b821e3836d3e719015c9b93ecd717d58ef52",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/spec.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/spec.md.patch"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/description.json
+index 7f9c5ae3952..7e8c4095633 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/description.json
+@@ -13,7 +13,7 @@
+     "admitted",
+     "hubs"
+   ],
+-  "lastUpdated": "2026-09-19T06:44:20.450Z",
++  "lastUpdated": "2026-09-19T06:57:35.540Z",
+   "specId": "020",
+   "folderSlug": "fix-admission-baseline-and-block-ci",
+   "parentChain": [

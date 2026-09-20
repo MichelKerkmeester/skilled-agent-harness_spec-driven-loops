@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/description.json
+index e4103b7b843..70a22ee17c1 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/description.json
+@@ -16,7 +16,7 @@
+     "named",
+     "skilled"
+   ],
+-  "lastUpdated": "2026-09-18T22:29:48.959Z",
++  "lastUpdated": "2026-09-19T05:00:17.064Z",
+   "specId": "014",
+   "folderSlug": "fix-pre-existing-defects-found-by-migration",
+   "parentChain": [

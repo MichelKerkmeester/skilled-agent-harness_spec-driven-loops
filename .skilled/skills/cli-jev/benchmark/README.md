@@ -5,7 +5,7 @@ request land on `cli-usage`, does the transport stay non-mutating, and does the 
 
 | Baseline | Where the evidence lives |
 |----------|--------------------------|
-| Hub routing and transport contract | `manual-testing-playbook/hub-routing/transport-selection.md` |
+| Hub routing and transport contract | `manual-testing-playbook/hub-routing/` — CJ-001, CJ-002, CJ-003 |
 | The transport's 22-scenario judgment contract | `cli-usage/benchmark/reports/` |
 | Compiled-routing activation | Added by the compiled-fleet onboarding phase; the hub's serving state then lives in `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json` |
 

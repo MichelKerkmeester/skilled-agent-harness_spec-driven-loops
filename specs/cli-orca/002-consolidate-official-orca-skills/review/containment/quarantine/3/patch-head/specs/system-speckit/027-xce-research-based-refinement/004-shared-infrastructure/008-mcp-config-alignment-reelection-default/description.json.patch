@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default/description.json b/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default/description.json
+index d202ee444b7..d5583c342f7 100644
+--- a/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default/description.json
++++ b/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default/description.json
+@@ -16,7 +16,7 @@
+     "exclusively",
+     "explicit"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:12.522Z",
++  "lastUpdated": "2026-09-11T16:49:41.441Z",
+   "specId": "008",
+   "folderSlug": "mcp-config-alignment-reelection-default",
+   "parentChain": [

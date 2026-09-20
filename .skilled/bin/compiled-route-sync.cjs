@@ -56,6 +56,7 @@ const HUBS = [
   'system-deep-loop',
   'mcp-tooling',
   'cli-external-orchestration',
+  'cli-jev',
   'sk-doc',
 ];
 

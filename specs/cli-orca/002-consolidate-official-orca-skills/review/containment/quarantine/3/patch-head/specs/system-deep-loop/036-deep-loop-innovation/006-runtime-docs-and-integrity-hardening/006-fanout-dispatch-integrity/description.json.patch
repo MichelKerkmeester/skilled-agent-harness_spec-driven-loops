@@ -1,0 +1,13 @@
+diff --git a/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity/description.json b/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity/description.json
+index 9d8998ee9d3..59d0897a9e0 100644
+--- a/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity/description.json
++++ b/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity/description.json
+@@ -19,7 +19,7 @@
+     "deltas",
+     "findings"
+   ],
+-  "lastUpdated": "2026-08-19T19:14:44.708Z",
++  "lastUpdated": "2026-09-11T16:49:41.224Z",
+   "specId": "006",
+   "folderSlug": "fanout-dispatch-integrity",
+   "parentChain": [

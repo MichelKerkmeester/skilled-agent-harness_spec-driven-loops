@@ -1,0 +1,13 @@
+diff --git a/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/description.json b/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/description.json
+index f6c7bb52d45..54bade3c29b 100644
+--- a/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/description.json
++++ b/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/description.json
+@@ -12,7 +12,7 @@
+     "pain",
+     "point"
+   ],
+-  "lastUpdated": "2026-09-11T18:01:53.359Z",
++  "lastUpdated": "2026-09-11T19:10:35.428Z",
+   "specId": "010",
+   "folderSlug": "deep-research-residue",
+   "parentChain": [

@@ -1,0 +1,38 @@
+diff --git a/specs/sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name/description.json b/specs/sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name/description.json
+index c820acd4f89..730cc33dceb 100644
+--- a/specs/sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name/description.json
++++ b/specs/sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name/description.json
+@@ -1,11 +1,20 @@
+ {
++  "level": "1",
+   "specFolder": "sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name",
+-  "description": "Phase 1: shorten-handoff-rule-name",
++  "description": "The handoff rule's filename was the longest in the corpus at 38 characters, twice the length of its siblings, so it was shortened to",
+   "keywords": [
+-    "phase",
+-    "shorten-handoff-rule-name"
++    "handoff",
++    "rule",
++    "filename",
++    "longest",
++    "corpus",
++    "characters",
++    "twice",
++    "length",
++    "siblings",
++    "shortened"
+   ],
+-  "lastUpdated": "2026-09-15T19:38:35.171Z",
++  "lastUpdated": "2026-09-15T19:41:12.279Z",
+   "specId": "013",
+   "folderSlug": "shorten-handoff-rule-name",
+   "parentChain": [
+@@ -13,6 +22,5 @@
+     "006-sk-communication-clarity"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "1"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

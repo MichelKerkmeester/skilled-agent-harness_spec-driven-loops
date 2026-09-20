@@ -69,8 +69,8 @@
       ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
       ".skilled/bin/compiled-route-guard.cjs",
       ".skilled/bin/compiled-route-sync.cjs",
-      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
-      "specs/cli-jev/description.json"
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
+      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json"
     ],
     "entities": [
       {
@@ -170,15 +170,15 @@
         "source": "derived"
       },
       {
-        "name": "serving-closure.manifest.json",
+        "name": "manifest.json",
         "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
         "source": "derived"
       },
       {
-        "name": "description.json",
+        "name": "serving-closure.manifest.json",
         "kind": "config",
-        "path": "specs/cli-jev/description.json",
+        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
         "source": "derived"
       },
       {
@@ -220,17 +220,17 @@
     ],
     "causal_summary": "The jev transport packet currently sits inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose",
     "created_at": "2026-09-20T11:00:11Z",
-    "last_save_at": "2026-09-20T11:08:50.524Z",
+    "last_save_at": "2026-09-20T13:54:00.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3f46a29c9c50e3b6c17e726fe70689230ed0d4ab1962e1d1e9b3be91544f4213",
+    "source_fingerprint": "sha256:37c9167c5aa6899500300e96cb309bdbaf1202543139044e3553e9ba20d727c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "78de7ba005a3b82797224f134c3d37ab6633ca02bc42a1a0fa7585cfde390871"
+      "spec.md": "37d7c996b0f16f2eb14eb0875fc15809210b04adda32b666a6815f3f7d6984b7"
     },
     "last_active_at": null
   }

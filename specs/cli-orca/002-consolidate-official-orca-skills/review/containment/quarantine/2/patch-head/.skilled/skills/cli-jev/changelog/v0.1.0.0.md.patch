@@ -1,0 +1,43 @@
+diff --git a/.skilled/skills/cli-jev/changelog/v0.1.0.0.md b/.skilled/skills/cli-jev/changelog/v0.1.0.0.md
+new file mode 100644
+index 00000000000..489ed0bcb09
+--- /dev/null
++++ b/.skilled/skills/cli-jev/changelog/v0.1.0.0.md
+@@ -0,0 +1,37 @@
++# v0.1.0.0 - cli-jev becomes its own hub
++
++## Added
++
++- **The `cli-jev` hub.** Jev leaves the `cli-external-orchestration` family and becomes the single
++  public identity of a hub with one packet. The advisor resolves the hub; `hub-router.json` resolves
++  the transport; `mode-registry.json` is the registry of record.
++- **`cli-usage` - the hub's first mode and its only `packetKind: "transport"`.** It is the moved
++  Jev mode under its new name: `noul`, `choice`, `score` and `run` return one typed value from a
++  state, and the mode writes nothing into this workspace. `Write`, `Edit` and `Task` are forbidden
++  and `mutatesWorkspace` is `false`.
++- **The `transport-axis` extension**, now declared by this hub:
++  `extensions["transport-axis"].transports: ["cli-usage"]`. The per-hub gate enforces the whole
++  contract (routingClass `metadata`, `mutatesWorkspace: false`, the forbidden tool set, and
++  membership in the axis).
++- **Hub companion files**: `SKILL.md`, `README.md`, `ROUTER.md` (`router_state: stage1-only`),
++  `description.json`, `graph-metadata.json`, `leaf-manifest.json`, a hub `changelog/`, a hub
++  `manual-testing-playbook/` and a `benchmark/` baseline.
++- **The compiled-routing directive block** in the hub `SKILL.md`, with all four markers
++  (`Compiled routing (default-on`, the `compiled-route.cjs --hub cli-jev` invocation, the
++  `servingAuthority":"legacy` sentinel and the `SPECKIT_COMPILED_ROUTING=0` kill-switch). The block
++  stays inert until the hub is onboarded to the serving closure.
++
++## Changed
++
++- **The packet moved** from `.skilled/skills/cli-external-orchestration/cli-jev/` to
++  `.skilled/skills/cli-jev/cli-usage/`, history preserved by rename. Its references, assets,
++  feature catalog, playbook, benchmark and changelog moved with it.
++- **The mode identity is `cli-usage`**; `cli-jev` survives as a hub id, a mode alias and the hub's
++  routing vocabulary, so an existing request that names `cli-jev` still lands on the transport.
++- **The transport's own prose** now names its hub instead of the old family, and its packet
++  `SKILL.md` frontmatter is `name: cli-usage`.
++
++## Not Changed
++
++- The judgment contract: the eight hard rules, the four references, the question-shaping card, the
++  JEV scenario ids and the recorded run verdicts are the same evidence, at a new path.

@@ -1,0 +1,13 @@
+diff --git a/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/description.json b/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/description.json
+index 5c58e714082..c492652e8b8 100644
+--- a/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/description.json
++++ b/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/description.json
+@@ -18,7 +18,7 @@
+     "drifted",
+     "reality"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:07.475Z",
++  "lastUpdated": "2026-09-11T16:49:41.299Z",
+   "specId": "015",
+   "folderSlug": "packet-hygiene-and-narrative-integrity",
+   "parentChain": [

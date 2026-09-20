@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/description.json b/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/description.json
+index fa8f63aff9c..b7cade9d601 100644
+--- a/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/description.json
+@@ -16,7 +16,7 @@
+     "vendored",
+     "engine"
+   ],
+-  "lastUpdated": "2026-09-08T18:23:18.778Z",
++  "lastUpdated": "2026-09-11T16:49:41.570Z",
+   "specId": "019",
+   "folderSlug": "memory-decommission-branch-landing",
+   "parentChain": [

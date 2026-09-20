@@ -1,0 +1,26 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md b/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
+index 9eff697a2d4..2bb9352d10d 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
+@@ -9,7 +9,7 @@ trigger_phrases:
+   - "component readme voice"
+ importance_tier: normal
+ contextType: implementation
+-version: 1.1.0.7
++version: 1.2.0.0
+ ---
+ 
+ # README Types and Voice
+@@ -45,6 +45,12 @@ The README type decision tree lives in `SKILL.md` Section 2. This reference cove
+ 
+ Project, Skill and Feature READMEs use both voice tiers. Component and Code Folder READMEs use the reference tier only.
+ 
++### Front-Page vs Technical Register
++
++One Project README is also the repository's front page: `/README.md`. It may use the marketing register: value-first ordering and benefit-led headings, with decorative emoji on section headings, because its job is to win the reader's attention in seconds.
++
++Every other README, including Skill and Feature, stays on the technical register. It opens with purpose and boundaries rather than a pitch, and uses only semantic emoji (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers. A skill README explains, it does not sell.
++
+ ---
+ 
+ ## 3. PROGRESSIVE DISCLOSURE

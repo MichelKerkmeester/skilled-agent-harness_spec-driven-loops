@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/description.json
+index 8756d31926a..71b3bac9b89 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/description.json
+@@ -15,7 +15,7 @@
+     "measured",
+     "retired"
+   ],
+-  "lastUpdated": "2026-09-19T05:54:19.421Z",
++  "lastUpdated": "2026-09-19T06:57:35.519Z",
+   "specId": "017",
+   "folderSlug": "build-compiled-serving-gold-admission-checker",
+   "parentChain": [

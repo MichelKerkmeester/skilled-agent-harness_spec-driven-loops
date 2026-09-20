@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening/description.json b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening/description.json
+index 06c6f997001..941c0a7bfad 100644
+--- a/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening/description.json
++++ b/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening/description.json
+@@ -17,7 +17,7 @@
+     "embedder",
+     "sidecar"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:13.826Z",
++  "lastUpdated": "2026-09-11T16:49:41.490Z",
+   "specId": "042",
+   "folderSlug": "embedder-relisten-and-reaper-hardening",
+   "parentChain": [

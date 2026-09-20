@@ -1,0 +1,43 @@
+diff --git a/specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/description.json b/specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/description.json
+index ce263f180ce..3437596c603 100644
+--- a/specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/description.json
++++ b/specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/description.json
+@@ -1,11 +1,25 @@
+ {
++  "level": "2",
+   "specFolder": "cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders",
+-  "description": "Phase 3: wire-executor-builders",
++  "description": "The fan-out builder is the only caller that cannot get a flag wrong, so anything it fails to set is unreachable rather than merely risky",
+   "keywords": [
+-    "phase",
+-    "wire-executor-builders"
++    "fan-out",
++    "builder",
++    "only",
++    "caller",
++    "cannot",
++    "get",
++    "flag",
++    "wrong",
++    "anything",
++    "fails",
++    "set",
++    "unreachable",
++    "rather",
++    "merely",
++    "risky"
+   ],
+-  "lastUpdated": "2026-09-15T16:29:33.648Z",
++  "lastUpdated": "2026-09-15T18:11:38.460Z",
+   "specId": "015",
+   "folderSlug": "wire-executor-builders",
+   "parentChain": [
+@@ -13,6 +27,5 @@
+     "071-cli-hermes-creation"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "2"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

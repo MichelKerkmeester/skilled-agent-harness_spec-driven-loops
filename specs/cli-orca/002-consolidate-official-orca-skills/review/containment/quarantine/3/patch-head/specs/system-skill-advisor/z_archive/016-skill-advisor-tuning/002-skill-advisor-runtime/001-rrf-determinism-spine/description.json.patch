@@ -1,0 +1,13 @@
+diff --git a/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine/description.json b/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine/description.json
+index 3516b0cb1b9..3bd3e013d08 100644
+--- a/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine/description.json
++++ b/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine/description.json
+@@ -14,7 +14,7 @@
+     "derivedgenerated",
+     "semanticshadow"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:08.371Z",
++  "lastUpdated": "2026-09-11T16:49:41.320Z",
+   "specId": "001",
+   "folderSlug": "rrf-determinism-spine",
+   "parentChain": [

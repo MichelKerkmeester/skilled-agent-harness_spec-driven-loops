@@ -1,0 +1,37 @@
+diff --git a/specs/sk-code/009-sk-code-mobile-cli-deprecation/description.json b/specs/sk-code/009-sk-code-mobile-cli-deprecation/description.json
+index 43ded170a62..3cd90361518 100644
+--- a/specs/sk-code/009-sk-code-mobile-cli-deprecation/description.json
++++ b/specs/sk-code/009-sk-code-mobile-cli-deprecation/description.json
+@@ -1,21 +1,23 @@
+ {
++  "level": "2",
+   "specFolder": "sk-code/009-sk-code-mobile-cli-deprecation",
+-  "description": "Deprecate the sk-code-mobile-cli surface packet and sweep its references",
++  "description": "The `sk-code` parent hub registers `sk-code-mobile-cli` as a read-only surface packet for",
+   "keywords": [
+-    "deprecate",
++    "sk-code",
++    "parent",
++    "hub",
++    "registers",
+     "sk-code-mobile-cli",
++    "read-only",
+     "surface",
+-    "packet",
+-    "sweep",
+-    "references"
++    "packet"
+   ],
+-  "lastUpdated": "2026-09-19T09:02:48.170Z",
++  "lastUpdated": "2026-09-19T12:41:26.516Z",
+   "specId": "009",
+   "folderSlug": "sk-code-mobile-cli-deprecation",
+   "parentChain": [
+     "sk-code"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "2"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

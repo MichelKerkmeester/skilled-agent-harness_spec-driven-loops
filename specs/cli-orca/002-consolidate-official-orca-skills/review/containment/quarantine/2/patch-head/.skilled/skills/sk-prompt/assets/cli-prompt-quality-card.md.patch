@@ -1,0 +1,13 @@
+diff --git a/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md b/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+index fdb12110c97..bb0c21cb9a6 100644
+--- a/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
++++ b/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+@@ -139,7 +139,7 @@ Attach the resolved persona via the mode's native surface where the CLI loads it
+ | `cli-codex` | INLINE (mandatory): `.codex/agents/*.toml` is TUI-only; `codex exec` / `-p` load config, not a persona. |
+ | `cli-pi` | INLINE (mandatory): core Pi has no persona surface on `pi -p`. |
+ | `cli-hermes` | SKILL + PLUGIN: `-s agent-<name>` preloads the mirrored persona skill and `HERMES_AGENT_PERSONA=<name>` (repo plugin) binds it for the session. INLINE otherwise: a headless `hermes chat` has no persona flag; profiles are whole-home islands. |
+-| `cli-jev` | NONE (transport): the mode answers one typed judgment and runs nothing, so it takes no persona and no task is dispatched to it. |
++| `cli-usage` (the `cli-jev` hub's transport) | NONE (transport): the mode answers one typed judgment and runs nothing, so it takes no persona and no task is dispatched to it. |
+ | fanout runtime | INLINE into the composed prompt string (`fanout-run.cjs` has no persona slot). |
+ 
+ ### 6.3 Inline block format

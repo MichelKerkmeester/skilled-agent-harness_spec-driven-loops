@@ -42,7 +42,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-09-20 |
-| **Branch** | `scaffold/001-track-and-packet-migration` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 5 |
 | **Predecessor** | None |

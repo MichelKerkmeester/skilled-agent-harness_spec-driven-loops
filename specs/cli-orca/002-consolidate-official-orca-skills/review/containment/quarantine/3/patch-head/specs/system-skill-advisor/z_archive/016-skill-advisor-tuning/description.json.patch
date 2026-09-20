@@ -1,0 +1,13 @@
+diff --git a/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/description.json b/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/description.json
+index 570da8edbc4..86764c8ea5e 100644
+--- a/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/description.json
++++ b/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/description.json
+@@ -17,7 +17,7 @@
+     "saturation-class",
+     "defect"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:08.485Z",
++  "lastUpdated": "2026-09-11T16:49:41.325Z",
+   "specId": "016",
+   "folderSlug": "skill-advisor-tuning",
+   "parentChain": [

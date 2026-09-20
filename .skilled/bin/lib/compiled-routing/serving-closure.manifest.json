@@ -7,9 +7,10 @@
     "system-deep-loop",
     "mcp-tooling",
     "cli-external-orchestration",
-    "sk-doc"
+    "sk-doc",
+    "cli-jev"
   ],
-  "fileCount": 48,
+  "fileCount": 55,
   "files": [
     "003-contract-schemas/lib/canonical.cjs",
     "003-contract-schemas/schemas/compiled-policy.v1.schema.json",
@@ -47,7 +48,13 @@
     "009-parent-hub-rollout/007-sk-doc/lib/policy-card.cjs",
     "009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs",
     "009-parent-hub-rollout/007-sk-doc/lib/router.cjs",
+    "009-parent-hub-rollout/008-cli-jev/fixtures/canary-cases.v1.json",
+    "009-parent-hub-rollout/008-cli-jev/harness/build-artifacts.cjs",
+    "009-parent-hub-rollout/008-cli-jev/lib/policy-card.cjs",
+    "009-parent-hub-rollout/008-cli-jev/lib/registry-compiler.cjs",
+    "009-parent-hub-rollout/008-cli-jev/lib/router.cjs",
     "013-live-activation/activation/cli-external-orchestration/manifest.json",
+    "013-live-activation/activation/cli-jev/manifest.json",
     "013-live-activation/activation/mcp-tooling/manifest.json",
     "013-live-activation/activation/sk-code/manifest.json",
     "013-live-activation/activation/sk-doc/manifest.json",
@@ -58,6 +65,7 @@
     "013-live-activation/activation/system-deep-loop/fence-state.json",
     "013-live-activation/activation/mcp-tooling/fence-state.json",
     "013-live-activation/activation/cli-external-orchestration/fence-state.json",
+    "013-live-activation/activation/cli-jev/fence-state.json",
     "013-live-activation/activation/sk-doc/fence-state.json"
   ]
 }

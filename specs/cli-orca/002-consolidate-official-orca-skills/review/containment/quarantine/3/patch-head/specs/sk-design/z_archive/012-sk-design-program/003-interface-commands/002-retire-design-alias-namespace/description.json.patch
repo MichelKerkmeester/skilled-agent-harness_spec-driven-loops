@@ -1,0 +1,26 @@
+diff --git a/specs/sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace/description.json b/specs/sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace/description.json
+index bc5e2eb526c..cf8ea19686a 100644
+--- a/specs/sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace/description.json
++++ b/specs/sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-design/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace",
++  "specFolder": "sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace",
+   "description": "Phase 004 shipped the five `/interface:` creation commands but kept a full `/design:` alias layer for backward compatibility: five thin alias wrappers",
+   "keywords": [
+     "phase",
+@@ -19,11 +19,12 @@
+     "thin",
+     "wrappers"
+   ],
+-  "lastUpdated": "2026-08-15T14:40:57.996Z",
++  "lastUpdated": "2026-09-11T16:49:40.917Z",
+   "specId": "002",
+   "folderSlug": "retire-design-alias-namespace",
+   "parentChain": [
+     "sk-design",
++    "z_archive",
+     "012-sk-design-program",
+     "003-interface-commands"
+   ],

@@ -1,0 +1,26 @@
+diff --git a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/description.json b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/description.json
+index 878b9a53832..040a5904029 100644
+--- a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/description.json
++++ b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
++  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
+   "description": "Compiled-routing evidence is neither durable, joined, portable, nor safely archived: a run can silently overwrite or vanish, no single artifact",
+   "keywords": [
+     "compiled-routing",
+@@ -17,11 +17,12 @@
+     "single",
+     "artifact"
+   ],
+-  "lastUpdated": "2026-08-30T08:03:50.661Z",
++  "lastUpdated": "2026-09-11T16:49:41.045Z",
+   "specId": "007",
+   "folderSlug": "durable-archiving-and-serving-snapshot",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "019-skill-routing-refactor",
+     "015-router-unification-program",
+     "019-routing-coverage-activation-verification"

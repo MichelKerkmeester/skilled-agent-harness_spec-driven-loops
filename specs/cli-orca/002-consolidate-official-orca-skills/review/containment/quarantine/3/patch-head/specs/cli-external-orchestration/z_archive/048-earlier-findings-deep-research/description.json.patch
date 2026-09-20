@@ -1,0 +1,27 @@
+diff --git a/specs/cli-external-orchestration/z_archive/048-earlier-findings-deep-research/description.json b/specs/cli-external-orchestration/z_archive/048-earlier-findings-deep-research/description.json
+index 1da2a57cf6d..e9e9bf1e7f6 100644
+--- a/specs/cli-external-orchestration/z_archive/048-earlier-findings-deep-research/description.json
++++ b/specs/cli-external-orchestration/z_archive/048-earlier-findings-deep-research/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": 1,
+-  "specFolder": "cli-external-orchestration/048-earlier-findings-deep-research",
++  "specFolder": "cli-external-orchestration/z_archive/048-earlier-findings-deep-research",
+   "description": "Running the sk-vision manual-testing-playbook across Cursor and Devin surfaced five host-adapter findings (Cursor MCP approval, Devin `dangerous`-only",
+   "keywords": [
+     "running",
+@@ -18,11 +18,12 @@
+     "dangerous",
+     "only"
+   ],
+-  "lastUpdated": "2026-08-18T10:12:06.482Z",
++  "lastUpdated": "2026-09-20T04:33:22.852Z",
+   "specId": "048",
+   "folderSlug": "earlier-findings-deep-research",
+   "parentChain": [
+-    "cli-external-orchestration"
++    "cli-external-orchestration",
++    "z_archive"
+   ],
+   "memorySequence": 0,
+   "memoryNameHistory": []

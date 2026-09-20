@@ -15,14 +15,14 @@
       "problem statement",
       "requirements and scope",
       "success criteria",
+      "compiled fleet onboarding",
+      "activation manifest",
+      "serving closure",
       "implementation plan",
       "technical approach",
       "architecture decisions",
       "testing strategy",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies"
+      "phase tasks"
     ],
     "key_topics": [
       "feature",
@@ -33,19 +33,34 @@
       "scope",
       "success",
       "criteria",
-      "implementation",
-      "plan",
-      "technical",
-      "approach"
+      "compiled",
+      "fleet",
+      "onboarding",
+      "activation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+      ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
+      ".skilled/bin/compiled-routing-foundation.vitest.ts",
+      ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      ".skilled/skills/cli-jev/SKILL.md",
+      ".skilled/skills/cli-jev/changelog/v0.2.0.0.md",
+      ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
+      ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts"
     ],
     "entities": [
       {
@@ -79,6 +94,96 @@
         "source": "derived"
       },
       {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "serving-closure.manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/compiled-routing-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-jev/changelog/v0.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "judgment-request-routes-to-transport.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
+        "source": "derived"
+      },
+      {
+        "name": "out-of-domain-resolves-nothing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -101,101 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Before this phase the hub resolved through the legacy path: it was absent from the engine's dispatch map, so `compiled-route.cjs --hub cli-jev` returned the sentinel, `loadHubEngine` threw `unknown hub`, and every compiled-routing view (status, guard, admission, the foundation lockstep suite) treated the hub as unregistered",
     "created_at": "2026-09-20T11:00:13Z",
-    "last_save_at": "2026-09-20T11:06:03.648Z",
+    "last_save_at": "2026-09-20T13:56:13.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51cd4c5ca866651e1c7b4b85065603e193ad78254970969b92fbed755258f565",
+    "source_fingerprint": "sha256:2df0166fb6fbd500516a7ed5257131ae2d09a29a76aa4d04d64e3418bf6c3c5d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88e5f6ea578cf946b8d0b180c6006aae165a2db271e894fd1879e396f3968697",
-      "plan.md": "78b598d52ff3893458aaa030cc6315b331edc3e63a8cca55b12d5653fad8cb9b",
-      "tasks.md": "87015bc543aaa0399f5735c2ce38511c5b400c7b0e2e220dae3609a27a288f74",
-      "implementation-summary.md": "c6028328c9e2541b9e16aa5439c1403fb689767f9e6eb3fb59033035cfd97c8d"
+      "spec.md": "bea3e5abab73c3e39835c869a8fb298584de841b34ef1b2c497de49986e5b683",
+      "plan.md": "8fdc13227505d9b9992fde73c4b06ec2b1834fbda68090a956649152bd8adbe6",
+      "tasks.md": "0a19344a537d1914e21df1528f18f70f282d2f6809f5253ca0f9c488b763d121",
+      "implementation-summary.md": "11ccd169a5437610e43d53b2ce0ef7837a41559b7992fcd255278c3ecc1341fa"
     },
     "last_active_at": null
   }

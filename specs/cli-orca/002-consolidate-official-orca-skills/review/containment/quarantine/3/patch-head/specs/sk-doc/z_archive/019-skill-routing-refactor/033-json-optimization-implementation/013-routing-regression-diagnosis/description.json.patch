@@ -1,0 +1,33 @@
+diff --git a/specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis/description.json b/specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis/description.json
+index 921e4c9be25..cd48e154f76 100644
+--- a/specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis/description.json
++++ b/specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis/description.json
+@@ -1,5 +1,6 @@
+ {
+-  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis",
++  "level": 3,
++  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis",
+   "description": "Diagnose the reproduced -2 routing regression on holdout top-1, holdout top-3 and the delegation bucket, attribute it to a commit, and decide",
+   "keywords": [
+     "diagnose",
+@@ -15,15 +16,15 @@
+     "commit",
+     "decide"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:00.377Z",
++  "lastUpdated": "2026-09-11T16:49:41.083Z",
+   "specId": "013",
+   "folderSlug": "routing-regression-diagnosis",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "019-skill-routing-refactor",
+     "033-json-optimization-implementation"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": 3
+-}
++  "memoryNameHistory": []
++}
+\ No newline at end of file

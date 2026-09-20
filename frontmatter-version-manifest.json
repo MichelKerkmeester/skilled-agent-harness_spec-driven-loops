@@ -3,20 +3,20 @@
     "path": ".skilled/skills/cli-external-orchestration/README.md",
     "fileClass": "readme",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 19,
-    "derivedVersion": "1.6.0.19",
+    "realEditCount": 21,
+    "derivedVersion": "1.7.0.21",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/SKILL.md",
     "fileClass": "skill-md",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": "",
-    "derivedVersion": "1.6.0.0",
+    "derivedVersion": "1.7.0.0",
     "action": "compute"
   },
   {
@@ -25,8 +25,8 @@
     "skill": "cli-external-orchestration/cli-claude-code",
     "anchor": "1.5.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 42,
-    "derivedVersion": "1.5.0.42",
+    "realEditCount": 43,
+    "derivedVersion": "1.5.0.43",
     "action": "compute"
   },
   {
@@ -645,8 +645,8 @@
     "skill": "cli-external-orchestration/cli-codex",
     "anchor": "1.9.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 40,
-    "derivedVersion": "1.9.0.40",
+    "realEditCount": 41,
+    "derivedVersion": "1.9.0.41",
     "action": "compute"
   },
   {
@@ -1175,8 +1175,8 @@
     "skill": "cli-external-orchestration/cli-cursor",
     "anchor": "1.4.1.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 19,
-    "derivedVersion": "1.4.0.19",
+    "realEditCount": 20,
+    "derivedVersion": "1.4.0.20",
     "action": "compute"
   },
   {
@@ -1695,8 +1695,8 @@
     "skill": "cli-external-orchestration/cli-devin",
     "anchor": "1.4.2.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 15,
-    "derivedVersion": "1.4.0.15",
+    "realEditCount": 16,
+    "derivedVersion": "1.4.0.16",
     "action": "compute"
   },
   {
@@ -2165,8 +2165,8 @@
     "skill": "cli-external-orchestration/cli-hermes",
     "anchor": "1.0.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 6,
-    "derivedVersion": "1.0.0.6",
+    "realEditCount": 7,
+    "derivedVersion": "1.0.0.7",
     "action": "compute"
   },
   {
@@ -2850,363 +2850,13 @@
     "action": "compute"
   },
   {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/README.md",
-    "fileClass": "readme",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/SKILL.md",
-    "fileClass": "skill-md",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": "",
-    "derivedVersion": "1.0.1.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/assets/question-shaping-card.md",
-    "fileClass": "asset",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/feature-catalog/dispatch-guards/dispatch-guards.md",
-    "fileClass": "feature-catalog",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/feature-catalog/feature-catalog.md",
-    "fileClass": "feature-catalog",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/feature-catalog/judgment-primitives/judgment-primitives.md",
-    "fileClass": "feature-catalog",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/feature-catalog/surfaces/surfaces.md",
-    "fileClass": "feature-catalog",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/feature-catalog/transport-classification/transport-classification.md",
-    "fileClass": "feature-catalog",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/cli-invocation/binary-resolves-and-pins-version.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/cli-invocation/judgment-help-omits-hidden-endpoint-flag.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/cli-invocation/one-judgment-per-type-returns-typed-answer.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/cli-invocation/root-help-lists-six-subcommands.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/dispatch-guards/declared-hard-rules-refuse-violations.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/batch-request-with-no-key-exits-3.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/choice-single-option-not-refused.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/key-never-echoed-on-error-path.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/malformed-json-state-exits-2.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/missing-required-flag-is-argparse-failure.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/no-key-exits-3-with-structured-json.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/refused-connection-exits-4.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/request-without-questions-exits-2.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/score-single-level-not-refused.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/unknown-subcommand-is-argparse-failure.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/exit-codes/unreadable-state-file-exits-2.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/mcp-server/handshake-and-four-tools.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/providers/auth-status-reports-key-state.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/providers/custom-provider-requires-endpoint.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/providers/invalid-provider-env-exits-2.md",
-    "fileClass": "playbook",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/cli-reference.md",
-    "fileClass": "reference",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/integration-patterns.md",
-    "fileClass": "reference",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/mcp-server.md",
-    "fileClass": "reference",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
-    "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/providers-and-models.md",
-    "fileClass": "reference",
-    "skill": "cli-external-orchestration/cli-jev",
-    "anchor": "1.0.1.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "1.0.0.0",
-    "action": "compute"
-  },
-  {
     "path": ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
     "fileClass": "readme",
     "skill": "cli-external-orchestration/cli-opencode",
     "anchor": "1.4.6.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 48,
-    "derivedVersion": "1.4.0.48",
+    "realEditCount": 49,
+    "derivedVersion": "1.4.0.49",
     "action": "compute"
   },
   {
@@ -3895,8 +3545,8 @@
     "skill": "cli-external-orchestration/cli-pi",
     "anchor": "1.5.4.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 10,
-    "derivedVersion": "1.5.0.10",
+    "realEditCount": 11,
+    "derivedVersion": "1.5.0.11",
     "action": "compute"
   },
   {
@@ -3925,8 +3575,8 @@
     "skill": "cli-external-orchestration/cli-pi",
     "anchor": "1.5.4.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 7,
-    "derivedVersion": "1.5.0.7",
+    "realEditCount": 8,
+    "derivedVersion": "1.5.0.8",
     "action": "compute"
   },
   {
@@ -4305,8 +3955,8 @@
     "skill": "cli-external-orchestration/cli-pi",
     "anchor": "1.5.4.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 6,
-    "derivedVersion": "1.5.0.6",
+    "realEditCount": 7,
+    "derivedVersion": "1.5.0.7",
     "action": "compute"
   },
   {
@@ -4315,8 +3965,8 @@
     "skill": "cli-external-orchestration/cli-pi",
     "anchor": "1.5.4.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 10,
-    "derivedVersion": "1.5.0.10",
+    "realEditCount": 11,
+    "derivedVersion": "1.5.0.11",
     "action": "compute"
   },
   {
@@ -4325,12 +3975,22 @@
     "skill": "cli-external-orchestration/cli-pi",
     "anchor": "1.5.4.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 5,
-    "derivedVersion": "1.5.0.5",
+    "realEditCount": 6,
+    "derivedVersion": "1.5.0.6",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md",
+    "fileClass": "reference",
+    "skill": "cli-external-orchestration/cli-pi",
+    "anchor": "1.5.4.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 9,
+    "derivedVersion": "1.5.0.9",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md",
     "fileClass": "reference",
     "skill": "cli-external-orchestration/cli-pi",
     "anchor": "1.5.4.0",
@@ -4340,23 +4000,13 @@
     "action": "compute"
   },
   {
-    "path": ".skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md",
-    "fileClass": "reference",
-    "skill": "cli-external-orchestration/cli-pi",
-    "anchor": "1.5.4.0",
-    "anchorSource": "max(fm,changelog)",
-    "realEditCount": 7,
-    "derivedVersion": "1.5.0.7",
-    "action": "compute"
-  },
-  {
     "path": ".skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md",
     "fileClass": "reference",
     "skill": "cli-external-orchestration/cli-pi",
     "anchor": "1.5.4.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 7,
-    "derivedVersion": "1.5.0.7",
+    "realEditCount": 8,
+    "derivedVersion": "1.5.0.8",
     "action": "compute"
   },
   {
@@ -4373,310 +4023,720 @@
     "path": ".skilled/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md",
     "fileClass": "feature-catalog",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md",
     "fileClass": "feature-catalog",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 5,
-    "derivedVersion": "1.6.0.5",
+    "realEditCount": 6,
+    "derivedVersion": "1.7.0.6",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     "fileClass": "feature-catalog",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 6,
-    "derivedVersion": "1.6.0.6",
+    "derivedVersion": "1.7.0.6",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
     "fileClass": "feature-catalog",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 13,
-    "derivedVersion": "1.6.0.13",
+    "derivedVersion": "1.7.0.13",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
     "fileClass": "feature-catalog",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 17,
-    "derivedVersion": "1.6.0.17",
+    "realEditCount": 18,
+    "derivedVersion": "1.7.0.18",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/compiled-routing/ordered-bundle-cli-transport-compiled-routing.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 5,
-    "derivedVersion": "1.6.0.5",
+    "derivedVersion": "1.7.0.5",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/auth-failure.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/budget-rejection.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/child-spec-gate.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 5,
-    "derivedVersion": "1.6.0.5",
+    "derivedVersion": "1.7.0.5",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/model-or-balance.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/node-modules-integrity.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/orphan-cleanup.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/partial-lineage-death.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/rate-limit.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/sandbox-permission.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/self-invocation.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/stdin-hang.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/timeout.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/transport-missing.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/worktree-collision.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.6.0.4",
+    "derivedVersion": "1.7.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/ambiguous-defer.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 6,
-    "derivedVersion": "1.6.0.6",
+    "derivedVersion": "1.7.0.6",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/claude-code-second-opinion.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 8,
-    "derivedVersion": "1.6.0.8",
+    "derivedVersion": "1.7.0.8",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/holdout-external-runtime.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 7,
-    "derivedVersion": "1.6.0.7",
+    "derivedVersion": "1.7.0.7",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/holdout-second-opinion.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 7,
-    "derivedVersion": "1.6.0.7",
+    "derivedVersion": "1.7.0.7",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/opencode-full-runtime-dispatch.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 8,
-    "derivedVersion": "1.6.0.8",
+    "derivedVersion": "1.7.0.8",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/manual-testing-playbook.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 17,
-    "derivedVersion": "1.6.0.17",
+    "derivedVersion": "1.7.0.17",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 12,
-    "derivedVersion": "1.6.0.12",
+    "derivedVersion": "1.7.0.12",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 5,
-    "derivedVersion": "1.6.0.5",
+    "derivedVersion": "1.7.0.5",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 17,
-    "derivedVersion": "1.6.0.17",
+    "derivedVersion": "1.7.0.17",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md",
     "fileClass": "playbook",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 12,
-    "derivedVersion": "1.6.0.12",
+    "derivedVersion": "1.7.0.12",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
     "fileClass": "reference",
     "skill": "cli-external-orchestration",
-    "anchor": "1.6.0.0",
+    "anchor": "1.7.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 3,
-    "derivedVersion": "1.6.0.3",
+    "derivedVersion": "1.7.0.3",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/README.md",
+    "fileClass": "readme",
+    "skill": "cli-jev",
+    "anchor": "0.1.0.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/SKILL.md",
+    "fileClass": "skill-md",
+    "skill": "cli-jev",
+    "anchor": "0.1.0.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": "",
+    "derivedVersion": "0.1.0.0",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/README.md",
+    "fileClass": "readme",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 3,
+    "derivedVersion": "1.0.0.3",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/SKILL.md",
+    "fileClass": "skill-md",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": "",
+    "derivedVersion": "1.0.2.0",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/assets/question-shaping-card.md",
+    "fileClass": "asset",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md",
+    "fileClass": "feature-catalog",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/feature-catalog/feature-catalog.md",
+    "fileClass": "feature-catalog",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/feature-catalog/judgment-primitives/judgment-primitives.md",
+    "fileClass": "feature-catalog",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/feature-catalog/surfaces/surfaces.md",
+    "fileClass": "feature-catalog",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/feature-catalog/transport-classification/transport-classification.md",
+    "fileClass": "feature-catalog",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/binary-resolves-and-pins-version.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/judgment-help-omits-hidden-endpoint-flag.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/one-judgment-per-type-returns-typed-answer.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/root-help-lists-six-subcommands.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/declared-hard-rules-refuse-violations.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/batch-request-with-no-key-exits-3.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/choice-single-option-not-refused.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/key-never-echoed-on-error-path.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/malformed-json-state-exits-2.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/missing-required-flag-is-argparse-failure.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/no-key-exits-3-with-structured-json.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/refused-connection-exits-4.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/request-without-questions-exits-2.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/score-single-level-not-refused.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/unknown-subcommand-is-argparse-failure.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/unreadable-state-file-exits-2.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/manual-testing-playbook.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/mcp-server/handshake-and-four-tools.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/auth-status-reports-key-state.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/custom-provider-requires-endpoint.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/invalid-provider-env-exits-2.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "1.0.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/references/cli-reference.md",
+    "fileClass": "reference",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/references/integration-patterns.md",
+    "fileClass": "reference",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/references/mcp-server.md",
+    "fileClass": "reference",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/cli-usage/references/providers-and-models.md",
+    "fileClass": "reference",
+    "skill": "cli-jev/cli-usage",
+    "anchor": "1.0.2.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 2,
+    "derivedVersion": "1.0.0.2",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/alias-still-resolves.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev",
+    "anchor": "0.1.0.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev",
+    "anchor": "0.1.0.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev",
+    "anchor": "0.1.0.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
+    "action": "compute"
+  },
+  {
+    "path": ".skilled/skills/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+    "fileClass": "playbook",
+    "skill": "cli-jev",
+    "anchor": "0.1.0.0",
+    "anchorSource": "max(fm,changelog)",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4685,8 +4745,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4705,8 +4765,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4715,8 +4775,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4725,8 +4785,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4735,8 +4795,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4745,8 +4805,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4755,8 +4815,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4765,8 +4825,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4775,8 +4835,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4785,8 +4845,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4795,8 +4855,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4805,8 +4865,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4815,8 +4875,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4825,8 +4885,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4835,8 +4895,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4845,8 +4905,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4855,8 +4915,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4865,8 +4925,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4875,8 +4935,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4885,8 +4945,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4895,8 +4955,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4905,8 +4965,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4915,8 +4975,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4925,8 +4985,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4935,8 +4995,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4945,8 +5005,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4955,8 +5015,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4965,8 +5025,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -4975,8 +5035,8 @@
     "skill": "cli-orca",
     "anchor": "0.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 0,
-    "derivedVersion": "0.1.0.0",
+    "realEditCount": 1,
+    "derivedVersion": "0.1.0.1",
     "action": "compute"
   },
   {
@@ -5355,8 +5415,8 @@
     "skill": "mcp-tooling",
     "anchor": "1.8.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 18,
-    "derivedVersion": "1.8.0.18",
+    "realEditCount": 19,
+    "derivedVersion": "1.8.0.19",
     "action": "compute"
   },
   {
@@ -5375,8 +5435,8 @@
     "skill": "mcp-tooling",
     "anchor": "1.8.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 6,
-    "derivedVersion": "1.8.0.6",
+    "realEditCount": 7,
+    "derivedVersion": "1.8.0.7",
     "action": "compute"
   },
   {
@@ -5385,8 +5445,8 @@
     "skill": "mcp-tooling",
     "anchor": "1.8.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 8,
-    "derivedVersion": "1.8.0.8",
+    "realEditCount": 9,
+    "derivedVersion": "1.8.0.9",
     "action": "compute"
   },
   {
@@ -5395,8 +5455,8 @@
     "skill": "mcp-tooling",
     "anchor": "1.8.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 7,
-    "derivedVersion": "1.8.0.7",
+    "realEditCount": 8,
+    "derivedVersion": "1.8.0.8",
     "action": "compute"
   },
   {
@@ -5565,8 +5625,8 @@
     "skill": "mcp-tooling",
     "anchor": "1.8.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 15,
-    "derivedVersion": "1.8.0.15",
+    "realEditCount": 16,
+    "derivedVersion": "1.8.0.16",
     "action": "compute"
   },
   {
@@ -18593,130 +18653,130 @@
     "path": ".skilled/skills/sk-doc/sk-create-readme/README.md",
     "fileClass": "readme",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 15,
-    "derivedVersion": "1.1.0.15",
+    "derivedVersion": "1.2.0.15",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
     "fileClass": "skill-md",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": "",
-    "derivedVersion": "1.1.0.0",
+    "derivedVersion": "1.2.0.0",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
     "fileClass": "asset",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 9,
-    "derivedVersion": "1.1.0.9",
+    "derivedVersion": "1.2.0.9",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
     "fileClass": "asset",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 39,
-    "derivedVersion": "1.1.0.39",
+    "derivedVersion": "1.2.0.39",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/self-explanatory-folder-stays-unchanged.md",
     "fileClass": "playbook",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.1.0.4",
+    "derivedVersion": "1.2.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/skill-readme.md",
     "fileClass": "playbook",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 5,
-    "derivedVersion": "1.1.0.5",
+    "derivedVersion": "1.2.0.5",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/code-folder-navigation-shape.md",
     "fileClass": "playbook",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.1.0.4",
+    "derivedVersion": "1.2.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/evidence-first-current-state.md",
     "fileClass": "playbook",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 4,
-    "derivedVersion": "1.1.0.4",
+    "derivedVersion": "1.2.0.4",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
     "fileClass": "playbook",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 5,
-    "derivedVersion": "1.1.0.5",
+    "derivedVersion": "1.2.0.5",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/references/README.md",
     "fileClass": "readme",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 9,
-    "derivedVersion": "1.1.0.9",
+    "derivedVersion": "1.2.0.9",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
     "fileClass": "reference",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 7,
-    "derivedVersion": "1.1.0.7",
+    "derivedVersion": "1.2.0.7",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md",
     "fileClass": "reference",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 8,
-    "derivedVersion": "1.1.0.8",
+    "derivedVersion": "1.2.0.8",
     "action": "compute"
   },
   {
     "path": ".skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
     "fileClass": "reference",
     "skill": "sk-doc/sk-create-readme",
-    "anchor": "1.1.0.0",
+    "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
     "realEditCount": 7,
-    "derivedVersion": "1.1.0.7",
+    "derivedVersion": "1.2.0.7",
     "action": "compute"
   },
   {
@@ -18725,8 +18785,8 @@
     "skill": "sk-doc/sk-create-repo-rule",
     "anchor": "1.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 7,
-    "derivedVersion": "1.1.0.7",
+    "realEditCount": 8,
+    "derivedVersion": "1.1.0.8",
     "action": "compute"
   },
   {
@@ -18745,8 +18805,8 @@
     "skill": "sk-doc/sk-create-repo-rule",
     "anchor": "1.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 8,
-    "derivedVersion": "1.1.0.8",
+    "realEditCount": 9,
+    "derivedVersion": "1.1.0.9",
     "action": "compute"
   },
   {
@@ -18885,8 +18945,8 @@
     "skill": "sk-doc/sk-create-repo-rule",
     "anchor": "1.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 7,
-    "derivedVersion": "1.1.0.7",
+    "realEditCount": 8,
+    "derivedVersion": "1.1.0.8",
     "action": "compute"
   },
   {
@@ -18895,8 +18955,8 @@
     "skill": "sk-doc/sk-create-repo-rule",
     "anchor": "1.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 11,
-    "derivedVersion": "1.1.0.11",
+    "realEditCount": 12,
+    "derivedVersion": "1.1.0.12",
     "action": "compute"
   },
   {
@@ -18915,8 +18975,8 @@
     "skill": "sk-doc/sk-create-repo-rule",
     "anchor": "1.1.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 11,
-    "derivedVersion": "1.1.0.11",
+    "realEditCount": 12,
+    "derivedVersion": "1.1.0.12",
     "action": "compute"
   },
   {
@@ -19215,8 +19275,8 @@
     "skill": "sk-doc/sk-create-skill",
     "anchor": "1.2.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 11,
-    "derivedVersion": "1.2.0.11",
+    "realEditCount": 12,
+    "derivedVersion": "1.2.0.12",
     "action": "compute"
   },
   {
@@ -20115,8 +20175,8 @@
     "skill": "sk-prompt",
     "anchor": "3.0.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 34,
-    "derivedVersion": "3.0.0.34",
+    "realEditCount": 35,
+    "derivedVersion": "3.0.0.35",
     "action": "compute"
   },
   {
@@ -28975,8 +29035,8 @@
     "skill": "system-spec-kit",
     "anchor": "3.9.0.0",
     "anchorSource": "max(fm,changelog)",
-    "realEditCount": 19,
-    "derivedVersion": "3.9.0.19",
+    "realEditCount": 20,
+    "derivedVersion": "3.9.0.20",
     "action": "compute"
   },
   {

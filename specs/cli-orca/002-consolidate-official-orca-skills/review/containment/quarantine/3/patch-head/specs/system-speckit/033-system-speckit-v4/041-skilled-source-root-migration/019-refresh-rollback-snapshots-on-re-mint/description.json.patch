@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint/description.json
+index 29d5e8a2491..eccc8ed245f 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint/description.json
+@@ -19,7 +19,7 @@
+     "restores",
+     "byte"
+   ],
+-  "lastUpdated": "2026-09-19T06:44:20.449Z",
++  "lastUpdated": "2026-09-19T06:57:35.531Z",
+   "specId": "019",
+   "folderSlug": "refresh-rollback-snapshots-on-re-mint",
+   "parentChain": [

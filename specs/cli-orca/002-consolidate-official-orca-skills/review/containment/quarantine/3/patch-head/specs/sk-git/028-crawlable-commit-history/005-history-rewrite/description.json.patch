@@ -1,0 +1,29 @@
+diff --git a/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/description.json b/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/description.json
+index 55f8abe66eb..1b76421e2d3 100644
+--- a/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/description.json
++++ b/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/description.json
+@@ -1,18 +1,14 @@
+ {
+   "level": "3",
+   "specFolder": "sk-git/028-crawlable-commit-history/005-history-rewrite",
+-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
++  "description": "New commits carry an address",
+   "keywords": [
+-    "broken",
+-    "missing",
+-    "inefficient",
+-    "sentences",
+-    "describing",
+-    "specific",
+-    "pain",
+-    "point"
++    "new",
++    "commits",
++    "carry",
++    "address"
+   ],
+-  "lastUpdated": "2026-09-11T07:16:31.847Z",
++  "lastUpdated": "2026-09-11T16:53:09.969Z",
+   "specId": "005",
+   "folderSlug": "history-rewrite",
+   "parentChain": [

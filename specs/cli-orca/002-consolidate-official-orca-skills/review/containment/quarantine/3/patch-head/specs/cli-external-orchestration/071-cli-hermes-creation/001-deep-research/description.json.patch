@@ -1,0 +1,13 @@
+diff --git a/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/description.json b/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/description.json
+index 2b41f2e20a7..22ddeec799f 100644
+--- a/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/description.json
++++ b/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/description.json
+@@ -18,7 +18,7 @@
+     "mcp",
+     "host"
+   ],
+-  "lastUpdated": "2026-09-14T16:16:00.326Z",
++  "lastUpdated": "2026-09-14T17:25:55.790Z",
+   "specId": "001",
+   "folderSlug": "deep-research",
+   "parentChain": [

@@ -1,0 +1,157 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/SKILL.md b/.skilled/skills/sk-doc/sk-create-readme/SKILL.md
+index 1a42d0873b3..2aa54e0d9bb 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/SKILL.md
+@@ -2,7 +2,7 @@
+ name: sk-create-readme
+ description: Author sk-doc folder, code-folder and skill/project READMEs from local evidence.
+ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+-version: 1.1.0.0
++version: 1.2.0.0
+ ---
+ 
+ <!-- Keywords: create-readme, folder readme, code folder readme, project readme, skill readme, /create:readme, audit_readmes -->
+@@ -209,6 +209,10 @@ General README format rules:
+ - H2 headings are numbered and ALL CAPS, for example `## 1. OVERVIEW`.
+ - Numbered H3 and H4 subsections inside feature sections are ALL CAPS, for example `### 3.1 TECHNICAL REFERENCE`.
+ - Unnumbered H3 and H4 headings use Title Case.
++- Name the feature or artifact in its heading: `### Spec Kit: a written record of every change`, not `### Powered by Spec Kit`.
++- Emoji use follows two registers. The repository front-page README may use decorative emoji on section headings. Every other README uses semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers.
++- Give every item in an inventory a description. A list of bare names says nothing about when to use each one.
++- Keep paragraphs to 2-4 sentences. A passage with several distinct points belongs in bullets.
+ - Use `---` horizontal rules between H2 sections.
+ - Do not add a Table of Contents.
+ - Do not add `<!-- ANCHOR -->` navigation comments.
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md b/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
+index 9eff697a2d4..2bb9352d10d 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
+@@ -9,7 +9,7 @@ trigger_phrases:
+   - "component readme voice"
+ importance_tier: normal
+ contextType: implementation
+-version: 1.1.0.7
++version: 1.2.0.0
+ ---
+ 
+ # README Types and Voice
+@@ -45,6 +45,12 @@ The README type decision tree lives in `SKILL.md` Section 2. This reference cove
+ 
+ Project, Skill and Feature READMEs use both voice tiers. Component and Code Folder READMEs use the reference tier only.
+ 
++### Front-Page vs Technical Register
++
++One Project README is also the repository's front page: `/README.md`. It may use the marketing register: value-first ordering and benefit-led headings, with decorative emoji on section headings, because its job is to win the reader's attention in seconds.
++
++Every other README, including Skill and Feature, stays on the technical register. It opens with purpose and boundaries rather than a pitch, and uses only semantic emoji (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers. A skill README explains, it does not sell.
++
+ ---
+ 
+ ## 3. PROGRESSIVE DISCLOSURE
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md b/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md
+index 308985e145d..15966472481 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md
+@@ -9,7 +9,7 @@ trigger_phrases:
+   - "readme heading hierarchy"
+ importance_tier: normal
+ contextType: implementation
+-version: 1.1.0.6
++version: 1.2.0.0
+ ---
+ 
+ # README Writing Patterns
+@@ -47,6 +47,8 @@ Get users to a working state in under 2 minutes. "30-Second Setup" is aspiration
+ 
+ Comprehensive feature documentation with two-tier structure. Split into a narrative subsection (`### 3.1 HOW IT WORKS`) and a reference subsection (`### 3.2 TECHNICAL REFERENCE`). Use numbered H3 ALL CAPS subsections with `---` dividers between them, and numbered H4 ALL CAPS sub-subsections (3.1.1, 3.1.2) within narrative subsections. Open each sub-subsection with 1-2 plain-language sentences, and bold key term names on first use.
+ 
++Name the feature in its heading and lead with its benefit: `### Spec Kit: a written record of every change` rather than `### Powered by Spec Kit`. When a document covers four or more major features, give each one its own numbered H2 section instead of splitting a single Features section, so every feature gets the full two-tier treatment and its own anchor.
++
+ ### Structure
+ 
+ Help users navigate the project. Use an ASCII tree with purpose annotations, 2-3 levels deep.
+@@ -88,6 +90,14 @@ Guide users to additional resources. Use relative paths for internal docs.
+ 
+ Numbered subsections appear inside Feature sections (3.1, 3.2 at H3 and 3.1.1, 3.1.2 at H4). Unnumbered subsections appear everywhere else.
+ 
++### Emoji Use
++
++Two registers apply. The repository front-page README may use decorative emoji on its numbered H2 headings, the way `## 5. 📋 SPEC KIT` names and signals a feature. Every other README stays on the technical register: semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers, and only where the symbol carries the meaning. Never copy the front-page README's decorative style into a skill, feature, component or code-folder README.
++
++### Paragraphs and Bullets
++
++Keep paragraphs to 2-4 sentences. A paragraph that stacks several distinct points becomes a bullet list: one idea per bullet, in the shortest form that still says what it is and when it applies.
++
+ ### Blockquote Tagline
+ 
+ Place a one-sentence description in a blockquote immediately after the H1 title, before the first `---`.
+@@ -170,6 +180,20 @@ Tables are scannable. Use them for feature comparisons, configuration options, f
+ | `limit` | number | `10` | Results to return (1-100) |
+ ```
+ 
++**Itemized Inventory** lists named artifacts such as templates, scripts, commands and config files where each item needs more than a table cell. Use a bold code name with short bullets saying what the item is and when it applies.
++
++```markdown
++**`spec.md`**
++- What the feature is and why it exists.
++- Required at every level.
++
++**`decision-record.md`**
++- Architecture decision records: choices, alternatives and consequences.
++- Required backing for any `Waived` or `Superseded` acceptance-criteria row.
++```
++
++Group related items under an unnumbered `#####` heading when the inventory has natural groups, for example by how each item is triggered. Prefer the Key Files or Parameter table instead when every item fits one line.
++
+ ---
+ 
+ ## 6. CODE-BLOCK AND PLACEHOLDER CONVENTIONS
+diff --git a/README.md b/README.md
+index 3488ccf6241..ba6555840ef 100644
+--- a/README.md
++++ b/README.md
+@@ -2,11 +2,15 @@
+ 
+ > Spec-driven agent loops with structured documentation, packet-local memory and multi-model orchestration.
+ 
+-[![Discord](https://img.shields.io/discord/1423675330749399203?style=for-the-badge&logo=discord&logoColor=white&label=Discord&color=7289da)](https://discord.gg/wJQfZKNfVH)
+ [![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/skilled-agent-harness_spec-driven-loops?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/stargazers)
+ [![License](https://img.shields.io/github/license/MichelKerkmeester/skilled-agent-harness_spec-driven-loops?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
+ [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/skilled-agent-harness_spec-driven-loops?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases)
+ 
++> Like it? Please don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
++
++&nbsp;
++
++## 1. SUMMARY
+ An assistant framework that gives your AI coding agent a memory, a paper trail and a team of specialists.
+ 
+ All of it lives inside your own repository, as files you can read and diff.
+@@ -28,27 +32,8 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
+ - **Verification, not vibes:** nothing counts as "done" without fresh evidence, and code-review findings are re-challenged before they stick
+ - **Works the same in OpenCode and Claude Code**, with cross-CLI dispatch to five more model providers on top
+ 
+-> Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
+-
+ &nbsp;
+ 
+-## 1. ⚠️ THE PROBLEM: EVERY SESSION STARTS FROM ZERO
+-
+-AI coding assistants have amnesia. Every session starts from zero.
+-
+-You explain your architecture Monday. By Wednesday, it is gone. Decisions, trade-offs, the carefully reasoned choices behind them, all lost the moment the conversation window closes.
+-
+-And memory is only the first casualty:
+-
+-- **Changes ship undocumented.** Nothing records why a decision was made, so the next session - or the next teammate - has to reverse-engineer it.
+-- **"Done" is whatever the agent claims.** No gate stands between a confident answer and a verified one.
+-- **Every task starts cold.** The assistant reloads the same context, asks the same questions and repeats the same mistakes.
+-- **One model does every job.** The same weights plan the work, write the code and review their own output.
+-
+-This framework fixes that.
+-
+----
+-
+ ## 2. 🎁 WHAT YOU GET
+ 
+ ### 📋 Spec Kit: a written record of every change

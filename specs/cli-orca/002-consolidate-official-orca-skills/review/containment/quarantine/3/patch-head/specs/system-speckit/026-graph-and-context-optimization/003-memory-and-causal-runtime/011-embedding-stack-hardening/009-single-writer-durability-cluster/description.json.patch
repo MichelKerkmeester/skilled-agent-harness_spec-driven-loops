@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster/description.json b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster/description.json
+index 7455005187c..fb67955eefe 100644
+--- a/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster/description.json
++++ b/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster/description.json
+@@ -17,7 +17,7 @@
+     "wal",
+     "surfaces"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:11.268Z",
++  "lastUpdated": "2026-09-11T16:49:41.384Z",
+   "specId": "009",
+   "folderSlug": "single-writer-durability-cluster",
+   "parentChain": [

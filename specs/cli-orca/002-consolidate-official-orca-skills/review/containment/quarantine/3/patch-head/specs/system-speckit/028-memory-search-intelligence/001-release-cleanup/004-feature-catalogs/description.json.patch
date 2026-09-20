@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/004-feature-catalogs/description.json b/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/004-feature-catalogs/description.json
+index dda6ab6279b..cbb21af92d9 100644
+--- a/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/004-feature-catalogs/description.json
++++ b/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/004-feature-catalogs/description.json
+@@ -16,7 +16,7 @@
+     "cleanup",
+     "contract"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:13.640Z",
++  "lastUpdated": "2026-09-11T16:49:41.461Z",
+   "specId": "004",
+   "folderSlug": "feature-catalogs",
+   "parentChain": [

@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/description.json
+index c3261eb7a59..55c8c3ab2f4 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/description.json
+@@ -20,7 +20,7 @@
+     "test",
+     "header"
+   ],
+-  "lastUpdated": "2026-09-19T05:27:34.773Z",
++  "lastUpdated": "2026-09-19T05:35:46.598Z",
+   "specId": "016",
+   "folderSlug": "fix-stale-compiled-routing-docs-and-research-workflow",
+   "parentChain": [

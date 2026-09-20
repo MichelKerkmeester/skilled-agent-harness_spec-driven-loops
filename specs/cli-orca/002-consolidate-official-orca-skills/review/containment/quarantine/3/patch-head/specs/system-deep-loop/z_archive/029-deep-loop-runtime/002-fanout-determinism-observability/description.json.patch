@@ -1,0 +1,13 @@
+diff --git a/specs/system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability/description.json b/specs/system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability/description.json
+index 0a5c0b9e314..ad6a984bcf0 100644
+--- a/specs/system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability/description.json
++++ b/specs/system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability/description.json
+@@ -20,7 +20,7 @@
+     "cjs",
+     "merge"
+   ],
+-  "lastUpdated": "2026-08-15T14:41:07.661Z",
++  "lastUpdated": "2026-09-11T16:49:41.306Z",
+   "specId": "002",
+   "folderSlug": "fanout-determinism-observability",
+   "parentChain": [

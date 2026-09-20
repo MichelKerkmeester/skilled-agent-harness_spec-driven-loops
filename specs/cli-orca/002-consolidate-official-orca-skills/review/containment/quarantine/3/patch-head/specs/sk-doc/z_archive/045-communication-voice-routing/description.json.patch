@@ -1,0 +1,27 @@
+diff --git a/specs/sk-doc/z_archive/045-communication-voice-routing/description.json b/specs/sk-doc/z_archive/045-communication-voice-routing/description.json
+index 35ba493771b..97e5c453edf 100644
+--- a/specs/sk-doc/z_archive/045-communication-voice-routing/description.json
++++ b/specs/sk-doc/z_archive/045-communication-voice-routing/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "1",
+-  "specFolder": "sk-doc/045-communication-voice-routing",
++  "specFolder": "sk-doc/z_archive/045-communication-voice-routing",
+   "description": "`sk-communication` rewrites agent output into \"plain English\" and never says what that means",
+   "keywords": [
+     "sk-communication",
+@@ -13,11 +13,12 @@
+     "says",
+     "means"
+   ],
+-  "lastUpdated": "2026-08-31T20:29:22.810Z",
++  "lastUpdated": "2026-09-11T16:49:41.113Z",
+   "specId": "045",
+   "folderSlug": "communication-voice-routing",
+   "parentChain": [
+-    "sk-doc"
++    "sk-doc",
++    "z_archive"
+   ],
+   "memorySequence": 0,
+   "memoryNameHistory": []

@@ -1,0 +1,13 @@
+diff --git a/specs/sk-code/001-sk-code-parent/011-hub-canon/description.json b/specs/sk-code/001-sk-code-parent/011-hub-canon/description.json
+index 1ccb0943b75..5c84dbffe47 100644
+--- a/specs/sk-code/001-sk-code-parent/011-hub-canon/description.json
++++ b/specs/sk-code/001-sk-code-parent/011-hub-canon/description.json
+@@ -15,7 +15,7 @@
+     "2-tier",
+     "shape"
+   ],
+-  "lastUpdated": "2026-08-29T15:04:31.435Z",
++  "lastUpdated": "2026-09-11T16:49:40.874Z",
+   "specId": "011",
+   "folderSlug": "hub-canon",
+   "parentChain": [

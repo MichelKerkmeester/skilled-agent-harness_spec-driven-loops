@@ -12,17 +12,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/002-cli-jev-hub-migration"
-    last_updated_at: "2026-09-20T11:05:00Z"
+    last_updated_at: "2026-09-20T14:45:00Z"
     last_updated_by: "orchestrator-session"
-    recent_action: "Parent scaffolded; track metadata authored; directive written"
-    next_safe_action: "Run phase 001: move the packet history into this track"
+    recent_action: "Phases 001-004 closed; hub serves compiled policy"
+    next_safe_action: "Run phase 005: re-run the hub and transport playbooks from the new home"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-002-hub-migration"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -52,6 +52,7 @@ and the compiled fleet serves six hubs.
 | D6 | Program packet `002-cli-jev-hub-migration`; moved history is `001-cli-jev-creation` |
 | D7 | The orchestrator owns writes, gates and re-runs; `cli-pi` leaves sweep, draft, review, run evidence |
 | D8 | No commit, push, branch or worktree unless the operator asks |
+| D9 | The hub's release line starts at `0.1.0.0` by operator direction; the transport's `1.x` history stays recorded in the mode's own changelog |
 
 ### Roadmap
 
@@ -81,13 +82,13 @@ Each phase has its own `goal.md`; a child that changes a decision here amends it
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The hub passes the doctor and package validator with `cli-usage` as its transport mode
-- [ ] `cli-external-orchestration` is back to seven workflow modes with no transport trace
-- [ ] The dispatch chain resolves the moved packet; both hook suites pass
-- [ ] History lives at `specs/cli-jev/001-cli-jev-creation`; the track root declares both children
+- [x] The hub passes the doctor and package validator with `cli-usage` as its transport mode
+- [x] `cli-external-orchestration` is back to seven workflow modes with no transport trace
+- [x] The dispatch chain resolves the moved packet; both hook suites pass
+- [x] History lives at `specs/cli-jev/001-cli-jev-creation`; the track root declares both children
 - [ ] Six hubs report `compiled-serving` fresh; the foundation suite passes
 - [ ] The playbook ran from the new home with zero failures
-- [ ] The recursive strict gate passes across both packets
+- [x] The recursive strict gate passes across both packets
 <!-- /ANCHOR:completion -->
 
 ---
@@ -99,4 +100,10 @@ Each phase has its own `goal.md`; a child that changes a decision here amends it
 |------|-------|
 | 2026-09-20 | Parent scaffolded with five children; track root metadata authored; baseline probes captured |
 | 2026-09-20 | Directive written from the operator's answers: hub `cli-jev` + mode `cli-usage`, fleet membership in scope, playbook re-run approved |
+| 2026-09-20 | Phase 001 closed: the packet history lives at `specs/cli-jev/001-cli-jev-creation`, both packets validate at 0 errors, and the `cli-jev` track sweep reports no drift |
+| 2026-09-20 | Phase 002 closed: `.skilled/skills/cli-jev/` passes the doctor at 0 warnings and the package validator on all three sub-checks; the mode answers as `cli-usage`; the old hub still registers the retired row until phase 003 |
+| 2026-09-20 | Phase 003 closed: the old hub answers with seven workflow modes and no transport trace (doctor 41 `PASS`), the preflight chain refuses `jev run @request.json --value` with the packet's own rule text, both hook suites pass, the rosters and generated surfaces name the new home, and the hub's release line is `0.1.0.0` |
+| 2026-09-20 | Phase 004 closed: the hub is the sixth fleet member — rollout child `008-cli-jev` built at `3240ebf5…`, six surfaces wired, activation minted (generation 1, fence epoch 1) and fresh, `compiled-route.cjs` serves it under an unset flag, admission passes for the fleet, and the hub's doctor and validator report `0.2.0.0` and `compiled-ready` |
+| 2026-09-20 | Operator direction recorded: the new hub starts its own release line at `0.1.0.0` instead of continuing the transport's `1.x` history, which stays in the mode's changelog |
+| 2026-09-20 | Measured, and left open: the fleet-wide completion bullet cannot be ticked in this tree — `sk-doc` reports `stale-manifest` on another writer's uncommitted packet `SKILL.md`, and the router-unification program's authored resolver is archived, which is why the foundation suite keeps four failures and the manifest suite sixteen. Both were measured before phase 004's first edit and are unchanged by it |
 <!-- /ANCHOR:log -->

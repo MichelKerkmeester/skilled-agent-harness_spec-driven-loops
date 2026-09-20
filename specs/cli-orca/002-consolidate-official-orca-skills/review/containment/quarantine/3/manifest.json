@@ -1,0 +1,2176 @@
+{
+  "timestamp": "2026-09-20T13:10:50.571Z",
+  "entries": [
+    {
+      "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "hash": "f921f8d583efc21af01ff17ce7232d0c55012868",
+      "content_stored": true,
+      "content_path": "content/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "head_patch_path": "patch-head/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json.patch"
+    },
+    {
+      "path": ".skilled/skills/cli-external-orchestration/README.md",
+      "hash": "c3c17a91d3bdfee78c28293cefc28801b80e2fad",
+      "content_stored": true,
+      "content_path": "content/.skilled/skills/cli-external-orchestration/README.md",
+      "head_patch_path": "patch-head/.skilled/skills/cli-external-orchestration/README.md.patch"
+    },
+    {
+      "path": ".skilled/skills/cli-external-orchestration/SKILL.md",
+      "hash": "8a7726bcefc249e916de129166eff6f4246a5d92",
+      "content_stored": true,
+      "content_path": "content/.skilled/skills/cli-external-orchestration/SKILL.md",
+      "head_patch_path": "patch-head/.skilled/skills/cli-external-orchestration/SKILL.md.patch"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/001-deep-research/description.json",
+      "hash": "c0bfac27869addc78b1c7584ed52495285892310",
+      "content_stored": true,
+      "content_path": "content/specs/agents/009-turn-closeout-next-steps/001-deep-research/description.json",
+      "head_patch_path": "patch-head/specs/agents/009-turn-closeout-next-steps/001-deep-research/description.json.patch"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/002-decision-and-design/description.json",
+      "hash": "0bd31f6afcec49578371a6a6ae8bec4f5ab39ddd",
+      "content_stored": true,
+      "content_path": "content/specs/agents/009-turn-closeout-next-steps/002-decision-and-design/description.json",
+      "head_patch_path": "patch-head/specs/agents/009-turn-closeout-next-steps/002-decision-and-design/description.json.patch"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/003-rule-authoring/description.json",
+      "hash": "8bed6c14efdd1f8f7bf9ce409c7fdc5b97729505",
+      "content_stored": true,
+      "content_path": "content/specs/agents/009-turn-closeout-next-steps/003-rule-authoring/description.json",
+      "head_patch_path": "patch-head/specs/agents/009-turn-closeout-next-steps/003-rule-authoring/description.json.patch"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/004-agents-md-integration/description.json",
+      "hash": "225ad1c210fd9a56f81fc049d125e7971bb246a0",
+      "content_stored": true,
+      "content_path": "content/specs/agents/009-turn-closeout-next-steps/004-agents-md-integration/description.json",
+      "head_patch_path": "patch-head/specs/agents/009-turn-closeout-next-steps/004-agents-md-integration/description.json.patch"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/005-verification/description.json",
+      "hash": "ceb2adbc8fa3500681dc1a25196eb9998a5c0ebd",
+      "content_stored": true,
+      "content_path": "content/specs/agents/009-turn-closeout-next-steps/005-verification/description.json",
+      "head_patch_path": "patch-head/specs/agents/009-turn-closeout-next-steps/005-verification/description.json.patch"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/description.json",
+      "hash": "3cc9b71aac346fcd49effebac5aee8041b1313ab",
+      "content_stored": true,
+      "content_path": "content/specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/description.json",
+      "head_patch_path": "patch-head/specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/description.json.patch"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/007-progress-updates/description.json",
+      "hash": "57aa8bc00def36220b800094124c7568c82c6d1b",
+      "content_stored": true,
+      "content_path": "content/specs/agents/009-turn-closeout-next-steps/007-progress-updates/description.json",
+      "head_patch_path": "patch-head/specs/agents/009-turn-closeout-next-steps/007-progress-updates/description.json.patch"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/008-communication-split/description.json",
+      "hash": "ab7e06852ac2660554a0769ff02fc02f63e2b3a1",
+      "content_stored": true,
+      "content_path": "content/specs/agents/009-turn-closeout-next-steps/008-communication-split/description.json",
+      "head_patch_path": "patch-head/specs/agents/009-turn-closeout-next-steps/008-communication-split/description.json.patch"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/description.json",
+      "hash": "8f2c47b28b20c7572737e34a24f5e235fda6a574",
+      "content_stored": true,
+      "content_path": "content/specs/agents/009-turn-closeout-next-steps/description.json",
+      "head_patch_path": "patch-head/specs/agents/009-turn-closeout-next-steps/description.json.patch"
+    },
+    {
+      "path": "specs/agents/012-agent-avoidance-anti-patterns/description.json",
+      "hash": "eca87b6b961c4bf0c6addd3d991e988dbf880fb9",
+      "content_stored": true,
+      "content_path": "content/specs/agents/012-agent-avoidance-anti-patterns/description.json",
+      "head_patch_path": "patch-head/specs/agents/012-agent-avoidance-anti-patterns/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/description.json",
+      "hash": "22ddeec799f31b00c9f8a0812f32e12eeb748e05",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/description.json",
+      "hash": "11ae2ccdc3f7f5b7f0475559bbc67773b8110b2d",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support/description.json",
+      "hash": "2b1d2f3cb214972a2378b1b9583e31d1e8156ed2",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/description.json",
+      "hash": "b988826e2ef61edcdebacbbc0af61f9ce8fd160d",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/005-hermes-runtime-folder/description.json",
+      "hash": "1ce1aea249206e61fe27db023d381ea364f4c9fd",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/005-hermes-runtime-folder/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/005-hermes-runtime-folder/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/006-hermes-hook-and-plugin-layer/description.json",
+      "hash": "e9e5dfb4f2d58668be11fb4e8d58874a184afd9f",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/006-hermes-hook-and-plugin-layer/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/006-hermes-hook-and-plugin-layer/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing/description.json",
+      "hash": "778c34234563aa0089ccd35aef658c50043e3dfe",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog/description.json",
+      "hash": "dd428234ebc9dfa08d24eb54648f1047ed8e9c0f",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout/description.json",
+      "hash": "29cbc9d349f1c9063544e37aa4610b5cb604d11d",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity/description.json",
+      "hash": "831cc2ab145e58b16b5738ae8390235bd0639335",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research/description.json",
+      "hash": "fb6e83d785163cdad84fb9dd33809f84712aa6a9",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/description.json",
+      "hash": "3bcdd49069db3859c01a8b19d314a34c6701af2b",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage/description.json",
+      "hash": "0b2eb53b0154a41bebcd502d41b4f7087ea344fd",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/description.json",
+      "hash": "3437596c60378b9b5d779ebf5d8d37f26b2949ec",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/description.json",
+      "hash": "39241ea4cb33c3b4823f75eeeb93211b2c63c1d6",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/072-union-alpha-dual-provider-roster/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/075-cli-runtime-readme-refresh/description.json",
+      "hash": "485142f36f0e2bc5e5501529f0c25fe32b64a576",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/075-cli-runtime-readme-refresh/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/075-cli-runtime-readme-refresh/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/029-cli-devin-revival/description.json",
+      "hash": "f416b2e10946cbe3336ed07fadd1b47a81507f9c",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/029-cli-devin-revival/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/029-cli-devin-revival/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing/description.json",
+      "hash": "4e71d5bc6c94552f7a9ae2d9a2c94e9e7bc457e6",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook/description.json",
+      "hash": "81e3f9cf3a3f2e84734caab55b1144585161976f",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/006-cursor-manual-testing-playbook/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash/description.json",
+      "hash": "e1bf2233e0ae809533d672ac852e4677abbeefa7",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/005-deepseek-v4-1-flash/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/description.json",
+      "hash": "5570b0657517d2dce5262600f86f2d533d6c536a",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/043-roster-update-luna-deepseek-glm-gemini/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/048-earlier-findings-deep-research/description.json",
+      "hash": "e9e9bf1e7f620a76905be6fb86f9b4b2051344a8",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/048-earlier-findings-deep-research/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/048-earlier-findings-deep-research/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/055-glm-5-3-flash-gemini-roster/description.json",
+      "hash": "c66d68cb7a8659f56038015f1e48b96b320b0c9c",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/055-glm-5-3-flash-gemini-roster/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/055-glm-5-3-flash-gemini-roster/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/061-glm-5-3-flash-thinking-tier-per-route/description.json",
+      "hash": "94624010b5dd7397e6a8cfd39f151be82af0fe08",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/061-glm-5-3-flash-thinking-tier-per-route/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/061-glm-5-3-flash-thinking-tier-per-route/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/068-drop-openrouter-provider/description.json",
+      "hash": "164c8daa488a25f67b85d41d299af7c85e42edf9",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/068-drop-openrouter-provider/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/068-drop-openrouter-provider/description.json.patch"
+    },
+    {
+      "path": "specs/cli-external-orchestration/z_archive/070-swe-2-model-cutover/description.json",
+      "hash": "0a5f3e6e3dfda4afb659d67738ba8c09cee9f188",
+      "content_stored": true,
+      "content_path": "content/specs/cli-external-orchestration/z_archive/070-swe-2-model-cutover/description.json",
+      "head_patch_path": "patch-head/specs/cli-external-orchestration/z_archive/070-swe-2-model-cutover/description.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/description.json",
+      "hash": "5db95a5ba39f4cd87a009fadbd64f5ecc626d431",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/001-cli-jev-creation/description.json",
+      "head_patch_path": "patch-head/specs/cli-jev/001-cli-jev-creation/description.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/001-cli-jev-creation/graph-metadata.json",
+      "hash": "13b5d5bdc030de0b37aa4133f7541fb8653f3c52",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/001-cli-jev-creation/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/001-cli-jev-creation/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/description.json",
+      "hash": "239a4cea0caf4701a6a2887f03ace592b404ae37",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/description.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/description.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/description.json",
+      "hash": "472a1fb6c6c9af79c14989fc5a5e2031b979b84f",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/description.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/description.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/graph-metadata.json",
+      "hash": "959abc28f10b7281173ff0e8fe037ffe4acdb91e",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/description.json",
+      "hash": "c529b5a5f956a26ccd59813644b5e9fc7a95e427",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/description.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/description.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md",
+      "hash": "148c88d2f2050ac6ff0fb9db603fb71a28cfd219",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/graph-metadata.json",
+      "hash": "077a0abc6a7e9f2a87b1074bcbd5e19fa0912d0c",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/graph-metadata.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/graph-metadata.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md",
+      "hash": "10462b11e4b256f503afe87a4d135a96d4bc7a3b",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/plan.md",
+      "hash": "89b712d95666a9aafc0108389b807443e0882f49",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/plan.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/plan.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/spec.md",
+      "hash": "c3baaa66974e82787ba2ad380e082fcb517a90bd",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/spec.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/spec.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/tasks.md",
+      "hash": "5ce291eebcb7cab0d46cb6ebeb00e5afa98679ec",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/tasks.md",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/tasks.md.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/description.json",
+      "hash": "ce7748fff63977d74b75b6188a7bb94090935f32",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/description.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/description.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/description.json",
+      "hash": "493571c04e6955c4794b828d5ee2c1df9b50f51a",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/description.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/description.json.patch"
+    },
+    {
+      "path": "specs/cli-jev/002-cli-jev-hub-migration/description.json",
+      "hash": "a76685b050577510113488fba00489b148547359",
+      "content_stored": true,
+      "content_path": "content/specs/cli-jev/002-cli-jev-hub-migration/description.json",
+      "head_patch_path": "patch-head/specs/cli-jev/002-cli-jev-hub-migration/description.json.patch"
+    },
+    {
+      "path": "specs/hooks/009-goal-isolation/001-goal-isolation-research/description.json",
+      "hash": "0678a169b11477218ebb39d98c080e6565884f9d",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/009-goal-isolation/001-goal-isolation-research/description.json",
+      "head_patch_path": "patch-head/specs/hooks/009-goal-isolation/001-goal-isolation-research/description.json.patch"
+    },
+    {
+      "path": "specs/hooks/009-goal-isolation/description.json",
+      "hash": "6fbdfa828d15c89bad70acb3a2da9d6a0a2ad27d",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/009-goal-isolation/description.json",
+      "head_patch_path": "patch-head/specs/hooks/009-goal-isolation/description.json.patch"
+    },
+    {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/description.json",
+      "hash": "ad9a01d409cc915de0653fe6613ff701db3c8a55",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/description.json",
+      "head_patch_path": "patch-head/specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/description.json.patch"
+    },
+    {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/description.json",
+      "hash": "732331c34b224154f3bd1dfae2884ee6492daf09",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/description.json",
+      "head_patch_path": "patch-head/specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/description.json.patch"
+    },
+    {
+      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/description.json",
+      "hash": "8befddb50a7c0119b2fefc0d2422c0c3625f5339",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/description.json",
+      "head_patch_path": "patch-head/specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/description.json.patch"
+    },
+    {
+      "path": "specs/hooks/017-cache-optimizer-review-remediation/description.json",
+      "hash": "2e07d517d8dc01acce12bac42146ed4bab09884e",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/017-cache-optimizer-review-remediation/description.json",
+      "head_patch_path": "patch-head/specs/hooks/017-cache-optimizer-review-remediation/description.json.patch"
+    },
+    {
+      "path": "specs/hooks/018-cache-optimizer-improvement-research/description.json",
+      "hash": "c98b52448cc7d01a06d3fae3590df12ad5b77369",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/018-cache-optimizer-improvement-research/description.json",
+      "head_patch_path": "patch-head/specs/hooks/018-cache-optimizer-improvement-research/description.json.patch"
+    },
+    {
+      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/description.json",
+      "hash": "975d6d81b43d402e8e1c38d7d827fa381bcfdeaa",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/019-cache-optimizer-measurement-fixes/description.json",
+      "head_patch_path": "patch-head/specs/hooks/019-cache-optimizer-measurement-fixes/description.json.patch"
+    },
+    {
+      "path": "specs/hooks/022-smart-rule-injection/description.json",
+      "hash": "504619c34f32736f4c697597e7f5d8084e64b52f",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/022-smart-rule-injection/description.json",
+      "head_patch_path": "patch-head/specs/hooks/022-smart-rule-injection/description.json.patch"
+    },
+    {
+      "path": "specs/mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review/description.json",
+      "hash": "0a22c8b2de97e1e4398c18d0a81e587fa8ce6a0a",
+      "content_stored": true,
+      "content_path": "content/specs/mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review/description.json",
+      "head_patch_path": "patch-head/specs/mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review/description.json.patch"
+    },
+    {
+      "path": "specs/mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance/description.json",
+      "hash": "a38fd7560d2f9c20d433cf8f2ab731eab87b546b",
+      "content_stored": true,
+      "content_path": "content/specs/mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance/description.json",
+      "head_patch_path": "patch-head/specs/mcp-tooling/z_archive/013-mcp-obsidian/029-feature-catalog-divider-conformance/description.json.patch"
+    },
+    {
+      "path": "specs/mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes/description.json",
+      "hash": "838f7ac5e5b51f0d9a6c21035edf79ebc6bc86d6",
+      "content_stored": true,
+      "content_path": "content/specs/mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes/description.json",
+      "head_patch_path": "patch-head/specs/mcp-tooling/z_archive/013-mcp-obsidian/030-audit-fixes/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/description.json",
+      "hash": "c91bd6110f29a040aebe988acf16cd9cc05a6873",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/011-hub-canon/description.json",
+      "hash": "5c84dbffe47c752cc58acf8405242a103de1266b",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/011-hub-canon/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/011-hub-canon/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/description.json",
+      "hash": "b3d8d612ceeed44be45c4c0644aeaf35effaadba",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/description.json",
+      "hash": "694ebb4d173e69eb659692307c279f35a011d0aa",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/014-close-out-and-tail/description.json",
+      "hash": "3fe468ff3f9f41fdbab48a30d789bd62e73e5557",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/014-close-out-and-tail/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/014-close-out-and-tail/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/description.json",
+      "hash": "88fba3371dafea9feb3ec98fe266a512a4d83ce1",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/description.json",
+      "hash": "a8b0b7029cfda6e14f64c8e63ad1efc20e2a11d5",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/017-canon-hardening/description.json",
+      "hash": "ded6dba4421a92f07ed989f00cae06a4f8af8a96",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/017-canon-hardening/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/017-canon-hardening/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/description.json",
+      "hash": "82fe840fcd33a47f5805dc1fc7095eb6890ba1c1",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/description.json",
+      "hash": "2176aaba075ccae7de7eb3691098973dde7bca22",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/description.json",
+      "hash": "70d771535edc0a54fea98c28ef8dbe9d0184b9c3",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/description.json",
+      "hash": "348fa09d957dfb1866b7fdf7399e6b05fb4d52fd",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/description.json",
+      "hash": "c2cca00ccda539257c01d245c5fc51bafd4675a0",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/description.json",
+      "hash": "34e07392f6c5dcfb1e6953d924cc1f835effe566",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment/description.json",
+      "hash": "ec956fc3beae915664aad9059ab266f55c1d8078",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/description.json",
+      "hash": "1873cae92bb02636500d6a1abe3120e0e5c547dc",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/008-sk-code-mobile-cli-mode/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/008-sk-code-mobile-cli-mode/description.json.patch"
+    },
+    {
+      "path": "specs/sk-code/009-sk-code-mobile-cli-deprecation/description.json",
+      "hash": "3cd90361518fbd9012c6ca9c61bc2791c0fa1b6a",
+      "content_stored": true,
+      "content_path": "content/specs/sk-code/009-sk-code-mobile-cli-deprecation/description.json",
+      "head_patch_path": "patch-head/specs/sk-code/009-sk-code-mobile-cli-deprecation/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/description.json",
+      "hash": "36583f512064d8f348a7cb68a4374d2b04faafe8",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/description.json",
+      "hash": "ca8059977934cff4ff8f852019120b8ce4c5366d",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/description.json",
+      "hash": "aa3c821429f0defa9aa912008c4395cd665bec54",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/description.json",
+      "hash": "f2acc6be78f885c9609489fd0391951fee5800b0",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/description.json",
+      "hash": "944c622e07d988a911bc678a16e0481a0e6b81a9",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/description.json",
+      "hash": "1de1ad62e3b02d469e4616428e331e1397ae6d98",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/006-reply-shape-rules/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/007-wording-standard-restructure/description.json",
+      "hash": "d4d3ee9d7899dd031836debec9afc561c7e1c827",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/007-wording-standard-restructure/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/007-wording-standard-restructure/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules/description.json",
+      "hash": "394316de85d3bad8060c6fe519cfb13ba39024c0",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules/description.json",
+      "hash": "15d5c40c4ef5c6a6879f7d6cba8a5e3de064d2db",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/010-review-remediation/description.json",
+      "hash": "f2b2c24540213998b678e65d1f577eaef1bc23ef",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/010-review-remediation/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/010-review-remediation/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/011-communication-rule-naming/description.json",
+      "hash": "5c03c51f3197fc99bf907b40913ec8a0f67129d5",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/011-communication-rule-naming/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/011-communication-rule-naming/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/012-reply-rule-delegation-repair/description.json",
+      "hash": "de67b71f2ce42008c0539c39cea750ca76372a45",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/012-reply-rule-delegation-repair/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/012-reply-rule-delegation-repair/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name/description.json",
+      "hash": "730cc33dceb372462b2441dc5ab0c6df49695dac",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/013-shorten-handoff-rule-name/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/014-shorten-decision-rule-name/description.json",
+      "hash": "5d005578bc3626d591d5a384692b7644e2b3437b",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/014-shorten-decision-rule-name/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/014-shorten-decision-rule-name/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/015-evidence-rule-seam-links/description.json",
+      "hash": "16fa16b59074add1ce7827ccec4849fd91c02954",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/015-evidence-rule-seam-links/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/015-evidence-rule-seam-links/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/016-code-standards-alignment/description.json",
+      "hash": "6e4823cf1913a43d5374f7665e08620192c7507b",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/016-code-standards-alignment/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/016-code-standards-alignment/description.json.patch"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/description.json",
+      "hash": "32adc83867d1e454565b964ca4239b4c90c2e6c6",
+      "content_stored": true,
+      "content_path": "content/specs/sk-communication/006-sk-communication-clarity/description.json",
+      "head_patch_path": "patch-head/specs/sk-communication/006-sk-communication-clarity/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/003-md-generator-as-mode/description.json",
+      "hash": "e6d1c29d7730a73145a544092d929605f70b5cf2",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/018-sk-design-parent-v2/003-md-generator-as-mode/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/018-sk-design-parent-v2/003-md-generator-as-mode/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover/description.json",
+      "hash": "f8c52003e3cb23cb8f223afa49361cde5baf5adf",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/018-sk-design-parent-v2/description.json",
+      "hash": "34cfed85584fc4cc745f3e9c4eba5aebca74ac08",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/018-sk-design-parent-v2/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/018-sk-design-parent-v2/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/009-sk-design-claude-parity/001-baseline-ownership-gate/description.json",
+      "hash": "ba1bf30305eab8c7a90734714b44090e73765395",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/009-sk-design-claude-parity/001-baseline-ownership-gate/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/009-sk-design-claude-parity/001-baseline-ownership-gate/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace/description.json",
+      "hash": "cf8ea19686ad627ff515a16d08b7770be45178bc",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/012-sk-design-program/003-interface-commands/002-retire-design-alias-namespace/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/001-review-remediation/description.json",
+      "hash": "cf94d2098514268fa0cdfd73cd2dd19be39a37a4",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/001-review-remediation/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/001-review-remediation/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/002-session-shipped-work-review/description.json",
+      "hash": "6d8bebc25ddb540bcb3cd96a7124bf987a07cedb",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/002-session-shipped-work-review/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/002-session-shipped-work-review/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/description.json",
+      "hash": "d3fd36da8f2f4c04c04ce35fb7197dc7b1a66607",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/012-sk-design-program/008-remediation-closeout/description.json",
+      "hash": "fb8aa551aaff08be8f09e6c8b19242f797f0fda3",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/012-sk-design-program/008-remediation-closeout/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/012-sk-design-program/008-remediation-closeout/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/014-template-conformance/001-apache-devendoring/description.json",
+      "hash": "082242268e0e7fd322c8f45d08bb2ec71623d34c",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/014-template-conformance/001-apache-devendoring/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/014-template-conformance/001-apache-devendoring/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/014-template-conformance/009-aesthetics-retirement/description.json",
+      "hash": "2cb3ae85d6b94ae65d1064a15eeae819b28a238c",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/014-template-conformance/009-aesthetics-retirement/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/014-template-conformance/009-aesthetics-retirement/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/014-template-conformance/010-motion-merge/description.json",
+      "hash": "94b1218dd452e34520a34f165704a85a5ddd1bc3",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/014-template-conformance/010-motion-merge/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/014-template-conformance/010-motion-merge/description.json.patch"
+    },
+    {
+      "path": "specs/sk-design/z_archive/014-template-conformance/description.json",
+      "hash": "c6ce2d69c5e831eabccc4938be5490bad6913a1b",
+      "content_stored": true,
+      "content_path": "content/specs/sk-design/z_archive/014-template-conformance/description.json",
+      "head_patch_path": "patch-head/specs/sk-design/z_archive/014-template-conformance/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "hash": "f921f8d583efc21af01ff17ce7232d0c55012868",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "head_patch_path": "patch-head/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/description.json",
+      "hash": "4aeddd4fd8cc250fc07c220eeeb05c4e10e09a34",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/005-hub-surface-truth/description.json",
+      "hash": "a7c05d02baee6beec09ad65b42a8d5a0e537bc71",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/052-routing-completeness/005-hub-surface-truth/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/052-routing-completeness/005-hub-surface-truth/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/description.json",
+      "hash": "c6a321862312eb2c8eeca8f5339d2720554fe0c2",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/052-routing-completeness/008-drift-after-closure/description.json",
+      "hash": "f61483f74055da8ce28d20e02b7613144da7eab2",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/052-routing-completeness/008-drift-after-closure/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/052-routing-completeness/008-drift-after-closure/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/054-cli-hub-doc-version-reconciliation/description.json",
+      "hash": "aefc2ef706aaade05b6d76a57661942562953856",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/054-cli-hub-doc-version-reconciliation/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/054-cli-hub-doc-version-reconciliation/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/055-governance-doc-alignment/description.json",
+      "hash": "3194e9723544b7ea010e3443ebf8536032f15d97",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/055-governance-doc-alignment/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/055-governance-doc-alignment/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/014-sk-doc-parent/024-canon-self-enforcement/description.json",
+      "hash": "aa40422394ee5f4ca142c66594d2e7ffdf39520d",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/014-sk-doc-parent/024-canon-self-enforcement/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/014-sk-doc-parent/024-canon-self-enforcement/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files/description.json",
+      "hash": "579c8f01537145e9673c4ee23fc027747dd52d1e",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract/description.json",
+      "hash": "886e7e642c113daca6fe642353c52573ae869b44",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/description.json",
+      "hash": "aa810265b2085a137a3ee328f517ce093ddc62df",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map/description.json",
+      "hash": "1fa1eb046665fa4d2dd9993bdba05ab463127e55",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/002-router-audit-and-fix-map/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/description.json",
+      "hash": "dac605a5f48fecdceddd1a233d29230875d39c84",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/013-benchmark-harness-typed-wiring/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/description.json",
+      "hash": "f9dfb5247a7cb36fb10b37a5e607557b85c2979e",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/description.json",
+      "hash": "cbf8eac66216535aa9d4cd87757d61904f082a2c",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation/description.json",
+      "hash": "c6e51f41d747169157f9d93b2cd29a7df11d790c",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption/description.json",
+      "hash": "d5b693642528e2f77a1acd2926e08de2003e7491",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c/description.json",
+      "hash": "8064eb7a9415aab5eef3a74855c43a1a9c467c07",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/description.json",
+      "hash": "11f03bb01f7b32a447ebabbb3073253069afe20c",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/description.json",
+      "hash": "040a5904029aba8bf516c684846f1ef66447dddf",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards/description.json",
+      "hash": "5f3e15d6e4625062514f22701dfc0802e167ac7f",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/description.json",
+      "hash": "ae0a0f57a25789ddf32697fd27d6b643d1348385",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/description.json",
+      "hash": "41102f1cc06d7c0cf97aa12d7b7aead7d3535031",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/description.json",
+      "hash": "72d584eab28dfc5e455aee0c5fe95f596f0ad7cf",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint/description.json",
+      "hash": "6b304f20597799afa32cda5b84f3b18639910571",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/021-skill-metadata-json-unification/description.json",
+      "hash": "f7a42472cae28080ac4e17a0d8111c4803c8cbc2",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/021-skill-metadata-json-unification/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/021-skill-metadata-json-unification/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/027-program-deep-review/description.json",
+      "hash": "77367b75328b5f65aa0de724aafbf0734a0e4736",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/027-program-deep-review/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/027-program-deep-review/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/002-rename-contract-and-map/description.json",
+      "hash": "cd985c30ddec22fc96408cdac5fe7a2e8beb517f",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/002-rename-contract-and-map/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/002-rename-contract-and-map/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/description.json",
+      "hash": "4e4b4e7de4eaf1b6e07b0a7c56351bed597fd59c",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis/description.json",
+      "hash": "cd48e154f7606018bf315353ae3eeeca3e027c66",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration/description.json",
+      "hash": "106c6b8d7265b0473c53a7f37da68b40abaaf6ed",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/028-sk-create-diagram/016-command-mirror-restoration/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/033-mobile-cli-template-alignment/description.json",
+      "hash": "37695e1a2a69b15a01ce809c8abcf79ce47ad25c",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/033-mobile-cli-template-alignment/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/033-mobile-cli-template-alignment/description.json.patch"
+    },
+    {
+      "path": "specs/sk-doc/z_archive/045-communication-voice-routing/description.json",
+      "hash": "97e5c453edf8c26df7f33802164962eefe3aff9d",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/z_archive/045-communication-voice-routing/description.json",
+      "head_patch_path": "patch-head/specs/sk-doc/z_archive/045-communication-voice-routing/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/023-live-follow-disjoint-ff/description.json",
+      "hash": "5a3b335100a4ccfad84b1669f630982624f94d13",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/023-live-follow-disjoint-ff/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/023-live-follow-disjoint-ff/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/001-research/description.json",
+      "hash": "0c4e1f9a47b4c146ea670539bfba7c2029a572b6",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/028-crawlable-commit-history/001-research/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/028-crawlable-commit-history/001-research/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/002-format-decision/description.json",
+      "hash": "03ad418829a5de47ab89cc914e3fa5357b8271c8",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/028-crawlable-commit-history/002-format-decision/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/028-crawlable-commit-history/002-format-decision/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/003-contract-and-hook/description.json",
+      "hash": "35b45584e155740383e423ab67fc850b7692170e",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/028-crawlable-commit-history/003-contract-and-hook/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/028-crawlable-commit-history/003-contract-and-hook/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/004-search-surface/description.json",
+      "hash": "470aab1a147d9c09db040c72df66b87f0dfc3207",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/028-crawlable-commit-history/004-search-surface/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/028-crawlable-commit-history/004-search-surface/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/005-history-rewrite/description.json",
+      "hash": "1b76421e2d37b7ffcf12234fa9a24de182dbd461",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/006-docs-and-release/description.json",
+      "hash": "c4bd3051ad8d63713f057e56383d64eff709e46d",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/028-crawlable-commit-history/006-docs-and-release/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/028-crawlable-commit-history/006-docs-and-release/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/description.json",
+      "hash": "99805eb40d1f74d38e60c9ab2e7f171a2b0be61f",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution/description.json",
+      "hash": "ba701eb7960ff3d1cce2c9e467cb46f7cb520430",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/029-worktree-dependency-provisioning/description.json",
+      "hash": "345c2409523eb32580838bfc8f965266bc952d74",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/029-worktree-dependency-provisioning/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/029-worktree-dependency-provisioning/description.json.patch"
+    },
+    {
+      "path": "specs/sk-git/z_archive/019-mass-deletion-guard/description.json",
+      "hash": "eaa1daa779850d021ae810e9856e5d731fb13863",
+      "content_stored": true,
+      "content_path": "content/specs/sk-git/z_archive/019-mass-deletion-guard/description.json",
+      "head_patch_path": "patch-head/specs/sk-git/z_archive/019-mass-deletion-guard/description.json.patch"
+    },
+    {
+      "path": "specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/description.json",
+      "hash": "86708dbf9513122f0ae1073897d57af502d1cbfc",
+      "content_stored": true,
+      "content_path": "content/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/description.json",
+      "head_patch_path": "patch-head/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/description.json.patch"
+    },
+    {
+      "path": "specs/sk-prompt/009-prompt-improver-model-eligibility/description.json",
+      "hash": "42939d682295c9e70c0f180e841f4da17ea67718",
+      "content_stored": true,
+      "content_path": "content/specs/sk-prompt/009-prompt-improver-model-eligibility/description.json",
+      "head_patch_path": "patch-head/specs/sk-prompt/009-prompt-improver-model-eligibility/description.json.patch"
+    },
+    {
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/description.json",
+      "hash": "c7fc3e365754482a54efcb8039005dccdbd2f11f",
+      "content_stored": true,
+      "content_path": "content/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/description.json",
+      "head_patch_path": "patch-head/specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/description.json",
+      "hash": "1e632ce501d909ad71496091c6a1fc7df9fbc838",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections/description.json",
+      "hash": "20f57d86df8ef2fb8529e0b583cd1e40614d4071",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/description.json",
+      "hash": "592e51d6b0af2b474b83335cfb1ef8059b55596a",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/description.json",
+      "hash": "3387b6825f06e937d73898d5d81f7ec4686ad9f2",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/description.json",
+      "hash": "88112dcf6fd1a8a112b5525e025db613936cd8bc",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries/description.json",
+      "hash": "12a3233d54fe20b2da6fa44ded0f2620411b3a26",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding/description.json",
+      "hash": "7d1aedc0fd475c7be16c62f22444d854033a2977",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity/description.json",
+      "hash": "cdfffab9af4101b2397e7fcccf4fe44ad29e811d",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding/description.json",
+      "hash": "6e9162ad0302e5b50e314a603a75fbcf21a6cdc3",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity/description.json",
+      "hash": "59d0897a9e06693eb4dfad1d8f5bea5bb012fa0d",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority/description.json",
+      "hash": "f1cd39953d2807c7268b1eb2e403be90e83c9698",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity/description.json",
+      "hash": "d8d2d6aacaf15e1c6757af4728334ae1a0bab0a0",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch/description.json",
+      "hash": "c6e3eae8ccaf8e90eb754ff58591c64af07e47cb",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening/description.json",
+      "hash": "57c1fff4cae61360170005591b52d2d065bb6cce",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/description.json",
+      "hash": "490b544d626d923dbd1d4ca4cfc4d6ee08bf3327",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety/description.json",
+      "hash": "f4e6f6e181f9dba4a159ebe8a88f681f4d59f26e",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing/description.json",
+      "hash": "a3b15ffcfd2c9a6529f51bef3a6f3717cdfe2384",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/description.json",
+      "hash": "5834d6ebc1686190f326a5666035396af9d496f0",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/description.json",
+      "hash": "931ff05e8e20b20f3f00953163446ee0eb8d648a",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution/description.json",
+      "hash": "ae47e9693508b8c5d7fcced6082ee0961c21cdb6",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/description.json",
+      "hash": "e572b15c4504378dab41140595645f583797c69e",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/description.json",
+      "hash": "854f046c67231436bd25201e6fec34bc60f7d868",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/036-deep-loop-innovation/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/036-deep-loop-innovation/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/005-doc-version-reconciliation/description.json",
+      "hash": "1a412670f44036ab3699fe4f3ef9cbe7cdba2de0",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/005-doc-version-reconciliation/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/005-doc-version-reconciliation/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review/description.json",
+      "hash": "01ec8a181b64c2971e38a7ccdd95a88df464c08f",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap/description.json",
+      "hash": "ff30598b69ddb0a679ced2f1d1e932a5508d4a0f",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir/description.json",
+      "hash": "f9a48c7894467e5fecf9b62b831fdfa6f12b487e",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/010-deep-context-gathering/004-reference-architecture-alignment/description.json",
+      "hash": "4bf98995c27820470a6a7ab1b264ece443b08874",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/010-deep-context-gathering/004-reference-architecture-alignment/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/010-deep-context-gathering/004-reference-architecture-alignment/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/010-deep-context-gathering/description.json",
+      "hash": "c43f352a35fbf5e2869e363750c25437cfc457ae",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/010-deep-context-gathering/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/010-deep-context-gathering/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/description.json",
+      "hash": "c492652e8b80f5bafc1910db2c5babd946c6102c",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/026-goal-opencode-plugin/015-packet-hygiene-and-narrative-integrity/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/029-deep-loop-runtime/001-reducer-anchor-fix/description.json",
+      "hash": "c1574a8962d6826b832de652d2e88860bbc2538f",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/029-deep-loop-runtime/001-reducer-anchor-fix/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/029-deep-loop-runtime/001-reducer-anchor-fix/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability/description.json",
+      "hash": "ad6a984bcf053c42a7136f26f01236aa3e114854",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/029-deep-loop-runtime/002-fanout-determinism-observability/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/029-deep-loop-runtime/003-fanout-failure-recovery/description.json",
+      "hash": "7943baa2ba57393465894ef9875fe876edeca2ef",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/029-deep-loop-runtime/003-fanout-failure-recovery/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/029-deep-loop-runtime/003-fanout-failure-recovery/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/029-deep-loop-runtime/004-reliability-weighted-convergence/description.json",
+      "hash": "81c6e7a24d86223565291d205137da21ff83b858",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/029-deep-loop-runtime/004-reliability-weighted-convergence/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/029-deep-loop-runtime/004-reliability-weighted-convergence/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/029-deep-loop-runtime/005-stop-input-corroboration/description.json",
+      "hash": "375f46a55ff6797fb58a27c7d4f78f93d8e2a232",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/029-deep-loop-runtime/005-stop-input-corroboration/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/029-deep-loop-runtime/005-stop-input-corroboration/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/029-deep-loop-runtime/006-continuity-threading/description.json",
+      "hash": "8bb5d595daf2f411752e134f0f8daa0eedfc5a7c",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/029-deep-loop-runtime/006-continuity-threading/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/029-deep-loop-runtime/006-continuity-threading/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement/description.json",
+      "hash": "9caae41643c504294781c32875f60213c741d433",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/032-deep-alignment-mode/000-deep-loop-runtime-refinement/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/032-deep-alignment-mode/001-research-and-context/description.json",
+      "hash": "9da64a8e079302c945d242ec2619e0214c36d93a",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/032-deep-alignment-mode/001-research-and-context/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/032-deep-alignment-mode/001-research-and-context/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/032-deep-alignment-mode/005-adapter-sk-doc/description.json",
+      "hash": "49257c30f4e491fcdf5ad91db68e558af55aabc9",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/032-deep-alignment-mode/005-adapter-sk-doc/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/032-deep-alignment-mode/005-adapter-sk-doc/description.json.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design/description.json",
+      "hash": "b7e56c30ec705a7b5ea28736bc1ad0fc4bc9cadc",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design/description.json",
+      "head_patch_path": "patch-head/specs/system-deep-loop/z_archive/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/019-code-graph-retirement-drift/description.json",
+      "hash": "a1efced72ee380014652949917a4a962ce860312",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/019-code-graph-retirement-drift/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/019-code-graph-retirement-drift/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/description.json",
+      "hash": "298ef07cf7cd44d570821709de508ec31fd4e8b7",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/description.json",
+      "hash": "a6d6a2dbb1da59d03f5147df0fe9f0f601dfe440",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/description.json",
+      "hash": "d8b49edf27e7291c19eb764d5f444af76d892de2",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/description.json",
+      "hash": "4c544c41ba4e931b539a780196e3ac73b9491d80",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/description.json",
+      "hash": "17045d91415271bce2023382b26c3b378e597aff",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/description.json",
+      "hash": "88908956ef415da7d9f3ceee51daac32fbd48494",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/description.json",
+      "hash": "54bade3c29b8104b91434632903196659243ec1e",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/description.json",
+      "hash": "54d106bf443576231e3425dad34874225a976cc1",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/description.json",
+      "hash": "df3fefeb807d3dc05ed87ee21edb2ae7d1641a15",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation/description.json",
+      "hash": "3112cde8e0932accf22a217b9ad6dc0932731b6b",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/description.json",
+      "hash": "dac444db3006f36a94be41861a5ac23073b4b17c",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/025-mcp-decommission-cli-front-door/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/026-pre-existing-suite-failures/description.json",
+      "hash": "76480b34947c6ec8082f515e9e24c4dce2d58f4d",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/026-pre-existing-suite-failures/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/026-pre-existing-suite-failures/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor/description.json",
+      "hash": "be7e3c2b83b90608af0d6655b15b462c3564c7b8",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory/description.json",
+      "hash": "6448854df8cde49a24d86541d4c2c8a42ae9fbd9",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair/description.json",
+      "hash": "27e8e16d7ba50926cd5bcf3cb822aa433cf77361",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/001-scorer-saturation-root-fix/description.json",
+      "hash": "0b08e02e47171e41bb5f551403282535193989d4",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/001-scorer-saturation-root-fix/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/001-scorer-saturation-root-fix/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine/description.json",
+      "hash": "3bd3e013d08f7f108627755249e8a049a3d42adf",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal/description.json",
+      "hash": "2adbd405905a5dd7ce85639aefae4318db79ea25",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon/description.json",
+      "hash": "15f9a715c3c5f47c6da0cdb918408976b4b7b200",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/description.json",
+      "hash": "0f72c5155220b475c486616ae8714bccbda2cd10",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/description.json.patch"
+    },
+    {
+      "path": "specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/description.json",
+      "hash": "86764c8ea5e31bc35781b21bc7165242b2aef5f6",
+      "content_stored": true,
+      "content_path": "content/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/description.json",
+      "head_patch_path": "patch-head/specs/system-skill-advisor/z_archive/016-skill-advisor-tuning/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish/description.json",
+      "hash": "2462084844c7a1a156e67e810b6145dccc7899f1",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync/description.json",
+      "hash": "8c8e2a8940928d533a7cd88461ee444ab1a9c9b9",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/description.json",
+      "hash": "312c3d0b74be5d89c982fd92b6e58c9e5c0deb91",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/015-docs-drift-review/description.json",
+      "hash": "b18beae87c9924bb9026e95f3b5b1dc652a4c7e2",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/015-docs-drift-review/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/015-docs-drift-review/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/016-last-50-commits-deep-review/description.json",
+      "hash": "ca56466a5f26215e89ee1b3282a22b4b09c7c4c4",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/016-last-50-commits-deep-review/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/016-last-50-commits-deep-review/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings/description.json",
+      "hash": "913a178cc2411edf7b18d6db2d204167ad62a866",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene/description.json",
+      "hash": "a52ba033f75732b8aa92b594f1f0a2ed02ec0dc9",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/005-cocoindex-install-hygiene/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection/description.json",
+      "hash": "70bd29af3a389a9c16d6a73d2ac0d144e374474d",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape/description.json",
+      "hash": "3523a10763a722457317a76ae359cfa97a86d9a1",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/004-fix-deferred-p2s-for-api-response-shape/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign/description.json",
+      "hash": "caadd20097df949c55b87c2fe51ec86a0c1a49f0",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/006-fix-deferred-p2s-for-provider-adapter-redesign/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code/description.json",
+      "hash": "43e0be1580844bd072b3190b1c29ca65a5e239e6",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/description.json",
+      "hash": "2f7272e288f5234924d5500a90200c5255bbcf72",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster/description.json",
+      "hash": "fb67955eefe8501f620a5eaa6489a2a7cbf0d30f",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/description.json",
+      "hash": "81f374f1102255818720c44f140b0d941378b3c7",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/description.json",
+      "hash": "74d1c796c7f8c7a367f6d1898ce459166da45ba2",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot/description.json",
+      "hash": "28947665bad3d0451495291e0d2d27056e0127cc",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink/description.json",
+      "hash": "40ea44545536eedb1ba72f61f2d5270995fa8501",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch/description.json",
+      "hash": "0ff43e935c2100d1ac0e8122b1e854e44420036c",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation/description.json",
+      "hash": "69a2251245a28b26ff11b9a00d0ef09fc9622df4",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard/description.json",
+      "hash": "bc4e2bc3724a3b17ee40355a52c4a1966268e4dd",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix/description.json",
+      "hash": "022d10936cbb214ad1a89ebd60e769ffbbbf3198",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup/description.json",
+      "hash": "f595e9f8fdc7b719b58d7546e96db9e5dec70d2d",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-033-deferred-fix-followup/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation/description.json",
+      "hash": "69b4e089e108d2c228e8f942a2adaa13751d22ef",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening/description.json",
+      "hash": "379d19efd20e51750f95d7c7d26613cc304b044d",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default/description.json",
+      "hash": "d5583c342f7ea21569c47fe7b25d3d7aa76d98e1",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units/description.json",
+      "hash": "14f5dfd5ee9ab45e97fb6aadb8ef3aedd0f6d148",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/description.json",
+      "hash": "5304e7fd090858f54a7a0e1a3f57645d04bcf1f2",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/001-code-readmes/description.json",
+      "hash": "445f1664256c48b2a457813c156a3c555d4cf2b7",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/001-code-readmes/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/001-code-readmes/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/002-skill-and-repo-readmes/description.json",
+      "hash": "0a31688eade0d64e23aa9939f628f3b45f424e2e",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/002-skill-and-repo-readmes/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/002-skill-and-repo-readmes/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/003-skill-references-assets-and-skillmd/description.json",
+      "hash": "bbefa17de80977ed832bfff9f6ee061afb7dcafd",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/003-skill-references-assets-and-skillmd/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/003-skill-references-assets-and-skillmd/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/004-feature-catalogs/description.json",
+      "hash": "cbb21af92d96bb1422dfb9f616b55f25f4621e41",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/004-feature-catalogs/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/004-feature-catalogs/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/002-determinism-content-id-foundation/description.json",
+      "hash": "74bb4e96d5f0b3231be8e427731e80ca974f0525",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/002-determinism-content-id-foundation/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/002-determinism-content-id-foundation/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/003-retrieval-class-routing/description.json",
+      "hash": "68cf860e9cb83fc42a8c2ebab4ed18d3d0906e5c",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/003-retrieval-class-routing/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/003-retrieval-class-routing/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/004-graceful-degradation/description.json",
+      "hash": "379fea7506dbffd3438c0f6758dc7b88f86083e0",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/004-graceful-degradation/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/004-graceful-degradation/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper/description.json",
+      "hash": "4a34a3504268f7c86a34cefcacebd947870ff571",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/005-recall-render-escaper/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/007-bitemporal-window/description.json",
+      "hash": "d3effe6acb5b6cb672cbae21b35c0502f52804e8",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/007-bitemporal-window/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/007-bitemporal-window/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/009-edge-presence-currentness/description.json",
+      "hash": "21a746f2520a2fc96905c4eeec0d1e0b2d9f73fe",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/009-edge-presence-currentness/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/009-edge-presence-currentness/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/010-derived-id-provenance/description.json",
+      "hash": "fa1ef93ba3bb6837361e54ac38763cc626bf9b70",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/010-derived-id-provenance/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/010-derived-id-provenance/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/013-retention-forgetting/description.json",
+      "hash": "42b22ae0df442d095b7ebadf87599ee70075662c",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/013-retention-forgetting/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/013-retention-forgetting/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/017-enrichment-observability/description.json",
+      "hash": "869d41c91cabfa8c88e2b40e50518230b892f5da",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/017-enrichment-observability/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/017-enrichment-observability/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/019-mem0-ranking-tweaks/description.json",
+      "hash": "9441646937f31672804a4794226d03d840e2916e",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/019-mem0-ranking-tweaks/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/019-mem0-ranking-tweaks/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/026-eval-harness-extension/description.json",
+      "hash": "4e6fde7837eab8fb7cd6071327e6a9886147cc66",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/026-eval-harness-extension/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/026-eval-harness-extension/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/040-opencode-temp-worker-reaping/description.json",
+      "hash": "0a042fff721b74e0d15746d1d9c8d40f37937c47",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/040-opencode-temp-worker-reaping/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/040-opencode-temp-worker-reaping/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/description.json",
+      "hash": "952ae87cd799740ec8c80094adb2f1c6e259d77d",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening/description.json",
+      "hash": "941c0a7bfadd98dbd323f34b1a0596aac0b408d1",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/042-embedder-relisten-and-reaper-hardening/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/012-drift-audit-deep-history-correction/description.json",
+      "hash": "dd6f131c1d5e40eafcf1905f54ec30d87a2e1d12",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/012-drift-audit-deep-history-correction/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/012-drift-audit-deep-history-correction/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/013-generated-metadata-status-integrity/description.json",
+      "hash": "a2937998f5a30418c1d0dff85267f6bc431e1fe5",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/013-generated-metadata-status-integrity/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/013-generated-metadata-status-integrity/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/015-derive-status-explicit-bypass-fix/description.json",
+      "hash": "b86f50ac8121c2e316b0cc9d37d9c6a7e6bdb51e",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/015-derive-status-explicit-bypass-fix/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/015-derive-status-explicit-bypass-fix/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/018-z-archive-metadata-backfill/description.json",
+      "hash": "95e541ac18353429cd1e0dc10465041e4d85f9ba",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/018-z-archive-metadata-backfill/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/018-z-archive-metadata-backfill/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/004-review-remediation/003-doc-accuracy/description.json",
+      "hash": "7e6b77b7e89814f2010418cff311a32fc05a4595",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/004-review-remediation/003-doc-accuracy/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/004-review-remediation/003-doc-accuracy/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/005-manual-test-verification-and-fixes/description.json",
+      "hash": "a46892d1d03b428ad2d284da5d6bea90d482678a",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/005-manual-test-verification-and-fixes/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/005-manual-test-verification-and-fixes/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/006-presentation-layer-fixes/description.json",
+      "hash": "733c54e1ac7367ba6a3e62a1922ebfe87ba001e6",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/006-presentation-layer-fixes/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/006-presentation-layer-fixes/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/032-relocate-specs-folder/003-migration-execution/description.json",
+      "hash": "bea07f7d57e9a85adf9604d776b3b0e421b4c854",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/032-relocate-specs-folder/003-migration-execution/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/032-relocate-specs-folder/003-migration-execution/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/description.json",
+      "hash": "e26817362d048b60c02f17aca7be30368be9dc1e",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/016-sequential-thinking-residue-removal/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/description.json",
+      "hash": "b7cade9d6011e7b1be641fcd731c29b09f06c295",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/description.json",
+      "hash": "f4c239aad7da5db86266b1401a8773c2e60132bc",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/description.json",
+      "hash": "7522acc11c11bc65ec3f2ad84c57f353b88805b4",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/002-scripts-into-runtime-nesting/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment/description.json",
+      "hash": "fc690a2b93582919ad0105ef300fe450fc80537a",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution/description.json",
+      "hash": "a2eb6cebaf36228ea3dad63b6e758d8612323601",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/031-ci-shared-package-resolution/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items/description.json",
+      "hash": "1324662a76ecfde185bee78c0bbd0eec7762727e",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/040-gate-3-option-merge/description.json",
+      "hash": "a32b4f26851f3a83eab1a16412fda222c1c2cc80",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/040-gate-3-option-merge/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/040-gate-3-option-merge/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/description.json",
+      "hash": "6f570ec86b85276f9d861fc98923305024d46870",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/description.json",
+      "hash": "21efa9adc761ac2e18b96aac8a312a589c82902f",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/description.json",
+      "hash": "beed05b3f94419ffcb50f5352e7b7667566c9ac2",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design/description.json",
+      "hash": "5bd60cb56eecaa3b5334826e1030a390b7746dd7",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/description.json",
+      "hash": "051a06d9620c2752dbb991f7f80208146099f5b6",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts/description.json",
+      "hash": "1bdc49005c40fb4cd858b5d7ed65c223e42ecd0f",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move/description.json",
+      "hash": "43199bf82abb036ab88844a7e4e31ef8bcb44f79",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/description.json",
+      "hash": "0f983c5003bdc576db11eadeb5c32b3e23d875d1",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover/description.json",
+      "hash": "553dfd1303c3b473b3b56cc833368e7e855f7411",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/description.json",
+      "hash": "b97c1aed0bd48f10b69abea65dc4ee8a4300042c",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration/description.json",
+      "hash": "50aa268c0aa1e8978ded57160ea3d2fa210ba2f1",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/012-fix-deep-review-p1-p2-findings-for-source-root-migration/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/description.json",
+      "hash": "70a22ee17c1a73e11865776dc842b0d28810e612",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/014-fix-pre-existing-defects-found-by-migration/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/description.json",
+      "hash": "acdd31791fd988604cfa9471a286960a5b9cd69a",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/015-compiled-serving-admission-research/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/description.json",
+      "hash": "55c8c3ab2f498ba11675873f97d73cf7d61a8e69",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/016-fix-stale-compiled-routing-docs-and-research-workflow/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/description.json",
+      "hash": "71b3bac9b8976fbaa0c0bda7de36fa48b40ac10d",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/017-build-compiled-serving-gold-admission-checker/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/description.json",
+      "hash": "c3fe23d4d1cc2b4d160ecd8a6662fecd2883249b",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/018-restore-advisor-suite-and-renew-scorer-freeze/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint/description.json",
+      "hash": "eccc8ed245fccb5919b1d137181c16c615f43b80",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/019-refresh-rollback-snapshots-on-re-mint/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/description.json",
+      "hash": "7e8c409563369b038e6609b6aa7c893aa0450ce1",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/020-fix-admission-baseline-and-block-ci/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/description.json",
+      "hash": "202da07e415bf041aae08db0edbae59530056581",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/021-repo-rules-source-root-migration/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/description.json",
+      "hash": "16e33c23cfd65e8d81543f19e85461b233516437",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/description.json",
+      "hash": "94629d7d65f598c3b40fb885c9decb40119eca10",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/description.json",
+      "hash": "db7bb29b1428ca3609564cb80412415b8662d1ba",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/description.json.patch"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/description.json",
+      "hash": "997b68c497df91f982dde42c4af9005e8edd6465",
+      "content_stored": true,
+      "content_path": "content/specs/system-speckit/033-system-speckit-v4/description.json",
+      "head_patch_path": "patch-head/specs/system-speckit/033-system-speckit-v4/description.json.patch"
+    },
+    {
+      "path": "--mode",
+      "hash": "ae6f4f2373f89e272a8a15ddf1b5345bdbfc8530",
+      "content_stored": true,
+      "content_path": "content/--mode"
+    },
+    {
+      "path": "specs/sk-doc/056-sk-create-readme-writing-style/acceptance-criteria.md",
+      "hash": "b6c52b00bf37d87d2cd47d6228f3e1aef211b738",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/056-sk-create-readme-writing-style/acceptance-criteria.md"
+    },
+    {
+      "path": "specs/sk-doc/056-sk-create-readme-writing-style/description.json",
+      "hash": "596fe3b2242a4071c79dd52f072fb3313e5749a0",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/056-sk-create-readme-writing-style/description.json"
+    },
+    {
+      "path": "specs/sk-doc/056-sk-create-readme-writing-style/graph-metadata.json",
+      "hash": "96a768df49d942f1e32167dbce2ba562ca5d004a",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/056-sk-create-readme-writing-style/graph-metadata.json"
+    },
+    {
+      "path": "specs/sk-doc/056-sk-create-readme-writing-style/implementation-summary.md",
+      "hash": "6de5bbf11a53f7e4e43112f163ad5306197df605",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/056-sk-create-readme-writing-style/implementation-summary.md"
+    },
+    {
+      "path": "specs/sk-doc/056-sk-create-readme-writing-style/plan.md",
+      "hash": "16d9cef93c615eca4eff35d8560ece9284a31699",
+      "content_stored": true,
+      "content_path": "content/specs/sk-doc/056-sk-create-readme-writing-style/plan.md"
+    }
+  ]
+}

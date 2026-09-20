@@ -1,0 +1,39 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
+index fc5c5d793dd..9843ddc2cd1 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
+@@ -1,6 +1,6 @@
+ ---
+ title: Skill README Template
+-description: Template for human-facing skill README files in the narrative voice used by the repo root README and the changelogs: purpose-first identity, capability sections, at-a-glance table, problem-first overview, quick start, HVR enforcement, versioning and a strict validation checklist.
++description: Template for human-facing skill README files in the narrative voice used by the repo root README and the changelogs: purpose-first identity, capability sections, at-a-glance table, value-first overview, quick start, HVR enforcement, versioning and a strict validation checklist.
+ trigger_phrases:
+   - "skill readme template"
+   - "narrative skill readme"
+@@ -13,7 +13,7 @@ version: 1.2.0.15
+ 
+ # Skill README Template
+ 
+-Use this template for `.skilled/skills/[skill-name]/README.md`. It writes a skill README in the same narrative voice the repo root `README.md` and the changelogs use: a one-line human pitch, an at-a-glance table near the top, a problem-first overview, then quick start, navigation and a verification close.
++Use this template for `.skilled/skills/[skill-name]/README.md`. It writes a skill README in the same narrative voice the repo root `README.md` and the changelogs use: a one-line human pitch, an at-a-glance table near the top, a value-first overview, then quick start, navigation and a verification close.
+ 
+ ---
+ 
+@@ -52,7 +52,7 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
+ | # | Section | Purpose | Keep When |
+ |---|---------|---------|-----------|
+ | 1 | AT A GLANCE | Four-row table a reader scans in five seconds | Always |
+-| 2 | OVERVIEW | Problem-first "why", then "what it does" | Always (required by the validator) |
++| 2 | OVERVIEW | What the skill is and what the reader gets first, then the optional problem narrative | Always (required by the validator) |
+ | 3 | QUICK START | The fastest path to a first result | Skill has commands, scripts or a workflow |
+ | 4 | HOW IT WORKS | The lifecycle or main workflow in prose, with a small ASCII diagram when the flow has multiple steps | Skill has non-obvious behavior worth narrating |
+ | 5 | INTEGRATION & NAVIGATION | When to use it, plus how it hands off to sibling skills | Readers can confuse it with a neighbor |
+@@ -63,7 +63,7 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
+ 
+ `OVERVIEW` is the one required section. Its normalized name must appear as a numbered header so the validator finds it. Every other section is optional. A small utility skill might run four sections (AT A GLANCE, OVERVIEW, QUICK START, RELATED DOCUMENTS). A large orchestrator might run all nine. Match the count to the skill. Never pad to hit a number.
+ 
+-Inside OVERVIEW you may add two optional subsections. The first is a `### Why It Matters` value beat with two to four outcome bullets stated benefit-first. The second is the capability section below. Add the value beat when the payoff is not obvious from What It Does.
++Inside OVERVIEW the `### What It Does` subsection comes first: what the skill is and what the reader gets, modeled on the root README opening with its SUMMARY section and benefit bullets. You may then add up to three optional subsections. A `### Why This Skill Exists` problem narrative, used when the pain needs telling before the mechanism lands. A `### Why It Matters` value beat with two to four outcome bullets stated benefit-first. And the capability section below.
+ 
+ ### Capability Section Pattern
+ 

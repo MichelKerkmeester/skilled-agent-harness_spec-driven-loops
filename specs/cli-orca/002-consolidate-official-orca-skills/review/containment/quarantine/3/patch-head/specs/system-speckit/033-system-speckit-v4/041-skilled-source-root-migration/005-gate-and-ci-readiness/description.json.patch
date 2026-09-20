@@ -1,0 +1,13 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/description.json b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/description.json
+index 480b08fd95c..051a06d9620 100644
+--- a/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/description.json
++++ b/specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/description.json
+@@ -19,7 +19,7 @@
+     "script",
+     "reason"
+   ],
+-  "lastUpdated": "2026-09-16T18:40:32.423Z",
++  "lastUpdated": "2026-09-17T09:16:33.789Z",
+   "specId": "005",
+   "folderSlug": "gate-and-ci-readiness",
+   "parentChain": [

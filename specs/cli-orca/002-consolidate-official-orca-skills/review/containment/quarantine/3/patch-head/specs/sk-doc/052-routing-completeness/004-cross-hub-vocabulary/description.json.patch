@@ -1,0 +1,13 @@
+diff --git a/specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/description.json b/specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/description.json
+index 125c93413eb..4aeddd4fd8c 100644
+--- a/specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/description.json
++++ b/specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/description.json
+@@ -10,7 +10,7 @@
+     "belief",
+     "cross-hub"
+   ],
+-  "lastUpdated": "2026-09-02T17:13:57.301Z",
++  "lastUpdated": "2026-09-11T16:49:41.126Z",
+   "specId": "004",
+   "folderSlug": "cross-hub-vocabulary",
+   "parentChain": [

@@ -1,0 +1,26 @@
+diff --git a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/description.json b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/description.json
+index 6ccf611fe92..ae0a0f57a25 100644
+--- a/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/description.json
++++ b/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
++  "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
+   "description": "Three related integrity gaps sit at the P1 rollback/audit/policy layer of the activation program",
+   "keywords": [
+     "three",
+@@ -15,11 +15,12 @@
+     "activation",
+     "program"
+   ],
+-  "lastUpdated": "2026-08-30T08:03:50.960Z",
++  "lastUpdated": "2026-09-11T16:49:41.047Z",
+   "specId": "010",
+   "folderSlug": "rollback-audit-and-non-hub-policy",
+   "parentChain": [
+     "sk-doc",
++    "z_archive",
+     "019-skill-routing-refactor",
+     "015-router-unification-program",
+     "019-routing-coverage-activation-verification"

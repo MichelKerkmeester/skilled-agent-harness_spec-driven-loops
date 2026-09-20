@@ -1,0 +1,41 @@
+diff --git a/specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout/description.json b/specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout/description.json
+index 91bf98c9ae5..29cbc9d349f 100644
+--- a/specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout/description.json
++++ b/specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout/description.json
+@@ -1,11 +1,23 @@
+ {
++  "level": "3",
+   "specFolder": "cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout",
+-  "description": "Phase 8: docs-governance-and-closeout",
++  "description": "A reader following any roster surface would find six external CLI modes and never learn the seventh existed",
+   "keywords": [
+-    "phase",
+-    "docs-governance-and-closeout"
++    "reader",
++    "following",
++    "roster",
++    "surface",
++    "find",
++    "six",
++    "external",
++    "cli",
++    "modes",
++    "never",
++    "learn",
++    "seventh",
++    "existed"
+   ],
+-  "lastUpdated": "2026-09-14T17:24:51.051Z",
++  "lastUpdated": "2026-09-14T20:21:12.833Z",
+   "specId": "009",
+   "folderSlug": "docs-governance-and-closeout",
+   "parentChain": [
+@@ -13,6 +25,5 @@
+     "071-cli-hermes-creation"
+   ],
+   "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "3"
++  "memoryNameHistory": []
+ }
+\ No newline at end of file

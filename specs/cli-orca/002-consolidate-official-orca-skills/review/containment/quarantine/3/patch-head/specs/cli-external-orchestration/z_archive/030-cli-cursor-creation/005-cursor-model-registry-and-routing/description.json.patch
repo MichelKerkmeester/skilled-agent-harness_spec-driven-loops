@@ -1,0 +1,26 @@
+diff --git a/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing/description.json b/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing/description.json
+index a82823c9fed..4e71d5bc6c9 100644
+--- a/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing/description.json
++++ b/specs/cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing/description.json
+@@ -1,6 +1,6 @@
+ {
+   "level": "2",
+-  "specFolder": "cli-external-orchestration/030-cli-cursor-creation/005-cursor-model-registry-and-routing",
++  "specFolder": "cli-external-orchestration/z_archive/030-cli-cursor-creation/005-cursor-model-registry-and-routing",
+   "description": "`sk-prompt/prompt-models` is this repo's canonical registry of per-model prompt-craft profiles (`assets/model-profiles.json` +",
+   "keywords": [
+     "sk-prompt",
+@@ -15,11 +15,12 @@
+     "model-profiles",
+     "json"
+   ],
+-  "lastUpdated": "2026-08-15T14:40:55.171Z",
++  "lastUpdated": "2026-09-11T16:49:40.820Z",
+   "specId": "005",
+   "folderSlug": "cursor-model-registry-and-routing",
+   "parentChain": [
+     "cli-external-orchestration",
++    "z_archive",
+     "030-cli-cursor-creation"
+   ],
+   "memorySequence": 0,

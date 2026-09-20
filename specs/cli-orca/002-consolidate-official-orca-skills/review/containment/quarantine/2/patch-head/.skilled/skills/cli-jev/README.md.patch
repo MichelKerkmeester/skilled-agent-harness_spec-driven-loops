@@ -1,0 +1,10 @@
+diff --git a/.skilled/skills/cli-jev/README.md b/.skilled/skills/cli-jev/README.md
+index ff06a159056..54697eaaa99 100644
+--- a/.skilled/skills/cli-jev/README.md
++++ b/.skilled/skills/cli-jev/README.md
+@@ -29,4 +29,4 @@ rules, the CLI reference, the providers and the MCP surface.
+ 
+ The hub was split out of `cli-external-orchestration`, where Jev had lived as the eighth mode. The
+ transport keeps its `cli-jev` alias, its scenarios and its recorded evidence; only its home changed.
+-See [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md).
++See [`changelog/v0.1.0.0.md`](./changelog/v0.1.0.0.md).

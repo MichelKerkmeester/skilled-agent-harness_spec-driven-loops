@@ -40,7 +40,8 @@ caller branches on, and it has its own contract, hard rules and exit taxonomy.
 | `tieBreak` lists workflow modes before the transport | rule 5i |
 
 Anchors: `mode-registry.json` (the entry and the `extensions` block), the hub's `SKILL.md`
-(two-axis prose and the mode table), `ROUTER.md` (signal and leaf set).
+(two-axis prose and the mode table), `hub-router.json` (signal and vocabulary classes),
+`leaf-manifest.json` (leaf set).
 
 **Verified**: `node .skilled/commands/doctor/scripts/parent-skill-check.cjs
 .skilled/skills/cli-jev` exits 0 with `PASS: 5i` and one registered mode; rule 3h reports only when the
