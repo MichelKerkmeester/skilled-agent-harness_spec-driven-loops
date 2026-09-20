@@ -60,7 +60,7 @@ Research, review and improvement loops run unattended and stop only when their o
 - Progress lives on disk, so a loop survives crashes, new sessions and long runs
 - One shared runtime under every loop, so you learn the workflow once
 - Run fully hands-off or pause at each step, your choice
--
+
 ### 🎯 Skill Advisor: the right skill at the right time
 
 Type a prompt and the matching expertise loads before any tool runs. No memorizing skill names.
