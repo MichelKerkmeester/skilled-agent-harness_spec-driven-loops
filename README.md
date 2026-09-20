@@ -24,7 +24,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 - 🎯 **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
 - 🔄 **Autonomous Deep Loops** - research, review and improvement loops that run unattended and stop only when their own evidence says done
 - 🤖 **12 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- 🧰 **13 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
+- 🧰 **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
 **Why it earns a place**
 
@@ -85,7 +85,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 13 on-demand skills, 32 command entry points and the Code Mode MCP single-tool interface, each detailed in its own section below.
+Behind them: 14 on-demand skills, 32 command entry points and the Code Mode MCP single-tool interface, each detailed in its own section below.
 
 ---
 
@@ -129,7 +129,7 @@ From request to documented result:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 12 specialized│          │ 13 domain skills │
+         │ 12 specialized│          │ 14 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -771,7 +771,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 ## 8. 🧰 SKILL LIBRARY
 
-13 advisor skill identities in `.skilled/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+14 advisor skill identities in `.skilled/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 &nbsp;
 #### SYSTEM
@@ -827,6 +827,14 @@ Use `@context` separately for one-shot retrieval. This parent-nested-skill patte
 Run **cross-CLI agent teams from supported runtimes**. OpenCode and Claude Code are the primary runtimes. Codex, Cursor, Devin, Pi and Hermes join through their own CLI bridges.
 
 Claude Code, OpenCode or a raw shell can dispatch supported AI CLIs as specialist sub-tools, each one a one-shot non-interactive call that streams structured output back to the caller. The conducting AI stays in charge. The dispatched CLI handles the part it's best at and returns.
+
+Every bridge shares the same foundation:
+
+- **Any model the native CLI supports.** The shipped lists are starting points you can edit. Pi, OpenCode and Hermes read their rosters from provider config and a declared list, and the rest pass the model flag of their own CLI. Each skill's provider pre-flight lists the live set
+- **Built for deep-loop fan-out.** Every bridge is a deep-loop executor: bind several on one research, review or council run and each becomes its own lineage, with per-lineage state, budget caps and a stall watchdog, then the strongest-restriction merge picks the safest verdict. The shared runner makes a new model a config choice rather than new plumbing
+- **Skills, agents and commands travel with the dispatch.** Each bridge mirrors them into the runtime's own config surface as far as that runtime allows. Hermes, for example, rebuilds each shared agent as a preloadable skill because it has no agent flag
+- **Mirrors stay in sync on their own.** Commit-time mirror hooks and a CI parity job keep every mirror aligned with `.skilled/`, so a dispatched runtime never reads a stale copy
+- **Native extensibility included.** Each runtime also gets hooks, plugins or extensions where its platform allows, so much of the skilled feature set arrives with the dispatch
 
 > **Self-invocation guard:** every skill refuses to call itself. A Claude Code session never dispatches `cli-claude-code`, an OpenCode session never dispatches `cli-opencode`, etc. Cross-AI delegation only, no cycles.
 
@@ -889,11 +897,23 @@ One advisor identity routing through `mode-registry.json` to seven modes.
 **`cli-hermes`** - Hermes Agent CLI orchestrator
 
 - Reach for it for **quiet oneshot headless dispatch, cross-AI validation and LLM Gateway model routing**, dispatched through `hermes chat -Q --oneshot` (Nous Research's Python agent CLI)
-- Closed seven-id roster through the operator's `llmgateway` provider: `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-5.6-luna`, `gpt-5.6-sol`, `minimax-m3`, `mimo-v2.5-pro` and `qwen3.8-max`, each probed live
+- Model choice follows the roster the skill declares over the operator's `llmgateway` provider, and adding a model means amending that roster first. The skill's provider pre-flight lists the live set
 - Availability-gated and fails closed: checks `command -v hermes` and reads `hermes config get providers.llmgateway.base_url` for a configured provider before dispatching, and refuses the route when either fails
 - `hermes status` is NOT a usable probe: it reads the built-in catalog only, so it reports no provider on a correctly configured machine
 - Hermes has no agent flag, so each shared agent is mirrored as the preloadable skill `agent-<name>` and bound by an environment variable
 - Its repo surface is `.hermes/`: generated markdown-only skill copies rather than symlinks (because Hermes scans a linked directory in full and quarantines it), plus generated prompt templates and one `repo-guards` plugin
+
+&nbsp;
+#### JUDGMENT TRANSPORT
+
+**`cli-jev`** - parent hub for the Jev typed-judgment transport
+
+One advisor identity routing through `mode-registry.json` to its single `packetKind: "transport"` mode, `cli-usage`. The transport returns a typed value and never performs the follow-up work.
+
+- Reach for it when a decision needs **one typed judgment from the `jev` CLI**: a probability (`noul`), one option key (`choice`), an ordered score position (`score`) or a batch of keyed answers (`run`), as structured JSON or a bare scalar with `--value`
+- **Read-only by contract:** `Read`, `Bash`, `Grep` and `Glob` only, with `Write`, `Edit` and `Task` forbidden. The transport selects a value and mutates nothing, so pair it with a workflow mode when the judgment feeds an edit
+- Availability-gated and fails closed: the dispatch preflight checks `command -v jev` and gates every judgment command with eight jev-specific rules (bounded stdin, no inline credentials, option and level cardinality, an explicit `--endpoint` for a custom provider)
+- **Compiled routing is default-on:** `node .skilled/bin/compiled-route.cjs --hub cli-jev` resolves `cli-usage` at the hub's compiled policy, and `SPECKIT_COMPILED_ROUTING=0` restores the legacy sentinel
 
 &nbsp;
 #### MCP INTEGRATION
@@ -1500,6 +1520,12 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 &nbsp;
 
+**`cli-jev`** - ✅ codebase-agnostic
+
+- Parent hub for the Jev typed-judgment transport: routes to `cli-usage` for a probability, an option key, a score position or a batch of keyed answers from the `jev` CLI. Stack-independent. Needs the `jev` CLI on PATH
+
+&nbsp;
+
 **`mcp-tooling`** - ✅ codebase-agnostic
 
 - Parent hub for MCP tool bridges, ten modes: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI, and cyanheads obsidian-mcp-server), `mcp-aside-devtools`, `mcp-notion` and `mcp-orca-cli`, plus the design transports `mcp-figma` (Figma Desktop via the silships `figma-ds-cli`, requires Figma Desktop open), `mcp-refero`, `mcp-mobbin` and `mcp-magicpath`. Stack-independent
@@ -1561,7 +1587,7 @@ Nothing to configure.
 
 &nbsp;
 
-**Q: Do I need all 13 skills installed to use the framework?**
+**Q: Do I need all 14 skills installed to use the framework?**
 
 No. Skills are loaded on demand by Gate 2, so you only need the ones relevant to your work.
 
