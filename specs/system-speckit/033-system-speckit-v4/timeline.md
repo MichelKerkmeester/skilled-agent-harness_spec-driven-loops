@@ -529,4 +529,6 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 **The v4 changelog rewritten in the root README's voice:** 2026-09-21, `045`. Status: Done. Evidence: `045-v4-changelog-voice-rewrite/implementation-summary.md`, with the census at zero walls and the human voice scan at zero hard blockers.
 
 **The v4 changelog remediated per the 045 research report:** 2026-09-21, `046`. Status: Done. Evidence: `046-v4-changelog-remediation/implementation-summary.md`, with the 18/56/19/44 skeleton recorded as a baseline plus measured -1 deltas and the report's gates still at zero.
+
+**The v4 changelog's LUNA review findings remediated:** 2026-09-21, `047`. Status: Done. Evidence: `047-v4-changelog-review-fixes/implementation-summary.md`, with the 722→719 line delta accounted, the 17/55/18/43 skeleton unchanged, and the 046 gates still at zero.
 <!-- /ANCHOR:milestones -->

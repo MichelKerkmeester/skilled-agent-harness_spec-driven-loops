@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-system-speckit-v4/046-v4-changelog-remediation",
-  "spec_folder": "system-speckit/033-system-speckit-v4/046-v4-changelog-remediation",
+  "packet_id": "system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes",
+  "spec_folder": "system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes",
   "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
@@ -11,29 +11,29 @@
   },
   "derived": {
     "trigger_phrases": [
-      "v4 changelog remediation",
-      "changelog structural edits",
-      "045 research implementation",
-      "changelog count dispositions",
-      "changelog corrections",
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
       "implementation plan",
       "technical approach",
       "architecture decisions",
       "testing strategy",
       "task breakdown",
       "implementation tasks",
-      "verification checklist"
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
-      "changelog",
-      "remediation",
-      "structural",
-      "edits",
-      "research",
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
       "implementation",
-      "count",
-      "dispositions",
-      "corrections",
       "plan",
       "technical",
       "approach"
@@ -45,10 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "scratch/apply-structure.py",
-      "scratch/changelog-before.md",
-      ".pi/settings.json",
-      ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py"
+      ".pi/settings.json"
     ],
     "entities": [
       {
@@ -76,27 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "apply-structure.py",
-        "kind": "file",
-        "path": "scratch/apply-structure.py",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-before.md",
-        "kind": "doc",
-        "path": "scratch/changelog-before.md",
-        "source": "derived"
-      },
-      {
         "name": "settings.json",
         "kind": "config",
         "path": ".pi/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "hvr_scan.py",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
         "source": "derived"
       },
       {
@@ -148,7 +127,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Implements",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -166,7 +145,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Pinned",
+        "name": "Data Flow Review",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -184,21 +163,39 @@
         "source": "derived"
       },
       {
-        "name": "One Shape",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Why This Release",
-        "kind": "proper_noun",
+        "name": "its",
+        "kind": "key_phrase",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "nothing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The 045 research report established that what still costs the reader is structure and facts, not sentence shape: six `.opencode/` path mentions are dead at HEAD, the document contradicts itself on the CLI-orchestrator count (Six at L730 vs Seven at L274/L310/L314), counts have drifted (278 commits exist where it says 266; the symlink count measures 101 where it says 102; \"178 recommendations\" is non-re-derivable), the glance list duplicates the README at five times its volume, and the section order ignores the priorities the root README itself declares",
-    "created_at": "2026-09-21T12:33:03Z",
-    "last_save_at": "2026-09-21T18:23:50.327Z",
+    "causal_summary": "The 046 remediation shipped Complete, and the LUNA 5.6 MAX FAST review of its output (13 findings, verdict: mostly reads like the README author but would not ship unchanged) recorded one high and twelve medium-or-low findings",
+    "created_at": "2026-09-21T15:57:35Z",
+    "last_save_at": "2026-09-21T18:21:36.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab093955ea11478626ecb544f4b5401fc221d9554638019f17fd326ad56d1ae4",
+    "source_fingerprint": "sha256:f8ab0c9dc859561c4a98a2e4652904faba94b21d43b418c7c54002b02653fc7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe61c90ca76aba2bb882d4289222b5aec2f5fda6a663aa9d7e3dabdf3d0ca5a0",
-      "plan.md": "86e7b546c5913df7627ab065580ada1c4f1b335400c9bca9692486ec43f67ed4",
-      "tasks.md": "a2d6810118c779ab4aa4964f06ecb9e2243ee226729f12a6837d4a733b983a6c",
-      "implementation-summary.md": "e44d9aefefcb1c3e04370ee44e3c14bd1078bd160cfee567cab7693ab9d58ccf"
+      "spec.md": "c0f1a2dc89c9e48c140c9eb60106eb17a255ae3ca98d8d9d61ef6d4ac0bb6d03",
+      "plan.md": "9738c935e6843df61afb07a96986c011967e010c935695868f43c78f6980fca4",
+      "tasks.md": "b3f1b4498845d8a43e5b0d96d7ef20138f279206a5e1045e85feb649a203de67",
+      "implementation-summary.md": "c92a8fd58f61ba8a528d829a37df7625c6286cbc23503459283a0420ca9bcc0f"
     },
     "last_active_at": null
   }

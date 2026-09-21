@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "None: the packet is complete; the push grant is the only outstanding item"
     blockers: []
     key_files:
-      - "../CHANGELOG-v4.0.0.0.md"
+      - "../changelog/CHANGELOG-v4.0.0.0.md"
       - "scratch/apply-structure.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -109,7 +109,7 @@ Apply the report's Sections 7, 9, 10 and 13 exactly, so the changelog reads in t
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| ../CHANGELOG-v4.0.0.0.md | Modify | Corrections, count dispositions, structural re-order |
+| ../changelog/CHANGELOG-v4.0.0.0.md | Modify | Corrections, count dispositions, structural re-order |
 | ../spec.md | Modify | Phase-map row 46 and its handoff row (placeholders filled) |
 | ../timeline.md | Modify | Phase 46 milestone |
 | spec.md, plan.md, tasks.md, implementation-summary.md | Create | This packet |
