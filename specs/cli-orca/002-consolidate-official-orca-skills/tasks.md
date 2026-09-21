@@ -180,6 +180,8 @@ contextType: "implementation"
 
 - [x] T056 Section 2 reordered: THE FOUNDATION leads, the Spec Kit echo trimmed (`README.md`) [15m] — the THE FOUNDATION block (three numbered blocks plus the From-request-to-documented-result diagram, moved whole with its fence pair) now opens the section directly under the ## 2, ahead of the five capability h3s; the Spec Kit paragraph's duplicated first sentence dropped, so the block reads lead, lab-notebook line, bullets; the ###-order is now THE FOUNDATION, Spec Kit, Spec Memory & Search, Deep Loop, Skill Advisor, Agent Library, Plugin & Extension Library; the --- before ## 3 untouched; HVR 0 hard blockers (ceiling 89); readme validator 1 issue(s), unchanged; packet PASSED
 
+- [x] T057 Section 2 heading to ALL CAPS with its separator (`README.md`) [5m] — ## 2 retitled 🎁 OVERVIEW (the file's ALL-CAPS h2 convention) and the --- divider added above it, the rule the title case had been exempting; readme validator 0 issues — the h2_not_uppercase note dies into the ALL-CAPS rename and the general_h2_separator rule it resurrected is satisfied by the --- divider now sitting above the ## 2; the first zero-blocking-issues state for the root README; HVR 0 hard blockers (ceiling 89); packet PASSED
+
 ## Verification Checklist
 
 | Check | Command shape | Expected result | Status |
