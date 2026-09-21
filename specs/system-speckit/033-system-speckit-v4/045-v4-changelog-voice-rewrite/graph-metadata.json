@@ -45,18 +45,26 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "research/research.md",
       "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
       ".skilled/skills/mcp-tooling/mode-registry.json",
       "scratch/changelog-prose-audit.py",
       "scratch/rewrite-changelog.py",
       "scratch/facts-before.json",
-      "scratch/facts-after.json"
+      "scratch/facts-after.json",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      "specs/system-speckit/033-system-speckit-v4/spec.md",
+      "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/spec.md",
+      ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts",
+      "research/resource-map.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/spec.md",
         "source": "derived"
       },
       {
@@ -75,6 +83,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -111,6 +125,30 @@
         "name": "facts-after.json",
         "kind": "config",
         "path": "scratch/facts-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-compatibility.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-contract.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts",
         "source": "derived"
       },
       {
@@ -166,56 +204,28 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Document",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`../CHANGELOG-v4.0.0.0.md` tells the v4 story in the shape of the draft it grew from, and that shape costs the reader",
     "created_at": "2026-09-21T05:52:03Z",
-    "last_save_at": "2026-09-21T06:08:23.266Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-21T10:04:44.793Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:e055b6321c9545e164728c901239a1269ebc0e450909138454bde6dffce20ee9",
+    "source_fingerprint": "sha256:ea1612884b8e496deb4c7b4715ec6ecdb1c9bf7ed21fe76e54af5520c2438adc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7ae4e364ded28283c734b774dfbf879e9db6acfb39d1ff9a4f9df16f151bcb12",
+      "spec.md": "91f4f5b39ccecc11febbfca13857c9514234514929f02404228388a775db69ed",
       "plan.md": "6e66ec94989c2fdaaeb4e2a0fcc67e709a22e413839c864683b818a5aa6d165f",
       "tasks.md": "8ce526bc06312ea5e37329a26818cef64a011fda08ea5287f03c23ac98c29331",
-      "implementation-summary.md": "5c3848494cfc7a98d7c69e7763eb2aed5d81000caa8452b46d5cfac606a9f770"
+      "implementation-summary.md": "828b524d61a3c25d4ae4781aa40e243daf453d63d02816ec37534303dccc79e0",
+      "research/research.md": "4fe5dde4864a0046832760b6c25e8386de891a8ec2e3d3e05e1270254380cf74"
     },
     "last_active_at": null
   }
