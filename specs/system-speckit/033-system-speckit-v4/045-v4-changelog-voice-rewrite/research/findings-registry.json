@@ -1,0 +1,1236 @@
+{
+  "sessionId": "rsr-2026-09-21T08-45-54-679Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 0,
+    "totalQuestions": 5,
+    "timestamp": "2026-09-21T10:02:06.267Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-which-changelog-sections-or-paragraphs-duplicate-content-that-already-lives-i",
+      "inboxId": null,
+      "text": "Q1: Which changelog sections or paragraphs duplicate content that already lives in the root README, the 033 specs, or the sk-create-changelog contract, and which content is simply unneeded?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-which-claims-are-stale-or-over-specific-relative-to-the-tree-and-the-commits-",
+      "inboxId": null,
+      "text": "Q2: Which claims are stale or over-specific relative to the tree and the commits since the rewrite baseline, and what should replace them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-where-do-audience-fit-and-priority-ordering-break-down-and-what-section-order",
+      "inboxId": null,
+      "text": "Q3: Where do audience fit and priority ordering break down, and what section order serves the first-time reader before the maintainer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-q4-what-does-the-live-root-readme-voice-do-structurally-and-where-does-the-chang",
+      "inboxId": null,
+      "text": "Q4: What does the live root README voice do structurally, and where does the changelog diverge from it in prose and structure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-what-does-the-sk-create-changelog-contract-and-template-require-and-where-is-",
+      "inboxId": null,
+      "text": "Q5: What does the sk-create-changelog contract and template require, and where is a deliberate departure justified by the changelog's audience?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-which-changelog-sections-or-paragraphs-duplicate-content-that-already-lives-i",
+      "inboxId": null,
+      "text": "Q1: Which changelog sections or paragraphs duplicate content that already lives in the root README, the 033 specs, or the sk-create-changelog contract, and which content is simply unneeded?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-which-claims-are-stale-or-over-specific-relative-to-the-tree-and-the-commits-",
+      "inboxId": null,
+      "text": "Q2: Which claims are stale or over-specific relative to the tree and the commits since the rewrite baseline, and what should replace them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-where-do-audience-fit-and-priority-ordering-break-down-and-what-section-order",
+      "inboxId": null,
+      "text": "Q3: Where do audience fit and priority ordering break down, and what section order serves the first-time reader before the maintainer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-what-does-the-live-root-readme-voice-do-structurally-and-where-does-the-chang",
+      "inboxId": null,
+      "text": "Q4: What does the live root README voice do structurally, and where does the changelog diverge from it in prose and structure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-what-does-the-sk-create-changelog-contract-and-template-require-and-where-is-",
+      "inboxId": null,
+      "text": "Q5: What does the sk-create-changelog contract and template require, and where is a deliberate departure justified by the changelog's audience?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q2/follow-up: pin the exact README HEAD snapshot as the voice standard and re-audit the changelog's prose against it; verify whether the five post-rewrite README commits change any prose rule the rewrite applied.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: sentence-level duplication table (glance vs README §2; Upgrade Notes vs README §3/adoption; which changelog paragraphs add nothing the 033 packets or README already say better).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Candidate outline work: a major-release changelog outline that serves the first-time reader (glance → thesis → families → upgrade) with the maintainer material in a collapsed appendix.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5/follow-up: read the remainder of the contract (`SKILL.md` lines 451+, `assets/changelog-template.md`) to confirm the template's summary/upgrade wording, then record the deliberate departures formally.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: the concrete recommended section order, and the first-draft keep/merge/move/drop decision per section (evidence in hand, decision pending).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Iteration 3, if budget allows: resolve the F-008 soften list into keep-as-is, re-derive-at-publication or soften-to-role per count, and sweep every remaining `.opencode/*` spelling to a line-numbered list (lines 101, 188, 463, 660, 716 and 717 are known).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Iteration 3: verify the family-block tie-break against README §7 SKILL LIBRARY's sub-order.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Iteration 3: sentence-level prose conformance sample against README HEAD (Q4 tail), and the per-paragraph ownership map for merged or dropped content (Q1 tail).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None open for research. The run's deliverables are complete and frozen against the pinned blob; the only remaining work is the deferred implementation pass in this order: apply F-024's ordered patch list, then F-025's outline order, then F-027's REQ-005 disposition. If an iteration is dispatched before that pass, its only non-duplicative action is the F-039 pin sentinel: confirm the changelog sha256 still equals `33abcc9a865e688189ce2a5c…`; if it differs, re-derive F-024 before applying it.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None open for research. The run's deliverables are complete and frozen against the pinned blob (`33abcc9a865e688189ce2a5c…`). The remaining work is the deferred implementation pass, in order: apply F-024's ordered patch list, then F-025's outline order, then F-027's REQ-005 disposition. Any dispatch before that pass acts only as the pin sentinel: re-confirm the sha256, and re-derive F-024 before applying it if the hash differs.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: Which changelog sections or paragraphs duplicate content that already lives in the root README, the 033 specs, or the sk-create-changelog contract, and which content is simply unneeded?",
+    "Q2: Which claims are stale or over-specific relative to the tree and the commits since the rewrite baseline, and what should replace them?",
+    "Q3: Where do audience fit and priority ordering break down, and what section order serves the first-time reader before the maintainer?",
+    "Q4: What does the live root README voice do structurally, and where does the changelog diverge from it in prose and structure?",
+    "Q5: What does the sk-create-changelog contract and template require, and where is a deliberate departure justified by the changelog's audience?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-33-033-specs-the-changelog-is-one-of-45-phase-children-packets-034-v4-state-invento",
+      "text": "**033 specs**: the changelog is one of 45 phase children; packets 034 (v4-state inventory), 035 (changelog draft update), 042 (doc freshness), 043 (root README), 044 (late-cycle entries) and 045 (this voice rewrite) own the same surface, and parent `spec.md`/`timeline.md` carry the phase map. The changelog's job is the reader-facing digest; the packets hold the durable history the `After This Draft` block currently duplicates in worse form.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-32-readme-3-owns-install-paths-verification-commands-and-adoption-adapting-to-your-",
+      "text": "**README §3+** owns install paths, verification commands and adoption (\"Adapting to Your Stack\", README lines 221–229). The changelog's `Upgrade Notes` (lines 711–719) duplicates the same operational territory as three ~40-line mega-bullets (renames, repoints, changed defaults, adopter reconciliation).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-31-root-readme-2-overview-already-gives-one-benefit-led-bullet-block-per-subsystem-",
+      "text": "**Root README §2 OVERVIEW** already gives one benefit-led bullet block per subsystem (Spec Kit, Spec Memory & Search, Deep Loop, Skill Advisor, Agent Library, Plugin & Extension Library, README lines 103–164). The changelog's `What's New at a Glance` (31 bullets, lines 24–52) fills the same role for v4 changes at roughly five times the volume.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-34-sk-create-changelog-contract-skill-md-global-changelogs-live-at-skilled-changelo",
+      "text": "**sk-create-changelog contract** (SKILL.md): global changelogs live at `.skilled/changelog/{component}/v{VERSION}.md`, \"start directly with the summary paragraph\", and carry \"no version header or boilerplate at the top of the file\" (lines 12, 244–249); compact format under 10 changes, expanded at 10+, major, or breaking (line 248); the expanded template's item shape is H4 heading + paragraph + `&nbsp;` (lines 287–306). The v4 changelog matches the **item skeleton** but departs on **location** (packet root, not a component folder), **frontmatter** (YAML `title`/`trigger_phrases` for the trigger index), and **H1 header** (`# v4.0.0.0, Fewer Paths…`). Format-choice rule is satisfied: v4 is a major release → expanded format is correct.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-25-0fd86a8c32-docs-readme-correct-the-recorded-section-2-verdict",
+      "text": "`0fd86a8c32` `docs(readme): correct the recorded section-2 verdict`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-23-3ad5ca25fb-docs-readme-section-2-heading-to-all-caps",
+      "text": "`3ad5ca25fb` `docs(readme): section 2 heading to all caps`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-24-4b51a59fb7-docs-readme-the-foundation-leads-section-2",
+      "text": "`4b51a59fb7` `docs(readme): the foundation leads section 2`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-27-b6431fe588-docs-readme-retitle-section-2-and-restore-its-overview-subheading",
+      "text": "`b6431fe588` `docs(readme): retitle section 2 and restore its overview subheading`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-26-f3c98aa316-docs-readme-section-2-becomes-overview-h3s-stripped-bare",
+      "text": "`f3c98aa316` `docs(readme): section 2 becomes Overview, h3s stripped bare`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-22-git-rev-list-count-7076dba64b-head-5-and-all-five-touch-only-the-readme-s-sectio",
+      "text": "`git rev-list --count 7076dba64b..HEAD` → **5**, and all five touch only the README's section-2 voice/structure:",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-changelog-line-101-its-engine-lives-at-opencode-skills-system-spec-kit-runtime-c",
+      "text": "Changelog line 101: \"Its engine lives at `.opencode/skills/system-spec-kit/runtime/cli/`\".",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-changelog-line-188-node-opencode-bin-skill-advisor-cjs-command",
+      "text": "Changelog line 188: \"`node .opencode/bin/skill-advisor.cjs <command>`\".",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-changelog-line-463-the-opencode-hooks-directory-gathers-every-hook-through-102-r",
+      "text": "Changelog line 463: \"The `.opencode/hooks/` directory gathers every hook through 102 relative symlinks\".",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-changelog-line-740-266-commits-landed-after-the-last-edit-here-1d43dbd38b-2026-0",
+      "text": "Changelog line 740: \"266 commits landed after the last edit here (`1d43dbd38b`, 2026-09-16) and none of them are recorded in the sections above\".",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-changelog-line-742-every-opencode-path-in-this-document-still-resolves-as-a-git-",
+      "text": "Changelog line 742: \"Every `.opencode/*` path in this document still resolves, as a git-tracked symlink alias into `.skilled/` rather than as a directory of its own\".",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-38-changelog-order-glance-shape-thesis-spec-kit-skill-advisor-documentation-deep-lo",
+      "text": "Changelog order: glance → shape thesis → Spec Kit → **Skill Advisor** → Documentation → **Deep Loops** → Orchestrating → Hooks/Goals → Design → Code → Git → Prompt → MCP → Agent Discipline → Plain-English → Upgrade Notes → Internal Seams → After This Draft.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-changelog-1-h1-18-h2-0-h3-56-h4-19-rules-44-nbsp-separator-lines-grep-c-nbsp-44-",
+      "text": "Changelog: 1 H1, 18 H2, **0 H3**, 56 H4, 19 `---` rules, **44 `&nbsp;` separator lines** (`grep -c '&nbsp;'` → 44; the 045 spec REQ-005 pins exactly these counts: 18/56/19/44).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-29-confirmed-against-the-live-readme-2-overview-all-caps-with-the-foundation-leadin",
+      "text": "Confirmed against the live README: `## 2. 🎁 OVERVIEW` (all caps) with `### THE FOUNDATION` leading, exactly as the last two commits describe.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-39-divergences-readme-puts-the-deep-loop-before-the-advisor-changelog-reverses-them",
+      "text": "Divergences: README puts the deep loop before the advisor (changelog reverses them); README's skill-library order (CODE WORKFLOW before DESIGN before DOCUMENTATION…) is not the changelog's section order (Documentation 4th, Design 9th, Code 10th).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-f-001-the-skeleton-skips-h3-entirely-and-keeps-44-nbsp-separators-the-readme-use",
+      "text": "F-001 — The skeleton skips H3 entirely and keeps 44 `&nbsp;` separators; the README uses none",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-f-002-live-path-spelling-contradicts-the-readme-for-the-same-files-opencode-vs-s",
+      "text": "F-002 — Live-path spelling contradicts the README for the same files (`.opencode/...` vs `.skilled/...`)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-f-003-after-this-draft-carries-a-stale-commit-census-and-a-false-framing",
+      "text": "F-003 — `After This Draft` carries a stale commit census and a false framing",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-f-004-the-opencode-compatibility-claim-is-contradicted-by-the-tree",
+      "text": "F-004 — The `.opencode` compatibility claim is contradicted by the tree",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-21-f-005-the-voice-baseline-moved-after-the-rewrite-five-readme-commits-post-date-7",
+      "text": "F-005 — The voice baseline moved after the rewrite: five README commits post-date `7076dba64b`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-30-f-006-duplication-map-across-the-four-competing-surfaces",
+      "text": "F-006 — Duplication map across the four competing surfaces",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-36-f-007-audience-and-ordering-map-where-priority-breaks-down",
+      "text": "F-007 — Audience and ordering map; where priority breaks down",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-41-f-008-over-specific-drift-prone-counts-beyond-the-four-already-corrected-ones",
+      "text": "F-008 — Over-specific, drift-prone counts beyond the four already-corrected ones",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-40-first-time-reader-vs-maintainer-the-glance-list-leads-correctly-but-is-31-bullet",
+      "text": "First-time reader vs maintainer: the glance list leads correctly but is 31 bullets; the maintainer-grade material (Upgrade Notes, mega-bullets) arrives last, which is right, but `Internal Seams` is explicitly non-user-facing (\"No user-facing change in this section\", line 725) yet occupies a top-level slot before `After This Draft`; `After This Draft` is pure draft residue. The thesis section `One Shape for Every Skill` restates the intro paragraph's thesis (lines 11–19) instead of extending it.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-measured-on-the-current-head-2026-09-21-git-rev-list-count-1d43dbd38b-head-278-t",
+      "text": "Measured on the current HEAD (2026-09-21): `git rev-list --count 1d43dbd38b..HEAD` → **278**. The stated 266 is stale by 12, and it will keep drifting until the section is removed or regenerated from git.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-35-one-more-surface-skilled-changelog-holds-13-component-changelogs-system-spec-kit",
+      "text": "One more surface: `.skilled/changelog/` holds 13 component changelogs; `system-spec-kit` is only one of them, so the v4 release notes are not a per-component changelog at all and must not be forced into that path.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-part-of-the-divergence-is-deliberate-the-sk-create-changelog-expanded-template-i",
+      "text": "Part of the divergence is deliberate: the sk-create-changelog expanded template itself prints H4 items separated by `&nbsp;` (SKILL.md lines 294–306), and REQ-002 keeps semicolons inside `&nbsp;` entities. The tension is real: the changelog's own template authority and the README voice disagree on this separator, and the 045 rewrite resolved it toward the template.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-37-readme-foundation-order-spec-kit-spec-memory-search-deep-loop-skill-advisor-agen",
+      "text": "README foundation order: Spec Kit → Spec Memory & Search → Deep Loop → Skill Advisor → Agent Library → Plugin & Extension Library (building blocks first).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-readme-lines-188-190-199-200-227-skilled-skills-system-skill-advisor-runtime-ski",
+      "text": "README lines 188–190, 199–200, 227: `.skilled/skills/system-skill-advisor/runtime`, `.skilled/bin/skill-advisor.cjs`, `.skilled/skills/<your-skill>/`; README line 162: \"shared policy cores in `.skilled/hooks/`\".",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-readme-0-nbsp-grep-c-nbsp-readme-md-0-readme-commit-83757eb6f8-is-literally-stri",
+      "text": "README: **0 `&nbsp;`** (`grep -c '&nbsp;' README.md` → 0) — README commit `83757eb6f8` is literally \"strip the nbsp spacers\".",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-readme-s-live-scheme-is-numbered-emoji-h2-2-overview-with-h3-sub-areas-the-found",
+      "text": "README's live scheme is numbered emoji H2 (`## 2. 🎁 OVERVIEW`) with H3 sub-areas (`### THE FOUNDATION`, `### Spec Kit`); the changelog is unnumbered, un-emoji'd H2 (`## Spec Kit`) with H4 items.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-20-so-paths-resolve-today-but-not-for-the-stated-reason-anyone-who-reads-the-claim-",
+      "text": "So paths resolve today, but not for the stated reason. Anyone who reads the claim and then checks or scripts the root sees a directory, which undermines trust in the surrounding note.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-43-still-time-stamped-and-drift-prone-seven-external-cli-roster-and-per-cli-model-c",
+      "text": "Still time-stamped and drift-prone: seven-external-CLI roster and per-CLI model counts (line 274, \"Cursor carries 21 ids across six families\"), \"eighteen of the twenty-two hook packages\" (line 35), \"102 relative symlinks\" (line 463), \"178 recommendations\" (line 295), \"two forked cache extensions\" history (line 393). These are true at write time and unverifiable later; candidates to re-derive at publication or soften to role language.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-42-the-045-spec-s-four-corrections-landed-line-24-seven-hubs-lines-39-44-632-nine-m",
+      "text": "The 045 spec's four corrections landed (line 24 \"Seven hubs\", lines 39/44/632 \"nine modes\", line 489 \"other six hubs\"), verified against `.skilled/changelog` expectations and the spec REQ-004.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-28-the-changelog-was-rewritten-in-the-root-readme-voice-against-a-readme-snapshot-t",
+      "text": "The changelog was rewritten \"in the root README voice\" against a README snapshot that is now five commits old. Any voice-conformance judgment must pin README at HEAD, not at the rewrite baseline.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-the-framing-is-already-false-the-same-section-s-later-bullets-and-the-glance-lis",
+      "text": "The framing is already false: the same section's later bullets and the glance list (lines 45–46) do record jev and orca, and the rewrite commit `7076dba64b` is itself inside the counted range but is recorded in the document.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-this-is-a-draft-workflow-residue-raw-commit-hash-narration-60f0e91764-8b2b831184",
+      "text": "This is a draft-workflow residue: raw commit-hash narration (`60f0e91764`, `8b2b831184`, `c34e1bd73b`, `3182db…`-style ids) that belongs in the 033 packets, not in reader-facing release notes.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-19-tree-ls-ld-opencode-skilled-shows-opencode-as-a-real-directory-drwxr-xr-x-not-a-",
+      "text": "Tree: `ls -ld .opencode .skilled` shows `.opencode` as a real directory (`drwxr-xr-x`), not a symlink; inside it, only five entries are symlinks (`agents -> ../.skilled/agents`, `commands -> ../.skilled/commands`, etc.) alongside real files (`package.json`, `package-lock.json`, `node_modules`).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-two-documents-from-the-same-release-instruct-different-roots-for-the-same-live-f",
+      "text": "Two documents from the same release instruct different roots for the same live files. A reader who copies the changelog's advisor command against a tree that drops the compatibility aliases gets a stale path.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-internal-seams-line-730-six-cli-orchestrator-skills-became-one-hub",
+      "text": "`Internal Seams` line 730: \"Six CLI-orchestrator skills became one hub.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-orchestrating-other-ais-line-310-seven-separate-cli-orchestrator-skills-became-o",
+      "text": "`Orchestrating Other AIs` line 310: \"Seven separate CLI-orchestrator skills became one hub\", line 313: \"The seven CLI-orchestrator skills live under one `cli-external-orchestration` hub\", line 274: \"any of the seven external CLIs\" with a seven-name list, and line 45: the hub keeps \"seven workflow modes\".",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-skill-md-8-structure-rule-7-use-nbsp-between-h4-subsections-within-the-same-h2-r",
+      "text": "`SKILL.md` §8 Structure rule 7: \"Use `&nbsp;` between H4 subsections within the same H2.\" Rule 8: \"Use `---` only between H2 sections.\" Rule 9: \"Do not place `---` or `&nbsp;` between an H2 or intro paragraph and its first H4.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-skill-md-9-validation-check-6-file-starts-with-a-summary-paragraph-not-a-version",
+      "text": "`SKILL.md` §9 validation check 6: \"File starts with a summary paragraph, not a version header, per the shared template.\" Check 8: compact files include `## What Changed`, category H4s, `## Files Changed`, `## Upgrade`. Check 9: expanded files include category sections, item H4s, Test Impact when relevant, Technical Details when files changed are listed, and `## Upgrade`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-body-line-219-the-quality-packet-is-sk-create-quality-control-with-the-old-doc-q",
+      "text": "Body line 219: \"the quality packet is `sk-create-quality-control` with the old `/doc:quality` command gone\".",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-f-009-the-cli-orchestrator-count-contradicts-itself-inside-one-document",
+      "text": "F-009 — The CLI-orchestrator count contradicts itself inside one document",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-f-010-the-agent-names-behave-as-before-is-false-as-written",
+      "text": "F-010 — \"The agent names behave as before\" is false as written",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-f-011-the-quality-packet-rename-is-named-three-different-ways",
+      "text": "F-011 — The quality-packet rename is named three different ways",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-f-012-the-contract-mandates-the-nbsp-separators-so-the-readme-divergence-is-a-re",
+      "text": "F-012 — The contract mandates the `&nbsp;` separators, so the README divergence is a required departure, not a defect",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-f-013-the-expanded-format-contract-expects-upgrade-and-offers-no-what-s-new-at-a",
+      "text": "F-013 — The expanded-format contract expects `## Upgrade` and offers no `What's New at a Glance`, so the v4 shape carries three recorded departures",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-21-f-014-after-this-draft-breaks-the-contract-s-voice-and-structure-rules-not-just-",
+      "text": "F-014 — `After This Draft` breaks the contract's voice and structure rules, not just the count",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-24-f-015-sentence-level-duplication-table-the-merge-drop-evidence",
+      "text": "F-015 — Sentence-level duplication table (the merge/drop evidence)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-intro-line-15-the-deep-create-design-and-speckit-families-and-the-agent-names-be",
+      "text": "Intro line 15: \"The `/deep:*`, `/create:*`, `/design:*` and `/speckit:*` families and the agent names behave as before\".",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-one-of-the-two-numbers-is-wrong-the-body-s-seven-matches-the-named-roster-cli-op",
+      "text": "One of the two numbers is wrong. The body's seven matches the named roster (`cli-opencode`, `cli-codex`, `cli-devin`, `cli-cursor`, `cli-pi`, `cli-claude-code`, `cli-hermes`) and the Upgrade Notes. This is a P1 consistency defect and a stale-count symptom of the same class as F-001/F-008.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-22-structure-rule-5-do-not-use-packet-ids-numbering-or-sentence-length-headings-unl",
+      "text": "Structure rule 5: \"Do not use packet IDs, numbering, or sentence-length headings unless sequence is load-bearing.\" Voice rule 5: \"Put file paths, line numbers, function names, SQL syntax, and other technical specifics in Files Changed, not in user-facing descriptions.\"",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-23-the-block-is-raw-commit-hash-narration-1d43dbd38b-60f0e91764-8b2b831184-c2a57cc6",
+      "text": "The block is raw commit-hash narration (`1d43dbd38b`, `60f0e91764`, `8b2b831184`, `c2a57cc635d`, `c34e1bd73b`, `9e650decee` and so on) with a stale census (F-003: 266 stated, 278 measured). It is the clearest DROP in the document, and the fix direction is now named by the contract itself: commit-level specifics belong in the packets that own them, which for this release are 033's phase children.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-the-changelog-s-44-nbsp-lines-and-19-rules-comply-with-rules-7-9-the-readme-has-",
+      "text": "The changelog's 44 `&nbsp;` lines and 19 `---` rules comply with rules 7–9. The README has zero because the README is not a changelog, not because the separators are wrong.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-20-the-departures-are-deliberate-and-audience-justified-the-file-is-one-repo-wide-m",
+      "text": "The departures are deliberate and audience-justified: the file is one repo-wide major release note (no single `.skilled/changelog/{component}` owns v4), the frontmatter feeds the trigger index and the H1 is the page title, and the release's \"files changed\" are the entire repository. Contract rule 10 says \"Never hide source-format conflicts; mark them clearly\", so the three departures plus F-012's reverse case should be written down in the 045 packet rather than left implicit.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-the-four-command-families-do-keep-their-shape-the-agent-clause-does-not-replace-",
+      "text": "The four command families do keep their shape. The agent clause does not. Replace with a shape statement about the families and let the rename list carry the two agent names.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-the-packet-prefix-create-sk-create-is-itself-one-of-the-renames-that-same-bullet",
+      "text": "The packet prefix (`create-*` → `sk-create-*`) is itself one of the renames that same bullet set lists, so the notes name both the old and new form of the target inconsistently and drop the `sk-` prefix. The same bullet also writes `/prompt` to `/prompt:improve` with slashes but `sk-skill` to `skill` without. P2, but it is the exact class of drift a reader acts on.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-the-v4-document-starts-with-yaml-frontmatter-plus-an-h1-version-header-names-its",
+      "text": "The v4 document starts with YAML frontmatter plus an H1 version header, names its close `## Upgrade Notes`, and carries no Test Impact or Technical Details section.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-this-resolves-the-f-001-tension-formally-the-separators-are-not-to-be-stripped-i",
+      "text": "This resolves the F-001 tension formally. The separators are NOT to be stripped in the voice rewrite. Record this as a required departure from README style so a later pass does not \"fix\" it.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-upgrade-notes-line-715-lists-two-agent-renames-in-the-same-document-create-to-ma",
+      "text": "Upgrade Notes line 715 lists two agent renames in the same document: `@create` to `@markdown` and `@improve-prompt` to `@prompt-improver`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-upgrade-notes-line-715-doc-quality-to-create-quality-control",
+      "text": "Upgrade Notes line 715: \"`doc-quality` to `create-quality-control`\".",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-f-016-sentence-level-prose-conformance-sample-against-readme-head-q4-tail",
+      "text": "F-016 — Sentence-level prose conformance sample against README HEAD (Q4 tail)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-f-017-per-paragraph-ownership-map-for-merged-or-dropped-content-q1-tail",
+      "text": "F-017 — Per-paragraph ownership map for merged or dropped content (Q1 tail)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-f-018-family-block-tie-break-resolved-readme-7-flips-the-middle-of-the-order",
+      "text": "F-018 — Family-block tie-break resolved: README §7 flips the middle of the order",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-f-019-opencode-sweep-classified-five-current-path-references-to-fix-six-historic",
+      "text": "F-019 — `.opencode/*` sweep, classified: five current-path references to fix, six historical ones to keep, one blanket sentence to narrow",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-f-020-f-008-over-specific-count-list-resolved-per-count",
+      "text": "F-020 — F-008 over-specific-count list resolved per count",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-for-the-five-product-families-code-documentation-design-mcp-prompt-7-s-relative-",
+      "text": "For the five product families (Code, Documentation, Design, MCP, Prompt), §7's relative order is **Code → MCP → Design → Documentation → Prompt**.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-iteration-2-recommended-code-documentation-design-mcp-prompt-the-tie-break-crite",
+      "text": "Iteration 2 recommended Code → Documentation → Design → MCP → Prompt. The tie-break criterion was exactly this check, and §7 disagrees with it.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-resolution-adopt-the-7-relative-order-code-mcp-design-documentation-prompt-this-",
+      "text": "Resolution: adopt the §7 relative order — **Code → MCP → Design → Documentation → Prompt**. This keeps MCP adjacent to Design (immediately before it) and Code first, and satisfies §7 completely. The only loss is the Code–Documentation pairing, which §7 never had.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-the-core-block-order-spec-kit-deep-loops-orchestrating-advisor-is-unchanged-it-i",
+      "text": "The core block order (Spec Kit → Deep Loops → Orchestrating → Advisor) is unchanged: it is justified by README §2 THE FOUNDATION, not §7, and §2 puts the loop before the advisor.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-the-cross-cutting-and-doctrine-blocks-are-untouched",
+      "text": "The cross-cutting and doctrine blocks are untouched.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-22-f-016-prose-trims-at-their-corrected-lines-l11-drop-the-size-props-l35-role-phra",
+      "text": "F-016 prose trims at their corrected lines: L11 (drop the size props), L35 (role phrase), L50 (drop 496→284), L36 (outcome rewrite), L58 (cut the mood sentence), L383 (retitle \"A Closed Roster\"), L705 (move the pilot narration to the owning packet), L738 (drop the section).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-f-016-row-2-quote-is-l11-not-13",
+      "text": "F-016 row 2 quote is **L11**, not 13.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-f-016-row-4-quote-is-l50-not-53",
+      "text": "F-016 row 4 quote is **L50**, not ≈53.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-f-016-row-5-quote-is-l36-not-45",
+      "text": "F-016 row 5 quote is **L36**, not ≈45.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-f-016-row-6-quote-is-l705-not-700-703",
+      "text": "F-016 row 6 quote is **L705**, not 700–703.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-f-016-s-closing-tally-five-conform-three-soften-two-rewrite-or-drop-does-not-rec",
+      "text": "F-016's closing tally (\"five conform, three soften, two rewrite-or-drop\") does not reconcile with its own row verdicts; the rows are authoritative: 2 conform rows plus 3 unbroken patterns, 2 soften, 2 rewrite, 2 drop, 1 move, 1 retitle. The scope statement (process-metric clauses + maintainer narration) is unchanged.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-f-019-s-heading-claims-five-to-fix-six-to-keep-its-table-and-net-line-give-six-f",
+      "text": "F-019's heading claims \"five … to fix, six … to keep\"; its table and net line give **six fixes** (101, 188, 463, 660-target, 716-target, 717), **four keeps** (25, 81, 87, 716-source), one verify (168), one reword (742). The heading is the outlier.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-f-020-s-178-recommendations-re-derive-from-the-authoritative-ledger-is-contradic",
+      "text": "F-020's \"178 recommendations → re-derive from the authoritative ledger\" is contradicted by 042's own verdict: `042-v4-doc-freshness/verdict-changelog.md` row A16 — \"Not re-derivable; … The artifacts these counted no longer exist in a re-derivable form. Flagged, not corrected.\" Disposition revised in F-023.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-f-021-validation-pass-the-line-map-holds-eight-citations-inside-the-decision-she",
+      "text": "F-021 — Validation pass: the line map holds; eight citations inside the decision sheet need correction",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-f-022-two-changelog-paths-are-dead-at-head-and-the-blanket-alias-sentence-is-fal",
+      "text": "F-022 — Two changelog paths are dead at HEAD, and the blanket alias sentence is false in a stronger way than F-004 recorded",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-f-023-count-dispositions-revised-one-number-has-already-drifted-one-has-no-re-de",
+      "text": "F-023 — Count dispositions revised: one number has already drifted, one has no re-derivation source",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-f-024-publication-time-checklist-the-mechanical-patch-list",
+      "text": "F-024 — Publication-time checklist: the mechanical patch list",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-l101-skilled-skills-system-spec-kit-runtime-cli-directory-exists-the-opencode-sp",
+      "text": "L101 → `.skilled/skills/system-spec-kit/runtime/cli/` (directory exists; the `.opencode` spelling also resolves today but is not the standard).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-19-l168-verify-the-outermost-root-sentence-against-the-post-migration-boundary-then",
+      "text": "L168: verify the outermost-root sentence against the post-migration boundary, then fix or keep.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-14-l188-node-skilled-bin-skill-advisor-cjs-readme-spelling-opencode-bin-is-dead",
+      "text": "L188 → `node .skilled/bin/skill-advisor.cjs` (README spelling; `.opencode/bin` is dead).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-15-l463-skilled-hooks-dead-path-today-and-drop-or-soften-the-102",
+      "text": "L463 → `.skilled/hooks/` (dead path today) and drop or soften the 102.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-16-l660-skilled-skills-mcp-tooling-mcp-figma",
+      "text": "L660 → `.skilled/skills/mcp-tooling/mcp-figma/`.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-17-l716-target-skilled-skills-system-spec-kit-runtime-cli-the-source-half-keeps-ope",
+      "text": "L716 target → `.skilled/skills/system-spec-kit/runtime/cli/`; the source half keeps `.opencode/specs/` as history.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-18-l717-advisor-path-skilled-bin-skill-advisor-cjs",
+      "text": "L717 advisor path → `.skilled/bin/skill-advisor.cjs`.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-21-l730-six-seven-rosters-at-274-310-314-readme-and-upgrade-notes-agree",
+      "text": "L730 \"Six\" → \"Seven\" (rosters at 274, 310, 314; README and Upgrade Notes agree).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-20-l742-reword-without-every-see-f-022",
+      "text": "L742: reword without \"every\" (see F-022).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-the-spec-correction-list-finding-1-42-cites-lines-39-44-632-nine-modes-the-actua",
+      "text": "The spec-correction list (finding 1-42) cites \"lines 39/44/632 nine modes\"; the actual instances are **L44 / L628 / L744**. L39 is the design hub's \"four modes\", a different claim.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-f-025-candidate-outline-reconciled-with-the-validated-decisions-final-form",
+      "text": "F-025 — Candidate outline reconciled with the validated decisions (final form)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-f-026-readme-voice-standard-pinned-to-a-commit",
+      "text": "F-026 — README voice standard pinned to a commit",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-a-recommended-req-005-is-a-rewrite-phase-acceptance-already-met-at-7076dba64b-th",
+      "text": "**(A) Recommended.** REQ-005 is a rewrite-phase acceptance, already met at `7076dba64b`. The F-024 patch list is a subsequent edit governed by REQ-003 (no fact changes beyond the enumerated corrections) and REQ-004 (the tree-derived counts). The implementation pass must record the post-change counts in `implementation-summary.md` next to the pinned pre-change baseline (18/56/19/44 at the blob pin below) so the delta is auditable rather than assumed.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-b-rejected-treat-the-equality-as-a-standing-invariant-over-all-future-edits-that",
+      "text": "**(B) Rejected.** Treat the equality as a standing invariant over all future edits. That would require either dropping the structural edits — forfeiting the largest wins in the decision sheet — or amending REQ-005's text in the same change. If the packet's reviewer prefers this reading, the amendment is the only coherent option; the edits can never restore 18 H2 while dropping an H2.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-all-five-key-questions-answered-f-016-f-026-validated-the-outline-deliverable-ex",
+      "text": "All five key questions answered; F-016–F-026 validated; the outline deliverable exists in its reconciled form (F-025).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-f-027-req-005-reading-resolved-the-counts-are-a-rewrite-baseline-acceptance-not-",
+      "text": "F-027 — REQ-005 reading resolved: the counts are a rewrite-baseline acceptance, not a standing constraint on later edits (with a recording rule for the implementation pass)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-f-028-implementation-baseline-pinned",
+      "text": "F-028 — Implementation baseline pinned",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-f-029-close-out-audit-nothing-open-nothing-drifted",
+      "text": "F-029 — Close-out audit: nothing open, nothing drifted",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-no-artifact-in-045-mechanically-re-checks-the-counts-acceptance-criteria-md-abse",
+      "text": "No artifact in 045 mechanically re-checks the counts (`acceptance-criteria.md` absent; no REQ-005 row in `tasks.md`), so REQ-005's \"after\" is the state the research measured, not a live sensor the implementation must keep green.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-readme-pin-unchanged-3ad5ca25fb-changelog-blob-unchanged-since-iteration-4-s-mea",
+      "text": "README pin unchanged (`3ad5ca25fb`), changelog blob unchanged since iteration 4's measurement, both clean in the working tree.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-req-005-at-spec-md-132-reads-structure-survives-the-rewrite-18-h2-56-h4-19-and-4",
+      "text": "REQ-005 at `spec.md:132` reads \"Structure survives the rewrite | 18 H2, 56 H4, 19 `---` and 44 `&nbsp;` before and after\".",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-the-rewrite-in-that-sentence-is-the-packet-s-own-deliverable-and-it-is-already-c",
+      "text": "The \"rewrite\" in that sentence is the packet's own deliverable and it is already committed: `7076dba64b` (`docs(release-notes): rewrite the v4 changelog in the root README voice`). Iteration 4 re-measured the equality exactly at that blob, so the \"after\" side of REQ-005 is satisfied and evidenced.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-the-decision-sheet-cannot-satisfy-the-equality-under-the-strict-reading-dropping",
+      "text": "The decision sheet cannot satisfy the equality under the strict reading: dropping one H2 (`After This Draft`) alone moves the count 18 → 17, before any H4 merge is counted.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-the-only-remaining-work-is-the-deferred-implementation-pass-f-024-s-ordered-patc",
+      "text": "The only remaining work is the deferred implementation pass: F-024's ordered patch list, F-025's outline order, F-027's REQ-005 disposition, executed against the F-028 blob pin.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-11-opencode-bin-absent-l87",
+      "text": "`.opencode/bin/` — absent (L87).",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-10-opencode-bin-skill-advisor-cjs-absent-l188-and-l717-instruct-the-reader-to-run-i",
+      "text": "`.opencode/bin/skill-advisor.cjs` — absent (L188 and L717 instruct the reader to run it).",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-12-opencode-hooks-absent-l463",
+      "text": "`.opencode/hooks/` — absent (L463).",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-opencode-11-lines-see-f-032-inventory",
+      "text": "`.opencode` → 11 lines (see F-032 inventory).",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-496-and-284-both-also-appear-at-line-687",
+      "text": "`496` and `284` → both also appear at line 687.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-six-families-twice-inside-l274-alone-devin-carries-six-families-cursor-carries-2",
+      "text": "`six families` → twice inside L274 alone (\"Devin carries six families\" / \"Cursor carries 21 ids across six families\"). The §C edit must include the `Cursor carries` prefix.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-six-lines-36-60-365-730-4-sites-item-9-s-oldtext-must-include-six-cli-orchestrat",
+      "text": "`Six` → lines 36, 60, 365, 730 (4 sites). Item 9's oldText must include `Six CLI-orchestrator skills`.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-skill-advisor-lines-188-717-729",
+      "text": "`skill-advisor` → lines 188, 717, 729.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-twenty-two-lines-35-357-464",
+      "text": "`twenty-two` → lines 35, 357, 464.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-f-030-anchor-resolution-audit-all-22-f-024-anchors-resolve-at-the-pinned-blob-th",
+      "text": "F-030 — Anchor-resolution audit: all 22 F-024 anchors resolve at the pinned blob; the list is location-exact and not string-unique",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-8-f-031-pins-and-fix-targets-re-verified-at-head",
+      "text": "F-031 — Pins and fix targets re-verified at HEAD",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-9-f-032-l742-s-every-opencode-path-in-this-document-still-resolves-is-false-at-the",
+      "text": "F-032 — L742's \"every `.opencode/*` path in this document still resolves\" is false at the pinned blob",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-f-033-the-run-s-ruled-out-directions-never-reached-the-registry-a-heading-vocabu",
+      "text": "F-033 — The run's ruled-out directions never reached the registry: a heading-vocabulary mismatch (P1, mechanism)",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` — `parseIterationFile` (1783–1808), `extractSection` (1755–1760), `resolveNextFocus`, `filterNextFocusInputs`, `ruledOutDirectionCandidates` (2366–2379).",
+        "`research/findings-registry.json` (read-only) — `ruledOutDirections`, `divergence`, `metrics`, `keyFindings`.",
+        "`research/deep-research-state.jsonl` (read-only) — per-iteration `\"ruledOut\":[]` shape.",
+        "`research/iterations/iteration-001.md` … `iteration-007.md` — heading census.",
+        "Repository, read-only: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` (sha256), `git log`/`git status` for `7076dba64b`, `3ad5ca25fb`."
+      ]
+    },
+    {
+      "id": "finding-8-2-f-034-the-served-focus-is-a-frozen-implementation-input-not-re-satisfiable-resea",
+      "text": "F-034 — The served focus is a frozen implementation input, not re-satisfiable research (P2)",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` — `parseIterationFile` (1783–1808), `extractSection` (1755–1760), `resolveNextFocus`, `filterNextFocusInputs`, `ruledOutDirectionCandidates` (2366–2379).",
+        "`research/findings-registry.json` (read-only) — `ruledOutDirections`, `divergence`, `metrics`, `keyFindings`.",
+        "`research/deep-research-state.jsonl` (read-only) — per-iteration `\"ruledOut\":[]` shape.",
+        "`research/iterations/iteration-001.md` … `iteration-007.md` — heading census.",
+        "Repository, read-only: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` (sha256), `git log`/`git status` for `7076dba64b`, `3ad5ca25fb`."
+      ]
+    },
+    {
+      "id": "finding-8-3-f-035-pin-sentinel-holds-at-iteration-8-p1",
+      "text": "F-035 — Pin sentinel holds at iteration 8 (P1)",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` — `parseIterationFile` (1783–1808), `extractSection` (1755–1760), `resolveNextFocus`, `filterNextFocusInputs`, `ruledOutDirectionCandidates` (2366–2379).",
+        "`research/findings-registry.json` (read-only) — `ruledOutDirections`, `divergence`, `metrics`, `keyFindings`.",
+        "`research/deep-research-state.jsonl` (read-only) — per-iteration `\"ruledOut\":[]` shape.",
+        "`research/iterations/iteration-001.md` … `iteration-007.md` — heading census.",
+        "Repository, read-only: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` (sha256), `git log`/`git status` for `7076dba64b`, `3ad5ca25fb`."
+      ]
+    },
+    {
+      "id": "finding-9-1-f-036-the-iteration-record-s-answer-channel-is-dropped-in-the-canonical-payload-",
+      "text": "F-036 — The iteration record's answer channel is dropped in the canonical payload (P1, mechanism)",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` — `parseIterationFile` (1783–1808), `buildRegistry` resolution inputs (2320–2330), `resolveNextFocus` (2251–2300), delta loaders (1541, 1569, 1612), resource-map emission (1632–1700), graph rollup (1943, 2401), `readStateLogForReduction` use (2938–2943).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` — `iteration_completed` upcast mapping (376–397).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` — projected iteration row shape (211–222).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs` — `deriveNextFocusFromContinuity` (114–145).",
+        "`research/deep-research-ledger/frames/0000000000000011.frame` — iteration 8's canonical event, decoded payload.",
+        "`research/deep-research-state.jsonl` (read-only) — all eight iteration rows and their key sets.",
+        "`research/findings-registry.json` (read-only) — `ruledOutDirections` (6), `keyQuestions`, `metrics`, `carriedForwardOpenQuestions`.",
+        "Repository, read-only: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` (sha256), `git log`/`git status` for `7076dba64b` and `3ad5ca25fb`."
+      ]
+    },
+    {
+      "id": "finding-9-2-f-037-the-narrative-parse-contract-has-no-answer-section-and-recommended-next-fo",
+      "text": "F-037 — The narrative parse contract has no answer section, and `## Recommended Next Focus` is not consulted (P2)",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` — `parseIterationFile` (1783–1808), `buildRegistry` resolution inputs (2320–2330), `resolveNextFocus` (2251–2300), delta loaders (1541, 1569, 1612), resource-map emission (1632–1700), graph rollup (1943, 2401), `readStateLogForReduction` use (2938–2943).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` — `iteration_completed` upcast mapping (376–397).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` — projected iteration row shape (211–222).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs` — `deriveNextFocusFromContinuity` (114–145).",
+        "`research/deep-research-ledger/frames/0000000000000011.frame` — iteration 8's canonical event, decoded payload.",
+        "`research/deep-research-state.jsonl` (read-only) — all eight iteration rows and their key sets.",
+        "`research/findings-registry.json` (read-only) — `ruledOutDirections` (6), `keyQuestions`, `metrics`, `carriedForwardOpenQuestions`.",
+        "Repository, read-only: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` (sha256), `git log`/`git status` for `7076dba64b` and `3ad5ca25fb`."
+      ]
+    },
+    {
+      "id": "finding-9-3-f-038-the-delta-stream-s-only-reducer-consumer-is-the-resource-map-graphevents-h",
+      "text": "F-038 — The delta stream's only reducer consumer is the resource map; `graphEvents` has no consumer at all (P2, consumer map)",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` — `parseIterationFile` (1783–1808), `buildRegistry` resolution inputs (2320–2330), `resolveNextFocus` (2251–2300), delta loaders (1541, 1569, 1612), resource-map emission (1632–1700), graph rollup (1943, 2401), `readStateLogForReduction` use (2938–2943).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` — `iteration_completed` upcast mapping (376–397).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` — projected iteration row shape (211–222).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs` — `deriveNextFocusFromContinuity` (114–145).",
+        "`research/deep-research-ledger/frames/0000000000000011.frame` — iteration 8's canonical event, decoded payload.",
+        "`research/deep-research-state.jsonl` (read-only) — all eight iteration rows and their key sets.",
+        "`research/findings-registry.json` (read-only) — `ruledOutDirections` (6), `keyQuestions`, `metrics`, `carriedForwardOpenQuestions`.",
+        "Repository, read-only: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` (sha256), `git log`/`git status` for `7076dba64b` and `3ad5ca25fb`."
+      ]
+    },
+    {
+      "id": "finding-9-4-f-039-pin-sentinel-holds-at-iteration-9-p1",
+      "text": "F-039 — Pin sentinel holds at iteration 9 (P1)",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` — `parseIterationFile` (1783–1808), `buildRegistry` resolution inputs (2320–2330), `resolveNextFocus` (2251–2300), delta loaders (1541, 1569, 1612), resource-map emission (1632–1700), graph rollup (1943, 2401), `readStateLogForReduction` use (2938–2943).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` — `iteration_completed` upcast mapping (376–397).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` — projected iteration row shape (211–222).",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs` — `deriveNextFocusFromContinuity` (114–145).",
+        "`research/deep-research-ledger/frames/0000000000000011.frame` — iteration 8's canonical event, decoded payload.",
+        "`research/deep-research-state.jsonl` (read-only) — all eight iteration rows and their key sets.",
+        "`research/findings-registry.json` (read-only) — `ruledOutDirections` (6), `keyQuestions`, `metrics`, `carriedForwardOpenQuestions`.",
+        "Repository, read-only: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` (sha256), `git log`/`git status` for `7076dba64b` and `3ad5ca25fb`."
+      ]
+    },
+    {
+      "id": "finding-10-1-f-040-pin-sentinel-holds-at-iteration-10-the-run-closes-with-everything-frozen-p",
+      "text": "F-040 — Pin sentinel holds at iteration 10; the run closes with everything frozen (P1)",
+      "addedAtIteration": 10,
+      "sources": [
+        "`specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` — `shasum -a 256`, `git log -1`, `git status --porcelain` (read-only).",
+        "`README.md` — `shasum -a 256`, `git status --porcelain` (read-only); `git rev-parse --short HEAD`.",
+        "`research/deep-research-strategy.md` (read-only) — served focus and the F-039 sentinel definition.",
+        "`research/iterations/iteration-009.md` (read-only) — the F-028/F-026 pin values being re-checked.",
+        "`research/findings-registry.json` (read-only) — F-039 entry and the open-question state.",
+        "`research/deltas/iter-008.jsonl`, `research/deltas/iter-009.jsonl` (read-only) — prior sentinel records for the comparison chain."
+      ]
+    },
+    {
+      "id": "finding-10-2-f-041-the-iteration-record-s-status-is-a-closed-enum-and-a-non-enum-value-is-ref",
+      "text": "F-041 — The iteration record's `status` is a closed enum, and a non-enum value is refused before commit (P2, mechanism)",
+      "addedAtIteration": 10,
+      "sources": [
+        "`specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` — `shasum -a 256`, `git log -1`, `git status --porcelain` (read-only).",
+        "`README.md` — `shasum -a 256`, `git status --porcelain` (read-only); `git rev-parse --short HEAD`.",
+        "`research/deep-research-strategy.md` (read-only) — served focus and the F-039 sentinel definition.",
+        "`research/iterations/iteration-009.md` (read-only) — the F-028/F-026 pin values being re-checked.",
+        "`research/findings-registry.json` (read-only) — F-039 entry and the open-question state.",
+        "`research/deltas/iter-008.jsonl`, `research/deltas/iter-009.jsonl` (read-only) — prior sentinel records for the comparison chain."
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-1f4f5a064b52",
+      "text": "Re-deriving the family-block order tie-break (F-018) — settled in iteration 3 against README §7 SKILL LIBRARY's sub-order; no commit since has touched that README section (F-035).",
+      "contentHash": "1f4f5a064b52",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-beb08d77496c",
+      "text": "Re-running the per-paragraph ownership map (F-017) — same delivery status, same reproducibility.",
+      "contentHash": "beb08d77496c",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-d6a37a690cbc",
+      "text": "Re-running the sentence-level prose conformance sample (F-016) against README HEAD — delivered in iteration 3, validated in iterations 4–7, and reproducible-identical while the README pin holds (F-034); prior rulings were invisible only because of the heading mismatch (F-033).",
+      "contentHash": "d6a37a690cbc",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-e1a8e6f25f74",
+      "text": "Restating run closure in this narrative's prose alone — iterations 5–7 already did that and the recycle survived; only the parsed heading vocabulary moves machine state (F-033).",
+      "contentHash": "e1a8e6f25f74",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-e1a385906a24",
+      "text": "Treating the registry's five open questions as evidence of open work: the registry is reducer-owned, is not writable by an iteration, and its open list is downstream of the same parse gap (F-033).",
+      "contentHash": "e1a385906a24",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-22ac0b527054",
+      "text": "Waiting for the reducer to notice prose closure statements: no such reader exists; closure must be written into `## Ruled Out`, `## Dead Ends`, `## Questions Remaining`, or `## Recommended Next Focus` to be parsed.",
+      "contentHash": "22ac0b527054",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-e1135e1a63ef",
+      "text": "Expecting `## Questions Answered` to be parsed: the parse contract extracts eight sections and that is not one of them (F-037).",
+      "contentHash": "e1135e1a63ef",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-c097b52e13e3",
+      "text": "Expecting `## Recommended Next Focus` to close the run: `resolveNextFocus` never reads the parsed `nextFocus` field (F-037).",
+      "contentHash": "c097b52e13e3",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-43784a8caae7",
+      "text": "Expecting a richer canonical record to reach the reducer: the upcaster keeps six payload fields and the projection re-emits six row keys (F-036).",
+      "contentHash": "43784a8caae7",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-ba6be41ad593",
+      "text": "Re-deriving the family-block order tie-break (F-018) — settled in iteration 3 against README §7 SKILL LIBRARY's sub-order; no commit has touched that section (F-039).",
+      "contentHash": "ba6be41ad593",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-fd14217ca291",
+      "text": "Re-running the per-paragraph ownership map (F-017) — same delivery status, same pin.",
+      "contentHash": "fd14217ca291",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-3b7bef5f28eb",
+      "text": "Re-running the sentence-level prose conformance sample (F-016) against README HEAD — delivered in iteration 3, marked ruled out in iteration 8 (F-034), and the README pin is unchanged this iteration (F-039) so the sample is reproducible-identical.",
+      "contentHash": "3b7bef5f28eb",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-aa75b9cc95e8",
+      "text": "Writing the five answers into the narrative, the canonical record, or the delta stream in the hope that one of them resolves them — F-036 and F-038 give the exact field lists each path drops; only a reducer-side input (strategy §3 checkbox or a prior registry that already carries `resolved`) moves `resolvedQuestions`, and both are outside an iteration's write authority.",
+      "contentHash": "aa75b9cc95e8",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-6e61c5809870",
+      "text": "Any further research action on the pinned questions: no consumer can hear an answer an iteration writes (F-036–F-038), so extra narrative, registry, or delta content moves nothing.",
+      "contentHash": "6e61c5809870",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-60393071ccc8",
+      "text": "Probing for the changelog at the repo root: the file exists only under the packet directory; a root-path `git log` fails silently with empty output.",
+      "contentHash": "60393071ccc8",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-1be4b585ae5d",
+      "text": "Re-deriving F-024's ordered patch list — the sentinel holds byte-for-byte; re-derivation against the same blob can only reproduce the frozen list.",
+      "contentHash": "1be4b585ae5d",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-e619da839334",
+      "text": "Re-running the sentence-level prose conformance sample (F-016), the per-paragraph ownership map (F-017), or the family-block order tie-break (F-018) — all delivered in iteration 3 and reproducible-identical: both pins are unchanged (F-040), so a re-run would reproduce the same output from the same bytes.",
+      "contentHash": "e619da839334",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-e981701e8536",
+      "text": "Setting `status` to a descriptive word (`confirmed`) on the canonical iteration record: the completion status is a closed enum and the append is refused before the envelope is committed (F-041).",
+      "contentHash": "e981701e8536",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-b25bca17f1a5",
+      "text": "Writing the five answers into the narrative, the canonical record, or the delta stream to force resolution — F-036/F-037/F-038 already map every iteration-owned channel to its exact drop point; only reducer-side inputs move `resolvedQuestions`, and those are outside iteration write authority.",
+      "contentHash": "b25bca17f1a5",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 10,
+    "keyFindings": 134,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.05,
+    "coverageBySources": {
+      "code": 3,
+      "other": 16
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

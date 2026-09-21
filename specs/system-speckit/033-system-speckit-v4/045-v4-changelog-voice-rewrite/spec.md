@@ -164,6 +164,21 @@ The changelog presents each change the way the root README does, one idea per bu
 ## 7. OPEN QUESTIONS
 
 - None. The plan settled the scope, the four corrections and the two bullets.
+- What should the v4 changelog keep, merge, move, or drop — and in what order — to serve its audience in the root README voice, given the post-rewrite commits, the 033 specs, and the sk-create-changelog contract? (deep-research run active; implementation deferred)
 <!-- /ANCHOR:questions -->
+
+## RESEARCH CONTEXT
+
+Deep-research is active for this topic. `research/research.md` remains the canonical research source.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+### Research findings
+
+- The changelog's structure — not its sentence shape — is what costs the reader. The voice rewrite holds; the remaining work is structural and factual.
+- Recommended order: intro merged with the thesis, a glance list compressed to about 15 bullets, then core (Spec Kit → Deep Loops → Orchestrating → Advisor), families (Code → MCP → Design → Documentation → Prompt), system surfaces, Upgrade Notes, and a collapsed "Under the Hood" appendix; drop "After This Draft".
+- Six path fixes are correctness, not style: `.opencode/bin/skill-advisor.cjs` and `.opencode/hooks/` are dead at HEAD, and the blanket "every `.opencode/*` path still resolves" sentence is false as written. Also fix the Six→Seven contradiction, drop "178 recommendations", soften or drop the drifted counts, and reword the blanket alias sentence.
+- Contract: the 44 `&nbsp;` separators are mandated by the contract's structure rules and must not be stripped; location, frontmatter and the H1 are recorded deliberate departures.
+- Deferred implementation: apply the ordered patch list and outline against the pinned changelog blob (sha256 `33abcc9a865e688189ce2a5cab458f838fc5a185e3d521aded0bed47b45fcb19`), re-running the pin sentinel first. Full evidence: `research/research.md`.
+<!-- END GENERATED: deep-research/spec-findings -->
 
 ---

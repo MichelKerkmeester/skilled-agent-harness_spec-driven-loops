@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "../CHANGELOG-v4.0.0.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5c3848494cfc7a98d7c69e7763eb2aed5d81000caa8452b46d5cfac606a9f770"
       session_id: "2026-09-21-v4-changelog-voice"
       parent_session_id: null
     completion_pct: 100
