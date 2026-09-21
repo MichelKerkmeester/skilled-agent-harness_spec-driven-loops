@@ -96,20 +96,6 @@ Two documents joined the packet contract. `acceptance-criteria.md` decides closu
 
 &nbsp;
 
-#### Reindexing Stops Rewriting Your Edits
-
-A force reindex could write its own auto-fixes, including destructive content trimming, back into your tracked source documents. That is the last thing a "fix it up" operation should do. Write-back is now gated on where the indexing originated, so an automated pass cannot reach into a document you wrote. The same gap was closed in the daemon's startup scan and file watcher.
-
-&nbsp;
-
-#### Three Rounds of Simplification, Every Finding Closed
-
-With the database gone, three research rounds ran over the kit to find what no longer earned its place: the search system, CLI runtime utilization, the shared package, the template and acceptance-criteria system and plain overengineering. Twenty-two remediation children shipped from them.
-
-They removed the CLI package residue and dead flags, the dead half of the shared package, orphaned decommission paths and a stale command surface, and they realigned templates, doctor signals and playbook paths with the runtime. A follow-up program then closed every finding those rounds had recorded rather than fixed, sixteen children in one day. Nothing from the research survives as a written-down decision.
-
-&nbsp;
-
 #### Smaller Templates, Same Output
 
 The spec, plan, tasks and implementation-summary templates were consolidated into one shared core with level-gated addenda. The source dropped to 1,275 lines across four core templates without changing a single rendered byte, and the research template shrinks by level too.
