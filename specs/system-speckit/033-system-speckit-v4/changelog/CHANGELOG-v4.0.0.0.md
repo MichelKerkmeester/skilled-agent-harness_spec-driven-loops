@@ -35,21 +35,16 @@ A parent skill owns no workflow logic. It reads what you asked for and dispatche
 
 ## What's New at a Glance
 
-- **Specs at the top level.** Your spec paths move to a physical `specs/` folder. A compatibility symlink keeps every old `.opencode/specs/...` reference working.
-- **Gate 3 asks four options.** Existing, New, Related and Skip.
-- **Deep loops, one home.** Research, review, ai-council, agent-improvement and the benchmark run as one skill, on any executor you name, several in parallel, with every run replayable from a typed evidence ledger.
-- **Fan-outs never rewind your files.** A lane that writes outside its own directory leaves your tree exactly as it was and drops a copy of what it wrote into a quarantine you can read.
-- **The source root settled.** Tracked skills, agents and commands now live under `.skilled/`, and their old `.opencode/` paths still answer through tracked symlinks.
-- **Sign in, not API keys.** Codex and Claude Code dispatch through the account you are already signed in to. `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` are no longer read.
-- **One code skill, two axes.** Code guidance is scoped to what you are doing and to the stack you are doing it on, with review as a first-class mode and Rust as a first-class language.
-- **Every bridge, one hub.** The browser, ClickUp, Notion, design references, MagicPath and your Obsidian vault all hang off a single `mcp-tooling` skill with nine modes.
-- **Design becomes a hub.** `sk-design` went from one skill to a parent of four modes.
-- **Docs that make anything.** A git-free before-and-after diff, repo-rule authoring and plain-English output join the terminal under `/create:*`. Diagrams across 27 types and charts across 29 forms arrive under `/design:*`.
-- **One prompt skill.** Prompt work lives in `sk-prompt`, a standalone skill with seven frameworks behind `/prompt:improve`.
-- **A local vision skill.** `sk-vision` reads screenshots for text-only models through a private Moondream runtime, off by default, on demand through `/vision`.
-- **Goals live in the packet.** A session binds to a spec packet and that packet's `goal.md` is the goal, on OpenCode, Pi, Cursor and Devin alike.
-- **Safer git.** Every commit lands in your IDE checkout on its own. Push, mass-delete and branch-name paths now stop and ask.
-- **Plain-English replies, by opt-in.** The projection lane rewrites terse CLI output into readable prose. Nothing rewrites your output until you flip the switch.
+- **Spec Kit has one canonical core.** Specs now live under `specs/`, with level-gated core templates for specs, plans, tasks and implementation summaries. Old `.opencode/specs/...` paths still resolve through a compatibility symlink.
+- **The memory database is retired.** SQLite, embeddings and `memory_search`/`memory_save` are gone. `/speckit:search` uses a committed trigger index and ripgrep, returning a clean no-hit when the phrase is absent.
+- **The Skill Advisor is CLI-only.** Its MCP transport is gone. `node .skilled/bin/skill-advisor.cjs` is the front door, and local scoring marks itself degraded when the daemon is unavailable.
+- **Deep loops share one runtime.** Research, review, AI council and improvement fan out across chosen executors. Typed ledger evidence and convergence checks control the stop.
+- **Cross-CLI dispatch has one parent.** `cli-external-orchestration` routes seven bridges. Cursor and Hermes join OpenCode, Claude Code, Codex, Devin and Pi as deep-loop executors. Each bridge checks its binary before dispatch.
+- **Repo Rules are routed.** `REPO RULES.md` loads scoped rules for evidence, blast radius, communication and hub routing before a first write.
+- **Design has one hub.** `sk-design` routes fundamentals, measured `DESIGN.md` extraction, charts and diagrams to the mode that owns the job.
+- **Goals and hooks travel with the session.** The goal plugin binds `goal.md` to OpenCode, Cursor, Pi and Devin. One switchable hook library carries shared guards into Hermes through one plugin.
+- **Authentication is sign-in based.** Codex and Claude Code use the accounts you already have. Their API-key paths are gone.
+- **Git stops before costly mistakes.** Pushes, mass deletion and misnamed branches hit explicit tripwires. Parallel-session commits still reach the IDE checkout.
 
 ---
 
@@ -89,16 +84,6 @@ The surviving package no longer carries an identity it lost. Its engine lives at
 - `retrieval/` for the trigger index
 
 The old `scripts/` and `mcp-server/` paths are gone, so anything you pinned to them needs repointing. A shared package underneath carries the Gate-3 classifier and the frontmatter parser that every other skill now imports rather than copies.
-
-&nbsp;
-
-#### Gate 3 Asks Four Options
-
-The spec-folder question offered five options and two of them said the same thing. Update related and Extend phased packet both meant using a packet that already exists, so they merged into one option, Related, which covers another packet, a child under a phase parent, or a standard packet decomposed into phases when it qualifies.
-
-Skip moved from the letter E to D, and the stable labels are now A) Existing, B) New, C) Related and D) Skip. Forty-two surfaces that printed the list were relabelled in one pass, the spec-gate hook's regexes and deny text follow the new letters, and the compiled command contracts were regenerated.
-
-The classifier that decides whether the gate fires was untouched, because it never keyed on the letters. Captured transcripts in the playbooks and benchmark reports keep the old letters, since they record what a run actually printed.
 
 &nbsp;
 
