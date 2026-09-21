@@ -174,6 +174,8 @@ contextType: "implementation"
 
 - [x] T053 Keep Overview in the merged section-2 title (`README.md`) [5m] — the 2+3 merge removed the ## 3 heading whose name the readme validator requires (name containing overview); ## 2 retitled to WHAT YOU GET AND OVERVIEW, validator 2 issues back to 1 (only the pre-existing section-2 separator finding); packet PASSED
 
+- [x] T054 Rename section 2 and give the overview its own subheading (`README.md`) [10m] — ## 2 retitled to WHAT'S INCLUDED (ascii apostrophe, the file's own convention); the mid-section divider replaced 1:1 by ### 🗺️ Overview above the Three building blocks lead, matching the section's six emoji-h3 siblings; no anchors point at ## 2; HVR 0 hard blockers; readme validator 2 issues: the ## 2 rename dropped the required overview name and the validator only scans H2s; packet PASSED
+
 ## Verification Checklist
 
 | Check | Command shape | Expected result | Status |
