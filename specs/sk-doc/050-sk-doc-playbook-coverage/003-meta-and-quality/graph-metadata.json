@@ -45,7 +45,8 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "specs/sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration/manifest/consumer-manifest.md"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "consumer-manifest.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration/manifest/consumer-manifest.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Each of these takes another mode's output as its input",
     "created_at": "2026-09-01T11:48:00Z",
-    "last_save_at": "2026-09-07T16:17:05.682Z",
+    "last_save_at": "2026-09-21T13:42:44.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d1e10fe94bffbf9165ada2e1e6ba4685cd689d79ad9930b473d38bf3d52c09f",
+    "source_fingerprint": "sha256:b34c9dd0a05f2a5788ae851481469296b7dee965a65e118f6338fcac91ccb4d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e725fa71329f84729dc2da259a715539eda3a1d49dee3567d441e24d7601953f",
       "plan.md": "bbe697a78dfbb0a75bebe21fcebee0f7ae66036a92cf64294cee7d4191ee210e",
       "tasks.md": "a84e833605536cdf23fe2c1ee86973235b82ad318563c98c4acee8a4032aecf3",
-      "implementation-summary.md": "399a6de752122f70091de58c17502493c0a0374909c2ff7f25f7e465c516735b"
+      "implementation-summary.md": "0ce4047beda6fd23bc8be9168f76354897c67e984ce1b55a6f79748ea2cb1533"
     },
     "last_active_child_id": null,
     "last_active_at": null
