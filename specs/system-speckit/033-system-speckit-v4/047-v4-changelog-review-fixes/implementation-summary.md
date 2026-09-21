@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "None: the packet is complete"
     blockers: []
     key_files:
-      - "../CHANGELOG-v4.0.0.0.md"
+      - "../changelog/CHANGELOG-v4.0.0.0.md"
       - "scratch/facts-after.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -60,7 +60,7 @@ The LUNA review found one high and twelve medium-or-low findings after 046 shipp
 
 | File | Action | Purpose |
 |------|--------|---------|
-| CHANGELOG-v4.0.0.0.md | Modified | The thirteen-anchor edit pass: eight findings, 722→719 lines |
+| ../changelog/CHANGELOG-v4.0.0.0.md | Modified | The thirteen-anchor edit pass: eight findings, 722→719 lines |
 | spec.md | Created | The scope, the requirements, the count record |
 | plan.md | Created | The evidence-anchored method, the gates, the rollback |
 | tasks.md | Created | The task state across setup, implementation and verification |

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 045 research report established that what still costs the reader is structure and facts, not sentence shape: six `.opencode/` path mentions are dead at HEAD, the document contradicts itself on the CLI-orchestrator count (Six at L730 vs Seven at L274/L310/L314), counts have drifted (278 commits exist where it says 266; the symlink count measures 101 where it says 102; \"178 recommendations\" is non-re-derivable), the glance list duplicates the README at five times its volume, and the section order ignores the priorities the root README itself declares",
     "created_at": "2026-09-21T12:33:03Z",
-    "last_save_at": "2026-09-21T13:41:06.486Z",
+    "last_save_at": "2026-09-21T18:23:50.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:080a4ecae72bf769a69b8c909d6074ea3047268a374e465434c78a9d78956227",
+    "source_fingerprint": "sha256:ab093955ea11478626ecb544f4b5401fc221d9554638019f17fd326ad56d1ae4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0325e5c41ff67ae0fa1be55378719d1e6fa10395e79838094f71c23087b20ffa",
+      "spec.md": "fe61c90ca76aba2bb882d4289222b5aec2f5fda6a663aa9d7e3dabdf3d0ca5a0",
       "plan.md": "86e7b546c5913df7627ab065580ada1c4f1b335400c9bca9692486ec43f67ed4",
       "tasks.md": "a2d6810118c779ab4aa4964f06ecb9e2243ee226729f12a6837d4a733b983a6c",
       "implementation-summary.md": "e44d9aefefcb1c3e04370ee44e3c14bd1078bd160cfee567cab7693ab9d58ccf"
