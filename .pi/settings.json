@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.86.0",
+  "lastChangelogVersion": "0.86.1",
   "theme": "dark",
   "defaultProvider": "llmgateway",
   "defaultModel": "deepseek-v4.1-flash",
