@@ -1,5 +1,5 @@
 {
-  "corpusHash": "daee28650ca48e9c6deb2a7597ee5af79487fddd179cbe96cc42651aea0be059",
+  "corpusHash": "714b43ad388e1a60de1f705bbaff4e1f4ee6a6be2659e8b62c0b3cdfa57b4260",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22246,
+  "includedPathCount": 22288,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -1619,6 +1619,7 @@
     ".skilled/skills/cli-orca/SKILL.md",
     ".skilled/skills/cli-orca/assets/PROVENANCE.md",
     ".skilled/skills/cli-orca/benchmark/reports/2026-09-20--extraction-routing-verification/report.md",
+    ".skilled/skills/cli-orca/benchmark/reports/2026-09-20--playbook-post-remediation/report.md",
     ".skilled/skills/cli-orca/changelog/v0.1.0.0.md",
     ".skilled/skills/cli-orca/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-orca/feature-catalog/orca-skills/official-skill-layer.md",
@@ -8419,6 +8420,7 @@
     "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/spec.md",
     "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/tasks.md",
     "specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+    "specs/cli-jev/002-cli-jev-hub-migration/implementation-summary.md",
     "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
@@ -22263,12 +22265,52 @@
     "specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/plan.md",
     "specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/spec.md",
     "specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/tasks.md",
-    "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
+    "specs/system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/deep-research-dashboard.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/deep-research-strategy.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-001.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-002.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-003.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-004.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-005.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-006.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-007.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-008.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-009.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/iterations/iteration-010.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-001.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-002.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-003.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-004.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-005.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-006.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-007.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-008.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-009.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/prompts/iteration-010.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/research.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/research/resource-map.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/046-v4-changelog-remediation/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/046-v4-changelog-remediation/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/046-v4-changelog-remediation/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/046-v4-changelog-remediation/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/changelog/CHANGELOG-v4.0.0.0.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "13c18ad03d8285dd8905077dca34eeccbc526ae5ed65a47143bfd5c3662f6608",
+  "manifestHash": "79a70f5ffe970d4a59db374b008927e62ba4b8136032eefa561a1b43fc56a15f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26551,6 +26593,18 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/043-v4-root-readme/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/046-v4-changelog-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes/scratch",
       "reason": "excluded directory"
     },
     {
