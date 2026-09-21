@@ -164,7 +164,13 @@ contextType: "implementation"
 
 - [x] T048 Convert the README entry names from bold text to `#####` headings and push (`README.md`) [20m] — 61 entries converted across §8/§9/§11/§14; HVR unchanged at 0 hard blockers / 90 ceiling; doc validator no worse than HEAD; packet PASSED
 
-- [x] T049 Strip every `&nbsp;` spacer, collapse the doubled blanks, restore the pasted bridges list and the header order (`README.md`) [20m] — 115 spacers removed, 1691 → 1460 lines, 12 fenced blocks byte-identical, coffee line back under the tagline; HVR unchanged at 0 hard blockers / 90 ceiling; doc validator no worse than HEAD; packet PASSED
+- [x] T049 Strip every `&nbsp;` spacer, collapse the doubled blanks, restore the pasted bridges list and the header order (`README.md`) [20m] — 115 spacers removed, 1627 → 1460 lines, 12 fenced blocks byte-identical, coffee line back under the tagline; HVR unchanged at 0 hard blockers / 90 ceiling; doc validator no worse than HEAD; packet PASSED
+
+- [x] T050 Drop the `resource-map.md` row from the spec-structure example (`README.md`) [10m] — it is the lazy add-on its own prose below the tree already states; the tree loses exactly one row, the other 11 fenced blocks untouched; HVR 0 hard blockers; doc validator no worse than HEAD; packet PASSED
+
+- [x] T051 Merge WHAT YOU GET and OVERVIEW into one section (`README.md`) [20m] — the OVERVIEW heading and one blank removed, its body kept; 13 following headings renumbered to 1..15; 7 internal anchors bumped (#6-deep-loop x6, #12-code-mode-mcp x1); the two hook files verified relative and unnumbered, so no external anchor breaks; the pre-existing section-2 separator finding survives by design; packet PASSED
+
+- [x] T052 Plain lead sentence under every h5 (`README.md`) [45m] — 48 inline taglines demoted off the h5 line with a capital and a period, 13 first bullets promoted to plain prose (5 bold leads extracted, 8 whole), one composed lead for the Core group header, the 5 prose h5s verified; bullets below the leads untouched; HVR 0 hard blockers; packet PASSED
 
 ## Verification Checklist
 
