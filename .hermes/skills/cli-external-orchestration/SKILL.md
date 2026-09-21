@@ -2,7 +2,7 @@
 name: cli-external-orchestration
 description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.0.0
+version: 1.7.0.0
 metadata:
   author: OpenCode
   family: cli
@@ -17,7 +17,7 @@ metadata:
 
 # CLI External Dispatch Hub (cli-external-orchestration)
 
-One skill, seven workflow modes, one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet, and the hub only routes by `workflowMode`.
+One skill, seven workflow modes — one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet, and the hub only routes by `workflowMode`.
 
 **Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json`, `hub-router.json`, and `ROUTER.md` carry the same value, so every hub-root artifact states the same release.
 
@@ -58,7 +58,7 @@ Routing is two-stage. Stage 1 (hub → mode): the compiled router / `hub-router.
 ### Two-Axis Model
 
 - `packetKind: "workflow"` — `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` orchestrate a CLI binary and their dispatched writes land in THIS repo's workspace (`mutatesWorkspace:true`). None is a transport packet: all classify intent, choose/confirm a provider, and conduct the dispatched session. (`cli-cursor`'s native worktree/cloud-worker surfaces are opt-in escape hatches, not its default dispatch shape.)
-- Zero extensions: no surface-axis, no transport-axis, no runtime-loop. All seven modes are primary, independently-routable dispatch workflows.
+- No extension is declared: the `transport-axis` left with the `cli-jev` transport, no mode here is read-only evidence, and none converges on a loop. The seven workflows stay primary, independently-routable dispatch modes.
 
 ### Routing Rule
 
@@ -177,6 +177,7 @@ Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile
 - Resolve packets through `mode-registry.json`; never hardcode packet roots in prose-only logic.
 - Keep `SKILL.md` thin: routing, invariants, and navigation only.
 - Keep every packet in `modes[]` and give every packet a `packetKind`.
+- Keep a transport mode's policy surface minimal: `routingClass: "metadata"`, `mutatesWorkspace: false`, `Write`/`Edit`/`Task` forbidden, and the mode named in the `transport-axis` extension's `transports[]`. `tieBreak` lists workflow modes first, so a prompt that names no mode never resolves to a transport by ordering.
 - Keep exactly one `graph-metadata.json`, at the hub root.
 - Keep `hub-router.json` signal keys and registry `workflowMode` values bidirectionally aligned.
 - Keep the surface router's `RESOURCE_MAP` in sync with `leaf-manifest.json` — the leaf sets dual-read to canonical typed pairs at the one contract boundary (`sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`).
@@ -194,7 +195,7 @@ Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile
 
 ### ⚠️ ESCALATE IF
 
-- A packet cannot be classified as `workflow` (all seven current modes are; a future mode may not be).
+- A packet cannot be classified as `workflow` or `transport` (every current mode is one of the two; a future mode may be neither — if it is read-only evidence it is a surface, and this hub would then need the surface-axis extension too).
 - Router signals, vocabulary classes, and registry modes cannot be made bidirectionally consistent.
 - The executor-delegation scorer resolves a delegation prompt to `cli-external-orchestration` itself instead of a real executor — that is the exact silent-misroute failure mode ADR-005 rewrote the scorer to prevent; report it rather than working around it.
 
