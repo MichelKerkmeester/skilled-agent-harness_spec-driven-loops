@@ -527,4 +527,6 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 **The v4 changelog records the two late-cycle skill moves:** 2026-09-20, `044`. Status: Done. Evidence: `044-v4-changelog-late-cycle-entries/implementation-summary.md`, the entries shipped as commit `799bb5e679`.
 
 **The v4 changelog rewritten in the root README's voice:** 2026-09-21, `045`. Status: Done. Evidence: `045-v4-changelog-voice-rewrite/implementation-summary.md`, with the census at zero walls and the human voice scan at zero hard blockers.
+
+**The v4 changelog remediated per the 045 research report:** 2026-09-21, `046`. Status: Done. Evidence: `046-v4-changelog-remediation/implementation-summary.md`, with the 18/56/19/44 skeleton recorded as a baseline plus measured -1 deltas and the report's gates still at zero.
 <!-- /ANCHOR:milestones -->

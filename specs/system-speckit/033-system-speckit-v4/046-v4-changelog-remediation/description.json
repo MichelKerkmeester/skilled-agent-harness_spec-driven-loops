@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/033-system-speckit-v4/046-v4-changelog-remediation",
+  "description": "Phase 1: v4-changelog-remediation",
+  "keywords": [
+    "phase",
+    "v4-changelog-remediation"
+  ],
+  "lastUpdated": "2026-09-21T12:33:04.246Z",
+  "specId": "046",
+  "folderSlug": "v4-changelog-remediation",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

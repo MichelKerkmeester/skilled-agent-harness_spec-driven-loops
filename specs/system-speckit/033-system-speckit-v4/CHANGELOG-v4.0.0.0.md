@@ -8,56 +8,28 @@ trigger_phrases:
 ---
 # v4.0.0.0, Fewer Skills, Safer Paths
 
-This release is about shape. Skill after skill stopped standing alone and folded into a parent that routes you to the one small piece you need. The deep loops, the CLI executors, the doc authoring, the code skill, the design surface and the MCP bridges all took the same form: a thin parent and a mode per job. Where a monolith once hid a 28KB command or a 3,000-line template, a router now hands you the slice that fits.
+This release is about shape. Skill after skill stopped standing alone and folded into a parent that routes you to the one small piece you need. The deep loops, the CLI executors, the doc authoring, the code skill, the design surface and the MCP bridges all took the same form: a thin parent and a mode per job. Where a monolith once hid the whole job, a router now hands you the slice that fits.
 
 The failure paths got the same care. Executors refuse to start unless their own binary is installed. Git stops and asks before a push, a mass delete or a misnamed branch. Terminal proof, showing evidence before you claim a result, is now written into every governing section instead of living as a side protocol.
 
-Most of this does not change how you call the system. The `/deep:*`, `/create:*`, `/design:*` and `/speckit:*` families and the agent names behave as before, a few other names changed, and the specs folder moved to a new root. A symlink and a deliberately tolerant gate keep the old paths alive while you catch up. Two things you may have leaned on are gone for good:
+Most of this does not change how you call the system. The `/deep:*`, `/create:*`, `/design:*` and `/speckit:*` families and most of the agent names behave as before, a few other names changed, and the specs folder moved to a new root. A symlink and a deliberately tolerant gate keep the old paths alive while you catch up. Two things you may have leaned on are gone for good:
 
 - **The memory database is gone.** The engine behind `memory_search` and `memory_save` was retired, and a committed lexical trigger index plus ripgrep took its place behind `/speckit:search`.
 - **The `/interface:*` commands are now `/design:*`.**
 
----
 
-## What's New at a Glance
+## Why This Release
 
-- **One shape for every skill.** Seven hubs now route to modes. Fewer slash commands, one place to maintain and cleaner routing for the AIs that pick them.
-- **Specs at the top level.** Your spec paths move to a physical `specs/` folder. A compatibility symlink keeps every old `.opencode/specs/...` reference working.
-- **The memory database is gone.** `memory_search`, `memory_save`, the spec-memory MCP server and its daemon were decommissioned. A committed trigger index and ripgrep recipes answer `/speckit:search`, and the spec kit writes its own continuity.
-- **A spec kit that tells the truth.** The runtime was renamed and nested under `runtime/cli/`. The completion gate returns one verdict everywhere with forty registered rules. Acceptance criteria and a goal file joined the packet contract. Three research rounds cut the kit back to what a machine reads, and every finding they recorded was closed.
-- **Your edits stay yours.** Reindexing and the daemon's startup scan no longer write auto-fixes or trim content back into documents you wrote.
-- **Deep loops, one home.** Research, review, ai-council, agent-improvement and the benchmark run as one `system-deep-loop` skill with five `/deep:*` commands.
-- **Loops run on any model, in parallel.** A deep loop dispatches to Codex, Devin, Cursor, Pi, Hermes, OpenCode or Claude Code, and fans several out at once for independent perspectives.
-- **Every run replayable.** A typed evidence ledger is the authoritative record for every loop mode. Runs replay from it, every state transition is authorized, and the legacy files are projections of it.
-- **Executors that only run when installed.** Codex, Devin, Cursor, Pi and Hermes show up as routable only when their binary is present, so a missing tool never fails halfway through a run.
-- **Fan-outs never rewind your files.** A lane that writes outside its own directory leaves your tree exactly as it was and drops a copy of what it wrote into a quarantine you can read. Per-lane worktrees were built, measured and switched off.
-- **Pi hosts the framework natively.** `cli-pi` gained bridges for the repo's skills, commands, agents, MCP servers and hooks. It is the deepest runtime integration of the six.
-- **Hermes joins as the seventh runtime.** `cli-hermes` dispatches Nous Research's Hermes Agent through the LLM Gateway, mirrors every skill and agent into `.hermes/`, and runs the repo's guards through one project plugin that bridges eighteen of the twenty-two hook packages.
-- **The dispatch guards stop approving what they forbid.** Six silent-approval conditions closed, including a shape bug that left every Codex dispatch unchecked. Cursor gained a preflight adapter, OpenCode began enforcing before the call rather than recording after it, and a CI guard now fails the build when a declared rule has no implemented check.
-- **Sign in, not API keys.** Codex and Claude Code dispatch through the account you are already signed in to. `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` are no longer read.
-- **A local vision skill.** `sk-vision` reads screenshots for text-only models through a private Moondream runtime, off by default, on demand through `/vision`. Its MCP transport is gone: OpenCode and Pi load it as a plugin, Devin through a prompt hook and Cursor through a CLI.
-- **Design becomes a hub.** `sk-design` went from one skill to a parent of four modes. Fundamentals decides values for any laid-out surface, the md generator measures a live site into a Style Reference, and chart and diagram moved in from sk-doc under `/design:*`.
-- **Docs that make anything.** A git-free before-and-after diff, repo-rule authoring and plain-English output join the terminal under `/create:*`. Diagrams across 27 types and charts across 29 forms arrive under `/design:*`.
-- **One code skill, two axes.** Code guidance is scoped to what you are doing and to the stack you are doing it on, with review as a first-class mode and Rust as a first-class language.
-- **Safer git.** Every commit lands in your IDE checkout on its own. Push, mass-delete and branch-name paths now stop and ask.
-- **One prompt skill.** Prompt work lives in `sk-prompt`, a standalone skill with seven frameworks behind `/prompt:improve`. The long run of renames finally settles.
-- **Every bridge, one hub.** The browser, ClickUp, Notion, design references, MagicPath and your Obsidian vault all hang off a single `mcp-tooling` skill with nine modes.
-- **A judgment transport of its own.** `cli-jev` became its own hub, leaving `cli-external-orchestration` with seven workflow modes. Its one mode, `cli-usage`, asks the `jev` CLI for a typed verdict and writes nothing into your workspace.
-- **The Orca bridge graduated.** The Orca CLI left `mcp-tooling` as a mode and now ships as the standalone `cli-orca` class-S skill, with one authored reference and one verbatim snapshot for each of its eight official skills.
-- **Goals live in the packet.** A session binds to a spec packet and that packet's `goal.md` is the goal, on OpenCode, Pi, Cursor and Devin alike. The runtime injects the file's durable slice with the frontmatter stripped, the working agent resends it whenever a decision or criterion changes and keeps reminding you to set it without ever stopping work, and a validator warns a parent goal past 3,000 characters and fails it past 4,000.
-- **CI that catches drift at commit time.** The pre-commit hook runs the same six mirror checks CI runs, the workflow fires on every mirror source, and the Dependabot backlog on the default branch went to zero.
-- **A tidier advisor.** The skill advisor got structural workspace anchoring, a launcher that starts under Codex on the Node its native SQLite module was built for, and one front door: the MCP transport is retired and the CLI is the only way in.
-- **Rules for how a reply reads.** Thirteen repo rules under `repo-rules/`, routed by `REPO RULES.md`, carry the thinking and writing discipline the root document used to spell out. The root document fell from 496 lines to 284 and every rule ends in a self-check.
-- **Plain-English replies, measured.** The projection engine sends the wording standard itself as its instruction, refuses a rewrite that drops a claim or flips a cause, and a reply benchmark with a baseline and a control shows which rules change what replies do.
-- **Gate 3 asks four options.** Existing, New, Related and Skip. The two update options merged into Related, and every prompt, hook and asset that printed the list agrees.
-
----
-
-## One Shape for Every Skill
-
-You feel this change everywhere. Most of the framework's skills stopped standing alone, and where there used to be a scatter of separate skills, one per workflow, one per stack, one per tool, there is now a small set of parent hubs. Each hub is a thin router that reads what you asked for and hands the request to a mode, and every mode keeps its own behavior underneath.
+Most of the framework's skills stopped standing alone, and where there used to be a scatter of separate skills, one per workflow, one per stack, one per tool, there is now a small set of parent hubs. Each hub is a thin router that reads what you asked for and hands the request to a mode, and every mode keeps its own behavior underneath.
 
 Six families made the move: code, documentation, design, the deep loops, the MCP bridges and the external CLIs. Prompt craft tried the hub shape too, ran as a two-mode hub for part of the cycle, and went back to a single standalone skill before release. `sk-vision`, `sk-communication`, `sk-git`, `mcp-code-mode`, the spec kit and the advisor round out the standalone skills that stayed that way the whole cycle.
+
+Two shapes of skill exist now. A standalone skill is one identity with one job. A parent skill holds no logic of its own: it reads what you asked for and dispatches, through a `mode-registry.json`, to one of its nested modes, keyed by a `workflowMode`.
+
+A mode is one of two kinds:
+
+- a workflow packet that does work
+- a read-only surface packet that only supplies evidence
 
 The reasons for the hubs that stuck are practical:
 
@@ -67,6 +39,26 @@ The reasons for the hubs that stuck are practical:
 - **Easier to iterate.** You change one mode without disturbing its neighbors.
 
 None of this was hand-assembled. sk-doc's `create-skill-parent` tooling stamps out each hub's router, modes, README and drift check the same verifiable way, so the six merges followed one recipe. The sections below are organized around those hubs. Each tells you what its family gained without re-explaining the shape.
+
+---
+
+## What's New at a Glance
+
+- **Specs at the top level.** Your spec paths move to a physical `specs/` folder. A compatibility symlink keeps every old `.opencode/specs/...` reference working.
+- **Gate 3 asks four options.** Existing, New, Related and Skip.
+- **Deep loops, one home.** Research, review, ai-council, agent-improvement and the benchmark run as one skill, on any executor you name, several in parallel, with every run replayable from a typed evidence ledger.
+- **Fan-outs never rewind your files.** A lane that writes outside its own directory leaves your tree exactly as it was and drops a copy of what it wrote into a quarantine you can read.
+- **Two hubs graduated.** `cli-jev` answers judgment questions through the `jev` CLI, and `cli-orca` bridges Orca's eight official skills. Both are standalone skills now.
+- **Sign in, not API keys.** Codex and Claude Code dispatch through the account you are already signed in to. `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` are no longer read.
+- **One code skill, two axes.** Code guidance is scoped to what you are doing and to the stack you are doing it on, with review as a first-class mode and Rust as a first-class language.
+- **Every bridge, one hub.** The browser, ClickUp, Notion, design references, MagicPath and your Obsidian vault all hang off a single `mcp-tooling` skill with nine modes.
+- **Design becomes a hub.** `sk-design` went from one skill to a parent of four modes.
+- **Docs that make anything.** A git-free before-and-after diff, repo-rule authoring and plain-English output join the terminal under `/create:*`. Diagrams across 27 types and charts across 29 forms arrive under `/design:*`.
+- **One prompt skill.** Prompt work lives in `sk-prompt`, a standalone skill with seven frameworks behind `/prompt:improve`.
+- **A local vision skill.** `sk-vision` reads screenshots for text-only models through a private Moondream runtime, off by default, on demand through `/vision`.
+- **Goals live in the packet.** A session binds to a spec packet and that packet's `goal.md` is the goal, on OpenCode, Pi, Cursor and Devin alike.
+- **Safer git.** Every commit lands in your IDE checkout on its own. Push, mass-delete and branch-name paths now stop and ask.
+- **Plain-English replies, by opt-in.** The projection lane rewrites terse CLI output into readable prose. Nothing rewrites your output until you flip the switch.
 
 ---
 
@@ -98,7 +90,7 @@ All of it sits behind `/speckit:search`, and the kit's own context writer handle
 
 #### The Runtime Renamed and Nested
 
-The surviving package no longer carries an identity it lost. Its engine lives at `.opencode/skills/system-spec-kit/runtime/cli/`:
+The surviving package no longer carries an identity it lost. Its engine lives at `.skilled/skills/system-spec-kit/runtime/cli/`:
 
 - `spec/validate.sh`, `spec/create.sh`, `spec/repair-derived.cjs` and `spec/recommend-level.sh` for the packet lifecycle
 - `continuity/` for saves
@@ -159,96 +151,6 @@ The Spec-Kit Check workflow fires on every mirror source and every mirror output
 
 ---
 
-## The Skill Advisor
-
-The skill advisor decides which skill should answer a request. It was already standalone before this release, with a skill-graph backbone and a fast warm path from earlier work. Its v4 changes are narrower and quieter. Workspace anchoring got stricter, the skill graph was tidied, it launches cleanly under Codex, and by the end of the cycle its MCP transport was retired so the CLI is the only front door.
-
-#### Stricter Workspace Anchoring
-
-The advisor had been leaving litter in spec folders, writing its `.advisor-state` next to whatever directory a session happened to run from. Two changes pull that back toward the repo root: a shared anchored root resolver and a switch from the old specs-only deny-list to a structural boundary that hoists state above the outermost `.opencode`.
-
-The skill graph was tidied in the same pass. Its metadata now points at the tracked source file, a one-identity ingestion hole was closed, and a read-only freshness panel shows you whether the compiled graph is current.
-
-**Breaking:** the CLI front door is fail-closed and untrusted by default now too. A mutation through the CLI needs `--trusted`, or it is refused. The native MCP registration that once carried the same setting is gone with the transport.
-
-The reciprocal-rank-fusion spine and the conflict rerank graduated from dark flags to shipping defaults, and the separate self-recommendation guard was cut as redundant once the penalty covered the same ground. A document's `trigger_phrases` now feed the advisor too. Doc-trigger harvesting reads them into a new `skill_docs` table behind `SPECKIT_ADVISOR_DOC_TRIGGERS`.
-
-&nbsp;
-
-#### Short Names Reach the Scorer
-
-The scorer discarded any word of two characters or fewer before the token lanes ever saw it, which made `pi` invisible to every one of them. The hub scored only where an authored phrase happened to spell the wording out, so `delegate to pi` resolved and `delegate this to pi` returned nothing at all.
-
-Short filler was already handled by the stop-word list, so the length floor was rejecting short content words and nothing else. Lowering it one character restores the lanes for names like `pi` without letting filler back in, measured against the labelled corpus at no change in accuracy.
-
-&nbsp;
-
-#### The CLI Is the Only Front Door
-
-The advisor no longer speaks MCP. Its daemon answers the same nine commands over a unix socket, and `node .opencode/bin/skill-advisor.cjs <command>` is the one way to reach them, from a hook, a script or a session. The hook brief you see at prompt time resolves through that CLI, so the two routes cannot disagree.
-
-When the daemon is unreachable the CLI falls back to a local scorer and marks the answer degraded, and an empty result from a healthy daemon now reads as no match rather than as an outage. Running the playbook across four runtimes found the last stale command name and a scorer pinned to unreviewed truth, and both were fixed.
-
-&nbsp;
-
-#### Codex Starts the Advisor
-
-Codex sessions now launch the advisor under the Node runtime whose ABI matches the installed native SQLite module, so the advisor initializes instead of aborting the whole MCP startup cascade. Code mode keeps its own independent runtime pin. The advisor is not fully standalone even now. It keeps a symlink to the spec kit's embeddings and extends the spec kit's tsconfig.
-
----
-
-## Documentation as a System
-
-The doc skill grew up. Where one monolithic skill once did everything, a lean parent hub now hands each job to a small, self-contained packet, and two new authoring surfaces joined the family. Most of the change is internal, but a few command names and the repo's naming convention changed, so a couple of things you type are different.
-
-#### Parent Skills, Nested Modes and the Tool That Builds Them
-
-Two shapes of skill exist now. A standalone skill is one identity with one job. A parent skill holds no logic of its own: it reads what you asked for and dispatches, through a `mode-registry.json`, to one of its nested modes, keyed by a `workflowMode`.
-
-A mode is one of two kinds:
-
-- a workflow packet that does work
-- a read-only surface packet that only supplies evidence
-
-`sk-doc` is the worked example. The parent routes to fourteen `sk-create-*` modes across thirteen packets (`sk-create-skill`, `sk-create-readme`, `sk-create-agent`, `sk-create-diff`, `sk-create-changelog`, `sk-create-repo-rule`, `sk-create-quality-control` and the rest), twelve of them bound to their own `/create:*` command. A nested packet carries no `graph-metadata.json` of its own. It inherits the hub's one advisor identity.
-
-`sk-doc` is also where the shape itself comes from. Its `sk-create-skill` mode scaffolds both kinds, and `/create:skill` stamps out a standalone skill while `/create:skill-parent` stamps out a parent wired to its nested packets.
-
-That scaffold carries the `mode-registry.json` and `hub-router.json` router files, the packets, the README, the agent mirrors, the root `ROUTER.md` that maps intents to leaves, and a routing-drift check that keeps the registry honest against the code. Every parent skill in this release was scaffolded the same verifiable way from this tooling.
-
-A few names you type changed. Four `/create` commands were renamed to match their packet (`sk-skill` became `skill`, `folder_readme` became `readme`, and so on), and the quality packet is `sk-create-quality-control` with the old `/doc:quality` command gone. The authoring agent is now `@markdown`, formerly `@create`, and the packet directories themselves were renamed from `create-*` to `sk-create-*`.
-
-&nbsp;
-
-#### Two New Ways to Author
-
-- **`sk-create-repo-rule`** writes, revises and retires the repo-local rule files that `REPO RULES.md` routes to. Reach it through `/create:repo-rule`.
-- **`sk-create-diff`** compares a before-and-after document without git and produces a self-contained, shareable HTML report, so you can review an edit even when the file lives outside version control.
-
-&nbsp;
-
-#### Every Document Carries a Version
-
-Every authored markdown file now carries a four-part `version` in its frontmatter. A script bumps it, and a CI gate refuses a file that ships without one. The rollout covered the whole corpus, so this is not a rule waiting for adoption. If you adopt the framework, your own skills need the field before the gate lets them through.
-
-&nbsp;
-
-#### Kebab-Case Is Now the One Name
-
-The repo settled on kebab-case as its single filesystem naming form and retired the older underscore convention. In-scope folders, files and scripts were renamed, a guard refuses new snake_case names and a reviewable rename-and-reference toolchain keeps the migration honest. This reverses an older sk-doc rule that enforced snake_case recursively. If you had a script or path pinned to an old underscore name, update it.
-
-&nbsp;
-
-#### Benchmarks, One Way
-
-Benchmark authoring guidance has a single home in `sk-create-benchmark`. Run and scoring stay with the executing lanes, so authoring the fixtures and owning the run are two different jobs now with two different owners.
-
-`/create:benchmark --family=...` exists as a command surface, with the conformance family dropped alongside the alignment mode it fed. `run-skill-benchmark.cjs` now exits with code 3 on structural or registry blocks instead of 0, so a blocked benchmark can no longer read as a passing one.
-
-The Human Voice Rules moved into their own `sk-create-with-human-voice` mode with a scanner that enforces them.
-
----
-
 ## The Deep Loops, Unified and Extended
 
 The deep loops finished collapsing into a single home and learned to run on any model you name, several at a time. The hub and its backend are one skill. The loops fan out across every CLI. Underneath, a new evidence-ledger runtime landed dark, proved parity and then, under an operator-ratified flip, became the authoritative record for every mode.
@@ -292,7 +194,7 @@ Forced-depth runs fail loudly on an empty record set, an iteration recorded twic
 
 #### A New Evidence Ledger, Now Authoritative
 
-The deep loops grew a new spine, and by the end of the cycle it became the record. A research program of 178 recommendations across the loop family converged on a single architecture, an append-only ledger with a few load-bearing parts:
+The deep loops grew a new spine, and by the end of the cycle it became the record. A research program of recommendations across the loop family converged on a single architecture, an append-only ledger with a few load-bearing parts:
 
 - a typed, append-only event ledger as the single record of what happened
 - a fail-closed gateway that authorizes every state transition
@@ -372,19 +274,14 @@ The last piece is the one that keeps this from rotting. A guard asserts a biject
 
 &nbsp;
 
-#### Pi Dispatches Pi
+
+#### A Closed Roster
 
 Pi removed its subagents feature during the cycle, which left the CLI as the only way a Pi session can hand work out. So the rule forbidding a Pi session from dispatching `cli-pi` had to go, and it went in all three places at once: the prose in the skill, the Pi preflight hook that enforced it by name, and the shared deep-loop guard that enforced it structurally. Removing only the prose would have left the hook refusing what the prose allows.
 
 This is the one carve-out from the self-invocation rule that blocks every other executor from calling itself, and it is deliberately narrow. The exemption is keyed to `cli-pi` and read only by the two layers that mean "the caller is inside this CLI". The layers that bound a runaway spawn chain, the fan-out lineage and the dispatch stack, still apply to every kind including this one.
 
-&nbsp;
-
-#### A Closed Roster, and Where It Is Narrower Than the Code
-
 Pi reaches six authenticated providers, and the model roster is closed: an id that is not on it is refused, in the fan-out and on a direct call alike. OpenRouter came off that roster this cycle, on Pi and on OpenCode both, which removed twenty-three live references across seven files. Nothing broke, because it was never a default on either CLI, and both models it served keep a direct route and a fan-out route.
-
-One deliberate asymmetry is worth knowing before you read the code and think it is a bug. The deep-loop fan-out still maps two model literals to OpenRouter, so the documented direct roster is narrower than the enforced allowlist on purpose. One literal maps to one provider, so deleting that mapping to tidy it would silently move those two models to a different route.
 
 &nbsp;
 
@@ -428,97 +325,41 @@ That is the standalone bridge only. Gemini 3.7 Flash remains reachable through D
 
 ---
 
-## Hooks, Goals and the Runtime
+## The Skill Advisor
 
-The machinery behind your sessions, the goals, the hooks and the background processes that fire on every turn, learned to travel and to stay out of your way. Goals now follow you across three tools, Pi arrived with a fast input path and the whole hook layer became one browsable, switchable library.
+The skill advisor decides which skill should answer a request. It was already standalone before this release, with a skill-graph backbone and a fast warm path from earlier work. Its v4 changes are narrower and quieter. Workspace anchoring got stricter, the skill graph was tidied, it launches cleanly under Codex, and by the end of the cycle its MCP transport was retired so the CLI is the only front door.
 
-#### Goals in OpenCode, Cursor, Pi and Devin
+#### Stricter Workspace Anchoring
 
-The packet is the goal. A session binds to a spec packet with `bind`, and from then on the packet's `goal.md` is what the runtime injects, rendered from the file on every turn so an edit is seen on the next one. The per-session store keeps only the pointer, liveness and telemetry.
+The advisor had been leaving litter in spec folders, writing its `.advisor-state` next to whatever directory a session happened to run from. Two changes pull that back toward the repo root: a shared anchored root resolver and a switch from the old specs-only deny-list to a structural boundary that hoists state above the outermost `.opencode`.
 
-One shared module draws the line between the file's frontmatter and its durable slice, so no chat send, injection or stored objective carries the bookkeeping. When the slice changes, the agent resends it stripped and keeps reminding you to set it, and it never stops working while it waits. Once you set it, it acknowledges in a line and carries on.
+The skill graph was tidied in the same pass. Its metadata now points at the tracked source file, a one-identity ingestion hole was closed, and a read-only freshness panel shows you whether the compiled graph is current.
 
-The spec kit's validator restores the two checks that had been lost: a parent goal warns past 3,000 characters and fails past 4,000, and a binding row that names a child goal which was never written fails. Devin regained a goal adapter as injection-only, and the `AGENTS.md` root document carries the always-on posture as one row.
+**Breaking:** the CLI front door is fail-closed and untrusted by default now too. A mutation through the CLI needs `--trusted`, or it is refused. The native MCP registration that once carried the same setting is gone with the transport.
 
-Your session goal means the same thing in the four runtimes that carry it. The goal system that started in OpenCode reaches Cursor and Pi through a shared core and a common active-goal store. Devin goal hooks were prototyped, decommissioned, and then regained as an injection-only adapter once the packet became the goal, so Devin receives the brief but has no management command.
-
-Honesty was part of the port. Live capability probes recorded what each tool can do rather than what it claims, so Cursor is marked injection-only and Pi verifies at turn's end but cannot force a continuation. Goals also stopped living as one global singleton: they are stored per workspace, runtime and session, so two projects cannot see each other's goals.
-
-**Breaking:** a goal saved under the old global scheme no longer injects. It sits in a diagnostic-only state until you migrate or archive it.
-
-One late rule closes the loop between the file and your session. Whenever anything above a goal file's log changes, the working agent resends the parent goal's durable slice in chat, frontmatter excluded, so the objective you pasted never drifts from the file.
+The reciprocal-rank-fusion spine and the conflict rerank graduated from dark flags to shipping defaults, and the separate self-recommendation guard was cut as redundant once the penalty covered the same ground. A document's `trigger_phrases` now feed the advisor too. Doc-trigger harvesting reads them into a new `skill_docs` table behind `SPECKIT_ADVISOR_DOC_TRIGGERS`.
 
 &nbsp;
 
-#### Pi's Fast Input Path
+#### Short Names Reach the Scorer
 
-Pi's input path runs its advisor in-process rather than shelling out to a chain of separate processes, and it caches only fingerprint-backed labels. A repeat prompt resolves from a five-minute cache in about a millisecond. A brand-new prompt still pays a cold start of around 1.3 seconds, and the cache invalidates when a skill changes.
+The scorer discarded any word of two characters or fewer before the token lanes ever saw it, which made `pi` invisible to every one of them. The hub scored only where an authored phrase happened to spell the wording out, so `delegate to pi` resolved and `delegate this to pi` returned nothing at all.
 
-&nbsp;
-
-#### The Hook Library, One Switch
-
-The whole hook layer became one browsable, switchable library.
-
-- **Assembled from source by symlink.** The `.opencode/hooks/` directory gathers every hook through 102 relative symlinks that point back to each hook's real home. A git hook lives in `sk-git`'s scripts, the advisor hook in the advisor package, and so on. It is one place to read without duplicating a line of code.
-- **One switch, or twenty-two.** A master `SYSTEM_HOOKS_DISABLED` flag turns the entire cross-runtime layer off at once, with a `SYSTEM_<concern>_DISABLED` flag for each of the twenty-two concerns beneath it. The older `MK_` names are still honored as aliases.
-- **See what's on, disable what you want.** The README carries a kill-switch index with every concern, its flag, aliases, default and effect. A gitignored `hook-flags.env`, copied from `hook-flags.env.example`, holds your personal defaults. Live environment values win, and a missing file fails open.
-- **Hermes gets the same guards through one plugin.** `.hermes/plugins/repo-guards` runs the shared hook cores from inside a Hermes session, so the rules reach a seventh runtime without a second implementation.
-
-The Gate-3 spec question also stays quiet on read-only turns, and the hook reference docs moved into their owning trees. Small things, no behavior change.
-
----
-
-## The Design Surface
-
-`sk-design` was a single skill. It is now a parent hub of four modes that projects one design identity and routes you to the mode that owns the decision in front of you. Two of those modes moved in from sk-doc, one returned from a standalone life, and the values mode grew from screens to every laid-out surface. Around the hub, the chart corpus was rebuilt on a real visual register, a library of real-world styles lives on your own machine, and one transport, Open Design, leaves the building.
-
-#### One Hub, Four Modes
-
-The hub carries no procedure of its own. It decides which mode owns the question and hands over.
-
-- **`sk-design-fundamentals`**, the default. It designs, builds and reviews any laid-out surface from fixed value scales: spacing, type, colour, contrast and hierarchy. That used to mean screen UI only. It now covers slide decks, printed pages and document layouts too, and adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen. It routes by alias and carries no command of its own.
-- **`sk-design-md-generator`**, behind `/design:extract`. It measures a live site's real CSS into a v3 Style Reference `DESIGN.md` through an extract, write and validate pipeline, and it validates one you already have. It was a standalone skill and came back as a mode.
-- **`sk-design-chart`**, behind `/design:chart`. Turn the comparison a reader needs into one of 29 catalog forms and ship it as a standalone HTML file.
-- **`sk-design-diagram`**, behind `/design:diagram`. Self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system, plus ASCII and Markdown flowcharts and draw.io or Mermaid redraws.
-
-Chart and diagram used to live under sk-doc as `sk-create-chart` and `sk-create-diagram`. They moved here and were registered in the hub's router. Every form the two canvas modes ship now has a rendered screenshot kept beside its mode, so you can see a chart before you ask for it. The `/interface:*` family that preceded all this is gone.
-
-A manifest version stored as a string had silently disabled three manifest checks, byte drift, target collision and reachability, because a numeric check read it as absent. It is now a number, so the checks run.
-
-One honest caveat. The other six hubs resolve through a compiled router contract first. This hub does not yet, so its routing is the registry and the root router alone. Joining the compiled closure is planned, not shipped.
+Short filler was already handled by the stop-word list, so the length floor was rejecting short content words and nothing else. Lowering it one character restores the lanes for names like `pi` without letting filler back in, measured against the labelled corpus at no change in accuracy.
 
 &nbsp;
 
-#### Charts on a Real Register
+#### The CLI Is the Only Front Door
 
-The chart corpus was brought to the shadcn visual register, with three named stock colour systems, their palette source and proof sheets checked in beside the forms. The chart check grew from fifteen named check families to forty-two, three of them browser-backed, so a form cannot drift off the register without a gate going red.
+The advisor no longer speaks MCP. Its daemon answers the same nine commands over a unix socket, and `node .skilled/bin/skill-advisor.cjs <command>` is the one way to reach them, from a hook, a script or a session. The hook brief you see at prompt time resolves through that CLI, so the two routes cannot disagree.
 
-The stock register is the evilcharts Style Reference, derived from a real chart library and carried beside the forms it produced. A cursor-derived register held the role briefly mid-cycle and was removed before release, so the packet ships one reference rather than two. A fresh review of every chart packet was closed before release.
-
-Every chart now carries a second palette block behind `prefers-color-scheme`. All three colour systems gained a dark ground with matching text and series values, and a dark-render check guards it, so a form cannot ship a light-only look by accident.
-
-A missing reading used to dive a line to the baseline and print the word null beside it. Now it does not.
-
-Charts also theme from your own site now. Point the chart mode at a local v3 `DESIGN.md` and `apply-design-md.cjs` derives a gated delivery palette from its measured values, both grounds included, without fetching anything or changing the stock files. Extraction stays with the md generator. Applying an extracted reference stays with the chart mode.
-
-Late in the cycle the packet shed everything that was not a form. The seven worked deliveries and the gallery page are gone, so the twenty-nine templates are the corpus and the rendered captures are the review surface. Every chart's data table now starts open, because the old rule left a tooltip as the only way to read a value on twenty of the forms.
-
-This mode ships pre-1.0 and its number says so. Its releases run `v0.1.0.0` to `v0.22.0.0`, which is the honest contract for a corpus still moving. Anything in it may change between releases.
+When the daemon is unreachable the CLI falls back to a local scorer and marks the answer degraded, and an empty result from a healthy daemon now reads as no match rather than as an outage. Running the playbook across four runtimes found the last stale command name and a scorer pinned to unreviewed truth, and both were fixed.
 
 &nbsp;
 
-#### A Style Library You Own
+#### Codex Starts the Advisor
 
-You have a design reference library on your own machine instead of behind someone else's network call. The Refero styles, each carrying four tabs, were pulled into a local token library after a 50-style pilot came back clean. Around it sits a retrieval substrate that picks a style by eligibility first, and behind that a persistent style database built on SQLite with full-text search and vector lookup, so the corpus the modes study is the one you query.
-
-The legacy default stays until you flip it yourself. The md generator also carries a private layer of procedure cards for its extraction work, each step pointing at its own card.
-
-&nbsp;
-
-#### Open Design Transport Removed
-
-The Open Design MCP transport is removed end to end: its mode tree, server entry, hub references, agent and command links and live-render adapters are all gone. If you still point at it, drop the `open_design` server from your `.utcp_config.json` and stop referencing `design-generation-patterns.md`. Figma and the terminal remain your design transports.
+Codex sessions now launch the advisor under the Node runtime whose ABI matches the installed native SQLite module, so the advisor initializes instead of aborting the whole MCP startup cascade. Code mode keeps its own independent runtime pin. The advisor is not fully standalone even now. It keeps a symlink to the spec kit's embeddings and extends the spec kit's tsconfig.
 
 ---
 
@@ -554,6 +395,209 @@ It is wired across the review runtime, orchestrators, Codex agents and the advis
 Rust is a first-class citizen on the opencode surface. The standard docs are in place, `.rs` files and Cargo projects are detected and routing covers both child and parent-union layouts, so a Rust change surfaces the Rust guidance instead of the generic fallback.
 
 Language slicing now covers every language a task touches instead of stopping at the first match, so a task spanning two languages pulls both slices. For everyone else, the same pass split 33 oversized reference documents into 104 topic-cohesive parts, so the files you load are shorter and closer to the point.
+
+---
+
+## MCP Tooling
+
+The MCP tools are the bridges that let you drive outside applications, a browser, a design reference or a notes vault, from the terminal. This release drew them together. Several separate skills became one hub with more modes and a router that routes, plus one path move you should know about.
+
+#### One Hub for the MCP Bridges
+
+Every application bridge lives under a single `mcp-tooling` parent, so the browser, ClickUp, Notion and design tools are one skill with nine modes that reads which mode you want and routes to it. `mcp-code-mode`, the execution substrate every MCP call runs through, stays a standalone skill outside the hub.
+
+`mcp-tooling` meets the full documentation and routing standard and ships the feature catalogs, install front doors and worked examples the other parents already had. The router underneath does what its name promises, backed by a hard gate that refuses to ship if any packet routes wrong.
+
+
+`mcp-webflow` was removed from the hub, and the fold-in that brought the other three bridges in moved three skills at once: `mcp-chrome-devtools`, `mcp-click-up` and `mcp-figma` together, not only Figma. The Orca bridge took the opposite road later in the cycle: it left the hub as a mode and now ships as the standalone `cli-orca` skill.
+
+&nbsp;
+
+#### Four Transports, a Browser Bridge and Notion
+
+The hub's shelf grew:
+
+- **`mcp-refero`**, a read-only design-reference transport that searches styles, screens and flows
+- **`mcp-mobbin`**, a read-only transport for design research
+- **`mcp-aside-devtools`**, a browser bridge that drives the agentic `aside` browser from its command line, with a server fallback for when the CLI is not enough
+- **`mcp-notion`**, Notion workspace operations through the official server over Code Mode
+- **`mcp-magicpath`**, component and design-system lookup over a `cli` manual, since its provider ships no MCP server
+
+Figma, Refero and Mobbin hand measured values to the md generator. MagicPath hands taste questions to the design hub instead, because its `get_theme` call already returns named values with nothing left to measure. `mcp-chrome-devtools`, the hub's other browser bridge alongside `mcp-aside-devtools`, prefers its own command line too, with the MCP path as fallback.
+
+&nbsp;
+
+#### Your Vault at the Terminal
+
+`mcp-obsidian` walks your notes vault out to the terminal. One mode covers a headless notes CLI, the official app-backed CLI and a community MCP server, with a feature catalog and references for the plugins you are most likely to lean on. The mode's plugin roster was pruned along the way: Excalidraw, Project Manager and Beancount were removed.
+
+The official CLI's contract was corrected too, to `obsidian help`, and the false claim that the CLI launches the app was removed. The work is honest about its rough edges: title search is broken headlessly, so the mode uses content search instead, and the installed REST API exposes a different tool set than the documented server, a gap still awaiting reconciliation.
+
+&nbsp;
+
+#### Figma Moves Into the Hub
+
+The one change here you may need to act on is a path move, not a removal. The `mcp-figma` skill was folded into the `mcp-tooling` parent as a transport mode, and it lives at `.skilled/skills/mcp-tooling/mcp-figma/` instead of the old flat `.opencode/skills/mcp-figma/`. It stays fully registered and routable.
+
+The three former bridges, Figma among them, lost their own `graph-metadata.json` and route only through the hub identity now. If you had scripts or habits pinned to the old flat path, repoint them. Nothing about how Figma work runs has changed.
+
+
+---
+
+## The Design Surface
+
+`sk-design` was a single skill. It is now a parent hub of four modes that projects one design identity and routes you to the mode that owns the decision in front of you. Two of those modes moved in from sk-doc, one returned from a standalone life, and the values mode grew from screens to every laid-out surface. Around the hub, the chart corpus was rebuilt on a real visual register, a library of real-world styles lives on your own machine, and one transport, Open Design, leaves the building.
+
+#### One Hub, Four Modes
+
+The hub carries no procedure of its own. It decides which mode owns the question and hands over.
+
+- **`sk-design-fundamentals`**, the default. It designs, builds and reviews any laid-out surface from fixed value scales: spacing, type, colour, contrast and hierarchy. That used to mean screen UI only. It now covers slide decks, printed pages and document layouts too, and adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen. It routes by alias and carries no command of its own.
+- **`sk-design-md-generator`**, behind `/design:extract`. It measures a live site's real CSS into a v3 Style Reference `DESIGN.md` through an extract, write and validate pipeline, and it validates one you already have. It was a standalone skill and came back as a mode.
+- **`sk-design-chart`**, behind `/design:chart`. Turn the comparison a reader needs into one of 29 catalog forms and ship it as a standalone HTML file.
+- **`sk-design-diagram`**, behind `/design:diagram`. Self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system, plus ASCII and Markdown flowcharts and draw.io or Mermaid redraws.
+
+Chart and diagram used to live under sk-doc as `sk-create-chart` and `sk-create-diagram`. They moved here and were registered in the hub's router. Every form the two canvas modes ship now has a rendered screenshot kept beside its mode, so you can see a chart before you ask for it. The `/interface:*` family that preceded all this is gone.
+
+A manifest version stored as a string had silently disabled three manifest checks, byte drift, target collision and reachability, because a numeric check read it as absent. It is now a number, so the checks run.
+
+
+One honest caveat. The other six hubs resolve through a compiled router contract first. This hub's routing is still the registry and the root router alone, with the compiled closure planned, not shipped.
+
+&nbsp;
+
+#### Charts on a Real Register
+
+The chart corpus was brought to the shadcn visual register, with three named stock colour systems, their palette source and proof sheets checked in beside the forms. The chart check grew from fifteen named check families to forty-two, three of them browser-backed, so a form cannot drift off the register without a gate going red.
+
+The stock register is the evilcharts Style Reference, derived from a real chart library and carried beside the forms it produced. A cursor-derived register held the role briefly mid-cycle and was removed before release, so the packet ships one reference rather than two. A fresh review of every chart packet was closed before release.
+
+Every chart now carries a second palette block behind `prefers-color-scheme`. All three colour systems gained a dark ground with matching text and series values, and a dark-render check guards it, so a form cannot ship a light-only look by accident.
+
+A missing reading used to dive a line to the baseline and print the word null beside it. Now it does not.
+
+Charts also theme from your own site now. Point the chart mode at a local v3 `DESIGN.md` and `apply-design-md.cjs` derives a gated delivery palette from its measured values, both grounds included, without fetching anything or changing the stock files. Extraction stays with the md generator. Applying an extracted reference stays with the chart mode.
+
+Late in the cycle the packet shed everything that was not a form. The seven worked deliveries and the gallery page are gone, so the twenty-nine templates are the corpus and the rendered captures are the review surface. Every chart's data table now starts open, because the old rule left a tooltip as the only way to read a value on twenty of the forms.
+
+This mode ships pre-1.0 and its number says so. Its releases run `v0.1.0.0` to `v0.22.0.0`, which is the honest contract for a corpus still moving. Anything in it may change between releases.
+
+&nbsp;
+
+#### A Style Library You Own
+
+You have a design reference library on your own machine instead of behind someone else's network call. The Refero styles, each carrying four tabs, were pulled into a local token library after a 50-style pilot came back clean. Around it sits a retrieval substrate that picks a style by eligibility first, and behind that a persistent style database built on SQLite with full-text search and vector lookup, so the corpus the modes study is the one you query.
+
+The legacy default stays until you flip it yourself. The md generator also carries a private layer of procedure cards for its extraction work, each step pointing at its own card.
+
+&nbsp;
+
+#### Open Design Transport Removed
+
+The Open Design MCP transport is removed end to end: its mode tree, server entry, hub references, agent and command links and live-render adapters are all gone. If you still point at it, drop the `open_design` server from your `.utcp_config.json` and stop referencing `design-generation-patterns.md`. Figma and the terminal remain your design transports.
+
+
+---
+
+## Documentation as a System
+
+The doc skill grew up. Where one monolithic skill once did everything, a lean parent hub now hands each job to a small, self-contained packet, and two new authoring surfaces joined the family. Most of the change is internal, but a few command names and the repo's naming convention changed, so a couple of things you type are different.
+
+#### Parent Skills, Nested Modes and the Tool That Builds Them
+
+`sk-doc` is the worked example. The parent routes to fourteen `sk-create-*` modes across thirteen packets (`sk-create-skill`, `sk-create-readme`, `sk-create-agent`, `sk-create-diff`, `sk-create-changelog`, `sk-create-repo-rule`, `sk-create-quality-control` and the rest), twelve of them bound to their own `/create:*` command. A nested packet carries no `graph-metadata.json` of its own. It inherits the hub's one advisor identity.
+
+`sk-doc` is also where the shape itself comes from. Its `sk-create-skill` mode scaffolds both kinds, and `/create:skill` stamps out a standalone skill while `/create:skill-parent` stamps out a parent wired to its nested packets.
+
+A few names you type changed. Four `/create` commands were renamed to match their packet (`sk-skill` became `skill`, `folder_readme` became `readme`, and so on), and the quality packet is `sk-create-quality-control` with the old `/doc:quality` command gone. The authoring agent is now `@markdown`, formerly `@create`, and the packet directories themselves were renamed from `create-*` to `sk-create-*`.
+
+&nbsp;
+
+#### Two New Ways to Author
+
+- **`sk-create-repo-rule`** writes, revises and retires the repo-local rule files that `REPO RULES.md` routes to. Reach it through `/create:repo-rule`.
+- **`sk-create-diff`** compares a before-and-after document without git and produces a self-contained, shareable HTML report, so you can review an edit even when the file lives outside version control.
+
+&nbsp;
+
+#### Every Document Carries a Version
+
+Every authored markdown file now carries a four-part `version` in its frontmatter. A script bumps it, and a CI gate refuses a file that ships without one. The rollout covered the whole corpus, so this is not a rule waiting for adoption. If you adopt the framework, your own skills need the field before the gate lets them through.
+
+&nbsp;
+
+#### Kebab-Case Is Now the One Name
+
+The repo settled on kebab-case as its single filesystem naming form and retired the older underscore convention. In-scope folders, files and scripts were renamed, a guard refuses new snake_case names and a reviewable rename-and-reference toolchain keeps the migration honest. This reverses an older sk-doc rule that enforced snake_case recursively. If you had a script or path pinned to an old underscore name, update it.
+
+&nbsp;
+
+#### Benchmarks, One Way
+
+Benchmark authoring guidance has a single home in `sk-create-benchmark`. Run and scoring stay with the executing lanes, so authoring the fixtures and owning the run are two different jobs now with two different owners.
+
+`/create:benchmark --family=...` exists as a command surface, with the conformance family dropped alongside the alignment mode it fed. `run-skill-benchmark.cjs` now exits with code 3 on structural or registry blocks instead of 0, so a blocked benchmark can no longer read as a passing one.
+
+The Human Voice Rules moved into their own `sk-create-with-human-voice` mode with a scanner that enforces them.
+
+---
+
+## Prompt Engineering
+
+Prompt work stopped being spread across two skills. It lives in one standalone skill, and the long run of name changes finally settles. The only things you must do are update one command and one skill reference.
+
+#### One Skill for Prompt Craft
+
+`sk-prompt` is the single home for prompt work: seven frameworks, DEPTH thinking and CLEAR scoring behind `/prompt:improve`, with the `@prompt-improver` agent for the deep path. The old command was a 28KB monolith. It is now a thin router with its auto, confirm and presentation pieces split into their own files.
+
+A two-mode hub with per-model profiles was built during the cycle. The per-model profile capability was removed with no replacement, and only the CLI quality card came back to `sk-prompt/assets/`. The six CLI executors each carry a lean card that delegates to the one prompt-quality contract instead of around 90 lines of duplicated quality cards.
+
+&nbsp;
+
+#### The Names Settle
+
+The earlier `sk-improve-prompt` to `sk-prompt` skill rename and `@improve-prompt` to `@prompt-improver` agent rename are final. The standalone `sk-prompt-small-model` and `sk-prompt-models` skills no longer exist, and neither does the intermediate name `sk-prompt-improve` the engine carried mid-cycle. The command is `/prompt:improve`.
+
+---
+
+## Hooks, Goals and the Runtime
+
+The machinery behind your sessions, the goals, the hooks and the background processes that fire on every turn, learned to travel and to stay out of your way. Goals now follow you across three tools, Pi arrived with a fast input path and the whole hook layer became one browsable, switchable library.
+
+#### Goals in OpenCode, Cursor, Pi and Devin
+
+The packet is the goal. A session binds to a spec packet with `bind`, and from then on the packet's `goal.md` is what the runtime injects, rendered from the file on every turn so an edit is seen on the next one. The per-session store keeps only the pointer, liveness and telemetry.
+
+One shared module draws the line between the file's frontmatter and its durable slice, so no chat send, injection or stored objective carries the bookkeeping. When the slice changes, the agent resends it stripped and keeps reminding you to set it, and it never stops working while it waits. Once you set it, it acknowledges in a line and carries on.
+
+The spec kit's validator restores the two checks that had been lost: a parent goal warns past 3,000 characters and fails past 4,000, and a binding row that names a child goal which was never written fails. Devin regained a goal adapter as injection-only, and the `AGENTS.md` root document carries the always-on posture as one row.
+
+Your session goal means the same thing in the four runtimes that carry it. The goal system that started in OpenCode reaches Cursor and Pi through a shared core and a common active-goal store. Devin goal hooks were prototyped, decommissioned, and then regained as an injection-only adapter once the packet became the goal, so Devin receives the brief but has no management command.
+
+Honesty was part of the port. Live capability probes recorded what each tool can do rather than what it claims, so Cursor is marked injection-only and Pi verifies at turn's end but cannot force a continuation. Goals also stopped living as one global singleton: they are stored per workspace, runtime and session, so two projects cannot see each other's goals.
+
+**Breaking:** a goal saved under the old global scheme no longer injects. It sits in a diagnostic-only state until you migrate or archive it.
+
+One late rule closes the loop between the file and your session. Whenever anything above a goal file's log changes, the working agent resends the parent goal's durable slice in chat, frontmatter excluded, so the objective you pasted never drifts from the file.
+
+&nbsp;
+
+#### Pi's Fast Input Path
+
+Pi's input path runs its advisor in-process rather than shelling out to a chain of separate processes, and it caches only fingerprint-backed labels. A repeat prompt resolves from a five-minute cache in about a millisecond. A brand-new prompt still pays a cold start of around 1.3 seconds, and the cache invalidates when a skill changes.
+
+&nbsp;
+
+#### The Hook Library, One Switch
+
+The whole hook layer became one browsable, switchable library.
+
+- **Assembled from source by symlink.** The `.skilled/hooks/` directory gathers every hook through one relative symlink per hook that points back to its real home. A git hook lives in `sk-git`'s scripts, the advisor hook in the advisor package, and so on. It is one place to read without duplicating a line of code.
+- **One switch, or twenty-two.** A master `SYSTEM_HOOKS_DISABLED` flag turns the entire cross-runtime layer off at once, with a `SYSTEM_<concern>_DISABLED` flag for each of the twenty-two concerns beneath it. The older `MK_` names are still honored as aliases.
+- **See what's on, disable what you want.** The README carries a kill-switch index with every concern, its flag, aliases, default and effect. A gitignored `hook-flags.env`, copied from `hook-flags.env.example`, holds your personal defaults. Live environment values win, and a missing file fails open.
+- **Hermes gets the same guards through one plugin.** `.hermes/plugins/repo-guards` runs the shared hook cores from inside a Hermes session, so the rules reach a seventh runtime without a second implementation.
+
+The Gate-3 spec question also stays quiet on read-only turns, and the hook reference docs moved into their owning trees. Small things, no behavior change.
 
 ---
 
@@ -601,68 +645,6 @@ Also folded in: a command-time advisory surfaces the relevant git rule the momen
 
 ---
 
-## Prompt Engineering
-
-Prompt work stopped being spread across two skills. It lives in one standalone skill, and the long run of name changes finally settles. The only things you must do are update one command and one skill reference.
-
-#### One Skill for Prompt Craft
-
-`sk-prompt` is the single home for prompt work: seven frameworks, DEPTH thinking and CLEAR scoring behind `/prompt:improve`, with the `@prompt-improver` agent for the deep path. The old command was a 28KB monolith. It is now a thin router with its auto, confirm and presentation pieces split into their own files.
-
-A two-mode hub with per-model profiles was built during the cycle. The per-model profile capability was removed with no replacement, and only the CLI quality card came back to `sk-prompt/assets/`. The six CLI executors each carry a lean card that delegates to the one prompt-quality contract instead of around 90 lines of duplicated quality cards.
-
-&nbsp;
-
-#### The Names Settle
-
-The earlier `sk-improve-prompt` to `sk-prompt` skill rename and `@improve-prompt` to `@prompt-improver` agent rename are final. The standalone `sk-prompt-small-model` and `sk-prompt-models` skills no longer exist, and neither does the intermediate name `sk-prompt-improve` the engine carried mid-cycle. The command is `/prompt:improve`.
-
----
-
-## MCP Tooling
-
-The MCP tools are the bridges that let you drive outside applications, a browser, a design reference or a notes vault, from the terminal. This release drew them together. Several separate skills became one hub with more modes and a router that routes, plus one path move you should know about.
-
-#### One Hub for the MCP Bridges
-
-Every application bridge lives under a single `mcp-tooling` parent, so the browser, ClickUp, Notion and design tools are one skill with nine modes that reads which mode you want and routes to it. `mcp-code-mode`, the execution substrate every MCP call runs through, stays a standalone skill outside the hub.
-
-`mcp-tooling` meets the full documentation and routing standard and ships the feature catalogs, install front doors and worked examples the other parents already had. The router underneath does what its name promises, backed by a hard gate that refuses to ship if any packet routes wrong.
-
-`mcp-webflow` was removed from the hub, and the fold-in that brought the other three bridges in moved three skills at once: `mcp-chrome-devtools`, `mcp-click-up` and `mcp-figma` together, not only Figma.
-
-&nbsp;
-
-#### Four Transports, a Browser Bridge and Notion
-
-The hub's shelf grew:
-
-- **`mcp-refero`**, a read-only design-reference transport that searches styles, screens and flows
-- **`mcp-mobbin`**, a read-only transport for design research
-- **`mcp-aside-devtools`**, a browser bridge that drives the agentic `aside` browser from its command line, with a server fallback for when the CLI is not enough
-- **`mcp-notion`**, Notion workspace operations through the official server over Code Mode
-- **`mcp-magicpath`**, component and design-system lookup over a `cli` manual, since its provider ships no MCP server
-
-Figma, Refero and Mobbin hand measured values to the md generator. MagicPath hands taste questions to the design hub instead, because its `get_theme` call already returns named values with nothing left to measure. `mcp-chrome-devtools`, the hub's other browser bridge alongside `mcp-aside-devtools`, prefers its own command line too, with the MCP path as fallback.
-
-&nbsp;
-
-#### Your Vault at the Terminal
-
-`mcp-obsidian` walks your notes vault out to the terminal. One mode covers a headless notes CLI, the official app-backed CLI and a community MCP server, with a feature catalog and references for the plugins you are most likely to lean on. The mode's plugin roster was pruned along the way: Excalidraw, Project Manager and Beancount were removed.
-
-The official CLI's contract was corrected too, to `obsidian help`, and the false claim that the CLI launches the app was removed. The work is honest about its rough edges: title search is broken headlessly, so the mode uses content search instead, and the installed REST API exposes a different tool set than the documented server, a gap still awaiting reconciliation.
-
-&nbsp;
-
-#### Figma Moves Into the Hub
-
-The one change here you may need to act on is a path move, not a removal. The `mcp-figma` skill was folded into the `mcp-tooling` parent as a transport mode, and it lives at `.opencode/skills/mcp-tooling/mcp-figma/` instead of the old flat `.opencode/skills/mcp-figma/`. It stays fully registered and routable.
-
-The three former bridges, Figma among them, lost their own `graph-metadata.json` and route only through the hub identity now. If you had scripts or habits pinned to the old flat path, repoint them. Nothing about how Figma work runs has changed.
-
----
-
 ## Agent Discipline
 
 The operating discipline stopped being something you had to hold in your head and became something the framework states for you. The terminal-proof rule, showing evidence before you claim a result, is written into every governing section instead of living as a separate protocol to maintain. A new writing-quality section gives every runtime one place to find the rules for how an answer should read.
@@ -686,6 +668,7 @@ All four carry the prefix, so the reply-governing set is visible in the director
 
 Two guards came from watching sessions fail: a runtime line that asks the model to plan privately is answered in reasoning and never copied into the reply, and numbered steps mean a numbered list, one per line. The root document kept only what binds when nothing else loads, and went from 496 lines to 284 across six passes. Two of those passes were independent reviews that restored root-only logic the cut had dropped.
 
+
 ---
 
 ## Plain-English Output
@@ -702,7 +685,7 @@ What the projection lane does:
 
 A reply benchmark under `benchmark/reply-harness/` measures the rules rather than the models. It freezes seven cases and a negative control, builds one prompt per case from a recorded commit and from the working tree, and scores each reply with the document scanner and one predicate per case. It blinds the two sides for a judge, and runs a release gate that says what it cannot measure.
 
-Run on GLM-5.3-Flash and Sonnet 5 it showed the first-line contract, the closing contract and the item cap each moving one model and not the other, and the operator chose to accept the flat list on the model that kept printing it. A case set edited mid-run stops the scoring, because the prompt manifest carries a hash of the cases.
+A case set edited mid-run stops the scoring, because the prompt manifest carries a hash of the cases.
 
 Projection is off for everyone until you opt in on your own machine, one of two ways: set the `COMMUNICATION_PROJECTION_ENABLED` environment variable, or drop a git-ignored `enablement.local.json` holding `{ "enabled": true }` at the package root. Every activation path checks `isProjectionEnabled()` first, and the skill is on the advisor's route-exclusion denylist, so the recommender never surfaces it. Nothing rewrites your output until you flip that switch.
 
@@ -712,36 +695,28 @@ Projection is off for everyone until you opt in on your own machine, one of two 
 
 There is no single big migration. The common path still works, your spec paths resolve through a compatibility symlink while you catch up, and the new structural protections are on by default while flag-gated features stay off until you enable them. This release does close out a long chain of renames and removals, and each one is breaking wherever an old reference crosses the boundary. The concrete moves:
 
-- **Renames to adopt.** `@improve-prompt` to `@prompt-improver`. `/prompt` to `/prompt:improve`. `/interface:*` to `/design:extract`, `/design:chart` and `/design:diagram`. `doc-quality` to `create-quality-control`. `@create` to `@markdown`. The `/create` commands `sk-skill` to `skill` and `folder_readme` to `readme`. The Gate 3 letters: Update related and Extend phased packet are one option, C) Related, and Skip is D, so anything keyed to `E) Skip` or to five letters must follow. The repo rule `prose-mechanics.md` to `communication-prose.md`. `communication-handoff-and-questions.md` to `communication-handoff.md`, and `communication-presenting-decisions.md` to `communication-decisions.md`. The `create-*` packet directories to `sk-create-*`. The `ai-council/` packet to `deep-ai-council/`. The hub `cli-external` to `cli-external-orchestration`. `sk-prompt-improve` existed briefly as an intermediate name and is retired. The hook master switch `MK_HOOKS_DISABLED` to `SYSTEM_HOOKS_DISABLED`, with the old name still working.
-- **Repoint what moved.** `specs` went from `.opencode/specs/` to a top-level `specs/`. The spec-kit engine went from `scripts/` and `mcp-server/` to `.opencode/skills/system-spec-kit/runtime/cli/`. `deep-loop-workflows` and `deep-loop-runtime` merged into `system-deep-loop` and the deep router agent was retired. `mcp-figma` moved under `mcp-tooling/`. The `sk-code` files and routing contract moved under its new mode and surface packets, so anything still pointing at the old flat paths must be updated. Several hubs moved their second-stage router from `shared/references/smart-routing.md` to a root `ROUTER.md`. The `sk-code-review` checklists moved from `references/` to `assets/`. The Human Voice Rules standard moved into `sk-create-with-human-voice/references/` and then split into `hvr-rules.md`, the base, and `hvr-publish-supplement.md`, the document-only half. The deep-loop runtime's `storage/` became `database/`. `deep-review`'s flat reference files regrouped into topic subfolders.
-- **Drop removed surfaces.** `memory_search` and `memory_save` are gone with the memory database, the spec-memory MCP server and its daemon. Use `/speckit:search` and the continuity writer. `cli-gemini` and `cli-copilot` are gone, and Copilot-shaped prompts route to Claude Code. Remove the `open_design` server from `.utcp_config.json` and stop referencing `design-generation-patterns.md`. The `pi-subagents` directive, the `deep-alignment` mode and the `sk-prompt-models` skill were all removed before release. `mcp-webflow` and the Ox Alpha routes are gone too. The four `deep_loop_graph_*` MCP tools were removed with no aliases, so a hardcoded caller needs the script path instead. `SPECKIT_DETERMINISTIC_RANKING` was deleted outright, so a set value now does nothing. `/deep:command-benchmark` and the conformance benchmark family went with the alignment mode. The API-key auth paths for Codex and Claude Code are gone, replaced by sign-in. `/rewrite:explain-visually` is gone with the explanation lane. The skill advisor's MCP server and `sk-vision`'s MCP transport are gone, so reach the advisor through `node .opencode/bin/skill-advisor.cjs` and the vision skill through its host plugin, hook or CLI. The skill-benchmark lane of the deep loops is retired. The chart mode dropped its `assets/examples/` deliveries, its `assets/gallery.html` and the cursor Style Reference under `assets/style-reference/cursor/`, so copy a template from `assets/templates/` instead.
+- **Renames to adopt.** `@improve-prompt` to `@prompt-improver`. `/prompt` to `/prompt:improve`. `/interface:*` to `/design:extract`, `/design:chart` and `/design:diagram`. `/doc:quality` to the `sk-create-quality-control` packet (the old command is gone). `@create` to `@markdown`. The `/create` commands `sk-skill` to `skill` and `folder_readme` to `readme`. The Gate 3 letters: Update related and Extend phased packet are one option, C) Related, and Skip is D, so anything keyed to `E) Skip` or to five letters must follow. The repo rule `prose-mechanics.md` to `communication-prose.md`. `communication-handoff-and-questions.md` to `communication-handoff.md`, and `communication-presenting-decisions.md` to `communication-decisions.md`. The `create-*` packet directories to `sk-create-*`. The `ai-council/` packet to `deep-ai-council/`. The hub `cli-external` to `cli-external-orchestration`. `sk-prompt-improve` existed briefly as an intermediate name and is retired. The hook master switch `MK_HOOKS_DISABLED` to `SYSTEM_HOOKS_DISABLED`, with the old name still working.
+
+- **Repoint what moved.** The tracked source root now lives under `.skilled/`. `specs` went from `.opencode/specs/` to a top-level `specs/`. The spec-kit engine went from `scripts/` and `mcp-server/` to `.skilled/skills/system-spec-kit/runtime/cli/`. `deep-loop-workflows` and `deep-loop-runtime` merged into `system-deep-loop` and the deep router agent was retired. `mcp-figma` moved under `mcp-tooling/`. The `sk-code` files and routing contract moved under its new mode and surface packets, so anything still pointing at the old flat paths must be updated. Several hubs moved their second-stage router from `shared/references/smart-routing.md` to a root `ROUTER.md`. The `sk-code-review` checklists moved from `references/` to `assets/`. The Human Voice Rules standard moved into `sk-create-with-human-voice/references/` and then split into `hvr-rules.md`, the base, and `hvr-publish-supplement.md`, the document-only half. The deep-loop runtime's `storage/` became `database/`. `deep-review`'s flat reference files regrouped into topic subfolders.
+
+- **Drop removed surfaces.** `memory_search` and `memory_save` are gone with the memory database, the spec-memory MCP server and its daemon. Use `/speckit:search` and the continuity writer. `cli-gemini` and `cli-copilot` are gone, and Copilot-shaped prompts route to Claude Code. Remove the `open_design` server from `.utcp_config.json` and stop referencing `design-generation-patterns.md`. The `pi-subagents` directive, the `deep-alignment` mode and the `sk-prompt-models` skill were all removed before release. `mcp-webflow` and the Ox Alpha routes are gone too. The four `deep_loop_graph_*` MCP tools were removed with no aliases, so a hardcoded caller needs the script path instead. `SPECKIT_DETERMINISTIC_RANKING` was deleted outright, so a set value now does nothing. `/deep:command-benchmark` and the conformance benchmark family went with the alignment mode. The API-key auth paths for Codex and Claude Code are gone, replaced by sign-in. `/rewrite:explain-visually` is gone with the explanation lane. The skill advisor's MCP server and `sk-vision`'s MCP transport are gone, so reach the advisor through `node .skilled/bin/skill-advisor.cjs` and the vision skill through its host plugin, hook or CLI. The skill-benchmark lane of the deep loops is retired. The chart mode dropped its `assets/examples/` deliveries, its `assets/gallery.html` and the cursor Style Reference under `assets/style-reference/cursor/`, so copy a template from `assets/templates/` instead.
+
 - **Changed defaults.** Pi removed its subagents feature, so a Pi session now dispatches `cli-pi` to hand work out, the one carve-out from the self-invocation rule. Goals saved under the old global scheme no longer inject, so migrate or archive them. Only `main`, `skilled/v*` releases and names in your allowlist push without asking. New branches use the numbered form `worktrees/{NNN}-{slug}` or `branches/{NNN}-{slug}`, and owner-first names are rejected. The executor defaults moved too: `cli-opencode` defaults to `opencode-go/deepseek-v4.1-flash --variant max`, the Pi picker defaults to DeepSeek V4.1 Flash on the LLM Gateway with the Astra and OpenRouter entries dropped, and Devin's `swe` alias resolves to SWE-2. Fan-out lanes run on the shared checkout in preserve mode, and per-lane worktrees are off. The commit-msg hook refuses attribution lines, so a tool that appends them will see its trailers stripped. The skill advisor's CLI front door is fail-closed and untrusted by default, and its reciprocal-rank-fusion spine is a shipping default now rather than a dark flag. `sk-vision` is opt-in.
-- **Reconcile your own skills.** This is a framework you adopt, so your own customized skills need aligning to the new skill format. The framework will not do it for you. The first thing likely to fail an adopter is the four-part frontmatter `version` field, now required on every authored markdown file and checked by a CI gate. `sk-code` ships as a parent skill, a hub over workflow modes and read-only surface packets. Either convert your single `sk-code` into that parent shape, or remove the repo's parent and keep your own single `sk-code`. `sk-git` ships as a single skill. Keep it single or promote it to a parent, whichever fits you. Most other skills are framework-internal and repo-agnostic, so leave them alone rather than over-migrating. A step-by-step guide with the decision rule, the single-to-parent procedure using `/create:skill-parent` and the validation steps lives at `sk-create-skill/references/skill/upgrading-a-skill-to-v4.md`.
+
+- **Reconcile your own skills.** A step-by-step guide with the decision rule, the single-to-parent procedure using `/create:skill-parent` and the validation steps lives at `sk-create-skill/references/skill/upgrading-a-skill-to-v4.md`.
 
 ---
 
-## Internal Seams
+## Appendix: Under the Hood
 
 No user-facing change in this section. It is here so you know what moved underneath.
 
-- **Two-axis skill hubs.** `sk-code` and `sk-doc` each went from a flat monolith to a parent hub routing on workflow modes plus surface or `create-*` packets. What you type is largely unchanged. Where the pieces live and how routing decides is the clean break.
-- **Deep-loop runtime merged.** The workflow hub and the backend runtime it sat over merged into the single `system-deep-loop` skill, with every downstream reference repointed. The five modes behave as before.
 - **Advisor extracted to its own package.** The advisor became a standalone `system-skill-advisor` package with its own launcher and a renamed database, and every consumer was cut over to the new home.
-- **CLI orchestrators consolidated.** Six CLI-orchestrator skills became one hub, and every executor refuses to start unless its own binary is installed.
-- **Review folded in as a mode.** `sk-code-review` was rebuilt as a stack-agnostic baseline with stack-specific guidance layered on top, and wired across runtimes, orchestrators and the advisor so one standard shows up everywhere.
-- **Proof requirement distributed.** The claim-needs-proof protocol folded into the authorities you already follow instead of living as a standalone lifecycle block.
-- **Push gate enforced twice.** The push rule is both an agent rule and a `pre-push` hook that also catches human pushes.
-- **Shared goal core.** Goals moved to a shared core and a common active-goal store, stored per workspace, runtime and session.
-- **Shared frontmatter parser.** system-deep-loop and sk-doc import the spec-kit shared package for frontmatter parsing instead of carrying their own copies.
+
 - **Root routers replace the shared file.** Three hubs replaced `shared/references/smart-routing.md` with a root `ROUTER.md`.
 
-## After This Draft
+- **The evidence ledger, its protocol and its admission checks.** The deep-loop ledger, protocol and admission work landed after this document's draft. The deep-loop runtime's own records are the durable history.
 
-Writing this draft was not the end of the work. 266 commits landed after the last edit here (`1d43dbd38b`, 2026-09-16) and none of them are recorded in the sections above, so the load-bearing ones are listed here.
+One deliberate asymmetry is worth knowing before you read the code and think it is a bug. The deep-loop fan-out still maps two model literals to OpenRouter, so the documented direct roster is narrower than the enforced allowlist on purpose. One literal maps to one provider, so deleting that mapping to tidy it would silently move those two models to a different route.
 
-- **The source root moved to `.skilled/`.** The migration closed as `60f0e91764` (2026-09-17), the compatibility root was settled in `8b2b831184` and `2a57cc635d` (2026-09-18), and `c34e1bd73b` retired the dead aliases (2026-09-19). Every `.opencode/*` path in this document still resolves, as a git-tracked symlink alias into `.skilled/` rather than as a directory of its own, so read any `.opencode/...` reference in these notes as `.skilled/...`.
-- **The deep-loop ledger, protocol and admission work.** The ledger and protocol packets opened (`9e650decee`) and closed (`6e82579080`), with the admission checks reworked across `bbb7d23386` and `9365fbc83d` so state records carry stable identity and route proof.
-- **The Orca bridge, then its own skill.** `a3272f5944` and five follow-ups added `mcp-orca-cli`, which brought `mcp-tooling` to ten modes. The 2026-09-20 close promoted that mode to a standalone class-S skill, `cli-orca` (`4685bdea2a`, with the post-closure review cycle `ec25183f806`), leaving the hub at nine modes and adding one authored reference and one verbatim snapshot for each of the eight official Orca skills. The version-matched routing and the mutation and receipt discipline carried over with it.
-- **The Jev judgment transport.** `cli-jev` became its own hub (`099990cf343`), leaving `cli-external-orchestration` with its seven workflow modes. Its one mode, `cli-usage`, is a read-only transport: it asks the `jev` CLI for a typed verdict, a probability, a choice between options, a score position or a batch of keyed answers, and it writes nothing into your workspace. The hub joined the compiled-routing cohort, and both of its playbooks re-ran live from the new home (`b8c17906f78`): 22 of 22 transport scenarios and 3 of 3 hub-routing scenarios pass.
-- **The mobile code surface retired.** `173ce63f59` retires `sk-code-mobile-cli` (2026-09-19), leaving three surfaces: webflow, opencode and obsidian.
-- **Documentation corrections.** `4dcc8c8f49`, `67fa4f7b8e` and `1bb11a2af2` corrected the documents this release rewrote.
+The `.opencode/` spellings in this document are not uniform. The skills, agents and commands trees still answer at their `.opencode/` paths through tracked symlinks into `.skilled/`, the tracked sources themselves live under `.skilled/`, and `.opencode/bin` and `.opencode/hooks` are gone. Read those two from their `.skilled/` locations.
