@@ -43,7 +43,6 @@ A parent skill owns no workflow logic. It reads what you asked for and dispatche
 - **Repo Rules are routed.** `REPO RULES.md` loads scoped rules for evidence, blast radius, communication and hub routing before a first write.
 - **Design has one hub.** `sk-design` routes fundamentals, measured `DESIGN.md` extraction, charts and diagrams to the mode that owns the job.
 - **Goals and hooks travel with the session.** The goal plugin binds `goal.md` to OpenCode, Cursor, Pi and Devin. One switchable hook library carries shared guards into Hermes through one plugin.
-- **Authentication is sign-in based.** Codex and Claude Code use the accounts you already have. Their API-key paths are gone.
 - **Git stops before costly mistakes.** Pushes, mass deletion and misnamed branches hit explicit tripwires. Parallel-session commits still reach the IDE checkout.
 
 ---
@@ -118,12 +117,6 @@ The spec, plan, tasks and implementation-summary templates were consolidated int
 A Level 1 spec now gets a short research doc instead of the full one, and a Level 1 research doc renders at 175 lines instead of 944. You see smaller, level-appropriate templates. What they produce is identical.
 
 &nbsp;
-
-#### CI Catches Drift at Commit Time
-
-For days, every push mailed the operator a "runs failed" notice because a regenerated prompt mirror was never staged, and the pre-commit hook ran one of the six mirror checks CI runs. Now the hook runs all six and blocks any unstaged change under a generated mirror, so drift surfaces on the commit that caused it.
-
-The Spec-Kit Check workflow fires on every mirror source and every mirror output. The four workflows red since the shared-parser adoption were fixed, and the forty-four open Dependabot alerts on the default branch were brought to zero.
 
 ---
 
@@ -251,18 +244,6 @@ The last piece is the one that keeps this from rotting. A guard asserts a biject
 
 &nbsp;
 
-#### A Closed Roster
-
-Pi narrowed in two ways here: the subagent machinery went, and the door to new models closed.
-
-Pi removed its subagents feature during the cycle, which left the CLI as the only way a Pi session can hand work out. So the rule forbidding a Pi session from dispatching `cli-pi` had to go, and it went in all three places at once: the prose in the skill, the Pi preflight hook that enforced it by name, and the shared deep-loop guard that enforced it structurally. Removing only the prose would have left the hook refusing what the prose allows.
-
-This is the one carve-out from the self-invocation rule that blocks every other executor from calling itself, and it is deliberately narrow. The exemption is keyed to `cli-pi` and read only by the two layers that mean "the caller is inside this CLI". The layers that bound a runaway spawn chain, the fan-out lineage and the dispatch stack, still apply to every kind including this one.
-
-Pi reaches six authenticated providers, and the model roster is closed: an id that is not on it is refused, in the fan-out and on a direct call alike. OpenRouter came off that roster this cycle, on Pi and on OpenCode both, which removed twenty-three live references across seven files. Nothing broke, because it was never a default on either CLI, and both models it served keep a direct route and a fan-out route.
-
-&nbsp;
-
 #### The Cache Extension Learned What Caching Costs
 
 Pi ran two forked cache extensions for most of the cycle, splitting work by a hand-maintained model allowlist written twice, with a fixture and a cross-extension test whose only job was proving the two copies had not drifted. That is gone. `deep-pi` is retired, its capabilities absorbed into the surviving `pi-cache-optimizer` fork, and one extension now covers every model.
@@ -294,12 +275,6 @@ The gap between those two is the part worth carrying away. DeepSeek charges two 
 Same extension, same optimisation, roughly half the value, decided by the rate card. The hit rate in your footer is an input to the saving, not the saving itself.
 
 &nbsp;
-
-#### Surfaces Retired
-
-The Gemini and Copilot bridges were retired in the v3.6 cycle, after the Copilot price hike and the Gemini cleanup made them not worth maintaining, and v4 carried the residual reference cleanup. `cli-gemini` and `cli-copilot` are gone from the skill tree, the advisor's scoring and hub routing.
-
-That is the standalone bridge only. Gemini 3.7 Flash remains reachable through Devin and Cursor, both dispatch-tested, and Copilot-shaped prompts now land on the nearest remaining executor, Claude Code. The Ox Alpha routes were retired too, and Pi's default model was repointed away from them. Only the external binaries in your home directory are left untouched.
 
 ---
 
@@ -334,10 +309,6 @@ The advisor no longer speaks MCP. Its daemon answers the same nine commands over
 When the daemon is unreachable the CLI falls back to a local scorer and marks the answer degraded, and an empty result from a healthy daemon now reads as no match rather than as an outage. Running the playbook across four runtimes found the last stale command name and a scorer pinned to unreviewed truth, and both were fixed.
 
 &nbsp;
-
-#### Codex Starts the Advisor
-
-Codex sessions now launch the advisor under the Node runtime whose ABI matches the installed native SQLite module, so the advisor initializes instead of aborting the whole MCP startup cascade. Code mode keeps its own independent runtime pin. The advisor is not fully standalone even now. It keeps a symlink to the spec kit's embeddings and extends the spec kit's tsconfig.
 
 ---
 
@@ -404,20 +375,6 @@ Figma, Refero and Mobbin hand measured values to the md generator. MagicPath han
 
 &nbsp;
 
-#### Your Vault at the Terminal
-
-`mcp-obsidian` walks your notes vault out to the terminal. One mode covers a headless notes CLI, the official app-backed CLI and a community MCP server, with a feature catalog and references for the plugins you are most likely to lean on. The mode's plugin roster was pruned along the way: Excalidraw, Project Manager and Beancount were removed.
-
-The official CLI's contract was corrected too, to `obsidian help`, and the false claim that the CLI launches the app was removed. The work is honest about its rough edges: title search is broken headlessly, so the mode uses content search instead, and the installed REST API exposes a different tool set than the documented server, a gap still awaiting reconciliation.
-
-&nbsp;
-
-#### Figma Moves Into the Hub
-
-The one change here you may need to act on is a path move, not a removal. The `mcp-figma` skill was folded into the `mcp-tooling` parent as a transport mode, and it lives at `.skilled/skills/mcp-tooling/mcp-figma/` instead of the old flat `.opencode/skills/mcp-figma/`. It stays fully registered and routable.
-
-The three former bridges, Figma among them, lost their own `graph-metadata.json` and route only through the hub identity now. If you had scripts or habits pinned to the old flat path, repoint them. Nothing about how Figma work runs has changed.
-
 ---
 
 ## The Design Surface
@@ -432,10 +389,6 @@ The hub carries no procedure of its own. It decides which mode owns the question
 - **`sk-design-md-generator`**, behind `/design:extract`. It measures a live site's real CSS into a v3 Style Reference `DESIGN.md` through an extract, write and validate pipeline, and it validates one you already have. It was a standalone skill and came back as a mode.
 - **`sk-design-chart`**, behind `/design:chart`. Turn the comparison a reader needs into one of 29 catalog forms and ship it as a standalone HTML file.
 - **`sk-design-diagram`**, behind `/design:diagram`. Self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system, plus ASCII and Markdown flowcharts and draw.io or Mermaid redraws.
-
-Chart and diagram used to live under sk-doc as `sk-create-chart` and `sk-create-diagram`. They moved here and were registered in the hub's router. Every form the two canvas modes ship now has a rendered screenshot kept beside its mode, so you can see a chart before you ask for it. The `/interface:*` family that preceded all this is gone.
-
-A manifest version stored as a string had silently disabled three manifest checks, byte drift, target collision and reachability, because a numeric check read it as absent. It is now a number, so the checks run.
 
 One honest caveat. The other six hubs resolve through a compiled router contract first. This hub's routing is still the registry and the root router alone, with the compiled closure planned, not shipped.
 
@@ -467,10 +420,6 @@ The legacy default stays until you flip it yourself. The md generator also carri
 
 &nbsp;
 
-#### Open Design Transport Removed
-
-The Open Design MCP transport is removed end to end: its mode tree, server entry, hub references, agent and command links and live-render adapters are all gone. If you still point at it, drop the `open_design` server from your `.utcp_config.json` and stop referencing `design-generation-patterns.md`. Figma and the terminal remain your design transports.
-
 ---
 
 ## Documentation as a System
@@ -497,12 +446,6 @@ A few names you type changed. Four `/create` commands were renamed to match thei
 #### Every Document Carries a Version
 
 Every skill definition now carries a four-part `version` in its frontmatter. A script bumps it, and a CI gate refuses a file that ships without one. The rollout covered the whole corpus, so this is not a rule waiting for adoption. If you adopt the framework, your own skills need the field before the gate lets them through.
-
-&nbsp;
-
-#### Kebab-Case Is Now the One Name
-
-The repo settled on kebab-case as its single filesystem naming form and retired the older underscore convention. In-scope folders, files and scripts were renamed, a guard refuses new snake_case names and a reviewable rename-and-reference toolchain keeps the migration honest. This reverses an older sk-doc rule that enforced snake_case recursively. If you had a script or path pinned to an old underscore name, update it.
 
 &nbsp;
 
@@ -677,19 +620,3 @@ There is no single big migration. The common path still works, your spec paths r
 - **Changed defaults.** Pi removed its subagents feature, so a Pi session now dispatches `cli-pi` to hand work out, the one carve-out from the self-invocation rule. Goals saved under the old global scheme no longer inject, so migrate or archive them. Only `main`, `skilled/v*` releases and names in your allowlist push without asking. New branches use the numbered form `worktrees/{NNN}-{slug}` or `branches/{NNN}-{slug}`, and owner-first names are rejected. The executor defaults moved too: `cli-opencode` defaults to `opencode-go/deepseek-v4.1-flash --variant max`, the Pi picker defaults to DeepSeek V4.1 Flash on the LLM Gateway with the Astra and OpenRouter entries dropped, and Devin's `swe` alias resolves to SWE-2. Fan-out lanes run on the shared checkout in preserve mode, and per-lane worktrees are off. The commit-msg hook refuses attribution lines, so a tool that appends them will see its trailers stripped. The skill advisor's CLI front door is fail-closed and untrusted by default, and its reciprocal-rank-fusion spine is a shipping default now rather than a dark flag. `sk-vision` is opt-in.
 
 - **Reconcile your own skills.** A step-by-step guide with the decision rule, the single-to-parent procedure using `/create:skill-parent` and the validation steps lives at `sk-create-skill/references/skill/upgrading-a-skill-to-v4.md`.
-
----
-
-## Appendix: Under the Hood
-
-No user-facing change in this section. It is here so you know what moved underneath.
-
-- **Advisor extracted to its own package.** The advisor became a standalone `system-skill-advisor` package with its own launcher and a renamed database, and every consumer was cut over to the new home.
-
-- **Root routers replace the shared file.** Three hubs replaced `shared/references/smart-routing.md` with a root `ROUTER.md`.
-
-- **The evidence ledger, its protocol and its admission checks.** The deep-loop ledger, protocol and admission work landed after this document's draft. The deep-loop runtime's own records are the durable history.
-
-One deliberate asymmetry is worth knowing before you read the code and think it is a bug. The deep-loop fan-out still maps two model literals to OpenRouter, so the documented direct roster is narrower than the enforced allowlist on purpose. One literal maps to one provider, so deleting that mapping to tidy it would silently move those two models to a different route.
-
-The `.opencode/` spellings in this document are not uniform. The skills, agents and commands trees still answer at their `.opencode/` paths through tracked symlinks into `.skilled/`, the tracked sources themselves live under `.skilled/`, and `.opencode/bin` and `.opencode/hooks` are gone. Read those two from their `.skilled/` locations.
