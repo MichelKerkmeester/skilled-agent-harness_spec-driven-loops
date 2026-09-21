@@ -1,44 +1,35 @@
 ---
-title: "v4.0.0.0, Spec-Kit Refactor, Deep-Loop Upgrade, New Skill-Parent System"
+title: "v4.0.0.0, The Foundation Rebuilt: Spec Kit, Deep Loops and Parent Skills"
 trigger_phrases:
   - "v4.0.0.0 release notes"
   - "v4 changelog"
   - "fewer skills safer paths"
   - "what changed in v4"
 ---
-# v4.0.0.0, Spec-Kit Refactor, Deep-Loop Upgrade, New Skill-Parent System
+# v4.0.0.0, The Foundation Rebuilt: Spec Kit, Deep Loops and Parent Skills
 
-This release is about shape. Skill after skill stopped standing alone and folded into a parent that routes you to the one small piece you need. The deep loops, the CLI executors, the doc authoring, the code skill, the design surface and the MCP bridges all took the same form: a thin parent and a mode per job. Where a monolith once hid the whole job, a router now hands you the slice that fits.
+v4 rebuilds the foundation of the framework. It gives an AI coding agent one path from a file change to a documented, validated result, one runtime for long-running research and review and one way to group related skills without hiding the work each mode does.
 
-The failure paths got the same care. Executors refuse to start unless their own binary is installed. Git stops and asks before a push, a mass delete or a misnamed branch. Terminal proof, showing evidence before you claim a result, is now written into every governing section instead of living as a side protocol.
+Spec Kit now owns the whole change record. Structured packets, continuity, lexical retrieval, workspace gates, derived metadata and completion checks live in one lifecycle. The specs moved to a physical top-level root, the retired memory database gave way to a committed trigger index and ripgrep and the completion gate learned to check scope and acceptance. A file change has a place to land, a record to follow it and a gate that can say whether it is finished.
 
-Most of this does not change how you call the system. The `/deep:*`, `/create:*`, `/design:*` and `/speckit:*` families and most of the agent names behave as before, a few other names changed, and the specs folder moved to a new root. A symlink and a deliberately tolerant gate keep the old paths alive while you catch up. Two things you may have leaned on are gone for good:
+Deep Loop now gives research, review, AI council and improvement one runtime. Each loop carries its state outside the chat, fans out to the executors you choose and records its passes in an append-only ledger with typed events, sealed artifacts and receipts. The runtime checks coverage and convergence before it permits a stop, so a finished-looking transcript is not proof that the work is finished.
 
-- **The memory database is gone.** The engine behind `memory_search` and `memory_save` was retired, and a committed lexical trigger index plus ripgrep took its place behind `/speckit:search`.
-- **The `/interface:*` commands are now `/design:*`.**
+Skills have a second shape now. A standalone skill still owns one job. A parent skill owns the route, reads the request and dispatches through `mode-registry.json` to a nested workflow or read-only surface. That gives code, documentation, design, MCP tooling and external CLI orchestration one identity each without flattening the behavior that belongs to their modes.
 
+The rest of this release is the work that makes those three changes hold: new roots and compatibility paths, retrieval without the old database, stricter gates, safer dispatch, new executors and the runtime details that make a long session recoverable. The sections below explain the new shape and the breaking paths, defaults and implementation details that come with it.
 
 ## Why This Release
 
-Most of the framework's skills stopped standing alone, and where there used to be a scatter of separate skills, one per workflow, one per stack, one per tool, there is now a small set of parent hubs. Each hub is a thin router that reads what you asked for and hands the request to a mode, and every mode keeps its own behavior underneath.
+Most of the framework's skills now present one identity instead of a scatter of separate skills. Seven families made the move: code, documentation, design, the deep loops, MCP tooling, external CLI orchestration and judgment transport. Prompt craft tried the parent shape during the cycle and returned to a standalone skill before release. `sk-vision`, `sk-communication`, `sk-git`, `mcp-code-mode`, the Spec Kit and the advisor stayed standalone.
 
-Six families made the move: code, documentation, design, the deep loops, the MCP bridges and the external CLIs. Prompt craft tried the hub shape too, ran as a two-mode hub for part of the cycle, and went back to a single standalone skill before release. `sk-vision`, `sk-communication`, `sk-git`, `mcp-code-mode`, the spec kit and the advisor round out the standalone skills that stayed that way the whole cycle.
+A parent skill owns no workflow logic. It reads what you asked for and dispatches through a `mode-registry.json` to one of its nested modes, keyed by a `workflowMode`. A mode either does the work or supplies read-only evidence. The gain is practical:
 
-Two shapes of skill exist now. A standalone skill is one identity with one job. A parent skill holds no logic of its own: it reads what you asked for and dispatches, through a `mode-registry.json`, to one of its nested modes, keyed by a `workflowMode`.
+- **One place to maintain.** One hub instead of near-duplicate homes.
+- **No slash-command bloat.** A mode does not need its own command.
+- **Cleaner routing.** Each domain presents one identity to the advisor.
+- **Easier to iterate.** Change one mode without disturbing its neighbors.
 
-A mode is one of two kinds:
-
-- a workflow packet that does work
-- a read-only surface packet that only supplies evidence
-
-The reasons for the hubs that stuck are practical:
-
-- **One place to maintain** instead of a dozen near-duplicate homes.
-- **No slash-command bloat.** A mode does not need its own command to exist.
-- **Cleaner routing for the AIs** that pick skills. Each domain presents one identity to match against instead of five look-alikes.
-- **Easier to iterate.** You change one mode without disturbing its neighbors.
-
-None of this was hand-assembled. sk-doc's `create-skill-parent` tooling stamps out each hub's router, modes, README and drift check the same verifiable way, so the six merges followed one recipe. The sections below are organized around those hubs. Each tells you what its family gained without re-explaining the shape.
+`sk-doc`'s `create-skill-parent` tooling stamps out each hub's router, modes, README and drift check the same verifiable way. The sections below explain what each family gained.
 
 ---
 
