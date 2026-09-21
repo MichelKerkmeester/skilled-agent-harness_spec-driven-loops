@@ -48,7 +48,7 @@ None of this was hand-assembled. sk-doc's `create-skill-parent` tooling stamps o
 - **Gate 3 asks four options.** Existing, New, Related and Skip.
 - **Deep loops, one home.** Research, review, ai-council, agent-improvement and the benchmark run as one skill, on any executor you name, several in parallel, with every run replayable from a typed evidence ledger.
 - **Fan-outs never rewind your files.** A lane that writes outside its own directory leaves your tree exactly as it was and drops a copy of what it wrote into a quarantine you can read.
-- **The source root settled.** Tracked skills, agents and commands now live under `.skilled/`, and their old `.opencode/` paths still answer through tracked symlinks.
+- **Two hubs graduated.** `cli-jev` answers judgment questions through the `jev` CLI, and `cli-orca` bridges Orca's eight official skills. Both are standalone skills now.
 - **Sign in, not API keys.** Codex and Claude Code dispatch through the account you are already signed in to. `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` are no longer read.
 - **One code skill, two axes.** Code guidance is scoped to what you are doing and to the stack you are doing it on, with review as a first-class mode and Rust as a first-class language.
 - **Every bridge, one hub.** The browser, ClickUp, Notion, design references, MagicPath and your Obsidian vault all hang off a single `mcp-tooling` skill with nine modes.
@@ -173,7 +173,7 @@ An alignment mode was built during the cycle and removed before release, and the
 
 The deep loops stopped being tied to a single model. Any loop can run on whichever executor you name, and a fan-out can run several at once.
 
-- **Every CLI is a first-class executor.** A loop dispatches native or to any of the seven external CLIs: `cli-opencode`, `cli-codex`, `cli-devin`, `cli-cursor`, `cli-pi`, `cli-claude-code` and `cli-hermes`. Codex carries GPT-5.5 and the three GPT-5.6 models, each with its own effort ceiling. Devin carries six families, Gemini 3.7 Flash and GPT-5.6 Luna Max among them. Cursor carries 21 ids across six families. Pi runs a closed six-provider roster with DeepSeek V4.1 Flash as its default. Mix them freely.
+- **Every CLI is a first-class executor.** A loop dispatches native or to any of the seven external CLIs: `cli-opencode`, `cli-codex`, `cli-devin`, `cli-cursor`, `cli-pi`, `cli-claude-code` and `cli-hermes`. Codex carries GPT-5.5 and the three GPT-5.6 models, each with its own effort ceiling. Devin carries six families, Gemini 3.7 Flash and GPT-5.6 Luna Max among them. Cursor carries 21 ids across six families. Pi runs a closed six-provider roster with DeepSeek V4 Flash as its default. Mix them freely.
 - **Fan-out runs them in parallel.** Point one loop at several executors and it spawns a lineage per executor in a capped concurrency pool. A research or review pass gathers independent model perspectives at once instead of one after another.
 - **Hardened dispatch.** Each lineage's writes are contained, every iteration records which agent ran on which route, and the CLI adapters were stress-tested and repaired to parity. A fan-out is reproducible, and the executor you name is the one that runs.
 - **Allowlists where it counts.** Codex, Cursor, Devin and Pi each enforce a model allowlist, so an off-roster id fails at dispatch instead of quietly landing on a default. `cli-opencode` takes a free-form `provider/model` id instead and relies on discipline rather than a gate.
@@ -215,8 +215,6 @@ The way the framework talks to other AI coding tools settled into one honest sha
 
 The seven CLI-orchestrator skills live under one `cli-external-orchestration` hub, renamed from `cli-external` during the cycle. The hub holds no logic of its own and routes to a mode per executor. The change is invisible where it counts, because the concrete executor names like `cli-opencode` keep working. Two of them stop being independently routable top-level identities, so anything that pointed at `cli-opencode` or `cli-claude-code` as standalone skills now resolves through the hub.
 
-Judgment questions have their own hub now: `cli-jev` answers them through the `jev` CLI.
-
 &nbsp;
 
 #### Executors That Only Run When Installed
@@ -243,9 +241,10 @@ Of the runtimes the framework can hand work to, Pi went the deepest. `cli-pi` is
 - its own model registry and routing, plus a fan-out executor
 - two vendored extensions, a cache optimizer and a fast-mode toggle, described below
 
-Where the other executors receive a dispatched prompt and run it, Pi loads the repo's skills, commands, agents, MCP servers and hooks and runs them itself. It is the most complete runtime integration of the seven.
+Where the other executors receive a dispatched prompt and run it, Pi loads the repo's skills, commands, agents, MCP servers and hooks and runs them itself. It is the most complete runtime integration of the six.
 
 &nbsp;
+
 
 #### Hermes Runs It Too
 
@@ -275,9 +274,8 @@ The last piece is the one that keeps this from rotting. A guard asserts a biject
 
 &nbsp;
 
-#### A Closed Roster
 
-Pi narrowed in two ways here: the subagent machinery went, and the door to new models closed.
+#### A Closed Roster
 
 Pi removed its subagents feature during the cycle, which left the CLI as the only way a Pi session can hand work out. So the rule forbidding a Pi session from dispatching `cli-pi` had to go, and it went in all three places at once: the prose in the skill, the Pi preflight hook that enforced it by name, and the shared deep-loop guard that enforced it structurally. Removing only the prose would have left the hook refusing what the prose allows.
 
@@ -410,6 +408,7 @@ Every application bridge lives under a single `mcp-tooling` parent, so the brows
 
 `mcp-tooling` meets the full documentation and routing standard and ships the feature catalogs, install front doors and worked examples the other parents already had. The router underneath does what its name promises, backed by a hard gate that refuses to ship if any packet routes wrong.
 
+
 `mcp-webflow` was removed from the hub, and the fold-in that brought the other three bridges in moved three skills at once: `mcp-chrome-devtools`, `mcp-click-up` and `mcp-figma` together, not only Figma. The Orca bridge took the opposite road later in the cycle: it left the hub as a mode and now ships as the standalone `cli-orca` skill.
 
 &nbsp;
@@ -442,6 +441,7 @@ The one change here you may need to act on is a path move, not a removal. The `m
 
 The three former bridges, Figma among them, lost their own `graph-metadata.json` and route only through the hub identity now. If you had scripts or habits pinned to the old flat path, repoint them. Nothing about how Figma work runs has changed.
 
+
 ---
 
 ## The Design Surface
@@ -460,6 +460,7 @@ The hub carries no procedure of its own. It decides which mode owns the question
 Chart and diagram used to live under sk-doc as `sk-create-chart` and `sk-create-diagram`. They moved here and were registered in the hub's router. Every form the two canvas modes ship now has a rendered screenshot kept beside its mode, so you can see a chart before you ask for it. The `/interface:*` family that preceded all this is gone.
 
 A manifest version stored as a string had silently disabled three manifest checks, byte drift, target collision and reachability, because a numeric check read it as absent. It is now a number, so the checks run.
+
 
 One honest caveat. The other six hubs resolve through a compiled router contract first. This hub's routing is still the registry and the root router alone, with the compiled closure planned, not shipped.
 
@@ -495,6 +496,7 @@ The legacy default stays until you flip it yourself. The md generator also carri
 
 The Open Design MCP transport is removed end to end: its mode tree, server entry, hub references, agent and command links and live-render adapters are all gone. If you still point at it, drop the `open_design` server from your `.utcp_config.json` and stop referencing `design-generation-patterns.md`. Figma and the terminal remain your design transports.
 
+
 ---
 
 ## Documentation as a System
@@ -520,7 +522,7 @@ A few names you type changed. Four `/create` commands were renamed to match thei
 
 #### Every Document Carries a Version
 
-Every skill definition now carries a four-part `version` in its frontmatter. A script bumps it, and a CI gate refuses a file that ships without one. The rollout covered the whole corpus, so this is not a rule waiting for adoption. If you adopt the framework, your own skills need the field before the gate lets them through.
+Every authored markdown file now carries a four-part `version` in its frontmatter. A script bumps it, and a CI gate refuses a file that ships without one. The rollout covered the whole corpus, so this is not a rule waiting for adoption. If you adopt the framework, your own skills need the field before the gate lets them through.
 
 &nbsp;
 
@@ -560,7 +562,7 @@ The earlier `sk-improve-prompt` to `sk-prompt` skill rename and `@improve-prompt
 
 ## Hooks, Goals and the Runtime
 
-The machinery behind your sessions, the goals, the hooks and the background processes that fire on every turn, learned to travel and to stay out of your way. Goals now follow you across four tools, Pi arrived with a fast input path and the whole hook layer became one browsable, switchable library.
+The machinery behind your sessions, the goals, the hooks and the background processes that fire on every turn, learned to travel and to stay out of your way. Goals now follow you across three tools, Pi arrived with a fast input path and the whole hook layer became one browsable, switchable library.
 
 #### Goals in OpenCode, Cursor, Pi and Devin
 
@@ -665,6 +667,7 @@ How a reply reads is no longer a section of the root document. Thirteen rule fil
 All four carry the prefix, so the reply-governing set is visible in the directory listing. Every rule ends in a self-check, and a corpus checker in CI holds the router rows, the trigger phrases, the links and a 250-line ceiling.
 
 Two guards came from watching sessions fail: a runtime line that asks the model to plan privately is answered in reasoning and never copied into the reply, and numbered steps mean a numbered list, one per line. The root document kept only what binds when nothing else loads, and went from 496 lines to 284 across six passes. Two of those passes were independent reviews that restored root-only logic the cut had dropped.
+
 
 ---
 
