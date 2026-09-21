@@ -32,7 +32,9 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "cli-jev hub"
+      "cli-jev hub",
+      "cli-jev playbook remediation",
+      "hub-routing operator contract"
     ],
     "key_topics": [
       "cli-jev",
@@ -53,6 +55,7 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      "implementation-summary.md",
       "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
       "specs/cli-jev/002-cli-jev-hub-migration/goal.md",
       ".skilled/bin/compiled-routing-foundation.vitest.ts",
@@ -69,8 +72,7 @@
       ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
       ".skilled/bin/compiled-route-guard.cjs",
       ".skilled/bin/compiled-route-sync.cjs",
-      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
-      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json"
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json"
     ],
     "entities": [
       {
@@ -83,6 +85,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "specs/cli-jev/002-cli-jev-hub-migration/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -176,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "serving-closure.manifest.json",
-        "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -220,17 +222,19 @@
     ],
     "causal_summary": "The jev transport packet sat inside `.skilled/skills/cli-external-orchestration/cli-jev/`, a hub whose",
     "created_at": "2026-09-20T11:00:11Z",
-    "last_save_at": "2026-09-20T14:57:56.563Z",
+    "last_save_at": "2026-09-21T13:57:36.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85027a3f4acaa7d91ce8b799cbc23dae3c6f432d99c870ea1cb703f0fca61a4f",
+    "source_fingerprint": "sha256:65927df33b639917e97e328325d35e740472d06ddbeab1f6371f6d9701974ac3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80f507a57cf4a596a4f79939449cc24425a1230f0469e3242e267a89fabce2d5"
+      "spec.md": "80f507a57cf4a596a4f79939449cc24425a1230f0469e3242e267a89fabce2d5",
+      "implementation-summary.md": "52a3898779e3d9dd3695b2835dc8cff242f58cbcefb96b325ebc591cac0458dc"
     },
     "last_active_at": null
   }

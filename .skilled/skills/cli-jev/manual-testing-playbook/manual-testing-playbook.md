@@ -54,9 +54,9 @@ Commands are shown from the repository root. Replace angle-bracket placeholders 
 
 ## 6. SCENARIOS
 
-- **CJ-001** — `hub-routing/judgment-request-routes-to-transport.md` — `jev noul` / `jev choice` phrasing resolves `workflowMode: cli-usage`.
-- **CJ-002** — `hub-routing/alias-still-resolves.md` — a request naming `cli-jev` resolves the same transport.
-- **CJ-003** — `hub-routing/out-of-domain-resolves-nothing.md` — a request with no Jev signal resolves no mode.
+- **[CJ-001](hub-routing/judgment-request-routes-to-transport.md)** — `jev noul` / `jev choice` phrasing resolves `workflowMode: cli-usage`.
+- **[CJ-002](hub-routing/alias-still-resolves.md)** — a request naming `cli-jev` resolves the same transport.
+- **[CJ-003](hub-routing/out-of-domain-resolves-nothing.md)** — a request with no Jev signal resolves no mode.
 
 ---
 
