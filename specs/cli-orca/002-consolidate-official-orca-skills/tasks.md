@@ -178,6 +178,8 @@ contextType: "implementation"
 
 - [x] T055 Section 2 becomes Overview, h3s stripped to names with their taglines as lead sentences (`README.md`) [15m] — ## 2 retitled to 🎁 Overview (title case, as asked, which also restores the required section name); the old Overview h3 becomes THE FOUNDATION (all caps, no emoji); six h3s shortened to bare names — Spec Kit, Spec Memory & Search, Deep Loop, Skill Advisor, Agent Library, Plugin & Extension Library — each colon-tagline demoted to a capitalized, period-terminated lead sentence under its h3, blank-separated from the existing first paragraph (all seven blocks opened with paragraphs, so the pattern is uniform); no anchor links any of these headings; HVR 0 hard blockers (ceiling 89); readme validator 1 issue (the required-overview name returns via the ## 2; the old separator finding exchanges for h2_not_uppercase, which reads the title-case Overview against the file's ALL-CAPS h2 convention); packet PASSED
 
+- [x] T056 Section 2 reordered: THE FOUNDATION leads, the Spec Kit echo trimmed (`README.md`) [15m] — the THE FOUNDATION block (three numbered blocks plus the From-request-to-documented-result diagram, moved whole with its fence pair) now opens the section directly under the ## 2, ahead of the five capability h3s; the Spec Kit paragraph's duplicated first sentence dropped, so the block reads lead, lab-notebook line, bullets; the ###-order is now THE FOUNDATION, Spec Kit, Spec Memory & Search, Deep Loop, Skill Advisor, Agent Library, Plugin & Extension Library; the --- before ## 3 untouched; HVR 0 hard blockers (ceiling 89); readme validator 1 issue(s), unchanged; packet PASSED
+
 ## Verification Checklist
 
 | Check | Command shape | Expected result | Status |
