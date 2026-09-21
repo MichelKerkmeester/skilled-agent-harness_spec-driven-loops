@@ -1,5 +1,5 @@
 {
-  "count": 1266,
+  "count": 1304,
   "mode": "readme",
   "results": [
     {
@@ -4028,6 +4028,97 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-external-orchestration/cli-pi/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-jev/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-jev/benchmark/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-jev/cli-usage/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-jev/cli-usage/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-jev/cli-usage/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-jev/shared/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-orca/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -10537,23 +10628,6 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
       "file": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/containment/baseline/.opencode/skills/sk-communication/benchmark/README.md",
@@ -12631,6 +12705,539 @@
         }
       ],
       "document_type": "readme",
+      "file": "specs/cli-external-orchestration/z_archive/042-improved-communication/context/claudish-to-english-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/.github/actions/cloud-sql-rollout-lease/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/cloud/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/cloud/apps/relay-ops/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "unknown",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/cloud/apps/relay/src/test-fixtures/relay-contract-baseline/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/cloud/infra/terraform/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/config/scripts/session-search-file-id-e2e/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/closed-editor-model-lifetime/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/plugin-uninstall-log-retirement/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/site/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/packages/expo-two-way-audio/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/src/test-support/rpc-recording/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/main/__fixtures__/shell-wrapper-snapshots/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/main/providers/__tests__/shell-ready-framework/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/daemon-relocation-spike/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/freeze-repro/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-child-history-rendered/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-picker-search-rendered/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-remote-sidebar-rendered/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-source-control-ui/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-transcript-rendered/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/relay-bench/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/repro-watcher-crash-7547/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/win-crash-survival-e2e/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/win-update-e2e/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/windows-pty-native-capability-smoke/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/.skilled/skills/cli-external-orchestration/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add `---` immediately above the numbered H2 section.",
+          "line": "## 2. \ud83c\udf81 WHAT YOU GET",
+          "line_number": 37,
+          "message": "Numbered ALL-CAPS H2 sections must be separated by `---`.",
+          "rule_id": "general_h2_separator",
+          "severity": "blocking",
+          "type": "general_h2_separator"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
       "file": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/README.md",
       "return_code": 1,
       "total_issues": 1,
@@ -13742,7 +14349,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme/output/README.md",
+      "file": "specs/sk-doc/z_archive/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme/output/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -13759,7 +14366,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/sk-doc/016-create-diff-mode/scratch/README.md",
+      "file": "specs/sk-doc/z_archive/016-create-diff-mode/scratch/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -13776,7 +14383,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/scratch/README.md",
+      "file": "specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/scratch/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -13793,7 +14400,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/sk-doc/019-skill-routing-refactor/research/post-019-angles/README.md",
+      "file": "specs/sk-doc/z_archive/019-skill-routing-refactor/research/post-019-angles/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -13810,7 +14417,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/sk-doc/028-sk-create-diagram/context/README.md",
+      "file": "specs/sk-doc/z_archive/028-sk-create-diagram/context/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -13838,26 +14445,6 @@
       "return_code": 1,
       "total_issues": 2,
       "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
-      "file": "specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs-clean/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
-      "file": "specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
       "warnings": []
     },
     {
@@ -14356,6 +14943,26 @@
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "unknown",
+      "file": "specs/system-deep-loop/z_archive/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs-clean/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "unknown",
+      "file": "specs/system-deep-loop/z_archive/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {

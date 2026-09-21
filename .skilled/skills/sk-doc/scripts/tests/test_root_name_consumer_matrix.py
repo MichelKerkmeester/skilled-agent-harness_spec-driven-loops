@@ -12,7 +12,8 @@ SK_DOC = TEST_DIR.parents[1]
 REPO = TEST_DIR.parents[4]
 SHARED = SK_DOC / 'shared' / 'scripts'
 CREATE_SKILL = SK_DOC / 'sk-create-skill' / 'scripts'
-MANIFEST = REPO / '.opencode' / 'specs' / 'sk-doc' / '020-hyphen-naming-convention' / '002-root-name-consumer-migration' / 'manifest' / 'consumer-manifest.md'
+# the fixture packet was archived under z_archive; the dropped .opencode/specs compat link stays retired
+MANIFEST = REPO / 'specs' / 'sk-doc' / 'z_archive' / '020-hyphen-naming-convention' / '002-root-name-consumer-migration' / 'manifest' / 'consumer-manifest.md'
 JS_MATRIX = TEST_DIR / 'test-root-name-consumer-matrix.cjs'
 
 sys.path.insert(0, str(SHARED))

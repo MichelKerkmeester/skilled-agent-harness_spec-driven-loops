@@ -100,4 +100,15 @@ Explain what the user gains, not what files you touched.]
 
 ---
 
+<!-- ANCHOR:addendum -->
+## 2026-09-21 Addendum: the 09-20 fixture archive, remediated in place
+
+**What.** The readme-verdict parity baseline was rebuilt with the test's own `--write` remedy, 1304 tracked READMEs, up from 1266. The root-name consumer-matrix constant now reads its fixture through the archived packet at `specs/sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration/manifest/consumer-manifest.md`, and the deliberately dropped `.opencode/specs` compat link stays retired.
+
+**Why.** The 09-20 capture moved the sk-doc fixture packets under `z_archive` and a follow-up commit dropped the `.opencode/specs` compat link, so both tests have failed on every CI push since. Parity diffed six archived-README verdicts whose validator runs now return code 2, and the matrix raised FileNotFoundError.
+
+**Measured verify.** `SKIP_TESTS=test_rename_tooling_fixture_harness.py bash .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh` (the CI's documented skip) exits 0 with "all sk-doc script tests passed". The parity test alone measures baseline 1304, post 1304, diff 0. The retargeted matrix passes 13/13 and PY_JS_MATRIX 23.
+
+<!-- /ANCHOR:addendum -->
+
 
