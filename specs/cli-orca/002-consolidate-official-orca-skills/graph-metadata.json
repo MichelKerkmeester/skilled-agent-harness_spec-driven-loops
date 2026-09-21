@@ -213,7 +213,7 @@
     ],
     "causal_summary": "Move the Orca CLI subject out of the mcp-tooling parent hub into a standalone class-S skill named cli-orca, with all eight official Orca skills embedded.",
     "created_at": "2026-09-20T09:00:00Z",
-    "last_save_at": "2026-09-21T08:29:53.901Z",
+    "last_save_at": "2026-09-21T13:28:53.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,12 +226,12 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:464040817452190e1d01652d09ee24a4e1aa532d9aa92c80eaa98e4612cfbb85",
+    "source_fingerprint": "sha256:61b9254243fadcfbdd55989f5290cb7e1302bcc9118e258b07c5c0f42ff3b91b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1edbc57ba7a7da8ba113ec183a2fb5a3996bc2cc1ec51692a8daa604a6f77f9b",
       "plan.md": "7df5ffac13388a5eb5d53604cb71b3343d490a8a137688fd14fa326d908fac5c",
-      "tasks.md": "66dc0a171f2eb741863cf05f51fb31917661974dc66cff665d8db910e0fb573c",
+      "tasks.md": "c74548d279d53fbbd3ed8edbb7189eb76d4e8becbb9f0835d926227380c532b4",
       "decision-record.md": "c5fa572bb6fd9d42d6e8ddb197dcae0135b8e09fdcd1665d837f5372d2809570",
       "implementation-summary.md": "e8ab386b17a765c538fb14d4cde844758491281e9620a26eba86a85fe32cb44c",
       "research/research.md": "0c7829540907ece87ea4596745a4a1a8275da79d87386b483172a026d0ab1452",
