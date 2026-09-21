@@ -152,6 +152,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 43 | 043-v4-root-readme/ | Root README writing, readability, structural consistency, and bloat removal | complete |
 | 44 | 044-v4-changelog-late-cycle-entries/ | The After This Draft section records the cli-jev hub promotion and the cli-orca standalone extraction, with the corrected commit total and mode count | complete |
 | 45 | 045-v4-changelog-voice-rewrite/ | The changelog rewritten into the root README's voice: the body's long paragraphs split into labelled bullets and short paragraphs, four counts corrected against the tree, and the jev and orca arrivals surfaced in the glance list | complete |
+| 46 | 046-v4-changelog-remediation/ | The changelog remediated per the accepted 045 research report: the path and count corrections, the glance compressed to 15 bullets, the sections reordered, Internal Seams collapsed into Appendix: Under the Hood, After This Draft dropped to its 033 owners | complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -170,6 +171,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 041-skilled-source-root-migration | 042-v4-doc-freshness | 042 depends on no output of 041 and opens the documentation track | `validate.sh 042-v4-doc-freshness --strict` passes and the parent registers the child |
 | 042-v4-doc-freshness | 043-v4-root-readme | Root README audited and phase 43 packet initialized | validate.sh 043-v4-root-readme --strict |
 | 044-v4-changelog-late-cycle-entries | 045-v4-changelog-voice-rewrite | The section's facts hold after the measurement pass, so the voice rewrite can start | `validate.sh 045-v4-changelog-voice-rewrite --strict` passes and the parent registers the child |
+| 045-v4-changelog-voice-rewrite | 046-v4-changelog-remediation | The 045 research report is accepted and the changelog is pinned at its accepted sha, so the remediation starts from the report, not a moved target | The 046 sentinel reproduces the pinned `33abcc9a…` hash; `validate.sh 046-v4-changelog-remediation --strict` passes |
 <!-- /ANCHOR:phase-map -->
 
 ---

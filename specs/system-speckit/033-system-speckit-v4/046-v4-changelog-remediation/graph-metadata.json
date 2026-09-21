@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/046-v4-changelog-remediation",
+  "spec_folder": "system-speckit/033-system-speckit-v4/046-v4-changelog-remediation",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 changelog remediation",
+      "changelog structural edits",
+      "045 research implementation",
+      "changelog count dispositions",
+      "changelog corrections",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "changelog",
+      "remediation",
+      "structural",
+      "edits",
+      "research",
+      "implementation",
+      "count",
+      "dispositions",
+      "corrections",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/apply-structure.py",
+      "scratch/changelog-before.md",
+      ".pi/settings.json",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "apply-structure.py",
+        "kind": "file",
+        "path": "scratch/apply-structure.py",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-before.md",
+        "kind": "doc",
+        "path": "scratch/changelog-before.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_scan.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implements",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Pinned",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Shape",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Release",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 045 research report established that what still costs the reader is structure and facts, not sentence shape: six `.opencode/` path mentions are dead at HEAD, the document contradicts itself on the CLI-orchestrator count (Six at L730 vs Seven at L274/L310/L314), counts have drifted (278 commits exist where it says 266; the symlink count measures 101 where it says 102; \"178 recommendations\" is non-re-derivable), the glance list duplicates the README at five times its volume, and the section order ignores the priorities the root README itself declares",
+    "created_at": "2026-09-21T12:33:03Z",
+    "last_save_at": "2026-09-21T13:41:06.486Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:080a4ecae72bf769a69b8c909d6074ea3047268a374e465434c78a9d78956227",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0325e5c41ff67ae0fa1be55378719d1e6fa10395e79838094f71c23087b20ffa",
+      "plan.md": "86e7b546c5913df7627ab065580ada1c4f1b335400c9bca9692486ec43f67ed4",
+      "tasks.md": "a2d6810118c779ab4aa4964f06ecb9e2243ee226729f12a6837d4a733b983a6c",
+      "implementation-summary.md": "e44d9aefefcb1c3e04370ee44e3c14bd1078bd160cfee567cab7693ab9d58ccf"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,171 @@
+== backticks: 65 removed, 14 added
+   - (1x) .hermes/
+   - (1x) .opencode/*
+   - (1x) .opencode/...
+   - (1x) .opencode/hooks/
+   - (1x) .opencode/skills/mcp-tooling/mcp-figma/
+   - (2x) .opencode/skills/system-spec-kit/runtime/cli/
+   - (1x) .skilled/...
+   - (1x) /deep:*
+   - (1x) /design:*
+   - (1x) /speckit:search
+   - (1x) 099990cf343
+   - (1x) 173ce63f59
+   - (1x) 1bb11a2af2
+   - (1x) 1d43dbd38b
+   - (1x) 2a57cc635d
+   - (1x) 4685bdea2a
+   - (1x) 4dcc8c8f49
+   - (1x) 60f0e91764
+   - (1x) 67fa4f7b8e
+   - (1x) 6e82579080
+   - (1x) 8b2b831184
+   - (1x) 9365fbc83d
+   - (1x) 9e650decee
+   - (1x) REPO RULES.md
+   - (1x) ROUTER.md
+   - (1x) a3272f5944
+   - (1x) b8c17906f78
+   - (1x) bbb7d23386
+   - (1x) c34e1bd73b
+   - (2x) cli-external-orchestration
+   - (1x) cli-hermes
+   - (1x) cli-jev
+   - (1x) cli-pi
+   - (2x) cli-usage
+   - (1x) create-*
+   - (1x) create-quality-control
+   - (1x) doc-quality
+   - (1x) ec25183f806
+   - (1x) hub-router.json
+   - (1x) jev
+   - (1x) mcp-orca-cli
+   - (2x) mcp-tooling
+   - (1x) memory_save
+   - (1x) memory_search
+   - (1x) mode-registry.json
+   - (1x) node .opencode/bin/skill-advisor.cjs
+   - (1x) node .opencode/bin/skill-advisor.cjs <command>
+   - (1x) pre-push
+   - (1x) repo-rules/
+   - (1x) runtime/cli/
+   - (4x) sk-code
+   - (1x) sk-code-mobile-cli
+   - (1x) sk-code-review
+   - (1x) sk-doc
+   - (1x) sk-git
+   - (2x) system-deep-loop
+   - (1x) version
+   + (2x) .opencode/
+   + (1x) .opencode/bin
+   + (1x) .opencode/hooks
+   + (2x) .skilled/
+   + (1x) .skilled/hooks/
+   + (1x) .skilled/skills/mcp-tooling/mcp-figma/
+   + (2x) .skilled/skills/system-spec-kit/runtime/cli/
+   + (1x) /doc:quality
+   + (1x) node .skilled/bin/skill-advisor.cjs
+   + (1x) node .skilled/bin/skill-advisor.cjs <command>
+   + (1x) sk-create-quality-control
+== headings: 5 removed, 3 added
+   - (1x) ## After This Draft
+   - (1x) ## Internal Seams
+   - (1x) ## One Shape for Every Skill
+   - (1x) #### A Closed Roster, and Where It Is Narrower Than the Code
+   - (1x) #### Pi Dispatches Pi
+   + (1x) ## Appendix: Under the Hood
+   + (1x) ## Why This Release
+   + (1x) #### A Closed Roster
+== hex: 18 removed, 0 added
+   - (1x) 099990cf343
+   - (1x) 173ce63f59
+   - (1x) 1bb11a2af2
+   - (1x) 1d43dbd38b
+   - (1x) 2a57cc635d
+   - (1x) 4685bdea2a
+   - (1x) 4dcc8c8f49
+   - (1x) 60f0e91764
+   - (1x) 67fa4f7b8e
+   - (1x) 6e82579080
+   - (1x) 8b2b831184
+   - (1x) 9365fbc83d
+   - (1x) 9e650decee
+   - (1x) a3272f5944
+   - (1x) b8c17906f78
+   - (1x) bbb7d23386
+   - (1x) c34e1bd73b
+   - (1x) ec25183f806
+== number_words: 35 removed, 0 added
+   - (1x) eight
+   - (1x) eighteen
+   - (3x) five
+   - (1x) forty
+   - (1x) four
+   - (1x) nine
+   - (14x) one
+   - (3x) seven
+   - (4x) six
+   - (1x) ten
+   - (1x) thirteen
+   - (2x) three
+   - (1x) twenty
+   - (1x) two
+== numerals: 82 removed, 0 added
+   - (1x) 0
+   - (6x) 09
+   - (1x) 099990
+   - (3x) 1
+   - (1x) 102
+   - (1x) 11
+   - (1x) 16
+   - (1x) 17
+   - (1x) 173
+   - (1x) 178
+   - (1x) 17906
+   - (1x) 18
+   - (2x) 19
+   - (5x) 2
+   - (1x) 20
+   - (6x) 2026
+   - (2x) 22
+   - (1x) 23386
+   - (1x) 25183
+   - (1x) 266
+   - (1x) 28
+   - (1x) 284
+   - (2x) 3
+   - (2x) 3,000
+   - (1x) 3272
+   - (1x) 34
+   - (1x) 343
+   - (1x) 38
+   - (2x) 4
+   - (1x) 4,000
+   - (1x) 43
+   - (1x) 4685
+   - (1x) 49
+   - (1x) 496
+   - (1x) 5
+   - (1x) 5.3
+   - (1x) 57
+   - (1x) 59
+   - (1x) 5944
+   - (1x) 6
+   - (1x) 60
+   - (1x) 63
+   - (1x) 635
+   - (1x) 650
+   - (1x) 67
+   - (2x) 7
+   - (1x) 73
+   - (1x) 78
+   - (5x) 8
+   - (1x) 806
+   - (1x) 82579080
+   - (1x) 83
+   - (1x) 831184
+   - (1x) 9
+   - (1x) 91764
+   - (1x) 9365
+== table_rows: identical
+categories with differences: 5
