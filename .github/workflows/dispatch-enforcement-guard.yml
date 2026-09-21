@@ -42,4 +42,6 @@ jobs:
         run: |
           set -euo pipefail
           npm --prefix .skilled ci
-          npx --prefix .skilled vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+          # The quarantined evidence tray (review/containment) freezes an older copy of
+          # this suite that resolves no skills tree, so only the live copies enforce.
+          npx --prefix .skilled vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
