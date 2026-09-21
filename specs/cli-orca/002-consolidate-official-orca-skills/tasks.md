@@ -164,6 +164,8 @@ contextType: "implementation"
 
 - [x] T048 Convert the README entry names from bold text to `#####` headings and push (`README.md`) [20m] — 61 entries converted across §8/§9/§11/§14; HVR unchanged at 0 hard blockers / 90 ceiling; doc validator no worse than HEAD; packet PASSED
 
+- [x] T049 Strip every `&nbsp;` spacer, collapse the doubled blanks, restore the pasted bridges list and the header order (`README.md`) [20m] — 115 spacers removed, 1691 → 1460 lines, 12 fenced blocks byte-identical, coffee line back under the tagline; HVR unchanged at 0 hard blockers / 90 ceiling; doc validator no worse than HEAD; packet PASSED
+
 ## Verification Checklist
 
 | Check | Command shape | Expected result | Status |
