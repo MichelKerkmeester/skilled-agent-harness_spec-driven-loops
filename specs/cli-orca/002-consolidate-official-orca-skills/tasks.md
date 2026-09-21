@@ -172,6 +172,8 @@ contextType: "implementation"
 
 - [x] T052 Plain lead sentence under every h5 (`README.md`) [45m] — 48 inline taglines demoted off the h5 line with a capital and a period, 13 first bullets promoted to plain prose (5 bold leads extracted, 8 whole), one composed lead for the Core group header, the 5 prose h5s verified; bullets below the leads untouched; HVR 0 hard blockers; packet PASSED
 
+- [x] T053 Keep Overview in the merged section-2 title (`README.md`) [5m] — the 2+3 merge removed the ## 3 heading whose name the readme validator requires (name containing overview); ## 2 retitled to WHAT YOU GET AND OVERVIEW, validator 2 issues back to 1 (only the pre-existing section-2 separator finding); packet PASSED
+
 ## Verification Checklist
 
 | Check | Command shape | Expected result | Status |
