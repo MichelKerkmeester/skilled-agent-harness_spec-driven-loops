@@ -376,8 +376,6 @@ The hub carries no procedure of its own. It decides which mode owns the question
 - **`sk-design-chart`**, behind `/design:chart`. Turn the comparison a reader needs into one of 29 catalog forms and ship it as a standalone HTML file.
 - **`sk-design-diagram`**, behind `/design:diagram`. Self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system, plus ASCII and Markdown flowcharts and draw.io or Mermaid redraws.
 
-One honest caveat. The other six hubs resolve through a compiled router contract first. This hub's routing is still the registry and the root router alone, with the compiled closure planned, not shipped.
-
 &nbsp;
 
 #### Charts on a Real Register
