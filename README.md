@@ -31,69 +31,6 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 
 ## 2. 🎁 Overview
 
-### Spec Kit
-
-A written record of every change.
-
-Every file change gets a spec folder that records what changed, why and how. Like a lab notebook for software.
-
-- Documentation depth scales with the task, from a small fix to a phased architecture change
-- Mandatory gates run before file changes and after execution, so "done" needs fresh evidence, not the agent's say-so
-- Reviews rank findings P0/P1/P2 and re-challenge critical findings before they stick, and an open blocker forces another pass
-- Every packet is plain markdown in your repo, so the history is yours to read, diff and keep
-
-### Spec Memory & Search
-
-Memory that survives resets.
-
-Your architecture, decisions and session history are written into the spec folder they belong to, then found again through instant keyword search.
-
-- `/speckit:resume` reads the packet's own continuity files and picks up where the last session stopped
-- A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path
-- A phrase nobody wrote is a clean no-hit, never a nearest guess
-
-### Deep Loop
-
-Loops that finish the job.
-
-Research, review and improvement loops run unattended and stop only when their own evidence says done.
-
-- Progress lives on disk, so a loop survives crashes, new sessions and long runs
-- One shared runtime under every loop, so you learn the workflow once
-- Run fully hands-off or pause at each step, your choice
-
-### Skill Advisor
-
-The right skill at the right time.
-
-Type a prompt and the matching expertise loads before any tool runs. No memorizing skill names.
-
-- A resident daemon scores your prompt across five signal lanes and renders a one-line brief
-- A live skill graph tracks what each skill depends on, enhances and conflicts with
-- Daemon down? A local scorer answers instead and marks itself stale rather than pretending to be live
-
-### Agent Library
-
-Many models, one conductor.
-
-Twelve specialized agents own focused roles, and supported runtimes can dispatch five more AI CLIs as sub-tools.
-
-- A review can fan out across several models at once, with the safest verdict winning
-- The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns
-- Every skill refuses to call itself, so delegation never loops
-
-### Plugin & Extension Library
-
-A goal that survives resets and context that stays lean.
-
-The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
-
-- **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects the durable slice - the directive plus its completion criteria - on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
-- **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
-- **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
-
-Behind them: 15 on-demand skills, 32 command entry points and the Code Mode MCP single-tool interface, each detailed in its own section below.
-
 ### THE FOUNDATION
 
 Three building blocks carry the whole system:
@@ -160,6 +97,69 @@ From request to documented result:
          │  trigger index │ ripgrep retrieval       │
          └──────────────────────────────────────────┘
 ```
+
+### Spec Kit
+
+A written record of every change.
+
+Like a lab notebook for software.
+
+- Documentation depth scales with the task, from a small fix to a phased architecture change
+- Mandatory gates run before file changes and after execution, so "done" needs fresh evidence, not the agent's say-so
+- Reviews rank findings P0/P1/P2 and re-challenge critical findings before they stick, and an open blocker forces another pass
+- Every packet is plain markdown in your repo, so the history is yours to read, diff and keep
+
+### Spec Memory & Search
+
+Memory that survives resets.
+
+Your architecture, decisions and session history are written into the spec folder they belong to, then found again through instant keyword search.
+
+- `/speckit:resume` reads the packet's own continuity files and picks up where the last session stopped
+- A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path
+- A phrase nobody wrote is a clean no-hit, never a nearest guess
+
+### Deep Loop
+
+Loops that finish the job.
+
+Research, review and improvement loops run unattended and stop only when their own evidence says done.
+
+- Progress lives on disk, so a loop survives crashes, new sessions and long runs
+- One shared runtime under every loop, so you learn the workflow once
+- Run fully hands-off or pause at each step, your choice
+
+### Skill Advisor
+
+The right skill at the right time.
+
+Type a prompt and the matching expertise loads before any tool runs. No memorizing skill names.
+
+- A resident daemon scores your prompt across five signal lanes and renders a one-line brief
+- A live skill graph tracks what each skill depends on, enhances and conflicts with
+- Daemon down? A local scorer answers instead and marks itself stale rather than pretending to be live
+
+### Agent Library
+
+Many models, one conductor.
+
+Twelve specialized agents own focused roles, and supported runtimes can dispatch five more AI CLIs as sub-tools.
+
+- A review can fan out across several models at once, with the safest verdict winning
+- The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns
+- Every skill refuses to call itself, so delegation never loops
+
+### Plugin & Extension Library
+
+A goal that survives resets and context that stays lean.
+
+The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
+
+- **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects the durable slice - the directive plus its completion criteria - on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
+- **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
+- **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
+
+Behind them: 15 on-demand skills, 32 command entry points and the Code Mode MCP single-tool interface, each detailed in its own section below.
 
 ---
 
