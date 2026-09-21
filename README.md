@@ -29,7 +29,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 - **Verification, not vibes:** nothing counts as "done" without fresh evidence, and code-review findings are re-challenged before they stick
 - **Works the same in OpenCode and Claude Code**, with cross-CLI dispatch to five more model providers on top
 
-## 2. 🗺️ WHAT YOU GET AND OVERVIEW
+## 2. 🎁 WHAT'S INCLUDED
 
 ### 📋 Spec Kit: a written record of every change
 
@@ -82,7 +82,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 
 Behind them: 15 on-demand skills, 32 command entry points and the Code Mode MCP single-tool interface, each detailed in its own section below.
 
----
+### 🗺️ Overview
 
 Three building blocks carry the whole system:
 
