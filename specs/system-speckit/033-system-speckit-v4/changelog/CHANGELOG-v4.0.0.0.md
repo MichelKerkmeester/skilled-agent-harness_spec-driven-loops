@@ -1,12 +1,12 @@
 ---
-title: "v4.0.0.0, Fewer Skills, Safer Paths"
+title: "v4.0.0.0, Spec-Kit Refactor, Deep-Loop Upgrade, New Skill-Parent System"
 trigger_phrases:
   - "v4.0.0.0 release notes"
   - "v4 changelog"
   - "fewer skills safer paths"
   - "what changed in v4"
 ---
-# v4.0.0.0, Fewer Skills, Safer Paths
+# v4.0.0.0, Spec-Kit Refactor, Deep-Loop Upgrade, New Skill-Parent System
 
 This release is about shape. Skill after skill stopped standing alone and folded into a parent that routes you to the one small piece you need. The deep loops, the CLI executors, the doc authoring, the code skill, the design surface and the MCP bridges all took the same form: a thin parent and a mode per job. Where a monolith once hid the whole job, a router now hands you the slice that fits.
 
