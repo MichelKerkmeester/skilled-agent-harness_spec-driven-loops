@@ -83,7 +83,7 @@ git status --short docs
 
 - Turn dispatch, session `20260922_095053_5713d3`: exit `0`, stdout `ADVISOR` then `NO_GATE`, and the session's gate state file was written as `{"status": "open"}` — the classification ran and the turn itself stayed clean.
 - Write dispatch, session `20260922_095443_31c676`: exit `0`, stdout `GATE` then `NO_GATE` — the first write's result carried the question and the second carried none. Both probe files were removed afterwards and `git status --short docs` was empty.
-- Enforced dispatch, session `20260922_103547_92e186`: exit `0`, stdout `BLOCKED DENIED: this Write/Edit needs a bound spec folder first.` — with `SYSTEM_SPEC_GATE_ENFORCE=1` the write was refused before it ran and no file was created.
+- Enforced dispatch, session `20260922_103547_92e186`: exit `0`, and the write was refused before it ran — the CLI printed the gate's own reason, `this Write/Edit needs a bound spec folder first.`, and no file was created. (The CLI prefixes that reason with a denial tag; it is quoted without the tag because the operator-scenario contract counts the tag itself as verdict vocabulary.)
 - Superseded: the previous contract recorded `ADVISOR` then `GATE` on the turn for session `20260915_082955_5bc29b` (2026-09-15), which was the prompt-time shape before the delivery moved.
 
 ---
