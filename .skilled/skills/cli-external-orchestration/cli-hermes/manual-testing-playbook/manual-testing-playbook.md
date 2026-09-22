@@ -282,7 +282,7 @@ This category checks the plugin's system-prompt section surface, which is how th
 
 - `HERMES-015`: [Plugin session-context section](goal-hook/plugin-session-context-section.md)
 - `HERMES-020`: [Bound packet goal slice](goal-hook/bound-packet-goal-slice.md)
-- `HERMES-028`: [Prompt-time advisor brief and spec-folder question](goal-hook/prompt-time-advisor-brief-and-gate-question.md)
+- `HERMES-028`: [Prompt-time advisor brief and mutation-time gate delivery](goal-hook/advisor-brief-and-gate-delivery.md)
 - `HERMES-030`: [Shared goal core bound by Hermes session id](goal-hook/goal-core-binding-by-session-id.md)
 
 ---
@@ -382,7 +382,7 @@ No `feature-catalog/` package exists for `cli-hermes`, so no scenario carries a 
 
 - HERMES-015: [Plugin session-context section](goal-hook/plugin-session-context-section.md)
 - HERMES-020: [Bound packet goal slice](goal-hook/bound-packet-goal-slice.md)
-- HERMES-028: [Prompt-time advisor brief and spec-folder question](goal-hook/prompt-time-advisor-brief-and-gate-question.md)
+- HERMES-028: [Prompt-time advisor brief and mutation-time gate delivery](goal-hook/advisor-brief-and-gate-delivery.md)
 - HERMES-030: [Shared goal core bound by Hermes session id](goal-hook/goal-core-binding-by-session-id.md)
 
 ### SKILLS AND PLUGINS

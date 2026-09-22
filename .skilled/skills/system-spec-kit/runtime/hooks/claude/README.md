@@ -73,8 +73,8 @@ This folder also holds the Claude Code side of the Gate-3 spec-folder discipline
 
 | File | Purpose |
 |------|---------|
-| `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` against each user turn, opens the session gate and surfaces the bounded Gate-3 question as `additionalContext`. Advisory only, no deny capability. |
-| `spec-gate-enforce.mjs` | `PreToolUse` hook. Runs `evaluateMutation()` before a Write, Edit or Bash call. Write and Edit are deny-capable, Bash is advise-only. Logs every non-allow decision through `appendWarningLog()`. |
+| `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` against each user turn and opens the session gate. Emits **nothing**: the question is delivered at the first mutation, never on the turn that merely intends to write. |
+| `spec-gate-enforce.mjs` | `PreToolUse` hook. Runs `evaluateMutation()` before a Write, Edit or Bash call. Write and Edit are deny-capable, Bash is advise-only. The first in-gate Write/Edit emits the once-per-session mutation notice as `additionalContext` and records the delivery marker after the envelope is written; later mutations are silent. Logs every non-allow decision through `appendWarningLog()`. |
 | `spec-gate-claude.test.mjs` | Co-located tests, run with `node --test`. |
 
 `.claude/settings.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit` and `spec-gate-enforce.mjs` to the `Write|Edit` and `Bash` `PreToolUse` matchers.

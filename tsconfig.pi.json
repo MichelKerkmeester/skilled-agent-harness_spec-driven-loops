@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "preserveSymlinks": true
+  },
+  "include": [
+    ".pi/extensions/spec-gate-classify.ts",
+    ".pi/extensions/spec-gate-enforce.ts",
+    ".pi/types/pi-coding-agent.d.ts",
+    ".pi/types/node-globals.d.ts"
+  ]
+}

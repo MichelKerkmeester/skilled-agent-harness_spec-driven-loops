@@ -135,14 +135,14 @@ test('disabled and autonomous child sessions are complete no-ops', () => {
   }
 });
 
-test('a mutating prompt opens the gate and surfaces the Gate-3 question', () => {
+test('a mutating prompt opens the gate without emitting anything on the turn', () => {
   const { root } = makeWorkspace();
   try {
     const result = runHook(CLASSIFY_HOOK_PATH, root, classifyPayload(root, 'open-session'), {
       [guardCore.ENFORCE_ENV]: '1',
     });
-    const parsed = assertHasAdditionalContext(result, 'UserPromptSubmit');
-    assert.ok(parsed.hookSpecificOutput.additionalContext.includes('SPEC FOLDER QUESTION'));
+    // Turn-time delivery is gone: the question waits for the first mutation.
+    assertNoOutput(result);
     assert.equal(JSON.parse(readFileSync(statePath(root, 'open-session'), 'utf8')).status, 'open');
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -172,7 +172,7 @@ test('enforce denies an edit when the gate is open and enforce is on', () => {
   }
 });
 
-test('enforce remains inert without explicit opt-in and advises instead of denying', () => {
+test('enforce advises once at the first mutation, then stays silent', () => {
   const { root } = makeWorkspace();
   try {
     const sessionID = 'advise-session';
@@ -180,6 +180,11 @@ test('enforce remains inert without explicit opt-in and advises instead of denyi
     const result = runHook(ENFORCE_HOOK_PATH, root, enforcePayload(root, sessionID));
     const parsed = assertHasAdditionalContext(result, 'PreToolUse');
     assert.equal(parsed.hookSpecificOutput.permissionDecision, undefined);
+    assert.ok(parsed.hookSpecificOutput.additionalContext.includes('SPEC FOLDER QUESTION'));
+
+    // The delivery marker is what ends the repetition: a second mutation in
+    // the same session has nothing left to say.
+    assertNoOutput(runHook(ENFORCE_HOOK_PATH, root, enforcePayload(root, sessionID)));
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
@@ -228,10 +233,12 @@ test('a missing cwd falls back to CLAUDE_PROJECT_DIR then process.cwd()', () => 
   try {
     const sessionID = 'missing-cwd';
     const payload = { session_id: sessionID, prompt: 'fix the login bug' };
-    assertHasAdditionalContext(runHook(CLASSIFY_HOOK_PATH, root, payload, {
+    // Classification emits nothing on the turn now; the observable proof that
+    // it resolved the right project dir is the state file it opened.
+    assertNoOutput(runHook(CLASSIFY_HOOK_PATH, root, payload, {
       [guardCore.ENFORCE_ENV]: '1',
       CLAUDE_PROJECT_DIR: root,
-    }), 'UserPromptSubmit');
+    }));
     assert.equal(JSON.parse(readFileSync(statePath(root, sessionID), 'utf8')).status, 'open');
   } finally {
     rmSync(root, { recursive: true, force: true });

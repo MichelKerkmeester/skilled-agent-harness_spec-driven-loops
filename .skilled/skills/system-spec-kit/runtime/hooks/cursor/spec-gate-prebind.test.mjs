@@ -214,6 +214,34 @@ test('invalid declarations never satisfy and only open under explicit enforcemen
   }
 });
 
+test('advisory enforce carries the mutation notice once, then stays silent', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = 'advisory';
+    const prebind = runHook(PREBIND_HOOK_PATH, root, sessionPayload(root, sessionID), {
+      [guardCore.ENFORCE_ENV]: '1',
+    });
+    assertAllowed(prebind);
+    assert.equal(JSON.parse(readFileSync(statePath(root, sessionID), 'utf8')).status, 'open');
+
+    const payload = {
+      ...sessionPayload(root, sessionID),
+      tool_name: 'Write',
+      tool_input: { file_path: 'src/app.js' },
+    };
+    const first = runHook(ENFORCE_HOOK_PATH, root, payload);
+    const parsed = JSON.parse(first.stdout);
+    assert.equal(parsed.permission, 'allow');
+    assert.ok(parsed.agent_message.includes('SPEC FOLDER QUESTION'));
+
+    // Delivery is persisted, so the next mutation of the session says nothing.
+    const second = runHook(ENFORCE_HOOK_PATH, root, payload);
+    assert.equal(JSON.parse(second.stdout).agent_message, undefined);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('repeated startup preserves satisfied and skipped terminal state', () => {
   const { root } = makeWorkspace();
   try {
