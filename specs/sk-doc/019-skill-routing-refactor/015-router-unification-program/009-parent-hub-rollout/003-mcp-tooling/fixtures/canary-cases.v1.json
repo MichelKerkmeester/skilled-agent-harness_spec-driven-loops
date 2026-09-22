@@ -1,0 +1,241 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 4,
+  "cases": [
+    {
+      "id": "figma-single-worked-case",
+      "prompt": "render in figma a distinctive visual design for a landing page",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-figma"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-figma"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "figma-tokens-worked-case",
+      "prompt": "figma tokens using design foundations and a color system",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-figma"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-figma"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "figma-mutation-without-judgment",
+      "prompt": "render in figma component",
+      "constraints": [
+        "dependency-failure"
+      ],
+      "expectedAction": "defer",
+      "expectedReason": "dependency-failure",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "refero-read-only",
+      "prompt": "refero mcp search",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-refero"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "clickup-single",
+      "prompt": "clickup task management",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-click-up"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-click-up"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "chrome-devtools-single",
+      "prompt": "chrome devtools",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-chrome-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "aside-devtools-single",
+      "prompt": "aside browser",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-aside-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "mobbin-single",
+      "prompt": "mobbin mcp",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-mobbin"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-mobbin"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "obsidian-single",
+      "prompt": "obsidian vault",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-obsidian"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-obsidian"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "notion-single",
+      "prompt": "notion database",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-notion"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-notion"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "magicpath-single",
+      "prompt": "magicpath component",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-magicpath"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-magicpath"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "ambiguous-transport-bundle",
+      "prompt": "refero mobbin",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": [
+        "mcp-refero",
+        "mcp-mobbin"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-refero",
+          "mcp-mobbin"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "zero-signal-defer",
+      "prompt": "orchard inventory",
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
+      "gold": {
+        "expectedIntents": [
+          "defer"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "forbidden-reject",
+      "prompt": "forbidden external tool operation",
+      "constraints": [
+        "forbidden"
+      ],
+      "expectedAction": "reject",
+      "expectedReason": "forbidden",
+      "gold": {
+        "expectedIntents": [
+          "none"
+        ],
+        "expectedResources": []
+      }
+    }
+  ],
+  "advisorCases": [
+    {
+      "id": "live-match",
+      "state": "live",
+      "drift": false,
+      "contributes": true
+    },
+    {
+      "id": "stale",
+      "state": "stale",
+      "drift": false,
+      "contributes": false
+    },
+    {
+      "id": "absent",
+      "state": "absent",
+      "drift": false,
+      "contributes": false
+    },
+    {
+      "id": "projection-drift",
+      "state": "live",
+      "drift": true,
+      "contributes": false
+    }
+  ]
+}

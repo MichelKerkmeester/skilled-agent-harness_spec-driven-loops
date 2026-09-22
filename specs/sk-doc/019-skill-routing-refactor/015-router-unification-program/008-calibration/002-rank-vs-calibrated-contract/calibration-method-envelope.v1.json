@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "CalibrationMethodEnvelopeV1",
+  "certificateNumericEncoding": "canonical-decimal-string",
+  "estimatedErrorEncoding": "json-number-closed-unit-interval",
+  "methods": {
+    "temperature-scaling": {
+      "methodParams": ["temperature"],
+      "acceptanceMetric": "expectedCalibrationError",
+      "meaning": "Recalibrates compiled scorer output for the exact policy and risk slice."
+    },
+    "selective-classification-threshold": {
+      "methodParams": ["abstentionThreshold", "coverageTarget"],
+      "acceptanceMetric": "selectiveRisk",
+      "meaning": "Fits abstention at measured coverage for the exact policy and risk slice."
+    }
+  },
+  "metrics": [
+    "expectedCalibrationError",
+    "selectiveRisk",
+    "coverage",
+    "sampleCount"
+  ],
+  "probabilityLanguage": {
+    "keys": [
+      "estimatedError",
+      "probability",
+      "probabilityScore",
+      "confidence",
+      "confidenceScore",
+      "likelihood",
+      "errorProbability"
+    ],
+    "terms": [
+      "probability",
+      "probable",
+      "confidence",
+      "confident",
+      "certainty",
+      "likelihood",
+      "chance",
+      "odds",
+      "estimated error",
+      "error rate",
+      "success rate",
+      "percent",
+      "percentage"
+    ]
+  },
+  "lifecycle": ["candidate", "validated", "expired", "revoked"],
+  "validationBoundary": {
+    "statusAuthority": "external-certificate-registry",
+    "corpusAuthority": "held-out-corpus-resolver",
+    "policyAuthority": "request-pinned-effective-policy",
+    "riskAuthority": "request-pinned-risk-slice",
+    "thresholdFittingOwner": "selective-classification-controller"
+  }
+}
