@@ -208,8 +208,10 @@
       }
     }
   },
-  "autoCompactWindow": 1000000,
+  "autoCompactWindow": 500000,
   "autoCompactEnabled": true,
+  "promptSuggestionEnabled": false,
+  "crossSessionInbound": "refuse",
   "enabledPlugins": {
     "cache-tax@claude-code-mods": true
   }
