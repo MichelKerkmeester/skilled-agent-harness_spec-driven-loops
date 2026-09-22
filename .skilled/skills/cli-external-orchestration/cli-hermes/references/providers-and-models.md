@@ -56,7 +56,7 @@ Other credential kinds on this machine do not transfer: Hermes keeps its own OAu
 | `gpt-5.6-luna` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 | `gpt-5.6-sol` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 | `minimax-m3` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
-| `mimo-v2.5-pro` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
+| `mimo-v2.6-pro` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 | `qwen3.8-max` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 
 Every id is a bare gateway literal. A provider-prefixed form (`llmgateway/deepseek-v4.1-flash`) is Pi's selector shape, not Hermes's, and the fan-out rejects it. Enforcement: `HERMES_SUPPORTED_MODELS` and `isHermesModelAllowed` in `executor-config.ts`, byte-mirrored as `HERMES_ALLOWED_MODELS` in `fanout-run.cjs`; no `auto` default exists.

@@ -54,8 +54,8 @@ OpenCode resolves models through configured providers; the model string passed t
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `xiaomi/mimo-v2.5-pro` | — | MiMo-V2.5-Pro, Direct API (pay-per-token); 1M context, strongly agentic |
-| `xiaomi/mimo-v2.5-pro-ultraspeed` | — | Low-latency MiMo-V2.5-Pro tier |
+| `xiaomi/mimo-v2.6-pro` | — | MiMo-V2.6-Pro, Direct API (pay-per-token); 1M context, strongly agentic |
+| `xiaomi/mimo-v2.6-pro-ultraspeed` | — | Low-latency MiMo-V2.6-Pro tier |
 
 ### openai
 
@@ -83,7 +83,7 @@ Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `cline-pass/cline-pass/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier). **Listing-only — not yet dispatchable here.** Cline's own API lists `deepseek/deepseek-v4.1-flash`, but opencode resolves provider models from models.dev, which carries no cline-pass V4.1 entry, so this id fails at resolution with `Unexpected server error` before any request leaves the machine — the identical signature the GLM-5.3-Flash note below describes. The route is additionally out of quota until the monthly Cline Pass window resets, so the older `cline-pass/cline-pass/deepseek-v4-flash` id cannot be dispatch-tested either, and no cost, context or output figure here has been measured. Re-verify against `opencode models cline-pass` and one live turn before relying on this row; the V4.1 id supersedes the V4-Flash one only once that turn passes. cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
+| `cline-pass/cline-pass/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier). **Listing-only — not yet dispatchable here.** Cline's own API lists `deepseek/deepseek-v4.1-flash`, but opencode resolves provider models from models.dev, which carries no cline-pass V4.1 entry, so this id fails at resolution with `Unexpected server error` before any request leaves the machine — the identical signature the GLM-5.3-Flash note below describes. The route is additionally out of quota until the monthly Cline Pass window resets, so the older `cline-pass/cline-pass/deepseek-v4-flash` id cannot be dispatch-tested either, and no cost, context or output figure here has been measured. Re-verify against `opencode models cline-pass` and one live turn before relying on this row; the V4.1 id supersedes the V4-Flash one only once that turn passes. cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.6`/`mimo-v2.6-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
 
 > **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`opencode-go/glm-5.3-flash`** or **`llmgateway/glm-5.3-flash`** instead.
 

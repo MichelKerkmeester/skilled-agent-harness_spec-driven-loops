@@ -252,7 +252,7 @@ A: OpenCode reads stdin at startup before session creation. When stdout and stde
 
 **Q: Which model do I pick?**
 
-A: Default to `opencode-go/deepseek-v4-flash --variant max` via the Go gateway, which fronts the latency-optimized reasoning model at its max thinking tier with subsidized usage. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `xiaomi/mimo-v2.5-pro` for MiMo, `xiaomi/mimo-v2.5-pro-ultraspeed` for low latency or `openai/gpt-5.6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
+A: Default to `opencode-go/deepseek-v4-flash --variant max` via the Go gateway, which fronts the latency-optimized reasoning model at its max thinking tier with subsidized usage. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `xiaomi/mimo-v2.6-pro` for MiMo, `xiaomi/mimo-v2.6-pro-ultraspeed` for low latency or `openai/gpt-5.6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
 
 ---
 

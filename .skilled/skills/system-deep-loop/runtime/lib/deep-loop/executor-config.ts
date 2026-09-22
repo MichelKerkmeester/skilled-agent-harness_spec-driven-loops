@@ -223,8 +223,8 @@ export const PI_SUPPORTED_MODELS = [
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
-  'mimo-v2.5-pro',
-  'mimo-v2.5-pro-ultraspeed',
+  'mimo-v2.6-pro',
+  'mimo-v2.6-pro-ultraspeed',
   'qwen3.8-max',
   // OpenRouter carries exactly two models here, each keeping its upstream provider path so
   // `${provider}/${model}` composes the full three-segment OpenRouter selector:
@@ -263,7 +263,7 @@ export const HERMES_SUPPORTED_MODELS = [
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
-  'mimo-v2.5-pro',
+  'mimo-v2.6-pro',
   'qwen3.8-max',
   'glm-5.3-flash',
 ] as const;
