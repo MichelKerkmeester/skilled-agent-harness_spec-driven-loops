@@ -1,0 +1,45 @@
+### Phase 049 pre-change baselines
+date: 2026-09-22T07:43:45Z
+
+=== core corpus (with module mocks) ===
+ℹ tests 107
+ℹ pass 107
+ℹ fail 0
+ℹ skipped 0
+=== claude adapter suite ===
+ℹ tests 13
+ℹ pass 13
+ℹ fail 0
+ℹ skipped 0
+=== codex adapter suite ===
+ℹ tests 14
+ℹ pass 14
+ℹ fail 0
+ℹ skipped 0
+=== devin adapter suite ===
+ℹ tests 15
+ℹ pass 15
+ℹ fail 0
+ℹ skipped 0
+=== cursor adapter suite ===
+ℹ tests 17
+ℹ pass 17
+ℹ fail 0
+ℹ skipped 0
+=== opencode plugin suite ===
+ℹ tests 11
+ℹ pass 11
+ℹ fail 0
+ℹ skipped 0
+=== pi extension suite (vitest) ===
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+=== hermes repo-guards suite ===
+----------------------------------------------------------------------
+Ran 42 tests in 0.101s
+
+OK
+
+=== worktree status ===
+ M specs/system-speckit/033-system-speckit-v4/spec.md
+?? specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/

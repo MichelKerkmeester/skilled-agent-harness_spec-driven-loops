@@ -88,7 +88,7 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
 | Event · matcher | Guard | Adapter |
 |---|---|---|
 | PreToolUse · `exec\|apply_patch\|edit` | spec-gate enforce (deny-capable) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` |
-| UserPromptSubmit | spec-gate classify (advisory) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` |
+| UserPromptSubmit | spec-gate classify (state only, no emit) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` |
 | PreToolUse · `exec` | dispatch preflight lint (deny-capable) | `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs` |
 | PostToolUse · `apply_patch\|edit` | post-edit quality | `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs` |
 | PostToolUse · `exec` | dispatch audit (observe) | `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` |

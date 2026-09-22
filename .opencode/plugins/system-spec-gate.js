@@ -151,8 +151,11 @@ function filePathFromArgs(args) {
  * Create the system-spec-gate OpenCode plugin hooks.
  *
  * Posture (by design, not oversight):
- * - Advisory by default: classify surfaces the question, enforce advises. Deny
- *   only fires for Write/Edit while SYSTEM_SPEC_GATE_ENFORCE=1 is set.
+ * - Advisory by default: classify opens the gate silently and relays the one-shot
+ *   deferral instruction; enforce records telemetry only, because this plugin's hook
+ *   set has no channel that can append the question to a mutation's result. Deny only
+ *   fires for Write/Edit while SYSTEM_SPEC_GATE_ENFORCE=1 is set, and its reason
+ *   carries the model-facing notice.
  * - Bash is always advise-only, matching the framework rule that only
  *   deterministic, high-confidence violations may be denied.
  * - Fails open on every error path: a bug here must never block unrelated,

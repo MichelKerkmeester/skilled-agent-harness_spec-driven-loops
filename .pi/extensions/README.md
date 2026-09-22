@@ -36,7 +36,7 @@ Each file is a thin adapter: it registers a handler against one of Pi's lifecycl
 ```text
 extensions/
 +-- spec-gate-enforce.ts        # Blocks a mutation the spec gate denies
-+-- spec-gate-classify.ts       # Appends the spec-folder gate question to a user turn
++-- spec-gate-classify.ts       # Opens the gate silently; appends the one-shot deferral instruction when no dialog UI is attached
 +-- dispatch-preflight-lint.ts  # Blocks or warns on a bash dispatch hard-rule violation
 +-- dispatch-audit.ts           # Records a completed bash dispatch to the audit log
 +-- post-edit-quality.ts        # Appends post-edit quality findings to an edit/write result
