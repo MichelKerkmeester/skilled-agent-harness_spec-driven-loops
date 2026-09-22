@@ -1881,8 +1881,8 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'minimax-m3': 'minimax',
       'gpt-5.6-luna': 'openai-codex',
       'gpt-5.6-sol': 'openai-codex',
-      'mimo-v2.5-pro': 'xiaomi',
-      'mimo-v2.5-pro-ultraspeed': 'xiaomi',
+      'mimo-v2.6-pro': 'xiaomi',
+      'mimo-v2.6-pro-ultraspeed': 'xiaomi',
       'qwen3.8-max': 'opencode-go',
       // OpenRouter routes exactly DeepSeek V4 Flash and GLM-5.3-Flash, each dispatched as
       // openrouter/<upstream>/<id>; both stay on the max thinking pin.

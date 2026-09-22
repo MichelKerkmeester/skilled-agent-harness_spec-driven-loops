@@ -23,7 +23,7 @@ Hermes is a provider pass-through with a wide upstream catalog, so the fence is 
 
 ## 2. HOW IT WORKS
 
-The runtime config declares `HERMES_SUPPORTED_MODELS` as `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-5.6-luna`, `gpt-5.6-sol`, `minimax-m3`, `mimo-v2.5-pro` and `qwen3.8-max`, exports a matching type, names the DeepSeek literal as the rotation default, and exposes `isHermesModelAllowed` as the type-narrowing predicate over the set. Every id is the bare literals the gateway expects beneath its provider name, not provider-prefixed forms.
+The runtime config declares `HERMES_SUPPORTED_MODELS` as `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-5.6-luna`, `gpt-5.6-sol`, `minimax-m3`, `mimo-v2.6-pro` and `qwen3.8-max`, exports a matching type, names the DeepSeek literal as the rotation default, and exposes `isHermesModelAllowed` as the type-narrowing predicate over the set. Every id is the bare literals the gateway expects beneath its provider name, not provider-prefixed forms.
 
 The fan-out script carries its own synchronous mirror of the same seven ids, with a comment naming the config as the source it mirrors. The duplication is deliberate: command construction stays fail-closed without importing a TypeScript module. A lineage that names no model takes the default; one that names an id outside the set raises an input error that prints the whole allowlist, and no process is spawned.
 

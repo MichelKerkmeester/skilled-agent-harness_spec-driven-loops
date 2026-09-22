@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/076-mimo-v2-6-cutover",
+  "spec_folder": "cli-external-orchestration/076-mimo-v2-6-cutover",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mimo v2.6 cutover",
+      "mimo v2.5 to v2.6",
+      "mimo id rename",
+      "xiaomi mimo roster cutover",
+      "mimo v2.6 cutover plan",
+      "roster rename approach",
+      "paired allowlist copies",
+      "mechanical token rename",
+      "mimo v2.6 cutover tasks",
+      "roster rename task breakdown",
+      "allowlist rename verification checklist",
+      "mimo task dependencies"
+    ],
+    "key_topics": [
+      "mimo",
+      "cutover",
+      "rename",
+      "xiaomi",
+      "roster",
+      "plan",
+      "approach",
+      "paired",
+      "allowlist",
+      "copies",
+      "mechanical",
+      "token"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/models.json",
+      ".pi/settings.json",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.5.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-hermes/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/fanout-dispatch/closed-model-roster.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "variant-levels-comparison.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.7.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.5.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.5.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "closed-model-roster.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/fanout-dispatch/closed-model-roster.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Xiaomi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Xiaomi Direct",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator directed that the MiMo model ids move from the v2.5 to the v2.6 generation",
+    "created_at": "2026-09-22T07:12:09Z",
+    "last_save_at": "2026-09-22T07:48:02.801Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:958eff418545706140b7344ec2d18a737e0d623e2ad54181034395a6190befed",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3916461ab7e3f6c99d1ba78225fb100799783e93edf4b56ccb1e29753d8eae2f",
+      "plan.md": "1ed0aba917a5fe6acb6db211f18e03f4460c052f131d0a859573722510caabd2",
+      "tasks.md": "ae6061a0c7b30053593cea30d81105a41236952b0c29dd0c93966f041e272727",
+      "implementation-summary.md": "21a5816a05a81a70edfd7935829f5158a5ed49720d85433fe28b74dbdf4063af"
+    },
+    "last_active_at": null
+  }
+}

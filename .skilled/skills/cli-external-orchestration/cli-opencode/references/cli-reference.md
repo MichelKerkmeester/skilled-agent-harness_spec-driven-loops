@@ -199,11 +199,11 @@ echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MI
 
 | State | Condition | Action |
 |-------|-----------|--------|
-| MiMo requested (default) | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.5-pro` — **omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models xiaomi` |
-| MiMo speed variant ("ultraspeed", latency-sensitive) | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.5-pro-ultraspeed` — low-latency MiMo-V2.5-Pro tier, same prompt contract |
-| Token Plan explicitly requested | `XIAOMI_OK=1` | `--model xiaomi-token-plan-ams/mimo-v2.5-pro` — NOTE: observed not resolving on this install 2026-06-11 (ProviderModelNotFoundError surfaced as 'Unexpected server error'); re-auth via `opencode auth login` or use the `xiaomi` Direct API instead |
+| MiMo requested (default) | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.6-pro` — **omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models xiaomi` |
+| MiMo speed variant ("ultraspeed", latency-sensitive) | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.6-pro-ultraspeed` — low-latency MiMo-V2.6-Pro tier, same prompt contract |
+| Token Plan explicitly requested | `XIAOMI_OK=1` | `--model xiaomi-token-plan-ams/mimo-v2.6-pro` — NOTE: observed not resolving on this install 2026-06-11 (ProviderModelNotFoundError surfaced as 'Unexpected server error'); re-auth via `opencode auth login` or use the `xiaomi` Direct API instead |
 | Token Plan not configured | `XIAOMI_OK=0` | **ASK user** to run `opencode auth login` → Xiaomi Token Plan (Europe) — never substitute silently |
-| Direct API explicitly requested | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.5-pro` or `xiaomi/mimo-v2.5-pro-ultraspeed` (pay-per-token; confirm live ids via `opencode models xiaomi`) |
+| Direct API explicitly requested | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.6-pro` or `xiaomi/mimo-v2.6-pro-ultraspeed` (pay-per-token; confirm live ids via `opencode models xiaomi`) |
 | Direct API requested, not configured | `XIAOMI_DIRECT_OK=0` | **ASK user** to run `opencode providers login xiaomi` — never substitute silently |
 
 **Login / setup command shapes** (the AI surfaces these to the user; the user runs them in their own terminal):
@@ -242,7 +242,7 @@ Surface these verbatim to the operator when the pre-flight decision tree lands o
 The skill default `opencode-go/deepseek-v4-flash` is not configured on this machine.
 A configured fallback is available. Pick one:
   A) Use `openai/gpt-5.6-sol-pro --variant high` (OpenAI premium, configured now — paid)
-  B) Use `xiaomi/mimo-v2.5-pro --variant high` (Xiaomi Direct API, configured now) — or `xiaomi/mimo-v2.5-pro-ultraspeed --variant high` for latency-sensitive runs
+  B) Use `xiaomi/mimo-v2.6-pro --variant high` (Xiaomi Direct API, configured now) — or `xiaomi/mimo-v2.6-pro-ultraspeed --variant high` for latency-sensitive runs
   C) Use `kimi-for-coding/k2p7` (Kimi For Coding plan, configured now — subscription)
   D) Run `opencode providers login opencode-go` first, then retry the original dispatch
   E) Name a different model — paste the `--model <provider/model>` you want to use
@@ -255,8 +255,8 @@ No supported providers are configured on this machine. Run one:
   - `opencode providers login opencode-go`  (recommended — default for cli-opencode; fronts deepseek-v4-flash)
   - `opencode auth login`                   (MiniMax Token Plan — default MiniMax path; pick "MiniMax Token Plan (minimax.io)" → provider minimax-coding-plan; model minimax-coding-plan/MiniMax-M3)
   - `opencode providers login minimax`      (MiniMax Direct API — pay-per-token; needs MINIMAX_API_KEY; model minimax/MiniMax-M3)
-  - `opencode auth login`                   (Xiaomi Token Plan — default Xiaomi path; pick "Xiaomi Token Plan (Europe)" → provider xiaomi-token-plan-ams; model xiaomi-token-plan-ams/mimo-v2.5-pro)
-  - `opencode providers login xiaomi`       (Xiaomi Direct API — pay-per-token; models xiaomi/mimo-v2.5-pro and xiaomi/mimo-v2.5-pro-ultraspeed)
+  - `opencode auth login`                   (Xiaomi Token Plan — default Xiaomi path; pick "Xiaomi Token Plan (Europe)" → provider xiaomi-token-plan-ams; model xiaomi-token-plan-ams/mimo-v2.6-pro)
+  - `opencode providers login xiaomi`       (Xiaomi Direct API — pay-per-token; models xiaomi/mimo-v2.6-pro and xiaomi/mimo-v2.6-pro-ultraspeed)
   - `opencode auth login`                   (Kimi For Coding plan — Kimi/Moonshot coding subscription; provider kimi-for-coding; model kimi-for-coding/k2p7)
   - `opencode auth login`                   (Z.AI GLM Coding Plan — GLM coding subscription; provider zai-coding-plan; model zai-coding-plan/glm-5.2)
   - `opencode providers login openai`       (OpenAI premium alternative — paid)

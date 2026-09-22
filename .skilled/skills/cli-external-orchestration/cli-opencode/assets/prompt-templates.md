@@ -544,13 +544,13 @@ Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a
 
 ## 16. TEMPLATE 15: MiMo (XIAOMI TOKEN PLAN PLUS DIRECT API, COSTAR PLUS LEAN)
 
-**When**: dispatching to MiMo-V2.5-Pro via the Xiaomi Token Plan (Europe). The primary slug is `xiaomi-token-plan-ams/mimo-v2.5-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`). Via the Xiaomi Direct API the slugs are `xiaomi/mimo-v2.5-pro` and the low-latency `xiaomi/mimo-v2.5-pro-ultraspeed` (provider `xiaomi`, pay-per-token, and pick UltraSpeed for latency-sensitive checks or smokes under the same COSTAR contract). The 126/004 benchmark (10/10 real `mimo-v2.5-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback). Use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format and brevity, **not** guardrails. TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`**. opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13), and high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). Confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
+**When**: dispatching to MiMo-V2.6-Pro via the Xiaomi Token Plan (Europe). The primary slug is `xiaomi-token-plan-ams/mimo-v2.6-pro` (provider `xiaomi-token-plan-ams`, quota pool `xiaomi-token-plan`). Via the Xiaomi Direct API the slugs are `xiaomi/mimo-v2.6-pro` and the low-latency `xiaomi/mimo-v2.6-pro-ultraspeed` (provider `xiaomi`, pay-per-token, and pick UltraSpeed for latency-sensitive checks or smokes under the same COSTAR contract). The 126/004 benchmark (10/10 real `mimo-v2.6-pro` runs) found **COSTAR wins** (RACE is a statistical-tie fallback). Use **lean-to-medium** pre-planning. MiMo is frontier-correct already, so frame for format and brevity, **not** guardrails. TIDD-EC/dense ranked LAST, and CIDI is unreliable (it intermittently writes to a file instead of returning inline code). **Always pass `--variant high`**. opencode maps low/medium/high to MiMo's reasoning effort (confirmed accepted on opencode 1.15.13), and high is the standing default. **Omit `--agent`** (on opencode 1.15.13 `--agent general` warns and falls back to the default agent). Confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
 
 **Invocation (Token Plan)**:
 
 ```bash
 opencode run \
-  --model xiaomi-token-plan-ams/mimo-v2.5-pro \
+  --model xiaomi-token-plan-ams/mimo-v2.6-pro \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
@@ -558,11 +558,11 @@ opencode run \
   </dev/null
 ```
 
-**Invocation (Direct API, pay-per-token. Swap in `xiaomi/mimo-v2.5-pro-ultraspeed` for the low-latency tier)**:
+**Invocation (Direct API, pay-per-token. Swap in `xiaomi/mimo-v2.6-pro-ultraspeed` for the low-latency tier)**:
 
 ```bash
 opencode run \
-  --model xiaomi/mimo-v2.5-pro \
+  --model xiaomi/mimo-v2.6-pro \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \

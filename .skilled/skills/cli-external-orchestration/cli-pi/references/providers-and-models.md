@@ -69,8 +69,8 @@ MiMo passthrough; `-ultraspeed` is the low-latency tier.
 
 | Model id                   | Notes            |
 | ----------------------------| ------------------|
-| `mimo-v2.5-pro`            | —                |
-| `mimo-v2.5-pro-ultraspeed` | Low-latency tier |
+| `mimo-v2.6-pro`            | —                |
+| `mimo-v2.6-pro-ultraspeed` | Low-latency tier |
 
 ### opencode-go
 

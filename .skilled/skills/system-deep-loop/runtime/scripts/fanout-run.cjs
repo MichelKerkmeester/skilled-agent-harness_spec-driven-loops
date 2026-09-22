@@ -2302,8 +2302,8 @@ const PI_ALLOWED_MODELS = new Set([
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
-  'mimo-v2.5-pro',
-  'mimo-v2.5-pro-ultraspeed',
+  'mimo-v2.6-pro',
+  'mimo-v2.6-pro-ultraspeed',
   'qwen3.8-max',
   // OpenRouter carries exactly DeepSeek V4 Flash and GLM-5.3-Flash; each id keeps its
   // upstream provider path so `${provider}/${model}` composes the full
@@ -2523,8 +2523,8 @@ const PI_MODEL_PROVIDERS = new Map([
   ['minimax-m3', 'minimax'],
   ['gpt-5.6-luna', 'openai-codex'],
   ['gpt-5.6-sol', 'openai-codex'],
-  ['mimo-v2.5-pro', 'xiaomi'],
-  ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
+  ['mimo-v2.6-pro', 'xiaomi'],
+  ['mimo-v2.6-pro-ultraspeed', 'xiaomi'],
   ['qwen3.8-max', 'opencode-go'],
   // OpenRouter fronts exactly DeepSeek V4 Flash and GLM-5.3-Flash here. Each model id
   // already carries its upstream provider path, so `${provider}/${model}` yields the
@@ -2623,7 +2623,7 @@ const HERMES_ALLOWED_MODELS = new Set([
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
-  'mimo-v2.5-pro',
+  'mimo-v2.6-pro',
   'qwen3.8-max',
   'glm-5.3-flash',
 ]);
