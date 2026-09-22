@@ -21,7 +21,8 @@
     "cline-pass/z-ai/glm-5.3-flash",
     "minimax/MiniMax-M3",
     "xiaomi/mimo-v2.6-pro",
-    "xiaomi/mimo-v2.6-pro-ultraspeed"
+    "xiaomi/mimo-v2.6-pro-ultraspeed",
+    "llmgateway/mimo-v2.6-pro"
   ],
   "packages": [
     "extensions/pi-cache-optimizer",

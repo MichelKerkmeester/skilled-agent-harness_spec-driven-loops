@@ -47,6 +47,7 @@
       "implementation-summary.md",
       ".pi/models.json",
       ".pi/settings.json",
+      ".pi/custom-providers.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
@@ -55,12 +56,11 @@
       ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.8.0.md",
       ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
       ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.5.0.md",
-      ".skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-hermes/README.md",
-      ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/fanout-dispatch/closed-model-roster.md"
+      ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.6.0.md"
     ],
     "entities": [
       {
@@ -97,6 +97,12 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "custom-providers.md",
+        "kind": "doc",
+        "path": ".pi/custom-providers.md",
         "source": "derived"
       },
       {
@@ -148,15 +154,21 @@
         "source": "derived"
       },
       {
+        "name": "v1.4.8.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.8.0.md",
+        "source": "derived"
+      },
+      {
         "name": "v1.5.5.0.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.5.0.md",
         "source": "derived"
       },
       {
-        "name": "closed-model-roster.md",
+        "name": "v1.5.6.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/fanout-dispatch/closed-model-roster.md",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.6.0.md",
         "source": "derived"
       },
       {
@@ -167,6 +179,12 @@
       },
       {
         "name": "The Xiaomi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gateway Pro",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,29 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Xiaomi Direct",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator directed that the MiMo model ids move from the v2.5 to the v2.6 generation",
     "created_at": "2026-09-22T07:12:09Z",
-    "last_save_at": "2026-09-22T07:48:02.801Z",
+    "last_save_at": "2026-09-22T13:09:15.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:958eff418545706140b7344ec2d18a737e0d623e2ad54181034395a6190befed",
+    "source_fingerprint": "sha256:d044b734516391e444f8821df564d3205790eb0d5eba0081b01155f750820da0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3916461ab7e3f6c99d1ba78225fb100799783e93edf4b56ccb1e29753d8eae2f",
-      "plan.md": "1ed0aba917a5fe6acb6db211f18e03f4460c052f131d0a859573722510caabd2",
-      "tasks.md": "ae6061a0c7b30053593cea30d81105a41236952b0c29dd0c93966f041e272727",
-      "implementation-summary.md": "21a5816a05a81a70edfd7935829f5158a5ed49720d85433fe28b74dbdf4063af"
+      "spec.md": "e7b0f15b7560fd5b0d71de722cf08bd74b41fed7e572c34bd6843c8ffbb72b3e",
+      "plan.md": "1e28a9b32c0cd83a1df184940703533d8ccbd1615895bbaf55d6b4d19eae460c",
+      "tasks.md": "9a574f49d8cced0e8f18e12e6212a125b4e1f3395dd7d5407954e25694278230",
+      "implementation-summary.md": "25a27bd853084134b6ce130af21290f4d53782a9c6c437fe384cace396e42619"
     },
     "last_active_at": null
   }
