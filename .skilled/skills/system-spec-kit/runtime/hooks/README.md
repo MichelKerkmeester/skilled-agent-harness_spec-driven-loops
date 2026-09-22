@@ -80,7 +80,7 @@ runtime/hooks/
 | `codex/`, `cursor/`, `devin/` | Per-runtime adapters that normalize each CLI's payload onto the Claude implementations, plus that runtime's spec-gate pair. Envelope shapes differ: Codex and Devin use `hookSpecificOutput`; Cursor uses `{permission, user_message, agent_message}`. |
 | `pi/` | Pi extension factories, discovered through relative symlinks at `.pi/extensions/`. Pi resolves their imports against the symlink path, so every import in those files is written for the `.pi/extensions/` base. |
 | `opencode/` | Browsability-only symlink to `.skilled/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
-| `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()`, and the two orchestration calls every adapter makes, `runClassifyGate()` and `runEnforceGate()`, which build the delivery observation and the warning-log event once. An adapter keeps only its payload parsing and its envelope. |
+| `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()`, the two orchestration calls every adapter makes (`runClassifyGate()` and `runEnforceGate()`, which build the delivery observation and the warning-log event once), and the persisted once-per-session delivery marker (`shouldDeliverGate3Deferral`, `recordGate3NoticeDelivered`, `bindGate3Answer`, `rearmGate3NoticeDelivery`). An adapter keeps only its payload parsing and its envelope. |
 | `lib/hook-adapter-shared.mjs` | Shared helper for the four `spec-gate-enforce` adapters. |
 | `lib/workspace/repo-root.mjs` | Repository-root resolution used by the spec-gate core. |
 | `shared-provenance.ts` | Sanitizes recovered compact payloads, stripping adversarial system/developer/assistant/user prefixes, and wraps them with explicit provenance markers so downstream hooks can tell cached context from a first-class turn. Consumed by `claude/shared.ts` and `claude/hook-state.ts`. |
@@ -138,10 +138,10 @@ Main flow:
 | `claude/session-prime.ts` | Hook script | Claude startup context injection. |
 | `claude/compact-inject.ts` | Hook script | Precomputes context before compaction and caches it to hook state. |
 | `*/user-prompt-submit.ts` | Hook scripts | Prompt-time advisor delivery for the supported runtimes. |
-| `*/spec-gate-classify.mjs` | Hook scripts | Advisory Gate-3 classification on a user turn. |
-| `*/spec-gate-enforce.mjs` | Hook scripts | Pre-tool Gate-3 evaluation; deny-capable for write and edit paths. |
+| `*/spec-gate-classify.mjs` | Hook scripts | Gate-3 classification on a user turn: opens or resolves the gate and emits nothing (the question is delivered at the first mutation). |
+| `*/spec-gate-enforce.mjs` | Hook scripts | Pre-tool Gate-3 evaluation; deny-capable for write and edit paths, and the first in-gate advise carries the once-per-session mutation notice. |
 | `*/completion-evidence-stop.cjs` | Hook scripts | Advisory completion-evidence check at turn end. |
-| `lib/spec-gate/spec-gate-core.mjs` | Module | `classifyIntent()` and `evaluateMutation()` for every runtime. |
+| `lib/spec-gate/spec-gate-core.mjs` | Module | `classifyIntent()` and `evaluateMutation()` for every runtime, plus the delivery-marker helpers. |
 
 ---
 

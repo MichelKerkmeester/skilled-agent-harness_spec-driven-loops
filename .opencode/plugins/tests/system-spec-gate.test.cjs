@@ -6,7 +6,7 @@
 // ║          experimental.chat.system.transform reads or mutates `output`    ║
 // ║          at all, so the kill-switch is a genuine full no-op rather than  ║
 // ║          a no-question no-op that still normalizes output.system. Also   ║
-// ║          pins that the hook still behaves normally (normalize + inject)  ║
+// ║          pins that the hook still behaves normally (relay the deferral)  ║
 // ║          when the kill-switch is off. Hermetic: no live OpenCode         ║
 // ║          session required.                                               ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -21,9 +21,25 @@ const { pathToFileURL } = require('node:url');
 
 const DISABLED_ENV = 'SYSTEM_SPEC_GATE_DISABLED';
 const pluginUrl = pathToFileURL(path.join(__dirname, '..', 'system-spec-gate.js')).href;
+const coreUrl = pathToFileURL(path.join(
+  __dirname,
+  '..',
+  '..',
+  'skills',
+  'system-spec-kit',
+  'runtime',
+  'hooks',
+  'lib',
+  'spec-gate',
+  'spec-gate-core.mjs',
+)).href;
 
 function loadPlugin() {
   return import(pluginUrl);
+}
+
+function loadCore() {
+  return import(coreUrl);
 }
 
 function makeProjectDir() {
@@ -83,7 +99,7 @@ test('kill switch is a full no-op even when output is missing/malformed', async 
   }
 });
 
-test('kill switch off: chat.system.transform still normalizes output.system and injects the question', async () => {
+test('kill switch off: chat.system.transform still normalizes output.system and relays the one-shot deferral', async () => {
   const { default: MkSpecGatePlugin } = await loadPlugin();
   const projectDir = makeProjectDir();
   try {
@@ -93,10 +109,12 @@ test('kill switch off: chat.system.transform still normalizes output.system and 
       const output = {};
       await hooks['experimental.chat.system.transform']({ prompt: 'fix the login bug' }, output);
 
+      const guardCore = await loadCore();
       assert.ok(Array.isArray(output.system), 'output.system must be normalized to an array when the plugin is enabled');
-      assert.ok(
-        output.system.some((line) => typeof line === 'string' && line.includes('SPEC FOLDER QUESTION')),
-        'the bounded Gate-3 question must be injected when a turn triggers mutation intent',
+      assert.deepEqual(
+        output.system,
+        [guardCore.GATE_3_DEFERRED_INSTRUCTION],
+        'the turn-time menu is gone; the one-shot deferral instruction is what reaches system context',
       );
     });
   } finally {
@@ -140,10 +158,12 @@ test('P1 fix: a ctx.client stub returning a Gate-3-triggering user message opens
     const output = {};
     await hooks['experimental.chat.system.transform']({ sessionID, model: { id: 'stub' } }, output);
 
+    const guardCore = await loadCore();
     assert.ok(Array.isArray(output.system));
-    assert.ok(
-      output.system.some((line) => typeof line === 'string' && line.includes('SPEC FOLDER QUESTION')),
-      'the ctx.client fallback must surface the last user message and open the gate',
+    assert.deepEqual(
+      output.system,
+      [guardCore.GATE_3_DEFERRED_INSTRUCTION],
+      'the ctx.client fallback must surface the last user message and open the gate, relaying the deferral',
     );
   } finally {
     fs.rmSync(projectDir, { recursive: true, force: true });
@@ -220,9 +240,11 @@ test('P2 fix: classify and enforce key an absent sessionID under the same fallba
       // itself, independent of the P1 ctx.client fix.
       const output = {};
       await hooks['experimental.chat.system.transform']({ prompt: 'fix the login bug' }, output);
-      assert.ok(
-        output.system.some((line) => typeof line === 'string' && line.includes('SPEC FOLDER QUESTION')),
-        'classify must open the gate for the no-session turn',
+      const guardCore = await loadCore();
+      assert.deepEqual(
+        output.system,
+        [guardCore.GATE_3_DEFERRED_INSTRUCTION],
+        'classify must open the gate for the no-session turn, relaying the deferral',
       );
 
       fs.mkdirSync(path.join(projectDir, 'src'), { recursive: true });

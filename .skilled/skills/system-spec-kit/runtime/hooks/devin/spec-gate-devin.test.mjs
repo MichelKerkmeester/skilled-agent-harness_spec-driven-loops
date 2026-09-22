@@ -143,15 +143,15 @@ test('disabled and autonomous child sessions are complete no-ops', () => {
   }
 });
 
-test('a mutating prompt opens the gate and surfaces the Gate-3 question', () => {
+test('a mutating prompt opens the gate without emitting anything on the turn', () => {
   const { root } = makeWorkspace();
   try {
     const sessionID = 'open-session';
     const result = runHook(CLASSIFY_HOOK_PATH, root, classifyPayload(root, sessionID), {
       [guardCore.ENFORCE_ENV]: '1',
     });
-    const parsed = assertHasAdditionalContext(result, 'UserPromptSubmit');
-    assert.ok(parsed.hookSpecificOutput.additionalContext.includes('SPEC FOLDER QUESTION'));
+    // Turn-time delivery is gone: the question waits for the first mutation.
+    assertNoOutput(result);
     assert.equal(JSON.parse(readFileSync(statePath(root, sessionID), 'utf8')).status, 'open');
   } finally {
     rmSync(root, { recursive: true, force: true });
@@ -189,7 +189,7 @@ test('enforce denies an edit when the gate is open and enforce is on', () => {
   }
 });
 
-test('enforce remains inert without explicit opt-in (advise, not deny)', () => {
+test('enforce advises once at the first mutation, then stays silent', () => {
   const { root } = makeWorkspace();
   try {
     const sessionID = 'advise-session';
@@ -199,9 +199,13 @@ test('enforce remains inert without explicit opt-in (advise, not deny)', () => {
     assert.equal(enforce.status, 0, enforce.stderr);
     const parsed = JSON.parse(enforce.stdout);
     assert.equal(parsed.hookSpecificOutput.hookEventName, 'PreToolUse');
-    assert.ok(parsed.hookSpecificOutput.additionalContext);
+    assert.ok(parsed.hookSpecificOutput.additionalContext.includes('SPEC FOLDER QUESTION'));
     // No permissionDecision field -> advisory only, not a deny.
     assert.equal(parsed.hookSpecificOutput.permissionDecision, undefined);
+
+    // The delivery marker is what ends the repetition: a second mutation in
+    // the same session has nothing left to say.
+    assertNoOutput(runHook(ENFORCE_HOOK_PATH, root, enforcePayload(root, sessionID)));
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
@@ -269,7 +273,7 @@ test('a whitespace-only cwd falls back to process.cwd() and still enforces', () 
     const classify = runHook(CLASSIFY_HOOK_PATH, root, payload, {
       [guardCore.ENFORCE_ENV]: '1',
     });
-    assertHasAdditionalContext(classify, 'UserPromptSubmit');
+    assertNoOutput(classify);
 
     // State must be under the test root (the spawn cwd), not under a "   " subdirectory.
     assert.equal(JSON.parse(readFileSync(statePath(root, sessionID), 'utf8')).status, 'open');
@@ -299,7 +303,7 @@ test('a missing cwd falls back to DEVIN_PROJECT_DIR then process.cwd()', () => {
       [guardCore.ENFORCE_ENV]: '1',
       DEVIN_PROJECT_DIR: root,
     });
-    assertHasAdditionalContext(classify, 'UserPromptSubmit');
+    assertNoOutput(classify);
     assert.equal(JSON.parse(readFileSync(statePath(root, sessionID), 'utf8')).status, 'open');
   } finally {
     rmSync(root, { recursive: true, force: true });

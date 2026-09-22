@@ -26,11 +26,11 @@ expected_leaf_resources: []
 
 - OpenCode plugin: `.skilled/plugins/system-spec-gate.js` -- classify runs in `experimental.chat.system.transform` (best-effort fetches the session's last user message via `ctx.client` since the real hook input carries no prompt field), enforce runs in `tool.execute.before` on the mutating-tool set.
 - Claude hooks: `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs` (`UserPromptSubmit`) and `spec-gate-enforce.mjs` (`PreToolUse` on `Write|Edit` and `Bash`).
-- Shared core: `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` -- `classifyIntent()` opens the gate and returns the bounded Gate-3 question, or parses an answer to an already-open gate; `evaluateMutation()` reads the cached gate state for a Write/Edit and returns `allow`/`advise`/`deny`.
+- Shared core: `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` -- `classifyIntent()` opens the gate and returns the bounded Gate-3 question, or parses an answer to an already-open gate; `evaluateMutation()` reads the cached gate state for a Write/Edit and returns `allow`/`advise`/`deny`, carrying `GATE_3_MUTATION_NOTICE` on the first delivery plus the persisted marker that keeps later mutations silent.
 
-Classify only ever surfaces a question (it cannot block). A dispatched child (`AI_SESSION_CHILD=1`) short-circuits classify and enforce as a complete no-op before any state read/write, question, denial, or telemetry. For an interactive session, enforce advises by default and denies a Write/Edit only when enforcement is enabled, the gate is open and unanswered, and the target is a real, non-exempt in-repo path. Bash is always advise-only for interactive sessions. Every entrypoint fails open: an unreadable/corrupt state file, a classifier throw, or an unresolvable root resolves to allow/no-op with no side effects.
+Classify opens the gate and puts nothing on the turn (it cannot block); the question reaches the operator at the first mutation -- through Pi's interactive dialog, or through the once-per-session notice the first Write/Edit advisory carries. A dispatched child (`AI_SESSION_CHILD=1`) short-circuits classify and enforce as a complete no-op before any state read/write, question, denial, or telemetry. For an interactive session, enforce advises by default and denies a Write/Edit only when enforcement is enabled, the gate is open and unanswered, and the target is a real, non-exempt in-repo path. Bash is always advise-only for interactive sessions. Every entrypoint fails open: an unreadable/corrupt state file, a classifier throw, or an unresolvable root resolves to allow/no-op with no side effects.
 
-This scenario validates, with real executed evidence: (a) with enforce OFF (the actual project wiring in `.claude/settings.json`, `SYSTEM_SPEC_GATE_ENFORCE=0`) a non-spec Write/Edit is never denied; (b) flipping `SYSTEM_SPEC_GATE_ENFORCE=1` produces a real deny plus the Gate-3 detail message on a non-spec Write; (c) a write inside the spec tree itself stays exempt and allows even with enforce on; (d) a dispatched/child session (`AI_SESSION_CHILD=1`) emits no question, denial, advisory, or telemetry even with enforce on; (e) a false-positive measurement using both shipped unit-test suites and this repo's own live telemetry, sized before any global enforce flip.
+This scenario validates, with real executed evidence: (a) with enforce OFF (the actual project wiring in `.claude/settings.json`, `SYSTEM_SPEC_GATE_ENFORCE=0`) a non-spec Write/Edit is never denied; (b) flipping `SYSTEM_SPEC_GATE_ENFORCE=1` produces a real deny plus the Gate-3 detail message on a non-spec Write; (c) a write inside the spec tree itself stays exempt and allows even with enforce on; (d) a dispatched/child session (`AI_SESSION_CHILD=1`) emits no question, denial, advisory, or telemetry even with enforce on; (e) a false-positive measurement using both shipped unit-test suites and this repo's own live telemetry, sized before any global enforce flip; (f) mutation-time delivery happens exactly once through a persisted marker -- the first in-gate Write is advised with the notice and the next mutation in the same session is silent.
 
 ---
 
@@ -38,9 +38,9 @@ This scenario validates, with real executed evidence: (a) with enforce OFF (the 
 
 - Preconditions: Node is on `PATH`. `.skilled/plugins/system-spec-gate.js`, `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`, and both Claude hook adapters exist (confirmed live, see Evidence). `.claude/settings.json` wires `PreToolUse` (`Write|Edit` and `Bash` matchers) to `spec-gate-enforce.mjs` and `UserPromptSubmit` to `spec-gate-classify.mjs`, with `env.SYSTEM_SPEC_GATE_ENFORCE` set to `"0"` project-wide.
 - Real user-facing trigger: a user asks the agent to "fix the login bug" (or any other file-mutation-shaped request) without naming a spec folder, then the agent attempts a `Write`/`Edit` on a real, non-exempt source file before a spec folder has been named -- exactly the Gate-3 violation the CLAUDE.md GATE 3 rule targets.
-- Expected signals: `classifyIntent()` returns `{status:"open", question: <GATE_3_QUESTION>}` on an interactive mutation-shaped prompt; `evaluateMutation()` returns `decision:"advise"` with `wouldDeny:true` whenever enforce is off; `decision:"deny"` with `detail` containing `"DENIED: this Write/Edit needs a bound spec folder first"` only when enforce is on, the session is interactive, and the target is non-exempt; a child returns `{status:"closed", question:null}` from classify and `{decision:"allow", detail:null, wouldDeny:false}` from enforce; spec-tree/`.git`/`node_modules`/`dist`/`/tmp`/`/private/tmp` targets and the disabled kill-switch also allow.
-- Desired user-visible outcome: a concise PASS/FAIL verdict citing the exact captured command output for each of the five behaviors above, plus a real false-positive rate measured from this repo's own telemetry.
-- Pass/fail: PASS if enforce-OFF never denies, enforce-ON denies exactly the non-exempt interactive case, exempt paths allow, child sessions are complete no-ops, the kill-switch is a full no-op, and both unit-test suites are green. FAIL if a child emits any Gate-3 question/advisory/telemetry or denial, if an exempt path is denied, if the kill-switch does not suppress a deny, or if either unit-test suite reports a failure.
+- Expected signals: `classifyIntent()` returns `{status:"open", question: <GATE_3_QUESTION>}` on an interactive mutation-shaped prompt while the Claude classify hook writes nothing for the turn; `evaluateMutation()` returns `decision:"advise"` with `wouldDeny:true` and `detail` containing `"SPEC FOLDER QUESTION"` (the once-per-session mutation notice) for the first in-gate Write/Edit whenever enforce is off, then a silent allow for later mutations in that session; `decision:"deny"` with `detail` containing `"DENIED: this Write/Edit needs a bound spec folder first"` only when enforce is on, the session is interactive, and the target is non-exempt; a child returns `{status:"closed", question:null}` from classify and `{decision:"allow", detail:null, wouldDeny:false}` from enforce; spec-tree/`.git`/`node_modules`/`dist`/`/tmp`/`/private/tmp` targets and the disabled kill-switch also allow.
+- Desired user-visible outcome: a concise PASS/FAIL verdict citing the exact captured command output for each of the six behaviors above, plus a real false-positive rate measured from this repo's own telemetry.
+- Pass/fail: PASS if enforce-OFF never denies, enforce-ON denies exactly the non-exempt interactive case, the first advise carries the notice exactly once and later mutations stay silent, exempt paths allow, child sessions are complete no-ops, the kill-switch is a full no-op, and both unit-test suites are green. FAIL if a child emits any Gate-3 question/advisory/telemetry or denial, if an exempt path is denied, if the kill-switch does not suppress a deny, if the notice repeats within one session, or if either unit-test suite reports a failure.
 
 ---
 
@@ -70,7 +70,7 @@ Expected: TAP output, `# tests 11`, `# pass 11`, `# fail 0`.
 env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE -u SYSTEM_SPEC_GATE_DISABLED node --experimental-test-module-mocks --test .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs
 ```
 
-Expected: `# tests 87`, `# pass 87`, `# skipped 0`, `# fail 0`.
+Expected: `tests 106`, `pass 106`, `skipped 0`, `fail 0` (Node prints them with an `ℹ` prefix).
 
 3. Build a disposable, non-exempt fixture project (deliberately NOT under `/tmp` or `/private/tmp`, which the core always treats as exempt scratch space -- `mktemp -d` with no path argument resolves to `$TMPDIR`, e.g. `/var/folders/.../T/...` on macOS):
 
@@ -90,14 +90,14 @@ printf '%s' '{"prompt":"fix the login bug","session_id":"hook-demo-a","cwd":"'"$
 
 Expected: exit 0, one JSON object with `additionalContext` containing `SPEC FOLDER QUESTION`.
 
-5. Enforce OFF: a real Write on the non-spec fixture file must be `advise`, never `deny`:
+5. Enforce OFF: a real Write on the non-spec fixture file must `advise` (never `deny`) and carry the once-per-session mutation notice. Rerun the identical command for the second half of the assertion -- once the first envelope lands, the persisted delivery marker makes the next mutation in this session silent:
 
 ```bash
 printf '%s' '{"tool_name":"Write","tool_input":{"file_path":"src/login.ts"},"session_id":"hook-demo-a","cwd":"'"$TMPDIR_A"'"}' \
   | SYSTEM_SPEC_GATE_ENFORCE=0 node .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs
 ```
 
-Expected: exit 0, `additionalContext` present, `permissionDecision` absent.
+Expected: first run -- exit 0, `additionalContext` present and containing `SPEC FOLDER QUESTION` (the mutation notice), `permissionDecision` absent. Second run -- exit 0, empty stdout (`SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION=0` would restore the notice).
 
 6. Flip the enforce env var: the identical Write must now `deny`. Neutralize the operator's ambient `AI_SESSION_CHILD` with `env -u` for this command; a dispatched child takes the complete no-op path tested in step 7.
 
@@ -188,7 +188,7 @@ Capture, for every step in the Commands sequence above:
 ### Pass / Fail
 
 - **Pass**: Enforce-OFF never denies, enforce-ON denies exactly the non-exempt interactive case, exempt paths allow, child sessions are complete no-ops, the kill-switch is a full no-op, and both unit-test suites are green.
-- **Fail**: A child emits any Gate-3 question/advisory/telemetry or denial, if an exempt path is denied, if the kill-switch does not suppress a deny, or if either unit-test suite reports a failure.
+- **Fail**: A child emits any Gate-3 question/advisory/telemetry or denial, if an exempt path is denied, if the kill-switch does not suppress a deny, if the delivery notice repeats within one session, or if either unit-test suite reports a failure.
 
 ### Failure Triage
 
@@ -206,6 +206,7 @@ Capture, for every step in the Commands sequence above:
 - Plugin adapter unit test: `.skilled/plugins/tests/system-spec-gate.test.cjs`
 - Runtime-neutral core: `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`
 - Core unit test: `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs`
+- Pi extension suite: `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts`
 - Claude classify hook: `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs`
 - Claude enforce hook: `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs`
 - Shared Gate-3 classifier consumed by the core: `.skilled/skills/system-spec-kit/shared/dist/gate-3-classifier.js`

@@ -53,8 +53,8 @@ This folder also holds the Codex CLI side of the Gate-3 spec-folder discipline, 
 
 | File | Purpose |
 |------|---------|
-| `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` against each user turn and surfaces the bounded Gate-3 question as `additionalContext`. Advisory only. |
-| `spec-gate-enforce.mjs` | `PreToolUse` hook. Maps Codex's `exec`/`apply_patch`/`edit` tool names onto the core's `bash`/`write`/`edit` vocabulary, parses `*** Add/Update/Delete File:` and `*** Move to:` headers out of `apply_patch` patch bodies to find the real target path, then runs `evaluateMutation()`. |
+| `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` against each user turn and opens the session gate. Emits **nothing**: the question is delivered at the first mutation. |
+| `spec-gate-enforce.mjs` | `PreToolUse` hook. Maps Codex's `exec`/`apply_patch`/`edit` tool names onto the core's `bash`/`write`/`edit` vocabulary, parses `*** Add/Update/Delete File:` and `*** Move to:` headers out of `apply_patch` patch bodies to find the real target path, then runs `evaluateMutation()`. The first in-gate Write/Edit emits the once-per-session mutation notice as `additionalContext` and records the delivery marker after the envelope is written; later mutations are silent. |
 | `spec-gate-codex.test.mjs` | Co-located tests, run with `node --test`. |
 
 `.codex/hooks.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit` and `spec-gate-enforce.mjs` to the `exec|apply_patch|edit` `PreToolUse` matcher.

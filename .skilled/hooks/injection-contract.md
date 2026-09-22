@@ -67,21 +67,18 @@ gate blocks violations.
 - **Pi-only directive ownership:** the Pi adapter forwards the shared advisor context onto the visible prompt but injects no Pi-only directive of its own; the current-turn `cli-*` override policy is enforced at the tool-call boundary by `dispatch-preflight-lint.ts`, which never writes into the prompt. The Pi adapter is a forwarder, not an owner, of the shared directive; it is not emitted by `render.ts` or the OpenCode bridge.
 - **See also:** [`skill-advisor-hook.md`](../skills/system-skill-advisor/hooks/skill-advisor-hook.md) for setup and validation. This file only documents the injected content.
 
-### Spec-Gate Gate-3 Question
+### Spec-Gate Mutation-Time Delivery
 
-**Injects:** the A/B/C/D spec-folder documentation question, appended to the user's own turn when the shared classifier flags the prompt as a likely mutation.
+**Injects:** the A/B/C/D spec-folder menu is delivered at the first file mutation, once per session — never appended to a write-intent turn, so the turn proceeds instead of stalling on a question. The turn-time text is a deferral; the mutation-time text is a notice the model relays to the operator.
 
 ```text
-SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit,
-pick one:
-A) Use an existing spec folder (name it)
-B) Create a new spec folder
-...
+SPEC GATE: this session needs a spec-folder decision, but only at the first file mutation.
+Do not stop to ask it now; ask it once when you are about to write, then continue.
 ```
 
-- **Trigger:** a user prompt the classifier scores as a probable file mutation, once per session until answered.
-- **Owning module:** `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent`).
-- **Channel per runtime:** Claude/Cursor/Devin/Codex `[SYS]` (`spec-gate-classify.mjs` -> `additionalContext`). OpenCode `[SYS]` (`system-spec-gate.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`spec-gate-classify.ts` appends the question onto the visible prompt via the same `input`-transform mechanism as the advisor brief, and the two chain additively, so both appear in the same visibly-modified prompt).
+- **Trigger:** a user prompt the classifier scores as a probable file mutation opens the session gate; the menu itself reaches the operator at the first non-exempt Write/Edit, or through Pi's interactive dialog, and not again for that session unless the gate re-arms.
+- **Owning module:** `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent` opens the gate; `evaluateMutation` composes `GATE_3_MUTATION_NOTICE`; `recordGate3NoticeDelivered` persists the once-per-session marker).
+- **Channel per runtime:** Claude/Codex/Devin `[SYS]` (`spec-gate-enforce.mjs` -> `additionalContext` on the first in-gate advise; a deny reason is `GATE_3_DENY_DETAIL`, which embeds the same notice). Cursor `[SYS]` (`agent_message` on advise, `user_message` on deny). OpenCode `[SYS]` (`system-spec-gate.js` pushes the deferral instruction through `experimental.chat.system.transform` once; its thrown deny reason carries `GATE_3_DENY_DETAIL`). Pi `[MSG]` only when the session has no UI (`spec-gate-classify.ts` appends the deferral instruction to the visible prompt); a dialog-capable Pi session gets an interactive dialog instead of any text, and its one blocked call carries the notice in the retry reason.
 
 ### sk-vision Evidence (Devin only)
 
@@ -137,7 +134,7 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 
 - **Trigger per runtime:** Cursor `sessionStart` only (its `beforeSubmitPrompt` never delivers, `stop` never fires); Pi `input` (every turn, operator-visible transform) + `session_start` (restore) + `turn_end` (verify + `recordTurn`).
 - **Owning modules:** the shared core `.skilled/hooks/goal/lib/goal-core.cjs`, the slice module `lib/goal-slice.cjs`, plus the per-runtime adapters under `.skilled/hooks/goal/{cursor,devin,pi}/`. Each read resolves workspace, runtime, and native session id to an opaque per-session state file. The legacy `active-goal.json` is never an injection fallback.
-- **Channel per runtime:** Cursor `[SYS]` (`sessionStart` `agent_message`). Devin `[SYS]` (`SessionStart` and `UserPromptSubmit` `hookSpecificOutput.additionalContext`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 question, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`).
+- **Channel per runtime:** Cursor `[SYS]` (`sessionStart` `agent_message`). Devin `[SYS]` (`SessionStart` and `UserPromptSubmit` `hookSpecificOutput.additionalContext`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 deferral instruction, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`).
 
 ---
 
@@ -147,9 +144,9 @@ Fire around a specific tool call, not the whole turn.
 
 ### Spec-Gate Enforcement Denial
 
-**Injects:** nothing proactively, but when it denies a write/edit/bash call, the denial reason is the content the model receives back in place of a successful tool result.
+**Injects:** the denial reason is `GATE_3_DENY_DETAIL` — the DENIED sentence, the same mutation notice the advised path carries, and `Then retry the same call.` — delivered in place of a successful tool result. An *advised* first mutation (enforcement off) is not a block: it carries `GATE_3_MUTATION_NOTICE` as ordinary tool-time context.
 
-- **Trigger:** a mutating tool call (`bash`/`write`/`edit`) the shared gate evaluates as denied.
+- **Trigger:** a mutating tool call (`write`/`edit`) the shared gate evaluates as denied. `bash` is never denied, only advised.
 - **Owning module:** `spec-gate-core.mjs` (`evaluateMutation`).
 - **Channel:** `[BLOCK]` everywhere. Claude/Cursor/Devin/Codex return `hookSpecificOutput.permissionDecision: "deny"` plus `permissionDecisionReason`. Pi's `spec-gate-enforce.ts` returns `{block: true, reason}`. OpenCode's `system-spec-gate.js` denies via `tool.execute.before`.
 
@@ -265,7 +262,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 | **Cursor / Devin** | No known `--debug`/`--verbose` flag for either CLI. Fall back to the shared audit log (`.skilled/logs/cli-dispatch-audit.log`) and each hook's own state files, or re-run the adapter script standalone with a captured stdin payload (the method used throughout this repo's own hook verification work). |
 | **Codex** | Same mirror scripts as Claude. Inspect via the same JSONL-transcript method if Codex persists one, otherwise the standalone-replay method above. |
 | **OpenCode** | `opencode --log-level DEBUG --print-logs` writes to `~/.local/share/opencode/log/`. `opencode export <sessionID>` exists as an export-to-JSON path, but its exact content shape (whether it includes the assembled `system` array) is not verified in this repo. Treat it as unconfirmed until checked live. |
-| **Pi** | The one runtime where `[MSG]`-tagged content (skill-advisor brief, Gate-3 question) is visible directly in the normal chat, because the `input`-event transform rewrites the visible prompt itself. `[SYS]`-tagged content (session-start/compact context via `pi.sendMessage`) is not visible even here. |
+| **Pi** | The one runtime where `[MSG]`-tagged content (skill-advisor brief, Gate-3 deferral instruction) is visible directly in the normal chat, because the `input`-event transform rewrites the visible prompt itself. `[SYS]`-tagged content (session-start/compact context via `pi.sendMessage`) is not visible even here. |
 
 ---
 

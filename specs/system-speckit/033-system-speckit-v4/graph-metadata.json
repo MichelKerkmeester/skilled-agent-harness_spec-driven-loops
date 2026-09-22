@@ -50,7 +50,8 @@
     "system-speckit/033-system-speckit-v4/044-v4-changelog-late-cycle-entries",
     "system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite",
     "system-speckit/033-system-speckit-v4/046-v4-changelog-remediation",
-    "system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes"
+    "system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes",
+    "system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery"
   ],
   "manual": {
     "depends_on": [],
@@ -130,16 +131,16 @@
     ],
     "causal_summary": "Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-21T16:23:07.807Z",
+    "last_save_at": "2026-09-22T07:03:47.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bc5925547873e809878953932cf1731932737c2266f6e1ed3d6dc4944d0505cf",
+    "source_fingerprint": "sha256:bebdceb8fa88e44297f9fb2dff0ee5104f37a44a142bc73a286b06ecf7e867b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "13118b2b5f2f28a97c708a08ea52f17fff9c2d0e0083b727a7c6225c1df734e7"
+      "spec.md": "fc884814855f891e81e0105d576982c28006c3eb0086455cfe4b5f71ef09ae7e"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite",
     "last_active_at": "2026-09-21T10:02:49.984Z"

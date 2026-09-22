@@ -7,6 +7,17 @@
 // ║          classifyIntent() reads each user turn: it parses an answer to   ║
 // ║          an already-open gate, or opens the gate and returns a bounded   ║
 // ║          question when the turn triggers file-mutation intent.          ║
+// ║          Delivery shape: classifyIntent() opens the gate and parses      ║
+// ║          answers, but it never asks by itself any more. A question       ║
+// ║          appended to the user's own turn stalls instruction-literal      ║
+// ║          models and keeps re-asking for a whole session, because the     ║
+// ║          answer channel (the user's next message) is usually the next     ║
+// ║          instruction instead. The question is delivered once, at the      ║
+// ║          first real mutation, through the strongest channel the runtime   ║
+// ║          has -- a dialog, a block reason, or a one-shot notice -- and     ║
+// ║          the marker persisted in the session state file is what stops     ║
+// ║          the repeats: process memory cannot hold it, because every hook   ║
+// ║          invocation is a fresh process.                                   ║
 // ║          evaluateMutation() reads the cached gate state for a Write/Edit ║
 // ║          and returns allow/advise/deny -- deny only when the opt-in      ║
 // ║          enforce env is set. This module performs the atomic session-    ║
@@ -127,7 +138,9 @@ export const DENY_CAPABLE_TOOLS = new Set(['write', 'edit']);
 
 // A small, fixed string -- the guard never echoes the classifier's matched-token
 // arrays into the TUI or injected context, so the relayed question stays bounded
-// and predictable regardless of what a prompt happened to match.
+// and predictable regardless of what a prompt happened to match. This is the
+// menu a human answers; it is never appended to a model turn any more, only
+// shown by a runtime dialog or relayed by hand (see GATE_3_MUTATION_NOTICE).
 export const GATE_3_QUESTION = [
   'SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:',
   'A) Use an existing spec folder (reply with its path, e.g. specs/<track>/<NNN-name>)',
@@ -136,12 +149,37 @@ export const GATE_3_QUESTION = [
   'D) Skip (no spec folder needed for this change)',
 ].join('\n');
 
+// The model-facing mutation-time notice. Deliberately NOT a bare question: a
+// question dropped into a turn reads as a blocking instruction to an
+// instruction-literal model, which then stops on every write-intent turn. This
+// states the once-per-session contract in the text itself as well, so a runtime
+// that cannot remember a delivery still stops asking after the first answer.
+export const GATE_3_MUTATION_NOTICE = [
+  'SPEC FOLDER QUESTION - this session has no bound spec folder and a file mutation is about to run.',
+  'Ask the operator once where this change should live, then continue:',
+  'A) An existing spec folder - reply with its path, e.g. specs/<track>/<NNN-name>',
+  'B) A new spec folder - reply with its path, e.g. specs/<track>/<NNN-name> (it does not have to exist yet)',
+  'C) A related folder, including a phase child - reply with its path',
+  'D) Skip - no spec folder needed for this change',
+  'The answer holds for the rest of this session: do not ask this again on later turns.',
+].join('\n');
+
+// Where no dialog exists to ask at the mutation, the classify surface still has
+// to tell the model what the open gate means without stopping the turn it is on
+// -- a deferral, not a question, so it cannot be read as a blocking request.
+export const GATE_3_DEFERRED_INSTRUCTION = [
+  'SPEC GATE: this session needs a spec-folder decision, but only at the first file mutation.',
+  'Do not stop to ask it now; ask it once when you are about to write, then continue.',
+].join('\n');
+
 // The human-facing relay question above and the model-facing deny reason
 // below are deliberately different strings: GATE_3_QUESTION is what the USER
 // sees (a menu to answer); GATE_3_DENY_DETAIL is what the MODEL sees when a
 // Write/Edit is actually blocked -- an instruction to go get that answer from
-// the user, not a menu the model itself could try to resolve alone.
-export const GATE_3_DENY_DETAIL = 'DENIED: this Write/Edit needs a bound spec folder first. Ask the USER to reply with a letter A-D naming an existing (or new) spec folder, then retry.';
+// the user, not a menu the model itself could try to resolve alone. The
+// mutation notice is embedded so a blocked model relays the same
+// once-per-session shape every other channel delivers.
+export const GATE_3_DENY_DETAIL = `DENIED: this Write/Edit needs a bound spec folder first.\n${GATE_3_MUTATION_NOTICE}\nThen retry the same call.`;
 
 const GATE_3_DELIVERY_KIND = 'gate-question';
 const GATE_3_DELIVERY_HASH_ALGORITHM = 'sha256';
@@ -288,6 +326,180 @@ function gate3Environment(env) {
 
 function gate3SuppressionFlagEnabled(env) {
   return gate3Environment(env)[GATE_3_DELIVERY_SUPPRESSION_ENV] === '1';
+}
+
+// The repeat-suppression contract for mutation-time delivery: an undelivered
+// gate always delivers; once delivered, the same session stays quiet until the
+// gate re-opens, a resume trigger arrives, or an answer attempt fails to bind
+// (each of those clears the marker below). Only an explicit off value restores
+// the old emit-every-time behaviour -- the default has to be the quiet one,
+// because re-emitting was the defect this guards against.
+const GATE_3_EMIT_ALWAYS_VALUES = new Set(['0', 'false', 'no', 'off']);
+function gate3EmissionAlwaysOn(env) {
+  const raw = gate3Environment(env)[GATE_3_DELIVERY_SUPPRESSION_ENV];
+  if (raw === undefined || raw === null) return false;
+  return GATE_3_EMIT_ALWAYS_VALUES.has(String(raw).trim().toLowerCase());
+}
+
+// The marker fields live in the same per-session state file as the gate
+// status, so suppression survives runtimes that lose process memory between
+// events -- every hook invocation is a fresh process -- and does not depend on
+// the in-memory lifecycle-epoch/shadow machinery, which stays telemetry.
+const GATE_3_MARKER_FIELDS = ['questionDeliveredAtMs', 'questionDeliveredChannel', 'questionDeliveredCount'];
+
+function gate3PlainState(state) {
+  return state && typeof state === 'object' && !Array.isArray(state) ? state : {};
+}
+
+function gate3DeliveryMarker(state) {
+  const plain = gate3PlainState(state);
+  const at = plain.questionDeliveredAtMs;
+  if (typeof at !== 'number' || !Number.isFinite(at) || at <= 0) return null;
+  const channel = normalizedGate3Fingerprint(plain.questionDeliveredChannel) ?? 'unknown';
+  const count = Number.isInteger(plain.questionDeliveredCount) && plain.questionDeliveredCount > 0
+    ? plain.questionDeliveredCount
+    : 1;
+  return { at, channel, count };
+}
+
+function gate3StateWithMarker(state, channel) {
+  const marker = gate3DeliveryMarker(state);
+  return {
+    ...gate3PlainState(state),
+    questionDeliveredAtMs: Date.now(),
+    questionDeliveredChannel: normalizedGate3Fingerprint(channel) ?? 'unknown',
+    questionDeliveredCount: (marker?.count ?? 0) + 1,
+  };
+}
+
+function gate3StateWithoutMarker(state) {
+  const plain = { ...gate3PlainState(state) };
+  for (const field of GATE_3_MARKER_FIELDS) delete plain[field];
+  return plain;
+}
+
+function gate3EmissionBlocked(environment) {
+  return environment[DISABLED_ENV] === '1' || specGateConcernDisabled(environment);
+}
+
+/**
+ * Whether the one-shot deferral instruction still has to be relayed in this
+ * session -- the no-dialog path, where classification cannot ask and the
+ * mutation notice may never reach a model turn. Fail-open: anything unexpected
+ * reports "do not deliver", so a state problem can never add text to a turn.
+ *
+ * @param {{ sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv }} request
+ * @returns {{ deliver: boolean }}
+ */
+export function shouldDeliverGate3Deferral(request = {}) {
+  try {
+    const safe = request && typeof request === 'object' ? request : {};
+    const environment = gate3Environment(safe.env);
+    if (gate3EmissionBlocked(environment) || isChildSession(environment)) return { deliver: false };
+    const { stateDir } = resolveGuardPaths(safe.projectDir || process.cwd());
+    const state = readGateState(stateDir, safe.sessionID);
+    if (state.status !== 'open') return { deliver: false };
+    if (gate3DeliveryMarker(state) && !gate3EmissionAlwaysOn(environment)) return { deliver: false };
+    return { deliver: true };
+  } catch (_) {
+    return { deliver: false };
+  }
+}
+
+/**
+ * Record that the question, or the deferral instruction standing in for it,
+ * reached the operator through some channel, so no later surface in this
+ * session delivers it again. Adapter-invoked after its envelope is written
+ * (mirroring observe()); a failed write only means a later mutation may ask
+ * again, never that a mutation is blocked.
+ *
+ * @param {{ sessionID?: string, projectDir?: string, channel?: string, env?: NodeJS.ProcessEnv }} request
+ * @returns {boolean} Whether the marker landed on disk.
+ */
+export function recordGate3NoticeDelivered(request = {}) {
+  try {
+    const safe = request && typeof request === 'object' ? request : {};
+    const environment = gate3Environment(safe.env);
+    if (gate3EmissionBlocked(environment) || isChildSession(environment)) return false;
+    const { stateDir } = resolveGuardPaths(safe.projectDir || process.cwd());
+    const state = readGateState(stateDir, safe.sessionID);
+    if (state.status !== 'open') return false;
+    return writeGateStateAtomic(stateDir, safe.sessionID, gate3StateWithMarker(state, safe.channel));
+  } catch (_) {
+    return false;
+  }
+}
+
+/**
+ * Clear the one-time delivery marker so the question may be put once more.
+ * Used where a session boundary arrives without a prompt to classify -- a
+ * runtime resume event -- and by the classify path when a resume trigger lands
+ * on an already-open gate. A closed gate is left alone.
+ *
+ * @param {{ sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv }} request
+ * @returns {boolean} Whether a marker was cleared.
+ */
+export function rearmGate3NoticeDelivery(request = {}) {
+  try {
+    const safe = request && typeof request === 'object' ? request : {};
+    const environment = gate3Environment(safe.env);
+    if (gate3EmissionBlocked(environment) || isChildSession(environment)) return false;
+    const { stateDir } = resolveGuardPaths(safe.projectDir || process.cwd());
+    const state = readGateState(stateDir, safe.sessionID);
+    if (state.status !== 'open' || !gate3DeliveryMarker(state)) return false;
+    return writeGateStateAtomic(stateDir, safe.sessionID, gate3StateWithoutMarker(state));
+  } catch (_) {
+    return false;
+  }
+}
+
+/**
+ * Bind an already-resolved answer programmatically. This is the interactive
+ * dialog path, where the operator chose in a UI instead of typing into a
+ * prompt turn; acceptance and persistence are the same as for a conversational
+ * answer, so every later surface reads the gate the same way. Never throws and
+ * never partially binds: a rejected answer leaves the gate open.
+ *
+ * @param {{ answer?: { type?: string, path?: string }, sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv }} request
+ * @returns {{ accepted: boolean, status: string|null, resolvedPath: string|null, reason: string|null }}
+ */
+export function bindGate3Answer(request = {}) {
+  const reject = (reason, status = null) => ({ accepted: false, status, resolvedPath: null, reason });
+  try {
+    const safe = request && typeof request === 'object' ? request : {};
+    const environment = gate3Environment(safe.env);
+    if (gate3EmissionBlocked(environment)) return reject('disabled');
+    if (isChildSession(environment)) return reject('child_session');
+    const answer = safe.answer && typeof safe.answer === 'object' ? safe.answer : null;
+    if (!answer) return reject('no_answer');
+    const projectDir = safe.projectDir || process.cwd();
+    const { stateDir } = resolveGuardPaths(projectDir);
+    const state = readGateState(stateDir, safe.sessionID);
+    if (state.status !== 'open') return reject('gate_not_open', state.status ?? null);
+
+    if (answer.type === 'skip') {
+      const wrote = writeGateStateAtomic(stateDir, safe.sessionID, { status: 'skipped', answeredAtMs: Date.now() });
+      return wrote
+        ? { accepted: true, status: 'skipped', resolvedPath: null, reason: null }
+        : reject('state_write_failed', 'open');
+    }
+
+    const candidatePath = typeof answer.path === 'string' ? answer.path.trim() : '';
+    if (!candidatePath) return reject('missing_path', 'open');
+    const binding = acceptPriorAnswerBinding(candidatePath, projectDir);
+    if (!binding.accepted) return reject('binding_rejected', 'open');
+    const wrote = writeGateStateAtomic(stateDir, safe.sessionID, {
+      status: 'satisfied',
+      boundSpecFolder: { path: candidatePath, source: 'prior_answer' },
+      validatedResolvedPath: binding.resolvedAbsolutePath,
+      answeredAtMs: Date.now(),
+    });
+    return wrote
+      ? { accepted: true, status: 'satisfied', resolvedPath: binding.resolvedAbsolutePath, reason: null }
+      : reject('state_write_failed', 'open');
+  } catch (_) {
+    return reject('internal');
+  }
 }
 
 function gate3ReceiptStatus(receipt) {
@@ -1150,6 +1362,62 @@ function resolveScaffoldAcceptance(folderAbsolutePath, depth = 0) {
   return folderAbsolutePath;
 }
 
+function specsRootAbsolutes(workspaceRoot) {
+  const relatives = ['specs', '.opencode/specs', '.skilled/specs'];
+  const override = (process.env.SPEC_KIT_SPECS_DIR || process.env.SPECKIT_SPECS_DIR || '').trim();
+  if (override) relatives.push(override);
+  return relatives.map((relative) => realpathOrNearestExisting(join(workspaceRoot, relative)));
+}
+
+function isUnderSpecsRoot(absolutePath, workspaceRoot) {
+  return specsRootAbsolutes(workspaceRoot).some((root) => isPathWithin(root, absolutePath));
+}
+
+function directoryExists(absolutePath) {
+  try {
+    return statSync(absolutePath).isDirectory();
+  } catch (_) {
+    return false;
+  }
+}
+
+function pathExists(absolutePath) {
+  try {
+    return Boolean(statSync(absolutePath));
+  } catch (_) {
+    return false;
+  }
+}
+
+/**
+ * Accept the one shape a not-yet-created folder can legitimately have: the leaf
+ * names a packet and its parent already exists inside a specs root, so the
+ * answer names a real location rather than a typo. Without this, "create a new
+ * spec folder" was unanswerable -- the classifier rejects any path that does
+ * not exist yet, so the answer was refused and the question came straight
+ * back. Creation itself stays the caller's job; this only binds where the
+ * packet will live, and only when nothing is there already.
+ */
+function resolvePlannedPacketPath(candidatePath, workspaceRoot) {
+  const normalized = String(candidatePath).trim().replace(/[\\/]+$/, '');
+  if (!normalized.length) return null;
+  const segments = normalized.split(/[\\/]/).filter((segment) => segment.length > 0 && segment !== '.');
+  if (!segments.length || segments.some((segment) => segment === '..')) return null;
+  const leaf = segments[segments.length - 1];
+  if (!PHASE_CHILD_FOLDER_PATTERN.test(leaf)) return null;
+  const parentRelative = segments.slice(0, -1).join('/');
+  if (!parentRelative.length) return null;
+  const parentAbsolute = realpathOrNearestExisting(join(workspaceRoot, parentRelative));
+  if (!isUnderSpecsRoot(parentAbsolute, workspaceRoot)) return null;
+  if (!directoryExists(parentAbsolute)) return null;
+  const targetAbsolute = join(workspaceRoot, normalized);
+  // An existing folder that failed validation must not be laundered back in as
+  // if it were planned, and neither may a path that already exists as a file:
+  // only a genuinely absent target reads as "will exist".
+  if (pathExists(targetAbsolute)) return null;
+  return targetAbsolute;
+}
+
 /**
  * Decide whether a prior_answer-sourced candidate path satisfies Gate 3,
  * shared by both binding call sites (an explicit answer to an already-open
@@ -1197,6 +1465,11 @@ function acceptPriorAnswerBinding(candidatePath, workspaceRoot) {
       // Any unexpected error re-running the local checks -- fall through to
       // reject, never let this optional check propagate to the outer classify catch.
     }
+  }
+
+  if (validation.reason === 'missing_folder') {
+    const plannedPath = resolvePlannedPacketPath(candidatePath, workspaceRoot);
+    if (plannedPath) return { accepted: true, resolvedAbsolutePath: plannedPath };
   }
 
   return { accepted: false, resolvedAbsolutePath: null };
@@ -1394,8 +1667,14 @@ export function classifyIntent(request) {
         }
       }
 
-      if (state.status !== 'open') {
+      const freshOpen = state.status !== 'open';
+      if (freshOpen) {
         writeGateStateAtomic(stateDir, sessionID, { status: 'open', askedAtMs: Date.now() });
+      } else if (classification.reason === 'resume_match' && gate3DeliveryMarker(state)) {
+        // A resume trigger starts a new stretch of work in the same session, so
+        // the question may be put once more. It is cleared here rather than at a
+        // delivery site, because the next mutation is what will ask it.
+        writeGateStateAtomic(stateDir, sessionID, gate3StateWithoutMarker(state));
       }
       return { status: 'open', question: GATE_3_QUESTION };
     }
@@ -1405,6 +1684,11 @@ export function classifyIntent(request) {
     // non-trigger turn keeps the gate open for enforcement but stays silent,
     // so read-only turns never re-inject the question.
     if (state.status === 'open' && isAnswerAttempt(prompt)) {
+      // An answer that did not bind re-arms delivery: the operator did try to
+      // answer, so the question may be put once more at the next mutation.
+      if (gate3DeliveryMarker(state)) {
+        writeGateStateAtomic(stateDir, sessionID, gate3StateWithoutMarker(state));
+      }
       return { status: 'open', question: GATE_3_QUESTION };
     }
     return { status: state.status === 'open' ? 'open' : 'closed', question: null };
@@ -1441,8 +1725,15 @@ export function classifyIntent(request) {
  * were on for every session", so operators can size a future enforce flip
  * from real advise-mode traffic without needing enforce on anywhere yet.
  *
+ * Delivery rule: an open gate speaks once. The first non-exempt mutation
+ * returns the model-facing mutation notice as its `detail`; after a runtime
+ * records that delivery, later mutations in the same session resolve to a
+ * silent allow instead of repeating it, while enforcement itself is unchanged.
+ * `gateOpenUndelivered` tells a dialog-capable runtime that this is the
+ * mutation at which asking makes sense.
+ *
  * @param {{ tool?: string, filePath?: string, sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv }} request
- * @returns {{ decision: 'allow'|'advise'|'deny', detail: string|null, wouldDeny: boolean }}
+ * @returns {{ decision: 'allow'|'advise'|'deny', detail: string|null, wouldDeny: boolean, gateOpenUndelivered: boolean }}
  */
 export function evaluateMutation(request) {
   // See classifyIntent()'s matching comment: normalization here is a
@@ -1452,11 +1743,11 @@ export function evaluateMutation(request) {
 
   try {
     const environment = safeRequest.env || process.env;
-    if (environment[DISABLED_ENV] === '1' || specGateConcernDisabled(environment)) return { decision: 'allow', detail: null, wouldDeny: false };
+    if (environment[DISABLED_ENV] === '1' || specGateConcernDisabled(environment)) return { decision: 'allow', detail: null, wouldDeny: false, gateOpenUndelivered: false };
     // A dispatched/child session short-circuits to a complete allow before any
     // state read or telemetry: it has no user turn to answer Gate 3, so it must
     // never be denied, advised, or recorded as a would-deny row.
-    if (isChildSession(environment)) return { decision: 'allow', detail: null, wouldDeny: false };
+    if (isChildSession(environment)) return { decision: 'allow', detail: null, wouldDeny: false, gateOpenUndelivered: false };
 
     const { filePath, sessionID, projectDir } = safeRequest;
     const tool = String(safeRequest.tool || '').toLowerCase();
@@ -1465,27 +1756,36 @@ export function evaluateMutation(request) {
 
     const state = readGateState(stateDir, sessionID);
     if (state.status === 'satisfied' || state.status === 'skipped') {
-      return { decision: 'allow', detail: null, wouldDeny: false };
+      return { decision: 'allow', detail: null, wouldDeny: false, gateOpenUndelivered: false };
     }
     if (state.status !== 'open') {
       // Gate was never opened this session -- nothing to enforce or advise.
-      return { decision: 'allow', detail: null, wouldDeny: false };
+      return { decision: 'allow', detail: null, wouldDeny: false, gateOpenUndelivered: false };
     }
 
     if (tool !== 'bash' && isExemptTargetPath(filePath, dir)) {
-      return { decision: 'allow', detail: null, wouldDeny: false };
+      return { decision: 'allow', detail: null, wouldDeny: false, gateOpenUndelivered: false };
     }
 
     const denyCapable = DENY_CAPABLE_TOOLS.has(tool);
     const wouldDeny = denyCapable;
     const enforceOn = environment[ENFORCE_ENV] === '1';
+    // The persisted marker, not the status, decides whether this mutation
+    // speaks: the gate stays open until it is answered, but the question is put
+    // once per session, so a mutation after that delivery stays silent.
+    const undelivered = !gate3DeliveryMarker(state) || gate3EmissionAlwaysOn(environment);
+    // Only a tool the deny path covers is worth asking about: bash may mutate,
+    // but the gate's contract is Write/Edit, so it never triggers a dialog.
     if (denyCapable && enforceOn) {
-      return { decision: 'deny', detail: GATE_3_DENY_DETAIL, wouldDeny };
+      return { decision: 'deny', detail: GATE_3_DENY_DETAIL, wouldDeny, gateOpenUndelivered: undelivered && denyCapable };
     }
-    return { decision: 'advise', detail: GATE_3_QUESTION, wouldDeny };
+    if (!undelivered) {
+      return { decision: 'allow', detail: null, wouldDeny, gateOpenUndelivered: false };
+    }
+    return { decision: 'advise', detail: GATE_3_MUTATION_NOTICE, wouldDeny, gateOpenUndelivered: denyCapable };
   } catch (_) {
     // Fail open on any unexpected internal error -- never block the mutation.
-    return { decision: 'allow', detail: null, wouldDeny: false };
+    return { decision: 'allow', detail: null, wouldDeny: false, gateOpenUndelivered: false };
   }
 }
 
@@ -1528,15 +1828,27 @@ export function runClassifyGate(request = {}) {
 /**
  * Evaluate one mutation and record the advisory or would-deny event in the
  * warning log when the decision is anything but allow. Returns the core's
- * verdict unchanged so the adapter maps it onto its runtime's envelope.
+ * verdict unchanged, plus an `observe()` the adapter calls once its envelope
+ * is on the wire: that acknowledgement is what marks the one-time
+ * mutation-time delivery, so an emission that never happened cannot silence
+ * the next mutation. Returns `observe` as a no-op when nothing was delivered.
  *
  * @param {{tool: string, filePath: string|null|undefined, sessionID: string|undefined, projectDir: string, env?: NodeJS.ProcessEnv, runtimeKey: string}} request
- * @returns {{decision: 'allow'|'advise'|'deny', detail?: string, wouldDeny?: boolean}}
+ * @returns {{decision: 'allow'|'advise'|'deny', detail?: string, wouldDeny?: boolean, gateOpenUndelivered?: boolean, observe: () => void}}
  */
 export function runEnforceGate(request = {}) {
   const env = request.env ?? process.env;
   const { tool, filePath, sessionID, projectDir, runtimeKey } = request;
   const result = evaluateMutation({ tool, filePath, sessionID, projectDir, env });
+  const observe = result && result.decision === 'advise' && result.detail
+    ? () => {
+      try {
+        recordGate3NoticeDelivered({ sessionID, projectDir, env, channel: 'mutation' });
+      } catch (_) {
+        // A marker write that fails only means a later mutation may ask again.
+      }
+    }
+    : () => {};
   if (result && result.decision !== 'allow') {
     const { stateDir } = resolveGuardPaths(projectDir);
     appendWarningLog(stateDir, formatSpecGateEvent({
@@ -1547,5 +1859,5 @@ export function runEnforceGate(request = {}) {
       decision: result.wouldDeny ? 'would-deny' : 'advise',
     }));
   }
-  return result;
+  return { ...result, observe };
 }

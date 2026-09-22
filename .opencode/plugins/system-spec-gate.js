@@ -6,7 +6,7 @@
 // ║ input carries no prompt field -- so this adapter best-effort fetches      ║
 // ║ the session's last user message via ctx.client (guarded, fail-open)      ║
 // ║ when extractPrompt(input) comes up empty, then opens the session gate    ║
-// ║ + injects the bounded Gate-3 question when a turn triggers file-          ║
+// ║ and relays the one-shot deferral instruction when a turn triggers file- ║
 // ║ mutation intent. Enforce runs in tool.execute.before on the mutating-    ║
 // ║ tool set and denies a Write/Edit only when the session gate is open,     ║
 // ║ unanswered, and the opt-in enforce env is set -- otherwise it advises    ║
@@ -183,7 +183,11 @@ export default async function MkSpecGatePlugin(ctx) {
         if (eventType === 'session.resumed'
           || eventType === 'session.compacted'
           || eventType === 'session.compact') {
-          guardCore.advanceGate3LifecycleEpoch(String(sessionIdFromEvent(input)), eventType);
+          const resumedSession = String(sessionIdFromEvent(input));
+          guardCore.advanceGate3LifecycleEpoch(resumedSession, eventType);
+          // A resume starts a new stretch of work in the same session, so the
+          // one-time question may be put once more.
+          guardCore.rearmGate3NoticeDelivery({ sessionID: resumedSession, projectDir, env: process.env });
           return;
         }
         if (eventType === 'session.deleted') {
@@ -222,19 +226,22 @@ export default async function MkSpecGatePlugin(ctx) {
           projectDir,
           env: process.env,
         });
+        // The menu itself is never injected here any more. This surface can
+        // only add text to system context, and the question belongs at the
+        // first mutation; a reframed deferral is relayed once per stretch of
+        // work so the model knows the decision is coming without being asked
+        // a question mid-turn.
         if (result.question) {
-          output.system.push(result.question);
-          const lifecycleEpoch = guardCore.currentGate3LifecycleEpoch(sessionID);
-          guardCore.observeGate3QuestionDelivery({
-            question: result.question,
-            sessionID,
-            lifecycleEpoch,
-            gateState: guardCore.readGateState(stateDir, sessionID),
-            env: process.env,
-            emitted: true,
-            runtime: 'OpenCode',
-            receipt: guardCore.buildGate3ObservedReceipt(lifecycleEpoch),
-          });
+          const { deliver } = guardCore.shouldDeliverGate3Deferral({ sessionID, projectDir, env: process.env });
+          if (deliver) {
+            output.system.push(guardCore.GATE_3_DEFERRED_INSTRUCTION);
+            guardCore.recordGate3NoticeDelivered({
+              sessionID,
+              projectDir,
+              env: process.env,
+              channel: 'system-deferral',
+            });
+          }
         }
       } catch (_) {
         // Fail open: a classify error must never block or corrupt the turn.
@@ -263,8 +270,10 @@ export default async function MkSpecGatePlugin(ctx) {
 
         // One structured telemetry line per open-gate mutation event (advise
         // or would-deny); 'allow' means the gate was never open or the
-        // target was exempt -- nothing to measure.
-        if (result.decision !== 'allow') {
+        // target was exempt -- nothing to measure. A would-deny row is kept
+        // even after the notice was delivered, because the measurement is
+        // about open-gate mutations, not about how often the model was told.
+        if (result.decision !== 'allow' || result.wouldDeny === true) {
           guardCore.appendWarningLog(stateDir, guardCore.formatSpecGateEvent({
             runtime: 'opencode',
             sessionID,
