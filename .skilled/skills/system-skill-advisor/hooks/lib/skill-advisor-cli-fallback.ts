@@ -170,17 +170,23 @@ export function shouldTrySkillAdvisorCliFallback(result: AdvisorHookResult): boo
 function findCliFallbackPaths(workspaceRoot: string, env: NodeJS.ProcessEnv): CliFallbackPaths | null {
   let current = resolve(workspaceRoot || process.cwd());
   for (let depth = 0; depth < 14; depth += 1) {
-    const opencodeDir = join(current, '.opencode');
-    const cliPath = join(opencodeDir, 'bin', 'skill-advisor.cjs');
-    const bridgePath = join(opencodeDir, 'bin', 'lib', 'launcher-ipc-bridge.cjs');
-    const defaultDbDir = join(opencodeDir, 'skills', 'system-skill-advisor', 'runtime', 'database');
-    if (existsSync(cliPath) && existsSync(bridgePath)) {
-      return {
-        repoRoot: current,
-        cliPath,
-        bridgePath,
-        dbDir: resolve(env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? defaultDbDir),
-      };
+    // The advisor CLI, its IPC bridge and the advisor database moved to the
+    // .skilled root; older checkouts and mirrors still know .opencode. Either
+    // root proves the same repository, but all three paths must come from that
+    // one root, never a mix, or a half-migrated checkout spawns a broken pair.
+    for (const rootName of ['.skilled', '.opencode']) {
+      const rootDir = join(current, rootName);
+      const cliPath = join(rootDir, 'bin', 'skill-advisor.cjs');
+      const bridgePath = join(rootDir, 'bin', 'lib', 'launcher-ipc-bridge.cjs');
+      const defaultDbDir = join(rootDir, 'skills', 'system-skill-advisor', 'runtime', 'database');
+      if (existsSync(cliPath) && existsSync(bridgePath)) {
+        return {
+          repoRoot: current,
+          cliPath,
+          bridgePath,
+          dbDir: resolve(env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? defaultDbDir),
+        };
+      }
     }
     const parent = dirname(current);
     if (parent === current) {

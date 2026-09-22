@@ -123,8 +123,8 @@ function receiptSessionKey(sessionId?: string): string | null {
  * Decide whether this extension may omit its entire visible contribution.
  * Suppresses only for a confirmed session's proven same-content repeat within
  * the current lifecycle epoch; every uncertain case falls open to full
- * delivery. Records the directive block on a full delivery so the next
- * identical turn is eligible.
+ * delivery. Records the delivered contribution on a full delivery so the next
+ * identical contribution is eligible.
  */
 export function decidePiDirectiveDelivery(
   context: string,
@@ -137,7 +137,7 @@ export function decidePiDirectiveDelivery(
   if (!parts) return FULL_PI_DIRECTIVE_DELIVERY;
 
   const map = directiveDedupStore().directiveDedupBySession;
-  if (map.get(key) === parts.directives) {
+  if (map.get(key) === context) {
     return Object.freeze({ suppressed: true });
   }
   if (!map.has(key)) {
@@ -148,7 +148,7 @@ export function decidePiDirectiveDelivery(
     }
   }
   map.set(key, parts.directives);
-  return FULL_PI_DIRECTIVE_DELIVERY;
+  map.set(key, context);
 }
 
 export function resetPiDirectiveDedupForSession(sessionId: string | undefined): void {
