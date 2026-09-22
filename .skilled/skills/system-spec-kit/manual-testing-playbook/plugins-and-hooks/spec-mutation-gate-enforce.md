@@ -70,7 +70,7 @@ Expected: TAP output, `# tests 11`, `# pass 11`, `# fail 0`.
 env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE -u SYSTEM_SPEC_GATE_DISABLED node --experimental-test-module-mocks --test .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs
 ```
 
-Expected: `tests 106`, `pass 106`, `skipped 0`, `fail 0` (Node prints them with an `ℹ` prefix).
+Expected: `tests 107`, `pass 107`, `skipped 0`, `fail 0` (Node prints them with an `ℹ` prefix). The three tests that self-skip without `--experimental-test-module-mocks` are why the flag is required for this count.
 
 3. Build a disposable, non-exempt fixture project (deliberately NOT under `/tmp` or `/private/tmp`, which the core always treats as exempt scratch space -- `mktemp -d` with no path argument resolves to `$TMPDIR`, e.g. `/var/folders/.../T/...` on macOS):
 
@@ -88,7 +88,7 @@ printf '%s' '{"prompt":"fix the login bug","session_id":"hook-demo-a","cwd":"'"$
   | SYSTEM_SPEC_GATE_ENFORCE=0 node .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs
 ```
 
-Expected: exit 0, one JSON object with `additionalContext` containing `SPEC FOLDER QUESTION`.
+Expected: exit 0, empty stdout — classify only opens the gate; the question itself arrives on the first write in step 5.
 
 5. Enforce OFF: a real Write on the non-spec fixture file must `advise` (never `deny`) and carry the once-per-session mutation notice. Rerun the identical command for the second half of the assertion -- once the first envelope lands, the persisted delivery marker makes the next mutation in this session silent:
 

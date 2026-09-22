@@ -52,7 +52,7 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, dire
 
 ## 5. SPEC-GATE (GATE-3) AND PERMISSION HOOKS
 
-This folder also holds the Devin CLI side of the Gate-3 spec-folder discipline (direct-run `.mjs`, no build step), calling into `../lib/spec-gate/spec-gate-core.mjs` alongside the Claude hook, the OpenCode plugin and the Codex hook so the core never changes for a new runtime. Both spec-gate entrypoints fail open. Live-probed against `devin 3000.2.17`: `spec-gate-classify.mjs` delivered Gate-3 context on `UserPromptSubmit` and `spec-gate-enforce.mjs` ran on observed `PreToolUse` events; the deny branch remains structurally verified only, since no block-severity fixture exists for an end-to-end denial.
+This folder also holds the Devin CLI side of the Gate-3 spec-folder discipline (direct-run `.mjs`, no build step), calling into `../lib/spec-gate/spec-gate-core.mjs` alongside the Claude hook, the OpenCode plugin and the Codex hook so the core never changes for a new runtime. Both spec-gate entrypoints fail open. Live-probed against `devin 3000.2.17`: `spec-gate-classify.mjs` opened the session gate on `UserPromptSubmit` (delivery of the question itself moved to the first mutation afterwards) and `spec-gate-enforce.mjs` ran on observed `PreToolUse` events; the deny branch remains structurally verified only, since no block-severity fixture exists for an end-to-end denial.
 
 | File | Purpose | Status |
 |------|---------|--------|

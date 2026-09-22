@@ -533,4 +533,6 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 **The v4 changelog's LUNA review findings remediated:** 2026-09-21, `047`. Status: Done. Evidence: `047-v4-changelog-review-fixes/implementation-summary.md`, with the 722→719 line delta accounted, the 17/55/18/43 skeleton unchanged, and the 046 gates still at zero.
 
 **The Gate-3 question moved from every write-intent turn to the first real mutation, once per session:** 2026-09-22, `048`. Status: Done. Evidence: `048-gate-3-mutation-time-delivery/implementation-summary.md`, with the core corpus at 107 tests, all six runtime suites green, the Pi dialog binding through the shipped handlers, and both strict validations passing.
+
+**The Gate-3 residue closed: Hermes delivers at the first write, the stale surfaces state what the code does, and the Pi spec-gate extensions type check:** 2026-09-22, `049`. Status: Done. Evidence: `049-gate-3-delivery-residue/implementation-summary.md`, with the Hermes suite at 43 tests, three live sessions proving first-write delivery, second-write silence and an enforced denial, the cli-devin sweep and cli-codex review reconciled in the packet, and both strict validations passing.
 <!-- /ANCHOR:milestones -->

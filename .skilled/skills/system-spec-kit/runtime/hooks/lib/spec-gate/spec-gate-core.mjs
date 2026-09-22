@@ -80,7 +80,12 @@ const STATE_TEMP_FILE_REGEX = /^[0-9a-f]+\.json\.\d+\.\d+\.tmp$/;
 export const ENFORCE_ENV = 'SYSTEM_SPEC_GATE_ENFORCE';
 /** Full no-op kill-switch: both classify and enforce become inert. */
 export const DISABLED_ENV = 'SYSTEM_SPEC_GATE_DISABLED';
-/** Independent opt-in for shadowing repeated Gate-3 delivery decisions. */
+/**
+ * Repeat-suppression override. Suppression is default-on through the persisted delivery
+ * marker on the session's gate state; `1` only arms the legacy shadow telemetry that
+ * records the decision, while an explicit off value (`0`/`false`/`no`/`off`) makes every
+ * in-gate mutation carry the notice again.
+ */
 export const GATE_3_DELIVERY_SUPPRESSION_ENV = 'SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION';
 export const GATE_3_DELIVERY_SHADOW_ID = 'shadow.gate3-delivery-suppression.v1';
 /**
@@ -345,6 +350,11 @@ function gate3EmissionAlwaysOn(env) {
 // status, so suppression survives runtimes that lose process memory between
 // events -- every hook invocation is a fresh process -- and does not depend on
 // the in-memory lifecycle-epoch/shadow machinery, which stays telemetry.
+// Known window: two mutations that start in the same session before either
+// records its marker can both deliver, because the check and the write are
+// separate steps across processes. A lock would buy a quieter repeat, at the
+// cost of a coordination file every runtime has to honor; a double notice is
+// harmless, so the cheaper contract stands.
 const GATE_3_MARKER_FIELDS = ['questionDeliveredAtMs', 'questionDeliveredChannel', 'questionDeliveredCount'];
 
 function gate3PlainState(state) {

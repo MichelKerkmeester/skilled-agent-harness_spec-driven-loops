@@ -121,7 +121,7 @@ One mid-run probe changed the code: a candidate path that existed as a file was 
 | CLI boundary check (real adapter processes) | PASS — classify `stdout=[]` exit 0 with state `open`; first advisory carries the notice; second silent; enforce-on denies with `GATE_3_DENY_DETAIL` |
 | Pre-change baseline (base commit `2cb1bdb800`) | PASS — core 90/87/0/3; adapters 13+14+15+16; plugin 11/11; no Pi suite existed |
 | `validate.sh 048-gate-3-mutation-time-delivery --strict` | PASS — 0 errors |
-| `validate.sh 033-system-speckit-v4 --recursive --strict` | PASS — 0 errors |
+| `validate.sh 033-system-speckit-v4 --recursive --strict` | PASS for the parent and 48 of 49 children — the one failure is the pre-existing `030-spec-kit-simplification-research` goal-slice error, which reproduces from the pre-change tree |
 | `git status --porcelain`, scoped diff | PASS — only the enumerated files changed; temp fixtures removed; `scratch/` holds `.gitkeep` only |
 <!-- /ANCHOR:verification -->
 
@@ -134,7 +134,7 @@ One mid-run probe changed the code: a candidate path that existed as a file was 
 2. **One out-of-spec playbook page still shows the old classify output.** `specs`-external `.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md` step 2 expects `additionalContext` on a `UserPromptSubmit` classify run. Its updated expectation is empty output plus an opened state file. It sits outside this packet's declared file list, so it was left for a follow-up rather than edited silently.
 3. **The shared AGENTS.md Gate-3 prose is deliberately unchanged.** A model that follows the static contract literally can still stop on a write-intent turn; the hooks no longer inject the menu, which is the part this phase owns.
 4. **Suppression is only as durable as the session state file.** If state is evicted (session deletion or the stale sweep), a re-opened gate delivers once more. That is the intended fail-open direction: losing state costs one extra ask, never a missed one.
-5. **Cursor's prompt-classification event remains unconfirmed** under the installed CLI, so its classify silence is structural; its mutation-time delivery rides the confirmed `preToolUse` path.
+5. **Cursor's prompt-classification event remains unconfirmed** under the installed CLI, so its classify silence is structural. Delivery therefore rides the confirmed `preToolUse` path, but only while the gate is open, and with no usable prompt event the gate opens only under `SYSTEM_SPEC_GATE_ENFORCE=1` or a session-start `SYSTEM_SPEC_FOLDER` declaration — a default advisory Cursor session is a documented no-op for Gate-3 delivery, not an asking one.
 <!-- /ANCHOR:limitations -->
 
 ---
