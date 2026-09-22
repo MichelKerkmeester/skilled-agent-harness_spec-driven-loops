@@ -1,0 +1,17 @@
+Skill: .skilled/skills/sk-design
+Detected kind: parent
+- package_skill.py --check --strict: FAIL (exit 1)
+  Output tail:
+    🔍 Validating skill: sk-design
+    (strict mode)
+    ==================================================
+    
+    ❌ Missing required sections: REFERENCES
+    
+    ⚠️  1 warning(s):
+       • Description 135 chars exceeds soft target of 130
+    
+    ==================================================
+    Result: FAIL
+- compiled routing readiness: compiled-ready: PASS (exit 0)
+- parent-skill-check.cjs: PASS (exit 0)

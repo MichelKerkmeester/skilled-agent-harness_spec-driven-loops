@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7da7ac85b25f40e71a6d4eafc973b1e32ab03c0fa4e0c5265d237bd185480c14",
+  "manifestHash": "e66c1e03c2fd27fff4d04134853873e55050b448b818b701542afc95ac2034a3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9870,6 +9870,9 @@
     "allowed tools mcp names": [
       "allowed-tools mcp names"
     ],
+    "allowlist rename verification checklist": [
+      "allowlist rename verification checklist"
+    ],
     "alpha text meta blend": [
       "alpha text meta blend"
     ],
@@ -14473,6 +14476,12 @@
     "changelog generator modes": [
       "changelog generator modes"
     ],
+    "changelog narrative format": [
+      "changelog narrative format"
+    ],
+    "changelog omission rules": [
+      "changelog omission rules"
+    ],
     "changelog readability": [
       "changelog readability"
     ],
@@ -14508,6 +14517,9 @@
     ],
     "changelog topology edge cases": [
       "changelog topology edge cases"
+    ],
+    "changelog v4 style": [
+      "changelog v4 style"
     ],
     "changelog verification gate": [
       "changelog verification gate"
@@ -20219,6 +20231,9 @@
     "compile review report": [
       "compile review report"
     ],
+    "compiled design routing": [
+      "compiled design routing"
+    ],
     "compiled engine drift fix": [
       "compiled engine drift fix"
     ],
@@ -20267,11 +20282,20 @@
     "compiled routing authority": [
       "compiled routing authority"
     ],
+    "compiled routing closure": [
+      "compiled routing closure"
+    ],
+    "compiled routing evidence": [
+      "compiled routing evidence"
+    ],
     "compiled routing gate blocks push": [
       "compiled routing gate blocks push"
     ],
     "compiled routing gold checker": [
       "compiled routing gold checker"
+    ],
+    "compiled routing implementation plan": [
+      "compiled routing implementation plan"
     ],
     "compiled routing kill switch": [
       "compiled routing kill switch"
@@ -20296,6 +20320,12 @@
     ],
     "compiled routing scenario tests": [
       "compiled-routing scenario tests"
+    ],
+    "compiled routing testing strategy": [
+      "compiled routing testing strategy"
+    ],
+    "compiled routing verification checklist": [
+      "compiled routing verification checklist"
     ],
     "compiled routing waiver": [
       "compiled routing waiver"
@@ -20335,6 +20365,9 @@
     ],
     "compiled serving parity bar": [
       "compiled-serving parity bar"
+    ],
+    "compiled serving promotion": [
+      "compiled serving promotion"
     ],
     "compiled validation orchestrator is stale": [
       "compiled validation orchestrator is stale"
@@ -28384,6 +28417,9 @@
     ],
     "design extractor backend": [
       "design extractor backend"
+    ],
+    "design hub compiled router": [
+      "design hub compiled router"
     ],
     "design implementation handoff": [
       "design implementation handoff"
@@ -36999,6 +37035,12 @@
     "gate 2 routing optimization": [
       "gate 2 routing optimization"
     ],
+    "gate 3 delivery": [
+      "gate 3 delivery"
+    ],
+    "gate 3 delivery residue": [
+      "gate-3 delivery residue"
+    ],
     "gate 3 question": [
       "gate-3 question"
     ],
@@ -37016,6 +37058,9 @@
     ],
     "gate 3 relay tasks": [
       "gate 3 relay tasks"
+    ],
+    "gate 3 suppression": [
+      "gate 3 suppression"
     ],
     "gate 7": [
       "gate 7"
@@ -39607,6 +39652,9 @@
     "hermes folder research": [
       ".hermes folder research"
     ],
+    "hermes gate delivery": [
+      "hermes gate delivery"
+    ],
     "hermes hard rule preflight checks": [
       "hermes hard-rule preflight checks"
     ],
@@ -39753,6 +39801,9 @@
     ],
     "hermes skills trust": [
       "hermes skills trust"
+    ],
+    "hermes spec gate": [
+      "hermes spec gate"
     ],
     "hermes supported models": [
       "HERMES_SUPPORTED_MODELS",
@@ -46967,6 +47018,9 @@
     "mechanical rename refactor": [
       "mechanical rename refactor"
     ],
+    "mechanical token rename": [
+      "mechanical token rename"
+    ],
     "mechanical versus judgment findings": [
       "mechanical versus judgment findings"
     ],
@@ -48611,8 +48665,26 @@
     "mimo fix dispatch": [
       "mimo fix dispatch"
     ],
+    "mimo id rename": [
+      "mimo id rename"
+    ],
     "mimo playbook wave results": [
       "mimo playbook wave results"
+    ],
+    "mimo task dependencies": [
+      "mimo task dependencies"
+    ],
+    "mimo v2 5 to v2 6": [
+      "mimo v2.5 to v2.6"
+    ],
+    "mimo v2 6 cutover": [
+      "mimo v2.6 cutover"
+    ],
+    "mimo v2 6 cutover plan": [
+      "mimo v2.6 cutover plan"
+    ],
+    "mimo v2 6 cutover tasks": [
+      "mimo v2.6 cutover tasks"
     ],
     "min iterations guard pass": [
       "min_iterations_guard_pass"
@@ -50197,6 +50269,12 @@
     ],
     "mutation representation format": [
       "mutation representation format"
+    ],
+    "mutation time delivery": [
+      "mutation-time delivery"
+    ],
+    "mutation time prompt": [
+      "mutation-time prompt"
     ],
     "mutation validation test doc": [
       "mutation validation test doc"
@@ -54159,6 +54237,9 @@
     "pain point diagram": [
       "pain point diagram"
     ],
+    "paired allowlist copies": [
+      "paired allowlist copies"
+    ],
     "paired readme and code markdown": [
       "paired readme and code markdown"
     ],
@@ -56744,6 +56825,9 @@
     "pi spec gate": [
       "pi spec gate"
     ],
+    "pi spec gate dialog": [
+      "pi spec gate dialog"
+    ],
     "pi stdio": [
       "pi stdio"
     ],
@@ -56809,6 +56893,9 @@
     ],
     "pi turn end event probe": [
       "pi turn end event probe"
+    ],
+    "pi typecheck gate": [
+      "pi typecheck gate"
     ],
     "pi unique capabilities": [
       "pi unique capabilities"
@@ -65074,6 +65161,9 @@
     "root router authoring": [
       "root router authoring"
     ],
+    "root router compilation": [
+      "root-router compilation"
+    ],
     "root source subsumed": [
       "root source subsumed"
     ],
@@ -65082,6 +65172,12 @@
     ],
     "roster mentions": [
       "roster mentions"
+    ],
+    "roster rename approach": [
+      "roster rename approach"
+    ],
+    "roster rename task breakdown": [
+      "roster rename task breakdown"
     ],
     "roster rewiring": [
       "roster rewiring"
@@ -70260,6 +70356,9 @@
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
     ],
+    "sk create changelog template rewrite": [
+      "sk-create-changelog template rewrite"
+    ],
     "sk create chart": [
       "sk-create-chart"
     ],
@@ -70374,6 +70473,21 @@
     "sk design chart v0 23 0 0": [
       "sk-design-chart v0.23.0.0"
     ],
+    "sk design compiled acceptance": [
+      "sk-design compiled acceptance"
+    ],
+    "sk design compiled decisions": [
+      "sk-design compiled decisions"
+    ],
+    "sk design compiled implementation summary": [
+      "sk-design compiled implementation summary"
+    ],
+    "sk design compiled routing": [
+      "sk-design compiled routing"
+    ],
+    "sk design compiled task breakdown": [
+      "sk-design compiled task breakdown"
+    ],
     "sk design diagram": [
       "sk-design-diagram"
     ],
@@ -70403,6 +70517,18 @@
     ],
     "sk design playbook": [
       "sk-design playbook"
+    ],
+    "sk design rollout": [
+      "sk-design rollout"
+    ],
+    "sk design rollout architecture": [
+      "sk-design rollout architecture"
+    ],
+    "sk design rollout status": [
+      "sk-design rollout status"
+    ],
+    "sk design rollout tasks": [
+      "sk-design rollout tasks"
     ],
     "sk design routing benchmark": [
       "sk-design routing benchmark"
@@ -73636,6 +73762,9 @@
     "spec folder naming validate": [
       "spec folder naming validate"
     ],
+    "spec folder question": [
+      "spec folder question"
+    ],
     "spec folder question every query": [
       "spec folder question every query"
     ],
@@ -74910,6 +75039,9 @@
     "stage by object id": [
       "stage by object id"
     ],
+    "stage one stage two routing proof": [
+      "stage one stage two routing proof"
+    ],
     "stage1 candidate gen degrade": [
       "stage1 candidate gen degrade"
     ],
@@ -75177,6 +75309,9 @@
     ],
     "stale specfolder identifiers": [
       "stale specFolder identifiers"
+    ],
+    "stale surface corrections": [
+      "stale surface corrections"
     ],
     "stale versus legitimate references": [
       "stale versus legitimate references"
@@ -80349,6 +80484,9 @@
     "v4 changelog draft update": [
       "v4 changelog draft update"
     ],
+    "v4 changelog example": [
+      "v4 changelog example"
+    ],
     "v4 changelog late cycle entries": [
       "v4 changelog late cycle entries"
     ],
@@ -83015,6 +83153,9 @@
     ],
     "xce research based refinement changelogs": [
       "xce research based refinement changelogs"
+    ],
+    "xiaomi mimo roster cutover": [
+      "xiaomi mimo roster cutover"
     ],
     "xss prevention frontend": [
       "xss prevention frontend"
