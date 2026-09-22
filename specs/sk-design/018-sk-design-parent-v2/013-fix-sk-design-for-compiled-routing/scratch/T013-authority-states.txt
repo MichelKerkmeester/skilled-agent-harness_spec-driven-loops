@@ -1,0 +1,8 @@
+BACKUP_OK
+{"servingAuthority":"legacy","hubId":"sk-design"}
+INVALID_EXIT=0
+{"servingAuthority":"legacy","hubId":"sk-design"}
+STALE_EXIT=0
+RESTORED_OK
+{"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067","generation":1}
+POSTRESTORE_EXIT=0

@@ -1,0 +1,58 @@
+S1_GREEN_COUNT= 19
+S1_FAIL_COUNT= 0
+FRESHNESS_EXIT=0
+  "manifestValid": true,
+  "fresh": true,
+  "causeCode": "fresh",
+    "effectivePolicyHash": "b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067",
+  "currentPolicyHash": "b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067",
+VALUES_EXIT=0
+CANVAS_EXIT=0
+OUTOFDOMAIN_EXIT=0
+ADVISOR_EXIT=0
+ADVISOR_VALUES_SIGNALS= 2
+18:        "compiledRoute": {
+32:          "generation": 1
+41:      "generation": 155,
+ADMISSION_EXIT=1
+8:      "verdict": "drift",
+71:          "status": "pass",
+72:          "reason": null,
+89:          "status": "pass",
+90:          "reason": null,
+107:          "status": "pass",
+108:          "reason": null,
+128:          "status": "drift",
+129:          "reason": "wrong-mode",
+BACKUP_OK
+MOVED_OK
+[compiled-routing] resolveRoute fell back to legacy for hub=sk-design: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/harness/build-artifacts.cjs'
+{"servingAuthority":"legacy","hubId":"sk-design"}
+ENGINE_ERROR_EXIT=0
+RESTORED_OK
+{"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067","generation":1}
+POST_RESTORE_EXIT=0
+ADMISSION_TEST_EXIT=1
+    expected: 77,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+SCENARIOS_TEST_EXIT=0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 110.828958
+PACKAGE_VALIDATION_EXIT=1
+    (strict mode)
+    ==================================================
+    
+    ❌ Missing required sections: REFERENCES
+    
+    ⚠️  1 warning(s):
+       • Description 135 chars exceeds soft target of 130
+    
+    ==================================================
+    Result: FAIL
+- compiled routing readiness: compiled-ready: PASS (exit 0)
+- parent-skill-check.cjs: PASS (exit 0)
+COMMENT_LINES_READ= 168

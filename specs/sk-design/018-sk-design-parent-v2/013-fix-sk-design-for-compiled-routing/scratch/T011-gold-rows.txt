@@ -1,0 +1,20 @@
+--- values-spacing-single
+decisionAction: route selectionKind: single
+observedIntents: ["sk-design-fundamentals"]
+observedResources: [{"intent":"sk-design-fundamentals","resource":"sk-design-fundamentals/references/hierarchy.md"},{"intent":"sk-design-fundamentals","resource":"sk-design-fundamentals/references/color-system.md"},{"intent":"sk-design-fundamentals","resource":"sk-design-fundamentals/assets/token-starter-set.md"}]
+effectivePolicyHash: b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067
+--- ambiguous-canvas-tie
+decisionAction: route selectionKind: orderedBundle
+observedIntents: ["sk-design-chart","sk-design-diagram"]
+observedResources: [{"intent":"sk-design-chart","resource":"sk-design-chart/references/catalog.md"},{"intent":"sk-design-chart","resource":"sk-design-chart/references/color-system.md"},{"intent":"sk-design-chart","resource":"sk-design-chart/references/template-contract.md"},{"intent":"sk-design-chart","resource":"sk-design-diagram/assets/ascii-patterns/simple-workflow.md"},{"intent":"sk-design-chart","resource":"sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md"}]
+effectivePolicyHash: b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067
+--- flowchart-approval-loop
+decisionAction: route selectionKind: single
+observedIntents: ["sk-design-diagram"]
+observedResources: [{"intent":"sk-design-diagram","resource":"sk-design-diagram/assets/ascii-patterns/simple-workflow.md"},{"intent":"sk-design-diagram","resource":"sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md"}]
+effectivePolicyHash: b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067
+--- out-of-domain-default
+decisionAction: route selectionKind: single
+observedIntents: ["sk-design-fundamentals"]
+observedResources: []
+effectivePolicyHash: b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067

@@ -1,0 +1,30 @@
+{
+  "hubId": "sk-design",
+  "manifestPath": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-design/manifest.json",
+  "manifestValid": true,
+  "fresh": true,
+  "causeCode": "fresh",
+  "selectedPolicy": {
+    "effectivePolicyHash": "b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067",
+    "generation": 1
+  },
+  "currentPolicyHash": "b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067",
+  "manifestFingerprint": "f990ae09868a3ac3aa625c5040221954483ccf285448edbc1c3bb403e1788b49"
+}
+FRESHNESS_EXIT=0
+0056471fae9cc9dbc334b83e26c2b6594529a29169eff552aa85febccd4e6ca0  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json
+0056471fae9cc9dbc334b83e26c2b6594529a29169eff552aa85febccd4e6ca0  .skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json
+TWIN_CLEAN
+  "causeCode": "compiled-serving",
+    "fresh": true,
+    "causeCode": "fresh",
+    "currentPolicyHash": "7530c06f143b4f82423f52407f48b9437a07386c7dbb190e50100ec0ea60d45d"
+CENSUS_1_COMPILED_ROWS=7
+sk-doc currentDerivation=7530c06f143b4f82423f52407f48b9437a07386c7dbb190e50100ec0ea60d45d generation=5
+sk-design currentDerivation=b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067 generation=1
+CENSUS_2_COMPILED_ROWS=7
+STABILITY=PASS
+ADMISSION_TEST_FINAL_EXIT=0
+ℹ pass 29
+ℹ fail 0
+ADMISSION_WARNONLY_FINAL_EXIT=0

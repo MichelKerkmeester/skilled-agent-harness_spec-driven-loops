@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "hubs": [
+    {
+      "hubId": "sk-design",
+      "admitted": true,
+      "verdict": "drift",
+      "counts": {
+        "pass": 3,
+        "drift": 1,
+        "stale-gold": 0,
+        "invalid": 0,
+        "broken": 0,
+        "n/a": 0
+      },
+      "fitted": {
+        "total": 2,
+        "judged": 2,
+        "pass": 1
+      },
+      "holdout": {
+        "total": 2,
+        "judged": 2,
+        "pass": 2
+      },
+      "negative": {
+        "total": 0,
+        "judged": 0,
+        "pass": 0
+      },
+      "coverage": {
+        "modes": [
+          {
+            "workflowMode": "sk-design-chart",
+            "scenarios": 1
+          },
+          {
+            "workflowMode": "sk-design-diagram",
+            "scenarios": 4
+          },
+          {
+            "workflowMode": "sk-design-fundamentals",
+            "scenarios": 0
+          },
+          {
+            "workflowMode": "sk-design-md-generator",
+            "scenarios": 0
+          }
+        ],
+        "uncovered": [
+          "sk-design-fundamentals",
+          "sk-design-md-generator"
+        ],
+        "negatives": 0,
+        "enforced": false,
+        "short": true
+      },
+      "scenarios": [
+        {
+          "id": "SD-H05",
+          "file": "manual-testing-playbook/holdout/flowchart-natural.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-design-diagram"
+          ],
+          "goldLeaves": [
+            "sk-design-diagram:assets/ascii-patterns/simple-workflow.md",
+            "sk-design-diagram:assets/ascii-patterns/decision-tree-flow.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-design-diagram"
+          ]
+        },
+        {
+          "id": "SD-H10",
+          "file": "manual-testing-playbook/holdout/ind-flowchart.md",
+          "stage": "holdout",
+          "goldModes": [
+            "sk-design-diagram"
+          ],
+          "goldLeaves": [
+            "sk-design-diagram:assets/ascii-patterns/simple-workflow.md",
+            "sk-design-diagram:assets/ascii-patterns/decision-tree-flow.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-design-diagram"
+          ]
+        },
+        {
+          "id": "SD-005",
+          "file": "manual-testing-playbook/resource-loading/assets-only.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-design-diagram"
+          ],
+          "goldLeaves": [
+            "sk-design-diagram:assets/ascii-patterns/simple-workflow.md",
+            "sk-design-diagram:assets/ascii-patterns/decision-tree-flow.md"
+          ],
+          "status": "pass",
+          "reason": null,
+          "detail": null,
+          "routedModes": [
+            "sk-design-diagram"
+          ]
+        },
+        {
+          "id": "SD-007",
+          "file": "manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+          "stage": "fitted",
+          "goldModes": [
+            "sk-design-chart",
+            "sk-design-diagram"
+          ],
+          "goldLeaves": [
+            "sk-design-chart:references/catalog.md",
+            "sk-design-chart:references/template-contract.md",
+            "sk-design-diagram:assets/ascii-patterns/simple-workflow.md",
+            "sk-design-diagram:assets/ascii-patterns/decision-tree-flow.md"
+          ],
+          "status": "drift",
+          "reason": "wrong-mode",
+          "detail": "missing sk-design-chart; routed sk-design-diagram",
+          "routedModes": [
+            "sk-design-diagram"
+          ]
+        }
+      ]
+    }
+  ]
+}
