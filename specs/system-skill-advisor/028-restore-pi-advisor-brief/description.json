@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/028-restore-pi-advisor-brief",
+  "description": "The pi skill advisor hook stopped delivering its brief because its CLI probe misses the renamed root; probe either root and key the dedup receipt on the full contribution",
+  "keywords": [
+    "advisor",
+    "hook",
+    "brief",
+    "probe",
+    "root",
+    "dedup"
+  ],
+  "lastUpdated": "2026-09-22T07:10:00.000Z",
+  "specId": "028",
+  "folderSlug": "restore-pi-advisor-brief",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
