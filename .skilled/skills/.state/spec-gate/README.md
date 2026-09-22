@@ -18,7 +18,7 @@ version: 1.0.0.1
 
 This folder stores machine-specific state for the [`system-spec-gate.js`](../../../plugins/system-spec-gate.js) OpenCode plugin. The plugin is a transport adapter over the runtime-neutral [`spec-gate-core.mjs`](../../system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs). The core defines this directory path, persists each session's Gate 3 status and applies the shared classification and mutation policy.
 
-Gate 3 is the **SPEC FOLDER QUESTION** in the `system-spec-kit` gate rules. It asks for an A-E choice before file mutation work. The persisted status lets the prompt-classification hook and the later tool-execution hook share one answer even though they run at different points in the OpenCode lifecycle.
+Gate 3 is the **SPEC FOLDER QUESTION** in the `system-spec-kit` gate rules. It asks for an A-D choice once a turn shows mutation intent, and a runtime puts the question in front of the model at the first write rather than on the turn. The persisted status lets the prompt-classification hook and the later tool-execution hook share one answer even though they run at different points in the OpenCode lifecycle.
 
 Raw runtime data is git-ignored. Only this `README.md` is tracked, so external users can see the folder and understand its purpose without receiving local session data.
 
@@ -38,9 +38,9 @@ The plugin and core process a session in this order:
 
 1. The shared [`gate-3-classifier.ts`](../../system-spec-kit/shared/gate-3-classifier.ts) classifies file-write, memory-save and write-producing resume intent. Read-only terms can suppress qualifying file-write matches. Memory-save and invoked resume workflows retain their own classification rules.
 2. `classifyIntent()` checks an existing open state for an answer before it classifies the turn again. A recognized skip stores `skipped`. A valid spec-folder binding stores `satisfied`.
-3. A triggering turn without an accepted answer stores `open` with `askedAtMs` and returns the bounded A-E question. A triggering turn that already names a valid folder can satisfy the gate without another question.
+3. A triggering turn without an accepted answer stores `open` with `askedAtMs` and returns the bounded A-D question; a triggering turn that already names a valid folder can satisfy the gate without another question.
 4. `evaluateMutation()` reads that cached status. It allows sessions marked `satisfied` or `skipped`, and it allows sessions whose gate never opened.
-5. An unanswered `open` gate produces advice for a relevant mutation. Only `write` and `edit` can be denied, denial requires `SYSTEM_SPEC_GATE_ENFORCE=1` and dispatched child sessions remain advisory.
+5. An unanswered `open` gate produces the once-per-session notice for a relevant mutation. Only `write` and `edit` can be denied, denial requires `SYSTEM_SPEC_GATE_ENFORCE=1` and dispatched child sessions remain advisory.
 
 This state exists because prompt classification and mutation interception do not receive the same input at the same time. A session file carries the user's Gate 3 decision from the chat hook to the tool hook without asking on every mutation. The warning log keeps bounded operational evidence for open-gate mutation events so operators can inspect advisory traffic and would-deny behavior before enabling enforcement.
 
@@ -52,7 +52,7 @@ The plugin fails open. Missing prompts, unreadable state, invalid JSON and inter
 
 | Path | Shape | Purpose |
 |---|---|---|
-| `<session-id-hex>.json` | Formatted JSON object | Stores a gate `status` of `open`, `satisfied` or `skipped`. Open records include `askedAtMs`. Answered records include `answeredAtMs` and may include `boundSpecFolder`, `validatedResolvedPath`, `satisfiedBy` or `writeBoundary`. |
+| `<session-id-hex>.json` | Formatted JSON object | Stores a gate `status` of `open`, `satisfied` or `skipped`. Open records include `askedAtMs`. Answered records include `answeredAtMs` and may include `boundSpecFolder`, `validatedResolvedPath`, `satisfiedBy` or `writeBoundary`. A record whose question has been put in front of the model also carries the delivery marker (`questionDeliveredAtMs`, `questionDeliveredChannel`, `questionDeliveredCount`), the fields that keep delivery to one per open stretch; a gate re-open, a resume trigger or a failed answer attempt clears them so the question can be put once more. |
 | `spec-gate-warnings.log` | Plain-text log | Stores timestamped telemetry lines with runtime, session ID, tool, redacted file path and decision. |
 | `spec-gate-warnings.log.1` | Plain-text log | Stores the previous rotated warning-log generation. |
 | `.archive/<session-id-hex>.json` | Formatted JSON object | Stores stale gate state using the same shape as an active state file. |

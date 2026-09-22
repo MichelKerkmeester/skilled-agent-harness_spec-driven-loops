@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """In-process checks for the repo-guards Hermes plugin: every directive shape it can return."""
 
 from __future__ import annotations
@@ -138,38 +139,92 @@ class RepoGuardsTests(unittest.TestCase):
                 self.assertIsNone(self.plugin.pre_llm_call(user_message="anything"), switch)
             run.assert_not_called()
 
-    def test_the_gate_question_reaches_only_the_first_turn(self):
-        gate = []
+    def test_the_gate_is_classified_per_prompt_and_the_notice_arrives_once_at_the_first_write(self):
+        core_calls = []
 
         def fake_core(script, payload):
-            gate.append((script, payload))
-            return {"hookSpecificOutput": {"additionalContext": "SPEC FOLDER QUESTION: pick one:"}}
+            core_calls.append((script, payload))
+            enforce_seen = [call for call in core_calls if call[0] == self.plugin.SPEC_GATE_ENFORCE]
+            if script == self.plugin.SPEC_GATE_ENFORCE and len(enforce_seen) == 1:
+                return {"hookSpecificOutput": {"additionalContext": "SPEC FOLDER QUESTION: pick one:"}}
+            return {"hookSpecificOutput": {}}
 
         with mock.patch.object(self.plugin, "_run_core", side_effect=fake_core), \
              mock.patch.object(self.plugin.subprocess, "run", return_value=mock.Mock(stdout=advisor_stdout([recommendation()]))):
             first = self.plugin.pre_llm_call(user_message="create src/app.py", is_first_turn=True, session_id="s1")
             later = self.plugin.pre_llm_call(user_message="create src/app.py", is_first_turn=False, session_id="s1")
-        self.assertIn("SPEC FOLDER QUESTION", first["context"])
+            delivered = self.plugin.transform_tool_result("write_file", {"path": "src/app.py"}, "ok", session_id="s1")
+            repeated = self.plugin.transform_tool_result("write_file", {"path": "src/app.py"}, "ok", session_id="s1")
+
         self.assertIn("Advisor:", first["context"])
         self.assertIn("Advisor:", later["context"])
+        # A question riding the user's turn would stall an instruction-literal model; the gate is
+        # classified instead, on every prompt, because the prompt is where a write intent shows up.
+        self.assertNotIn("SPEC FOLDER QUESTION", first["context"])
         self.assertNotIn("SPEC FOLDER QUESTION", later["context"])
-        self.assertEqual(len(gate), 1)
-        self.assertEqual(gate[0][0], self.plugin.SPEC_GATE_CLASSIFY)
+        classify_calls = [call for call in core_calls if call[0] == self.plugin.SPEC_GATE_CLASSIFY]
+        self.assertEqual(len(classify_calls), 2)
         self.assertEqual(
-            gate[0][1], {"prompt": "create src/app.py", "cwd": os.getcwd(), "session_id": "s1"}
+            classify_calls[0][1], {"prompt": "create src/app.py", "cwd": os.getcwd(), "session_id": "s1"}
+        )
+        # The notice rides the first write's result, and only that one.
+        self.assertIn("SPEC FOLDER QUESTION", delivered)
+        self.assertIsNone(repeated, "no advisory means the result is left as it came in")
+        enforce_calls = [call for call in core_calls if call[0] == self.plugin.SPEC_GATE_ENFORCE]
+        self.assertEqual(len(enforce_calls), 2)
+        self.assertEqual(
+            enforce_calls[0][1],
+            {"tool_name": "edit", "tool_input": {"file_path": "src/app.py"}, "session_id": "s1", "cwd": os.getcwd()},
         )
 
-        # The gate keys its state on the session, so a session without one never opens it.
+        # The gate keys its state on the session, so a session without one opens nothing and a
+        # write with no session never runs the adapter; only the post-edit core still speaks.
         with mock.patch.object(self.plugin, "_run_core") as core, \
              mock.patch.object(self.plugin.subprocess, "run", return_value=mock.Mock(stdout="")):
             self.assertIsNone(self.plugin.pre_llm_call(user_message="create src/app.py", is_first_turn=True))
-        core.assert_not_called()
+            self.assertIsNone(self.plugin.transform_tool_result("write_file", {"path": "src/app.py"}, "ok"))
+        gate_scripts = [call.args[0] for call in core.call_args_list]
+        self.assertNotIn(self.plugin.SPEC_GATE_CLASSIFY, gate_scripts)
+        self.assertNotIn(self.plugin.SPEC_GATE_ENFORCE, gate_scripts)
 
-    def test_an_orchestrated_leaf_gets_the_brief_but_never_the_gate_question(self):
-        # A leaf still chooses HOW to do its work, so the routing brief is as useful there as
-        # anywhere. The spec-folder question is different: the leaf's write authority is
-        # already bound to a lineage directory and nobody is at the prompt to answer, so a
-        # leaf that answers its own gate question spends the turn on that instead of the task.
+    def test_enforce_mode_blocks_the_first_write_and_the_denial_carries_the_question(self):
+        denial = {
+            "hookSpecificOutput": {
+                "permissionDecision": "deny",
+                "permissionDecisionReason": "DENIED: this Write/Edit needs a bound spec folder first.",
+            }
+        }
+        with mock.patch.dict(os.environ, {"SYSTEM_SPEC_GATE_ENFORCE": "1"}), \
+             mock.patch.object(self.plugin, "_run_core", return_value=denial) as core:
+            blocked = self.plugin.pre_tool_call("write_file", {"path": "src/app.py"}, session_id="s1")
+            result = self.plugin.transform_tool_result("write_file", {"path": "src/app.py"}, "ok", session_id="s1")
+        self.assertEqual(
+            blocked,
+            {"action": "block", "message": "DENIED: this Write/Edit needs a bound spec folder first."},
+        )
+        # Under enforcement the denial owns the question, so the result hook runs no gate adapter;
+        # the post-edit quality core is the only core it still consults.
+        self.assertIsNone(result, "the denial is the delivery, and the result hook leaves the text alone")
+        self.assertEqual(
+            [call.args[0] for call in core.call_args_list],
+            [self.plugin.SPEC_GATE_ENFORCE, self.plugin.POST_EDIT_QUALITY],
+        )
+
+        # A deny without a reason and a satisfied gate stay out of the way, and a shell call is
+        # never a gate mutation.
+        for answer in (
+            {"hookSpecificOutput": {"permissionDecision": "deny"}},
+            {"hookSpecificOutput": {}},
+        ):
+            with mock.patch.dict(os.environ, {"SYSTEM_SPEC_GATE_ENFORCE": "1"}), \
+                 mock.patch.object(self.plugin, "_run_core", return_value=answer):
+                self.assertIsNone(self.plugin.pre_tool_call("write_file", {"path": "src/app.py"}, session_id="s1"))
+        with mock.patch.dict(os.environ, {"SYSTEM_SPEC_GATE_ENFORCE": "1"}), \
+             mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}) as core:
+            self.assertIsNone(self.plugin.pre_tool_call("terminal", {"command": "ls -la"}, session_id="s1"))
+        self.assertNotIn(self.plugin.SPEC_GATE_ENFORCE, [call.args[0] for call in core.call_args_list])
+
+    def test_the_leaf_gets_the_brief_but_never_the_gate(self):
         leaf = {"SYSTEM_SPEC_GATE_DISABLED": "1", "AI_SESSION_CHILD": "1"}
         with mock.patch.dict(os.environ, leaf), \
              mock.patch.object(self.plugin.subprocess, "run",
@@ -178,17 +233,22 @@ class RepoGuardsTests(unittest.TestCase):
             out = self.plugin.pre_llm_call(
                 user_message="create src/app.py", is_first_turn=True, session_id="s1"
             )
+            result = self.plugin.transform_tool_result("write_file", {"path": "src/app.py"}, "ok", session_id="s1")
         self.assertIn("Advisor:", out["context"])
-        # The gate classifier is never even consulted for a leaf, so it cannot leak a question.
-        core.assert_not_called()
+        self.assertIsNone(result, "a leaf's write result carries no gate notice")
+        # The gate core is never consulted for a leaf, so it cannot leak a question or a notice.
+        gate_scripts = [call.args[0] for call in core.call_args_list]
+        self.assertNotIn(self.plugin.SPEC_GATE_CLASSIFY, gate_scripts)
+        self.assertNotIn(self.plugin.SPEC_GATE_ENFORCE, gate_scripts)
 
-        # Either switch alone is still an interactive session, and it gets its briefs.
+        # Either switch alone is still an interactive session, and it gets its briefs and its gate.
         for switch in ("SYSTEM_SPEC_GATE_DISABLED", "AI_SESSION_CHILD"):
             with mock.patch.dict(os.environ, {switch: "1"}), \
                  mock.patch.object(self.plugin.subprocess, "run", return_value=mock.Mock(stdout=advisor_stdout([recommendation()]))), \
-                 mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}):
-                out = self.plugin.pre_llm_call(user_message="anything")
+                 mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}) as core:
+                out = self.plugin.pre_llm_call(user_message="anything", session_id="s1")
             self.assertIn("Advisor:", out["context"], switch)
+            self.assertGreaterEqual(core.call_count, 1, switch)
 
     def test_a_failing_prompt_core_yields_no_context(self):
         for failure in (
@@ -231,9 +291,10 @@ class RepoGuardsTests(unittest.TestCase):
         self.assertEqual(seen, ["plain text", "part one\npart two", "nested"])
 
     def test_the_prompt_context_stays_within_its_cap(self):
-        noisy = advisor_stdout([recommendation(skill="x" * 400, confidence=0.99, uncertainty=0.01)])
-        with mock.patch.object(self.plugin.subprocess, "run", return_value=mock.Mock(stdout=noisy)), \
-             mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {"additionalContext": "Q" * 9000}}):
+        # The gate question no longer rides the user turn, so the cap bounds whatever the prompt
+        # path does emit: a part that grows past the budget still never reaches the model whole.
+        with mock.patch.object(self.plugin, "_advisor_brief", return_value="B" * 9000), \
+             mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}):
             out = self.plugin.pre_llm_call(user_message="anything", is_first_turn=True, session_id="s1")
         self.assertEqual(len(out["context"]), self.plugin.PROMPT_CONTEXT_MAX_CHARS)
 

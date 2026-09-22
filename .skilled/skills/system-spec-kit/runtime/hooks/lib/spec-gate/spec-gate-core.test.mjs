@@ -622,30 +622,46 @@ test('Gate-3 delivery confirmation rejects lifecycle epoch zero', () => {
   console.log('GATE3_EPOCH_FLOOR epoch0=REJECT epoch1=ACCEPT');
 });
 
-test('Gate-3 classify adapters observe only after stdout emission completes', () => {
+test('Gate-3 adapters: classify emits no question, enforce acknowledges its notice', () => {
   const hooksRoot = fileURLToPath(new URL('../../', import.meta.url));
-  const stdoutAdapters = [
+  const classifyAdapters = [
     'claude/spec-gate-classify.mjs',
     'codex/spec-gate-classify.mjs',
     'cursor/spec-gate-classify.mjs',
     'devin/spec-gate-classify.mjs',
   ];
-  for (const rel of stdoutAdapters) {
+  for (const rel of classifyAdapters) {
     const source = readFileSync(join(hooksRoot, rel), 'utf8');
-    // The adapter receives the deferred observer from runClassifyGate and must
-    // invoke it only inside the stdout write callback.
-    assert.match(
-      source,
-      /process\.stdout\.write\([\s\S]*?\), \(\) => \{[\s\S]*?observe\(\)/,
-    );
-    const writeIndex = source.indexOf('process.stdout.write');
-    const observeIndex = source.indexOf('observe()');
-    assert.ok(writeIndex !== -1 && observeIndex > writeIndex);
+    // The turn-time question is gone for good: if any adapter puts the menu
+    // back into a user turn, the stall this phase removed comes straight back.
+    assert.equal(/additionalContext:\s*question/.test(source), false, rel);
+    assert.equal(/agent_message:\s*question/.test(source), false, rel);
+    assert.equal(source.includes('${question}'), false, rel);
   }
+
+  const enforceAdapters = [
+    'claude/spec-gate-enforce.mjs',
+    'codex/spec-gate-enforce.mjs',
+    'cursor/spec-gate-enforce.mjs',
+    'devin/spec-gate-enforce.mjs',
+  ];
+  for (const rel of enforceAdapters) {
+    const source = readFileSync(join(hooksRoot, rel), 'utf8');
+    // The adapter owns transport, so its delivery acknowledgement has to
+    // follow the write that put the notice on the wire.
+    const writeIndex = source.indexOf('process.stdout.write');
+    const observeIndex = source.indexOf('result.observe()');
+    assert.ok(writeIndex !== -1 && observeIndex > writeIndex, rel);
+  }
+
   const piSource = readFileSync(join(hooksRoot, 'pi/spec-gate-classify.ts'), 'utf8');
-  const outputIndex = piSource.indexOf('const output = {');
-  const observeIndex = piSource.indexOf('observe()');
-  assert.ok(outputIndex !== -1 && observeIndex > outputIndex);
+  assert.equal(piSource.includes('${question}'), false);
+  assert.ok(piSource.includes('GATE_3_DEFERRED_INSTRUCTION'));
+
+  const piEnforce = readFileSync(join(hooksRoot, 'pi/spec-gate-enforce.ts'), 'utf8');
+  assert.ok(piEnforce.includes('ctx.ui.select'));
+  assert.ok(piEnforce.includes('bindGate3Answer'));
+  assert.ok(piEnforce.includes('gateOpenUndelivered'));
 });
 
 test('Gate-3 suppression predicate has no classify or enforcement call site', () => {
@@ -1868,17 +1884,88 @@ test('WS3 scaffolded accept: a folder with description.json but NO spec.md still
   }
 });
 
-test('WS3 scaffolded accept: a genuinely non-existent folder still stays open (unaffected by the relaxation)', () => {
+test('WS3 scaffolded accept: a fresh packet path inside an existing specs root now binds (option B fixed)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    // The parent (.opencode/specs) exists, the leaf is a packet name, and the
+    // folder itself is genuinely absent -- the one shape "create a new spec
+    // folder" can name before scaffolding has run. Rejecting it was what made
+    // option B unanswerable.
+    const answered = core.classifyIntent({
+      prompt: 'B, .opencode/specs/048-fresh-packet',
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(answered.status, 'satisfied');
+    assert.equal(answered.question, null);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: a fresh packet path whose parent does not exist still stays open', () => {
   const { root } = makeWorkspace();
   try {
     const sessionID = nextSessionID();
     core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
 
     const answered = core.classifyIntent({
-      prompt: 'B, .opencode/specs/999-never-scaffolded',
+      prompt: 'B, .opencode/specs/048-new-track/001-fresh-packet',
       sessionID,
       projectDir: root,
     });
+    assert.equal(answered.status, 'open');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: a fresh packet path outside the specs root still stays open', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    // src/ exists, so the parent check passes on its own -- only the specs-root
+    // containment check can reject this one.
+    const answered = core.classifyIntent({
+      prompt: 'B, .opencode/src/048-fresh-packet',
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(answered.status, 'open');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: a leaf that is not a packet name stays open', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({
+      prompt: 'B, .opencode/specs/not-a-packet',
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(answered.status, 'open');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: a bare packet token with no parent stays open', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({ prompt: 'B, 048-fresh-packet', sessionID, projectDir: root });
     assert.equal(answered.status, 'open');
   } finally {
     cleanup(root);
@@ -1897,6 +1984,27 @@ test('WS3 scaffolded accept: an out-of-tree / traversal candidate still stays op
     // the scaffolded-accept relaxation must never paper over that.
     const answered = core.classifyIntent({
       prompt: 'B, .opencode/specs/foo/../../../etc',
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(answered.status, 'open');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3 scaffolded accept: a candidate that exists as a file still stays open', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+    writeFileSync(join(root, '.opencode/specs/999-planned-file'), 'not a folder\n');
+
+    // The planned-path relaxation exists for a not-yet-created folder. A path
+    // that already exists as a file is not a folder about to be created, so
+    // the gate must stay open rather than bind a bogus spec folder.
+    const answered = core.classifyIntent({
+      prompt: 'B, .opencode/specs/999-planned-file',
       sessionID,
       projectDir: root,
     });
@@ -2194,4 +2302,287 @@ test('runEnforceGate returns the verdict shape and never throws on a bare reques
   const result = core.runEnforceGate({ tool: 'bash', filePath: null, sessionID: 'orchestration-3', projectDir: root, env: {}, runtimeKey: 'test' });
   assert.ok(['allow', 'advise', 'deny'].includes(result.decision));
   assert.doesNotThrow(() => core.runEnforceGate({}));
+});
+
+// ───────────────────────────────────────────────────────────────────
+// Mutation-time delivery: one ask per open stretch, at the first mutation
+// ───────────────────────────────────────────────────────────────────
+
+function openGateOn(root, sessionID) {
+  const opened = core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+  assert.equal(opened.status, 'open');
+  return opened;
+}
+
+function writeMutation(root, sessionID, env = {}) {
+  return core.runEnforceGate({
+    tool: 'write',
+    filePath: 'src/login.ts',
+    sessionID,
+    projectDir: root,
+    env,
+    runtimeKey: 'test',
+  });
+}
+
+test('delivery: the first non-exempt mutation advises once, the next is silent', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    openGateOn(root, sessionID);
+
+    const first = writeMutation(root, sessionID);
+    assert.equal(first.decision, 'advise');
+    assert.equal(first.detail, core.GATE_3_MUTATION_NOTICE);
+    assert.equal(first.gateOpenUndelivered, true);
+    first.observe();
+
+    const second = writeMutation(root, sessionID);
+    assert.equal(second.decision, 'allow');
+    assert.equal(second.detail, null);
+    // wouldDeny stays the independent measurement of open-gate mutations; the
+    // marker changes how often the question is put, never the measurement.
+    assert.equal(second.wouldDeny, true);
+    assert.equal(second.gateOpenUndelivered, false);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('delivery: the marker never weakens enforcement -- enforce-on still denies after the ask', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    openGateOn(root, sessionID);
+    writeMutation(root, sessionID).observe();
+
+    const denied = writeMutation(root, sessionID, { [core.ENFORCE_ENV]: '1' });
+    assert.equal(denied.decision, 'deny');
+    assert.equal(denied.detail, core.GATE_3_DENY_DETAIL);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('delivery: a resume trigger re-arms the marker so the next mutation asks again', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    openGateOn(root, sessionID);
+    writeMutation(root, sessionID).observe();
+    assert.equal(writeMutation(root, sessionID).decision, 'allow');
+
+    const resumed = core.classifyIntent({ prompt: '/speckit:resume', sessionID, projectDir: root });
+    assert.equal(resumed.status, 'open');
+
+    const afterResume = writeMutation(root, sessionID);
+    assert.equal(afterResume.decision, 'advise');
+    assert.equal(afterResume.gateOpenUndelivered, true);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('delivery: an unbound answer attempt re-arms the marker', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    openGateOn(root, sessionID);
+    writeMutation(root, sessionID).observe();
+    assert.equal(writeMutation(root, sessionID).decision, 'allow');
+
+    // A letter with no folder is an answer attempt that failed to bind: the
+    // operator tried, so the question may be put once more.
+    const attempt = core.classifyIntent({ prompt: 'option C', sessionID, projectDir: root });
+    assert.equal(attempt.status, 'open');
+
+    assert.equal(writeMutation(root, sessionID).decision, 'advise');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('delivery: a satisfied or skipped gate is terminal and stays silent', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    openGateOn(root, sessionID);
+    writeMutation(root, sessionID).observe();
+
+    const skipped = core.classifyIntent({ prompt: 'D, no spec folder needed', sessionID, projectDir: root });
+    assert.equal(skipped.status, 'skipped');
+
+    // Neither a fresh write trigger nor a later mutation re-opens or re-asks.
+    const retrigger = core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+    assert.equal(retrigger.status, 'skipped');
+    assert.equal(retrigger.question, null);
+
+    const mutation = writeMutation(root, sessionID);
+    assert.equal(mutation.decision, 'allow');
+    assert.equal(mutation.gateOpenUndelivered, false);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('delivery: SYSTEM_SPEC_GATE_3_DELIVERY_SUPPRESSION=0 forces every mutation to advise', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    openGateOn(root, sessionID);
+    const env = { [core.GATE_3_DELIVERY_SUPPRESSION_ENV]: '0' };
+
+    const first = writeMutation(root, sessionID, env);
+    assert.equal(first.decision, 'advise');
+    first.observe();
+
+    const second = writeMutation(root, sessionID, env);
+    assert.equal(second.decision, 'advise');
+    assert.equal(second.gateOpenUndelivered, true);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('delivery: gateOpenUndelivered is false wherever there is nothing worth asking', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    openGateOn(root, sessionID);
+
+    const bash = core.runEnforceGate({
+      tool: 'bash', filePath: null, sessionID, projectDir: root, env: {}, runtimeKey: 'test',
+    });
+    assert.equal(bash.decision, 'advise');
+    assert.equal(bash.gateOpenUndelivered, false, 'bash may mutate but is never worth a dialog');
+
+    const exempt = core.runEnforceGate({
+      tool: 'write', filePath: '.opencode/specs/999-test-folder/spec.md', sessionID, projectDir: root, env: {}, runtimeKey: 'test',
+    });
+    assert.equal(exempt.decision, 'allow');
+    assert.equal(exempt.gateOpenUndelivered, false);
+
+    const child = core.runEnforceGate({
+      tool: 'write', filePath: 'src/login.ts', sessionID, projectDir: root, env: { [core.CHILD_SESSION_ENV]: '1' }, runtimeKey: 'test',
+    });
+    assert.equal(child.gateOpenUndelivered, false);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('delivery: the deferral flag allows one relay per open stretch, never on a closed gate', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    assert.equal(core.shouldDeliverGate3Deferral({ sessionID, projectDir: root, env: {} }).deliver, false);
+
+    openGateOn(root, sessionID);
+    assert.equal(core.shouldDeliverGate3Deferral({ sessionID, projectDir: root, env: {} }).deliver, true);
+    assert.equal(core.recordGate3NoticeDelivered({ sessionID, projectDir: root, env: {}, channel: 'test' }), true);
+    assert.equal(core.shouldDeliverGate3Deferral({ sessionID, projectDir: root, env: {} }).deliver, false);
+
+    assert.equal(core.shouldDeliverGate3Deferral({
+      sessionID, projectDir: root, env: { [core.CHILD_SESSION_ENV]: '1' },
+    }).deliver, false, 'a child session is never told anything');
+
+    core.classifyIntent({ prompt: 'D, no spec folder needed', sessionID, projectDir: root });
+    assert.equal(core.shouldDeliverGate3Deferral({ sessionID, projectDir: root, env: {} }).deliver, false);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('delivery: rearmGate3NoticeDelivery clears an open marker and ignores a closed gate', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    openGateOn(root, sessionID);
+    assert.equal(core.rearmGate3NoticeDelivery({ sessionID, projectDir: root, env: {} }), false, 'nothing to clear yet');
+
+    writeMutation(root, sessionID).observe();
+    assert.equal(writeMutation(root, sessionID).decision, 'allow');
+    assert.equal(core.rearmGate3NoticeDelivery({ sessionID, projectDir: root, env: {} }), true);
+    assert.equal(writeMutation(root, sessionID).decision, 'advise');
+
+    core.classifyIntent({ prompt: 'D, no spec folder needed', sessionID, projectDir: root });
+    assert.equal(core.rearmGate3NoticeDelivery({ sessionID, projectDir: root, env: {} }), false);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('bindGate3Answer: skip closes the gate, an existing folder satisfies it', () => {
+  const { root, folderRel } = makeWorkspace();
+  try {
+    const skipSession = nextSessionID();
+    openGateOn(root, skipSession);
+    const skipped = core.bindGate3Answer({ answer: { type: 'skip' }, sessionID: skipSession, projectDir: root, env: {} });
+    assert.deepEqual(skipped, { accepted: true, status: 'skipped', resolvedPath: null, reason: null });
+
+    const bindSession = nextSessionID();
+    openGateOn(root, bindSession);
+    const bound = core.bindGate3Answer({ answer: { type: 'binding', path: folderRel }, sessionID: bindSession, projectDir: root, env: {} });
+    assert.equal(bound.accepted, true);
+    assert.equal(bound.status, 'satisfied');
+    assert.ok(bound.resolvedPath);
+
+    const stateDir = core.resolveGuardPaths(root).stateDir;
+    assert.equal(core.readGateState(stateDir, bindSession).status, 'satisfied');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('bindGate3Answer: a fresh packet path binds, and every rejection leaves the gate open', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    openGateOn(root, sessionID);
+
+    const missing = core.bindGate3Answer({ answer: { type: 'binding', path: '.opencode/specs/048-new-track/001-x' }, sessionID, projectDir: root, env: {} });
+    assert.equal(missing.accepted, false);
+    assert.equal(missing.reason, 'binding_rejected');
+    assert.equal(core.readGateState(core.resolveGuardPaths(root).stateDir, sessionID).status, 'open');
+
+    writeFileSync(join(root, '.opencode/specs/999-existing-file'), 'not a folder\n');
+    const fileTarget = core.bindGate3Answer({ answer: { type: 'binding', path: '.opencode/specs/999-existing-file' }, sessionID, projectDir: root, env: {} });
+    assert.equal(fileTarget.accepted, false, 'an existing file where a folder is expected must not satisfy the gate');
+    assert.equal(fileTarget.reason, 'binding_rejected');
+    assert.equal(core.readGateState(core.resolveGuardPaths(root).stateDir, sessionID).status, 'open');
+
+    const empty = core.bindGate3Answer({ answer: { type: 'binding', path: '   ' }, sessionID, projectDir: root, env: {} });
+    assert.equal(empty.reason, 'missing_path');
+
+    const noAnswer = core.bindGate3Answer({ sessionID, projectDir: root, env: {} });
+    assert.equal(noAnswer.reason, 'no_answer');
+
+    const planned = core.bindGate3Answer({ answer: { type: 'binding', path: '.opencode/specs/048-fresh-packet' }, sessionID, projectDir: root, env: {} });
+    assert.equal(planned.accepted, true, 'the dialog create-new answer must bind before the folder exists');
+    assert.equal(planned.status, 'satisfied');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('bindGate3Answer: refuses on a closed gate, a disabled hook, or a child session', () => {
+  const { root } = makeWorkspace();
+  try {
+    const never = nextSessionID();
+    assert.equal(core.bindGate3Answer({ answer: { type: 'skip' }, sessionID: never, projectDir: root, env: {} }).reason, 'gate_not_open');
+
+    const disabled = nextSessionID();
+    openGateOn(root, disabled);
+    assert.equal(core.bindGate3Answer({
+      answer: { type: 'skip' }, sessionID: disabled, projectDir: root, env: { [core.DISABLED_ENV]: '1' },
+    }).reason, 'disabled');
+
+    const child = nextSessionID();
+    openGateOn(root, child);
+    assert.equal(core.bindGate3Answer({
+      answer: { type: 'skip' }, sessionID: child, projectDir: root, env: { [core.CHILD_SESSION_ENV]: '1' },
+    }).reason, 'child_session');
+  } finally {
+    cleanup(root);
+  }
 });

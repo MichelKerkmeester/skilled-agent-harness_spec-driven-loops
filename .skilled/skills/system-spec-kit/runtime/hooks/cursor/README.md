@@ -73,8 +73,8 @@ Cursor's generic `preToolUse` event covers shell and file-write calls, so `spec-
 | File | Purpose | Status |
 |------|---------|--------|
 | `spec-gate-prebind.mjs` | `sessionStart` hook. Validates an explicit folder or opens opt-in top-level enforcement state. | **Active**: process-tested; disabled, child, malformed, and missing-session cases write no state. |
-| `spec-gate-enforce.mjs` | `preToolUse` hook. Maps Cursor's `Shell`/`Write` tool names onto the core's `bash`/`write` vocabulary, then runs `evaluateMutation()`. | **Active**: the deny path (`{"permission":"deny"}` + exit 2) was live-verified to block a real `cursor-agent` tool call. |
-| `spec-gate-classify.mjs` | `beforeSubmitPrompt` hook. Would surface the bounded Gate-3 question as `agent_message`. | **Registered, delivery unconfirmed**: `beforeSubmitPrompt` did not fire under the tested CLI build. |
+| `spec-gate-enforce.mjs` | `preToolUse` hook. Maps Cursor's `Shell`/`Write` tool names onto the core's `bash`/`write` vocabulary, then runs `evaluateMutation()`. The first in-gate Write/Edit carries the once-per-session notice in `agent_message` and records the delivery marker; later mutations stay silent. | **Active**: the deny path (`{"permission":"deny"}` + exit 2) was live-verified to block a real `cursor-agent` tool call. |
+| `spec-gate-classify.mjs` | `beforeSubmitPrompt` hook. Opens the session gate and emits nothing; the question is delivered at the first mutation. | **Registered, delivery unconfirmed**: `beforeSubmitPrompt` did not fire under the tested CLI build. |
 | `spec-gate-prebind.test.mjs` | Co-located tests, run with `node --test`. | — |
 
 ---

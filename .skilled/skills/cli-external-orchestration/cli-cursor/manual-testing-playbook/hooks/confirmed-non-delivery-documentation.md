@@ -16,7 +16,7 @@ This scenario validates that `beforeSubmitPrompt` and `stop` do NOT fire under `
 
 ### Why This Matters
 
-A guard adapter that assumes `beforeSubmitPrompt` fires (the only plausible attachment point for a pre-emptive Gate-3 advisory classification) would silently never run under `cli-cursor` dispatch. This is a genuine, load-bearing capability gap - the enforce path (`preToolUse`) still blocks unauthorized mutations regardless, but the advisory classify step cannot be surfaced pre-emptively for Cursor the way it can for Codex/Claude. Documenting this honestly (rather than assuming parity with siblings) is the entire point of this scenario.
+A guard adapter that assumes `beforeSubmitPrompt` fires (the only plausible attachment point for a pre-emptive Gate-3 classification) would silently never run under `cli-cursor` dispatch. This is a genuine, load-bearing capability gap - the enforce path (`preToolUse`) still blocks unauthorized mutations regardless, and it carries the question too when the gate is open: a session participates in Gate 3 either by declaring `SYSTEM_SPEC_FOLDER` at session start, which satisfies the gate up front, or by opting into `SYSTEM_SPEC_GATE_ENFORCE=1`, which opens it so the first denied write carries the question. With neither, the session is a deliberate no-op for Gate-3 delivery, because an unfired prompt event means no answer could ever be received and asking would put an unanswerable question in front of the model. Documenting this honestly (rather than assuming parity with siblings) is the entire point of this scenario.
 
 ---
 

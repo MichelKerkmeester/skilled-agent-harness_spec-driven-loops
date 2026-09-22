@@ -198,8 +198,9 @@ interface AdvisorEnvelope {
 
 /**
  * Bridges the skill-advisor's UserPromptSubmit recommendation into Pi's input
- * event. Distinct from spec-gate-classify.ts, which only appends the Gate-3
- * documentation question.
+ * event. Distinct from spec-gate-classify.ts, which opens the gate silently and
+ * appends only the one-shot deferral instruction when the session has no dialog
+ * UI attached.
  */
 export default function promptAdvisor(pi: ExtensionAPI): void {
   pi.on("session_start", (_event, ctx) => {

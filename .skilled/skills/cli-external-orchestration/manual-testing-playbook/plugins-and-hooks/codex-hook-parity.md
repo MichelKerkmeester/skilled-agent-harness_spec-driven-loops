@@ -31,14 +31,14 @@ The adapters under test:
 | Adapter | Event | Core · entry | Class |
 |---|---|---|---|
 | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | PreToolUse | `spec-gate-core.mjs` · `evaluateMutation` | deny-capable |
-| `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | UserPromptSubmit | `spec-gate-core.mjs` · `classifyIntent` | advisory |
+| `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | UserPromptSubmit | `spec-gate-core.mjs` · `classifyIntent` | state-only (no emit) |
 | `hooks/post-edit-quality/codex/post-edit-quality.cjs` | PostToolUse | `post-edit-router.cjs` · `resolveDispatch`/`runChecks` | advisory |
 | `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
 | `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
 | `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` | Stop | `completion-evidence-sentinel.cjs` · `evaluateCompletionEvidence` | advisory |
 | `hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | PreToolUse(`mcp__.*`) | `mcp-route-guard.cjs` · `evaluateNativeMcpCall` | advisory (dormant) |
 
-This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (allow / advise / deny / fail-open); a live `codex exec` run confirming the SessionStart, UserPromptSubmit, and Stop chains fire and that the injected Gate-3 advisory is honored by the model; and the idempotent installer merging the repo hook set into `~/.codex/hooks.json` while preserving pre-existing (Superset `notify.sh`) entries.
+This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (allow / advise / deny / fail-open); a live `codex exec` run confirming the SessionStart, UserPromptSubmit, and Stop chains fire and that the Gate-3 notice reaches the model at its first write; and the idempotent installer merging the repo hook set into `~/.codex/hooks.json` while preserving pre-existing (Superset `notify.sh`) entries.
 
 ---
 
@@ -46,8 +46,8 @@ This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (al
 
 - Preconditions: the eight adapter files exist on disk; the neutral cores are byte-unchanged; `codex` (0.144.x) is on `PATH`; the repo `.codex/hooks.json` registers every adapter; `install-codex-hooks.mjs` has merged the set into `~/.codex/hooks.json`. Node is on `PATH`. For the spec-gate adapters, the compiled `system-spec-kit/shared/dist/gate-3-classifier.js` must be present (a normal built checkout has it).
 - Real user-facing trigger: any Codex CLI session. SessionStart + UserPromptSubmit hooks fire on every turn; the tool-level guards fire when the model makes an `exec`/`apply_patch`/`edit` tool call; the Stop chain fires at turn end.
-- Expected signals: the fixture matrix reports every adapter exits 0 on empty/malformed stdin, `spec-gate-enforce` emits a `permissionDecision:"deny"` envelope when the gate is open + enforce is set, `spec-gate-classify` emits the Gate-3 `additionalContext`, and `dispatch-audit` writes one `runtime:"codex"` JSONL line for a `codex exec -p` shape; a live `codex exec` run shows `hook: SessionStart/UserPromptSubmit … Completed`, writes a session-scoped `.state/spec-gate/<hex(session_id)>.json` with `status:"open"`, and the model's first response acts on the injected A–E Gate-3 menu.
-- Pass/fail: PASS if every adapter fails open, the deny/advise/additionalContext/audit envelopes are produced for their trigger inputs, the live run fires SessionStart+UserPromptSubmit to completion and the Gate-3 advisory reaches the model, and the installer preserves pre-existing entries idempotently. FAIL if any adapter throws instead of failing open, a deny/advise envelope is malformed or absent for its trigger, a neutral core is modified, or the installer overwrites a pre-existing hook entry.
+- Expected signals: the fixture matrix reports every adapter exits 0 on empty/malformed stdin, `spec-gate-enforce` emits a `permissionDecision:"deny"` envelope when the gate is open + enforce is set, `spec-gate-classify` writes the session's gate state and emits nothing, and `dispatch-audit` writes one `runtime:"codex"` JSONL line for a `codex exec -p` shape; a live `codex exec` run shows `hook: SessionStart/UserPromptSubmit … Completed`, writes a session-scoped `.state/spec-gate/<hex(session_id)>.json` with `status:"open"`, and carries the A–D notice on its first in-gate write.
+- Pass/fail: PASS if every adapter fails open, the deny/advise/audit envelopes are produced for their trigger inputs, the live run fires SessionStart+UserPromptSubmit to completion and the Gate-3 notice reaches the model at its first write, and the installer preserves pre-existing entries idempotently. FAIL if any adapter throws instead of failing open, a deny/advise envelope is malformed or absent for its trigger, a neutral core is modified, or the installer overwrites a pre-existing hook entry.
 
 ---
 
@@ -71,7 +71,7 @@ printf '' | node .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-e
 printf '{' | node .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs; echo "malformed exit=$?"
 ```
 
-2. `spec-gate-classify` advisory on a mutation-intent prompt (fresh session dir → opens the gate, emits the Gate-3 menu):
+2. `spec-gate-classify` on a mutation-intent prompt (fresh session dir → opens the gate silently; the question is delivered later, at the first in-gate write):
 
 ```bash
 printf '%s' '{"prompt":"implement a new parser function and fix the failing test","cwd":"'"$HOME"'/.codex-hook-fixtures/fresh","session_id":"cls-1"}' \
@@ -92,7 +92,7 @@ tail -1 "$PROJ/.skilled/logs/cli-dispatch-audit.log"
 ```bash
 PROJ="$HOME/.codex-live-test/proj"; rm -rf "$HOME/.codex-live-test"; mkdir -p "$PROJ"
 timeout 90 codex exec -C "$PROJ" --skip-git-repo-check --dangerously-bypass-hook-trust -s read-only \
-  "add a new function to parser.ts and fix the failing test" 2>&1 | grep -E 'hook: (SessionStart|UserPromptSubmit|Stop)|option E|no spec'
+  "add a new function to parser.ts and fix the failing test" 2>&1 | grep -E 'hook: (SessionStart|UserPromptSubmit|Stop)'
 find "$PROJ/.skilled/skills/.state/spec-gate" -name '*.json' -exec cat {} \;
 ```
 
@@ -108,9 +108,9 @@ grep -c 'notify.sh' "$HOME/.codex/hooks.json"                        # Superset 
 ### Expected
 
 - Step 1: deny run prints `{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny",…}}` and `exit=0`; empty/malformed both `exit=0` with no output.
-- Step 2: prints `{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":"SPEC FOLDER QUESTION: …"}}`, `exit=0`.
+- Step 2: prints nothing, `exit=0`, and writes the session's gate state file (`.state/spec-gate/<hex(session_id)>.json`, `{"status":"open",…}`); classify never puts the question on the turn.
 - Step 3: appends one JSONL line with `"runtime":"codex"`, `"skill":"cli-codex"`.
-- Step 4: `hook: SessionStart … Completed` and `hook: UserPromptSubmit … Completed` lines; a `.state/spec-gate/<hex>.json` file with `{"status":"open",…}` whose hex decodes to the run's session id; the model's response references choosing option E / no spec folder.
+- Step 4: `hook: SessionStart … Completed` and `hook: UserPromptSubmit … Completed` lines; a `.state/spec-gate/<hex>.json` file with `{"status":"open",…}` whose hex decodes to the run's session id. This run proves the chains and the state write only: it is read-only, so it never attempts the write that carries the notice. The notice itself is proven at the adapter level by step 1's advise envelope (the `additionalContext` containing `SPEC FOLDER QUESTION`) and by the live deny block in §4, whose prompt reached a real `apply_patch`.
 - Step 5: dry-run reports 14 added / 2 skipped; real run creates a `.bak-<ts>` backup; re-run reports `added: 0`; `notify.sh` count unchanged (3).
 
 ---
@@ -182,12 +182,14 @@ hook: UserPromptSubmit Completed (×3)
 { "status": "open", "askedAtMs": 1783967540852 }
 ```
 
-The injected Gate-3 `additionalContext` was honored by the model — its first response acted on the A–E menu the hook supplied:
+The Gate-3 `additionalContext` the hook supplied was honored by the model — its first response acted on the A–E menu. Captured 2026-07-13 under the prompt-time contract, before delivery moved to the first mutation; it records that the injection path worked then, not the current delivery shape:
 
 ```text
 codex
 I'm using option E: no spec folder for this focused parser/test fix. …
 ```
+
+That transcript is pre-change history too (2026-07-13): the menu it answers arrived on the turn, and the deny reason below still spells out the old A-E wording. The current notice lists A) to D) and reaches the model at the first write.
 
 Live deny block — a second live run (`SYSTEM_SPEC_GATE_ENFORCE=1`, `-s workspace-write`, prompt to `apply_patch` a new `src/app.ts`) was **blocked** by `spec-gate-enforce`. The Codex tool router refused the write and surfaced the deny reason; the file was never created; the enforce warning log recorded the event:
 
@@ -246,4 +248,4 @@ Stop chain (resolved): an earlier run showed one `Stop Failed` while the other t
 
 **PASS**
 
-The fixture stdin-pipe matrix passed 33/33: every adapter fails open on empty and malformed stdin, `spec-gate-enforce` emits a real `permissionDecision:"deny"` envelope on an open-gate enforce path (and advise / allow / exempt / unmatched-tool on the others), `spec-gate-classify` emits the Gate-3 `additionalContext`, and `dispatch-audit` writes a real `runtime:"codex"`, `skill:"cli-codex"` JSONL line. A live `codex exec` run under Codex 0.144.2 fired the SessionStart and UserPromptSubmit chains to completion, `spec-gate-classify` persisted a session-scoped gate-state whose filename decodes to the run's Codex session id (proving the snake_case payload contract), and the model acted on the injected Gate-3 menu (choosing option E). A second live run confirmed the deny path end-to-end: a real `apply_patch` write was blocked by `spec-gate-enforce` (Codex router `Command blocked by PreToolUse hook: DENIED…`, file not created, `would-deny` logged), after fixing the adapter to read the target path from the patch body rather than a `file_path` field. The installer merged 14 entries, preserved the pre-existing Superset `notify.sh` entries, and re-ran idempotently (0 added). One Stop-chain entry reports a live-teardown `Stop Failed` that reproduces in neither isolation nor any guard adapter of this set — a documented, non-blocking residual in pre-existing/lifecycle wiring, safe by the fail-open contract. Every output above was captured from a real process invocation; none is fabricated.
+The fixture stdin-pipe matrix passed 33/33: every adapter fails open on empty and malformed stdin, `spec-gate-enforce` emits a real `permissionDecision:"deny"` envelope on an open-gate enforce path (and advise / allow / exempt / unmatched-tool on the others), `spec-gate-classify` writes the gate state the live run below reads, and `dispatch-audit` writes a real `runtime:"codex"`, `skill:"cli-codex"` JSONL line. A live `codex exec` run under Codex 0.144.2 fired the SessionStart and UserPromptSubmit chains to completion, `spec-gate-classify` persisted a session-scoped gate-state whose filename decodes to the run's Codex session id (proving the snake_case payload contract), and the model acted on the Gate-3 menu it was given (choosing option E) — under the 2026-07-13 prompt-time contract; classify now emits nothing and the same notice arrives at the first in-gate write. A second live run confirmed the deny path end-to-end: a real `apply_patch` write was blocked by `spec-gate-enforce` (Codex router `Command blocked by PreToolUse hook: DENIED…`, file not created, `would-deny` logged), after fixing the adapter to read the target path from the patch body rather than a `file_path` field. The installer merged 14 entries, preserved the pre-existing Superset `notify.sh` entries, and re-ran idempotently (0 added). One Stop-chain entry reports a live-teardown `Stop Failed` that reproduces in neither isolation nor any guard adapter of this set — a documented, non-blocking residual in pre-existing/lifecycle wiring, safe by the fail-open contract. Every output above was captured from a real process invocation; none is fabricated.

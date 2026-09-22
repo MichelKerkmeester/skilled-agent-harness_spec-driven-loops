@@ -3321,10 +3321,10 @@ async function main() {
         SPECKIT_FANOUT_LINEAGE_ID: lineage.label,
         // A fan-out lineage is an orchestrated sub-session running an autonomous
         // workflow: it has no user turn to answer Gate 3, so the spec-gate must be
-        // fully inert. ENFORCE=0 alone is NOT enough — that only stops the deny, while
-        // the classify step still injects the Gate-3 question, which a cli-opencode
-        // child then answers instead of doing its work. DISABLED makes both classify
-        // and enforce no-ops; AI_SESSION_CHILD lets the session wrapper exec in place.
+        // fully inert. ENFORCE=0 alone is NOT enough -- that only stops the deny, while
+        // an unbound child could still open the gate and meet the mutation-time notice
+        // instead of doing its work. DISABLED makes both classify and enforce no-ops;
+        // AI_SESSION_CHILD lets the session wrapper exec in place.
         // buildExecutorDispatchEnv filters these keys (outside the per-kind allowlist),
         // so they are re-injected here to reach the child. Harmless for the codex path.
         SYSTEM_SPEC_GATE_DISABLED: '1',

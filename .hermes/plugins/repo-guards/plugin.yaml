@@ -1,6 +1,6 @@
 name: repo-guards
 version: 1.0.0.0
-description: "Bridges this repository's shared guard cores into a Hermes session: dispatch preflight, self-dispatch refusal, read-only leaf refusal, prompt-time skill advisor brief and spec-folder gate question, git advisory delivery, post-edit quality advisory, subagent dispatch guard, MCP route advisory, completion-evidence nudge, session context with the named persona and the bound packet goal."
+description: "Bridges this repository's shared guard cores into a Hermes session: dispatch preflight, self-dispatch refusal, read-only leaf refusal, prompt-time skill advisor brief, spec-folder gate classification with the once-per-session mutation notice, git advisory delivery, post-edit quality advisory, subagent dispatch guard, MCP route advisory, completion-evidence nudge, session context with the named persona and the bound packet goal."
 author: "OpenCode"
 kind: standalone
 provides_hooks:

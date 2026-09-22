@@ -19,6 +19,18 @@ export default {
   test: {
     projects: [
       {
+        // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so
+        // their relative imports are written against the link's base; this alias
+        // resolves those same specifiers from the real tree, mirroring the
+        // hooks config.
+        resolve: {
+          alias: [
+            {
+              find: /^(\.\.\/)+\.(?:skilled|opencode)\//,
+              replacement: `${path.resolve(__dirname, '..', '..')}/`,
+            },
+          ],
+        },
         test: {
           root: path.resolve(__dirname),
           include: [

@@ -48,10 +48,14 @@ TASK_DISPATCH_GUARD = (
 SESSION_CLEANUP = REPO_ROOT / ".skilled" / "hooks" / "session-cleanup" / "devin" / "session-cleanup.sh"
 ADVISOR_CLI = REPO_ROOT / ".skilled" / "bin" / "skill-advisor.cjs"
 SPEC_GATE_CLASSIFY = REPO_ROOT / ".skilled" / "hooks" / "spec-gate" / "devin" / "spec-gate-classify.mjs"
+SPEC_GATE_ENFORCE = REPO_ROOT / ".skilled" / "hooks" / "spec-gate" / "devin" / "spec-gate-enforce.mjs"
 
 # Prompt-time context rides Hermes's user-message injection channel rather than the system
-# prompt, so it is re-derived per turn: the advisor's brief follows every prompt, while the
-# spec-folder question only opens its once-per-session gate on the first turn.
+# prompt, so it is re-derived per turn: the advisor's brief follows every prompt, and the
+# spec-folder gate is classified per prompt too, because the prompt is where a write intent
+# shows up and a first turn that only reads must not leave a later writing turn unguarded.
+# The question itself never rides this channel: it is delivered once, at the first mutation,
+# from the result hook.
 PROMPT_CONTEXT_MAX_CHARS = 3000
 ADVISOR_BRIEF_MAX_CHARS = 1200
 ADVISOR_TOP_K = 2
@@ -374,8 +378,9 @@ def _dispatch_advisory(args: Dict[str, Any], session_id: str) -> Optional[str]:
 def pre_tool_call(
     tool_name: str = "", args: Optional[Dict[str, Any]] = None, session_id: str = "", **_: Any
 ) -> Optional[Dict[str, Any]]:
-    """Refuse a self-dispatch or a read-only leaf's write, run the dispatch preflight, and block a
-    denied `delegate_task` batch.
+    """Refuse a self-dispatch or a read-only leaf's write, run the dispatch preflight, block a
+    denied `delegate_task` batch, and block a write the enforced spec gate has not been bound
+    for yet.
 
     Only a verdict that has to stop the call belongs here. This is the one hook Hermes blocks the
     tool on when the callback overruns its budget, so a core that answers with guidance rather than
@@ -386,6 +391,11 @@ def pre_tool_call(
             return {"action": "block", "message": READ_ONLY_MESSAGE}
         tool_args = args or {}
         command = _command_of(tool_name, tool_args)
+        gate_path = _path_of(tool_name, tool_args)
+        if gate_path is not None and _spec_gate_enforced():
+            denial = _spec_gate_denial(gate_path, session_id)
+            if denial is not None:
+                return denial
         if command is not None:
             if HERMES_SELF_DISPATCH.search(command):
                 return {"action": "block", "message": SELF_DISPATCH_MESSAGE}
@@ -414,7 +424,8 @@ def _result_advisory(tool_name: str, args: Dict[str, Any], session_id: str) -> O
     """The guidance this call's own arguments earn, or None when no core speaks for it."""
     path = _path_of(tool_name, args)
     if path is not None:
-        return _post_edit_advisory(path)
+        advisories = [_spec_gate_notice(path, session_id), _post_edit_advisory(path)]
+        return "\n\n".join(advisory for advisory in advisories if advisory) or None
     command = _command_of(tool_name, args)
     if command is not None:
         return _git_advisory(command)
@@ -433,10 +444,11 @@ def transform_tool_result(
     session_id: str = "",
     **_: Any,
 ) -> Optional[str]:
-    """Append this call's advisory to its result: the post-edit quality pass for a file write, the
-    sk-git line for a git command, the vision guidance for an image, the dispatch guard's notes for
-    a delegated batch, or the MCP route guard for an external server's tool. None leaves the result
-    as it came in, which is also what a silent or failing core does."""
+    """Append this call's advisory to its result: the Gate-3 notice for a write the session has
+    not been asked about yet, the post-edit quality pass for a file write, the sk-git line for a
+    git command, the vision guidance for an image, the dispatch guard's notes for a delegated
+    batch, or the MCP route guard for an external server's tool. None leaves the result as it came
+    in, which is also what a silent or failing core does."""
     try:
         advisory = _result_advisory(tool_name, args or {}, session_id)
         if not advisory:
@@ -552,34 +564,64 @@ def _advisor_brief(prompt: str) -> Optional[str]:
     return f"{line}{ADVISOR_DIRECTIVE_CAPSULE}"[:ADVISOR_BRIEF_MAX_CHARS]
 
 
-def _spec_gate_question(prompt: str, session_id: str) -> Optional[str]:
-    """The spec-folder gate's question for this prompt, or None while the gate stays closed.
+def _spec_gate_enforced() -> bool:
+    """Whether the gate is in deny mode: only the exact value the core accepts counts."""
+    return os.environ.get("SYSTEM_SPEC_GATE_ENFORCE", "").strip() == "1"
 
-    The gate keys its state on the session identity, so a session without one skips it rather
-    than naming a record an answered gate would be stored under.
+
+def _open_spec_gate(prompt: str, session_id: str) -> None:
+    """Classify this prompt for the spec-folder gate, opening the session's state when it fires.
+
+    Nothing reads the adapter's output: classify only decides whether this session needs the gate
+    and records that state, because the question itself moved to the first write.
     """
     if not session_id:
-        return None
+        return
     payload = {"prompt": prompt, "cwd": os.getcwd(), "session_id": session_id}
-    context = _hook_output(_run_core(SPEC_GATE_CLASSIFY, payload)).get("additionalContext")
+    _run_core(SPEC_GATE_CLASSIFY, payload)
+
+
+def _spec_gate_notice(path: str, session_id: str) -> Optional[str]:
+    """The Gate-3 notice for a write the session has not been asked about yet, or None.
+
+    Runs the same enforce adapter the CLI runtimes use; that adapter records the once-per-session
+    delivery itself, so the write after this one stays silent. Only the unenforced path reads the
+    notice: under enforcement the denial in pre_tool_call carries the question instead.
+    """
+    if not session_id or _spec_gate_enforced() or _orchestrated_leaf():
+        return None
+    payload = {"tool_name": DEVIN_EDIT_TOOL, "tool_input": {"file_path": path}, "session_id": session_id, "cwd": os.getcwd()}
+    context = _hook_output(_run_core(SPEC_GATE_ENFORCE, payload)).get("additionalContext")
     return context.strip() if isinstance(context, str) and context.strip() else None
+
+
+def _spec_gate_denial(path: str, session_id: str) -> Optional[Dict[str, Any]]:
+    """The block for a write this session must bind to a spec folder before running, or None."""
+    if not session_id or _orchestrated_leaf():
+        return None
+    payload = {"tool_name": DEVIN_EDIT_TOOL, "tool_input": {"file_path": path}, "session_id": session_id, "cwd": os.getcwd()}
+    output = _hook_output(_run_core(SPEC_GATE_ENFORCE, payload))
+    if output.get("permissionDecision") != "deny":
+        return None
+    reason = output.get("permissionDecisionReason")
+    if isinstance(reason, str) and reason.strip():
+        return {"action": "block", "message": reason.strip()}
+    return None
 
 
 def pre_llm_call(
     user_message: Any = "", is_first_turn: bool = False, session_id: str = "", **_: Any
 ) -> Optional[Dict[str, Any]]:
     """Return the context Hermes appends to this turn's user message: the advisor's routing
-    brief for the prompt, and on the first turn the spec-folder question.
+    brief for the prompt, plus the spec-folder gate's classification of it.
 
-    The gate answer binds the session once it is given, so its question is not repeated on
-    later turns the way the per-prompt brief is.
-
-    The two halves treat an orchestrated leaf differently, and the difference is the point.
-    The spec-folder question MUST NOT reach a leaf: its write authority is already bound to
-    a lineage directory, nobody is at the prompt to answer, and a leaf that answers its own
-    gate question spends the turn on that instead of the task. The routing brief has no such
-    problem. A leaf still picks how to do the work, and naming the skill that owns the
-    surface it is about to touch is as useful there as anywhere else.
+    The gate's question is deliberately NOT appended: a question riding the user's own message
+    stalls instruction-literal models and re-asks for a whole session, so delivery moved to the
+    first mutation. Classification still runs per prompt, because that is where a write intent
+    shows up, and only an orchestrated leaf is skipped — its write authority is already bound to
+    a lineage directory, nobody is at the prompt to answer, and its brief is the only part that
+    travels. The routing brief has no such problem: a leaf still picks how to do the work, and
+    naming the skill that owns the surface it is about to touch is as useful there as anywhere.
     """
     try:
         prompt = _prompt_text(user_message)
@@ -589,10 +631,8 @@ def pre_llm_call(
         brief = _advisor_brief(prompt)
         if brief:
             parts.append(brief)
-        if is_first_turn and not _orchestrated_leaf():
-            question = _spec_gate_question(prompt, session_id if isinstance(session_id, str) else "")
-            if question:
-                parts.append(question)
+        if not _orchestrated_leaf():
+            _open_spec_gate(prompt, session_id if isinstance(session_id, str) else "")
         if not parts:
             return None
         return {"context": "\n\n".join(parts)[:PROMPT_CONTEXT_MAX_CHARS]}

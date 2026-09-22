@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue",
+  "spec_folder": "system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gate-3 delivery residue",
+      "hermes spec gate",
+      "mutation-time delivery",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "gate-3",
+      "delivery",
+      "residue",
+      "hermes",
+      "spec",
+      "gate",
+      "mutation-time",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".hermes/plugins/repo-guards/__init__.py",
+      ".hermes/plugins/repo-guards/tests/test_repo_guards.py",
+      ".hermes/plugins/repo-guards/plugin.yaml",
+      ".hermes/SYNC.md",
+      ".skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".opencode/plugins/system-spec-gate.js",
+      ".skilled/skills/.state/spec-gate/README.md",
+      ".pi/extensions/README.md",
+      ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".pi/types/pi-coding-agent.d.ts",
+      ".pi/types/node-globals.d.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "__init__.py",
+        "kind": "file",
+        "path": ".hermes/plugins/repo-guards/__init__.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_repo_guards.py",
+        "kind": "file",
+        "path": ".hermes/plugins/repo-guards/tests/test_repo_guards.py",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.yaml",
+        "kind": "config",
+        "path": ".hermes/plugins/repo-guards/plugin.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".hermes/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-mutation-gate-enforce.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-spec-gate.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-spec-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/.state/spec-gate/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pi-coding-agent.d.ts",
+        "kind": "code",
+        "path": ".pi/types/pi-coding-agent.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "node-globals.d.ts",
+        "kind": "code",
+        "path": ".pi/types/node-globals.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 048 removed turn-time Gate-3 injection and moved delivery to the first mutation for six runtimes",
+    "created_at": "2026-09-22T07:42:02Z",
+    "last_save_at": "2026-09-22T08:51:03.171Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b4bb780bfe382c761a2365fd94b5da4adf4af61c5a8b9e55c1ddf527ad0b5fef",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "347d9b4d11a0f3d2c48d3ce7dc810080519dca4fd91f71727df464eddcb3c70a",
+      "plan.md": "1fa6f24da68d18baa859e4161f6ff30225c29f3041acbdbf2edd621c922c75ab",
+      "tasks.md": "e3a6d7cbe2a4c2ae3d009a1b256a8f9339770db29a7197fd0f15d29e4b8a2517",
+      "implementation-summary.md": "9e07c46bc4206202aa8700fe8b868ee2051b50f7cca53083bcd0541de480bdc5"
+    },
+    "last_active_at": null
+  }
+}

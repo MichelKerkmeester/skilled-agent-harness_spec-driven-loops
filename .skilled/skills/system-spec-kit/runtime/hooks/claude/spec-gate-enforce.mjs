@@ -44,6 +44,9 @@ async function main() {
         additionalContext: result.detail,
       },
     }));
+    // The adapter owns transport, so it acknowledges the delivery only once
+    // the notice is on the wire; that is what stops the repeat.
+    result.observe();
     return process.exit(0);
   }
   return approve();
