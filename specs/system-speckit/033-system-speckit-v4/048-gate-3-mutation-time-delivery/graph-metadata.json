@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery",
+  "spec_folder": "system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gate 3 delivery",
+      "spec folder question",
+      "pi spec gate dialog",
+      "mutation-time prompt",
+      "gate 3 suppression",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "gate",
+      "delivery",
+      "spec",
+      "folder",
+      "question",
+      "dialog",
+      "mutation-time",
+      "prompt",
+      "suppression",
+      "implementation",
+      "plan",
+      "technical"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/hooks/pi/spec-gate-enforce.ts",
+      ".opencode/plugins/system-spec-gate.js",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-enforce.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".opencode/plugins/tests/system-spec-gate.test.cjs",
+      ".skilled/hooks/injection-contract.md",
+      ".skilled/hooks/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
+      "specs/system-speckit/033-system-speckit-v4/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.ts",
+        "kind": "code",
+        "path": "runtime/hooks/pi/spec-gate-enforce.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-spec-gate.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-spec-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/pi/spec-gate-classify.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-pi-extension.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-spec-gate.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-spec-gate.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-mutation-gate-enforce.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Gate 3 question is delivered by appending a four-option menu to the user's own turn whenever the classifier reads write intent, and the gate almost never closes",
+    "created_at": "2026-09-22T06:21:55Z",
+    "last_save_at": "2026-09-22T07:06:05.882Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:635d552c9e026f00ace5f2480c8c0c9b9a01d6afcbeb3a80b719e04da9453d62",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "163bd5af56d9e90addf4adeecc1b3f962f8ed67eb693f9b4085aa166cfc9ee6c",
+      "plan.md": "fe748a015ba90f27daf8b78eebe87de1c02b133a4e8d5c92ac5cc1f70a920ae0",
+      "tasks.md": "30314ec14ac37b6615d733b7910051fadc9404abc2cc12886ac5acd0d2d11bfa",
+      "implementation-summary.md": "44e4bc15934841e9cb3466afbb1c4a05d70023346c2f88fd116b2e810256c2f0"
+    },
+    "last_active_at": null
+  }
+}

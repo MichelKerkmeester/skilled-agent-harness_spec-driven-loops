@@ -20,8 +20,8 @@ trigger_phrases:
 
 | File | Pi event | Behavior and injected text |
 |---|---|---|
-| `spec-gate-classify.ts` | `input` | Runs the shared core's `classifyIntent()` and, on a mutation-shaped turn, appends the bounded Gate-3 A-D documentation question to the user's own prompt text via Pi's input-transform: uniquely **operator-visible** in Pi's chat, unlike every other runtime's invisible context channel. |
-| `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | Runs `evaluateMutation()`; a denied write/edit blocks the tool call with the core's reason, bash is advise-only. Fails open. |
+| `spec-gate-classify.ts` | `input` | Runs the shared core's `classifyIntent()` and opens the gate on a mutation-shaped turn. A dialog-capable session (`ctx.hasUI`) keeps its turn untouched; a session without one relays the one-shot deferral instruction instead of the menu, so the model is told the decision is coming without being asked mid-turn. |
+| `spec-gate-enforce.ts` | `tool_call` (bash/write/edit) | Runs `evaluateMutation()`. At the first undelivered write/edit with a dialog-capable UI it opens `ctx.ui.select` + a path input, binds the answer through `bindGate3Answer`, and blocks that one call with a retry reason naming the bound path; a denied write/edit blocks with the core's reason, and a cancelled dialog fails open. Bash is advise-only and never prompts. |
 | `session-start-context.ts` | `session_start` | Bridges `session-prime.js`'s startup context (compact recovery, resume reminder) into the session via `pi.sendMessage()`. Pi has no `compact` or `clear` start reason, so both map to the `startup` default. |
 | `completion-evidence.ts` | `turn_end` | Evaluates the same advisory-only sentinel as Claude against the ending assistant message, delegating policy to `../../lib/hooks/completion-evidence-sentinel.cjs`. Never blocks. |
 | `session-start-advisories.ts` | `session_start` | Runs the 4 warn-only CLI checks (worktree guard, git-hooks check, dist staleness, codex-hooks drift) and surfaces failures via `ctx.ui.notify()` (a no-op in print mode). |

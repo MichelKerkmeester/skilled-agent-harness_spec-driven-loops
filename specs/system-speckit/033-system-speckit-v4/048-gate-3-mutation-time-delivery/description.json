@@ -1,0 +1,18 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery",
+  "description": "Phase 1: gate-3-mutation-time-delivery",
+  "keywords": [
+    "phase",
+    "gate-3-mutation-time-delivery"
+  ],
+  "lastUpdated": "2026-09-22T06:26:11.946Z",
+  "specId": "048",
+  "folderSlug": "gate-3-mutation-time-delivery",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

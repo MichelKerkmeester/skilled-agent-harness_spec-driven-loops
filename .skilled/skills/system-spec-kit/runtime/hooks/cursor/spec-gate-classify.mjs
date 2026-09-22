@@ -13,17 +13,11 @@ async function main() {
   const prompt = typeof payload?.prompt === 'string' ? payload.prompt : '';
   const sessionID = payload?.session_id;
   const projectDir = payload?.workspace_roots?.[0] || process.cwd();
-  const { question, observe } = guardCore.runClassifyGate({ prompt, sessionID, projectDir, env: process.env, runtimeLabel: 'Cursor' });
-  if (question) {
-    process.stdout.write(JSON.stringify({
-      permission: 'allow',
-      agent_message: question,
-    }), () => {
-      observe();
-      process.exit(0);
-    });
-    return;
-  }
+  // The gate still opens here, but the question is deliberately NOT emitted on
+  // the turn: a question appended to the user's own message stalls
+  // instruction-literal models and re-asks for a whole session. Delivery moved
+  // to the first mutation (see spec-gate-enforce.mjs).
+  guardCore.runClassifyGate({ prompt, sessionID, projectDir, env: process.env, runtimeLabel: 'Cursor' });
   return approve();
 }
 
