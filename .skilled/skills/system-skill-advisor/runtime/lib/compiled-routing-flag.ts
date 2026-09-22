@@ -18,10 +18,11 @@ export const COMPILED_ROUTING_HUBS: ReadonlySet<string> = new Set([
   'cli-external-orchestration',
   'cli-jev',
   'sk-doc',
+  'sk-design',
 ]);
 
 // Per-hub default-on cohort. Mirrors the runtime resolver's own default-on
-// cohort (the six hubs verified compiled-serving, 0 drift — see
+// cohort (the seven hubs verified compiled-serving, 0 drift — see
 // `014-runtime-engine/lib/resolve.cjs`): this enrichment shells out to the same
 // public front door (`.skilled/bin/compiled-route.cjs`), which delegates to
 // that identical resolver, so surfacing it here attaches only additive
@@ -35,6 +36,7 @@ export const DEFAULT_ON_HUBS: ReadonlySet<string> = new Set([
   'cli-external-orchestration',
   'cli-jev',
   'sk-doc',
+  'sk-design',
 ]);
 
 export type CompiledRoutingFlagMode = 'force-on' | 'force-legacy' | 'default' | 'invalid';

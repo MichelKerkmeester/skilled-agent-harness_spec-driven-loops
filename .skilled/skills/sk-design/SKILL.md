@@ -45,12 +45,11 @@ Routing is **registry-driven at runtime and mode-authored at source**, in two st
 mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router
 never re-decides the mode.
 
-> **Compiled routing: not yet.** The other five hubs resolve through a compiled router contract
-> first (`node .skilled/bin/compiled-route.cjs --hub <id> --prompt "<task>"`). This hub is not in
-> that closure: the same call returns `{"servingAuthority":"legacy","hubId":"sk-design"}`, so the
-> routing below is the only path. Joining needs a rollout package mirroring the five that exist plus
-> registration in the engine's hub table and the guard's hub list. Until then, do not quote a
-> compiled decision for this hub, because there is not one.
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+>
+> node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"
+>
+> Follow the returned decision. A `route` names its targets, a `clarify` or `defer` asks for disambiguation, and a `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving authority. Compiled routing is now the default for this hub. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide, the explicit kill-switch.
 
 | Mode | Command | Owns | Reach it by asking about |
 |------|---------|------|--------------------------|

@@ -29,7 +29,7 @@ const ACTIVATION_ROOT = path.join(__dirname, '..', 'lib', 'compiled-routing', '0
 const TEMP_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'compiled-route-admission-'));
 // The live gold corpus at the admitted hubs' playbook roots. A change here means
 // scenarios were added or removed, so the baseline report needs a rerun.
-const LIVE_CORPUS_SIZE = 73;
+const LIVE_CORPUS_SIZE = 80;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS

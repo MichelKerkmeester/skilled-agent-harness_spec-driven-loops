@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "V1",
+  "activationGeneration": 1,
+  "certificates": {},
+  "cases": [
+    {
+      "id": "values-spacing-single",
+      "prompt": "what spacing scale should the pricing page use",
+      "riskSlice": "actor:mutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-design-fundamentals"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-design-fundamentals"
+        ],
+        "expectedResources": [
+          "sk-design-fundamentals/references/hierarchy.md",
+          "sk-design-fundamentals/references/color-system.md",
+          "sk-design-fundamentals/assets/token-starter-set.md"
+        ]
+      }
+    },
+    {
+      "id": "review-critique-single",
+      "prompt": "design review of this pricing page, does this look right",
+      "riskSlice": "actor:mutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-design-fundamentals"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-design-fundamentals"
+        ],
+        "expectedResources": [
+          "sk-design-fundamentals/references/review-checklist.md",
+          "sk-design-fundamentals/references/ux-laws.md",
+          "sk-design-fundamentals/references/diagnosis-table.md"
+        ]
+      }
+    },
+    {
+      "id": "flowchart-approval-loop",
+      "prompt": "create a flowchart for the approval loop",
+      "riskSlice": "actor:mutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-design-diagram"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-design-diagram"
+        ],
+        "expectedResources": [
+          "sk-design-diagram/assets/ascii-patterns/simple-workflow.md",
+          "sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md"
+        ]
+      }
+    },
+    {
+      "id": "ambiguous-canvas-tie",
+      "prompt": "bar chart of this funnel and a flow diagram of the signup",
+      "riskSlice": "actor:mutating:composite",
+      "expectedAction": "route",
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": [
+        "sk-design-chart",
+        "sk-design-diagram"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-design-chart",
+          "sk-design-diagram"
+        ],
+        "expectedResources": [
+          "sk-design-chart/references/catalog.md",
+          "sk-design-chart/references/color-system.md",
+          "sk-design-chart/references/template-contract.md",
+          "sk-design-diagram/assets/ascii-patterns/simple-workflow.md",
+          "sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md"
+        ]
+      }
+    },
+    {
+      "id": "extract-website",
+      "prompt": "extract the style reference from this site",
+      "riskSlice": "actor:mutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-design-md-generator"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-design-md-generator"
+        ],
+        "expectedResources": [
+          "sk-design-md-generator/references/extraction-workflow.md",
+          "sk-design-md-generator/references/design-md-format.md",
+          "sk-design-md-generator/references/quality-checklist.md"
+        ]
+      }
+    },
+    {
+      "id": "out-of-domain-default",
+      "prompt": "run the deployment pipeline",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-design-fundamentals"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-design-fundamentals"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "explicit-extract-command",
+      "prompt": "measure this marketing page",
+      "explicitMode": "/design:extract",
+      "riskSlice": "actor:mutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-design-md-generator"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-design-md-generator"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "forbidden-request",
+      "prompt": "forbidden",
+      "expectedAction": "reject",
+      "expectedModes": [],
+      "gold": {
+        "expectedIntents": [],
+        "expectedResources": []
+      }
+    }
+  ]
+}

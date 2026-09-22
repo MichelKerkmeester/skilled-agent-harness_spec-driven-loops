@@ -58,6 +58,7 @@ const HUBS = [
   'cli-external-orchestration',
   'cli-jev',
   'sk-doc',
+  'sk-design',
 ];
 
 // Diverse probes maximize the branches (route/clarify/defer) the engine walks,

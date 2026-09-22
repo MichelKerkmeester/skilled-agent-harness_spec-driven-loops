@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/compiled-policy.v1.schema.json",
+  "title": "CompiledPolicyV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "activationGeneration", "destinations", "detectors", "selectors", "compositionRules", "authorityGraph", "thresholdPolicy", "recoveryPolicy", "provenancePolicy", "basePolicyHash", "effectivePolicyHash"],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "activationGeneration": { "type": "integer", "minimum": 0 },
+    "destinations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/destination" } },
+    "detectors": { "type": "array", "items": { "$ref": "#/$defs/detector" } },
+    "selectors": { "type": "array", "items": { "$ref": "#/$defs/selector" } },
+    "compositionRules": { "type": "array", "items": { "$ref": "#/$defs/compositionRule" } },
+    "authorityGraph": { "type": "array", "items": { "$ref": "#/$defs/authorityEdge" } },
+    "thresholdPolicy": { "$ref": "#/$defs/thresholdPolicy" },
+    "recoveryPolicy": { "$ref": "#/$defs/recoveryPolicy" },
+    "provenancePolicy": { "$ref": "#/$defs/provenancePolicy" },
+    "basePolicyHash": { "$ref": "#/$defs/digest" },
+    "overlayHash": { "$ref": "#/$defs/digest" },
+    "effectivePolicyHash": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "destinationId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skillId", "workflowMode", "packetId", "packetKind", "backendKind"],
+      "properties": {
+        "skillId": { "$ref": "#/$defs/nonEmpty" },
+        "workflowMode": { "$ref": "#/$defs/nonEmpty" },
+        "packetId": { "$ref": "#/$defs/nonEmpty" },
+        "packetKind": { "$ref": "#/$defs/nonEmpty" },
+        "backendKind": { "$ref": "#/$defs/nonEmpty" },
+        "runtimeDiscriminator": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "destination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "role", "authorityRef", "mutatesWorkspace"],
+      "properties": {
+        "id": { "$ref": "#/$defs/destinationId" },
+        "role": { "enum": ["actor", "evidence", "transport", "judgment"] },
+        "authorityRef": { "$ref": "#/$defs/nonEmpty" },
+        "mutatesWorkspace": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "role": { "const": "evidence" } }, "required": ["role"] },
+          "then": {
+            "properties": {
+              "mutatesWorkspace": { "const": false },
+              "authorityRef": {
+                "pattern": "^(?!.*[:._-][Cc][Oo][Mm][Mm][Ii][Tt](?:$|[:._-]))(?![Cc][Oo][Mm][Mm][Ii][Tt](?:$|[:._-])).+$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "detector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmpty" },
+        "kind": { "enum": ["exact", "alias", "resource", "negative"] },
+        "value": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "selector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "destinationId", "detectorIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmpty" },
+        "destinationId": { "$ref": "#/$defs/destinationId" },
+        "detectorIds": { "type": "array", "items": { "$ref": "#/$defs/nonEmpty" } }
+      }
+    },
+    "compositionRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "targetIds"],
+      "properties": {
+        "kind": { "enum": ["orderedBundle", "surfaceBundle"] },
+        "targetIds": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/destinationId" } }
+      }
+    },
+    "authorityEdge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromAuthorityRef", "toDestinationId", "relation"],
+      "properties": {
+        "fromAuthorityRef": { "$ref": "#/$defs/nonEmpty" },
+        "toDestinationId": { "$ref": "#/$defs/destinationId" },
+        "relation": { "enum": ["approveBeforeCommit", "evidenceOnly"] }
+      }
+    },
+    "thresholdPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "thresholds"],
+      "properties": {
+        "kind": { "enum": ["exact-admission", "calibrated", "guarded-default"] },
+        "thresholds": { "type": "array", "items": { "type": "string", "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$" } }
+      }
+    },
+    "recoveryPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ladder", "userTurns", "handoffHops"],
+      "properties": {
+        "ladder": { "type": "array", "items": { "enum": ["clarify", "handoff", "defer", "reject"] } },
+        "userTurns": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "handoffHops": { "type": "integer", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "provenancePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "sourceHashes"],
+      "properties": {
+        "kind": { "enum": ["static", "offline-learned"] },
+        "sourceHashes": { "type": "array", "items": { "$ref": "#/$defs/digest" } }
+      }
+    }
+  }
+}
