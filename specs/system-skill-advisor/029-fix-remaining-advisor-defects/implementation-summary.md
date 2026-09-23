@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/029-fix-remaining-advisor-defects"
-    last_updated_at: "2026-09-23T14:58:00Z"
+    last_updated_at: "2026-09-23T16:44:00Z"
     last_updated_by: "implementing-agent"
-    recent_action: "Merged origin main again and corrected the CI claims main's cleanup had overtaken"
-    next_safe_action: "Push the merged 063 branch to main and skilled/v4.0.0.0, as the operator approved"
+    recent_action: "Pushed the follow-up as 40b23a70a6, where CI ran green on both branches"
+    next_safe_action: "No next action: the packet is complete, pushed and green in CI"
     blockers: []
     key_files:
       - ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "029-implementation-2026-09-23"
       parent_session_id: null
-    completion_pct: 98
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -124,7 +124,7 @@ A second pass, on the operator's instruction to leave nothing deferred, took the
 
 Another session merged the first round into local main as bd269228cb while origin main moved on to 997cd8ee2e, so the two were merged on a detached HEAD inside the worktree (2dbaa8fd66). Main's side won on the four conflicting `graph-metadata.json` files because it carried every edge this packet added plus a cli-jev keyword fix. The skill graph was then regenerated. That keyword fix moved one scorer result and four local-native divergences, so both baselines were re-captured with reviewed reasons (2f5fc94ef2) and the result was pushed to main and skilled/v4.0.0.0. A follow-up on `worktrees/063-remove-tri-daemon-drill` then took the two items the operator decided: the drill deletion and the corpus-gate path. The drill file was removed with `git rm`. MiMo made every other edit through the same one-change briefs. Each was checked byte for byte against a generated expected file.
 
-Before the push, origin main had moved fifteen commits past the follow-up's base. They included the CI cleanup in `system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof`, which had made the same corpus-gate path fix (b566f9fc28) and fixed the Spec-Kit Check failure (5b522489a2). The follow-up merged main (bce9d6b06c) without a conflict and this record was corrected to match.
+Before the push, origin main had moved fifteen commits past the follow-up's base. They included the CI cleanup in `system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof`, which had made the same corpus-gate path fix (b566f9fc28) and fixed the Spec-Kit Check failure (5b522489a2). The follow-up merged main (bce9d6b06c) without a conflict and this record was corrected to match. It then reached main and skilled/v4.0.0.0 as 40b23a70a6, where CI ran green on every workflow it triggered.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -173,6 +173,7 @@ Before the push, origin main had moved fifteen commits past the follow-up's base
 | CI corpus gate (lane N) | PASS locally: the step read from the edited workflow, run from its working directory with no advisor database, exits 0 with `overall_pass` true and no threshold failures (joint TT 103, FT 3, FF 1, gate-3 F1 0.9843) |
 | CI on 4072bb9e7a (origin main merged into the follow-up) | PASS: every workflow green on both branches (17 runs), including the corpus gate at the archived path |
 | Follow-up merged with origin main (bce9d6b06c) | PASS: no conflicts and the workflow matches both path fixes line for line. The advisor battery on the merged tree ran 891 passed, 0 failed, 6 skipped of 897, exit 0, 135.6 s |
+| CI on 40b23a70a6 (the pushed follow-up) | PASS: 21 runs across 11 workflows on both branches, all green, including the Routing Registry Drift Guard. Spec-Kit Check did not trigger on these paths |
 | Packet 029 strict validation (`validate.sh --strict`) | PASS: RESULT: PASSED, Errors 0, Warnings 0 (validate.sh --strict, 2026-09-23) |
 <!-- /ANCHOR:verification -->
 
@@ -184,5 +185,4 @@ Before the push, origin main had moved fifteen commits past the follow-up's base
 1. **The Pi check ran over RPC, not a terminal.** The three-turn session runs the same `input` handler as an interactive session. A terminal session was not opened.
 2. **The divergence ledger follows the worktree daemon's live database.** The Python scorer reads `runtime/database/skill-graph.sqlite`, and a rebuild can move its tops again as one did this round. The fix is a capture with reviewed reasons, which is how this round renewed it.
 3. **This packet's corpus-gate commit duplicates another packet's.** Commits 5ba4c78aac and b566f9fc28 make the same three-line change. Reverting either one alone would put the old path back.
-4. **CI has not yet run on the follow-up itself.** CI on 4072bb9e7a, the main head it merges, is green on every workflow, including the corpus gate at the archived path. The first run after the push is the proof for the drill deletion.
 <!-- /ANCHOR:limitations -->

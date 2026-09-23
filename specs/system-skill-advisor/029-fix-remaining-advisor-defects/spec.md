@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-09-22 |
 | **Branch** | `worktrees/060-fix-remaining-advisor-defects`, then `worktrees/063-remove-tri-daemon-drill` for the follow-up |
 <!-- /ANCHOR:metadata -->

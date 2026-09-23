@@ -48,7 +48,7 @@ Three delivery paths get fixed in this round. The pi extension's dedup decision 
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 
-The first round is merged and pushed to main and skilled/v4.0.0.0. The operator approved a merge-then-push route for the follow-up on `worktrees/063-remove-tri-daemon-drill`.
+The first round is merged and pushed to main and skilled/v4.0.0.0. The follow-up on `worktrees/063-remove-tri-daemon-drill` was merged with main and pushed to both branches as 40b23a70a6.
 <!-- /ANCHOR:quality-gates -->
 
 ---

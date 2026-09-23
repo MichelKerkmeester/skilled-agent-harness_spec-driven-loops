@@ -87,6 +87,7 @@ contextType: "general"
 - [x] T036 Lane N check: the corpus-gate step, read from the edited workflow and run from its working directory with no advisor database, exits 0 with `overall_pass` true and no threshold failures
 - [x] T037 Strict packet validation after the follow-up (see the implementation summary's verification table for the recorded result)
 - [x] T039 Merged follow-up checks: CI on 4072bb9e7a, the main head it merges, is green on every workflow (17 runs on both branches). The advisor battery on the merged tree ran 891 passed, 0 failed, 6 skipped of 897, exit 0, 135.6 s
+- [x] T040 Push the merged follow-up to main and skilled/v4.0.0.0 as 40b23a70a6 and confirm CI there: 21 runs across 11 workflows on both branches, all green
 <!-- /ANCHOR:phase-3 -->
 
 ---
