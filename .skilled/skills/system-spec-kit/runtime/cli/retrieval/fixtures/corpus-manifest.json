@@ -1,5 +1,5 @@
 {
-  "corpusHash": "af79ba259dffa88d998adae2bccd5709d0ec43856e3e6d02ca331db3c1723076",
+  "corpusHash": "0484625c7a79c55a6570a4cc357658775236270158a843b16a6faef3da0112b9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -22379,7 +22379,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "225d4a3745d7f008fa4ece3ae00a18288d24e32cf0e3af64fcfd24619047e33e",
+  "manifestHash": "6e9797d834812cdf8ef9013458c45c146cff09faa68769438a33e63dc2e16e50",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

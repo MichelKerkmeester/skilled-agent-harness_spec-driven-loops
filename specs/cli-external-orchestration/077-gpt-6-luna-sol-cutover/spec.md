@@ -23,8 +23,8 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
-| **Phase State** | Phases 1 to 3 landed in `f2a90d7ac5` and were pushed; Phase 4, review remediation, was built and verified 2026-09-23; Phase 5, the Xiaomi provider removal, was built and verified 2026-09-23; Phase 6, closure of the six recorded follow-ups, was planned 2026-09-23, the operator answered §10 and started it the same day |
+| **Status** | Complete |
+| **Phase State** | Phases 1 to 3 landed in `f2a90d7ac5` and were pushed; Phase 4, review remediation, was built and verified 2026-09-23; Phase 5, the Xiaomi provider removal, was built and verified 2026-09-23; Phase 6, closure of the six recorded follow-ups, was planned, built, verified and pushed 2026-09-23 in `38f6fa4521`, `7d23a6188f`, `70e8a50801` and `57adbdf7d2`, with CI green on both branches |
 | **Created** | 2026-09-23 |
 | **Branch** | `main` (working directly, operator-selected; the tree already carried unrelated uncommitted work, including a reorder hunk in `.pi/settings.json`) |
 | **Origin** | Operator: "replace all instances of luna 5.6 in cli pi, cli codex and cli opencode with luna 6.0, also replace any instance of sol 5.6 with sol 6.0, also add luna 6.0 to cli pi with llmgateway provider which is currently missing. in cli claude replace instances references of opus 5.0 with 5.5", then mid-flight "also add luna 6 to cli hermes, llmgateway". Scope decisions taken with the operator: every Opus id in cli-claude-code becomes `claude-opus-5-5`, and the rename extends 076-style to the deep-loop enforcement, cli-hermes and the pi fast-mode extension. Phase 5, same day: "remove xiaomi provider from cli pi and cli opencode providers, I know we added it but lets only keep llm gateway for xiaomi on those. Also remove xiaomi provider from .pi/settings.json", with the operator choosing to cover docs, config and the fan-out runtime. Phase 6, same day: "PLease plan to fix all 6 [...] Utilize LUNA 6 XHIGH FAST for this work through cli-codex and fallback to MiMo v2.6 Pro High through cli-pi for implementation work. You are agent orchestrate and reviewer" |

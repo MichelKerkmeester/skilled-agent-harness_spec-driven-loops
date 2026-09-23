@@ -131,11 +131,11 @@ Source: the operator, 2026-09-23, asking for all six items Phase 5 left open, im
 - [x] T056 Home config, approved by the operator on 2026-09-23, per REQ-028: copy `~/.codex/config.toml`, `~/.pi/agent/auth.json` and `~/.local/share/opencode/auth.json` to dated backups, then set the Codex model to `gpt-6-luna` and remove each `xiaomi` key. Accept: each file parses and `jq 'keys'` lists no `xiaomi`. Evidence: Pi's store backed up to `auth.json.bak-20260923` (byte-identical), then `xiaomi` removed under Pi's own `proper-lockfile` lock, because Pi re-reads the file under that lock and merges per provider; keys now `cline-pass`, `deepseek`, `minimax`, `openai-codex`, `opencode-go`, `openrouter`, mode 600. OpenCode's store backed up the same way, then `opencode auth logout xiaomi` (exit 0, "Logout successful"); keys now `cline-pass`, `deepseek`, `llmgateway`, `minimax`, `openai`, `opencode-go`, `openrouter`; `opencode models xiaomi` exits 1. `~/.codex/config.toml` backed up the same way while no `codex exec` ran, then `model = "gpt-5.6-luna"` became `model = "gpt-6-luna"`, the only diff line; `max` and `fast` kept; `codex features list` still loads the config, exit 0. Final recheck: all three backups exist; `~/.codex/config.toml` line 2 reads `model = "gpt-6-luna"`; on the final recheck neither store lists `xiaomi`, although a Pi session and `opencode acp` were still running
 - [x] T057 [D7] One version bump and one changelog each for the skills Phase 6 edits, per REQ-025, after re-reading each current version. Evidence: D7a (485 s) and D7b (362 s): cli-opencode 1.4.12.0, cli-codex 1.9.3.0, cli-claude-code 1.5.2.0, cli-pi 1.5.10.0, deep-ai-council 2.4.2.0, deep-improvement 1.17.2.0, system-deep-loop 3.0.1.0, one changelog each; each `SKILL.md` edit D7 made is the version line alone; 057's checker `RESULT: PASSED (0 violations)` on all seven
 - [x] T058 Regenerate the Hermes mirrors of the touched skills into a scratch directory and copy back only those, per REQ-025. Evidence: `--check` drifted exactly the seven bumped skills and nothing stale; the scratch regeneration's diffs held only the bumps and the Phase 6 lines; only the seven `SKILL.md` mirrors copied back; `PASS: 70 Hermes skill copies in sync`
-- [ ] T063 Regenerate the trigger index and its retrieval fixtures from an export of the tree being pushed, as Phase 5 did in `682a192b8d`, because the bumped versions and new changelogs change the corpus
+- [x] T063 Regenerate the trigger index and its retrieval fixtures from an export of the tree being pushed, as Phase 5 did in `682a192b8d`, because the bumped versions and new changelogs change the corpus. Evidence: `7d23a6188f`, generated from a `git archive` export of `38f6fa4521`: 18 new corpus paths, the seven Phase 6 changelogs and eleven committed CI-cleanup evidence files the previous index predated, and no trigger phrase changed. After T064, `57adbdf7d2`, generated from an export of `70e8a50801`, with hash-only changes
 - [x] T064 [D9] Carry the system-deep-loop hub version into its routing metadata. CI's Routing Registry Drift Guard failed on `7d23a6188f`, on both branches, with four `13a-version` failures: `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` still carried 3.0.0.0 after D7b bumped `SKILL.md` to 3.0.1.0. The local pre-push gate does not run this check. Evidence: Luna, 325 s, exit 0; 4 files, 1 line each, as briefed; `parent-skill-check.cjs` passes on all seven hubs; the three contracts regenerate with one changed line each, the `mode-registry.json` digest; the trigger index regenerates with hash-only changes
 - [x] T059 Review record, per SC-007: for every dispatch, the brief, the paths it changed compared with the paths it named, the checks run and the verdict, kept in `implementation-summary.md`. Evidence: `implementation-summary.md` How It Was Delivered carries one row per dispatch, including both retries
 - [x] T060 Verify: the Xiaomi route search over the Phase 6 paths; the council and remediation suites; the six runtime suites and typecheck against T046; the frontmatter version gate; 057's `check-changelog-structure.py`; `sync-skills-hermes.cjs --check`; `validate.sh --strict`. Evidence: no `xiaomi` hit in the Phase 6 skill paths outside changelogs, the deep command assets or the seven mirrors, with a positive control that finds the gateway MiMo id; council 21/21, remediation 35/35, `sweep-isolation` 15/15; six suites 391 passed, 1 skipped, exit 0 (228 s), equal to T046; typecheck exit 0; gate exit 0; 057's checker 0 violations on all seven; `PASS: 70 Hermes skill copies in sync`; `validate.sh --strict` `RESULT: PASSED`, 0 errors, 0 warnings
-- [ ] T061 Commit Phase 6 as one revertable commit by pathspec and push it to `main` and `skilled/v4.0.0.0`
+- [x] T061 Commit Phase 6 as one revertable commit by pathspec and push it to `main` and `skilled/v4.0.0.0`. Evidence: `38f6fa4521` holds the 49 Phase 6 paths and the four routing activation manifests the pre-commit gate re-minted; it and `7d23a6188f` were pushed to both branches as fast-forwards from `d4ffc18aca`, with the pre-push gate passing 15/15. CI on that push passed 27 of 29 runs, and the Routing Registry Drift Guard failed on both branches, which T064 fixed. Another session had meanwhile committed twice to the shared `main` without pushing, so the fix was rebuilt on the pushed tip as `70e8a50801`, with its index in `57adbdf7d2`, and pushed without those two commits. The route gate was overridden once for that push, because its one parity diff was the other session's unpushed `sk-doc` activation manifest. CI on `57adbdf7d2`: 27 of 27 runs passed on both branches, including the drift guard
 <!-- /ANCHOR:phase-6 -->
 
 ---
@@ -143,9 +143,9 @@ Source: the operator, 2026-09-23, asking for all six items Phase 5 left open, im
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Every acceptance criterion `Met`
+- [x] Every acceptance criterion `Met`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -198,7 +198,7 @@ Source: the operator, 2026-09-23, asking for all six items Phase 5 left open, im
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Evidence so far: `acceptance-criteria.md` AC-001 to AC-021 Met; AC-022 to AC-028, Phase 6, Unmet
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: `acceptance-criteria.md` AC-001 to AC-028 Met, closure statement Closeable: Yes
 - [x] CHK-021 [P0] `pi --list-models gpt-6` shows the three new routes. Evidence: T014
 - [x] CHK-022 [P1] Luna Max persona counts unchanged. Evidence: T012
 - [x] CHK-023 [P1] Negative Cursor inputs still rejected. Evidence: `executor-config.vitest.ts` asserts `isCursorModelAllowed('gpt-6-sol-high-fast')` is false and passes in T013
