@@ -63,8 +63,8 @@ contextType: "general"
 
 - [x] T013 Packet docs and parent records - **Evidence**: the six packet docs were filled in wu5 and revised in wu8, the parent spec.md gained row 50 and the 049 to 050 handoff row in wu6, 048 gained its live-proof row in wu7, and `repair-derived.cjs --apply` added 050 to the parent `children_ids`.
 - [x] T014 Strict validation - **Evidence**: `validate.sh --strict` printed RESULT: PASSED with 0 errors and 0 warnings on this packet and on 048.
-- [ ] T015 Merge main and re-mint cli-jev
-- [ ] T016 Merged-tree re-verification
+- [x] T015 Merge main and re-mint cli-jev - **Evidence**: main was merged into the worktree branch twice, as `f127890ea7` and `0b39a1f6c3`, the second after the other session pushed main to `80dc0a118d`. The second merge conflicted on three generated Hermes mirrors, resolved by taking main's copies and regenerating every mirror. The cli-jev re-mint ran through the route-remint pre-commit gate inside `f0411552aa`.
+- [x] T016 Merged-tree re-verification - **Evidence**: on `0b39a1f6c3`, Hermes sync reports 70 copies and 33 prompts in sync, frontmatter 0 violations, the graph compiler VALIDATION PASSED, freshness 15/15, links 0 broken, the route guard all seven hubs fresh, the deep-loop contract tests 42 passed and the advisor routing and ratchet tests 28 passed, all at exit 0.
 - [ ] T017 Commit, push, CI watch and worktree removal
 <!-- /ANCHOR:phase-3 -->
 
@@ -119,7 +119,7 @@ contextType: "general"
 - [x] CHK-010 [P0] The Hermes skill copies and the compiled deep-loop command contract are regenerated and in sync - **Evidence**: `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` reports 70 copies in sync at exit 0, `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check` reports 33 prompts in sync at exit 0, and the deep-loop contract tests report 42 tests passed at exit 0.
 - [x] CHK-011 [P0] Skill doc frontmatter is clean across the tree - **Evidence**: `bash .skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh . --coverage` reports docs=101 violations=0 at exit 0.
 - [x] CHK-012 [P0] Skill graph metadata validates and the derived entries are fresh - **Evidence**: `python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only` reports VALIDATION PASSED at exit 0 and `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs` reports checked=15 fresh=15 stale=0 errored=0 at exit 0.
-- [ ] CHK-013 [P1] main is merged and cli-jev's compiled-routing manifest is re-minted so the guard reports fresh and CJ-001 routes compiled
+- [x] CHK-013 [P1] main is merged and cli-jev's compiled-routing manifest is re-minted so the guard reports fresh and CJ-001 routes compiled - **Evidence**: the route-remint pre-commit gate re-minted cli-jev in `f0411552aa`, and on the merged tree the guard reports all seven hubs fresh and the CJ-001 prompt routes compiled to cli-usage.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -131,7 +131,7 @@ contextType: "general"
 - [x] CHK-021 [P0] The Pi Gate-3 contract holds in a live TUI run - **Evidence**: `evidence/pi-tui-select.txt`, `evidence/pi-tui-input.txt`, `evidence/pi-tui-final.txt` and `evidence/pi-tui-state.json` show the select dialog, the path input, the first write refused with the bound-folder message, a passing retry and later edits with no second question, and the state file status satisfied with the bound path.
 - [x] CHK-022 [P1] The Markdown link surface is green - **Evidence**: `node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs` reports 7834 files, 13510 links and 0 broken at exit 0, where the earlier run reported 2 broken at exit 1.
 - [x] CHK-023 [P1] A clean full run of the spec-kit CLI project passes - **Evidence**: `npx vitest run --config ../../vitest.config.ts --project cli` in `.skilled/skills/system-spec-kit/runtime/cli` reports 143 files passed and 3 skipped, 1441 tests passed and 19 skipped of 1460, at exit 0.
-- [ ] CHK-024 [P1] The merged-tree re-verification of Hermes sync, the scorer ratchet, the link check and the route guard passes before any push
+- [x] CHK-024 [P1] The merged-tree re-verification of Hermes sync, the scorer ratchet, the link check and the route guard passes before any push - **Evidence**: on `0b39a1f6c3` the Hermes sync reports 70 in sync, the ratchet and routing tests pass 28/28, the link check reports 0 broken and the route guard reports all seven hubs fresh, each at exit 0.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -185,7 +185,7 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 13 | 13/13 |
-| P1 Items | 13 | 11/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-09-23

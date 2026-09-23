@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase 049 closed the Gate-3 residue but left two loose ends",
     "created_at": "2026-09-22T13:07:30Z",
-    "last_save_at": "2026-09-23T06:38:50.620Z",
+    "last_save_at": "2026-09-23T07:44:06.684Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:53832134fd38270de1fdffcf9e3d7b6097d378fc7db7bfbf8d6bde62d12efeb0",
+    "source_fingerprint": "sha256:72cdf81271df4e33b87101220e99d5956b8bc1342933b612785f5a40ded841a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "234da5146832e9a1e68fe3fb7f24db1692cecf7de05a03646c315a7d9c8b40c1",
-      "plan.md": "8643db0996e0ebd0882d071c7616b33a5174cbce7a95eaa146187c4dbc54d2e1",
-      "tasks.md": "3835900d4d3cd5138555fc62b756baa18208f621e31795592d747918fe5e52f4",
-      "implementation-summary.md": "59f812e592536b5b0f7aadb67ab53ba3de08f81be06fd8ec5be78d98230587e5",
-      "handover.md": "12a7ef351364ec72ff80ea14672882b1ca2ffbb449e278c3302af77e4997f11c"
+      "plan.md": "3b28bdb22dbfd4b8a7ed69dc8362183942eb5838679efd07662d7592ad00c9dc",
+      "tasks.md": "4198b0577fc739d594884bf51980cb2c9a1e2f9c74401b5cc5b8e77b1f52e56f",
+      "implementation-summary.md": "c1adf49a40400b6a67cbe4e7b65e9bf4c88896fba1697aafc132862770ed7b4b",
+      "handover.md": "ec5f73f77eb8f5746bdc84ce049ec8e33ca379412b9e0e1a3d40226216b3da6c"
     },
     "last_active_at": null
   }

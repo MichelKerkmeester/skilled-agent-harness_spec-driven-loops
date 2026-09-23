@@ -1,0 +1,8 @@
+PI_HANDBACK
+status: done
+summary: Applied all three literal EDITS to plan.md: the two Done-Keeper boxes are now checked and the risk row for newer commits on main is updated to Green/Merged. EDIT 3's OLD text matched only as the leading part of a longer line (line 126), so the literal replacement was applied and the line's remaining trailing text ("They are 377a22e1a9 ... local only) |") was left in place as required by literal-replacement rules.
+files_changed: 1 (specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md)
+edits_applied: 1, 2, 3
+edits_skipped: none
+verification: grep -c '^- \[ \]' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md → 3; grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md → 22 (expected 22, matches)
+failures: none

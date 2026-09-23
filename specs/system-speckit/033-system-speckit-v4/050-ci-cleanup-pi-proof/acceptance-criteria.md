@@ -14,15 +14,15 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof"
     last_updated_at: "2026-09-23T06:00:00Z"
     last_updated_by: "cli-pi-mimo-v2.6-pro"
-    recent_action: "Packet docs revised, strict validation passed, evidence moved out of scratch"
-    next_safe_action: "Commit on the worktree branch, merge main, re-mint cli-jev, re-verify"
+    recent_action: "Merged main, cli-jev re-minted, merged tree verified"
+    next_safe_action: "Push after the operator's yes, watch CI, remove the worktree"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-050-ci-cleanup-pi-proof"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -62,9 +62,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-005 | REQ-003 | Given six broken markdown links repointed to their z_archive locations, When the markdown link check runs, Then it reports zero broken links with exit 0 | node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs reported 7834 files, 13510 links and 0 broken with exit 0, against 2 broken and exit 1 before the fix | Met | - |
 | AC-006 | REQ-003 | Given the spec-kit CLI vitest project with the corrected recursive-child-manifest paths, When a clean full project run completes, Then no file fails and no test fails | A clean full re-run of npx vitest run --config ../../vitest.config.ts --project cli in .skilled/skills/system-spec-kit/runtime/cli reported 143 files passed and 3 skipped, 1441 tests passed and 19 skipped of 1460, and exit 0 in 485 s. An earlier full run under heavy concurrent load failed 3 tests in tests/runtime-memory-inputs.vitest.ts, and that file passes 24 of 24 alone. Its failure messages were not captured, so load as the cause is inferred | Met | - |
 | AC-007 | REQ-004 | Given a scorer baseline recaptured at 151 of 195 and 26 of 32 against the committed 152 of 195 and 27 of 32, When the drop is root-caused and fixed at the producer, Then the live scores return to 152 of 195 and 27 of 32 and a fresh capture equals the committed baseline on every metric and every fixture hash | Experiments on git-archive copies traced the drop to the bare word "run" in the cli-jev SKILL.md Keywords and derived.key_topics. Removing that word from .skilled/skills/cli-jev/SKILL.md line 8 and .skilled/skills/cli-jev/graph-metadata.json and regenerating .hermes/skills/cli-jev/SKILL.md restored live 152 of 195 and 27 of 32 with corpus row 26 routed to system-deep-loop. The system-skill-advisor routing vitest runs reported 4 files and 28 tests passed including the ratchet 7 of 7 with exit 0 | Met | - |
-| AC-008 | REQ-005 | Given the cli-jev SKILL.md edit changed its compiled-routing policy hash, When the compiled-routing manifest is re-minted after merging main with node .skilled/bin/compiled-route-manifest.cjs refresh --hub cli-jev --skill-root .skilled/skills/cli-jev, Then the guard reports fresh and CJ-001 routes compiled | node .skilled/bin/compiled-route-admission.cjs --hub cli-jev passed 3 of 3 with exit 0 while node .skilled/bin/compiled-route-guard.cjs still reports cli-jev stale-manifest with the other five hubs fresh. The re-mint is a post-merge step per the operator decision, so the row is Unmet | Unmet | - |
+| AC-008 | REQ-005 | Given the cli-jev SKILL.md edit changed its compiled-routing policy hash, When the compiled-routing manifest is re-minted after merging main with node .skilled/bin/compiled-route-manifest.cjs refresh --hub cli-jev --skill-root .skilled/skills/cli-jev, Then the guard reports fresh and CJ-001 routes compiled | The repository's route-remint pre-commit gate re-minted cli-jev inside commit f0411552aa, moving its effectivePolicyHash from 3240ebf5 to 178b10dd, so the re-mint ran at commit time rather than after the merge. On the merged tree at 0b39a1f6c3, node .skilled/bin/compiled-route-guard.cjs reports all seven hubs fresh with exit 0, the CJ-001 prompt routes compiled to cli-usage through node .skilled/bin/compiled-route.cjs under hash 178b10dd, and compiled-route-admission.cjs --hub cli-jev passes 3 of 3 | Met | - |
 | AC-009 | REQ-006 | Given the closing packet documents, When the strict validation runs on the packet, Then it reports RESULT: PASSED and the parent records are reconciled | bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --strict printed RESULT: PASSED with 0 errors and 0 warnings. The parent spec.md carries phase map row 50 and the 049 to 050 handoff row, the parent graph-metadata.json children_ids lists 050 as its 50th entry, and the parent folder's own strict checks pass | Met | - |
-| AC-010 | REQ-007 | Given the merged tree, When Hermes sync, the scorer ratchet, the link check and the route guard re-run before push, Then each passes on the merged tree | On the merged tree, sync-skills-hermes.cjs --check, the parity/scorer-eval-baseline-ratchet vitest, check-markdown-links.cjs and compiled-route-guard.cjs must each exit 0, with the guard reporting cli-jev fresh. Task T016 is open, so the row is Unmet | Unmet | - |
+| AC-010 | REQ-007 | Given the merged tree, When Hermes sync, the scorer ratchet, the link check and the route guard re-run before push, Then each passes on the merged tree | On the merged tree at 0b39a1f6c3, sync-skills-hermes.cjs --check reported 70 copies in sync, the advisor routing and ratchet vitest reported 28 passed, check-markdown-links.cjs reported 0 broken and compiled-route-guard.cjs reported all seven hubs fresh, each with exit 0 | Met | - |
 
 ### Status values
 
@@ -89,7 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-008 and AC-010 are the open rows and each must turn Met or carry a waiver ADR before this packet may close. Both are steps after the merge.
+Every criterion is Met. The packet closes once the push, the CI watch and the worktree removal in T017 are done.
 <!-- /ANCHOR:closure -->

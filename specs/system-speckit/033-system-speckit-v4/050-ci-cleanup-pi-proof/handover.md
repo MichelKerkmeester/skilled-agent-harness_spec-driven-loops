@@ -53,16 +53,16 @@ Handover for phase 050 of system-speckit-v4. It records the CI cleanup results, 
 | ------------ | --------- | ---------------------- |
 | Bring the two archived links into scope | Their targets were tracked archive files and not another session's packet | The six Markdown link repoints |
 | Find the cause of the scorer drop before deciding, then fix it at cli-jev | The ratchet header says a drop is a regression | .skilled/skills/cli-jev/SKILL.md and .skilled/skills/cli-jev/graph-metadata.json |
-| Re-mint the cli-jev compiled-routing manifest after merging main | The SKILL.md edit changes the cli-jev compiled-routing policy hash | The cli-jev compiled manifest and the route guard |
-| Push local main including the other session's two unpushed commits f5a89115b1 and 2c8f243607 | The operator chose to publish local main as it stands, which carries the other session's two commits along with this phase | The push step for local main |
+| Re-mint the cli-jev compiled-routing manifest after merging main | The SKILL.md edit changes the cli-jev compiled-routing policy hash | The cli-jev compiled manifest and the route guard. The route-remint pre-commit gate ran the re-mint inside f0411552aa |
+| Push local main including the other session's two unpushed commits f5a89115b1 and 2c8f243607 | The operator chose to publish local main as it stands, which carries the other session's two commits along with this phase. The other session pushed them itself first | The push step for local main |
 | Rebuild handover.md from the template | The earlier hand-written handover had no frontmatter, no template header and no anchors, which produced three of the five strict-validation errors | This handover document |
 
 ### 2.2 Blockers Encountered
-**Blockers**: the cli-jev re-mint after the merge, and the primary checkout residue at the merge step.
+**Blockers**: the primary checkout residue, which blocks the primary checkout's own sync after the push.
 
 | Blocker     | Status          | Resolution/Workaround |
 | ----------- | --------------- | --------------------- |
-| The cli-jev compiled manifest is stale after the SKILL.md edit | open | Re-mint after merging main with `node .skilled/bin/compiled-route-manifest.cjs refresh --hub cli-jev --skill-root .skilled/skills/cli-jev`, then require the guard to report fresh and CJ-001 to route compiled before any push |
+| The cli-jev compiled manifest is stale after the SKILL.md edit | resolved | The route-remint pre-commit gate re-minted cli-jev inside commit f0411552aa, and the merged tree reports all seven hubs fresh |
 | The primary checkout holds this phase's scaffold residue: two placeholder rows in the parent spec.md and an untracked copy of the original 050 scaffold folder | open | Both block updating the primary checkout's main to the phase commit. Removing them touches the primary checkout, so it waits for the operator's yes at the merge step |
 
 ### 2.3 Files Modified
@@ -91,9 +91,10 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 | ----------------- | -------------------- | -------------------------- | ------------------------- |
 | The stderr line CLI_RETRYABLE_UNAVAILABLE exit 75 in a live pi run | The skill-advisor hook CLI fallback times out during the run | Defensive. The hook runs fail_open with freshness unavailable and the warning is not a provider failure | Read the hook status line before blaming the model provider. A later run logged status ok |
 | .skilled/skills/sk-doc/node_modules/@spec-kit/shared is missing in a fresh worktree | Any fresh worktree runs parent-skill-check | Load-bearing. parent-skill-check cannot load its root-router library without it | Mirror the primary checkout gitignored link shared -> ../../../system-spec-kit/shared before running parent-skill-check, or provision the worktree with worktree-naming.sh provision as sk-git rule 8 says |
-| Any cli-jev SKILL.md edit stales its compiled manifest | An edit changes the cli-jev compiled-routing policy hash | Load-bearing. compiled-route-guard.cjs then reports cli-jev stale-manifest and CJ-001 serves through legacy routing | Re-mint with `node .skilled/bin/compiled-route-manifest.cjs refresh --hub cli-jev --skill-root .skilled/skills/cli-jev` and require the guard to report fresh before any push |
+| Any cli-jev SKILL.md edit stales its compiled manifest | An edit changes the cli-jev compiled-routing policy hash | Load-bearing. compiled-route-guard.cjs then reports cli-jev stale-manifest and CJ-001 serves through legacy routing | The route-remint pre-commit gate re-mints the hub inside the commit that edits it, so read the commit output for a [gate:route-remint] line before assuming the manifest is stale. Otherwise re-mint with `node .skilled/bin/compiled-route-manifest.cjs refresh --hub cli-jev --skill-root .skilled/skills/cli-jev` |
 | The scorer reads the working tree, not HEAD | A scorer capture runs against a dirty worktree | Load-bearing. The ratchet header treats a drop as a regression | Run scorer experiments on git-archive copies of the base tree and keep the worktree untouched |
 | The packet scaffold ran against the primary checkout path | A scaffold for a worktree packet resolves the primary checkout's specs/ tree | Load-bearing. The primary checkout's main cannot move to the phase commit while the residue sits there | Before the merge, check the primary checkout for a same-named packet folder and parent rows, back them up, and remove them only with the operator's yes |
+| Generated Hermes mirrors conflict on merge | Both branches regenerate the same .hermes mirror from different sources | Defensive. The mirrors are derived, so no hand-written content is at stake | Take either side, regenerate every mirror from the merged sources with sync-skills-hermes.cjs, and require --check to pass before the merge commit |
 <!-- /ANCHOR:context-transfer -->
 
 ---
@@ -103,15 +104,15 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 
 ### 3.1 Recommended Starting Point
 - **File:** specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/evidence.md
-- **Next safe action**: Commit the phase on the worktree branch after the operator's yes, the first part of T017.
+- **Next safe action**: Push the worktree branch tip to main and skilled/v4.0.0.0 after the operator's yes, then watch CI.
 - **Cold-read order** (role-play a reader who knows nothing): 1. evidence/dispatch/evidence.md -> 2. handover.md -> 3. evidence/dispatch/handover-v1.md (the minimal numbered path to context)
-- **Context:** Nothing is committed, merged or pushed yet. Worktree .worktrees/061-ci-cleanup-pi-proof sits on branch worktrees/061-ci-cleanup-pi-proof at base commit 1cc5dfa692. Tasks T001 to T014 are done and T015 to T017 are open.
+- **Context:** The work is committed and merged on the worktree branch, and nothing is pushed yet. Worktree .worktrees/061-ci-cleanup-pi-proof sits on branch worktrees/061-ci-cleanup-pi-proof at base commit 1cc5dfa692. Tasks T001 to T016 are done and T017 is open.
 
 ### 3.2 Priority Tasks Remaining
-1. Commit the phase on the worktree branch after the operator's yes, the first part of T017.
-2. Merge main, clear the primary checkout residue with the operator's yes, then re-mint the cli-jev compiled-routing manifest (T015).
-3. Re-verify the merged tree with Hermes sync, the scorer ratchet, the link check and the route guard before any push (T016).
-4. Push after the operator's yes, watch CI, then remove the worktree (the rest of T017).
+1. Push the worktree branch tip to main and skilled/v4.0.0.0 after the operator's yes (T017).
+2. Watch CI on the pushed commit (T017).
+3. Clear the primary checkout residue with the operator's yes, so the primary checkout can fast-forward.
+4. Remove the worktree after the operator's yes (the rest of T017).
 
 ### 3.3 Critical Context to Load
 - [ ] Indexed save or continuity target: use `generate-context.js` for indexed saves. Edit `_memory.continuity` frontmatter in `implementation-summary.md` for quick continuity updates.
@@ -127,8 +128,8 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 Before handover, verify:
 - [ ] All in-progress work committed or stashed. Open. Nothing is committed, merged or pushed yet.
 - [ ] Current context saved via `generate-context.js` or `_memory.continuity` in `implementation-summary.md`. Open. The `_memory.continuity` block in implementation-summary.md is current, and no indexed save has run.
-- [ ] No breaking changes left mid-implementation. Open. REQ-005 and AC-008 wait on the post-merge cli-jev re-mint.
-- [ ] Tests passing (if applicable). Partly. AC-003 to AC-007 are Met on the worktree. AC-010 waits on the merged-tree re-run.
+- [x] No breaking changes left mid-implementation. The merged tree passes every check and the route guard reports all hubs fresh.
+- [x] Tests passing (if applicable). AC-003 to AC-007 are Met on the worktree, and AC-010 is Met on the merged tree.
 - [x] This handover document is complete.
 <!-- /ANCHOR:validation-checklist -->
 
@@ -148,11 +149,11 @@ Requirement and acceptance status:
 - REQ-002 P0 Pi TUI live proof. AC-002. Met.
 - REQ-003 P0 The six CI surfaces pass locally without weakening a gate. AC-003 Met. AC-004 Met. AC-005 Met. AC-006 Met.
 - REQ-004 P1 Scorer drop root-caused and fixed at the producer. The baseline equals the committed 152/195 and 27/32. AC-007. Met.
-- REQ-005 P1 cli-jev compiled routing re-minted after the merge. AC-008. Unmet (post-merge).
+- REQ-005 P1 cli-jev compiled routing re-minted, guard fresh, CJ-001 compiled. AC-008. Met. The re-mint ran at commit time through the route-remint pre-commit gate.
 - REQ-006 P1 Packet validates strict with RESULT: PASSED and the parent records are reconciled. AC-009. Met.
-- REQ-007 P1 Merged-tree re-verification (Hermes sync, scorer ratchet, link check, route guard) before push. AC-010. Unmet (post-merge).
+- REQ-007 P1 Merged-tree re-verification (Hermes sync, scorer ratchet, link check, route guard) before push. AC-010. Met.
 
-Task status: T001 to T014 are done. T015 to T017 are open.
+Task status: T001 to T016 are done. T017 is open.
 
 Verification observed (command -> result):
 - `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` -> PASS: 70 Hermes skill copies in sync, exit 0
@@ -169,7 +170,8 @@ Verification observed (command -> result):
 - `validate.sh --strict` on this packet -> RESULT: PASSED, 0 errors, 0 warnings. On 048 -> RESULT: PASSED. The parent's recursive run passes the parent folder and 49 of its 50 phases, and fails only on phase 030, whose goal.md durable slice is 6498 characters against a 4000 limit. This phase did not touch 030
 - `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-jev` -> OK, all hard invariants passed, exit 0
 - `node .skilled/bin/compiled-route-admission.cjs --hub cli-jev` -> pass, 3 pass 0 drift 0 stale, exit 0
-- `node .skilled/bin/compiled-route-guard.cjs` -> cli-jev stale-manifest (the other five hubs fresh). Open until the post-merge re-mint
+- `node .skilled/bin/compiled-route-guard.cjs` -> before the merge, cli-jev stale-manifest. On the merged tree 0b39a1f6c3, all seven hubs fresh, exit 0
+- merges -> f127890ea7 was clean. 0b39a1f6c3 conflicted on three generated Hermes mirrors, resolved by taking main's copies and regenerating every mirror. `compiled-route-admission.cjs --all` warns on sk-design with 1 drift, the same as on origin/main, and CI runs it with --warn-only
 
 Out of scope with reasons:
 - Re-minting the sk-design or sk-doc routing hubs. Their bytes belong to another session.

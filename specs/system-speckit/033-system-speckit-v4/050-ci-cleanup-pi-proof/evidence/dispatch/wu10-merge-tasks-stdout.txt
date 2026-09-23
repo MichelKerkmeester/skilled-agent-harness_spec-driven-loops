@@ -1,0 +1,10 @@
+Verification passed: 4 open items remain (expected 4) and 30 ANCHOR markers intact (expected 30).
+
+PI_HANDBACK
+status: done
+summary: Applied five evidence-recording edits to P/tasks.md, marking T015, T016, CHK-013 and CHK-024 complete with merged-tree evidence and updating the P1 rollup to 13/13. All verification counts match expectations with no skipped edits or failures.
+files_changed: 1 - specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
+edits_applied: 1, 2, 3, 4, 5
+edits_skipped: none
+verification: grep -c '^- \[ \]' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md → 4 | grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md → 30
+failures: none
