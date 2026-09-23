@@ -4,7 +4,7 @@
 #
 # Usage: bash auth-probe.sh > auth-probe.txt 2>&1
 
-set -u
+set -uo pipefail
 
 D=/tmp/cli-jev-005
 

@@ -7,7 +7,7 @@
 # move changed: before the repoint the hard rules were read from a path that no longer
 # existed and the lint failed open.
 
-set -u
+set -uo pipefail
 
 LINT=.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs
 
