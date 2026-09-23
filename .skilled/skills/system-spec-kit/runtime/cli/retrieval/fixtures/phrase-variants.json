@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e4de38ae88d5a9b24bb817d5518056a2f83d81779182a977b047df6d5f912537",
+  "manifestHash": "d0800c1c0c0f0adf517f81916e8eec655df72de126c46fddc76c05640b671771",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22834,6 +22834,9 @@
     "create sh canonical": [
       "create.sh canonical"
     ],
+    "create sh canonical specs root": [
+      "create.sh canonical specs root"
+    ],
     "create sh canonical tasks": [
       "create.sh canonical tasks"
     ],
@@ -22869,6 +22872,9 @@
     ],
     "create sh upgrade level sh": [
       "create.sh upgrade-level.sh"
+    ],
+    "create sh writes to opencode specs": [
+      "create.sh writes to .opencode/specs"
     ],
     "create skill": [
       "create skill"
@@ -57398,6 +57404,12 @@
     "playbook preconditions changelog": [
       "playbook preconditions changelog"
     ],
+    "playbook prompt fields disagree": [
+      "playbook prompt fields disagree"
+    ],
+    "playbook prompt sync warning": [
+      "playbook prompt sync warning"
+    ],
     "playbook prompt voice": [
       "playbook prompt voice"
     ],
@@ -74513,6 +74525,9 @@
     "spec packet autofix": [
       "spec packet autofix"
     ],
+    "spec packet lands in opencode specs": [
+      "spec packet lands in .opencode/specs"
+    ],
     "spec packet merge gate": [
       "spec packet merge gate"
     ],
@@ -79085,6 +79100,9 @@
     "track nested packet resolution": [
       "track nested packet resolution"
     ],
+    "track numbering restarts at 001": [
+      "track numbering restarts at 001"
+    ],
     "track prefix identity heal": [
       "track prefix identity heal"
     ],
@@ -79661,6 +79679,9 @@
     ],
     "turbulence displacement filter": [
       "turbulence displacement filter"
+    ],
+    "turn 1 prompt out of sync": [
+      "turn 1 prompt out of sync"
     ],
     "turn close out": [
       "turn close-out"

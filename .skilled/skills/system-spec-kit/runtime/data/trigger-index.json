@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e4de38ae88d5a9b24bb817d5518056a2f83d81779182a977b047df6d5f912537",
+  "manifestHash": "d0800c1c0c0f0adf517f81916e8eec655df72de126c46fddc76c05640b671771",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11406,7 +11406,11 @@
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/spec.md",
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
-    "specs/system-speckit/033-system-speckit-v4/timeline.md"
+    "specs/system-speckit/033-system-speckit-v4/timeline.md",
+    "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
+    "specs/system-speckit/034-create-canonical-specs-root/plan.md",
+    "specs/system-speckit/034-create-canonical-specs-root/spec.md",
+    "specs/system-speckit/034-create-canonical-specs-root/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -23266,7 +23270,6 @@
       3878,
       3884,
       3889,
-      3893,
       3940,
       3946,
       3952,
@@ -35512,7 +35515,6 @@
       3877,
       3883,
       3888,
-      3892,
       3931,
       3939,
       3945,
@@ -37146,6 +37148,12 @@
     "create sh canonical": [
       10406
     ],
+    "create sh canonical specs root": [
+      11397,
+      11398,
+      11399,
+      11400
+    ],
     "create sh canonical tasks": [
       10407
     ],
@@ -37181,6 +37189,12 @@
     ],
     "create sh upgrade level sh": [
       1673
+    ],
+    "create sh writes to opencode specs": [
+      11397,
+      11398,
+      11399,
+      11400
     ],
     "create skill": [
       934,
@@ -50135,7 +50149,6 @@
       3730,
       3873,
       3885,
-      3894,
       3953,
       3959,
       3965,
@@ -57570,7 +57583,6 @@
       3878,
       3884,
       3889,
-      3893,
       3932,
       3940,
       3946,
@@ -57902,7 +57914,6 @@
       3877,
       3883,
       3888,
-      3892,
       3931,
       3939,
       3945,
@@ -58237,7 +58248,6 @@
       3880,
       3886,
       3891,
-      3895,
       3935,
       3942,
       3948,
@@ -77184,6 +77194,18 @@
     "playbook preconditions changelog": [
       8166
     ],
+    "playbook prompt fields disagree": [
+      3892,
+      3893,
+      3894,
+      3895
+    ],
+    "playbook prompt sync warning": [
+      3892,
+      3893,
+      3894,
+      3895
+    ],
     "playbook prompt voice": [
       1028
     ],
@@ -78528,7 +78550,6 @@
       3730,
       3873,
       3885,
-      3894,
       3953,
       3959,
       3965,
@@ -79255,7 +79276,11 @@
       2974
     ],
     "prompt unsynced": [
-      1024
+      1024,
+      3892,
+      3893,
+      3894,
+      3895
     ],
     "prompt weakness detection": [
       1128
@@ -83233,7 +83258,6 @@
       3730,
       3873,
       3885,
-      3894,
       3953,
       3959,
       3965,
@@ -95889,6 +95913,12 @@
     "spec packet autofix": [
       10560
     ],
+    "spec packet lands in opencode specs": [
+      11397,
+      11398,
+      11399,
+      11400
+    ],
     "spec packet merge gate": [
       10621
     ],
@@ -98365,7 +98395,6 @@
       3730,
       3873,
       3885,
-      3894,
       3953,
       3959,
       3965,
@@ -99610,7 +99639,6 @@
       3880,
       3886,
       3891,
-      3895,
       3935,
       3942,
       3948,
@@ -99894,7 +99922,6 @@
       3880,
       3886,
       3891,
-      3895,
       3935,
       3942,
       3948,
@@ -100478,7 +100505,6 @@
       3878,
       3884,
       3889,
-      3893,
       3932,
       3940,
       3946,
@@ -101690,7 +101716,6 @@
       3878,
       3884,
       3889,
-      3893,
       3940,
       3946,
       3952,
@@ -102493,6 +102518,12 @@
     "track nested packet resolution": [
       10459
     ],
+    "track numbering restarts at 001": [
+      11397,
+      11398,
+      11399,
+      11400
+    ],
     "track prefix identity heal": [
       9809
     ],
@@ -103110,6 +103141,12 @@
     ],
     "turbulence displacement filter": [
       841
+    ],
+    "turn 1 prompt out of sync": [
+      3892,
+      3893,
+      3894,
+      3895
     ],
     "turn close out": [
       1910
@@ -104631,7 +104668,6 @@
       3877,
       3883,
       3888,
-      3892,
       3931,
       3939,
       3945,
@@ -105357,7 +105393,6 @@
       3880,
       3886,
       3891,
-      3895,
       3935,
       3942,
       3948,
@@ -107037,7 +107072,6 @@
       3877,
       3883,
       3888,
-      3892,
       3931,
       3939,
       3945,

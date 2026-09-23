@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7339,
-    "ok": 11343,
+    "ok": 11347,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22373,
+  "documentsScanned": 22377,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e4de38ae88d5a9b24bb817d5518056a2f83d81779182a977b047df6d5f912537",
+  "manifestHash": "d0800c1c0c0f0adf517f81916e8eec655df72de126c46fddc76c05640b671771",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27473,
+      "ok": 27480,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -69917,8 +69917,68 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".skilled/hooks/session-lifecycle/claude/compact-inject.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/claude/session-prime.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/claude/session-stop.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/compact-inject.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/session-start.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/session-stop.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/precompact.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/session-end.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/session-start.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/devin/session-start.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/devin/session-stop.js",
+      "reason": "broken symlink"
+    },
+    {
       "path": ".skilled/hooks/skill-advisor/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/claude/user-prompt-submit.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/codex/user-prompt-submit.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/cursor/user-prompt-submit.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/devin/user-prompt-submit.js",
+      "reason": "broken symlink"
     },
     {
       "path": ".skilled/hooks/spec-gate/README.md",
@@ -70025,10 +70085,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-deep-loop/runtime/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-deep-loop/runtime/tests/fixtures",
       "reason": "excluded directory"
     },
@@ -70043,10 +70099,6 @@
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/lib/shared/embeddings",
       "reason": "symlinked directory"
-    },
-    {
-      "path": ".skilled/skills/system-skill-advisor/runtime/node_modules",
-      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures",
@@ -70073,20 +70125,12 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/runtime/cli/dist",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures",
       "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime",
-      "reason": "symlinked directory"
+      "reason": "broken symlink"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures",
@@ -70101,12 +70145,8 @@
       "reason": "symlinked directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/runtime/dist",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/shared",
-      "reason": "symlinked directory"
+      "reason": "broken symlink"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/advisor-fixtures",
@@ -70130,10 +70170,6 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/validation/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/shared/dist",
       "reason": "excluded directory"
     },
     {
@@ -74146,6 +74182,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-create-canonical-specs-root/scratch",
       "reason": "excluded directory"
     },
     {

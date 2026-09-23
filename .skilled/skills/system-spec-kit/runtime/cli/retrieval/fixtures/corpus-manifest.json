@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9186f47d35c0e1318c232ad0354ea6b099faaaa6305049382ad260c39305a73f",
+  "corpusHash": "d5e6d0abcc93ece77585a2b00f1bf4def21323aa05777bf5372af6bb08407886",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22373,
+  "includedPathCount": 22377,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -22392,10 +22392,14 @@
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/spec.md",
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
-    "specs/system-speckit/033-system-speckit-v4/timeline.md"
+    "specs/system-speckit/033-system-speckit-v4/timeline.md",
+    "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
+    "specs/system-speckit/034-create-canonical-specs-root/plan.md",
+    "specs/system-speckit/034-create-canonical-specs-root/spec.md",
+    "specs/system-speckit/034-create-canonical-specs-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e4de38ae88d5a9b24bb817d5518056a2f83d81779182a977b047df6d5f912537",
+  "manifestHash": "d0800c1c0c0f0adf517f81916e8eec655df72de126c46fddc76c05640b671771",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -22409,8 +22413,68 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".skilled/hooks/session-lifecycle/claude/compact-inject.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/claude/session-prime.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/claude/session-stop.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/compact-inject.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/session-start.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/session-stop.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/precompact.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/session-end.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/session-start.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/devin/session-start.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/devin/session-stop.js",
+      "reason": "broken symlink"
+    },
+    {
       "path": ".skilled/hooks/skill-advisor/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/claude/user-prompt-submit.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/codex/user-prompt-submit.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/cursor/user-prompt-submit.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/devin/user-prompt-submit.js",
+      "reason": "broken symlink"
     },
     {
       "path": ".skilled/hooks/spec-gate/README.md",
@@ -22517,10 +22581,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-deep-loop/runtime/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-deep-loop/runtime/tests/fixtures",
       "reason": "excluded directory"
     },
@@ -22535,10 +22595,6 @@
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/lib/shared/embeddings",
       "reason": "symlinked directory"
-    },
-    {
-      "path": ".skilled/skills/system-skill-advisor/runtime/node_modules",
-      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures",
@@ -22565,20 +22621,12 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/runtime/cli/dist",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures",
       "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime",
-      "reason": "symlinked directory"
+      "reason": "broken symlink"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures",
@@ -22593,12 +22641,8 @@
       "reason": "symlinked directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/runtime/dist",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/shared",
-      "reason": "symlinked directory"
+      "reason": "broken symlink"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/advisor-fixtures",
@@ -22622,10 +22666,6 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/validation/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/shared/dist",
       "reason": "excluded directory"
     },
     {
@@ -26638,6 +26678,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/034-create-canonical-specs-root/scratch",
       "reason": "excluded directory"
     },
     {
