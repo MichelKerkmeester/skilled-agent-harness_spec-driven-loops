@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/029-fix-remaining-advisor-defects"
-    last_updated_at: "2026-09-23T10:40:00Z"
+    last_updated_at: "2026-09-23T14:58:00Z"
     last_updated_by: "implementing-agent"
-    recent_action: "Merged main, re-captured baselines, deleted the drill and fixed the CI gate path"
-    next_safe_action: "Operator approves pushing branch 063 to main and skilled/v4.0.0.0"
+    recent_action: "Merged origin main again and corrected the CI claims main's cleanup had overtaken"
+    next_safe_action: "Push the merged 063 branch to main and skilled/v4.0.0.0, as the operator approved"
     blockers: []
     key_files:
       - ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
@@ -123,6 +123,8 @@ One delegate handback claimed it had observed that line 53 of this summary recor
 A second pass, on the operator's instruction to leave nothing deferred, took the items the first pass had only named. Fourteen one-change briefs ran in two parallel waves of six and eight, each checked against its authorized path. The first battery after them failed one shim case on a load-sensitive race that predates this packet, so a fifteenth brief made that case deterministic. The Pi delivery check ran as a live three-turn RPC session from the worktree, which runs the same `input` handler as an interactive session.
 
 Another session merged the first round into local main as bd269228cb while origin main moved on to 997cd8ee2e, so the two were merged on a detached HEAD inside the worktree (2dbaa8fd66). Main's side won on the four conflicting `graph-metadata.json` files because it carried every edge this packet added plus a cli-jev keyword fix. The skill graph was then regenerated. That keyword fix moved one scorer result and four local-native divergences, so both baselines were re-captured with reviewed reasons (2f5fc94ef2) and the result was pushed to main and skilled/v4.0.0.0. A follow-up on `worktrees/063-remove-tri-daemon-drill` then took the two items the operator decided: the drill deletion and the corpus-gate path. The drill file was removed with `git rm`. MiMo made every other edit through the same one-change briefs. Each was checked byte for byte against a generated expected file.
+
+Before the push, origin main had moved fifteen commits past the follow-up's base. They included the CI cleanup in `system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof`, which had made the same corpus-gate path fix (b566f9fc28) and fixed the Spec-Kit Check failure (5b522489a2). The follow-up merged main (bce9d6b06c) without a conflict and this record was corrected to match.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -142,8 +144,8 @@ Another session merged the first round into local main as bd269228cb while origi
 | Restore the reviewed reason for `rr-iter3-061` | The capture tool writes keyword-based boilerplate, and this entry's committed human-reviewed reason and date (2026-09-07) still describe why it diverges |
 | Correct the two test comments | Both named ids absent from their lists and failed the comment-hygiene checker, so the corpus-parity comment now states that `rr-hub6-204` and `rr-hub6-207` left the list, and the python-ts comment spells both ids out |
 | Take main's side on the four `graph-metadata.json` conflicts | Main carried every edge this packet added plus the cli-jev keyword fix. Taking it also cleared two topology warnings |
-| Fix the corpus gate's path in its own commit | The failure predates this packet, so a separate commit keeps it revertible on its own |
-| Leave the Spec-Kit Check failure alone | Its five failing `pi enforce` tests belong to the spec-gate delivery work and fail the same way on the main head before this packet's merge |
+| Fix the corpus gate's path in its own commit | The failure predates this packet. Commit b566f9fc28 made the same change first, so after the merge the two commits agree and neither may be reverted alone |
+| Leave the Spec-Kit Check failure alone | Its five failing `pi enforce` tests failed the same way before this packet's merge. Commit 5b522489a2 later traced them to the Linux runner's `/tmp` temp dir, which the spec gate exempts. It fixed them in CI |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -166,9 +168,11 @@ Another session merged the first round into local main as bd269228cb while origi
 | Live Pi check (three-turn RPC session from the worktree) | PASS: turn 1 carried `Advisor: live; use sk-git 0.88/0.12 pass.`, the byte-identical turn 2 carried nothing while the advisor reported `ok` with a cache hit and turn 3 carried `Advisor: live; use sk-doc 0.88/0.12 pass.` Control with `SPECKIT_PI_DIRECTIVE_DEDUP=0`: all three turns carried the line |
 | Opt-in tri-daemon drill (`SPECKIT_RUN_TRI_DAEMON_DRILL=1`), first round | FAIL, predates this packet: its setup copies `.skilled/bin/system-code-index-launcher.cjs`, absent at HEAD since commit 7388a0abaf8. Lane M deleted the drill |
 | Merged tree (lane L) | PASS after the re-capture: before it the battery failed 3 tests, all ratchets reporting improvements (full-corpus top-1 152 against 151, memory_save 27 against 26, four changed ledger entries), with the Pi dedup suite at 15 of 15 and the OpenCode plugin suite at 29 of 29. After it: 891 passed, 0 failed, 7 skipped of 898, 123.9 s |
-| CI on 2f5fc94ef2 | Two workflows failed for reasons outside the pushed change. The Routing Registry Drift Guard died with `FileNotFoundError` on the moved baseline (fixed by lane N). Spec-Kit Check failed five `pi enforce` tests in `spec-gate-pi-extension.vitest.ts`, which fail the same way on 997cd8ee2e. Every other workflow passed on both branches (27 runs across 14 workflows) |
+| CI on 2f5fc94ef2 | Two workflows failed for reasons outside the pushed change. The Routing Registry Drift Guard died with `FileNotFoundError` on the moved baseline (fixed on main by b566f9fc28, the same change as lane N). Spec-Kit Check failed five `pi enforce` tests in `spec-gate-pi-extension.vitest.ts`, which fail the same way on 997cd8ee2e (fixed on main by 5b522489a2). Every other workflow passed on both branches (27 runs across 14 workflows) |
 | Drill deletion and type check (lane M) | PASS: no drill reference remains outside spec and changelog folders, `tsc --noEmit -p runtime/tests/tsconfig.tests.json` exits 0 (the orphan-reaping test alone had six `TS18047` errors at HEAD) and the battery ran 891 passed, 0 failed, 6 skipped of 897, exit 0, 151.4 s |
 | CI corpus gate (lane N) | PASS locally: the step read from the edited workflow, run from its working directory with no advisor database, exits 0 with `overall_pass` true and no threshold failures (joint TT 103, FT 3, FF 1, gate-3 F1 0.9843) |
+| CI on 4072bb9e7a (origin main merged into the follow-up) | PASS: every workflow green on both branches (17 runs), including the corpus gate at the archived path |
+| Follow-up merged with origin main (bce9d6b06c) | PASS: no conflicts and the workflow matches both path fixes line for line. The advisor battery on the merged tree ran 891 passed, 0 failed, 6 skipped of 897, exit 0, 135.6 s |
 | Packet 029 strict validation (`validate.sh --strict`) | PASS: RESULT: PASSED, Errors 0, Warnings 0 (validate.sh --strict, 2026-09-23) |
 <!-- /ANCHOR:verification -->
 
@@ -179,6 +183,6 @@ Another session merged the first round into local main as bd269228cb while origi
 
 1. **The Pi check ran over RPC, not a terminal.** The three-turn session runs the same `input` handler as an interactive session. A terminal session was not opened.
 2. **The divergence ledger follows the worktree daemon's live database.** The Python scorer reads `runtime/database/skill-graph.sqlite`, and a rebuild can move its tops again as one did this round. The fix is a capture with reviewed reasons, which is how this round renewed it.
-3. **Spec-Kit Check still fails on main for a reason outside this packet.** Five `pi enforce` tests in `spec-gate-pi-extension.vitest.ts` fail in CI, the same way they did on 997cd8ee2e before this packet's merge. They belong to the spec-gate delivery work.
-4. **The follow-up waits on the operator and the corpus gate is proven only locally.** Lanes M and N sit on `worktrees/063-remove-tri-daemon-drill` until the operator approves the push to main and skilled/v4.0.0.0. The corpus-gate fix passes when its step runs locally the way CI runs it. The first CI run after the push is the proof on GitHub.
+3. **This packet's corpus-gate commit duplicates another packet's.** Commits 5ba4c78aac and b566f9fc28 make the same three-line change. Reverting either one alone would put the old path back.
+4. **CI has not yet run on the follow-up itself.** CI on 4072bb9e7a, the main head it merges, is green on every workflow, including the corpus gate at the archived path. The first run after the push is the proof for the drill deletion.
 <!-- /ANCHOR:limitations -->

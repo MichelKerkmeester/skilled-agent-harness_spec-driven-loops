@@ -48,7 +48,7 @@ Three delivery paths get fixed in this round. The pi extension's dedup decision 
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 
-The first round is merged and pushed to main and skilled/v4.0.0.0. The follow-up on `worktrees/063-remove-tri-daemon-drill` waits for the operator's go-ahead to push.
+The first round is merged and pushed to main and skilled/v4.0.0.0. The operator approved a merge-then-push route for the follow-up on `worktrees/063-remove-tri-daemon-drill`.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -97,5 +97,5 @@ The worktree's own skill-graph database and the advisor daemon it runs. Lane E s
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Revert this packet's commits, newest first: the follow-up's drill deletion, the corpus-gate path fix (5ba4c78aac), the baseline re-capture (2f5fc94ef2) and the fix (89569a7f81). The merge commit 2dbaa8fd66 stays, because it only brings main in. No data migration runs and the renewed baselines revert with their commits.
+Revert this packet's commits, newest first: the drill deletion (429c95d6c0), the baseline re-capture (2f5fc94ef2) and the fix (89569a7f81). Leave the corpus-gate path fix (5ba4c78aac) in place. Commit b566f9fc28 made the same change, so reverting either one would put the old path back and break the gate. The merge commits stay, because they only bring main in. No data migration runs and the renewed baselines revert with their commits.
 <!-- /ANCHOR:rollback -->
