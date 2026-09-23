@@ -83,7 +83,7 @@ Expected: zero blocking issues once frontmatter, required sections and the featu
 
 ## 4. HOW IT WORKS
 
-Confirm the target skill or system, its feature set and whether a feature catalog already exists, then decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else. Create the root file from `assets/manual-testing-playbook-template.md`, then create one per-feature file per ID from `assets/manual-testing-playbook-snippet-template.md`. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions and fill each scenario contract with the nine required fields from The Scenario Contract. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists. Note explicitly when no catalog entry exists. Isolate destructive scenarios behind clear preconditions and a recovery path. Validate the root document with the shared validator, then manually spot-check per-feature frontmatter, section order, feature ID counts and prompt synchronization before delivery.
+Confirm the target skill or system, its feature set and whether a feature catalog already exists, then decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else. Create the root file from `assets/manual-testing-playbook-template.md`, then create one per-feature file per ID from `assets/manual-testing-playbook-snippet-template.md`. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions and fill each scenario contract with the nine required fields from The Scenario Contract. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists. Note explicitly when no catalog entry exists. Isolate destructive scenarios behind clear preconditions and a recovery path. Validate the root document with the shared validator, then manually spot-check per-feature frontmatter, section order and feature ID counts before delivery. The operator validator warns when a prompt copy disagrees.
 
 ### Key Concept: Prompt Synchronization
 
@@ -131,7 +131,7 @@ A: Checklist rows work for small, Level 1 or 2 changes. A playbook exists for wh
 
 **Q: Why doesn't this packet's validator also check per-feature files automatically?**
 
-A: The shared validator is root-document focused. It does not recurse into category folders. Cross-file markdown links are covered separately by the `check-markdown-links.cjs` CI guard, but per-feature structure, like frontmatter and prompt synchronization, still needs a manual spot-check.
+A: The shared validator is root-document focused. It does not recurse into category folders. Cross-file markdown links are covered separately by the `check-markdown-links.cjs` CI guard, but per-feature structure, like frontmatter, still needs a manual spot-check. Prompt synchronization is covered by `validate-playbook-package.cjs`, which warns with `PROMPT_UNSYNCED` when a copy disagrees.
 
 **Q: Can I skip a feature-catalog cross-reference?**
 
