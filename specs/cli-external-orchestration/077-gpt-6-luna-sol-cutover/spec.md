@@ -24,6 +24,7 @@ contextType: "implementation"
 | **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | Complete |
+| **Phase State** | Phases 1 to 3 landed in `f2a90d7ac5` and were pushed; Phase 4, review remediation, was built and verified 2026-09-23 |
 | **Created** | 2026-09-23 |
 | **Branch** | `main` (working directly, operator-selected; the tree already carried unrelated uncommitted work, including a reorder hunk in `.pi/settings.json`) |
 | **Origin** | Operator: "replace all instances of luna 5.6 in cli pi, cli codex and cli opencode with luna 6.0, also replace any instance of sol 5.6 with sol 6.0, also add luna 6.0 to cli pi with llmgateway provider which is currently missing. in cli claude replace instances references of opus 5.0 with 5.5", then mid-flight "also add luna 6 to cli hermes, llmgateway". Scope decisions taken with the operator: every Opus id in cli-claude-code becomes `claude-opus-5-5`, and the rename extends 076-style to the deep-loop enforcement, cli-hermes and the pi fast-mode extension |
@@ -58,11 +59,21 @@ Every living dispatch surface names the GPT-6 Luna and Sol ids and every paired 
 - The pi fast-mode extension: its priority-tier model list, the repo config it ships, its tests, README and playbook.
 - cli-claude-code: every Opus id in the living docs (`claude-opus-4-8`, `claude-opus-4-6`) becomes `claude-opus-5-5`; the one `claude-opus-4.7` sits in a dated benchmark report and stays, the `Opus 4.x` labels become `Opus 5.5`, and roster rows that would now duplicate each other merge into one.
 - A patch version bump and one changelog entry for each affected skill: cli-codex 1.9.1.0, cli-opencode 1.4.9.0, cli-pi 1.5.7.0, cli-hermes 1.0.2.0, cli-claude-code 1.5.1.0.
+- **Phase 4, review remediation (operator-directed 2026-09-23).** A fresh review of the three pushed commits (`f2a90d7ac5`, `a6307ce69a`, `80dc0a118d`) found no P0 and seven doc defects, each re-checked against `80dc0a118d` before it was accepted. Phase 4 corrects them:
+  - cli-opencode offers `openai/gpt-6-sol-pro` as its missing-default fallback and calls `-pro` a live slug, but `opencode models openai` lists only the base and `-fast` slugs.
+  - cli-codex's CX-002 scenario runs Luna twice and Sol never; its step 4 output glob no longer matches Luna's file; and the playbook calls `gpt-6-luna` the documented default while `SKILL.md` names `gpt-5.5` (`gpt-6-luna` is the fan-out fallback).
+  - cli-codex states Terra's ceiling as `max`, and Codex's model cache lists `ultra`.
+  - `.pi/custom-providers.md` calls the `llmgateway/gpt-6-luna` route both dispatch-verified and not yet dispatch-verified.
+  - The committed `.pi/settings.json` dropped `xiaomi/mimo-v2.6-pro-ultraspeed` from the picker, and nothing documents it.
+  - cli-pi's PI-017 row, a living scenario, still expects the retired default and the old id list.
+  - This packet still records the Codex and OpenCode Luna smokes as not run; both replied `OK` after the commit.
+  - The five changelogs follow the compact shape of the uncommitted sk-doc/057 template rather than the template committed at `HEAD`.
 
 ### Out of Scope
-- **Historical records.** Changelog bodies, dated benchmark reports, and dated evidence cells such as cli-pi's PI-017 evidence line and the hub's `codex-hook-parity.md` live-run note record what was true when written.
+- **Historical records.** Changelog bodies, including the five released entries of this packet, dated benchmark reports, and the hub's `codex-hook-parity.md` live-run note record what was true when written. A correction to a released changelog goes in the next entry, not into the released one. PI-017 is not history: its expected-result cell is a living claim, and Phase 4 refreshes it and re-captures its evidence.
 - **Cursor and Devin Luna Max personas** and their allowlists, including the hub `ROUTER.md` line naming them. They belong to Cursor's and Devin's catalogs, not OpenAI's.
-- **`gpt-5.6`, `gpt-5.6-terra` and `gpt-6-astra`.** The operator named Luna and Sol only.
+- **`gpt-5.6`, `gpt-5.6-terra` and `gpt-6-astra`.** The operator named Luna and Sol only. Phase 4 corrects the Terra ceiling and the released claim that Terra "has no GPT-6 counterpart", but adding `gpt-6-astra` to any roster stays out of scope; the operator chose to leave it out for now.
+- **The cli-opencode self-invocation guard.** Its Layer 1 refuses whenever any `OPENCODE_*` variable is set, and a terminal that exports `OPENCODE_CONFIG_DIR` trips it with no OpenCode in the process chain. That is a guard-contract change for its own packet.
 - **Opus ids outside cli-claude-code**, such as `CLAUDE_DEFAULT_MODEL` in `fanout-run.cjs` and `anthropic/claude-opus-4-8` in other skills. The operator scoped Opus to cli-claude-code. The fan-out's family test accepts any `claude-opus-` id, so the fallback does not break.
 - **Operator-level config outside the repository:** `~/.codex/config.toml` (default `gpt-5.6-luna`), `~/.hermes/config.yaml` and `~/.pi/agent/`.
 - **The pre-existing `.pi/settings.json` reorder hunk**, which predates this packet and rides along in the same file.
@@ -88,6 +99,25 @@ Every living dispatch surface names the GPT-6 Luna and Sol ids and every paired 
 | `.pi/pi-blackhole-config.json` | Modify | Compaction model becomes `openai-codex/gpt-6-luna` at `medium` |
 | `.pi/custom-providers.md` | Modify | Document the fourth LLM Gateway model and its direct-only route |
 | `.pi/pi-fast-mode-w-subagent-support-config.json` and `.pi/extensions/pi-fast-mode-w-subagent-support/**` (14 files) | Modify | Priority-tier model list, tests, README and playbook |
+
+Phase 4 adds these:
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `cli-opencode/references/cli-reference.md` | Modify | Missing-default fallback names `openai/gpt-6-sol`; the `--model` row lists only slugs the catalog serves |
+| `cli-opencode/references/providers-and-models.md` | Modify | GPT-6 grid stops presenting `-pro` as selectable, and the slug count follows |
+| `cli-codex/manual-testing-playbook/cli-invocation/gpt-5-5-model-lock.md` | Modify | CX-002 loop runs Luna, Terra and Sol once each; step 4 reads every output; default wording matches `SKILL.md` |
+| `cli-codex/manual-testing-playbook/manual-testing-playbook.md` | Modify | Index rows for the default and the alternates match `SKILL.md` |
+| `cli-codex/manual-testing-playbook/cli-invocation/default-invocation.md` | Modify | Default wording matches `SKILL.md`, if the scenario claims `gpt-6-luna` as the default |
+| `cli-codex/SKILL.md`, `cli-codex/README.md`, `cli-codex/references/providers-and-models.md` | Modify | Terra ceiling `ultra` |
+| `cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md` | Modify | PI-017 expected cell and re-captured evidence |
+| `cli-pi/references/providers-and-models.md` | Modify | The xiaomi section notes that ultraspeed is out of the picker but dispatches with an explicit `--model` |
+| `.pi/custom-providers.md` | Modify | One verification status on the `gpt-6-luna` row |
+| cli-opencode, cli-codex and cli-pi `SKILL.md` frontmatter and `changelog/` | Modify, Create | One version bump and one changelog entry each |
+| `.hermes/skills/cli-codex/SKILL.md` and any other touched skill's mirror | Regenerate | Generated mirror of an edited `SKILL.md` |
+| This packet's `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md` | Modify | Phase 4 record and the corrected smoke results |
+
+All skill paths are under `.skilled/skills/cli-external-orchestration/`.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -112,6 +142,18 @@ Every living dispatch surface names the GPT-6 Luna and Sol ids and every paired 
 | REQ-006 | Each affected skill carries a patch version bump and one changelog entry with `version` frontmatter |
 | REQ-007 | The Hermes mirrors of the touched skills match their canonical sources |
 | REQ-008 | The pi fast-mode extension applies the priority tier to the GPT-6 Luna and Sol ids, and its suite passes |
+| REQ-009 | cli-opencode offers no OpenAI slug that `opencode models openai` does not list, and its missing-default fallback names one it does list |
+| REQ-010 | CX-002 exercises the Luna, Terra and Sol roster it names, reads every output it writes, and no cli-codex playbook page contradicts `SKILL.md` about the default model |
+
+### P2 - Optional (complete OR documented deferral)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-011 | Every cli-codex statement of Terra's ceiling says `ultra`, the value in Codex's model cache, and the next cli-codex changelog corrects the released Terra claim |
+| REQ-012 | The Pi docs agree with the committed Pi config: one verification status per route, the picker change documented, and PI-017 expecting the current allowlist and default |
+| REQ-013 | Every smoke-test claim in this packet matches the recorded runs |
+| REQ-014 | Each skill Phase 4 edits carries one version bump and one changelog entry, and its Hermes mirror matches its source |
+| REQ-015 | This packet's changelogs match the changelog template committed when the packet closes |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -126,6 +168,7 @@ Every living dispatch surface names the GPT-6 Luna and Sol ids and every paired 
 - **SC-002**: The six deep-loop runtime suites, the pi extension suite, the council suite and the model-benchmark suite match or beat their pre-change counts, and typecheck exits 0.
 - **SC-003**: `pi --list-models gpt-6` shows the three new Pi routes.
 - **SC-004**: `validate.sh --strict` on this packet prints `RESULT: PASSED`.
+- **SC-005**: The seven review findings, re-checked with the commands in `tasks.md` T032, no longer reproduce at the Phase 4 commit.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -140,6 +183,9 @@ Every living dispatch surface names the GPT-6 Luna and Sol ids and every paired 
 | Risk | Renamed prose keeps a live-verified claim that was made about the 5.6 id | The docs would overstate what was verified | Hand-edit every "verified" or "probed" cell attached to a renamed id so it states what was actually checked for GPT-6 |
 | Risk | `opencode models openai` lists no `-pro` variant for either generation | The renamed `-pro` rows may name an id this account cannot select | Rename them as the request asks and record the gap in the implementation summary |
 | Dependency | A live billed round-trip | Catalog rows do not prove the credential completes a request | Left to the operator, as in packet 076 |
+| Dependency | sk-doc/057, the changelog template rewrite, is complete but uncommitted | REQ-015 depends on which template is committed at closure | If 057 has landed, confirm the changelogs match it; if not, conform them to the template at `HEAD` |
+| Risk | CX-002's corrected loop runs Sol when an operator executes the playbook | A playbook run bills a Sol turn | Editing the scenario runs nothing; the operator decides when to execute it |
+| Risk | Phase 4 edits cli-codex, cli-opencode and cli-pi again the same day they were released | A second bump could collide with another session's bump | Read each skill's current version and newest changelog immediately before bumping |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -194,7 +240,9 @@ Every living dispatch surface names the GPT-6 Luna and Sol ids and every paired 
 
 ## 10. OPEN QUESTIONS
 
-- None open. The Opus scope, the rename's reach and the working branch were settled with the operator before the first edit.
+- The Opus scope, the rename's reach and the working branch were settled with the operator before the first edit.
+- **Should `gpt-6-astra` join the Codex, OpenCode and Pi rosters?** Answered by the operator: leave it out for now. All three catalogs list it, and Codex describes it as frontier intelligence with efforts `low` to `ultra`; a later packet can add it.
+- **Which default does CX-002 check?** Answered by the operator: follow `SKILL.md`. CX-002 checks `gpt-5.5`, the skill default for cross-AI delegation, and notes that `gpt-6-luna`, the fan-out fallback (`CODEX_DEFAULT_MODEL`), is outside its scope.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -65,7 +65,7 @@ MiniMax Direct API passthrough.
 
 ### xiaomi
 
-MiMo passthrough; `-ultraspeed` is the low-latency tier. Both ids are native to Pi's catalog, so `.pi/models.json` carries no `xiaomi` block.
+MiMo passthrough; `-ultraspeed` is the low-latency tier. Both ids are native to Pi's catalog, so `.pi/models.json` carries no `xiaomi` block. Since 2026-09-23 the `.pi/settings.json` picker (`enabledModels`) lists `mimo-v2.6-pro` only. `-ultraspeed` stays on the roster: `enabledModels` scopes startup selection and model cycling, not `--model`, so dispatch it with an explicit `--model xiaomi/mimo-v2.6-pro-ultraspeed`.
 
 | Model id                   | Notes            |
 | ----------------------------| ------------------|

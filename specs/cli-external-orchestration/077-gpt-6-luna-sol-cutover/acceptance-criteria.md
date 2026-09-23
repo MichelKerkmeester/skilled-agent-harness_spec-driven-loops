@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/077-gpt-6-luna-sol-cutover"
-    last_updated_at: "2026-09-23T06:20:00Z"
+    last_updated_at: "2026-09-23T10:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Recorded verification evidence against each criterion"
-    next_safe_action: "Operator: remaining smokes, then commit"
+    recent_action: "Met the Phase 4 criteria"
+    next_safe_action: "None; the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
@@ -60,6 +60,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-006 | REQ-006 | Given the five affected skills, When their `SKILL.md` and changelogs are read, Then each carries a patch bump and one new changelog with `version` frontmatter, and the frontmatter gate passes | `tasks.md` T010 and T015: 1.9.1.0, 1.4.9.0, 1.5.7.0, 1.0.2.0, 1.5.1.0; gate exit 0 | Met | - |
 | AC-007 | REQ-007 | Given the Hermes mirrors, When `sync-skills-hermes.cjs --check` runs, Then none of the five touched skills drifts | `tasks.md` T011 and T015: drift fell from 6 to 3, and the 3 left are untouched skills | Met | - |
 | AC-008 | REQ-008 | Given the pi fast-mode extension, When its suite runs, Then it passes 77/77 with the GPT-6 ids in its priority list | `tasks.md` T013: 77/77 | Met | - |
+| AC-009 | REQ-009 | Given cli-opencode's living docs, When searched for `gpt-6-(luna\|sol)-pro` and read for the missing-default fallback, Then no `-pro` slug is presented as selectable and the fallback names a slug `opencode models openai` lists | `tasks.md` T021 and T032: `opencode models openai` serves astra, luna and sol with `-fast` and no `-pro`; the grid shows four served slugs; the fallback is `openai/gpt-6-sol --variant high`; the `-pro` grep has no hit | Met | - |
+| AC-010 | REQ-010 | Given CX-002 and the cli-codex playbook, When the loop, step 4 and every "documented default" line are read, Then Luna, Terra and Sol run once each, step 4 reads all three outputs, and the default agrees with `SKILL.md` | `tasks.md` T022, T023 and T032: loop `for m in gpt-6-luna gpt-5.6-terra gpt-6-sol`, step 4 globs `cli-codex-cx002-gpt-*.txt`, and every "documented default" line names `gpt-5.5` or `medium` | Met | - |
+| AC-011 | REQ-011 | Given cli-codex's living docs, When searched for Terra's ceiling, Then every statement says `ultra`, matching Codex's model cache, and the new cli-codex changelog corrects the released Terra line | `tasks.md` T024, T028 and T032: five Terra ceiling lines say `ultra`, matching the cache's `low` to `ultra`; `changelog/v1.9.2.0.md` corrects the v1.9.1.0 ceiling | Met | - |
+| AC-012 | REQ-012 | Given the Pi docs and the committed Pi config, When compared, Then the `gpt-6-luna` row has one verification status, the picker change is documented, and PI-017 expects the ten current ids and `deepseek-v4.1-flash` with re-captured evidence | `tasks.md` T025, T026, T027 and T032: `.pi/custom-providers.md:88` reads dispatch-verified only; the xiaomi section documents the picker; PI-017 expects ten ids and `deepseek-v4.1-flash` with output captured 2026-09-23 | Met | - |
+| AC-013 | REQ-013 | Given this packet, When its smoke-test claims are compared with the recorded runs, Then Codex and OpenCode `gpt-6-luna` read passed and no limitation contradicts them | `tasks.md` T018 and T031: both runs recorded as `OK`; Known Limitations lists only the Sol routes as unrun | Met | - |
+| AC-014 | REQ-014 | Given each skill Phase 4 edits, When its `SKILL.md`, newest changelog and Hermes mirror are read, Then it carries one bump and one changelog, the frontmatter gate passes, and its mirror is in sync | `tasks.md` T028, T030 and T032: 1.4.10.0, 1.9.2.0 and 1.5.8.0 with one changelog each; frontmatter gate exit 0; the three mirrors are out of `sync-skills-hermes.cjs --check` drift | Met | - |
+| AC-015 | REQ-015 | Given the changelog template committed at closure, When this packet's changelogs are compared with it, Then they follow its shape | `tasks.md` T029: sk-doc/057 is uncommitted at closure, so the template at `HEAD` governs; all eight changelogs follow its compact shape | Met | - |
 
 ### Status values
 
@@ -86,5 +93,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All eight criteria are met: the residue scan, the unchanged suite counts and the Pi model listing carried the packet. Left out on purpose: a live billed round-trip through the new routes, which is the operator's check, and the adjacent defects listed in `implementation-summary.md`.
+All fifteen criteria are met. The residue scan, the unchanged suite counts and the Pi model listing carried the cutover, and Phase 4 corrected the two P1 and five P2 doc defects a fresh review of the pushed commits found. AC-015 was judged against the template at `HEAD`, because sk-doc/057 is still uncommitted. Left out on purpose: a live billed round-trip through the Codex, OpenCode and Hermes Sol routes and `claude-opus-5-5`, which the operator declined, and the adjacent defects listed in `implementation-summary.md`.
 <!-- /ANCHOR:closure -->
