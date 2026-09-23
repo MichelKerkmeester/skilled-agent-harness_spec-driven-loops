@@ -2302,8 +2302,8 @@ const PI_ALLOWED_MODELS = new Set([
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
+  // MiMo is reached through DevPass only, and the gateway serves no ultraspeed tier.
   'mimo-v2.6-pro',
-  'mimo-v2.6-pro-ultraspeed',
   'qwen3.8-max',
   // OpenRouter carries exactly DeepSeek V4 Flash and GLM-5.3-Flash; each id keeps its
   // upstream provider path so `${provider}/${model}` composes the full
@@ -2511,10 +2511,11 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 }
 
 // Provider that fronts each allowlisted Pi model, captured from `pi --list-models`
-// (openai-codex fronts the GPT-5.6 tunes; minimax and xiaomi front their own families;
-// opencode-go fronts Qwen 3.8 Max; DevPass fronts DeepSeek V4 Flash under its bare literal
-// since 2026-09-07, for the same flat-price reason GLM moved there — the direct DeepSeek API
-// provider was retired from the roster). Pi selects a model as `<provider>/<id>`; without the
+// (openai-codex fronts the GPT-6 tunes; minimax fronts its own family; opencode-go fronts
+// Qwen 3.8 Max; DevPass fronts DeepSeek V4 Flash under its bare literal since 2026-09-07, for
+// the same flat-price reason GLM moved there — the direct DeepSeek API provider was retired
+// from the roster — and fronts MiMo since 2026-09-23, when the direct Xiaomi provider left the
+// roster). Pi selects a model as `<provider>/<id>`; without the
 // provider prefix it falls back to its default provider and dispatches the wrong
 // model. Hand-duplicated as a plain literal so command construction stays
 // synchronous and unit-testable, matching this file's per-kind convention.
@@ -2523,8 +2524,7 @@ const PI_MODEL_PROVIDERS = new Map([
   ['minimax-m3', 'minimax'],
   ['gpt-6-luna', 'openai-codex'],
   ['gpt-6-sol', 'openai-codex'],
-  ['mimo-v2.6-pro', 'xiaomi'],
-  ['mimo-v2.6-pro-ultraspeed', 'xiaomi'],
+  ['mimo-v2.6-pro', 'llmgateway'],
   ['qwen3.8-max', 'opencode-go'],
   // OpenRouter fronts exactly DeepSeek V4 Flash and GLM-5.3-Flash here. Each model id
   // already carries its upstream provider path, so `${provider}/${model}` yields the

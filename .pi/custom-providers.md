@@ -74,7 +74,7 @@ Routes four models through the operator's **DevPass** subscription at LLM Gatewa
 pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4.1-flash --thinking max
 ```
 
-Swap the id for `glm-5.3-flash`, or use `mimo-v2.6-pro` for MiMo V2.6 Pro. MiMo is direct-dispatch only. The bare `mimo-v2.6-pro` literal remains mapped to the official `xiaomi` provider for deep-loop fan-out. Use `gpt-6-luna` for GPT-6 Luna. It is direct-dispatch only too: the bare `gpt-6-luna` fan-out literal maps to the `openai-codex` subscription route.
+Swap the id for `glm-5.3-flash`, or use `mimo-v2.6-pro` for MiMo V2.6 Pro. This is also MiMo's deep-loop fan-out route: the bare `mimo-v2.6-pro` literal maps to `llmgateway`, because the `xiaomi` provider left the Pi roster on 2026-09-23. Use `gpt-6-luna` for GPT-6 Luna. It is direct-dispatch only too: the bare `gpt-6-luna` fan-out literal maps to the `openai-codex` subscription route.
 
 ### Thinking And Effort
 
@@ -84,7 +84,7 @@ All four are reasoning models, and their ladders differ, so each carries its own
 |-------|---------|-------|
 | `deepseek-v4.1-flash` | `max` | **Image-capable.** $0.15 in and $0.60 out per million tokens, cached reads $0.003, which keeps it under the gateway's Premium threshold. Three efforts plus off: `low`, `high` and `max`. `minimal` folds into `low`, `medium` and `xhigh` fold into `high`, `none` disables thinking, and the default is `high`. `ultra` and the integer form are rejected here. The provider block leaves the folded aliases unmapped on purpose, so the picker offers only the levels that differ |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
-| `mimo-v2.6-pro` | `high` | Active gateway catalog row with `none`/`low`/`medium`/`high`, 1M context, 131K output, text and image input, and the catalog cost shape carried in `.pi/models.json`. Direct-dispatch only. |
+| `mimo-v2.6-pro` | `high` | Active gateway catalog row with `none`/`low`/`medium`/`high`, 1M context, 131K output, text and image input, and the catalog cost shape carried in `.pi/models.json`. The deep-loop fan-out route for the bare `mimo-v2.6-pro` literal, dispatch-verified 2026-09-23 by a fan-out-built one-turn smoke that replied `OK` |
 | `gpt-6-luna` | `max` | Catalog-listed 2026-09-23 and dispatch-verified the same day: 1.05M context, 128K output, text and image input, efforts `none` through `max`, and $0.10 in, $0.50 out, $0.01 cached read per million tokens. `minimal` maps to `low`, because the model has no `minimal` tier. Direct-dispatch only |
 
 The global `defaultThinkingLevel` is `xhigh`. The four models do not share one ladder: GLM-5.3-Flash has a real `xhigh` above `high`, DeepSeek folds `xhigh` into `high`, MiMo v2.6 Pro exposes `none`, `low`, `medium`, and `high`, and GPT-6 Luna runs `low` through `max`. Pass `--thinking` explicitly rather than relying on a default that means different things per route.
@@ -153,6 +153,6 @@ Expected: the list shows the `cline-pass  cline-pass/deepseek-v4.1-flash` and `�
 
 ## 6. REMOVE
 
-To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its four `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. To drop only MiMo, remove its model object and the `llmgateway/mimo-v2.6-pro` picker entry; to drop only GPT-6 Luna, remove its model object and the `llmgateway/gpt-6-luna` picker entry. Nothing else references either. Neither gateway route is in the deep-loop fan-out map: the bare `mimo-v2.6-pro` literal resolves to `xiaomi` and the bare `gpt-6-luna` literal to `openai-codex`.
+To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its four `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. To drop only MiMo, remove its model object and the `llmgateway/mimo-v2.6-pro` picker entry, and take `mimo-v2.6-pro` out of the fan-out roster and provider map first, or MiMo lineages fail; to drop only GPT-6 Luna, remove its model object and the `llmgateway/gpt-6-luna` picker entry. Nothing else references GPT-6 Luna: the bare `gpt-6-luna` fan-out literal resolves to `openai-codex`.
 
 Delete the `providers["cline-pass"]` block from `.pi/models.json` and the `"cline-pass/cline-pass/deepseek-v4.1-flash"` and `"cline-pass/z-ai/glm-5.3-flash"` lines from `.pi/settings.json` `enabledModels`. To drop a single model, remove its object from the provider block and its `enabledModels` line if it has one. If `defaultProvider` still points at `cline-pass`, reset it to another authenticated provider so an unqualified dispatch still resolves. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.
