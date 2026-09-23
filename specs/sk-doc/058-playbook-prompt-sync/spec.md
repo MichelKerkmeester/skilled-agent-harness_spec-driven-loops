@@ -2,12 +2,12 @@
 title: "Feature Specification: Warn when a playbook scenario's prompt fields disagree"
 description: "The Prompt Synchronization Gate tells authors not to ship a scenario whose prompt copies disagree, but the operator validator never compared them. This packet adds an advisory warning that does."
 trigger_phrases:
-  - "feature specification"
-  - "problem statement"
-  - "requirements and scope"
-  - "success criteria"
+  - "playbook prompt sync warning"
+  - "PROMPT_UNSYNCED"
+  - "playbook prompt fields disagree"
+  - "turn 1 prompt out of sync"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Warn when a playbook scenario's prompt fields disagree

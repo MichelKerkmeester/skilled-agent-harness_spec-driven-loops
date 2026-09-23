@@ -2,12 +2,12 @@
 title: "Implementation Plan: Warn when a playbook scenario's prompt fields disagree"
 description: "One advisory check in the operator validator compares each prompt copy with the scenario contract, after normalizing presentation, and reports each disagreement as a warning."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "playbook prompt sync warning"
+  - "PROMPT_UNSYNCED"
+  - "playbook prompt fields disagree"
+  - "turn 1 prompt out of sync"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Warn when a playbook scenario's prompt fields disagree
