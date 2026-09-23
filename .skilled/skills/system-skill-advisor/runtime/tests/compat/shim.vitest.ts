@@ -138,11 +138,11 @@ describe('skill_advisor.py compat shim', () => {
   });
 
   it('returns exit 2 with unavailable error object when --force-native and native advisor is not reachable', () => {
-    if (nativeAdvisorReachable) {
-      console.warn('[shim.vitest] native advisor is reachable; skipping unavailable-fallback case');
-      return;
-    }
-    const result = runShim(['--force-native', 'probe unavailable fallback']);
+    // The force-local switch makes the native probe report unavailable, so this branch runs
+    // whatever state the daemon is in instead of depending on a probe taken earlier.
+    const result = runShim(['--force-native', 'probe unavailable fallback'], '', {
+      SPECKIT_SKILL_ADVISOR_FORCE_LOCAL: '1',
+    });
     expect(result.status).toBe(2);
     expect(parseJson(result.stdout)).toEqual(expect.objectContaining({
       error: 'Native advisor unavailable',

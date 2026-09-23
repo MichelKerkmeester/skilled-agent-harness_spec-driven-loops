@@ -25,7 +25,6 @@ type MCPResponse = { content: Array<{ type: string; text: string }> };
 const MANAGED_ENV_KEYS = [
   'SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT',
   'SYSTEM_SKILL_ADVISOR_DB_DIR',
-  'SYSTEM_SKILL_ADVISOR_DB_DIR',
 ] as const;
 
 let savedEnv: Map<string, string | undefined>;

@@ -39,7 +39,6 @@ afterAll(() => {
 
 beforeEach(() => {
   delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
-  delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 });
 
 describe('advisor state containment — generation counter path', () => {

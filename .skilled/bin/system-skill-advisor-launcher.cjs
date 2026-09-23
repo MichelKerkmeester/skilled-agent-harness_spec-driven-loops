@@ -130,7 +130,6 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'VITEST',
   'SYSTEM_SKILL_ADVISOR_DB_DIR',
   'SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT',
-  'SYSTEM_SKILL_ADVISOR_DB_DIR',
   'SPECKIT_RUNTIME',
   // Compiled-routing runtime flag. Without this literal key the operator's .env
   // value is stripped at the process boundary and never reaches the spawned

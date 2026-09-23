@@ -13,11 +13,11 @@
 
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve as resolvePath } from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
@@ -72,12 +72,27 @@ const MAX_DIRECTIVE_DEDUP_SESSIONS = 64;
 const pluginRequire = createRequire(import.meta.url);
 const { isHookEnabled } = pluginRequire('../hooks/shared/hook-flags.cjs');
 
+// The compiled-routing helper resolves from whichever adapter root actually
+// carries it: this plugin loads from either .skilled/plugins or .opencode/plugins
+// (symlink or copy, checkout-dependent), so a single relative ../bin probe would
+// spawn a broken module pair in a half-migrated tree.
+function resolveCompiledRouteStatusModule() {
+  const here = dirname(fileURLToPath(import.meta.url));
+  for (const candidate of [
+    join(here, '..', 'bin', 'compiled-route-status.cjs'),
+    join(here, '..', '..', '.skilled', 'bin', 'compiled-route-status.cjs'),
+  ]) {
+    if (existsSync(candidate)) return candidate;
+  }
+  return join(here, '..', 'bin', 'compiled-route-status.cjs');
+}
+
 // Compact, prompt-safe per-hub compiled-routing serving summary. Reads the
 // promoted runtime status (file-only, no engine load, no subprocess) and fails
 // closed to a single 'unavailable' line so the status tool never throws.
 function compiledRoutingStatusLines() {
   try {
-    const statusPath = fileURLToPath(new URL('../bin/compiled-route-status.cjs', import.meta.url));
+    const statusPath = resolveCompiledRouteStatusModule();
     const { computeAllStatus } = pluginRequire(statusPath);
     const rows = computeAllStatus({ probeEngine: false });
     const served = rows.filter((r) => r.servingAuthority === 'compiled').length;
@@ -102,7 +117,7 @@ function compiledRoutingStatusLines() {
 // the degraded case still caches deterministically.
 function compiledServingSignature() {
   try {
-    const statusPath = fileURLToPath(new URL('../bin/compiled-route-status.cjs', import.meta.url));
+    const statusPath = resolveCompiledRouteStatusModule();
     const { computeAllStatus } = pluginRequire(statusPath);
     const rows = computeAllStatus({ probeEngine: false });
     const canonical = rows
@@ -362,7 +377,6 @@ function advisorSourceSignature(workspaceRoot) {
     addFileSignature(hash, relativePath, join(sourceRoot, relativePath));
   }
   const dbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
-    ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR
     ?? join(sourceRoot, ADVISOR_ROOT_RELATIVE_PATH, 'database');
   addFileSignature(hash, 'skill-graph.sqlite', join(dbDir, 'skill-graph.sqlite'));
   addFileSignature(hash, ADVISOR_JSON_RELATIVE_PATH, join(sourceRoot, ADVISOR_JSON_RELATIVE_PATH));
