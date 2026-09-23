@@ -18,7 +18,6 @@ description: "Fixed input files and generator helpers consumed by the vitest and
 | File or Folder | Purpose |
 |------|---------|
 | `generate-phase1-5-dataset.ts` | CLI generator that expands a spec folder's `eval-dataset-100.json` into a balanced per-intent evaluation dataset for memory-search ranking tests. |
-| `manual-playbook-fixture.ts` / `manual-playbook-fixture.js` | Builds the manual-testing-playbook fixture workspace (target/sandbox spec folders, seeded memories, report directory) for `manual-playbook-runner.vitest.ts`. The `.ts` is the source, the `.js` is a plain-Node copy for runners that cannot load TypeScript directly. |
 | `session-data-factory.ts` | Default, overridable `SessionData` builder shared by save-pipeline integration and E2E tests. |
 | `deep-loop-optimizer/` | Sample corpus and baseline/candidate config JSON for the deep-loop config-optimizer replay and search tests. |
 | `deep-loop-replay/` | Recorded per-packet replay fixtures (`028/`, `040/`) for the optimizer replay corpus test. |
@@ -33,7 +32,7 @@ description: "Fixed input files and generator helpers consumed by the vitest and
 
 ## 3. TESTS
 
-Consuming suites live in the parent [`runtime/cli/tests/`](../README.md) directory, for example `optimizer-replay-runner.vitest.ts`, `manual-playbook-runner.vitest.ts`, `template-structure.vitest.ts` and `sync-phase-map-status.vitest.ts`.
+Consuming suites live in the parent [`runtime/cli/tests/`](../README.md) directory, for example `optimizer-replay-runner.vitest.ts`, `template-structure.vitest.ts` and `sync-phase-map-status.vitest.ts`.
 
 ---
 
