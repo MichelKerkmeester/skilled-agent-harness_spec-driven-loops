@@ -427,6 +427,153 @@ function extractRootIndexLinks(rootText, rootPath, playbookRoot, repoRoot) {
   return { links, problems };
 }
 
+/**
+ * Warn when a scenario states its prompt differently in different places.
+ *
+ * The Prompt Synchronization Gate names the copies that must agree: the structured
+ * prompt in SCENARIO CONTRACT, the execution table's Exact Prompt cell and the root
+ * summary's prompt. A conversation chain's Turn 1 input is the same prompt again, and it
+ * is the copy a scenario runner actually sends, so it is held to the same text. A copy is
+ * compared only when it is present, because a missing prompt is already its own
+ * violation. The finding is a warning so the existing corpus can be brought into line
+ * without the check first turning every package red.
+ */
+const PROMPT_LABEL_LINE = /^\s*(?:[-*+]\s+)?(?:\*\*|__|\*|_)?\s*(?:operator prompt|orchestrator prompt|exact prompt|prompt)\s*(?:\*\*|__|\*|_)?\s*:\s*(?:\*\*|__)?\s*(.+?)\s*$/i;
+
+function promptValue(raw) {
+  const text = raw.replace(/<br\s*\/?>/gi, ' ').replace(/\\\|/g, '|').trim();
+  const code = /^(`+)\s?([\s\S]*?)\s?\1(?!`)/.exec(text);
+  // Quotes around the prompt and code spans inside it are presentation: the operator
+  // types the words, not the quotation marks or the backticks.
+  const value = (code ? code[2].trim() : text).replace(/^(["'])([\s\S]*)\1$/, '$2');
+  return value.replace(/`/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function isTemplateSlot(value) {
+  return !value || /^\{[^}]+\}$/.test(value);
+}
+
+function splitTableRow(line) {
+  return line.trim().replace(/^\|/, '').replace(/\|$/, '').split(/(?<!\\)\|/).map((cell) => cell.trim());
+}
+
+function contractPrompt(text) {
+  const lines = maskFencedCode(text).split('\n');
+  const start = lines.findIndex((line) => /^##\s+2\.\s+SCENARIO CONTRACT\s*$/i.test(line));
+  if (start < 0) return null;
+  for (let index = start + 1; index < lines.length && !/^##\s/.test(lines[index]); index += 1) {
+    const match = PROMPT_LABEL_LINE.exec(lines[index]);
+    if (match) return { value: promptValue(match[1]), line: index + 1 };
+  }
+  return null;
+}
+
+function tableCellPrompt(text, isHeader, pickRow, column) {
+  const lines = maskFencedCode(text).split('\n');
+  for (let index = 0; index < lines.length; index += 1) {
+    if (!/^\s*\|/.test(lines[index])) continue;
+    const header = splitTableRow(lines[index]).map((cell) => cell.toLowerCase());
+    if (!isHeader(header)) continue;
+    for (let rowIndex = index + 1; rowIndex < lines.length && /^\s*\|/.test(lines[rowIndex]); rowIndex += 1) {
+      if (/^\s*\|[\s|:-]+\|\s*$/.test(lines[rowIndex])) continue;
+      const row = splitTableRow(lines[rowIndex]);
+      if (!pickRow(row, header)) continue;
+      const cell = row[header.indexOf(column)];
+      return cell === undefined ? null : { value: promptValue(cell), line: rowIndex + 1 };
+    }
+    return null;
+  }
+  return null;
+}
+
+function tablePrompt(text) {
+  return tableCellPrompt(text, (header) => header[0] === 'feature id' && header.includes('exact prompt'), () => true, 'exact prompt');
+}
+
+function chainTurnOnePrompt(text) {
+  return tableCellPrompt(
+    text,
+    (header) => header.includes('turn') && header.includes('exact user input'),
+    (row, header) => row[header.indexOf('turn')] === '1',
+    'exact user input',
+  );
+}
+
+/**
+ * Map each scenario file to the prompt its root summary states.
+ *
+ * A summary is the heading block that links the scenario, widened to the enclosing
+ * heading while the block holds no prompt. A block linking more than one scenario is an
+ * index rather than one scenario's summary, and a block with two prompts is ambiguous, so
+ * neither is attributed to any scenario.
+ */
+function rootPromptIndex(rootText, rootPath, playbookRoot) {
+  const lines = maskFencedCode(rootText).split('\n');
+  const headings = [];
+  lines.forEach((line, index) => {
+    const match = /^(#{1,6})\s+/.exec(line);
+    if (match) headings.push({ level: match[1].length, index });
+  });
+  const blockEnd = (heading) => {
+    const next = headings.find((other) => other.index > heading.index && other.level <= heading.level);
+    return next ? next.index : lines.length;
+  };
+  const scenarioTargets = (line) => {
+    const targets = [];
+    for (const match of line.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
+      const target = trimLinkTarget(match[1]);
+      if (!target || target.startsWith('#') || /^[a-z][a-z0-9+.-]*:/i.test(target) || target.startsWith('//')) continue;
+      const candidate = path.resolve(path.dirname(rootPath), target);
+      if (!isWithin(candidate, playbookRoot) || candidate === rootPath || path.basename(candidate).toLowerCase() === 'readme.md') continue;
+      targets.push(relativeKey(candidate));
+    }
+    return targets;
+  };
+  const index = new Map();
+  lines.forEach((line, lineIndex) => {
+    for (const target of scenarioTargets(line)) {
+      let heading = [...headings].reverse().find((candidate) => candidate.index <= lineIndex);
+      while (heading) {
+        const end = blockEnd(heading);
+        const linked = new Set();
+        const prompts = [];
+        for (let blockLine = heading.index; blockLine < end; blockLine += 1) {
+          for (const linkedTarget of scenarioTargets(lines[blockLine])) linked.add(linkedTarget);
+          const match = PROMPT_LABEL_LINE.exec(lines[blockLine]);
+          if (match) prompts.push({ value: promptValue(match[1]), line: blockLine + 1 });
+        }
+        if (linked.size > 1 || prompts.length > 1) break;
+        if (prompts.length === 1) {
+          index.set(target, prompts[0]);
+          break;
+        }
+        const current = heading;
+        heading = [...headings].reverse().find((candidate) => candidate.index < current.index && candidate.level < current.level);
+      }
+    }
+  });
+  return index;
+}
+
+function promptSyncChecks(text, relPath, rootPrompt) {
+  const contract = contractPrompt(text);
+  if (!contract || isTemplateSlot(contract.value)) return [];
+  const copies = [
+    ["the execution table's Exact Prompt", tablePrompt(text), relPath],
+    ["the conversation chain's Turn 1 input", chainTurnOnePrompt(text), relPath],
+    ['the root summary prompt', rootPrompt || null, ROOT_FILENAME],
+  ];
+  return copies
+    .filter(([, copy]) => copy && !isTemplateSlot(copy.value) && copy.value !== contract.value)
+    .map(([where, copy, file]) => issue(
+      'PROMPT_UNSYNCED',
+      file,
+      `${relPath}:${contract.line} scenario contract prompt differs from ${where}`,
+      'warning',
+      copy.line,
+    ));
+}
+
 function loadManifest(manifestPath, repoRoot) {
   if (!fs.existsSync(manifestPath)) throw new Error(`manifest not found: ${manifestPath}`);
   let manifest;
@@ -562,10 +709,12 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
   const errors = [];
   const validationRoot = isWithin(playbookRoot, repoRoot) ? repoRoot : playbookRoot;
   const ids = new Map();
+  const rootPrompts = rootPromptIndex(rootText, rootPath, playbookRoot);
   for (const file of operatorFiles) {
     const fileErrors = validateScenario(file, playbookRoot, validationRoot);
     errors.push(...fileErrors);
     const text = readText(file);
+    warnings.push(...promptSyncChecks(text, path.relative(playbookRoot, file).split(path.sep).join('/'), rootPrompts.get(relativeKey(file))));
     const id = extractFeatureId(text, extractFrontmatter(text));
     if (id) {
       if (!ids.has(id)) ids.set(id, []);

@@ -230,5 +230,52 @@ expected_leaf_resources:
   console.log('strict default: rc=1 on seeded violation; --no-strict: rc=0; boundary: rc=2');
 }
 
+function unsyncedWarnings(outcome) {
+  return outcome.report.packages[0].warnings.filter((warning) => warning.code === 'PROMPT_UNSYNCED');
+}
+
+function expectUnsynced(label, mutate, count, where) {
+  const outcome = expectClean(label, mutate);
+  const found = unsyncedWarnings(outcome);
+  assert.strictEqual(found.length, count, `${label} should raise ${count} PROMPT_UNSYNCED warning(s); got ${JSON.stringify(found)}`);
+  if (where) assert(found.every((warning) => warning.message.endsWith(where)), `${label} should name ${where}; got ${JSON.stringify(found)}`);
+}
+
+/**
+ * Pin the prompt synchronization warning in both directions.
+ *
+ * A copy that says something else must be reported wherever it lives, and a copy that
+ * differs only in presentation must not be, or the warning stops meaning anything. The
+ * root summary is found by walking out from the link, so the suite also pins that an
+ * index section linking several scenarios is never read as one scenario's summary.
+ */
+function runPromptSyncRegressions() {
+  const summary = (prompt) => `\n## FX-001 summary\n\nPrompt: \`${prompt}\`\n\n> Feature file: [FX-001](scenarios/clean-scenario.md)\n`;
+  const chain = (turnOne) => `### Conversation Chain\n\n| Turn | Exact User Input | Expected Assistant Behavior |\n|---|---|---|\n| 1 | \`${turnOne}\` | Run it. |\n| 2 | \`Report the result.\` | Report it. |\n\n## 3. TEST EXECUTION`;
+  const prompt = 'Run the fixture contract and report the observed result.';
+
+  expectUnsynced('prompt sync clean fixture', null, 0);
+  expectUnsynced('prompt sync table differs', (root) => writeScenario(root, readScenario(root)
+    .replace(`| \`${prompt}\` |`, '| `Run a different contract.` |')), 1, "the execution table's Exact Prompt");
+  expectUnsynced('prompt sync root summary agrees', (root) => fs.appendFileSync(rootPath(root), summary(prompt)), 0);
+  expectUnsynced('prompt sync root summary differs', (root) => fs.appendFileSync(rootPath(root), summary('Run a different contract.')), 1, 'the root summary prompt');
+  expectUnsynced('prompt sync turn 1 agrees', (root) => writeScenario(root, readScenario(root).replace('## 3. TEST EXECUTION', chain(prompt))), 0);
+  expectUnsynced('prompt sync turn 1 differs', (root) => writeScenario(root, readScenario(root).replace('## 3. TEST EXECUTION', chain('Run a different contract.'))), 1, "the conversation chain's Turn 1 input");
+  expectUnsynced('prompt sync presentation only', (root) => {
+    writeScenario(root, readScenario(root)
+      .replace(`- Operator prompt: \`${prompt}\``, `- **Operator prompt:** ${prompt}`)
+      .replace(`| \`${prompt}\` |`, `| "Run the \`fixture\` contract and report the observed result." |`));
+    fs.appendFileSync(rootPath(root), summary(`"${prompt}"`));
+  }, 0);
+  expectUnsynced('prompt sync index section is not a summary', (root) => {
+    fs.writeFileSync(path.join(root, 'scenarios', 'second-scenario.md'), readScenario(root).replace(/FX-001/g, 'FX-002'));
+    fs.writeFileSync(rootPath(root), fs.readFileSync(rootPath(root), 'utf8')
+      .replace('- [FX-001](scenarios/clean-scenario.md)\n', '- [FX-001](scenarios/clean-scenario.md)\n- [FX-002](scenarios/second-scenario.md)\n\nPrompt: `Run a different contract.`\n'));
+  }, 0);
+
+  console.log('prompt sync regressions: PASS (8 assertions)');
+}
+
 run();
 runContractRegressions();
+runPromptSyncRegressions();
