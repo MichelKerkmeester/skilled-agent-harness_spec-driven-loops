@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 820,
+  "derived_count": 819,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -798,7 +798,6 @@
     ".skilled/skills/system-spec-kit/runtime/tests/_support/hooks",
     ".skilled/skills/system-spec-kit/runtime/tests/adversarial",
     ".skilled/skills/system-spec-kit/runtime/tests/advisor-fixtures",
-    ".skilled/skills/system-spec-kit/runtime/tests/archive",
     ".skilled/skills/system-spec-kit/runtime/tests/deep-loop",
     ".skilled/skills/system-spec-kit/runtime/tests/description",
     ".skilled/skills/system-spec-kit/runtime/tests/embedders",

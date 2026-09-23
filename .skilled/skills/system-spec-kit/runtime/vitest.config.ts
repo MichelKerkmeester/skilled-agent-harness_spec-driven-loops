@@ -18,7 +18,6 @@ export default defineConfig({
       '../system-deep-loop/runtime/tests/**/*.{vitest,test}.ts',
     ],
     exclude: [
-      'runtime/tests/archive/**',
       'runtime/cli/**',
     ],
     setupFiles: [

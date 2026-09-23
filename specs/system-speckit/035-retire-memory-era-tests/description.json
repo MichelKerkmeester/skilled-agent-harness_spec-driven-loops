@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-speckit/035-retire-memory-era-tests",
+  "description": "Retire memory-era tests and revive the phase tests",
+  "keywords": [
+    "retire",
+    "memory-era",
+    "tests",
+    "revive",
+    "phase"
+  ],
+  "lastUpdated": "2026-09-23T20:09:53.474Z",
+  "specId": "035",
+  "folderSlug": "retire-memory-era-tests",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
