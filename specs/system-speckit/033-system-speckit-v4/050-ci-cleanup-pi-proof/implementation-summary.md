@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof"
     last_updated_at: "2026-09-23T06:00:00Z"
     last_updated_by: "cli-pi-mimo-v2.6-pro"
-    recent_action: "T001-T014 done: live Pi proof, six CI surfaces green, packet validates strict"
-    next_safe_action: "Commit on the worktree branch, merge main, re-mint cli-jev, re-verify"
+    recent_action: "T001-T016 done: main merged, cli-jev re-minted, merged tree verified"
+    next_safe_action: "Push after the operator's yes, watch CI, remove the worktree"
     blockers: []
     key_files:
       - ".skilled/skills/cli-jev/SKILL.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-050-ci-cleanup-pi-proof"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -94,7 +94,9 @@ The environment needed one repair before verification could run. The worktree la
 
 The live-proof captures and the dispatch trail first lived in scratch/. They moved to evidence/ before the commit, because the packet docs cite them and the spec-kit folder rules keep cited files out of scratch/.
 
-T001-T012 are done and T013-T017 are open. Nothing is committed, merged or pushed yet.
+Main was merged into the worktree branch twice. The first merge, f127890ea7, was clean. The other session then pushed main to 80dc0a118d, and the second merge, 0b39a1f6c3, conflicted on the generated Hermes mirrors of cli-hermes, cli-opencode and cli-pi, because both sides had regenerated them. The conflict was resolved by taking main's copies and regenerating every Hermes mirror from the merged sources, which also refreshed the drifted sk-design mirror.
+
+T001-T016 are done and T017 is open. The work is committed and merged on the worktree branch, and nothing is pushed yet.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -107,8 +109,8 @@ T001-T012 are done and T013-T017 are open. Nothing is committed, merged or pushe
 | Bring the two archived links into scope | Their targets were tracked archive files and not another session's packet |
 | Find the cause of the scorer drop before deciding and fix it at cli-jev | The ratchet header says a drop is a regression, so the cause had to be proven first and the fix belonged at the producer |
 | Restore scorer-eval-baseline.json to its committed content | Once the cli-jev keyword was gone the committed 152 of 195 and 27 of 32 were correct again and a fresh capture matched them on every metric and every fixture hash |
-| Re-mint the cli-jev compiled-routing manifest after merging main | The SKILL.md edit changes the compiled-routing policy hash, and the guard must report fresh with CJ-001 routing compiled before any push |
-| Push local main including the other session's two unpushed commits f5a89115b1 and 2c8f243607 | The operator chose to publish local main as it stands, which carries the other session's two commits along with this phase |
+| Re-mint the cli-jev compiled-routing manifest after merging main | The SKILL.md edit changes the compiled-routing policy hash, and the guard must report fresh with CJ-001 routing compiled before any push. In practice the repository's route-remint pre-commit gate re-minted cli-jev inside commit f0411552aa, before the merge, and the merged tree kept it fresh |
+| Push local main including the other session's two unpushed commits f5a89115b1 and 2c8f243607 | The operator chose to publish local main as it stands, which carries the other session's two commits along with this phase. The other session pushed them itself first, so this phase's push no longer carries them |
 | Rebuild handover.md from the template | The earlier hand-written handover had no frontmatter, no template header and no anchors, which produced three of the five strict-validation errors |
 <!-- /ANCHOR:decisions -->
 
@@ -135,7 +137,11 @@ T001-T012 are done and T013-T017 are open. Nothing is committed, merged or pushe
 | `validate.sh --strict` on the parent `033-system-speckit-v4`, which recurses into its 50 phases | FAIL on one phase only. The parent folder and 49 of its 50 phases pass. 030-spec-kit-simplification-research fails SPECDOC_SUFFICIENCY_005 because its goal.md durable slice is 6498 characters against a 4000 limit. This phase did not touch 030 |
 | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-jev` | PASS. OK, all hard invariants passed, exit 0 |
 | `node .skilled/bin/compiled-route-admission.cjs --hub cli-jev` | PASS. 3 pass 0 drift 0 stale, exit 0 |
-| `node .skilled/bin/compiled-route-guard.cjs` | STALE. cli-jev stale-manifest while the other five hubs are fresh. Open until the post-merge re-mint under REQ-005 and AC-008 |
+| `node .skilled/bin/compiled-route-guard.cjs` on the merged tree `0b39a1f6c3` | PASS. All seven hubs fresh, exit 0 |
+| CJ-001 prompt through `node .skilled/bin/compiled-route.cjs --hub cli-jev` on the merged tree | PASS. Routes compiled to cli-usage under effectivePolicyHash 178b10dd |
+| Hermes sync, frontmatter, graph compiler, freshness and link checks on the merged tree | PASS. 70 copies in sync, 0 violations, VALIDATION PASSED, 15/15 fresh, 0 broken, all exit 0 |
+| Deep-loop contract tests and advisor routing and ratchet tests on the merged tree | PASS. 42 passed and 28 passed, exit 0 |
+| `node .skilled/bin/compiled-route-admission.cjs --all` on the merged tree | WARN. Six hubs pass. sk-design reports 1 drift, the same as on origin/main, and CI runs this check with --warn-only |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -143,7 +149,7 @@ T001-T012 are done and T013-T017 are open. Nothing is committed, merged or pushe
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The cli-jev compiled-routing re-mint is pending.** The SKILL.md edit changed cli-jev's compiled-routing policy hash, so compiled-route-guard.cjs reports cli-jev stale-manifest and CJ-001 serves through legacy routing. The fix is to run node .skilled/bin/compiled-route-manifest.cjs refresh --hub cli-jev --skill-root .skilled/skills/cli-jev after merging main, then require the guard to report fresh and CJ-001 to route compiled before any push. AC-008 stays Unmet until then.
+1. **The cli-jev re-mint ran at commit time, not after the merge.** The repository's route-remint pre-commit gate re-minted cli-jev inside commit f0411552aa, moving its effectivePolicyHash from 3240ebf5 to 178b10dd. That commit's message still says the manifest stays stale until a re-mint after the merge, and this summary records the actual order.
 
 2. **The full deep-loop runtime suite was not run.** Its earlier baseline run exceeded 900 seconds, so only the focused contract tests are the evidence for that surface.
 

@@ -107,6 +107,32 @@ Do not invent any fact that is not here. If a template section has no fact here,
 - check-completion.sh on this packet (before the closing edits) -> P0 13/13, P1 9/13, P2 1/1, 3 acceptance criteria
   unmet, RESULT: BLOCKED. Expected until the post-merge steps.
 
+## Commits, merges and the cli-jev re-mint (2026-09-23)
+- Seven owner-scoped commits on the worktree branch: 6b1141a307 (hermes), 83f42ed6ba (commands), 13bc85b318 (cli-orca),
+  f0411552aa (cli-jev), 222e51a60f (system-spec-kit), 465dba4e38 (sk-doc), 57d26efd07 (specs). The repository's
+  commit-msg hook forbids Co-Authored-By trailers, so none carries one.
+- The route-remint pre-commit gate printed "[gate:route-remint] re-minted cli-jev and staged both manifests" during
+  f0411552aa. The cli-jev effectivePolicyHash moved from 3240ebf5 to 178b10dd inside that commit, so the re-mint ran at
+  commit time, before any merge. That commit's message still says the manifest stays stale until a re-mint after the merge.
+- Merge 1, f127890ea7: local main 2c8f243607 into the worktree branch, clean.
+- The other session then pushed: origin/main, origin/skilled/v4.0.0.0 and local main all moved to 80dc0a118d, which
+  carries f5a89115b1, 2c8f243607, f2a90d7ac5, a6307ce69a and 80dc0a118d (fix(routing): re-mint the sk-doc manifest from
+  its committed inputs). The earlier sk-doc stale-manifest on local main is fixed by that commit.
+- Merge 2, 0b39a1f6c3: 80dc0a118d into the worktree branch. Conflicts in .hermes/skills/{cli-hermes,cli-opencode,cli-pi}/SKILL.md,
+  because f2a90d7ac5 changed those skill sources and regenerated the mirrors while 6b1141a307 regenerated them from the
+  older sources. The first attempt was aborted (the orchestrator had not gated on the dry-run result), then re-run with
+  the operator's yes: main's copies taken, every mirror regenerated (1 of 70 written, the drifted sk-design mirror),
+  sync --check PASS 70. The merge commit's route-remint gate re-minted cli-external-orchestration, which matches main's
+  manifest byte for byte.
+- Merged-tree checks on 0b39a1f6c3: Hermes skills 70 in sync, prompts 33, frontmatter 0 violations, graph compiler
+  VALIDATION PASSED, freshness 15/15, links 0 broken, compiled-route-guard all seven hubs fresh (exit 0), deep-loop
+  contract tests 42 passed, advisor routing and ratchet tests 28 passed, recursive-child-manifest 2 passed, packet
+  validate strict PASSED. CJ-001 prompt through .skilled/bin/compiled-route.cjs routes compiled to cli-usage under
+  178b10dd. compiled-route-admission --all: six hubs pass, sk-design 1 drift, identical on origin/main; CI runs it with
+  --warn-only while the guard is blocking.
+- Two stray full deep-loop runtime suite runs were started by orchestrator command mistakes and stopped (pids 81981 and
+  87318). They changed no file.
+
 ## Evidence location
 - The live-proof captures and the dispatch trail first lived in scratch/. They moved to evidence/ before the commit,
   because the packet docs cite them and system-spec-kit's folder-structure rules say scratch/ is disposable and must

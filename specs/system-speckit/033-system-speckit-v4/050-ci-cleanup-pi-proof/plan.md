@@ -45,8 +45,8 @@ Phase 049 closed the Gate-3 residue but left two loose ends. The Pi Gate-3 dialo
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met (AC-008 and AC-010 are Unmet)
-- [ ] Tests passing (if applicable) (the worktree runs pass, and the merged-tree re-run in T016 is open)
+- [x] All acceptance criteria met (AC-001 to AC-010 are Met)
+- [x] Tests passing (if applicable) (the worktree runs and the merged-tree runs pass)
 - [x] Docs updated (spec/plan/tasks) (T013 and T014 are done)
 <!-- /ANCHOR:quality-gates -->
 
@@ -123,7 +123,7 @@ T001 through T012 are done. T013 through T017 are open.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Newer commits on main (three) | External | Yellow | T015 waits on the merge. They are 377a22e1a9 (LLM Gateway MiMo route), f5a89115b1 and 2c8f243607 (sk-design compiled routing from another session, local only) |
+| Newer commits on main | External | Green | Merged in T015. The other session pushed main to 80dc0a118d before the second merge. They are 377a22e1a9 (LLM Gateway MiMo route), f5a89115b1 and 2c8f243607 (sk-design compiled routing from another session, local only) |
 | cli-jev compiled-route re-mint after the merge | Internal | Yellow | REQ-005 and AC-008 stay Unmet and CJ-001 serves through legacy routing until the re-mint |
 <!-- /ANCHOR:dependencies -->
 
