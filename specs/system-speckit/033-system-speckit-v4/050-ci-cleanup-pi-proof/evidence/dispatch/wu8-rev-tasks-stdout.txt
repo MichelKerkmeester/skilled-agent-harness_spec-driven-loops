@@ -1,0 +1,17 @@
+All checks pass (the first `grep` against literal `P/tasks.md` naturally returned 0 matches for the nonexistent path; the real path results follow).
+
+```
+grep -c '142 files passed' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md    → 0
+grep -c 'CHK-024' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md            → 1
+grep -c '^- \[x\] CHK-023' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md   → 1
+grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md    → 30
+```
+
+PI_HANDBACK
+status: done
+summary: Applied all four numbered edits to P/tasks.md: T009 now cites the targeted test run plus the clean 1441-test full run, and T011 gains the 152/195 and 27/32 re-score with row 26 routing to system-deep-loop. CHK-023 is marked met with its CLI evidence, CHK-024 was created as the open merged-tree item, and the P1 summary now reads 13 items at 9/13.
+files_changed: 1 specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
+edits_applied: 1, 2, 3, 4
+edits_skipped: none
+verification: grep -c '142 files passed' P/tasks.md → 0; grep -c 'CHK-024' P/tasks.md → 1; grep -c '^- \[x\] CHK-023' P/tasks.md → 1; grep -c '<!-- /\?ANCHOR:' P/tasks.md → 30
+failures: none

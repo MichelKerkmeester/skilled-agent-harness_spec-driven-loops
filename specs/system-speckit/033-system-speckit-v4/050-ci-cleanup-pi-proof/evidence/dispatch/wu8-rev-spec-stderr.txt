@@ -1,0 +1,1 @@
+{"timestamp":"2026-09-23T06:27:55.797Z","runtime":"claude","status":"ok","freshness":"stale","durationMs":1587,"cacheHit":false,"skillLabel":"system-skill-advisor"}

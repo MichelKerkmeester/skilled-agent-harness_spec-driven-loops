@@ -1,0 +1,16 @@
+All VERIFY checks match expectations.
+
+```
+grep -c 'scratch/pi-\|scratch/dispatch' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md   # 0 ✓
+grep -c 'wu8' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md                            # 2 ✓
+grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md                 # 12 ✓
+```
+
+PI_HANDBACK
+status: done
+summary: Applied STEP 0 path rewrite (scratch/ → evidence/) and all eight numbered EDITS to implementation-summary.md, including the three inserted table rows and two inserted paragraphs. All three VERIFY commands returned their expected counts: 0 stale scratch paths, 2 wu8 mentions, 12 anchor comments.
+files_changed: 1 file — specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md
+edits_applied: 1, 2, 3, 4, 5, 6, 7, 8
+edits_skipped: none
+verification: grep -c 'scratch/pi-\|scratch/dispatch' .../implementation-summary.md → 0 (expected 0); grep -c 'wu8' .../implementation-summary.md → 2 (expected 2); grep -c '<!-- /\?ANCHOR:' .../implementation-summary.md → 12 (expected 12)
+failures: none

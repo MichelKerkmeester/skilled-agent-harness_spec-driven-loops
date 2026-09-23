@@ -1,0 +1,9 @@
+All checks pass. Only `specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md` was written.
+
+PI_HANDBACK
+status: done
+summary: Filled the Level 2 implementation plan for CI cleanup and the Pi Gate-3 live proof from the verified evidence pack only. The fix addendum covers the two cli-jev producer rows and the three consumer rows with evidence commands and the testing table groups every observed verification command as unit, integration or manual.
+files_changed: 1 file, specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md
+facts_not_in_evidence: none. The unnamed third newer commit on main is marked "N/A - insufficient source context" in the dependencies table and the effort cells carry the N/A line.
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --verbose 2>&1 | grep "plan.md" ; echo "placeholder_lines=$?" -> placeholder_lines=1 (no lines, pass). grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md -> 22. grep -c -e '—' -e ';' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md -> 0
+failures: none
