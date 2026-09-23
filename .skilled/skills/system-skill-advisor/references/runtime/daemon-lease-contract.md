@@ -57,7 +57,7 @@ This enforcement is gated by the `SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER` env
 
 Daemon attempts lease acquisition on startup. The lease database lives next to the canonical skill graph database directory as `skill-graph-daemon-lease.sqlite`. Canonical means lexical `path.resolve()` followed by `fs.realpathSync.native()` when the path exists; if the directory did not exist yet, the daemon creates it and canonicalizes again before deriving the `workspace_key`.
 
-With the default configuration that directory is `.skilled/skills/system-skill-advisor/runtime/database/`. With `SYSTEM_SKILL_ADVISOR_DB_DIR` or `SYSTEM_SKILL_ADVISOR_DB_DIR`, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
+With the default configuration that directory is `.skilled/skills/system-skill-advisor/runtime/database/`. With `SYSTEM_SKILL_ADVISOR_DB_DIR` set, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
 
 - holder PID
 - holder owner ID
@@ -127,7 +127,7 @@ During the Phase 006 compatibility window, launcher startup also probes the old 
 
 ## 6. DATABASE DIRECTORY OVERRIDE CONSTRAINT
 
-`SYSTEM_SKILL_ADVISOR_DB_DIR` and `SYSTEM_SKILL_ADVISOR_DB_DIR` override the skill graph database directory. The daemon lease database is co-located with that canonical directory, so two workspaces pointing at the same SQLite directory through different symlinks or path aliases share the same single-writer boundary.
+`SYSTEM_SKILL_ADVISOR_DB_DIR` overrides the skill graph database directory. The daemon lease database is co-located with that canonical directory, so two workspaces pointing at the same SQLite directory through different symlinks or path aliases share the same single-writer boundary.
 
 This keeps "same SQLite file" and "same lease owner" aligned:
 

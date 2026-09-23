@@ -28,7 +28,8 @@ const MAX_ROOT_WALK_DEPTH = 14;
 // ───────────────────────────────────────────────────────────────────
 
 // Resolve the advisor target from this module's own location by walking up to
-// the ancestor that owns `.opencode`. Claude may invoke the hook from any
+// the nearest ancestor that owns one of the adapter roots (`.skilled` first,
+// then the legacy `.opencode` mirror). Claude may invoke the hook from any
 // working directory, so a CWD-relative path would silently miss the target and
 // fail open to `{}`; an install-anchored absolute path stays correct off-root.
 
@@ -53,9 +54,14 @@ function resolveTarget(): string | null {
   }
   let current = dirname(fileURLToPath(import.meta.url));
   for (let depth = 0; depth < MAX_ROOT_WALK_DEPTH; depth += 1) {
-    const candidate = join(current, '.opencode', TARGET_REL);
-    if (existsSync(candidate)) {
-      return candidate;
+    // Both root names must resolve identically: a checkout whose legacy mirror
+    // was dropped must not silently lose the advisor target, so the probe never
+    // assumes which root name owns it.
+    for (const rootName of ['.skilled', '.opencode']) {
+      const candidate = join(current, rootName, TARGET_REL);
+      if (existsSync(candidate)) {
+        return candidate;
+      }
     }
     const parent = dirname(current);
     if (parent === current) {

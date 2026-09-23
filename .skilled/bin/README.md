@@ -36,7 +36,7 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌──────────────┐     ┌──────────────────────┐     ┌────────────────┐
-│ OpenCode     │ ──▶ │ mk-*-launcher.cjs    │ ──▶ │ MCP server     │
+│ OpenCode     │ ──▶ │ *-launcher.cjs       │ ──▶ │ MCP server     │
 │ runtime      │     │ env + build + lock   │     │ dist child     │
 └──────────────┘     └──────────┬───────────┘     └────────────────┘
                                 │
@@ -115,7 +115,7 @@ Main flow:
 
 ```text
 ╭──────────────────────────────────────────╮
-│ OpenCode runtime spawns mk-*-launcher    │
+│ OpenCode runtime spawns *-launcher       │
 ╰──────────────────────────────────────────╯
                   │
                   ▼
@@ -172,7 +172,7 @@ The CLI shim is the advisor's single front door: it registers no MCP server, and
 
 **Exit taxonomy (shared).** `0` success, `1` runtime error, `64` usage/schema error, `69` protocol mismatch or missing/stale dist, `75` retryable daemon error. A `spawnSync` failure in the shim itself also exits `75`.
 
-**Warm-only and prompt time.** `--warm-only` (or the per-CLI `*_CLI_WARM_ONLY` / `*_CLI_PROMPT_TIME` envs, plus the shared `SPECKIT_CLI_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, `CODEX_PROMPT_TIME`, `CLAUDE_CODE_PROMPT_TIME`) makes the CLI probe the daemon and exit `75` instead of cold-spawning it, the contract prompt-time hooks rely on. Without warm-only, a cold daemon is auto-spawned through the matching `mk-*-launcher.cjs`, so non-prompt contexts (scripts, CI) work from a cold start.
+**Warm-only and prompt time.** `--warm-only` (or the per-CLI `*_CLI_WARM_ONLY` / `*_CLI_PROMPT_TIME` envs, plus the shared `SPECKIT_CLI_PROMPT_TIME`, `OPENCODE_PROMPT_TIME`, `CLAUDE_CODE_PROMPT_TIME`) makes the CLI probe the daemon and exit `75` instead of cold-spawning it, the contract prompt-time hooks rely on. Without warm-only, a cold daemon is auto-spawned through the matching `*-launcher.cjs`, so non-prompt contexts (scripts, CI) work from a cold start.
 
 **Dist freshness.** Each shim calls the shared `checkPackageFreshness()` (`system-spec-kit/runtime/cli/lib/dist-freshness.cjs`) to compare its package's watched source files against the built dist entrypoint, exiting `69` with a rebuild instruction when stale. Dev overrides: `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 

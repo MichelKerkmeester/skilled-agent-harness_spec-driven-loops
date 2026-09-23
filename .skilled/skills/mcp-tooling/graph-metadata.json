@@ -23,6 +23,11 @@
         "target": "sk-design",
         "weight": 0.45,
         "context": "Cross-hub sibling: mcp-figma reads design context from Figma Desktop while sk-design's EXTRACT mode sources from live URLs, with DESIGN.md output overlap."
+      },
+      {
+        "target": "cli-orca",
+        "weight": 0.4,
+        "context": "cli-orca automations call MCP servers for browser and data work, the same tool surface this hub indexes"
       }
     ],
     "conflicts_with": [],
