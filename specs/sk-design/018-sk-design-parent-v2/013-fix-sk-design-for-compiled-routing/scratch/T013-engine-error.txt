@@ -1,0 +1,12 @@
+BACKUP_OK
+MOVED_OK
+[compiled-routing] resolveRoute fell back to legacy for hub=sk-design: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/harness/build-artifacts.cjs'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/compiled-route.cjs
+{"servingAuthority":"legacy","hubId":"sk-design"}
+ENGINE_ERROR_EXIT=0
+RESTORED_OK
+{"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067","generation":1}
+POST_RESTORE_EXIT=0

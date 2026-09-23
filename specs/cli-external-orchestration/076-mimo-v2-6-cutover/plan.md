@@ -23,10 +23,10 @@ contextType: "implementation"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Repository documentation (Markdown), one JSON settings file, TypeScript + `.cjs` (system-deep-loop runtime) |
+| **Language/Stack** | Repository documentation (Markdown), two JSON configuration files, TypeScript + `.cjs` (system-deep-loop runtime) |
 | **Framework** | pi skills; system-deep-loop runtime (vitest 4.1.11, tsx, zod) |
-| **Storage** | None (no data migration — the change is surface-level ids enforced as string literals) |
-| **Testing** | Vitest 070 trio (`executor-config`, `fanout-run`, `combo-matrix` — the suites that read the allowlist), `tsc --noEmit`, scoped ripgreps, the repository's frontmatter-version gate, and the spec-kit validator |
+| **Storage** | None (no data migration — the change is provider/model configuration and documented route selection) |
+| **Testing** | Live `opencode models llmgateway --verbose` catalog inspection, Node JSON assertions, `pi --list-models`, focused route-preservation searches, the repository's frontmatter-version gate, and the spec-kit validator |
 
 ### Overview
 The rename is mechanical but the enforcement graph is not: the Pi and HerMeS rosters exist as four string-literal copies (two declarations, two mirrors) plus a provider map plus eight test expectations, and the pairing tests assert two of those copies equal-each-other-minus-one. So the implementation moves the whole set in one pass — documents, settings, enforcement, mirrors, tests — then re-runs the suites that read the allowlist, the typecheck, the frontmatter gate and the spec-kit validator. Historical bodies and dated evidence are deliberately left as they were written; the 070 precedent calls that theirs, not this packet's.
@@ -60,9 +60,10 @@ Other — a mechanical rename across a paired-copy enforcement contract. No new 
 - **The roster contract** (`executor-config.ts` declarations + `fanout-run.cjs` mirrors + provider map): what a Pi or HerMeS dispatch is allowed to resolve, enforced as bare gateway literals.
 - **The paired tests** (`executor-config.vitest.ts` pairing/effort expectations, `fanout-run.vitest.ts` provider-map expectation): the assertions that fail if one copy moves without the other.
 - **The documented surfaces**: the three skills' living references/rosters and `.pi/settings.json`'s `enabledModels`, which must name what the enforcement actually resolves.
+- **The direct provider route**: `llmgateway/mimo-v2.6-pro` is a provider-qualified Pi/OpenCode route backed by the existing gateway block. It does not create a second bare-literal fan-out mapping. The existing bare `mimo-v2.6-pro` literal remains owned by `xiaomi`.
 
 ### Data Flow
-An id enters through the gateway, resolves through the provider catalogs and `enabledModels`, is admitted or rejected by `PI_SUPPORTED_MODELS` / `HERMES_SUPPORTED_MODELS` and their fan-out mirrors, and is documented by the skills' references. Renaming the id therefore touches every hop of that chain, which is exactly the file list in `spec.md` §3.
+An id enters through a provider-qualified gateway route, resolves through the provider catalog and `enabledModels`, and, for the bare fan-out literal, is admitted or rejected by `PI_SUPPORTED_MODELS` / `HERMES_SUPPORTED_MODELS` and their fan-out mirrors. The Xiaomi and LLM Gateway selectors therefore coexist without changing the one-literal-one-provider contract.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -78,7 +79,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-The 070 trio plus `npm run typecheck` are the behavioral gates, re-run from the final state and compared against the captured 259-test baseline. Scoped ripgreps prove the rename reached every living occurrence and stopped at the historical ones; the JSON.parse proves the settings file; the frontmatter gate proves the three new changelog entries; the spec-kit validator proves the packet. A full-runtime `npm test` was attempted twice and wedged past 300 s and 600 s on the lineage integration tests (logged to `/tmp/deep-loop-baseline.log`); the trio is the 070 precedent's scope for exactly this reason and covers every suite that reads the edited allowlists.
+The amended route is verified with the live `opencode models llmgateway --verbose` catalog, JSON assertions over `.pi/models.json` and `.pi/settings.json`, and `pi --list-models` showing the provider-qualified route. Focused searches prove the bare deep-loop literal still maps to `xiaomi` and no Hermes roster widened. The frontmatter gate covers the two skill version bumps and new changelogs, and the spec-kit validator proves the amended packet. A real Pi round-trip remains the operator's billable availability check because catalog output and picker rows do not prove the configured credential can complete a request.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -86,7 +87,7 @@ The 070 trio plus `npm run typecheck` are the behavioral gates, re-run from the 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-N/A — the packet touches no dependency, no install, no network. The only machine-state dependency (the installed pi's catalogs still serving v2.5) is recorded as the operator's resolution check, not this packet's.
+The route depends on the existing `${LLMGATEWAY_API_KEY}` reference and the active `mimo-v2.6-pro` catalog row returned by `opencode models llmgateway --verbose`. No new credential, install, provider block, or fan-out mapping is required. The operator's live request remains the final availability check.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -94,7 +95,7 @@ N/A — the packet touches no dependency, no install, no network. The only machi
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Every edited file is tracked and the packet directory is untracked: `git checkout --` the 24 recorded paths (or revert the packet's commit) and `rm -rf specs/cli-external-orchestration/076-mimo-v2-6-cutover`. The pre-existing `lastChangelogVersion` hunk in `.pi/settings.json` survives either way because it predates the packet and a checkout of the file would restore it to the committed 0.86.1 state — noted, because that restores more than the packet changed.
+Remove the new `mimo-v2.6-pro` object from `providers.llmgateway`, remove `llmgateway/mimo-v2.6-pro` from `.pi/settings.json`, revert the direct-route documentation, skill version bumps, changelog entries, and packet amendment. Preserve the existing llmgateway provider block, credentials, Xiaomi definitions, and deep-loop mapping.
 <!-- /ANCHOR:rollback -->
 
 ---

@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Status** | Complete |
 | **Created** | 2026-09-22 |
 | **Branch** | `main` (working directly, operator-selected; the working tree carried one unrelated machine-state hunk in `.pi/settings.json` before this packet started) |
-| **Origin** | Operator: "Replace all instances of MiMo v2.5 with v2.6 in cli-pi and cli-opencode skills AND also the .pi settings"; the deep-loop and cli-hermes surfaces were folded in 070-style by consent after the operator chose "Extend like 070"; the official-xiaomi wiring of the two renamed ids in `.pi/models.json` added mid-flight by the operator's "in cli pi please use official xiaomi provider for mimo 2.6" |
+| **Origin** | Operator: "Replace all instances of MiMo v2.5 with v2.6 in cli-pi and cli-opencode skills AND also the .pi settings"; the deep-loop and cli-hermes surfaces were folded in 070-style by consent after the operator chose "Extend like 070"; the official-xiaomi wiring of the two renamed ids in `.pi/models.json` added mid-flight by the operator's "in cli pi please use official xiaomi provider for mimo 2.6"; the direct LLM Gateway Pro route was added by the operator's request to make LLM Gateway another possible provider for MiMo v2.6 Pro |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -54,15 +54,16 @@ Every living surface that names a MiMo id — skills, settings, enforcement, mir
 - The mechanical, case-preserving rename: `mimo-v2.5` → `mimo-v2.6` (covering `-pro`, `-pro-ultraspeed`, `-free`, and the bare id) and `MiMo-V2.5-Pro` → `MiMo-V2.6-Pro`. Only tokens containing `v2.5` change; the `mimo-v2`-bare, `-pro`, `-omni` and `-flash` ids are not v2.5 and stay.
 - The living documents of cli-opencode (7 files) and cli-pi (1 file) and cli-hermes (5 files).
 - `.pi/settings.json`'s two `enabledModels` lines, plus — added mid-flight by the operator's "in cli pi please use official xiaomi provider for mimo 2.6" — the matching `.pi/models.json` definitions that make those renamed ids resolve under the official Xiaomi Direct provider (base `https://api.xiaomimimo.com/v1`, inherited from the built-in registration): a `providers.xiaomi.models` array defining `mimo-v2.6-pro` and `mimo-v2.6-pro-ultraspeed`, whose field values are inherited verbatim from the official v2.5-pro/-ultraspeed store definitions because the `xiaomi`-provider catalog still publishes no v2.6 metadata (the inheritance is labeled INFERRED, and the parts the elsewhere-listing corroborates are marked as such in the records)
+- The existing `providers.llmgateway` block in `.pi/models.json` gains the live-catalog-backed bare `mimo-v2.6-pro` definition, and `.pi/settings.json` gains the provider-qualified `llmgateway/mimo-v2.6-pro` picker entry. This is a direct-dispatch route only. The bare deep-loop literal remains mapped to `xiaomi`.
 - The deep-loop enforcement set and its mirrors: `PI_SUPPORTED_MODELS` and `HERMES_SUPPORTED_MODELS` in `executor-config.ts`, the Pi allowlist copy, `PI_MODEL_PROVIDERS` and `HERMES_ALLOWED_MODELS` in `fanout-run.cjs`, and the test expectations that pin them — including the paired-roster comment's model token, whose durable WHY (the gateway's HTTP-400 rationale) survives unchanged.
 - The deep-ai-council illustrative dispatches that name the old id.
-- Version bumps and one new changelog entry per affected skill, each carrying `version` in its YAML frontmatter: cli-opencode 1.4.6.0 → 1.4.7.0, cli-pi 1.5.4.0 → 1.5.5.0, cli-hermes 1.0.0.0 → 1.0.1.0.
+- Version bumps and one new changelog entry per affected skill, each carrying `version` in its YAML frontmatter: the original cutover moved cli-opencode to 1.4.7.0, cli-pi to 1.5.5.0, and cli-hermes to 1.0.1.0; this amendment moves cli-opencode to 1.4.8.0 and cli-pi to 1.5.6.0.
 
 ### Out of Scope
 - **Historical changelog bodies** (five cli-opencode files, one cli-pi file — 25 occurrence lines) and the dated PI-017 evidence cell in cli-pi's `supported-model-allowlist-smoke.md`. They record what was true when written; the 070 precedent kept nine such files. After this packet the evidence cell's captured output describes the pre-cutover `executor-config.ts` — an accepted, recorded drift.
 - **Dated benchmark reports and profiles** (`benchmark/`, `capability-m3-vs-mimo*`): their filenames and contents record what was benchmarked.
 - **The hub.** No v2.5 string exists at hub level — verified by grep — so no vocabulary widening, no ROUTER or hub-metadata edit, and no compiled-route re-mint.
-- **The installed pi's bundled catalogs and its `models-store.json` cache.** Both still serve only the v2.5 trio under the `xiaomi` provider (observed: the 0.87.0 catalog file and the 2026-09-22T07:49Z etag-fetched store, lastModified 2026-09-21); the `.pi/models.json` definitions compose above them — observed, not assumed — and the picker remints itself when upstream publishes. The `mimo-v2.6-flash` and `-pro`/`-pro-ultraspeed` ids that today's model listing already shows under `opencode-go` and `openrouter` are those routes' own catalogs; wiring them is not this packet's.
+- **The installed pi's bundled catalogs and its `models-store.json` cache.** The bundled `xiaomi` catalog was stale when the original packet shipped, so the `.pi/models.json` Xiaomi definitions compose above it. The gateway catalog separately lists `mimo-v2.6-pro`, but the direct route is configured here rather than promoted into the deep-loop fan-out. The `mimo-v2.6-flash` and `-pro`/`-pro-ultraspeed` ids that today's model listing shows under `opencode-go` and `openrouter` remain those routes' own catalogs.
 - **The pre-existing `lastChangelogVersion` 0.86.1 → 0.87.0 hunk** in `.pi/settings.json`: machine state from before this packet, riding along in the same file, recorded here rather than silently absorbed.
 - **Other tracks' surfaces** (sk-*, mcp-tooling, others) even where they mention MiMo: the operator named the two skills, the settings, and — by consent — the deep-loop and HerMeS surfaces.
 
@@ -70,26 +71,28 @@ Every living surface that names a MiMo id — skills, settings, enforcement, mir
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.pi/settings.json` | Modify | Two `enabledModels` entries: `xiaomi/mimo-v2.5-pro` and `xiaomi/mimo-v2.5-pro-ultraspeed` → v2.6 |
-| `.pi/models.json` | Modify | `providers.xiaomi` gains a `models` array defining both v2.6 ids on the official Xiaomi Direct provider — no `baseUrl`/`api`/`apiKey` needed (the built-in registration supplies them; proven by a throwaway `PI_CODING_AGENT_DIR` probe where a bare models array registered); a throwaway-dir probe also proved the array MERGES with the built-in catalog rather than replacing it, and that omitted `contextWindow`/`maxTokens` would have rendered the picker's 128K/16.4K defaults |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` | Modify | The one live occurrence (version 1.4.6.0 → 1.4.7.0 in the same edit) |
+| `.pi/settings.json` | Modify | Two Xiaomi `enabledModels` entries move to v2.6 and `llmgateway/mimo-v2.6-pro` is added as a selectable direct route |
+| `.pi/models.json` | Modify | `providers.xiaomi` defines both official Xiaomi v2.6 ids, and the existing `providers.llmgateway` block gains bare `mimo-v2.6-pro` from the live gateway catalog. The provider block, authentication reference, and session-affinity compat stay unchanged |
+| `.pi/custom-providers.md` | Modify | Document the third LLM Gateway model, its direct-only route, effort ladder, picker entry, and live-dispatch verification |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` | Modify | Version 1.4.7.0 → 1.4.8.0 in the same edit as the roster documentation |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/README.md` | Modify | The small-model dispatch mention |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md` | Modify | Seven occurrence lines: dispatch shapes, §5 model row |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md` | Modify | The `xiaomi` provider's roster rows |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md` | Modify | The `xiaomi` provider rows and the direct `llmgateway/mimo-v2.6-pro` row |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md` | Modify | The MiMo dispatch-shape template(s) |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md` | Modify | The per-model override row |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md` | Modify | Line 58, the live variant-levels dispatch row |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md` | Create | One entry, `version` in frontmatter; how this skill records every roster change |
-| `.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md` | Modify | The two Xiaomi roster rows |
-| `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` | Modify | Version 1.5.4.0 → 1.5.5.0 (frontmatter; no other occurrence lives here) |
-| `.skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.5.0.md` | Create | One entry, frontmatter carries `version` |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md` | Existing | Prior cutover entry remains historical |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.8.0.md` | Create | New provider-route entry, `version` in frontmatter |
+| `.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md` | Modify | The two Xiaomi roster rows and the direct `llmgateway/mimo-v2.6-pro` row |
+| `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` | Modify | Version 1.5.5.0 → 1.5.6.0 |
+| `.skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.5.0.md` | Existing | Prior cutover entry remains historical |
+| `.skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.6.0.md` | Create | New provider-route entry, `version` in frontmatter |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Modify | The closed-roster paragraph, line 198; version 1.0.0.0 → 1.0.1.0 in the same edit |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/README.md` | Modify | The model-roster row |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/fanout-dispatch/closed-model-roster.md` | Modify | The `HERMES_SUPPORTED_MODELS` declaration it mirrors |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md` | Modify | The roster table row |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/manual-testing-playbook.md` | Modify | Step 4's roster-minus-one sentence |
-| `.skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.1.0.md` | Create | One entry, frontmatter carries `version` |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md` | Create | One entry, frontmatter carries `version` |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.1.0.md` | Existing | Prior cutover entry remains historical |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Modify | `PI_SUPPORTED_MODELS` lines 226-227, `HERMES_SUPPORTED_MODELS` line 266 |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Pi allowlist copy lines 2305-2306, `PI_MODEL_PROVIDERS` 2526-2527, `HERMES_ALLOWED_MODELS` line 2626 |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Modify | Lines 953-954, the paired-roster comment at 984, positive pairing 989, negative 991, effort-pinning loop 1015 |
@@ -119,6 +122,7 @@ Every living surface that names a MiMo id — skills, settings, enforcement, mir
 | REQ-005 | Version bumps and changelog entries ship for the three affected skills, and the repository's frontmatter gate accepts them | `check-frontmatter-versions.sh` reports zero failures; each new entry's YAML carries `version` |
 | REQ-006 | The HerMeS pairing claim stays truthful | The pairing test asserts Hermes = Pi's roster minus the `-ultraspeed` id at their v2.6 spellings; the comment keeps its durable WHY (gateway-HTTP-400 rationale) with only the model token changed |
 | REQ-007 | The spec packet validates | `validate.sh` on this packet with `--strict` prints `RESULT: PASSED` |
+| REQ-008 | MiMo v2.6 Pro is selectable through the existing LLM Gateway provider without changing the Xiaomi route or fan-out mapping | `.pi/models.json` contains the live-catalog-backed bare model under `providers.llmgateway`, `.pi/settings.json` contains `llmgateway/mimo-v2.6-pro`, and the deep-loop map still sends the bare literal to `xiaomi` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -131,6 +135,7 @@ Every living surface that names a MiMo id — skills, settings, enforcement, mir
 - **SC-003**: `check-frontmatter-versions.sh` reports zero failures across the repository
 - **SC-004**: `validate.sh` on this packet prints `RESULT: PASSED`
 - **SC-005**: The scoped diff contains only this packet's recorded files plus the recorded riding-along hunk; nothing else moved
+- **SC-006**: The provider-qualified LLM Gateway route appears in Pi's catalog and documentation while the existing Xiaomi fan-out mapping and Hermes roster remain unchanged
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -145,6 +150,7 @@ Every living surface that names a MiMo id — skills, settings, enforcement, mir
 | Risk | The gateway's HTTP-400 rationale for HerMeS excluding `-ultraspeed` was observed against the v2.5 spelling; the packet does not re-probe v2.6 | Low | The pairing test guards membership, not the 400; the dated observation stands in the changelog record; a live re-probe belongs to the playbook's next run |
 | Risk | Two roster copies (TypeScript and `.cjs`) drifting | Med | Both move in the same pass, and the pairing plus provider-map tests assert across them — the 070 lesson |
 | Dependency | The two `enabledModels` ids are operator-asserted as the v2.6 spellings | Low | They follow the exact mechanical shape of their v2.5 predecessors; divergence, if any, surfaces in the operator's resolution check |
+| Risk | The LLM Gateway catalog lists MiMo v2.6 Pro, but a catalog row does not prove the configured credential can complete a request | Med | Add the provider-qualified route from catalog facts, preserve the existing key reference, and leave one harmless live round-trip as the operator's billable verification |
 | Risk | The `.pi/models.json` definitions' display fields — contextWindow 1M, maxTokens 131072, the per-id costs, the deepseek thinkingFormat compat — are inherited verbatim from the official v2.5-pro/-ultraspeed definitions, because no upstream v2.6 metadata exists yet | Low | The 1M/131.1K context shape is corroborated by the same ids' published rows under `opencode-go` and `openrouter` in today's listing; the costs remain INFERRED until the upstream xiaomi catalog publishes them, and they affect only what the picker prints, never what resolves |
 <!-- /ANCHOR:risks -->
 
@@ -155,6 +161,7 @@ Every living surface that names a MiMo id — skills, settings, enforcement, mir
 
 - Does the gateway now serve `mimo-v2.6-pro-ultraspeed` for HerMeS, or does the 400-rationale carry over unchanged? Unprobed; the packet retains the pairing, and the answer only affects whether HerMeS's roster could later widen, not this rename.
 - When the installed pi's catalogs will carry v2.6 is the operator's; until then its model picker may show the v2.5 spellings alongside the settings' v2.6 entries.
+- Will the operator's LLM Gateway credential complete `llmgateway/mimo-v2.6-pro`? The catalog is active and the route is configured, but only a real request proves authentication and upstream availability.
 <!-- /ANCHOR:questions -->
 
 ---

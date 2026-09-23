@@ -11,15 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/076-mimo-v2-6-cutover"
-    last_updated_at: "2026-09-22T07:42:58Z"
+    last_updated_at: "2026-09-22T13:08:05Z"
     last_updated_by: "template-author"
-    recent_action: "MiMo v2.5→v2.6 cutover: living surfaces, deep-loop enforcement pair, settings, and the official-xiaomi provider wiring; all gates passed"
-    next_safe_action: "Operator runs one live dispatch at xiaomi/mimo-v2.6-pro to confirm the official endpoint answers, then commits"
+    recent_action: "Added direct llmgateway MiMo v2.6 Pro route and verified config"
+    next_safe_action: "Operator runs live llmgateway/mimo-v2.6-pro dispatch"
     blockers: []
     key_files:
       - ".pi/settings.json"
       - ".pi/models.json"
+      - ".pi/custom-providers.md"
       - ".skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md"
+      - ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md"
       - ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
       - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     session_dedup:
@@ -46,6 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 076-mimo-v2-6-cutover |
+| **Status** | Complete |
 | **Completed** | 2026-09-22 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -88,12 +91,11 @@ remain the one genuinely inherited, unverified number.
 
 ### Files Changed
 
-The authoritative row-per-file ledger lives in `spec.md` §3 (25 rows: 22 modified, 3 created). In short:
-`.pi/settings.json` and `.pi/models.json` at the root; seven cli-opencode living documents, one cli-pi
-reference, five cli-hermes surfaces, the deep-ai-council example surfaces; the four deep-loop
-enforcement/test files; three SKILL.md version bumps; and one new changelog entry per affected skill
-(`v1.4.7.0.md`, `v1.5.5.0.md`, `v1.0.1.0.md`). The mid-flight addition is `.pi/models.json`, which was
-not in the original directive and entered the ledger by operator instruction.
+The authoritative row-per-file ledger lives in `spec.md` §3 and now includes the direct LLM Gateway route. In short:
+`.pi/settings.json`, `.pi/models.json` and `.pi/custom-providers.md` at the root; the cli-opencode and cli-pi
+provider rosters and their new versioned changelog entries; the prior Xiaomi, HerMeS, deep-loop and council
+surfaces from the original cutover. The new route is a provider-qualified direct path and does not widen the
+bare-literal fan-out mapping.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -126,6 +128,7 @@ packet changed.
 | Packet scaffolded with the kit's `create.sh`, then relocated | The tool's default wrote to `.opencode/specs/.../001-...`; the track lives at `specs/cli-external-orchestration/` (075 validates `RESULT: PASSED` there), so the fresh, contentless scaffold moved and took the track's next number, 076 |
 | Verification by the 070 trio, not the full suite | The full runtime wedges twice-observed on lineage integration tests that dispatch real CLIs; the trio covers every suite whose assertions this packet edited and adds `combo-matrix` across the mirrors |
 | Minimal-then-inherited model definitions | The probe showed bare entries register but advertise 128K/16.4K — true-but-misleading picker facts; the inherited family shape is the smaller falsehood, and it is labeled |
+| Direct LLM Gateway route | The gateway already publishes `mimo-v2.6-pro` under its existing provider. Add a provider-qualified direct route, while the bare deep-loop literal stays mapped to Xiaomi so fan-out behavior does not change |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -143,7 +146,11 @@ packet changed.
 | `pi --list-models`, real agent dir, after the `.pi/models.json` wiring | PASS, exit 0 — `xiaomi mimo-v2.6-pro` and `mimo-v2.6-pro-ultraspeed` list at 1.0M/131.1K, reasoning yes, images no, alongside the untouched `mimo-v2.5` trio; the same listing also shows `mimo-v2.6-flash`/`-pro`(-ultraspeed) under `opencode-go` and `openrouter` |
 | Repository frontmatter-version gate | PASS — 2932 files, ok = 2923, 9 skipped (no frontmatter), zero failures, exit 0; the three new changelog entries carry `version` |
 | Version bumps | PASS — exactly one occurrence each: cli-pi 1.5.5.0, cli-opencode 1.4.7.0, cli-hermes 1.0.1.0, each at SKILL.md line 5 |
-| Spec-kit validator, this packet, `--strict` | PASS — Errors: 0, Warnings: 1 (continuity freshness not opted in — the advisory the 075 precedent also carries), `RESULT: PASSED`, exit 0; the packet identity, freshness slack and link checks all pass |
+| Spec-kit validator, amended packet, `--strict` | PASS — Errors: 0, Warnings: 1 (continuity freshness not opted in — the advisory the 075 precedent also carries), `RESULT: PASSED`, exit 0; the amended packet identity, freshness slack and link checks all passed |
+| `opencode models llmgateway --verbose` catalog | PASS — active `mimo-v2.6-pro`, 1M context, 131072 output, reasoning and image input, costs 0.435/0.87/0.0036/0, variants none/low/medium/high |
+| Pi config and picker | PASS — JSON assertions returned `CONFIG_OK`; `pi --list-models` lists `llmgateway/mimo-v2.6-pro` at 1M/131.1K beside the existing routes |
+| Fan-out preservation | PASS — `PI_MODEL_PROVIDERS` still maps bare `mimo-v2.6-pro` to `xiaomi`, and the Hermes roster remains unchanged |
+| Packet amendment route and picker | PASS — the model definition, `enabledModels` entry, roster docs, version bumps, changelogs, derived metadata, and amended packet gates are complete; live credentialed dispatch remains operator-side |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -180,6 +187,9 @@ packet changed.
    historical changelog bodies describe the pre-cutover world on purpose. A reader comparing this
    packet's roster against those records sees two generations; that is the cost of the 070 precedent,
    accepted here deliberately.
+7. **The LLM Gateway catalog is not a live credential probe.** The route is active in the catalog and will
+   use the existing provider key, but only a real Pi request proves authentication and upstream availability.
+   It remains direct-dispatch only. The bare deep-loop literal continues to route through Xiaomi.
 <!-- /ANCHOR:limitations -->
 
 ---

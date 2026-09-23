@@ -1,0 +1,169 @@
+1:// ╔══════════════════════════════════════════════════════════════════════════╗
+2:// ║ LIBRARY: REGISTRY-DRIVEN PARENT-HUB COMPILER (DESIGN HUB)                ║
+3:// ╚══════════════════════════════════════════════════════════════════════════╝
+6:// ─────────────────────────────────────────────────────────────────────────────
+7:// 1. IMPORTS
+8:// ─────────────────────────────────────────────────────────────────────────────
+24:// ─────────────────────────────────────────────────────────────────────────────
+25:// 2. CONSTANTS
+26:// ─────────────────────────────────────────────────────────────────────────────
+33:// The root router's intent table, restated from its prose section: which intent
+34:// is owned by which workflow mode. VALUES and REVIEW share a mode on purpose,
+35:// because they share its references; they stay separate intents because they
+36:// load different ones. Keeping the ownership here (validated against both the
+37:// registry and the leaf manifest) means a root-router row that points at a
+38:// retired or renamed mode fails the build instead of silently routing there.
+47:// ─────────────────────────────────────────────────────────────────────────────
+48:// 3. HELPERS
+49:// ─────────────────────────────────────────────────────────────────────────────
+176:// A bundle is `surfaceBundle` only when it carries exactly one actor alongside
+177:// one or more evidence destinations (the decision contract's own definition).
+178:// This hub declares every mode as a mutating workflow actor, so every multi-
+179:// target tie here lands on `orderedBundle`, which carries no role restriction.
+187:// Every non-empty two-or-more subset of the tie-break order, not just the
+188:// authored shapes: a near-tied keyword score can legally land on any subset,
+189:// so the router needs a valid, order-matching composition rule for each one,
+190:// or decision parsing rejects a real tie.
+209:// Union every keyword the hub-router assigns to a mode's classes, unfiltered
+210:// by any cross-mode overlap. This mirrors the frozen legacy replay's own
+211:// hub-router projection: each mode scores independently off its own keyword
+212:// set, so a keyword shared by two modes still counts as a positive signal for
+213:// both, never dropped the way the detector-vocabulary ownership filter below
+214:// drops it.
+227:// Bundle targets for the bespoke routing model below, expressed as
+228:// workflowMode strings so the router can look one up directly off a scored,
+229:// ordered mode list without a destination round-trip.
+245:// The bespoke, hub-specific routing model the compiled router scores against
+246:// directly, rather than through the generic detector/selector evaluator. It
+247:// sits alongside the generic policy (which still carries the authority graph,
+248:// composition rules, and hashing) instead of replacing it. The second-stage
+249:// intent model rides inside it: the canary scores mode signals and intent
+250:// signals from one structure, so the two stages can never drift apart.
+318:// ─────────────────────────────────────────────────────────────────────────────
+319:// 4. ROOT-ROUTER INTENT LAYER
+320:// ─────────────────────────────────────────────────────────────────────────────
+322:// Parse the machine-readable root-router block. That block is the
+323:// byte-for-byte deterministic replay source, written as quoted-key, quoted-
+324:// string Python literals with no calls or f-strings, so a strict regex parse
+325:// of the two dictionaries is sufficient and keeps the parser independent of
+326:// any Python runtime.
+351:// Resolve every intent's resource-map rows into typed (workflowMode,
+352:// leafResourceId) pairs through the declared leaf manifest, and fail the build
+353:// when a root-router row cannot be closed: the manifest must name the leaf
+354:// inside the owning mode's packet, and the owning mode must be a registered
+355:// workflow mode. This is the closure guarantee the two-stage contract needs:
+356:// a route decision from this hub can only ever name leaves that resolve.
+390:// ─────────────────────────────────────────────────────────────────────────────
+391:// 5. COMPILER
+392:// ─────────────────────────────────────────────────────────────────────────────
+394:/**
+395: * Compile the design hub's routing contract without trusting destination-local
+396: * role claims, and resolve the root router's intent layer against the declared
+397: * leaf manifest in the same pass, so one compilation both hashes the authored
+398: * sources and proves the two-stage closure.
+399: *
+400: * @param {Object} input - Authored registry, routers, skill text, leaf
+401: *   manifest, and generation.
+402: * @returns {Object} Compiled snapshot plus read-only projections and source
+403: *   model.
+404: */
+484:/**
+485: * Encode a compiled artifact through the frozen canonical serializer.
+486: *
+487: * @param {Object} value - JSON-compatible artifact.
+488: * @returns {Buffer} Canonical bytes with one terminal newline.
+489: */
+1:// ╔══════════════════════════════════════════════════════════════════════════╗
+2:// ║ LIBRARY: REQUEST-PINNED TWO-STAGE CANARY ROUTER (DESIGN HUB)             ║
+3:// ╚══════════════════════════════════════════════════════════════════════════╝
+6:// This router scores the compiled routing model directly, in the hub's own
+7:// two stages. It deliberately does not go through the generic detector or
+8:// selector evaluator or the certificate-gated selective controller: those two
+9:// together made a sibling hub's compiled router under-route relative to its
+10:// frozen legacy replay, because the selective controller abstains on any
+11:// ranked decision without a live calibration certificate and force-defers a
+12:// bare evidence-only target. Neither guard exists in this hub's legacy
+13:// contract. The generic policy (destinations, detectors, selectors,
+14:// composition rules, hashing) is still compiled and still valid; it is just
+15:// not consulted for the live routing decision here.
+16://
+17:// Stage one selects workflow modes from the hub-router signals. Stage two
+18:// scores the root router's intents inside the selected modes only, and turns
+19:// the winning intents' pre-resolved leaf pairs into the trace. Keyword
+20:// matching is a plain substring test on purpose: this hub's vocabulary is
+21:// multi-word phrases and short second words ("org chart" vs "chart"), which a
+22:// word-boundary guard wouldclip unpredictably, and the frozen legacy replay
+23:// it preserves also matched loosely.
+172:// Look up the authored bundle kind for an exact, tie-break-ordered mode set.
+173:// The compiler generates one composition rule for every non-empty 2+ subset of
+174:// the tie-break order, so a near-tied score set always finds an exact match.
+182:// An explicit mode names exactly one mode. It arrives either as this hub's
+183:// documented /design:* command, as the bare workflow mode, or in the
+184:// hub-qualified form; the command is what the skill's own contract publishes.
+194:// ─────────────────────────────────────────────────────────────────────────────
+195:// STAGE-ONE SCORING
+196:// ─────────────────────────────────────────────────────────────────────────────
+198:// Score every mode by (count of matched keywords) x weight — identical to the
+199:// frozen legacy replay's scoreIntents formula. A direct command mention routes
+200:// past keyword scoring entirely, exactly as the legacy replay resolved
+201:// /design:chart, /design:diagram and /design:extract.
+215:// Keep every mode within ambiguityDelta of the top score — identical to the
+216:// frozen legacy replay's selectIntents. Legacy never clarifies on a tie: it
+217:// returns every near-tied intent, so this router routes every near-tied set
+218:// too (as a bundle) rather than asking for disambiguation.
+225:// ─────────────────────────────────────────────────────────────────────────────
+226:// STAGE-TWO INTENT SCORING
+227:// ─────────────────────────────────────────────────────────────────────────────
+229:// Score the root router's intents whose owning mode was actually selected,
+230:// then keep every intent within the same ambiguity delta of the top intent
+231:// score. A tie between two intents of the same mode is not ambiguity to
+232:// escalate: it is one mode loading both leaf sets, so the resulting pairs are
+233:// unioned and deduped. Intents are ordered by their owning mode's tie-break
+234:// rank first, so the union's order (and therefore the emitted resource order)
+235:// is a function of the authored tie-break, not of accident.
+302:      // The hub router's own "none" outcome: no signal at all falls to the
+303:      // default mode, because this hub declares a values question as the
+304:      // safe default for an unclear design request.
+317:  // Stage two runs for a route decision only: clarify, defer and reject carry
+318:  // no targets, so there is no mode scope to score intents inside, and the
+319:  // scorer observation of a non-route is empty by contract.
+334:      // Compatibility shim: the artifact generator reads
+335:      // trace.controller?.rankCalls ?? trace.evaluator.rankCalls unchanged
+336:      // from before this rewrite; this router has no controller stage, so it
+337:      // supplies the evaluator-shaped field directly. A rank happened when
+338:      // either stage scored more than one contender.
+1:// ╔══════════════════════════════════════════════════════════════════════════╗
+2:// ║ LIBRARY: DOCUMENT-ONLY POLICY CARD (DESIGN HUB)                          ║
+3:// ╚══════════════════════════════════════════════════════════════════════════╝
+70:    // Every mode on this hub is a mutating workflow actor, so the only bundle
+71:    // grammar this card can attest is the role-unrestricted ordered one.
+172:  // Only the absence of a match defers, and only because this card's own
+173:  // admission frontmatter declares the zero-signal case: the live decision
+174:  // falls to the hub default, so the document projects the same. A card that
+175:  // disagreed with the engine on any request is the one thing a replay must
+176:  // never ship.
+227:/**
+228: * Replay only policy data embedded in the card and emit an unattested
+229: * terminal. This replay never acts: it exists so the card's documented
+230: * decision shape can be compared against the live one without granting the
+231: * document any authority.
+232: *
+233: * @param {string} markdown - Generated policy card.
+234: * @param {string} prompt - Request text.
+235: * @returns {Object} Typed decision plus honest document-only status.
+236: */
+2:// ╔══════════════════════════════════════════════════════════════════════════╗
+3:// ║ GENERATOR: CANARY ARTIFACT SNAPSHOT (DESIGN HUB)                         ║
+4:// ╚══════════════════════════════════════════════════════════════════════════╝
+47:// The snapshot is compiled from the live skill sources on every load: the
+48:// serving engine calls this once per closure load, never per route, so the
+49:// cost is a one-time identity check rather than a repeated source scan.
+90:// Build-time expectation check: the fixture's declared action, selection kind,
+91:// modes, intents and resources are asserted against the evaluated decision and
+92:// its scorer projection, so a behavior change that rewrites the typed route
+93:// gold fails here instead of silently re-baselining.
+--- edited-in comments (unstaged diff, added lines only) ---
++//   - the resolver's per-hub default-on cohort covers all seven promoted hubs; a
++    // Exactly 7 hubs in every one of the four copies.
++// cohort (the seven hubs verified compiled-serving, 0 drift — see
+RECHECK: 8 patterns (ADR-, REQ-, CHK-, T0nn, specs/, scratch/, 013-fix, 018-sk), 0 hits, no match found.

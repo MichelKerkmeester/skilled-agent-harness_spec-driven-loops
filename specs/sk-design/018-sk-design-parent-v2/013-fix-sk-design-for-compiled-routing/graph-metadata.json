@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing",
+  "spec_folder": "sk-design/018-sk-design-parent-v2/013-fix-sk-design-for-compiled-routing",
+  "parent_id": "sk-design/018-sk-design-parent-v2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design compiled routing",
+      "design hub compiled router",
+      "compiled design routing",
+      "sk-design rollout",
+      "compiled routing implementation plan",
+      "sk-design rollout architecture",
+      "compiled routing testing strategy",
+      "sk-design compiled task breakdown",
+      "compiled routing verification checklist",
+      "sk-design rollout tasks",
+      "sk-design compiled acceptance",
+      "compiled routing closure"
+    ],
+    "key_topics": [
+      "sk-design",
+      "compiled",
+      "routing",
+      "design",
+      "hub",
+      "router",
+      "rollout",
+      "implementation",
+      "plan",
+      "architecture",
+      "testing",
+      "strategy"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+      ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/bin/compiled-routing-foundation.vitest.ts",
+      ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+      ".skilled/skills/sk-design/SKILL.md",
+      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/compiled-routing-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "serving-closure.manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design` is a live parent hub with four registered workflows, five root-router intents, and a populated leaf manifest",
+    "created_at": "2026-09-21T20:42:12Z",
+    "last_save_at": "2026-09-22T15:48:11.803Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3eaedf1c022ac435599910bef55aaaa7d1ab9a6f77bdda2365c64e98fc8e047c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e81be27d5133a520ab416d7b91c7b94f3787a10e1cd73480cdbc51af66d29b0b",
+      "plan.md": "0d792c59dccb74ff0cd54e2d1e8ddd3b1d763c44b46a9d47f855bbf3769107cf",
+      "tasks.md": "608344edc5eccf831a1f01279cefc38b282508fc2138a4d31f7fb2c0f517d328",
+      "decision-record.md": "acdb962fcfe5761a4672f1e835c8ad1a82ef3ac2f6aa99382aef13b3d29f859d",
+      "implementation-summary.md": "bb10f24c08bedee772dcf947f99dff74b10b6b86bd98df923203ac6fe817f770"
+    },
+    "last_active_at": null
+  }
+}

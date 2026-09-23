@@ -1,0 +1,47 @@
+▶ gold parsing
+  ✔ mode gold reads single, joined and sequenced modes, and flags junk (0.694917ms)
+  ✔ leaf gold reads [] and typed pairs, and flags any other shape (0.1355ms)
+  ✔ prompts come from a fenced block or an inline line, and a pointer is no prompt (0.126875ms)
+✔ gold parsing (1.441834ms)
+▶ scenario scoring
+  ✔ pass-single scores pass (0.12ms)
+  ✔ wrong-mode scores drift (wrong-mode) (0.0285ms)
+  ✔ defer scores drift (silent-defer) (0.025208ms)
+  ✔ clarify scores drift (silent-defer) (0.031458ms)
+  ✔ unsafe scores drift (unsafe-route) (0.038ms)
+  ✔ negative-pass scores pass (0.047209ms)
+  ✔ multi-partial scores drift (wrong-mode) (0.052458ms)
+  ✔ multi-full scores pass (0.043791ms)
+  ✔ stale-mode scores stale-gold (undeclared-mode) (0.020958ms)
+  ✔ stale-leaf scores stale-gold (undeclared-leaf) (0.017291ms)
+  ✔ missing-leaf scores drift (missing-leaf) (0.022542ms)
+  ✔ orphan scores drift (orphan-target) (0.020167ms)
+  ✔ engine-error scores broken (engine-error) (0.016959ms)
+  ✔ invalid scores invalid (parse-failure) (0.087125ms)
+  ✔ no-prompt scores n/a (no-prompt) (0.038167ms)
+  ✔ the worst status sets the hub verdict (0.029709ms)
+✔ scenario scoring (1.00075ms)
+▶ hub verdicts and coverage floors
+  ✔ a candidate missing gold for a mode is insufficient-coverage (7.409959ms)
+  ✔ an admitted hub with the same gaps passes, and the gaps are still reported (0.730291ms)
+  ✔ a candidate with gold for every mode and a negative passes (3.052291ms)
+  ✔ a candidate with no negative scenario is insufficient-coverage (1.997417ms)
+  ✔ the same inputs give the same report (1.051875ms)
+✔ hub verdicts and coverage floors (14.423375ms)
+▶ live hubs
+  ✔ the live corpus holds the pinned number of gold scenarios (33.537625ms)
+  ✔ checking every live hub scores each one and leaves the activation state untouched (229.424916ms)
+✔ live hubs (263.049708ms)
+▶ command line
+  ✔ no hub is a usage error (32.221125ms)
+  ✔ an unregistered hub fails as broken (28.941125ms)
+  ✔ --warn-only reports without failing, and --out writes both reports (31.266166ms)
+✔ command line (92.643125ms)
+ℹ tests 29
+ℹ suites 5
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 439.852667
