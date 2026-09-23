@@ -70,9 +70,9 @@ Expected: TAP output, `# tests 11`, `# pass 11`, `# fail 0`.
 env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE -u SYSTEM_SPEC_GATE_DISABLED node --experimental-test-module-mocks --test .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs
 ```
 
-Expected: `tests 107`, `pass 107`, `skipped 0`, `fail 0` (Node prints them with an `ℹ` prefix). The three tests that self-skip without `--experimental-test-module-mocks` are why the flag is required for this count.
+Expected: `tests 108`, `pass 108`, `skipped 0`, `fail 0` (Node prints them with an `ℹ` prefix). The three tests that self-skip without `--experimental-test-module-mocks` are why the flag is required for this count.
 
-3. Build a disposable, non-exempt fixture project (deliberately NOT under `/tmp` or `/private/tmp`, which the core always treats as exempt scratch space -- `mktemp -d` with no path argument resolves to `$TMPDIR`, e.g. `/var/folders/.../T/...` on macOS):
+3. Build a disposable fixture project. Any location works, `/tmp` included, because the core exempts only paths outside the project, never the project's own location. `mktemp -d` with no path argument resolves to `$TMPDIR`, e.g. `/var/folders/.../T/...` on macOS:
 
 ```bash
 TMPDIR_A=$(mktemp -d)
