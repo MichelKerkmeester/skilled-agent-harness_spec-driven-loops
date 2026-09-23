@@ -96,9 +96,9 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'canonical-first',
   },
   {
-    file: 'runtime/cli/spec/create.sh:811-819',
+    file: 'runtime/cli/spec/create.sh:894-900',
     symbol: 'SPECS_DIR selection',
-    consumerOrEffect: 'Packet creation uses the requested tracked or untracked destination directly.',
+    consumerOrEffect: 'Packet creation uses an explicit destination directly and otherwise writes to the canonical root.',
     precedence: 'direct-path-first',
   },
   {
