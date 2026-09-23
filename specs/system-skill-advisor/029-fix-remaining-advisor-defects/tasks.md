@@ -63,7 +63,8 @@ contextType: "general"
 - [x] T030 Lane L baselines (commit 2f5fc94ef2): re-capture both with their tools after the merge, full-corpus top-1 151 to 152 and memory_save 26 to 27, with reviewed reasons on the four changed ledger entries (.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json, .skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json)
 - [x] T031 Lane M delete the tri-daemon drill and its five references (.skilled/skills/system-skill-advisor/runtime/tests/tri-daemon-drill.vitest.ts, .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md, .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md, .skilled/skills/system-skill-advisor/runtime/README.md, .skilled/skills/system-skill-advisor/runtime/tests/README.md, .skilled/skills/system-skill-advisor/runtime/tests/tsconfig.tests.json)
 - [x] T032 Lane M assert `second.child.stdin` non-null at its six uses (.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts)
-- [x] T033 Lane N (commit 5ba4c78aac): point the corpus-gate step and both baseline path filters at the archived baseline (.github/workflows/routing-registry-drift.yml)
+- [x] T033 Lane N (commit 5ba4c78aac, the same change as b566f9fc28, which landed on main first): point the corpus-gate step and both baseline path filters at the archived baseline (.github/workflows/routing-registry-drift.yml)
+- [x] T038 Merge origin main into the follow-up (merge bce9d6b06c, no conflicts) and correct this record where main's CI cleanup had overtaken it (specs/system-skill-advisor/029-fix-remaining-advisor-defects/spec.md, specs/system-skill-advisor/029-fix-remaining-advisor-defects/plan.md, specs/system-skill-advisor/029-fix-remaining-advisor-defects/tasks.md, specs/system-skill-advisor/029-fix-remaining-advisor-defects/implementation-summary.md)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -85,6 +86,7 @@ contextType: "general"
 - [x] T035 Lane M checks: no drill reference remains outside spec and changelog folders, the test type check exits 0 (the orphan-reaping test alone had six `TS18047` errors at HEAD) and the battery ran 891 passed, 0 failed, 6 skipped of 897, exit 0, 151.4 s
 - [x] T036 Lane N check: the corpus-gate step, read from the edited workflow and run from its working directory with no advisor database, exits 0 with `overall_pass` true and no threshold failures
 - [x] T037 Strict packet validation after the follow-up (see the implementation summary's verification table for the recorded result)
+- [x] T039 Merged follow-up checks: CI on 4072bb9e7a, the main head it merges, is green on every workflow (17 runs on both branches). The advisor battery on the merged tree ran 891 passed, 0 failed, 6 skipped of 897, exit 0, 135.6 s
 <!-- /ANCHOR:phase-3 -->
 
 ---

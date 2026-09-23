@@ -68,13 +68,13 @@ A changed pi contribution delivers its full brief again, the advisor runtime bat
 - Shim test (lane K): the unavailable-branch case in `runtime/tests/compat/shim.vitest.ts` sets `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` and runs every time instead of skipping on a probe taken earlier.
 - Main integration (lane L): merge main into the fix branch, take main's side on the conflicting `graph-metadata.json` files for cli-external-orchestration, cli-jev, mcp-tooling and sk-git, regenerate `skill-graph.json` and re-capture both baselines with reviewed reasons.
 - Tri-daemon drill (lane M): delete `runtime/tests/tri-daemon-drill.vitest.ts`, remove its five references and fix the six `stdin` null errors in `skill-advisor-launcher-orphan-reaping.vitest.ts` so the test type check runs clean.
-- CI corpus gate (lane N): point the corpus-gate step and the two baseline path filters in `.github/workflows/routing-registry-drift.yml` at the archived baseline.
+- CI corpus gate (lane N): point the corpus-gate step and the two baseline path filters in `.github/workflows/routing-registry-drift.yml` at the archived baseline. Commit b566f9fc28 in `system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof` made the same three-line change first, so after the merge the two agree line for line.
 
 ### Out of Scope
 - Rewriting packet 028's verification record: its original numbers stay, and the overclaim is corrected with a note instead.
 - Renewing baselines by hand: only the capture tools write them, so the reason lands beside each change.
-- Pushing the follow-up (lanes M and N) to main and skilled/v4.0.0.0: it waits for the operator's go-ahead.
-- The Spec-Kit Check failure in `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts` (five `pi enforce` tests): it belongs to the spec-gate delivery work and fails the same way on 997cd8ee2e, the main head before this packet's merge.
+- Pushing the follow-up (lanes M and N) to main and skilled/v4.0.0.0: it needed the operator's own go-ahead, given for a merge-then-push route.
+- The Spec-Kit Check failure in `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts` (five `pi enforce` tests): it failed the same way on 997cd8ee2e, before this packet's merge. Commit 5b522489a2 in `system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof` fixed it by giving the runtime suites a temp dir outside `/tmp`, which the spec gate exempts.
 
 ### Files to Change
 
@@ -123,7 +123,7 @@ A changed pi contribution delivers its full brief again, the advisor runtime bat
 | .skilled/skills/system-skill-advisor/runtime/tests/README.md | Modify | Lane M: drop the drill from the tree |
 | .skilled/skills/system-skill-advisor/runtime/tests/tsconfig.tests.json | Modify | Lane M: drop the drill from the include list |
 | .skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts | Modify | Lane M: assert `second.child.stdin` non-null at its six uses |
-| .github/workflows/routing-registry-drift.yml | Modify | Lane N: the corpus-gate step and both baseline path filters name the archived baseline |
+| .github/workflows/routing-registry-drift.yml | Modify | Lane N: the corpus-gate step and both baseline path filters name the archived baseline (the same change as b566f9fc28) |
 | specs/system-skill-advisor/029-fix-remaining-advisor-defects/ (packet docs) | Create | This packet's documentation |
 <!-- /ANCHOR:scope -->
 
