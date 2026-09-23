@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3acc197969fd496df5acda3d0c443dd92374d6ea8a4bfbedc6e84a09f6fb6a77",
+  "corpusHash": "80de29d298ff8f7c9df710ba4cafe34dede24ceedeeb12f50079d80d1bc2d4ee",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22336,
+  "includedPathCount": 22339,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -925,6 +925,7 @@
     ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.2.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/dispatch-guards/dispatch-shape-recognition.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/dispatch-guards/hard-rule-preflight-checks.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/fanout-dispatch/closed-model-roster.md",
@@ -1259,6 +1260,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.10.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.11.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.4.0.md",
@@ -1498,6 +1500,7 @@
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.6.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.7.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.8.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/agent-bridge/project-agent-override.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/cli-invocation/default-invocation-and-settings-merge.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/cli-invocation/hallucination-fixture-undocumented-pi-syntax.md",
@@ -22358,7 +22361,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a44b0733d943b3b82b82075ca15718363ee5bce3b457ead593637be5fb6476a8",
+  "manifestHash": "8798f46c9afdcccd04adac1f33f38ed1fd9f5f375f1299f4acf8845211089404",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
