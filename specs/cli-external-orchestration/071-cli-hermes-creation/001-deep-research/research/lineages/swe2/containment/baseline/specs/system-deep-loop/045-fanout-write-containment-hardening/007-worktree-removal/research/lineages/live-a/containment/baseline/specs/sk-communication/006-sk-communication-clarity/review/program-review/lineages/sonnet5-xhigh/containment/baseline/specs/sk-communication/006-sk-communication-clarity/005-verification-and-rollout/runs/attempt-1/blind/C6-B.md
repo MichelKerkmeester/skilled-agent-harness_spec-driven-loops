@@ -1,9 +1,0 @@
-Case: C6
-
-any simple question whose group of equally relevant items exceeds five
-
-Reply B:
-
-Session is ready. No packet is bound yet, so there is nothing to recover until you name one.
-
-Say what you want to work on and I'll route it. If you want to pick up an existing packet, name it or run `/speckit:resume` and I'll recover its state from the packet docs. The `specs/` tree holds tracks like `system-speckit`, `sk-doc`, `mcp-tooling`, and others, so a name or a trigger phrase is enough.

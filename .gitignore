@@ -362,6 +362,13 @@ specs/z-future
 # cloud-sync client. The artifacts worth keeping sit beside it.
 specs/**/lineages/*/.codex-home/
 
+# Write-containment captures: the baseline copies a fan-out takes of files outside a lane, and
+# the quarantine copies of a lane's stray writes. Per-run machine output. Tracked, they were
+# copied into every later run's capture, nesting one level per run until paths outgrew the
+# filesystem limit and a worktree could no longer be removed.
+specs/**/containment/baseline/
+specs/**/containment/quarantine/
+
 # A packet-local save mutex, acquired by the continuity generator while it mutates
 # canonical documents. It names the process holding it, so it is machine state and
 # never belongs in history: a committed one outlives its process and describes an

@@ -1,7 +1,0 @@
-diff --git a/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/logs/fanout-lineage.err b/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/logs/fanout-lineage.err
-deleted file mode 100644
-index 45c3bebfa7..0000000000
---- a/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/logs/fanout-lineage.err
-+++ /dev/null
-@@ -1 +0,0 @@
--{"timestamp":"2026-09-11T20:38:07.578Z","runtime":"claude","status":"fail_open","freshness":"unavailable","durationMs":46,"cacheHit":false,"errorCode":"NONZERO_EXIT","errorDetails":"CLI_EXIT_69"}
