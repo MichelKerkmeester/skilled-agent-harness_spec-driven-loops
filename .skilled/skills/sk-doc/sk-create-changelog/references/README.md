@@ -9,7 +9,7 @@ trigger_phrases:
   - "github release changelog option"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.6
+version: 1.1.0.9
 ---
 
 # create-changelog References. Overflow Map
@@ -20,7 +20,7 @@ Routing hub for the `create-changelog` overflow set. The packet contract at [../
 
 ## 1. OVERVIEW
 
-Open a reference here only when the SKILL.md workflow is clear but you need a concrete example or a decision aid. Nothing in this set overrides `../SKILL.md` or the shared template; when they conflict, those two win and the conflict is recorded, not resolved by inventing a hybrid.
+Open a reference here only when the SKILL.md workflow is clear but you need a concrete example or a decision aid. Nothing in this set overrides `../SKILL.md` or the shared template. When they conflict, those two win and the conflict is recorded, not resolved by inventing a hybrid.
 
 Each file is scoped to one concern:
 
@@ -63,8 +63,7 @@ Load the file that matches the current task:
 - `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` - packet-local generator
 
 ### Real entries to model
-- `.skilled/skills/sk-doc/changelog/v1.8.0.0.md` - versioning standard, engine, and enforcement rollout
-- `.skilled/skills/sk-doc/changelog/v1.8.1.0.md` - validator and create-machinery improvement
+- `.skilled/changelog/system-spec-kit/v4.0.0.0.md` - the canonical exemplar for the v4 narrative style
 
 ---
 

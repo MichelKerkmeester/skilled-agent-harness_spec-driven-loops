@@ -186,17 +186,17 @@ component_mapping:
   #
   #   $ ls -d .skilled/changelog/*/
   #
-  # Folder naming convention: NN--component-name (zero-padded index)
-  # Example: 04--commands, 11--sk-doc, 00--opencode-environment
+  # Folder naming convention: plain component names, no numeric prefix
+  # Example: sk-doc, system-spec-kit, sk-code
   #
   # RESOLUTION STRATEGY (most specific first):
-  #   1. Extract component name from folder (strip NN-- prefix)
+  #   1. Use the folder name as the component name
   #   2. Match changed file paths against component names:
   #      - .skilled/skills/{name}/**  → folder containing {name}
   #      - .skilled/commands/**       → folder containing "commands"
   #      - .skilled/agents/**         → folder containing "agents"
   #   3. Match component_hint keyword against folder names
-  #   4. Fallback: first folder starting with "00--" (umbrella/cross-component)
+  #   4. No match: STOP and ask which component the changelog belongs to
   #
   # The agent MUST run the discovery scan in Step 2 of the workflow
   # and build the mapping dynamically from the actual folder contents.
@@ -204,9 +204,9 @@ component_mapping:
 
   discovery:
     scan_command: "ls -d .skilled/changelog/*/ 2>/dev/null | sort"
-    folder_pattern: "^(\\d+)--(.*)"
-    fallback_prefix: "00--"
-    note: "Always use the first 00-- folder as default for unmatched paths"
+    folder_pattern: "(.*)"
+    fallback_prefix: null
+    note: "Folder names are plain component names. Never default an unmatched path to a guessed folder; pause and ask instead."
 
   resolution_rules:
     - source: "file_path"
@@ -216,7 +216,7 @@ component_mapping:
     - source: "spec_folder"
       strategy: "Extract spec path segments and match against discovered folder names"
     - source: "fallback"
-      strategy: "Use the 00-- prefixed folder (umbrella/cross-component)"
+      strategy: "No match: pause and ask the user which component this changelog belongs to; never write to a guessed folder"
 
 # ─────────────────────────────────────────────────────────────────
 # VERSION BUMP RULES
@@ -268,48 +268,47 @@ changelog_template:
   # The canonical changelog and release notes template lives in:
   #   .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
   #
-  # It defines TWO formats:
-  #   1. COMPACT — for releases with fewer than 10 changes
-  #      Uses: ## What Changed → bullet points with bold labels
-  #   2. EXPANDED — for releases with 10+ changes or major releases
-  #      Uses: ### short headings → Problem/Fix paragraphs per item
+  # It defines TWO narrative formats:
+  #   1. COMPACT - for releases with fewer than 10 changes and no breaking change
+  #      Uses: summary narrative -> ## What's New at a Glance bullets -> ## Upgrade
+  #   2. EXPANDED - for 10+ changes, a major bump, or any breaking change
+  #      Uses: opening narrative -> Why This Release -> What's New at a Glance ->
+  #            topical H2 sections with H4 benefit-led story items -> Upgrade Notes
   #
   # FORMAT SELECTION:
   #   - Count the changes in work_context
-  #   - < 10 changes → use compact format
-  #   - >= 10 changes or major release → use expanded format
+  #   - < 10 changes and not major and not breaking -> compact format
+  #   - >= 10 changes, or major bump, or any breaking change -> expanded format
   #
-  # WRITING STYLE (from PUBLIC-RELEASE.md Section 7):
-  #   - Plain English for a smart non-developer
-  #   - Every fix: what was broken + what we did + why it matters
-  #   - No jargon without parenthetical definition
-  #   - Technical details in Files Changed table, not in descriptions
-  #   - Expanded-format sub-headings stay short (2-5 words, not full sentences)
+  # WRITING STYLE (enforced by the shared template and the HVR scanner):
+  #   - Plain English for a smart person who is not a developer
+  #   - Lead with why the release matters, never technical stats
+  #   - Every change: what was broken + what changed + why it matters
+  #   - Omission rules apply: no Files Changed tables, no test metrics, no schema
+  #     tables; a table appears only when the numbers themselves are the story
+  #   - Benefit-led H4 headings, 2-7 words for most and 10 at most
+  #   - At-a-glance bullets open with a bold lead-in sentence
+  #   - No Oxford commas, em dashes, or semicolons
   #
+  # Canonical exemplar: .skilled/changelog/system-spec-kit/v4.0.0.0.md
   # Read the template file at Step 4 before generating content.
   # ─────────────────────────────────────────────────────────────────
   template_file: ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
-  style_reference: "PUBLIC-RELEASE.md Section 7"
+  style_reference: ".skilled/changelog/system-spec-kit/v4.0.0.0.md"
 
 # ─────────────────────────────────────────────────────────────────
-# HIGHLIGHT CATEGORIES
+# SECTION NAMING
 # ─────────────────────────────────────────────────────────────────
-highlight_categories:
-  # Use plain category names from PUBLIC-RELEASE.md Section 7.2:
-  search: "### Search"
-  saving: "### Saving Memories"
-  security: "### Security"
-  documentation: "### Documentation"
-  testing: "### Testing"
-  commands: "### Commands"
-  new_features: "### New Features"
-  bug_fixes: "### Bug Fixes"
-  architecture: "### Architecture"
-  breaking: "### Breaking Changes"
-  category_named: "### {name}"
+section_naming:
+  # Name H2 sections for the domain they change, the way the exemplar names
+  # sections like "Spec Kit" and "Safer Git". One to five domains for most
+  # releases, more for a release the size of the exemplar.
+  h2_topical_domain: "## {Domain Name}"
+  h4_benefit_led_item: "#### {Benefit-led heading, usually 2-7 words}"
   note: |
-    Use plain category names from PUBLIC-RELEASE.md vocabulary.
-    For expanded format: use short ### headings with Problem/Fix paragraphs.
+    Fixed change-type labels (New Features, Bug Fixes) are retired as section
+    names when a domain name says more. Expanded-format items are H4 headings
+    with merged narrative paragraphs, never Problem/Fix labels.
     Read .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md for full format reference.
 
 # ─────────────────────────────────────────────────────────────────
@@ -424,7 +423,7 @@ workflow:
         IF changelog_mode = global:
         DISCOVER available changelog folders:
           $ ls -d .skilled/changelog/*/ 2>/dev/null | sort
-          Parse folder names using NN--component-name pattern
+          Parse folder names as plain component names (no numeric prefix)
           Build runtime component list from actual directory contents
       - |
         IF changelog_mode = global:
@@ -435,7 +434,7 @@ workflow:
         Count matches per component:
           IF single component dominates (>60% of files) -> primary_component = that component
           IF multiple components roughly equal -> list all, pick primary by file count
-          IF no matches -> default to first 00-- prefixed folder (umbrella/cross-component)
+          IF no matches -> STOP and ask which component this changelog belongs to
       - |
         IF source_type = spec_folder:
           Extract spec path segments and match against discovered folder names
@@ -496,32 +495,39 @@ workflow:
       - "Set DATE to today's date in YYYY-MM-DD format"
       - |
         SELECT FORMAT based on change count and release type:
-          IF change_count < 10 AND change_type != major -> COMPACT format
-          IF change_count >= 10 OR change_type == major -> EXPANDED format
-          See template file Section 4 (Format Selection Guide) for full rules
+          IF change_count < 10 AND change_type != major AND no breaking change -> COMPACT format
+          IF change_count >= 10 OR change_type == major OR any breaking change -> EXPANDED format
+          See template file Section 5 (Format Selection Guide) for full rules
       - |
         Generate SUMMARY (both formats):
           IF source_type = spec_folder:
             Use spec.md title + implementation-summary.md first paragraph
           IF source_type = component or git_history:
             Synthesize from commit messages and changed files
-          Keep to 1-3 sentences. Lead with WHY, not technical stats.
+          Compact: 1-3 sentences. Expanded: an opening narrative of 1-5 paragraphs.
+          Lead with WHY, not technical stats.
       - |
         Generate BODY using selected format:
 
           COMPACT FORMAT:
-            ## What Changed
-            ### {Category Name}
-            - **{Name}** -- {What was broken}. {What we did}. {Why it matters}.
+            ## What's New at a Glance
+            - **{The change, stated as a short sentence.}** {One or two plain sentences on what it means for the reader.}
 
           EXPANDED FORMAT:
-            ## {Category Name} ({count})
-            ### {Short heading}
-            **Problem:** {Plain English explanation for a smart non-developer}
-            **Fix:** {Behavior change, not implementation details}
+            ## Why This Release
+            ## What's New at a Glance
+            ## {Topical Domain}
+              #### {Benefit-led heading, usually 2-7 words}
+              {One to three narrative paragraphs, seven at most: what was broken, what changed, why it matters}
+              (inline **Breaking:** markers where a change breaks something)
+
+        Omission rules apply to every format:
+          - No Files Changed tables, no test metrics, no schema tables
+          - Reverted mid-cycle work compresses to one story sentence
+          - A table appears only when the numbers themselves are the story
 
         Expanded-format heading rule:
-          - Prefer 2-5 words
+          - Prefer 2-7 words, 10 at most, benefit-led
           - Make it easy to scan at a glance
           - Avoid packet IDs, numbering, and sentence-length headings unless truly required
 
@@ -530,18 +536,14 @@ workflow:
           component/git: commit messages grouped by type
           nested: generator payload from nested-changelog.js
       - |
-        Generate FILES_CHANGED:
-          COMPACT: Simple table with File | Action | Description
-          EXPANDED: Collapsible <details> with Source/Tests/Documentation subsections
-      - |
         Generate UPGRADE section:
-          IF change_type = major -> "Review breaking changes before upgrading."
-          ELSE -> "No migration required."
-          Always list behavioral changes users should be aware of.
+          IF breaking changes -> Upgrade Notes with Adopt/Repoint/Drop bold lead-ins
+          IF no migration needed -> "No migration required."
+          Compact format uses "## Upgrade"; expanded format uses "## Upgrade Notes".
       - "Assemble full content per template format (compact or expanded)"
     outputs:
       - changelog_content: "Complete formatted changelog markdown"
-      - section_count: "Number of highlight sections generated"
+      - section_count: "Number of narrative sections generated"
     validation: content_generated
 
   step_5_quality_validation:
@@ -549,14 +551,13 @@ workflow:
     activities:
       - |
         FORMAT CHECKS:
-          [ ] H1 starts with "# v{VERSION}"
-          [ ] Project backlink blockquote present
-          [ ] Version + date header in correct format: ## [**{VERSION}**] - {DATE}
-          [ ] Summary paragraph present (non-empty)
-          [ ] At least one Highlights subsection
-          [ ] Files Changed section present
-          [ ] Upgrade section present
-          [ ] Horizontal rule (---) before every ## and ### heading (except first heading)
+          [ ] Prose starts with the summary narrative (frontmatter and an editorial title H1 may precede it, a bare version header may not)
+          [ ] Spec folder blockquote present when source is a spec folder
+          [ ] Summary narrative present (non-empty, leads with why)
+          [ ] At-a-glance section present with bold lead-in bullets
+          [ ] Expanded: Why This Release, topical H2 sections with H4 items, Upgrade Notes
+          [ ] No Files Changed / Test Impact / Schema Changes default sections
+          [ ] --- only between H2 sections; &nbsp; between H4 items within a section
       - |
         VERSION CHECKS:
           [ ] Version is strictly greater than latest_existing_version
@@ -564,9 +565,10 @@ workflow:
           [ ] No file with this version exists in target folder
       - |
         CONTENT CHECKS:
-          [ ] Summary is concise (1-3 sentences)
-          [ ] Each highlight item has bold name + description
-          [ ] Files changed entries have valid paths
+          [ ] Compact summary within 3 sentences, expanded opening within 5 paragraphs
+          [ ] Each at-a-glance bullet opens with a bold lead-in sentence
+          [ ] H4 headings 10 words at most, H4 items 7 paragraphs at most
+          [ ] Omission rules applied (no file inventories, no test metrics)
       - |
         IF any check fails:
           Log failed check(s)
@@ -618,8 +620,12 @@ workflow:
       - "Check working tree state: run `git status --porcelain -- {output_path}`. IF uncommitted, log a warning that the tag was created on a HEAD that may not include the just-written changelog file (autonomous mode never auto-commits)"
       - |
         Prepare the release notes body from {output_path}:
-          IF the file's first line starts with "# " (an H1 heading):
-            Strip that line and any immediately following blank lines into a temp notes file (e.g., /tmp/release-notes-{release_tag}.md)
+          IF the file opens with a YAML frontmatter block (first line is "---"):
+            Strip it through its closing "---" line, plus any blank lines after it
+          IF the next line starts with "# " (the editorial title H1):
+            Strip that line and any immediately following blank lines
+          IF anything was stripped:
+            Write the remainder to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md)
           ELSE:
             Use {output_path} directly as the notes file
       - "Run: git tag -a {release_tag} -m \"{release_tag}: {summary_first_sentence}\""
@@ -675,7 +681,7 @@ quality_standards:
     minimum: "Sequential, no duplicates"
     enforcement: "Step 3 validates before Step 4 generates"
   content_quality:
-    minimum: "Summary + highlights + files changed"
+    minimum: "Summary narrative + at-a-glance + upgrade notes"
     enforcement: "Step 5 verifies non-empty content sections"
 
 # ─────────────────────────────────────────────────────────────────
@@ -707,8 +713,7 @@ completion_report:
 
     Summary: {summary_first_sentence}
 
-    Sections: {section_count} highlight categories
-    Files Tracked: {files_changed_count}
+    Sections: {section_count}
     Release Published: {release_published_display}
 
     STATUS=OK PATH={output_path}
@@ -732,7 +737,7 @@ error_recovery:
 
   component_ambiguous:
     action: "Use highest file-count component as primary"
-    fallback: "Default to first 00-- prefixed folder (umbrella/cross-component)"
+    fallback: "Pause and ask the user which component this changelog belongs to"
 
   version_conflict:
     action: "Increment BUILD segment until unique"
@@ -740,7 +745,7 @@ error_recovery:
 
   empty_content:
     action: "Generate minimal changelog from available data"
-    fallback: "Prompt user to provide summary and highlights"
+    fallback: "Prompt user to provide summary and at-a-glance bullets"
 
   write_failure:
     action: "Check permissions, retry once"
@@ -759,7 +764,6 @@ termination:
   next_steps:
     - "Review the generated changelog at {output_path}"
     - "Create additional changelogs for secondary components if needed"
-    - "Consider creating an umbrella release in the 00-- prefixed folder if applicable"
     - "Run /speckit:save to preserve context"
 
 # ─────────────────────────────────────────────────────────────────
@@ -769,14 +773,14 @@ rules:
   ALWAYS:
     - "Follow the 8-step workflow in sequence"
     - "Validate version is sequential before writing"
-    - "Match the established changelog format (400+ existing files)"
-    - "Include all required sections: title, backlink, version+date, summary, highlights"
+    - "Match the narrative changelog format defined in the shared template"
+    - "Include the required narrative sections: summary, at-a-glance, upgrade notes (plus Why This Release and topical sections in expanded format)"
     - "Use the component mapping table for resolution"
     - "Report STATUS=OK or STATUS=FAIL at completion"
 
   NEVER:
     - "Never skip version validation (Step 3)"
-    - "Never write a changelog with empty summary or highlights"
+    - "Never write a changelog with an empty summary or empty at-a-glance section"
     - "Never overwrite an existing changelog file"
     - "Never guess component folder without file path analysis"
     - "Never use a version number that already exists"
