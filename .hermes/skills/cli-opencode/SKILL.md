@@ -2,7 +2,7 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.6.0
+version: 1.4.7.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -31,7 +31,7 @@ hard_rules:
 > skill without scanning the canonical directory; read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, openai, minimax, minimax-coding-plan, minimax-m3, token-plan, xiaomi, xiaomi-token-plan, xiaomi-token-plan-ams, xiaomi-api, xiaomi-direct, mimo, mimo-v2.5-pro, mimo-v2.5-pro-ultraspeed, ultraspeed, glm-5.2, zai-coding-plan, z.ai-coding-plan, glm-coding-plan, deepseek-v4-flash-latest, deepseek-v4.1-flash, gpt-5.6-luna, cline, cline-pass, cline-deepseek-v4-flash, cline-deepseek-v4.1-flash -->
+<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, openai, minimax, minimax-coding-plan, minimax-m3, token-plan, xiaomi, xiaomi-token-plan, xiaomi-token-plan-ams, xiaomi-api, xiaomi-direct, mimo, mimo-v2.6-pro, mimo-v2.6-pro-ultraspeed, ultraspeed, glm-5.2, zai-coding-plan, z.ai-coding-plan, glm-coding-plan, deepseek-v4-flash-latest, deepseek-v4.1-flash, gpt-5.6-luna, cline, cline-pass, cline-deepseek-v4-flash, cline-deepseek-v4.1-flash -->
 
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
 

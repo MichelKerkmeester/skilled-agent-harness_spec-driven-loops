@@ -2,7 +2,7 @@
 name: cli-hermes
 description: "Hermes Agent CLI executor for quiet oneshot coding dispatch, LLM Gateway model routing, project skills and plugins, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.0.0
+version: 1.0.1.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -200,7 +200,7 @@ This packet owns provider-specific routing, the availability probe, and prompt c
 
 **One provider is reachable from the fan-out: `llmgateway`** (DevPass, the operator's LLM Gateway plan), declared as a Hermes custom provider block of that exact name in `~/.hermes/config.yaml` with `key_env: LLMGATEWAY_API_KEY`. That block is an operator step; the repo cannot carry it. Setup and the credential contract are in [providers-and-models.md](./references/providers-and-models.md).
 
-**Closed roster, non-roster models are FORBIDDEN.** Dispatch ONLY the seven the gateway serves for Hermes: `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-5.6-luna`, `gpt-5.6-sol`, `minimax-m3`, `mimo-v2.5-pro` and `qwen3.8-max`. This is Pi's roster minus `mimo-v2.5-pro-ultraspeed`, which answers HTTP 400 "not supported" on this route; every id was probed live. The deep-loop fan-out hard-rejects any other id (`isHermesModelAllowed` over `HERMES_SUPPORTED_MODELS`), and even a direct `hermes chat --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet plus `HERMES_SUPPORTED_MODELS`) first.
+**Closed roster, non-roster models are FORBIDDEN.** Dispatch ONLY the seven the gateway serves for Hermes: `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-5.6-luna`, `gpt-5.6-sol`, `minimax-m3`, `mimo-v2.6-pro` and `qwen3.8-max`. This is Pi's roster minus `mimo-v2.6-pro-ultraspeed`, which answers HTTP 400 "not supported" on this route; every id was probed live. The deep-loop fan-out hard-rejects any other id (`isHermesModelAllowed` over `HERMES_SUPPORTED_MODELS`), and even a direct `hermes chat --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet plus `HERMES_SUPPORTED_MODELS`) first.
 
 ### The Dispatch Shape
 
