@@ -7,7 +7,13 @@
   "edges": {
     "depends_on": [],
     "enhances": [],
-    "siblings": [],
+    "siblings": [
+      {
+        "target": "cli-external-orchestration",
+        "weight": 0.4,
+        "context": "both skills route work to external CLI surfaces; cli-jev serves typed-judgment prompts over the cli-usage transport while this hub dispatches the broader executor family"
+      }
+    ],
     "conflicts_with": [],
     "prerequisite_for": []
   },

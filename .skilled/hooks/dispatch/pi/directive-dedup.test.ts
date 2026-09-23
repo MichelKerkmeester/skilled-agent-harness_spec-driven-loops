@@ -20,6 +20,11 @@ const DIRECTIVES =
 const FULL = `${HEAD}${DIRECTIVES}`;
 // A brief whose directive text changed (e.g. a redeploy edited a directive).
 const FULL_V2 = `${HEAD}${DIRECTIVES.replace("never embed ids", "never embed identifiers")}`;
+// A brief whose recommended skill rotated while the directives stayed
+// identical — the case the contribution-keyed receipt exists for, so a
+// rotated recommendation is not hidden behind an unchanged directives block.
+const HEAD_CHANGED = "Advisor: live; use sk-doc 0.95/0.12 pass.";
+const FULL_HEAD_CHANGED = `${HEAD_CHANGED}${DIRECTIVES}`;
 // Advisor-failure fallback: directives only, no advisor head to keep.
 const FALLBACK = "Directives:\n- comment-hygiene [HARD BLOCK]: never embed ids";
 
@@ -74,6 +79,16 @@ describe("decidePiDirectiveDelivery", () => {
     expect(decidePiDirectiveDelivery(FULL_V2, "s1").suppressed).toBe(false);
     // Then the new content becomes eligible on its own repeat.
     expect(decidePiDirectiveDelivery(FULL_V2, "s1").suppressed).toBe(true);
+  });
+
+  it("re-delivers full when only the route head changes (directives identical)", () => {
+    decidePiDirectiveDelivery(FULL, "s1");
+    expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(true);
+    // A rotated recommendation hidden behind an identical directives block
+    // would misroute the next turn, so the head change alone re-delivers.
+    expect(decidePiDirectiveDelivery(FULL_HEAD_CHANGED, "s1").suppressed).toBe(false);
+    // The rotated brief then dedups on its own repeat.
+    expect(decidePiDirectiveDelivery(FULL_HEAD_CHANGED, "s1").suppressed).toBe(true);
   });
 
   it("never suppresses for an unknown session id (fail-open)", () => {

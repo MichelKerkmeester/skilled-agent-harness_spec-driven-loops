@@ -41,7 +41,7 @@ The implementation separates three responsibilities:
    - Claude, Codex, Cursor, and Devin use registered system-spec-kit adapters and the canonical advisor target.
    - Session and compaction owners notify the canonical store through a bounded boundary bridge instead of relying only on prompt payload fields.
    - OpenCode keeps an in-process mirror. Only one primitive, non-conflicting session identity can suppress. Ambiguous boundary events invalidate all older receipts.
-   - Pi retains its runtime-local bounded lifecycle decision. A proven repeat returns no input transform or delivery receipt; first turns, lifecycle resets, changed directives, missing identity, advisor failure, and disabled dedup fail open to the declared full-or-dispatch-only behavior. Tool-call dispatch enforcement remains independent of prompt-text cadence.
+   - Pi retains its runtime-local bounded lifecycle decision. A byte-identical repeat of the full contribution (route head plus directives) returns no input transform or delivery receipt; first turns, lifecycle resets, a changed contribution (route head or directives), missing identity, advisor failure, and disabled dedup fail open to the declared full-or-dispatch-only behavior. Tool-call dispatch enforcement remains independent of prompt-text cadence.
 
 Kill switches:
 

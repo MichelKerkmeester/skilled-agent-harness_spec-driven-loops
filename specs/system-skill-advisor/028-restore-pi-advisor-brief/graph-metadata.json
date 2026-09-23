@@ -44,7 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/hooks/dispatch/pi/directive-dedup.test.ts",
+      ".skilled/hooks/vitest.config.ts"
     ],
     "entities": [
       {
@@ -69,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-dedup.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/dispatch/pi/directive-dedup.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -178,23 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Since the source-root migration, the pi prompt-advisor hook fails on every prompt in ~2 ms without contacting anything: its warm-CLI fallback probe looks only under `<root>/.opencode/bin/`, but the advisor shim and the launcher-IPC bridge now live under `<root>/.skilled/bin/`",
     "created_at": "2026-09-22T07:01:40Z",
-    "last_save_at": "2026-09-22T07:28:02.607Z",
+    "last_save_at": "2026-09-23T05:24:31.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac23bb03ba85d5166b557e4343ccad5330778e7768384ad6b783e0bbf573e6d4",
+    "source_fingerprint": "sha256:eedeb1b6c74e3458adbb3dba57d27c1e84cd581d6d97a18a3c4d5c4f401a9e88",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bddbb0a643f5a6fc8060ecbf46a869df0363034ec8a14caf533e6934cc82b966",
-      "plan.md": "f014e8aa64c9128fe91b52955b09ae7eb806242a27f28a10816a5bb2bd208b2e",
+      "plan.md": "9a0922025cde5767008bb7411e96dece0e3d5673138bf52afb58aa79ae1c865c",
       "tasks.md": "4127abdcab4befb05c075775838dd7c3754b2541546e4deda2d0cf2c13f69d42",
-      "implementation-summary.md": "ad86585296e7c5bddebbad0702c91e8cc855b0fd5130f388a948581996f5d4ff"
+      "implementation-summary.md": "57eb966f55ff5a4f43d1bcf1425a5abc023d9b1ef7d2925459f5007f58cfad68"
     },
     "last_active_at": null
   }

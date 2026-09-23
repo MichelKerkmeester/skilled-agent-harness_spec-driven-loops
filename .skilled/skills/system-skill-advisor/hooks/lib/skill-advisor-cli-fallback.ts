@@ -184,7 +184,7 @@ function findCliFallbackPaths(workspaceRoot: string, env: NodeJS.ProcessEnv): Cl
           repoRoot: current,
           cliPath,
           bridgePath,
-          dbDir: resolve(env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? defaultDbDir),
+          dbDir: resolve(env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? defaultDbDir),
         };
       }
     }

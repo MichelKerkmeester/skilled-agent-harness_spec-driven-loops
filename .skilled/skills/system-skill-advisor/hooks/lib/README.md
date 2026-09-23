@@ -9,7 +9,7 @@ description: "Warm-daemon CLI fallback that the skill-advisor prompt hook falls 
 
 ## 1. OVERVIEW
 
-`hooks/lib/` holds the CLI fallback path for the `system-skill-advisor` prompt hook. When the in-process advisor brief returns `fail_open` or a degraded, unavailable-freshness result, this module probes the warm advisor daemon socket, shells out to `.skilled/bin/skill-advisor.cjs advisor_recommend`, and reshapes the CLI response back into the same `AdvisorHookResult` envelope the hook already understands, so a cold in-process path does not have to mean a silent miss.
+`hooks/lib/` holds the CLI fallback path for the `system-skill-advisor` prompt hook. When the in-process advisor brief returns `fail_open` or a degraded, unavailable-freshness result, this module finds the advisor CLI under `.skilled` first and `.opencode` second, takes the CLI, its IPC bridge and the database directory from that one root, shells out to `<root>/bin/skill-advisor.cjs advisor_recommend` and reshapes the CLI response back into the same `AdvisorHookResult` envelope the hook already understands. The CLI starts the daemon itself when the socket is cold, so a cold in-process path does not have to mean a silent miss.
 
 ---
 
@@ -17,7 +17,7 @@ description: "Warm-daemon CLI fallback that the skill-advisor prompt hook falls 
 
 | File | Purpose |
 |------|---------|
-| `skill-advisor-cli-fallback.ts` | Probes the warm daemon socket, spawns the advisor CLI with a bounded timeout, parses its JSON payload, and normalizes the result (and retryable exit/reason codes) into an `AdvisorHookResult`. |
+| `skill-advisor-cli-fallback.ts` | Resolves the CLI, IPC bridge and database paths from one root (`.skilled`, then `.opencode`), spawns the advisor CLI with a bounded timeout, parses its JSON payload and normalizes the result (and retryable exit/reason codes) into an `AdvisorHookResult`. |
 
 ---
 
