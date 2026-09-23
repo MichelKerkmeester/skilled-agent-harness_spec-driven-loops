@@ -2,7 +2,7 @@
 name: cli-claude-code
 description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.0.0
+version: 1.5.1.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -214,7 +214,7 @@ Run one, then confirm — the skill will retry the original dispatch:
 
 ### Default Invocation (Skill Default)
 
-**Default model + flags + agent**: `claude-sonnet-4-6` · `--output-format text` · no `--agent` (general-purpose). For deep-reasoning work, override with `--model claude-opus-4-6 --effort high`.
+**Default model + flags + agent**: `claude-sonnet-4-6` · `--output-format text` · no `--agent` (general-purpose). For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`.
 
 > **Fan-out fallback:** a deep-loop lineage that pins no model runs **Opus**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 
@@ -230,14 +230,14 @@ claude -p "<prompt>" \
 | User says | Resolve to |
 |-----------|------------|
 | (nothing specified) | `--model claude-sonnet-4-6 --output-format text` |
-| "Use Opus extended thinking" | `--model claude-opus-4-6 --effort high` |
+| "Use Opus extended thinking" | `--model claude-opus-5-5 --effort high` |
 | "JSON schema output" | Append `--json-schema '<schema>' --output-format json` |
 | "Cost-capped" | Append `--max-budget-usd 1.00` |
 | "Plan mode" | Append `--permission-mode plan` (read-only) |
 
 ### Model Selection
 
-`claude-sonnet-4-6` is the skill default. Reach for `claude-opus-4-6` (deep reasoning / complex architecture — pair with `--effort high`) or `claude-haiku-4-5-20251001` (fast, lightweight; only when explicitly requested); the current-generation `claude-opus-4-8` / `claude-sonnet-5` / `claude-fable-5` IDs are selectable by name where the environment supports them. Full roster with tiers, cost, defaults, and the `--effort` mapping → [references/providers-and-models.md](references/providers-and-models.md).
+`claude-sonnet-4-6` is the skill default. Reach for `claude-opus-5-5` (deep reasoning / complex architecture — pair with `--effort high`) or `claude-haiku-4-5-20251001` (fast, lightweight; only when explicitly requested); the current-generation `claude-sonnet-5` / `claude-fable-5` IDs are also selectable by name where the environment supports them. Full roster with tiers, cost, defaults, and the `--effort` mapping → [references/providers-and-models.md](references/providers-and-models.md).
 
 ### Claude Code Agent Delegation
 

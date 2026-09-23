@@ -1,6 +1,6 @@
 ---
 title: "FAST-003 -- SOL priority-tier activation"
-description: "This scenario validates SOL priority-tier activation for `FAST-003`. It focuses on confirming that Fast Mode reports enabled and shows the indicator on the openai-codex/gpt-5.6-sol model."
+description: "This scenario validates SOL priority-tier activation for `FAST-003`. It focuses on confirming that Fast Mode reports enabled and shows the indicator on the openai-codex/gpt-6-sol model."
 stage: routing
 version: 1.0.0.0
 ---
@@ -13,11 +13,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates SOL priority-tier activation for `FAST-003`. It focuses on confirming that Fast Mode reports enabled and shows the `fast` indicator when the active model is `openai-codex/gpt-5.6-sol`, a configured target.
+This scenario validates SOL priority-tier activation for `FAST-003`. It focuses on confirming that Fast Mode reports enabled and shows the `fast` indicator when the active model is `openai-codex/gpt-6-sol`, a configured target.
 
 ### Why This Matters
 
-SOL is a configured Fast Mode target. Confirming activation on SOL completes the coverage of the three GPT-5.6 variants the operator named, so no variant ships unverified.
+SOL is a configured Fast Mode target. Confirming activation on SOL completes the coverage of the three GPT variants the operator named, so no variant ships unverified.
 
 ---
 
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `FAST-003` and confirm t
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FAST-003 | SOL priority-tier activation | Verify Fast Mode activates on SOL | `/fast on` | 1. `bash: pi --model openai-codex/gpt-5.6-sol` -> 2. `pi> /fast on` -> 3. `pi> Explain what this file does` | Step 1: Pi starts on `openai-codex/gpt-5.6-sol`; Step 2: chat notification `Fast Mode enabled` (info) and the `fast` indicator appears; Step 3: the request runs against SOL | Notification text, indicator screenshot, and the active model label | PASS if the notification is exactly `Fast Mode enabled` and the indicator is visible; FAIL if it is missing, reads `inactive`, or no indicator appears | 1. Confirm the active model is `openai-codex/gpt-5.6-sol`. 2. Run `pi list` and confirm the extension is loaded. 3. Read `.pi/pi-fast-mode-w-subagent-support-config.json` and confirm `enabled` is `true`. |
+| FAST-003 | SOL priority-tier activation | Verify Fast Mode activates on SOL | `/fast on` | 1. `bash: pi --model openai-codex/gpt-6-sol` -> 2. `pi> /fast on` -> 3. `pi> Explain what this file does` | Step 1: Pi starts on `openai-codex/gpt-6-sol`; Step 2: chat notification `Fast Mode enabled` (info) and the `fast` indicator appears; Step 3: the request runs against SOL | Notification text, indicator screenshot, and the active model label | PASS if the notification is exactly `Fast Mode enabled` and the indicator is visible; FAIL if it is missing, reads `inactive`, or no indicator appears | 1. Confirm the active model is `openai-codex/gpt-6-sol`. 2. Run `pi list` and confirm the extension is loaded. 3. Read `.pi/pi-fast-mode-w-subagent-support-config.json` and confirm `enabled` is `true`. |
 
 ### Optional Supplemental Checks
 

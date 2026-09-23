@@ -46,14 +46,13 @@ cli-claude-code is single-provider: **Anthropic**. The model string passed to `-
 
 | Model id | Default? | Notes (tier / use case) |
 |----------|----------|-------------------------|
-| `claude-opus-4-8` | — | Current flagship (Claude 5-era Opus) — deepest reasoning, highest quality; architecture, complex trade-offs, extended thinking |
+| `claude-opus-5-5` | — | Current flagship Opus — deepest reasoning, highest quality; architecture, complex trade-offs, extended thinking (`--effort high`) |
 | `claude-sonnet-5` | — | Current-generation balanced (Claude 5 family) — general tasks, code generation, reviews |
 | `claude-fable-5` | — | Current-generation Claude 5 family dispatch |
-| `claude-opus-4-6` | — | Prior-generation deep reasoning — architecture, complex trade-offs, extended thinking (`--effort high`) |
 | `claude-sonnet-4-6` | **Default** | Prior-generation balanced — **current skill default** for most tasks |
 | `claude-haiku-4-5-20251001` | — | Fastest, most cost-effective — classification, formatting, simple queries, batch ops; use only when explicitly requested |
 
-> The default pin is `claude-sonnet-4-6`. `claude-opus-4-8` / `claude-sonnet-5` / `claude-fable-5` are the current Claude generation and are selectable via `--model` where the calling environment supports them — name a current-generation id explicitly when you want it.
+> The default pin is `claude-sonnet-4-6`. `claude-opus-5-5` / `claude-sonnet-5` / `claude-fable-5` are the current Claude generation and are selectable via `--model` where the calling environment supports them — name a current-generation id explicitly when you want it.
 
 ---
 
@@ -74,7 +73,7 @@ claude -p "<prompt>" \
   2>&1
 ```
 
-Always append `2>&1` to capture both stdout and stderr. For deep-reasoning work, override with `--model claude-opus-4-6 --effort high`. If Claude Code is not authenticated, the mode ASKS the operator to run `claude auth login` — it never substitutes an API key or a different model. See the OAuth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3 and the SKILL's "Provider Auth Pre-Flight".
+Always append `2>&1` to capture both stdout and stderr. For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`. If Claude Code is not authenticated, the mode ASKS the operator to run `claude auth login` — it never substitutes an API key or a different model. See the OAuth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3 and the SKILL's "Provider Auth Pre-Flight".
 
 ---
 

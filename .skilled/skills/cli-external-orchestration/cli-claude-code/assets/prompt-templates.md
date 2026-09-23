@@ -37,7 +37,7 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 | `--output-format text` | Plain text output (default, recommended) |
 | `--output-format json` | JSON output with metadata |
 | `--model claude-sonnet-4-6` | Model selection (sonnet = default) |
-| `--model claude-opus-4-6` | Deep reasoning model |
+| `--model claude-opus-5-5` | Deep reasoning model |
 | `--model claude-haiku-4-5-20251001` | Fast/cheap model |
 | `--permission-mode plan` | Read-only safe mode |
 | `--json-schema '{...}'` | Schema-validated JSON output |
@@ -167,14 +167,14 @@ Framework: CRAFT
 
 ```bash
 claude -p "Analyze trade-offs between [option A] and [option B] for [context]. Evaluate across: [dimensions]. Recommend with confidence level and reasoning." \
-  --model claude-opus-4-6 --effort high --permission-mode plan --output-format text 2>&1
+  --model claude-opus-5-5 --effort high --permission-mode plan --output-format text 2>&1
 ```
 
 **Example:**
 
 ```bash
 claude -p "Analyze trade-offs between microservices and modular monolith for our e-commerce platform. Evaluate across: scalability, team autonomy, operational complexity, data consistency, deployment speed, debugging difficulty. Recommend with confidence level and reasoning." \
-  --model claude-opus-4-6 --effort high --permission-mode plan --output-format text 2>&1
+  --model claude-opus-5-5 --effort high --permission-mode plan --output-format text 2>&1
 ```
 
 ### Algorithm Design
@@ -183,14 +183,14 @@ Framework: CRAFT
 
 ```bash
 claude -p "Design an algorithm for [problem]. Requirements: [constraints]. Analyze time/space complexity. Handle edge cases: [edge cases]. Provide pseudocode and implementation strategy." \
-  --model claude-opus-4-6 --effort high --permission-mode plan --output-format text 2>&1
+  --model claude-opus-5-5 --effort high --permission-mode plan --output-format text 2>&1
 ```
 
 **Example:**
 
 ```bash
 claude -p "Design an algorithm for distributed rate limiting across 10 API servers. Requirements: sliding window, per-user limits, 99.9th percentile latency under 5ms, eventually consistent. Handle edge cases: server restart, clock skew, burst traffic. Provide pseudocode and implementation strategy." \
-  --model claude-opus-4-6 --effort high --permission-mode plan --output-format text 2>&1
+  --model claude-opus-5-5 --effort high --permission-mode plan --output-format text 2>&1
 ```
 
 ### Root Cause Analysis
@@ -199,14 +199,14 @@ Framework: CRAFT
 
 ```bash
 claude -p "Root cause analysis for: [problem description]. Evidence: [logs/errors]. Relevant code: @./[files]. Rank possible causes by likelihood. Suggest diagnostic steps for each." \
-  --model claude-opus-4-6 --effort high --agent debug --output-format text 2>&1
+  --model claude-opus-5-5 --effort high --agent debug --output-format text 2>&1
 ```
 
 **Example:**
 
 ```bash
 claude -p "Root cause analysis for: intermittent 500 errors on POST /api/orders, happening 2-3 times per hour under normal load. Evidence: [paste error logs]. Relevant code: @./src/api/orders.ts and @./src/services/order.ts. Rank possible causes by likelihood. Suggest diagnostic steps for each." \
-  --model claude-opus-4-6 --effort high --agent debug --output-format text 2>&1
+  --model claude-opus-5-5 --effort high --agent debug --output-format text 2>&1
 ```
 
 ---
@@ -399,14 +399,14 @@ Framework: CRAFT
 
 ```bash
 claude -p "Plan [task]. Generate 3 different strategies. For each, analyze: feasibility, risk, effort, timeline. Score each 1-10 across dimensions. Recommend the best with reasoning." \
-  --agent ai-council --model claude-opus-4-6 --permission-mode plan --output-format text 2>&1
+  --agent ai-council --model claude-opus-5-5 --permission-mode plan --output-format text 2>&1
 ```
 
 **Example:**
 
 ```bash
 claude -p "Plan the migration from monolith to microservices. Generate 3 different strategies. For each, analyze: feasibility, risk, effort, timeline. Score each 1-10 across dimensions. Recommend the best with reasoning." \
-  --agent ai-council --model claude-opus-4-6 --permission-mode plan --output-format text 2>&1
+  --agent ai-council --model claude-opus-5-5 --permission-mode plan --output-format text 2>&1
 ```
 
 ### Codebase Exploration

@@ -106,7 +106,7 @@ function dispatchWithShim(
   const result = withProcessEnv({ ...fixture.env, ...extraEnv }, () => codexDispatch.dispatchCodex({
     prompt: 'hermetic stress prompt',
     cwd: fixture.root,
-    model: 'gpt-5.6-luna',
+    model: 'gpt-6-luna',
     effort: 'high',
     tier: 'fast',
     timeoutMs: 1_000,
@@ -205,7 +205,7 @@ describe.sequential('cli-codex adapter contracts', () => {
     const result = withProcessEnv(fixture.env, () => codexDispatch.dispatchCodex({
       prompt: 'success prompt',
       cwd: fixture.root,
-      model: 'gpt-5.6-sol',
+      model: 'gpt-6-sol',
       effort: 'xhigh',
       tier: 'priority',
       timeoutMs: 1_000,
@@ -217,7 +217,7 @@ describe.sequential('cli-codex adapter contracts', () => {
     expect(capture.args).toEqual(expect.arrayContaining([
       'exec',
       '--model',
-      'gpt-5.6-sol',
+      'gpt-6-sol',
       'model_reasoning_effort=xhigh',
       'service_tier=priority',
       'approval_policy=never',
