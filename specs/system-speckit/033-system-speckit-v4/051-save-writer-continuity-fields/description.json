@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/051-save-writer-continuity-fields",
+  "description": "The continuity writer behind `/speckit:save` ignores every continuity field it is given and stamps the completion fingerprint after refreshing the",
+  "keywords": [
+    "continuity",
+    "writer",
+    "behind",
+    "speckit",
+    "save",
+    "ignores",
+    "every",
+    "field",
+    "given",
+    "stamps",
+    "completion",
+    "fingerprint",
+    "refreshing"
+  ],
+  "lastUpdated": "2026-09-23T17:10:55.498Z",
+  "specId": "051",
+  "folderSlug": "save-writer-continuity-fields",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "23-09-26_18-03__closed-the-save-writer-continuity-phase-the.md",
+    "23-09-26_18-08__closed-the-save-writer-continuity-phase-the.md",
+    "23-09-26_18-10__closed-the-save-writer-continuity-phase-the.md"
+  ]
+}

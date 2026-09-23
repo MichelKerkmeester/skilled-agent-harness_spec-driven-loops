@@ -110,6 +110,9 @@ type UnknownRecord = Record<string, unknown>;
 // the strict shared parser treats as no frontmatter at all.
 const FRONTMATTER_RE = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\r?\n([\s\S]*?)\r?\n---(?:\s*\r?\n|$)/;
 const BODY_AFTER_FRONTMATTER_RE = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\r?\n[\s\S]*?\r?\n---(?:\s*\r?\n|$)?/;
+// The same fence split into opening, content and closing, so an upsert can replace
+// content lines and splice the fences and body back unchanged.
+const FRONTMATTER_PARTS_RE = /^((?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\r?\n)([\s\S]*?)(\r?\n---(?:\s*\r?\n|$))/;
 const QUESTION_ID_RE = /^Q[1-9][0-9]*$/;
 const PACKET_POINTER_RE = /^[a-z0-9._-]+(?:\/[a-z0-9._-]+)+\/?$/;
 const ACTOR_RE = /^[a-z0-9][a-z0-9._-]{1,63}$/;
@@ -1081,25 +1084,75 @@ export function writeThinContinuityRecord(
   }
 }
 
-/** Validate a continuity payload and upsert its `_memory.continuity` block into a markdown document's frontmatter. */
+/**
+ * Locate the top-level `_memory:` block among frontmatter lines: the key line plus
+ * every indented or blank line under it, minus trailing blank lines, which stay
+ * where they are so the spacing before the next key is kept.
+ */
+function findMemoryBlock(lines: string[]): { start: number; end: number } | null {
+  const start = lines.findIndex((line) => /^_memory:\s*$/.test(line));
+  if (start === -1) {
+    return null;
+  }
+  let end = start + 1;
+  while (end < lines.length && (lines[end].trim().length === 0 || /^\s/.test(lines[end]))) {
+    end += 1;
+  }
+  while (end > start + 1 && lines[end - 1].trim().length === 0) {
+    end -= 1;
+  }
+  return { start, end };
+}
+
+/**
+ * Validate a continuity payload and upsert its `_memory.continuity` block into a
+ * markdown document's frontmatter. Only the top-level `_memory` block is parsed and
+ * rewritten. Every other frontmatter line and the body are kept byte for byte,
+ * because this module's YAML reader covers the continuity block's own shapes but
+ * not all YAML: rewriting the whole frontmatter through it turned a flow-style
+ * list such as `trigger_phrases: ["a", "b"]` into a single string.
+ */
 export function upsertThinContinuityInMarkdown(
   markdown: string,
   input: unknown,
   options: ThinContinuityValidationOptions = {},
 ): ThinContinuityWriteResult {
   try {
-    const { rawFrontmatter, body } = extractFrontmatter(markdown);
-    const currentFrontmatter = rawFrontmatter.trim().length > 0 ? parseYamlDocument(rawFrontmatter) : {};
-    const writeResult = writeThinContinuityRecord(currentFrontmatter, input, options);
+    const match = markdown.match(FRONTMATTER_PARTS_RE);
+    const lineEnding = match && match[2].includes('\r\n') ? '\r\n' : '\n';
+    const lines = match ? match[2].split(/\r?\n/) : [];
+    const block = findMemoryBlock(lines);
+    const storedMemory = block
+      ? parseYamlDocument(lines.slice(block.start, block.end).join('\n'))._memory
+      : undefined;
+    const writeResult = writeThinContinuityRecord(
+      storedMemory === undefined ? {} : { _memory: storedMemory },
+      input,
+      options,
+    );
     if (!writeResult.ok || !writeResult.frontmatter) {
       return writeResult;
     }
 
-    const frontmatterYaml = serializeYamlValue(writeResult.frontmatter as Record<string, YamlValue>, 0).join('\n');
-    const bodyPrefix = body.length > 0 ? '\n' : '';
+    const memoryLines = serializeYamlValue(
+      { _memory: writeResult.frontmatter._memory as YamlValue },
+      0,
+    );
+    if (!match) {
+      const bodyPrefix = markdown.length > 0 ? '\n' : '';
+      return {
+        ...writeResult,
+        markdown: `---\n${memoryLines.join('\n')}\n---\n${bodyPrefix}${markdown}`,
+      };
+    }
+
+    const nextLines = block
+      ? [...lines.slice(0, block.start), ...memoryLines, ...lines.slice(block.end)]
+      : [...lines, ...memoryLines];
+    const [whole, opening, , closing] = match;
     return {
       ...writeResult,
-      markdown: `---\n${frontmatterYaml}\n---\n${bodyPrefix}${body}`,
+      markdown: `${opening}${nextLines.join(lineEnding)}${closing}${markdown.slice(whole.length)}`,
     };
   } catch (error) {
     return {

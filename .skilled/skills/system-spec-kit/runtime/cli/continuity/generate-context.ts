@@ -13,7 +13,7 @@ import * as fsSync from 'fs';
 
 // Internal modules
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
-import { graphMetadataSchema, recordFreshnessPointer } from '@spec-kit/runtime/api';
+import { graphMetadataSchema, recordFreshnessPointer, resolvePhaseParentPointerHop } from '@spec-kit/runtime/api';
 import {
   CONFIG,
   getSessionScopedSaveContextExample,
@@ -27,7 +27,6 @@ import {
 import { resolveSpecFolderCanonical } from '../core/spec-root-canonical-resolver.js';
 import { assertSpecWriteAllowed } from '../core/spec-root-write-guard.js';
 import { runWorkflow, releaseFilesystemLock } from '../core/workflow.js';
-import { stampCompletionFingerprintIfNeeded } from '../core/memory-metadata.js';
 import { loadCollectedData } from '../loaders/index.js';
 import { collectSessionData } from '../extractors/collect-session-data.js';
 import { isMainModule } from '../lib/esm-entry.js';
@@ -60,6 +59,10 @@ const CANONICAL_SAVE_LOCK_DIR = '.canonical-save.lock';
 const CANONICAL_SAVE_STALE_MS = 30_000;
 const CANONICAL_SAVE_HEARTBEAT_MS = 10_000;
 const canonicalSaveHeartbeats = new Map<string, ReturnType<typeof setInterval>>();
+// The resume ladder follows a pointer chain at most this deep, so the save walks no
+// further when it routes a write down the chain or points ancestors back up it.
+const PHASE_POINTER_WALK_MAX_DEPTH = 5;
+const PHASE_CHILD_SEGMENT_RE = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
 type CanonicalSaveLockOwnerState = 'alive' | 'dead' | 'unknown';
 
@@ -149,6 +152,23 @@ JSON Data Format (with preflight/postflight, session/git, and tool/exchange enri
   - Top-level routeAs / mergeModeHint are accepted for compatibility with routed save workflows
   - Top-level specDrift / reviewerFocus are accepted as optional advisory context; absence means none
   - Explicit CLI spec-folder targets remain authoritative over payload specFolder values
+
+  Continuity fields (all optional, written only by a --full-auto save):
+  - recent_action, next_safe_action: compact status lines of at most 96 characters
+    and 16 words; next_safe_action opens with an imperative or status verb ("Run ...")
+  - blockers, key_files: lists of at most 5 short items; key_files are repo-relative paths
+  - completion_pct: an integer from 0 to 100, and 100 only with no blockers or open questions
+  - open_questions, answered_questions: question ids such as "Q1"
+  - camelCase spellings are accepted: recentAction, nextSafeAction, keyFiles,
+    completionPct, openQuestions, answeredQuestions
+  - The writer sets last_updated_at and last_updated_by and upserts the block into the
+    leaf's implementation-summary.md. A field the payload leaves out keeps its stored
+    value while that value validates; a stored value that fails is dropped and named.
+  - A payload value the validator rejects fails the save before any file is written.
+  - Aimed at a phase parent, the save writes into the leaf holding the work: payload
+    paths inside one child choose it, and a level with no such path follows the
+    parent's last_active_child_id pointer. Paths naming two children write nothing and
+    list the candidates. Every ancestor's pointer then leads one level down to the leaf.
 
   Learning Delta Calculation:
   - Knowledge Delta = postflight.knowledgeScore - preflight.knowledgeScore
@@ -565,7 +585,8 @@ function releaseCanonicalSaveLock(lockPath: string | null): void {
   fsSync.rmSync(lockPath, { recursive: true, force: true });
 }
 
-function getPacketIdFromGraphMetadata(specFolderPath: string): string {
+/** A packet's identity: its graph-metadata packet_id, else its path below the specs root. */
+export function getPacketIdFromGraphMetadata(specFolderPath: string): string {
   const graphFile = path.join(specFolderPath, GRAPH_METADATA_FILE);
   try {
     const metadata = readGraphMetadata(graphFile);
@@ -635,26 +656,176 @@ export function updatePhaseParentPointer(
   atomicWriteJson(graphFile, updated);
 }
 
-/** After a save, update the phase-parent pointer for the saved folder itself or its phase-parent ancestor. */
+/**
+ * Resolve symlinks before comparing paths. A workspace reached through a linked
+ * directory (macOS `/var` is `/private/var`, or a linked checkout) spells one folder
+ * two ways, and a containment check between the two spellings silently fails.
+ */
+export function canonicalPath(target: string): string {
+  try {
+    return fsSync.realpathSync(target);
+  } catch {
+    return path.resolve(target);
+  }
+}
+
+/**
+ * After a save, point every phase-parent ancestor one level down toward the saved
+ * packet, so a resume from any level follows the chain to it. A save aimed at a phase
+ * parent itself moves no pointer: it wrote into no child, and clearing the pointer
+ * would strand the resume ladder at a parent that holds no work. The walk stops below
+ * a specs root, so a save never rewrites the root's own metadata, at a folder with no
+ * graph metadata, and at the resume ladder's depth limit. An ancestor whose metadata
+ * fails to parse is skipped with a warning so the rest of the chain still updates.
+ * @returns The ancestor folders whose pointer was written.
+ */
 export function updatePhaseParentPointersAfterSave(
   specFolderPath: string,
   timestamp: string = new Date().toISOString(),
-): void {
-  const resolvedSpecFolder = path.resolve(specFolderPath);
-
-  if (isPhaseParent(resolvedSpecFolder)) {
-    updatePhaseParentPointer(resolvedSpecFolder, null, timestamp);
-    return;
+  warn: (message: string) => void = (message) => console.warn(message),
+): string[] {
+  const updated: string[] = [];
+  let current = canonicalPath(specFolderPath);
+  if (isPhaseParent(current)) {
+    return updated;
   }
 
-  const directParent = path.dirname(resolvedSpecFolder);
-  if (directParent !== resolvedSpecFolder && isPhaseParent(directParent)) {
-    updatePhaseParentPointer(
-      directParent,
-      getPacketIdFromGraphMetadata(resolvedSpecFolder),
-      timestamp,
-    );
+  const specsRoots = new Set(getSpecsDirectories().map(canonicalPath));
+  const isWalkable = (folder: string): boolean => (
+    !specsRoots.has(folder)
+    && isPhaseParent(folder)
+    && fsSync.existsSync(path.join(folder, GRAPH_METADATA_FILE))
+  );
+
+  for (let depth = 0; depth < PHASE_POINTER_WALK_MAX_DEPTH; depth += 1) {
+    const parent = path.dirname(current);
+    if (parent === current || !isWalkable(parent)) {
+      return updated;
+    }
+    try {
+      updatePhaseParentPointer(parent, getPacketIdFromGraphMetadata(current), timestamp);
+      updated.push(parent);
+    } catch (error: unknown) {
+      warn(`Skipped the phase-parent pointer in ${parent}: ${error instanceof Error ? error.message : String(error)}`);
+    }
+    current = parent;
   }
+
+  const beyondLimit = path.dirname(current);
+  if (beyondLimit !== current && isWalkable(beyondLimit)) {
+    warn(`Stopped the phase-parent pointer walk at ${PHASE_POINTER_WALK_MAX_DEPTH} levels; ${beyondLimit} and above keep their pointers.`);
+  }
+  return updated;
+}
+
+/** Where a save's continuity write lands: one leaf packet, or nowhere with the reason and candidates. */
+export type ContinuityLeafResolution =
+  | { kind: 'leaf'; leafPath: string; route: string[] }
+  | { kind: 'unresolved'; reason: string; candidates: string[] };
+
+function isChildPacketDir(parentPath: string, childName: string): boolean {
+  if (!PHASE_CHILD_SEGMENT_RE.test(childName)) {
+    return false;
+  }
+  const childPath = path.join(parentPath, childName);
+  try {
+    if (!fsSync.statSync(childPath).isDirectory()) {
+      return false;
+    }
+  } catch {
+    return false;
+  }
+  return fsSync.existsSync(path.join(childPath, 'spec.md'))
+    || fsSync.existsSync(path.join(childPath, 'description.json'));
+}
+
+function listChildPackets(parentPath: string): string[] {
+  try {
+    return fsSync.readdirSync(parentPath)
+      .filter((name) => isChildPacketDir(parentPath, name))
+      .sort()
+      .map((name) => path.join(parentPath, name));
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Resolve the leaf packet a save's continuity belongs in. A save aimed at a leaf
+ * lands there. A save aimed at a phase parent descends one level at a time. Payload
+ * paths inside a child decide a level when they all name the same child, because
+ * they record where this session actually worked, while a pointer may be left over
+ * from an older one. A level with no such path follows its pointer under the resume
+ * ladder's own rule. Paths naming two children leave the save unresolved, since a
+ * guess would write one session's continuity into another packet.
+ */
+export function resolveContinuityLeaf(
+  targetPath: string,
+  payloadPaths: string[],
+  hints: string[] = [],
+): ContinuityLeafResolution {
+  let current = canonicalPath(targetPath);
+  let specFolder = getPacketIdFromGraphMetadata(current);
+  const projectRoot = canonicalPath(CONFIG.PROJECT_ROOT);
+  const absolutePaths = payloadPaths
+    .filter((entry) => typeof entry === 'string' && entry.trim().length > 0)
+    .map((entry) => canonicalPath(path.resolve(projectRoot, entry.trim())));
+  const route: string[] = [];
+
+  for (let depth = 0; depth < PHASE_POINTER_WALK_MAX_DEPTH; depth += 1) {
+    if (!isPhaseParent(current)) {
+      return { kind: 'leaf', leafPath: current, route };
+    }
+
+    const namedChildren = new Set<string>();
+    for (const absolutePath of absolutePaths) {
+      const relative = path.relative(current, absolutePath);
+      if (!relative || relative.startsWith('..') || path.isAbsolute(relative)) {
+        continue;
+      }
+      const firstSegment = relative.split(path.sep)[0];
+      if (isChildPacketDir(current, firstSegment)) {
+        namedChildren.add(firstSegment);
+      }
+    }
+
+    if (namedChildren.size > 1) {
+      return {
+        kind: 'unresolved',
+        reason: `payload paths name more than one child of ${current}`,
+        candidates: [...namedChildren].sort().map((name) => path.join(current, name)),
+      };
+    }
+
+    if (namedChildren.size === 1) {
+      const [childName] = namedChildren;
+      current = path.join(current, childName);
+      specFolder = `${specFolder}/${childName}`;
+      route.push(`${childName} (payload paths)`);
+      continue;
+    }
+
+    const hop = resolvePhaseParentPointerHop(current, specFolder, hints);
+    if (!hop) {
+      return {
+        kind: 'unresolved',
+        reason: `no payload path lies inside a child of ${current}, and it has no usable pointer`,
+        candidates: listChildPackets(current),
+      };
+    }
+    route.push(`${path.relative(current, hop.folderPath)} (pointer)`);
+    current = hop.folderPath;
+    specFolder = hop.specFolder;
+  }
+
+  if (!isPhaseParent(current)) {
+    return { kind: 'leaf', leafPath: current, route };
+  }
+  return {
+    kind: 'unresolved',
+    reason: `the phase-parent chain below the target is deeper than ${PHASE_POINTER_WALK_MAX_DEPTH} levels`,
+    candidates: listChildPackets(current),
+  };
 }
 
 async function readAllStdin(stdin: NodeJS.ReadStream = process.stdin): Promise<string> {
@@ -957,21 +1128,15 @@ async function main(
         sessionId: parsed.sessionId ?? undefined,
         plannerMode: parsed.plannerMode,
       });
-
-      const savedSpecFolder = resolveExistingSpecFolderPath(CONFIG.SPEC_FOLDER_ARG);
-      if (savedSpecFolder) {
-        updatePhaseParentPointersAfterSave(savedSpecFolder);
-        // Binds a completion claim to a real fingerprint at the moment it is
-        // saved, so CONTINUITY_FRESHNESS does not default a freshly closed
-        // packet into its missing/zero-fingerprint skip codes.
-        stampCompletionFingerprintIfNeeded(savedSpecFolder);
-      }
+      // The workflow stamps the completion fingerprint and moves the phase-parent
+      // pointers itself: the stamp has to land before the graph refresh reads the
+      // summary, and only the workflow knows which leaf a parent-targeted save wrote.
     } finally {
       releaseCanonicalSaveLock(canonicalSaveLock);
     }
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
-    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|requires? a non-empty JSON object|JSON object payload|no longer supported|session-id requires/.test(errMsg);
+    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|requires? a non-empty JSON object|JSON object payload|no longer supported|session-id requires|Continuity rejected/.test(errMsg);
 
     if (isExpected) {
       console.error(`\nError: ${errMsg}`);

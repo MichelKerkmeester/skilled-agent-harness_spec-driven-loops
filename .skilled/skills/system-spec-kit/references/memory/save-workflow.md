@@ -232,6 +232,22 @@ echo '{"specFolder":"049-anchor-context-retrieval","sessionSummary":"..."}' | \
 | `observations`   | array  | No       | Discoveries and learnings |
 | `user_prompts`   | array  | No       | Original user requests    |
 
+### Continuity Fields
+
+A `--full-auto` save writes these into the leaf's `_memory.continuity` block. A plan-only save accepts them without writing, and says so. Each field also takes its camelCase spelling (`recentAction`, `nextSafeAction`, `keyFiles`, `completionPct`, `openQuestions`, `answeredQuestions`).
+
+| Field                | Type    | Limits |
+| -------------------- | ------- | ------ |
+| `recent_action`      | string  | At most 96 characters and 16 words, one line |
+| `next_safe_action`   | string  | Same limits, and opens with an imperative or status verb such as `Run` or `Verify` |
+| `blockers`           | array   | At most 5 short status items |
+| `key_files`          | array   | At most 5 repo-relative paths |
+| `completion_pct`     | integer | 0 to 100, and 100 only with no blockers or open questions |
+| `open_questions`     | array   | Question ids such as `Q1` |
+| `answered_questions` | array   | Question ids, disjoint from `open_questions` |
+
+The writer sets `packet_pointer`, `last_updated_at` and `last_updated_by` itself. A field the payload leaves out keeps its stored value while that value validates; a stored value that fails validation is dropped and named in the save output. A payload value that fails fails the whole save before any file is written, and an empty string counts as absent.
+
 If both the JSON payload and the CLI provide a spec folder, the explicit CLI argument wins.
 
 If that explicit CLI argument resolves to a phase folder, the command keeps that explicit target and updates the selected phase folder's own canonical continuity surfaces.
@@ -266,10 +282,10 @@ The Phase 018 save path is packet-first. Retired `[spec]/memory/*.md` writes are
 
 | Property | What it means |
 |----------|---------------|
-| Packet-local | Writes land inside the resolved spec folder. The one documented reach outside it is the phase-parent pointer bubble-up, which updates only the parent's `graph-metadata.json`. |
-| Atomic, same-directory | The generated metadata pair is written to a temp file beside its target and moved into place with `fs.renameSync` (POSIX-atomic), so a crashed save leaves the previous JSON intact rather than torn. Helper: `atomicWriteJson` in `runtime/cli/continuity/generate-context.ts`. |
+| Packet-local | Writes land inside the resolved spec folder, or inside the leaf a phase-parent save routes to. The one documented reach outside it is the ancestor pointer walk, which updates only each ancestor's `graph-metadata.json`. |
+| Atomic, same-directory | Every file the save changes, the continuity block and the fingerprint stamp included, is written to a temp file beside its target and moved into place with `fs.renameSync` (POSIX-atomic), so a crashed save leaves the previous file intact rather than torn. |
 | Locked | The packet-local `.canonical-save.lock` is acquired before any canonical continuity file is mutated. Parallel saves against the same folder fail fast; a lock whose owner process is gone is reclaimed with a warning. Together this keeps simultaneous handoff writes from interleaving. |
-| Metadata-refreshing | The save refreshes the generated metadata pair (`description.json` and `graph-metadata.json`) for the packet, plus the phase-parent pointer. |
+| Metadata-refreshing | The save refreshes the generated metadata pair (`description.json` and `graph-metadata.json`) for the packet, plus the ancestor pointers. Every source-doc write, the continuity block and the completion fingerprint stamp included, lands before the graph refresh, because the refresh hashes those docs: a doc changed after it fails the next strict validation with `SOURCE_FINGERPRINT_MISMATCH`. |
 
 Retrieval is a separate, generated artifact. Regenerate the trigger index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` when trigger phrases changed; the save neither runs it nor depends on it.
 
@@ -301,9 +317,9 @@ specs/###-feature-name/
 
 When the save target is a phase parent (detected via `isPhaseParent()` from `.skilled/skills/system-spec-kit/runtime/cli/dist/spec/is-phase-parent.js`), the generator follows a different routing contract that matches the lean trio policy:
 
-- **At a phase parent**: skip the `implementation-summary.md` continuity write at parent (parents do not require that file at all). Instead, atomically update the parent's `graph-metadata.json` `derived.last_active_child_id = null` and `derived.last_active_at = ISO_8601_NOW`. Logic at `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:493` (`updatePhaseParentPointersAfterSave`).
-- **At a child of a phase parent**: write the child's normal `_memory.continuity` to its `implementation-summary.md` AND atomically update the parent's `graph-metadata.json` `derived.last_active_child_id` to the child's `packet_id` plus a fresh `last_active_at`. The bubble-up uses the same atomic write helper.
-- **Atomic write**: same-directory temp file + `fs.renameSync` (POSIX-atomic). Helper at `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:387` (`atomicWriteJson`). Prevents torn JSON state under concurrent saves.
+- **At a phase parent**: the parent holds no `implementation-summary.md`, so a `--full-auto` save carrying continuity fields resolves the leaf that holds the work and writes there. At each level, payload paths (`filesModified` and `key_files`) that lie inside a child choose that child when they all name the same one. A level with no such path follows its `derived.last_active_child_id` pointer when the pointer names an existing child packet. Payload paths spread across two children, or no path and no usable pointer, resolve nothing: the save writes no continuity, names the candidate children, and leaves every pointer unchanged. The routed leaf is written under its own `.canonical-save.lock` and its graph metadata is refreshed in the same save. Logic: `resolveContinuityLeaf` in `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts`.
+- **At a leaf**: write the leaf's `_memory.continuity`, then walk up and point every phase-parent ancestor one level down toward it, each with a fresh `last_active_at`, up to five levels. The walk stops below a specs root, so a save never rewrites `specs/graph-metadata.json`; an ancestor whose metadata fails to parse is skipped with a warning. A save that wrote into no child moves no pointer. Logic: `updatePhaseParentPointersAfterSave` in the same file.
+- **Atomic write**: same-directory temp file + `fs.renameSync` (POSIX-atomic). Prevents torn JSON state under concurrent saves.
 - **Resume integration**: `/speckit:resume` reads `derived.last_active_child_id` first when the target is a phase parent. If non-null and `last_active_at` is within 24 hours, recurse directly into that child. Otherwise fall back to listing children with statuses. `--no-redirect` bypasses the pointer entirely.
 
 #### Phase Parent Output Location (lean trio)

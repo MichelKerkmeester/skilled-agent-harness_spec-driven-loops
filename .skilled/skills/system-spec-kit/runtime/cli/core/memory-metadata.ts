@@ -404,9 +404,13 @@ const SESSION_DEDUP_FINGERPRINT_LINE_RE = /^(\s{6}fingerprint:\s*)(?:["'])?sha25
  * with a real, content-derived value whenever the spec folder carries a
  * completion claim in any of the six COMPLETION_DOCS (continuity-freshness.ts's
  * attestation binding: implementation-summary.md is the sole document that
- * fingerprint is ever verified against). Intended as a post-save step so a
- * freshly saved completed packet does not default into CONTINUITY_FRESHNESS's
- * `missing_fingerprint`/`zero_fingerprint` skip codes. A no-op when the
+ * fingerprint is ever verified against), so a freshly saved completed packet
+ * does not default into CONTINUITY_FRESHNESS's `missing_fingerprint`/
+ * `zero_fingerprint` skip codes. The save runs it before the graph refresh,
+ * because the summary is one of the documents the graph's source fingerprint
+ * hashes: a stamp written after the refresh leaves that fingerprint stale. The
+ * write replaces the file by a same-directory rename, so a crash mid-stamp
+ * leaves the previous summary intact. A no-op when the
  * document has no session_dedup.fingerprint field to stamp, or when the
  * stored value already matches the recomputed one.
  */
@@ -436,5 +440,10 @@ export function stampCompletionFingerprintIfNeeded(specFolderPath: string): void
   if (stamped === content) {
     return;
   }
-  fsSync.writeFileSync(summaryPath, stamped, 'utf-8');
+  const tempPath = path.join(
+    specFolderPath,
+    `.implementation-summary.md.${process.pid}.${Date.now()}.tmp`,
+  );
+  fsSync.writeFileSync(tempPath, stamped, 'utf-8');
+  fsSync.renameSync(tempPath, summaryPath);
 }

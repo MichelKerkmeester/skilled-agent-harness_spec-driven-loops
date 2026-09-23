@@ -106,6 +106,18 @@ export type { GraphMetadataValidationResult } from '../lib/graph/graph-metadata-
 // ladder and the Gate 3 classifier read it first under generator hardening.
 export { recordFreshnessPointer, resolveLastActiveChildFromStore } from '../lib/graph/access-telemetry.js';
 
+// The save writer routes a parent-targeted save with the same pointer step the resume
+// ladder walks, so a save and a later resume agree on which child a pointer names.
+export { resolvePhaseParentPointerHop } from '../lib/resume/resume-ladder.js';
+
+// The save writer validates and upserts the continuity block with the reader the resume
+// ladder uses, so every block a save writes is one a resume can read back.
+export {
+  readThinContinuityRecord,
+  upsertThinContinuityInMarkdown,
+} from '../lib/continuity/thin-continuity-record.js';
+export type { ThinContinuityValidationError } from '../lib/continuity/thin-continuity-record.js';
+
 // The drift gate flag is read by the CLI's validation entry point through the public surface.
 export { isGeneratedMetadataDriftGateEnabled } from '../lib/config/capability-flags.js';
 

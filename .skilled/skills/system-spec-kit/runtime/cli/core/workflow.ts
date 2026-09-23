@@ -68,6 +68,8 @@ import type { FileChange, SessionData } from '../types/session-types.js';
 import type { ThinFileInput } from './tree-thinning.js';
 import { getSourceCapabilities } from '../utils/source-capabilities.js';
 import { normalizeInputData } from '../utils/input-normalizer.js';
+import { readThinContinuityRecord, upsertThinContinuityInMarkdown } from '@spec-kit/runtime/api';
+import type { ThinContinuityValidationError } from '@spec-kit/runtime/api';
 import type { RawInputData } from '../utils/input-normalizer.js';
 import { resolveSaveMode, SaveMode } from '../types/save-mode.js';
 
@@ -83,6 +85,7 @@ import {
 import {
   readExplicitMemoryText,
   resolveParentSpec,
+  stampCompletionFingerprintIfNeeded,
 } from './memory-metadata.js';
 import {
   injectQualityMetadata,
@@ -393,18 +396,239 @@ async function checkTriggerIndexFreshness(
   return { status: 'stale', documentPath: documentPath || undefined, added, removed };
 }
 
-/** Refresh phase-parent pointers from the workflow's resolved save target. */
-async function refreshPhaseParentPointersAfterSave(resolvedSpecFolderPath: string): Promise<void> {
-  const directParentGraphPath = path.join(
-    path.dirname(resolvedSpecFolderPath),
-    'graph-metadata.json',
-  );
-  if (!fsSync.existsSync(directParentGraphPath)) {
-    return;
+/** Point every phase-parent ancestor of the saved packet back down toward it. */
+async function refreshPhaseParentPointersAfterSave(
+  resolvedSpecFolderPath: string,
+  warn?: (message: string) => void,
+): Promise<string[]> {
+  const { updatePhaseParentPointersAfterSave } = await import('../continuity/generate-context.js');
+  return updatePhaseParentPointersAfterSave(resolvedSpecFolderPath, undefined, warn);
+}
+
+const CONTINUITY_WRITER_ACTOR = 'generate-context';
+// The validator requires both action fields, so a stored value that fails it cannot
+// be dropped the way an optional field can: the payload has to supply a new one.
+const REQUIRED_CONTINUITY_FIELDS = new Set(['recent_action', 'next_safe_action']);
+const CARRIED_CONTINUITY_FIELDS = [
+  'recent_action',
+  'next_safe_action',
+  'blockers',
+  'key_files',
+  'completion_pct',
+  'open_questions',
+  'answered_questions',
+  'session_dedup',
+] as const;
+
+/** The continuity block a save writes into a leaf summary, or why it cannot. */
+type SaveContinuityUpdate =
+  | { ok: true; markdown: string; dropped: string[] }
+  | { ok: false; errors: string[] };
+
+function formatContinuityError(error: ThinContinuityValidationError): string {
+  return `${error.code} ${error.field}: ${error.message}`;
+}
+
+/**
+ * Merge a save payload's continuity fields over the block a leaf summary already
+ * holds. The payload wins field by field. A field it leaves out keeps its stored
+ * value while that value passes the validator. Most blocks written by hand fail it
+ * somewhere, and a save that refused them all could never repair one, so a stored
+ * value that fails is dropped and named instead, except the two required action
+ * fields. Any failure in the payload's own values fails the whole update.
+ */
+function buildSaveContinuityMarkdown(
+  summaryMarkdown: string,
+  patch: Record<string, unknown>,
+  packetPointer: string,
+  now: string,
+): SaveContinuityUpdate {
+  const stored = readThinContinuityRecord(summaryMarkdown);
+  if (!stored.frontmatter && /^_memory:/m.test(summaryMarkdown)) {
+    return {
+      ok: false,
+      errors: [
+        'the stored frontmatter could not be parsed, so its continuity fields cannot be carried over: '
+        + stored.errors.map(formatContinuityError).join('; '),
+      ],
+    };
   }
 
-  const { updatePhaseParentPointersAfterSave } = await import('../continuity/generate-context.js');
-  updatePhaseParentPointersAfterSave(resolvedSpecFolderPath);
+  const storedMemory = stored.frontmatter?._memory;
+  const storedBlock = storedMemory && typeof storedMemory === 'object' && !Array.isArray(storedMemory)
+    ? (storedMemory as Record<string, unknown>).continuity
+    : undefined;
+  const carried: Record<string, unknown> = {};
+  if (storedBlock && typeof storedBlock === 'object' && !Array.isArray(storedBlock)) {
+    for (const field of CARRIED_CONTINUITY_FIELDS) {
+      const value = (storedBlock as Record<string, unknown>)[field];
+      if (!(field in patch) && value !== undefined && value !== null) {
+        carried[field] = value;
+      }
+    }
+  }
+
+  const dropped: string[] = [];
+  for (let attempt = 0; attempt <= CARRIED_CONTINUITY_FIELDS.length; attempt += 1) {
+    const result = upsertThinContinuityInMarkdown(summaryMarkdown, {
+      ...carried,
+      ...patch,
+      packet_pointer: packetPointer,
+      last_updated_at: now,
+      last_updated_by: CONTINUITY_WRITER_ACTOR,
+    });
+    if (result.ok && result.markdown) {
+      return { ok: true, markdown: result.markdown, dropped };
+    }
+
+    const droppable = new Set<string>();
+    const blocking: string[] = [];
+    for (const error of result.errors) {
+      const field = error.field.split('.')[0];
+      if (!(field in carried)) {
+        blocking.push(formatContinuityError(error));
+      } else if (REQUIRED_CONTINUITY_FIELDS.has(field)) {
+        blocking.push(`${formatContinuityError(error)} (the stored value fails validation and the payload does not replace it)`);
+      } else {
+        droppable.add(field);
+      }
+    }
+    if (blocking.length > 0 || droppable.size === 0) {
+      return { ok: false, errors: blocking.length > 0 ? blocking : result.errors.map(formatContinuityError) };
+    }
+    for (const field of droppable) {
+      delete carried[field];
+      dropped.push(field);
+    }
+  }
+
+  return { ok: false, errors: ['the continuity merge did not settle on a valid block'] };
+}
+
+/** The leaf a full-auto save writes continuity into, with that write already validated. */
+interface ContinuityWritePlan {
+  leafPath: string;
+  patch: Record<string, unknown>;
+  packetPointer: string;
+  dropped: string[];
+}
+
+/**
+ * Decide where a full-auto save's continuity goes and prove the block validates,
+ * before the save writes anything, so a rejected value leaves every file untouched.
+ * Returns null when there is nothing to write or no single leaf to write it into;
+ * the reason is logged and the save continues without a continuity write.
+ */
+async function planContinuityWrite(params: {
+  targetPath: string;
+  collectedData: CollectedDataFull;
+  plannerMode: WorkflowOptions['plannerMode'];
+  log: (message?: string) => void;
+  warn: (message?: string) => void;
+}): Promise<ContinuityWritePlan | null> {
+  const { targetPath, collectedData, plannerMode, log, warn } = params;
+  const patch = collectedData._continuity;
+  if (!patch || Object.keys(patch).length === 0) {
+    return null;
+  }
+  if (plannerMode !== 'full-auto') {
+    log('   Continuity fields present; they are written only by a --full-auto save');
+    return null;
+  }
+
+  const { canonicalPath, getPacketIdFromGraphMetadata, resolveContinuityLeaf } = await import('../continuity/generate-context.js');
+  const projectRoot = canonicalPath(CONFIG.PROJECT_ROOT);
+  const display = (folder: string): string => path.relative(projectRoot, canonicalPath(folder)) || folder;
+  const payloadPaths = [
+    ...(collectedData.FILES ?? []).map((file) => file.FILE_PATH ?? ''),
+    ...(Array.isArray(patch.key_files) ? patch.key_files.filter((entry): entry is string => typeof entry === 'string') : []),
+  ];
+  const hints: string[] = [];
+  const resolution = resolveContinuityLeaf(targetPath, payloadPaths, hints);
+  for (const hint of hints) {
+    log(`   ${hint}`);
+  }
+  if (resolution.kind === 'unresolved') {
+    const candidates = resolution.candidates.map(display).join(', ');
+    warn(`   Continuity not written: ${resolution.reason}. Candidates: ${candidates || 'none'}. Save again with one of them as the target.`);
+    return null;
+  }
+
+  const summaryPath = path.join(resolution.leafPath, 'implementation-summary.md');
+  const leafLabel = display(resolution.leafPath);
+  if (!fsSync.existsSync(summaryPath)) {
+    warn(`   Continuity not written: ${leafLabel} has no implementation-summary.md yet`);
+    return null;
+  }
+
+  const packetPointer = getPacketIdFromGraphMetadata(resolution.leafPath);
+  const update = buildSaveContinuityMarkdown(
+    fsSync.readFileSync(summaryPath, 'utf8'),
+    patch,
+    packetPointer,
+    new Date().toISOString(),
+  );
+  if (!update.ok) {
+    throw new Error(`Continuity rejected for ${leafLabel}: ${update.errors.join('; ')}`);
+  }
+  if (resolution.route.length > 0) {
+    log(`   Continuity routed to ${leafLabel} via ${resolution.route.join(' -> ')}`);
+  }
+  return { leafPath: resolution.leafPath, patch, packetPointer, dropped: update.dropped };
+}
+
+/**
+ * Write the planned continuity block. The summary is re-read and the merge rebuilt
+ * here, under the leaf's own canonical-save lock when the leaf is not the save
+ * target, so a save that reached the leaf through its parent cannot interleave with
+ * one aimed at the leaf directly.
+ */
+async function writePlannedContinuity(params: {
+  plan: ContinuityWritePlan;
+  targetPath: string;
+  now: string;
+  log: (message?: string) => void;
+  warn: (message?: string) => void;
+}): Promise<void> {
+  const { plan, targetPath, now, log, warn } = params;
+  const { acquireCanonicalSaveLock, canonicalPath, releaseCanonicalSaveLock } = await import('../continuity/generate-context.js');
+  const leafIsTarget = canonicalPath(plan.leafPath) === canonicalPath(targetPath);
+  const leafLock = leafIsTarget ? null : acquireCanonicalSaveLock(plan.leafPath);
+  let dropped: string[];
+  try {
+    const summaryPath = path.join(plan.leafPath, 'implementation-summary.md');
+    const update = buildSaveContinuityMarkdown(
+      fsSync.readFileSync(summaryPath, 'utf8'),
+      plan.patch,
+      plan.packetPointer,
+      now,
+    );
+    if (!update.ok) {
+      throw new Error(`Continuity rejected for ${plan.packetPointer}: ${update.errors.join('; ')}`);
+    }
+    dropped = update.dropped;
+    const tempPath = path.join(plan.leafPath, `.implementation-summary.md.${process.pid}.${Date.now()}.tmp`);
+    fsSync.writeFileSync(tempPath, update.markdown, 'utf8');
+    fsSync.renameSync(tempPath, summaryPath);
+    stampCompletionFingerprintIfNeeded(plan.leafPath);
+
+    // The save target's own refresh never reads a leaf below it, so a leaf reached
+    // through its parent refreshes here, after its summary holds the final bytes.
+    if (!leafIsTarget) {
+      const graphApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
+      if (typeof graphApiModule?.refreshGraphMetadata !== 'function') {
+        throw new Error('runtime API unavailable for the continuity leaf graph-metadata refresh');
+      }
+      graphApiModule.refreshGraphMetadata(plan.leafPath, { now, saveLineage: 'same_pass' });
+    }
+  } finally {
+    releaseCanonicalSaveLock(leafLock);
+  }
+
+  log(`   Wrote continuity to ${plan.packetPointer}`);
+  if (dropped.length > 0) {
+    warn(`   Dropped stored continuity fields that fail validation: ${dropped.join(', ')}`);
+  }
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -849,6 +1073,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
         contextType: n.contextType ?? preloadedData.contextType,
         projectPhase: n.projectPhase ?? preloadedData.projectPhase,
         saveMode: n.saveMode ?? preloadedData.saveMode,
+        _continuity: n._continuity ?? preloadedData._continuity,
       }) as CollectedDataFull;
       log('   Using pre-loaded data (normalized)');
     } else if (loadDataFn) {
@@ -1543,6 +1768,19 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
 
   // Step 9: Write files with atomic writes and rollback on failure
   log('Step 9: Writing files...');
+  const recordWarning = (message: string = ''): void => {
+    warn(message);
+    workflowWarnings.push(message.trim());
+  };
+  // Planned before any write, so a continuity value the validator rejects fails
+  // the save while every file is still untouched.
+  const continuityPlan = await planContinuityWrite({
+    targetPath: validatedSpecFolderPath,
+    collectedData,
+    plannerMode: options.plannerMode,
+    log,
+    warn: recordWarning,
+  });
   if (duplicateExistingFilename) {
     log(`   Legacy duplicate detection skipped for retired artifact ${rawCtxFilename}`);
   }
@@ -1641,6 +1879,20 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     log('   Context file was a duplicate — skipping description tracking');
   }
 
+  // Every write to a source doc lands before the graph refresh below, because the
+  // refresh hashes those docs into the graph's source fingerprint: a summary changed
+  // after it leaves the fingerprint stale and the next strict validation fails.
+  if (continuityPlan) {
+    await writePlannedContinuity({
+      plan: continuityPlan,
+      targetPath: validatedSpecFolderPath,
+      now: metadataSaveTimestamp,
+      log,
+      warn: recordWarning,
+    });
+  }
+  stampCompletionFingerprintIfNeeded(validatedSpecFolderPath);
+
   // Unconditional by design. Gating these follow-ups on planner mode made the default
   // plan-only save a structural no-op for graph-metadata.json: last_save_at never
   // advanced and the post-save quality review never ran. Every canonical save refreshes
@@ -1671,7 +1923,12 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       } as const;
       const graphRefreshResult = refreshGraphMetadata(validatedSpecFolderPath, graphRefreshOptions);
       log(`   ${graphRefreshResult.created ? 'Created' : 'Refreshed'} ${path.basename(graphRefreshResult.filePath)}`);
-      await refreshPhaseParentPointersAfterSave(validatedSpecFolderPath);
+      // Pointers lead to the leaf this save wrote. A parent-targeted save that wrote
+      // no leaf passes the parent itself, and the walk leaves every pointer alone.
+      await refreshPhaseParentPointersAfterSave(
+        continuityPlan?.leafPath ?? validatedSpecFolderPath,
+        recordWarning,
+      );
     } catch (graphErr: unknown) {
       throw new Error(`[workflow] graph-metadata refresh failed: ${graphErr instanceof Error ? graphErr.message : String(graphErr)}`);
     }

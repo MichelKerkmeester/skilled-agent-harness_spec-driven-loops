@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/052-core-template-canonical-markers",
+  "description": "The four core spec templates write their fill-in slots as free bracket prose and plain instruction text instead of the canonical marker the strict",
+  "keywords": [
+    "four",
+    "core",
+    "spec",
+    "templates",
+    "write",
+    "fill-in",
+    "slots",
+    "free",
+    "bracket",
+    "prose",
+    "plain",
+    "instruction",
+    "text",
+    "instead",
+    "canonical",
+    "marker",
+    "strict"
+  ],
+  "lastUpdated": "2026-09-23T10:44:44.561Z",
+  "specId": "052",
+  "folderSlug": "core-template-canonical-markers",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
