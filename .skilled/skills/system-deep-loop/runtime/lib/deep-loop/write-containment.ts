@@ -945,6 +945,19 @@ function isUnattributable(
   return unattributableRelPosix.some((dir) => p === dir || p.startsWith(`${dir}/`));
 }
 
+/** The folders containment writes its own captures to: baseline copies and quarantine passes. */
+const CAPTURE_DIRS = [join('containment', 'baseline'), PASS_QUARANTINE_DIR].map(toPosix);
+
+/**
+ * True for a path inside a capture folder, whichever run wrote it. Captures are containment's own
+ * output, not a lane's work, so they never belong in a lane's baseline, and copying them there
+ * nests captures inside captures, one level per run, until paths outgrow the filesystem's limit.
+ */
+function isContainmentCapturePath(repoRelativePath: string): boolean {
+  const p = `/${toPosix(repoRelativePath)}`;
+  return CAPTURE_DIRS.some((dir) => p.includes(`/${dir}/`));
+}
+
 /**
  * True for runtime-owned regenerable telemetry and memory-index state. When `artifactRelPosix`
  * is given, a description.json/descriptions.json write is exempted only when its own directory
@@ -1078,6 +1091,7 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
   let laneBytes = 0;
   for (const entry of entries) {
     if (isUnattributable(entry.path, scope.unattributableRelPosix, scope.unattributableFileRelPosix)) continue;
+    if (isContainmentCapturePath(entry.path)) continue;
     if (!isContainedInArtifact(scope.repoRealRoot, scope.artifactRealRoot, scope.artifactRelPosix, entry.path)) {
       const entryPath = toPosix(entry.path);
       // Hash every dirty path on disk, tracked or not: an untracked baseline entry left
@@ -1134,6 +1148,7 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
     const p = toPosix(entry.path);
     if (isContainedInArtifact(scope.repoRealRoot, scope.artifactRealRoot, scope.artifactRelPosix, p)) continue;
     if (isUnattributable(p, scope.unattributableRelPosix, scope.unattributableFileRelPosix)) continue;
+    if (isContainmentCapturePath(p)) continue;
     if (preMap.has(p)) {
       const preHash = preMap.get(p) || '';
       if (!preHash) continue;
