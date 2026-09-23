@@ -45,7 +45,8 @@ npm install
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder question"
 
 # Test embedding providers
-node .skilled/skills/system-spec-kit/runtime/cli/tests/test-embeddings-factory.cjs
+cd .skilled/skills/system-spec-kit
+npx vitest run --config vitest.config.ts --project root runtime/tests/factory-auto-resolution.vitest.ts runtime/tests/api-validation.vitest.ts runtime/tests/api-key-validation.vitest.ts
 ```
 
 ---
@@ -125,7 +126,7 @@ This PR adds a Voyage AI embedding provider to the shared embedding stack.
 ## Testing
 
 1. Set `VOYAGE_API_KEY` environment variable
-2. Run `node tests/test-embeddings-factory.cjs`
+2. Run the embedding provider suites from [Testing Changes](#testing-changes)
 3. Verify Voyage is selected as provider
 ```
 

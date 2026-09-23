@@ -210,7 +210,6 @@ The closure feature consists of these distinct shipped behaviors:
 | `runtime/cli/tests/semantic-signal-golden.vitest.ts` | Automated test | Trigger-phrase quality regression coverage for the canonical continuity output-quality fixes |
 | `runtime/cli/tests/test-extractors-loaders.js` | Automated test | Dist/export regression suite for extractors and loader |
 | `runtime/cli/tests/test-integration.vitest.ts` | Automated test | End-to-end script workflows; legacy `test-integration.js` test file removed |
-| `runtime/cli/tests/test-memory-quality-lane.js` | Automated test | **[LEGACY]** v2 diagnostic quality and insufficiency regression suite (kept for regression coverage only) |
 
 ---
 
@@ -227,7 +226,6 @@ The closure feature consists of these distinct shipped behaviors:
 - `cd .skilled/skills/system-spec-kit/runtime/cli && npm test -- --run tests/spec-affinity.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/task-enrichment.vitest.ts tests/generate-context-cli-authority.vitest.ts tests/memory-sufficiency.vitest.ts tests/memory-template-contract.vitest.ts`
 - `cd .skilled/skills/system-spec-kit/runtime/cli/tests && node test-extractors-loaders.js`
 - `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/test-integration.vitest.ts`
-- `cd .skilled/skills/system-spec-kit/runtime/cli/tests && node test-memory-quality-lane.js`
 - `cd .skilled/skills/system-spec-kit/runtime/cli && npm test -- --run tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
 - `cd .skilled/skills/system-spec-kit/runtime && npm run lint`
 - `cd .skilled/skills/system-spec-kit/runtime && npm run build`

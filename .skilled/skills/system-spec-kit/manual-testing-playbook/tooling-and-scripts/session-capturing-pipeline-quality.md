@@ -83,7 +83,6 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
   - JS verification suites:
     - `cd .skilled/skills/system-spec-kit/runtime/cli && npm run test:legacy`
     - `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/test-integration.vitest.ts`
-    - `cd .skilled/skills/system-spec-kit/runtime/cli/tests && node test-memory-quality-lane.js`
     - `cd .skilled/skills/system-spec-kit/runtime/cli && npm test -- --run tests/generate-context-cli-authority.vitest.ts tests/contamination-filter.vitest.ts tests/quality-scorer-calibration.vitest.ts`
   - Standards checks:
     - `cd .skilled/skills/system-spec-kit/runtime && npm run lint`

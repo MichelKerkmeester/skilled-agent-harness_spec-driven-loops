@@ -18,11 +18,10 @@
     "build:watch": "tsc --build --watch",
     "test": "npm run --workspaces=false test:root",
     "pretest:root": "npm run build --workspace=@spec-kit/shared --workspace=@spec-kit/runtime --workspace=@spec-kit/cli",
-    "test:root": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed' && node runtime/cli/tests/test-embeddings-factory.cjs && npm run test --workspace=@spec-kit/runtime && npm run test --workspace=@spec-kit/cli",
+    "test:root": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed' && npm run test --workspace=@spec-kit/runtime && npm run test --workspace=@spec-kit/cli",
     "test:runtime": "npm run test --workspace=@spec-kit/runtime",
     "test:cli": "node runtime/cli/dist/continuity/generate-context.js --help && echo 'CLI smoke test passed'",
     "test:task-enrichment": "npx vitest run runtime/cli/tests/task-enrichment.vitest.ts --config vitest.config.ts",
-    "test:embeddings": "node runtime/cli/tests/test-embeddings-factory.cjs",
     "postinstall": "node runtime/cli/setup/record-node-version.js"
   },
   "overrides": {
