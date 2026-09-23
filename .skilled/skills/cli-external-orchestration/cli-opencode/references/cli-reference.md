@@ -138,7 +138,7 @@ opencode run \
 
 | Flag | Default | Reason |
 |------|---------|--------|
-| `--model` | `opencode-go/deepseek-v4-flash` | The Go gateway fronts the latency-optimized flash model — max-tier-pinned reasoning; operator may override (e.g. `opencode-go/glm-5.3-flash`, or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-sol-pro`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`, `openai/gpt-6-luna-pro`) |
+| `--model` | `opencode-go/deepseek-v4-flash` | The Go gateway fronts the latency-optimized flash model — max-tier-pinned reasoning; operator may override (e.g. `opencode-go/glm-5.3-flash`, or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`) |
 | `--agent` | per use case | Required for use case 1 / 3; optional for use case 2 |
 | `--variant max` | max | Flash is max-tier-pinned by policy — a lower requested effort is upgraded automatically |
 | `--format json` | json | Structured event stream is what external runtimes parse |
@@ -184,7 +184,7 @@ echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MI
 | State | OPENCODE_GO_OK | Action |
 |-------|----------------|--------|
 | Default available | 1 | Proceed with `--model opencode-go/deepseek-v4-flash --variant max` |
-| Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol-pro, B: set up `opencode-go` and retry, C: name a different model) — do not dispatch until configured |
+| Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol, B: set up `opencode-go` and retry, C: name a different model) — do not dispatch until configured |
 
 **MiniMax routing** (default = Token Plan; Direct API is the pay-per-token alternative):
 
@@ -241,7 +241,7 @@ Surface these verbatim to the operator when the pre-flight decision tree lands o
 ```text
 The skill default `opencode-go/deepseek-v4-flash` is not configured on this machine.
 A configured fallback is available. Pick one:
-  A) Use `openai/gpt-6-sol-pro --variant high` (OpenAI premium, configured now — paid)
+  A) Use `openai/gpt-6-sol --variant high` (OpenAI flagship persona, configured now — paid)
   B) Use `xiaomi/mimo-v2.6-pro --variant high` (Xiaomi Direct API, configured now) — or `xiaomi/mimo-v2.6-pro-ultraspeed --variant high` for latency-sensitive runs
   C) Use `kimi-for-coding/k2p7` (Kimi For Coding plan, configured now — subscription)
   D) Run `opencode providers login opencode-go` first, then retry the original dispatch

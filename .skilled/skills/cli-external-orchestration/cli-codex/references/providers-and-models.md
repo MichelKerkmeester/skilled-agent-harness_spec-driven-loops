@@ -50,8 +50,8 @@ cli-codex is backed by a single provider — **OpenAI**, authenticated through C
 |----------|----------|------------------------|
 | `gpt-5.5` | **Default** | Ceiling `xhigh`; default effort `medium`. General delegation — generation, review, docs, architecture, research |
 | `gpt-6-luna` | — | Ceiling `max`. Implementation-heavy work wanting deeper reasoning; the `luna-impl` profile pins `max` |
-| `gpt-5.6-terra` | — | Ceiling `max`. GPT-5.6 fast sibling; no dedicated config profile — call directly via `-m gpt-5.6-terra` |
-| `gpt-6-sol` | — | Ceiling `ultra`. Verification / review and the hardest planning — the only model reaching `ultra`; the `sol-verify` profile pins `xhigh` |
+| `gpt-5.6-terra` | — | Ceiling `ultra`. GPT-5.6 fast sibling; no dedicated config profile — call directly via `-m gpt-5.6-terra` |
+| `gpt-6-sol` | — | Ceiling `ultra`. Verification / review and the hardest planning; shares the `ultra` ceiling with Terra; the `sol-verify` profile pins `xhigh` |
 
 `--oss` (local Ollama models) exists as an escape hatch for local experimentation only — not a production dispatch target. See [cli-reference.md](./cli-reference.md) §4.
 
@@ -94,8 +94,8 @@ Per-model ceilings — set the effort within the chosen model's cap:
 |-------|----------------|-------|
 | `gpt-5.5` | `xhigh` | Default effort `medium` |
 | `gpt-6-luna` | `max` | `luna-impl` profile pins `max` |
-| `gpt-5.6-terra` | `max` | Callable directly; no dedicated profile |
-| `gpt-6-sol` | `ultra` | Only model reaching `ultra`; `sol-verify` profile pins `xhigh` |
+| `gpt-5.6-terra` | `ultra` | Callable directly; no dedicated profile |
+| `gpt-6-sol` | `ultra` | `sol-verify` profile pins `xhigh` |
 
 Selection heuristic: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh` — `gpt-6-luna max` for implementation, `gpt-6-sol xhigh` / `ultra` for verification and review; drop to `low` / `minimal` for trivial lookups. Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mode_reasoning_effort` — see [cli-reference.md](./cli-reference.md) §5.
 

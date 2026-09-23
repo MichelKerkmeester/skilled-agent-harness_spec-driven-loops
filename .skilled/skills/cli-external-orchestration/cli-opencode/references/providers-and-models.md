@@ -59,12 +59,12 @@ OpenCode resolves models through configured providers; the model string passed t
 
 ### openai
 
-GPT-6 via the `openai` provider — two personas (sol/luna) × three speed tiers (base / fast / pro) = 6 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so confirm a Pro slug is live via `opencode models openai` before dispatching it.
+GPT-6 via the `openai` provider — two personas (sol/luna) × two speed tiers (base / fast) = 4 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. Run `opencode models openai` before dispatching any slug not in the table.
 
-| Persona | Base | Fast (low-latency) | Pro |
-|---------|------|--------------------|-----|
-| sol | `openai/gpt-6-sol` | `openai/gpt-6-sol-fast` | `openai/gpt-6-sol-pro` |
-| luna | `openai/gpt-6-luna` | `openai/gpt-6-luna-fast` | `openai/gpt-6-luna-pro` |
+| Persona | Base | Fast (low-latency) |
+|---------|------|--------------------|
+| sol | `openai/gpt-6-sol` | `openai/gpt-6-sol-fast` |
+| luna | `openai/gpt-6-luna` | `openai/gpt-6-luna-fast` |
 
 ### opencode-go
 
