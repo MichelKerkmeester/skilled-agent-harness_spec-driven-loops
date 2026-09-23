@@ -133,16 +133,16 @@
     ],
     "causal_summary": "Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-23T06:30:20.681Z",
+    "last_save_at": "2026-09-23T12:43:44.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0d76417a6506c46ea8f53b898bded18b35bf1ef7a4860d38cac40f94d71a9c3d",
+    "source_fingerprint": "sha256:a436984ca4a38613ed0f69ec07af711cddf6fda74c4d06b8e6dce3fb3d7cdc70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b77038204a12c2ad7c6487d770828dc2e85840747bc60db5472a64579b3b888"
+      "spec.md": "e54e852764e28ba87fed4cc53b423ea31508006f022b8c1d25346a62f15f8d47"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite",
     "last_active_at": "2026-09-21T10:02:49.984Z"

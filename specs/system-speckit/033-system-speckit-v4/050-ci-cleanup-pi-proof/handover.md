@@ -40,7 +40,7 @@ Handover for phase 050 of system-speckit-v4. It records the CI cleanup results, 
 - **To Session:** next session
 - **Phase Completed:** IMPLEMENTATION
 - **Handover Time:** 2026-09-23
-- **Recent action**: Removed the bare word "run" from the cli-jev skill keywords and key topics, regenerated the Hermes cli-jev copy, and restored scorer-eval-baseline.json to its committed content. The live scorer reads 152/195 full corpus and 27/32 memory_save again.
+- **Recent action**: Fixed the two CI failures the first push exposed, rebased the fix commits onto main and pushed them at 5b522489a2. All 21 CI runs passed on main and skilled/v4.0.0.0.
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -58,12 +58,12 @@ Handover for phase 050 of system-speckit-v4. It records the CI cleanup results, 
 | Rebuild handover.md from the template | The earlier hand-written handover had no frontmatter, no template header and no anchors, which produced three of the five strict-validation errors | This handover document |
 
 ### 2.2 Blockers Encountered
-**Blockers**: the primary checkout residue, which blocks the primary checkout's own sync after the push.
+**Blockers**: none. The primary checkout residue was removed with the operator's yes, and that checkout belongs to another session.
 
 | Blocker     | Status          | Resolution/Workaround |
 | ----------- | --------------- | --------------------- |
 | The cli-jev compiled manifest is stale after the SKILL.md edit | resolved | The route-remint pre-commit gate re-minted cli-jev inside commit f0411552aa, and the merged tree reports all seven hubs fresh |
-| The primary checkout holds this phase's scaffold residue: two placeholder rows in the parent spec.md and an untracked copy of the original 050 scaffold folder | open | Both block updating the primary checkout's main to the phase commit. Removing them touches the primary checkout, so it waits for the operator's yes at the merge step |
+| The primary checkout holds this phase's scaffold residue: two placeholder rows in the parent spec.md and an untracked copy of the original 050 scaffold folder | resolved | Backed up and removed with the operator's yes. The primary checkout's main was not synced, because another session owns that checkout |
 
 ### 2.3 Files Modified
 **Key files**: Hermes skill copies for cli-hermes, cli-opencode, cli-pi and deep-ai-council, .skilled/commands/deep/assets/compiled/deep-ai-council.contract.md, cli-orca docs and graph metadata, scorer-eval-baseline.json, .skilled/skills/cli-jev/SKILL.md, .skilled/skills/cli-jev/graph-metadata.json, .hermes/skills/cli-jev/SKILL.md, recursive-child-manifest.vitest.ts
@@ -104,15 +104,13 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 
 ### 3.1 Recommended Starting Point
 - **File:** specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/evidence.md
-- **Next safe action**: Push the worktree branch tip to main and skilled/v4.0.0.0 after the operator's yes, then watch CI.
+- **Next safe action**: Remove the worktree after the closing commit is pushed.
 - **Cold-read order** (role-play a reader who knows nothing): 1. evidence/dispatch/evidence.md -> 2. handover.md -> 3. evidence/dispatch/handover-v1.md (the minimal numbered path to context)
-- **Context:** The work is committed and merged on the worktree branch, and nothing is pushed yet. Worktree .worktrees/061-ci-cleanup-pi-proof sits on branch worktrees/061-ci-cleanup-pi-proof at base commit 1cc5dfa692. Tasks T001 to T016 are done and T017 is open.
+- **Context:** The work is pushed to main and skilled/v4.0.0.0 at 5b522489a2, and all 21 CI runs passed. Worktree .worktrees/061-ci-cleanup-pi-proof sits on branch worktrees/061-ci-cleanup-pi-proof at base commit 1cc5dfa692. Tasks T001 to T018 are done.
 
 ### 3.2 Priority Tasks Remaining
-1. Push the worktree branch tip to main and skilled/v4.0.0.0 after the operator's yes (T017).
-2. Watch CI on the pushed commit (T017).
-3. Clear the primary checkout residue with the operator's yes, so the primary checkout can fast-forward.
-4. Remove the worktree after the operator's yes (the rest of T017).
+1. Push the closing documentation commit to main and skilled/v4.0.0.0 after the operator's yes.
+2. Remove the worktree after the operator's yes.
 
 ### 3.3 Critical Context to Load
 - [ ] Indexed save or continuity target: use `generate-context.js` for indexed saves. Edit `_memory.continuity` frontmatter in `implementation-summary.md` for quick continuity updates.
@@ -126,7 +124,7 @@ Carry only what the next reader cannot re-derive: where a trap bit, what trigger
 ## 4. Validation Checklist
 
 Before handover, verify:
-- [ ] All in-progress work committed or stashed. Open. Nothing is committed, merged or pushed yet.
+- [x] All in-progress work committed or stashed. The phase and both CI fixes are pushed, and the closing documentation commit follows.
 - [ ] Current context saved via `generate-context.js` or `_memory.continuity` in `implementation-summary.md`. Open. The `_memory.continuity` block in implementation-summary.md is current, and no indexed save has run.
 - [x] No breaking changes left mid-implementation. The merged tree passes every check and the route guard reports all hubs fresh.
 - [x] Tests passing (if applicable). AC-003 to AC-007 are Met on the worktree, and AC-010 is Met on the merged tree.
@@ -138,7 +136,7 @@ Before handover, verify:
 <!-- ANCHOR:session-notes -->
 ## 5. Session Notes
 
-Packet: specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof, Level 2, phase 50 of 50. Created 2026-09-22. Work ran 2026-09-22 to 2026-09-23. Status now is In Progress.
+Packet: specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof, Level 2, phase 50 of 50. Created 2026-09-22. Work ran 2026-09-22 to 2026-09-23. Status now is Complete.
 
 The delivery model ran implementation edits through cli-pi with model llmgateway/mimo-v2.6-pro and one change per brief. The Claude session orchestrated, verified every handback independently and made the decisions above with the operator. Briefs and handbacks live in evidence/dispatch/ as wu1-links, wu2-jev-run-topic, wu3-jev-run-keyword, wu4-baseline-restore, wu5-doc-* for the six packet documents, wu6-parent-rows, wu7-048-live-row and wu8-rev-* for the revision pass over the six documents. The live-proof captures and the dispatch trail first lived in scratch/ and moved to evidence/ before the commit, because the packet docs cite them and the spec-kit folder rules keep cited files out of scratch/.
 
@@ -147,13 +145,13 @@ The Pi Gate-3 live proof holds. The headless parent-mode probe ran with pi -p --
 Requirement and acceptance status:
 - REQ-001 P0 Pi headless live proof. AC-001. Met.
 - REQ-002 P0 Pi TUI live proof. AC-002. Met.
-- REQ-003 P0 The six CI surfaces pass locally without weakening a gate. AC-003 Met. AC-004 Met. AC-005 Met. AC-006 Met.
+- REQ-003 P0 The six CI surfaces pass locally without weakening a gate. AC-003 Met. AC-004 Met. AC-005 Met. AC-006 Met. AC-011 Met, with all 21 CI runs passing on 5b522489a2.
 - REQ-004 P1 Scorer drop root-caused and fixed at the producer. The baseline equals the committed 152/195 and 27/32. AC-007. Met.
 - REQ-005 P1 cli-jev compiled routing re-minted, guard fresh, CJ-001 compiled. AC-008. Met. The re-mint ran at commit time through the route-remint pre-commit gate.
 - REQ-006 P1 Packet validates strict with RESULT: PASSED and the parent records are reconciled. AC-009. Met.
 - REQ-007 P1 Merged-tree re-verification (Hermes sync, scorer ratchet, link check, route guard) before push. AC-010. Met.
 
-Task status: T001 to T016 are done. T017 is open.
+Task status: T001 to T018 are done.
 
 Verification observed (command -> result):
 - `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` -> PASS: 70 Hermes skill copies in sync, exit 0
@@ -172,6 +170,8 @@ Verification observed (command -> result):
 - `node .skilled/bin/compiled-route-admission.cjs --hub cli-jev` -> pass, 3 pass 0 drift 0 stale, exit 0
 - `node .skilled/bin/compiled-route-guard.cjs` -> before the merge, cli-jev stale-manifest. On the merged tree 0b39a1f6c3, all seven hubs fresh, exit 0
 - merges -> f127890ea7 was clean. 0b39a1f6c3 conflicted on three generated Hermes mirrors, resolved by taking main's copies and regenerating every mirror. `compiled-route-admission.cjs --all` warns on sk-design with 1 drift, the same as on origin/main, and CI runs it with --warn-only
+- CI on the first push 997cd8ee2e -> 13 workflows passed. The routing-accuracy corpus gate failed on the moved baseline path, and the runtime vitest project failed 5 Pi enforce tests because the spec gate exempts writes under /tmp, the runner's temp dir
+- CI on the second push 5b522489a2 -> all 21 runs passed, 10 on main and 11 on skilled/v4.0.0.0, after b566f9fc28 repointed the baseline and 5b522489a2 set TMPDIR to the runner's temp dir
 
 Out of scope with reasons:
 - Re-minting the sk-design or sk-doc routing hubs. Their bytes belong to another session.

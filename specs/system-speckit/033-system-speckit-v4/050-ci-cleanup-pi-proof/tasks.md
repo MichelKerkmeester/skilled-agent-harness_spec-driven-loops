@@ -65,7 +65,8 @@ contextType: "general"
 - [x] T014 Strict validation - **Evidence**: `validate.sh --strict` printed RESULT: PASSED with 0 errors and 0 warnings on this packet and on 048.
 - [x] T015 Merge main and re-mint cli-jev - **Evidence**: main was merged into the worktree branch twice, as `f127890ea7` and `0b39a1f6c3`, the second after the other session pushed main to `80dc0a118d`. The second merge conflicted on three generated Hermes mirrors, resolved by taking main's copies and regenerating every mirror. The cli-jev re-mint ran through the route-remint pre-commit gate inside `f0411552aa`.
 - [x] T016 Merged-tree re-verification - **Evidence**: on `0b39a1f6c3`, Hermes sync reports 70 copies and 33 prompts in sync, frontmatter 0 violations, the graph compiler VALIDATION PASSED, freshness 15/15, links 0 broken, the route guard all seven hubs fresh, the deep-loop contract tests 42 passed and the advisor routing and ratchet tests 28 passed, all at exit 0.
-- [ ] T017 Commit, push, CI watch and worktree removal
+- [x] T017 Commit, push, CI watch and worktree removal - **Evidence**: seven phase commits and two main merges were pushed to main and skilled/v4.0.0.0 at `997cd8ee2e`. CI passed 13 workflows there and failed two steps that the six fixed surfaces had hidden, the routing-accuracy corpus gate and the runtime vitest project (T018). After the two fix commits were rebased onto main and pushed at `5b522489a2`, all 21 workflow runs passed, 10 on main and 11 on skilled/v4.0.0.0. The worktree is removed after this closing commit is pushed, because the worktree holds that commit.
+- [x] T018 Fix the two CI failures the first push exposed - **Evidence**: `b566f9fc28` points the corpus gate and two path filters in routing-registry-drift.yml at the z_archive/ baseline, and `5b522489a2` sets TMPDIR to the runner's temp dir on the runtime vitest step of spec-kit-check.yml. On `5b522489a2` the corpus gate printed corpus matches the pinned baseline hashes with overall_pass true, and the runtime vitest project passed 106 files and 1292 tests with 13 skipped.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -73,9 +74,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

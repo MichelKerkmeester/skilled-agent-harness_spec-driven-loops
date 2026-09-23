@@ -1,0 +1,8 @@
+PI_HANDBACK
+status: done
+summary: Marked phase-map row 50 (050-ci-cleanup-pi-proof) as complete in the parent spec's phase map, leaving all other cells untouched. Both verification commands returned the expected results with no other files modified.
+files_changed: 1 file — specs/system-speckit/033-system-speckit-v4/spec.md
+edits_applied: 1
+edits_skipped: none
+verification: grep -c '^| 50 | 050-ci-cleanup-pi-proof/ .*| complete |$' specs/system-speckit/033-system-speckit-v4/spec.md → 1 ; git diff --numstat -- specs/system-speckit/033-system-speckit-v4/spec.md → 1	1	specs/system-speckit/033-system-speckit-v4/spec.md
+failures: none

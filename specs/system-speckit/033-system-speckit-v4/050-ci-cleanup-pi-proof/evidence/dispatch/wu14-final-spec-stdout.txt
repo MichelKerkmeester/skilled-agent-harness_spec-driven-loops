@@ -1,0 +1,10 @@
+Both verifications pass (grep exit code 1 on the first is expected for a zero match count; result line is `0` as expected).
+
+PI_HANDBACK
+status: done
+summary: Set the spec Status row to Complete and inserted the two workflow-file rows after the recursive-child-manifest anchor row. Both VERIFY counts match expectations (0 occurrences of 'In Progress', 2 of '.github/workflows/').
+files_changed: 1 specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md
+edits_applied: 1, 2
+edits_skipped: none
+verification: grep -c 'In Progress' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md → 0 ; grep -c '.github/workflows/' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md → 2
+failures: none
