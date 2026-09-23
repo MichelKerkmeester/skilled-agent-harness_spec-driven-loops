@@ -117,6 +117,7 @@ One mid-run probe changed the code: a candidate path that existed as a file was 
 | Four adapter suites, `node --test` | PASS — 59/59 (claude 13, codex 14, devin 15, cursor 17) |
 | Runtime root vitest project | PASS — 106 files passed / 3 skipped; 1292 tests passed / 13 skipped / 0 failed |
 | Pi extension suite | PASS — 9/9 through the production handlers |
+| Live Pi proof, recorded later by phase 050 | PASS. A headless parent-mode run delivered the question once through classify-deferral, and a TUI run showed the dialog, the refusal naming the bound folder and a passing retry. Evidence: ../050-ci-cleanup-pi-proof/evidence/ |
 | OpenCode plugin suite | PASS — 11/11, including the deferral relay and child no-op |
 | CLI boundary check (real adapter processes) | PASS — classify `stdout=[]` exit 0 with state `open`; first advisory carries the notice; second silent; enforce-on denies with `GATE_3_DENY_DETAIL` |
 | Pre-change baseline (base commit `2cb1bdb800`) | PASS — core 90/87/0/3; adapters 13+14+15+16; plugin 11/11; no Pi suite existed |

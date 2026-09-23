@@ -27,7 +27,7 @@
       {
         "target": "cli-orca",
         "weight": 0.4,
-        "context": "cli-orca automations call MCP servers for browser and data work, the same tool surface this hub indexes"
+        "context": "Orca owns its runtime transport while this hub owns external MCP bridges"
       }
     ],
     "conflicts_with": [],
