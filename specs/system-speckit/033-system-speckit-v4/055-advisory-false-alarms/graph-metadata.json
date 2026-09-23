@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -170,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -186,17 +192,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "changes",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-git advisory hook warned that `git add -- $A/...` matched no files when the files existed",
     "created_at": "2026-09-23T19:09:39Z",
-    "last_save_at": "2026-09-23T19:17:13.140Z",
+    "last_save_at": "2026-09-23T20:03:22.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d811ba246b2e11a4b31e008310abe562558f1498a644b6c79ef21fc74999639f",
+    "source_fingerprint": "sha256:3e4e21e895f86c8c0de44eae22ee894f7a0b308eb4ee386606fc52bec4e89dba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "241d2827890a1fdd7a09dd38fb88b801c48c75db4face9f6e5535829366f9fcb",
+      "spec.md": "89a7489312073f42e9468ddb004f292ea441a726008304bd0bcdb0487d6b6144",
       "plan.md": "f1c9f3c3e680a053ebecc88909850bec6b0b7c0fd3df48ebbb2b7799c0447d86",
-      "tasks.md": "cdced8fbe3d3977fe4954597ed56f0af5b116444f079bce8ad4fd8dc95fb6a11",
-      "implementation-summary.md": "901ace3340bb0df0616fd80ba5aefb12220d5501773956b283fd52ed3fa7a798"
+      "tasks.md": "83de3672f0fda18542f408996f1f800bf6a40300ed6759a4b64cfe3b1c22e21e",
+      "implementation-summary.md": "98ca584cc0b0dddc793b4cdc457292461d1caef170a59666726d41af0034f05b"
     },
     "last_active_at": null
   }

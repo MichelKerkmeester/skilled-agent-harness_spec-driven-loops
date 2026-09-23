@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/055-advisory-false-alarms"
-    last_updated_at: "2026-09-23T19:11:00Z"
+    last_updated_at: "2026-09-23T20:00:00Z"
     last_updated_by: "implementing-agent"
-    recent_action: "Fixed both false alarms at their producers and verified them with a negative control"
-    next_safe_action: "Operator approves pushing branch 065 to main and skilled/v4.0.0.0"
+    recent_action: "Pushed as 68dda9633a to main and skilled/v4.0.0.0, where CI ran green"
+    next_safe_action: "No next action: the packet is complete, pushed and green in CI"
     blockers: []
     key_files:
       - ".skilled/skills/sk-git/scripts/lib/git-rule-checks.mjs"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "055-implementation-2026-09-23"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,7 +73,7 @@ When you stage files through a variable such as `git add -- $A/file`, the hook n
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Both alarms were first reproduced with a scratch script against the unmodified modules. The baselines were captured before any edit. MiMo V2.6 Pro wrote each code edit and each doc through cli-pi on the LLM Gateway route, one change per brief. Each edit was checked byte for byte against a generated expected file. The orchestrating session ran every check. The negative control swapped the old sources back in, watched each new test fail and restored the new sources byte-identical. Main moved while the work sat uncommitted, so the branch was fast-forwarded and every check ran again on the merged tree.
+Both alarms were first reproduced with a scratch script against the unmodified modules. The baselines were captured before any edit. MiMo V2.6 Pro wrote each code edit and each doc through cli-pi on the LLM Gateway route, one change per brief. Each edit was checked byte for byte against a generated expected file. The orchestrating session ran every check. The negative control swapped the old sources back in, watched each new test fail and restored the new sources byte-identical. Main moved while the work sat uncommitted, so the branch was fast-forwarded and every check ran again on the merged tree. It reached main and skilled/v4.0.0.0 as 68dda9633a, a merge with main's one newer commit, where CI ran green on every workflow it triggered.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -106,6 +106,7 @@ Both alarms were first reproduced with a scratch script against the unmodified m
 | Scratch replay after the fix | PASS on the original base and again on the merged tree: every expansion form is silent, `git reset --hard $REF` still raises `reset-hard-discards-changes` on a tree with changes and the cited document resolves to `specs/system-skill-advisor/029-fix-remaining-advisor-defects` |
 | Comment hygiene on the four edited files | PASS: exit 0 |
 | Packet strict validation (`validate.sh --strict`) | PASS: RESULT: PASSED, Errors 0, Warnings 0 |
+| CI on 68dda9633a (the pushed merge) | PASS: 21 runs across 11 workflows on both branches, all green, including Spec-Kit Check |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -116,7 +117,6 @@ Both alarms were first reproduced with a scratch script against the unmodified m
 1. **The hook still reads git commands inside quoted strings and heredoc bodies.** A literal such as `echo "x && git add missing.txt"` is parsed as a git command. A pathspec with `$` there is now silent. A shell-aware tokenizer would close the rest.
 2. **A document cited from a packet subfolder resolves to the subfolder.** The resolver has no filesystem access, so `.../scratch/notes.md:3` points the evidence check at `scratch`.
 3. **A single-quoted `'$A/x'` is treated as unresolved.** The shell passes it as written. The check now stays silent for it, which is the fail-open direction.
-4. **The push waits on the operator.** The work sits on `worktrees/065-fix-advisory-false-alarms` until the operator approves the push to main and skilled/v4.0.0.0.
 <!-- /ANCHOR:limitations -->
 
 ---

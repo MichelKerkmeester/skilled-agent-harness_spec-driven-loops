@@ -62,6 +62,7 @@ contextType: "general"
 - [x] T012 Full spec-kit root project: PASS: 1294 of 1307 tests in 109 files passed on the merged tree with 13 skipped and none failed. An earlier run on the original base under the runtime config reported 7 failed tests in 4 files. Three of those files failed only because a fresh worktree lacks their build outputs. The fourth, the Pi spec-gate suite, fails only under that config because the path alias it needs is defined in the root config alone. It passes 9 of 9 under the root config
 - [x] T013 The scratch replay is silent for every expansion form, still flags `git reset --hard $REF` on a tree with changes and resolves the cited document to its folder, on the original base and again on the merged tree
 - [x] T014 Comment hygiene exits 0 on all four edited files and strict packet validation passes
+- [x] T015 Merge main's one newer commit, push to main and skilled/v4.0.0.0 as 68dda9633a and confirm CI there: 21 runs across 11 workflows on both branches, all green, including Spec-Kit Check
 <!-- /ANCHOR:phase-3 -->
 
 ---
