@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-09-23 |
 | **Branch** | `worktrees/065-fix-advisory-false-alarms` |
 | **Parent Spec** | ../spec.md |
