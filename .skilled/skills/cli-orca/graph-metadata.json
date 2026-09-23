@@ -2,7 +2,7 @@
   "schema_version": 2,
   "skill_id": "cli-orca",
   "family": "cli",
-  "category": "cli-tool",
+  "category": "cli-orchestrator",
   "deprecated": false,
   "edges": {
     "depends_on": [],
@@ -21,12 +21,12 @@
       },
       {
         "target": "cli-external-orchestration",
-        "weight": 0.3,
+        "weight": 0.4,
         "context": "the sibling CLI lane dispatches external executors, while cli-orca talks to the Orca runtime itself"
       },
       {
         "target": "mcp-tooling",
-        "weight": 0.3,
+        "weight": 0.4,
         "context": "the transport hub previously carried this subject as a mode, and the two now defer to each other by vocabulary"
       }
     ],
@@ -100,19 +100,19 @@
       },
       {
         "name": "orca-cli-reference.md",
-        "kind": "doc",
+        "kind": "reference",
         "path": ".skilled/skills/cli-orca/references/orca-cli-reference.md",
         "source": "derived"
       },
       {
         "name": "orca-skills",
-        "kind": "doc",
+        "kind": "reference",
         "path": ".skilled/skills/cli-orca/references/orca-skills/overview.md",
         "source": "derived"
       },
       {
         "name": "PROVENANCE.md",
-        "kind": "doc",
+        "kind": "reference",
         "path": ".skilled/skills/cli-orca/assets/PROVENANCE.md",
         "source": "derived"
       }
