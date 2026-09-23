@@ -16,6 +16,11 @@
         "target": "sk-code",
         "weight": 0.4,
         "context": "commit hygiene pairs with code standards"
+      },
+      {
+        "target": "cli-orca",
+        "weight": 0.5,
+        "context": "Orca-managed worktree operations complement generic Git workflow ownership"
       }
     ],
     "conflicts_with": [],

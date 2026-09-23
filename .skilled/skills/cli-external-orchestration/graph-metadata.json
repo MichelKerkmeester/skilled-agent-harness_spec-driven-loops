@@ -33,6 +33,16 @@
         "target": "sk-code",
         "weight": 0.4,
         "context": "dispatched code sessions load sk-code standards"
+      },
+      {
+        "target": "cli-orca",
+        "weight": 0.4,
+        "context": "Orca manages its runtime surface while this hub dispatches external CLI executors"
+      },
+      {
+        "target": "cli-jev",
+        "weight": 0.4,
+        "context": "Jev supplies typed judgment transport beside this hub's external executor dispatch"
       }
     ],
     "conflicts_with": [],

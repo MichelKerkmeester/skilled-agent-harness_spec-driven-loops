@@ -8,7 +8,7 @@ trigger_phrases:
   - "linear completion comment orca"
   - "linear status orca"
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 
