@@ -330,6 +330,36 @@ describe('write-containment — baseline content capture', () => {
     expect(entry?.baselineContentPath).toBeUndefined();
     expect(existsSync(join(captureDir, 'containment/baseline/big-outside.bin'))).toBe(false);
   });
+
+  it('skips capture folders an earlier run left in the tree, so a capture never copies a capture', () => {
+    const { root, artifactDir } = baselineRepo();
+    const captureDir = makeCaptureDir();
+    const earlierBaseline = join(root, 'specs/other/lineages/a/containment/baseline/deep');
+    const earlierQuarantine = join(root, 'specs/other/review/containment/quarantine/pass-1');
+    mkdirSync(earlierBaseline, { recursive: true });
+    mkdirSync(earlierQuarantine, { recursive: true });
+    writeFileSync(join(earlierBaseline, 'file.txt'), 'EARLIER_CAPTURE\n');
+    writeFileSync(join(earlierQuarantine, 'manifest.json'), '{}\n');
+    writeFileSync(join(root, 'new-outside.txt'), 'new\n');
+
+    const dirty = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir, captureContentDir: captureDir });
+
+    expect(dirtySorted(dirty)).toEqual(['new-outside.txt']);
+    expect(existsSync(join(captureDir, 'containment/baseline/specs'))).toBe(false);
+  });
+
+  it('does not report capture folders an earlier run left in the tree as new violations', () => {
+    const { root, artifactDir } = baselineRepo();
+    const earlier = join(root, 'specs/other/lineages/a/containment/baseline/deep');
+    mkdirSync(earlier, { recursive: true });
+    writeFileSync(join(earlier, 'file.txt'), 'EARLIER_CAPTURE\n');
+    const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(artifactDir, 'iter.md'), 'iteration\n');
+
+    const violations = detectNewOutOfScopeViolations({ repoRoot: root, artifactDir, preDispatchDirtyPaths });
+
+    expect(violations).toEqual([]);
+  });
 });
 
 // Restore mode used to have one source, HEAD. For a path that was ALREADY dirty when the lane
