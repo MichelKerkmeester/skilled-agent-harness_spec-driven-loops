@@ -1,0 +1,14 @@
+All four verifications pass. All three edits applied.
+
+PI_HANDBACK
+status: done
+summary: Trimmed the durable slice of the spec-kit simplification research parent goal under the 4,000-character budget: the 22-row binding table became one sentence naming the child range and the decision wording was cut to its substance with the same meaning. The completion criteria and log stayed word for word, one log row was appended recording the trim, and the three frontmatter lines were updated.
+files_changed: 1 (specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md)
+edits_applied: 1, 2, 3
+edits_skipped: none
+verification:
+  grep -c '^| 0[0-2][0-9]-' specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md → 0
+  grep -c 'Durable slice trimmed under the budget' specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md → 1
+  grep -c '^- \[x\]' specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md → 5
+  grep -c 'recent_action: "Trimmed the durable slice under the budget"' specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md → 1
+failures: none

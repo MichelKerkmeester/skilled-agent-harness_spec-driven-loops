@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups",
+  "spec_folder": "system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci cleanup follow-ups",
+      "spec gate tmp exemption",
+      "cli-jev pipefail",
+      "tmpdir ci workaround",
+      "drift guard errors",
+      "spec gate under tmp",
+      "tmpdir workaround removal",
+      "runtime vitest tmpdir",
+      "playbook test count"
+    ],
+    "key_topics": [
+      "cleanup",
+      "follow-ups",
+      "spec",
+      "gate",
+      "tmp",
+      "exemption",
+      "cli-jev",
+      "pipefail",
+      "tmpdir",
+      "workaround",
+      "drift",
+      "guard"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".github/workflows/spec-kit-check.yml",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
+      ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
+      "evidence/dispatch/evidence.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec-mutation-gate-enforce.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex-hook-parity.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.md",
+        "kind": "doc",
+        "path": "evidence/dispatch/evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cleanup Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec gate exempted every write under /tmp and /private/tmp by location, and any path outside the repository is already exempt, so the extra rule only switched the gate off for a repository that itself lives under /tmp",
+    "created_at": "2026-09-23T18:35:11Z",
+    "last_save_at": "2026-09-23T20:40:10.839Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c8bc0de3624504cc78a6447aac73fd2e69e1e48fef46953aa5386b22634a87b9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "62cf207f863ebf397e5dfce86df55d4b3e93fcbb34b0ab1f0c9bf0e93062c58f",
+      "plan.md": "750204050327feb759bfd4c1881950b977c3cc48d43497c17936f8afe0b5c86c",
+      "tasks.md": "3653ee97a9fdec4aab75e31c1c1727df4dfbc6cdf0ccd7c47f2a1db0018aa0cb",
+      "implementation-summary.md": "6a488599ef7d3e0f4430cd25c38a4ceb189342f54739686909ac10a29a062cbc"
+    },
+    "last_active_at": null
+  }
+}

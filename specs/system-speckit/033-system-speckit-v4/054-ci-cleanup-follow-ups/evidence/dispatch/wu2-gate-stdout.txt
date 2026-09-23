@@ -1,0 +1,17 @@
+All three edits applied to `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`; the `/tmp` exemption and its helper are gone and the file parses.
+
+Verification results:
+
+```
+grep -c 'isUnderAnyRoot' .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs   # 0
+node --check .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs && echo syntax-ok   # syntax-ok
+```
+
+PI_HANDBACK
+status: done
+summary: Removed the /tmp path-class exemption from isExemptTargetPath and deleted its now-unused isUnderAnyRoot helper, so a repo under /tmp is gated like any other. Updated the doc comment to reflect that out-of-repo containment already covers /tmp scratch space.
+files_changed: 1 file (.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs)
+edits_applied: 1, 2, 3
+edits_skipped: none
+verification: grep -c 'isUnderAnyRoot' .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs → 0; node --check .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs && echo syntax-ok → syntax-ok
+failures: none

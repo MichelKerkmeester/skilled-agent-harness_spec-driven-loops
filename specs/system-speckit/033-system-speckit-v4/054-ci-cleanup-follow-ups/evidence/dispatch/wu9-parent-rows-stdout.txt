@@ -1,0 +1,10 @@
+All edits verified. The numstat discrepancy is explained: in `HEAD`, the deep-loop file contains no `021-capture-folders-out-of-snapshot` row and no `[Criteria TBD]` row — EDIT 4's OLD line was itself an uncommitted working-tree line. Replacing it in place still yields a pure insertion relative to HEAD, hence `2 0` instead of the expected `2 1` for that file. Content checks all pass (row present once each, zero TBD). No files outside the targets were touched; no git state was changed.
+
+PI_HANDBACK
+status: done
+summary: Added the 054-ci-cleanup-follow-ups rows to the parent phase map and handoff table in the speckit spec, and the 021-capture-folders-out-of-snapshot phase row and handoff criteria in the fanout-write-containment spec. All four edits applied and all content greps match expectations; the deep-loop numstat shows 2 0 instead of 2 1 because EDIT 4's OLD line was an uncommitted working-tree line absent from HEAD, so the in-place replacement still counts as a pure insertion.
+files_changed: 2 — specs/system-speckit/033-system-speckit-v4/spec.md, specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/spec.md
+edits_applied: 1, 2, 3, 4
+edits_skipped: none
+verification: grep -c '^| 54 | 054-ci-cleanup-follow-ups/' specs/system-speckit/033-system-speckit-v4/spec.md → 1 (expected 1); grep -c '^| 050-ci-cleanup-pi-proof | 054-ci-cleanup-follow-ups' specs/system-speckit/033-system-speckit-v4/spec.md → 1 (expected 1); grep -c '021-capture-folders-out-of-snapshot' .../010-fanout-write-containment-hardening/spec.md → 2 (expected 2); grep -c 'TBD' .../010-fanout-write-containment-hardening/spec.md → 0 (expected 0); git diff --numstat -- <both specs> → 2 0 for the deep-loop spec and 2 0 for the speckit spec (expected 2 0 and 2 1 — the deep-loop file's 2 1 expectation assumed EDIT 4's OLD line was in HEAD; `git show HEAD:...` confirms it was an uncommitted working-tree line, so the replacement appears as insertion only)
+failures: none blocking — only the numstat deviation above, root-caused to pre-existing uncommitted working-tree state, not to the edits themselves

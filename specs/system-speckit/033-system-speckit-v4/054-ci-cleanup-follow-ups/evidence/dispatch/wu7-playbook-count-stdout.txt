@@ -1,0 +1,11 @@
+Both checks pass (the second command's exit code 1 is just grep reporting zero matches, which is the expected result `0`).
+
+PI_HANDBACK
+status: done
+summary: Updated the expected core-suite counts from 107 to 108 in the spec-mutation-gate-enforce manual-testing doc. Both verification greps return the expected counts (1 and 0).
+files_changed: 1 file — .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md
+edits_applied: 1
+edits_skipped: none
+verification: grep -c 'tests 108`, `pass 108`' .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md → 1
+verification2: grep -c '107' .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md → 0
+failures: none

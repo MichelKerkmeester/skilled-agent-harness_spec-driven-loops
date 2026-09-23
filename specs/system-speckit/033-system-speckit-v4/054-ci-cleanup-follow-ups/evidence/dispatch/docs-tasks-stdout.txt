@@ -1,0 +1,14 @@
+All three checks pass. The `grep -c` count of 0 makes that command exit 1, which is the expected "no matches" result.
+
+**Verification results:**
+- `check-placeholders.sh ... | grep "tasks.md"` → no lines, `placeholder_lines=1` (pass)
+- `grep -c '<!-- /\?ANCHOR:'` → `30` (pass)
+- `grep -c -e '—' -e ';'` → `0` (pass, zero em dashes and semicolons)
+
+PI_HANDBACK
+status: done
+summary: Filled specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md from its template skeleton using only the verified evidence pack. The file now holds tasks T001 to T012 across the three phases, the rewritten CHK checklist with one pending strict-validation item, and a verification summary of 12 P0, 13 P1 and 1 P2 with 25 of 26 ticked.
+files_changed: 1, specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md
+facts_not_in_evidence: none. Where evidence.md recorded a result but no command line I wrote "command N/A - insufficient source context" instead of inventing a command.
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups --verbose 2>&1 | grep "tasks.md" ; echo "placeholder_lines=$?" → placeholder_lines=1 (no placeholder lines in tasks.md) | grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md → 30 | grep -c -e '—' -e ';' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md → 0
+failures: none
