@@ -64,7 +64,7 @@ Commands are shown from the repository root. Replace angle-bracket placeholders 
 
 | Run | Date | Scenarios | Verdict | Report |
 |---|---|---|---|---|
-| hub-routing baseline | 2026-09-20 | CJ-001 … CJ-003 | 3 PASS, 0 FAIL, 0 SKIP; the transport judgment ran end to end | [`2026-09-20-hub-routing-baseline/`](../../benchmark/reports/2026-09-20-hub-routing-baseline/) |
+| hub-routing baseline | 2026-09-20 | CJ-001 … CJ-003 | 3 PASS, 0 FAIL, 0 SKIP; the transport judgment ran end to end | [`2026-09-20-hub-routing-baseline/`](../benchmark/reports/2026-09-20-hub-routing-baseline/) |
 
 ---
 

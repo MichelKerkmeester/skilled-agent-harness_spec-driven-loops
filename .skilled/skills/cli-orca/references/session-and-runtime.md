@@ -8,7 +8,7 @@ trigger_phrases:
   - "orca terminal receipt"
   - "orca cli resolution"
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

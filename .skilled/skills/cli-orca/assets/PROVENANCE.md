@@ -6,7 +6,7 @@ trigger_phrases:
   - "orca skill snapshot release revision"
   - "package digest orca skill"
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

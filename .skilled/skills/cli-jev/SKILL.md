@@ -5,7 +5,7 @@ allowed-tools: [Read, Bash, Grep, Glob]
 version: 0.2.0.0
 ---
 
-<!-- Keywords: cli-jev, cli-usage, jev, typed judgment, transport, noul, choice, score, run, jev-mcp -->
+<!-- Keywords: cli-jev, cli-usage, jev, typed judgment, transport, noul, choice, score, jev-mcp -->
 
 # cli-jev - Typed-Judgment Transport Hub
 

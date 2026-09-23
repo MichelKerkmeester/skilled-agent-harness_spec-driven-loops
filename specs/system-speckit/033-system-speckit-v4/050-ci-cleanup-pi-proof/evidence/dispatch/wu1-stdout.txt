@@ -1,0 +1,21 @@
+Both links repointed; all three verifications pass.
+
+```
+$ git diff --stat -- .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md
+ .../references/parent-skill/compiled-routing-architecture.md          | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs 2>&1 | tail -3
+check-markdown-links: 7834 files, 13510 links checked, 0 broken
+OK — 0 broken markdown links.
+
+$ rg -c "sk-doc/019-skill-routing-refactor" .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md
+(no match; exit 1 — pass)
+```
+
+PI_HANDBACK
+status: done
+summary: Repointed the two spec links on lines 115–116 of compiled-routing-architecture.md to the archived packet path under z_archive/, inserting exactly "z_archive/" on each line and leaving labels and prefixes untouched. Link checker reports 0 broken links and the old-path grep no longer matches.
+files_changed: 1 — .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md
+verification: git diff --stat → 1 file changed, 2 insertions(+), 2 deletions(-); check-markdown-links.cjs → "0 broken" (7834 files, 13510 links checked); rg -c "sk-doc/019-skill-routing-refactor" → no match, exit 1 (pass)
+failures: none

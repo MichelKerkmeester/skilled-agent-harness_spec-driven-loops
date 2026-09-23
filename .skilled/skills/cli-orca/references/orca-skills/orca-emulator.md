@@ -7,7 +7,7 @@ trigger_phrases:
   - "ios simulator orca"
   - "orca simulator evidence"
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

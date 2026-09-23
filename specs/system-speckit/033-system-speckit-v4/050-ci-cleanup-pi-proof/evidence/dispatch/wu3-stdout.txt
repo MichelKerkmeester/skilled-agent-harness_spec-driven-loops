@@ -1,0 +1,8 @@
+All four verifications pass: the keyword line edit landed in both files, the sync check reports 70 copies in sync, and the `rg` pattern is gone (exit 1).
+
+PI_HANDBACK
+status: done
+summary: Removed the bare "run" keyword from the Keywords line in .skilled/skills/cli-jev/SKILL.md and regenerated its Hermes mirror via the sync script. All four VERIFY commands pass and no unexpected .hermes files changed.
+files_changed: 2 (.skilled/skills/cli-jev/SKILL.md, .hermes/skills/cli-jev/SKILL.md)
+verification: `git diff --stat -- .skilled/skills/cli-jev/SKILL.md .hermes/skills/cli-jev/SKILL.md` → `2 files changed, 2 insertions(+), 2 deletions(-)` (1 line each, Keywords line only) | `git status --porcelain -- .hermes` → `M cli-hermes, M cli-jev, M cli-opencode, M cli-pi, M deep-ai-council` (cli-jev plus the four pre-existing; no others) | `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` → `PASS: 70 Hermes skill copies in sync` | `rg -n "score, run," .skilled/skills/cli-jev/SKILL.md .hermes/skills/cli-jev/SKILL.md` → no match, `exit=1` (pass)
+failures: none

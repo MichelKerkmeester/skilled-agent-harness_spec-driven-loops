@@ -1,0 +1,9 @@
+All three checks pass. Only `tasks.md` was written in this session.
+
+PI_HANDBACK
+status: done
+summary: Filled `specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md` from the tasks-core v2.2 skeleton with the T001 to T012 completed tasks and their evidence, the open T013 to T017 tasks, and a rewritten 26-item verification checklist. Ticked the 22 items the evidence pack proves and left the validation, merge, re-mint, merged-tree and scratch-cleanup items open, with a summary of 13 P0, 12 P1 and 1 P2 dated 2026-09-23.
+files_changed: 1, specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
+facts_not_in_evidence: none
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --verbose 2>&1 | grep "tasks.md" ; echo "placeholder_lines=$?" -> placeholder_lines=1 (pass, no lines) | grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md -> 30 | grep -c -e '—' -e ';' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md -> 0 (grep exit 1, no matches)
+failures: none
