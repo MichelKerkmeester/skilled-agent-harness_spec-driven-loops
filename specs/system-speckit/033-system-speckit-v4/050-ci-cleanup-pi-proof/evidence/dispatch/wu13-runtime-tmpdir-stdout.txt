@@ -1,0 +1,17 @@
+Both VERIFY checks pass.
+
+```
+grep -c 'TMPDIR: ${{ runner.temp }}' .github/workflows/spec-kit-check.yml
+1
+git diff --numstat -- .github/workflows/spec-kit-check.yml
+4	0	.github/workflows/spec-kit-check.yml
+```
+
+PI_HANDBACK
+status: done
+summary: Added the two comments plus `env: TMPDIR: ${{ runner.temp }}` immediately before the Runtime vitest project step's `run: |`, pointing temp workspaces outside /tmp so the spec gate no longer exempts them in CI. Exactly 4 lines added and nothing else changed, as verified.
+files_changed: 1 file, .github/workflows/spec-kit-check.yml
+edits_applied: EDIT 1
+edits_skipped: none
+verification: grep -c 'TMPDIR: ${{ runner.temp }}' .github/workflows/spec-kit-check.yml → 1; git diff --numstat -- .github/workflows/spec-kit-check.yml → 4 0
+failures: none

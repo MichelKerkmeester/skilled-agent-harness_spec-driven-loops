@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof"
-    last_updated_at: "2026-09-23T06:00:00Z"
+    last_updated_at: "2026-09-23T12:30:00Z"
     last_updated_by: "cli-pi-mimo-v2.6-pro"
-    recent_action: "T001-T016 done: main merged, cli-jev re-minted, merged tree verified"
-    next_safe_action: "Push after the operator's yes, watch CI, remove the worktree"
+    recent_action: "T001-T018 done: pushed 5b522489a2, CI green on both branches"
+    next_safe_action: "Remove the worktree after the closing push"
     blockers: []
     key_files:
       - ".skilled/skills/cli-jev/SKILL.md"
@@ -23,11 +23,13 @@ _memory:
       - ".hermes/skills/cli-jev/SKILL.md"
       - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json"
       - "evidence/dispatch/evidence.md"
+      - ".github/workflows/routing-registry-drift.yml"
+      - ".github/workflows/spec-kit-check.yml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-050-ci-cleanup-pi-proof"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,8 +47,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 050-ci-cleanup-pi-proof |
-| **Status** | In Progress |
-| **Completed** | Pending |
+| **Status** | Complete |
+| **Completed** | 2026-09-23 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -76,9 +78,11 @@ The scorer ratchet had dropped to 151 of 195 full corpus and 26 of 32 memory_sav
 | `.skilled/skills/cli-jev/SKILL.md`, `.skilled/skills/cli-jev/graph-metadata.json`, `.hermes/skills/cli-jev/SKILL.md`, `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json` | Modified | The bare word "run" removed from Keywords and derived.key_topics, the Hermes copy regenerated, the baseline restored to its committed content so it carries no net diff |
 | cli-jev manual-testing-playbook, `system-spec-kit/runtime/hooks/cursor/README.md`, `system-spec-kit/runtime/hooks/devin/README.md`, `sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md` | Modified | Six broken links repointed to their z_archive/ locations |
 | `recursive-child-manifest.vitest.ts` | Modified | Two hardcoded .opencode/specs paths corrected to the tracked specs/ tree |
+| `.github/workflows/routing-registry-drift.yml` | Modified | The corpus gate and two push path filters read the json-optimization baseline from its z_archive/ location |
+| `.github/workflows/spec-kit-check.yml` | Modified | The runtime vitest step runs with TMPDIR set to the runner's temp dir, outside the spec gate's /tmp exemption |
 | `specs/system-speckit/033-system-speckit-v4/spec.md` | Modified | Phase map row 50 and the 049 to 050 handoff row added |
 | `specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md` | Modified | One Verification row records this phase's live Pi proof |
-| `evidence/pi-headless-*.txt`, `evidence/pi-headless-delivery-marker.json`, `evidence/pi-tui-select.txt`, `evidence/pi-tui-input.txt`, `evidence/pi-tui-final.txt`, `evidence/pi-tui-state.json`, `evidence/pi-tui-warning.log`, `evidence/dispatch/` | Created | Live proof captures and the dispatch briefs wu1 to wu8 with their handbacks, moved from scratch/ to evidence/ |
+| `evidence/pi-headless-*.txt`, `evidence/pi-headless-delivery-marker.json`, `evidence/pi-tui-select.txt`, `evidence/pi-tui-input.txt`, `evidence/pi-tui-final.txt`, `evidence/pi-tui-state.json`, `evidence/pi-tui-warning.log`, `evidence/dispatch/` | Created | Live proof captures and the dispatch briefs wu1 to wu14 with their handbacks, moved from scratch/ to evidence/ |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -96,7 +100,13 @@ The live-proof captures and the dispatch trail first lived in scratch/. They mov
 
 Main was merged into the worktree branch twice. The first merge, f127890ea7, was clean. The other session then pushed main to 80dc0a118d, and the second merge, 0b39a1f6c3, conflicted on the generated Hermes mirrors of cli-hermes, cli-opencode and cli-pi, because both sides had regenerated them. The conflict was resolved by taking main's copies and regenerating every Hermes mirror from the merged sources, which also refreshed the drifted sk-design mirror.
 
-T001-T016 are done and T017 is open. The work is committed and merged on the worktree branch, and nothing is pushed yet.
+The first push published the phase at 997cd8ee2e to main and skilled/v4.0.0.0. CI passed 13 workflows and failed two steps that the six fixed surfaces had hidden, because a workflow stops at its first failing step. The routing-accuracy corpus gate read the json-optimization baseline from a path that had moved under specs/sk-doc/z_archive/. The runtime vitest project failed five Pi enforce tests in spec-gate-pi-extension.vitest.ts. The spec gate exempts every write under /tmp, and os.tmpdir() is /tmp on the Linux runner, so every write in that suite was exempt. The same five failures reproduced locally with TMPDIR=/tmp.
+
+The first fix for the Pi suite moved its workspace into a gitignored tests/.tmp- folder, and it failed. The gate anchors its state to the repository root and hoists any path under .skilled or .opencode to that root, so the suite's state landed in the real repository. That edit was reverted, and the stray state file it wrote was backed up and removed with the operator's yes. The shipped fix sets TMPDIR to the runner's temp dir on the runtime vitest step, which matches a macOS run, where the temp dir sits under /var/folders. The corpus gate fix repoints the step and the two path filters to the z_archive/ location. Both fixes ran through cli-pi as wu11 and wu13, and wu12 is the reverted attempt.
+
+Main had moved again, so the two fix commits b566f9fc28 and 5b522489a2 were rebased onto it. On the rebased tree the corpus gate passed in CI's no-sqlite mode and the Pi suite passed 9 of 9 with a temp dir outside /tmp. The second push fast-forwarded both branches to 5b522489a2, and all 21 workflow runs passed.
+
+T001-T018 are done. The worktree is removed after the closing commit is pushed, because the worktree holds that commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -112,6 +122,8 @@ T001-T016 are done and T017 is open. The work is committed and merged on the wor
 | Re-mint the cli-jev compiled-routing manifest after merging main | The SKILL.md edit changes the compiled-routing policy hash, and the guard must report fresh with CJ-001 routing compiled before any push. In practice the repository's route-remint pre-commit gate re-minted cli-jev inside commit f0411552aa, before the merge, and the merged tree kept it fresh |
 | Push local main including the other session's two unpushed commits f5a89115b1 and 2c8f243607 | The operator chose to publish local main as it stands, which carries the other session's two commits along with this phase. The other session pushed them itself first, so this phase's push no longer carries them |
 | Rebuild handover.md from the template | The earlier hand-written handover had no frontmatter, no template header and no anchors, which produced three of the five strict-validation errors |
+| Point CI's TMPDIR at the runner's temp dir rather than move the Pi suite's workspace | The gate anchors its state to the repository root, so a workspace inside the checkout cannot be isolated, and the /tmp exemption is a deliberate gate rule this phase does not weaken |
+| Rebase the two fix commits onto main before the second push | Main had moved with commits that touched none of this phase's files, and the rebased tree was re-verified before the push |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -142,6 +154,10 @@ T001-T016 are done and T017 is open. The work is committed and merged on the wor
 | Hermes sync, frontmatter, graph compiler, freshness and link checks on the merged tree | PASS. 70 copies in sync, 0 violations, VALIDATION PASSED, 15/15 fresh, 0 broken, all exit 0 |
 | Deep-loop contract tests and advisor routing and ratchet tests on the merged tree | PASS. 42 passed and 28 passed, exit 0 |
 | `node .skilled/bin/compiled-route-admission.cjs --all` on the merged tree | WARN. Six hubs pass. sk-design reports 1 drift, the same as on origin/main, and CI runs this check with --warn-only |
+| CI on the first push, `997cd8ee2e` | FAIL on two steps. 13 workflows passed on both branches. The routing-accuracy corpus gate failed with FileNotFoundError on the moved baseline, and the runtime vitest project failed 5 Pi enforce tests |
+| `spec-gate-pi-extension.vitest.ts` with TMPDIR=/tmp, then with the default temp dir | The CI failure reproduced with 5 failed and 4 passed. With a temp dir outside /tmp it passed 9 of 9, exit 0 |
+| `score-routing-corpus.py` with CI's floors and no skill-graph.sqlite on the rebased tree | PASS. accuracy 0.5436, TT 103, FT 3, FF 1, overall_pass true, exit 0 |
+| CI on the second push, `5b522489a2` | PASS. All 21 workflow runs passed, 10 on main and 11 on skilled/v4.0.0.0. The runtime vitest project passed 106 files and 1292 tests with 13 skipped |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -155,9 +171,13 @@ T001-T016 are done and T017 is open. The work is committed and merged on the wor
 
 3. **Nine pre-existing run-all-drift-guards.sh errors remain.** Six are missing set -uo pipefail, two are missing references/README.md and one is missing assets/voice-report-template.md. They match the pre-change baseline and sit outside the six surfaces.
 
-4. **The primary checkout holds this phase's scaffold residue.** The scaffold ran against the primary checkout path, so the primary checkout's parent spec.md carries two placeholder rows and an untracked copy of the original 050 scaffold folder sits beside it. Both block updating the primary checkout's main to the phase commit, and removing them waits for the operator's yes at the merge step.
+4. **The primary checkout was left to its owning session.** The scaffold residue this phase planted there was backed up and removed with the operator's yes. The primary checkout's main was not synced, because another session owns that checkout and holds uncommitted work in it, including new 050 to 052 phase folders whose number 050 collides with this phase.
 
 5. **Phase 030 fails strict validation on its own goal.md.** Its durable slice is 6498 characters against a 4000 limit. That predates this phase and sits outside its scope, so the parent's recursive strict run stays red on that one phase.
+
+6. **Other spec-gate suites still build their workspace under os.tmpdir().** spec-gate-core.test.mjs and the devin and cursor spec-gate tests would hit the same /tmp exemption on a Linux machine whose temp dir is /tmp. CI does not run them, and the Pi suite fails the same way on such a machine outside CI.
+
+7. **One runtime test fails locally only.** opencode-plugins-folder-purity.vitest.ts cannot import the unbuilt cli-communication-projection dist in this worktree. CI builds that dist and the test passes there.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,0 +1,10 @@
+All three VERIFY results match expectations (grep -c exits 1 when the count is 0, which is expected). The new comment carries the durable WHY with no ADR/REQ/CHK/task IDs or spec paths.
+
+PI_HANDBACK
+status: done
+summary: Moved the test workspace out of the OS temp dir and into a gitignored .tmp- folder beside the suite, so the spec gate's /tmp exemption no longer bypasses enforcement on Linux CI. Replaced the tmpdir imports with path/url helpers used to derive the suite directory.
+files_changed: 1 (.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts)
+edits_applied: 1, 2
+edits_skipped: none
+verification: grep -c 'tmpdir' .skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts → 0 | grep -c 'TEST_DIR' .skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts → 2 | git diff --numstat -- .skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts → 6	3
+failures: none

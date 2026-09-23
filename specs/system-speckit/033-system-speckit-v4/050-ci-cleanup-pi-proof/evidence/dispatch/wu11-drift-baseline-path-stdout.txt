@@ -1,0 +1,10 @@
+All four VERIFY results match expectations.
+
+PI_HANDBACK
+status: done
+summary: Replaced the archived packet path with its z_archive/ location at all 3 occurrences (lines 65, 109, 269) in the routing-registry-drift workflow, fixing the corpus gate FileNotFoundError and the two stale push path filters. The sibling 015-router-unification-program lines were untouched and still appear exactly twice.
+files_changed: 1 — .github/workflows/routing-registry-drift.yml
+edits_applied: 1
+edits_skipped: none
+verification: grep -c 'specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/' .github/workflows/routing-registry-drift.yml → 3 | grep -c 'sk-doc/019-skill-routing-refactor/033-json' .github/workflows/routing-registry-drift.yml → 0 | grep -c 'sk-doc/019-skill-routing-refactor/015-router-unification-program' .github/workflows/routing-registry-drift.yml → 2 | git diff --numstat -- .github/workflows/routing-registry-drift.yml → 3\t3\t.github/workflows/routing-registry-drift.yml
+failures: none

@@ -24,7 +24,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-22 |
 | **Branch** | `worktrees/061-ci-cleanup-pi-proof` |
 | **Parent Spec** | ../spec.md |
@@ -96,6 +96,8 @@ The Pi Gate-3 contract is proven in a live headless run and a live TUI run, and 
 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json` | Modify | Scorer eval baseline ratchet surface. Restored to its committed content after the cli-jev fix returns the counts to 152 of 195 and 27 of 32 |
 | Six link sources (cli-jev manual-testing-playbook (1), system-spec-kit runtime/hooks/cursor/README.md (1), runtime/hooks/devin/README.md (2), sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md (2)) | Modify | Markdown links. Six broken links are repointed to their z_archive/ locations |
 | `recursive-child-manifest.vitest.ts` | Modify | Spec-kit CLI tests. Two hardcoded .opencode/specs paths are corrected to the tracked specs/ tree |
+| `.github/workflows/routing-registry-drift.yml` | Modify | The corpus gate and two push path filters read the json-optimization baseline from its z_archive/ location. Added with the operator's yes after the first push exposed this failure |
+| `.github/workflows/spec-kit-check.yml` | Modify | The runtime vitest step runs with TMPDIR set to the runner's temp dir, outside the spec gate's /tmp exemption. Added with the operator's yes after the first push exposed this failure |
 | `.skilled/skills/cli-jev/SKILL.md` | Modify | The bare word run is removed from the Keywords comment on line 8 |
 | `.skilled/skills/cli-jev/graph-metadata.json` | Modify | The bare word run is removed from derived.key_topics |
 | `.hermes/skills/cli-jev/SKILL.md` | Regenerate | Regenerated from the skill source after the keyword removal |
