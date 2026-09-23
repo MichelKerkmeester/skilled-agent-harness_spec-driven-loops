@@ -77,7 +77,7 @@ This separation gives cleaner mutation scope:
 
 ## 4. TEST AND CI OVERRIDE
 
-`SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only. `SYSTEM_SKILL_ADVISOR_DB_DIR` remains a legacy fallback for existing scripts.
+`SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only. The retired `MK_SKILL_ADVISOR_DB_DIR` name has no read site of its own. It reaches this variable only in a process that runs the env alias bridge (`.skilled/hooks/shared/env-aliases.cjs`) before the read, and only while `SYSTEM_SKILL_ADVISOR_DB_DIR` is unset.
 
 Production and operator docs should treat the package-local path as the default. A runtime override must not be used to silently re-collocate the advisor DB with `system-spec-kit/runtime/database/`.
 

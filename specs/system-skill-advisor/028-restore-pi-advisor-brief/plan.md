@@ -77,7 +77,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Beyond the verification tasks in `tasks.md`: the package's vitest battery ran both WITH the edits (880 passed / 11 failed / 898) and, via a stash-baseline of the same 8 failing files WITHOUT the edits (11 failed / 19 passed — the identical failure set), proving the 11 failures pre-exist at the worktree's HEAD and none come from the touched behavior.
+Beyond the verification tasks in `tasks.md`: the package's vitest battery ran both WITH the edits (880 passed / 11 failed / 898) and, via a stash-baseline of the same 8 failing files WITHOUT the edits (11 failed / 19 passed — the identical failure set), proving the 11 failures pre-exist at the worktree's HEAD. That battery does not include the Pi dedup suite (`.skilled/hooks/dispatch/pi/directive-dedup.test.ts`), so it says nothing about the dedup change. See the correction in `implementation-summary.md`.
 <!-- /ANCHOR:testing -->
 
 ---

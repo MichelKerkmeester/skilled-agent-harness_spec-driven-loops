@@ -35,7 +35,7 @@ On each user-prompt event the adapter:
 1. **Kill-switch.** Checks `isHookEnabled('skill-advisor')` (master `SYSTEM_HOOKS_DISABLED` or the `skill-advisor` family). Disabled → empty/skipped prompt-safe output.
 2. **Read the prompt + workspace.** Resolves the workspace root (install-anchored walk, not CWD-relative, so the hook stays correct off-root), reads the prompt text (bounded), and resolves the session id.
 3. **Build the brief.** `buildSkillAdvisorBrief` scores the prompt against the skill graph, checks freshness (`live` / `stale` / `absent` / `unavailable`), and returns an `AdvisorHookResult` with status `ok` / `skipped` / `degraded` / `fail_open`. Default confidence/uncertainty pair is `0.8 / 0.35` unless overridden.
-4. **CLI fallback.** When the native advisor is unavailable, `shouldTrySkillAdvisorCliFallback` may invoke the Python shim (`skill_advisor.py`) as a warm-only fallback.
+4. **CLI fallback.** When the native brief is empty and the status is `fail_open`, or `degraded` with `unavailable` freshness, `shouldTrySkillAdvisorCliFallback` hands the prompt to the Node advisor CLI (`bin/skill-advisor.cjs advisor_recommend --no-warm-only`). The CLI is found under `.skilled` first and `.opencode` second, and it starts the daemon itself when the socket is cold.
 5. **Render.** `renderAdvisorBrief` produces the model-visible `Advisor:` text; `renderAdvisorFallbackDirective` produces the degraded-mode directive. Raw prompt text is never persisted in diagnostics, cache metadata, status, or attribution.
 6. **Directive-lifecycle dedup.** `decideDirectiveLifecycleDelivery` suppresses a re-delivery of the same directive to the same session within its cadence, so a repeated prompt does not re-inject an identical brief.
 7. **Emit.** Native adapters emit a `hookSpecificOutput.additionalContext` JSON envelope; OpenCode appends to `output.system` via `experimental.chat.system.transform`; Pi sends a model-visible message.
@@ -84,7 +84,7 @@ system-spec-kit/runtime/hooks/<runtime>/user-prompt-submit.{ts,js}  # thin shims
 system-skill-advisor/runtime/
 +-- dist/hooks/<runtime>/user-prompt-submit.js   # compiled advisor the shims spawn
 +-- lib/skill-advisor-brief.ts, render.ts, metrics.ts, subprocess.ts
-`-- scripts/skill_advisor.py                      # Python shim (warm-only fallback)
+`-- scripts/skill_advisor.py                      # standalone Python advisor CLI
 .skilled/plugins/system-skill-advisor.js         # OpenCode plugin
 ```
 
@@ -102,8 +102,8 @@ system-skill-advisor/runtime/
 | `system-skill-advisor/runtime/lib/skill-advisor-brief.ts` | The brief builder: scoring, freshness, status, confidence/uncertainty. |
 | `system-skill-advisor/runtime/lib/render.ts` | `renderAdvisorBrief` / `renderAdvisorFallbackDirective`, produces the model-visible text. |
 | `system-skill-advisor/hooks/lib/directive-lifecycle.ts` | Directive-lifecycle dedup: decides whether a directive should be re-delivered to a session within its cadence. |
-| `system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | `buildSkillAdvisorBriefFromCli` / `shouldTrySkillAdvisorCliFallback`, warm-only Python-shim fallback. |
-| `system-skill-advisor/runtime/scripts/skill_advisor.py` | Python shim for the CLI fallback and the standalone advisor CLI. |
+| `system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | `buildSkillAdvisorBriefFromCli` / `shouldTrySkillAdvisorCliFallback`, the Node CLI fallback. Takes the CLI, IPC bridge and database paths from one root, `.skilled` first, then `.opencode`. |
+| `system-skill-advisor/runtime/scripts/skill_advisor.py` | Standalone Python advisor CLI. The hook's CLI fallback does not call it. |
 
 ---
 
@@ -114,9 +114,9 @@ The advisor is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | Variable | Effect |
 |---|---|
 | `SYSTEM_SKILL_ADVISOR_DISABLED=1` | Canonical kill-switch. Every adapter checks `isHookEnabled('skill-advisor')` and returns empty/skipped prompt-safe output. |
-| `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` | Alias. Disables the native adapters and the Python shim. |
+| `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` | Alias. Disables the native adapters. |
 | `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Alias. Disables the OpenCode plugin. |
-| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Legacy alias for the native adapters. |
+| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Legacy alias for the native adapters. The standalone Python CLI (`skill_advisor.py`) reads only this name, set to exactly `1`, from `runtime/schemas/compat-contract.json`. |
 | `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Legacy alias for the OpenCode plugin. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 

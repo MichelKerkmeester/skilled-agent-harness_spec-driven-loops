@@ -28,8 +28,13 @@ const CHECKER = join(R, '.skilled/commands/doctor/scripts/parent-skill-check.cjs
 const GOLDEN_HUB = join(R, '.skilled/skills/sk-doc'); // a canon-clean workflow-only hub
 
 function runChecker(hubDir: string): { code: number; out: string } {
+  // The hub copies live in a bare tempdir, so the copied root-router contract's
+  // dependency on the workspace's shared package has no node_modules ancestry
+  // to walk; NODE_PATH is the require fallback that gives the copy the
+  // workspace's module root without polluting the checker's own resolution.
+  const env = { ...process.env, NODE_PATH: join(R, '.skilled/skills/system-spec-kit/node_modules') };
   try {
-    const out = execFileSync('node', [CHECKER, hubDir], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    const out = execFileSync('node', [CHECKER, hubDir], { encoding: 'utf8', env, stdio: ['ignore', 'pipe', 'pipe'] });
     return { code: 0, out };
   } catch (e: unknown) {
     const err = e as { status?: number; stdout?: string; stderr?: string };

@@ -401,7 +401,6 @@ describe('lease-held single-writer enforcement', () => {
   afterEach(() => {
     closeDb();
     delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
-    delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     while (tempDirs.length > 0) {
       const dir = tempDirs.pop();
       if (dir) rmSync(dir, { recursive: true, force: true });

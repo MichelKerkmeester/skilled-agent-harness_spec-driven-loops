@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/029-fix-remaining-advisor-defects",
+  "description": "Restore the pi advisor dedup return, renew the drifted advisor battery, read each renamed env variable once and fix the stale advisor docs",
+  "keywords": [
+    "restore",
+    "advisor",
+    "dedup",
+    "return",
+    "renew",
+    "drifted",
+    "battery",
+    "read",
+    "renamed",
+    "env",
+    "variable",
+    "stale",
+    "docs"
+  ],
+  "lastUpdated": "2026-09-23T07:35:24.547Z",
+  "specId": "029",
+  "folderSlug": "fix-remaining-advisor-defects",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -16,6 +16,11 @@
         "target": "sk-code",
         "weight": 0.4,
         "context": "commit hygiene pairs with code standards"
+      },
+      {
+        "target": "cli-orca",
+        "weight": 0.4,
+        "context": "cli-orca drives Orca-managed repos through the same worktree, branch and commit surfaces sk-git owns for plain git remotes"
       }
     ],
     "conflicts_with": [],

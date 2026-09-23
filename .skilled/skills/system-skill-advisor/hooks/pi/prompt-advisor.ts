@@ -53,7 +53,7 @@ const ADVISOR_HOOK_FALLBACK_MODULE =
 // The advisor brief Pi appends onto the visible prompt is a dynamic route line
 // plus constant directives. Pi renders the entire extension contribution on
 // screen, so a proven same-content repeat suppresses that brief. The first
-// turn, changed directive content, resume/compact, unknown sessions, and the
+// turn, changed contribution, resume/compact, unknown sessions, and the
 // kill-switch all fail open to the complete contribution. Dispatch
 // authorization remains enforced separately at the tool-call boundary on every
 // turn.
@@ -147,8 +147,8 @@ export function decidePiDirectiveDelivery(
       map.delete(oldest);
     }
   }
-  map.set(key, parts.directives);
   map.set(key, context);
+  return FULL_PI_DIRECTIVE_DELIVERY;
 }
 
 export function resetPiDirectiveDedupForSession(sessionId: string | undefined): void {
