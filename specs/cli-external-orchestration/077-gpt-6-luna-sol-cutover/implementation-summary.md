@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/077-gpt-6-luna-sol-cutover"
     last_updated_at: "2026-09-23T10:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Built and verified Phase 4 review remediation"
+    recent_action: "Built and verified Phase 5, the Xiaomi provider removal"
     next_safe_action: "None in this packet; follow-ons are listed under Known Limitations"
     blockers: []
     key_files:
@@ -36,6 +36,7 @@ _memory:
       - "Workspace: work on main"
       - "CX-002 checks the skill default, gpt-5.5, as SKILL.md says; gpt-6-luna is the fan-out fallback"
       - "gpt-6-astra stays off the Codex, OpenCode and Pi rosters for now"
+      - "Xiaomi removal: Phase 5 of this packet, covering docs, config and the fan-out runtime"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: GPT-6 Luna and Sol cutover with LLM Gateway Luna routes and Opus 5.5 in cli-claude-code
@@ -51,7 +52,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 077-gpt-6-luna-sol-cutover |
-| **Completed** | 2026-09-23. Phases 1 to 3 landed in `f2a90d7ac5`; a fresh review reopened the packet the same day, and Phase 4 corrected what it found |
+| **Completed** | 2026-09-23. Phases 1 to 3 landed in `f2a90d7ac5`; a fresh review reopened the packet the same day, and Phase 4 corrected what it found. Reopened again the same day for Phase 5, which moved MiMo to LLM Gateway only |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -78,6 +79,10 @@ cli-claude-code held no "opus 5.0" string. With the operator's choice of every O
 
 A fresh Opus review of the pushed commits found no P0, two P1 and five P2 doc defects, and each one was re-checked before any edit. cli-opencode no longer presents `-pro` slugs, which `opencode models openai` does not serve, and its missing-default fallback names `openai/gpt-6-sol --variant high`. In cli-codex, the playbook sweep had made CX-001 and CX-002 call `gpt-6-luna` the documented default, and the CX-002 loop ran Luna twice and never Sol. Both scenarios again test `gpt-5.5` at `medium`, as `SKILL.md` says, and the loop runs Luna, Terra and Sol once each. Every cli-codex ceiling statement now gives `gpt-5.6-terra` the `ultra` ceiling Codex's model cache reports. On the Pi side, PI-017 expects the ten current ids and `deepseek-v4.1-flash` with source output re-captured, and the xiaomi section explains the picker change: the kept `.pi/settings.json` dropped `mimo-v2.6-pro-ultraspeed` from `enabledModels`, which scopes startup selection and cycling only, so the id still dispatches with an explicit `--model`. The DevPass `gpt-6-luna` row in `.pi/custom-providers.md` states one verification status. The five changelogs this packet released follow the changelog template at `HEAD` now, because sk-doc/057's rewrite is still uncommitted.
 
+### Phase 5: MiMo through LLM Gateway only
+
+On the operator's direction, Pi and OpenCode reach MiMo through LLM Gateway alone. The Pi fan-out now builds `llmgateway/mimo-v2.6-pro` for the bare `mimo-v2.6-pro` literal, where it built `xiaomi/mimo-v2.6-pro` before, and `mimo-v2.6-pro-ultraspeed` is off both allowlist copies, because the gateway serves no ultraspeed tier; a lineage naming it now fails before launch. cli-pi drops its `xiaomi` section, and `.pi/settings.json` drops the `xiaomi/` picker entry. cli-opencode drops both Xiaomi routes, the Direct API and the Token Plan, from its provider references, its auth pre-flight, its MiMo routing table and fallback prompts, its MiMo prompt template, its quality card and its variant playbook row. cli-hermes had defined its seven ids as Pi's roster minus ultraspeed; with ultraspeed gone from Pi, the seven are exactly Pi's bare literals, and the wording says so. sk-doc/057 landed while Phase 4 was closing, so every changelog of this packet, eleven in all, now follows its compact shape.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -101,6 +106,14 @@ A fresh Opus review of the pushed commits found no P0, two P1 and five P2 doc de
 | `.pi/custom-providers.md` | Modified (Phase 4) | One verification status for DevPass `gpt-6-luna` |
 | Three new changelogs; the five released ones | Created; restructured (Phase 4) | Phase 4 release notes; the five follow the template at `HEAD` |
 | `.hermes/skills/{cli-codex,cli-opencode,cli-pi}/SKILL.md` | Regenerated (Phase 4) | Mirrors of the three bumped skills |
+| `executor-config.ts`, `fanout-run.cjs` | Modified (Phase 5) | Ultraspeed off the Pi allowlist copies; `mimo-v2.6-pro` maps to `llmgateway` |
+| `executor-config.vitest.ts`, `fanout-run.vitest.ts` | Modified (Phase 5) | Nine-id Pi roster, the gateway MiMo mapping, the Hermes roster wording |
+| cli-pi `SKILL.md`, providers reference, PI-017 and the extension auto-discovery scenario | Modified (Phase 5) | No `xiaomi` provider; nine ids; version 1.5.9.0 |
+| cli-opencode `SKILL.md`, README, both references, prompt templates, quality card, variant scenario | Modified (Phase 5) | No Xiaomi Direct or Token Plan route; version 1.4.11.0 |
+| cli-hermes `SKILL.md` and playbook index | Modified (Phase 5) | Roster wording; version 1.0.3.0 |
+| `.pi/settings.json`, `.pi/custom-providers.md` | Modified (Phase 5) | No `xiaomi/` picker entry; the gateway MiMo row is the fan-out route |
+| Three new changelogs; the eight earlier ones | Created; reshaped (Phase 5) | All eleven follow the committed sk-doc/057 compact shape |
+| `.hermes/skills/{cli-pi,cli-opencode,cli-hermes}/SKILL.md` | Regenerated (Phase 5) | Mirrors of the three bumped skills |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -130,6 +143,10 @@ Baselines came first: the six deep-loop runtime suites, typecheck, the council a
 | Keep `gpt-6-astra` off every roster | Operator choice. Codex and OpenCode list it, and the cli-opencode and cli-codex notes say so, but adding a model is a roster change for its own packet |
 | Restore only the default-asserting playbook lines from before the sweep | The sweep that broke CX-001 and CX-002 also standardized executor pins in other scenarios, and those pins are correct |
 | Restructure the five released changelogs, not rewrite them | The template governs shape; what each release shipped stays as released, and the Phase 4 entries record what changed since |
+| Remap the fan-out's MiMo literal to `llmgateway` and drop ultraspeed | Operator choice of docs, config and runtime. Docs without the runtime would say there is no Xiaomi route while fan-out still sent MiMo there |
+| Prove the new MiMo route with a fan-out-built smoke, not a hand-typed command | The command came from `buildLineageCommand`, so the smoke tests the new provider map as well as the gateway |
+| Leave the contract examples, council docs and benchmark profiles that name Xiaomi slugs | The operator named cli-pi and cli-opencode, and the compiled contracts need their own regeneration |
+| Reshape the changelogs to sk-doc/057 again | 057 is now the committed template, and REQ-015 judges against the template committed at closure |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -157,6 +174,11 @@ Baselines came first: the six deep-loop runtime suites, typecheck, the council a
 | Phase 4 catalog re-reads | `opencode models openai` lists `gpt-6-astra`, `gpt-6-luna` and `gpt-6-sol` with their `-fast` variants and no `-pro` slug. Codex's `models_cache.json` gives `gpt-5.6-terra`, `gpt-6-sol` and `gpt-6-astra` `low` to `ultra`, and `gpt-6-luna` `low` to `max` |
 | Phase 4 finding checks | `git grep -nE 'gpt-6-(luna\|sol)-pro'` over the living cli docs, `.hermes` and `.pi`: no hit. The CX-002 loop is `for m in gpt-6-luna gpt-5.6-terra gpt-6-sol`, and step 4's `cli-codex-cx002-gpt-*.txt` glob matches its three outputs. No playbook line calls `gpt-6-luna` the default; the one regex hit is CX-016's executor pin. The five cli-codex Terra ceiling lines say `ultra`. `.pi/custom-providers.md:88` states one status. PI-017 names `deepseek-v4.1-flash` twice and the retired default nowhere |
 | Phase 4 `check-frontmatter-versions.sh` | PASS: 2,932 files, 2,923 ok, 9 without frontmatter skipped, exit 0 |
+| Phase 5 runtime suites and typecheck | Six suites 391 passed, 1 skipped, exit 0 (221 s), against a baseline taken just before the edit of 391 passed, 1 skipped, exit 0 (217 s); `npm run typecheck` exit 0 before and after |
+| Phase 5 live smoke | PASS: the fan-out built `pi -p --offline --model llmgateway/mimo-v2.6-pro --thinking high` for the bare `mimo-v2.6-pro` literal, which exited 0 and replied `OK` in 11 s. The same builder refused `mimo-v2.6-pro-ultraspeed` before launch, listing the nine remaining ids |
+| Phase 5 Xiaomi residue search | No `xiaomi/`, `xiaomi-token-plan-ams`, `'xiaomi'` or `### xiaomi` hit in cli-pi, cli-opencode, their mirrors, `.pi/settings.json` or the Pi fan-out code; the remaining Xiaomi mentions state that the routes were removed |
+| Phase 5 changelog shape | sk-doc/057's `check-changelog-structure.py`: all eleven changelogs of this packet `RESULT: PASSED (0 violations)` |
+| Phase 5 `check-frontmatter-versions.sh` and mirrors | Gate exit 0, 2,923 ok; `sync-skills-hermes.cjs --check` drifts only deep-ai-council, which this packet does not touch |
 | Phase 4 `sync-skills-hermes.cjs --check` | 4 drifted after the bumps (cli-codex, cli-opencode, cli-pi, deep-ai-council); 1 after copying back the three regenerated mirrors, deep-ai-council, which this packet does not touch |
 | `validate.sh --strict` | `RESULT: PASSED` after re-deriving the generated metadata |
 <!-- /ANCHOR:verification -->
@@ -172,9 +194,12 @@ A fresh review after the push found two P1 and five P2 doc defects, and Phase 4 
 2. **PI-017's live smoke step was not re-run.** Its source inspection was re-captured on 2026-09-23; the credentialed dispatch it describes was left as it was.
 3. **Pi's GPT-6 ids depend on a per-machine catalog refresh.** `openai-codex/gpt-6-luna` resolves because `pi update --models` refreshed `~/.pi/agent/models-store.json` here; a machine with an older catalog cannot resolve the pi-blackhole compaction model or the fan-out's `openai-codex/gpt-6-luna` until it runs the same refresh or Pi's bundled catalog ships the ids.
 4. **Pi's default changed under a running Pi session.** `.pi/settings.json`, which `~/.pi/agent/settings.json` links to, was rewritten at 08:22 local while a Pi session was open. Pi saving its current model is the likely cause, not confirmed. A model switch in any open Pi session can change the repo default again. The kept file also dropped `xiaomi/mimo-v2.6-pro-ultraspeed` from `enabledModels`; the cli-pi xiaomi section now says how to reach it.
-5. **The native Xiaomi values differ from the removed block.** Pi's catalog marks both MiMo ids image-capable and prices ultraspeed at $4.35 in and $8.70 out per million tokens, where the block said text-only and $1.305 and $2.61. Neither was checked against Xiaomi's own price list.
+5. **The native Xiaomi values differed from the removed block.** Pi's catalog marked both MiMo ids image-capable and priced ultraspeed at $4.35 in and $8.70 out per million tokens, where the block said text-only and $1.305 and $2.61. Phase 5 took the `xiaomi` route off the roster, so this no longer affects any roster dispatch.
 6. **Operator config outside the repo is unchanged.** `~/.codex/config.toml` still sets `model = "gpt-5.6-luna"`.
 7. **Adjacent defects noticed, not fixed:** CX-002 checks the roster against `references/cli-reference.md` §5 and its "Supported Models table", but §5 has no such table and links to `providers-and-models.md`, where the roster lives; cli-codex describes `luna-impl` and `sol-verify` Codex profiles that exist in no config; cli-claude-code still names `claude-fable-5` while the current Fable id is `claude-fable-5-1`; `create.sh --track` wrote the new folder under `.opencode/specs/` instead of `specs/`; and two pre-existing test failures reject a stale `deepseek-v4-flash` literal.
+8. **Xiaomi slugs outside cli-pi and cli-opencode stay.** The deep-research, deep-review and deep-ai-council command contracts cite `xiaomi-token-plan-ams/mimo-v2.5-pro` as a sample cli-opencode model id, the council seat-diversity doc uses `xiaomi/mimo-v2.6-pro`, three deep-improvement benchmark profiles pin the Token Plan route, and cli-claude-code's tool comparison counts OpenCode's providers. They were outside the operator's named scope, and the contracts are compiled artifacts that need their own regeneration. Pi's stored Xiaomi credential in `~/.pi/agent/auth.json` is operator config and was left alone.
+9. **No OpenCode round-trip on the MiMo route is recorded.** The Pi smoke proves the gateway serves `mimo-v2.6-pro`, but OpenCode keeps its own credential store, and its providers reference says so.
+10. **Adjacent defect found, not fixed: cli-opencode's auth pre-flight greps provider ids, but `opencode providers list` prints display names.** On this machine the `opencode-go` and `minimax-coding-plan` checks never match, so the pre-flight reports the configured default as missing. The new LLM Gateway check matches the display name, and the others need the same treatment in their own change.
 <!-- /ANCHOR:limitations -->
 
 ---

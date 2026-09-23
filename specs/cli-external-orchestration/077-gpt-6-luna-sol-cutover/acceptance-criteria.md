@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/077-gpt-6-luna-sol-cutover"
     last_updated_at: "2026-09-23T10:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Met the Phase 4 criteria"
+    recent_action: "Met the Phase 5 criteria"
     next_safe_action: "None; the packet is closeable"
     blockers: []
     key_files: []
@@ -66,7 +66,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-012 | REQ-012 | Given the Pi docs and the committed Pi config, When compared, Then the `gpt-6-luna` row has one verification status, the picker change is documented, and PI-017 expects the ten current ids and `deepseek-v4.1-flash` with re-captured evidence | `tasks.md` T025, T026, T027 and T032: `.pi/custom-providers.md:88` reads dispatch-verified only; the xiaomi section documents the picker; PI-017 expects ten ids and `deepseek-v4.1-flash` with output captured 2026-09-23 | Met | - |
 | AC-013 | REQ-013 | Given this packet, When its smoke-test claims are compared with the recorded runs, Then Codex and OpenCode `gpt-6-luna` read passed and no limitation contradicts them | `tasks.md` T018 and T031: both runs recorded as `OK`; Known Limitations lists only the Sol routes as unrun | Met | - |
 | AC-014 | REQ-014 | Given each skill Phase 4 edits, When its `SKILL.md`, newest changelog and Hermes mirror are read, Then it carries one bump and one changelog, the frontmatter gate passes, and its mirror is in sync | `tasks.md` T028, T030 and T032: 1.4.10.0, 1.9.2.0 and 1.5.8.0 with one changelog each; frontmatter gate exit 0; the three mirrors are out of `sync-skills-hermes.cjs --check` drift | Met | - |
-| AC-015 | REQ-015 | Given the changelog template committed at closure, When this packet's changelogs are compared with it, Then they follow its shape | `tasks.md` T029: sk-doc/057 is uncommitted at closure, so the template at `HEAD` governs; all eight changelogs follow its compact shape | Met | - |
+| AC-015 | REQ-015 | Given the changelog template committed at closure, When this packet's changelogs are compared with it, Then they follow its shape | `tasks.md` T029 and T042. Reopened: sk-doc/057 landed on 2026-09-23 in `5f0ab3a10b`, so the committed template is now its compact shape, and the changelogs Phase 4 matched to the older template must follow it. Met: all eleven pass 057's `check-changelog-structure.py` with 0 violations | Met | - |
+| AC-016 | REQ-016 | Given the Pi fan-out code, When its allowlists and provider map are read and the six runtime suites run, Then `mimo-v2.6-pro` maps to `llmgateway`, no copy holds `mimo-v2.6-pro-ultraspeed`, the copies are equal, and the suites pass at or above the T033 baseline with typecheck exit 0 | `tasks.md` T034, T035 and T045: `mimo-v2.6-pro` → `llmgateway`; ultraspeed in neither copy; the pairing test passes; 391 passed, 1 skipped, exit 0, same as T033; typecheck exit 0 | Met | - |
+| AC-017 | REQ-017 | Given cli-pi's and cli-opencode's living docs, When searched for `xiaomi/`, `xiaomi-token-plan-ams` and a `xiaomi` provider section, Then nothing matches, and every MiMo example names `llmgateway/mimo-v2.6-pro` | `tasks.md` T036, T038 and T045: no route-shaped hit; the MiMo template, routing table, fallbacks and examples name `llmgateway/mimo-v2.6-pro` | Met | - |
+| AC-018 | REQ-018 | Given `.pi/settings.json` and `.pi/custom-providers.md`, When read, Then no `xiaomi/` entry remains and the gateway MiMo row is the fan-out route | `tasks.md` T037 and T045: `enabledModels` keeps `llmgateway/mimo-v2.6-pro` only; the custom-providers row calls itself the fan-out route | Met | - |
+| AC-019 | REQ-019 | Given cli-hermes's roster statements, When read, Then none defines the roster as Pi's minus ultraspeed | `tasks.md` T039: both lines describe the seven as Pi's bare literals, with ultraspeed on neither roster | Met | - |
+| AC-020 | REQ-020 | Given the remapped fan-out route, When a one-turn smoke runs through `llmgateway/mimo-v2.6-pro`, Then it replies `OK` | `tasks.md` T040: fan-out-built `pi … --model llmgateway/mimo-v2.6-pro --thinking high`, exit 0, `OK`, 11 s | Met | - |
+| AC-021 | REQ-021 | Given each skill Phase 5 edits, When its `SKILL.md`, newest changelog and Hermes mirror are read, Then it carries one bump and one changelog, the frontmatter gate passes, and its mirror is in sync | `tasks.md` T041, T043 and T045: 1.5.9.0, 1.4.11.0 and 1.0.3.0, one changelog each; gate exit 0; the three mirrors are out of drift | Met | - |
 
 ### Status values
 
@@ -93,5 +99,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All fifteen criteria are met. The residue scan, the unchanged suite counts and the Pi model listing carried the cutover, and Phase 4 corrected the two P1 and five P2 doc defects a fresh review of the pushed commits found. AC-015 was judged against the template at `HEAD`, because sk-doc/057 is still uncommitted. Left out on purpose: a live billed round-trip through the Codex, OpenCode and Hermes Sol routes and `claude-opus-5-5`, which the operator declined, and the adjacent defects listed in `implementation-summary.md`.
+All twenty-one criteria are met. Phase 5 reopened the packet on 2026-09-23 to move MiMo to LLM Gateway only, and AC-015 reopened with it, because sk-doc/057 became the committed template; both closed the same day. The residue scan, the unchanged suite counts and the Pi model listing carried the cutover, and Phase 4 corrected the two P1 and five P2 doc defects a fresh review of the pushed commits found. AC-015 was judged against the template at `HEAD`, because sk-doc/057 is still uncommitted. Left out on purpose: a live billed round-trip through the Codex, OpenCode and Hermes Sol routes and `claude-opus-5-5`, which the operator declined, and the adjacent defects listed in `implementation-summary.md`.
 <!-- /ANCHOR:closure -->

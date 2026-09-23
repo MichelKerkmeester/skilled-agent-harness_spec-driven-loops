@@ -951,7 +951,6 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'gpt-6-luna',
       'gpt-6-sol',
       'mimo-v2.6-pro',
-      'mimo-v2.6-pro-ultraspeed',
       'minimax-m3',
       'qwen3.8-max',
       'z-ai/glm-5.3-flash',
@@ -979,11 +978,10 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
 });
 
 describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
-  // Hermes and Pi reach the same gateway account, so the rosters are deliberately equal
-  // except where the gateway itself disagrees. Every id here answered a live one-turn probe
-  // through Hermes; `mimo-v2.6-pro-ultraspeed` is Pi's alone because the gateway returns
-  // HTTP 400 "Requested model ... not supported" for it on this route.
-  it('matches the Pi roster minus the one id the gateway refuses for Hermes', () => {
+  // Hermes and Pi reach the same gateway account, so the rosters are deliberately equal on
+  // their bare literals. The gateway returns HTTP 400 "Requested model ... not supported" for
+  // `mimo-v2.6-pro-ultraspeed`, which is why neither roster carries it.
+  it('matches the bare literals of the Pi roster and keeps the refused ultraspeed id out', () => {
     expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual([
       'deepseek-v4.1-flash', 'glm-5.3-flash', 'gpt-6-luna', 'gpt-6-sol',
       'mimo-v2.6-pro', 'minimax-m3', 'qwen3.8-max',

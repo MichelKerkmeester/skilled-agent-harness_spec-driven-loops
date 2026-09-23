@@ -54,7 +54,9 @@
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
-      ".hermes/skills/cli-codex/SKILL.md"
+      ".hermes/skills/cli-codex/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -142,6 +144,18 @@
         "source": "derived"
       },
       {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -188,23 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Luna Max",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenAI's GPT-6 Luna and Sol are live",
     "created_at": "2026-09-23T04:51:35Z",
-    "last_save_at": "2026-09-23T09:22:36.344Z",
+    "last_save_at": "2026-09-23T10:58:58.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1f9110bf8df865d9c051f20a6f37bdd844b829277b252f2b303044191477514",
+    "source_fingerprint": "sha256:aacda0b9a74bd4617143b370b5ffa050e8103bc57eb181963f29d102281c58b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5718411d1c1e7a40283a6e4c0c843b3d8809b9638b32f39f6be160cc5e30649e",
-      "plan.md": "281a2c77b3befa70dac463ca19ce77eafc92f994ca28a6490df9027fc144a53a",
-      "tasks.md": "c29fe24859863ba062952c6ee1a4d791e5ae858342a8f66a3faadb5d6eb287d2",
-      "implementation-summary.md": "31db62139250f830d4e7b7db4438c0aff685822627f6ae9acfceeef355701656"
+      "spec.md": "51d5d2fc2cece6f051732c3133115900317bf5242634004f0b10f06c95681109",
+      "plan.md": "cd5702686ed50289eaa18ffa2d9446aaece56bcb21069b9c823aed48594f3b41",
+      "tasks.md": "b5dc29fe6559ab851dfb5cc1e4b8695cd75c791d4906a69f8202f74dc2aa7c60",
+      "implementation-summary.md": "4794358d0bbec36a9f705234bec14fa16a1b81eedbd684814cf3cbdadb9d8c5c"
     },
     "last_active_at": null
   }

@@ -90,6 +90,28 @@ Source: a fresh read-only review of `f2a90d7ac5`, `a6307ce69a` and `80dc0a118d`,
 
 ---
 
+<!-- ANCHOR:phase-5 -->
+## Phase 5: Xiaomi Provider Removal
+
+Source: the operator, 2026-09-23: MiMo goes through LLM Gateway only on Pi and OpenCode, with the change reaching docs, config and the fan-out runtime. Skill paths are under `.skilled/skills/cli-external-orchestration/`; runtime paths under `.skilled/skills/system-deep-loop/runtime/`.
+
+- [x] T033 Re-baseline before any edit: the six runtime suites (`executor-config`, `fanout-run`, `combo-matrix`, `fanout-merge`, `executor-audit`, the cli-codex stress adapter) and `npm run typecheck`; the current version and newest changelog of cli-pi, cli-opencode and cli-hermes; `.pi/settings.json` `enabledModels`; the `llmgateway` MiMo row in `pi --list-models mimo-v2.6`. Evidence: suites 391 passed, 1 skipped, exit 0, 217 s; typecheck exit 0; cli-pi 1.5.8.0, cli-opencode 1.4.10.0, cli-hermes 1.0.2.0, each matching its newest changelog; `enabledModels` held `xiaomi/mimo-v2.6-pro`; `llmgateway/mimo-v2.6-pro` listed
+- [x] T034 Runtime, per REQ-016 (`lib/deep-loop/executor-config.ts`, `scripts/fanout-run.cjs`): drop `mimo-v2.6-pro-ultraspeed` from `PI_SUPPORTED_MODELS` and `PI_ALLOWED_MODELS`; map `mimo-v2.6-pro` to `llmgateway` in `PI_MODEL_PROVIDERS` and drop the ultraspeed entry; correct the map's stale "GPT-5.6 tunes" comment. Evidence: both copies hold nine ids; the builder refuses ultraspeed and builds `llmgateway/mimo-v2.6-pro`
+- [x] T035 Tests, per REQ-016 (`tests/unit/executor-config.vitest.ts`, `tests/unit/fanout-run.vitest.ts`): the Pi roster expects nine ids, the provider map expects `llmgateway` for MiMo, and the Hermes roster test stops calling Hermes Pi's roster minus ultraspeed. Evidence: T045 suite run
+- [x] T036 cli-pi, per REQ-017 (`SKILL.md`, `references/providers-and-models.md`, `manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md`, `manual-testing-playbook/hook-extension-layer/extension-auto-discovery.md`): no `xiaomi` section or ultraspeed row; the LLM Gateway MiMo row is the fan-out route; PI-017 expects nine ids. Evidence: PI-017's `sed -n '210,252p'` re-captured nine ids on 2026-09-23
+- [x] T037 `.pi`, per REQ-018 (`.pi/settings.json`, `.pi/custom-providers.md`): read the settings first, then drop `xiaomi/mimo-v2.6-pro` from `enabledModels`; the gateway MiMo row describes itself as the fan-out route. Evidence: the file was re-read immediately before the edit; it still parses as JSON
+- [x] T038 cli-opencode, per REQ-017 (`SKILL.md`, `README.md`, `references/cli-reference.md`, `references/providers-and-models.md`, `assets/prompt-templates.md`, `assets/prompt-quality-card.md`, `manual-testing-playbook/multi-provider/variant-levels-comparison.md`): no `xiaomi/` or `xiaomi-token-plan-ams/` route, the provider count follows, and MiMo examples use `llmgateway/mimo-v2.6-pro`. Evidence: the T045 residue search; the new pre-flight check matches `opencode providers list` on this machine
+- [x] T039 cli-hermes, per REQ-019 (`SKILL.md`, `manual-testing-playbook/manual-testing-playbook.md`): the roster is described as the seven gateway ids, without reference to Pi's ultraspeed. Evidence: both lines now call the seven Pi's bare literals
+- [x] T040 Live smoke, per REQ-020: one turn through `pi --model llmgateway/mimo-v2.6-pro` replies `OK`. Evidence: fan-out-built command, exit 0, `OK`, 11 s
+- [x] T041 [P] One version bump and one changelog each for cli-pi, cli-opencode and cli-hermes, per REQ-021. Evidence: 1.5.9.0, 1.4.11.0 and 1.0.3.0 with matching changelogs
+- [x] T042 Changelog shape, per REQ-015: sk-doc/057 is committed, so every changelog this packet created follows its compact shape (summary, spec-folder line, What's New at a Glance, Upgrade). Evidence: 057's `check-changelog-structure.py` passes all eleven with 0 violations
+- [x] T043 Regenerate the Hermes mirrors of cli-pi, cli-opencode and cli-hermes into a scratch directory and copy back only those, per REQ-021. Evidence: each diff held only the bump and the Phase 5 lines; the check drifts only deep-ai-council
+- [x] T044 This packet: the implementation summary records Phase 5, its evidence and what it left adjacent. Evidence: its Phase 5 section, verification rows and limitations 8 to 10
+- [x] T045 Verify: the Xiaomi residue search over cli-pi, cli-opencode, `.pi/settings.json` and the Pi fan-out code; the six suites and typecheck against T033; the frontmatter version gate; `sync-skills-hermes.cjs --check`; `validate.sh --strict`. Evidence: no route-shaped hit; 391 passed, 1 skipped, exit 0 against the same baseline; typecheck exit 0; gate exit 0; validate `RESULT: PASSED`
+<!-- /ANCHOR:phase-5 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -148,7 +170,7 @@ Source: a fresh read-only review of `f2a90d7ac5`, `a6307ce69a` and `80dc0a118d`,
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] All acceptance criteria met. Evidence: `acceptance-criteria.md`, all fifteen rows Met
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: `acceptance-criteria.md`, all twenty-one rows Met
 - [x] CHK-021 [P0] `pi --list-models gpt-6` shows the three new routes. Evidence: T014
 - [x] CHK-022 [P1] Luna Max persona counts unchanged. Evidence: T012
 - [x] CHK-023 [P1] Negative Cursor inputs still rejected. Evidence: `executor-config.vitest.ts` asserts `isCursorModelAllowed('gpt-6-sol-high-fast')` is false and passes in T013
@@ -208,7 +230,7 @@ Source: a fresh read-only review of `f2a90d7ac5`, `a6307ce69a` and `80dc0a118d`,
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-23, for all four phases.
+**Verification Date**: 2026-09-23, for all five phases.
 <!-- /ANCHOR:summary -->
 
 ---

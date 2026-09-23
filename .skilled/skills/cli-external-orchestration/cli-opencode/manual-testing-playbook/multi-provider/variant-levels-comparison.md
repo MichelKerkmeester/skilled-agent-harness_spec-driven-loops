@@ -55,7 +55,7 @@ For full-spectrum validation on a provider whose full range is verified, run the
 | Model | Variant range to sweep |
 |---|---|
 | `opencode-go/deepseek-v4-flash` | reasoning model pinned to `--variant max` (its top thinking tier) by policy — now the skill's operative default; treat any other value as unverified until smoke-tested |
-| `xiaomi-token-plan-ams/mimo-v2.6-pro` | `--variant` maps to MiMo reasoning effort (`low`/`medium`/`high`); always use `high` per the MiMo effort map |
+| `llmgateway/mimo-v2.6-pro` | `--variant` maps to MiMo reasoning effort (`none`/`low`/`medium`/`high`); always use `high` per the MiMo effort map |
 | `openai/gpt-6-sol` | `--variant` maps to OpenAI reasoning effort: `none`/`low`/`medium`/`high`/`xhigh` |
 
 

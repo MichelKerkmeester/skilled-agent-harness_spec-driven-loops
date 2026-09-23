@@ -28,7 +28,7 @@ The extension directory is executable project state. Auto-discovery must be visi
 - Expected execution process: Count and inspect `.pi/extensions/*.ts` -> inspect `.pi/settings.json` for extension entries -> run Pi and inspect for factory/parse errors.
 - Expected signals: Eleven top-level extension files plus `lib/` exist; settings contains packages but no extension path; live startup completes without an extension factory error.
 - Desired user-visible outcome: Evidence that project-local extension auto-discovery is active and does not require a settings entry.
-- Pass/fail: PASS for the auto-discovery/loadability check. FAIL on any invalid factory or extension-load error. The earlier SKIP for missing provider credentials is retired: this machine now holds four authenticated providers (`openai-codex`, `deepseek`, `minimax`, `xiaomi`).
+- Pass/fail: PASS for the auto-discovery/loadability check. FAIL on any invalid factory or extension-load error. The earlier SKIP for missing provider credentials is retired: this machine now holds authenticated provider credentials in `~/.pi/agent/auth.json`.
 
 ---
 
