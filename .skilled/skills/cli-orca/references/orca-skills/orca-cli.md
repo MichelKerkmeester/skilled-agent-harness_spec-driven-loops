@@ -8,7 +8,7 @@ trigger_phrases:
   - "orca artifacts"
   - "orca embedded browser"
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

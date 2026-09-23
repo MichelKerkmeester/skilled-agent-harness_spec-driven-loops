@@ -7,7 +7,7 @@ trigger_phrases:
   - "linear-tickets legacy"
   - "orca linear legacy name"
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

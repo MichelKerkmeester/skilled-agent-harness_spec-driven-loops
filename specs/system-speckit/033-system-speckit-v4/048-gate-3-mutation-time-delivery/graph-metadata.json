@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Gate 3 question is delivered by appending a four-option menu to the user's own turn whenever the classifier reads write intent, and the gate almost never closes",
     "created_at": "2026-09-22T06:21:55Z",
-    "last_save_at": "2026-09-22T08:50:27.515Z",
+    "last_save_at": "2026-09-23T06:38:52.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b705a96c0960598a588faf35fb5e6b4ae1319bcb6cdd81fce81248b7ca5933d",
+    "source_fingerprint": "sha256:7740ae3f94b4c3a58409ded8d998fb83844a6884a84f8f3a6ce33a5bfca06d77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "163bd5af56d9e90addf4adeecc1b3f962f8ed67eb693f9b4085aa166cfc9ee6c",
       "plan.md": "fe748a015ba90f27daf8b78eebe87de1c02b133a4e8d5c92ac5cc1f70a920ae0",
       "tasks.md": "e7ecbce28c918cafdb755351be8ed4a6c96b08cdc2356c626e54cd7d743031b4",
-      "implementation-summary.md": "1c3503d248c242939a59a7bf5016a8011561dd38be85bb1a762d14b8f8cfb092"
+      "implementation-summary.md": "73e6e5c8521cb431186940cf5658128cea95ee81008f59a57ce655e5e1b7bf70"
     },
     "last_active_at": null
   }

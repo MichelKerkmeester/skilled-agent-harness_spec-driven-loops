@@ -1,0 +1,10 @@
+All VERIFY counts match expectations.
+
+PI_HANDBACK
+status: done
+summary: Applied all 7 numbered EDITS to the acceptance-criteria.md, marking AC-008 and AC-010 Met with merged-tree evidence and flipping the packet to Closeable. All three VERIFY greps returned the expected counts (10 Met, 0 Unmet, 6 ANCHOR markers).
+files_changed: 1, specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md
+edits_applied: 1, 2, 3, 4, 5, 6, 7
+edits_skipped: none
+verification: grep -c '| Met | - |' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md → 10; grep -c '| Unmet |' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md → 0; grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md → 6
+failures: none
