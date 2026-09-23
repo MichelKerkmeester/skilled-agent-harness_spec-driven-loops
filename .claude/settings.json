@@ -1,5 +1,34 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [],
+    "defaultMode": "bypassPermissions"
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
+  "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "medium"
+    },
+    "claude-opus-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
+  "autoCompactEnabled": true,
+  "autoCompactWindow": 500000,
   "skillListingBudgetFraction": 0.02,
+  "promptSuggestionEnabled": false,
+  "crossSessionInbound": "refuse",
+  "agentPushNotifEnabled": true,
+  "theme": "dark",
+  "tui": "fullscreen",
+  "enabledPlugins": {
+    "cache-tax@claude-code-mods": true
+  },
   "env": {
     "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
     "ENABLE_PROMPT_CACHING_1H": "true",
@@ -195,24 +224,5 @@
         ]
       }
     ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "bash .claude/statusline-command.sh"
-  },
-  "extraKnownMarketplaces": {
-    "claude-code-mods": {
-      "source": {
-        "source": "github",
-        "repo": "karanb192/claude-code-mods"
-      }
-    }
-  },
-  "autoCompactWindow": 500000,
-  "autoCompactEnabled": true,
-  "promptSuggestionEnabled": false,
-  "crossSessionInbound": "refuse",
-  "enabledPlugins": {
-    "cache-tax@claude-code-mods": true
   }
 }
