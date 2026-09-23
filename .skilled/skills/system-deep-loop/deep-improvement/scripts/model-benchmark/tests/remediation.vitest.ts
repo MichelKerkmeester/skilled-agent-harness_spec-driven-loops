@@ -268,24 +268,24 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
   it('cli-cursor rejects a model outside the enforced allowlist', () => {
     expect(() => dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', { ...resolved, model: 'auto' }))
       .toThrow(/not in the enforced allowlist/);
-    expect(() => dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', { ...resolved, model: 'gpt-5.6-sol-high-fast' }))
+    expect(() => dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', { ...resolved, model: 'gpt-6-sol-high-fast' }))
       .toThrow(/not in the enforced allowlist/);
   });
 
   it('cli-pi uses the shared fan-out command for read-only and write-capable dispatch', () => {
-    const piResolved = { ...resolved, model: 'gpt-5.6-sol', variant: 'high' };
+    const piResolved = { ...resolved, model: 'gpt-6-sol', variant: 'high' };
     delete process.env.DEEP_AGENT_DISPATCH_WRITE;
     const readOnly = dispatchModel.buildSpawnSpec('cli-pi', 'prompt', piResolved);
     expect(readOnly.bin).toBe('pi');
     expect(readOnly.args).toEqual([
-      '-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol',
+      '-p', '--offline', '--model', 'openai-codex/gpt-6-sol',
       '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'high', 'prompt',
     ]);
 
     process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
     const writeCapable = dispatchModel.buildSpawnSpec('cli-pi', 'prompt', piResolved);
     expect(writeCapable.args).toEqual([
-      '-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol', '--thinking', 'high', 'prompt',
+      '-p', '--offline', '--model', 'openai-codex/gpt-6-sol', '--thinking', 'high', 'prompt',
     ]);
   });
 
@@ -339,7 +339,7 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
         : ex === 'cli-devin'
           ? { ...resolved, model: 'glm-5-2' }
           : ex === 'cli-pi'
-            ? { ...resolved, model: 'gpt-5.6-sol' }
+            ? { ...resolved, model: 'gpt-6-sol' }
             : resolved;
       const spec = dispatchModel.buildSpawnSpec(ex, 'prompt', execResolved);
       expect(typeof spec.bin).toBe('string');
@@ -354,7 +354,7 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
     }
     expect(dispatchModel.buildSpawnSpec('cli-devin', 'prompt', { ...resolved, model: 'glm-5-2' }).args)
       .toContain('--permission-mode');
-    expect(dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'gpt-5.6-sol' }).args)
+    expect(dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'gpt-6-sol' }).args)
       .toContain('--offline');
   });
 });
@@ -373,7 +373,7 @@ describe('shared-builder dispatch failure classification', () => {
     try {
       const fakeSpawn = () => ({ status: 0, stdout: 'No API key found for provider openai-codex', stderr: '' });
       const r = dispatchModel.dispatchReal({
-        executor: 'cli-pi', model: 'gpt-5.6-luna', prompt_file: failPromptFile, _spawn: fakeSpawn,
+        executor: 'cli-pi', model: 'gpt-6-luna', prompt_file: failPromptFile, _spawn: fakeSpawn,
       });
       expect(r.ok).toBe(false);
       expect(String(r.error ?? '')).toMatch(/auth\/config/i);
@@ -385,7 +385,7 @@ describe('shared-builder dispatch failure classification', () => {
     try {
       const fakeSpawn = () => ({ status: 0, stdout: 'export function formatBytes(n){ return n + " B"; }', stderr: '' });
       const r = dispatchModel.dispatchReal({
-        executor: 'cli-pi', model: 'gpt-5.6-luna', prompt_file: failPromptFile, _spawn: fakeSpawn,
+        executor: 'cli-pi', model: 'gpt-6-luna', prompt_file: failPromptFile, _spawn: fakeSpawn,
       });
       expect(r.ok).toBe(true);
     } finally { restore(); }

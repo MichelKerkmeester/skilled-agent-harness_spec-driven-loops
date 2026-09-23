@@ -201,10 +201,9 @@ claude "Start by reviewing the auth module"
 
 | Model | ID | Strengths | Cost | Best For |
 |-------|----|-----------|------|----------|
-| **Opus 4.8** | `claude-opus-4-8` | Current flagship — deepest reasoning, highest quality | Highest | Architecture decisions, complex trade-offs, extended thinking |
+| **Opus 5.5** | `claude-opus-5-5` | Current flagship — deepest reasoning, highest quality; the deep-reasoning override, paired with `--effort high` | Highest | Architecture decisions, complex trade-offs, extended thinking |
 | **Sonnet 5** | `claude-sonnet-5` | Current balanced (Claude 5 family) | Medium | General tasks, code generation, reviews |
 | **Fable 5** | `claude-fable-5` | Claude 5 family | — | Current-generation Claude 5 dispatch |
-| **Opus 4.6** | `claude-opus-4-6` | Prior-generation deep reasoning | Highest | Architecture decisions, complex trade-offs, extended thinking |
 | **Sonnet 4.6** | `claude-sonnet-4-6` | Prior-generation balanced | Medium | General tasks, code generation, reviews — **current skill default** |
 | **Haiku 4.5** | `claude-haiku-4-5-20251001` | Fastest, most cost-effective | Lowest | Classification, formatting, simple queries, batch ops |
 
@@ -373,7 +372,7 @@ claude -p "..." --max-budget-usd 0.25 --output-format text 2>&1
 claude -p "prompt" --output-format text 2>&1
 
 # Model selection
-claude -p "prompt" --model claude-opus-4-6 --output-format text 2>&1
+claude -p "prompt" --model claude-opus-5-5 --output-format text 2>&1
 claude -p "prompt" --model claude-sonnet-4-6 --output-format text 2>&1
 claude -p "prompt" --model claude-haiku-4-5-20251001 --output-format text 2>&1
 

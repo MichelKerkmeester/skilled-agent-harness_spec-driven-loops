@@ -59,12 +59,12 @@ OpenCode resolves models through configured providers; the model string passed t
 
 ### openai
 
-GPT-5.6 via the `openai` provider — two personas (sol/luna) × three speed tiers (base / fast / pro) = 6 slugs (the Terra persona was retired). `gpt-5.6-sol` is the flagship default persona; confirm live slugs via `opencode models openai`.
+GPT-6 via the `openai` provider — two personas (sol/luna) × three speed tiers (base / fast / pro) = 6 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so confirm a Pro slug is live via `opencode models openai` before dispatching it.
 
 | Persona | Base | Fast (low-latency) | Pro |
 |---------|------|--------------------|-----|
-| sol | `openai/gpt-5.6-sol` | `openai/gpt-5.6-sol-fast` | `openai/gpt-5.6-sol-pro` |
-| luna | `openai/gpt-5.6-luna` | `openai/gpt-5.6-luna-fast` | `openai/gpt-5.6-luna-pro` |
+| sol | `openai/gpt-6-sol` | `openai/gpt-6-sol-fast` | `openai/gpt-6-sol-pro` |
+| luna | `openai/gpt-6-luna` | `openai/gpt-6-luna-fast` | `openai/gpt-6-luna-pro` |
 
 ### opencode-go
 
@@ -137,7 +137,7 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 | `opencode-go` (`deepseek-v4.1-flash`) | reasoning model pinned to `--variant max` (max thinking tier) by policy — the fan-out builder upgrades a lower requested effort automatically |
 | `minimax` (MiniMax-M3) | behavior unverified — omitted by default; confirm before relying |
 | `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
-| `openai` GPT-5.6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
+| `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
 | `cline-pass` (deepseek-v4.1-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
 | `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`; `glm-5.3-flash` carries the full ladder to `max`; `mimo-v2.6-pro` carries `none`/`low`/`medium`/`high` and is direct-dispatch only. Always pass `--variant` explicitly here |
 

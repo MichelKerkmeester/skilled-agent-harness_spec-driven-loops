@@ -557,13 +557,13 @@ describe('mergeResearchRegistries', () => {
         label: 'alpha',
         registry: { keyFindings: [{ id: 'F1', title: 'Alpha finding' }], openQuestions: [], ruledOutDirections: [] },
         kind: 'cli-codex',
-        model: 'gpt-5.6-luna',
+        model: 'gpt-6-luna',
         reasoningEffort: 'max',
       },
     ]);
 
     expect(result.lineageExecutors).toEqual({
-      alpha: { kind: 'cli-codex', model: 'gpt-5.6-luna', reasoningEffort: 'max' },
+      alpha: { kind: 'cli-codex', model: 'gpt-6-luna', reasoningEffort: 'max' },
       beta: { kind: 'cli-devin', model: 'swe-2-max', reasoningEffort: null },
     });
   });
@@ -1423,7 +1423,7 @@ describe('fanout-merge.cjs — lineage executor provenance', () => {
     writeFileSync(
       join(lineageDir, 'invocation-metadata.json'),
       JSON.stringify({
-        effectiveConfig: { kind: 'cli-codex', model: 'gpt-5.6-luna', reasoningEffort: 'max' },
+        effectiveConfig: { kind: 'cli-codex', model: 'gpt-6-luna', reasoningEffort: 'max' },
         invocationFingerprint: 'inv:test',
       }),
       'utf8',
@@ -1439,11 +1439,11 @@ describe('fanout-merge.cjs — lineage executor provenance', () => {
       lineageExecutors: Record<string, { kind: string; model: string; reasoningEffort: string | null }>;
     };
     expect(merged.lineageExecutors).toEqual({
-      'lin-codex': { kind: 'cli-codex', model: 'gpt-5.6-luna', reasoningEffort: 'max' },
+      'lin-codex': { kind: 'cli-codex', model: 'gpt-6-luna', reasoningEffort: 'max' },
     });
 
     const attribution = readFileSync(join(baseDir, 'fanout-attribution.md'), 'utf8');
-    expect(attribution).toContain('| lin-codex | cli-codex | gpt-5.6-luna |');
+    expect(attribution).toContain('| lin-codex | cli-codex | gpt-6-luna |');
   });
 
   it('degrades to the executor event and then to unknown when invocation-metadata.json is missing', async () => {

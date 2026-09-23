@@ -1080,7 +1080,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     const command = buildLineageCommand(
       {
         kind: 'cli-codex',
-        model: 'gpt-5.6-sol',
+        model: 'gpt-6-sol',
         reasoningEffort: 'ultra',
         liveTools: { webSearch: 'live' },
       },
@@ -1136,7 +1136,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     writeStubBinary(binDir, 'cursor-agent');
     const cases = [
       { kind: 'native', label: 'native', sandbox: 'workspace-write' },
-      { kind: 'cli-codex', label: 'codex', model: 'gpt-5.6-sol', sandbox: 'workspace-write' },
+      { kind: 'cli-codex', label: 'codex', model: 'gpt-6-sol', sandbox: 'workspace-write' },
       { kind: 'cli-claude-code', label: 'claude', model: 'claude-fable-5', sandbox: 'workspace-write' },
       // cli-opencode has no OS-level sandbox flag, so only danger-full-access (which
       // makes no confinement claim) is a sandbox mode it can honor; workspace-write and
@@ -1179,7 +1179,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     const pathValue = `${binDir}:${process.env.PATH ?? ''}`;
     const baseLineage = {
       kind: 'cli-codex',
-      model: 'gpt-5.6-sol',
+      model: 'gpt-6-sol',
       reasoningEffort: 'xhigh',
       serviceTier: 'fast',
       liveTools: { webSearch: 'live' },
@@ -1205,7 +1205,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     expect(build().invocationFingerprint).toBe(baseline.invocationFingerprint);
     expect(build(baseLineage, 'secret raw prompt', 'read-only', 'codex 1.2.3', 'credential-b').invocationFingerprint)
       .toBe(baseline.invocationFingerprint);
-    expect(build({ ...baseLineage, model: 'gpt-5.6-luna' }).invocationFingerprint)
+    expect(build({ ...baseLineage, model: 'gpt-6-luna' }).invocationFingerprint)
       .not.toBe(baseline.invocationFingerprint);
     expect(build({ ...baseLineage, reasoningEffort: 'ultra' }).invocationFingerprint)
       .not.toBe(baseline.invocationFingerprint);
@@ -1220,7 +1220,7 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     expect(build(baseLineage, 'secret raw prompt', 'read-only', 'codex 2.0.0').invocationFingerprint)
       .not.toBe(baseline.invocationFingerprint);
     const otherKind = buildLineageCommand(
-      { kind: 'cli-opencode', model: 'gpt-5.6-sol', reasoningEffort: 'xhigh', liveTools: { webSearch: 'live' } },
+      { kind: 'cli-opencode', model: 'gpt-6-sol', reasoningEffort: 'xhigh', liveTools: { webSearch: 'live' } },
       'secret raw prompt',
       // cli-opencode can only enforce danger-full-access; read-only/workspace-write fail closed.
       'danger-full-access',
@@ -1428,7 +1428,7 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
     const binDir = makeTempDir('fanout-run-cursor-rejected-model-');
     writeStubBinary(binDir, 'cursor-agent');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    for (const model of ['auto', 'gpt-5.6-sol-high-fast', 'claude-opus-4-8-xhigh', 'gemini-3.8-flash-medium', 'gemini-3.7-flash-high']) {
+    for (const model of ['auto', 'gpt-6-sol-high-fast', 'claude-opus-4-8-xhigh', 'gemini-3.8-flash-medium', 'gemini-3.7-flash-high']) {
       expect(() => buildLineageCommand({ kind: 'cli-cursor', model }, 'p', 'workspace-write', 'default', opts))
         .toThrow(/not in the enforced allowlist/);
     }
@@ -1879,8 +1879,8 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       // opencode-go fronts DeepSeek Flash too but is direct-dispatch only.
       'deepseek-v4.1-flash': 'llmgateway',
       'minimax-m3': 'minimax',
-      'gpt-5.6-luna': 'openai-codex',
-      'gpt-5.6-sol': 'openai-codex',
+      'gpt-6-luna': 'openai-codex',
+      'gpt-6-sol': 'openai-codex',
       'mimo-v2.6-pro': 'xiaomi',
       'mimo-v2.6-pro-ultraspeed': 'xiaomi',
       'qwen3.8-max': 'opencode-go',
@@ -1942,7 +1942,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     expect(flashHigh.effectiveConfig.reasoningEffort).toBe('max');
     // A non-flash pi model keeps the requested effort.
     const proHigh = buildLineageCommand(
-      { kind: 'cli-pi', model: 'gpt-5.6-sol', reasoningEffort: 'high' },
+      { kind: 'cli-pi', model: 'gpt-6-sol', reasoningEffort: 'high' },
       'p', 'workspace-write', 'default', opts,
     ) as { args: string[] };
     const idx = proHigh.args.indexOf('--thinking');
@@ -1977,10 +1977,10 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const build = (reasoningEffort: string) => buildLineageCommand(
-      { kind: 'cli-pi', model: 'gpt-5.6-luna', reasoningEffort },
+      { kind: 'cli-pi', model: 'gpt-6-luna', reasoningEffort },
       'p', 'workspace-write', 'default', opts,
     ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null; serviceTier: string | null } };
-    const base = ['-p', '--offline', '--model', 'openai-codex/gpt-5.6-luna', '--thinking'];
+    const base = ['-p', '--offline', '--model', 'openai-codex/gpt-6-luna', '--thinking'];
     const xhigh = build('xhigh');
     expect(xhigh.args).toEqual([...base, 'xhigh', 'p']);
     expect(xhigh.effectiveConfig.reasoningEffort).toBe('xhigh');
@@ -1991,7 +1991,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     expect(build('ultra').args).toEqual([...base, 'max', 'p']);
     // A value with no pi mapping fails closed (defensive; the config enum normally prevents it).
     expect(() => buildLineageCommand(
-      { kind: 'cli-pi', model: 'gpt-5.6-luna', reasoningEffort: 'ludicrous' },
+      { kind: 'cli-pi', model: 'gpt-6-luna', reasoningEffort: 'ludicrous' },
       'p', 'workspace-write', 'default', opts,
     )).toThrow(/no pi --thinking mapping/);
   });
@@ -2001,12 +2001,12 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const readOnly = buildLineageCommand(
-      { kind: 'cli-pi', model: 'gpt-5.6-sol' },
+      { kind: 'cli-pi', model: 'gpt-6-sol' },
       'p', 'read-only', 'plan', opts,
     ) as { args: string[] };
-    expect(readOnly.args).toEqual(['-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', 'p']);
+    expect(readOnly.args).toEqual(['-p', '--offline', '--model', 'openai-codex/gpt-6-sol', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', 'p']);
     const write = buildLineageCommand(
-      { kind: 'cli-pi', model: 'gpt-5.6-sol' },
+      { kind: 'cli-pi', model: 'gpt-6-sol' },
       'p', 'workspace-write', 'default', opts,
     ) as { args: string[] };
     expect(write.args).not.toContain('--tools');
@@ -2040,7 +2040,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
 
   it('tolerates a non-zero pi exit when artifacts are present, but still fails a pi run that produced none', async () => {
     const config = (label: string) => JSON.stringify({
-      executors: [{ label, kind: 'cli-pi', model: 'gpt-5.6-luna', reasoningEffort: 'xhigh', iterations: 1 }],
+      executors: [{ label, kind: 'cli-pi', model: 'gpt-6-luna', reasoningEffort: 'xhigh', iterations: 1 }],
       concurrency: 1,
       maxRetries: 0,
     });
@@ -2102,7 +2102,7 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
       executors: [{
         label: 'live-codex',
         kind: 'cli-codex',
-        model: 'gpt-5.6-sol',
+        model: 'gpt-6-sol',
         reasoningEffort: 'ultra',
         liveTools: { webSearch: 'live' },
         iterations: 1,

@@ -91,15 +91,15 @@ Calling AI (identify decision) --> Claude Code (deep analysis) --> Calling AI (i
 ```bash
 # Architecture decision
 claude -p "We need to choose between event sourcing and CRUD for order management. Analyze trade-offs across: data consistency, query performance, team learning curve, operational complexity, and future scalability. Recommend with confidence level." \
-  --model claude-opus-4-6 --effort high --permission-mode plan --output-format text 2>&1 > /tmp/analysis.md
+  --model claude-opus-5-5 --effort high --permission-mode plan --output-format text 2>&1 > /tmp/analysis.md
 
 # Algorithm design
 claude -p "Design a rate limiting algorithm that supports: per-user limits, sliding window, burst allowance, and distributed operation. Analyze time/space complexity for each approach." \
-  --model claude-opus-4-6 --effort high --permission-mode plan --output-format text 2>&1 > /tmp/algorithm.md
+  --model claude-opus-5-5 --effort high --permission-mode plan --output-format text 2>&1 > /tmp/algorithm.md
 
 # Root cause analysis
 claude -p "Intermittent 500 errors on POST /api/orders. Error logs show: [paste logs]. Analyze @src/api/orders.ts and @src/services/order.ts. Identify all possible root causes ranked by likelihood." \
-  --model claude-opus-4-6 --effort high --agent debug --output-format text 2>&1 > /tmp/rca.md
+  --model claude-opus-5-5 --effort high --agent debug --output-format text 2>&1 > /tmp/rca.md
 ```
 
 ### When to Use
@@ -111,7 +111,7 @@ claude -p "Intermittent 500 errors on POST /api/orders. Error logs show: [paste 
 
 ### Considerations
 
-- Use `claude-opus-4-6` with `--effort high` for maximum reasoning depth
+- Use `claude-opus-5-5` with `--effort high` for maximum reasoning depth
 - Use `--permission-mode plan` when analysis doesn't need file writes
 - Opus is expensive — reserve for genuinely complex decisions
 - Sonnet with `--effort high` is a good middle ground for moderately complex tasks
@@ -205,7 +205,7 @@ wait $CLAUDE_PID
 |----------------|-------|------|-----------|
 | Trivial (classify, format) | Haiku | `--model claude-haiku-4-5-20251001` | Low |
 | Standard (review, generate) | Sonnet | `--model claude-sonnet-4-6` | Medium |
-| Complex (architecture, debug) | Opus | `--model claude-opus-4-6 --effort high` | High |
+| Complex (architecture, debug) | Opus | `--model claude-opus-5-5 --effort high` | High |
 
 ### Implementation
 
@@ -220,7 +220,7 @@ claude -p "Review @src/auth.ts for security issues" \
 
 # Tier 3: Opus for complex reasoning
 claude -p "Design the data migration strategy for moving from MongoDB to PostgreSQL" \
-  --model claude-opus-4-6 --effort high --permission-mode plan --output-format text 2>&1
+  --model claude-opus-5-5 --effort high --permission-mode plan --output-format text 2>&1
 ```
 
 ### Cost Optimization
@@ -231,7 +231,7 @@ TRIAGE=$(claude -p "List the 3 most critical security issues in @src/auth/" \
   --model claude-haiku-4-5-20251001 --output-format text 2>&1)
 
 DEEP_ANALYSIS=$(claude -p "Deep analysis of these security issues: $TRIAGE" \
-  --model claude-opus-4-6 --effort high --permission-mode plan --output-format text 2>&1)
+  --model claude-opus-5-5 --effort high --permission-mode plan --output-format text 2>&1)
 ```
 
 ---

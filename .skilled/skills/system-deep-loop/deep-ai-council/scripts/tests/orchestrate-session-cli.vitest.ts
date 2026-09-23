@@ -427,7 +427,7 @@ describe('deep-ai-council session CLI runner', () => {
           { context: { round_number: 1 }, seatIndex: 0 },
           {
             packetSpecFolder,
-            executorConfig: { executor: { kind: 'cli-cursor', model: 'gpt-5.6-sol' } },
+            executorConfig: { executor: { kind: 'cli-cursor', model: 'gpt-6-sol' } },
             councilConfig: {},
             promptTemplate: 'Seat {{seat_name}} deliberation',
             spawn: fakeSpawn,

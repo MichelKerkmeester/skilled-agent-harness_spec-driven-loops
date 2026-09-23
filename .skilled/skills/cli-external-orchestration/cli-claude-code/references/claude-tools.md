@@ -56,7 +56,7 @@ Covers all built-in capabilities of Claude Code CLI, highlights what is unique c
 ```bash
 # Extended thinking with Opus (maximum depth)
 claude -p "Design a real-time collaboration system for a document editor. Consider: CRDT vs OT, WebSocket vs SSE, conflict resolution, offline support, and scaling to 10K concurrent users." \
-  --model claude-opus-4-6 --effort high --output-format text 2>&1
+  --model claude-opus-5-5 --effort high --output-format text 2>&1
 
 # Extended thinking with Sonnet (good balance)
 claude -p "Analyze the trade-offs of our current caching strategy" \

@@ -53,8 +53,8 @@ Other credential kinds on this machine do not transfer: Hermes keeps its own OAu
 |---|---|---|---|---|
 | `deepseek-v4.1-flash` | `llmgateway` | pinned `max` | **observed 2026-09-14**: smoke exit 0, fan-out lineage dispatched | The rotation default; the same literal cli-pi dispatches through DevPass |
 | `glm-5.3-flash` | `llmgateway` | pinned `max` | **observed 2026-09-14**: smoke exit 0 at `max` and `none` | The second lens; flat-price on DevPass |
-| `gpt-5.6-luna` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
-| `gpt-5.6-sol` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
+| `gpt-6-luna` | `llmgateway` | the caller's effort | **probed live 2026-09-23**, a one-turn smoke that replied `OK`; catalog-listed the same day in `/v1/models` (1.05M context, 128K output, efforts `none` to `max`) | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
+| `gpt-6-sol` | `llmgateway` | the caller's effort | **catalog-listed 2026-09-23** in `/v1/models` (1.05M context, 128K output, efforts `none` to `max`); live probe pending | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 | `minimax-m3` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 | `mimo-v2.6-pro` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |
 | `qwen3.8-max` | `llmgateway` | the caller's effort | probed live on this route, per `SKILL.md` | In `HERMES_SUPPORTED_MODELS` and its fan-out mirror |

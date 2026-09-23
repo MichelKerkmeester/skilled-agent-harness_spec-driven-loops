@@ -6,7 +6,8 @@ trigger_phrases:
   - "which model for codex dispatch"
   - "codex reasoning effort lever"
   - "codex default model gpt-5.5"
-  - "codex gpt-5.6 luna terra sol"
+  - "codex gpt-6 luna sol"
+  - "codex gpt-5.6 terra"
   - "codex exec model reasoning effort"
 importance_tier: normal
 contextType: implementation
@@ -48,9 +49,9 @@ cli-codex is backed by a single provider — **OpenAI**, authenticated through C
 | Model id | Default? | Effort ceiling / notes |
 |----------|----------|------------------------|
 | `gpt-5.5` | **Default** | Ceiling `xhigh`; default effort `medium`. General delegation — generation, review, docs, architecture, research |
-| `gpt-5.6-luna` | — | Ceiling `max`. Implementation-heavy work wanting deeper reasoning; the `luna-impl` profile pins `max` |
+| `gpt-6-luna` | — | Ceiling `max`. Implementation-heavy work wanting deeper reasoning; the `luna-impl` profile pins `max` |
 | `gpt-5.6-terra` | — | Ceiling `max`. GPT-5.6 fast sibling; no dedicated config profile — call directly via `-m gpt-5.6-terra` |
-| `gpt-5.6-sol` | — | Ceiling `ultra`. Verification / review and the hardest planning — the only model reaching `ultra`; the `sol-verify` profile pins `xhigh` |
+| `gpt-6-sol` | — | Ceiling `ultra`. Verification / review and the hardest planning — the only model reaching `ultra`; the `sol-verify` profile pins `xhigh` |
 
 `--oss` (local Ollama models) exists as an escape hatch for local experimentation only — not a production dispatch target. See [cli-reference.md](./cli-reference.md) §4.
 
@@ -77,7 +78,7 @@ codex exec \
   "<prompt>"
 ```
 
-Honor explicit user phrasing verbatim ("Use gpt 5.5 high fast", "Use gpt 5.6 sol ultra"). Model stays on `gpt-5.5` and service tier stays on `fast` unless the user names a different one; keep the effort within the chosen model's ceiling (§4). If Codex is not authenticated, the mode ASKS the user to run `codex login` — it never substitutes an API key or a different model. See the auth pre-flight decision tree in [../SKILL.md](../SKILL.md) §3.
+Honor explicit user phrasing verbatim ("Use gpt 5.5 high fast", "Use gpt 6 sol ultra"). Model stays on `gpt-5.5` and service tier stays on `fast` unless the user names a different one; keep the effort within the chosen model's ceiling (§4). If Codex is not authenticated, the mode ASKS the user to run `codex login` — it never substitutes an API key or a different model. See the auth pre-flight decision tree in [../SKILL.md](../SKILL.md) §3.
 
 ---
 
@@ -92,11 +93,11 @@ Per-model ceilings — set the effort within the chosen model's cap:
 | Model | Effort ceiling | Notes |
 |-------|----------------|-------|
 | `gpt-5.5` | `xhigh` | Default effort `medium` |
-| `gpt-5.6-luna` | `max` | `luna-impl` profile pins `max` |
+| `gpt-6-luna` | `max` | `luna-impl` profile pins `max` |
 | `gpt-5.6-terra` | `max` | Callable directly; no dedicated profile |
-| `gpt-5.6-sol` | `ultra` | Only model reaching `ultra`; `sol-verify` profile pins `xhigh` |
+| `gpt-6-sol` | `ultra` | Only model reaching `ultra`; `sol-verify` profile pins `xhigh` |
 
-Selection heuristic: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh` — `gpt-5.6-luna max` for implementation, `gpt-5.6-sol xhigh` / `ultra` for verification and review; drop to `low` / `minimal` for trivial lookups. Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mode_reasoning_effort` — see [cli-reference.md](./cli-reference.md) §5.
+Selection heuristic: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh` — `gpt-6-luna max` for implementation, `gpt-6-sol xhigh` / `ultra` for verification and review; drop to `low` / `minimal` for trivial lookups. Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mode_reasoning_effort` — see [cli-reference.md](./cli-reference.md) §5.
 
 ---
 

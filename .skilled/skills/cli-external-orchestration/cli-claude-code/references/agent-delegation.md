@@ -74,7 +74,7 @@ claude -p "Review src/auth.ts for security issues" \
 
 # Agent with specific model
 claude -p "Plan the authentication redesign with multi-strategy analysis" \
-  --agent ai-council --model claude-opus-4-6 --permission-mode plan --output-format text 2>&1
+  --agent ai-council --model claude-opus-5-5 --permission-mode plan --output-format text 2>&1
 
 # Agent with file context
 claude -p "Debug this error in @src/auth/handler.ts: [paste error]" \
@@ -248,16 +248,16 @@ claude -p "Score the code quality of @src/utils.ts on: readability (1-10), maint
 
 **Best for:** Complex planning tasks that benefit from multiple reasoning strategies evaluated by rubric.
 
-**Recommended flags:** `--permission-mode plan` (planning is read-only), `--model claude-opus-4-6` (deep reasoning)
+**Recommended flags:** `--permission-mode plan` (planning is read-only), `--model claude-opus-5-5` (deep reasoning)
 
 ```bash
 # Multi-strategy architecture planning
 claude -p "Plan the authentication system redesign. Consider: session-based vs JWT vs OAuth2. Evaluate each strategy across security, scalability, complexity, and team expertise." \
-  --agent ai-council --model claude-opus-4-6 --permission-mode plan --output-format text 2>&1
+  --agent ai-council --model claude-opus-5-5 --permission-mode plan --output-format text 2>&1
 
 # Complex migration planning
 claude -p "Plan the database migration from MongoDB to PostgreSQL. Evaluate strategies: big-bang, gradual, dual-write. Score each on risk, downtime, complexity, rollback ability." \
-  --agent ai-council --model claude-opus-4-6 --permission-mode plan --output-format text 2>&1
+  --agent ai-council --model claude-opus-5-5 --permission-mode plan --output-format text 2>&1
 ```
 
 ---
@@ -272,7 +272,7 @@ What is the primary need?
 UNDERSTAND CODE       → @context (with --permission-mode plan)
 FIX A BUG            → @debug
 REVIEW CODE          → @review (with --permission-mode plan)
-PLAN ARCHITECTURE    → @ai-council (with --model claude-opus-4-6)
+PLAN ARCHITECTURE    → @ai-council (with --model claude-opus-5-5)
 RESEARCH A TOPIC     → @deep-research
 COORDINATE AGENTS    → @orchestrate (with --permission-mode plan)
 SPEC PACKET WORK     → Main agent + `/speckit:plan --intake-only` or `/speckit:plan`
@@ -284,11 +284,11 @@ SAVE CONTINUITY      → `/speckit:save`
 | Scenario | Agent | Model | Flags |
 |----------|-------|-------|-------|
 | Quick code review | `review` | sonnet (default) | `--permission-mode plan` |
-| Deep security audit | `review` | `claude-opus-4-6` | `--permission-mode plan --effort high` |
-| Architecture planning | `ai-council` | `claude-opus-4-6` | `--permission-mode plan --effort high` |
+| Deep security audit | `review` | `claude-opus-5-5` | `--permission-mode plan --effort high` |
+| Architecture planning | `ai-council` | `claude-opus-5-5` | `--permission-mode plan --effort high` |
 | Fast codebase scan | `context` | `claude-haiku-4-5-20251001` | `--permission-mode plan` |
 | Research + write | `deep-research` | sonnet (default) | (default) |
-| Emergency debugging | `debug` | `claude-opus-4-6` | `--effort high` |
+| Emergency debugging | `debug` | `claude-opus-5-5` | `--effort high` |
 
 ---
 

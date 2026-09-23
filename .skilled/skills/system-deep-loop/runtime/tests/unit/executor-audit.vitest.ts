@@ -61,7 +61,7 @@ function cliClaudeExecutor(): ExecutorConfig {
 function cliCodexExecutor(): ExecutorConfig {
   return {
     kind: 'cli-codex',
-    model: 'gpt-5.6-luna',
+    model: 'gpt-6-luna',
     configDir: null,
     reasoningEffort: 'high',
     serviceTier: null,

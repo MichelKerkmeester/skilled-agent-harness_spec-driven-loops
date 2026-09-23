@@ -6,5 +6,5 @@
   "tailBehavior": "minimal",
   "memory": true,
   "compactAfterTokens": 272000,
-  "model": { "provider": "llmgateway", "id": "deepseek-v4.1-flash", "thinking": "low" }
+  "model": { "provider": "openai-codex", "id": "gpt-6-luna", "thinking": "medium" }
 }

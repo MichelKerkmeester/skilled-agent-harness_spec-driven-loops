@@ -1,0 +1,28 @@
+{
+  "specFolder": "cli-external-orchestration/077-gpt-6-luna-sol-cutover",
+  "description": "GPT-5.6 to GPT-6 Luna and Sol id cutover, Luna 6 LLM Gateway routes for Pi and Hermes, and Opus ids to claude-opus-5-5 in cli-claude-code",
+  "keywords": [
+    "gpt-5",
+    "gpt-6",
+    "luna",
+    "sol",
+    "cutover",
+    "llm",
+    "gateway",
+    "routes",
+    "hermes",
+    "opus",
+    "ids",
+    "claude-opus-5-5",
+    "cli-claude-code"
+  ],
+  "lastUpdated": "2026-09-23T04:51:35.485Z",
+  "specId": "077",
+  "folderSlug": "gpt-6-luna-sol-cutover",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
