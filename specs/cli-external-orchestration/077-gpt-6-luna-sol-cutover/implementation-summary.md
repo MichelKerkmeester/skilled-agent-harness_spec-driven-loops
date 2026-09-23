@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/077-gpt-6-luna-sol-cutover"
-    last_updated_at: "2026-09-23T18:30:00Z"
+    last_updated_at: "2026-09-23T19:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed Phase 6 with CI green"
+    recent_action: "Moved the two Codex profiles to GPT-6"
     next_safe_action: "None; packet complete"
     blockers: []
     key_files:
@@ -134,6 +134,7 @@ Phase 6 closed what Known Limitations had been carrying. cli-opencode's auth pre
 | Seven `changelog/v*.md` files, one per bumped skill | Created (Phase 6) | Release notes in the sk-doc/057 compact shape |
 | `.hermes/skills/{cli-opencode,cli-codex,cli-claude-code,cli-pi,system-deep-loop,deep-ai-council,deep-improvement}/SKILL.md` | Regenerated (Phase 6) | Mirrors of the seven bumped skills |
 | `~/.codex/config.toml`, `~/.pi/agent/auth.json`, `~/.local/share/opencode/auth.json` | Modified outside the repository (Phase 6) | Codex default `gpt-6-luna`; no `xiaomi` credential; each backed up as `*.bak-20260923` |
+| `~/.codex/luna-impl.config.toml`, `~/.codex/sol-verify.config.toml` | Modified outside the repository (after the close) | `gpt-6-luna` and `gpt-6-sol`; backed up first, then the backups deleted at the operator's direction |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -187,7 +188,7 @@ Phase 6 was built by dispatch. `gpt-6-luna` at `xhigh` on the fast tier made eve
 | Read provider auth from the exit status of `opencode models <provider-id>` | `opencode providers list` prints display names, so no grep for an id can match. On opencode 1.18.32 the command exits 0 for a configured provider and 1 for an unconfigured one |
 | Tie the council stdin assertion to the builder's input | The runner writes whatever input the shared builder returns, and the cli-pi builder returns an empty string to close stdin. An assertion that follows the builder stays correct for every executor |
 | Move PI-017's live step to the read-only command the fan-out builds | Its empty agent directory held no credentials, so the step as written could never reach a model |
-| Keep the `luna-impl` and `sol-verify` rows, and leave those two files alone | Both profile files exist. The operator approved three home-config edits, and these two were not among them |
+| Keep the `luna-impl` and `sol-verify` rows, and move those two files to GPT-6 only on a fresh yes | Both profile files exist. The operator approved three home-config edits with Phase 6 and these two after the close, both on 2026-09-23 |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -232,6 +233,7 @@ Phase 6 was built by dispatch. `gpt-6-luna` at `xhigh` on the fast tier made eve
 | Phase 6 changelogs, frontmatter and mirrors | 057's `check-changelog-structure.py` `RESULT: PASSED (0 violations)` on all seven; `check-frontmatter-versions.sh` exit 0, 2,923 ok; `sync-skills-hermes.cjs --check` `PASS: 70 Hermes skill copies in sync` |
 | Phase 6 hub version check | CI's Routing Registry Drift Guard failed on the first push with four `13a-version` failures; after D9, `parent-skill-check.cjs` exits 0 on all seven hubs, and `ci-skill-root-metadata`, `ci-leaf-manifest-freshness` and `ci-skill-derived-freshness` each pass 15/15 |
 | Phase 6 home config | `~/.codex/config.toml` line 2 `model = "gpt-6-luna"`; `~/.pi/agent/auth.json` keys `cline-pass`, `deepseek`, `minimax`, `openai-codex`, `opencode-go`, `openrouter`; `~/.local/share/opencode/auth.json` keys `cline-pass`, `deepseek`, `llmgateway`, `minimax`, `openai`, `opencode-go`, `openrouter`; three `*.bak-20260923` backups |
+| Profiles after the close | `luna-impl.config.toml` line 1 `model = "gpt-6-luna"` and `sol-verify.config.toml` line 1 `model = "gpt-6-sol"`, each the only changed line; no `5.6` left in either; `codex -p <profile> debug prompt-input` exits 0 for both, which proves each file loads but not a dispatch |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -239,13 +241,12 @@ Phase 6 was built by dispatch. `gpt-6-luna` at `xhigh` on the fast tier made eve
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-A fresh review after the push found two P1 and five P2 doc defects, and Phase 4 corrected all seven. Phase 6 closed the follow-ups this list then carried: PI-017's live step, the Codex default, CX-002's roster source, the Codex profile location, the Fable id, the two stale test fixtures, the Xiaomi slugs outside cli-pi and cli-opencode, both stored Xiaomi credentials, the OpenCode MiMo round-trip and the auth pre-flight. What remains is below.
+A fresh review after the push found two P1 and five P2 doc defects, and Phase 4 corrected all seven. Phase 6 closed the follow-ups this list then carried: PI-017's live step, the Codex default, CX-002's roster source, the Codex profile location, the Fable id, the two stale test fixtures, the Xiaomi slugs outside cli-pi and cli-opencode, both stored Xiaomi credentials, the OpenCode MiMo round-trip and the auth pre-flight. After the close, the operator also approved moving the two named Codex profiles to GPT-6. What remains is below.
 
 1. **The Sol routes outside Pi have no live round-trip.** Codex `gpt-6-sol`, OpenCode `openai/gpt-6-sol` and Hermes `gpt-6-sol` are catalog-listed only. The operator declined them as too expensive and kept them skipped in Phase 6, and the Luna routes on the same runtimes passed. cli-claude-code refuses to dispatch from inside Claude Code, so `claude-opus-5-5` needs a smoke from another shell.
 2. **Pi's GPT-6 ids depend on a per-machine catalog refresh.** `openai-codex/gpt-6-luna` resolves because `pi update --models` refreshed `~/.pi/agent/models-store.json` here; a machine with an older catalog cannot resolve the pi-blackhole compaction model or the fan-out's `openai-codex/gpt-6-luna` until it runs the same refresh or Pi's bundled catalog ships the ids.
 3. **Pi's default changed under a running Pi session.** `.pi/settings.json`, which `~/.pi/agent/settings.json` links to, was rewritten at 08:22 local while a Pi session was open. Pi saving its current model is the likely cause, not confirmed. A model switch in any open Pi session can change the repo default again.
-4. **The two named Codex profiles still pin the 5.6 ids.** `~/.codex/luna-impl.config.toml` sets `model = "gpt-5.6-luna"` and `~/.codex/sol-verify.config.toml` sets `model = "gpt-5.6-sol"`, while cli-codex's roster names each profile beside its GPT-6 row. Each fix is one line, `model = "gpt-6-luna"` and `model = "gpt-6-sol"`, and waits for the operator's yes, because only three home-config edits were approved.
-5. **Adjacent defects noticed, not fixed:**
+4. **Adjacent defects noticed, not fixed:**
    - `create.sh --track` wrote the new folder under `.opencode/specs/` instead of `specs/`.
    - PI-017 anchors its test to `system-deep-loop/runtime/lib/deep-loop/executor-config.vitest.ts`, which does not exist. The test is `runtime/tests/unit/executor-config.vitest.ts`.
    - The deep-ai-council tests README runs vitest from `system-spec-kit/runtime/node_modules/.bin/vitest`, which does not exist.
