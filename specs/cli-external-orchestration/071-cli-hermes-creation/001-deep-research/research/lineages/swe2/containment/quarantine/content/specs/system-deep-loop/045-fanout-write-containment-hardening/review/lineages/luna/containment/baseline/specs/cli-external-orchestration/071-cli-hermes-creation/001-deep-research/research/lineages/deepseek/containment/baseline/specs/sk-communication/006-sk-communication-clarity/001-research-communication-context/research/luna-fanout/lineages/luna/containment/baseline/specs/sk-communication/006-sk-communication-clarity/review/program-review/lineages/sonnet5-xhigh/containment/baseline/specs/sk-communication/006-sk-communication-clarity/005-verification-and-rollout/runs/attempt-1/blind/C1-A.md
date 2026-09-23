@@ -1,9 +1,0 @@
-Case: C1
-
-Where does the retry policy live?
-
-Reply A:
-
-`retry.ts` under `.opencode/skills/system-spec-kit/shared/utils/` is where the retry policy lives. It carries `DEFAULT_CONFIG` (exponential base 2), the transient versus permanent error classification sets, `calculateBackoff`, and the `retryWithBackoff` and `withRetry` entry points, with its tests in `retry.test.ts` in the same folder. Consumers observed: the shared embeddings providers, `voyage.ts` and `openai.ts`, import it.
-
-If you meant a different retry surface, the deep-loop runner computes its own retry eligibility in `runtime/lib/result-envelopes/resume-reducer.ts` under `.opencode/skills/system-deep-loop/`. Say which one and I will go deeper. Nothing is otherwise yours to do.

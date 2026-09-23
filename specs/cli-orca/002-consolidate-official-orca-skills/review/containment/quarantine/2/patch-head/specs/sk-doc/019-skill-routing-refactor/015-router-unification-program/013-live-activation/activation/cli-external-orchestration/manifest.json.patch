@@ -1,7 +1,0 @@
-diff --git a/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json b/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json
-index 7861affd6e4..d4d5d86d286 100644
---- a/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json
-+++ b/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json
-@@ -1 +1 @@
--{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"7d402113c2d4d8127673472a15377bde2dddc3402241fb2b0772ef7e8ed9ef76","generation":5},"servingAuthority":"compiled","shadowOnly":false}
-+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"ae4d2d534651bf5694b2631a35f228e3a5f317fb83f16e73c4de037a5a5f45f9","generation":5},"servingAuthority":"compiled","shadowOnly":false}

@@ -1,7 +1,0 @@
-diff --git a/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json b/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json
-index 7861affd6e4..f921f8d583e 100644
---- a/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json
-+++ b/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json
-@@ -1 +1 @@
--{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"7d402113c2d4d8127673472a15377bde2dddc3402241fb2b0772ef7e8ed9ef76","generation":5},"servingAuthority":"compiled","shadowOnly":false}
-+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"7233d9a5976e808e8cad56c920ca24719de2eab051012469fa1b8235ef4d3f11","generation":5},"servingAuthority":"compiled","shadowOnly":false}
