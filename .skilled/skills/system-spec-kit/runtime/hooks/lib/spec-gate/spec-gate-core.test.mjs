@@ -18,8 +18,8 @@ const CORE_SOURCE_PATH = fileURLToPath(new URL('./spec-gate-core.mjs', import.me
 const CORE_MODULE_URL = new URL('./spec-gate-core.mjs', import.meta.url).href;
 const CLASSIFIER_MODULE_PATH = fileURLToPath(new URL('../../../../shared/dist/gate-3-classifier.js', import.meta.url));
 
-function makeWorkspace() {
-  const root = mkdtempSync(join(tmpdir(), 'spec-gate-test-'));
+function makeWorkspace(base = tmpdir()) {
+  const root = mkdtempSync(join(base, 'spec-gate-test-'));
   const folderRel = '.opencode/specs/999-test-folder';
   const folderAbs = join(root, folderRel);
   mkdirSync(folderAbs, { recursive: true });
@@ -804,12 +804,31 @@ test('path traversal cannot masquerade a real source file as exempt', () => {
     const sessionID = nextSessionID();
     core.classifyIntent({ prompt: 'implement the sync job', sessionID, projectDir: root });
 
-    // "/tmp/../<real source file>" starts with the exempt "/tmp/" prefix as a
-    // raw string, but resolves to a real in-repo file -- it must still deny.
+    // "/tmp/../<real source file>" reads as a path outside the repo as a raw
+    // string, but resolves to a real in-repo file -- it must still deny.
     const traversal = `/tmp/../${join(root, 'src', 'login.ts').replace(/^\//, '')}`;
     const result = core.evaluateMutation({
       tool: 'write',
       filePath: traversal,
+      sessionID,
+      projectDir: root,
+      env: { [core.ENFORCE_ENV]: '1' },
+    });
+    assert.equal(result.decision, 'deny');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('a repository rooted under /tmp is gated like any other', () => {
+  const { root } = makeWorkspace('/tmp');
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the sync job', sessionID, projectDir: root });
+
+    const result = core.evaluateMutation({
+      tool: 'write',
+      filePath: join(root, 'src', 'login.ts'),
       sessionID,
       projectDir: root,
       env: { [core.ENFORCE_ENV]: '1' },

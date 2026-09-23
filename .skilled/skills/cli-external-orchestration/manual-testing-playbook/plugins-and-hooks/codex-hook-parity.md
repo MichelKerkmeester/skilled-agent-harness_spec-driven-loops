@@ -55,7 +55,7 @@ This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (al
 
 ### Commands
 
-1. Fixture stdin-pipe smoke for all eight adapters (fail-open on empty + malformed; plus the deny / advise / additionalContext / audit-line envelopes). The deny fixture plants an open gate-state under a project dir **outside `/tmp`** (the core exempts `/tmp`), then pipes an `apply_patch` payload with `SYSTEM_SPEC_GATE_ENFORCE=1`:
+1. Fixture stdin-pipe smoke for all eight adapters (fail-open on empty + malformed; plus the deny / advise / additionalContext / audit-line envelopes). The deny fixture plants an open gate-state under a disposable project dir (any location works, since the core exempts only paths outside the project), then pipes an `apply_patch` payload with `SYSTEM_SPEC_GATE_ENFORCE=1`:
 
 ```bash
 # deny path — real permissionDecision:"deny". The apply_patch target lives in the

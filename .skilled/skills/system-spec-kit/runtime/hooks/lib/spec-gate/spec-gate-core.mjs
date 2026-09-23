@@ -1489,10 +1489,6 @@ function acceptPriorAnswerBinding(candidatePath, workspaceRoot) {
 // 6. HELPERS -- path-class exemptions
 // ───────────────────────────────────────────────────────────────────
 
-function isUnderAnyRoot(absolutePath, roots) {
-  return roots.some((root) => absolutePath === root || absolutePath.startsWith(`${root}/`));
-}
-
 function isPathWithin(parentAbsolute, candidateAbsolute) {
   return candidateAbsolute === parentAbsolute || candidateAbsolute.startsWith(`${parentAbsolute}/`);
 }
@@ -1533,8 +1529,9 @@ function realpathOrNearestExisting(absolutePath) {
 
 /**
  * Exempt path classes that must never be blocked: the spec tree itself
- * (writing it IS the Gate-3 workflow), /tmp scratch space, dist output,
- * node_modules, .git, and anything outside the repo. Substitutes for the
+ * (writing it IS the Gate-3 workflow), dist output, node_modules, .git, and
+ * anything outside the repo, which already covers /tmp scratch space. A repo
+ * that itself lives under /tmp is gated like any other. Substitutes for the
  * framework's size-based tiny-edit exemption, which is undetectable at hook
  * time (no diff is available here).
  */
@@ -1554,7 +1551,6 @@ export function isExemptTargetPath(filePath, projectDir) {
   const projectDirReal = realpathOrNearestExisting(resolvedProjectDir);
   const absolute = realpathOrNearestExisting(lexicalAbsolute);
 
-  if (isUnderAnyRoot(absolute, ['/tmp', '/private/tmp'])) return true;
   if (!isPathWithin(projectDirReal, absolute)) return true;
 
   const relative = absolute.slice(projectDirReal.length + 1);
