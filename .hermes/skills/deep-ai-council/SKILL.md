@@ -359,7 +359,7 @@ node .skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-com
    - The graph is rebuilt from packet-local `ai-council/**` artifacts and must not replace append-only council state.
 
 6. **ALWAYS run a single CLI per round (one-CLI-per-round invariant)**
-   - All seats within ONE deliberation round MUST be dispatched through the SAME supported CLI executor (for example all seats from `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`). Seat diversity WITHIN a round comes from different models/reasoning lenses on the same CLI (e.g. `deepseek/deepseek-v4-pro --variant high` + `xiaomi/mimo-v2.5-pro`).
+   - All seats within ONE deliberation round MUST be dispatched through the SAME supported CLI executor (for example all seats from `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`). Seat diversity WITHIN a round comes from different models/reasoning lenses on the same CLI (e.g. `deepseek/deepseek-v4-pro --variant high` + `xiaomi/mimo-v2.6-pro`).
    - Mixing executors within one round (e.g. one seat via OpenCode + one seat via OpenCode + one seat via Claude Code) is FORBIDDEN — it conflates orchestration boundaries, complicates rollback, and produces noisy convergence signals because per-CLI guarantees (sandbox, runtime, tool surface, output schema) differ.
    - When MULTIPLE CLIs are appropriate for a deliberation, each additional CLI is a NEW DEDICATED ROUND with its own state event, its own seats, and its own convergence pass — never folded into the same round.
 

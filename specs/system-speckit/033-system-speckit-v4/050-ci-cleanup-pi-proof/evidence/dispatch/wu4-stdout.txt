@@ -1,0 +1,11 @@
+All three verifications pass: the file now matches HEAD exactly, reports `a9c4bc0abc 152 27`, and `git status` shows no line for it.
+
+PI_HANDBACK
+status: done
+summary: Restored scorer-eval-baseline.json to its committed HEAD content by overwriting with `git show HEAD:` output. The file matches HEAD exactly and reports full_corpus_top1 correct 152 and buckets.memory_save correct 27.
+files_changed: 1 file (.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json)
+verification:
+  git diff --quiet -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json; echo "diff_rc=$?" → diff_rc=0
+  node -e '<baseline check>' → a9c4bc0abc 152 27
+  git status --porcelain -- .skilled/skills/system-skill-advisor → (no output, no line for scorer-eval-baseline.json)
+failures: none
