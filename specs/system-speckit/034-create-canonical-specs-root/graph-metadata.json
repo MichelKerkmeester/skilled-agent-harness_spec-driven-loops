@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-create-canonical-specs-root",
+  "spec_folder": "system-speckit/034-create-canonical-specs-root",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create.sh canonical specs root",
+      "create.sh writes to .opencode/specs",
+      "spec packet lands in .opencode/specs",
+      "track numbering restarts at 001"
+    ],
+    "key_topics": [
+      "canonical",
+      "specs",
+      "root",
+      "writes",
+      "opencode",
+      "spec",
+      "packet",
+      "lands",
+      "track",
+      "numbering",
+      "restarts",
+      "032-relocate-specs-folder"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-writer-autosave.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/spec-root-registry.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md",
+      "core/spec-root-canonical-resolver.ts",
+      "tests/spec-root-writer-autosave.vitest.ts",
+      "spec/create.sh",
+      "core/spec-root-registry.ts",
+      "references/spec-root-alias-retirement-runbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-writer-autosave.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/spec-root-writer-autosave.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-registry.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/spec-root-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-alias-retirement-runbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-canonical-resolver.ts",
+        "kind": "code",
+        "path": "core/spec-root-canonical-resolver.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet `032-relocate-specs-folder` moved the real spec tree to `specs/` on 2026-08-08 and left `.opencode/specs -> ../specs` as a back-link",
+    "created_at": "2026-09-23T18:46:18Z",
+    "last_save_at": "2026-09-23T18:52:12.239Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6678689e5f227f078c6ab46f60c986ee7ec26d75b5cc88c5025e19cf85feb551",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d30a2af18e69c11d0116d046484a9616ea7b52c72f3af03fff37ece5d43c982e",
+      "plan.md": "90bd2d563f96aff920582d0b6ed6abef6a78d44e4ecdf9268ddb458cbd0315d3",
+      "tasks.md": "65fcdef068f628305c1d780d9365a1681c5ddbf646ed8fda6655aef34060e0a4",
+      "implementation-summary.md": "37b8958da1d86f3a127e8c03736cb433d9156994f5c6f95682e053989c1e25c6"
+    },
+    "last_active_at": null
+  }
+}

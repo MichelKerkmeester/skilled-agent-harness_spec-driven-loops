@@ -53,7 +53,7 @@ child_doc_level() {
 WITH_LAZY_ADDONS=false  # Opt in to the level-agnostic add-on documents
 WITH_GOAL=false         # Opt in to the durable-directive document
 SKIP_BRANCH=true   # Default: stay on the current branch (opt in with --branch). The owner's workflow commits directly to main; auto-branching is unwanted friction.
-TRACK=""           # Optional track segment: places the folder under .opencode/specs/<track>/ with per-track numbering
+TRACK=""           # Optional track segment: places the folder under specs/<track>/ with per-track numbering
 SUBFOLDER_MODE=false  # Enable versioned sub-folder creation
 SUBFOLDER_BASE=""     # Base folder for sub-folder mode
 SUBFOLDER_TOPIC=""    # Topic name for the sub-folder
@@ -291,7 +291,7 @@ while [[ $i -le $# ]]; do
             echo "  --phases <N>        Number of initial child phases (default: 3)"
             echo "  --phase-names <list>  Comma-separated names for child phases"
             echo "  --parent <path>     Add phases to existing parent spec folder (with --phase)"
-            echo "  --phase-parent <path>  Alias for --parent in phase mode (supports nested .opencode/specs/ paths)"
+            echo "  --phase-parent <path>  Alias for --parent in phase mode (supports nested specs/ paths)"
             echo "                      Example: --phase-names \"foundation,implementation,integration\""
             echo "  --short-name <name> Provide a custom short name (2-4 words) for the branch"
             echo "  --number N          Specify branch number manually (overrides auto-detection)"
@@ -337,7 +337,7 @@ while [[ $i -le $# ]]; do
             echo "  $0 --phase --phases 3 'OAuth2 implementation'"
             echo "  $0 --phase --phases 3 --phase-names 'foundation,implementation,integration' 'OAuth2 flow'"
             echo "  $0 --phase --parent specs/042-oauth2-flow --phases 2 --phase-names 'stabilization,rollout' 'OAuth2 flow'"
-            echo '  $0 --phase --phase-parent .opencode/specs/system-spec-kit/023-esm/011-fusion --phase-names "research,implementation" "Graph improvements"'
+            echo '  $0 --phase --phase-parent specs/system-spec-kit/023-esm/011-fusion --phase-names "research,implementation" "Graph improvements"'
             echo ""
             echo "  Creates: specs/042-oauth2-flow/"
             echo "           specs/042-oauth2-flow/001-foundation/"
@@ -891,7 +891,9 @@ fi
 
 cd "$REPO_ROOT"
 
-SPECS_DIR="$REPO_ROOT/.opencode/specs"
+# New packets always go to the canonical specs/ root. The legacy .opencode/specs
+# link is gone, so writing there leaves a packet in a tree nothing reads.
+SPECS_DIR="$REPO_ROOT/specs"
 if [[ -n "$TRACK" ]]; then
     SPECS_DIR="$SPECS_DIR/$TRACK"
 fi
@@ -998,7 +1000,7 @@ resolve_branch_name() {
     fi
 
     if [[ -z "$BRANCH_NUMBER" ]]; then
-        # With a track, number from existing folders under .opencode/specs/<track>/
+        # With a track, number from existing folders under specs/<track>/
         # (git-branch numbering is not track-aware and would restart at 001).
         if [[ "$HAS_GIT" = true && -z "$TRACK" ]]; then
             BRANCH_NUMBER=$(check_existing_branches "$BRANCH_SUFFIX")

@@ -1,5 +1,7 @@
 # Spec-Root Alias Retirement Runbook
 
+> **Superseded. Do not run this procedure.** It was written while `.opencode/specs` was the canonical root and a root `specs` link pointed at it. The relocation packet `specs/system-speckit/032-relocate-specs-folder` reversed that on 2026-08-08: the real tree is now `specs/`, which the canonical resolver reads first, and the `.opencode/specs` back-link was removed on 2026-09-20 in `befe3993f1`. Root `specs` is no longer an alias but the tracked spec tree itself, so the `git rm -- specs` below would target the real packets. The preflight's mode `120000` check fails on that tree and stops the procedure before it gets that far. The text below is kept as the record of the retired plan.
+
 This runbook removes the repository-root `specs` compatibility alias only after the canonical `.opencode/specs` root is independently safe. It does not migrate, delete, or roll back packet data.
 
 ## Why Retirement Is Required

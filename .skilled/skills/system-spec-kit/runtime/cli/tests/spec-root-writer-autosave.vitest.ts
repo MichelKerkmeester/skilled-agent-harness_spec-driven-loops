@@ -60,11 +60,14 @@ describe('spec-root autosave writer', () => {
     vi.resetModules();
   });
 
-  it('resolves a bare packet identity to the canonical packet before saving', async () => {
+  // specs/ is the canonical root and .opencode/specs is read only as a legacy
+  // fallback, so a packet that exists only there must still resolve, and the save
+  // must not materialize an empty canonical root beside it.
+  it('resolves a bare packet identity to a legacy-only packet before saving', async () => {
     const workspacePath = path.join(tempRoot, 'workspace');
-    const canonicalPacket = path.join(workspacePath, '.opencode', 'specs', PACKET_ID);
-    fs.mkdirSync(canonicalPacket, { recursive: true });
-    fs.writeFileSync(path.join(canonicalPacket, 'spec.md'), '# Bare save\n', 'utf8');
+    const legacyPacket = path.join(workspacePath, '.opencode', 'specs', PACKET_ID);
+    fs.mkdirSync(legacyPacket, { recursive: true });
+    fs.writeFileSync(path.join(legacyPacket, 'spec.md'), '# Bare save\n', 'utf8');
 
     const { CONFIG } = await import('../core');
     CONFIG.PROJECT_ROOT = workspacePath;
@@ -75,13 +78,16 @@ describe('spec-root autosave writer', () => {
     await main(['--json', JSON.stringify({ specFolder: PACKET_ID })]);
 
     expect(harness.runWorkflow).toHaveBeenCalledWith(expect.objectContaining({
-      specFolderArg: canonicalPacket,
+      specFolderArg: legacyPacket,
     }));
     expect(fs.existsSync(path.join(workspacePath, 'specs'))).toBe(false);
   });
 
-  it('creates untracked packets under the canonical root', () => {
-    const workspacePath = path.join(tempRoot, 'create-workspace');
+  // The legacy .opencode/specs link was removed, so a packet written there lands in
+  // a stray tree nothing reads, and a track numbers from that empty tree instead of
+  // the real one. Both tests fail if create.sh ever targets the legacy root again.
+  function createFixtureWorkspace(name: string): { workspacePath: string; createScript: string } {
+    const workspacePath = path.join(tempRoot, name);
     const fixtureScripts = path.join(
       workspacePath,
       '.skilled',
@@ -113,27 +119,33 @@ describe('spec-root autosave writer', () => {
       path.join(workspacePath, '.skilled', 'skills', 'system-spec-kit', 'templates'),
       { recursive: true },
     );
+    return { workspacePath, createScript: path.join(fixtureScripts, 'spec', 'create.sh') };
+  }
 
+  function runCreate(workspacePath: string, createScript: string, args: string[]): { SPEC_FILE: string } {
     const rawOutput = execFileSync(
       'bash',
-      [
-        path.join(fixtureScripts, 'spec', 'create.sh'),
-        '--json',
-        '--skip-branch',
-        '--number',
-        '123',
-        'Canonical create',
-      ],
+      [createScript, '--json', '--skip-branch', ...args],
       { cwd: workspacePath, encoding: 'utf8', stdio: 'pipe' },
     );
-    const result = JSON.parse(rawOutput) as { SPEC_FILE: string };
+    return JSON.parse(rawOutput) as { SPEC_FILE: string };
+  }
 
-    expect(result.SPEC_FILE.startsWith(path.join(
-      workspacePath,
-      '.opencode',
-      'specs',
-    ))).toBe(true);
+  it('creates untracked packets under the canonical root', () => {
+    const { workspacePath, createScript } = createFixtureWorkspace('create-workspace');
+    const result = runCreate(workspacePath, createScript, ['--number', '123', 'Canonical create']);
+
+    expect(result.SPEC_FILE.startsWith(path.join(workspacePath, 'specs') + path.sep)).toBe(true);
     expect(fs.existsSync(path.dirname(result.SPEC_FILE))).toBe(true);
-    expect(fs.existsSync(path.join(workspacePath, 'specs'))).toBe(false);
+    expect(fs.existsSync(path.join(workspacePath, '.opencode', 'specs'))).toBe(false);
+  });
+
+  it('numbers a track packet from the canonical track folder', () => {
+    const { workspacePath, createScript } = createFixtureWorkspace('track-workspace');
+    fs.mkdirSync(path.join(workspacePath, 'specs', 'demo', '007-existing-packet'), { recursive: true });
+    const result = runCreate(workspacePath, createScript, ['--track', 'demo', '--short-name', 'next-packet', 'Track create']);
+
+    expect(path.dirname(result.SPEC_FILE)).toBe(path.join(workspacePath, 'specs', 'demo', '008-next-packet'));
+    expect(fs.existsSync(path.join(workspacePath, '.opencode', 'specs'))).toBe(false);
   });
 });

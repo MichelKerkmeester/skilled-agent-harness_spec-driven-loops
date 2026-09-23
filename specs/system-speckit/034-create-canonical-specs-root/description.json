@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-speckit/034-create-canonical-specs-root",
+  "description": "Make create.sh write new packets under the canonical specs root",
+  "keywords": [
+    "write",
+    "new",
+    "packets",
+    "canonical",
+    "specs",
+    "root"
+  ],
+  "lastUpdated": "2026-09-23T18:46:18.248Z",
+  "specId": "034",
+  "folderSlug": "create-canonical-specs-root",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
