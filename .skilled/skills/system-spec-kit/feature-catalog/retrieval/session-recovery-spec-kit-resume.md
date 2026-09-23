@@ -80,7 +80,6 @@ There is no session inference, no semantic paraphrase and no candidate ranking b
 | File | Type | Role |
 |---|---|---|
 | `runtime/cli/retrieval/measure-cold-lookup.mjs` | Automated check | Cold-lookup cost of the trigger-index lane |
-| `runtime/cli/tests/manual-playbook-runner.vitest.ts` | Automated test | Scenario runner contract for the resume playbook entry |
 
 ---
 

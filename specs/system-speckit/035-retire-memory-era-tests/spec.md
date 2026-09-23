@@ -41,7 +41,7 @@ Spec-kit dropped its embedding-backed memory database. Only the skill advisor ke
 - `runtime/tests/archive/` holds two suites that test only stubs defined inside themselves. The root vitest project still collects them.
 - `test-memory-quality-lane.js` is marked legacy in the feature catalog, and the vitest suites cover the four modules it loads.
 - `test-five-checks.js` reads `templates/level-1` through `level_3+` and `addendum`, which the manifest-backed templates replaced.
-- The manual playbook runner's fixture imports eight memory-server modules that no longer exist.
+- The manual playbook runner's fixture imports fourteen runtime modules, and thirteen of them no longer exist.
 
 Five tests for live features check nothing. `test-phase-validation.js` and `test-phase-system.js` are CommonJS files in an ES-module package and throw at load, and when they last ran they wrote into the checkout's `.opencode/specs`, the legacy root removed on 2026-09-20. `test-phase-system.sh` stops at its first case, because `create.sh` needs a description generator that its throwaway repo lacks. The two `memory-quality-*.test.ts` files use a suffix the `cli` vitest project does not collect. No package script runs any of the five.
 

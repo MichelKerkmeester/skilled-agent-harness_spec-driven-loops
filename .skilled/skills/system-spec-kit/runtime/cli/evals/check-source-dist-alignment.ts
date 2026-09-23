@@ -262,16 +262,7 @@ interface SiblingException {
   readonly reason: string;
 }
 
-const SIBLING_ALLOWLIST: SiblingException[] = [
-  {
-    file: 'system-spec-kit/runtime/cli/tests/manual-playbook-runner.js',
-    reason: 'plain-Node copy for runners that cannot load TypeScript; documented beside the fixtures',
-  },
-  {
-    file: 'system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.js',
-    reason: 'plain-Node copy for runners that cannot load TypeScript; documented beside the fixtures',
-  },
-];
+const SIBLING_ALLOWLIST: SiblingException[] = [];
 
 /** Directories whose contents are build output or dependencies, not authored source. */
 const SIBLING_SKIP_DIRS = new Set(['dist', 'node_modules', '.git']);
