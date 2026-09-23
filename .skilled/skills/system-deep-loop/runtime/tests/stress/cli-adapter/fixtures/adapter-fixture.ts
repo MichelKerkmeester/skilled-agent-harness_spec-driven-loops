@@ -49,7 +49,7 @@ const SHIM_BY_KIND: Record<AdapterKind, string> = {
 
 export const MODEL_BY_KIND: Record<AdapterKind, string> = {
   'cli-opencode': 'anthropic/claude-opus-4-8',
-  'cli-pi': 'gpt-5.6-luna',
+  'cli-pi': 'gpt-6-luna',
   'cli-claude-code': 'claude-opus-4-8',
   'cli-devin': 'glm-5-2',
   'cli-cursor': 'composer-2.5',

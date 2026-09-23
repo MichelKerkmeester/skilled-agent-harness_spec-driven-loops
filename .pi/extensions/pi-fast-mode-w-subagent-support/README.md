@@ -1,6 +1,6 @@
 # pi-fast-mode-w-subagent-support
 
-> Pi extension that adds a Fast Mode toggle for OpenAI GPT-5.4 through 5.6 models, with strict subagent handoff.
+> Pi extension that adds a Fast Mode toggle for OpenAI GPT-5.4 through GPT-6 models, with strict subagent handoff.
 
 <img style="width: 100%; height: auto;" alt="fast mode indicator" src="https://raw.githubusercontent.com/johncmunson/pi-openai-fast-mode/refs/heads/main/preview-img.png" />
 
@@ -65,15 +65,15 @@ Fast Mode starts disabled and only applies to exact configured provider/model pa
     { "provider": "openai", "model": "gpt-5.4", "serviceTier": "priority" },
     { "provider": "openai", "model": "gpt-5.5", "serviceTier": "priority" },
     { "provider": "openai", "model": "gpt-5.6", "serviceTier": "priority" },
-    { "provider": "openai", "model": "gpt-5.6-sol", "serviceTier": "priority" },
+    { "provider": "openai", "model": "gpt-6-sol", "serviceTier": "priority" },
     { "provider": "openai", "model": "gpt-5.6-terra", "serviceTier": "priority" },
-    { "provider": "openai", "model": "gpt-5.6-luna", "serviceTier": "priority" },
+    { "provider": "openai", "model": "gpt-6-luna", "serviceTier": "priority" },
     { "provider": "openai-codex", "model": "gpt-5.4", "serviceTier": "priority" },
     { "provider": "openai-codex", "model": "gpt-5.5", "serviceTier": "priority" },
     { "provider": "openai-codex", "model": "gpt-5.6", "serviceTier": "priority" },
-    { "provider": "openai-codex", "model": "gpt-5.6-sol", "serviceTier": "priority" },
+    { "provider": "openai-codex", "model": "gpt-6-sol", "serviceTier": "priority" },
     { "provider": "openai-codex", "model": "gpt-5.6-terra", "serviceTier": "priority" },
-    { "provider": "openai-codex", "model": "gpt-5.6-luna", "serviceTier": "priority" }
+    { "provider": "openai-codex", "model": "gpt-6-luna", "serviceTier": "priority" }
   ]
 }
 ```

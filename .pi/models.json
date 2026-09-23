@@ -123,6 +123,31 @@
             "cacheRead": 0.0036,
             "cacheWrite": 0
           }
+        },
+        {
+          "id": "gpt-6-luna",
+          "name": "GPT-6 Luna",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1050000,
+          "maxTokens": 128000,
+          "thinkingLevelMap": {
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "cost": {
+            "input": 0.1,
+            "output": 0.5,
+            "cacheRead": 0.01,
+            "cacheWrite": 0.125
+          }
         }
       ]
     },
@@ -143,48 +168,6 @@
           }
         }
       }
-    },
-    "xiaomi": {
-      "models": [
-        {
-          "id": "mimo-v2.6-pro",
-          "name": "MiMo-V2.6-Pro",
-          "reasoning": true,
-          "input": ["text"],
-          "compat": {
-            "supportsStrictMode": true,
-            "requiresReasoningContentOnAssistantMessages": true,
-            "thinkingFormat": "deepseek"
-          },
-          "contextWindow": 1048576,
-          "maxTokens": 131072,
-          "cost": {
-            "input": 0.435,
-            "output": 0.87,
-            "cacheRead": 0.0036,
-            "cacheWrite": 0
-          }
-        },
-        {
-          "id": "mimo-v2.6-pro-ultraspeed",
-          "name": "MiMo-V2.6-Pro-UltraSpeed",
-          "reasoning": true,
-          "input": ["text"],
-          "compat": {
-            "supportsStrictMode": true,
-            "requiresReasoningContentOnAssistantMessages": true,
-            "thinkingFormat": "deepseek"
-          },
-          "contextWindow": 1048576,
-          "maxTokens": 131072,
-          "cost": {
-            "input": 1.305,
-            "output": 2.61,
-            "cacheRead": 0.0108,
-            "cacheWrite": 0
-          }
-        }
-      ]
     }
   }
 }

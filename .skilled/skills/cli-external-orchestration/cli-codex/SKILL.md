@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.9.0.0
+version: 1.9.1.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -222,15 +222,15 @@ The trailing `</dev/null` is not optional in a non-interactive dispatch; Rule 6 
 | "Use gpt 5.5 high fast" | `--model gpt-5.5 -c model_reasoning_effort="high" -c service_tier="fast"` |
 | "Use gpt 5.5 low" | `--model gpt-5.5 -c model_reasoning_effort="low" -c service_tier="fast"` (fast stays unless user drops it) |
 | "Use gpt 5.5 xhigh" | `--model gpt-5.5 -c model_reasoning_effort="xhigh" -c service_tier="fast"` |
-| "Use gpt 5.6 luna max" | `--model gpt-5.6-luna -c model_reasoning_effort="max" -c service_tier="fast"` |
+| "Use gpt 6 luna max" | `--model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast"` |
 | "Use gpt 5.6 terra high" | `--model gpt-5.6-terra -c model_reasoning_effort="high" -c service_tier="fast"` |
-| "Use gpt 5.6 sol ultra" | `--model gpt-5.6-sol -c model_reasoning_effort="ultra" -c service_tier="fast"` |
+| "Use gpt 6 sol ultra" | `--model gpt-6-sol -c model_reasoning_effort="ultra" -c service_tier="fast"` |
 
 Honor whichever dimensions the user names. Model stays on `gpt-5.5` and service tier stays on `fast` unless the user explicitly names a different model or tier; keep the reasoning effort within the chosen model's ceiling (see Model Selection below and the roster in [references/providers-and-models.md](references/providers-and-models.md)).
 
 ### Model Selection
 
-`gpt-5.5` at `medium` on the `fast` service tier (`-c service_tier="fast"`) is the skill default for cross-AI delegation. Alternates: `gpt-5.6-luna` / `gpt-5.6-terra` (≤ `max`), `gpt-5.6-sol` (≤ `ultra`) — full roster, per-model effort ceilings, and the 8-level effort ladder in [references/providers-and-models.md](references/providers-and-models.md). Set effort with `-c model_reasoning_effort="<level>"` (there is **no `--reasoning-effort` flag**).
+`gpt-5.5` at `medium` on the `fast` service tier (`-c service_tier="fast"`) is the skill default for cross-AI delegation. Alternates: `gpt-6-luna` / `gpt-5.6-terra` (≤ `max`), `gpt-6-sol` (≤ `ultra`) — full roster, per-model effort ceilings, and the 8-level effort ladder in [references/providers-and-models.md](references/providers-and-models.md). Set effort with `-c model_reasoning_effort="<level>"` (there is **no `--reasoning-effort` flag**).
 
 **Selection Strategy**: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh`; drop to `low` / `minimal` for trivial lookups. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 

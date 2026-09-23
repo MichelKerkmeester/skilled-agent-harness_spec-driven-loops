@@ -39,7 +39,7 @@ const { spawnSync } = require('child_process');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const DEFAULT_MODEL = process.env.SKILL_BENCH_CODEX_MODEL || 'gpt-5.6-luna';
+const DEFAULT_MODEL = process.env.SKILL_BENCH_CODEX_MODEL || 'gpt-6-luna';
 const DEFAULT_EFFORT = process.env.SKILL_BENCH_CODEX_EFFORT || 'xhigh';
 const DEFAULT_TIER = process.env.SKILL_BENCH_CODEX_TIER || 'fast';
 // Analysis-only by default: a benchmark subject must never edit the tree.
@@ -84,7 +84,7 @@ function reapOrphans(pid) {
  * @param {Object} [opts] - Dispatch inputs.
  * @param {string} opts.prompt - The prompt delivered on stdin.
  * @param {string} [opts.cwd] - Working/project dir for the run.
- * @param {string} [opts.model] - Model id (default env/gpt-5.6-luna).
+ * @param {string} [opts.model] - Model id (default env/gpt-6-luna).
  * @param {string} [opts.effort] - Reasoning effort (default env/xhigh).
  * @param {string} [opts.tier] - Service tier (default env/fast).
  * @param {string} [opts.sandbox] - Sandbox mode (default read-only).

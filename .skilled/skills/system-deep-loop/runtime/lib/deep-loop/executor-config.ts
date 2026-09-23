@@ -11,7 +11,7 @@ import { z } from 'zod';
 export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor', 'cli-devin', 'cli-pi', 'cli-hermes'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
-// Ordered low→high. `ultra` is codex gpt-5.6-sol's top reasoning tier, above `max`.
+// Ordered low→high. `ultra` is codex gpt-6-sol's top reasoning tier, above `max`.
 export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max', 'ultra'] as const;
 export type ReasoningEffort = typeof REASONING_EFFORTS[number];
 
@@ -221,8 +221,8 @@ export const PI_SUPPORTED_MODELS = [
   // like the id it replaces, so nothing is lost by moving.
   'deepseek-v4.1-flash',
   'minimax-m3',
-  'gpt-5.6-luna',
-  'gpt-5.6-sol',
+  'gpt-6-luna',
+  'gpt-6-sol',
   'mimo-v2.6-pro',
   'mimo-v2.6-pro-ultraspeed',
   'qwen3.8-max',
@@ -261,8 +261,8 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
 export const HERMES_SUPPORTED_MODELS = [
   'deepseek-v4.1-flash',
   'minimax-m3',
-  'gpt-5.6-luna',
-  'gpt-5.6-sol',
+  'gpt-6-luna',
+  'gpt-6-sol',
   'mimo-v2.6-pro',
   'qwen3.8-max',
   'glm-5.3-flash',

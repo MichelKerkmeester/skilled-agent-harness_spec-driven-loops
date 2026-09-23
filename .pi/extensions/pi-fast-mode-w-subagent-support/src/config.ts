@@ -58,7 +58,7 @@ export const DEFAULT_CONFIG: FastModeConfig = {
     { provider: "openai", model: "gpt-5.6", serviceTier: DEFAULT_SERVICE_TIER },
     {
       provider: "openai",
-      model: "gpt-5.6-sol",
+      model: "gpt-6-sol",
       serviceTier: DEFAULT_SERVICE_TIER,
     },
     {
@@ -68,7 +68,7 @@ export const DEFAULT_CONFIG: FastModeConfig = {
     },
     {
       provider: "openai",
-      model: "gpt-5.6-luna",
+      model: "gpt-6-luna",
       serviceTier: DEFAULT_SERVICE_TIER,
     },
     {
@@ -88,7 +88,7 @@ export const DEFAULT_CONFIG: FastModeConfig = {
     },
     {
       provider: "openai-codex",
-      model: "gpt-5.6-sol",
+      model: "gpt-6-sol",
       serviceTier: DEFAULT_SERVICE_TIER,
     },
     {
@@ -98,7 +98,7 @@ export const DEFAULT_CONFIG: FastModeConfig = {
     },
     {
       provider: "openai-codex",
-      model: "gpt-5.6-luna",
+      model: "gpt-6-luna",
       serviceTier: DEFAULT_SERVICE_TIER,
     },
   ],
