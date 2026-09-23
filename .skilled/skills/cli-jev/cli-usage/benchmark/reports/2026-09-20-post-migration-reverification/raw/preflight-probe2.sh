@@ -2,7 +2,7 @@
 # Second dispatch-gate probe pass: one attempt per hard rule, plus the boundaries of the
 # stdin rule that the first pass surfaced (a quoted state value is not read as inline).
 
-set -u
+set -uo pipefail
 
 LINT=.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs
 

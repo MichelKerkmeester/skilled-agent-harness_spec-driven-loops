@@ -2,7 +2,7 @@
 # Hub-routing corpus run: CJ-001..CJ-003 (plus CJ-003's holdout phrasing) against the
 # live front door, from the migrated hub home.
 
-set -u
+set -uo pipefail
 
 CR="node .skilled/bin/compiled-route.cjs --hub cli-jev"
 

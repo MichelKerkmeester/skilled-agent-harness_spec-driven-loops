@@ -3,7 +3,7 @@
 # valid `run` payload, and the MCP tool list over stdio. Store pointed away, so no
 # authenticated call is attempted.
 
-set -u
+set -uo pipefail
 
 ISO=/tmp/cli-jev-005/iso
 D=/tmp/cli-jev-005

@@ -7,7 +7,7 @@
 #
 # Usage: bash probe-matrix.sh > probe-matrix.txt 2>&1
 
-set -u
+set -uo pipefail
 
 ISO=/tmp/cli-jev-005/iso
 D=/tmp/cli-jev-005
