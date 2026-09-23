@@ -62,7 +62,7 @@ on:
       - '.opencode/bin/lib/compiled-route*'
       - '.skilled/bin/lib/compiled-route*'
       - 'specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**'
-      - 'specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/**'
+      - 'specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/**'
   pull_request:
     branches: [main]
     paths:
@@ -106,7 +106,7 @@ on:
       - '.opencode/bin/lib/compiled-route*'
       - '.skilled/bin/lib/compiled-route*'
       - 'specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**'
-      - 'specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/**'
+      - 'specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/**'
 
 # Least-privilege default: these jobs only check out and run read-only gates,
 # so they never need write access. Declared explicitly rather than inheriting
@@ -266,7 +266,7 @@ jobs:
           set -euo pipefail
           python3 - <<'EOF'
           import hashlib, json, pathlib, sys
-          baseline = json.load(open("../../../specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/routing-baseline.json"))
+          baseline = json.load(open("../../../specs/sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/routing-baseline.json"))
           corpus_dir = pathlib.Path("scripts/routing-accuracy")
           bad = []
           for name, meta in baseline["corpus"].items():
