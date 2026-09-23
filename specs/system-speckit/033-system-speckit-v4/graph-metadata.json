@@ -56,7 +56,8 @@
     "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof",
     "system-speckit/033-system-speckit-v4/051-save-writer-continuity-fields",
     "system-speckit/033-system-speckit-v4/052-core-template-canonical-markers",
-    "system-speckit/033-system-speckit-v4/053-legacy-template-default-detection"
+    "system-speckit/033-system-speckit-v4/053-legacy-template-default-detection",
+    "system-speckit/033-system-speckit-v4/055-advisory-false-alarms"
   ],
   "manual": {
     "depends_on": [],
@@ -136,16 +137,16 @@
     ],
     "causal_summary": "Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-23T17:10:55.526Z",
+    "last_save_at": "2026-09-23T19:17:13.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f74127ab0d29eac9267c483811c9a7e9d10e261f0c9183ae33ef7f36b73da8a5",
+    "source_fingerprint": "sha256:3bd4515112e564eb4ce7483d4bf5711019aa0bd3f313f2e426c648499ad9135e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a5d978b9bd9c91784f528dea3d2ee8c94dec43c551296f254b4b564ce34c47d"
+      "spec.md": "7602e80cda2c94585d94f5d7cb8297c4d96116d8e0e1ae0fd4bf428ecd87e34e"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/051-save-writer-continuity-fields",
     "last_active_at": "2026-09-23T17:10:55.526Z"

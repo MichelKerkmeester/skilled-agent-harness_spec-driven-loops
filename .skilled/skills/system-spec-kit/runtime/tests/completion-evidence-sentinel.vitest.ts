@@ -108,6 +108,13 @@ describe('completion-evidence-sentinel core', () => {
     expect(sentinelCore.resolveSpecFolderFromText('no folder mentioned here')).toBeNull();
   });
 
+  it('resolveSpecFolderFromText trims a cited document and its line number back to the folder', () => {
+    expect(sentinelCore.resolveSpecFolderFromText('files_changed: specs/some-track/123-some-packet/implementation-summary.md:16, x'))
+      .toBe('specs/some-track/123-some-packet');
+    expect(sentinelCore.resolveSpecFolderFromText('All done, see specs/999-fake-packet/checklist.md for evidence.'))
+      .toBe('specs/999-fake-packet');
+  });
+
   it('REQ-001: no completion claim is a no-op and never spawns check-completion.sh', () => {
     projectDir = newProjectDir();
     const fixture = trackFixture(makeFixtureFolder({ checklist: CHECKLIST_P0_NO_EVIDENCE }));

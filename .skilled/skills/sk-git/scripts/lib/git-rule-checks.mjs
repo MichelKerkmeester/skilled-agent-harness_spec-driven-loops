@@ -83,8 +83,8 @@ function resolveDir(baseDir, token) {
  * @param {string} command - Shell command containing a directly visible git invocation.
  * @param {string} [sessionCwd] - Directory relative `cd`/`-C` targets resolve against.
  * @returns {{sub: string, flags: string[], paths: string[], raw: string,
- *   afterSeparator: boolean, effectiveDir: string|null, cwdResolved: boolean}|null} Parsed
- *   command, or null when no git invocation is visible.
+ *   afterSeparator: boolean, effectiveDir: string|null, cwdResolved: boolean,
+ *   pathsResolved: boolean}|null} Parsed command, or null when no git invocation is visible.
  */
 export function parseGitCommand(command, sessionCwd = process.cwd()) {
   const cmd = String(command || '');
@@ -112,6 +112,9 @@ export function parseGitCommand(command, sessionCwd = process.cwd()) {
     }
     paths.push(t);
   }
+  // A pathspec behind a shell expansion names files only the shell knows, so a check that
+  // concludes nothing matched would be judging the literal text rather than the real paths.
+  const pathsResolved = !paths.some((t) => /[$`]/.test(t) || t.startsWith('~'));
   // The command's effective directory: a leading `cd <dir> &&` first, then a git-level
   // `-C <dir>` resolved against it. A token needing shell expansion cannot be resolved
   // statically, so the result is marked unresolved and the checks stay silent.
@@ -128,7 +131,7 @@ export function parseGitCommand(command, sessionCwd = process.cwd()) {
       effectiveDir = target;
     }
   }
-  return { sub, flags, paths, raw: cmd, afterSeparator, effectiveDir, cwdResolved };
+  return { sub, flags, paths, raw: cmd, afterSeparator, effectiveDir, cwdResolved, pathsResolved };
 }
 
 /**
@@ -194,6 +197,7 @@ export const GIT_CHECKS = {
     if (!p || p.sub !== 'commit') return true;
     if (!has(p.flags, '--only', '-o')) return true;
     if (p.paths.length === 0) return true;
+    if (!p.pathsResolved) return true;
     const c = contextFor(p, ctx);
     if (!c) return true;
     for (const path of p.paths) {
@@ -214,6 +218,7 @@ export const GIT_CHECKS = {
     if (!p || p.sub !== 'add') return true;
     if (p.paths.length === 0) return true;
     if (p.paths.some((x) => x === '.' || x === '-A' || x === '--all')) return true;
+    if (!p.pathsResolved) return true;
     const c = contextFor(p, ctx);
     if (!c) return true;
     // Only a pathspec git could not resolve at all is worth saying something about. A tracked
