@@ -182,17 +182,17 @@ component_mapping:
   #
   #   $ ls -d .skilled/changelog/*/
   #
-  # Folder naming convention: NN--component-name (zero-padded index)
-  # Example: 04--commands, 11--sk-doc, 00--opencode-environment
+  # Folder naming convention: plain component names, no numeric prefix
+  # Example: sk-doc, system-spec-kit, sk-code
   #
   # RESOLUTION STRATEGY (most specific first):
-  #   1. Extract component name from folder (strip NN-- prefix)
+  #   1. Use the folder name as the component name
   #   2. Match changed file paths against component names:
   #      - .skilled/skills/{name}/**  → folder containing {name}
   #      - .skilled/commands/**       → folder containing "commands"
   #      - .skilled/agents/**         → folder containing "agents"
   #   3. Match component_hint keyword against folder names
-  #   4. Fallback: first folder starting with "00--" (umbrella/cross-component)
+  #   4. No match: STOP and ask which component the changelog belongs to
   #
   # The agent MUST run the discovery scan in Step 2 of the workflow
   # and build the mapping dynamically from the actual folder contents.
@@ -200,9 +200,9 @@ component_mapping:
 
   discovery:
     scan_command: "ls -d .skilled/changelog/*/ 2>/dev/null | sort"
-    folder_pattern: "^(\\d+)--(.*)"
-    fallback_prefix: "00--"
-    note: "Always use the first 00-- folder as default for unmatched paths"
+    folder_pattern: "(.*)"
+    fallback_prefix: null
+    note: "Folder names are plain component names. Never default an unmatched path to a guessed folder; pause and ask instead."
 
   resolution_rules:
     - source: "file_path"
@@ -212,7 +212,7 @@ component_mapping:
     - source: "spec_folder"
       strategy: "Extract spec path segments and match against discovered folder names"
     - source: "fallback"
-      strategy: "Use the 00-- prefixed folder (umbrella/cross-component)"
+      strategy: "No match: pause and ask the user which component this changelog belongs to; never write to a guessed folder"
 
 # ─────────────────────────────────────────────────────────────────
 # VERSION BUMP RULES
@@ -264,36 +264,33 @@ changelog_template:
   # The canonical changelog and release notes template lives in:
   #   .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
   #
-  # It defines TWO formats:
-  #   1. COMPACT — for releases with fewer than 10 changes
-  #   2. EXPANDED — for releases with 10+ changes or major releases
-  #      Uses: ### short headings → Problem/Fix paragraphs per item
+  # It defines TWO narrative formats:
+  #   1. COMPACT - for releases with fewer than 10 changes and no breaking change
+  #      Uses: summary narrative -> ## What's New at a Glance bullets -> ## Upgrade
+  #   2. EXPANDED - for 10+ changes, a major bump, or any breaking change
+  #      Uses: opening narrative -> Why This Release -> What's New at a Glance ->
+  #            topical H2 sections with H4 benefit-led story items -> Upgrade Notes
   #
   # Read the template file at Step 4 before generating content.
-  # See PUBLIC-RELEASE.md Section 7 for writing style rules.
-  # Expanded-format sub-headings should stay short (2-5 words, not full sentences).
+  # Canonical exemplar: .skilled/changelog/system-spec-kit/v4.0.0.0.md
+  # Expanded-format sub-headings should stay short (2-7 words for most, 10 at most, not full sentences).
   # ─────────────────────────────────────────────────────────────────
   template_file: ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
-  style_reference: "PUBLIC-RELEASE.md Section 7"
+  style_reference: ".skilled/changelog/system-spec-kit/v4.0.0.0.md"
 
 # ─────────────────────────────────────────────────────────────────
-# HIGHLIGHT CATEGORIES
+# SECTION NAMING
 # ─────────────────────────────────────────────────────────────────
-highlight_categories:
-  search: "### Search"
-  saving: "### Saving Memories"
-  security: "### Security"
-  documentation: "### Documentation"
-  testing: "### Testing"
-  commands: "### Commands"
-  new_features: "### New Features"
-  bug_fixes: "### Bug Fixes"
-  architecture: "### Architecture"
-  breaking: "### Breaking Changes"
-  category_named: "### {name}"
+section_naming:
+  # Name H2 sections for the domain they change, the way the exemplar names
+  # sections like "Spec Kit" and "Safer Git". One to five domains for most
+  # releases, more for a release the size of the exemplar.
+  h2_topical_domain: "## {Domain Name}"
+  h4_benefit_led_item: "#### {Benefit-led heading, usually 2-7 words}"
   note: |
-    Use plain category names from PUBLIC-RELEASE.md vocabulary.
-    For expanded format: use short ### headings with Problem/Fix paragraphs.
+    Fixed change-type labels (New Features, Bug Fixes) are retired as section
+    names when a domain name says more. Expanded-format items are H4 headings
+    with merged narrative paragraphs, never Problem/Fix labels.
     Read .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md for full format reference.
 
 # ─────────────────────────────────────────────────────────────────
@@ -415,7 +412,7 @@ workflow:
         IF changelog_mode = global:
         DISCOVER available changelog folders:
           $ ls -d .skilled/changelog/*/ 2>/dev/null | sort
-          Parse folder names using NN--component-name pattern
+          Parse folder names as plain component names (no numeric prefix)
           Build runtime component list from actual directory contents
       - |
         IF changelog_mode = global:
@@ -426,7 +423,7 @@ workflow:
         Count matches per component:
           IF single component dominates (>60% of files) -> primary_component = that component
           IF multiple components roughly equal -> list all, pick primary by file count
-          IF no matches -> default to first 00-- prefixed folder (umbrella/cross-component)
+          IF no matches -> STOP and ask which component this changelog belongs to
       - |
         IF source_type = spec_folder:
           Extract spec path segments and match against discovered folder names
@@ -488,26 +485,28 @@ workflow:
       - "Set DATE to today's date in YYYY-MM-DD format"
       - |
         SELECT FORMAT based on change count and release type:
-          IF change_count < 10 AND change_type != major -> COMPACT format
-          IF change_count >= 10 OR change_type == major -> EXPANDED format
+          IF change_count < 10 AND change_type != major AND no breaking change -> COMPACT format
+          IF change_count >= 10 OR change_type == major OR any breaking change -> EXPANDED format
       - "Generate SUMMARY (lead with WHY, not technical stats)"
       - |
         Generate BODY using selected format:
-          COMPACT: bullet points with bold labels
-          EXPANDED: short headings with Problem/Fix paragraphs
+          COMPACT: summary narrative + at-a-glance bullets with bold lead-in sentences + Upgrade
+          EXPANDED: opening narrative + Why This Release + at-a-glance + topical
+                    H2 sections with H4 benefit-led story items + Upgrade Notes
+        Omission rules apply: no Files Changed tables, no test metrics, no schema
+        tables. A table appears only when the numbers themselves are the story.
         Expanded-format heading rule:
-          - Prefer 2-5 words
+          - Prefer 2-7 words, 10 at most, benefit-led
           - Make it easy to scan at a glance
           - Avoid packet IDs, numbering, and sentence-length headings unless truly required
-      - "Generate FILES_CHANGED (simple table or collapsible details)"
-      - "Generate UPGRADE section (always list behavioral changes)"
+      - "Generate UPGRADE section (Upgrade Notes with Adopt/Repoint/Drop lead-ins when there is migration work)"
       - "Assemble full content per template format"
     outputs:
       - changelog_content: "Complete formatted changelog markdown"
-      - section_count: "Number of highlight sections generated"
+      - section_count: "Number of narrative sections generated"
     validation: content_generated
     checkpoint:
-      question: "Changelog content generated with {section_count} highlight sections. Review before validation?"
+      question: "Changelog content generated with {section_count} sections. Review before validation?"
       options:
         - label: "A) Approve - proceed to validation"
         - label: "B) Review - show full changelog preview"
@@ -517,9 +516,9 @@ workflow:
   step_5_quality_validation:
     purpose: Verify the generated changelog meets format and quality standards
     activities:
-      - "Run FORMAT CHECKS (H1, backlink, version+date, summary, highlights, files, upgrade, --- dividers before every ## and ### heading)"
+      - "Run FORMAT CHECKS (narrative summary opening after any frontmatter and editorial title, spec-folder blockquote when the source is a spec folder, at-a-glance bullets with bold lead-ins, expanded: Why This Release + topical H2/H4 sections + Upgrade Notes, no Files Changed/Test Impact/Schema default sections, --- only between H2 sections)"
       - "Run VERSION CHECKS (sequential, 4-segment, no duplicates)"
-      - "Run CONTENT CHECKS (concise summary, formatted highlights, valid paths)"
+      - "Run CONTENT CHECKS (compact summary within 3 sentences or expanded opening within 5 paragraphs, bold lead-in bullets, H4 headings 10 words at most, H4 items 7 paragraphs at most, omission rules applied)"
       - "Auto-fix minor issues if possible"
     outputs:
       - validation_passed: "true/false"
@@ -575,8 +574,12 @@ workflow:
       - "Verify `gh` CLI is available and authenticated: run `gh auth status`. IF unavailable/unauthenticated -> STOP, report, set release_published = false, set release_published_display = \"No -- gh CLI unavailable or unauthenticated\"; do not attempt tag/release"
       - |
         Prepare the release notes body from {output_path}:
-          IF the file's first line starts with "# " (an H1 heading):
-            Strip that line and any immediately following blank lines into a temp notes file (e.g., /tmp/release-notes-{release_tag}.md) -- GitHub release bodies never duplicate the release title with a leading H1
+          IF the file opens with a YAML frontmatter block (first line is "---"):
+            Strip it through its closing "---" line, plus any blank lines after it
+          IF the next line starts with "# " (the editorial title H1):
+            Strip that line and any immediately following blank lines, because GitHub release bodies never duplicate the release title with a leading H1
+          IF anything was stripped:
+            Write the remainder to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md)
           ELSE:
             Use {output_path} directly as the notes file
       - "Compose the exact commands: `git tag -a {release_tag} -m \"{release_tag}: {summary_first_sentence}\"`, `git push origin {release_tag}`, `gh release create {release_tag} --title \"{release_tag} -- {primary_component}\" --notes-file {notes_file_path}`"
@@ -645,7 +648,7 @@ quality_standards:
     minimum: "Sequential, no duplicates"
     enforcement: "Step 3 validates before Step 4 generates"
   content_quality:
-    minimum: "Summary + highlights + files changed"
+    minimum: "Summary narrative + at-a-glance + upgrade notes"
     enforcement: "Step 5 verifies non-empty content sections"
 
 # ─────────────────────────────────────────────────────────────────
@@ -674,8 +677,7 @@ completion_report:
 
     Summary: {summary_first_sentence}
 
-    Sections: {section_count} highlight categories
-    Files Tracked: {files_changed_count}
+    Sections: {section_count}
     Release Published: {release_published_display}
 
     STATUS=OK PATH={output_path}
@@ -707,7 +709,7 @@ error_recovery:
 
   empty_content:
     action: "Show available data, ask user to supplement"
-    fallback: "User provides summary and highlights"
+    fallback: "User provides summary and at-a-glance bullets"
 
   write_failure:
     action: "Check permissions, show error to user"
@@ -726,7 +728,6 @@ termination:
   next_steps:
     - "Review the generated changelog at {output_path}"
     - "Create additional changelogs for secondary components if needed"
-    - "Consider creating an umbrella release in the 00-- prefixed folder if applicable"
     - "Run /speckit:save to preserve context"
 
 # ─────────────────────────────────────────────────────────────────
@@ -736,8 +737,8 @@ rules:
   ALWAYS:
     - "Follow the 8-step workflow in sequence"
     - "Validate version is sequential before writing"
-    - "Match the established changelog format (400+ existing files)"
-    - "Include all required sections: title, backlink, version+date, summary, highlights"
+    - "Match the narrative changelog format defined in the shared template"
+    - "Include the required narrative sections: summary, at-a-glance, upgrade notes (plus Why This Release and topical sections in expanded format)"
     - "Use the component mapping table for resolution"
     - "Pause at each checkpoint for user approval"
     - "Show the literal tag name and exact git tag / gh release create commands at the Step 7 checkpoint before running them"
@@ -745,7 +746,7 @@ rules:
 
   NEVER:
     - "Never skip version validation (Step 3)"
-    - "Never write a changelog with empty summary or highlights"
+    - "Never write a changelog with an empty summary or empty at-a-glance section"
     - "Never overwrite an existing changelog file"
     - "Never guess component folder without file path analysis"
     - "Never use a version number that already exists"

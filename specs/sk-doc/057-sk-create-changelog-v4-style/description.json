@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/057-sk-create-changelog-v4-style",
+  "description": "The sk-create-changelog template still models the machine-era changelog format",
+  "keywords": [
+    "sk-create-changelog",
+    "template",
+    "still",
+    "models",
+    "machine-era",
+    "changelog",
+    "format"
+  ],
+  "lastUpdated": "2026-09-23T07:04:14.593Z",
+  "specId": "057",
+  "folderSlug": "sk-create-changelog-v4-style",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "23-09-26_05-49__cli-codex-dispatch-contract-on-this-machine.md",
+    "23-09-26_08-02__any-open-ends-or-existing-drift.md",
+    "23-09-26_08-02__any-open-ends-or-existing-drift.md",
+    "23-09-26_08-03__any-open-ends-or-existing-drift.md",
+    "23-09-26_08-04__any-open-ends-or-existing-drift.md",
+    "23-09-26_08-04__any-open-ends-or-existing-drift.md"
+  ]
+}
