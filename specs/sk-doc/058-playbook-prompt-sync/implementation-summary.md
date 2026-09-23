@@ -2,12 +2,12 @@
 title: "Implementation Summary"
 description: "The playbook validator now reports a scenario whose prompt copies disagree, where before it passed them clean. It warns rather than fails, and the corpus holds 60 such copies across 12 packages."
 trigger_phrases:
-  - "implementation summary"
-  - "what shipped"
-  - "validation evidence"
-  - "continuation notes"
+  - "playbook prompt sync warning"
+  - "PROMPT_UNSYNCED"
+  - "playbook prompt fields disagree"
+  - "turn 1 prompt out of sync"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/058-playbook-prompt-sync"
