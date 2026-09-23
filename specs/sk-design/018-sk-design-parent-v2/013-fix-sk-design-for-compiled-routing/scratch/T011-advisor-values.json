@@ -1,0 +1,64 @@
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "sk-design",
+        "score": 0.696726,
+        "confidence": 0.8945,
+        "uncertainty": 0.12,
+        "dominantLane": "explicit_author",
+        "status": "active",
+        "compiledRoute": {
+          "hubId": "sk-design",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "surface-router",
+              "packetId": "sk-design-fundamentals",
+              "packetKind": "workflow",
+              "skillId": "sk-design",
+              "workflowMode": "sk-design-fundamentals"
+            }
+          ],
+          "effectivePolicyHash": "b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067",
+          "generation": 1
+        }
+      }
+    ],
+    "ambiguous": false,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 155,
+      "checkedAt": "2026-09-22T15:05:17.389Z",
+      "lastLiveAt": "2026-09-22T14:55:03.777Z"
+    },
+    "generatedAt": "2026-09-22T15:05:17.985Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": [
+        {
+          "skillId": "sk-design",
+          "liveScore": 0.696726,
+          "shadowScore": 0.64413,
+          "delta": -0.052596,
+          "dominantShadowLane": "explicit_author"
+        }
+      ]
+    }
+  }
+}

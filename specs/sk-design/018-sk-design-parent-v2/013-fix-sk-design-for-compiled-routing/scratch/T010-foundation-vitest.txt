@@ -1,0 +1,15 @@
+# T010 companion: the final foundation vitest after the six-to-seven cohort flip.
+# Copied at closure from the transient run log; the run staged its own promotion sandbox, hence no prior closure to roll back.
+
+
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled
+
+[system-skill-advisor-launcher] loaded 11 env(s) from .env
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-move-jAa2px/compiled-routing
+no prior closure to roll back
+
+ Test Files  2 passed (2)
+      Tests  46 passed (46)
+   Start at  12:52:06
+   Duration  977ms (transform 54ms, setup 0ms, import 99ms, tests 945ms, environment 0ms)
+

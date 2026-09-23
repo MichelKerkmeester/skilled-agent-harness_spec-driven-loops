@@ -98,6 +98,31 @@
             "cacheRead": 0.025,
             "cacheWrite": 0
           }
+        },
+        {
+          "id": "mimo-v2.6-pro",
+          "name": "MiMo-V2.6-Pro",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1000000,
+          "maxTokens": 131072,
+          "thinkingLevelMap": {
+            "minimal": "none",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "max": null,
+            "xhigh": null
+          },
+          "cost": {
+            "input": 0.435,
+            "output": 0.87,
+            "cacheRead": 0.0036,
+            "cacheWrite": 0
+          }
         }
       ]
     },

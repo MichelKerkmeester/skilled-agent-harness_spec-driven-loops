@@ -1,0 +1,2 @@
+{"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"b150477ab4731c8c225a91b8814281349089a5458d10f0ccfc5111778e33a067","generation":1}
+CANVAS_EXIT=0

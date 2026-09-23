@@ -69,6 +69,18 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: LLM Gateway direct route
+
+- [x] T017 [P] Capture and record the active `llmgateway/mimo-v2.6-pro` catalog facts without copying credentials or changing the existing provider block
+- [x] T018 Add the bare `mimo-v2.6-pro` model under `providers.llmgateway` and add `llmgateway/mimo-v2.6-pro` to `.pi/settings.json`, preserving session affinity, defaults, and the Xiaomi route
+- [x] T019 Update the cli-pi and cli-opencode provider rosters, `.pi/custom-providers.md`, and the two affected skill versions with one new changelog entry each
+- [x] T020 Record the direct-only route decision in the packet docs and verify the bare deep-loop literal still maps to `xiaomi` with no Hermes roster widening
+- [x] T021 Run the focused configuration, catalog, picker, frontmatter, derived-metadata, and strict packet validation gates; leave the billable live round-trip to the operator
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
