@@ -1,0 +1,16 @@
+All six scripts updated and verified.
+
+**VERIFY results:**
+
+1. `grep -l '^set -uo pipefail$' .skilled/skills/cli-jev/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing-run.sh .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/*.sh | wc -l` → `6`
+2. `git diff --numstat -- .skilled/skills/cli-jev` → six rows of `1 1` (hub-routing-run.sh, auth-probe.sh, preflight-probe.sh, preflight-probe2.sh, probe-matrix.sh, probe-surface.sh)
+3. `for f in ...; do bash -n "$f" && echo "ok $f"; done` → six `ok` lines
+
+PI_HANDBACK
+status: done
+summary: Replaced `set -u` with `set -uo pipefail` in the six recorded cli-jev probe scripts, one line per file and nothing else. All three VERIFY checks passed: 6 files match the new line, diff shows six 1/1 rows, and all six scripts parse cleanly under `bash -n`.
+files_changed: 6 — .skilled/skills/cli-jev/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing-run.sh; .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/{auth-probe.sh,preflight-probe.sh,preflight-probe2.sh,probe-matrix.sh,probe-surface.sh}
+edits_applied: 1 (all six target files)
+edits_skipped: none
+verification: grep -l '^set -uo pipefail$' ... | wc -l → 6; git diff --numstat -- .skilled/skills/cli-jev → six rows of 1 1; for f in ...; do bash -n "$f" && echo "ok $f"; done → six ok lines
+failures: none

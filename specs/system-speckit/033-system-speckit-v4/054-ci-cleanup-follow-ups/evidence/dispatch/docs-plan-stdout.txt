@@ -1,0 +1,9 @@
+All checks pass. Only checkbox marks remain, which the template and shape model both keep. The target file is the only file I changed.
+
+PI_HANDBACK
+status: done
+summary: Filled the Level 2 implementation plan for CI Cleanup Follow-ups from the verified evidence pack, covering the spec-gate /tmp exemption removal, the CI TMPDIR workaround removal, the playbook corrections and the cli-jev pipefail move. All quality gates ticked since the packet is complete, with the testing table drawn from the observed verification commands and rollback scoped to reverting the two named commits.
+files_changed: 1, specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/plan.md
+facts_not_in_evidence: none
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups --verbose 2>&1 | grep "plan.md" ; echo "placeholder_lines=$?" -> placeholder_lines=1 (pass, no lines). grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/plan.md -> 22. grep -c -e '—' -e ';' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/plan.md -> 0
+failures: none

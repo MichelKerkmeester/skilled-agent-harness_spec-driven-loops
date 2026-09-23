@@ -1,0 +1,10 @@
+Both VERIFY checks pass: no `TMPDIR` remains (grep count 0) and the diff is 0 additions / 4 deletions.
+
+PI_HANDBACK
+status: done
+summary: Removed the runtime vitest TMPDIR workaround from the CI workflow so the suites run with the runner's default temp dir now that the spec gate no longer exempts all writes under /tmp. Both verification commands matched their expected results.
+files_changed: 1 — .github/workflows/spec-kit-check.yml
+edits_applied: 1
+edits_skipped: none
+verification: grep -c 'TMPDIR' .github/workflows/spec-kit-check.yml → 0 (expect 0); git diff --numstat -- .github/workflows/spec-kit-check.yml → 0 4 .github/workflows/spec-kit-check.yml (expect 0 4)
+failures: none

@@ -1,0 +1,9 @@
+All three checks pass. The other modified paths belong to concurrent workers. I wrote only `implementation-summary.md`.
+
+PI_HANDBACK
+status: done
+summary: Filled the CI Cleanup Follow-ups implementation summary from the verified evidence pack, with the /tmp gate change, the CI workaround removal and the cli-jev pipefail work all described. Every template section is filled and all REQ, AC and T ids from evidence appear exactly as listed.
+files_changed: 1, specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/implementation-summary.md
+facts_not_in_evidence: none
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups --verbose 2>&1 | grep "implementation-summary.md" ; echo "placeholder_lines=$?" -> placeholder_lines=1 (pass). grep -c '<!-- /\?ANCHOR:' .../implementation-summary.md -> 12. grep -c -e '—' -e ';' .../implementation-summary.md -> 0
+failures: none

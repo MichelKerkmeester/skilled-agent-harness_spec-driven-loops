@@ -1,0 +1,14 @@
+VERIFY
+```
+grep -c 'the core exempts `/tmp`' .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md   # expect 0
+```
+result line: `0` (grep exits 1 when no matches remain — expected)
+
+PI_HANDBACK
+status: done
+summary: Updated the deny-fixture step to state the core exempts only paths outside the project, so the fixture's disposable project dir may live at any location. Verified the stale `/tmp` exemption wording is gone.
+files_changed: 1 file, .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md
+edits_applied: 1
+edits_skipped: none
+verification: grep -c 'the core exempts `/tmp`' .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md → 0 (expected)
+failures: none

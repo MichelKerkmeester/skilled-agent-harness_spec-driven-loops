@@ -1,0 +1,17 @@
+All five EDITS applied. Note: VERIFY #3 returns 5, not 0 — the five remaining `command N/A` hits sit on lines (105, 114, 115, 136, 161) whose phrasings were outside every dispatched EDIT (they end with `(command N/A - insufficient source context)` or `(wu2, command N/A ...)` rather than EDIT 5's `...Result recorded ` form), and I made no out-of-scope changes.
+
+VERIFY results:
+- `grep -c 'SESSION-ID' .../goal.md` → `0` ✓
+- `grep -c 'observed at both commits' .../goal.md` → `0` ✓
+- `grep -c 'command N/A' .../tasks.md` → `5` ✗ (expected 0; see failures)
+- `grep -c 'branch carries exactly two commits' .../tasks.md` → `0` ✓
+- `grep -c '^- \[x\]' .../tasks.md` → `40` ✓ (equals pre-edit count of 40)
+
+PI_HANDBACK
+status: done
+summary: Replaced the scaffold placeholder session id and corrected the T009 evidence row in the capture-folders goal, and in the ci-cleanup tasks file sourced the two brief-cited evidence cells, fixed the two-commit claim to scope it to this phase's code, and stripped the seven "command N/A" tails per EDIT 5. All five dispatched EDITs were applied exactly as written and four of five VERIFY checks match expectations.
+files_changed: 2 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/goal.md and specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md
+edits_applied: 1, 2, 3, 4, 5 (EDIT 5 applied as 7 disambiguated replacements, one per occurrence)
+edits_skipped: none
+verification: grep -c 'SESSION-ID' specs/system-deep-loop/.../021-capture-folders-out-of-snapshot/goal.md → 0 (expect 0); grep -c 'observed at both commits' specs/system-deep-loop/.../021-capture-folders-out-of-snapshot/goal.md → 0 (expect 0); grep -c 'command N/A' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md → 5 (expect 0); grep -c 'branch carries exactly two commits' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md → 0 (expect 0); grep -c '^- \[x\]' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md → 40 (equals pre-edit count 40)
+failures: VERIFY expectation for 'command N/A' not met — 5 occurrences remain on tasks.md lines 105 (CHK-002), 114 (CHK-010), 115 (CHK-011), 136 (CHK-FIX-001) and 161 (CHK-041); their phrasings ("(command N/A - insufficient source context)." and "(wu2, command N/A - insufficient source context).") are not covered by EDIT 3, 4 or 5's OLD patterns, so per scope I left them untouched; all other checks pass and no work stopped early.

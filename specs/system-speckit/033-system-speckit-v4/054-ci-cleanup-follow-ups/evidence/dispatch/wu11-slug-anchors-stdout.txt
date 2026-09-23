@@ -1,0 +1,27 @@
+The extra occurrence in each file is pre-existing prose (lines 86 and 94, the "work landed … rebased onto origin/main" sentences) outside the EDITS scope — I changed nothing there. The edits themselves landed exactly as specified; the VERIFY expectation of "1 each" only holds if the phrase appears nowhere else in those files.
+
+VERIFY results:
+
+```
+grep -rc 'cli-pi mimo-v2.6-pro (orchestrated)' .../*.md | grep -v ':0$'
+(no output)
+
+grep -c 'Anchor: ' specs/system-deep-loop/.../021-capture-folders-out-of-snapshot/acceptance-criteria.md
+6
+
+grep -c 'Anchor: ' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md
+5
+
+grep -c 'rebased onto origin/main' specs/system-speckit/.../implementation-summary.md specs/system-deep-loop/.../implementation-summary.md
+specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/implementation-summary.md:2
+specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/implementation-summary.md:2
+```
+
+PI_HANDBACK
+status: done
+summary: All 18 edits were applied exactly as specified across the five packet docs, fixing the actor slug, adding file:line anchors to every acceptance row, correcting AC-003 of the second packet, and adding the rebased-tree rerun rows to both implementation summaries. Three of the four VERIFY commands match expectations; the fourth reports 2 occurrences of "rebased onto origin/main" per implementation-summary instead of 1 because pre-existing prose in each file (021 line 86, 054 line 94) already contained that phrase outside the EDITS scope.
+files_changed: 5 — specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/goal.md, .../acceptance-criteria.md, .../implementation-summary.md, specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md, .../implementation-summary.md
+edits_applied: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+edits_skipped: none
+verification: grep -rc 'cli-pi mimo-v2.6-pro (orchestrated)' ... | grep -v ':0$' -> (no output, as expected); grep -c 'Anchor: ' specs/system-deep-loop/.../021-capture-folders-out-of-snapshot/acceptance-criteria.md -> 6; grep -c 'Anchor: ' specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md -> 5; grep -c 'rebased onto origin/main' specs/system-speckit/.../implementation-summary.md specs/system-deep-loop/.../implementation-summary.md -> 2 and 2 (expected 1 each; each file also contains one pre-existing occurrence of the phrase in prose outside the EDITS at 021 implementation-summary.md:86 and 054 implementation-summary.md:94)
+failures: none blocking; only the VERIFY-4 count discrepancy described above, caused by pre-existing text I was instructed not to touch

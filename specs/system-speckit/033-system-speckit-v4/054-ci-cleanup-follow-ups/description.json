@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups",
+  "description": "The spec gate exempted every write under /tmp and /private/tmp by location, and any path outside the repository is already exempt, so the extra rule",
+  "keywords": [
+    "spec",
+    "gate",
+    "exempted",
+    "every",
+    "write",
+    "tmp",
+    "private",
+    "location",
+    "path",
+    "outside",
+    "repository",
+    "already",
+    "exempt",
+    "extra",
+    "rule"
+  ],
+  "lastUpdated": "2026-09-23T20:26:35.704Z",
+  "specId": "054",
+  "folderSlug": "ci-cleanup-follow-ups",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

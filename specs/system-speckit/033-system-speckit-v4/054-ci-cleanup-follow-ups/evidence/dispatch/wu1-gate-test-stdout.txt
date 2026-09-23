@@ -1,0 +1,10 @@
+Both VERIFies return 1 as expected. All edits applied without touching any other file.
+
+PI_HANDBACK
+status: done
+summary: Parameterized the workspace helper to accept a base directory and added a new test asserting that a repository rooted under /tmp is gated like any other, plus refreshed the traversal test comment wording. The new test is pinned to fail against the current /tmp-exempt gate as intended.
+files_changed: 1 — .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs
+edits_applied: 1, 2, 3
+edits_skipped: none
+verification: grep -c 'gated like any other' .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs → 1; grep -c 'function makeWorkspace(base = tmpdir())' .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs → 1
+failures: none

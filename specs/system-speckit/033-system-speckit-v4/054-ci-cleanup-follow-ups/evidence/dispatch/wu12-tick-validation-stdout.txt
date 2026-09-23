@@ -1,0 +1,10 @@
+All 4 edits applied; both VERIFY counts match expectations (exit code 1 on the first is just grep's no-match signal for the expected 0 counts).
+
+PI_HANDBACK
+status: done
+summary: Closed the open CHK-040 checklist item with the validate.sh evidence line in both task files and bumped both P1 tallies from 12/13 to 13/13. Both VERIFY greps returned the expected counts (0 unchecked items each, one 13/13 line each).
+files_changed: 2 — specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/tasks.md, specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md
+edits_applied: 1, 2, 3, 4
+edits_skipped: none
+verification: grep -c '^- \[ \]' <both tasks.md paths> → .../021-capture-folders-out-of-snapshot/tasks.md:0, .../054-ci-cleanup-follow-ups/tasks.md:0 (expect 0 each) | grep -c '13/13' <both tasks.md paths> → .../021-capture-folders-out-of-snapshot/tasks.md:1, .../054-ci-cleanup-follow-ups/tasks.md:1 (expect 1 each)
+failures: none

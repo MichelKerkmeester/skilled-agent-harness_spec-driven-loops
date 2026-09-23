@@ -1,0 +1,2 @@
+[pi-web-access] Dynamic tool activation requires Pi 0.86.1 or newer; web tools remain eagerly available.
+{"timestamp":"2026-09-23T19:03:15.818Z","runtime":"claude","status":"ok","freshness":"live","durationMs":2159,"cacheHit":false,"skillLabel":"cli-external-orchestration"}
