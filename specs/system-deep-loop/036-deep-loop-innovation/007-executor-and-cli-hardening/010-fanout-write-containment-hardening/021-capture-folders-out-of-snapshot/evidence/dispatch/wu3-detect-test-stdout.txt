@@ -1,0 +1,13 @@
+EDIT 1 applied cleanly (OLD found exactly once). New test added inside the `snapshotOutOfScopeDirtyPaths` describe block.
+
+VERIFY:
+- `grep -c 'as new violations' .skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` → `1` (expected 1)
+
+PI_HANDBACK
+status: done
+summary: Added the test pinning that capture folders left in the tree by an earlier run are not reported as new out-of-scope violations, failing against current detection as intended. Only the target test file was changed and the single VERIFY command passed with the expected count of 1.
+files_changed: 1, .skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts
+edits_applied: 1
+edits_skipped: none
+verification: grep -c 'as new violations' .skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts → 1
+failures: none

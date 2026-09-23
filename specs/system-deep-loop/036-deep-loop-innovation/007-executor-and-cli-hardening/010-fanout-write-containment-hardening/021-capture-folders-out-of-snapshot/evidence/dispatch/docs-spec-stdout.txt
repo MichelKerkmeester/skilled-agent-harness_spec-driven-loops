@@ -1,0 +1,10 @@
+All template comments and 22 anchor lines are intact in their original order, all placeholders are filled, and only the target file changed.
+
+PI_HANDBACK
+status: done
+summary: Filled the Level 2 feature specification for capture folders out of the containment snapshot from the verified evidence pack. The template skeleton, anchor order and SPECKIT comments are preserved and every placeholder is replaced with evidence-backed content or "N/A - insufficient source context".
+files_changed: 1, specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/spec.md
+facts_not_in_evidence: none
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot --verbose 2>&1 | grep "spec.md" ; echo "placeholder_lines=$?" → placeholder_lines=1 (pass, no placeholder lines) ; grep -c '<!-- /\?ANCHOR:' .../021-capture-folders-out-of-snapshot/spec.md → 22 ; grep -c -e '—' -e ';' .../021-capture-folders-out-of-snapshot/spec.md → 0
+failures: none
+PI_HANDBACK

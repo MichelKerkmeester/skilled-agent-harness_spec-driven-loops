@@ -1,0 +1,10 @@
+All three VERIFY commands pass. Handback:
+
+PI_HANDBACK
+status: done
+summary: Added write-containment capture ignore rules to .gitignore directly after the lineage .codex-home anchor, with a rationale comment block. Both containment/baseline/ and containment/quarantine/ now match the new rules and the diff is exactly 7 added lines.
+files_changed: 1 (.gitignore)
+edits_applied: EDIT 1
+edits_skipped: none
+verification: git check-ignore -v specs/x/lineages/a/containment/baseline/f.md → .gitignore:369:specs/**/containment/baseline/ specs/x/lineages/a/containment/baseline/f.md | git check-ignore -v specs/x/review/containment/quarantine/p/f.md → .gitignore:370:specs/**/containment/quarantine/ specs/x/review/containment/quarantine/p/f.md | git diff --numstat -- .gitignore → 7 0 .gitignore
+failures: none

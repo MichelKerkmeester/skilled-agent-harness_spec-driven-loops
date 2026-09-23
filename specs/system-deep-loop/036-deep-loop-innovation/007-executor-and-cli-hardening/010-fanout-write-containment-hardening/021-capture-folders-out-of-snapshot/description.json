@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot",
+  "description": "A fan-out snapshot (snapshotOutOfScopeDirtyPaths in write-containment.ts) copies every untracked path outside a lane into the containment baseline",
+  "keywords": [
+    "fan-out",
+    "snapshot",
+    "snapshotoutofscopedirtypaths",
+    "write-containment",
+    "copies",
+    "every",
+    "untracked",
+    "path",
+    "outside",
+    "lane",
+    "containment",
+    "baseline"
+  ],
+  "lastUpdated": "2026-09-23T20:18:37.284Z",
+  "specId": "021",
+  "folderSlug": "capture-folders-out-of-snapshot",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "010-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

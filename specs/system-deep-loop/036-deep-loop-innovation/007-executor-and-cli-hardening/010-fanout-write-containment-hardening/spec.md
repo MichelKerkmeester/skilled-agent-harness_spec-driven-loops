@@ -129,6 +129,7 @@ Follow-on work the alternatives research surfaced. Each phase is one fix, dispat
 | 18 | `018-orchestrate-mirror-alignment/` | complete | Make the orchestrate agent declare the same delegation tool surface in every runtime mirror, including its own permission block. |
 | 19 | `019-forced-depth-empty-records/` | complete | Stop the forced-depth validator passing a lane whose state log holds no usable iteration records, and stop a leaf writing iteration records without an iteration number. |
 | 20 | `020-direct-append-sites-through-gateway/` | complete | Stop a projection refresh from dropping state-log rows the command YAMLs still append directly: every remaining direct append goes through the gateway, and the exemptions that allowed them are retired. |
+| 21 | `021-capture-folders-out-of-snapshot/` | complete | Keep containment's own capture output out of every later run's snapshot and violation detection, and stop tracking it so a worktree can be removed again. |
 | 007-worktree-removal | 008-quarantine-destination-canonical | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
 | 008-quarantine-destination-canonical | 009-baseline-deletion-detection | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
 | 009-baseline-deletion-detection | 010-containment-on-failed-lanes | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
@@ -142,6 +143,7 @@ Follow-on work the alternatives research surfaced. Each phase is one fix, dispat
 | 017-protocol-and-catalog-alignment | 018-orchestrate-mirror-alignment | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
 | 018-orchestrate-mirror-alignment | 019-forced-depth-empty-records | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
 | 019-forced-depth-empty-records | 020-direct-append-sites-through-gateway | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
+| 020-direct-append-sites-through-gateway | 021-capture-folders-out-of-snapshot | the successor's goal criteria, checked in its `goal.md` | the successor's `validate.sh --strict` PASSED and its full-suite record |
 <!-- /ANCHOR:phase-map -->
 
 ---

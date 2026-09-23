@@ -1,0 +1,13 @@
+All three checks pass. The file is complete.
+
+HANDBACK
+PI_HANDBACK
+status: done
+summary: Filled the Level 2 implementation plan for keeping containment capture folders out of the fan-out snapshot and out of violation detection. The plan covers the shared path segment guard, the untrack and gitignore work, the sk-doc baseline prune, the verification results and the rollback of the two named commits.
+files_changed: 1, specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/plan.md
+facts_not_in_evidence: none
+verification:
+  bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot --verbose 2>&1 | grep "plan.md" ; echo "placeholder_lines=$?" -> placeholder_lines=1
+  grep -c '<!-- /\?ANCHOR:' specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/plan.md -> 22
+  grep -c -e '—' -e ';' specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/plan.md -> 0
+failures: none

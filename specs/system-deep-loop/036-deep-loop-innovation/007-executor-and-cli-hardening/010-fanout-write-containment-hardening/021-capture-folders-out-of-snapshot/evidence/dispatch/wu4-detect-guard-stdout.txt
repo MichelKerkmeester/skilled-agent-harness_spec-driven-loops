@@ -1,0 +1,10 @@
+Added the capture-folder skip to the forward detection loop so detection matches the snapshot's exclusion of capture folders.
+
+PI_HANDBACK
+status: done
+summary: Added `if (isContainmentCapturePath(p)) continue;` to the forward loop of `detectNewOutOfScopeViolations` so capture folders left by earlier runs are skipped during detection. This aligns detection with the snapshot, which already skips capture folders, so stale captures no longer read as new violations.
+files_changed: 1 (.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts)
+edits_applied: EDIT 1
+edits_skipped: none
+verification: grep -c 'isContainmentCapturePath' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts → 3
+failures: none

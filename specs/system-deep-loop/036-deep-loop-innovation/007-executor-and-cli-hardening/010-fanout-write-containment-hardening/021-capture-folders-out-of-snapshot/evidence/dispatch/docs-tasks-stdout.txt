@@ -1,0 +1,9 @@
+All checks pass. The counts confirm the summary table: 12 P0, 13 P1 and 1 P2 checklist items, with only CHK-040 left unticked for the orchestrator's `validate.sh --strict` run.
+
+PI_HANDBACK
+status: done
+summary: Filled tasks.md for phase 021 with task list T001 to T011 across the three phases, each ticked with the command and result from the evidence pack. Rewrote the full verification checklist for this work with priority tags, ticked every item the evidence proves and left the validate.sh --strict item unticked for the orchestrator, with a summary table of 12/12 P0, 12/13 P1 and 1/1 P2 verified at 2026-09-23.
+files_changed: 1, specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/tasks.md
+facts_not_in_evidence: none
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot --verbose 2>&1 | grep "tasks.md" ; echo "placeholder_lines=$?" -> placeholder_lines=1 (no lines, pass) ; grep -c '<!-- /\?ANCHOR:' .../tasks.md -> 30 ; grep -c -e '—' -e ';' .../tasks.md -> 0
+failures: none
