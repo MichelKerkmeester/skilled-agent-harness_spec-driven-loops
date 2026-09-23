@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e66c1e03c2fd27fff4d04134853873e55050b448b818b701542afc95ac2034a3",
+  "manifestHash": "a44b0733d943b3b82b82075ca15718363ee5bce3b457ead593637be5fb6476a8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15728,6 +15728,12 @@
     "chunking strategy tuning research": [
       "chunking strategy tuning research"
     ],
+    "ci cleanup handover": [
+      "ci cleanup handover"
+    ],
+    "ci cleanup pi proof": [
+      "ci cleanup pi proof"
+    ],
     "ci lanes wired": [
       "ci lanes wired"
     ],
@@ -16735,6 +16741,9 @@
     ],
     "cli jev root router": [
       "cli-jev root router"
+    ],
+    "cli jev run keyword": [
+      "cli-jev run keyword"
     ],
     "cli jev track": [
       "cli-jev track"
@@ -19275,8 +19284,11 @@
     "codex goal nesting": [
       "codex goal nesting"
     ],
-    "codex gpt 5 6 luna terra sol": [
-      "codex gpt-5.6 luna terra sol"
+    "codex gpt 5 6 terra": [
+      "codex gpt-5.6 terra"
+    ],
+    "codex gpt 6 luna sol": [
+      "codex gpt-6 luna sol"
     ],
     "codex guard adapters": [
       "codex guard adapters"
@@ -20260,6 +20272,9 @@
     ],
     "compiled route obsidian proof": [
       "compiled-route obsidian proof"
+    ],
+    "compiled route re mint": [
+      "compiled route re-mint"
     ],
     "compiled route target cap": [
       "compiled route target cap"
@@ -22524,6 +22539,9 @@
     ],
     "create changelog v1 0 1 2": [
       "create-changelog v1.0.1.2"
+    ],
+    "create changelog v1 1 0 0": [
+      "create-changelog v1.1.0.0"
     ],
     "create chart": [
       "create chart"
@@ -38503,6 +38521,27 @@
     "gpt 5 5 verify dispatch": [
       "gpt-5.5 verify dispatch"
     ],
+    "gpt 5 6 to gpt 6": [
+      "gpt-5.6 to gpt-6"
+    ],
+    "gpt 6 cutover acceptance": [
+      "gpt-6 cutover acceptance"
+    ],
+    "gpt 6 cutover plan": [
+      "gpt-6 cutover plan"
+    ],
+    "gpt 6 cutover summary": [
+      "gpt-6 cutover summary"
+    ],
+    "gpt 6 cutover tasks": [
+      "gpt-6 cutover tasks"
+    ],
+    "gpt 6 luna cutover": [
+      "gpt-6 luna cutover"
+    ],
+    "gpt 6 sol cutover": [
+      "gpt-6 sol cutover"
+    ],
     "gpt followup audit review report": [
       "gpt followup audit review report"
     ],
@@ -39702,6 +39741,9 @@
     ],
     "hermes mirror ci guard": [
       "hermes mirror ci guard"
+    ],
+    "hermes mirror drift": [
+      "hermes mirror drift"
     ],
     "hermes oneshot": [
       "hermes oneshot"
@@ -44875,6 +44917,12 @@
     "llmgateway glm flash research": [
       "llmgateway glm flash research"
     ],
+    "llmgateway gpt 6 luna route": [
+      "llmgateway gpt-6-luna route"
+    ],
+    "llmgateway gpt 6 luna verified": [
+      "llmgateway gpt-6-luna verified"
+    ],
     "llmgateway image declaration": [
       "llmgateway image declaration"
     ],
@@ -45280,6 +45328,9 @@
     "low signal query": [
       "low signal query"
     ],
+    "luna 6 llmgateway": [
+      "luna 6 llmgateway"
+    ],
     "luna and deepseek research": [
       "luna and deepseek research"
     ],
@@ -45294,6 +45345,18 @@
     ],
     "luna max lineage": [
       "luna-max lineage"
+    ],
+    "luna sol closure gate": [
+      "luna sol closure gate"
+    ],
+    "luna sol gpt 6 shipped": [
+      "luna sol gpt-6 shipped"
+    ],
+    "luna sol rename checklist": [
+      "luna sol rename checklist"
+    ],
+    "luna sol rename plan": [
+      "luna sol rename plan"
     ],
     "machine cutover acceptance": [
       "machine cutover acceptance"
@@ -48403,6 +48466,9 @@
     ],
     "merged compat lacks thinkingformat": [
       "merged compat lacks thinkingFormat"
+    ],
+    "merged tree re verification": [
+      "merged-tree re-verification"
     ],
     "mermaid extract": [
       "mermaid_extract"
@@ -53057,6 +53123,9 @@
     "opus 4 8 workflow deep review 011": [
       "opus-4.8 workflow deep review 011"
     ],
+    "opus 5 5 cli claude code": [
+      "opus 5.5 cli-claude-code"
+    ],
     "opus deep review of the follow ups": [
       "opus deep review of the follow-ups"
     ],
@@ -56578,6 +56647,9 @@
     ],
     "pi fork fix plan": [
       "pi fork fix plan"
+    ],
+    "pi gate 3 live proof": [
+      "pi gate-3 live proof"
     ],
     "pi git advisory": [
       "pi git advisory"
@@ -67072,8 +67144,14 @@
     "scorer baseline 152 versus 154": [
       "scorer baseline 152 versus 154"
     ],
+    "scorer baseline ratchet": [
+      "scorer baseline ratchet"
+    ],
     "scorer baseline ratchet regression": [
       "scorer baseline ratchet regression"
+    ],
+    "scorer baseline restore": [
+      "scorer baseline restore"
     ],
     "scorer cache": [
       "scorer cache"
@@ -69575,6 +69653,9 @@
     ],
     "situational awareness dashboard": [
       "situational awareness dashboard"
+    ],
+    "six ci surfaces": [
+      "six ci surfaces"
     ],
     "six cli rewrite layer": [
       "six CLI rewrite layer"
@@ -80537,6 +80618,9 @@
     ],
     "v4 doc freshness tasks": [
       "v4 doc freshness tasks"
+    ],
+    "v4 narrative changelog": [
+      "v4 narrative changelog"
     ],
     "v4 packet order": [
       "v4 packet order"

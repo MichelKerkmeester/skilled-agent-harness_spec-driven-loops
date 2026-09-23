@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4fc54491e96a2c98c3fa9796dc6ed218f63c6b584aaba9aa729b29a377f6bd41",
+  "corpusHash": "3acc197969fd496df5acda3d0c443dd92374d6ea8a4bfbedc6e84a09f6fb6a77",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22330,
+  "includedPathCount": 22336,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -117,6 +117,7 @@
     ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.3.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.4.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.0.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/context-agent-codebase-exploration.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/debug-agent-fresh-perspective-root-cause.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/agent-routing/handover-agent-context-transfer.md",
@@ -419,6 +420,8 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.7.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.8.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.0.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/context-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/debug-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/multi-ai-council-profile.md",
@@ -921,6 +924,7 @@
     ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/README.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/dispatch-guards/dispatch-shape-recognition.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/dispatch-guards/hard-rule-preflight-checks.md",
     ".skilled/skills/cli-external-orchestration/cli-hermes/feature-catalog/fanout-dispatch/closed-model-roster.md",
@@ -1254,6 +1258,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.10.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.4.0.md",
@@ -1261,6 +1266,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.6.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.8.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -1490,6 +1496,8 @@
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.5.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.6.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.7.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.8.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/agent-bridge/project-agent-override.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/cli-invocation/default-invocation-and-settings-merge.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/cli-invocation/hallucination-fixture-undocumented-pi-syntax.md",
@@ -6033,6 +6041,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.1.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.2.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
@@ -7563,8 +7572,6 @@
     ".skilled/skills/system-skill-advisor/runtime/tests/python/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/schemas/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/scorer/README.md",
-    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
-    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/utils/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tools/README.md",
@@ -8352,6 +8359,11 @@
     "specs/cli-external-orchestration/076-mimo-v2-6-cutover/plan.md",
     "specs/cli-external-orchestration/076-mimo-v2-6-cutover/spec.md",
     "specs/cli-external-orchestration/076-mimo-v2-6-cutover/tasks.md",
+    "specs/cli-external-orchestration/077-gpt-6-luna-sol-cutover/acceptance-criteria.md",
+    "specs/cli-external-orchestration/077-gpt-6-luna-sol-cutover/implementation-summary.md",
+    "specs/cli-external-orchestration/077-gpt-6-luna-sol-cutover/plan.md",
+    "specs/cli-external-orchestration/077-gpt-6-luna-sol-cutover/spec.md",
+    "specs/cli-external-orchestration/077-gpt-6-luna-sol-cutover/tasks.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -8474,115 +8486,43 @@
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/config/scripts/session-search-file-id-e2e/README.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/STYLEGUIDE.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/agent-skill-sharing-implementation-checklist.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/acknowledged-tab-retirement/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/auth-filesystem-wait-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/browser-closed-result-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/browser-destroyed-guest-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/browser-registration-reply-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/browser-viewport-owner-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/cdp-stream-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/claude-branch-proof-streaming/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/claude-history-window-budget/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/claude-task-retention/README.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/closed-editor-model-lifetime/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/codex-prompt-claim-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/crashpad-read-limit/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/daemon-late-exit/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/daemon-shared-owner-incarnation-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/daemon-stream-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/empty-streamed-delta-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/gitlab-known-host-retirement/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/headless-hydration-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/legacy-import-source-budget/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/local-log-tail-lifetime/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/native-pty-spawn-env-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/nested-repo-processed-queue/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/osc133-carry-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/pending-runtime-pane-close/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/pending-split-close/README.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/plugin-uninstall-log-retirement/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/plugin-worker-output-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/pty-detector-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/queued-terminal-graph-exit/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/retained-text-slices/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/runtime-rpc-consumed-queue/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/scanner-late-cancel/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/session-search-write-fences/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/ssh-file-metadata-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/ssh-writer-consumed-prefix/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/stale-pty-inventory/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/structured-hold-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/terminal-close-observed-exit/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/terminal-completed-spawn-inputs/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/terminal-mode-tail-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/terminal-wait-leading-blank/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/transcript-record-retention/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/tui-transcript-acquisition/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/tui-transcript-close/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/working-directory-wait-retention/README.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/readme/README.es.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/readme/README.fr.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/readme/README.ja.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/readme/README.ko.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/readme/README.pt.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/readme/README.zh-CN.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/admin-agent-skill-sharing.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-pty-transcript-capture.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-session-search-contract.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-session-search-query-tuning.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-skill-provider-paths.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-skill-sharing-threat-model.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-skill-sharing-upstream-boundary.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-status-store.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/antigravity-readiness-evidence.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/ci-runner-efficiency.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/git-compatibility.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/headless-linux-server.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/ime-regression-checklist.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/linux-glibc-compatibility.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/macos-press-and-hold.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/malformed-worktree-registration-removal.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-fresh-launch.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-history-titles.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-resume-transcript-locator.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-runtime-session-provenance.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-session-roots.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-startup-keyboard-query.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-status-input-redaction.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/orcad-operations.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/pnpm-install-policy.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/relay-regional-placement.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/remote-wire-compatibility.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/renderer-agent-status-performance.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/runtime-file-base64-padding.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/sharing-agent-skills.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/spinner-rendering-performance.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/ssh-execution-boundary.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/ssh-host-key-verification.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/ssh-reconnect-source-recovery.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/task-provider-identity-validation.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/terminal-artifact-grant-integrity.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/terminal-startup-timing.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-cmd-shim-resolution.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-daemon-host-relocation.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-edr-posture.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-msys-job-breakaway.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-process-enumeration.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-setup-shell.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-signing-runner-time.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-terminal-shell-selection.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/worktree-scan-fingerprint.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/wsl-command-execution.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/wsl-probe-failure-semantics.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/wsl-runner-verification.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/xterm-patch-regeneration.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-ACCEPTANCE.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-API.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-CHECKLIST.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-IDLE-CUTOVER-PLAN.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-PLAN.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-ROLLOUT.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/review-evidence/pr-19217/README.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/site/README.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/site/THIRD_PARTY_NOTICES.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/README.md",
@@ -13489,6 +13429,10 @@
     "specs/system-skill-advisor/028-restore-pi-advisor-brief/plan.md",
     "specs/system-skill-advisor/028-restore-pi-advisor-brief/spec.md",
     "specs/system-skill-advisor/028-restore-pi-advisor-brief/tasks.md",
+    "specs/system-skill-advisor/029-fix-remaining-advisor-defects/implementation-summary.md",
+    "specs/system-skill-advisor/029-fix-remaining-advisor-defects/plan.md",
+    "specs/system-skill-advisor/029-fix-remaining-advisor-defects/spec.md",
+    "specs/system-skill-advisor/029-fix-remaining-advisor-defects/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -22344,6 +22288,68 @@
     "specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/spec.md",
     "specs/system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/body-ac.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/body-handover.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/body-impl.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/body-plan.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/body-spec.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/body-tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/close-body-048.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/close-body-ac.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/close-body-handover.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/close-body-impl.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/close-body-plan.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/close-body-spec.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/close-body-tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/close-header.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/doc-footer.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/doc-header.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/evidence.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/handover-v1.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/merge-body-ac.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/merge-body-handover.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/merge-body-impl.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/merge-body-plan.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/merge-body-tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/rev-body-ac.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/rev-body-handover.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/rev-body-impl.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/rev-body-plan.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/rev-body-spec.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/rev-body-tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/rev-footer.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/rev-header.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu1-links.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu10-merge-ac.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu10-merge-handover.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu10-merge-impl.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu10-merge-plan.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu10-merge-tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu2-jev-run-topic.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu3-jev-run-keyword.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu4-baseline-restore.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu5-doc-ac.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu5-doc-handover.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu5-doc-impl.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu5-doc-plan.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu5-doc-spec.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu5-doc-tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu6-parent-rows.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu7-048-live-row.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu8-rev-ac.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu8-rev-handover.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu8-rev-impl.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu8-rev-plan.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu8-rev-spec.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu8-rev-tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu9-close-048.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu9-close-ac.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu9-close-handover.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu9-close-impl.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu9-close-plan.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu9-close-spec.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu9-close-tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md",
     "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/implementation-summary.md",
     "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md",
     "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md",
@@ -22352,7 +22358,7 @@
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e66c1e03c2fd27fff4d04134853873e55050b448b818b701542afc95ac2034a3",
+  "manifestHash": "a44b0733d943b3b82b82075ca15718363ee5bce3b457ead593637be5fb6476a8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -22362,24 +22368,72 @@
   ],
   "skippedPaths": [
     {
-      "path": ".skilled/hooks/dispatch/lib/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/hooks/dispatch/pi/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".skilled/hooks/session-lifecycle/claude/compact-inject.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/claude/session-prime.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/claude/session-stop.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/compact-inject.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/session-start.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/session-stop.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/precompact.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/session-end.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/session-start.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/devin/session-start.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/devin/session-stop.js",
+      "reason": "broken symlink"
+    },
+    {
       "path": ".skilled/hooks/skill-advisor/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/claude/user-prompt-submit.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/codex/user-prompt-submit.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/cursor/user-prompt-submit.js",
+      "reason": "broken symlink"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/devin/user-prompt-submit.js",
+      "reason": "broken symlink"
     },
     {
       "path": ".skilled/hooks/spec-gate/README.md",
@@ -22388,14 +22442,6 @@
     {
       "path": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".skilled/skills/mcp-code-mode/mcp-server/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/mcp-code-mode/mcp-server/node_modules",
-      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/sk-code/benchmark/fixtures",
@@ -22438,14 +22484,6 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".skilled/skills/sk-communication/cli-communication-projection/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/sk-communication/cli-communication-projection/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/sk-communication/cli-communication-projection/test/fixtures",
       "reason": "excluded directory"
     },
@@ -22458,19 +22496,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/tests/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/sk-doc/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -22498,31 +22524,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/sk-vision/vision-runtime/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/sk-vision/vision-runtime/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -22538,14 +22540,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-deep-loop/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-deep-loop/runtime/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-deep-loop/runtime/tests/fixtures",
       "reason": "excluded directory"
     },
@@ -22558,16 +22552,8 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-skill-advisor/runtime/dist",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-skill-advisor/runtime/lib/shared/embeddings",
       "reason": "symlinked directory"
-    },
-    {
-      "path": ".skilled/skills/system-skill-advisor/runtime/node_modules",
-      "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures",
@@ -22594,24 +22580,12 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/runtime/cli/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/runtime/cli/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures",
       "reason": "excluded directory"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime",
-      "reason": "symlinked directory"
+      "reason": "broken symlink"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures",
@@ -22626,16 +22600,8 @@
       "reason": "symlinked directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/runtime/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/runtime/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/shared",
-      "reason": "symlinked directory"
+      "reason": "broken symlink"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/advisor-fixtures",
@@ -22659,10 +22625,6 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/validation/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".skilled/skills/system-spec-kit/shared/dist",
       "reason": "excluded directory"
     },
     {
@@ -22740,14 +22702,6 @@
     {
       "path": "specs/agents/z_archive",
       "reason": "excluded directory"
-    },
-    {
-      "path": "specs/ai-systems",
-      "reason": "symlinked directory"
-    },
-    {
-      "path": "specs/anobel.com",
-      "reason": "symlinked directory"
     },
     {
       "path": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages",
@@ -22843,6 +22797,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/076-mimo-v2-6-cutover/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/077-gpt-6-luna-sol-cutover/scratch",
       "reason": "excluded directory"
     },
     {
@@ -23154,14 +23112,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-fast-mode/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-openai-fast-mode/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks/013-pi-cache-affinity-compat/scratch",
       "reason": "excluded directory"
     },
@@ -23256,10 +23206,6 @@
     {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
-    },
-    {
-      "path": "specs/obsidian",
-      "reason": "symlinked directory"
     },
     {
       "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages",
@@ -24566,10 +24512,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist",
       "reason": "excluded directory"
     },
@@ -24683,6 +24625,10 @@
     },
     {
       "path": "specs/system-skill-advisor/028-restore-pi-advisor-brief/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/029-fix-remaining-advisor-defects/scratch",
       "reason": "excluded directory"
     },
     {
