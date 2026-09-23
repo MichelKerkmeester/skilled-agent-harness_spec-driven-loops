@@ -169,74 +169,96 @@ export function followPhaseParentRedirect(
   let specFolder = startSpecFolder;
 
   for (let depth = 0; depth < PHASE_PARENT_REDIRECT_MAX_DEPTH; depth += 1) {
-    const metadataPath = path.join(folderPath, 'graph-metadata.json');
-    if (!fs.existsSync(metadataPath)) {
+    const next = resolvePhaseParentPointerHop(folderPath, specFolder, hints, telemetryStorePath);
+    if (!next) {
       break;
     }
 
-    let pointer: string | null = null;
-
-    // With the hardening flag on, the freshness pointer lives in the index-layer store
-    // rather than the generated JSON, so consult it first. A miss falls back to the JSON
-    // pointer so an un-migrated parent still redirects during the transition window.
-    if (isGeneratorHardeningEnabled()) {
-      const stored = resolveLastActiveChildFromStore(specFolder, { storePath: telemetryStorePath });
-      if (stored) {
-        pointer = stored.replace(/\\/g, '/').replace(/\/+$/u, '');
-      }
-    }
-
-    if (!pointer) {
-      try {
-        const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8')) as {
-          derived?: { last_active_child_id?: unknown } | null;
-        };
-        const raw = metadata?.derived?.last_active_child_id;
-        pointer = typeof raw === 'string' && raw.trim().length > 0 ? raw.trim().replace(/\\/g, '/').replace(/\/+$/u, '') : null;
-      } catch {
-        hints.push(`Skipping phase-parent redirect: ${path.basename(folderPath)}/graph-metadata.json is unreadable.`);
-        break;
-      }
-    }
-
-    if (!pointer) {
-      break;
-    }
-
-    // The pointer ships in two shapes: a bare child id ("001-phase") or a
-    // track-relative spec-folder path that extends the current packet
-    // ("track/parent/001-phase"). Reduce both to child segments under the
-    // current folder and refuse anything that doesn't stay inside it.
-    let childSegments: string[] | null = null;
-    if (PHASE_CHILD_NAME_RE.test(pointer)) {
-      childSegments = [pointer];
-    } else if (pointer.startsWith(`${specFolder}/`)) {
-      childSegments = pointer.slice(specFolder.length + 1).split('/');
-    }
-    if (!childSegments
-      || childSegments.length === 0
-      || !childSegments.every((segment) => PHASE_CHILD_NAME_RE.test(segment))) {
-      if (pointer !== specFolder) {
-        hints.push(`Ignoring phase-parent pointer ${pointer}: it does not name a child phase of ${specFolder}.`);
-      }
-      break;
-    }
-
-    const childPath = path.join(folderPath, ...childSegments);
-    const childIsPacket = fs.existsSync(childPath)
-      && fs.statSync(childPath).isDirectory()
-      && (fs.existsSync(path.join(childPath, 'spec.md')) || fs.existsSync(path.join(childPath, 'description.json')));
-    if (!childIsPacket) {
-      hints.push(`Ignoring stale phase-parent pointer ${pointer}: child packet not found under ${specFolder}.`);
-      break;
-    }
-
-    folderPath = childPath;
-    specFolder = `${specFolder}/${childSegments.join('/')}`;
+    folderPath = next.folderPath;
+    specFolder = next.specFolder;
     hints.push(`Phase-parent redirect: followed derived.last_active_child_id into ${specFolder}.`);
   }
 
   return { folderPath, specFolder };
+}
+
+/**
+ * Take one step along a phase parent's `derived.last_active_child_id` pointer.
+ * The resume ladder walks these steps to find where work lives, and the save
+ * writer takes them to route a parent-targeted save, so both trust a pointer
+ * under the same rule: it must name an existing child packet inside the parent.
+ * Returns null when the folder has no usable pointer, pushing the reason onto
+ * `hints` whenever a pointer was present but refused.
+ */
+export function resolvePhaseParentPointerHop(
+  folderPath: string,
+  specFolder: string,
+  hints: string[],
+  telemetryStorePath?: string,
+): { folderPath: string; specFolder: string } | null {
+  const metadataPath = path.join(folderPath, 'graph-metadata.json');
+  if (!fs.existsSync(metadataPath)) {
+    return null;
+  }
+
+  let pointer: string | null = null;
+
+  // With the hardening flag on, the freshness pointer lives in the index-layer store
+  // rather than the generated JSON, so consult it first. A miss falls back to the JSON
+  // pointer so an un-migrated parent still redirects during the transition window.
+  if (isGeneratorHardeningEnabled()) {
+    const stored = resolveLastActiveChildFromStore(specFolder, { storePath: telemetryStorePath });
+    if (stored) {
+      pointer = stored.replace(/\\/g, '/').replace(/\/+$/u, '');
+    }
+  }
+
+  if (!pointer) {
+    try {
+      const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8')) as {
+        derived?: { last_active_child_id?: unknown } | null;
+      };
+      const raw = metadata?.derived?.last_active_child_id;
+      pointer = typeof raw === 'string' && raw.trim().length > 0 ? raw.trim().replace(/\\/g, '/').replace(/\/+$/u, '') : null;
+    } catch {
+      hints.push(`Skipping phase-parent redirect: ${path.basename(folderPath)}/graph-metadata.json is unreadable.`);
+      return null;
+    }
+  }
+
+  if (!pointer) {
+    return null;
+  }
+
+  // The pointer ships in two shapes: a bare child id ("001-phase") or a
+  // track-relative spec-folder path that extends the current packet
+  // ("track/parent/001-phase"). Reduce both to child segments under the
+  // current folder and refuse anything that doesn't stay inside it.
+  let childSegments: string[] | null = null;
+  if (PHASE_CHILD_NAME_RE.test(pointer)) {
+    childSegments = [pointer];
+  } else if (pointer.startsWith(`${specFolder}/`)) {
+    childSegments = pointer.slice(specFolder.length + 1).split('/');
+  }
+  if (!childSegments
+    || childSegments.length === 0
+    || !childSegments.every((segment) => PHASE_CHILD_NAME_RE.test(segment))) {
+    if (pointer !== specFolder) {
+      hints.push(`Ignoring phase-parent pointer ${pointer}: it does not name a child phase of ${specFolder}.`);
+    }
+    return null;
+  }
+
+  const childPath = path.join(folderPath, ...childSegments);
+  const childIsPacket = fs.existsSync(childPath)
+    && fs.statSync(childPath).isDirectory()
+    && (fs.existsSync(path.join(childPath, 'spec.md')) || fs.existsSync(path.join(childPath, 'description.json')));
+  if (!childIsPacket) {
+    hints.push(`Ignoring stale phase-parent pointer ${pointer}: child packet not found under ${specFolder}.`);
+    return null;
+  }
+
+  return { folderPath: childPath, specFolder: `${specFolder}/${childSegments.join('/')}` };
 }
 
 function normalizeSpecFolder(specFolder: string | null | undefined): string | null {

@@ -1,6 +1,6 @@
 // TCOV-001: Focused unit tests for normalizeFileEntryLike via normalizeInputData
-import { describe, expect, it } from 'vitest';
-import { normalizeInputData } from '../utils/input-normalizer';
+import { describe, expect, it, vi } from 'vitest';
+import { normalizeInputData, validateInputData } from '../utils/input-normalizer';
 import type { RawInputData, NormalizedData, NormalizedFileEntry } from '../utils/input-normalizer';
 
 /**
@@ -325,5 +325,61 @@ describe('normalizeInputData Phase 016 regressions', () => {
     }) as NormalizedData;
 
     expect(result.projectPhase).toBe('IMPLEMENTATION');
+  });
+});
+
+describe('continuity fields in the save payload', () => {
+  const continuityPayload = {
+    recent_action: 'Wired the continuity writer',
+    nextSafeAction: 'Verify the nested fixture',
+    blockers: ['Waiting on review'],
+    keyFiles: ['runtime/cli/core/workflow.ts'],
+    completion_pct: 40,
+    openQuestions: ['Q1'],
+    answered_questions: ['Q2'],
+  };
+
+  it('accepts every snake_case and camelCase spelling without an unknown-field warning', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    try {
+      validateInputData({
+        ...continuityPayload,
+        next_safe_action: 'Verify the nested fixture',
+        recentAction: 'Wired the continuity writer',
+        key_files: [],
+        completionPct: 40,
+        open_questions: [],
+        answeredQuestions: [],
+      } as RawInputData, 'test-packet');
+      expect(warnSpy.mock.calls.some((call) => call.join(' ').includes('Unknown field in input data'))).toBe(false);
+    } finally {
+      warnSpy.mockRestore();
+    }
+  });
+
+  // File-mode saves normalize before the workflow sees the payload, and the manual
+  // path builds a fresh object, so the fields must be carried explicitly on both paths.
+  it('carries the fields through both normalization paths, treating an empty string as absent', () => {
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+    try {
+      const expected = {
+        recent_action: 'Wired the continuity writer',
+        next_safe_action: 'Verify the nested fixture',
+        blockers: ['Waiting on review'],
+        key_files: ['runtime/cli/core/workflow.ts'],
+        completion_pct: 40,
+        open_questions: ['Q1'],
+        answered_questions: ['Q2'],
+      };
+      const manual = normalizeInputData({ sessionSummary: 'Manual path', ...continuityPayload } as RawInputData) as NormalizedData;
+      const fast = normalizeInputData({ userPrompts: [], ...continuityPayload } as RawInputData) as NormalizedData;
+      expect(manual._continuity).toEqual(expected);
+      expect(fast._continuity).toEqual(expected);
+
+      const blanked = normalizeInputData({ sessionSummary: 'Manual path', recent_action: '  ' } as RawInputData) as NormalizedData;
+      expect(blanked._continuity).toBeUndefined();
+    } finally {
+      logSpy.mockRestore();
+    }
   });
 });

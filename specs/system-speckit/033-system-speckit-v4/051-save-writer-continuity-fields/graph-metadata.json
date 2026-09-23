@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/051-save-writer-continuity-fields",
+  "spec_folder": "system-speckit/033-system-speckit-v4/051-save-writer-continuity-fields",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "save writer continuity fields",
+      "generate-context continuity write",
+      "speckit save recent_action",
+      "continuity fingerprint stamp order",
+      "phase parent save routing",
+      "save writer continuity plan",
+      "continuity upsert wiring",
+      "fingerprint stamp before graph refresh",
+      "phase parent pointer walk",
+      "save writer continuity tasks",
+      "continuity write tasks",
+      "parent save routing tasks"
+    ],
+    "key_topics": [
+      "save",
+      "writer",
+      "continuity",
+      "fields",
+      "generate-context",
+      "write",
+      "speckit",
+      "fingerprint",
+      "stamp",
+      "order",
+      "phase",
+      "parent"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/utils/input-normalizer.ts",
+      "runtime/cli/types/session-types.ts",
+      "runtime/cli/core/workflow.ts",
+      "runtime/cli/continuity/generate-context.ts",
+      "runtime/cli/core/memory-metadata.ts",
+      "runtime/lib/continuity/thin-continuity-record.ts",
+      "runtime/lib/resume/resume-ladder.ts",
+      "runtime/api/index.ts",
+      "runtime/cli/evals/import-policy-allowlist.json",
+      "runtime/cli/tests/save-continuity-write.vitest.ts",
+      "runtime/tests/thin-continuity-record.vitest.ts",
+      ".skilled/commands/speckit/save.md",
+      "references/memory/save-workflow.md",
+      "specs/graph-metadata.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "input-normalizer.ts",
+        "kind": "code",
+        "path": "runtime/cli/utils/input-normalizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-types.ts",
+        "kind": "code",
+        "path": "runtime/cli/types/session-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-metadata.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/memory-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "thin-continuity-record.ts",
+        "kind": "code",
+        "path": "runtime/lib/continuity/thin-continuity-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": "runtime/lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "runtime/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "import-policy-allowlist.json",
+        "kind": "config",
+        "path": "runtime/cli/evals/import-policy-allowlist.json",
+        "source": "derived"
+      },
+      {
+        "name": "save-continuity-write.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/save-continuity-write.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "thin-continuity-record.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/thin-continuity-record.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "save-workflow.md",
+        "kind": "doc",
+        "path": "references/memory/save-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The continuity writer behind `/speckit:save` ignores every continuity field it is given and stamps the completion fingerprint after refreshing the graph, so a save leaves resume state stale and can fail its own strict validation",
+    "created_at": "2026-09-23T08:54:19Z",
+    "last_save_at": "2026-09-23T17:10:55.498Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7cfbee49ab82643e4fe591462a1a18f384f5e03d278c3c92a9b3a11ce86f5129",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c1ee7d215d38cbfbdf888678661e1d7aacee7ad9f0c6d965f93e833fc092b7c8",
+      "plan.md": "469137361c27851e69e1e6ac7dc25866b9daea3d8dbf9ccb4d6f6e226508f516",
+      "tasks.md": "05658c011b8aa5dfe15dc187194e6459b1ff99f4a2d9be6385945fa905b0eea7",
+      "implementation-summary.md": "a8e9d53dcf0c350033bbd84226f283650fa15c7868e0be1731bd163c11d00724"
+    },
+    "last_active_at": null
+  }
+}

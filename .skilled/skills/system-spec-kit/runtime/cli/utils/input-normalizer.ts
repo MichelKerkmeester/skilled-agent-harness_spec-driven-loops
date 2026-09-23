@@ -146,8 +146,51 @@ export interface NormalizedData {
   sessionStatus?: string;
   completionPercent?: number;
   saveMode?: SaveMode;
+  _continuity?: ContinuityFieldPatch;
   // TODO: Remove index signature once all dynamic fields are explicitly declared
   [key: string]: unknown;
+}
+
+/**
+ * The continuity fields a save payload may carry, keyed the way the continuity
+ * block spells them. Values stay unvalidated here: the thin-continuity validator
+ * owns their shape, so a bad value fails the save with that validator's code.
+ */
+export interface ContinuityFieldPatch {
+  recent_action?: unknown;
+  next_safe_action?: unknown;
+  blockers?: unknown;
+  key_files?: unknown;
+  completion_pct?: unknown;
+  open_questions?: unknown;
+  answered_questions?: unknown;
+}
+
+const CONTINUITY_FIELD_ALIASES: ReadonlyArray<readonly [keyof ContinuityFieldPatch, string]> = [
+  ['recent_action', 'recentAction'],
+  ['next_safe_action', 'nextSafeAction'],
+  ['blockers', 'blockers'],
+  ['key_files', 'keyFiles'],
+  ['completion_pct', 'completionPct'],
+  ['open_questions', 'openQuestions'],
+  ['answered_questions', 'answeredQuestions'],
+];
+
+/**
+ * Pick the continuity fields out of a raw save payload, accepting the snake_case
+ * and camelCase spellings. An empty string counts as absent, so a caller that
+ * blanks a field leaves the stored value alone instead of failing validation.
+ * @returns The fields present, or null when the payload carries none.
+ */
+export function extractContinuityFields(data: Record<string, unknown>): ContinuityFieldPatch | null {
+  const patch: ContinuityFieldPatch = {};
+  for (const [snakeKey, camelKey] of CONTINUITY_FIELD_ALIASES) {
+    const value = data[snakeKey] !== undefined ? data[snakeKey] : data[camelKey];
+    if (value === undefined || value === null) continue;
+    if (typeof value === 'string' && value.trim().length === 0) continue;
+    patch[snakeKey] = value;
+  }
+  return Object.keys(patch).length > 0 ? patch : null;
 }
 
 function normalizeCompletionPercent(value: unknown): number | null {
@@ -628,6 +671,7 @@ function normalizeFileEntryLike(file: NormalizedFileEntry | Record<string, unkno
  * @returns A NormalizedData object with unified observations, userPrompts, recentContext, and FILES, or the backfilled input if already in MCP format.
  */
 function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
+  const continuityFields = extractContinuityFields(data);
   const explicitTitle = normalizeOptionalText(data.title);
   const explicitDescription = normalizeOptionalText(data.description);
   const explicitCausalLinks = normalizeCausalLinks(data.causalLinks ?? data.causal_links);
@@ -826,6 +870,9 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     }
 
     cloned.observations = dedupeObservationsByNarrative(cloned.observations);
+    if (continuityFields) {
+      cloned._continuity = continuityFields;
+    }
 
     return cloned;
   }
@@ -1027,6 +1074,10 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     (normalized as Record<string, unknown>).postflight = slowPostflight;
   }
 
+  if (continuityFields) {
+    normalized._continuity = continuityFields;
+  }
+
   console.log('   \u2713 Transformed manual format to MCP-compatible structure');
   return normalized;
 }
@@ -1061,6 +1112,14 @@ const KNOWN_RAW_INPUT_FIELDS: Set<string> = new Set([
   'recentContext', 'recent_context',
   'causalLinks', 'causal_links',
   'saveMode', 'save_mode',
+  // Continuity fields the full-auto save writes into the leaf's continuity block.
+  'recent_action', 'recentAction',
+  'next_safe_action', 'nextSafeAction',
+  'blockers',
+  'key_files', 'keyFiles',
+  'completion_pct', 'completionPct',
+  'open_questions', 'openQuestions',
+  'answered_questions', 'answeredQuestions',
   // Preflight/postflight epistemic tracking fields.
   'knowledgeScore', 'knowledge_score',
   'uncertaintyScore', 'uncertainty_score',

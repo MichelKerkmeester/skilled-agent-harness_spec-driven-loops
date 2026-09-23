@@ -140,6 +140,16 @@
       "createdAt": "2026-09-06",
       "lastReviewedAt": "2026-09-06",
       "expiresAt": "2027-03-06"
+    },
+    {
+      "file": "cli/tests/save-continuity-write.vitest.ts",
+      "import": "../../lib/resume/resume-ladder",
+      "owner": "spec-kit-maintainers",
+      "reason": "Save test confirms the resume ladder's full pointer walk lands on the leaf a save wrote, and that walk has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-23",
+      "lastReviewedAt": "2026-09-23",
+      "expiresAt": "2027-03-23"
     }
   ]
 }

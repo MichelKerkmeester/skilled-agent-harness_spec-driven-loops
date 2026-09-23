@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6e9797d834812cdf8ef9013458c45c146cff09faa68769438a33e63dc2e16e50",
+  "manifestHash": "e4de38ae88d5a9b24bb817d5518056a2f83d81779182a977b047df6d5f912537",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13708,6 +13708,12 @@
     "canonical path": [
       "canonical path"
     ],
+    "canonical placeholder conformance": [
+      "canonical placeholder conformance"
+    ],
+    "canonical placeholder tasks": [
+      "canonical placeholder tasks"
+    ],
     "canonical promotion policy": [
       "canonical promotion policy"
     ],
@@ -15270,6 +15276,9 @@
     ],
     "check placeholders mustache removed": [
       "check-placeholders mustache removed"
+    ],
+    "check placeholders punctuation": [
+      "check-placeholders punctuation"
     ],
     "check placeholders third class task": [
       "check placeholders third class task"
@@ -21407,6 +21416,9 @@
     "continuity artifact": [
       "continuity artifact"
     ],
+    "continuity fingerprint stamp order": [
+      "continuity fingerprint stamp order"
+    ],
     "continuity fingerprint unify": [
       "continuity fingerprint unify"
     ],
@@ -21513,8 +21525,17 @@
     "continuity system": [
       "continuity system"
     ],
+    "continuity upsert wiring": [
+      "continuity upsert wiring"
+    ],
     "continuity validator relaxed": [
       "continuity validator relaxed"
+    ],
+    "continuity write evidence": [
+      "continuity write evidence"
+    ],
+    "continuity write tasks": [
+      "continuity write tasks"
     ],
     "continuity writer": [
       "continuity writer"
@@ -21915,6 +21936,15 @@
     ],
     "core normalization handover": [
       "core normalization handover"
+    ],
+    "core template canonical markers": [
+      "core template canonical markers"
+    ],
+    "core template marker plan": [
+      "core template marker plan"
+    ],
+    "core template marker tasks": [
+      "core template marker tasks"
     ],
     "core web vitals budgets": [
       "core web vitals budgets"
@@ -22746,6 +22776,9 @@
     ],
     "create manual testing playbook v1 0 1 2": [
       "create-manual-testing-playbook v1.0.1.2"
+    ],
+    "create manual testing playbook v1 0 2 0": [
+      "create-manual-testing-playbook v1.0.2.0"
     ],
     "create multiple tasks at once": [
       "create multiple tasks at once"
@@ -35467,6 +35500,9 @@
     "fingerprint regeneration task breakdown": [
       "fingerprint regeneration task breakdown"
     ],
+    "fingerprint stamp before graph refresh": [
+      "fingerprint stamp before graph refresh"
+    ],
     "fingerprint stamp completion claim": [
       "fingerprint stamp completion claim"
     ],
@@ -37299,6 +37335,9 @@
     ],
     "generate context": [
       "generate context"
+    ],
+    "generate context continuity write": [
+      "generate-context continuity write"
     ],
     "generate context indexing pass": [
       "generate-context indexing pass"
@@ -43910,6 +43949,12 @@
     "legacy db cleanup": [
       "legacy db cleanup"
     ],
+    "legacy default detection plan": [
+      "legacy default detection plan"
+    ],
+    "legacy default detection tasks": [
+      "legacy default detection tasks"
+    ],
     "legacy doctor delete tasks": [
       "legacy doctor delete tasks"
     ],
@@ -44023,6 +44068,9 @@
     ],
     "legacy template debt implementation summary": [
       "legacy template debt implementation summary"
+    ],
+    "legacy template default detection": [
+      "legacy template default detection"
     ],
     "legacy template removal": [
       "legacy template removal"
@@ -52483,6 +52531,9 @@
     "open url in browser cli": [
       "open url in browser cli"
     ],
+    "open with a hook default": [
+      "open with a hook default"
+    ],
     "open with traversal disabled": [
       "open with traversal disabled"
     ],
@@ -54492,6 +54543,9 @@
     "parent rollup tasks": [
       "parent rollup tasks"
     ],
+    "parent save routing tasks": [
+      "parent save routing tasks"
+    ],
     "parent set string playbook": [
       "parent set string playbook"
     ],
@@ -56238,6 +56292,9 @@
     "phase parent pointer shipped": [
       "phase parent pointer shipped"
     ],
+    "phase parent pointer walk": [
+      "phase parent pointer walk"
+    ],
     "phase parent readiness": [
       "phase parent readiness"
     ],
@@ -56246,6 +56303,9 @@
     ],
     "phase parent rollout": [
       "phase parent rollout"
+    ],
+    "phase parent save routing": [
+      "phase parent save routing"
     ],
     "phase parent stale pointer fix": [
       "phase parent stale pointer fix"
@@ -57062,6 +57122,9 @@
     "placeholder fenced code exclusion": [
       "placeholder fenced code exclusion"
     ],
+    "placeholder filled gate blind spot": [
+      "placeholder filled gate blind spot"
+    ],
     "placeholder parity implementation": [
       "placeholder parity implementation"
     ],
@@ -57088,6 +57151,12 @@
     ],
     "placeholder syntax types": [
       "placeholder syntax types"
+    ],
+    "placeholder warning plan": [
+      "placeholder warning plan"
+    ],
+    "placeholder warning rule": [
+      "placeholder warning rule"
     ],
     "plain cross digest closure boundary": [
       "plain cross-digest closure boundary"
@@ -59100,6 +59169,9 @@
     "prompt skill doc contract evidence": [
       "prompt skill doc contract evidence"
     ],
+    "prompt synchronization warning": [
+      "prompt synchronization warning"
+    ],
     "prompt time advisor brief adapters": [
       "prompt-time advisor brief adapters"
     ],
@@ -59120,6 +59192,9 @@
     ],
     "prompt token contract": [
       "prompt-token-contract"
+    ],
+    "prompt unsynced": [
+      "PROMPT_UNSYNCED"
     ],
     "prompt weakness detection": [
       "prompt weakness detection"
@@ -66672,6 +66747,18 @@
     ],
     "save workflow phase parent": [
       "save workflow phase parent"
+    ],
+    "save writer continuity criteria": [
+      "save writer continuity criteria"
+    ],
+    "save writer continuity fields": [
+      "save writer continuity fields"
+    ],
+    "save writer continuity plan": [
+      "save writer continuity plan"
+    ],
+    "save writer continuity tasks": [
+      "save writer continuity tasks"
     ],
     "savemode refactor memory save": [
       "savemode refactor memory save"
@@ -74840,6 +74927,9 @@
     "speckit save planner mode full auto": [
       "SPECKIT_SAVE_PLANNER_MODE full-auto"
     ],
+    "speckit save recent action": [
+      "speckit save recent_action"
+    ],
     "speckit save search commands": [
       "speckit save search commands"
     ],
@@ -77833,6 +77923,9 @@
     ],
     "template dedup": [
       "template dedup"
+    ],
+    "template default text in finished packets": [
+      "template default text in finished packets"
     ],
     "template duplication analysis": [
       "template duplication analysis"
@@ -83258,6 +83351,9 @@
     ],
     "yaml template anchors": [
       "yaml template anchors"
+    ],
+    "your value here placeholder": [
+      "your_value_here placeholder"
     ],
     "ystem": [
       "ystem"

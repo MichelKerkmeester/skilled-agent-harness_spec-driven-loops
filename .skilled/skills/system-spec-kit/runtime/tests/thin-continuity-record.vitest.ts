@@ -217,4 +217,40 @@ describe('thin continuity record', () => {
       answered_questions: [],
     });
   });
+
+  // The module's YAML reader handles the continuity block's own shapes but not every
+  // YAML form, so an upsert that re-serialized the whole frontmatter through it turned
+  // a flow-style list into a single string. Only the _memory block may change.
+  it('leaves every frontmatter line outside the _memory block byte for byte', () => {
+    const markdown = [
+      '---',
+      'title: "Continuity Fixture"',
+      'trigger_phrases: ["flow style phrase", "second phrase"]',
+      'importance_tier: important',
+      '_memory:',
+      '  continuity:',
+      '    packet_pointer: "track/old-packet"',
+      '    recent_action: "Old action"',
+      'completed: 2026-03-01',
+      '---',
+      '',
+      '# Continuity Fixture',
+      '',
+    ].join('\n');
+
+    const result = upsertThinContinuityInMarkdown(markdown, {
+      packet_pointer: 'track/new-packet',
+      last_updated_at: '2026-09-23T12:00:00Z',
+      last_updated_by: 'generate-context',
+      recent_action: 'Replaced the block',
+      next_safe_action: 'Verify the untouched lines',
+    });
+
+    expect(result.ok).toBe(true);
+    const lines = result.markdown!.split('\n');
+    expect(lines.slice(0, 4)).toEqual(markdown.split('\n').slice(0, 4));
+    expect(result.markdown).toContain('\ncompleted: 2026-03-01\n---\n\n# Continuity Fixture\n');
+    expect(result.markdown).not.toContain('Old action');
+    expect(readThinContinuityRecord(result.markdown!).record?.packet_pointer).toBe('track/new-packet');
+  });
 });

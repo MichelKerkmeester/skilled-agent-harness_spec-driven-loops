@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/053-legacy-template-default-detection",
+  "description": "Hundreds of packets scaffolded before phase 052 still carry the core templates' default text, and no check reports them, so a finished packet can",
+  "keywords": [
+    "hundreds",
+    "packets",
+    "scaffolded",
+    "phase",
+    "still",
+    "carry",
+    "core",
+    "templates",
+    "default",
+    "text",
+    "check",
+    "reports",
+    "them",
+    "finished",
+    "packet"
+  ],
+  "lastUpdated": "2026-09-23T10:44:34.443Z",
+  "specId": "053",
+  "folderSlug": "legacy-template-default-detection",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

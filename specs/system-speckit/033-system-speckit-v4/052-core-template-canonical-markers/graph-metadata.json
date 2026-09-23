@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/052-core-template-canonical-markers",
+  "spec_folder": "system-speckit/033-system-speckit-v4/052-core-template-canonical-markers",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "core template canonical markers",
+      "your_value_here placeholder",
+      "placeholder filled gate blind spot",
+      "check-placeholders punctuation",
+      "core template marker plan",
+      "canonical placeholder conformance",
+      "core template marker tasks",
+      "canonical placeholder tasks"
+    ],
+    "key_topics": [
+      "core",
+      "template",
+      "canonical",
+      "markers",
+      "placeholder",
+      "filled",
+      "gate",
+      "blind",
+      "spot",
+      "check-placeholders",
+      "punctuation",
+      "marker"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+      ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+      ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+      ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh",
+      "spec/check-placeholders.sh",
+      "templates/core/spec.md.tmpl",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/spec/check-placeholders.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Decisions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The four core spec templates write their fill-in slots as free bracket prose and plain instruction text instead of the canonical marker the strict gate checks, so an unfilled slot passes validation and survives into finished packets",
+    "created_at": "2026-09-23T08:54:19Z",
+    "last_save_at": "2026-09-23T13:38:37.642Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:cf838e6d9e87d2998aef4135d3f8bf0be875558dc7394f0d1159278850f93903",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "190dba397fcf0162ab718945079bff79b9c2179a198e07685017f19ee5f6adee",
+      "plan.md": "f608865cc8571b85ad0c72b0da5f263bac3573ee9264929e525c18476af7acb9",
+      "tasks.md": "14fbd883eae090a0cb0a2b4c135dcf75660ff904c893f48ff422c79154b19f27"
+    },
+    "last_active_at": null
+  }
+}

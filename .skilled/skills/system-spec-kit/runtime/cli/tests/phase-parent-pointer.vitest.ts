@@ -77,14 +77,15 @@ describe('phase-parent pointer writes after canonical save', () => {
     fs.rmSync(tempRoot, { recursive: true, force: true });
   });
 
-  it('sets parent save pointer to null with a fresh timestamp', () => {
-    updatePhaseParentPointersAfterSave(parentFolder, '2026-04-27T12:00:00.000Z');
+  // A parent save writes into no child, so clearing or bumping the pointer would
+  // strand the resume ladder at a parent that holds no work.
+  it('leaves a parent save pointer and its timestamp untouched', () => {
+    const before = fs.readFileSync(path.join(parentFolder, 'graph-metadata.json'), 'utf8');
 
-    const parentMetadata = readGraphMetadata(parentFolder);
-    const derived = parentMetadata.derived as Record<string, unknown>;
+    const updated = updatePhaseParentPointersAfterSave(parentFolder, '2026-04-27T12:00:00.000Z');
 
-    expect(derived.last_active_child_id).toBeNull();
-    expect(derived.last_active_at).toBe('2026-04-27T12:00:00.000Z');
+    expect(updated).toEqual([]);
+    expect(fs.readFileSync(path.join(parentFolder, 'graph-metadata.json'), 'utf8')).toBe(before);
   });
 
   it('bubbles child saves up to the direct phase parent', () => {
