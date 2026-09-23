@@ -7,7 +7,13 @@
   "edges": {
     "depends_on": [],
     "enhances": [],
-    "siblings": [],
+    "siblings": [
+      {
+        "target": "cli-external-orchestration",
+        "weight": 0.4,
+        "context": "Jev supplies typed judgment transport beside the external executor dispatch hub"
+      }
+    ],
     "conflicts_with": [],
     "prerequisite_for": []
   },
@@ -47,7 +53,6 @@
       "noul",
       "choice",
       "score",
-      "run",
       "mcp"
     ],
     "intent_signals": [

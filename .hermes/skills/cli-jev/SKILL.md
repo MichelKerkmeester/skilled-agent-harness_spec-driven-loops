@@ -10,7 +10,7 @@ version: 0.2.0.0
 > skill without scanning the canonical directory; read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: cli-jev, cli-usage, jev, typed judgment, transport, noul, choice, score, run, jev-mcp -->
+<!-- Keywords: cli-jev, cli-usage, jev, typed judgment, transport, noul, choice, score, jev-mcp -->
 
 # cli-jev - Typed-Judgment Transport Hub
 
