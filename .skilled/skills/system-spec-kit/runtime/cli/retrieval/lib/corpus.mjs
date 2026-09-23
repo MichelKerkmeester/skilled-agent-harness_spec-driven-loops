@@ -94,6 +94,15 @@ export const IGNORED_PATHS = Object.freeze([
 export const EXCLUDED_DIR_NAMES = Object.freeze(new Set(['z_archive', 'node_modules', 'scratch', '.git', 'dist']));
 
 /**
+ * Excluded directories that an install or a build creates. They are pruned like
+ * any other excluded directory but never listed as skipped: whether one exists
+ * depends on the machine that ran the generator, so listing them made the
+ * committed manifest differ between a built checkout and a fresh one, while
+ * EXCLUSIONS already records the policy that prunes them.
+ */
+const BUILD_OUTPUT_DIR_NAMES = Object.freeze(new Set(['node_modules', 'dist']));
+
+/**
  * Test-fixture directory names. A fixture tree holds documents written to be
  * wrong on purpose, so indexing one is harmful twice over: the deliberately
  * unparseable frontmatter fails publication closed for the whole corpus, and
@@ -218,6 +227,16 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped) {
     const relative = toRelative(repoRoot, absolute);
 
     if (entry.isSymbolicLink()) {
+      // Only a link named like a document is resolved. Any other link is never
+      // followed and is recorded without looking at its target, because a
+      // tracked link into build output resolves in a built checkout and dangles
+      // in a fresh one, and a reason read from the target would differ by machine.
+      // Linked directories are never walked either: their targets already appear
+      // under a canonical route, and following them risks cycles.
+      if (!entry.name.endsWith('.md')) {
+        skipped.push({ path: relative, reason: 'symlink not followed' });
+        continue;
+      }
       let stats;
       try {
         stats = fs.statSync(absolute);
@@ -225,21 +244,19 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped) {
         skipped.push({ path: relative, reason: 'broken symlink' });
         continue;
       }
-      if (stats.isDirectory()) {
-        // Symlinked directories are never walked: their targets already appear
-        // under a canonical route, and following them risks cycles.
-        skipped.push({ path: relative, reason: 'symlinked directory' });
-        continue;
-      }
-      if (stats.isFile() && entry.name.endsWith('.md')) {
+      if (stats.isFile()) {
         recordFile(repoRoot, absolute, relative, true, byRealPath, skipped);
+      } else {
+        skipped.push({ path: relative, reason: 'symlink not followed' });
       }
       continue;
     }
 
     if (entry.isDirectory()) {
       if (isExcludedDirectory(entry.name, parentName, relative)) {
-        skipped.push({ path: relative, reason: 'excluded directory' });
+        if (!BUILD_OUTPUT_DIR_NAMES.has(entry.name)) {
+          skipped.push({ path: relative, reason: 'excluded directory' });
+        }
         continue;
       }
       walkDirectory(repoRoot, absolute, byRealPath, skipped);

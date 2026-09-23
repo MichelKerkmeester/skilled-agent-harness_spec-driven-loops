@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state",
+  "description": "The trigger index commits a corpus manifest whose `skippedPaths` list records what the walker did not walk",
+  "keywords": [
+    "trigger",
+    "index",
+    "commits",
+    "corpus",
+    "manifest",
+    "whose",
+    "skippedpaths",
+    "list",
+    "records",
+    "walker",
+    "walk"
+  ],
+  "lastUpdated": "2026-09-23T20:14:39.193Z",
+  "specId": "056",
+  "folderSlug": "corpus-manifest-build-state",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "23-09-26_21-14__made-the-trigger-index-corpus-walker-record-the.md"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d5e6d0abcc93ece77585a2b00f1bf4def21323aa05777bf5372af6bb08407886",
+  "corpusHash": "9d19ab66d7662ed03c18bcccd76aed222dcd7905accc74075254159270e36895",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22377,
+  "includedPathCount": 22385,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -22391,6 +22391,14 @@
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/plan.md",
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/spec.md",
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -22399,7 +22407,7 @@
     "specs/system-speckit/034-create-canonical-specs-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d0800c1c0c0f0adf517f81916e8eec655df72de126c46fddc76c05640b671771",
+  "manifestHash": "8e594600ff97bcaf49eb9144dcdd30bb4426a4dca7224e1dcf1b3aaa4b1de7e8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -22409,76 +22417,408 @@
   ],
   "skippedPaths": [
     {
+      "path": ".skilled/hooks/codex-watchdog/opencode/codex-hooks-watchdog.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/claude/completion-evidence-stop.cjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/codex/completion-evidence-stop.cjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/cursor/completion-evidence-response.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/devin/completion-evidence-stop.cjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/opencode/system-completion-sentinel.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/opencode/system-speckit-completion.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/pi/completion-evidence.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/directive-lifecycle/claude/directive-lifecycle-boundary.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/directive-lifecycle/claude/speckit-directive-lifecycle-boundary.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/dispatch/cursor/post-tool-use.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/dispatch/opencode/cli-dispatch-audit.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/dist-freshness/claude/check-dist-staleness.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/dist-freshness/codex/check-dist-staleness.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/dist-freshness/cursor/check-dist-staleness.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/dist-freshness/devin/check-dist-staleness.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/dist-freshness/opencode/system-dist-freshness-guard.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-hooks-check/claude/check-git-hooks.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-hooks-check/codex/check-git-hooks.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-hooks-check/cursor/check-git-hooks.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-hooks-check/devin/check-git-hooks.sh",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".skilled/hooks/git-preflight/opencode/sk-git-preflight-advisory.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-preflight/pi/git-preflight-advisory.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-preflight/shared/git-preflight-advisory.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-primary-reconcile/claude/git-primary-reconcile.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-primary-reconcile/codex/git-primary-reconcile.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-primary-reconcile/pi/git-primary-reconcile.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-worktree-guard/claude/worktree-guard.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-worktree-guard/codex/worktree-guard.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-worktree-guard/cursor/worktree-guard.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-worktree-guard/devin/worktree-guard.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/goal/opencode/opencode-goal.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/hook-install/claude/install-codex-hooks.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/hook-install/cursor/install-codex-hooks.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/hook-install/devin/install-codex-hooks.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/mcp-route-guard/opencode/mcp-route-guard.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/permission-policy/devin/permission-request-policy.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/post-edit-quality/cursor/post-tool-use.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/post-edit-quality/opencode/sk-code-post-edit-quality.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-cleanup/claude/session-cleanup.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-cleanup/codex/session-cleanup.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-cleanup/cursor/session-cleanup.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-cleanup/devin/session-cleanup.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-cleanup/opencode/session-cleanup.js",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/session-lifecycle/claude/compact-inject.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/claude/compact-inject.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/claude/session-prime.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/claude/session-prime.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/claude/session-stop.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/claude/session-stop.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/codex/compact-inject.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/compact-inject.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/codex/session-start.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/session-start.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/codex/session-stop.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/codex/session-stop.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/cursor/precompact.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/precompact.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/cursor/session-end.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/session-end.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/cursor/session-start.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/cursor/session-start.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/devin/post-compaction.cjs",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/devin/session-start.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/devin/session-start.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/session-lifecycle/devin/session-stop.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/devin/session-stop.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/pi/session-compact-context.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/pi/session-start-advisories.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/pi/session-start-context.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/pi/session-stop-context.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/sk-vision/devin/sk-vision.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/sk-vision/opencode/sk-vision.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/sk-vision/pi/sk-vision.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/skill-advisor/README.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".skilled/hooks/skill-advisor/claude/speckit-user-prompt-submit.ts",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/skill-advisor/claude/user-prompt-submit.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/claude/user-prompt-submit.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/skill-advisor/codex/user-prompt-submit.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/codex/user-prompt-submit.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/skill-advisor/cursor/user-prompt-submit.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/cursor/user-prompt-submit.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/skill-advisor/devin/user-prompt-submit.js",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/devin/user-prompt-submit.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/opencode/system-skill-advisor.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/skill-advisor/pi/prompt-advisor.ts",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/spec-gate/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/claude/spec-gate-classify.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/claude/spec-gate-enforce.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/codex/spec-gate-classify.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/codex/spec-gate-enforce.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/cursor/spec-gate-classify.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/cursor/spec-gate-enforce.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/cursor/spec-gate-prebind.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/devin/spec-gate-classify.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/devin/spec-gate-enforce.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/opencode/system-spec-gate.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/pi/spec-gate-classify.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/pi/spec-gate-enforce.ts",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/task-dispatch/opencode/system-deep-loop-guard.js",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/skills/mcp-code-mode/mcp-server/README.md",
@@ -22541,8 +22881,48 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/sk-doc/scripts/audit_readmes.py",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/check-frontmatter-versions.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/check_no_numbered_categories.py",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/extract_structure.py",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/frontmatter-version.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/init_skill.py",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/package_skill.py",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/quick_validate.py",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/skills/sk-doc/scripts/tests/fixtures",
       "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/validate_document.py",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/scripts/validate_skill_package.py",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/skills/sk-doc/sk-create-diff/assets/fixtures",
@@ -22563,6 +22943,10 @@
     {
       "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures",
       "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-git/scripts/hooks/opencode/sk-git-preflight-advisory.js",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
@@ -22594,7 +22978,7 @@
     },
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/lib/shared/embeddings",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/skills/system-skill-advisor/runtime/scripts/fixtures",
@@ -22626,7 +23010,7 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/test-fixtures",
@@ -22638,11 +23022,15 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-fixtures",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/hooks/opencode/system-spec-gate.js",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/shared",
-      "reason": "broken symlink"
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/advisor-fixtures",
@@ -23430,83 +23818,83 @@
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/accessibility",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/animation-vocabulary",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/composition-patterns",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/copywriting",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/emil-design-eng",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/frontend-design",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/hallmark",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/improve",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/nodejs-backend-patterns",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/nodejs-best-practices",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/react-best-practices",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/review-animations",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/seo",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/seo-audit",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/setup-matt-pocock-skills",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/shadcn",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/tailwind-css-patterns",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/tailwind-v4-shadcn",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/typescript-advanced-types",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.claude/skills/zod",
-      "reason": "symlinked directory"
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/research/evilcharts-2026-09-03/lineages",
@@ -24554,10 +24942,6 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist",
       "reason": "excluded directory"
     },
     {
@@ -26678,6 +27062,14 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state/scratch",
       "reason": "excluded directory"
     },
     {
