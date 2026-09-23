@@ -374,7 +374,7 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
     const second = spawnLauncher(workspace, {}, { interactive: true });
     await waitFor(() => second.stderr.includes('bridging to lease holder'), 3000, 'secondary bridge log');
     await waitFor(() => daemon.attempts() >= 3, 3000, 'session proxy readiness probe');
-    second.child.stdin.write(`${JSON.stringify({
+    second.child.stdin!.write(`${JSON.stringify({
       jsonrpc: '2.0',
       id: 1,
       method: 'initialize',
@@ -384,7 +384,7 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
         clientInfo: { name: 'advisor-reconnect-test', version: '0' },
       },
     })}\n`);
-    second.child.stdin.end();
+    second.child.stdin!.end();
 
     await waitForStdoutClose(second);
     const exit = await waitForExit(second.child, 5000);
@@ -447,7 +447,7 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
     await waitFor(() => readChildPid(workspace) !== null && readChildPid(workspace) !== firstChildPid, 5000, 'respawned daemon child');
     expect(readLeasePid(workspace)).toBe(second.child.pid);
     expect(readOwnerLeasePid(workspace)).toBe(second.child.pid);
-    second.child.stdin.write(`${JSON.stringify({
+    second.child.stdin!.write(`${JSON.stringify({
       jsonrpc: '2.0',
       id: 'init-after-respawn',
       method: 'initialize',
@@ -457,7 +457,7 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
         clientInfo: { name: 'advisor-respawn-test', version: '0' },
       },
     })}\n`);
-    second.child.stdin.end();
+    second.child.stdin!.end();
 
     await waitFor(() => second.stdout.includes('respawned-advisor'), 5000, 'respawned advisor response');
     const exit = await waitForExit(second.child, 5000);
@@ -486,7 +486,7 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
 
     expect(readLeasePid(workspace)).toBe(second.child.pid);
     expect(readOwnerLeasePid(workspace)).toBe(second.child.pid);
-    second.child.stdin.write(`${JSON.stringify({
+    second.child.stdin!.write(`${JSON.stringify({
       jsonrpc: '2.0',
       id: 'init-after-missing-socket',
       method: 'initialize',
@@ -496,7 +496,7 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
         clientInfo: { name: 'advisor-missing-socket-test', version: '0' },
       },
     })}\n`);
-    second.child.stdin.end();
+    second.child.stdin!.end();
 
     await waitFor(() => second.stdout.includes('respawned-advisor'), 5000, 'replacement advisor response');
     const exit = await waitForExit(second.child, 5000);

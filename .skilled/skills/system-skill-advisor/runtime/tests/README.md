@@ -130,7 +130,6 @@ tests/
 +-- skill-graph-handlers.vitest.ts
 +-- skill-graph-queries-parity.vitest.ts
 +-- sqlite-integrity.vitest.ts
-+-- tri-daemon-drill.vitest.ts          # Env-gated tri-daemon drill
 +-- embedders/
 +-- skill-graph/
 +-- scorer/
