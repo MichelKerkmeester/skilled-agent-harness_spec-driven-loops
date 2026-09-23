@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "cce4eced0df237b81e90099c24eac11338c40a87edd6fc26e5736024512fb8d0",
+      "sha256": "bf36d22ac976350fcb49299de5ac895b4df4b1ad1675a74dfdcd79bf0ee5068e",
       "section": "full"
     },
     {
@@ -117,7 +117,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "979bc37ab2913dc32dc217182ffba633e01b05735244981106a6925b3f819a72",
+      "sha256": "03d9bea9c101d1222eca03678c13ca586fcfc538722765c15d54c84f78800173",
       "section": "full"
     },
     {

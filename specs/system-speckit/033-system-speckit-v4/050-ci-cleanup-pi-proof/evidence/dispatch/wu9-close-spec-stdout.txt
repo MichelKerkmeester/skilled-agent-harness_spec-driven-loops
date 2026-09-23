@@ -1,0 +1,17 @@
+EDIT 1 applied. Verification:
+
+```
+grep -c 'under evidence/' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md
+1
+grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md
+22
+```
+
+PI_HANDBACK
+status: done
+summary: Replaced the single `under scratch/` artifact-path line in P/spec.md with `under evidence/`, matching the Gate-3 evidence layout. Both verify greps returned their expected counts (1 and 22).
+files_changed: 1 file — specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md
+edits_applied: 1
+edits_skipped: none
+verification: `grep -c 'under evidence/' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md` → 1; `grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md` → 22
+failures: none

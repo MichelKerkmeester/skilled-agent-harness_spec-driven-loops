@@ -1,0 +1,17 @@
+Both edits applied successfully. Verification results:
+
+```
+grep -c 'AC-009' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md
+0
+grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md
+22
+```
+
+PI_HANDBACK
+status: done
+summary: Applied both literal text replacements to plan.md, updating the acceptance-criteria line to drop AC-009 and marking the docs checkbox done. All VERIFY expectations matched exactly.
+files_changed: 1, specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md
+edits_applied: 1, 2
+edits_skipped: none
+verification: grep -c 'AC-009' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md → 0 (expect 0); grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/plan.md → 22 (expect 22)
+failures: none

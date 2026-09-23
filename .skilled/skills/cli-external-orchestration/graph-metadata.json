@@ -37,12 +37,12 @@
       {
         "target": "cli-orca",
         "weight": 0.4,
-        "context": "both are CLI-orchestrator hubs; cli-orca fronts the Orca runtime while this hub fronts external executor CLIs"
+        "context": "Orca manages its runtime surface while this hub dispatches external CLI executors"
       },
       {
         "target": "cli-jev",
         "weight": 0.4,
-        "context": "cli-jev routes typed-judgment prompts through the cli-usage transport, the executor lane this hub does not cover directly"
+        "context": "Jev supplies typed judgment transport beside this hub's external executor dispatch"
       }
     ],
     "conflicts_with": [],
