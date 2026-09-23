@@ -1,0 +1,9 @@
+All three checks pass. Only `P/handover.md` was written. Final state confirms the file keeps the frontmatter keys, the `SPECKIT_TEMPLATE_SOURCE` comment and all 14 anchor lines in order, fills every placeholder from `evidence.md`, uses the REQ, AC and T ids exactly as listed there, and carries no em dash or semicolon.
+
+PI_HANDBACK
+status: done
+summary: Rebuilt specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md from the level 2 handover template and filled every placeholder from the evidence pack. The handover records the operator decisions, the cli-jev re-mint blocker, the change groups, the four traps and the next session sequence of commit after the operator's yes, merge main, re-mint cli-jev and re-verify.
+files_changed: 1, specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md
+facts_not_in_evidence: none. Two rationale cells for the operator decisions to push local main including f5a89115b1 and 2c8f243607 and to rebuild handover.md carry "N/A - insufficient source context" because evidence.md states the decisions without rationale.
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --verbose 2>&1 | grep "handover.md" ; echo "placeholder_lines=$?" -> placeholder_lines=1 (pass, no placeholder lines in handover.md) | grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md -> 14 | grep -c -e '—' -e ';' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md -> 0
+failures: none

@@ -1,0 +1,13 @@
+All 11 edits applied cleanly, no leftover text from the original parent-records row, and all three VERIFY counts match expectations.
+
+PI_HANDBACK
+status: done
+summary: Applied all 11 numbered edits to the 050-ci-cleanup-pi-proof spec.md, replacing placeholder path and assessment cells with their specified full-path and rated values. The parent-records row was split into two named rows and all three verification greps returned the expected counts (15, 5, 22).
+files_changed: 1 file — specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md
+edits_applied: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+edits_skipped: none
+verification:
+  grep -c 'N/A - insufficient source context' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md → 15
+  grep -c '| Medium |\|| Low |' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md → 5
+  grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/spec.md → 22
+failures: none
