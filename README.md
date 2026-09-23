@@ -1583,5 +1583,5 @@ Everything is a file in your own repository.
 - **[→ Skills Index](.skilled/skills/README.txt)** - skills library and invocation patterns
 - **[→ Feature Catalog](.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - current technical reference
 - **[→ Manual Testing Playbook](.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md)** - operator validation scenarios, including runtime lifecycle checks
-- **[→ Latest System Spec-Kit Release Notes](.skilled/skills/system-spec-kit/changelog/v3.9.0.0.md)** - most recent shipped release notes
+- **[→ Latest System Spec-Kit Release Notes](.skilled/skills/system-spec-kit/changelog/v3+/v3.9.0.0.md)** - most recent shipped release notes
 - **[→ Daemon CLI Reference](.skilled/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - full-parity CLI front doors over the warm daemons

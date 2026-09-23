@@ -89,7 +89,34 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state. Phases 1 to 3 shipped in `f2a90d7ac5`.
+
+### Review remediation (tasks.md Phase 4)
+
+A fresh reviewer read the three pushed commits and reported two P1 and five P2 doc defects. Each was re-checked against `80dc0a118d` before it entered this plan. Phase 4 is doc-only: no runtime file, test or config value changes, so the deep-loop suites are not re-run.
+
+**Approach, by owner:**
+- **cli-opencode.** Point the missing-default fallback at `openai/gpt-6-sol` with `--variant high`, the premium base slug the catalog serves. Keep the GPT-6 grid honest: the `-pro` column is either removed or marked "not listed by `opencode models openai` on 2026-09-23", and the slug count follows. The choice between those two is made when the file is open, by whichever keeps the table readable.
+- **cli-codex.** Make CX-002 run `gpt-6-luna gpt-5.6-terra gpt-6-sol` once each, with step 4 reading `/tmp/cli-codex-cx002-gpt-*.txt`. Align every playbook "documented default" claim with `SKILL.md`: `gpt-5.5` is the skill default and `gpt-6-luna` the fan-out fallback. Correct Terra's ceiling to `ultra` in the four places that state it. The new changelog corrects the released "no GPT-6 counterpart" line and names `gpt-6-astra` as listed but outside the roster.
+- **cli-pi and `.pi`.** Re-run PI-017's free inspection steps (`sed` and `rg` over `executor-config.ts`) and put their real output in the captured cell, dated. The expected cell names the ten current ids and `deepseek-v4.1-flash`. The live-smoke part stays marked not re-run, because it bills a turn. Note in the xiaomi section that ultraspeed is out of the picker but dispatches with an explicit `--model`. Give the `.pi/custom-providers.md` Luna row one verification status.
+- **Changelog format.** No edit if sk-doc/057 has landed by then: the five entries already follow its compact shape. If 057 has not landed, conform them to the template at `HEAD`.
+- **This packet.** Record the Codex and OpenCode Luna smokes, retire the `-pro` limitation once T021 lands, and record the picker change.
+
+**Verification:** re-run each finding's check (T032), the frontmatter version gate, `sync-skills-hermes.cjs --check` and `validate.sh --strict`.
+
+### Xiaomi provider removal (tasks.md Phase 5)
+
+The operator asked for MiMo to go through LLM Gateway only on Pi and OpenCode, with the change reaching the fan-out runtime. Unlike Phase 4, this phase edits runtime code and tests, so the six deep-loop suites and typecheck run again against the Phase 3 baseline.
+
+**Approach, by owner:**
+- **Runtime.** In `fanout-run.cjs`, map `mimo-v2.6-pro` to `llmgateway` in `PI_MODEL_PROVIDERS` and drop the ultraspeed entry; drop `mimo-v2.6-pro-ultraspeed` from `PI_ALLOWED_MODELS` and from `PI_SUPPORTED_MODELS` in `executor-config.ts`. The provider-map comment also still says openai-codex fronts "the GPT-5.6 tunes", and it is corrected in the same hunk. Update the roster and map expectations in `executor-config.vitest.ts` and `fanout-run.vitest.ts`.
+- **Live proof.** One one-turn smoke through `pi --model llmgateway/mimo-v2.6-pro` before the commit, because the remap sends every MiMo fan-out lineage there.
+- **cli-pi and `.pi`.** Remove the `xiaomi` section and ultraspeed row; the LLM Gateway MiMo row becomes the fan-out route. PI-017 expects nine ids. Remove `xiaomi/mimo-v2.6-pro` from `enabledModels`, reading the file first because a running Pi session can rewrite it.
+- **cli-opencode.** Remove the Xiaomi Direct and Token Plan routes from the provider references, the CLI reference's provider detection and MiMo routing table, the MiMo prompt template, the quality card, the variant playbook row and the provider count. MiMo examples use `llmgateway/mimo-v2.6-pro`.
+- **cli-hermes.** Reword the two lines that define the roster as Pi's minus ultraspeed.
+- **Changelogs.** sk-doc/057 is now committed, so every changelog of this packet, the eight released ones and the three Phase 5 entries, follows its compact shape: summary, spec-folder line, What's New at a Glance, Upgrade.
+
+**Verification:** a residue search for Xiaomi routes, the six runtime suites and typecheck against baseline, the live smoke, the frontmatter version gate, `sync-skills-hermes.cjs --check` and `validate.sh --strict`.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,14 +162,16 @@ The full deep-loop `npm test` hangs on the lineage integration tests that dispat
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup: baselines, inventory) ──► Phase 2 (Rename + hand edits) ──► Phase 3 (Verify)
+Phase 1 (Setup: baselines, inventory) ──► Phase 2 (Rename + hand edits) ──► Phase 3 (Verify) ──► Phase 4 (Review remediation) ──► Phase 5 (Xiaomi removal)
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
 | Setup | None | Implementation |
 | Implementation | Setup | Verify |
-| Verify | Implementation | None |
+| Verify | Implementation | Review remediation |
+| Review remediation | Verify, the fresh review; T029 also waits on sk-doc/057 or falls back to `HEAD` | Xiaomi removal |
+| Xiaomi removal | Review remediation, the operator's scope answer, and the Phase 3 suite baseline | Closure |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -155,6 +184,8 @@ Phase 1 (Setup: baselines, inventory) ──► Phase 2 (Rename + hand edits) �
 | Setup | Low | Done in-session |
 | Core Implementation | Med | One session |
 | Verification | Med | About 10 minutes of suite runtime |
+| Review remediation | Low | About a dozen doc edits, three bumps, no suite runtime |
+| Xiaomi removal | Med | Two runtime files, two test files, about fifteen docs, three bumps, one suite run and one live smoke |
 | **Total** | | **One session** |
 <!-- /ANCHOR:effort -->
 
@@ -172,6 +203,8 @@ Phase 1 (Setup: baselines, inventory) ──► Phase 2 (Rename + hand edits) �
 2. Hand-revert `.pi/settings.json` to keep the pre-existing reorder hunk.
 3. Delete the five new changelog entries and rerun `sync-skills-hermes.cjs` so the mirrors follow.
 4. Rerun the Phase 3 suites to confirm the baseline counts return.
+5. Phase 4 is doc-only and lands as its own commit, so `git revert` of that commit undoes it without touching Phases 1 to 3.
+6. Phase 5 lands as its own commit. `git revert` of it restores the `xiaomi` routes, the ultraspeed id and the picker entry; rerun the six runtime suites afterwards to confirm the baseline.
 
 ### Data Reversal
 - **Has data migrations?** No

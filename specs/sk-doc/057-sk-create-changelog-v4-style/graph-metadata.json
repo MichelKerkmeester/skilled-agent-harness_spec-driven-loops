@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/057-sk-create-changelog-v4-style",
+  "spec_folder": "sk-doc/057-sk-create-changelog-v4-style",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog v4 style",
+      "sk-create-changelog template rewrite",
+      "changelog narrative format",
+      "changelog omission rules",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "changelog",
+      "style",
+      "sk-create-changelog",
+      "template",
+      "rewrite",
+      "narrative",
+      "format",
+      "omission",
+      "rules",
+      "implementation",
+      "plan",
+      "technical"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/references/README.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/README.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.1.0.0.md",
+      ".skilled/commands/create/assets/create-changelog-auto.yaml",
+      ".skilled/commands/create/assets/create-changelog-confirm.yaml",
+      ".hermes/skills/sk-create-changelog/SKILL.md",
+      ".hermes/skills/sk-design/SKILL.md",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+      "specs/sk-doc/057-sk-create-changelog-v4-style/scratch/check-changelog-structure.py",
+      "scratch/check-changelog-structure.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "worked-examples.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/references/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "topology-edge-cases.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md",
+        "source": "derived"
+      },
+      {
+        "name": "version-bump-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-changelog-structure.py",
+        "kind": "file",
+        "path": "specs/sk-doc/057-sk-create-changelog-v4-style/scratch/check-changelog-structure.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Impact",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Changes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Impact Before",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-create-changelog template still models the machine-era changelog format",
+    "created_at": "2026-09-22T07:43:08Z",
+    "last_save_at": "2026-09-23T07:04:10.638Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0cd64b446b9d2a361bf20a8c6c5b49aa983c0170c1aaecd195e8e673e5f7676b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "02b8a8a14dd0cbb852768cb2f2677995d9d8520640ff4cfdd417e94dc437a876",
+      "plan.md": "0d715a19f948097574a9b99794fee24ff8e3aadd3523d80f6edfcf45d1b74741",
+      "tasks.md": "82202a919e59ec8efca181cfef2094131e559fb1e44ba475eb7cedf230b3a179",
+      "implementation-summary.md": "83d3cea0e007adbba8f4b95ee76bfef3b704b526683b373ee40046d2068402ed"
+    },
+    "last_active_at": null
+  }
+}

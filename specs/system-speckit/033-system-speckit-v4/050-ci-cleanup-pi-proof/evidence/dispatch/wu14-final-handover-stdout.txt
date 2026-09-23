@@ -1,0 +1,12 @@
+Both checks match expectations (grep exits 1 when the match count is 0 — the result line reads `0`).
+
+PI_HANDBACK
+status: done
+summary: Applied all 12 numbered EDITS to the handover document, updating the recent action, blockers, risk row, next steps, checklist, requirement and task statuses, and inserting the two CI-history lines after the merges anchor. Both VERIFY greps return their expected counts, so the document now records the pushed state at 5b522489a2 with all 21 CI runs passing.
+files_changed: 1 file — specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md
+edits_applied: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+edits_skipped: none
+verification: grep -c 'In Progress\|nothing is pushed' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md -> 0 (expected 0); grep -c '<!-- /\?ANCHOR:' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/handover.md -> 14 (expected 14)
+failures: none
+
+PI_HANDBACK

@@ -53,7 +53,10 @@
       ".pi/pi-fast-mode-w-subagent-support-config.json",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs"
+      ".skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+      ".hermes/skills/cli-codex/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -135,6 +138,24 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -142,6 +163,12 @@
       },
       {
         "name": "Gateway Luna",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase State",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -165,12 +192,6 @@
         "source": "derived"
       },
       {
-        "name": "The Cursor",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -181,29 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Luna Max",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenAI's GPT-6 Luna and Sol are live",
     "created_at": "2026-09-23T04:51:35Z",
-    "last_save_at": "2026-09-23T06:29:22.477Z",
+    "last_save_at": "2026-09-23T10:58:58.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ecef24b5ad259eff94cc4f3195603a33f89baec653d99c823e0a6c7172078706",
+    "source_fingerprint": "sha256:aacda0b9a74bd4617143b370b5ffa050e8103bc57eb181963f29d102281c58b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b28c965dcef6c1a5a81c8c24e7eede566dcc7a7889b6a86fdc5cb839643bc865",
-      "plan.md": "8ea806afa0563dff7714829625daf6758c34a96833ee508dc0ac3b4fde43b003",
-      "tasks.md": "91be93508afa30a711b267dae5d42fa4b8212530a189165660b6f1e7adff783d",
-      "implementation-summary.md": "f2d4b9726ca1f6e67e05cfe9adc364cb4274d6313ffb76054c4f0a8c09e40789"
+      "spec.md": "51d5d2fc2cece6f051732c3133115900317bf5242634004f0b10f06c95681109",
+      "plan.md": "cd5702686ed50289eaa18ffa2d9446aaece56bcb21069b9c823aed48594f3b41",
+      "tasks.md": "b5dc29fe6559ab851dfb5cc1e4b8695cd75c791d4906a69f8202f74dc2aa7c60",
+      "implementation-summary.md": "4794358d0bbec36a9f705234bec14fa16a1b81eedbd684814cf3cbdadb9d8c5c"
     },
     "last_active_at": null
   }

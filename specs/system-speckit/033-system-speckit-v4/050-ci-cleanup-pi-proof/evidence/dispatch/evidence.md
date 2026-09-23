@@ -197,3 +197,29 @@ Do not invent any fact that is not here. If a template section has no fact here,
   Hermes regen; T012 baseline restore; T013 packet docs and parent records; T014 strict validation;
   T015 merge main and re-mint cli-jev; T016 merged-tree re-verification; T017 commit, push, CI watch, worktree removal.
   T001-T014 are done. T015-T017 are open.
+
+## Closing state (2026-09-23, supersedes the status lines above)
+- Every status line above is superseded here. AC-001 to AC-011 are Met, T001 to T018 are done, and the
+  primary checkout residue was backed up and removed with the operator's yes.
+- First push: 997cd8ee2e to main and skilled/v4.0.0.0. 13 workflows passed. Two steps failed that the six
+  fixed surfaces had hidden: the routing-accuracy corpus gate (FileNotFoundError, the json-optimization
+  baseline had moved under specs/sk-doc/z_archive/) and the runtime vitest project (5 Pi enforce tests,
+  because os.tmpdir() is /tmp on the runner and the spec gate exempts every write under /tmp).
+- Reproduced locally: TMPDIR=/tmp gives the same 5 failures, a temp dir outside /tmp passes 9 of 9.
+- wu12 (Pi workspace moved into tests/.tmp-) failed and was reverted: the gate anchors state to the repo
+  root and hoists any path under .skilled or .opencode, so state landed in the real repo. The stray state
+  file .skilled/skills/.state/spec-gate/70692d73657373696f6e.json was backed up to the session scratchpad
+  and removed with the operator's yes. Two audit lines it appended to spec-gate-warnings.log were kept.
+- Fixes: b566f9fc28 (wu11) repoints the corpus gate and two path filters to z_archive/. 5b522489a2 (wu13)
+  sets TMPDIR to runner.temp on the runtime vitest step. Both were rebased onto main 83ff3d5536.
+- Rebased-tree checks: the committed heredoc printed corpus matches the pinned baseline hashes, exit 0.
+  score-routing-corpus.py with CI floors and no sqlite: accuracy 0.5436, TT 103, overall_pass true, exit 0.
+  Pi suite 9 of 9 with a temp dir outside /tmp.
+- Second push: 5b522489a2 fast-forwarded both branches. All 21 runs passed, 10 on main and 11 on
+  skilled/v4.0.0.0. Runtime vitest project 106 files and 1292 tests passed, 13 skipped (runs 35858534168,
+  35858537973). Corpus gate passed (runs 35858534321, 35858537968).
+- Closing docs: wu14-final-* over spec, tasks, acceptance-criteria, implementation-summary, handover, the
+  parent spec row 50 and the parent timeline. validate.sh --strict on 050: RESULT: PASSED, 0 errors, 0
+  warnings. check-completion.sh: 27/27, READY FOR COMPLETION. The parent's recursive run fails only on 030.
+- Primary checkout: owned by another session, not synced. It holds untracked 050-save-writer-continuity-fields,
+  051 and 052 phase folders whose 050 number collides with this phase.

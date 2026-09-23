@@ -2,7 +2,7 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.9.0
+version: 1.4.11.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -26,7 +26,7 @@ hard_rules:
     severity: warn
 ---
 
-<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, openai, minimax, minimax-coding-plan, minimax-m3, token-plan, xiaomi, xiaomi-token-plan, xiaomi-token-plan-ams, xiaomi-api, xiaomi-direct, mimo, mimo-v2.6-pro, mimo-v2.6-pro-ultraspeed, ultraspeed, glm-5.2, zai-coding-plan, z.ai-coding-plan, glm-coding-plan, deepseek-v4-flash-latest, deepseek-v4.1-flash, gpt-6-luna, cline, cline-pass, cline-deepseek-v4-flash, cline-deepseek-v4.1-flash -->
+<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, openai, minimax, minimax-coding-plan, minimax-m3, token-plan, mimo, mimo-v2.6-pro, llmgateway, glm-5.2, zai-coding-plan, z.ai-coding-plan, glm-coding-plan, deepseek-v4-flash-latest, deepseek-v4.1-flash, gpt-6-luna, cline, cline-pass, cline-deepseek-v4-flash, cline-deepseek-v4.1-flash -->
 
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
 
@@ -195,7 +195,7 @@ Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continu
 
 Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default: `opencode-go/deepseek-v4.1-flash --variant max` (Go gateway; flash is max-tier-pinned).
 
-**Six providers are reachable:** `opencode-go` (default), `openai` (the GPT-6 sol/luna grid), `cline-pass` (Cline Pass), `llmgateway` (**DevPass**, the operator's LLM Gateway plan, metered per token with a 3x credit bonus), `minimax` and `xiaomi`. Which models each one carries, their thinking ceilings, and their per-provider caveats live in [references/providers-and-models.md](references/providers-and-models.md) — that file is the roster, and this one deliberately does not restate it, because two copies of a model list is how the two disagree.
+**Five providers are reachable:** `opencode-go` (default), `openai` (the GPT-6 sol/luna grid), `cline-pass` (Cline Pass), `llmgateway` (**DevPass**, the operator's LLM Gateway plan, metered per token with a 3x credit bonus) and `minimax`. MiMo is reached through `llmgateway` only. Which models each one carries, their thinking ceilings, and their per-provider caveats live in [references/providers-and-models.md](references/providers-and-models.md) — that file is the roster, and this one deliberately does not restate it, because two copies of a model list is how the two disagree.
 
 One cross-provider footgun is worth carrying here: **id shape differs per provider.** `llmgateway` takes a bare two-segment id (`llmgateway/<id>`) while `cline-pass` takes a slashed three-segment one. Copying a form between providers returns a 400.
 

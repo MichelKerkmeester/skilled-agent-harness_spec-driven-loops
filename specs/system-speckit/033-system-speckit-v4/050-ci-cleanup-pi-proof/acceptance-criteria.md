@@ -12,17 +12,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof"
-    last_updated_at: "2026-09-23T06:00:00Z"
+    last_updated_at: "2026-09-23T12:30:00Z"
     last_updated_by: "cli-pi-mimo-v2.6-pro"
-    recent_action: "Merged main, cli-jev re-minted, merged tree verified"
-    next_safe_action: "Push after the operator's yes, watch CI, remove the worktree"
+    recent_action: "Pushed 5b522489a2, all 21 CI runs passed on both branches"
+    next_safe_action: "Remove the worktree after the closing push"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-050-ci-cleanup-pi-proof"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ _memory:
 
 **Packet:** system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-23
 <!-- /ANCHOR:metadata -->
 
@@ -65,6 +65,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-008 | REQ-005 | Given the cli-jev SKILL.md edit changed its compiled-routing policy hash, When the compiled-routing manifest is re-minted after merging main with node .skilled/bin/compiled-route-manifest.cjs refresh --hub cli-jev --skill-root .skilled/skills/cli-jev, Then the guard reports fresh and CJ-001 routes compiled | The repository's route-remint pre-commit gate re-minted cli-jev inside commit f0411552aa, moving its effectivePolicyHash from 3240ebf5 to 178b10dd, so the re-mint ran at commit time rather than after the merge. On the merged tree at 0b39a1f6c3, node .skilled/bin/compiled-route-guard.cjs reports all seven hubs fresh with exit 0, the CJ-001 prompt routes compiled to cli-usage through node .skilled/bin/compiled-route.cjs under hash 178b10dd, and compiled-route-admission.cjs --hub cli-jev passes 3 of 3 | Met | - |
 | AC-009 | REQ-006 | Given the closing packet documents, When the strict validation runs on the packet, Then it reports RESULT: PASSED and the parent records are reconciled | bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof --strict printed RESULT: PASSED with 0 errors and 0 warnings. The parent spec.md carries phase map row 50 and the 049 to 050 handoff row, the parent graph-metadata.json children_ids lists 050 as its 50th entry, and the parent folder's own strict checks pass | Met | - |
 | AC-010 | REQ-007 | Given the merged tree, When Hermes sync, the scorer ratchet, the link check and the route guard re-run before push, Then each passes on the merged tree | On the merged tree at 0b39a1f6c3, sync-skills-hermes.cjs --check reported 70 copies in sync, the advisor routing and ratchet vitest reported 28 passed, check-markdown-links.cjs reported 0 broken and compiled-route-guard.cjs reported all seven hubs fresh, each with exit 0 | Met | - |
+| AC-011 | REQ-003 | Given the pushed tip, When every GitHub workflow runs on main and skilled/v4.0.0.0, Then each run passes, including the two steps the six fixed surfaces had hidden | On 5b522489a2 all 21 workflow runs passed, 10 on main and 11 on skilled/v4.0.0.0. The routing-accuracy corpus gate printed corpus matches the pinned baseline hashes with overall_pass true in runs 35858534321 and 35858537968. The runtime vitest project passed 106 files and 1292 tests with 13 skipped in runs 35858534168 and 35858537973 | Met | - |
 
 ### Status values
 
@@ -91,5 +92,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-Every criterion is Met. The packet closes once the push, the CI watch and the worktree removal in T017 are done.
+Every criterion is Met. The push and the CI watch are done, with all 21 workflow runs passing on 5b522489a2, and the worktree is removed after the closing push.
 <!-- /ANCHOR:closure -->

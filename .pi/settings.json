@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.87.0",
+  "lastChangelogVersion": "0.87.1",
   "theme": "dark",
   "defaultProvider": "llmgateway",
   "defaultModel": "gpt-6-luna",
@@ -20,7 +20,6 @@
     "llmgateway/glm-5.3-flash",
     "opencode-go/glm-5.3-flash",
     "cline-pass/z-ai/glm-5.3-flash",
-    "xiaomi/mimo-v2.6-pro",
     "llmgateway/mimo-v2.6-pro",
     "minimax/MiniMax-M3"
   ],

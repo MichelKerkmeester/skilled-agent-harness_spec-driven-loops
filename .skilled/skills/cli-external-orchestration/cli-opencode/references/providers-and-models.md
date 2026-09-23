@@ -6,7 +6,7 @@ trigger_phrases:
   - "which model for opencode dispatch"
   - "opencode variant reasoning effort"
   - "opencode default model opencode-go flash"
-  - "opencode minimax xiaomi gpt dispatch"
+  - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
 version: 1.4.0.32
@@ -50,21 +50,14 @@ OpenCode resolves models through configured providers; the model string passed t
 |----------|----------|-------|
 | `minimax/MiniMax-M3` | — | MiniMax Direct API (pay-per-token); needs `MINIMAX_API_KEY` |
 
-### xiaomi
-
-| Model id | Default? | Notes |
-|----------|----------|-------|
-| `xiaomi/mimo-v2.6-pro` | — | MiMo-V2.6-Pro, Direct API (pay-per-token); 1M context, strongly agentic |
-| `xiaomi/mimo-v2.6-pro-ultraspeed` | — | Low-latency MiMo-V2.6-Pro tier |
-
 ### openai
 
-GPT-6 via the `openai` provider — two personas (sol/luna) × three speed tiers (base / fast / pro) = 6 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so confirm a Pro slug is live via `opencode models openai` before dispatching it.
+GPT-6 via the `openai` provider — two personas (sol/luna) × two speed tiers (base / fast) = 4 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. Run `opencode models openai` before dispatching any slug not in the table.
 
-| Persona | Base | Fast (low-latency) | Pro |
-|---------|------|--------------------|-----|
-| sol | `openai/gpt-6-sol` | `openai/gpt-6-sol-fast` | `openai/gpt-6-sol-pro` |
-| luna | `openai/gpt-6-luna` | `openai/gpt-6-luna-fast` | `openai/gpt-6-luna-pro` |
+| Persona | Base | Fast (low-latency) |
+|---------|------|--------------------|
+| sol | `openai/gpt-6-sol` | `openai/gpt-6-sol-fast` |
+| luna | `openai/gpt-6-luna` | `openai/gpt-6-luna-fast` |
 
 ### opencode-go
 
@@ -101,7 +94,7 @@ DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-
 |----------|----------|-------|
 | `llmgateway/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via DevPass; reasoning **and images**; pinned `--variant max`, which the route accepts; context 1.05M, output 384K; $0.15 in and $0.60 out per million tokens, cached reads $0.003. Well under the gateway's Premium threshold, so no weekly cap. Live-verified 2026-09-10. Three efforts plus off: **`low`**, **`high`** and **`max`**, with `minimal` folding into `low`, `medium` and `xhigh` folding into `high`, and `none` disabling thinking. Default `high`. `ultra` and the integer form are rejected here. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for |
 | `llmgateway/glm-5.3-flash` | — | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route carrying both, so `--variant max`. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
-| `llmgateway/mimo-v2.6-pro` | — | MiMo-V2.6-Pro via DevPass; active catalog row with reasoning, text and image input, 1M context, 131K output, costs $0.435 in, $0.87 out, $0.0036 cached read per million tokens, and variants `none`/`low`/`medium`/`high`. Direct-dispatch only. The deep-loop bare literal remains mapped to `xiaomi`, and a real Pi round-trip is still required to prove the configured credential can use this route |
+| `llmgateway/mimo-v2.6-pro` | — | MiMo-V2.6-Pro via DevPass; active catalog row with reasoning, text and image input, 1M context, 131K output, costs $0.435 in, $0.87 out, $0.0036 cached read per million tokens, and variants `none`/`low`/`medium`/`high`. MiMo's only route on this roster since 2026-09-23, when the Xiaomi Direct API and Token Plan routes were removed; the gateway serves no ultraspeed tier. Always pass `--variant high`. No OpenCode round-trip on this route is recorded yet |
 
 ---
 
@@ -136,10 +129,9 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 |----------|----------------------|
 | `opencode-go` (`deepseek-v4.1-flash`) | reasoning model pinned to `--variant max` (max thinking tier) by policy — the fan-out builder upgrades a lower requested effort automatically |
 | `minimax` (MiniMax-M3) | behavior unverified — omitted by default; confirm before relying |
-| `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
 | `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
 | `cline-pass` (deepseek-v4.1-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
-| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`; `glm-5.3-flash` carries the full ladder to `max`; `mimo-v2.6-pro` carries `none`/`low`/`medium`/`high` and is direct-dispatch only. Always pass `--variant` explicitly here |
+| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`; `glm-5.3-flash` carries the full ladder to `max`; `mimo-v2.6-pro` carries `none`/`low`/`medium`/`high`, and **`--variant high`** is the standing MiMo default. Always pass `--variant` explicitly here |
 
 ---
 

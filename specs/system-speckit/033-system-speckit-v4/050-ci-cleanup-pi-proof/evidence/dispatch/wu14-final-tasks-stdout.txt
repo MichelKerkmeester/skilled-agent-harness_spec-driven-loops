@@ -1,0 +1,13 @@
+VERIFY results:
+
+- `grep -c '^- \[ \]' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md` → `0`
+- `grep -c 'T018' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md` → `2`
+
+PI_HANDBACK
+status: done
+summary: Applied four literal text replacements to tasks.md, marking T017/T018 with evidence and closing the three verification checkboxes. Both VERIFY greps returned expected results: zero unchecked tasks and two T018 references.
+files_changed: 1 specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md
+edits_applied: 1, 2, 3, 4
+edits_skipped: none
+verification: grep -c '^- \[ \]' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md → 0; grep -c 'T018' specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/tasks.md → 2
+failures: none

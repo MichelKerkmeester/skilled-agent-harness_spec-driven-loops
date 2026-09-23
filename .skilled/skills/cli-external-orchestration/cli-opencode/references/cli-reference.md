@@ -138,7 +138,7 @@ opencode run \
 
 | Flag | Default | Reason |
 |------|---------|--------|
-| `--model` | `opencode-go/deepseek-v4-flash` | The Go gateway fronts the latency-optimized flash model — max-tier-pinned reasoning; operator may override (e.g. `opencode-go/glm-5.3-flash`, or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-sol-pro`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`, `openai/gpt-6-luna-pro`) |
+| `--model` | `opencode-go/deepseek-v4-flash` | The Go gateway fronts the latency-optimized flash model — max-tier-pinned reasoning; operator may override (e.g. `opencode-go/glm-5.3-flash`, or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`) |
 | `--agent` | per use case | Required for use case 1 / 3; optional for use case 2 |
 | `--variant max` | max | Flash is max-tier-pinned by policy — a lower requested effort is upgraded automatically |
 | `--format json` | json | Structured event stream is what external runtimes parse |
@@ -176,15 +176,14 @@ PROVIDERS=$(opencode providers list 2>&1)
 echo "$PROVIDERS" | grep -q "opencode-go"      && OPENCODE_GO_OK=1    || OPENCODE_GO_OK=0     # OpenCode Go gateway (default — fronts DeepSeek V4 Flash, Qwen, GLM)
 echo "$PROVIDERS" | grep -q "minimax-coding-plan" && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # MiniMax Token Plan (default MiniMax path)
 echo "$PROVIDERS" | grep -qE "minimax([^-]|$)"    && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # MiniMax Direct API (pay-per-token); regex skips the coding-plan provider
-echo "$PROVIDERS" | grep -q "xiaomi-token-plan-ams" && XIAOMI_OK=1       || XIAOMI_OK=0          # Xiaomi Token Plan (Europe)
-echo "$PROVIDERS" | grep -qE "xiaomi([^-]|$)"     && XIAOMI_DIRECT_OK=1 || XIAOMI_DIRECT_OK=0   # Xiaomi Direct API (pay-per-token); regex skips the token-plan-ams provider
-echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK xiaomi=$XIAOMI_OK xiaomi_direct=$XIAOMI_DIRECT_OK"
+echo "$PROVIDERS" | grep -qi "llm gateway"       && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0       # LLM Gateway (DevPass), listed by display name; the only MiMo route
+echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
 ```
 
 | State | OPENCODE_GO_OK | Action |
 |-------|----------------|--------|
 | Default available | 1 | Proceed with `--model opencode-go/deepseek-v4-flash --variant max` |
-| Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol-pro, B: set up `opencode-go` and retry, C: name a different model) — do not dispatch until configured |
+| Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol, B: set up `opencode-go` and retry, C: name a different model) — do not dispatch until configured |
 
 **MiniMax routing** (default = Token Plan; Direct API is the pay-per-token alternative):
 
@@ -195,16 +194,12 @@ echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MI
 | Direct API explicitly requested | `MINIMAX_DIRECT_OK=1` | Proceed with `--model minimax/MiniMax-M3` (pay-per-token; confirm the live id via `opencode models minimax`) |
 | Direct API requested, not configured | `MINIMAX_DIRECT_OK=0` | **ASK user** to configure the `minimax` provider (`MINIMAX_API_KEY`) — do not substitute silently |
 
-**MiMo routing** (Xiaomi Token Plan Europe and Xiaomi Direct API; explicitly-selectable — first match wins):
+**MiMo routing** (LLM Gateway only; the Xiaomi Direct API and Token Plan routes are not on this roster):
 
 | State | Condition | Action |
 |-------|-----------|--------|
-| MiMo requested (default) | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.6-pro` — **omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models xiaomi` |
-| MiMo speed variant ("ultraspeed", latency-sensitive) | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.6-pro-ultraspeed` — low-latency MiMo-V2.6-Pro tier, same prompt contract |
-| Token Plan explicitly requested | `XIAOMI_OK=1` | `--model xiaomi-token-plan-ams/mimo-v2.6-pro` — NOTE: observed not resolving on this install 2026-06-11 (ProviderModelNotFoundError surfaced as 'Unexpected server error'); re-auth via `opencode auth login` or use the `xiaomi` Direct API instead |
-| Token Plan not configured | `XIAOMI_OK=0` | **ASK user** to run `opencode auth login` → Xiaomi Token Plan (Europe) — never substitute silently |
-| Direct API explicitly requested | `XIAOMI_DIRECT_OK=1` | Proceed with `--model xiaomi/mimo-v2.6-pro` or `xiaomi/mimo-v2.6-pro-ultraspeed` (pay-per-token; confirm live ids via `opencode models xiaomi`) |
-| Direct API requested, not configured | `XIAOMI_DIRECT_OK=0` | **ASK user** to run `opencode providers login xiaomi` — never substitute silently |
+| MiMo requested | `LLMGATEWAY_OK=1` | Proceed with `--model llmgateway/mimo-v2.6-pro --variant high` — **omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models llmgateway` |
+| LLM Gateway not configured | `LLMGATEWAY_OK=0` | **ASK user** to run `opencode auth login` → DevPass (LLM Gateway) — never substitute silently |
 
 **Login / setup command shapes** (the AI surfaces these to the user; the user runs them in their own terminal):
 
@@ -218,17 +213,14 @@ opencode auth login          # → provider minimax-coding-plan; Anthropic-compa
 # MiniMax Direct API — pay-per-token alternative (needs MINIMAX_API_KEY; platform endpoint https://api.minimax.io/v1)
 opencode providers login minimax
 
-# Xiaomi Token Plan (Europe) — provider-managed endpoint. Interactive: pick "Xiaomi Token Plan (Europe)".
-opencode auth login          # → provider xiaomi-token-plan-ams (Xiaomi Token Plan, Europe)
-
-# Xiaomi Direct API — pay-per-token alternative
-opencode providers login xiaomi
+# LLM Gateway (DevPass) — the only MiMo route. Interactive: pick "DevPass (LLM Gateway)".
+opencode auth login          # → provider llmgateway; model llmgateway/mimo-v2.6-pro
 
 # Z.AI GLM Coding Plan — GLM coding subscription. Interactive: pick "Z.AI Coding Plan".
 opencode auth login          # → provider zai-coding-plan; model zai-coding-plan/glm-5.2
 ```
 
-> Do not mix region endpoints (international `minimax.io` vs China `minimaxi.com`). Confirm live model ids with `opencode models minimax-coding-plan`. The Xiaomi endpoint is provider-managed (no documented base URL — do not invent one); confirm live model ids with `opencode models xiaomi-token-plan-ams` (Token Plan) or `opencode models xiaomi` (Direct API).
+> Do not mix region endpoints (international `minimax.io` vs China `minimaxi.com`). Confirm live model ids with `opencode models minimax-coding-plan`. Confirm live LLM Gateway slugs with `opencode models llmgateway`.
 
 **On auth-error mid-dispatch** (`401 Unauthorized`, `provider/model not found`): invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
 
@@ -241,8 +233,8 @@ Surface these verbatim to the operator when the pre-flight decision tree lands o
 ```text
 The skill default `opencode-go/deepseek-v4-flash` is not configured on this machine.
 A configured fallback is available. Pick one:
-  A) Use `openai/gpt-6-sol-pro --variant high` (OpenAI premium, configured now — paid)
-  B) Use `xiaomi/mimo-v2.6-pro --variant high` (Xiaomi Direct API, configured now) — or `xiaomi/mimo-v2.6-pro-ultraspeed --variant high` for latency-sensitive runs
+  A) Use `openai/gpt-6-sol --variant high` (OpenAI flagship persona, configured now — paid)
+  B) Use `llmgateway/mimo-v2.6-pro --variant high` (MiMo through DevPass LLM Gateway, configured now — per token)
   C) Use `kimi-for-coding/k2p7` (Kimi For Coding plan, configured now — subscription)
   D) Run `opencode providers login opencode-go` first, then retry the original dispatch
   E) Name a different model — paste the `--model <provider/model>` you want to use
@@ -255,8 +247,7 @@ No supported providers are configured on this machine. Run one:
   - `opencode providers login opencode-go`  (recommended — default for cli-opencode; fronts deepseek-v4-flash)
   - `opencode auth login`                   (MiniMax Token Plan — default MiniMax path; pick "MiniMax Token Plan (minimax.io)" → provider minimax-coding-plan; model minimax-coding-plan/MiniMax-M3)
   - `opencode providers login minimax`      (MiniMax Direct API — pay-per-token; needs MINIMAX_API_KEY; model minimax/MiniMax-M3)
-  - `opencode auth login`                   (Xiaomi Token Plan — default Xiaomi path; pick "Xiaomi Token Plan (Europe)" → provider xiaomi-token-plan-ams; model xiaomi-token-plan-ams/mimo-v2.6-pro)
-  - `opencode providers login xiaomi`       (Xiaomi Direct API — pay-per-token; models xiaomi/mimo-v2.6-pro and xiaomi/mimo-v2.6-pro-ultraspeed)
+  - `opencode auth login`                   (LLM Gateway — pick "DevPass (LLM Gateway)" → provider llmgateway; the only MiMo route, model llmgateway/mimo-v2.6-pro)
   - `opencode auth login`                   (Kimi For Coding plan — Kimi/Moonshot coding subscription; provider kimi-for-coding; model kimi-for-coding/k2p7)
   - `opencode auth login`                   (Z.AI GLM Coding Plan — GLM coding subscription; provider zai-coding-plan; model zai-coding-plan/glm-5.2)
   - `opencode providers login openai`       (OpenAI premium alternative — paid)
