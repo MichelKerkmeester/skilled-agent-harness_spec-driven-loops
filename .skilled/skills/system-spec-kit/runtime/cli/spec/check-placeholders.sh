@@ -92,6 +92,12 @@ fi
 #   [Response time target], [Low/Med/High], [Component A],
 #   [YOUR_VALUE_HERE], [PLACEHOLDER], etc.
 #
+# The templates write their stubs with the example inline, as in
+# [Response time target - e.g., <200ms p95], [Uptime target - e.g., 99.9%]
+# and [What problem we're solving], so the body admits < > + % and the
+# apostrophe too. Without them those stubs pass the scan unfilled.
+PLACEHOLDER_BODY="[A-Za-z0-9 /,._<>+%'-]"
+#
 # Exclude patterns that are NOT placeholders:
 #   [x] / [ ] (checkbox), [P0] / [P1] / [P2] (priority tags),
 #   [SPECKIT...] (markers), [ANCHOR...] (anchors),
@@ -133,7 +139,7 @@ while IFS= read -r file; do
 
         # Match bracket patterns that look like placeholders
         # Use grep to find [Something here] patterns
-        if echo "$line" | grep -qE '\[[A-Z][A-Za-z0-9 /,._-]+\]' 2>/dev/null; then
+        if echo "$line" | grep -qE "\[[A-Z]${PLACEHOLDER_BODY}+\]" 2>/dev/null; then
             # Exclude known non-placeholder patterns
             cleaned="$line"
             # Remove known safe patterns before re-checking
@@ -151,9 +157,9 @@ while IFS= read -r file; do
             )
 
             # Check if any placeholder-like patterns remain after cleanup
-            if echo "$cleaned" | grep -qE '\[[A-Z][A-Za-z0-9 /,._-]{2,}\]' 2>/dev/null; then
+            if echo "$cleaned" | grep -qE "\[[A-Z]${PLACEHOLDER_BODY}{2,}\]" 2>/dev/null; then
                 TOTAL=$((TOTAL + 1))
-                match_text=$(echo "$line" | grep -oE '\[[A-Z][A-Za-z0-9 /,._-]{2,}\]' 2>/dev/null | head -1)
+                match_text=$(echo "$line" | grep -oE "\[[A-Z]${PLACEHOLDER_BODY}{2,}\]" 2>/dev/null | head -1)
                 if [[ "$VERBOSE" == "true" ]]; then
                     MATCHES="${MATCHES}  ${file}:${line_num}: ${match_text}\n"
                 fi
