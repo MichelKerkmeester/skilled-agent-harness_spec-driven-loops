@@ -9,19 +9,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/077-gpt-6-luna-sol-cutover"
-    last_updated_at: "2026-09-23T10:30:00Z"
+    last_updated_at: "2026-09-23T17:45:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Met the Phase 5 criteria"
-    next_safe_action: "None; the packet is closeable"
+    recent_action: "Met AC-022 to AC-028 with Phase 6 evidence; every criterion is met"
+    next_safe_action: "Commit and push Phase 6, then record the commits in tasks.md"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "077-gpt-6-luna-sol-cutover"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Phase 6 keeps the Sol smokes skipped"
+      - "Phase 6 keeps CLAUDE_DEFAULT_MODEL and leaves gpt-6-astra off the rosters"
+      - "Phase 6 applies the Codex default and removes both Xiaomi credentials, each file backed up first"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
 # Acceptance Criteria: GPT-6 Luna and Sol cutover with LLM Gateway Luna routes and Opus 5.5 in cli-claude-code
@@ -39,7 +42,7 @@ _memory:
 
 **Packet:** 077-gpt-6-luna-sol-cutover
 **Level:** 2
-**Status:** Complete
+**Status:** In Progress
 **Date:** 2026-09-23
 <!-- /ANCHOR:metadata -->
 
@@ -73,6 +76,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-019 | REQ-019 | Given cli-hermes's roster statements, When read, Then none defines the roster as Pi's minus ultraspeed | `tasks.md` T039: both lines describe the seven as Pi's bare literals, with ultraspeed on neither roster | Met | - |
 | AC-020 | REQ-020 | Given the remapped fan-out route, When a one-turn smoke runs through `llmgateway/mimo-v2.6-pro`, Then it replies `OK` | `tasks.md` T040: fan-out-built `pi … --model llmgateway/mimo-v2.6-pro --thinking high`, exit 0, `OK`, 11 s | Met | - |
 | AC-021 | REQ-021 | Given each skill Phase 5 edits, When its `SKILL.md`, newest changelog and Hermes mirror are read, Then it carries one bump and one changelog, the frontmatter gate passes, and its mirror is in sync | `tasks.md` T041, T043 and T045: 1.5.9.0, 1.4.11.0 and 1.0.3.0, one changelog each; gate exit 0; the three mirrors are out of drift | Met | - |
+| AC-022 | REQ-022 | Given cli-opencode's auth pre-flight block, When it runs on this machine, Then it prints `default=1 minimax_token=0 minimax_direct=1 llmgateway=1`, matching `opencode models <id>` for each provider | `tasks.md` T047: the block extracted from the edited doc printed `default=1 minimax_token=0 minimax_direct=1 llmgateway=1`, exit 0; `README.md:131` names the same check | Met | - |
+| AC-023 | REQ-023 | Given the deep command sources and contracts, the deep-ai-council docs, the three MiMo profiles and cli-claude-code's comparison, When searched for `xiaomi/` and `xiaomi-token-plan`, Then nothing matches, and each regenerated contract differs from its predecessor only in the Xiaomi lines and the manifest digests | `tasks.md` T049, T050, T051, T053 and T060: no `xiaomi` hit in the Phase 6 paths, the deep command sources and contracts or the seven mirrors, and a positive control finds the gateway MiMo id; the contract word diffs hold only 3 sample-id swaps and 2 `MiniMax/Xiaomi` → `MiniMax` swaps besides digests | Met | - |
+| AC-024 | REQ-024 | Given the two edited tests, When the council and remediation suites run, Then they pass 21/21 and 35/35, and the six runtime suites and typecheck hold the T046 baseline | `tasks.md` T054 and T060: council 21/21, remediation 35/35, `sweep-isolation` 15/15; six suites 391 passed, 1 skipped, exit 0 (228 s), equal to T046; typecheck exit 0 | Met | - |
+| AC-025 | REQ-025 | Given each skill Phase 6 edits, When its `SKILL.md`, newest changelog and Hermes mirror are read, Then it carries one bump and one changelog that 057's checker passes, the frontmatter gate passes, and its mirror is in sync | `tasks.md` T057, T058 and T060: seven bumps with one changelog each, 057's checker 0 violations on all seven; frontmatter gate exit 0; `PASS: 70 Hermes skill copies in sync` | Met | - |
+| AC-026 | REQ-026 | Given CX-002, cli-codex's providers reference and cli-claude-code's rosters, When read, Then CX-002 greps a file that holds the roster, cli-codex locates its profiles as `$CODEX_HOME/<name>.config.toml` files, and the current Fable id is `claude-fable-5-1` | `tasks.md` T052 and T053: CX-002 greps `providers-and-models.md` §2, which holds the roster; line 137 locates profiles as `$CODEX_HOME/<name>.config.toml`; no `claude-fable-5` left beside `claude-fable-5-1` | Met | - |
+| AC-027 | REQ-027 | Given the live checks, When each runs for one turn, Then OpenCode `llmgateway/mimo-v2.6-pro` and PI-017's live step reply | `tasks.md` T048 and T062: OpenCode `llmgateway/mimo-v2.6-pro` replied `OK` in 21 s; PI-017's corrected live step exited 0 listing only its four read-only tools. The Sol routes stay operator-run by the operator's answer, T055 | Met | - |
+| AC-028 | REQ-028 | Given the three home-config files, When each is read, Then Codex defaults to `gpt-6-luna`, no credential store holds `xiaomi`, and a dated backup of each file exists | `tasks.md` T056: `~/.codex/config.toml` reads `model = "gpt-6-luna"`; neither credential store lists `xiaomi` on the final recheck; each file has a `*.bak-20260923` backup | Met | - |
 
 ### Status values
 
@@ -99,5 +109,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All twenty-one criteria are met. Phase 5 reopened the packet on 2026-09-23 to move MiMo to LLM Gateway only, and AC-015 reopened with it, because sk-doc/057 became the committed template; both closed the same day. The residue scan, the unchanged suite counts and the Pi model listing carried the cutover, and Phase 4 corrected the two P1 and five P2 doc defects a fresh review of the pushed commits found. AC-015 was judged against the template at `HEAD`, because sk-doc/057 is still uncommitted. Left out on purpose: a live billed round-trip through the Codex, OpenCode and Hermes Sol routes and `claude-opus-5-5`, which the operator declined, and the adjacent defects listed in `implementation-summary.md`.
+Every criterion is met. Phase 6 reopened the packet on 2026-09-23 to close the six follow-ups Phase 5 recorded, and closed AC-022 to AC-028 the same day: the auth pre-flight reads real provider state, no Xiaomi route is left in the deep commands, the council docs, the benchmark profiles or cli-claude-code, the stale test fixtures pass, CX-002 and the Codex profile location point at what exists, the live MiMo and PI-017 checks replied, and the operator's own config names `gpt-6-luna` and holds no Xiaomi credential. Phase 5 reopened the packet on 2026-09-23 to move MiMo to LLM Gateway only, and AC-015 reopened with it, because sk-doc/057 became the committed template; both closed the same day. The residue scan, the unchanged suite counts and the Pi model listing carried the cutover, and Phase 4 corrected the two P1 and five P2 doc defects a fresh review of the pushed commits found. Left out on purpose: a live billed round-trip through the Codex, OpenCode and Hermes Sol routes and `claude-opus-5-5`, which the operator kept skipped, the two named Codex profile files, which wait for the operator's yes, and the adjacent defects listed in `implementation-summary.md`.
 <!-- /ANCHOR:closure -->

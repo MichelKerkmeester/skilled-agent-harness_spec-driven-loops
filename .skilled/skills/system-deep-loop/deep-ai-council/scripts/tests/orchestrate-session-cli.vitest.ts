@@ -335,9 +335,9 @@ describe('deep-ai-council session CLI runner', () => {
     },
     {
       kind: 'cli-pi',
-      model: 'deepseek-v4-flash',
+      model: 'deepseek-v4.1-flash',
       command: 'pi',
-      expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', prompt],
+      expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', prompt],
     },
     {
       kind: 'cli-hermes',
@@ -396,7 +396,7 @@ describe('deep-ai-council session CLI runner', () => {
           expect(stdinWrites).toEqual([built.input]);
           expect(prompt).toContain('Seat');
         } else {
-          expect(stdinWrites).toEqual([]);
+          expect(stdinWrites).toEqual(typeof built.input === 'string' ? [built.input] : []);
         }
         expect(result.execution_provenance).toMatchObject({
           requested: { executor_family: kind, primary_agent: 'plan', model },

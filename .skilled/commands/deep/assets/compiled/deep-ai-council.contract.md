@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "4a16cd870660dd3c34e40745e9fc4c7e0b75338e28e89b9b90a2dc5172980864",
+      "sha256": "883f9803448193c30aed321455898f257684d2ec545f47ad061cec8e776c3227",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "c28bbebb73d2e89b88f458932cd4cab7926c42d6d4866325a4cf3e3d6b1e12bb",
+      "sha256": "357e168254b189749836231e0e269e9811c06ba990929ca73ee5d702b19b521f",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "bf36d22ac976350fcb49299de5ac895b4df4b1ad1675a74dfdcd79bf0ee5068e",
+      "sha256": "6782fbaaabe34119d373dfa0f71baf611c88a2e27e1eaf1c5dce23f50246027a",
       "section": "full"
     },
     {
@@ -117,7 +117,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "03d9bea9c101d1222eca03678c13ca586fcfc538722765c15d54c84f78800173",
+      "sha256": "c8ce5153e6fa7489be8d6769140ac494ebeb8c85b6d87bb0c8ca1fe1dbe564b7",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "13f8e90bcb7f90ca2eda2be15ad451bc7798673f2a149876038ed47999fb2270"
+  "compiledBodyDigest": "70fbfe88549dc4a2fbafff3ab9ba6adffee239a17df646e9e3aca9dee37ffbda"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -254,7 +254,7 @@ PRE-BOUND SETUP ANSWERS:
   executor:
     mode: in-cli  # in-cli | external-cli
     cli: native  # native | cli-opencode | cli-cursor | cli-devin | cli-pi (alias `opencode` -> `cli-opencode`). cli-codex and cli-claude-code are REJECTED as council seats; `resolveExecutorKind` in `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` is authoritative
-    model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
+    model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/mimo-v2.6-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
     reasoning: ""  # optional reasoning effort or variant
     service_tier: ""  # optional, executor-specific
     timeout: 900  # optional positive integer seconds

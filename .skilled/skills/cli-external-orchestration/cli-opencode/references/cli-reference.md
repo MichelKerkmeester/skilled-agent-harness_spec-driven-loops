@@ -168,15 +168,14 @@ Foreground `| tail` accidentally works because the upstream pipe stage provides 
 
 ### Provider Auth Pre-Flight (smart fallback)
 
-Before the first dispatch in a session, run a one-shot auth pre-flight against `opencode providers list` so a missing default doesn't fail mid-dispatch. Cache the result for the session; only re-run on auth failure.
+Before the first dispatch in a session, run a one-shot auth pre-flight with `opencode models <provider-id>`, which exits 0 when the provider is configured and 1 when it is not, so a missing default doesn't fail mid-dispatch. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session; only re-run on auth failure.
 
 ```bash
-# Pre-flight — one call per session
-PROVIDERS=$(opencode providers list 2>&1)
-echo "$PROVIDERS" | grep -q "opencode-go"      && OPENCODE_GO_OK=1    || OPENCODE_GO_OK=0     # OpenCode Go gateway (default — fronts DeepSeek V4 Flash, Qwen, GLM)
-echo "$PROVIDERS" | grep -q "minimax-coding-plan" && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # MiniMax Token Plan (default MiniMax path)
-echo "$PROVIDERS" | grep -qE "minimax([^-]|$)"    && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # MiniMax Direct API (pay-per-token); regex skips the coding-plan provider
-echo "$PROVIDERS" | grep -qi "llm gateway"       && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0       # LLM Gateway (DevPass), listed by display name; the only MiMo route
+# Pre-flight: one check per provider id, once per session
+opencode models opencode-go         >/dev/null 2>&1 && OPENCODE_GO_OK=1    || OPENCODE_GO_OK=0     # OpenCode Go gateway (default — fronts DeepSeek V4 Flash, Qwen, GLM)
+opencode models minimax-coding-plan >/dev/null 2>&1 && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # MiniMax Token Plan (default MiniMax path)
+opencode models minimax             >/dev/null 2>&1 && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # MiniMax Direct API (pay-per-token)
+opencode models llmgateway          >/dev/null 2>&1 && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0      # LLM Gateway (DevPass); the only MiMo route
 echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
 ```
 

@@ -134,7 +134,7 @@ Multi-lineage parallel dispatch is driven by the shared deep-loop runtime (`fano
 ## 6. ENFORCEMENT & PROFILES (authoritative elsewhere — do not duplicate here)
 
 - **Fan-out dispatcher** → `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (executor kind `cli-codex`)
-- **Named config profiles** (`luna-impl`, `sol-verify`, `review`, `debug`, …) → `.codex/config.toml` `[profiles.<name>]`; roster and routing in [agent-delegation.md](./agent-delegation.md)
+- **Named config profiles** (`luna-impl`, `sol-verify`, `review`, `debug`, …) → one `$CODEX_HOME/<name>.config.toml` file per profile, selected with `-p <name>`; roster and routing in [agent-delegation.md](./agent-delegation.md)
 
 ---
 
