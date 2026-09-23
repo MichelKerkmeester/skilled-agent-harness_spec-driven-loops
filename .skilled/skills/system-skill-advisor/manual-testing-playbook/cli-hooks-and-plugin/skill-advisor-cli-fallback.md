@@ -20,7 +20,7 @@ Prompt: Operator check for the daemon-backed skill-advisor CLI shipped by the 02
 
 This scenario validates the 028 CLI fallback for the advisor daemon. `node .skilled/bin/skill-advisor.cjs` exposes 9 commands with byte-identical schemas to `TOOL_DEFINITIONS`, sends calls untrusted by default behind a fail-closed trusted-mutation gate, and shares the program exit taxonomy 0/1/64/69/75. All checks below run against a sandboxed socket directory and refuse-before-IPC paths, so host daemons are never contacted and nothing is spawned.
 
-The program-wide CLI scenarios live in the spec-kit playbook (427 parity, 428 warm-only, 431 trusted gate, 432 tri-daemon drill, 438 trust-gate fuzz); this scenario is the advisor-local smoke an operator can run in under a minute.
+The program-wide CLI scenarios live in the spec-kit playbook (428 warm-only, 431 trusted gate). This scenario is the advisor-local smoke an operator can run in under a minute.
 
 ---
 

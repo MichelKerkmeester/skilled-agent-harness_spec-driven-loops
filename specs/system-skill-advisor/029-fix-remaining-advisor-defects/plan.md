@@ -30,7 +30,7 @@ contextType: "general"
 
 ### Overview
 
-Three delivery paths get fixed in this round. The pi extension's dedup decision returns its full delivery again on a changed contribution instead of falling off the end of the function. The CLI fallback resolves its database dir and companion paths from one root and reads one variable once. The Claude hook checks `.skilled` before `.opencode`, and the OpenCode plugin resolves its compiled-routing helper from its own root first and `.skilled/bin` second. The advisor runtime battery then reports 0 failed tests (891 passed, 7 skipped of 898) against baselines renewed by the repository's capture tools and every documentation surface that described the old behavior is brought up to date. A second pass reads each renamed environment variable once, states which kill-switch name each surface reads and makes the shim test's unavailable case run every time.
+Three delivery paths get fixed in this round. The pi extension's dedup decision returns its full delivery again on a changed contribution instead of falling off the end of the function. The CLI fallback resolves its database dir and companion paths from one root and reads one variable once. The Claude hook checks `.skilled` before `.opencode`, and the OpenCode plugin resolves its compiled-routing helper from its own root first and `.skilled/bin` second. The advisor runtime battery then reports 0 failed tests (891 passed, 7 skipped of 898) against baselines renewed by the repository's capture tools and every documentation surface that described the old behavior is brought up to date. A second pass reads each renamed environment variable once, states which kill-switch name each surface reads and makes the shim test's unavailable case run every time. A follow-up merges main, re-captures both baselines, deletes the dead tri-daemon drill and points the CI corpus gate at the baseline's archived path.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -48,7 +48,7 @@ Three delivery paths get fixed in this round. The pi extension's dedup decision 
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 
-The push and the merge into main and skilled/v4.0.0.0 wait for the operator's go-ahead.
+The first round is merged and pushed to main and skilled/v4.0.0.0. The follow-up on `worktrees/063-remove-tri-daemon-drill` waits for the operator's go-ahead to push.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -97,5 +97,5 @@ The worktree's own skill-graph database and the advisor daemon it runs. Lane E s
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Revert this packet's single commit. No data migration runs in this round and the renewed baselines revert with it, so the prior state returns as one step.
+Revert this packet's commits, newest first: the follow-up's drill deletion, the corpus-gate path fix (5ba4c78aac), the baseline re-capture (2f5fc94ef2) and the fix (89569a7f81). The merge commit 2dbaa8fd66 stays, because it only brings main in. No data migration runs and the renewed baselines revert with their commits.
 <!-- /ANCHOR:rollback -->

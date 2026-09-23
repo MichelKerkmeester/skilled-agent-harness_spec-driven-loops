@@ -56,7 +56,6 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 | `runtime/tests/skill-advisor-cli-dual-client.vitest.ts` | Automated test | Two callers against one resident daemon |
 | `runtime/tests/skill-advisor-cli-job-semantics.vitest.ts` | Automated test | Rebuild/scan job semantics with measured wall-time under mutation |
 | `runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts` | Automated test | Real-launcher orphan reaping (killed parent, removed worktree, warm adoption) |
-| `runtime/tests/tri-daemon-drill.vitest.ts` | Automated test | Env-gated tri-daemon spawn drill (028 program gate, `SPECKIT_RUN_TRI_DAEMON_DRILL=1`) |
 | `runtime/tests/handlers/advisor-trust-gate.vitest.ts` | Automated test | Daemon-side trust-gate enforcement including the env grant |
 
 ---

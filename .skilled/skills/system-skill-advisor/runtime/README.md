@@ -288,7 +288,7 @@ The runtime defines 9 public commands (4 advisor + 5 skill_graph) in `tools/inde
 | `skill_graph_propagate_enhances` | Tool | Detects and (opt-in) applies missing inbound enhance edges across skills. |
 | `node .skilled/bin/skill-advisor.cjs <command>` | CLI | Daemon-backed front door for all 9 commands (shim guards dist freshness, exit `69`; `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` dev override; `list-tools` answers offline; `--trusted` for maintainer mutations). |
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
-| `npm test` | Command | Runs Vitest and Python test coverage. The tri-daemon CLI drill (`tests/tri-daemon-drill.vitest.ts`) is env-gated: it runs only with `SPECKIT_RUN_TRI_DAEMON_DRILL=1` and skips otherwise. |
+| `npm test` | Command | Runs Vitest and Python test coverage. |
 
 ---
 

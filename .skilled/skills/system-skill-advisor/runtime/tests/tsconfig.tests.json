@@ -12,8 +12,7 @@
     "skill-advisor-cli-parity.vitest.ts",
     "skill-advisor-cli-job-semantics.vitest.ts",
     "skill-advisor-cli-dual-client.vitest.ts",
-    "skill-advisor-launcher-orphan-reaping.vitest.ts",
-    "tri-daemon-drill.vitest.ts"
+    "skill-advisor-launcher-orphan-reaping.vitest.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }
