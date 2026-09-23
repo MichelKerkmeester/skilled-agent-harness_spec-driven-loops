@@ -1,0 +1,12 @@
+The diff shows my edit removed exactly the one `"run"` line; the `siblings` edge block change is pre-existing uncommitted work already in the working tree (untouched by me — I only edited the `key_topics` lines). All four checks pass.
+
+PI_HANDBACK
+status: done
+summary: Removed the bare "run" key topic from cli-jev's derived key_topics while leaving every other key topic, trigger phrase, intent signal, and the siblings edge block untouched. The file still parses as JSON and passes skill-graph validation. Note: git diff --stat also shows a pre-existing uncommitted siblings-edge addition that was in the working tree before this dispatch; it was not touched by this step.
+files_changed: 1 — .skilled/skills/cli-jev/graph-metadata.json (1 line deleted, 0 added by this step)
+verification:
+  git diff --stat -- .skilled/skills/cli-jev/graph-metadata.json → " .skilled/skills/cli-jev/graph-metadata.json | 9 +++++++-- / 1 file changed, 7 insertions(+), 2 deletions(-)" (includes pre-existing siblings block hunk; my step accounts for exactly 1 deletion of the "run" line)
+  node -e 'JSON.parse(...)' → "json ok"
+  rg -n '"run"' .skilled/skills/cli-jev/graph-metadata.json → no match, exit=1 (pass)
+  python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only → "VALIDATION PASSED: all metadata files are valid"
+failures: none

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof",
+  "spec_folder": "system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi gate-3 live proof",
+      "ci cleanup pi proof",
+      "cli-jev run keyword",
+      "scorer baseline ratchet",
+      "six ci surfaces",
+      "merged-tree re-verification",
+      "scorer baseline restore",
+      "compiled route re-mint",
+      "hermes mirror drift",
+      "ci cleanup handover"
+    ],
+    "key_topics": [
+      "gate-3",
+      "live",
+      "proof",
+      "cleanup",
+      "cli-jev",
+      "run",
+      "keyword",
+      "scorer",
+      "baseline",
+      "ratchet",
+      "six",
+      "surfaces"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+      ".skilled/skills/cli-jev/SKILL.md",
+      ".skilled/skills/cli-jev/graph-metadata.json",
+      ".hermes/skills/cli-jev/SKILL.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+      "specs/system-speckit/033-system-speckit-v4/spec.md",
+      "specs/system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery/implementation-summary.md",
+      "evidence/pi-headless-delivery-marker.json",
+      "evidence/pi-tui-select.txt",
+      "evidence/pi-tui-input.txt",
+      "evidence/pi-tui-final.txt",
+      "evidence/pi-tui-state.json",
+      "evidence/pi-tui-warning.log",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-jev/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "pi-headless-delivery-marker.json",
+        "kind": "config",
+        "path": "evidence/pi-headless-delivery-marker.json",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-select.txt",
+        "kind": "file",
+        "path": "evidence/pi-tui-select.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-input.txt",
+        "kind": "file",
+        "path": "evidence/pi-tui-input.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-final.txt",
+        "kind": "file",
+        "path": "evidence/pi-tui-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-state.json",
+        "kind": "config",
+        "path": "evidence/pi-tui-state.json",
+        "source": "derived"
+      },
+      {
+        "name": "pi-tui-warning.log",
+        "kind": "file",
+        "path": "evidence/pi-tui-warning.log",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Proof",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 049 closed the Gate-3 residue but left two loose ends",
+    "created_at": "2026-09-22T13:07:30Z",
+    "last_save_at": "2026-09-23T06:38:50.620Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:53832134fd38270de1fdffcf9e3d7b6097d378fc7db7bfbf8d6bde62d12efeb0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "234da5146832e9a1e68fe3fb7f24db1692cecf7de05a03646c315a7d9c8b40c1",
+      "plan.md": "8643db0996e0ebd0882d071c7616b33a5174cbce7a95eaa146187c4dbc54d2e1",
+      "tasks.md": "3835900d4d3cd5138555fc62b756baa18208f621e31795592d747918fe5e52f4",
+      "implementation-summary.md": "59f812e592536b5b0f7aadb67ab53ba3de08f81be06fd8ec5be78d98230587e5",
+      "handover.md": "12a7ef351364ec72ff80ea14672882b1ca2ffbb449e278c3302af77e4997f11c"
+    },
+    "last_active_at": null
+  }
+}
