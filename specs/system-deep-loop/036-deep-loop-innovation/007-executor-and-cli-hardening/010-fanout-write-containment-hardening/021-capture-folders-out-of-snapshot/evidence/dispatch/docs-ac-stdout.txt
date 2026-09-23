@@ -1,0 +1,9 @@
+The target file is filled and all checks pass. Only `acceptance-criteria.md` was written by me.
+
+PI_HANDBACK
+status: done
+summary: Filled the acceptance criteria closure gate for the capture-folders-out-of-snapshot packet from the evidence pack, with AC-001 to AC-006 mapped to REQ-001 to REQ-006 all Met and the packet closeable. Frontmatter, memory continuity, anchors and template comments are preserved per the shape model.
+files_changed: 1, specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/acceptance-criteria.md
+facts_not_in_evidence: The session_dedup session_id value "scaffold-021-capture-folders-out-of-snapshot" is not in evidence.md. It was taken from the sibling worker's implementation-summary.md in the same packet, which filled the same scaffold placeholder with that value, because leaving "[SESSION-ID]" would fail both the doc rule on bracketed placeholders and the VERIFY placeholder check.
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot --verbose 2>&1 | grep "acceptance-criteria.md" ; echo "placeholder_lines=$?"  -> placeholder_lines=1 (pass, no lines) | grep -c '<!-- /\?ANCHOR:' specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/acceptance-criteria.md  -> 6 | grep -c -e '—' -e ';' specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/acceptance-criteria.md  -> 0
+failures: none

@@ -1,0 +1,9 @@
+All checks pass. The packet folder is untracked as a whole (other workers write sibling docs there), and I wrote only the one target file.
+
+PI_HANDBACK
+status: done
+summary: Filled implementation-summary.md for the capture-folders-out-of-snapshot packet from the verified evidence pack, with the template skeleton, anchors and comments preserved and all placeholders replaced. Every fact comes from evidence/dispatch/evidence.md and the REQ, AC and T ids are used exactly as listed there.
+files_changed: 1, specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/implementation-summary.md
+facts_not_in_evidence: none
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot --verbose 2>&1 | grep "implementation-summary.md" ; echo "placeholder_lines=$?" -> placeholder_lines=1 (pass, no placeholder lines) ; grep -c '<!-- /\?ANCHOR:' specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/implementation-summary.md -> 12 ; grep -c -e '—' -e ';' specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/implementation-summary.md -> 0
+failures: none

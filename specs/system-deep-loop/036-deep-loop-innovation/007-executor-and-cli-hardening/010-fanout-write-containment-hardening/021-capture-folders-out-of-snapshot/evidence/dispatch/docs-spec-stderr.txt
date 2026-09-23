@@ -1,0 +1,2 @@
+[pi-web-access] Dynamic tool activation requires Pi 0.86.1 or newer; web tools remain eagerly available.
+{"timestamp":"2026-09-23T20:05:45.513Z","runtime":"claude","status":"fail_open","freshness":"unavailable","durationMs":2505,"cacheHit":false,"errorCode":"NONZERO_EXIT","errorDetails":"CLI_RETRYABLE_UNAVAILABLE exit 75: CLI fallback timed out"}

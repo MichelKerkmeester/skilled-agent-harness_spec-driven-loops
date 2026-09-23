@@ -1,0 +1,12 @@
+All imports (`mkdirSync`, `writeFileSync`, `existsSync`, `join`) are present and `dirtySorted` is a module-level helper. The test pins the fix-before-it-exists behavior and will fail against current code as required.
+
+PI_HANDBACK
+status: done
+summary: Added one test to the "baseline content capture" describe block pinning that snapshot capture skips capture folders (`containment/baseline`, `containment/quarantine`) left by earlier runs, so a capture never copies a capture. The new test expects only the real dirty path and no `specs` tree in the capture dir, which fails against the current implementation as intended.
+files_changed: 1 — .skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts
+edits_applied: 1
+edits_skipped: none
+verification: grep -c 'a capture never copies a capture' .skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts → 1; git diff --numstat -- .skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts → 17	0	.skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts
+failures: none
+
+PI_HANDBACK

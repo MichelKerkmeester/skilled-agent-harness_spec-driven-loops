@@ -1,0 +1,10 @@
+Both VERIFY checks match expectations: `isContainmentCapturePath` appears 2 times (definition + call site), and the diff is 14 added / 0 deleted lines.
+
+PI_HANDBACK
+status: done
+summary: Added isContainmentCapturePath with CAPTURE_DIRS (containment/baseline and the pass quarantine dir) to write-containment.ts and made snapshotOutOfScopeDirtyPaths skip capture paths. This stops snapshot baseline copies from nesting previous-run captures one level deeper per run.
+files_changed: 1 — .skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts
+edits_applied: 1, 2
+edits_skipped: none
+verification: grep -c 'isContainmentCapturePath' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts → 2; git diff --numstat -- .skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts → 14\t0\t.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts
+failures: none

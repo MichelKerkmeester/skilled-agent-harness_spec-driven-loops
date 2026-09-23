@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 045-fanout-write-containment-hardening |
+| **Spec Folder** | 010-fanout-write-containment-hardening |
 | **Status** | Complete |
 | **Completed** | 2026-09-14 |
 | **Level** | 3 |

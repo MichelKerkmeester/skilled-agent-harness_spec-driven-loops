@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "containment capture snapshot",
+      "capture folders untracked",
+      "worktree remove path limit",
+      "capture never copies capture",
+      "readme verdict baseline parity",
+      "capture never copies a capture",
+      "detection capture guard",
+      "detection baseline capture skip",
+      "readme verdict parity",
+      "capture folders detection",
+      "baseline capture nesting",
+      "capture detection guard"
+    ],
+    "key_topics": [
+      "containment",
+      "capture",
+      "snapshot",
+      "folders",
+      "untracked",
+      "worktree",
+      "remove",
+      "path",
+      "limit",
+      "never",
+      "copies",
+      "readme"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      "specs/cli-orca/002-consolidate-official-orca-skills/review/synthesis-remediation-plan.md",
+      ".github/workflows/dispatch-enforcement-guard.yml",
+      "evidence/dispatch/evidence.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-remediation-plan.md",
+        "kind": "doc",
+        "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/synthesis-remediation-plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-enforcement-guard.yml",
+        "kind": "config",
+        "path": ".github/workflows/dispatch-enforcement-guard.yml",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.md",
+        "kind": "doc",
+        "path": "evidence/dispatch/evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Capture Folders",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Containment Snapshot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fan-out snapshot (snapshotOutOfScopeDirtyPaths in write-containment.ts) copies every untracked path outside a lane into the containment baseline",
+    "created_at": "2026-09-23T18:34:52Z",
+    "last_save_at": "2026-09-23T20:40:10.839Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5489846dfbc8288271f41e60b39f1df25cabf92e768054ca273c365c1c6df401",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b0752f75df42eade21383f1638b4c2cc851299649ec7b079c263af13fae7cb1c",
+      "plan.md": "894096fbb1c4938575b95aed775a3de736279d6b1a473cecf60bbaa6a7c31ebc",
+      "tasks.md": "a9bd4716d17a20de79fde1a68b844f6cf8819707f1561667b5fb74fb48ab66f7",
+      "implementation-summary.md": "fda83a672765a69e876a2f4fccd4bf7e52876f79bc67501b84300e982d97a915"
+    },
+    "last_active_at": null
+  }
+}

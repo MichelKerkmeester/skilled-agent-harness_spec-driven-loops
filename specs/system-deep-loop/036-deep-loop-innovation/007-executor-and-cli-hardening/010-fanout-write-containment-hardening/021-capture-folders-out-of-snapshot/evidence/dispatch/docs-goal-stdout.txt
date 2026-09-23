@@ -1,0 +1,9 @@
+The file is complete. All anchors, comments, quote block, and Operator copy text are intact in order, all template placeholders are filled from evidence.md, and the only remaining bracket token is the `[SESSION-ID]` in `session_dedup` that the dispatch ordered kept unchanged (the read-only shape model retains the same token).
+
+PI_HANDBACK
+status: done
+summary: Filled the child goal for the capture-folders-out-of-snapshot packet with the objective, four frozen decisions, four checked completion criteria, and a progress log covering T001 to T011 with REQ and AC ids and both commits. Every fact comes from evidence.md and no other file was touched.
+files_changed: 1, specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/goal.md
+facts_not_in_evidence: none
+verification: bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot --verbose 2>&1 | grep "goal.md" ; echo "placeholder_lines=$?" -> goal.md:23 [SESSION-ID], placeholder_lines=0 (not the pass value, see failures) ; grep -c '<!-- /\?ANCHOR:' ...goal.md -> 6 ; grep -c -e '—' -e ';' ...goal.md -> 1
+failures: The placeholder scan reports one line, goal.md:23 session_id "[SESSION-ID]", which the dispatch ordered kept unchanged under "Keep session_dedup unchanged" and which the shape model also retains. The single em dash or semicolon count of 1 is the semicolon at goal.md:40 inside the intro quote block, which the dispatch ordered kept exactly. Both are outside my write authority per those orders.
