@@ -122,7 +122,13 @@ function resolveSpecFolderFromText(text) {
   if (typeof text !== 'string') return null;
   const match = SPEC_FOLDER_TEXT_PATTERN.exec(text);
   if (!match) return null;
-  return match[0].replace(/[.,;:'"`)\]]+$/, '') || null;
+  // Replies often cite a document inside the packet as `path:line`, and the evidence check
+  // looks for its files inside the folder, so the line suffix and the file name come off.
+  const folder = match[0]
+    .replace(/[.,;:'"`)\]]+$/, '')
+    .replace(/(?::\d+)+$/, '')
+    .replace(/\/[^/]*\.[A-Za-z][A-Za-z0-9]*$/, '');
+  return folder || null;
 }
 
 // ───────────────────────────────────────────────────────────────────

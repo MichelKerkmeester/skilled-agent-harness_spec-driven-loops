@@ -323,6 +323,16 @@ test('parser separates flags from pathspec across invocation shapes', () => {
   assert.equal(parseGitCommand('echo not-git'), null);
 });
 
+test('a pathspec behind a shell expansion never reads as matching nothing', () => {
+  const dir = repo();
+  for (const cmd of ['git add -- $DIR/seed.txt', 'git add `echo seed.txt`', 'git add ~/seed.txt']) {
+    assert.equal(check('add-pathspec-matches-nothing', cmd, dir), true, cmd);
+  }
+  assert.equal(check('commit-pathspec-empty-change', 'git commit --only $DIR/seed.txt -m x', dir), true);
+  assert.equal(parseGitCommand('git add $DIR/seed.txt').pathsResolved, false);
+  assert.equal(parseGitCommand('git add seed.txt').pathsResolved, true);
+});
+
 test('non-git and unparseable commands never fire a rule', () => {
   const dir = repo();
   for (const id of Object.keys(GIT_CHECKS)) {

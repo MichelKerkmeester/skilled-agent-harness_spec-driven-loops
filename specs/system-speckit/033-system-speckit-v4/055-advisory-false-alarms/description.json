@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/055-advisory-false-alarms",
+  "description": "The sk-git advisory hook warned that `git add -- $A/...` matched no files when the files existed",
+  "keywords": [
+    "sk-git",
+    "advisory",
+    "hook",
+    "warned",
+    "git",
+    "matched",
+    "files",
+    "existed"
+  ],
+  "lastUpdated": "2026-09-23T19:15:44.539Z",
+  "specId": "055",
+  "folderSlug": "advisory-false-alarms",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
