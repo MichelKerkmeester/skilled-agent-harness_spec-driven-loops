@@ -124,6 +124,10 @@ jobs:
       - name: Runtime vitest project
         # The runtime's own suites, which failed in seven files for months while
         # only the CLI project ran here.
+        # os.tmpdir() is /tmp on this runner and the spec gate exempts every write
+        # under /tmp, so temp workspaces go to the runner's own temp dir instead.
+        env:
+          TMPDIR: ${{ runner.temp }}
         run: |
           set -euo pipefail
           cd .opencode/skills/system-spec-kit/runtime

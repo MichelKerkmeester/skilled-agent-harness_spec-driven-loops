@@ -61,10 +61,54 @@ contextType: "implementation"
 - [x] T012 Residue scan and the Luna Max persona guard. Evidence: one residue hit, the PI-017 captured-output cell kept as history; persona counts 26 files and 88 occurrences, identical before and after
 - [x] T013 Suites and typecheck from the final state, compared to T002. Evidence: runtime six suites 391 passed, 1 skipped, exit 0, 248 s (baseline 391/1); typecheck exit 0; council 20/21 and model-benchmark 34/35 with the same two pre-existing failures; extension 77/77
 - [x] T014 `pi --list-models gpt-6` and JSON parse of both pi files. Evidence: `llmgateway/gpt-6-luna`, `openai-codex/gpt-6-luna` and `openai-codex/gpt-6-sol` listed with built-in models intact, rerun after the catalog refresh; both files parse
-- [x] T018 One-turn live smokes ("reply OK"). Evidence: Pi `openai-codex/gpt-6-luna`, `openai-codex/gpt-6-sol` and `llmgateway/gpt-6-luna` ($0.0009) and Hermes `gpt-6-luna` (session `20260923_075309_35eb04`) replied `OK`; Hermes `gpt-6-sol`, Codex and OpenCode were not run because the operator stopped the run; cli-claude-code refused because this session is itself Claude Code
+- [x] T018 One-turn live smokes ("reply OK"). Evidence: Pi `openai-codex/gpt-6-luna`, `openai-codex/gpt-6-sol` and `llmgateway/gpt-6-luna` ($0.0009) and Hermes `gpt-6-luna` (session `20260923_075309_35eb04`) replied `OK`; Codex `gpt-6-luna` (16 s, 18,217 tokens) and OpenCode `openai/gpt-6-luna` (49 s, 19,612 tokens, repository file count unchanged) replied `OK` in a later run; the Codex, OpenCode and Hermes Sol routes were not run, which the operator declined as too expensive; cli-claude-code refused because this session is itself Claude Code
 - [x] T015 Drift-guard wrapper compared to baseline, frontmatter version gate, Hermes mirror check. Evidence: drift rc 1 with the identical 9-error set and 16,569 warnings, the touched-area warning set unchanged; frontmatter gate exit 0 (2,923 ok); mirror drift 6 before, 3 after, 2 on the final recheck, none of them touched skills
 - [x] T016 `validate.sh --strict` on this packet. Evidence: `RESULT: PASSED` after the derived-metadata repair
 <!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Review Remediation
+
+Source: a fresh read-only review of `f2a90d7ac5`, `a6307ce69a` and `80dc0a118d`, with every finding re-checked against `80dc0a118d`. Skill paths are under `.skilled/skills/cli-external-orchestration/`.
+
+- [x] T020 Re-baseline the facts Phase 4 depends on, immediately before editing: `opencode models openai` (the slugs it serves), the `gpt-5.6-terra` ceiling in `~/.codex/models_cache.json`, the current version and newest changelog of cli-opencode, cli-codex and cli-pi, `sync-skills-hermes.cjs --check`, and whether sk-doc/057 is committed. Evidence: OpenCode serves astra, luna and sol with `-fast` variants and no `-pro`; the cache gives Terra `low` to `ultra`; versions 1.4.9.0, 1.9.1.0 and 1.5.7.0 match their newest changelogs; sk-doc/057 is uncommitted in the working tree and absent from `origin/main`
+- [x] T021 cli-opencode `-pro` slugs, per REQ-009 (`cli-opencode/references/cli-reference.md` lines 141, 187 and 244; `cli-opencode/references/providers-and-models.md` lines 62 to 67): fallback option A becomes `openai/gpt-6-sol --variant high`; the `--model` row lists only served slugs; the GPT-6 grid stops presenting `-pro` as selectable, and the slug count follows. Evidence: the grid reads two personas by two speed tiers, four slugs, no Pro tier; `git grep -nE 'gpt-6-(luna|sol)-pro'` over living docs has no hit
+- [x] T022 cli-codex CX-002, per REQ-010 (`cli-codex/manual-testing-playbook/cli-invocation/gpt-5-5-model-lock.md`): the loop becomes `for m in gpt-6-luna gpt-5.6-terra gpt-6-sol`; step 4 reads `/tmp/cli-codex-cx002-gpt-*.txt`; the default sentence names `gpt-5.5` as the skill default and `gpt-6-luna` as the fan-out fallback. Evidence: the loop and step 4 read as specified, and each loop output matches the glob
+- [x] T023 cli-codex playbook default and alternates claims, per REQ-010 (`cli-codex/manual-testing-playbook/manual-testing-playbook.md` lines 72, 213 and 221; `cli-invocation/default-invocation.md`, if it claims `gpt-6-luna` as the default): the alternates list `gpt-6-luna`, `gpt-5.6-terra` and `gpt-6-sol` once each, and the default follows `SKILL.md`. Evidence: `git grep -n 'documented default'` shows only `gpt-5.5` or `medium` defaults; CX-001 was rebuilt from its pre-sweep text
+- [x] T024 cli-codex Terra ceiling to `ultra`, per REQ-011 (`cli-codex/SKILL.md` line 233, `cli-codex/README.md` line 153, `cli-codex/references/providers-and-models.md` lines 53 and 97). Evidence: those four lines and `assets/prompt-templates.md` line 39 say `ultra`; Sol is no longer called the only model reaching it
+- [x] T025 cli-pi PI-017, per REQ-012 (`cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md` line 46): run the scenario's free `sed` and `rg` steps and paste their real output into the captured cell, dated; the expected cell names the ten current `PI_SUPPORTED_MODELS` ids and `PI_DEFAULT_MODEL` `deepseek-v4.1-flash`; the live-smoke part stays marked not re-run. Evidence: the `sed -n '210,251p'` and `rg` steps ran on 2026-09-23; ten ids, `PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4.1-flash'`, and no `auto` model value
+- [x] T026 cli-pi xiaomi section, per REQ-012 (`cli-pi/references/providers-and-models.md`): `mimo-v2.6-pro-ultraspeed` is out of the `.pi/settings.json` picker but dispatches with an explicit `--model`. Evidence: Pi's `docs/settings.md` scopes `enabledModels` to startup selection and cycling; `pi --list-models mimo-v2.6` lists ultraspeed under `xiaomi`
+- [x] T027 `.pi/custom-providers.md` line 88, per REQ-012: the `gpt-6-luna` row states one verification status, dispatch-verified 2026-09-23. Evidence: "Catalog-listed 2026-09-23 and dispatch-verified the same day"; no "not yet dispatch-verified" remains in `.pi` or cli-pi
+- [x] T028 [P] One version bump and one changelog entry each for cli-opencode, cli-codex and cli-pi, per REQ-014. The cli-codex entry corrects the released Terra line: ceiling `ultra`, and `gpt-6-astra` is listed by Codex but stays outside the roster. Evidence: 1.4.10.0, 1.9.2.0 and 1.5.8.0 in `SKILL.md` frontmatter, each with a matching `changelog/v<version>.md`
+- [x] T029 Changelog format, per REQ-015. Blocked on sk-doc/057: if it is committed, confirm this packet's eight changelogs match its compact shape; if not at closure, conform them to the template at `HEAD`. Evidence: 057 is still uncommitted, so all eight follow the `HEAD` compact shape: summary, spec-folder line, What Changed, Files Changed, Upgrade
+- [x] T030 Regenerate the Hermes mirror of every `SKILL.md` Phase 4 edits (at least cli-codex) into a scratch output directory and copy back only those mirrors, per REQ-014. Evidence: each regenerated mirror differed from its committed copy only by the bump and the Terra line; the check fell from 4 drifted to 1, deep-ai-council, untouched
+- [x] T031 This packet, per REQ-013: T018 and the implementation summary record Codex `gpt-6-luna` (`OK`, 16 s, 18,217 tokens) and OpenCode `openai/gpt-6-luna` (`OK`, 49 s, 19,612 tokens); the `-pro` limitation is retired once T021 lands; the picker change is recorded. Evidence: `implementation-summary.md` Verification, Known Limitations and Phase 4 section
+- [x] T032 Verify: re-run each finding's check at the Phase 4 commit (`git grep -nE 'gpt-6-(luna|sol)-pro'` over living cli docs; the CX-002 loop and glob; `git grep -n 'documented default'` in the cli-codex playbook; the Terra ceiling lines; `.pi/custom-providers.md` line 88; the PI-017 row), then the frontmatter version gate, `sync-skills-hermes.cjs --check` and `validate.sh --strict`. Evidence: `implementation-summary.md` Phase 4 rows; gate exit 0; validate `RESULT: PASSED`
+<!-- /ANCHOR:phase-4 -->
+
+---
+
+<!-- ANCHOR:phase-5 -->
+## Phase 5: Xiaomi Provider Removal
+
+Source: the operator, 2026-09-23: MiMo goes through LLM Gateway only on Pi and OpenCode, with the change reaching docs, config and the fan-out runtime. Skill paths are under `.skilled/skills/cli-external-orchestration/`; runtime paths under `.skilled/skills/system-deep-loop/runtime/`.
+
+- [x] T033 Re-baseline before any edit: the six runtime suites (`executor-config`, `fanout-run`, `combo-matrix`, `fanout-merge`, `executor-audit`, the cli-codex stress adapter) and `npm run typecheck`; the current version and newest changelog of cli-pi, cli-opencode and cli-hermes; `.pi/settings.json` `enabledModels`; the `llmgateway` MiMo row in `pi --list-models mimo-v2.6`. Evidence: suites 391 passed, 1 skipped, exit 0, 217 s; typecheck exit 0; cli-pi 1.5.8.0, cli-opencode 1.4.10.0, cli-hermes 1.0.2.0, each matching its newest changelog; `enabledModels` held `xiaomi/mimo-v2.6-pro`; `llmgateway/mimo-v2.6-pro` listed
+- [x] T034 Runtime, per REQ-016 (`lib/deep-loop/executor-config.ts`, `scripts/fanout-run.cjs`): drop `mimo-v2.6-pro-ultraspeed` from `PI_SUPPORTED_MODELS` and `PI_ALLOWED_MODELS`; map `mimo-v2.6-pro` to `llmgateway` in `PI_MODEL_PROVIDERS` and drop the ultraspeed entry; correct the map's stale "GPT-5.6 tunes" comment. Evidence: both copies hold nine ids; the builder refuses ultraspeed and builds `llmgateway/mimo-v2.6-pro`
+- [x] T035 Tests, per REQ-016 (`tests/unit/executor-config.vitest.ts`, `tests/unit/fanout-run.vitest.ts`): the Pi roster expects nine ids, the provider map expects `llmgateway` for MiMo, and the Hermes roster test stops calling Hermes Pi's roster minus ultraspeed. Evidence: T045 suite run
+- [x] T036 cli-pi, per REQ-017 (`SKILL.md`, `references/providers-and-models.md`, `manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md`, `manual-testing-playbook/hook-extension-layer/extension-auto-discovery.md`): no `xiaomi` section or ultraspeed row; the LLM Gateway MiMo row is the fan-out route; PI-017 expects nine ids. Evidence: PI-017's `sed -n '210,252p'` re-captured nine ids on 2026-09-23
+- [x] T037 `.pi`, per REQ-018 (`.pi/settings.json`, `.pi/custom-providers.md`): read the settings first, then drop `xiaomi/mimo-v2.6-pro` from `enabledModels`; the gateway MiMo row describes itself as the fan-out route. Evidence: the file was re-read immediately before the edit; it still parses as JSON
+- [x] T038 cli-opencode, per REQ-017 (`SKILL.md`, `README.md`, `references/cli-reference.md`, `references/providers-and-models.md`, `assets/prompt-templates.md`, `assets/prompt-quality-card.md`, `manual-testing-playbook/multi-provider/variant-levels-comparison.md`): no `xiaomi/` or `xiaomi-token-plan-ams/` route, the provider count follows, and MiMo examples use `llmgateway/mimo-v2.6-pro`. Evidence: the T045 residue search; the new pre-flight check matches `opencode providers list` on this machine
+- [x] T039 cli-hermes, per REQ-019 (`SKILL.md`, `manual-testing-playbook/manual-testing-playbook.md`): the roster is described as the seven gateway ids, without reference to Pi's ultraspeed. Evidence: both lines now call the seven Pi's bare literals
+- [x] T040 Live smoke, per REQ-020: one turn through `pi --model llmgateway/mimo-v2.6-pro` replies `OK`. Evidence: fan-out-built command, exit 0, `OK`, 11 s
+- [x] T041 [P] One version bump and one changelog each for cli-pi, cli-opencode and cli-hermes, per REQ-021. Evidence: 1.5.9.0, 1.4.11.0 and 1.0.3.0 with matching changelogs
+- [x] T042 Changelog shape, per REQ-015: sk-doc/057 is committed, so every changelog this packet created follows its compact shape (summary, spec-folder line, What's New at a Glance, Upgrade). Evidence: 057's `check-changelog-structure.py` passes all eleven with 0 violations
+- [x] T043 Regenerate the Hermes mirrors of cli-pi, cli-opencode and cli-hermes into a scratch directory and copy back only those, per REQ-021. Evidence: each diff held only the bump and the Phase 5 lines; the check drifts only deep-ai-council
+- [x] T044 This packet: the implementation summary records Phase 5, its evidence and what it left adjacent. Evidence: its Phase 5 section, verification rows and limitations 8 to 10
+- [x] T045 Verify: the Xiaomi residue search over cli-pi, cli-opencode, `.pi/settings.json` and the Pi fan-out code; the six suites and typecheck against T033; the frontmatter version gate; `sync-skills-hermes.cjs --check`; `validate.sh --strict`. Evidence: no route-shaped hit; 391 passed, 1 skipped, exit 0 against the same baseline; typecheck exit 0; gate exit 0; validate `RESULT: PASSED`
+<!-- /ANCHOR:phase-5 -->
 
 ---
 
@@ -126,7 +170,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] All acceptance criteria met. Evidence: `acceptance-criteria.md`, eight rows Met
+- [x] CHK-020 [P0] All acceptance criteria met. Evidence: `acceptance-criteria.md`, all twenty-one rows Met
 - [x] CHK-021 [P0] `pi --list-models gpt-6` shows the three new routes. Evidence: T014
 - [x] CHK-022 [P1] Luna Max persona counts unchanged. Evidence: T012
 - [x] CHK-023 [P1] Negative Cursor inputs still rejected. Evidence: `executor-config.vitest.ts` asserts `isCursorModelAllowed('gpt-6-sol-high-fast')` is false and passes in T013
@@ -162,8 +206,8 @@ contextType: "implementation"
 ## Documentation
 
 - [x] CHK-040 [P1] Spec, plan and tasks synchronized. Evidence: `validate.sh --strict` PASSED
-- [x] CHK-041 [P1] Verification claims attached to renamed ids restated honestly. Evidence: T007 and the cli-opencode Pro-slug caveat
-- [x] CHK-042 [P2] Changelogs written for every bumped skill. Evidence: T010
+- [x] CHK-041 [P1] Verification claims attached to renamed ids restated honestly. Evidence: T007, and Phase 4's T021, which replaced the Pro-slug caveat with a grid of served slugs
+- [x] CHK-042 [P2] Changelogs written for every bumped skill. Evidence: T010 and T028
 <!-- /ANCHOR:docs -->
 
 ---
@@ -186,7 +230,7 @@ contextType: "implementation"
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-23
+**Verification Date**: 2026-09-23, for all five phases.
 <!-- /ANCHOR:summary -->
 
 ---

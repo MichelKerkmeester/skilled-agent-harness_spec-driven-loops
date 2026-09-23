@@ -150,7 +150,7 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 |---|---|
 | `gpt-5.5` | `xhigh` |
 | `gpt-6-luna` | `max` |
-| `gpt-5.6-terra` | `max` |
+| `gpt-5.6-terra` | `ultra` |
 | `gpt-6-sol` | `ultra` |
 
 The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch with `--model` when a GPT-6 or GPT-5.6 Terra model fits the task better, for example `gpt-6-luna max` for implementation or `gpt-6-sol ultra` for verification.

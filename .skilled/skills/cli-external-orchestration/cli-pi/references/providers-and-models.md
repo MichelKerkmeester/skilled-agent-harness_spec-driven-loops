@@ -6,7 +6,7 @@ trigger_phrases:
   - "which model for pi dispatch"
   - "pi thinking reasoning effort"
   - "pi has no default model"
-  - "pi openai-codex opencode-go minimax xiaomi"
+  - "pi openai-codex opencode-go minimax llmgateway"
   - "pi passthrough model selection"
 importance_tier: normal
 contextType: implementation
@@ -63,15 +63,6 @@ MiniMax Direct API passthrough.
 |----------|-------|
 | `MiniMax-M3` | — |
 
-### xiaomi
-
-MiMo passthrough; `-ultraspeed` is the low-latency tier. Both ids are native to Pi's catalog, so `.pi/models.json` carries no `xiaomi` block.
-
-| Model id                   | Notes            |
-| ----------------------------| ------------------|
-| `mimo-v2.6-pro`            | —                |
-| `mimo-v2.6-pro-ultraspeed` | Low-latency tier |
-
 ### opencode-go
 
 OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--model opencode-go/<id>` — the enforced deep-loop fan-out route for both models below.
@@ -105,21 +96,21 @@ Model-id gotcha, and it is the **inverse of cline-pass above**: LLM Gateway take
 
 Credential: same `${VAR}` rule as cline-pass — `${LLMGATEWAY_API_KEY}`, never opencode's `{env:...}`. Export it in `~/.zshenv` so dispatched shells inherit it. pi does not read opencode's auth store, even though both hold a key for this same account.
 
-Effort policy: the four ladders differ, so there is no single tier for this provider — pass `--thinking` explicitly. Pi's global `defaultThinkingLevel` is `xhigh`. GLM-5.3-Flash has a real `xhigh` above `high`, DeepSeek folds `xhigh` into `high`, MiMo v2.6 Pro exposes `none`, `low`, `medium`, and `high` only, and GPT-6 Luna runs `low` through `max`. The MiMo and GPT-6 Luna routes are direct-dispatch only. The bare `mimo-v2.6-pro` fan-out literal remains mapped to `xiaomi`.
+Effort policy: the four ladders differ, so there is no single tier for this provider — pass `--thinking` explicitly. Pi's global `defaultThinkingLevel` is `xhigh`. GLM-5.3-Flash has a real `xhigh` above `high`, DeepSeek folds `xhigh` into `high`, MiMo v2.6 Pro exposes `none`, `low`, `medium`, and `high` only, and GPT-6 Luna runs `low` through `max`. The GPT-6 Luna route is direct-dispatch only; the MiMo route carries the bare `mimo-v2.6-pro` fan-out literal.
 
-**Mixed reachability, one row at a time.** `glm-5.3-flash` is **fan-out reachable through DevPass** as of 2026-09-05: the bare literal maps to `llmgateway` in `PI_MODEL_PROVIDERS`, so `${provider}/${model}` composes the two-segment `llmgateway/glm-5.3-flash` selector this gateway requires, and the opencode-go route for the same model became direct-dispatch only in exchange. DevPass took the fan-out slot on cost grounds: both bill per token, and DevPass is the cheaper of the two once the credit bonus is applied. The other bare literal here moved to `llmgateway` on 2026-09-07 for the same reason, after opencode-go's monthly window closed mid-program; the opencode-go DeepSeek route became direct-dispatch only in exchange, under the same one-literal-one-provider constraint that keeps the Cline GLM route direct-only. That literal was `deepseek-v4-flash-vision-exp` until 2026-09-10, when the gateway deactivated the id and began answering `410` for it. The bare literal is now `deepseek-v4.1-flash`, which the gateway serves and which accepts images the same way.
+**Mixed reachability, one row at a time.** `glm-5.3-flash` is **fan-out reachable through DevPass** as of 2026-09-05: the bare literal maps to `llmgateway` in `PI_MODEL_PROVIDERS`, so `${provider}/${model}` composes the two-segment `llmgateway/glm-5.3-flash` selector this gateway requires, and the opencode-go route for the same model became direct-dispatch only in exchange. DevPass took the fan-out slot on cost grounds: both bill per token, and DevPass is the cheaper of the two once the credit bonus is applied. The other bare literal here moved to `llmgateway` on 2026-09-07 for the same reason, after opencode-go's monthly window closed mid-program; the opencode-go DeepSeek route became direct-dispatch only in exchange, under the same one-literal-one-provider constraint that keeps the Cline GLM route direct-only. That literal was `deepseek-v4-flash-vision-exp` until 2026-09-10, when the gateway deactivated the id and began answering `410` for it. The bare literal is now `deepseek-v4.1-flash`, which the gateway serves and which accepts images the same way. `mimo-v2.6-pro` followed on 2026-09-23, when the `xiaomi` provider left this roster so that MiMo is reached through LLM Gateway only; the gateway serves no ultraspeed tier, so `mimo-v2.6-pro-ultraspeed` left the roster with it.
 
 | Model id | Notes |
 |----------|-------|
 | `llmgateway/deepseek-v4.1-flash` | DeepSeek V4.1 Flash via DevPass — reasoning **and images**, billed per token at normal API list rates, like every DevPass route; the account's 3x credit bonus discounts the bill, it does not make usage free. **This is the deep-loop fan-out route for DeepSeek Flash** (bare literal `deepseek-v4.1-flash`, mapped to `llmgateway` since 2026-09-10); the effort pin in `isFlashMaxPinnedModel` forces `max`, which this route accepts. Context 1.05M, output 384K, $0.15 in and $0.60 out per million tokens with cached reads at $0.003. Live-verified 2026-09-10. **Effort ladder, three real levels plus off.** DeepSeek's thinking-mode guide maps the accepted names onto them: `none` disables thinking, `minimal` and `low` both reach **low**, `medium`, `high` and `xhigh` all reach **high**, and `max` reaches **max**. Sending `high` when you meant `xhigh` changes nothing, and the default when nothing is sent is `high`. This route rejects `ultra`, which DeepSeek's own table lists, and rejects the integer 1-100 form the model card documents, so the names above are the whole surface here. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for. **Since 2026-09-18 the gateway serves this id from a `runware` upstream that refuses the `developer` role**, which pi sends for the system prompt of any reasoning model, so every dispatch failed with `400 "The request was rejected"` while a plain request with a `system` role returned 200. The model entry now carries `"compat": {"supportsDeveloperRole": false}` in both `.pi/models.json` and the global `~/.pi/agent/models.json`, and a dispatch at `--thinking max` is verified again |
 | `llmgateway/glm-5.3-flash` | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route that has both. **This is the deep-loop fan-out route for GLM-5.3-Flash** (bare literal `glm-5.3-flash`, mapped to `llmgateway` since 2026-09-05); the effort pin in `isFlashMaxPinnedModel` forces `max`, a tier this route has. Context 1.05M, output 131K. Dispatch-verified 2026-09-04 at `--thinking max` |
-| `llmgateway/mimo-v2.6-pro` | MiMo-V2.6-Pro via DevPass; reasoning and image-capable, with `none`/`low`/`medium`/`high` variants, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out, $0.0036 cached read per million tokens. Catalog-listed 2026-09-22. Direct-dispatch only. The bare `mimo-v2.6-pro` literal still maps to the official `xiaomi` route for deep-loop fan-out; a live Pi round-trip remains the availability check |
+| `llmgateway/mimo-v2.6-pro` | MiMo-V2.6-Pro via DevPass; reasoning and image-capable, with `none`/`low`/`medium`/`high` variants, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out, $0.0036 cached read per million tokens. Catalog-listed 2026-09-22. **This is the deep-loop fan-out route for MiMo** (bare literal `mimo-v2.6-pro`, mapped to `llmgateway` since 2026-09-23, when the `xiaomi` provider left the roster). Dispatch-verified the same day: a fan-out-built `pi -p --offline --model llmgateway/mimo-v2.6-pro --thinking high` turn replied `OK` in 11 seconds |
 | `llmgateway/gpt-6-luna` | GPT-6 Luna via DevPass; reasoning and image-capable, efforts `none` through `max` on the gateway, which the `thinkingLevelMap` carries as `low` through `max` with `minimal` folded into `low`. 1.05M context, 128K output, and catalog costs of $0.10 in, $0.50 out, $0.01 cached read and $0.125 cache write per million tokens. Catalog-listed 2026-09-23, listed by `pi --list-models gpt-6` and dispatch-verified the same day by a one-turn smoke that replied `OK` for $0.0009. It is Pi's default model in `.pi/settings.json`, at the global `xhigh`. **Direct-dispatch only:** the bare `gpt-6-luna` literal maps to `openai-codex` in `PI_MODEL_PROVIDERS`, so the deep-loop fan-out reaches Luna through the ChatGPT subscription, not through DevPass |
 
-Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the six authenticated providers above have a confirmed installed catalog.
+Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the five authenticated providers above have a confirmed installed catalog.
 
 **OpenRouter is off this roster, and deliberately still in the fan-out.** Direct dispatch has the
-six providers above. The deep-loop fan-out additionally keeps two OpenRouter literals,
+five providers above. The deep-loop fan-out additionally keeps two OpenRouter literals,
 `deepseek/deepseek-v4-flash-vision-exp` and `z-ai/glm-5.3-flash`, mapped in `PI_MODEL_PROVIDERS`.
 Those are *distinct literals* from the bare `deepseek-v4.1-flash` and `glm-5.3-flash` rows
 above: one literal maps to one provider, so the slash-prefixed pair composes an OpenRouter selector
