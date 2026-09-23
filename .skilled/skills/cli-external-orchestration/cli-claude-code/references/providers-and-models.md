@@ -48,11 +48,11 @@ cli-claude-code is single-provider: **Anthropic**. The model string passed to `-
 |----------|----------|-------------------------|
 | `claude-opus-5-5` | — | Current flagship Opus — deepest reasoning, highest quality; architecture, complex trade-offs, extended thinking (`--effort high`) |
 | `claude-sonnet-5` | — | Current-generation balanced (Claude 5 family) — general tasks, code generation, reviews |
-| `claude-fable-5` | — | Current-generation Claude 5 family dispatch |
+| `claude-fable-5-1` | — | Current-generation Claude 5 family dispatch |
 | `claude-sonnet-4-6` | **Default** | Prior-generation balanced — **current skill default** for most tasks |
 | `claude-haiku-4-5-20251001` | — | Fastest, most cost-effective — classification, formatting, simple queries, batch ops; use only when explicitly requested |
 
-> The default pin is `claude-sonnet-4-6`. `claude-opus-5-5` / `claude-sonnet-5` / `claude-fable-5` are the current Claude generation and are selectable via `--model` where the calling environment supports them — name a current-generation id explicitly when you want it.
+> The default pin is `claude-sonnet-4-6`. `claude-opus-5-5` / `claude-sonnet-5` / `claude-fable-5-1` are the current Claude generation and are selectable via `--model` where the calling environment supports them — name a current-generation id explicitly when you want it.
 
 ---
 

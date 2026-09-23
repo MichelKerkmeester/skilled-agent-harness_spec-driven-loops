@@ -128,7 +128,7 @@ The one exception is an explicit parallel detached request. When the prompt cont
 
 ### Provider Auth Pre-Flight
 
-Before the first dispatch in a session the skill runs `opencode providers list`. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster; restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
+Before the first dispatch in a session the skill checks each provider with `opencode models <provider-id>`. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster; restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
 
 ### Agent Delegation
 

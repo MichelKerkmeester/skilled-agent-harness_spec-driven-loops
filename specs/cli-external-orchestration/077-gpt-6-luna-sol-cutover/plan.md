@@ -117,6 +117,30 @@ The operator asked for MiMo to go through LLM Gateway only on Pi and OpenCode, w
 - **Changelogs.** sk-doc/057 is now committed, so every changelog of this packet, the eight released ones and the three Phase 5 entries, follows its compact shape: summary, spec-folder line, What's New at a Glance, Upgrade.
 
 **Verification:** a residue search for Xiaomi routes, the six runtime suites and typecheck against baseline, the live smoke, the frontmatter version gate, `sync-skills-hermes.cjs --check` and `validate.sh --strict`.
+
+### Recorded follow-ups (tasks.md Phase 6)
+
+The operator asked for all six items Phase 5 left open, with implementation delegated and this session as orchestrator and reviewer. Every item was re-checked on 2026-09-23 before it entered this plan, so each brief carries observed facts, not the Phase 5 notes.
+
+**Who does what.**
+- **Implementation: `gpt-6-luna` at `xhigh` on the `fast` tier through cli-codex.** The command comes from `fanout-run.cjs`'s `buildLineageCommand` for kind `cli-codex` with `--sandbox workspace-write`, `AI_SESSION_CHILD=1` and stdin from `/dev/null`. Each prompt carries the child-dispatch preamble, the resolved agent persona (`code` for tests, `markdown` for docs), the spec folder marked pre-approved, and one brief.
+- **Fallback: MiMo v2.6 Pro at `high` through cli-pi**, built the same way for kind `cli-pi` as `llmgateway/mimo-v2.6-pro`, with the same brief. It fires when a Luna dispatch fails to start, hits a usage limit, or returns work that fails review twice.
+- **Orchestrator and reviewer: this session.** It writes the briefs, runs one dispatch at a time, and reviews every return: the changed paths against the brief's file list, each named line against the literal new text, and the relevant check. It also does the work that is verification or operator config rather than implementation: contract regeneration, Hermes mirrors, live smokes, the home-config edits, the gates and the commit.
+
+**Briefs.** One change per brief, under about 90 lines, with the literal old text and new text at each `file:line`, the file count as the accept condition, and a closing handback block. That shape comes from the operator's standing feedback on CLI dispatch briefs.
+
+**Work units, in dispatch order.**
+1. **D1 cli-opencode pre-flight.** `references/cli-reference.md` lines 173 to 181: each `grep` over `opencode providers list` becomes `opencode models <id> >/dev/null 2>&1`, for `opencode-go`, `minimax-coding-plan`, `minimax` and `llmgateway`. Accept: running the new block here prints `default=1 minimax_token=0 minimax_direct=1 llmgateway=1`.
+2. **D2 deep command sources.** Four `-presentation.txt` files: the sample id `xiaomi-token-plan-ams/mimo-v2.5-pro` becomes `llmgateway/mimo-v2.6-pro`, and "required for MiniMax/Xiaomi token-plan models" becomes "required for MiniMax token-plan models". This session then runs `compile-command-contracts.cjs --command deep/<name> --write` for research, review and ai-council, and diffs each contract.
+3. **D3 council docs and profiles.** deep-ai-council `SKILL.md` lines 20 and 357, `seat-diversity-patterns.md` lines 138 and 240, and the three `capability-m3-vs-mimo*.json` profiles, where `xiaomi-token-plan-ams/mimo-v2.5-pro` becomes `llmgateway/mimo-v2.5-pro`.
+4. **D4 cli-codex.** CX-002 step 1 greps `references/providers-and-models.md` §2 instead of a table `cli-reference.md` lacks, and its pass cell, triage cell and source row follow. `providers-and-models.md` line 137 and CX-002 line 55 locate profiles as `$CODEX_HOME/<name>.config.toml` files, as `SKILL.md` §3 does. The `luna-impl` and `sol-verify` rows stay: those profile files exist, and planning's claim that they did not was wrong. They pin the retired 5.6 ids, which is home config and needs its own operator yes.
+5. **D5 cli-claude-code.** `claude-fable-5` becomes `claude-fable-5-1` in `SKILL.md` line 235, `references/providers-and-models.md` lines 51 and 55 and `references/cli-reference.md` line 206. The OpenCode provider count at `references/claude-tools.md` line 252 is replaced by the five providers cli-opencode names and a link to its roster, so the two copies cannot drift again.
+6. **D6 tests.** `orchestrate-session-cli.vitest.ts` lines 338 and 340 and `remediation.vitest.ts` line 298 expect `deepseek-v4.1-flash` on `llmgateway`, which is what the Pi roster and `buildLineageCommand` produce now.
+7. **D7 bumps and changelogs** for each skill Phase 6 edits, in the sk-doc/057 shape, after reading each skill's current version.
+
+**This session's own steps.** The OpenCode MiMo smoke and PI-017's live step come right after D1. If PI-017's command cannot reach a model as written, a D8 brief corrects it. The operator kept the Sol smokes skipped. The operator approved the three home-config edits, and each file is copied to a dated backup first. After D7 come the Hermes mirrors, regenerated into a scratch directory with only the touched skills copied back.
+
+**Verification:** the Xiaomi route search over the Phase 6 paths; the council and remediation suites in full; the six runtime suites and typecheck against a fresh baseline; the contract diffs; the frontmatter version gate; 057's changelog checker; `sync-skills-hermes.cjs --check`; `validate.sh --strict`. Then one commit, pushed to `main` and `skilled/v4.0.0.0`.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -162,7 +186,7 @@ The full deep-loop `npm test` hangs on the lineage integration tests that dispat
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup: baselines, inventory) ──► Phase 2 (Rename + hand edits) ──► Phase 3 (Verify) ──► Phase 4 (Review remediation) ──► Phase 5 (Xiaomi removal)
+Phase 1 (Setup: baselines, inventory) ──► Phase 2 (Rename + hand edits) ──► Phase 3 (Verify) ──► Phase 4 (Review remediation) ──► Phase 5 (Xiaomi removal) ──► Phase 6 (Recorded follow-ups)
 ```
 
 | Phase | Depends On | Blocks |
@@ -171,7 +195,8 @@ Phase 1 (Setup: baselines, inventory) ──► Phase 2 (Rename + hand edits) �
 | Implementation | Setup | Verify |
 | Verify | Implementation | Review remediation |
 | Review remediation | Verify, the fresh review; T029 also waits on sk-doc/057 or falls back to `HEAD` | Xiaomi removal |
-| Xiaomi removal | Review remediation, the operator's scope answer, and the Phase 3 suite baseline | Closure |
+| Xiaomi removal | Review remediation, the operator's scope answer, and the Phase 3 suite baseline | Recorded follow-ups |
+| Recorded follow-ups | Xiaomi removal, the operator's §10 answers, and a fresh suite baseline | Closure |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -186,6 +211,7 @@ Phase 1 (Setup: baselines, inventory) ──► Phase 2 (Rename + hand edits) �
 | Verification | Med | About 10 minutes of suite runtime |
 | Review remediation | Low | About a dozen doc edits, three bumps, no suite runtime |
 | Xiaomi removal | Med | Two runtime files, two test files, about fifteen docs, three bumps, one suite run and one live smoke |
+| Recorded follow-ups | Med | Seven or eight Luna dispatches of a few minutes each, three contract regenerations, two to five live smokes, four suite runs; about two hours of wall time |
 | **Total** | | **One session** |
 <!-- /ANCHOR:effort -->
 
@@ -205,6 +231,7 @@ Phase 1 (Setup: baselines, inventory) ──► Phase 2 (Rename + hand edits) �
 4. Rerun the Phase 3 suites to confirm the baseline counts return.
 5. Phase 4 is doc-only and lands as its own commit, so `git revert` of that commit undoes it without touching Phases 1 to 3.
 6. Phase 5 lands as its own commit. `git revert` of it restores the `xiaomi` routes, the ultraspeed id and the picker entry; rerun the six runtime suites afterwards to confirm the baseline.
+7. Phase 6 lands as its own commit, so `git revert` undoes its repository edits. The home-config edits are outside git: copy each dated backup (`<file>.bak-<date>`) back over its file.
 
 ### Data Reversal
 - **Has data migrations?** No

@@ -38,7 +38,7 @@ PRE-BOUND SETUP ANSWERS:
   grader: noop  # noop (default) | mock | llm
   max_iterations: 5  # positive integer; default 5
   executor: cli-opencode  # required only when grader = llm; one of cli-opencode | cli-claude-code | cli-cursor | cli-devin | cli-pi (`KNOWN_EXECUTORS` in `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs`). No native and no cli-codex on this path.
-  model: gpt-5.5  # required only when grader = llm; model id for the chosen executor (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
+  model: gpt-5.5  # required only when grader = llm; model id for the chosen executor (cli-opencode e.g. llmgateway/mimo-v2.6-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
 ```
 
 Rules: see `auto-mode-contract.md` §2 (unspecified fields fall back to default, marker fields take precedence over $ARGUMENTS flags, unknown fields warn, malformed lines parse-error). When `grader != llm`, any `executor`/`model` marker fields are ignored with a warning.

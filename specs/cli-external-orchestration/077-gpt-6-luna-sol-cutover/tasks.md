@@ -112,12 +112,39 @@ Source: the operator, 2026-09-23: MiMo goes through LLM Gateway only on Pi and O
 
 ---
 
+<!-- ANCHOR:phase-6 -->
+## Phase 6: Recorded Follow-ups
+
+Source: the operator, 2026-09-23, asking for all six items Phase 5 left open, implemented by `gpt-6-luna` at `xhigh` (fast tier) through cli-codex with MiMo v2.6 Pro at `high` through cli-pi as fallback, and reviewed by this session. `[D#]` marks a delegated dispatch; the plan's Phase 6 section gives each brief's content. Skill paths are as in `spec.md` §3.
+
+- [x] T046 Re-baseline before any edit: the six runtime suites and `npm run typecheck`; the council `orchestrate-session-cli` suite (20/21 when planned, run from `system-deep-loop/deep-ai-council`) and the model-benchmark `remediation` suite (34/35 when planned, run from `deep-improvement/scripts`); each Phase 6 skill's current version and newest changelog; `sync-skills-hermes.cjs --check`. Evidence: six suites 391 passed, 1 skipped, exit 0, 202 s; typecheck exit 0; council 20/21 and remediation 34/35, each failing only on the `deepseek-v4-flash` fixture; `sweep-isolation` 15/15; versions cli-opencode 1.4.11.0, cli-codex 1.9.2.0, cli-claude-code 1.5.1.0, cli-pi 1.5.9.0, deep-ai-council 2.4.1.0, deep-improvement 1.17.1.0, system-deep-loop 3.0.0.0, each matching its newest changelog; mirrors `PASS: 70 Hermes skill copies in sync`; the three compiled contracts regenerate byte-identical from their current sources
+- [x] T047 [D1] cli-opencode pre-flight, per REQ-022 (`cli-opencode/references/cli-reference.md` lines 173 to 181). Accept: the new block prints `default=1 minimax_token=0 minimax_direct=1 llmgateway=1` on this machine. Evidence: Luna, 422 s, exit 0; the diff matches the brief in `cli-reference.md` and `README.md` and touches nothing else; the block extracted from the edited doc and run here printed `default=1 minimax_token=0 minimax_direct=1 llmgateway=1`, exit 0
+- [x] T048 Live smokes, per REQ-027: OpenCode `llmgateway/mimo-v2.6-pro` for one turn, and PI-017's live step as written. If PI-017 cannot reach a model as written, a D8 brief corrects its command. Evidence: the fan-out-built `opencode run --model llmgateway/mimo-v2.6-pro --format json ... --variant high` replied `OK`, exit 0, 21 s, 23,318 tokens, $0.0102, working tree unchanged; the fan-out refuses `read-only` for OpenCode, so it ran as `danger-full-access` with a no-tools prompt, as the Luna smoke did. PI-017 as written, with an empty `PI_CODING_AGENT_DIR`, stopped with `No API key found for the selected model`, exit 1, in 3 s. The read-only command the fan-out builds for the default, `pi -p --offline --model llmgateway/deepseek-v4.1-flash --tools read,grep,find,ls --no-extensions --no-skills --no-prompt-templates`, exited 0 in 17 s and listed only `read`, `grep`, `find` and `ls`; D8 moves PI-017 to it
+- [x] T062 [D8] cli-pi PI-017, per REQ-027 (`cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md`): the live step runs the read-only default-model command on the operator's agent directory, and the evidence cell records the T048 run. Accept: no `PI_CODING_AGENT_DIR=<tmp>` left in the scenario, and the table row keeps its field count. Evidence: the first Luna run (151 s) changed nothing, because its whole-line patch did not match a substring inside the long table row, and it stopped cleanly. The retry, told to replace substrings in place, took 171 s: 1 file, +4 -4; each of the six replacements occurs once; no `PI_CODING_AGENT_DIR=<tmp>` left; row 46 keeps 13 fields
+- [x] T049 [D2] Deep command presentation sources, per REQ-023 (`.skilled/commands/deep/assets/deep-{research,review,ai-council,model-benchmark}-presentation.txt`). Evidence: Luna, 220 s, exit 0; 4 files, 6 lines changed, all as briefed; `grep -i xiaomi` over the four sources finds nothing; one `llmgateway/mimo-v2.6-pro` in each
+- [x] T050 Regenerate the three compiled contracts, per REQ-023 (`compile-command-contracts.cjs --command deep/{research,review,ai-council} --write`), after D3 and D7: all three digest the hub `SKILL.md`, and the ai-council contract also digests deep-ai-council's `SKILL.md` and seat-diversity doc. Accept: each contract diff holds only the Phase 6 source lines, their version bumps and the digests. Evidence: `--write` for all three; the word diff across them holds 3 `xiaomi-token-plan-ams/mimo-v2.5-pro` → `llmgateway/mimo-v2.6-pro` swaps and 2 `MiniMax/Xiaomi` → `MiniMax` swaps, every other changed line is a digest (research +5 -5, review +5 -5, ai-council +6 -6); `manifest.jsonl` is unchanged
+- [x] T051 [D3] deep-ai-council docs and the three MiMo benchmark profiles, per REQ-023. Evidence: Luna, 171 s, exit 0; 5 files, +7 -7, every line as briefed; no `xiaomi` in the five files; the profiles parse and `sweep-isolation` passes 15/15
+- [x] T052 [D4] cli-codex CX-002 and the profile location, per REQ-026: CX-002 and the playbook index read the roster from `providers-and-models.md` §2, and profiles are located as `$CODEX_HOME/<name>.config.toml` files. The `luna-impl` and `sol-verify` rows stay, because both profile files exist. Evidence: Luna, 288 s, exit 0; 3 files, +7 -7; each of the ten briefed replacements occurs once; CX-002's row keeps 12 fields; no "Supported Models" left in cli-codex's living docs; one `[profiles.<name>]` mention remains, the §4 effort note
+- [x] T053 [D5] cli-claude-code Fable id and OpenCode provider line, per REQ-026 and REQ-023. Evidence: Luna, 204 s, exit 0; 4 files, +5 -5, each as briefed; no `claude-fable-5` or `Fable 5` left in the living docs; no `xiaomi` in `claude-tools.md`; the comparison row keeps 5 fields; the roster link resolves
+- [x] T054 [D6] The council and remediation tests, per REQ-024. Accept: 21/21 and 35/35. Evidence: D6 (Luna, 216 s) changed the three briefed literals; remediation passed 35/35, and council reached 20/21 on a second, masked failure: the test expected no stdin write for any seat but Hermes, while the runner writes whatever input the shared builder returns and the cli-pi builder returns `input: ""` to close stdin. The cli-pi case never reached that line before, because it failed first on the retired model. D6b generalized the assertion to `typeof built.input === "string" ? [built.input] : []`. Its first run was killed by the 30-minute dispatch timeout after the Mac slept, with no edit made; the retry under `caffeinate` (602 s) made the one-line edit. Rerun here: council 21/21, remediation 35/35
+- [x] T055 The Sol smokes. Evidence: the operator kept them skipped on 2026-09-23 (`spec.md` §10), so the three Sol routes stay operator-run and nothing was dispatched
+- [x] T056 Home config, approved by the operator on 2026-09-23, per REQ-028: copy `~/.codex/config.toml`, `~/.pi/agent/auth.json` and `~/.local/share/opencode/auth.json` to dated backups, then set the Codex model to `gpt-6-luna` and remove each `xiaomi` key. Accept: each file parses and `jq 'keys'` lists no `xiaomi`. Evidence: Pi's store backed up to `auth.json.bak-20260923` (byte-identical), then `xiaomi` removed under Pi's own `proper-lockfile` lock, because Pi re-reads the file under that lock and merges per provider; keys now `cline-pass`, `deepseek`, `minimax`, `openai-codex`, `opencode-go`, `openrouter`, mode 600. OpenCode's store backed up the same way, then `opencode auth logout xiaomi` (exit 0, "Logout successful"); keys now `cline-pass`, `deepseek`, `llmgateway`, `minimax`, `openai`, `opencode-go`, `openrouter`; `opencode models xiaomi` exits 1. `~/.codex/config.toml` backed up the same way while no `codex exec` ran, then `model = "gpt-5.6-luna"` became `model = "gpt-6-luna"`, the only diff line; `max` and `fast` kept; `codex features list` still loads the config, exit 0. Final recheck: all three backups exist; `~/.codex/config.toml` line 2 reads `model = "gpt-6-luna"`; on the final recheck neither store lists `xiaomi`, although a Pi session and `opencode acp` were still running
+- [x] T057 [D7] One version bump and one changelog each for the skills Phase 6 edits, per REQ-025, after re-reading each current version. Evidence: D7a (485 s) and D7b (362 s): cli-opencode 1.4.12.0, cli-codex 1.9.3.0, cli-claude-code 1.5.2.0, cli-pi 1.5.10.0, deep-ai-council 2.4.2.0, deep-improvement 1.17.2.0, system-deep-loop 3.0.1.0, one changelog each; each `SKILL.md` edit D7 made is the version line alone; 057's checker `RESULT: PASSED (0 violations)` on all seven
+- [x] T058 Regenerate the Hermes mirrors of the touched skills into a scratch directory and copy back only those, per REQ-025. Evidence: `--check` drifted exactly the seven bumped skills and nothing stale; the scratch regeneration's diffs held only the bumps and the Phase 6 lines; only the seven `SKILL.md` mirrors copied back; `PASS: 70 Hermes skill copies in sync`
+- [ ] T063 Regenerate the trigger index and its retrieval fixtures from an export of the tree being pushed, as Phase 5 did in `682a192b8d`, because the bumped versions and new changelogs change the corpus
+- [x] T059 Review record, per SC-007: for every dispatch, the brief, the paths it changed compared with the paths it named, the checks run and the verdict, kept in `implementation-summary.md`. Evidence: `implementation-summary.md` How It Was Delivered carries one row per dispatch, including both retries
+- [x] T060 Verify: the Xiaomi route search over the Phase 6 paths; the council and remediation suites; the six runtime suites and typecheck against T046; the frontmatter version gate; 057's `check-changelog-structure.py`; `sync-skills-hermes.cjs --check`; `validate.sh --strict`. Evidence: no `xiaomi` hit in the Phase 6 skill paths outside changelogs, the deep command assets or the seven mirrors, with a positive control that finds the gateway MiMo id; council 21/21, remediation 35/35, `sweep-isolation` 15/15; six suites 391 passed, 1 skipped, exit 0 (228 s), equal to T046; typecheck exit 0; gate exit 0; 057's checker 0 violations on all seven; `PASS: 70 Hermes skill copies in sync`; `validate.sh --strict` `RESULT: PASSED`, 0 errors, 0 warnings
+- [ ] T061 Commit Phase 6 as one revertable commit by pathspec and push it to `main` and `skilled/v4.0.0.0`
+<!-- /ANCHOR:phase-6 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
+- [ ] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] Every acceptance criterion `Met`
+- [ ] Every acceptance criterion `Met`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -170,7 +197,7 @@ Source: the operator, 2026-09-23: MiMo goes through LLM Gateway only on Pi and O
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] All acceptance criteria met. Evidence: `acceptance-criteria.md`, all twenty-one rows Met
+- [ ] CHK-020 [P0] All acceptance criteria met. Evidence so far: `acceptance-criteria.md` AC-001 to AC-021 Met; AC-022 to AC-028, Phase 6, Unmet
 - [x] CHK-021 [P0] `pi --list-models gpt-6` shows the three new routes. Evidence: T014
 - [x] CHK-022 [P1] Luna Max persona counts unchanged. Evidence: T012
 - [x] CHK-023 [P1] Negative Cursor inputs still rejected. Evidence: `executor-config.vitest.ts` asserts `isCursorModelAllowed('gpt-6-sol-high-fast')` is false and passes in T013
@@ -230,7 +257,7 @@ Source: the operator, 2026-09-23: MiMo goes through LLM Gateway only on Pi and O
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-23, for all five phases.
+**Verification Date**: 2026-09-23, for Phases 1 to 5. Phase 6 is planned and not yet verified.
 <!-- /ANCHOR:summary -->
 
 ---

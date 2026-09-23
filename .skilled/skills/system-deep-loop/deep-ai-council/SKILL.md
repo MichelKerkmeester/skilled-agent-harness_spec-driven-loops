@@ -2,7 +2,7 @@
 name: deep-ai-council
 description: "AI Council: multi-seat planning, artifact persistence, convergence checks, packet-local ai-council outputs."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 2.4.1.0
+version: 2.4.2.0
 ---
 
 <!-- Keywords: deep-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
@@ -17,7 +17,7 @@ Planning-only council deliberation with diverse seats, convergence checks, and p
 
 ## 1. OPERATIONAL MODES — IN-CLI (PRIMARY) + EXTERNAL-CLI (SECONDARY)
 
-The council is **primarily an IN-CLI capability**. When invoked from inside an active runtime (OpenCode, Claude Code, OpenCode), the council deliberates using THAT runtime's own models and reasoning lenses as seats. No external dispatch is required for the common case — the active CLI's own model bench (e.g. Opus + Sonnet + Haiku on Claude Code; gpt-5.5 + gpt-5.5-pro + gpt-5.5-xhigh on OpenCode; direct DeepSeek, Xiaomi, and OpenAI provider models on OpenCode) supplies the seat diversity for a round.
+The council is **primarily an IN-CLI capability**. When invoked from inside an active runtime (OpenCode, Claude Code, OpenCode), the council deliberates using THAT runtime's own models and reasoning lenses as seats. No external dispatch is required for the common case — the active CLI's own model bench (e.g. Opus + Sonnet + Haiku on Claude Code; gpt-5.5 + gpt-5.5-pro + gpt-5.5-xhigh on OpenCode; direct DeepSeek and OpenAI provider models plus MiMo through LLM Gateway on OpenCode) supplies the seat diversity for a round.
 
 **External-CLI dispatch is a SECONDARY, optional mode** for cases where a different AI vantage adds value (e.g. DeepSeek/Kimi via cli-opencode from inside another runtime). The council resolver accepts `native`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, and the `opencode` alias; it rejects `cli-codex` and `cli-claude-code`. External dispatch is invoked via the supported `cli-*` skill family, never directly from this skill.
 
@@ -354,7 +354,7 @@ node .skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-com
    - The graph is rebuilt from packet-local `ai-council/**` artifacts and must not replace append-only council state.
 
 6. **ALWAYS run a single CLI per round (one-CLI-per-round invariant)**
-   - All seats within ONE deliberation round MUST be dispatched through the SAME supported CLI executor (for example all seats from `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`). Seat diversity WITHIN a round comes from different models/reasoning lenses on the same CLI (e.g. `deepseek/deepseek-v4-pro --variant high` + `xiaomi/mimo-v2.6-pro`).
+   - All seats within ONE deliberation round MUST be dispatched through the SAME supported CLI executor (for example all seats from `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`). Seat diversity WITHIN a round comes from different models/reasoning lenses on the same CLI (e.g. `deepseek/deepseek-v4-pro --variant high` + `llmgateway/mimo-v2.6-pro`).
    - Mixing executors within one round (e.g. one seat via OpenCode + one seat via OpenCode + one seat via Claude Code) is FORBIDDEN — it conflates orchestration boundaries, complicates rollback, and produces noisy convergence signals because per-CLI guarantees (sandbox, runtime, tool surface, output schema) differ.
    - When MULTIPLE CLIs are appropriate for a deliberation, each additional CLI is a NEW DEDICATED ROUND with its own state event, its own seats, and its own convergence pass — never folded into the same round.
 

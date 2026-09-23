@@ -203,7 +203,7 @@ claude "Start by reviewing the auth module"
 |-------|----|-----------|------|----------|
 | **Opus 5.5** | `claude-opus-5-5` | Current flagship — deepest reasoning, highest quality; the deep-reasoning override, paired with `--effort high` | Highest | Architecture decisions, complex trade-offs, extended thinking |
 | **Sonnet 5** | `claude-sonnet-5` | Current balanced (Claude 5 family) | Medium | General tasks, code generation, reviews |
-| **Fable 5** | `claude-fable-5` | Claude 5 family | — | Current-generation Claude 5 dispatch |
+| **Fable 5.1** | `claude-fable-5-1` | Claude 5 family | — | Current-generation Claude 5 dispatch |
 | **Sonnet 4.6** | `claude-sonnet-4-6` | Prior-generation balanced | Medium | General tasks, code generation, reviews — **current skill default** |
 | **Haiku 4.5** | `claude-haiku-4-5-20251001` | Fastest, most cost-effective | Lowest | Classification, formatting, simple queries, batch ops |
 

@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "6380d6d9dc4f7b2be5abdd9b441c3974f8931fa3b2629b50004e7af99b2f73e1",
+      "sha256": "238acd1c3050eeff8127efd79d1eb13f16704954bfb375b967c304cdccab1ab1",
       "section": "full"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "c28bbebb73d2e89b88f458932cd4cab7926c42d6d4866325a4cf3e3d6b1e12bb",
+      "sha256": "357e168254b189749836231e0e269e9811c06ba990929ca73ee5d702b19b521f",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "4cc4a94d485ae48d04827448128dae40feff16bb47c67fe8fd7c10b59a69355e"
+  "compiledBodyDigest": "4830c5eb50c6f7ab6abf2cdc7bdecf45ac771c53fcfc42d5e808245ce08a2d5d"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -186,7 +186,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
   executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-hermes (`EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
-  executor_model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
+  executor_model: ""  # optional executor-specific model id (cli-opencode e.g. llmgateway/mimo-v2.6-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional reasoning effort
   executor_service_tier: ""  # optional service tier
@@ -312,7 +312,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-research agent with Opus.
-     B) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax/Xiaomi token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
+     B) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
      C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
      D) cli-codex — requires the `codex` binary on PATH. Supports `--reasoning-effort` and `--service-tier`.
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.

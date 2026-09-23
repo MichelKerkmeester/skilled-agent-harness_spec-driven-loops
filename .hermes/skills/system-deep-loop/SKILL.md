@@ -1,6 +1,6 @@
 ---
 name: system-deep-loop
-version: 3.0.0.0
+version: 3.0.1.0
 description: "Routes research, review, AI Council, and improvement modes through registry-selected packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---

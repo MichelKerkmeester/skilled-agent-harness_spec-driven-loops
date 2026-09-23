@@ -216,7 +216,7 @@ Verify `gpt-5.5` is the documented default and that explicit `--model gpt-5.5` p
 
 Prompt: `Confirm the cli-codex gpt-5.5 default pin works and the documented Luna/Terra/Sol roster is callable.`
 
-Expected signals: The `gpt-5.5` dispatch exits 0 with `--model gpt-5.5` explicitly passed and returns coherent prose. Each Luna/Terra/Sol smoke dispatch exits 0 and returns a reply. The skill reference (`references/cli-reference.md` §5) lists all four models with per-model reasoning-effort ceilings.
+Expected signals: The `gpt-5.5` dispatch exits 0 with `--model gpt-5.5` explicitly passed and returns coherent prose. Each Luna/Terra/Sol smoke dispatch exits 0 and returns a reply. The skill reference (`references/providers-and-models.md` §2) lists all four models with per-model reasoning-effort ceilings.
 
 Desired user-visible outcome: Confirmation that the documented default works and every documented roster model is genuinely callable — no phantom model IDs in the docs.
 

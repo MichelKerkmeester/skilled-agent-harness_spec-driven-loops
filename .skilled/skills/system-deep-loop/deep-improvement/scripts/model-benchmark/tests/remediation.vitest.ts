@@ -295,7 +295,7 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
     // tier by operator policy, so `--thinking max` rides along even though the
     // lane passed no variant.
     expect(spec.args).toEqual([
-      '-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', 'prompt',
+      '-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', 'prompt',
     ]);
   });
 

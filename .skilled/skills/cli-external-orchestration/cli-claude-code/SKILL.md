@@ -2,7 +2,7 @@
 name: cli-claude-code
 description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.1.0
+version: 1.5.2.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -232,7 +232,7 @@ claude -p "<prompt>" \
 
 ### Model Selection
 
-`claude-sonnet-4-6` is the skill default. Reach for `claude-opus-5-5` (deep reasoning / complex architecture — pair with `--effort high`) or `claude-haiku-4-5-20251001` (fast, lightweight; only when explicitly requested); the current-generation `claude-sonnet-5` / `claude-fable-5` IDs are also selectable by name where the environment supports them. Full roster with tiers, cost, defaults, and the `--effort` mapping → [references/providers-and-models.md](references/providers-and-models.md).
+`claude-sonnet-4-6` is the skill default. Reach for `claude-opus-5-5` (deep reasoning / complex architecture — pair with `--effort high`) or `claude-haiku-4-5-20251001` (fast, lightweight; only when explicitly requested); the current-generation `claude-sonnet-5` / `claude-fable-5-1` IDs are also selectable by name where the environment supports them. Full roster with tiers, cost, defaults, and the `--effort` mapping → [references/providers-and-models.md](references/providers-and-models.md).
 
 ### Claude Code Agent Delegation
 
