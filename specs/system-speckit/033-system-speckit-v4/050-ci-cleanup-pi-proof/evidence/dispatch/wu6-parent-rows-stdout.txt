@@ -1,0 +1,10 @@
+Both lines are correctly placed directly after their anchor rows. Verification passes.
+
+PI_HANDBACK
+status: done
+summary: Registered phase 50 in the parent spec's phase table and phase-transition map with exactly two inserted lines and no other changes. Both rows sit directly after their specified anchor rows and the diff shows 2 insertions, 0 deletions.
+files_changed: 1 — specs/system-speckit/033-system-speckit-v4/spec.md
+verification:
+  git diff --numstat -- specs/system-speckit/033-system-speckit-v4/spec.md → 2	0
+  grep -c "050-ci-cleanup-pi-proof" specs/system-speckit/033-system-speckit-v4/spec.md → 2
+failures: none

@@ -119,9 +119,9 @@
       "gold": "system-deep-loop",
       "promptHash": "sha256:f9690ab10a2661b33c183c9981d910a50aa40f5f675e9559f7c9fcf4379b05e5",
       "localTop": "none",
-      "nativeTop": "cli-jev",
-      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
-      "approvedAt": "2026-09-22"
+      "nativeTop": "system-deep-loop",
+      "reason": "reviewed 2026-09-23: cli-jev dropped its bare run keyword, so native now reaches the gold system-deep-loop while local still abstains",
+      "approvedAt": "2026-09-23"
     },
     {
       "id": "rr-iter2-032",
@@ -593,9 +593,9 @@
       "gold": "system-deep-loop",
       "promptHash": "sha256:fdbff56355f1f78508a39aca210cc297428bbc93c7803c31d45b13a9310ee4f2",
       "localTop": "memory:save",
-      "nativeTop": "cli-jev",
-      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
-      "approvedAt": "2026-09-22"
+      "nativeTop": "system-spec-kit",
+      "reason": "reviewed 2026-09-23: cli-jev dropped its bare run keyword, so native moved from cli-jev to system-spec-kit. Local fires memory:save and gold is system-deep-loop, which neither side reaches",
+      "approvedAt": "2026-09-23"
     },
     {
       "id": "rr-iter3-165",
@@ -603,10 +603,10 @@
       "prompt": "Continue the overnight research run with one more packet-local iteration.",
       "gold": "system-deep-loop",
       "promptHash": "sha256:5576f5ea921dd63d46f93b988a6b31b973957d9805326aac406fabf100b925cb",
-      "localTop": "cli-jev",
+      "localTop": "none",
       "nativeTop": "system-deep-loop",
-      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
-      "approvedAt": "2026-09-22"
+      "reason": "reviewed 2026-09-23: cli-jev dropped its bare run keyword, so local moved from cli-jev to abstaining while native still reaches the gold system-deep-loop",
+      "approvedAt": "2026-09-23"
     },
     {
       "id": "rr-iter3-167",
@@ -733,9 +733,9 @@
       "gold": "deep-research",
       "promptHash": "sha256:ce0726a9d0f59b7774681ff7bab2c326215e15c45396e8cdb3e19082f8b99e53",
       "localTop": "none",
-      "nativeTop": "cli-jev",
-      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
-      "approvedAt": "2026-09-22"
+      "nativeTop": "sk-design",
+      "reason": "reviewed 2026-09-23: cli-jev dropped its bare run keyword, so native moved from cli-jev to sk-design. Local abstains and gold is deep-research, which neither side reaches",
+      "approvedAt": "2026-09-23"
     },
     {
       "id": "rr-iter2-020",

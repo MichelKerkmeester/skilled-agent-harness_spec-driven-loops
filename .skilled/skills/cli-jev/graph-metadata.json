@@ -11,7 +11,7 @@
       {
         "target": "cli-external-orchestration",
         "weight": 0.4,
-        "context": "both skills route work to external CLI surfaces; cli-jev serves typed-judgment prompts over the cli-usage transport while this hub dispatches the broader executor family"
+        "context": "Jev supplies typed judgment transport beside the external executor dispatch hub"
       }
     ],
     "conflicts_with": [],
@@ -53,7 +53,6 @@
       "noul",
       "choice",
       "score",
-      "run",
       "mcp"
     ],
     "intent_signals": [

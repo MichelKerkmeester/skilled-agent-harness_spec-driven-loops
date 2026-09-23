@@ -21,12 +21,12 @@
       },
       {
         "target": "cli-external-orchestration",
-        "weight": 0.3,
+        "weight": 0.4,
         "context": "the sibling CLI lane dispatches external executors, while cli-orca talks to the Orca runtime itself"
       },
       {
         "target": "mcp-tooling",
-        "weight": 0.3,
+        "weight": 0.4,
         "context": "the transport hub previously carried this subject as a mode, and the two now defer to each other by vocabulary"
       }
     ],
