@@ -44,7 +44,7 @@ No per-model overrides today — Haiku is an unverified stub.
 | User says | Resolve to |
 |-----------|------------|
 | (nothing specified) | `--model claude-sonnet-4-6` — balanced performance/cost default |
-| "Use Opus extended thinking" | `--model claude-opus-4-6 --effort high` — deep reasoning |
+| "Use Opus extended thinking" | `--model claude-opus-5-5 --effort high` — deep reasoning |
 | "Fast / cheap" | `--model claude-haiku-4-5-20251001` — unverified stub; use only when explicitly requested |
 
 ---

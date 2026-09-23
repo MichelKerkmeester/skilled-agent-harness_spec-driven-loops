@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `FAST-008` and confirm t
 
 - Objective: confirm `--fast` enables Fast Mode at session start on a target model.
 - Real user request: `Start Pi already in fast mode on Luna.`
-- Prompt: `bash: pi --model openai-codex/gpt-5.6-luna --fast`
+- Prompt: `bash: pi --model openai-codex/gpt-6-luna --fast`
 - Expected execution process: launch with the flag and observe the initial session state without running any command.
 - Expected signals: at session start the `fast` indicator is visible and the persisted state reads enabled. The startup path shows the indicator only, not a chat notification, since notifications fire on the `/fast` command.
 - Desired user-visible outcome: the session opens already in Fast Mode.
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `FAST-008` and confirm t
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FAST-008 | Fast startup flag | Verify `--fast` enables at startup on LUNA | `bash: pi --model openai-codex/gpt-5.6-luna --fast` | 1. `bash: pi --model openai-codex/gpt-5.6-luna --fast` -> 2. observe the session without input | Step 1: Pi starts on LUNA; Step 2: the `fast` indicator is visible and no `/fast` command was needed | Indicator screenshot at startup and the state file content | PASS if the indicator is visible at startup and `.pi/pi-fast-mode-w-subagent-support-config.json` reads `enabled: true`; FAIL if the indicator is absent or the state is `false` | 1. Confirm the launch used `--fast`. 2. Confirm the active model is `openai-codex/gpt-5.6-luna`, so the indicator is expected. 3. Read the state file and confirm `enabled` is `true`. |
+| FAST-008 | Fast startup flag | Verify `--fast` enables at startup on LUNA | `bash: pi --model openai-codex/gpt-6-luna --fast` | 1. `bash: pi --model openai-codex/gpt-6-luna --fast` -> 2. observe the session without input | Step 1: Pi starts on LUNA; Step 2: the `fast` indicator is visible and no `/fast` command was needed | Indicator screenshot at startup and the state file content | PASS if the indicator is visible at startup and `.pi/pi-fast-mode-w-subagent-support-config.json` reads `enabled: true`; FAIL if the indicator is absent or the state is `false` | 1. Confirm the launch used `--fast`. 2. Confirm the active model is `openai-codex/gpt-6-luna`, so the indicator is expected. 3. Read the state file and confirm `enabled` is `true`. |
 
 ### Optional Supplemental Checks
 

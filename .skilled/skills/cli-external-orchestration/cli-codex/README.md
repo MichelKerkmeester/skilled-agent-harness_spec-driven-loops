@@ -144,16 +144,16 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 | `review` | Code review and security audit | `--sandbox read-only` |
 | `ai-council` | Multi-strategy planning | `--sandbox read-only` |
 
-`gpt-5.5` at `medium` is the skill default. Four GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-5.6-luna`, `gpt-5.6-terra` and `gpt-5.6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max` and `ultra`. There is no `--reasoning-effort` flag. Each model has an effort ceiling:
+`gpt-5.5` at `medium` is the skill default. Four GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-6-luna`, `gpt-5.6-terra` and `gpt-6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max` and `ultra`. There is no `--reasoning-effort` flag. Each model has an effort ceiling:
 
 | Model | Effort ceiling |
 |---|---|
 | `gpt-5.5` | `xhigh` |
-| `gpt-5.6-luna` | `max` |
+| `gpt-6-luna` | `max` |
 | `gpt-5.6-terra` | `max` |
-| `gpt-5.6-sol` | `ultra` |
+| `gpt-6-sol` | `ultra` |
 
-The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch with `--model` when a GPT-5.6 model fits the task better, for example `gpt-5.6-luna max` for implementation or `gpt-5.6-sol ultra` for verification.
+The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch with `--model` when a GPT-6 or GPT-5.6 Terra model fits the task better, for example `gpt-6-luna max` for implementation or `gpt-6-sol ultra` for verification.
 
 ### Auth Pre-Flight And Memory Handback
 

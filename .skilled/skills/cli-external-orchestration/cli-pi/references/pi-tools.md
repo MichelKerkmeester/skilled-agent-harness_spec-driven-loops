@@ -153,7 +153,7 @@ Devin's built-in surface is materially larger (file ops, shell, fetch, `run_suba
 | Native prompt templates | Not applicable (host runtime) | `.pi/prompts/*.md` | First-party, shared only with `cli-codex` |
 | Subagent delegation | Task tool (native) | None; Pi dropped the feature | Delegation from Pi goes back out through a CLI dispatch |
 | MCP integration | Native | `pi-mcp-extension` package | Third-party for Pi; stdio transport confirmed (phase 007) |
-| Multi-provider models | Single model per session | Multiple providers via custom providers | Default `google`; GPT-5.6 via `openai-codex` custom provider (operator-confirmed roster) |
+| Multi-provider models | Single model per session | Multiple providers via custom providers | Default `google`; GPT-6 via `openai-codex` custom provider (operator-confirmed roster) |
 | Reasoning-effort control | Session-level | `--thinking off..max` | Standalone flag, not folded into model id |
 
 ---
@@ -172,7 +172,7 @@ Devin's built-in surface is materially larger (file ops, shell, fetch, `run_suba
 
 ### When to Reach for a Custom-Provider Model
 
-- The task specifically needs a GPT-5.6 tier (`gpt-5.6-luna`/`sol`) — dispatch through the `openai-codex` custom provider per the authenticated roster in `cli-reference.md` §13
+- The task specifically needs a GPT-6 tier (`gpt-6-luna`/`sol`) — dispatch through the `openai-codex` custom provider per the authenticated roster in `cli-reference.md` §13
 - Default to `google` (the confirmed default provider) when the task has no model-specific requirement
 
 **Avoid for:** Any model or provider not named in the authenticated roster — Pi's own documentation-only provider breadth is not a license to guess at an unconfirmed model id.

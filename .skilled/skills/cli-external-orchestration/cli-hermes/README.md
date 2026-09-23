@@ -34,7 +34,7 @@ Two traits separate Hermes from the six sibling runtimes, and both shape how you
 |---|---|
 | Hub position | Seventh `cli-external-orchestration` mode |
 | Deep-loop position | Eighth `ExecutorKind`, dispatched by `buildHermesLineageCommand` |
-| Model roster | Closed at seven ids: `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-5.6-luna`, `gpt-5.6-sol`, `minimax-m3`, `mimo-v2.6-pro` and `qwen3.8-max` |
+| Model roster | Closed at seven ids: `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-6-luna`, `gpt-6-sol`, `minimax-m3`, `mimo-v2.6-pro` and `qwen3.8-max` |
 | Provider | `llmgateway`, an operator-declared custom provider block |
 | Agents directory | None. Personas are inlined into the prompt |
 | Repo surface | `.hermes/skills/`, `.hermes/plugins/repo-guards/`, `.hermes/prompts/`, `.hermes/SYNC.md` |

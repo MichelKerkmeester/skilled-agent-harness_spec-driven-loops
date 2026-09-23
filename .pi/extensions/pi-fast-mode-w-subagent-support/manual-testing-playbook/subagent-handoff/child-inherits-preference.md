@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `FAST-010` and confirm t
 
 - Objective: confirm a child process inherits Fast Mode through the handoff variable.
 - Real user request: `When I have fast mode on and Pi spawns a subagent, the subagent should also be in fast mode.`
-- Prompt: `bash: PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 pi --model openai-codex/gpt-5.6-luna`
+- Prompt: `bash: PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 pi --model openai-codex/gpt-6-luna`
 - Expected execution process: set the child's persisted state to off, then launch a child with the handoff variable set to `1`, which mimics what a parent in Fast Mode exports.
 - Expected signals: the child session starts with Fast Mode enabled and the `fast` indicator visible on LUNA, despite the persisted state being off.
 - Desired user-visible outcome: the child follows the parent's preference rather than its own stale state.
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `FAST-010` and confirm t
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FAST-010 | Child inherits the preference | Verify the child inherits Fast Mode via the handoff variable | `bash: PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 pi --model openai-codex/gpt-5.6-luna` | 1. `bash: pi --model openai-codex/gpt-5.6-luna` -> 2. `pi> /fast off` -> 3. `key: Ctrl+C` -> 4. `bash: PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 pi --model openai-codex/gpt-5.6-luna` | Step 2: persisted state set to disabled; Step 4: child starts with the `fast` indicator visible, overriding the disabled persisted state | The persisted state before the child launch, the environment variable used, and the child indicator | PASS if the child starts enabled with the indicator when `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1`; FAIL if it starts disabled | 1. Confirm the persisted state was `false` after Step 2. 2. Confirm the variable was exported for the child launch. 3. Relaunch without the variable and confirm the child then starts disabled, proving the difference came from the handoff. |
+| FAST-010 | Child inherits the preference | Verify the child inherits Fast Mode via the handoff variable | `bash: PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 pi --model openai-codex/gpt-6-luna` | 1. `bash: pi --model openai-codex/gpt-6-luna` -> 2. `pi> /fast off` -> 3. `key: Ctrl+C` -> 4. `bash: PI_FAST_MODE_W_SUBAGENT_SUPPORT=1 pi --model openai-codex/gpt-6-luna` | Step 2: persisted state set to disabled; Step 4: child starts with the `fast` indicator visible, overriding the disabled persisted state | The persisted state before the child launch, the environment variable used, and the child indicator | PASS if the child starts enabled with the indicator when `PI_FAST_MODE_W_SUBAGENT_SUPPORT=1`; FAIL if it starts disabled | 1. Confirm the persisted state was `false` after Step 2. 2. Confirm the variable was exported for the child launch. 3. Relaunch without the variable and confirm the child then starts disabled, proving the difference came from the handoff. |
 
 ### Optional Supplemental Checks
 

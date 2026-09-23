@@ -149,14 +149,14 @@ describe('executor-config', () => {
     });
   });
 
-  it('accepts ultra as the highest reasoning effort tier (codex gpt-5.6-sol ceiling)', () => {
+  it('accepts ultra as the highest reasoning effort tier (codex gpt-6-sol ceiling)', () => {
     expect(parseExecutorConfig({
       kind: 'cli-codex',
-      model: 'gpt-5.6-sol',
+      model: 'gpt-6-sol',
       reasoningEffort: 'ultra',
     })).toMatchObject({
       kind: 'cli-codex',
-      model: 'gpt-5.6-sol',
+      model: 'gpt-6-sol',
       reasoningEffort: 'ultra',
     });
   });
@@ -812,7 +812,7 @@ describe('expandLineages', () => {
   it('expands models by branches by replicas in stable model-first order', () => {
     const manifest = {
       models: [
-        { id: 'sol', kind: 'cli-codex' as const, model: 'gpt-5.6-sol', liveTools: { webSearch: 'live' as const } },
+        { id: 'sol', kind: 'cli-codex' as const, model: 'gpt-6-sol', liveTools: { webSearch: 'live' as const } },
         { id: 'glm', kind: 'cli-opencode' as const, model: 'zai-coding-plan/glm-5.2', liveTools: { webSearch: 'live' as const } },
       ],
       branches: [{ id: 'discover' }, { id: 'challenge' }, { id: 'synthesize' }],
@@ -935,7 +935,7 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
       expect(isCursorModelAllowed(model)).toBe(true);
     }
     expect(isCursorModelAllowed('auto')).toBe(false);
-    expect(isCursorModelAllowed('gpt-5.6-sol-high-fast')).toBe(false);
+    expect(isCursorModelAllowed('gpt-6-sol-high-fast')).toBe(false);
     expect(isCursorModelAllowed('claude-opus-4-8-xhigh')).toBe(false);
     expect(isCursorModelAllowed('gemini-3.8-flash-low')).toBe(false);
     expect(isCursorModelAllowed('gemini-3.7-flash-high')).toBe(false);
@@ -948,8 +948,8 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'deepseek-v4.1-flash',
       'deepseek/deepseek-v4-flash-vision-exp',
       'glm-5.3-flash',
-      'gpt-5.6-luna',
-      'gpt-5.6-sol',
+      'gpt-6-luna',
+      'gpt-6-sol',
       'mimo-v2.6-pro',
       'mimo-v2.6-pro-ultraspeed',
       'minimax-m3',
@@ -985,7 +985,7 @@ describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
   // HTTP 400 "Requested model ... not supported" for it on this route.
   it('matches the Pi roster minus the one id the gateway refuses for Hermes', () => {
     expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual([
-      'deepseek-v4.1-flash', 'glm-5.3-flash', 'gpt-5.6-luna', 'gpt-5.6-sol',
+      'deepseek-v4.1-flash', 'glm-5.3-flash', 'gpt-6-luna', 'gpt-6-sol',
       'mimo-v2.6-pro', 'minimax-m3', 'qwen3.8-max',
     ]);
     expect(HERMES_SUPPORTED_MODELS).not.toContain('mimo-v2.6-pro-ultraspeed');
@@ -1012,7 +1012,7 @@ describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
     for (const model of ['deepseek-v4.1-flash', 'glm-5.3-flash']) {
       expect(pinReasoningEffortForModel(model, 'high')).toBe('max');
     }
-    for (const model of ['gpt-5.6-luna', 'gpt-5.6-sol', 'minimax-m3', 'mimo-v2.6-pro', 'qwen3.8-max']) {
+    for (const model of ['gpt-6-luna', 'gpt-6-sol', 'minimax-m3', 'mimo-v2.6-pro', 'qwen3.8-max']) {
       expect(pinReasoningEffortForModel(model, 'high')).toBe('high');
     }
   });
@@ -1036,7 +1036,7 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash-max')).toBe(false);
     expect(isFlashMaxPinnedModel('qwen3.8-max')).toBe(false);
     expect(isFlashMaxPinnedModel('google/gemini-3.8-flash')).toBe(false);
-    expect(isFlashMaxPinnedModel('openai/gpt-5.6-luna')).toBe(false);
+    expect(isFlashMaxPinnedModel('openai/gpt-6-luna')).toBe(false);
   });
 
   it('pins each Flash family to its own top tier and leaves other models unchanged', () => {

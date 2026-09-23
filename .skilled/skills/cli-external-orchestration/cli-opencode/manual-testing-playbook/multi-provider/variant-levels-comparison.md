@@ -50,13 +50,13 @@ Operators run the exact prompt and command sequence for `CO-012` and confirm the
 
 ### Optional Supplemental Checks
 
-For full-spectrum validation on a provider whose full range is verified, run the low/medium/high/xhigh sweep against `openai/gpt-5.6-sol` and confirm byte counts increase monotonically. This catches regressions where two adjacent variants produce identical responses (effectively halving the operator's tuning surface). Per-provider variant ranges to exercise (sourced from `references/cli-reference.md` §5, current as of this skill's v1.3.17 baseline — re-verify against a live `opencode run --help` before relying on an unlisted value):
+For full-spectrum validation on a provider whose full range is verified, run the low/medium/high/xhigh sweep against `openai/gpt-6-sol` and confirm byte counts increase monotonically. This catches regressions where two adjacent variants produce identical responses (effectively halving the operator's tuning surface). Per-provider variant ranges to exercise (sourced from `references/cli-reference.md` §5, current as of this skill's v1.3.17 baseline — re-verify against a live `opencode run --help` before relying on an unlisted value):
 
 | Model | Variant range to sweep |
 |---|---|
 | `opencode-go/deepseek-v4-flash` | reasoning model pinned to `--variant max` (its top thinking tier) by policy — now the skill's operative default; treat any other value as unverified until smoke-tested |
 | `xiaomi-token-plan-ams/mimo-v2.6-pro` | `--variant` maps to MiMo reasoning effort (`low`/`medium`/`high`); always use `high` per the MiMo effort map |
-| `openai/gpt-5.6-sol` | `--variant` maps to OpenAI reasoning effort: `none`/`low`/`medium`/`high`/`xhigh` |
+| `openai/gpt-6-sol` | `--variant` maps to OpenAI reasoning effort: `none`/`low`/`medium`/`high`/`xhigh` |
 
 
 ---

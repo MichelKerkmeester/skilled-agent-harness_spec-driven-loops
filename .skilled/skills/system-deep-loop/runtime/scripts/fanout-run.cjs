@@ -2285,7 +2285,7 @@ const CURSOR_ALLOWED_MODELS = new Set([
 // operator choosing a model, while these keep an existing fan-out reproducible. A test
 // asserts each one matches the fallback its packet documents, so the two cannot drift
 // apart again in silence.
-const CODEX_DEFAULT_MODEL = 'gpt-5.6-luna';
+const CODEX_DEFAULT_MODEL = 'gpt-6-luna';
 const CLAUDE_DEFAULT_MODEL = 'claude-opus-4-8';
 const OPENCODE_DEFAULT_MODEL = 'opencode-go/deepseek-v4.1-flash';
 const CURSOR_DEFAULT_MODEL = 'composer-2.5';
@@ -2300,8 +2300,8 @@ const PI_ALLOWED_MODELS = new Set([
   // returns 410 for it, so the bare literal here is the 4.1 line.
   'deepseek-v4.1-flash',
   'minimax-m3',
-  'gpt-5.6-luna',
-  'gpt-5.6-sol',
+  'gpt-6-luna',
+  'gpt-6-sol',
   'mimo-v2.6-pro',
   'mimo-v2.6-pro-ultraspeed',
   'qwen3.8-max',
@@ -2521,8 +2521,8 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 const PI_MODEL_PROVIDERS = new Map([
   ['deepseek-v4.1-flash', 'llmgateway'],
   ['minimax-m3', 'minimax'],
-  ['gpt-5.6-luna', 'openai-codex'],
-  ['gpt-5.6-sol', 'openai-codex'],
+  ['gpt-6-luna', 'openai-codex'],
+  ['gpt-6-sol', 'openai-codex'],
   ['mimo-v2.6-pro', 'xiaomi'],
   ['mimo-v2.6-pro-ultraspeed', 'xiaomi'],
   ['qwen3.8-max', 'opencode-go'],
@@ -2621,8 +2621,8 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
 const HERMES_ALLOWED_MODELS = new Set([
   'deepseek-v4.1-flash',
   'minimax-m3',
-  'gpt-5.6-luna',
-  'gpt-5.6-sol',
+  'gpt-6-luna',
+  'gpt-6-sol',
   'mimo-v2.6-pro',
   'qwen3.8-max',
   'glm-5.3-flash',
