@@ -332,11 +332,36 @@ describe('walkCorpus', () => {
     const { files, skipped } = walkCorpus(root, { roots: CORPUS_ROOTS });
 
     expect(files).toEqual(['specs/track/a.md']);
-    expect(skipped).toContainEqual({ path: 'specs/mirror', reason: 'symlinked directory' });
+    expect(skipped).toContainEqual({ path: 'specs/mirror', reason: 'symlink not followed' });
     expect(skipped).toContainEqual({
       path: 'specs/copy.md',
       reason: 'duplicate of an already-indexed document',
     });
+  });
+
+  // The manifest is committed, so the same tracked tree must produce the same
+  // skip list whether or not the checkout has been installed and built.
+  it('records the same skipped paths before and after an install and a build', () => {
+    const root = makeTempDir('speckit-trigger-build-state-');
+    writeDoc(root, 'specs/track/a.md', frontmatter(['a']));
+    writeDoc(root, 'specs/track/scratch/tmp.md', frontmatter(['scratch']));
+    writeDoc(root, '.skilled/skills/demo/SKILL.md', frontmatter(['skill']));
+    fs.mkdirSync(path.join(root, '.skilled/hooks'), { recursive: true });
+    fs.symlinkSync('../skills/demo/dist/hook.js', path.join(root, '.skilled/hooks/hook.js'), 'file');
+    fs.symlinkSync('dist/lib', path.join(root, '.skilled/skills/demo/lib'), 'dir');
+    const fresh = walkCorpus(root, { roots: CORPUS_ROOTS }).skipped;
+
+    writeDoc(root, '.skilled/skills/demo/dist/hook.js', '// built');
+    writeDoc(root, '.skilled/skills/demo/dist/lib/index.js', '// built');
+    writeDoc(root, '.skilled/skills/demo/node_modules/pkg/readme.md', frontmatter(['vendored']));
+    const built = walkCorpus(root, { roots: CORPUS_ROOTS }).skipped;
+
+    expect(built).toEqual(fresh);
+    expect(fresh).toEqual(expect.arrayContaining([
+      { path: '.skilled/hooks/hook.js', reason: 'symlink not followed' },
+      { path: '.skilled/skills/demo/lib', reason: 'symlink not followed' },
+      { path: 'specs/track/scratch', reason: 'excluded directory' },
+    ]));
   });
 
   it('folds the .opencode/specs alias onto its canonical path', () => {

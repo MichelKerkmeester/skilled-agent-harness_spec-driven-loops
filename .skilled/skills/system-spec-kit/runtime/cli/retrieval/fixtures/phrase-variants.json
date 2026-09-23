@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d0800c1c0c0f0adf517f81916e8eec655df72de126c46fddc76c05640b671771",
+  "manifestHash": "8e594600ff97bcaf49eb9144dcdd30bb4426a4dca7224e1dcf1b3aaa4b1de7e8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21975,6 +21975,15 @@
     ],
     "corpus identity repair migration": [
       "corpus identity repair migration"
+    ],
+    "corpus manifest build state": [
+      "corpus manifest build state"
+    ],
+    "corpus manifest build state plan": [
+      "corpus manifest build state plan"
+    ],
+    "corpus manifest build state tasks": [
+      "corpus manifest build state tasks"
     ],
     "corpus manifest consumer inventory": [
       "corpus-manifest consumer inventory"
@@ -45417,6 +45426,9 @@
     ],
     "machine cutover completion criteria": [
       "machine cutover completion criteria"
+    ],
+    "machine dependent manifest": [
+      "machine dependent manifest"
     ],
     "machine friendly cli json": [
       "machine friendly cli json"
@@ -77028,6 +77040,9 @@
     "symlink attack temp file fix": [
       "symlink attack temp file fix"
     ],
+    "symlink not followed": [
+      "symlink not followed"
+    ],
     "symlink refusal scope": [
       "symlink refusal scope"
     ],
@@ -79448,6 +79463,9 @@
     ],
     "trigger index runtime data move": [
       "trigger index runtime data move"
+    ],
+    "trigger index skipped paths": [
+      "trigger index skipped paths"
     ],
     "trigger index stale warning": [
       "trigger index stale warning"
@@ -81965,6 +81983,15 @@
     ],
     "walindexreadhdr sigbus": [
       "walIndexReadHdr sigbus"
+    ],
+    "walker skip list": [
+      "walker skip list"
+    ],
+    "walker skip list evidence": [
+      "walker skip list evidence"
+    ],
+    "walker skip list tasks": [
+      "walker skip list tasks"
     ],
     "warm cli fallback envelope": [
       "warm CLI fallback envelope"
