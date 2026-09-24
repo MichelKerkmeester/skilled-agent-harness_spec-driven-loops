@@ -71,7 +71,8 @@ runtime/cli/spec/
 +-- test-validation.sh           # Legacy wrapper for scripts/tests/test-validation.sh
 +-- is-phase-parent.ts           # Phase-parent detection and manifest health check
 +-- sync-phase-map-status.ts     # Sync a phase parent's map table; report completion mismatches
-+-- sweep-track-roots.mjs        # Report track-root children_ids versus on-disk packets
++-- sweep-track-roots.mjs        # Report track roots whose children_ids differ from their packets
++-- refresh-track-roots.mjs      # Rewrite a track root's children_ids to its packets on disk
 +-- repair-derived.cjs           # Repair packet facts derivable from disk; refuses authored facts
 +-- README-repair-derived.md     # Derived-vs-authored repair boundary reference
 `-- README.md
@@ -81,7 +82,7 @@ Allowed direction:
 
 - `spec/*.sh` may source shared shell helpers from `../lib/`.
 - `validate.sh` may call validation rules from `../rules/`.
-- Lifecycle scripts may read templates and write only the selected spec folder.
+- Lifecycle scripts may read templates and write only the selected spec folder. The one exception is `create.sh --track`, which also lists the new packet in that track root's `children_ids`.
 
 Disallowed direction:
 
@@ -95,7 +96,7 @@ Disallowed direction:
 
 | File | Role |
 |---|---|
-| `create.sh` | Creates new Level 1 or phase folders from templates. |
+| `create.sh` | Creates new Level 1 or phase folders from templates. With `--track`, it then runs `refresh-track-roots.mjs` for that track, so the new packet is listed in the track root's `children_ids` from the start. |
 | `upgrade-level.sh` | Adds missing files and sections for higher documentation levels. |
 | `validate.sh` | Runs the modular validation gate used before completion claims. `resolve_orchestrator()` checks the compiled runtime dist freshness (via `../lib/dist-freshness.cjs`) before trusting it and fails closed with exit `3` when stale: no silent auto-rebuild. |
 | `check-completion.sh` | Confirms the `tasks.md` checklist evidence and, when present, acceptance-criteria closure before a task is called complete; the completion sentinel reads its JSON. |
@@ -105,7 +106,8 @@ Disallowed direction:
 | `archive.sh` | Moves completed or stale spec folders into the archive area. |
 | `is-phase-parent.ts` | Detects whether a folder is a phase parent and reports child-count manifest health. |
 | `sync-phase-map-status.ts` | Corrects a phase parent's map table rows that disagree with their child's status, warns about a blank line that cuts the table short and about children with no row, and reports descendant `completion_pct` mismatches without writing them, since readers take completion from the implementation summary. |
-| `sweep-track-roots.mjs` | Sweeps every track root (spec-less directory under `specs/` carrying a `graph-metadata.json`) and reports its declared `children_ids` count against the on-disk numbered child directories, one line per track; exits non-zero when they differ. Per-packet validation never reaches a track root, the orchestrator exempts track directories from packet rules, so this sweep is the only check that sees their drift. Read-only: report-only counts, reconciling a drifted root is an operator-run regeneration. |
+| `sweep-track-roots.mjs` | Sweeps every track root (spec-less directory under `specs/` carrying a `graph-metadata.json`) and compares its declared `children_ids` with the numbered child directories, one line per track; exits 1 when any track differs. A track matches only when the two sets are equal: equal counts are not enough, since a renamed packet leaves both counts where they were. `--rev <commit>` reads that commit instead of the working tree and leaves out symlinked tracks; the pre-push track-root gate runs it that way. Per-packet validation never reaches a track root, because the orchestrator exempts track directories from packet rules. Read-only. |
+| `refresh-track-roots.mjs` | Rewrites a track root's `children_ids` to its numbered child directories, dropping entries for packets no longer on disk and entries under an earlier identity. Only `children_ids` changes, and a matching track is not rewritten. Dry run by default (exits 1 when changes are pending); `--apply` writes, and `--track <name>` limits it to one track. Unreadable metadata is reported and left alone, with exit 2. |
 | `repair-derived.cjs` | Repairs derivable packet facts (folder name, packet pointer, level, metadata fingerprint) and refuses authored ones; see `README-repair-derived.md`. |
 
 ---

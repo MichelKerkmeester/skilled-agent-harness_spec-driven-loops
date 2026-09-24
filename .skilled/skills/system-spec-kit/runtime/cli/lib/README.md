@@ -81,6 +81,7 @@ runtime/cli/lib/
 +-- frontmatter-grandfather-allowlist.json # Cutoff date and path allowlist for legacy frontmatter
 +-- dist-freshness.cjs                     # Standalone (not compiled) source-vs-dist staleness checker, 7 watched packages
 +-- completion-state.cjs                   # Standalone merge of level, checklist and placeholder completion state
++-- track-roots.mjs                        # Track-root reading and comparison shared by the sweep and the writer
 +-- git-branch.sh                          # Git branch helper
 +-- parse-bool-flag.sh                     # Boolean CLI flag parser
 +-- shell-common.sh                        # Shared shell utility functions
@@ -117,6 +118,7 @@ Disallowed direction:
 | `memory-telemetry.ts` | Named memory-save metric constants (`METRIC_M1`.."M9") and `emitMemoryMetric()`. |
 | `dist-freshness.cjs` | Compares each watched package's source mtimes (hash-cached) against its built dist entrypoint. `checkPackageFreshness()`/`checkAllFreshness()`/`checkFileFreshness()` are called directly by the 3 CLI shims and the `system-dist-freshness-guard` plugin; `validate.sh` and `check-dist-staleness.sh` shell out to its CLI (`check` / `check-file` / `check-all`, exit `69` on stale). |
 | `completion-state.cjs` | Merges a spec folder's inferred level, checklist P0/P1/P2 completion and placeholder-completeness percentage into one never-throwing payload via `computeCompletionState()`. |
+| `track-roots.mjs` | Reads track roots from the working tree (`readWorkingTreeTracks()`) or a commit (`readCommitTracks()`), and compares a track's `children_ids` with its numbered child directories as sets (`compareTrackChildren()`). `spec/sweep-track-roots.mjs` and `spec/refresh-track-roots.mjs` both use it, so the two judge a track by the same rules. Plain ESM with no build step. |
 | `shell-common.sh` | Provides common shell functions for spec and rule scripts. |
 | `status-classifier.sh` | Shares pass/fail/regression classification vocabulary with `runtime/cli/sweep/strict-pass-freshness.ts`. |
 | `parse-bool-flag.sh` | Parses boolean CLI flags for shell entrypoints. |
