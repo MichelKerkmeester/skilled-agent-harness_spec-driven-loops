@@ -163,17 +163,17 @@
     ],
     "causal_summary": "sk-create-changelog defines two narrative formats for a release, compact and expanded, and its canonical exemplar is `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md`",
     "created_at": "2026-09-24T15:48:26Z",
-    "last_save_at": "2026-09-24T18:04:13.813Z",
+    "last_save_at": "2026-09-24T19:59:08.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:2d8b10bc1dc8f4bb6401b70105df5e06d828a5a28a0100fc668195da0e4b456d",
+    "source_fingerprint": "sha256:cbd963ae8058eed4374a69fe108b0dc0d37f557e98859af92dad7e646e600294",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "402af45431548de8614044fe6ed4ebfedb453b985cbef8dea84fbdd6ce2f4291"
+      "spec.md": "185f07528e9981f73d4010510a3c920c0f133f24bc70bf81047de8c2034d29c9"
     },
     "last_active_child_id": "sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot",
     "last_active_at": "2026-09-24T18:03:45.294Z"

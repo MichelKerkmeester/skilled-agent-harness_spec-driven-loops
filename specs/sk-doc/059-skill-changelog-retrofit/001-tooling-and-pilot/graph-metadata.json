@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot",
   "spec_folder": "sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot",
   "parent_id": "sk-doc/059-skill-changelog-retrofit",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -99,12 +100,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -124,6 +119,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,7 +198,7 @@
     ],
     "causal_summary": "The 549 legacy skill changelogs span several older styles, and a model asked to rewrite them can drop or invent facts",
     "created_at": "2026-09-24T16:53:59Z",
-    "last_save_at": "2026-09-24T18:41:03.954Z",
+    "last_save_at": "2026-09-24T19:59:12.094Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79248bdf398974dbe90f2c39938bce701218b3ce165694086c920da9af489f3b",
+    "source_fingerprint": "sha256:2e46a3c667d5ae33eb9aac0b005333ab6f288d6d0c64ff5688aa02d4c0df1c66",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "56c150c80a430678f0979801b58803dd221379a46a035404e3b586a427ac1d8d",
+      "spec.md": "288396f64f2de2746ba93011a6ef73abe7ea681d8c309fd133e3741ea65c1db9",
       "plan.md": "3cb7593455cb5462cbe37d6b87207cffe4e3fad6aafae3277d35b957a621f86b",
-      "tasks.md": "f359995479f2ab56596101c6947ea6821000a8e9439aae8e656f9828eba349dc",
-      "implementation-summary.md": "473ee45f113077b680b5693c507bae42e51aab1f0ca6ea5dd954f06739668d52"
+      "tasks.md": "407a91606ce1329b310f0ddf866ae3a4ee20de2dd1c8bbb0048fba0c1d10c5cb",
+      "implementation-summary.md": "6232197162880ad48e7e854d4568114a98eb1bedba08d9e72f27f96719291365"
     },
     "last_active_at": null
   }

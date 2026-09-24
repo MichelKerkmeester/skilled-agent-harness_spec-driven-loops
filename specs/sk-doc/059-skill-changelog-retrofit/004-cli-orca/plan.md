@@ -35,7 +35,7 @@ The driver takes `../scratch/lists/cli-orca.txt` and the shared state file, so f
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 records the operator's style approval
+- [x] Phase 001 records the operator's style approval
 - [x] The target list exists at `../scratch/lists/cli-orca.txt`
 - [x] The driver, checker and briefs exist in `../scratch/`
 

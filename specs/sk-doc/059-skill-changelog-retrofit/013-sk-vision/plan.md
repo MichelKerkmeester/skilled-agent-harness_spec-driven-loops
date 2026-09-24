@@ -35,7 +35,7 @@ The driver takes `../scratch/lists/sk-vision.txt` and the shared state file, so 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 records the operator's style approval
+- [x] Phase 001 records the operator's style approval
 - [x] The target list exists at `../scratch/lists/sk-vision.txt`
 - [x] The driver, checker and briefs exist in `../scratch/`
 

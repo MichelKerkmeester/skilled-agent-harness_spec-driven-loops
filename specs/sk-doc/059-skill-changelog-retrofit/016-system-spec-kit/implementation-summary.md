@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-09-24T18:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "Planned the system-spec-kit wave"
-    next_safe_action: "Continue once phase 001 records the style approval"
+    next_safe_action: "Run the wave with the phase 001 driver"
     blockers: []
     key_files: []
     session_dedup:
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This phase waits on the operator's approval of the pilot style in phase 001. Its target list, `../scratch/lists/system-spec-kit.txt`, is in place. The pilot restored v3+/v3.7.0.0 after two failed attempts, so it goes back through the driver with `--retry-failed`.
+Nothing yet. The operator approved the pilot style on 2026-09-24, and this wave has not run. Its target list, `../scratch/lists/system-spec-kit.txt`, is in place. v3+/v3.7.0.0 failed both the pilot and the phase 001 check run, so it goes back through the driver with `--retry-failed`, resuming from its kept draft.
 
 ### Phase 16: system-spec-kit changelogs
 

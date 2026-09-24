@@ -61,7 +61,9 @@ contextType: "implementation"
 - [x] T012 Record the operator's style approval: approve with fixes, 2026-09-24
 - [x] T013 Settle the retry policy: three attempts per file (`../scratch/rewrite-driver.cjs`)
 - [x] T014 Apply the approved fixes: one-sentence H4 and repeated-sentence checks in the checker, both briefs tightened
-- [ ] T015 Check run over the four restored files and sk-design v2.0.0.0 (`../scratch/check-list.txt`, `../scratch/state.jsonl`)
+- [x] T015 Check run over the four restored files and sk-design v2.0.0.0 (`../scratch/check-list.txt`, `../scratch/state.jsonl`): mcp-tooling kept, four restored
+- [x] T016 Fix what the check run exposed: whole-file writes in the rewrite brief, and a retry that resumes from the kept draft (`../scratch/rewrite-driver.cjs`)
+- [x] T017 Remove the two design-bundle files from the sk-design list, and accept only version-named files in the driver
 <!-- /ANCHOR:phase-3 -->
 
 ---

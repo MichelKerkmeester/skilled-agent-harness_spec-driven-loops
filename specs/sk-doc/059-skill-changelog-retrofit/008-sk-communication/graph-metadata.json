@@ -165,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "fixes",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -172,12 +178,6 @@
       },
       {
         "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "4 sk-communication changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:11Z",
-    "last_save_at": "2026-09-24T18:41:13.743Z",
+    "last_save_at": "2026-09-24T19:59:35.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb7d4197c6cbc72b10b8414d54bda2bea2faefdef5b2a5497c8c4e92290f9c56",
+    "source_fingerprint": "sha256:329baa934e9e1a754efbc0967593f4223e9bfe26009ff19835b16954629c7df5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17f5e933fda3ca568c40f1e56415a217dc39a58345de1944f54c7acd35d367b7",
-      "plan.md": "a1274c602607c58cc62ad86334911fe95c8711fb28470553f7e193450176bc18",
-      "tasks.md": "eed7ac47cc81b572d88a251d8ea19a207cbc8da4647bfe5078c27402b68a8bf5",
-      "implementation-summary.md": "2da21d389cf21f4c740b797521c691cb6bd6262e8df0e2ab5964980c3d56d4ab"
+      "spec.md": "52bd16ea47115d0d45a0436c8b24d40e3ebaf9ff22b2ebaf0139515aee8cb070",
+      "plan.md": "62403cae2b6560ab551b6a7da99007b8c4baea05a66b272fca7af916fa5d4c7d",
+      "tasks.md": "006ab4d25b4ec0aabf7355e9e0df59fb345022654c718a391992527bede15de0",
+      "implementation-summary.md": "a3b4310b73a151a9069fb57dcda8db4b45a2d361e8975711103325dfd912debe"
     },
     "last_active_at": null
   }

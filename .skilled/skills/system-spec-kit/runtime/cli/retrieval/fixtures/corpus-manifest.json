@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c3ba54c4d31a1a33a5ad03dc2b6d9b545bc63b7d394fbeb96c22b0e33dc6ab3b",
+  "corpusHash": "fb2f08f25d56ba598010963fb79a44c9b00bf3750aa1729f5aa71eeeecbc727a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -22528,7 +22528,7 @@
     "specs/system-speckit/039-phase-aware-archive/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9975204dddae9cd02d517434340835ce51994d46cd032074ff28d09216c43ea1",
+  "manifestHash": "21c9c60f1d5cbea61455c37d92a2c5a2c30583ab1b86d183c3c352f345a38f8f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -30,7 +30,9 @@ const GPT_COOLDOWN_MS = 30 * 60 * 1000;
 const MAX_ATTEMPTS = 3;
 const LIMIT_RE = /usage limit|rate[ _-]?limit|too many requests|\b429\b|insufficient_quota|quota exceeded|hit your (usage )?limit|limit reached|exceeded your/i;
 // system-spec-kit groups its older changelogs one level down, in v1+/, v2+/ and v3+/.
-const SKILL_CHANGELOG_RE = /^\.skilled\/skills\/.+\/changelogs?\/(?:v\d+\+\/)?[^/]+\.md$/;
+// A release entry is named for its version; a design-style bundle that happens to be
+// called "changelog" also lives in a changelog folder and must never be rewritten.
+const SKILL_CHANGELOG_RE = /^\.skilled\/skills\/.+\/changelogs?\/(?:v\d+\+\/)?v\d+(?:\.\d+)+[^/]*\.md$/;
 
 const CHILD_ENV = {
   ...process.env,
@@ -172,25 +174,39 @@ function fillVerify(orig, file) {
   return VERIFY_BRIEF.replace('{{ORIGINAL}}', () => read(orig)).replace('{{REWRITE}}', () => read(path.join(ROOT, file)));
 }
 
-async function processFile(file, lane) {
+async function processFile(file, lane, prior) {
   const abs = path.join(ROOT, file);
   const orig = path.join(ORIG_DIR, `${safeName(file)}`);
   if (!fs.existsSync(orig)) fs.copyFileSync(abs, orig);
   else fs.copyFileSync(orig, abs);
   const tag = safeName(file);
   let feedback = '';
+  let findings = '';
   const history = [];
 
+  // A retry resumes from the kept draft and its last findings: a fresh start on a
+  // long file tends to trade the old findings for new ones instead of converging.
+  const draft = path.join(FAIL_DIR, safeName(file));
+  if (prior && prior.status === 'fail' && fs.existsSync(draft) && read(draft) !== read(orig)) {
+    const last = [...(prior.history || [])].reverse().find((h) => h.items && h.items.length);
+    if (last) {
+      fs.copyFileSync(draft, abs);
+      findings = last.items.map((x) => `- ${x}`).join('\n');
+      feedback = findings;
+    }
+  }
+
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+    const before = read(abs);
     const rw = await dispatch(lane, 'rewrite', fillRewrite(file, orig, feedback), `${tag}.a${attempt}`);
-    const changed = read(abs) !== read(orig);
+    const changed = read(abs) !== before;
     if (!changed && (rw.route === 'gpt') && LIMIT_RE.test(rw.output)) {
       gptLimitedUntil = Date.now() + GPT_COOLDOWN_MS;
       return { requeue: true, reason: 'gpt usage limit' };
     }
     if (!changed) {
       history.push({ attempt, route: rw.route, problem: rw.timedOut ? 'timed out' : 'file unchanged' });
-      feedback = 'You did not change the file. Rewrite it in place.';
+      feedback = `You did not change the file. Write the complete rewritten file in one whole-file write, not a line-range edit.${findings ? `\n${findings}` : ''}`;
       continue;
     }
     const shape = runChecker(file, orig);
@@ -198,7 +214,8 @@ async function processFile(file, lane) {
     if (shape.exit !== 0 || hvr.hard !== 0) {
       const items = [...(shape.report.errors || []), ...(hvr.hard > 0 ? hvr.lines.map((l) => `HVR hard blocker: ${l}`) : []), ...(hvr.hard < 0 ? ['HVR scan output unreadable'] : [])];
       history.push({ attempt, route: rw.route, problem: 'gates', items });
-      feedback = items.map((x) => `- ${x}`).join('\n');
+      findings = items.map((x) => `- ${x}`).join('\n');
+      feedback = findings;
       continue;
     }
     let verdict = null;
@@ -227,7 +244,8 @@ async function processFile(file, lane) {
       return { status: 'pass', format: shape.report.format, warnings: shape.report.warnings, attempts: attempt, history, route: rw.route, note: 'verifier said FAIL with empty lists' };
     }
     history.push({ attempt, route: rw.route, problem: 'fidelity', items });
-    feedback = items.map((x) => `- ${x}`).join('\n');
+    findings = items.map((x) => `- ${x}`).join('\n');
+    feedback = findings;
   }
 
   fs.copyFileSync(abs, path.join(FAIL_DIR, safeName(file)));
@@ -239,10 +257,12 @@ async function main() {
   const opts = parseArgs(process.argv.slice(2));
   for (const d of [ORIG_DIR, FAIL_DIR, RUN_DIR]) fs.mkdirSync(d, { recursive: true });
   const done = new Map();
+  const lastRec = new Map();
   if (fs.existsSync(opts.state)) {
     for (const line of read(opts.state).split('\n').filter(Boolean)) {
       const rec = JSON.parse(line);
       done.set(rec.file, rec.status);
+      lastRec.set(rec.file, rec);
     }
   }
   const queue = read(opts.list).split('\n').map((l) => l.trim()).filter(Boolean).filter((f) => {
@@ -264,7 +284,7 @@ async function main() {
       inFlight.add(file);
       writeStatus({ total, remaining: queue.length, inFlight: [...inFlight] });
       const started = Date.now();
-      const res = await processFile(file, lane);
+      const res = await processFile(file, lane, opts.retryFailed ? lastRec.get(file) : null);
       inFlight.delete(file);
       if (res.requeue) {
         counts.requeued += 1;

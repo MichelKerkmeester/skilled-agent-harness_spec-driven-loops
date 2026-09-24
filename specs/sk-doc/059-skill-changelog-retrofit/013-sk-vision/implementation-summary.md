@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-09-24T18:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "Planned the sk-vision wave"
-    next_safe_action: "Continue once phase 001 records the style approval"
+    next_safe_action: "Run the wave with the phase 001 driver"
     blockers: []
     key_files: []
     session_dedup:
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This phase waits on the operator's approval of the pilot style in phase 001. Its target list, `../scratch/lists/sk-vision.txt`, is in place.
+Nothing yet. The operator approved the pilot style on 2026-09-24, and this wave has not run. Its target list, `../scratch/lists/sk-vision.txt`, is in place.
 
 ### Phase 13: sk-vision changelogs
 

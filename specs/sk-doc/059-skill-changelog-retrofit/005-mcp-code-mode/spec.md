@@ -113,7 +113,7 @@ Every listed mcp-code-mode changelog reads in the current format and still recor
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 001 style approval | This phase cannot start without it | Wait for the operator |
+| Dependency | Phase 001 style approval | This phase cannot start without it | Met: approved with fixes on 2026-09-24 |
 | Risk | A dense file fails its fact check twice | Medium | One `--retry-failed` pass, then the failure is recorded with its reason |
 | Risk | Another session edits a mcp-code-mode file during the wave | Medium | Stage only the listed files, and rerun the checker on them before the commit |
 <!-- /ANCHOR:risks -->

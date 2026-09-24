@@ -28,5 +28,3 @@
 .skilled/skills/sk-design/sk-design-fundamentals/changelog/v1.0.0.0.md
 .skilled/skills/sk-design/sk-design-md-generator/changelog/v1.0.0.0.md
 .skilled/skills/sk-design/sk-design-md-generator/changelog/v1.1.0.0.md
-.skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/changelog/DESIGN.md
-.skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/changelog/source.md

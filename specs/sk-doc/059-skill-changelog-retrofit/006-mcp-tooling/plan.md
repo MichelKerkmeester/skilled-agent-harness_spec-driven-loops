@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Testing** | The shape checker, `hvr_scan.py` and the fact-check dispatch per file |
 
 ### Overview
-The driver takes `../scratch/lists/mcp-tooling.txt` and the shared state file, so files the pilot already kept are skipped. 55 files run through GPT-6 Luna at xhigh on cli-pi and cli-codex, each gated by the checker, the HVR scan and a fact check. The skill is committed once, after a final gate run over every kept file.
+The driver takes `../scratch/lists/mcp-tooling.txt` and the shared state file, so files the pilot already kept are skipped. 54 files run through GPT-6 Luna at xhigh on cli-pi and cli-codex, each gated by the checker, the HVR scan and a fact check. The skill is committed once, after a final gate run over every kept file.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,7 +35,7 @@ The driver takes `../scratch/lists/mcp-tooling.txt` and the shared state file, s
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 records the operator's style approval
+- [x] Phase 001 records the operator's style approval
 - [x] The target list exists at `../scratch/lists/mcp-tooling.txt`
 - [x] The driver, checker and briefs exist in `../scratch/`
 

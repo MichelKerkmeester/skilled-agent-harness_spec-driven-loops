@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 9: sk-design changelogs"
-description: "Rewrites the 32 legacy sk-design changelogs into the current sk-create-changelog format with the phase 001 tooling, keeping every fact, then commits them as one sk-design change."
+description: "Rewrites the 30 legacy sk-design changelogs into the current sk-create-changelog format with the phase 001 tooling, keeping every fact, then commits them as one sk-design change."
 trigger_phrases:
   - "sk-design changelog rewrite"
   - "sk-design changelog retrofit"
@@ -37,7 +37,7 @@ contextType: "implementation"
 
 This is **Phase 9** of the skill changelog retrofit.
 
-**Scope Boundary**: The 32 sk-design changelogs listed in `../scratch/lists/sk-design.txt`. The pilot already kept 1 of these: v2.0.0.0.
+**Scope Boundary**: The 30 sk-design changelogs listed in `../scratch/lists/sk-design.txt`. The pilot kept v2.0.0.0, but the stricter checker later rejected it and the phase 001 check run restored it, so it goes back through the driver with `--retry-failed`.
 
 **Dependencies**:
 - Phase 001's checker, briefs and driver, frozen after the operator's style approval
@@ -53,7 +53,7 @@ This is **Phase 9** of the skill changelog retrofit.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-32 sk-design changelogs predate the compact and expanded format that sk-create-changelog now defines. They still carry retired version headers, Files Changed tables or old change-type sections, so this skill's release history reads in an older style than its newest entries.
+30 sk-design changelogs predate the compact and expanded format that sk-create-changelog now defines. They still carry retired version headers, Files Changed tables or old change-type sections, so this skill's release history reads in an older style than its newest entries.
 
 ### Purpose
 Every listed sk-design changelog reads in the current format and still records exactly what shipped in its version.
@@ -65,7 +65,7 @@ Every listed sk-design changelog reads in the current format and still records e
 ## 3. SCOPE
 
 ### In Scope
-- The 32 files in `../scratch/lists/sk-design.txt`
+- The 30 files in `../scratch/lists/sk-design.txt`
 
 ### Out of Scope
 - sk-design changelogs that already pass the checker - they are already in the current format
@@ -75,7 +75,7 @@ Every listed sk-design changelog reads in the current format and still records e
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-design/**/changelog/**/*.md` (32 listed) | Modify | Rewritten in place in the compact or expanded format |
+| `.skilled/skills/sk-design/**/changelog/**/*.md` (30 listed) | Modify | Rewritten in place in the compact or expanded format |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -102,7 +102,7 @@ Every listed sk-design changelog reads in the current format and still records e
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All 32 listed files have a pass or a failure with its reason in the state file.
+- **SC-001**: All 30 listed files have a pass or a failure with its reason in the state file.
 - **SC-002**: The sk-design commit is on main, with the routing guard and mirror checks clean.
 <!-- /ANCHOR:success-criteria -->
 
@@ -113,7 +113,7 @@ Every listed sk-design changelog reads in the current format and still records e
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 001 style approval | This phase cannot start without it | Wait for the operator |
+| Dependency | Phase 001 style approval | This phase cannot start without it | Met: approved with fixes on 2026-09-24 |
 | Risk | A dense file fails its fact check twice | Medium | One `--retry-failed` pass, then the failure is recorded with its reason |
 | Risk | Another session edits a sk-design file during the wave | Medium | Stage only the listed files, and rerun the checker on them before the commit |
 <!-- /ANCHOR:risks -->
