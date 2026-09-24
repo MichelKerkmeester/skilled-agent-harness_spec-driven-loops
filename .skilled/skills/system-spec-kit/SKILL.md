@@ -559,7 +559,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Canonical intake | `/speckit:plan --intake-only "Description"` |
 | Create spec folder | `./runtime/cli/spec/create.sh "Description" --short-name name --level 2` |
 | Create in a track | Add `--track <track>` to the create command. The new packet is also listed in `specs/<track>/graph-metadata.json` |
-| Track-root lists | `node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs --apply` after moving, renaming or deleting a packet in a track. The pre-push hook blocks a commit whose track lists other packets than it holds |
+| Track-root lists | `node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs --apply` after moving, renaming or deleting a packet in a track by hand; `archive.sh` refreshes it itself. The pre-push hook blocks a commit whose track lists other packets than it holds |
 | Validate | `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/` |
 | Verify code alignment drift | `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit` |
 | Save context | `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |

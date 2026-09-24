@@ -48,6 +48,9 @@ each pushed commit with `--rev` and blocks on drift. It reads the commit rather
 than the working tree, because a shared checkout holds other sessions'
 unfinished packets. `SPECKIT_SKIP_PREPUSH_TRACK_GATE=1` skips it for one push.
 
+`archive.sh` moves a track packet into the track's own `z_archive/` and
+restores it to the track, and runs the writer for that track after both moves.
+
 A packet moved, renamed or deleted by hand leaves the list stale until the
 writer runs again. The gate then names the fix.
 
@@ -61,9 +64,11 @@ writer runs again. The gate then names the fix.
 | `runtime/cli/spec/refresh-track-roots.mjs` | The writer |
 | `runtime/cli/spec/sweep-track-roots.mjs` | The read-only report, and the check the gate runs |
 | `runtime/cli/spec/create.sh` | Runs the writer after scaffolding into a track |
+| `runtime/cli/spec/archive.sh` | Runs the writer after archiving or restoring a track packet |
 | `.skilled/scripts/git-hooks/pre-push` | The track-root gate |
 | `runtime/cli/tests/track-roots.vitest.ts` | Sweep and writer cases in a throwaway repository |
 | `runtime/cli/tests/create-track-refresh.vitest.ts` | The `create.sh` hook-up |
+| `runtime/cli/tests/archive-track.vitest.ts` | Archive and restore inside a track |
 | `.skilled/scripts/git-hooks/tests/pre-push.test.sh` | The gate's cases |
 
 ---

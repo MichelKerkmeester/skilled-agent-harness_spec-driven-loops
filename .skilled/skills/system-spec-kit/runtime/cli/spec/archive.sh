@@ -3,7 +3,8 @@
 # COMPONENT: Archive Spec
 # ───────────────────────────────────────────────────────────────
 #
-# Archive completed spec folders to specs/z_archive/
+# Archive completed spec folders to specs/z_archive/, or a track packet to its
+# track's own z_archive/, and restore them to where they came from.
 # Usage: archive-spec.sh <spec-folder> | --list | --restore <folder>
 
 set -euo pipefail
@@ -23,7 +24,6 @@ else
     PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../../../../.." && pwd)"
     echo "Warning: Not in a git repo, using relative path for PROJECT_ROOT" >&2
 fi
-ARCHIVE_DIR="specs/z_archive"
 COMPLETENESS_SCRIPT="$SCRIPT_DIR/calculate-completeness.sh"
 MIN_COMPLETENESS=90
 
@@ -64,13 +64,18 @@ OPTIONS:
 EXAMPLES:
     archive-spec.sh specs/051-feature-name/
     archive-spec.sh --force specs/051-feature-name/
+    archive-spec.sh specs/my-track/012-feature-name/
     archive-spec.sh --list
     archive-spec.sh --restore specs/z_archive/051-feature-name/
+    archive-spec.sh --restore specs/my-track/z_archive/012-feature-name/
 
 NOTES:
     - Specs with <90% completeness will prompt for confirmation
     - Use --force to skip the completeness check
-    - Archived specs are moved to specs/z_archive/
+    - A spec at the specs root is moved to specs/z_archive/
+    - A spec in a track is moved to that track's own specs/<track>/z_archive/
+    - Restore returns a spec to the specs root or to its track
+    - A track's graph-metadata.json list is refreshed after both moves
 EOF
 }
 
@@ -105,6 +110,52 @@ validate_spec_folder_name() {
     fi
 }
 
+# The track a folder sits directly under, or nothing for a packet at the specs
+# root. A track is a directory directly under specs/ that is neither numbered nor
+# the root archive.
+track_of() {
+    local folder="$1"
+    local specs_root="$2"
+    local parent name
+    parent="$(dirname "$folder")"
+    [[ "$(dirname "$parent")" == "$specs_root" ]] || return 0
+    name="$(basename "$parent")"
+    if [[ "$name" =~ ^[0-9]{3} || "$name" == "z_archive" ]]; then
+        return 0
+    fi
+    printf '%s' "$name"
+}
+
+# A track keeps its archived packets in its own z_archive/, as every track does
+# by hand; a packet at the specs root uses the root archive.
+archive_dir_for() {
+    local specs_root="$1"
+    local track="$2"
+    if [[ -n "$track" ]]; then
+        printf '%s/%s/z_archive' "$specs_root" "$track"
+    else
+        printf '%s/z_archive' "$specs_root"
+    fi
+}
+
+# A track root lists its packets in children_ids, and the pre-push gate blocks a
+# commit whose list disagrees with the packets it holds. Archiving or restoring
+# a packet changes that set, so the list follows the move. A track with no
+# graph-metadata.json lists nothing, so there is nothing to do.
+refresh_track_root() {
+    local specs_root="$1"
+    local track="$2"
+    local refresh_script="$SCRIPT_DIR/refresh-track-roots.mjs"
+    [[ -n "$track" && -f "$specs_root/$track/graph-metadata.json" ]] || return 0
+    if [[ ! -f "$refresh_script" ]]; then
+        log_warning "${track}/graph-metadata.json was not refreshed: $refresh_script is missing. Restore it, then run refresh-track-roots.mjs --track ${track} --apply."
+        return 0
+    fi
+    if ! node "$refresh_script" --specs "$specs_root" --track "$track" --apply; then
+        log_warning "${track}/graph-metadata.json was not refreshed. Rerun refresh-track-roots.mjs --track ${track} --apply."
+    fi
+}
+
 # ───────────────────────────────────────────────────────────────
 # 4. CORE FUNCTIONS
 # ───────────────────────────────────────────────────────────────
@@ -133,7 +184,7 @@ get_completeness() {
 archive_spec() {
     local spec_folder="$1"
     local force="${2:-false}"
-    local specs_root archive_root resolved_spec
+    local specs_root archive_root resolved_spec track
 
     spec_folder="${spec_folder%/}"
 
@@ -142,25 +193,19 @@ archive_spec() {
         exit 1
     fi
 
-    mkdir -p "$PROJECT_ROOT/$ARCHIVE_DIR"
-    if ! archive_root="$(resolve_existing_dir "$PROJECT_ROOT/$ARCHIVE_DIR")"; then
-        log_error "Archive directory not accessible: $PROJECT_ROOT/$ARCHIVE_DIR"
-        exit 1
-    fi
-
     if ! resolved_spec="$(resolve_existing_dir "$spec_folder")"; then
         log_error "Spec folder not found: $spec_folder"
-        exit 1
-    fi
-
-    if is_path_within "$resolved_spec" "$archive_root"; then
-        log_error "Folder is already archived: $resolved_spec"
         exit 1
     fi
 
     if ! is_path_within "$resolved_spec" "$specs_root"; then
         log_error "Refusing to archive outside specs root: $resolved_spec"
         log_info "Allowed root: $specs_root"
+        exit 1
+    fi
+
+    if [[ "/${resolved_spec#"$specs_root"/}/" == */z_archive/* ]]; then
+        log_error "Folder is already archived: $resolved_spec"
         exit 1
     fi
 
@@ -184,6 +229,13 @@ archive_spec() {
     local basename
     basename=$(basename "$resolved_spec")
     validate_spec_folder_name "$basename" "Spec"
+
+    track="$(track_of "$resolved_spec" "$specs_root")"
+    archive_root="$(archive_dir_for "$specs_root" "$track")"
+    if ! mkdir -p "$archive_root"; then
+        log_error "Archive directory not accessible: $archive_root"
+        exit 1
+    fi
 
     if [[ -d "$archive_root/$basename" ]]; then
         log_error "Archive target already exists: $archive_root/$basename"
@@ -215,42 +267,69 @@ archive_spec() {
     rm -rf "$resolved_spec"
 
     log_success "Archived: $resolved_spec -> $archive_root/$basename"
+    refresh_track_root "$specs_root" "$track"
+}
+
+# Every archive a packet can be restored from: the root archive, then each
+# track's own, as paths relative to the project root. A symlinked track is left
+# out, since its packets resolve outside this specs root and cannot be moved.
+archive_dirs() {
+    local dir track
+    [[ -d "specs/z_archive" ]] && printf '%s\n' "specs/z_archive"
+    for dir in specs/*/z_archive; do
+        [[ -d "$dir" ]] || continue
+        track="$(basename "$(dirname "$dir")")"
+        if [[ "$track" =~ ^[0-9]{3} || "$track" == "z_archive" || -L "specs/$track" ]]; then
+            continue
+        fi
+        printf '%s\n' "$dir"
+    done
 }
 
 list_archived() {
-    if [[ ! -d "$ARCHIVE_DIR" ]]; then
+    local entries=()
+    local archive dir
+    while IFS= read -r archive; do
+        for dir in "$archive"/*/; do
+            [[ -d "$dir" ]] && entries+=("${dir%/}")
+        done
+    done < <(archive_dirs)
+
+    if [[ "${#entries[@]}" -eq 0 ]]; then
         log_info "No archived specs found."
         exit 0
     fi
 
-    local count
-    count=$(find "$ARCHIVE_DIR" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
-
-    if [[ "$count" -eq 0 ]]; then
-        log_info "No archived specs found."
-        exit 0
-    fi
-
-    echo -e "${BOLD}Archived Specs ($count):${NC}"
+    echo -e "${BOLD}Archived Specs (${#entries[@]}):${NC}"
     echo "================================"
 
-    for dir in "$ARCHIVE_DIR"/*/; do
-        if [[ -d "$dir" ]]; then
-            local name
-            name=$(basename "$dir")
-            local date
-            date=$(stat -f "%Sm" -t "%Y-%m-%d" "$dir" 2>/dev/null || stat -c "%y" "$dir" 2>/dev/null | cut -d' ' -f1)
-            printf "  %-40s %s\n" "$name" "$date"
-        fi
+    local entry date
+    for entry in "${entries[@]}"; do
+        date=$(stat -f "%Sm" -t "%Y-%m-%d" "$entry" 2>/dev/null || stat -c "%y" "$entry" 2>/dev/null | cut -d' ' -f1)
+        printf "  %-60s %s\n" "$entry" "$date"
     done
 
     echo ""
-    echo "To restore: archive-spec.sh --restore $ARCHIVE_DIR/<folder-name>"
+    echo "To restore: archive-spec.sh --restore <path above>"
+}
+
+# The owner of the archive a folder sits in: nothing for the root archive, or
+# the track whose z_archive/ holds it. Fails when the folder is in neither.
+archived_track_of() {
+    local folder="$1"
+    local specs_root="$2"
+    local relative="${folder#"$specs_root"/}"
+    [[ "$relative" != "$folder" ]] || return 1
+    [[ "$relative" == z_archive/* ]] && return 0
+    local track="${relative%%/*}"
+    [[ "$relative" == "$track"/z_archive/* ]] || return 1
+    [[ "$track" =~ ^[0-9]{3} ]] && return 1
+    printf '%s' "$track"
 }
 
 restore_spec() {
     local archived_folder="$1"
-    local specs_root archive_root resolved_archived
+    local specs_root resolved_archived track
 
     archived_folder="${archived_folder%/}"
 
@@ -259,19 +338,14 @@ restore_spec() {
         exit 1
     fi
 
-    if ! archive_root="$(resolve_existing_dir "$PROJECT_ROOT/$ARCHIVE_DIR")"; then
-        log_error "Archive directory not found: $PROJECT_ROOT/$ARCHIVE_DIR"
-        exit 1
-    fi
-
     if ! resolved_archived="$(resolve_existing_dir "$archived_folder")"; then
         log_error "Archived folder not found: $archived_folder"
         exit 1
     fi
 
-    if ! is_path_within "$resolved_archived" "$archive_root"; then
+    if ! track="$(archived_track_of "$resolved_archived" "$specs_root")"; then
         log_error "Folder is not in archive directory: $archived_folder"
-        log_info "Archive directory: $archive_root"
+        log_info "Archive directories: $specs_root/z_archive and $specs_root/<track>/z_archive"
         exit 1
     fi
 
@@ -280,6 +354,7 @@ restore_spec() {
     validate_spec_folder_name "$basename" "Archived"
 
     local destination="$specs_root/$basename"
+    [[ -n "$track" ]] && destination="$specs_root/$track/$basename"
 
     if [[ -d "$destination" ]]; then
         log_error "Restore target already exists: $destination"
@@ -289,6 +364,7 @@ restore_spec() {
     mv "$resolved_archived" "$destination"
 
     log_success "Restored: $resolved_archived -> $destination"
+    refresh_track_root "$specs_root" "$track"
 }
 
 # ───────────────────────────────────────────────────────────────

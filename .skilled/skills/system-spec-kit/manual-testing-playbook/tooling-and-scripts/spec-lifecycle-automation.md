@@ -201,13 +201,18 @@ OPTIONS:
 EXAMPLES:
     archive-spec.sh specs/051-feature-name/
     archive-spec.sh --force specs/051-feature-name/
+    archive-spec.sh specs/my-track/012-feature-name/
     archive-spec.sh --list
     archive-spec.sh --restore specs/z_archive/051-feature-name/
+    archive-spec.sh --restore specs/my-track/z_archive/012-feature-name/
 
 NOTES:
     - Specs with <90% completeness will prompt for confirmation
     - Use --force to skip the completeness check
-    - Archived specs are moved to specs/z_archive/
+    - A spec at the specs root is moved to specs/z_archive/
+    - A spec in a track is moved to that track's own specs/<track>/z_archive/
+    - Restore returns a spec to the specs root or to its track
+    - A track's graph-metadata.json list is refreshed after both moves
 ```
 
 ### Pass / Fail
