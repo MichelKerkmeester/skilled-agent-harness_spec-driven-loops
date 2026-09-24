@@ -83,7 +83,7 @@ The implementation executor was cli-pi with MiMo v2.6 pro through the llmgateway
 
 The tests were red first. T002 wrote the snapshot test and T004 wrote the detection test, and both failed before their guard. T003 added the snapshot guard and T005 added the detection guard, and both tests passed after. T001 read the snapshot and detection code first, then T006 added the gitignore rules, T007 untracked the captures, T008 pruned the sk-doc baseline, T009 ran the suites and typecheck, T010 ran the live removal proof and T011 wrote the packet docs and parent rows. All tasks are done.
 
-The work landed in two commits on branch worktrees/066-ci-cleanup-follow-ups rebased onto origin/main. Commit 162a3bd816 is fix(deep-loop): keep containment captures out of the snapshot and detection. Commit b7648ec0b0 is chore(specs): untrack the containment capture output and ignore it.
+The work landed in two commits on branch worktrees/066-ci-cleanup-follow-ups rebased onto origin/main. Commit 1c6f97a004 is fix(deep-loop): keep containment captures out of the snapshot and detection. Commit 8a932df0ab is chore(specs): untrack the containment capture output and ignore it.
 <!-- /ANCHOR:how-delivered -->
 
 ---

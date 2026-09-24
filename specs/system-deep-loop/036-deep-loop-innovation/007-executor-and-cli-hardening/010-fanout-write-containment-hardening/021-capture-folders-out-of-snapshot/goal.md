@@ -101,13 +101,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| T001 read the snapshot and detection code | Done | Reviewed the two functions in write-containment.ts before commit 162a3bd816 |
-| T002 snapshot test red | Done | New test in write-containment.vitest.ts was red before its guard, commit 162a3bd816, covers REQ-006 and AC-006 |
-| T003 snapshot guard | Done | Capture skip in the snapshot loop, commit 162a3bd816, covers REQ-001 and AC-001 |
-| T004 detection test red | Done | New test in write-containment.vitest.ts was red before its guard, commit 162a3bd816, covers REQ-006 and AC-006 |
-| T005 detection guard | Done | Capture skip before the baseline lookup in the detection loop, commit 162a3bd816, covers REQ-002 and AC-002 |
-| T006 gitignore rules | Done | Two ignore patterns for both capture kinds in .gitignore, commit b7648ec0b0, covers REQ-003 and AC-003 |
-| T007 untrack the captures | Done | git rm --cached of 24,582 capture files, commit b7648ec0b0, covers REQ-003 and AC-003 |
+| T001 read the snapshot and detection code | Done | Reviewed the two functions in write-containment.ts before commit 1c6f97a004 |
+| T002 snapshot test red | Done | New test in write-containment.vitest.ts was red before its guard, commit 1c6f97a004, covers REQ-006 and AC-006 |
+| T003 snapshot guard | Done | Capture skip in the snapshot loop, commit 1c6f97a004, covers REQ-001 and AC-001 |
+| T004 detection test red | Done | New test in write-containment.vitest.ts was red before its guard, commit 1c6f97a004, covers REQ-006 and AC-006 |
+| T005 detection guard | Done | Capture skip before the baseline lookup in the detection loop, commit 1c6f97a004, covers REQ-002 and AC-002 |
+| T006 gitignore rules | Done | Two ignore patterns for both capture kinds in .gitignore, commit 8a932df0ab, covers REQ-003 and AC-003 |
+| T007 untrack the captures | Done | git rm --cached of 24,582 capture files, commit 8a932df0ab, covers REQ-003 and AC-003 |
 | T008 prune the sk-doc baseline | Done | baseline-readme-verdicts.json dropped from 1,304 entries to 1,058 with parity pass on 1,058 files, covers REQ-005 and AC-005 |
 | T009 run the suites and typecheck | Done | write-containment.vitest.ts 79 passed, the six containment-related test files 395 passed and 1 skipped, runtime typecheck exit 0 |
 | T010 live removal proof | Done | Fresh worktree added and removed at the final HEAD, both exit 0 and the folder gone, covers REQ-004 and AC-004 |
