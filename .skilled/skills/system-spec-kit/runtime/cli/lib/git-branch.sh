@@ -6,11 +6,8 @@
 # Source this file: source "$(dirname "$0")/../lib/git-branch.sh"
 #
 # Functions:
-# Check_existing_branches()  - Find next available branch number
+# Highest_branch_number()    - Highest NNN prefix among known branch refs
 # Generate_branch_name()     - Create branch name from description
-#
-# Required variables (must be set before calling):
-# SPECS_DIR - Path to the specs/ directory (for check_existing_branches)
 #
 # Compatibility: Bash 3.2+ (macOS default)
 # ───────────────────────────────────────────────────────────────
@@ -25,57 +22,31 @@ fi
 _GIT_BRANCH_LOADED=1
 
 # ───────────────────────────────────────────────────────────────
-# Check existing branches and spec directories to determine the
-# Next available branch number for a given short name.
+# Print the highest NNN prefix among local branches and the remote-tracking
+# refs git already has, or 0 when there is none. Only three digits and a
+# hyphen count, the shape packet branches take, so a date-shaped name such as
+# 2026-09-24-hotfix does not. It reads refs only and fetches nothing, so
+# numbering needs no network and never prunes a ref.
 #
-# Usage: next_num=$(check_existing_branches "feature-name")
-# Requires: SPECS_DIR to be set
-# Returns: Prints the next available number (current max + 1) to stdout
+# Usage: highest=$(highest_branch_number)
+# Returns: Prints the highest branch number to stdout
 # ───────────────────────────────────────────────────────────────
-check_existing_branches() {
-    local short_name="$1"
-
-    # Escape regex metacharacters in short_name for safe use in grep/sed patterns
-    local escaped_name
-    escaped_name=$(printf '%s' "$short_name" | sed 's/[.[\*^$()+{}?|]/\\&/g')
-
-    # Fetch all remotes to get latest branch info
-    if ! git fetch --all --prune 2>/dev/null; then
-        printf '%s\n' "Warning: Could not fetch from remote (continuing with local branches only)" >&2
-    fi
-
-    # Find all branches matching the pattern using git ls-remote (more reliable)
-    # Only check remote if origin exists
-    local remote_branches=""
-    if git remote | grep -q '^origin$'; then
-        remote_branches=$(git ls-remote --heads origin 2>/dev/null | grep -E "refs/heads/[0-9]+-${escaped_name}$" | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n)
-    fi
-    
-    # Also check local branches
-    local local_branches
-    local_branches=$(git branch 2>/dev/null | grep -E "^[* ]*[0-9]+-${escaped_name}$" | sed 's/^[* ]*//' | sed 's/-.*//' | sort -n)
-    
-    # Check specs directory as well
-    local spec_dirs=""
-    if [[ -d "${SPECS_DIR:-}" ]]; then
-        # Use while loop instead of xargs for cross-platform compatibility
-        # (BSD xargs doesn't support -r flag, GNU xargs needs it for empty input)
-        while IFS= read -r dir; do
-            [[ -n "$dir" ]] && spec_dirs="$spec_dirs $(basename "$dir" | sed 's/-.*//')"
-        done < <(find "$SPECS_DIR" -maxdepth 1 -type d -name "[0-9]*-${short_name}" 2>/dev/null)
-        spec_dirs=$(printf '%s\n' "$spec_dirs" | tr ' ' '\n' | grep -v '^$' | sort -n)
-    fi
-    
-    # Combine all sources and get the highest number
-    local max_num=0
-    for num in $remote_branches $local_branches $spec_dirs; do
-        if [[ "$num" -gt "$max_num" ]]; then
-            max_num=$num
+highest_branch_number() {
+    local highest=0
+    local ref name number
+    while IFS= read -r ref; do
+        case "$ref" in
+            refs/heads/*) name="${ref#refs/heads/}" ;;
+            refs/remotes/*/*) name="${ref#refs/remotes/*/}" ;;
+            *) continue ;;
+        esac
+        [[ "$name" =~ ^([0-9]{3})- ]] || continue
+        number=$((10#${BASH_REMATCH[1]}))
+        if [[ "$number" -gt "$highest" ]]; then
+            highest=$number
         fi
-    done
-    
-    # Return next number
-    printf '%s\n' "$((max_num + 1))"
+    done < <(git for-each-ref --format='%(refname)' refs/heads refs/remotes 2>/dev/null)
+    printf '%s\n' "$highest"
 }
 
 # ───────────────────────────────────────────────────────────────
