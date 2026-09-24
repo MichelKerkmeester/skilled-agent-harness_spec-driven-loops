@@ -39,7 +39,7 @@
       "emphatic"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -52,6 +52,7 @@
       ".skilled/repo-rules/communication-decisions.md",
       ".skilled/repo-rules/communication-handoff.md",
       ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/skills/sk-prompt/README.md",
       ".skilled/skills/sk-prompt/references/patterns-evaluation.md",
       ".skilled/skills/sk-prompt/references/depth-framework.md",
       ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
@@ -59,8 +60,7 @@
       ".hermes/skills/sk-prompt/SKILL.md",
       ".hermes/skills/cli-devin/SKILL.md",
       ".pi/models.json",
-      ".codex/AGENTS.md",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+      "research/sources.md"
     ],
     "entities": [
       {
@@ -130,6 +130,12 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/README.md",
+        "source": "derived"
+      },
+      {
         "name": "patterns-evaluation.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-prompt/references/patterns-evaluation.md",
@@ -160,25 +166,13 @@
         "source": "derived"
       },
       {
-        "name": "AGENTS.md",
+        "name": "sources.md",
         "kind": "doc",
-        "path": ".codex/AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "path": "research/sources.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repository's instruction surfaces predate the current vendor prompting guides",
     "created_at": "2026-09-24T08:05:49Z",
-    "last_save_at": "2026-09-24T11:19:20.820Z",
+    "last_save_at": "2026-09-24T13:15:44.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18ec6f35181dca35831c4a9d843cfa0ba482791df29457bb441ddab5bab3aefc",
+    "source_fingerprint": "sha256:7fcd2e4ff6eb0d3dc03539378be5c800ceab138b6cd21dea2d83880e85f5a901",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3be345e97813464797e41d8b1d01c37689853a8441dbf642bc5d9614588ea60d",
+      "spec.md": "f33205c60ef4ae43e648ce57c9ce8805c0dadff0dca1606d8cb1e1905890cd89",
       "plan.md": "92791bf7a740aae34ef1c9f9ddfa403d0c0f7ce8ee3dadd6d94dcecfabde0f28",
-      "tasks.md": "b603d969eaabb49ee295457a9a676edba585f5fc51210b73cfadab425f491e66",
-      "implementation-summary.md": "82cca27da89e1e52d67c541f57a4e9650637e8e6a5fad373b3fdae38a08b7fb7"
+      "tasks.md": "b432fbbad4b7f4d9bd102319cb897e754d79ff7ad54958cdc889d2eb7667e8f0",
+      "implementation-summary.md": "f63dbc01358639b574d347635d4b91b6c6ce42461dbfcd00f9fb8d6ccc5e7dba"
     },
     "last_active_at": null
   }
