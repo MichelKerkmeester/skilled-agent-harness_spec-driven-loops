@@ -1,5 +1,5 @@
 {
-  "manifestHash": "28676291669570cb05d21bba62a1dce10775d886e0d95be8d3d3582594777504",
+  "manifestHash": "d537372e464168cd9e10e3dc231889fdcc0cecfe86d3563ef5aa308d73c80f97",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10634,6 +10634,9 @@
     ],
     "archive a page": [
       "Archive a page"
+    ],
+    "archive a phase": [
+      "archive a phase"
     ],
     "archive container graph node": [
       "archive container graph node"
@@ -54522,6 +54525,9 @@
     "packet goal single source backlog": [
       "packet goal single source backlog"
     ],
+    "packet home": [
+      "packet home"
+    ],
     "packet id audit": [
       "packet id audit"
     ],
@@ -56270,6 +56276,9 @@
     ],
     "phase acceptance criteria": [
       "phase acceptance criteria"
+    ],
+    "phase aware archive": [
+      "phase-aware archive"
     ],
     "phase b handoff": [
       "phase b handoff"
@@ -64125,6 +64134,9 @@
     ],
     "restore level upgrade vocabulary invariance": [
       "restore level upgrade vocabulary invariance"
+    ],
+    "restore phase to parent": [
+      "restore phase to parent"
     ],
     "restore staged": [
       "restore staged"
