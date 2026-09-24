@@ -1,6 +1,6 @@
 ---
 title: "SP-017 -- CLEAR 40/50 threshold triggers improvement"
-description: "This scenario validates total CLEAR threshold enforcement for `SP-017`. It focuses on iterating when total score is below 40/50, capped at 3 attempts."
+description: "This scenario validates total CLEAR threshold enforcement for `SP-017`. It focuses on iterating when total score is below 40/50, capped at one retry."
 version: 2.3.0.5
 ---
 
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that a total CLEAR score below 40 triggers an improvement cycle. The operator asks for ML hyperparameter tuning prompt improvement and verifies that `@prompt-improver` iterates up to 3 times before delivering the best version with notes.
+This scenario validates that a total CLEAR score below 40 triggers an improvement cycle. The operator asks for ML hyperparameter tuning prompt improvement and verifies that `@prompt-improver` retries once before delivering the best version with notes.
 
 ### Why This Matters
 
@@ -24,13 +24,13 @@ The 40/50 threshold is the delivery quality bar. Without it, below-target prompt
 
 Operators run the exact prompt and command sequence for `SP-017` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm total CLEAR <40 triggers improvement cycles capped at 3.
-- Real user request: `Improve my prompt for ML hyperparameter tuning — only deliver if you can hit CLEAR >= 40, otherwise iterate up to 3 times.`
-- Prompt: `Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers another cycle and stops after 3 total attempts.`
-- Expected execution process: `@prompt-improver` scores the prompt, checks total >=40, iterates on failure, and stops after 3 attempts if needed.
-- Expected signals: Score progression shows initial score and subsequent score(s); final status says pass or max-3 best-version delivery.
+- Objective: Confirm total CLEAR <40 triggers one improvement cycle and no more.
+- Real user request: `Improve my prompt for ML hyperparameter tuning — only deliver if you can hit CLEAR >= 40, otherwise retry once.`
+- Prompt: `Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers one retry and stops there.`
+- Expected execution process: `@prompt-improver` scores the prompt, checks total >=40, retries once on failure, and then stops.
+- Expected signals: Score progression shows initial score and subsequent score(s); final status says pass or best-version delivery after one retry.
 - Desired user-visible outcome: Enhanced prompt plus CLEAR progression and final threshold status.
-- Pass/fail: PASS if total <40 triggers iteration and cap is honored; FAIL if a below-40 result ships as pass or loops beyond 3.
+- Pass/fail: PASS if total <40 triggers a retry and the one-retry cap is honored; FAIL if a below-40 result ships as pass or a second retry starts.
 
 ---
 
@@ -39,18 +39,18 @@ Operators run the exact prompt and command sequence for `SP-017` and confirm the
 ### Prompt
 
 ```
-Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers another cycle and stops after 3 total attempts.
+Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers one retry and stops there.
 ```
 
 ### Commands
 
-1. `sk-prompt: Improve my prompt for ML hyperparameter tuning — only deliver if you can hit CLEAR >= 40, otherwise iterate up to 3 times.`
-2. `agent: @prompt-improver raw_task="Improve an ML hyperparameter tuning prompt and enforce CLEAR >= 40 before success." task_type=generation target_cli=opencode complexity_hint=8 constraints="Iterate on total CLEAR <40; cap at 3 attempts."`
-3. `bash: rg '40\\+/50|required|30-39|Max 3 iterations|CLEAR >= 40' .skilled/skills/sk-prompt/references/depth-framework.md .skilled/skills/sk-prompt/references/patterns-evaluation.md`
+1. `sk-prompt: Improve my prompt for ML hyperparameter tuning — only deliver if you can hit CLEAR >= 40, otherwise retry once.`
+2. `agent: @prompt-improver raw_task="Improve an ML hyperparameter tuning prompt and enforce CLEAR >= 40 before success." task_type=generation target_cli=opencode complexity_hint=8 constraints="Retry once on total CLEAR <40."`
+3. `bash: rg '40\\+/50|required|30-39|One retry at most|CLEAR >= 40' .skilled/skills/sk-prompt/references/depth-framework.md .skilled/skills/sk-prompt/references/patterns-evaluation.md`
 
 ### Expected
 
-The transparency report shows CLEAR >=40 on success, or iteration count up to 3 plus best-version notes on failure.
+The transparency report shows CLEAR >=40 on success, or one retry plus best-version notes on failure.
 
 ### Evidence
 
@@ -58,8 +58,8 @@ Capture score progression, iteration count, final threshold status, and `ESCALAT
 
 ### Pass / Fail
 
-- **Pass**: Total <40 causes at least one improvement cycle and never exceeds 3 attempts.
-- **Fail**: Below-40 output is marked successful or a fourth attempt begins.
+- **Pass**: Total <40 causes one improvement cycle and never a second.
+- **Fail**: Below-40 output is marked successful or a second retry begins.
 
 ### Failure Triage
 
@@ -87,7 +87,7 @@ Verify a final score >=40 also satisfies all dimension floors from SP-016.
 | File | Role |
 |---|---|
 | `../../references/patterns-evaluation.md` | CLEAR threshold table |
-| `../../references/depth-framework.md` | Max-3 improvement-cycle protocol |
+| `../../references/depth-framework.md` | One-retry improvement protocol |
 
 ---
 
