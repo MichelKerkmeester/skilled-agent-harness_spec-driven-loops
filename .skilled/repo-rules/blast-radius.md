@@ -20,7 +20,7 @@ trigger_phrases:
   - "name the rollback first"
 importance_tier: important
 contextType: reference
-version: 1.0.1.1
+version: 1.0.1.2
 ---
 
 # Rule: Blast radius and reversibility
@@ -59,13 +59,13 @@ you write it, and it tells the operator what they are approving.
 | Tier | Examples | What it needs |
 |------|----------|---------------|
 | **Trivially reversible** | Working-tree edit to a tracked file; a new untracked file; a local commit | Proceed |
-| **Reversible with effort** | A migration with a working down step; a regenerable artifact; an installed dependency | Say what undoing costs, then proceed |
-| **Irreversible** | Sent message, comment, or email; published package or release; deleted remote data; overwritten untracked file; rewritten shared history; force-push; **any push to a non-allowlisted remote branch**; an external call with side effects; a destructive migration with no down step | **Written rollback + explicit yes, first** |
+| **Reversible with effort** | A migration with a working down step; a regenerable artifact; an installed dependency | Say what undoing costs, then proceed; an install still waits for a yes (`AGENTS.md` §3) |
+| **Irreversible** | Sent message, comment, or email; published package or release; deleted remote data; an overwritten or deleted untracked file; rewritten shared history; force-push; **any push to a non-allowlisted remote branch**; an external call with side effects; a destructive migration with no down step | **Written rollback + explicit yes, first** |
 
 Two traps sit in the middle tier and behave like the bottom one:
 
-- **Overwriting an untracked or ignored file** is irreversible; git holds no copy.
-  Look at the target before writing over it, always.
+- **Overwriting or deleting an untracked or ignored file** is irreversible; git holds no
+  copy. Look at the target before writing over it or removing it, always.
 - **Sending is publishing.** Content that reaches an external service may be cached,
   logged, or indexed even if you delete it a second later.
 
