@@ -1,5 +1,5 @@
 {
-  "manifestHash": "947f46afddd95370e3dee09979839204a437313080e45874368913c7fb882588",
+  "manifestHash": "0735bda34b589dbe787c5d0d97109bd88e032589f74cabbd71b98a548920364e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49064,6 +49064,9 @@
     "missing interaction states": [
       "missing interaction states"
     ],
+    "missing phase map rows": [
+      "missing phase map rows"
+    ],
     "missing vector hygiene implementation": [
       "missing vector hygiene implementation"
     ],
@@ -56235,6 +56238,9 @@
     "phase documentation map refresh": [
       "phase documentation map refresh"
     ],
+    "phase documentation map repair": [
+      "phase documentation map repair"
+    ],
     "phase documentation map rows": [
       "phase documentation map rows"
     ],
@@ -56303,6 +56309,15 @@
     ],
     "phase main loop cli branches buildlineagecommand": [
       "phase_main_loop cli branches buildLineageCommand"
+    ],
+    "phase map repair evidence": [
+      "phase map repair evidence"
+    ],
+    "phase map repair plan": [
+      "phase map repair plan"
+    ],
+    "phase map repair tasks": [
+      "phase map repair tasks"
     ],
     "phase map rows never filled": [
       "phase map rows never filled"
@@ -80978,6 +80993,18 @@
     ],
     "v4 packet order": [
       "v4 packet order"
+    ],
+    "v4 parent data repairs": [
+      "v4 parent data repairs"
+    ],
+    "v4 parent data repairs plan": [
+      "v4 parent data repairs plan"
+    ],
+    "v4 parent data repairs tasks": [
+      "v4 parent data repairs tasks"
+    ],
+    "v4 phase map blank line": [
+      "v4 phase map blank line"
     ],
     "v4 release notes corrections applied": [
       "v4 release notes corrections applied"
