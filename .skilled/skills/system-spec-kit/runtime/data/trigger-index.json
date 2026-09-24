@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0735bda34b589dbe787c5d0d97109bd88e032589f74cabbd71b98a548920364e",
+  "manifestHash": "4ab27083a11b26658c4d9515023e36ae15fa886ea90304d940628b0fc9c132d5",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -61385,6 +61385,10 @@
     "level agnostic template": [
       8048
     ],
+    "level contract fallback": [
+      11379,
+      11381
+    ],
     "level contract headings": [
       1714
     ],
@@ -69245,6 +69249,10 @@
     ],
     "no spec ids in comments": [
       577
+    ],
+    "no tsx template fallback": [
+      11379,
+      11381
     ],
     "noaa loop harness plan": [
       5429
