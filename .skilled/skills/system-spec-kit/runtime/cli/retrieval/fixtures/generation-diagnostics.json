@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7344,
-    "ok": 11360,
+    "missing-frontmatter": 7354,
+    "ok": 11378,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22395,
+  "documentsScanned": 22423,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d537372e464168cd9e10e3dc231889fdcc0cecfe86d3563ef5aa308d73c80f97",
+  "manifestHash": "af821500789a214715a427b9366a1d8a882ce097ab50efda907a11c5453332bd",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27636,
+      "ok": 27679,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -4688,6 +4688,12 @@
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.4.0.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -31858,6 +31864,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -38300,6 +38312,42 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/agents/010-repo-rule-system-integration/research/synthesis.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/013-prompting-guide-alignment/research/lens-luna-agents.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/013-prompting-guide-alignment/research/lens-luna-prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/013-prompting-guide-alignment/research/lens-luna-rules.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/013-prompting-guide-alignment/research/lens-mimo-agents.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/013-prompting-guide-alignment/research/lens-mimo-prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents/013-prompting-guide-alignment/research/lens-mimo-rules.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -69939,6 +69987,18 @@
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu9-parent-rows.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     }
   ],
   "skippedPaths": [
@@ -70652,6 +70712,14 @@
     },
     {
       "path": "specs/agents/012-agent-avoidance-anti-patterns/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/013-prompting-guide-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/014-agent-emphasis-register/scratch",
       "reason": "excluded directory"
     },
     {
@@ -74568,6 +74636,14 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/scratch",
       "reason": "excluded directory"
     },
     {

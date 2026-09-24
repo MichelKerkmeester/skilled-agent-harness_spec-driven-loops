@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d537372e464168cd9e10e3dc231889fdcc0cecfe86d3563ef5aa308d73c80f97",
+  "manifestHash": "af821500789a214715a427b9366a1d8a882ce097ab50efda907a11c5453332bd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9113,6 +9113,9 @@
     "agent avoidance anti patterns": [
       "agent avoidance anti-patterns"
     ],
+    "agent boilerplate boundary statement": [
+      "agent boilerplate boundary statement"
+    ],
     "agent common mistakes": [
       "agent common mistakes"
     ],
@@ -9142,6 +9145,18 @@
     ],
     "agent definition mirror cleanup phase": [
       "agent definition mirror cleanup phase"
+    ],
+    "agent emphasis register": [
+      "agent emphasis register"
+    ],
+    "agent emphasis register plan": [
+      "agent emphasis register plan"
+    ],
+    "agent emphasis register summary": [
+      "agent emphasis register summary"
+    ],
+    "agent emphasis register tasks": [
+      "agent emphasis register tasks"
     ],
     "agent filename name mismatch": [
       "agent filename name mismatch"
@@ -9432,6 +9447,12 @@
     "agent io verification doctrine": [
       "agent io verification doctrine"
     ],
+    "agent label rewrite status": [
+      "agent label rewrite status"
+    ],
+    "agent label rewrite tasks": [
+      "agent label rewrite tasks"
+    ],
     "agent loop authority switch plan": [
       "agent loop authority switch plan"
     ],
@@ -9467,6 +9488,9 @@
     ],
     "agent mirror propagation plan": [
       "agent mirror propagation plan"
+    ],
+    "agent mirror regeneration": [
+      "agent mirror regeneration"
     ],
     "agent mirror verification": [
       "agent mirror verification"
@@ -9530,6 +9554,12 @@
     ],
     "agent swarms graph tasks": [
       "agent-swarms graph tasks"
+    ],
+    "agent template amendment": [
+      "agent template amendment"
+    ],
+    "agent template critical important": [
+      "agent template critical important"
     ],
     "agent vs skill vs command": [
       "agent vs skill vs command"
@@ -9612,6 +9642,9 @@
     ],
     "agents md pointer": [
       "agents md pointer"
+    ],
+    "agents md prompting audit": [
+      "agents.md prompting audit"
     ],
     "agents md routing cleanup phase": [
       "agents md routing cleanup phase"
@@ -16180,6 +16213,9 @@
     ],
     "claude posttooluse sh": [
       "claude posttooluse sh"
+    ],
+    "claude prompting best practices": [
+      "claude prompting best practices"
     ],
     "claude session cleanup": [
       "claude session cleanup"
@@ -29229,6 +29265,9 @@
     "devin review prompt template": [
       "devin review prompt template"
     ],
+    "devin roster gpt 6 luna": [
+      "devin roster gpt-6 luna"
+    ],
     "devin run subagent": [
       "devin run_subagent"
     ],
@@ -38791,6 +38830,12 @@
     "gpt 6 luna cutover": [
       "gpt-6 luna cutover"
     ],
+    "gpt 6 luna devin roster": [
+      "gpt-6 luna devin roster"
+    ],
+    "gpt 6 prompting guide": [
+      "gpt-6 prompting guide"
+    ],
     "gpt 6 sol cutover": [
       "gpt-6 sol cutover"
     ],
@@ -44276,6 +44321,12 @@
     "legacy removal summary": [
       "legacy removal summary"
     ],
+    "legacy spec folder migration": [
+      "legacy spec folder migration"
+    ],
+    "legacy spec folder strict pass": [
+      "legacy spec folder strict pass"
+    ],
     "legacy spec root fallback": [
       "legacy spec root fallback"
     ],
@@ -44345,6 +44396,9 @@
     ],
     "lenis scrollto snippet": [
       "lenis scrollto snippet"
+    ],
+    "lens dispatch tasks": [
+      "lens dispatch tasks"
     ],
     "less doc template bloat": [
       "less doc-template bloat"
@@ -46111,6 +46165,9 @@
     ],
     "manage webhooks": [
       "manage webhooks"
+    ],
+    "mandatory checklist headings": [
+      "mandatory checklist headings"
     ],
     "mandatory connector rules": [
       "mandatory connector rules"
@@ -53435,6 +53492,9 @@
     "opus fable never eligible prompt improver": [
       "opus fable never eligible prompt improver"
     ],
+    "opus lens prompting alignment": [
+      "opus lens prompting alignment"
+    ],
     "opus review remediation decisions": [
       "opus review remediation decisions"
     ],
@@ -54055,6 +54115,12 @@
     ],
     "over permissive agent permissions": [
       "over-permissive agent permissions"
+    ],
+    "over prompted agent labels": [
+      "over-prompted agent labels"
+    ],
+    "over prompting emphatic caps": [
+      "over-prompting emphatic caps"
     ],
     "overall sealed preliminary authoritative": [
       "overall.sealed preliminary authoritative"
@@ -58556,6 +58622,18 @@
     "pre spawn refusal": [
       "pre-spawn refusal"
     ],
+    "pre v4 spec upgrade": [
+      "pre-v4 spec upgrade"
+    ],
+    "pre v4 spec upgrade research": [
+      "pre-v4 spec upgrade research"
+    ],
+    "pre v4 upgrade plan": [
+      "pre-v4 upgrade plan"
+    ],
+    "pre v4 upgrade tasks": [
+      "pre-v4 upgrade tasks"
+    ],
     "pre write restraint": [
       "pre-write restraint"
     ],
@@ -59507,6 +59585,15 @@
     ],
     "promptfilebody dispatch test": [
       "promptFileBody dispatch test"
+    ],
+    "prompting guide alignment plan": [
+      "prompting guide alignment plan"
+    ],
+    "prompting guide alignment synthesis": [
+      "prompting guide alignment synthesis"
+    ],
+    "prompting guide alignment tasks": [
+      "prompting guide alignment tasks"
     ],
     "proof over appearance": [
       "proof over appearance"
@@ -61187,6 +61274,12 @@
     ],
     "recorded findings goal": [
       "recorded findings goal"
+    ],
+    "recorded findings hook tasks": [
+      "recorded findings hook tasks"
+    ],
+    "recorded upgrade findings": [
+      "recorded upgrade findings"
     ],
     "recount census pin": [
       "recount census pin"
@@ -78956,6 +79049,12 @@
     "three layer reaper architecture": [
       "three-layer reaper architecture"
     ],
+    "three lens dispatch plan": [
+      "three lens dispatch plan"
+    ],
+    "three lens prompting review": [
+      "three lens prompting review"
+    ],
     "three p1 deep review findings": [
       "three P1 deep-review findings"
     ],
@@ -80793,8 +80892,17 @@
     "updatephaseparentpointer bypasses zod": [
       "updatePhaseParentPointer bypasses zod"
     ],
+    "upgrade baseline json": [
+      "upgrade-baseline.json"
+    ],
     "upgrade creates implementation summary": [
       "upgrade creates implementation summary"
+    ],
+    "upgrade legacy command": [
+      "upgrade-legacy command"
+    ],
+    "upgrade legacy tasks": [
+      "upgrade-legacy tasks"
     ],
     "upgrade level fragments": [
       "upgrade-level fragments"
@@ -80829,6 +80937,9 @@
     "upgrade matches native scaffold": [
       "upgrade matches native scaffold"
     ],
+    "upgrade old spec folders": [
+      "upgrade old spec folders"
+    ],
     "upgrade path re assembles tasks": [
       "upgrade path re-assembles tasks"
     ],
@@ -80846,6 +80957,9 @@
     ],
     "upgrade spec level": [
       "upgrade spec level"
+    ],
+    "upgrade time finding baseline": [
+      "upgrade-time finding baseline"
     ],
     "upload a file to notion": [
       "upload a file to notion"
@@ -81098,6 +81212,9 @@
     ],
     "v3 section completeness": [
       "v3 section completeness"
+    ],
+    "v3 spec folders fail strict validation": [
+      "v3 spec folders fail strict validation"
     ],
     "v3 style reference design system handoff": [
       "v3 Style Reference design system handoff"
@@ -81759,6 +81876,15 @@
     ],
     "vendor handoff": [
       "vendor handoff"
+    ],
+    "vendor prompting findings applied": [
+      "vendor prompting findings applied"
+    ],
+    "vendor prompting guide alignment": [
+      "vendor prompting guide alignment"
+    ],
+    "vendor prompting sources": [
+      "vendor prompting sources"
     ],
     "vendored fork drift check": [
       "vendored fork drift check"
@@ -83973,6 +84099,9 @@
     ],
     "zero tables readme section 1": [
       "zero tables readme section 1"
+    ],
+    "zero token spec upgrade": [
+      "zero-token spec upgrade"
     ],
     "zero unresolved playbook fails": [
       "zero unresolved playbook fails"
