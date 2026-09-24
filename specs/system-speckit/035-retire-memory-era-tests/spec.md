@@ -79,14 +79,15 @@ Every test file left in spec-kit loads, tests code that exists and runs from a p
 - Fix the three defects the revived tests expose: the unfilled phase map, the appended rows outside it, and the unchecked empty phase child
 - Keep `create.sh --json` stdout to the JSON payload
 - Make the renderer and level contract fallbacks produce what their TypeScript sources produce, and have both renderers read a template path given before `--level`
-- Fill the phase map of `specs/sk-design/020-chart-and-diagram-review`, the one parent the marker defect left empty
+- Fill the phase map of `specs/sk-design/020-chart-and-diagram-review`, the one parent the marker defect left empty, and give its `synthesis.md` the frontmatter it lacked
+- Report on stderr each generated file `create.sh` skips because the build or install is missing
 
 ### Out of Scope
 - The live embedding stack under `shared/embeddings/` and its advisor-owned tests. It still backs the skill advisor
 - Released changelog entries that name the removed files. They are history
-- Spec packet history under `specs/`, apart from the one phase map filled here. It records what was true then
+- Spec packet history under `specs/`, apart from the sk-design/020 map and synthesis frontmatter filled here. It records what was true then
 - Other scripts in `runtime/cli/tests/` that no package script runs. They get their own review
-- The description and graph metadata of a scaffold made with no build. Both need compiled or tsx-run generators, and `create.sh` skips them
+- Writing the description and graph metadata of a scaffold made with no build. Both need compiled or tsx-run generators, so `create.sh` skips them and says so
 - A numbered child that holds only loop artifacts such as `research/` or `review/`. It is not a phase and stays skipped
 
 ### Files to Change
@@ -115,7 +116,8 @@ Every test file left in spec-kit loads, tests code that exists and runs from a p
 | `runtime/cli/lib/template-utils.sh` | Modify | A plain-JavaScript copy of the level contract resolver as the fallback |
 | `runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts`, `level-contract-fallback.vitest.ts` | Create | Hold each fallback to its TypeScript source |
 | `runtime/cli/tests/inline-gate-renderer.vitest.ts` | Modify | Cover a template path given before `--level` |
-| `specs/sk-design/020-chart-and-diagram-review/spec.md` | Modify | Fill its phase map |
+| `specs/sk-design/020-chart-and-diagram-review/spec.md`, `synthesis.md` | Modify | Fill its phase map, and add the synthesis frontmatter |
+| `runtime/cli/tests/create-without-build.vitest.ts` | Create | Fail if a scaffold with no build skips a generated file without a warning |
 
 All paths are under `.skilled/skills/system-spec-kit/` unless they start with `sk-doc/` (under `.skilled/skills/`) or `specs/`, or are `CONTRIBUTING.md` (repo root).
 <!-- /ANCHOR:scope -->
@@ -145,6 +147,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 | REQ-009 | `create.sh --json` prints the JSON payload and nothing else on stdout | The phase test parses stdout strictly and passes |
 | REQ-010 | With no install, `create.sh` scaffolds the documents a tsx checkout does | Each fallback matches its TypeScript source in a parity test that failed before its port, and an install-free Level 2 and 3 scaffold differs from a tsx one only in timestamps |
 | REQ-011 | No phase parent keeps the unfilled row markers | A search of `specs/` for the phase row marker finds no `spec.md` |
+| REQ-012 | A scaffold that skips a generated file for want of a build says so | Level, phase-parent and appended-phase scaffolds with no build each print a warning naming the missing generator, and the test fails without it |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -155,7 +158,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 - **SC-001**: The fourteen dead files are gone and nothing outside history names them
 - **SC-002**: Five live-feature tests run from package scripts and pass
 - **SC-003**: The three defects they exposed are fixed, each proved by a revived test that failed before its fix
-- **SC-004**: A tree with no install scaffolds the same documents as a tsx checkout, and `--json` output parses strictly
+- **SC-004**: A tree with no install scaffolds the same documents as a tsx checkout, reports what it could not generate, and `--json` output parses strictly
 <!-- /ANCHOR:success-criteria -->
 
 ---
