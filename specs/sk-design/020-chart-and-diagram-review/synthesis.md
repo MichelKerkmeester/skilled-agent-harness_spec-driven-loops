@@ -1,3 +1,19 @@
+---
+title: "Synthesis: deep review of the chart and diagram modes"
+description: "Eight review iterations on DeepSeek V4.1 Flash, four each over sk-design-chart and sk-design-diagram, with every finding reopened at the line it names. Both packets come out CONDITIONAL. The chart packet's tools are sound and its documents overstate them. The diagram applicator can ship a themed delivery whose contrast nothing measured and still report a pass."
+trigger_phrases:
+  - "chart and diagram review synthesis"
+  - "sk-design-chart review verdict"
+  - "sk-design-diagram review verdict"
+  - "themed delivery ships unmeasured contrast"
+  - "diagram applicator contrast gate"
+  - "decoration exemption lost partway through a file"
+  - "4px grid exemption list"
+  - "default palette changes half the stock colours"
+  - "mutation suites claim more than their cases prove"
+  - "series colours below the contrast gate"
+  - "dark skin declares five roles"
+---
 # Chart and diagram packet review — synthesis
 
 **Date:** 2026-09-11
