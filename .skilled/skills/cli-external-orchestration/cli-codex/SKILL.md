@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.9.3.0
+version: 1.9.4.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -165,9 +165,9 @@ Install with `npm i -g @openai/codex` (or `brew install --cask codex`). cli-code
 
 ### Execution Ownership
 
-This packet owns user-facing routing, the `command -v codex` availability probe, prompt construction, and the self-invocation guard. Actual process construction and execution delegate to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-codex`.
+This packet owns user-facing routing, the `command -v codex` availability probe, prompt construction, and the self-invocation guard. Research and review lineages delegate process construction and execution to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-codex`. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
 
-The runtime is the single Codex execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `codex exec` snippets below are operator reference and manual-testing examples; orchestrated dispatches use the shared runtime.
+The runtime is the single Codex execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `codex exec` snippets below are operator reference and manual-testing examples; research and review lineages use the shared runtime, and a one-shot dispatch uses the child envelope.
 
 ### Provider Auth Pre-Flight (ChatGPT OAuth)
 
@@ -251,12 +251,13 @@ Git diff review uses the built-in subcommand (no `-p`): `codex exec review "..."
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Four gotchas that silently break a dispatch and must be honored at routing time:
+The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Five gotchas that break a dispatch, or make a child misreport its result, and must be honored at routing time:
 
 - **`codex exec` defaults to `--sandbox read-only`** — file-modification tasks silently no-op (the agent plans changes but cannot write them). Pass `--sandbox workspace-write`; for headless no-prompt execution use top-level `-a never` before `exec` or `-c approval_policy=never`.
 - **`--search` is a top-level flag, not an `exec` flag** — enable live web search as `codex --search exec …` (it precedes the subcommand). On codex ≥ 0.144 `codex exec --search` hard-fails with `unexpected argument '--search'` (older 0.125 builds accepted it), so treat any `exec … --search` example as stale. Without it, `codex exec` has no web access and answers from training data only — every dispatch needing live data (latest versions, repo facts, advisories) MUST use `codex --search exec …`.
 - **Always pass `-c service_tier="fast"` explicitly** — this routes through the fast tier instead of whatever the caller's `~/.codex/config.toml` defaults to. Explicit means reproducible regardless of who runs it.
 - **No `--reasoning-effort`, `--reasoning`, or `--quiet` flag exists** — set effort with `-c model_reasoning_effort="<level>"`; capture the last message with `-o file.txt`; capture stderr with `2>&1`.
+- **`--sandbox workspace-write` blocks local IPC sockets, so a child cannot run checks that start `tsx`** — spec-kit's `npm --prefix runtime/cli run check` fails there with `listen EPERM`, also with `TMPDIR` pointed elsewhere (observed 2026-09-24 on codex-cli 0.156.1), and passes outside the sandbox. Tell the child which checks to leave to you, run them in the orchestrating session after it returns, and read that EPERM as a sandbox limit, not a code failure.
 
 ---
 
@@ -265,7 +266,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 ### ✅ ALWAYS
 
 1. Verify Codex CLI is installed before first invocation (`command -v codex`).
-2. Delegate orchestrated execution to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-codex`; never build a second adapter in this packet.
+2. Delegate research and review lineages to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-codex`. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5. Never build a second adapter in this packet.
 3. Use `--sandbox read-only` for review/analysis/research; `--sandbox workspace-write` for code generation/file modification — `codex exec` defaults to `read-only`, so omitting it causes silent no-op on edit tasks. For unattended approval, put top-level `-a never` before `exec` or set `-c approval_policy=never`.
 4. Validate Codex-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.

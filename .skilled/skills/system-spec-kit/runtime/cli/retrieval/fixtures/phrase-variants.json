@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4ab27083a11b26658c4d9515023e36ae15fa886ea90304d940628b0fc9c132d5",
+  "manifestHash": "1c153ebcf9bf9940d4ede50437e05960c4b786db35fc39ff677c479948fd7ed1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16364,8 +16364,26 @@
     "cli codex dispatch plan": [
       "cli-codex dispatch plan"
     ],
+    "cli codex dispatch rules": [
+      "cli codex dispatch rules"
+    ],
+    "cli codex dispatch rules plan": [
+      "cli codex dispatch rules plan"
+    ],
+    "cli codex dispatch rules tasks": [
+      "cli codex dispatch rules tasks"
+    ],
     "cli codex executor deep research": [
       "cli-codex executor deep research"
+    ],
+    "cli codex fanout rule scope": [
+      "cli codex fanout rule scope"
+    ],
+    "cli codex fanout scope plan": [
+      "cli codex fanout scope plan"
+    ],
+    "cli codex fanout scope tasks": [
+      "cli codex fanout scope tasks"
     ],
     "cli codex frontmatter alignment": [
       "cli-codex frontmatter alignment"
@@ -16390,6 +16408,9 @@
     ],
     "cli codex reference frontmatter": [
       "cli-codex reference frontmatter"
+    ],
+    "cli codex sandbox eperm evidence": [
+      "cli codex sandbox eperm evidence"
     ],
     "cli command aliases snake kebab camel": [
       "cli command aliases snake kebab camel"
@@ -19245,6 +19266,9 @@
     "codex built in tools": [
       "codex built-in tools"
     ],
+    "codex child envelope one shot dispatch": [
+      "codex child envelope one-shot dispatch"
+    ],
     "codex clear check": [
       "codex clear check"
     ],
@@ -19430,6 +19454,9 @@
     ],
     "codex sandbox": [
       "codex sandbox"
+    ],
+    "codex sandbox listen eperm": [
+      "codex sandbox listen eperm"
     ],
     "codex sandbox modes": [
       "codex sandbox modes"

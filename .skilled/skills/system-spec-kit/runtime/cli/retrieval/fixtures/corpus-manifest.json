@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b05a12247b30fa710637624df0f696541ef084e671d00c1fcd9308dfbf4ba74a",
+  "corpusHash": "687611213ea7df6f8d5c1e913876f449f98c3f2061666aef797126f8055f454e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22360,
+  "includedPathCount": 22365,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -424,6 +424,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/context-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/debug-profile.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/multi-ai-council-profile.md",
@@ -22370,6 +22371,10 @@
     "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/plan.md",
     "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/spec.md",
     "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -22382,7 +22387,7 @@
     "specs/system-speckit/035-retire-memory-era-tests/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4ab27083a11b26658c4d9515023e36ae15fa886ea90304d940628b0fc9c132d5",
+  "manifestHash": "1c153ebcf9bf9940d4ede50437e05960c4b786db35fc39ff677c479948fd7ed1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27005,6 +27010,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/scratch",
       "reason": "excluded directory"
     },
     {

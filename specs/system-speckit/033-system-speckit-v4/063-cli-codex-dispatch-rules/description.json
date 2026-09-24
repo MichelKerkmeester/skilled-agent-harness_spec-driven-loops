@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-24T07:18:45.242Z",
+  "specId": "063",
+  "folderSlug": "cli-codex-dispatch-rules",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-09-26_08-18__scoped-cli-codex-s-always-rule-2-and-execution.md"
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs",
-  "spec_folder": "system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs",
+  "packet_id": "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules",
+  "spec_folder": "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules",
   "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
@@ -11,30 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "v4 parent data repairs",
-      "phase documentation map repair",
-      "v4 phase map blank line",
-      "missing phase map rows",
-      "v4 parent data repairs plan",
-      "phase map repair plan",
-      "v4 parent data repairs tasks",
-      "phase map repair tasks",
+      "cli codex dispatch rules",
+      "cli codex fanout rule scope",
+      "codex sandbox listen eperm",
+      "codex child envelope one-shot dispatch",
+      "cli codex dispatch rules plan",
+      "cli codex fanout scope plan",
+      "cli codex dispatch rules tasks",
+      "cli codex fanout scope tasks",
       "implementation summary",
-      "phase map repair evidence"
+      "cli codex sandbox eperm evidence"
     ],
     "key_topics": [
-      "parent",
-      "data",
-      "repairs",
-      "phase",
-      "documentation",
-      "map",
-      "repair",
-      "blank",
-      "line",
-      "missing",
-      "rows",
-      "plan"
+      "cli",
+      "codex",
+      "dispatch",
+      "rules",
+      "fanout",
+      "rule",
+      "scope",
+      "sandbox",
+      "listen",
+      "eperm",
+      "child",
+      "envelope"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -43,7 +43,13 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "specs/system-speckit/033-system-speckit-v4/spec.md"
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
+      ".hermes/skills/cli-codex/SKILL.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "specs/system-speckit/033-system-speckit-v4/spec.md",
+      "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/spec.md"
     ],
     "entities": [
       {
@@ -71,6 +77,24 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.4.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -95,13 +119,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Documentation Map",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Execution Ownership",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,7 +143,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview The",
+        "name": "Overview Four",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -131,7 +155,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Each",
+        "name": "Critical Gotchas",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -149,51 +173,33 @@
         "source": "derived"
       },
       {
+        "name": "Scope Execution Ownership",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "row",
-        "kind": "key_phrase",
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "A dry run of the phase-map sync tool on the v4 parent reported a blank line at `spec.md:148` that ended the map after row 38, so rows 40 onward rendered as a paragraph and no tool read them; no row for 039; row 018 still marked draft although its implementation summary records completion; and no rows for the phases added since 055",
-    "created_at": "2026-09-24T06:45:23Z",
-    "last_save_at": "2026-09-24T07:18:46.726Z",
+    "causal_summary": "ALWAYS rule 2 and the Execution Ownership section told an orchestrator to delegate every orchestrated Codex dispatch to `fanout-run.cjs`",
+    "created_at": "2026-09-24T06:59:47Z",
+    "last_save_at": "2026-09-24T07:18:45.242Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ad7c77b3aff280863866a35950653dd917affc068f861c80a1abe63e114831b",
+    "source_fingerprint": "sha256:b7a196128369043ae869f25fff4b4143d3e5916be4b4d8c270e4fc78471d9a12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f970d6ad2419f2af4187113ae46b72cc426ba22abbe9de20f4120c454dae11da",
-      "plan.md": "668370563ff91042a3ad40dfe0f201b94debdb079f060e5868da576c4cc92cb9",
-      "tasks.md": "b0aed7177a2554a8405d5505a914fd4d9f4eeb30337e8a658836581a648f5e9f",
-      "implementation-summary.md": "407eff76548fbc83ff30e1e05b720d498c1a37d6581ea74b61d6fb7dad407dd8"
+      "spec.md": "b65b34afd10152d692599d968d628d972285148eedfcf2b0609083e98c1b08cb",
+      "plan.md": "5b1b33721e6cb252bc6b870a0c6a1d81a1d6d51540da51912ad4d2edf67a1c97",
+      "tasks.md": "05a9d38540d73908189994e564c41c3a2b32dc758c9c37f2200e42034a4b9161",
+      "implementation-summary.md": "05df2a8143a5a1b1790b0c6ec4fe6bf9732b6b1c93eae630b623172244c1a15d"
     },
     "last_active_at": null
   }
