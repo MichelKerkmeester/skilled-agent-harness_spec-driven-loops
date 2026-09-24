@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7dd81f7bcc2c7a050b839f8c702f289026aacc2fc39cd46049a5bb3915fdbe23",
+  "corpusHash": "8c64e4abe2df28769016e25e5da5bfd61cf39bd3fd7dba208324f774e24b0e5b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22386,
+  "includedPathCount": 22387,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -7904,6 +7904,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-composition-system.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/directive-lifecycle-dedup.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
@@ -22408,7 +22409,7 @@
     "specs/system-speckit/037-track-root-children/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a1b09424a420a280963ea1af08c2bdc565034fa21196bf5dc3e44c907b7c9cfb",
+  "manifestHash": "c2e834a78a0ef839aacd1e9bdee3dc8a1a192a172eadb90011f0bf08d176f0bd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
