@@ -14,7 +14,8 @@
     "system-speckit/034-create-canonical-specs-root",
     "system-speckit/035-retire-memory-era-tests",
     "system-speckit/036-root-numbering-without-track",
-    "system-speckit/037-track-root-children"
+    "system-speckit/037-track-root-children",
+    "system-speckit/038-track-aware-archive"
   ],
   "manual": {
     "depends_on": [],

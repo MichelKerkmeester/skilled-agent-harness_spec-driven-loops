@@ -144,7 +144,7 @@ The gate's first real run, pushing the skill doc changes from a linked worktree,
 3. **The linked tracks are refreshed but not gated.** Their repositories do not track their spec folders, so there is no commit to check. `create.sh --track` still keeps them current.
 4. **A context save appends its packet to the track list unsorted.** The list still matches as a set, and the next refresh sorts it.
 5. **`anobel.com`'s `description.json` described `app-remote-agent-chat`.** Rewritten for the anobel.com track on the operator's answer. It is untracked, like the rest of that spec folder.
-6. **`archive.sh` does not know about tracks.** It moves a packet to `specs/z_archive/` and restores it to the specs root, not to its track, and refreshes no list. Nothing calls it automatically, and tracks here archive by hand into their own `z_archive/`. After using it on a track packet, run `refresh-track-roots.mjs --apply`, or the gate blocks the next push.
+6. **`archive.sh` did not know about tracks.** It moved a packet to `specs/z_archive/`, restored it to the specs root rather than its track, and refreshed no list. Resolved by packet 038, `038-track-aware-archive`: the script now archives into the track's own `z_archive/`, restores to the track and refreshes the list after both moves.
 <!-- /ANCHOR:limitations -->
 
 ---
