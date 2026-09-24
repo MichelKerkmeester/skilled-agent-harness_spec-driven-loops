@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade",
+  "spec_folder": "system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre-v4 spec upgrade",
+      "legacy spec folder migration",
+      "v3 spec folders fail strict validation",
+      "upgrade old spec folders",
+      "zero-token spec upgrade",
+      "pre-v4 upgrade plan",
+      "upgrade-legacy command",
+      "upgrade-baseline.json",
+      "recorded upgrade findings",
+      "pre-v4 upgrade tasks",
+      "upgrade-legacy tasks",
+      "recorded findings hook tasks"
+    ],
+    "key_topics": [
+      "pre-v4",
+      "spec",
+      "upgrade",
+      "legacy",
+      "folder",
+      "migration",
+      "folders",
+      "fail",
+      "strict",
+      "validation",
+      "old",
+      "zero-token"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/changelog/v4.0.0.0.md",
+      "scratch/harness/data/v3.0.0.0.final.jsonl",
+      "scratch/harness/data/v3.6.0.0.pipeline.jsonl",
+      "runtime/cli/spec/README.md",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/graph/backfill-graph-metadata.ts",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      "runtime/cli/tests/graph-metadata-backfill.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-backfill.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.0.0.0.final.jsonl",
+        "kind": "file",
+        "path": "scratch/harness/data/v3.0.0.0.final.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "v3.6.0.0.pipeline.jsonl",
+        "kind": "file",
+        "path": "scratch/harness/data/v3.6.0.0.pipeline.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec folders written under v3.x fail the v4 `validate.sh --strict` almost without exception",
+    "created_at": "2026-09-24T09:28:01Z",
+    "last_save_at": "2026-09-24T15:47:02.758Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a42c53fec9cb75451172f01bd304a556b88564d377bab500725ea3bb1e518d14",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "43864f12d3781bbb198677b9d5e626c11f7b703f2a44d0aed4a9af10627224d5",
+      "plan.md": "495c5b7b8b38d91301b759a3bdedb1039377f37d850576cddd1bef353ba84159",
+      "tasks.md": "7654b2973d6d1bd5fb11cb24e60570c2e83ce76072a4f246051f72825f97fd86",
+      "implementation-summary.md": "3aab8178061988065d0748a4592434a79cff2f01c66cd9c98b53a36db2d99f21",
+      "research/research.md": "201c971c3bd12f8137c02446c15435e84f8bbea9951d9fb9063e41db45e99deb"
+    },
+    "last_active_at": null
+  }
+}

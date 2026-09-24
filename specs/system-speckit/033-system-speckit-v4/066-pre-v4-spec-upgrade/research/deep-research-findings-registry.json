@@ -1,0 +1,955 @@
+{
+  "mergedFrom": [
+    "luna",
+    "mimo"
+  ],
+  "lineageExecutors": {
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-luna",
+      "reasoningEffort": "max"
+    },
+    "mimo": {
+      "kind": "cli-pi",
+      "model": "mimo-v2.6-pro",
+      "reasoningEffort": "high"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "iteration": 1,
+      "severity": "P1",
+      "label": "Active baseline is 797 passes and 380 failures across 1,177 packets",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:65-71"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter001-002",
+      "iteration": 1,
+      "severity": "P1",
+      "label": "All 1,097 archived packets fail under the current default repair policy",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:71-73",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/validate-all.cjs:39-45"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter001-003",
+      "iteration": 1,
+      "severity": "P1",
+      "label": "Residual rule frequencies differ materially between v3.0.0.0 and v3.6.0.0",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:216-220",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/agg.cjs:5-17"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter001-004",
+      "iteration": 1,
+      "severity": "P1",
+      "label": "Residual details mix mechanical structure, generated metadata, and semantic status consistency",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.0.0.0.final.jsonl:5",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.0.0.0.final.jsonl:120",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.6.0.0.pipeline.jsonl:24"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter001-006",
+      "iteration": 1,
+      "severity": "P1",
+      "label": "Pipeline ordering and failure propagation are explicit risks",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:75-80"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter001-007",
+      "iteration": 1,
+      "severity": "P1",
+      "label": "Active-only success cannot meet an every-folder requirement",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:71-73"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-001",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "v4 validation is registry-driven and single-engine",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:5-10",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:214-385"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-002",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "Anchors, files, levels, template provenance, and document integrity predate v4",
+      "evidence": [
+        "git show v3.0.0.0:.opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh:9-13",
+        "git show v3.0.0.0:.opencode/skill/system-spec-kit/scripts/rules/check-files.sh:9-16",
+        "git show v3.6.0.0:.opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh:9-11"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-003",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "FILE_EXISTS and LEVEL_MATCH have shared deterministic contract inputs",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-files.sh:41-88",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-level-match.sh:160-218"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-004",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "Anchor closure is mechanical but missing required content is not",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:661-712"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-005",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "Template markers and trigger phrases require provenance and author-controlled meaning",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh:35-65",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-grep-convention-helper.mjs:183-215",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-grep-convention-helper.mjs:261-277"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-006",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "Generated metadata can be refreshed deterministically through a dry-run and failure-reporting writer",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/validation/generated-metadata-integrity.ts:72-99",
+        ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:441-487",
+        ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:546-654"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-007",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "Status comparison is deterministic but repair needs a declared authority",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-status-cross-doc-consistency.sh:31-67"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-008",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "Continuity and sufficiency rules require truthful evidence, not empty shape",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:772-803",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:852-901",
+        ".skilled/skills/system-spec-kit/shared/parsing/memory-sufficiency.ts:360-399"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-009",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "AI protocols, scaffold, links, and TOC inspect authored intent or claims",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-ai-protocols.sh:147-206",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-scaffold-never-touched.sh:42-55",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-spec-doc-integrity.sh:119-180",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-toc-policy.sh:25-63"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter002-010",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "A three-tier deterministic, policy-gated, and authored-content boundary is required",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:196-231",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:620-712",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-status-cross-doc-consistency.sh:50-67"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-001",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "v3.0.0.0 contains the core file, level, anchor, naming, frontmatter, link, template, TOC, and AI rule surfaces",
+      "evidence": [
+        "git ls-tree v3.0.0.0:.opencode/skill/system-spec-kit/scripts/rules",
+        "git show v3.0.0.0:.opencode/skill/system-spec-kit/scripts/rules/check-anchors.sh:9-13"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-002",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "v3.6.0.0 adds continuity, graph, and canonical-save validation surfaces",
+      "evidence": [
+        "git ls-tree v3.6.0.0:.opencode/skills/system-spec-kit/scripts",
+        "git show v3.6.0.0:.opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts:99-126"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-003",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "GREP, generated metadata, path, status, scaffold, and drift are current hardened rule families",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:37-56",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:214-285",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:376-405"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-004",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "Active residual incidence requires separate migration lanes for the two tag populations",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.0.0.0.final.jsonl:1-170",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.6.0.0.pipeline.jsonl:1-1007",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/agg.cjs:5-17"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-005",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "v3.0 examples include genuine defects under pre-v4 contracts",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.0.0.0.final.jsonl:12",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.0.0.0.final.jsonl:45",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.0.0.0.final.jsonl:117",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.0.0.0.final.jsonl:131",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.0.0.0.final.jsonl:159"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-006",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "v3.6 examples mix legacy defects with current hardened findings",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.6.0.0.pipeline.jsonl:2",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.6.0.0.pipeline.jsonl:586",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.6.0.0.pipeline.jsonl:721",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.6.0.0.pipeline.jsonl:818"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-007",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "Current enforcement documentation identifies bounded grandfather and graduation policy",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:43-50",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:173-183"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-008",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "Metadata path drift is a deterministic refresh candidate when packet identity is authoritative",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.6.0.0.pipeline.jsonl:24",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-metadata-disk-consistency.sh:34-45"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-009",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "Status and retrieval residuals require explicit policy or author-controlled values",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.0.0.0.final.jsonl:120",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/data/v3.6.0.0.pipeline.jsonl:24",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-status-cross-doc-consistency.sh:38-67",
+        ".skilled/skills/system-spec-kit/runtime/cli/rules/check-grep-convention-helper.mjs:183-215"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter003-010",
+      "iteration": 3,
+      "severity": "P1",
+      "label": "Provenance must be tracked per rule, not per packet or tag",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:75-84",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:37-56",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:376-405"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter004-001",
+      "iteration": 4,
+      "severity": "P1",
+      "label": "Keep v4 strict errors and isolate historical exceptions in evidence",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:37-56",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:43-50"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter004-002",
+      "iteration": 4,
+      "severity": "P1",
+      "label": "repair-derived already encodes derivable, authored, and beyond-reach boundaries",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:59-94",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:333-379"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter004-003",
+      "iteration": 4,
+      "severity": "P1",
+      "label": "Inherited defects must not be grandfathered by a v4 policy switch",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:75-84",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:7-22"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter004-004",
+      "iteration": 4,
+      "severity": "P1",
+      "label": "Archive inclusion semantics differ across the tools",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/backfill-frontmatter.ts:124-182",
+        ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:319-365",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:386-413",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/validate-all.cjs:38-45"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter004-005",
+      "iteration": 4,
+      "severity": "P1",
+      "label": "z_archive snapshots require read-only default and explicit copied-tree migration",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:386-413",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:71-73"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter004-006",
+      "iteration": 4,
+      "severity": "P1",
+      "label": "z_future needs separate explicit inclusion policy",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/validate-all.cjs:38-45",
+        ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:441-487",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:389-413"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter004-007",
+      "iteration": 4,
+      "severity": "P1",
+      "label": "Generated-metadata grandfather is telemetry, not the final completion gate",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:43-50",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:173-183"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter004-008",
+      "iteration": 4,
+      "severity": "P1",
+      "label": "Four migration lanes preserve strictness and no-authored-content scope",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs:75-94",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/backfill-frontmatter.ts:57-77",
+        ".skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts:567-581"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter004-009",
+      "iteration": 4,
+      "severity": "P1",
+      "label": "Every-folder proof requires before/after counts, skipped reasons, and per-rule residuals",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/validate-all.cjs:1-3",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/validate-all.cjs:38-50",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/agg.cjs:5-17"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-001",
+      "iteration": 5,
+      "severity": "P1",
+      "label": "Source normalization must precede derived repair and strict validation",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:75-80",
+        ".skilled/skills/system-speckit/runtime/cli/continuity/bf-pipeline.sh:18-25",
+        ".skilled/skills/system-speckit/runtime/cli/spec/repair-derived.cjs:346-376"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-002",
+      "iteration": 5,
+      "severity": "P1",
+      "label": "Shell wrappers require explicit fail-closed orchestration",
+      "evidence": [
+        ".skilled/skills/system-speckit/runtime/cli/spec/fullrun.sh:1-23",
+        ".skilled/skills/system-speckit/runtime/cli/continuity/bf-pipeline.sh:1-25"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-003",
+      "iteration": 5,
+      "severity": "P1",
+      "label": "Graph backfill failure arrays must be inspected independently of exit status",
+      "evidence": [
+        ".skilled/skills/system-speckit/runtime/cli/graph/backfill-graph-metadata.ts:546-581",
+        ".skilled/skills/system-speckit/runtime/cli/graph/backfill-graph-metadata.ts:603-657",
+        ".skilled/skills/system-speckit/runtime/cli/graph/backfill-graph-metadata.ts:730-743",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:75-80"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-004",
+      "iteration": 5,
+      "severity": "P1",
+      "label": "Frontmatter report and exit status form a joint proof contract",
+      "evidence": [
+        ".skilled/skills/system-speckit/runtime/cli/continuity/backfill-frontmatter.ts:426-448",
+        ".skilled/skills/system-speckit/runtime/cli/continuity/backfill-frontmatter.ts:542-607"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-005",
+      "iteration": 5,
+      "severity": "P1",
+      "label": "Derived repair must re-derive after source edits and preserve outcome classes",
+      "evidence": [
+        ".skilled/skills/system-speckit/runtime/cli/spec/repair-derived.cjs:333-379",
+        ".skilled/skills/system-speckit/runtime/cli/spec/repair-derived.cjs:579-593"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-006",
+      "iteration": 5,
+      "severity": "P1",
+      "label": "Second-run no-op requires zero pending changes and stable strict residuals",
+      "evidence": [
+        ".skilled/skills/system-speckit/runtime/cli/spec/repair-derived.cjs:7-22",
+        ".skilled/skills/system-speckit/runtime/cli/continuity/backfill-frontmatter.ts:573-590",
+        ".skilled/skills/system-speckit/runtime/cli/graph/backfill-graph-metadata.ts:603-646"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-008",
+      "iteration": 5,
+      "severity": "P1",
+      "label": "The evidence ledger must retain stage reports, counts, fingerprints, scopes, and residuals",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/validate-all.cjs:1-3",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/validate-all.cjs:38-50",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/agg.cjs:5-17"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-009",
+      "iteration": 5,
+      "severity": "P1",
+      "label": "Scope must be frozen and partitioned across active, archive, future, skipped, and unreadable populations",
+      "evidence": [
+        ".skilled/skills/system-speckit/runtime/cli/continuity/backfill-frontmatter.ts:124-182",
+        ".skilled/skills/system-speckit/runtime/cli/graph/backfill-graph-metadata.ts:319-365",
+        ".skilled/skills/system-speckit/runtime/cli/graph/backfill-graph-metadata.ts:441-487",
+        ".skilled/skills/system-speckit/runtime/cli/spec/repair-derived.cjs:386-413"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-010",
+      "iteration": 5,
+      "severity": "P1",
+      "label": "The no-authored-LLM claim is limited to deterministic repair lanes",
+      "evidence": [
+        ".skilled/skills/system-speckit/runtime/cli/spec/repair-derived.cjs:7-22",
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:82-84"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter001-005",
+      "iteration": 1,
+      "severity": "P2",
+      "label": "Per-rule details are capped at three, so residual JSONL cannot be the complete repair inventory",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/scratch/harness/validate-all.cjs:39-50"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter001-008",
+      "iteration": 1,
+      "severity": "P2",
+      "label": "Exit status alone is insufficient evidence of complete graph-metadata repair",
+      "evidence": [
+        "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md:75-80"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "f-iter005-007",
+      "iteration": 5,
+      "severity": "P2",
+      "label": "Stable graph hashes make before-and-after comparison reproducible",
+      "evidence": [
+        ".skilled/skills/system-speckit/runtime/cli/graph/backfill-graph-metadata.ts:117-151",
+        ".skilled/skills/system-speckit/runtime/cli/graph/backfill-graph-metadata.ts:603-609"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "F-002",
+      "iteration": 1,
+      "statement": "Data files are the post two-tool pipeline residual set (111 and 686 reproduce spec.md section 2 exactly)",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-007",
+      "iteration": 1,
+      "statement": "Corpus splits match spec.md: data is the full population",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-010",
+      "iteration": 2,
+      "statement": "Widened projection (active): M-only 138/170 and 927/1007; +templated 143/170 and 962/1007; +policy layer 170/170 and 1007/1007. Derived twice; M tier and endpoint agree, mid tier is classification-sensitive",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-011",
+      "iteration": 2,
+      "statement": "Policy surface bounded to four families: FOLDER_NAMING (56, includes validator test fixtures), SPEC_DOC_INTEGRITY unresolvable links (~200/295), SPEC_DOC_SUFFICIENCY empty sections and missing citation (~30/170), GREP_CONVENTION warn-level trigger quality",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-012",
+      "iteration": 2,
+      "statement": "FILE_EXISTS (163) and LEVEL_MATCH required-file (223) report the same absences twice; one stub-provisioning transform clears both",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-016",
+      "iteration": 3,
+      "statement": "Artifact-versus-defect: v4-era rule findings are artifacts of new contracts over old docs; 'no anchors found' is a template-era artifact for v3.0 docs while duplicate/unclosed anchors, cross-doc bucket mismatches, broken links and stale paths are real defects",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-023",
+      "iteration": 4,
+      "statement": "Correction to spec.md section 2: z_future is skipped only at the backfill-graph-metadata layer; repair-derived name-matches 37 of 39 z_future packets and freezes none; residual explanation inferred",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-024",
+      "iteration": 4,
+      "statement": "Include-mode breakage: snapshot-location rewrites, historical sidecar churn, archive-segment pointer writes (correct for moved packets, destructive for snapshots), non-digit folders unreachable; safe mode transforms moved packets additively and routes the rest to the policy layer",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-029",
+      "iteration": 5,
+      "statement": "Canonical order: stub adds, composed per-doc rewrite plus pairwise status alignment, backfill-frontmatter, repair-derived (ends in re-derive), validate --strict gate, second-run idempotence check",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-030",
+      "iteration": 5,
+      "statement": "Doc transforms must be composed per document: TEMPLATE_SOURCE window shift, two-rule anchor parsing, pairwise status alignment make sequential steps self-triggering",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-031",
+      "iteration": 5,
+      "statement": "Idempotence proof: step fixed point, SC-002 path+sha256 manifest diff, validate JSON identity, apply/dry-run parity, no-new-rule-class assertion per step",
+      "confidence": "derived",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-001",
+      "iteration": 1,
+      "statement": "Residual baseline: v3.0 active 111/170 pass (59 fail); v3.6 active 686/1007 pass (321 fail); 0 unreadable",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-003",
+      "iteration": 1,
+      "statement": "Archived packets fail wholesale (186/186, 911/911), dominated by GENERATED_METADATA_INTEGRITY, GENERATED_METADATA_DRIFT, METADATA_DISK_PATH_CONSISTENCY",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-004",
+      "iteration": 1,
+      "statement": "section 10 rule list is incomplete: 20 rule ids in data, 4 unnamed (GENERATED_METADATA_DRIFT largest)",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-005",
+      "iteration": 1,
+      "statement": "classify.cjs MECH projection reaches 73%/85% only; 46+154 active packets still-authored under that hypothesis, REQ-002 unreachable without wider transforms or validator policy",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-006",
+      "iteration": 1,
+      "statement": "Held-back classes concentrate in STATUS_CROSS_DOC_CONSISTENCY, LEVEL_MATCH, FILE_EXISTS, GREP_CONVENTION with derivable detail patterns",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-008",
+      "iteration": 2,
+      "statement": "20 residual rule classes normalize to bounded pattern families; METADATA_DISK_PATH_CONSISTENCY's 1235 archived patterns are one family; GENERATED_METADATA_INTEGRITY has 6 sub-kinds, GENERATED_METADATA_DRIFT 2",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-009",
+      "iteration": 2,
+      "statement": "STATUS_CROSS_DOC_CONSISTENCY detail lines are token-plus-bucket pairs (274 lines, 94 pairs, 97 case-only diffs); superseded on the transform question by F-018",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-013",
+      "iteration": 2,
+      "statement": "Entry status uses a different axis than detail severity: 10 active rows have error-status GREP_CONVENTION entries whose visible details all read severity=warn",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-014",
+      "iteration": 2,
+      "statement": "Truncation (3 details per rule) bounds projections from above; zero rows hide a failing rule entirely",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-015",
+      "iteration": 3,
+      "statement": "Rule-id provenance: 7 rules absent at both v3.0.0.0 and v3.6.0.0 tags; 3 only at v3.6; 10 at v3.0 (AI_PROTOCOLS unstable). Enforcement-at-tag inferred",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-017",
+      "iteration": 3,
+      "statement": "Entry-status axis resolved: helper status line sets RULE_STATUS, detail severity labels are informational inside an error entry; no warnings policy clears the F-013 rows",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-018",
+      "iteration": 3,
+      "statement": "Correction to F-009: STATUS_CROSS_DOC compares spec.md vs implementation-summary.md Status buckets; clearing routes are evidence-derived bucket alignment or grandfathering; blanking a Status is rejected (masks future findings)",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-019",
+      "iteration": 3,
+      "statement": "Least validator change: extend check-ac-closure.sh's creation-date grandfather pattern (pre-cutoff packets advisory on every branch) to the F-011 policy surface; per-rule ENFORCE switches exist but global demotion is rejected",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-020",
+      "iteration": 3,
+      "statement": "TEMPLATE_SOURCE is a first-70-lines marker check; deterministic transform is one provenance comment per document (emitted form at spec.md:13); details in data are bare filenames",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-021",
+      "iteration": 3,
+      "statement": "Rule implementations split across TypeScript (3 files, 11 classes) and shell checkers (runtime/cli/rules/, 9 classes) where the enforcement switches and grandfather pattern live",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-022",
+      "iteration": 4,
+      "statement": "Archive exclusion is four mechanisms: FROZEN_TREES + PACKET_NAME_RE (repair-derived), /z_archive/ exclusion (backfill-frontmatter), ARCHIVE_SEGMENT_RE over z_archive|z_future (backfill-graph-metadata); measured pipeline ran archives excluded at the frontmatter step",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-025",
+      "iteration": 4,
+      "statement": "Cutoff mechanics: 2026-08-30 default, SPECKIT_AC_CLOSURE_CUTOFF override, Created row keying, boundary-day and unparseable-date grandfathering, info verdicts on every branch; later-edit gap needs a finding-level baseline manifest (recommended) or touch-date coupling",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-026",
+      "iteration": 4,
+      "statement": "repair-derived taxonomy: DERIVABLE 6 classes, REDERIVABLE the 4 graph-metadata assertions only; only observed in-document write is the frontmatter packet-pointer line",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-027",
+      "iteration": 4,
+      "statement": "Validator tests bind to runtime/cli/../test-fixtures, not the live corpus; corpus fixture-shaped folders break no tests when upgraded",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-028",
+      "iteration": 5,
+      "statement": "Hard ordering edge is fingerprint invalidation: every doc edit invalidates its stored fingerprint; repair-derived encodes edits-first, re-derive-last including after partial failure",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F-032",
+      "iteration": 5,
+      "statement": "repair-derived beyond-reach bucket is the policy layer landing site: grandfathered advisory pre-cutoff, error post-cutoff; vocabulary exists",
+      "confidence": "observed",
+      "_lineages": [
+        "mimo"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 79,
+    "sourceFindings": 79,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.38,
+    "coverageBySources": {}
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "run_id": "1790242274086-9tq1wi",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 2,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "mimo",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/research/lineages/mimo/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-24T09:45:30.042Z",
+        "end_at_iso": "2026-09-24T10:31:36.369Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 2,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 11
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "before_window",
+          "timestamp": "2026-09-24T09:38:36Z",
+          "deltaMs": 294042
+        },
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-09-24T09:38:40Z",
+          "deltaMs": 290042
+        }
+      ]
+    }
+  ]
+}

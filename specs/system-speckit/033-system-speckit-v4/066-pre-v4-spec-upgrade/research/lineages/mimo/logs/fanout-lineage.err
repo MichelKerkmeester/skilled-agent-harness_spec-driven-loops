@@ -1,0 +1,11 @@
+[pi-web-access] Dynamic tool activation requires Pi 0.86.1 or newer; web tools remain eagerly available.
+[pi-web-access] Dynamic tool activation requires Pi 0.86.1 or newer; web tools remain eagerly available.
+{"timestamp":"2026-09-24T09:45:37.801Z","runtime":"claude","status":"ok","freshness":"live","durationMs":1624,"cacheHit":false,"skillLabel":"cli-external-orchestration"}
+Error from provider xiaomi: 429 Too Many Requests {
+    "error": {
+        "code": "429",
+        "message": "Too many requests",
+        "type": "limitation"
+    }
+}
+

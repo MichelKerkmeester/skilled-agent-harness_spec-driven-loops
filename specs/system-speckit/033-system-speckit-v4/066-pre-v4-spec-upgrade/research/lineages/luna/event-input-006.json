@@ -1,0 +1,36 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "run": 5,
+  "runId": "fanout-luna-1790242274086-9tq1wi",
+  "sessionId": "fanout-luna-1790242274086-9tq1wi",
+  "lineageId": "fanout-luna-1790242274086-9tq1wi",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.62,
+  "status": "insight",
+  "focus": "Prove ordered execution, before/after fingerprints, failure propagation, repeated-run no-op behavior, and final evidence-ledger completeness.",
+  "findingsCount": 10,
+  "answeredQuestions": [
+    "Ordered execution and re-derivation requirements are explicit.",
+    "Failure propagation and repeated-run no-op proof obligations are explicit."
+  ],
+  "keyQuestions": [
+    "Which residual rule classes can deterministic transformations clear without authored content, and what does each cost?",
+    "Which residuals are v4-only contract additions versus defects already present under v3?",
+    "Which residuals require the least validator-policy change, and how can new v4 findings remain errors?",
+    "Why are archived packets skipped, and what explicit include behavior is safe?",
+    "What ordering and idempotence proof make the upgrade command deterministic and failure-reporting?"
+  ],
+  "noveltyJustification": "The existing tools expose enough report, hash, and traversal behavior to define an observable ordered pipeline and a repeated-run no-op proof, while their gaps require explicit failure parsing and scope accounting.",
+  "ruledOut": [
+    "shell exit status as sole completion proof",
+    "derived repair before source normalization",
+    "bounded residual details as the complete evidence ledger"
+  ],
+  "durationMs": 600000,
+  "timestamp": "2026-09-24T09:54:46.000Z",
+  "generation": 1
+}
