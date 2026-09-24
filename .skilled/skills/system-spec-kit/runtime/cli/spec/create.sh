@@ -677,6 +677,18 @@ report_missing_generator() {
 readonly BUILD_REMEDY="Run npm run build under runtime to compile it."
 readonly INSTALL_REMEDY="Run npm install at the skill root, then repair-derived.cjs --folder <packet> --apply."
 
+# The presence rule counts a phase parent's description.json as required, so a
+# parent that cannot get one stops here, loudly, instead of passing and failing
+# validation the moment it exists. Both --phase and --level phase-parent call it.
+require_parent_description_generator() {
+    local desc_script="$1"
+    local folder="$2"
+    if [[ ! -f "$desc_script" ]]; then
+        echo "Error: phase parent needs the compiled description generator ($desc_script); run npm run build under runtime, then rerun. The folder $folder is partially scaffolded." >&2
+        exit 1
+    fi
+}
+
 scaffold_phase_parent_validation_child() {
     local parent_path="$1"
     local feature_name="$2"
@@ -764,8 +776,6 @@ EOF
         node "$desc_script" "$child_path" "$parent_path" \
             --description "Phase one for $feature_name" --level "$child_level" >/dev/null 2>&1 \
             || echo "  Warning: description.json generation failed for $child_name" >&2
-    else
-        report_missing_generator "description.json" "$desc_script" "$BUILD_REMEDY" "$child_name"
     fi
 
     CREATED_FILES+=("$child_name/")
@@ -1429,13 +1439,7 @@ EOF
     # request's own child-phase text. Only genuine new-parent creation writes here.
     _DESC_SCRIPT="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
     if [[ "$APPEND_TO_EXISTING_PARENT" != true ]]; then
-      # The presence rule counts a phase parent's description.json as required,
-      # so a scaffold that cannot write it fails here, loudly, instead of passing
-      # and failing validation the moment it exists.
-      if [[ ! -f "$_DESC_SCRIPT" ]]; then
-        echo "Error: phase parent needs the compiled description generator ($_DESC_SCRIPT); run npm run build under runtime, then rerun. The folder $FEATURE_DIR is partially scaffolded." >&2
-        exit 1
-      fi
+      require_parent_description_generator "$_DESC_SCRIPT" "$FEATURE_DIR"
       # The generator reports on stdout; stdout belongs to the --json payload.
       if node "$_DESC_SCRIPT" "$FEATURE_DIR" "$(dirname "$FEATURE_DIR")" \
         --description "$FEATURE_DESCRIPTION" --level "phase" >&2; then
@@ -1705,6 +1709,9 @@ create_graph_metadata_file "$FEATURE_DIR" "$FEATURE_DESCRIPTION" "planned"
 # ───────────────────────────────────────────────────────────────
 
 _DESC_SCRIPT="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
+if [[ "$DOC_LEVEL" == "phase" ]]; then
+  require_parent_description_generator "$_DESC_SCRIPT" "$FEATURE_DIR"
+fi
 if [[ -f "$_DESC_SCRIPT" ]]; then
   # The generator reports on stdout; stdout belongs to the --json payload.
   if node "$_DESC_SCRIPT" "$FEATURE_DIR" "$(dirname "$FEATURE_DIR")" \
