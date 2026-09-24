@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5f328e9658749f0c81aa8ce647d54af5b3bda5220a8d25c518d4be4043cf4153",
+  "manifestHash": "84265c8ddde20ee71b78336ad1d6d20f1b4eea61492db7b620611f512c2221a0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21516,6 +21516,15 @@
     "continuity producer boundary": [
       "continuity producer boundary"
     ],
+    "continuity reader flow lists": [
+      "continuity reader flow lists"
+    ],
+    "continuity reader plan": [
+      "continuity reader plan"
+    ],
+    "continuity reader tasks": [
+      "continuity reader tasks"
+    ],
     "continuity record": [
       "continuity record"
     ],
@@ -35962,8 +35971,17 @@
     "flow detail refero": [
       "flow detail refero"
     ],
+    "flow list parsing plan": [
+      "flow list parsing plan"
+    ],
+    "flow list parsing tasks": [
+      "flow list parsing tasks"
+    ],
     "flow search refero": [
       "flow search refero"
+    ],
+    "flow style yaml list continuity": [
+      "flow style yaml list continuity"
     ],
     "flowchart": [
       "flowchart"
@@ -39311,6 +39329,9 @@
     ],
     "hand rolled env flag parsing": [
       "hand-rolled env flag parsing"
+    ],
+    "hand written continuity blocks rejected": [
+      "hand written continuity blocks rejected"
     ],
     "handback save gates": [
       "handback save gates"
@@ -50861,6 +50882,9 @@
     "newinforatio weighted vote": [
       "newInfoRatio weighted vote"
     ],
+    "next action verb list": [
+      "next action verb list"
+    ],
     "next focus anchor": [
       "next focus anchor"
     ],
@@ -50884,6 +50908,12 @@
     ],
     "next focus verification": [
       "next-focus verification"
+    ],
+    "next safe action verbs": [
+      "next safe action verbs"
+    ],
+    "next safe action verbs evidence": [
+      "next safe action verbs evidence"
     ],
     "next step options after findings": [
       "next step options after findings"

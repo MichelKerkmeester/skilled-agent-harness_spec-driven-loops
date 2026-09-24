@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7340,
-    "ok": 11302,
+    "ok": 11306,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22333,
+  "documentsScanned": 22337,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5f328e9658749f0c81aa8ce647d54af5b3bda5220a8d25c518d4be4043cf4153",
+  "manifestHash": "84265c8ddde20ee71b78336ad1d6d20f1b4eea61492db7b620611f512c2221a0",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27512,
+      "ok": 27522,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -74508,6 +74508,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists/scratch",
       "reason": "excluded directory"
     },
     {

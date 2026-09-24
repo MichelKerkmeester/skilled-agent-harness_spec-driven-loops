@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists",
+  "spec_folder": "system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "continuity reader flow lists",
+      "next safe action verbs",
+      "flow style yaml list continuity",
+      "hand written continuity blocks rejected",
+      "continuity reader plan",
+      "flow list parsing plan",
+      "next action verb list",
+      "continuity reader tasks",
+      "flow list parsing tasks",
+      "implementation summary",
+      "next safe action verbs evidence"
+    ],
+    "key_topics": [
+      "continuity",
+      "reader",
+      "flow",
+      "lists",
+      "next",
+      "safe",
+      "action",
+      "verbs",
+      "style",
+      "yaml",
+      "list",
+      "hand"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/thin-continuity-record.vitest.ts",
+      "runtime/lib/continuity/thin-continuity-record.ts",
+      "runtime/tests/thin-continuity-record.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "thin-continuity-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "thin-continuity-record.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/thin-continuity-record.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Of",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Of 2484 continuity blocks in tracked implementation summaries outside `zarchive`, only 180 passed the reader's checks",
+    "created_at": "2026-09-24T04:52:36Z",
+    "last_save_at": "2026-09-24T05:01:27.493Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b99bfc92a176e62ec01538f311f1b9518551ef0e31c815f947475ab565c57170",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "df21ba116b88dcaf4c8a0daf9535601409407b8b87391f373bbec69d9b6476cd",
+      "plan.md": "07e7d4b81fb9e13f63528e83f88f4d81a2cb87415f71e3c2a77177f586c75ee9",
+      "tasks.md": "5b6cc60841e9b73cf845fba23923c62990e235accec3a456e3ba500c5098eeb9",
+      "implementation-summary.md": "d756c380c7e886209db49b327a1d973405dcc05dcd808d2fd53ac4215758766b"
+    },
+    "last_active_at": null
+  }
+}
