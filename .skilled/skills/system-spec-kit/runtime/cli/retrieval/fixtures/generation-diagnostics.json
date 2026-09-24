@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0735bda34b589dbe787c5d0d97109bd88e032589f74cabbd71b98a548920364e",
+  "manifestHash": "4ab27083a11b26658c4d9515023e36ae15fa886ea90304d940628b0fc9c132d5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27576,
+      "ok": 27578,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2

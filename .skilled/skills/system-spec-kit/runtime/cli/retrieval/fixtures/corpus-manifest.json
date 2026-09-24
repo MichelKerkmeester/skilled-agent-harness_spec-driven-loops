@@ -1,5 +1,5 @@
 {
-  "corpusHash": "91a7fbb1a506b4bc1637cebf114bcbe865dd022f487dfda8ed455069fbf45f4f",
+  "corpusHash": "b05a12247b30fa710637624df0f696541ef084e671d00c1fcd9308dfbf4ba74a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -22382,7 +22382,7 @@
     "specs/system-speckit/035-retire-memory-era-tests/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0735bda34b589dbe787c5d0d97109bd88e032589f74cabbd71b98a548920364e",
+  "manifestHash": "4ab27083a11b26658c4d9515023e36ae15fa886ea90304d940628b0fc9c132d5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
