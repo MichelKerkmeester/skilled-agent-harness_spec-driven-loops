@@ -116,7 +116,7 @@ The tests came first and ran red, 6 of 7. The fixture is a throwaway git reposit
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A phase child still archives to the root `specs/z_archive/`.** Only a packet directly in a track uses the track's archive. The script has always sent a phase child to the root archive, and no track here archives a single phase on its own.
+1. **A phase child still archived to the root `specs/z_archive/`.** Only a packet directly in a track used the track's archive. Resolved by packet 039, `039-phase-aware-archive`: a phase now goes into its parent's own `z_archive/` and restores back into the parent.
 2. **Symlinked tracks stay out of reach.** `ai-systems`, `anobel.com` and `obsidian` resolve outside this specs root, so the script refuses to archive from them and leaves their archives out of `--list`. Archive in those repositories by hand, then run `refresh-track-roots.mjs --track <name> --apply`.
 <!-- /ANCHOR:limitations -->
 
