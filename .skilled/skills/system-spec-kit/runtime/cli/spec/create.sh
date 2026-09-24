@@ -1027,25 +1027,28 @@ resolve_branch_name() {
     fi
 
     if [[ -z "$BRANCH_NUMBER" ]]; then
-        # With a track, number from existing folders under specs/<track>/
-        # (git-branch numbering is not track-aware and would restart at 001).
-        if [[ "$HAS_GIT" = true && -z "$TRACK" ]]; then
-            BRANCH_NUMBER=$(check_existing_branches "$BRANCH_SUFFIX")
-        else
-            local highest=0
-            if [[ -d "$SPECS_DIR" ]]; then
-                for dir in "$SPECS_DIR"/*; do
-                    [[ -d "$dir" ]] || continue
-                    local dirname
-                    dirname=$(basename "$dir")
-                    local number
-                    number=$(echo "$dirname" | grep -o '^[0-9]\+' || echo "0")
-                    number=$((10#$number))
-                    if [[ "$number" -gt "$highest" ]]; then highest=$number; fi
-                done
-            fi
-            BRANCH_NUMBER=$((highest + 1))
+        # Number after the highest packet folder in the root being written to,
+        # whatever its name, so two packets in one root never share a number.
+        local highest=0
+        if [[ -d "$SPECS_DIR" ]]; then
+            for dir in "$SPECS_DIR"/*; do
+                [[ -d "$dir" ]] || continue
+                local dirname
+                dirname=$(basename "$dir")
+                local number
+                number=$(echo "$dirname" | grep -o '^[0-9]\+' || echo "0")
+                number=$((10#$number))
+                if [[ "$number" -gt "$highest" ]]; then highest=$number; fi
+            done
         fi
+        # Without a track, a packet's branch shares the root's numbering, so a
+        # numbered branch counts too. A track numbers from its folder alone.
+        if [[ "$HAS_GIT" = true && -z "$TRACK" ]]; then
+            local branch_highest
+            branch_highest=$(highest_branch_number)
+            if [[ "$branch_highest" -gt "$highest" ]]; then highest=$branch_highest; fi
+        fi
+        BRANCH_NUMBER=$((highest + 1))
     fi
 
     FEATURE_NUM=$(printf "%03d" "$((10#$BRANCH_NUMBER))")
