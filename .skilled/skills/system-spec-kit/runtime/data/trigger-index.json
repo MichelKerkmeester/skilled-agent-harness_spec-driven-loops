@@ -1,5 +1,5 @@
 {
-  "manifestHash": "28676291669570cb05d21bba62a1dce10775d886e0d95be8d3d3582594777504",
+  "manifestHash": "d537372e464168cd9e10e3dc231889fdcc0cecfe86d3563ef5aa308d73c80f97",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11419,7 +11419,11 @@
     "specs/system-speckit/038-track-aware-archive/implementation-summary.md",
     "specs/system-speckit/038-track-aware-archive/plan.md",
     "specs/system-speckit/038-track-aware-archive/spec.md",
-    "specs/system-speckit/038-track-aware-archive/tasks.md"
+    "specs/system-speckit/038-track-aware-archive/tasks.md",
+    "specs/system-speckit/039-phase-aware-archive/implementation-summary.md",
+    "specs/system-speckit/039-phase-aware-archive/plan.md",
+    "specs/system-speckit/039-phase-aware-archive/spec.md",
+    "specs/system-speckit/039-phase-aware-archive/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -23412,6 +23416,12 @@
     ],
     "archive a page": [
       435
+    ],
+    "archive a phase": [
+      11410,
+      11411,
+      11412,
+      11413
     ],
     "archive container graph node": [
       10069
@@ -73113,6 +73123,11 @@
     "packet goal single source backlog": [
       11084
     ],
+    "packet home": [
+      11410,
+      11411,
+      11412
+    ],
     "packet id audit": [
       5761,
       5762,
@@ -74935,6 +74950,12 @@
     ],
     "phase acceptance criteria": [
       3313
+    ],
+    "phase aware archive": [
+      11410,
+      11411,
+      11412,
+      11413
     ],
     "phase b handoff": [
       7611
@@ -84598,6 +84619,9 @@
     ],
     "restore level upgrade vocabulary invariance": [
       10528
+    ],
+    "restore phase to parent": [
+      11412
     ],
     "restore staged": [
       11071

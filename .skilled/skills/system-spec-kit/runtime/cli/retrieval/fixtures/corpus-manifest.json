@@ -1,5 +1,5 @@
 {
-  "corpusHash": "28e6c311343e2b1f9688c4d5d51384d4907a10fe9ad5421e362bdcba833bbdb2",
+  "corpusHash": "fe8d07c7afa3a399372d9f33ada401bdf320e110be5b8ec1c1c47de3d95190c7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22391,
+  "includedPathCount": 22395,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -22410,10 +22410,14 @@
     "specs/system-speckit/038-track-aware-archive/implementation-summary.md",
     "specs/system-speckit/038-track-aware-archive/plan.md",
     "specs/system-speckit/038-track-aware-archive/spec.md",
-    "specs/system-speckit/038-track-aware-archive/tasks.md"
+    "specs/system-speckit/038-track-aware-archive/tasks.md",
+    "specs/system-speckit/039-phase-aware-archive/implementation-summary.md",
+    "specs/system-speckit/039-phase-aware-archive/plan.md",
+    "specs/system-speckit/039-phase-aware-archive/spec.md",
+    "specs/system-speckit/039-phase-aware-archive/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "28676291669570cb05d21bba62a1dce10775d886e0d95be8d3d3582594777504",
+  "manifestHash": "d537372e464168cd9e10e3dc231889fdcc0cecfe86d3563ef5aa308d73c80f97",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27068,6 +27072,10 @@
     },
     {
       "path": "specs/system-speckit/038-track-aware-archive/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/039-phase-aware-archive/scratch",
       "reason": "excluded directory"
     },
     {
