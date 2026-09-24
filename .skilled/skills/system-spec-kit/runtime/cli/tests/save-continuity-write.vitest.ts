@@ -275,12 +275,15 @@ describe('save writer continuity write', () => {
     expect(continuityBlock(read(`${LEAF}/implementation-summary.md`))).toBe(before);
   });
 
-  it('points every ancestor one level down toward a saved leaf, and resume lands on it', async () => {
+  it('stores the track root pointer only in the store, and resume lands on the leaf', async () => {
+    const trackGraphBefore = fs.readFileSync(path.join(root, `${TRACK}/graph-metadata.json`));
     await save(LEAF, { recent_action: 'Wired the continuity writer' });
 
     expect(pointer(MID)).toBe(packetId(LEAF));
     expect(pointer(PARENT)).toBe(packetId(MID));
-    expect(pointer(TRACK)).toBe(packetId(PARENT));
+    expect(fs.readFileSync(path.join(root, `${TRACK}/graph-metadata.json`))).toEqual(trackGraphBefore);
+    const { resolveLastActiveChildFromStore } = await import('@spec-kit/runtime/api');
+    expect(resolveLastActiveChildFromStore(packetId(TRACK))).toBe(packetId(PARENT));
 
     const { followPhaseParentRedirect } = await import('../../lib/resume/resume-ladder');
     const landed = followPhaseParentRedirect(

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "17932c74cb522ee030abad9a578853ad4161409cd7e78bd1a48c0d3782b5d5ae",
+  "manifestHash": "3dfedd210bc3edfc1c56abb09180d3fad78ac01775589b2467fa807d009e394f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -56421,6 +56421,9 @@
     "phase parent pointer bubble up": [
       "phase parent pointer bubble up"
     ],
+    "phase parent pointer docs": [
+      "phase parent pointer docs"
+    ],
     "phase parent pointer plan": [
       "phase parent pointer plan"
     ],
@@ -57373,6 +57376,12 @@
     ],
     "planner first tasks": [
       "planner-first tasks"
+    ],
+    "planner mode docs plan": [
+      "planner mode docs plan"
+    ],
+    "planner mode what each mode writes": [
+      "planner mode what each mode writes"
     ],
     "planner review focus drift": [
       "planner review focus drift"
@@ -66891,6 +66900,15 @@
     ],
     "save resume freshness tasks": [
       "save resume freshness tasks"
+    ],
+    "save resume pointer plan": [
+      "save resume pointer plan"
+    ],
+    "save resume pointer tasks": [
+      "save resume pointer tasks"
+    ],
+    "save resume pointer truth": [
+      "save resume pointer truth"
     ],
     "save review context": [
       "save review context"
@@ -79279,6 +79297,18 @@
     ],
     "track research strategy": [
       "track research strategy"
+    ],
+    "track root pointer store only": [
+      "track root pointer store only"
+    ],
+    "track root store only evidence": [
+      "track root store only evidence"
+    ],
+    "track root store only plan": [
+      "track root store only plan"
+    ],
+    "track root store only tasks": [
+      "track root store only tasks"
     ],
     "track root sweep": [
       "track root sweep"

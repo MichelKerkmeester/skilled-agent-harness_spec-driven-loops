@@ -4,6 +4,7 @@ import path from 'node:path';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import { resolveLastActiveChildFromStore } from '@spec-kit/runtime/api';
 import { updatePhaseParentPointer, updatePhaseParentPointersAfterSave } from '../continuity/generate-context';
 
 /**
@@ -99,6 +100,34 @@ describe('phase-parent pointer writes after canonical save', () => {
     expect(childDerived.last_active_child_id).toBe('stale-child');
     expect(parentDerived.last_active_child_id).toBe('specs/100-parent/001-child');
     expect(parentDerived.last_active_at).toBe('2026-04-27T12:01:00.000Z');
+  });
+
+  it('stores a track-root pointer without rewriting its graph metadata', () => {
+    const trackFolder = path.join(tempRoot, 'track');
+    const trackParentFolder = path.join(trackFolder, '100-parent');
+    const trackChildFolder = path.join(trackParentFolder, '001-child');
+    fs.mkdirSync(trackChildFolder, { recursive: true });
+    fs.writeFileSync(path.join(trackParentFolder, 'spec.md'), '# Parent\n', 'utf8');
+    fs.writeFileSync(path.join(trackChildFolder, 'spec.md'), '# Child\n', 'utf8');
+    writeGraphMetadata(trackFolder, 'specs/system-speckit');
+    writeGraphMetadata(trackParentFolder, 'specs/system-speckit/100-parent');
+    writeGraphMetadata(trackChildFolder, 'specs/system-speckit/100-parent/001-child');
+
+    const trackGraphFile = path.join(trackFolder, 'graph-metadata.json');
+    const trackGraphBefore = fs.readFileSync(trackGraphFile, 'utf8');
+    const updated = updatePhaseParentPointersAfterSave(
+      trackChildFolder,
+      '2026-04-27T12:05:00.000Z',
+    );
+
+    const parentMetadata = readGraphMetadata(trackParentFolder);
+    const parentDerived = parentMetadata.derived as Record<string, unknown>;
+    expect(parentDerived.last_active_child_id).toBe('specs/system-speckit/100-parent/001-child');
+    expect(fs.readFileSync(trackGraphFile, 'utf8')).toBe(trackGraphBefore);
+    expect(resolveLastActiveChildFromStore('specs/system-speckit'))
+      .toBe('specs/system-speckit/100-parent');
+    expect(updated).toContain(fs.realpathSync(trackParentFolder));
+    expect(updated).toContain(fs.realpathSync(trackFolder));
   });
 
   // Parent children_ids and last_save_at must refresh when a child save bubbles up.

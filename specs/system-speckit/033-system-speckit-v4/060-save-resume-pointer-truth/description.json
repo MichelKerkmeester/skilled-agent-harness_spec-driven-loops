@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-24T06:17:58.657Z",
+  "specId": "060",
+  "folderSlug": "save-resume-pointer-truth",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "24-09-26_07-17__a-save-now-keeps-a-track-root-s-pointer-in-the.md",
+    "24-09-26_07-17__a-save-now-keeps-a-track-root-s-pointer-in-the.md"
+  ]
+}
