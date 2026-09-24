@@ -2,7 +2,7 @@
 name: cli-cursor
 description: "Cursor CLI executor for cursor-agent-backed coding, plan/ask read-only modes, native git worktree isolation, and a cloud worker — a shared-editor-config CLI dispatch."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.1.0
+version: 1.4.2.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -177,9 +177,9 @@ Install with `curl https://cursor.com/install -fsS | bash` (Windows: `irm 'https
 
 ### Execution Ownership
 
-This packet owns user-facing routing, the `command -v cursor-agent` availability probe, prompt construction, and the self-invocation guard. Actual process construction and execution delegate to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-cursor`.
+This packet owns user-facing routing, the `command -v cursor-agent` availability probe, prompt construction, and the self-invocation guard. Research and review lineages delegate process construction and execution to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-cursor`. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
 
-The runtime is the single Cursor execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `cursor-agent -p` snippets below are operator reference and manual-testing examples; orchestrated dispatches use the shared runtime.
+The runtime is the single Cursor execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `cursor-agent -p` snippets below are operator reference and manual-testing examples; research and review lineages use the shared runtime, and a one-shot dispatch uses the child envelope.
 
 ### Provider Auth Pre-Flight
 
@@ -298,7 +298,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 ### ✅ ALWAYS
 
 1. Verify Cursor CLI is installed before first invocation (`command -v cursor-agent`).
-2. Delegate orchestrated execution to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-cursor`; never build a second adapter in this packet.
+2. Delegate research and review lineages to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-cursor`. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5. Never build a second adapter in this packet.
 3. Use `--mode plan` or `--mode ask` for read-only exploration/analysis/research; use the default agent mode with `--auto-review` or `--force` for code generation/file modification.
 4. Validate Cursor-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so errors surface; check output TEXT for auth/availability failures, never the exit code (always `0`).

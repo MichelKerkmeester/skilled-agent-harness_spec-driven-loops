@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1c153ebcf9bf9940d4ede50437e05960c4b786db35fc39ff677c479948fd7ed1",
+  "manifestHash": "02476d437305e9edbea33206eb648c426e3e1721e2a559b4ae4e970a9a69b5f2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16466,6 +16466,9 @@
     "cli cursor benchmark reports": [
       "cli-cursor benchmark reports"
     ],
+    "cli cursor dispatch rules": [
+      "cli cursor dispatch rules"
+    ],
     "cli cursor goal hook benchmark": [
       "cli-cursor goal hook benchmark"
     ],
@@ -16502,8 +16505,32 @@
     "cli devin cli opencode readme pipeline": [
       "cli-devin cli-opencode readme pipeline"
     ],
+    "cli devin cursor dispatch rules": [
+      "cli devin cursor dispatch rules"
+    ],
+    "cli devin cursor dispatch rules plan": [
+      "cli devin cursor dispatch rules plan"
+    ],
+    "cli devin cursor dispatch rules tasks": [
+      "cli devin cursor dispatch rules tasks"
+    ],
+    "cli devin cursor fanout rule scope": [
+      "cli devin cursor fanout rule scope"
+    ],
+    "cli devin cursor fanout scope evidence": [
+      "cli devin cursor fanout scope evidence"
+    ],
+    "cli devin cursor fanout scope plan": [
+      "cli devin cursor fanout scope plan"
+    ],
+    "cli devin cursor fanout scope tasks": [
+      "cli devin cursor fanout scope tasks"
+    ],
     "cli devin deep loop alignment": [
       "cli-devin deep-loop alignment"
+    ],
+    "cli devin dispatch rules": [
+      "cli devin dispatch rules"
     ],
     "cli devin executor repair": [
       "cli-devin executor repair"

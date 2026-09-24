@@ -26,9 +26,9 @@ contextType: "implementation"
 | **Created** | 2026-09-24 |
 | **Branch** | `worktrees/064-save-writer-continuity-fields` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 63 of 63 |
+| **Phase** | 63 of 64 |
 | **Predecessor** | 062-v4-parent-data-repairs |
-| **Successor** | None |
+| **Successor** | 064-cli-devin-cursor-dispatch-rules |
 <!-- /ANCHOR:metadata -->
 
 ---

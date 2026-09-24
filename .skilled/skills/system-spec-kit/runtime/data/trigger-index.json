@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1c153ebcf9bf9940d4ede50437e05960c4b786db35fc39ff677c479948fd7ed1",
+  "manifestHash": "02476d437305e9edbea33206eb648c426e3e1721e2a559b4ae4e970a9a69b5f2",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11387,6 +11387,10 @@
     "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/plan.md",
     "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/spec.md",
     "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -29534,6 +29538,9 @@
     "cli cursor benchmark reports": [
       56
     ],
+    "cli cursor dispatch rules": [
+      11379
+    ],
     "cli cursor goal hook benchmark": [
       55
     ],
@@ -29570,9 +29577,33 @@
     "cli devin cli opencode readme pipeline": [
       8514
     ],
+    "cli devin cursor dispatch rules": [
+      11377
+    ],
+    "cli devin cursor dispatch rules plan": [
+      11378
+    ],
+    "cli devin cursor dispatch rules tasks": [
+      11380
+    ],
+    "cli devin cursor fanout rule scope": [
+      11379
+    ],
+    "cli devin cursor fanout scope evidence": [
+      11377
+    ],
+    "cli devin cursor fanout scope plan": [
+      11378
+    ],
+    "cli devin cursor fanout scope tasks": [
+      11380
+    ],
     "cli devin deep loop alignment": [
       6683,
       8219
+    ],
+    "cli devin dispatch rules": [
+      11379
     ],
     "cli devin executor repair": [
       4879
@@ -37157,10 +37188,10 @@
       10347
     ],
     "create sh canonical specs root": [
-      11379,
-      11380,
-      11381,
-      11382
+      11383,
+      11384,
+      11385,
+      11386
     ],
     "create sh canonical tasks": [
       10348
@@ -37199,10 +37230,10 @@
       1673
     ],
     "create sh writes to opencode specs": [
-      11379,
-      11380,
-      11381,
-      11382
+      11383,
+      11384,
+      11385,
+      11386
     ],
     "create skill": [
       934,
@@ -38976,10 +39007,10 @@
       9360
     ],
     "dead spec kit test files": [
-      11383,
-      11384,
-      11385,
-      11386
+      11387,
+      11388,
+      11389,
+      11390
     ],
     "dead tokenbudget parameter": [
       10184,
@@ -47113,10 +47144,10 @@
       3674
     ],
     "empty phase child skipped": [
-      11383,
-      11384,
-      11385,
-      11386
+      11387,
+      11388,
+      11389,
+      11390
     ],
     "empty recommendation reported as outage": [
       5591
@@ -58059,7 +58090,8 @@
       11361,
       11365,
       11369,
-      11373
+      11373,
+      11377
     ],
     "implementation summary attestation point": [
       10704
@@ -61419,8 +61451,8 @@
       8048
     ],
     "level contract fallback": [
-      11383,
-      11385
+      11387,
+      11389
     ],
     "level contract headings": [
       1714
@@ -63429,10 +63461,10 @@
       2168
     ],
     "manual playbook runner retired": [
-      11383,
-      11384,
-      11385,
-      11386
+      11387,
+      11388,
+      11389,
+      11390
     ],
     "manual playbook scenario count fix": [
       7932
@@ -64861,7 +64893,7 @@
       10696
     ],
     "memory decommission history": [
-      11377
+      11381
     ],
     "memory decommission inventory": [
       10679
@@ -64885,7 +64917,7 @@
       10674
     ],
     "memory decommission timeline": [
-      11378
+      11382
     ],
     "memory delete causal cleanup": [
       8818
@@ -65507,10 +65539,10 @@
       6373
     ],
     "memory quality test never collected": [
-      11383,
-      11384,
-      11385,
-      11386
+      11387,
+      11388,
+      11389,
+      11390
     ],
     "memory rebuild complete": [
       6457
@@ -69284,8 +69316,8 @@
       577
     ],
     "no tsx template fallback": [
-      11383,
-      11385
+      11387,
+      11389
     ],
     "noaa loop harness plan": [
       5429
@@ -75771,10 +75803,10 @@
       11372
     ],
     "phase map rows never filled": [
-      11383,
-      11384,
-      11385,
-      11386
+      11387,
+      11388,
+      11389,
+      11390
     ],
     "phase map sync normalization": [
       11357,
@@ -75824,7 +75856,7 @@
       7648,
       8793,
       10935,
-      11377
+      11381
     ],
     "phase parent 049": [
       6132
@@ -84667,10 +84699,10 @@
       4599
     ],
     "retire memory era tests": [
-      11383,
-      11384,
-      11385,
-      11386
+      11387,
+      11388,
+      11389,
+      11390
     ],
     "retire memory learn": [
       10476
@@ -95728,10 +95760,10 @@
       1752
     ],
     "spec kit v4 chronology": [
-      11378
+      11382
     ],
     "spec kit v4 timeline": [
-      11377
+      11381
     ],
     "spec kit version migration": [
       7612,
@@ -95967,10 +95999,10 @@
       10501
     ],
     "spec packet lands in opencode specs": [
-      11379,
-      11380,
-      11381,
-      11382
+      11383,
+      11384,
+      11385,
+      11386
     ],
     "spec packet merge gate": [
       10562
@@ -99385,10 +99417,10 @@
       10204
     ],
     "system speckit v4": [
-      11377
+      11381
     ],
     "system speckit v4 timeline": [
-      11378
+      11382
     ],
     "system to embedder mapping": [
       7089,
@@ -101239,7 +101271,7 @@
       10431
     ],
     "template reduction history": [
-      11377
+      11381
     ],
     "template reduction requirements": [
       10411
@@ -101516,10 +101548,10 @@
       8410
     ],
     "test phase validation cannot load": [
-      11383,
-      11384,
-      11385,
-      11386
+      11387,
+      11388,
+      11389,
+      11390
     ],
     "test plan checkboxes": [
       1089
@@ -102571,10 +102603,10 @@
       10400
     ],
     "track numbering restarts at 001": [
-      11379,
-      11380,
-      11381,
-      11382
+      11383,
+      11384,
+      11385,
+      11386
     ],
     "track prefix identity heal": [
       9750
@@ -104344,7 +104376,7 @@
       979
     ],
     "v4 packet order": [
-      11378
+      11382
     ],
     "v4 parent data repairs": [
       11369,
@@ -107493,7 +107525,7 @@
       1472
     ],
     "which spec was worked on first": [
-      11378
+      11382
     ],
     "which system uses cocoindex or mk spec memory": [
       8318

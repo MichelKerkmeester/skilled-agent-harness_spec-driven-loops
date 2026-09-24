@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules",
+  "specFolder": "system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules",
   "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
     "broken",
@@ -12,16 +12,15 @@
     "pain",
     "point"
   ],
-  "lastUpdated": "2026-09-24T07:36:36.830Z",
-  "specId": "063",
-  "folderSlug": "cli-codex-dispatch-rules",
+  "lastUpdated": "2026-09-24T07:36:35.453Z",
+  "specId": "064",
+  "folderSlug": "cli-devin-cursor-dispatch-rules",
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4"
   ],
-  "memorySequence": 2,
+  "memorySequence": 1,
   "memoryNameHistory": [
-    "24-09-26_08-18__scoped-cli-codex-s-always-rule-2-and-execution.md",
-    "24-09-26_08-36__scoped-cli-codex-s-always-rule-2-and-execution.md"
+    "24-09-26_08-36__scoped-cli-devin-s-and-cli-cursor-s-always-rule-2.md"
   ]
 }
