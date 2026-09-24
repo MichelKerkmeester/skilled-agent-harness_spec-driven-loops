@@ -1,5 +1,5 @@
 {
-  "manifestHash": "71fae252c51a6be149e3ea509dc2af737221b434ef46231d36dd82c82aab35be",
+  "manifestHash": "65aade823f85b1f272f22c3fb3df36e86101b8f1d73876eaaf9577e06b5558d2",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11401,7 +11401,11 @@
     "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
     "specs/system-speckit/035-retire-memory-era-tests/plan.md",
     "specs/system-speckit/035-retire-memory-era-tests/spec.md",
-    "specs/system-speckit/035-retire-memory-era-tests/tasks.md"
+    "specs/system-speckit/035-retire-memory-era-tests/tasks.md",
+    "specs/system-speckit/036-root-numbering-without-track/implementation-summary.md",
+    "specs/system-speckit/036-root-numbering-without-track/plan.md",
+    "specs/system-speckit/036-root-numbering-without-track/spec.md",
+    "specs/system-speckit/036-root-numbering-without-track/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -37233,6 +37237,12 @@
     "create sh parent packet corruption review": [
       10041
     ],
+    "create sh root numbering": [
+      11392,
+      11393,
+      11394,
+      11395
+    ],
     "create sh upgrade level sh": [
       1673
     ],
@@ -45778,6 +45788,11 @@
     ],
     "duplicate hash collapse": [
       9751
+    ],
+    "duplicate packet number 001": [
+      11392,
+      11394,
+      11395
     ],
     "duplicate review skip behavior": [
       673
@@ -56155,6 +56170,10 @@
     ],
     "high offset query fails fast": [
       8442
+    ],
+    "highest branch number": [
+      11393,
+      11394
     ],
     "highest priority review dimension": [
       1344
@@ -73083,6 +73102,9 @@
       2076,
       2079
     ],
+    "packet numbering without track": [
+      11394
+    ],
     "packet pointer handover check": [
       10723
     ],
@@ -87835,6 +87857,10 @@
     "scaffold provenance backlog": [
       10969
     ],
+    "scaffold prunes remote tracking refs": [
+      11392,
+      11394
+    ],
     "scaffold real default status": [
       10548
     ],
@@ -87858,6 +87884,9 @@
     ],
     "scaffold version mismatch fix": [
       11240
+    ],
+    "scaffold without fetch": [
+      11393
     ],
     "scan classifies regular file": [
       10606

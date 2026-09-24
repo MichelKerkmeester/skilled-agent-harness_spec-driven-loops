@@ -1,5 +1,5 @@
 {
-  "manifestHash": "71fae252c51a6be149e3ea509dc2af737221b434ef46231d36dd82c82aab35be",
+  "manifestHash": "65aade823f85b1f272f22c3fb3df36e86101b8f1d73876eaaf9577e06b5558d2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22996,6 +22996,9 @@
     "create sh parent packet corruption review": [
       "create.sh parent packet corruption review"
     ],
+    "create sh root numbering": [
+      "create.sh root numbering"
+    ],
     "create sh upgrade level sh": [
       "create.sh upgrade-level.sh"
     ],
@@ -31150,6 +31153,9 @@
     ],
     "duplicate hash collapse": [
       "duplicate hash collapse"
+    ],
+    "duplicate packet number 001": [
+      "duplicate packet number 001"
     ],
     "duplicate review skip behavior": [
       "duplicate review skip behavior"
@@ -40318,6 +40324,9 @@
     ],
     "high offset query fails fast": [
       "high-offset query fails fast"
+    ],
+    "highest branch number": [
+      "highest branch number"
     ],
     "highest priority review dimension": [
       "highest-priority review dimension"
@@ -54516,6 +54525,9 @@
     "packet migration": [
       "packet migration"
     ],
+    "packet numbering without track": [
+      "packet numbering without track"
+    ],
     "packet pointer handover check": [
       "packet pointer handover check"
     ],
@@ -67141,6 +67153,9 @@
     "scaffold provenance backlog": [
       "scaffold provenance backlog"
     ],
+    "scaffold prunes remote tracking refs": [
+      "scaffold prunes remote-tracking refs"
+    ],
     "scaffold real default status": [
       "scaffold real default status"
     ],
@@ -67164,6 +67179,9 @@
     ],
     "scaffold version mismatch fix": [
       "scaffold version mismatch fix"
+    ],
+    "scaffold without fetch": [
+      "scaffold without fetch"
     ],
     "scan classifies regular file": [
       "scan classifies regular file"
