@@ -112,7 +112,7 @@ Paths are under `.skilled/skills/system-spec-kit/` except `CONTRIBUTING.md` at t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Seven commits, one per cause. Every deletion was traced to the module or layout it needed, and every live reference outside `specs/` and the changelogs went in the same commit as its file. The revived tests ran first as they stood. Their stale expectations were matched to the code's history: the March scoring fix, the four-column map, the per-folder validation output. The assertions that caught real defects were sharpened, run red, and then turned green by the fix commits. Seven follow-up commits came after the first push and three after the second, and the code changes among them went the same way: each fallback's parity test ran red against the old fallback first, and an injected defect in each port turned its test red again before the commit.
+Seven commits, one per cause. Every deletion was traced to the module or layout it needed, and every live reference outside `specs/` and the changelogs went in the same commit as its file. The revived tests ran first as they stood. Their stale expectations were matched to the code's history: the March scoring fix, the four-column map, the per-folder validation output. The assertions that caught real defects were sharpened, run red, and then turned green by the fix commits. Seven follow-up commits came after the first push, three after the second and two after the third, and the code changes among them went the same way: each fallback's parity test ran red against the old fallback first, and an injected defect in each port turned its test red again before the commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -141,8 +141,8 @@ Seven commits, one per cause. Every deletion was traced to the module or layout 
 | `test-phase-system.js` | PASS, 27 assertions; 1 failed before the append fix |
 | `test-phase-system.sh` | PASS, 10 assertions; 2 failed before the create.sh fixes |
 | `npm run test:legacy` and `npm run test:validation` in `runtime/cli` | PASS, both |
-| `cli` vitest project | PASS, 1467 tests, 19 declared skips |
-| `create-without-build.vitest.ts` | PASS, 3 tests. All 3 failed before the warnings, and 2 failed again with one warning removed |
+| `cli` vitest project | PASS, 1467 tests, 19 declared skips. After the phase-parent stop, 1466 passed and `gate-3-classifier` timed out at 30s under another session's bulk validation; alone it passes 64 of 64 |
+| `create-without-build.vitest.ts` | PASS, 3 tests. All 3 failed before the warnings, 2 failed again with one warning removed, and the phase-parent case failed with only its stop removed |
 | `inline-gate-renderer-fallback.vitest.ts` | PASS, 13 tests: 18 templates at 7 levels, a synthetic template, stdin, errors. 11 failed on the old fallback |
 | `level-contract-fallback.vitest.ts` | PASS, 17 tests: 7 levels and 7 malformed manifests. 16 failed on the old fallback |
 | Injected defects in each port | Each turned its parity test red, then reverted to green |
@@ -162,7 +162,7 @@ Seven commits, one per cause. Every deletion was traced to the module or layout 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A scaffold made with no build has no `description.json` and a stub graph metadata file.** Both generators need `runtime/cli/dist/` or tsx. `create.sh` now warns for each one it skips, but a `--level phase-parent` scaffold still exits 0 without the description its parent needs, where `--phase` stops.
+1. **A scaffold made with no build has no `description.json` and a stub graph metadata file.** Both generators need `runtime/cli/dist/` or tsx. `create.sh` now warns for each one it skips, and a phase parent, which needs its description, stops instead, whether made with `--phase` or `--level phase-parent`.
 2. **`dist-freshness` fails on timestamps alone.** The build skips writing unchanged output, so a source touched without a rebuild stays newer than its build. A forced rebuild cleared it here, but another checkout in that state fails the same way until it runs `tsc --build --force`.
 3. **The shipped templates cover less than the renderer does.** None has a fence or a blank line after an inactive gate, so the parity test's synthetic template is what guards those two paths.
 <!-- /ANCHOR:limitations -->

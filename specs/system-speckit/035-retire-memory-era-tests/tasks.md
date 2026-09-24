@@ -65,6 +65,7 @@ contextType: "implementation"
 - [x] T024 Fill the phase map of `specs/sk-design/020-chart-and-diagram-review`
 - [x] T028 Warn on stderr for each generated file skipped for want of a build (`runtime/cli/spec/create.sh`)
 - [x] T029 Give `specs/sk-design/020-chart-and-diagram-review/synthesis.md` a title, description and trigger phrases
+- [x] T032 Stop `--level phase-parent` without the description generator, as `--phase` does (`runtime/cli/spec/create.sh`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -82,6 +83,7 @@ contextType: "implementation"
 - [x] T027 A search of `specs/` finds no `spec.md` still holding the phase row marker
 - [x] T030 A scaffold with no build reports every skipped generator, and the test turns red when a warning is removed (`runtime/cli/tests/create-without-build.vitest.ts`)
 - [x] T031 sk-design/020 validates with no errors or warnings, and recursively with one pre-existing warning per child
+- [x] T033 A phase parent with no build exits 1 with the `--phase` message, and the test fails with only that check removed
 <!-- /ANCHOR:phase-3 -->
 
 ---
