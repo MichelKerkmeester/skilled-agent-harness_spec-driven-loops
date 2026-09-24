@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7339,
-    "ok": 11355,
+    "missing-frontmatter": 7340,
+    "ok": 11302,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22385,
+  "documentsScanned": 22333,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8e594600ff97bcaf49eb9144dcdd30bb4426a4dca7224e1dcf1b3aaa4b1de7e8",
+  "manifestHash": "5f328e9658749f0c81aa8ce647d54af5b3bda5220a8d25c518d4be4043cf4153",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27489,
+      "ok": 27512,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -39258,96 +39258,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/.skilled/skills/cli-jev/changelog/v0.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.claude/agents/orchestrate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.claude/agents/prompt-improver.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.pi/agents/orchestrate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.pi/agents/prompt-improver.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/agents/orchestrate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/agents/prompt-improver.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/changelog/v0.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/.skilled/skills/cli-external-orchestration/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/.skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -40825,138 +40735,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/.opencode/commands/deep/assets/compiled/deep-research.contract.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/prior-findings.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/prior-findings.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -41103,12 +40881,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/baselines/seam-assignment.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/synthesis.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -45993,6 +45765,102 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/code-header.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/doc-footer.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/doc-header.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-ac.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-goal.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-impl.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-spec.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-tasks.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/evidence.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/footer.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu1-test.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu2-guard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu3-detect-test.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu4-detect-guard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu5-gitignore.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -69909,6 +69777,144 @@
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof/evidence/dispatch/wu9-close-tasks.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/code-header.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/doc-footer.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/doc-header.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-ac.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-impl.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-spec.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-tasks.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/evidence.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/footer.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu1-gate-test.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu10-doc-corrections.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu11-slug-anchors.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu12-tick-validation.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu13-rebased-shas.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu2-gate.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu3-ci-tmpdir.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu4-playbook-gate.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu5-playbook-codex.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu6-cli-jev-pipefail.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu7-playbook-count.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu8-030-goal-trim.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu9-parent-rows.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -70777,74 +70783,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-external-orchestration/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/mcp-tooling/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-design/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-git/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-deep-loop/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-skill-advisor/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-speckit/026-graph-and-context-optimization/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/cli-external-orchestration/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/mcp-tooling/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-design/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-doc/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-git/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-deep-loop/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-skill-advisor/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-speckit/026-graph-and-context-optimization/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/scratch",
       "reason": "excluded directory"
     },
@@ -71194,10 +71132,6 @@
     },
     {
       "path": "specs/sk-communication/005-deprecate-visual-explanation-lane/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -72330,6 +72264,10 @@
     },
     {
       "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/scratch",
       "reason": "excluded directory"
     },
     {
@@ -74558,6 +74496,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

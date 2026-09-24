@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9d19ab66d7662ed03c18bcccd76aed222dcd7905accc74075254159270e36895",
+  "corpusHash": "13631e2121898e0d0f4a14701a123de74f10787d615f9c070891760864c017b4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22385,
+  "includedPathCount": 22333,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -8610,77 +8610,6 @@
     "specs/cli-orca/002-consolidate-official-orca-skills/plan.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/research/research.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/resource-map.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/.skilled/skills/cli-jev/changelog/v0.2.0.0.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/implementation-summary.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/plan.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/tasks.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/goal.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/0/content/specs/cli-jev/002-cli-jev-hub-migration/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/plan.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/tasks.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/goal.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/1/content/specs/cli-jev/002-cli-jev-hub-migration/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.claude/agents/orchestrate.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.claude/agents/prompt-improver.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.pi/agents/orchestrate.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.pi/agents/prompt-improver.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/agents/orchestrate.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/agents/prompt-improver.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/ROUTER.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/SKILL.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/cli-jev/changelog/v0.1.0.0.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/shared/references/core-standards.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/SKILL.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/changelog/v1.2.0.0.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/cli-jev/001-cli-jev-creation/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/acceptance-criteria.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/implementation-summary.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/plan.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/tasks.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/.skilled/skills/cli-external-orchestration/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/.skilled/skills/cli-external-orchestration/SKILL.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/plan.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/tasks.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/056-sk-create-readme-writing-style/acceptance-criteria.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/056-sk-create-readme-writing-style/implementation-summary.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/056-sk-create-readme-writing-style/plan.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/.skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/implementation-summary.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/implementation-summary.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/4/content/specs/cli-jev/002-cli-jev-hub-migration/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/SKILL.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/changelog/v1.2.0.0.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/README.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/acceptance-criteria.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/decision-record.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/implementation-summary.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/plan.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/spec.md",
-    "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/5/content/specs/sk-doc/056-sk-create-readme-writing-style/tasks.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-dashboard.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/deep-review-strategy.md",
     "specs/cli-orca/002-consolidate-official-orca-skills/review/iterations/iteration-001.md",
@@ -9872,29 +9801,6 @@
     "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/acceptance-criteria.md",
     "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/implementation-summary.md",
     "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/plan.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/.opencode/commands/deep/assets/compiled/deep-research.contract.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-001.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-003.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-004.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-005.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-006.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-007.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-008.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-009.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-010.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/prior-findings.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-001.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-002.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-003.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-004.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-005.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-006.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-007.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-008.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-009.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-010.md",
-    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/prior-findings.md",
     "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-dashboard.md",
     "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-strategy.md",
     "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-001.md",
@@ -9939,14 +9845,6 @@
     "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/acceptance-criteria.md",
     "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/implementation-summary.md",
     "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/plan.md",
-    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/synthesis.md",
-    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/containment/quarantine/content/specs/system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research/implementation-summary.md",
-    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/containment/quarantine/content/specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/implementation-summary.md",
-    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/containment/quarantine/content/specs/system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research/implementation-summary.md",
-    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/containment/quarantine/content/specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/implementation-summary.md",
-    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/containment/quarantine/content/specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/implementation-summary.md",
-    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/containment/quarantine/content/specs/system-speckit/033-system-speckit-v4/038-goal-unification/spec.md",
-    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/containment/quarantine/content/specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/deep-research-dashboard.md",
     "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/deep-research-strategy.md",
     "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/iterations/iteration-001.md",
@@ -12624,6 +12522,28 @@
     "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway/plan.md",
     "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway/spec.md",
     "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway/tasks.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/acceptance-criteria.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/code-header.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/doc-footer.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/doc-header.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-ac.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-goal.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-impl.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-plan.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-spec.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/docs-tasks.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/evidence.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/footer.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu1-test.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu2-guard.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu3-detect-test.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu4-detect-guard.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/evidence/dispatch/wu5-gitignore.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/goal.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/implementation-summary.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/plan.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/spec.md",
+    "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/tasks.md",
     "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/acceptance-criteria.md",
     "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/decision-record.md",
     "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md",
@@ -22391,6 +22311,34 @@
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/plan.md",
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/spec.md",
     "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/code-header.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/doc-footer.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/doc-header.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-ac.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-impl.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-plan.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-spec.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/docs-tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/evidence.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/footer.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu1-gate-test.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu10-doc-corrections.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu11-slug-anchors.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu12-tick-validation.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu13-rebased-shas.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu2-gate.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu3-ci-tmpdir.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu4-playbook-gate.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu5-playbook-codex.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu6-cli-jev-pipefail.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu7-playbook-count.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu8-030-goal-trim.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/evidence/dispatch/wu9-parent-rows.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms/implementation-summary.md",
     "specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms/plan.md",
     "specs/system-speckit/033-system-speckit-v4/055-advisory-false-alarms/spec.md",
@@ -22407,7 +22355,7 @@
     "specs/system-speckit/034-create-canonical-specs-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8e594600ff97bcaf49eb9144dcdd30bb4426a4dca7224e1dcf1b3aaa4b1de7e8",
+  "manifestHash": "5f328e9658749f0c81aa8ce647d54af5b3bda5220a8d25c518d4be4043cf4153",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -23281,74 +23229,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/2/content/specs/sk-doc/056-sk-create-readme-writing-style/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/cli-external-orchestration/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/mcp-tooling/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-design/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-doc/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/sk-git/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-deep-loop/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-skill-advisor/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/content/specs/system-speckit/026-graph-and-context-optimization/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/cli-external-orchestration/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/mcp-tooling/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-design/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-doc/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/sk-git/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-deep-loop/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-skill-advisor/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/containment/quarantine/3/patch-head/specs/system-speckit/026-graph-and-context-optimization/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/scratch",
       "reason": "excluded directory"
     },
@@ -23698,10 +23578,6 @@
     },
     {
       "path": "specs/sk-communication/005-deprecate-visual-explanation-lane/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -24834,6 +24710,10 @@
     },
     {
       "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/scratch",
       "reason": "excluded directory"
     },
     {
@@ -27062,6 +26942,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/053-legacy-template-default-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
