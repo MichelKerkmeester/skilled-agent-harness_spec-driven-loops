@@ -7,6 +7,8 @@ trigger_phrases:
   - "test-phase-validation cannot load"
   - "manual playbook runner retired"
   - "memory-quality test never collected"
+  - "phase map rows never filled"
+  - "empty phase child skipped"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -45,12 +47,17 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Delete the retired-code tests and the archive folder, and update `package.json`, `runtime/vitest.config.ts`, `CONTRIBUTING.md`, the quality-lane docs and the sk-doc snapshots
-- [ ] T005 Retire the playbook runner, its fixture, its allowlist entries and its doc references
-- [ ] T006 Revive the phase tests: ES-module header, throwaway repo, generator stub (`runtime/cli/tests/test-phase-*.{js,sh}`)
-- [ ] T007 Rename the memory-quality tests to `.vitest.ts`
-- [ ] T008 Add the phase tests to `test:legacy` and `test:validation` (`runtime/cli/package.json`)
-- [ ] T009 Delete `test-five-checks.js`
+- [x] T004 Delete the retired-code tests and the archive folder, and update `package.json`, `runtime/vitest.config.ts`, `CONTRIBUTING.md`, the quality-lane docs and the sk-doc snapshots
+- [x] T005 Retire the playbook runner, its fixture, its allowlist entries and its doc references
+- [x] T006 Revive the phase tests: ES-module header, throwaway repo, generator stub, real renderer, one work root (`runtime/cli/tests/test-phase-*.{js,sh}`)
+- [x] T007 Bring stale assertions up to date: March phase scores, four-column map, one validation document per folder, create.sh status line ahead of JSON
+- [x] T008 Sharpen the assertions that caught defects, and confirm each fails on the unfixed code
+- [x] T009 Match the template's phase and handoff row markers (`runtime/cli/spec/create.sh`)
+- [x] T010 Append phase and handoff rows where each table ends (`runtime/cli/spec/create.sh`)
+- [x] T011 Validate an empty phase child, keep skipping an artifact-only one (`runtime/cli/spec/validate.sh`)
+- [x] T012 Rename the memory-quality tests to `.vitest.ts`
+- [x] T013 Add the phase tests to `test:legacy` and `test:validation` (`runtime/cli/package.json`)
+- [x] T014 Delete `test-five-checks.js`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,10 +65,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 The three phase tests pass and leave the checkout unchanged
-- [ ] T011 The `cli` vitest project passes, with the two renamed files collected
-- [ ] T012 The sk-doc README snapshot tests pass
-- [ ] T013 A search outside history finds no reference to a deleted file
+- [x] T015 The three phase tests pass and leave the checkout and the temp directory unchanged
+- [x] T016 The `cli` vitest project passes, with the two renamed files collected
+- [x] T017 The sk-doc README snapshot tests pass
+- [x] T018 The suites that drive create.sh and validate.sh pass after each fix
+- [x] T019 A search outside history finds no reference to a deleted file
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -69,9 +77,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
