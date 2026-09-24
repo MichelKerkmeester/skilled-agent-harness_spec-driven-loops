@@ -16,7 +16,7 @@ Inputs:
 
 Outputs:
 - Default response is a save plan: target route, proposed edits, blockers, advisories, and follow-up actions.
-- Explicit apply/full-auto runs `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` with AI-authored JSON. That script is the whole write. The JSON can carry the packet's continuity (`recent_action`, `next_safe_action`, `blockers`, `key_files`, `completion_pct`, `open_questions`, `answered_questions`), which only a `--full-auto` run writes; the field rules are in `save-workflow.md` under Continuity Fields.
+- Explicit apply/full-auto runs `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` with AI-authored JSON. That script is the whole write. The JSON can carry the packet's continuity (`recent_action`, `next_safe_action`, `blockers`, `key_files`, `completion_pct`, `open_questions`, `answered_questions`), which only a `--full-auto` run writes; the field rules are in `save-workflow.md` under Continuity Fields. Every mode refreshes `description.json`, `graph-metadata.json` and the phase-parent pointers, and `hybrid` behaves like the default `plan-only`.
 - Retrieval freshness is a separate, optional step: regenerate the trigger index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` when the packet's `trigger_phrases` changed. There is no indexing handoff, no daemon to wait for and no launcher file to check.
 
 Guardrails:

@@ -252,6 +252,16 @@ If both the JSON payload and the CLI provide a spec folder, the explicit CLI arg
 
 If that explicit CLI argument resolves to a phase folder, the command keeps that explicit target and updates the selected phase folder's own canonical continuity surfaces.
 
+### Planner Modes
+
+Every planner mode refreshes `description.json`, `graph-metadata.json` and the phase-parent pointers. Only `--full-auto` writes the continuity fields.
+
+| Mode | Metadata and pointers | Continuity fields |
+|------|-----------------------|-------------------|
+| `plan-only` (default) | Refreshed | Not written |
+| `hybrid` | Refreshed | Not written; behaves like `plan-only` |
+| `full-auto` | Refreshed | Written into the leaf's `implementation-summary.md` |
+
 ### Validation Checkpoints
 
 | Checkpoint         | Verification                                           | Action on Failure        |
@@ -318,9 +328,9 @@ specs/###-feature-name/
 When the save target is a phase parent (detected via `isPhaseParent()` from `.skilled/skills/system-spec-kit/runtime/cli/dist/spec/is-phase-parent.js`), the generator follows a different routing contract that matches the lean trio policy:
 
 - **At a phase parent**: the parent holds no `implementation-summary.md`, so a `--full-auto` save carrying continuity fields resolves the leaf that holds the work and writes there. At each level, payload paths (`filesModified` and `key_files`) that lie inside a child choose that child when they all name the same one. A level with no such path follows its `derived.last_active_child_id` pointer when the pointer names an existing child packet. Payload paths spread across two children, or no path and no usable pointer, resolve nothing: the save writes no continuity, names the candidate children, and leaves every pointer unchanged. The routed leaf is written under its own `.canonical-save.lock` and its graph metadata is refreshed in the same save. Logic: `resolveContinuityLeaf` in `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts`.
-- **At a leaf**: write the leaf's `_memory.continuity`, then walk up and point every phase-parent ancestor one level down toward it, each with a fresh `last_active_at`, up to five levels. The walk stops below a specs root, so a save never rewrites `specs/graph-metadata.json`; an ancestor whose metadata fails to parse is skipped with a warning. A save that wrote into no child moves no pointer. Logic: `updatePhaseParentPointersAfterSave` in the same file.
+- **At a leaf**: write the leaf's `_memory.continuity`, then walk up and point every phase-parent ancestor one level down toward it, each with a fresh `last_active_at`, up to five levels. The walk stops below a specs root, so a save never rewrites `specs/graph-metadata.json`. A track root, the folder with no `spec.md` directly under `specs/`, keeps its pointer in the telemetry store only, so its tracked `graph-metadata.json` is not rewritten on every save. An ancestor whose metadata fails to parse is skipped with a warning. A save that wrote into no child moves no pointer. Logic: `updatePhaseParentPointersAfterSave` in the same file.
 - **Atomic write**: same-directory temp file + `fs.renameSync` (POSIX-atomic). Prevents torn JSON state under concurrent saves.
-- **Resume integration**: `/speckit:resume` reads `derived.last_active_child_id` first when the target is a phase parent. If non-null and `last_active_at` is within 24 hours, recurse directly into that child. Otherwise fall back to listing children with statuses. `--no-redirect` bypasses the pointer entirely.
+- **Resume integration**: `/speckit:resume` reads a phase parent's pointer first, from the telemetry store and then from `derived.last_active_child_id`. When the pointer names an existing child packet inside the parent, resume follows it at any age and reports the child and its `last_active_at`; confirm mode asks before following a pointer older than 24 hours. A missing, malformed or escaping pointer, or one whose child is gone, falls back to listing children with statuses. `--no-redirect` bypasses the pointer entirely. Logic: `resolvePhaseParentPointerHop` in `.skilled/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts`.
 
 #### Phase Parent Output Location (lean trio)
 

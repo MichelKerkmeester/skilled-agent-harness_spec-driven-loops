@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth",
+  "spec_folder": "system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "save resume pointer truth",
+      "track root pointer store only",
+      "planner mode what each mode writes",
+      "phase parent pointer docs",
+      "save resume pointer plan",
+      "track root store only plan",
+      "planner mode docs plan",
+      "save resume pointer tasks",
+      "track root store only tasks",
+      "implementation summary",
+      "track root store only evidence"
+    ],
+    "key_topics": [
+      "save",
+      "resume",
+      "pointer",
+      "truth",
+      "track",
+      "root",
+      "store",
+      "only",
+      "planner",
+      "mode",
+      "writes",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/phase-parent-pointer.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/generate-context-help.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
+      ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+      ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/system-spec-kit/references/structure/folder-routing.md",
+      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+      ".skilled/commands/speckit/save.md",
+      "specs/system-speckit/graph-metadata.json",
+      "runtime/lib/resume/resume-ladder.ts",
+      "runtime/cli/core/workflow.ts",
+      "runtime/cli/continuity/generate-context.ts",
+      "runtime/cli/tests/phase-parent-pointer.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parent-pointer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/phase-parent-pointer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context-help.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/generate-context-help.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save-continuity-write.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder-routing.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/folder-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-speckit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": "runtime/lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After a save, the writer walks up from the saved packet and rewrites the pointer in every phase-parent ancestor's `graph-metadata.json`, including the track root, the spec-less folder directly under `specs/`",
+    "created_at": "2026-09-24T05:57:52Z",
+    "last_save_at": "2026-09-24T06:17:58.657Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:86d73734c995db11a9ab8484d70d0a1afeda98820095216a9fba6774892b16f1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1482f65ae7297161a2f3acd0022809fef8de7957fb9d2f45d646246ed04e3cf1",
+      "plan.md": "4aad35b815f373c8740807897bc78f6c01cb7fde5c8c86fcc113ca6eccad485b",
+      "tasks.md": "147d8e4b2233f39c695b75e7ce3e16005832fa8fabb0a776bed449f59540348a",
+      "implementation-summary.md": "a5e56022b7fe96982bd555cc1fe11c7321db9761cee0442773d6a8d5e4331fff"
+    },
+    "last_active_at": null
+  }
+}

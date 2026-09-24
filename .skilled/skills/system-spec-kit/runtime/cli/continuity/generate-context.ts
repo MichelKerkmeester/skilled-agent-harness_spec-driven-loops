@@ -81,7 +81,9 @@ Options:
   --stdin           Read structured JSON from stdin (preferred when a caller already has curated session data)
   --json <string>   Read structured JSON from an inline string (preferred when structured data is available)
   --session-id <uuid>  Explicit session ID to attach to the saved memory metadata
-  --planner-mode <mode>  Canonical save planner mode: plan-only (default), full-auto, or hybrid
+  --planner-mode <mode>  plan-only (default), hybrid or full-auto. Every mode refreshes
+                         description.json, graph-metadata.json and the phase-parent pointers;
+                         only full-auto writes the continuity fields. hybrid behaves like plan-only.
   --full-auto       Shortcut for --planner-mode full-auto
 
 Examples:
@@ -98,8 +100,9 @@ Output:
   daemon to wait for. Regenerate the lookup surface with
   node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
   when the packet's trigger phrases changed.
-  Planner-first canonical saves are requested by default; use --full-auto for
-  the legacy mutation-first fallback.
+  Every planner mode writes description.json, graph-metadata.json and the
+  phase-parent pointers. Only --full-auto also writes the continuity fields
+  into the leaf's implementation-summary.md.
 
 Preferred save path (JSON-PRIMARY):
   - ALWAYS use --stdin, --json, or a JSON temp file.
@@ -607,6 +610,12 @@ export function getPacketIdFromGraphMetadata(specFolderPath: string): string {
   return path.basename(specFolderPath);
 }
 
+function getTelemetryStorePacketId(packetId: string): string {
+  return path.isAbsolute(packetId)
+    ? packetId.split('/specs/').pop() ?? packetId
+    : packetId;
+}
+
 /** Update a phase parent's graph-metadata derived block (active child, timestamps, children_ids) atomically. */
 export function updatePhaseParentPointer(
   phaseParentPath: string,
@@ -641,10 +650,10 @@ export function updatePhaseParentPointer(
   // pointer from the index-layer store first, so the save records it there too;
   // the store write is best-effort and never blocks the canonical save.
   if (activeChildId) {
-    const specFolderId = path.isAbsolute(metadata.packet_id)
-      ? metadata.packet_id.split('/specs/').pop() ?? metadata.packet_id
-      : metadata.packet_id;
-    recordFreshnessPointer(specFolderId, { childId: activeChildId, at: timestamp });
+    recordFreshnessPointer(getTelemetryStorePacketId(metadata.packet_id), {
+      childId: activeChildId,
+      at: timestamp,
+    });
   }
 
   const updated: GraphMetadata = {
@@ -703,7 +712,16 @@ export function updatePhaseParentPointersAfterSave(
       return updated;
     }
     try {
-      updatePhaseParentPointer(parent, getPacketIdFromGraphMetadata(current), timestamp);
+      const childPacketId = getPacketIdFromGraphMetadata(current);
+      if (fsSync.existsSync(path.join(parent, 'spec.md'))) {
+        updatePhaseParentPointer(parent, childPacketId, timestamp);
+      } else {
+        // Track-root pointers share tracked metadata, so keep this update in telemetry only.
+        recordFreshnessPointer(getTelemetryStorePacketId(getPacketIdFromGraphMetadata(parent)), {
+          childId: childPacketId,
+          at: timestamp,
+        });
+      }
       updated.push(parent);
     } catch (error: unknown) {
       warn(`Skipped the phase-parent pointer in ${parent}: ${error instanceof Error ? error.message : String(error)}`);
@@ -1166,6 +1184,7 @@ if (isMainModule(import.meta.url)) {
 }
 
 export {
+  HELP_TEXT,
   main,
   readAllStdin,
   parseArguments,
