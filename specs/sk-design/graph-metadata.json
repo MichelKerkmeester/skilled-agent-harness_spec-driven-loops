@@ -4,22 +4,9 @@
   "spec_folder": "sk-design",
   "parent_id": null,
   "children_ids": [
-    "design/001-sk-design-interface",
-    "design/002-mcp-open-design",
-    "design/003-mcp-figma-with-direct-cli-support",
-    "design/004-sk-design-md-generator",
-    "design/005-sk-design-interface-rename",
-    "design/006-sk-design-md-generator",
-    "design/007-sk-design-interface-rename",
-    "design/008-sk-design-parent",
-    "sk-design/001-sk-design-interface",
-    "sk-design/002-mcp-open-design",
-    "sk-design/003-mcp-figma-with-direct-cli-support",
-    "sk-design/004-sk-design-md-generator",
-    "sk-design/006-sk-design-md-generator",
-    "sk-design/008-sk-design-parent",
-    "sk-design/009-sk-design-claude-parity",
-    "sk-design/015-deprecate-open-design"
+    "sk-design/018-sk-design-parent-v2",
+    "sk-design/019-sk-design-diagram-upgrade",
+    "sk-design/020-chart-and-diagram-review"
   ],
   "manual": {
     "depends_on": [],

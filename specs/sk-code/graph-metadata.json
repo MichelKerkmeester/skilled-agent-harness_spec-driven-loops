@@ -5,7 +5,14 @@
   "parent_id": null,
   "children_ids": [
     "sk-code/001-sk-code-parent",
-    "sk-doc/033-mobile-cli-template-alignment"
+    "sk-code/002-rust-standards-for-code-opencode",
+    "sk-code/003-content-quality-remediation",
+    "sk-code/004-code-conformance-alignment",
+    "sk-code/005-dist-staleness-rebuild-on-drift",
+    "sk-code/006-dist-guard-skip-unprovisioned",
+    "sk-code/007-sk-code-obsidian-surface",
+    "sk-code/008-sk-code-mobile-cli-mode",
+    "sk-code/009-sk-code-mobile-cli-deprecation"
   ],
   "manual": {
     "depends_on": [],

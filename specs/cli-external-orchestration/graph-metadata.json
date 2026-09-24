@@ -4,17 +4,12 @@
   "spec_folder": "cli-external-orchestration",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/026-cli-external-parent",
-    "cli-external-orchestration/027-cli-codex-revival",
-    "cli-external-orchestration/028-cli-hub-rename",
-    "cli-external-orchestration/029-cli-devin-revival",
-    "cli-external-orchestration/030-cli-cursor-creation",
-    "cli-external-orchestration/031-cli-pi-creation",
-    "cli-external-orchestration/032-per-mode-provider-model-reference",
-    "cli-external-orchestration/033-deepseek-v4-flash-pi-roster",
-    "cli-external-orchestration/034-opencode-go-flash-qwen-roster",
-    "cli-external-orchestration/035-improved-communication",
-    "cli-external-orchestration/065-retire-gemini-devin-route"
+    "cli-external-orchestration/071-cli-hermes-creation",
+    "cli-external-orchestration/072-union-alpha-dual-provider-roster",
+    "cli-external-orchestration/073-cli-pi-build-brief-and-blackhole",
+    "cli-external-orchestration/075-cli-runtime-readme-refresh",
+    "cli-external-orchestration/076-mimo-v2-6-cutover",
+    "cli-external-orchestration/077-gpt-6-luna-sol-cutover"
   ],
   "manual": {
     "depends_on": [],

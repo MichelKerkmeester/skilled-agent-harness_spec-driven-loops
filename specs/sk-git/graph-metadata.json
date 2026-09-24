@@ -4,21 +4,16 @@
   "spec_folder": "sk-git",
   "parent_id": null,
   "children_ids": [
-    "sk-git/007-continuous-integration-workflow",
-    "sk-git/008-research-and-requirements",
-    "sk-git/009-skill-scoped-worktree-naming",
-    "sk-git/010-review-remediation-and-alignment",
-    "sk-git/011-feature-catalog-and-manual-playbook",
-    "sk-git/012-readme-enrichment-and-hyphen-naming",
-    "sk-git/013-git-review-remediation",
-    "sk-git/014-gitkraken-mcp-integration",
-    "sk-git/z_archive",
-    "sk-git/015-remote-branch-policy",
     "sk-git/020-live-sync-harden-default-on",
     "sk-git/021-hook-gate-hardening",
     "sk-git/022-worktree-branch-naming-overhaul",
+    "sk-git/023-live-follow-disjoint-ff",
     "sk-git/024-rebase-abort-head-preservation",
-    "sk-git/026-worktree-hygiene-and-relocation"
+    "sk-git/025-main-protection-ruleset-relax",
+    "sk-git/026-worktree-hygiene-and-relocation",
+    "sk-git/027-remote-push-approval",
+    "sk-git/028-crawlable-commit-history",
+    "sk-git/029-worktree-dependency-provisioning"
   ],
   "manual": {
     "depends_on": [],

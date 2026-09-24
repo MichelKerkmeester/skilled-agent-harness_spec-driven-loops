@@ -4,7 +4,12 @@
   "spec_folder": "sk-communication",
   "parent_id": null,
   "children_ids": [
-    "sk-communication/001-sk-communication-creation"
+    "sk-communication/001-sk-communication-creation",
+    "sk-communication/002-sk-communication-triggers",
+    "sk-communication/003-visual-explanation-lane",
+    "sk-communication/004-visual-explanation-output-medium",
+    "sk-communication/005-deprecate-visual-explanation-lane",
+    "sk-communication/006-sk-communication-clarity"
   ],
   "manual": {
     "depends_on": [],
