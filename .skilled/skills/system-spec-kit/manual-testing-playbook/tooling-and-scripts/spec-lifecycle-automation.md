@@ -202,17 +202,22 @@ EXAMPLES:
     archive-spec.sh specs/051-feature-name/
     archive-spec.sh --force specs/051-feature-name/
     archive-spec.sh specs/my-track/012-feature-name/
+    archive-spec.sh specs/my-track/012-feature-name/003-phase-name/
     archive-spec.sh --list
     archive-spec.sh --restore specs/z_archive/051-feature-name/
     archive-spec.sh --restore specs/my-track/z_archive/012-feature-name/
+    archive-spec.sh --restore specs/my-track/012-feature-name/z_archive/003-phase-name/
 
 NOTES:
     - Specs with <90% completeness will prompt for confirmation
     - Use --force to skip the completeness check
-    - A spec at the specs root is moved to specs/z_archive/
-    - A spec in a track is moved to that track's own specs/<track>/z_archive/
-    - Restore returns a spec to the specs root or to its track
+    - A spec is moved into the z_archive/ beside it: specs/z_archive/ at the
+      specs root, specs/<track>/z_archive/ in a track, <parent>/z_archive/
+      for a phase
+    - Restore returns a spec to the folder its z_archive/ belongs to
     - A track's graph-metadata.json list is refreshed after both moves
+    - A phase parent's graph-metadata.json is left as it is: its writer drops
+      a child only through a reviewed prune
 ```
 
 ### Pass / Fail
