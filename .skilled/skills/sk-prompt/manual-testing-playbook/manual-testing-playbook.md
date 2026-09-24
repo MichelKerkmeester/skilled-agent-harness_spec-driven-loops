@@ -362,19 +362,19 @@ Desired user-visible outcome: Transparency report stating either "Discover phase
 
 > **Feature File:** [SP-010](../manual-testing-playbook/depth-clear-loop/perspectives-floor-three.md)
 
-### SP-011 | Iteration cap at 3 CLEAR re-score loops
+### SP-011 | Iteration cap at one CLEAR retry
 
 #### Description
 
-Verify that after three CLEAR re-score iterations, the loop terminates and delivers the best version with a quality note instead of running a fourth iteration.
+Verify that after one CLEAR retry, the loop terminates and delivers the best version with a quality note instead of retrying again.
 
 #### Scenario Contract
 
-Prompt: `Improve my technical-writing prompt; verify CLEAR loops stop after 3 attempts and return the best version with a quality note.`
+Prompt: `Improve my technical-writing prompt; verify CLEAR improvement stops after one retry and returns the best version with a quality note.`
 
-Iteration cap enforced: 3. Desired outcome: deliver-best-with-note, no infinite loop.
+Iteration cap enforced: one retry. Desired outcome: deliver-best-with-note, no infinite loop.
 
-Desired user-visible outcome: Enhanced prompt + transparency report stating "Iterations: 3", "Best CLEAR: <score>/50", "Note: max iterations reached, delivering best version".
+Desired user-visible outcome: Enhanced prompt + transparency report stating "Retries: 1", "Best CLEAR: <score>/50", "Note: retry limit reached, delivering best version".
 
 #### Test Execution
 
@@ -474,19 +474,19 @@ Desired user-visible outcome: Transparency report listing `re-score reason: dime
 
 > **Feature File:** [SP-016](../manual-testing-playbook/clear-scoring/dimension-floors-block.md)
 
-### SP-017 | Total below 40/50 triggers improvement cycle (max 3)
+### SP-017 | Total below 40/50 triggers improvement cycle (one retry)
 
 #### Description
 
-Verify that a total CLEAR score below 40/50 triggers another DEPTH iteration, capped at 3 total iterations (per SP-011).
+Verify that a total CLEAR score below 40/50 triggers another DEPTH iteration, capped at one retry (per SP-011).
 
 #### Scenario Contract
 
-Prompt: `Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers another cycle and stops after 3 total attempts.`
+Prompt: `Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers one retry and stops there.`
 
 Improvement cycle: yes. Cap honored: yes.
 
-Desired user-visible outcome: Transparency report showing iteration count >= 2, with "delivering best version" note if cap hit.
+Desired user-visible outcome: Transparency report showing the first score and the retry score, with a "delivering best version" note if the retry falls short.
 
 #### Test Execution
 
@@ -728,13 +728,13 @@ Desired user-visible outcome: Routing trace listing `format-guide-json.md` only 
 | SP-008 | UNKNOWN_FALLBACK checklist | Smart Routing | [SP-008](../manual-testing-playbook/smart-routing/unknown-fallback-checklist.md) |
 | SP-009 | DEPTH 5-phase order | DEPTH+CLEAR Loop | [SP-009](../manual-testing-playbook/depth-clear-loop/depth-five-phases-order.md) |
 | SP-010 | Perspectives floor (3) | DEPTH+CLEAR Loop | [SP-010](../manual-testing-playbook/depth-clear-loop/perspectives-floor-three.md) |
-| SP-011 | DEPTH iteration cap (3) | DEPTH+CLEAR Loop | [SP-011](../manual-testing-playbook/depth-clear-loop/depth-iteration-cap.md) |
+| SP-011 | DEPTH iteration cap (one retry) | DEPTH+CLEAR Loop | [SP-011](../manual-testing-playbook/depth-clear-loop/depth-iteration-cap.md) |
 | SP-012 | RICCE validation gate | DEPTH+CLEAR Loop | [SP-012](../manual-testing-playbook/depth-clear-loop/ricce-validation-gate.md) |
 | SP-013 | Mechanism-first prototype | DEPTH+CLEAR Loop | [SP-013](../manual-testing-playbook/depth-clear-loop/mechanism-first-prototype.md) |
 | SP-014 | Phase exit gate blocking | DEPTH+CLEAR Loop | [SP-014](../manual-testing-playbook/depth-clear-loop/phase-exit-gate-blocking.md) |
 | SP-015 | CLEAR five dimensions | CLEAR Scoring | [SP-015](../manual-testing-playbook/clear-scoring/clear-five-dimensions.md) |
 | SP-016 | Dimension floors block | CLEAR Scoring | [SP-016](../manual-testing-playbook/clear-scoring/dimension-floors-block.md) |
-| SP-017 | 40/50 threshold + 3-cap | CLEAR Scoring | [SP-017](../manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md) |
+| SP-017 | 40/50 threshold + one-retry cap | CLEAR Scoring | [SP-017](../manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md) |
 | SP-018 | Per-dimension rationale | CLEAR Scoring | [SP-018](../manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md) |
 | SP-019 | Framework by complexity | Framework Selection | [SP-019](../manual-testing-playbook/framework-selection/framework-by-complexity.md) |
 | SP-020 | User-named framework override | Framework Selection | [SP-020](../manual-testing-playbook/framework-selection/user-named-framework-override.md) |

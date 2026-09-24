@@ -162,7 +162,7 @@ Validate enhancement quality.
 | Content Validation | Intent preserved, improvements clear, format compliant | All pass |
 | Cognitive Rigor | Perspectives integrated (min 3), assumptions flagged, mechanism explained | All pass |
 
-**Improvement:** If any dimension falls below floor OR total is below 40, apply targeted improvement and re-score (max 3 iterations).
+**Improvement:** If any dimension falls below floor OR total is below 40, apply targeted improvement and re-score (one retry at most).
 
 ### H -- HARMONIZE
 
@@ -198,7 +198,7 @@ system_state:
   framework_selected: string
   complexity: integer           # 1-10
   quality_target_met: boolean
-  improvement_cycles: integer   # max 3
+  improvement_cycles: integer   # max 1
   techniques_applied: []
 ```
 
@@ -324,7 +324,7 @@ RICCE and CLEAR answer different questions. RICCE checks that the prompt has its
 | Range | Status | Action |
 |---|---|---|
 | 40-50 | PASS | Proceed to Harmonize. Top-tier deliverable. |
-| 30-39 | REVISION NEEDED | Return to Prototype, focus on weakest dimension. Max 3 iterations. |
+| 30-39 | REVISION NEEDED | Return to Prototype, focus on weakest dimension. One retry at most. |
 | 0-29 | REJECTED | Major rework required. **20-29:** Restart from Engineer. **0-19:** Complete restart, fundamental issues. |
 
 A deliverable scoring 40+ overall but failing a per-dimension floor (C:7, L:7, E:10, A:7, R:3) must still be revised until the floor is met.
@@ -403,11 +403,9 @@ Every deliverable must include these fields. If any field is missing, thinking h
 ```yaml
 improvement_cycle:
   trigger: "Any dimension below floor OR total below 40"
-  max_iterations: 3
+  max_iterations: 1
   process:
-    1: "Identify weakest dimension, apply targeted improvement, re-score"
-    2: "Analyse remaining gaps, apply comprehensive enhancement, re-score"
-    3: "Try alternative framework, apply all improvements, final validation"
+    1: "Fix the weakest dimension, switch framework if the first one does not fit the task, re-score"
   on_exceed:
     action: "Deliver best version with quality note"
     prevent_phase_return: true

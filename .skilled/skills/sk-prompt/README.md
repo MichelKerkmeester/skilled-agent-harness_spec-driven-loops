@@ -123,7 +123,7 @@ CLEAR scores out of fifty points across five dimensions. The pass threshold is f
 | Arrangement | 10 | 7 | Framework adherence, flow, organization |
 | Reusability | 5 | 3 | Adaptable to similar tasks, template-ready |
 
-Scores of forty and up pass. Scores from thirty to thirty-nine go back for revision. Scores below thirty are rejected. The improvement cycle caps at three iterations, then the best version ships with a scored note.
+Scores of forty and up pass. Scores from thirty to thirty-nine go back for revision. Scores below thirty are rejected. The improvement cycle allows one retry, then the best version ships with a scored note.
 
 ### The Operating Modes
 
@@ -186,7 +186,7 @@ A: `$improve` is the standard enhancement path. Ten rounds, framework selection,
 
 A: Yes. State the framework name in your request and the skill runs the full DEPTH pass through that framework. The selection algorithm still fires in the background, so the transparency report confirms the fit.
 
-**Q: What happens when CLEAR cannot reach forty after three iterations?**
+**Q: What happens when CLEAR cannot reach forty after one retry?**
 
 A: The skill delivers the highest-scoring version with an explicit escalation note. It tells you why the score stalled, which dimensions blocked the pass, how to add context and how to switch frameworks to get across the line.
 

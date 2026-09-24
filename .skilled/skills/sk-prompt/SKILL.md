@@ -462,7 +462,7 @@ The canonical home of this contract is `.skilled/agents/prompt-improver.md`, so 
 - Use `references/depth-framework.md` for DEPTH flow and CLEAR dimension floors.
 - Choose Quick DEPTH energy for low-complexity routine prompts and Standard DEPTH energy for escalated prompts.
 - Require `CLEAR >= 40/50` and all per-dimension floors before returning success.
-- If the first pass scores below threshold, run up to 3 total improvement cycles and then return the best validated prompt with explicit escalation notes.
+- If the first pass scores below threshold, retry once and then return the best validated prompt with explicit escalation notes.
 
 ### Structured Output Block
 
