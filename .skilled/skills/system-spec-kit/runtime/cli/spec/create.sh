@@ -1419,8 +1419,9 @@ EOF
         echo "Error: phase parent needs the compiled description generator ($_DESC_SCRIPT); run npm run build under runtime, then rerun. The folder $FEATURE_DIR is partially scaffolded." >&2
         exit 1
       fi
+      # The generator reports on stdout; stdout belongs to the --json payload.
       if node "$_DESC_SCRIPT" "$FEATURE_DIR" "$(dirname "$FEATURE_DIR")" \
-        --description "$FEATURE_DESCRIPTION" --level "phase"; then
+        --description "$FEATURE_DESCRIPTION" --level "phase" >&2; then
         CREATED_FILES+=("description.json")
       else
         echo "Error: description.json generation failed for the phase parent $FEATURE_DIR" >&2
@@ -1464,7 +1465,7 @@ EOF
           _phase_name="${_child_folder#*-}"  # strip numeric prefix
           # Use parent of FEATURE_DIR as base so parentChain includes the parent folder
           if node "$_DESC_SCRIPT" "$_child_path" "$(dirname "$FEATURE_DIR")" \
-            --description "Phase ${_i}: ${_phase_name}" --level "$CHILD_DOC_LEVEL"; then
+            --description "Phase ${_i}: ${_phase_name}" --level "$CHILD_DOC_LEVEL" >&2; then
             _child_created_files+=("description.json")
           else
             echo "  Warning: description.json generation skipped for phase ${_i}" >&2
@@ -1686,8 +1687,9 @@ create_graph_metadata_file "$FEATURE_DIR" "$FEATURE_DESCRIPTION" "planned"
 
 _DESC_SCRIPT="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
 if [[ -f "$_DESC_SCRIPT" ]]; then
+  # The generator reports on stdout; stdout belongs to the --json payload.
   if node "$_DESC_SCRIPT" "$FEATURE_DIR" "$(dirname "$FEATURE_DIR")" \
-    --description "$FEATURE_DESCRIPTION" --level "$DOC_LEVEL"; then
+    --description "$FEATURE_DESCRIPTION" --level "$DOC_LEVEL" >&2; then
     CREATED_FILES+=("description.json")
   else
     echo "  Warning: description.json generation skipped" >&2

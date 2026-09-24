@@ -78,21 +78,12 @@ function runBash(scriptPath, args) {
   });
 }
 
-// create.sh lets the description generator print its status line to stdout
-// ahead of its one-line JSON payload, so when the whole output does not parse,
-// the payload is the last line that opens an object.
+// Parsed strictly: in --json mode stdout must hold the payload and nothing else,
+// so a status line printed ahead of it fails here.
 function parseJsonOutput(raw) {
   try {
     return JSON.parse(raw);
   } catch (error) {
-    const payload = raw.split('\n').filter((line) => line.trim().startsWith('{')).pop();
-    if (payload !== undefined) {
-      try {
-        return JSON.parse(payload);
-      } catch {
-        // Report the failure on the whole output below.
-      }
-    }
     const msg = error instanceof Error ? error.message : String(error);
     throw new Error(`Failed to parse JSON output: ${msg}\nRaw output:\n${raw}`);
   }
