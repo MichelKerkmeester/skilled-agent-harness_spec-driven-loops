@@ -3,8 +3,10 @@
 # COMPONENT: Archive Spec
 # ───────────────────────────────────────────────────────────────
 #
-# Archive completed spec folders to specs/z_archive/, or a track packet to its
-# track's own z_archive/, and restore them to where they came from.
+# Archive completed spec folders into the z_archive/ beside them: specs/z_archive/
+# for a packet at the specs root, a track's own z_archive/ for a track packet,
+# and a parent's own z_archive/ for a phase. Restore returns them to where they
+# came from.
 # Usage: archive-spec.sh <spec-folder> | --list | --restore <folder>
 
 set -euo pipefail
@@ -65,17 +67,22 @@ EXAMPLES:
     archive-spec.sh specs/051-feature-name/
     archive-spec.sh --force specs/051-feature-name/
     archive-spec.sh specs/my-track/012-feature-name/
+    archive-spec.sh specs/my-track/012-feature-name/003-phase-name/
     archive-spec.sh --list
     archive-spec.sh --restore specs/z_archive/051-feature-name/
     archive-spec.sh --restore specs/my-track/z_archive/012-feature-name/
+    archive-spec.sh --restore specs/my-track/012-feature-name/z_archive/003-phase-name/
 
 NOTES:
     - Specs with <90% completeness will prompt for confirmation
     - Use --force to skip the completeness check
-    - A spec at the specs root is moved to specs/z_archive/
-    - A spec in a track is moved to that track's own specs/<track>/z_archive/
-    - Restore returns a spec to the specs root or to its track
+    - A spec is moved into the z_archive/ beside it: specs/z_archive/ at the
+      specs root, specs/<track>/z_archive/ in a track, <parent>/z_archive/
+      for a phase
+    - Restore returns a spec to the folder its z_archive/ belongs to
     - A track's graph-metadata.json list is refreshed after both moves
+    - A phase parent's graph-metadata.json is left as it is: its writer drops
+      a child only through a reviewed prune
 EOF
 }
 
@@ -126,16 +133,25 @@ track_of() {
     printf '%s' "$name"
 }
 
-# A track keeps its archived packets in its own z_archive/, as every track does
-# by hand; a packet at the specs root uses the root archive.
-archive_dir_for() {
-    local specs_root="$1"
-    local track="$2"
-    if [[ -n "$track" ]]; then
-        printf '%s/%s/z_archive' "$specs_root" "$track"
-    else
-        printf '%s/z_archive' "$specs_root"
-    fi
+
+# Where packets live, with their archive beside them: the specs root, a track
+# directly under it, or a packet or phase reached from either through numbered
+# folders only. A copy of a specs tree kept inside a packet's research is not
+# one, however much it looks like the real thing.
+is_packet_home() {
+    local dir="$1"
+    local specs_root="$2"
+    [[ "$dir" == "$specs_root" ]] && return 0
+    [[ "$dir" == "$specs_root"/* ]] || return 1
+    local relative="${dir#"$specs_root"/}"
+    local first="${relative%%/*}"
+    [[ "$first" != "z_archive" && "$first" != .* ]] || return 1
+    [[ "$relative" == */* ]] || return 0
+    local segments=() segment
+    IFS=/ read -r -a segments <<< "${relative#*/}"
+    for segment in "${segments[@]}"; do
+        [[ "$segment" =~ ^[0-9]{3} ]] || return 1
+    done
 }
 
 # A track root lists its packets in children_ids, and the pre-push gate blocks a
@@ -230,8 +246,16 @@ archive_spec() {
     basename=$(basename "$resolved_spec")
     validate_spec_folder_name "$basename" "Spec"
 
+    # The archive beside the folder: the root archive, a track's own or a phase
+    # parent's own, which is where this repository keeps them by hand.
+    local parent
+    parent="$(dirname "$resolved_spec")"
+    if ! is_packet_home "$parent" "$specs_root"; then
+        log_error "Not a packet, track packet or phase: $resolved_spec"
+        exit 1
+    fi
     track="$(track_of "$resolved_spec" "$specs_root")"
-    archive_root="$(archive_dir_for "$specs_root" "$track")"
+    archive_root="$parent/z_archive"
     if ! mkdir -p "$archive_root"; then
         log_error "Archive directory not accessible: $archive_root"
         exit 1
@@ -268,21 +292,45 @@ archive_spec() {
 
     log_success "Archived: $resolved_spec -> $archive_root/$basename"
     refresh_track_root "$specs_root" "$track"
+
+    # A phase parent's children_ids is not rewritten here. Its writer only adds
+    # children, and dropping one is a reviewed prune, so the entry stays until
+    # someone runs it. A restore then finds the phase still listed.
+    if [[ -z "$track" && "$parent" != "$specs_root" && -f "$parent/graph-metadata.json" ]]; then
+        log_info "Left specs/${parent#"$specs_root"/}/graph-metadata.json as it is: a phase leaves children_ids only through a reviewed prune, backfill-graph-metadata.js specs/${parent#"$specs_root"/} --prune-report, then --prune --prune-confirm <hash>."
+    fi
 }
 
-# Every archive a packet can be restored from: the root archive, then each
-# track's own, as paths relative to the project root. A symlinked track is left
-# out, since its packets resolve outside this specs root and cannot be moved.
+# The archive beside one packet home, then the same for each numbered folder in
+# it. Links are not followed, and nothing inside an archive is visited: a packet
+# there is archived along with everything it holds.
+archive_dirs_under() {
+    local dir="$1"
+    local child
+    if [[ -d "$dir/z_archive" && ! -L "$dir/z_archive" ]]; then
+        printf '%s\n' "$dir/z_archive"
+    fi
+    for child in "$dir"/[0-9][0-9][0-9]*/; do
+        child="${child%/}"
+        [[ -d "$child" && ! -L "$child" ]] || continue
+        archive_dirs_under "$child"
+    done
+}
+
+# Every archive a folder can be restored from, as paths relative to the project
+# root. A symlinked track is left out: its packets resolve outside this specs
+# root and cannot be moved.
 archive_dirs() {
-    local dir track
-    [[ -d "specs/z_archive" ]] && printf '%s\n' "specs/z_archive"
-    for dir in specs/*/z_archive; do
-        [[ -d "$dir" ]] || continue
-        track="$(basename "$(dirname "$dir")")"
-        if [[ "$track" =~ ^[0-9]{3} || "$track" == "z_archive" || -L "specs/$track" ]]; then
+    [[ -d specs ]] || return 0
+    archive_dirs_under specs
+    local track name
+    for track in specs/*/; do
+        track="${track%/}"
+        name="$(basename "$track")"
+        if [[ -L "$track" || "$name" =~ ^[0-9]{3} || "$name" == "z_archive" ]]; then
             continue
         fi
-        printf '%s\n' "$dir"
+        archive_dirs_under "$track"
     done
 }
 
@@ -313,20 +361,6 @@ list_archived() {
     echo "To restore: archive-spec.sh --restore <path above>"
 }
 
-# The owner of the archive a folder sits in: nothing for the root archive, or
-# the track whose z_archive/ holds it. Fails when the folder is in neither.
-archived_track_of() {
-    local folder="$1"
-    local specs_root="$2"
-    local relative="${folder#"$specs_root"/}"
-    [[ "$relative" != "$folder" ]] || return 1
-    [[ "$relative" == z_archive/* ]] && return 0
-    local track="${relative%%/*}"
-    [[ "$relative" == "$track"/z_archive/* ]] || return 1
-    [[ "$track" =~ ^[0-9]{3} ]] && return 1
-    printf '%s' "$track"
-}
-
 restore_spec() {
     local archived_folder="$1"
     local specs_root resolved_archived track
@@ -343,9 +377,13 @@ restore_spec() {
         exit 1
     fi
 
-    if ! track="$(archived_track_of "$resolved_archived" "$specs_root")"; then
+    # A restorable folder sits directly in the archive beside a packet home, and
+    # goes back to that home.
+    local archive_dir
+    archive_dir="$(dirname "$resolved_archived")"
+    if [[ "$(basename "$archive_dir")" != "z_archive" ]] || ! is_packet_home "$(dirname "$archive_dir")" "$specs_root"; then
         log_error "Folder is not in archive directory: $archived_folder"
-        log_info "Archive directories: $specs_root/z_archive and $specs_root/<track>/z_archive"
+        log_info "A restorable folder sits directly in the z_archive/ of the specs root, a track, a packet or a phase"
         exit 1
     fi
 
@@ -353,8 +391,9 @@ restore_spec() {
     basename=$(basename "$resolved_archived")
     validate_spec_folder_name "$basename" "Archived"
 
-    local destination="$specs_root/$basename"
-    [[ -n "$track" ]] && destination="$specs_root/$track/$basename"
+    local destination
+    destination="$(dirname "$archive_dir")/$basename"
+    track="$(track_of "$destination" "$specs_root")"
 
     if [[ -d "$destination" ]]; then
         log_error "Restore target already exists: $destination"
