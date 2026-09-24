@@ -242,6 +242,49 @@ expect_hook "missing gate scripts never block a push in another repository" \
   0 "refs/heads/feature-x $SHA_A refs/heads/feature-x $SHA_B"
 ln -s "$REAL_NAMING" "$TMP/.opencode/skills/sk-git/scripts/worktree-naming.sh"
 
+# ── track-root gate ────────────────────────────────────────────
+# A track root lists its packets in children_ids. The gate sweeps each pushed
+# commit, so a packet its track does not list blocks, while an unfinished packet
+# that only sits in the working tree does not.
+TRACK_CLI="$TMP/.opencode/skills/system-spec-kit/runtime/cli"
+mkdir -p "$TRACK_CLI/spec" "$TRACK_CLI/lib"
+ln -s "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs" "$TRACK_CLI/spec/sweep-track-roots.mjs"
+ln -s "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs" "$TRACK_CLI/lib/track-roots.mjs"
+mkdir -p "$TMP/specs/tools/001-first"
+printf '# Packet\n' > "$TMP/specs/tools/001-first/spec.md"
+printf '{\n  "packet_id": "tools",\n  "children_ids": [\n    "tools/001-first"\n  ]\n}\n' > "$TMP/specs/tools/graph-metadata.json"
+git -C "$TMP" add specs
+git -C "$TMP" commit -q -m 'a track that lists its packet'
+TRACK_OK_SHA="$(git -C "$TMP" rev-parse HEAD)"
+mkdir -p "$TMP/specs/tools/002-unlisted"
+printf '# Packet\n' > "$TMP/specs/tools/002-unlisted/spec.md"
+git -C "$TMP" add specs
+git -C "$TMP" commit -q -m 'a packet its track does not list'
+TRACK_DRIFT_SHA="$(git -C "$TMP" rev-parse HEAD)"
+TRACK_ENV=(SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 SPECKIT_ALLOW_MASS_DELETION=1)
+
+mkdir -p "$(dirname "$SENTINEL")"; printf 'name: system-spec-kit\n' > "$SENTINEL"
+expect_hook_says "a pushed packet its track root does not list blocks the push" \
+  1 "[gate:track-roots]" "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA" "${TRACK_ENV[@]}"
+if grep -qF "on disk, not declared: 002-unlisted" "$TMP/last.err"; then PASS=$((PASS+1))
+else FAIL=$((FAIL+1)); echo "FAIL: the track-root block does not name the unlisted packet"; fi
+expect_hook "...unless SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 skips it" \
+  0 "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA" "${TRACK_ENV[@]}" SPECKIT_SKIP_PREPUSH_TRACK_GATE=1
+# The working tree still holds 002-unlisted; the pushed commit does not.
+expect_hook "a commit whose track lists its packets passes, whatever the working tree holds" \
+  0 "refs/heads/main $TRACK_OK_SHA refs/heads/main $OPENCODE_SHA" "${TRACK_ENV[@]}"
+expect_quiet "...and the gate says nothing" "track-roots"
+rm -f "$TRACK_CLI/spec/sweep-track-roots.mjs"
+expect_hook_says "a missing sweep blocks with its path where the toolchain ships" \
+  1 "sweep is missing: " "refs/heads/main $TRACK_OK_SHA refs/heads/main $OPENCODE_SHA" "${TRACK_ENV[@]}"
+expect_hook "...unless SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 skips it" \
+  0 "refs/heads/main $TRACK_OK_SHA refs/heads/main $OPENCODE_SHA" "${TRACK_ENV[@]}" SPECKIT_SKIP_PREPUSH_TRACK_GATE=1
+ln -s "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs" "$TRACK_CLI/spec/sweep-track-roots.mjs"
+rm -f "$SENTINEL"
+expect_hook "another repository's drifted track is not its gate to check" \
+  0 "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA"
+expect_quiet "...and the gate says nothing there" "track-roots"
+
 # ── report ──────────────────────────────────────────────────────
 echo "pre-push tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]
