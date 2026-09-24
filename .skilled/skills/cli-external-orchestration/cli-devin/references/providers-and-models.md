@@ -41,7 +41,7 @@ This file enumerates the model/alias/default facts and the dispatch envelope. It
 
 ## 2. PROVIDERS & MODELS
 
-Devin resolves models through a single backing service (Cognition) that fronts 37 model families. The value passed to `--model` is a family slug, an alias, or a full model uid. This catalog is a **curated subset** — the eight families kept in scope for cli-devin. Model uids, context, and tier are read live from `devin models list`.
+Devin resolves models through a single backing service (Cognition) that fronts 37 model families. The value passed to `--model` is a family slug, an alias, or a full model uid. This catalog is a **curated subset** — the nine families kept in scope for cli-devin. Model uids, context, and tier are read live from `devin models list`.
 
 ### Cognition
 
@@ -62,6 +62,8 @@ Alphabetical by family, then by model uid within each family.
 | GLM-5.2 | `glm-5-2-none-1m` | 1M | Reasoning disabled, 1M context |
 | GPT-5.6 Luna | `gpt-5-6-luna-max` | 1M | Luna Max thinking; cheapest GPT-5.6 persona (added 2026-08-14) |
 | GPT-5.6 Luna | `gpt-5-6-luna-max-priority` | 1M | Luna Max, Fast — `-priority` is Devin's Fast suffix (added 2026-08-14) |
+| GPT-6 Luna | `gpt-6-luna-max` | 1M | GPT-6 Luna Max thinking; a separate family from GPT-5.6 Luna (added 2026-09-24) |
+| GPT-6 Luna | `gpt-6-luna-max-priority` | 1M | GPT-6 Luna Max, Fast (added 2026-09-24) |
 | SWE-1.7 | `swe-1-7` | 262K | Max effort — free (beta) |
 | SWE-2 | `swe-2-max` | 262K | Max effort — free; the `swe` alias resolves to this family |
 | SWE-2 | `swe-2-high` | 262K | High effort — free |
@@ -72,6 +74,7 @@ Alphabetical by family, then by model uid within each family.
 ### Notes on the roster
 - Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model glm-5-2-max`). The `swe` alias resolves to the SWE-2 family; pin the exact uid in scripts for predictability.
 - **DeepSeek Max tiers + GPT-5.6 Luna Max join (2026-08-14).** `deepseek-v4-flash-max` (the Max thinking tier of the DeepSeek V4 Flash family) and `gpt-5-6-luna-max` + `gpt-5-6-luna-max-priority` (the first GPT-5.6 persona in this catalog) were confirmed present verbatim in the live `devin models list` output on 2026-08-14. Devin encodes the "Fast" speed tier as the `-priority` suffix, not `-fast`, so `gpt-5-6-luna-max-priority` is the Fast variant of Luna Max. These four were **list-verified only, not dispatch-tested** (operator decision).
+- **GPT-6 Luna Max joins (2026-09-24).** `gpt-6-luna-max` and `gpt-6-luna-max-priority` were confirmed verbatim in the live `devin models list` on devin 3000.11.1, which lists GPT-6 Luna and GPT-5.6 Luna as separate families, so the GPT-5.6 pair stays. `gpt-6-luna-max-priority` is dispatch-tested: a direct `devin -p` call returned a live reply at exit 0. `gpt-6-luna-max` is list-verified only.
 - **DeepSeek Flash is Max-thinking-only (policy).** Dispatch DeepSeek V4 Flash only via `deepseek-v4-flash-max` — on devin the max thinking tier is baked into the uid, and this roster carries no bare `deepseek-v4-flash`. The sibling cli-pi and cli-opencode surfaces reach the same tier through a flag: their fan-out builders pin `deepseek-v4-flash` to max thinking (`--thinking max` / `--variant max`).
 **Gemini 3.8 Flash High retired from cli-devin (2026-09-06).** The uid `gemini-3-8-flash-high` was in scope from 2026-08-15 and is now rejected by the fan-out allowlist: Devin bills it at twice the 3.7 rate and a single two-iteration research pass exhausted the daily quota. Gemini 3.8 Flash High stays reachable through the cursor route; do not dispatch it through Devin.
 - GLM tier suffixes stack: `-max` = Max reasoning, `-1m` = 1M context, `-none` = reasoning disabled; `glm-5-2` (no suffix) is GLM-5.2 High (free tier).

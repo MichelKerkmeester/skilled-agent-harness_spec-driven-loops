@@ -429,6 +429,13 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * list-verified only, and no dispatch-test claim is made for it. The family
  * prices higher on output than V4 Flash, so it is a deliberate choice rather
  * than a drop-in default, and the default here does not move.
+ *
+ * GPT-6 Luna joined 2026-09-24 as the same max pair GPT-5.6 Luna carries:
+ * gpt-6-luna-max and gpt-6-luna-max-priority, both verbatim in the live
+ * `devin models list` on devin 3000.11.1. Devin lists the two generations as
+ * separate families, so the GPT-5.6 pair stays. gpt-6-luna-max-priority is
+ * dispatch-tested: a direct `devin -p` call returned a live model response.
+ * gpt-6-luna-max is list-verified only.
  */
 export const DEVIN_SUPPORTED_MODELS = [
   'deepseek-v4-1-flash-high',
@@ -445,6 +452,8 @@ export const DEVIN_SUPPORTED_MODELS = [
   'glm-5-3-flash-max',
   'gpt-5-6-luna-max',
   'gpt-5-6-luna-max-priority',
+  'gpt-6-luna-max',
+  'gpt-6-luna-max-priority',
   'swe',
   'swe-1-7',
   'swe-1-7-lightning',

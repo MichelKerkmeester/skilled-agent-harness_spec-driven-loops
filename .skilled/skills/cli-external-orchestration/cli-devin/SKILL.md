@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI executor for Cognition-backed coding, cloud handoff, subagent delegation, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.3.0
+version: 1.4.4.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -249,7 +249,7 @@ Honor whichever dimensions the user names. Model stays on `swe` and permission m
 
 ### Model Selection
 
-Default `swe` (alias → `swe-2`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-1-flash-high`, `deepseek-v4-1-flash-max`, `deepseek-v4-flash-max`), Gemini (`gemini-3-8-flash-high`; the uid spells the family with dashes while the Cursor scope spells the same model with dots), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GLM-5.3 (`glm-5-3-flash-high`, `glm-5-3-flash-max`), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), SWE-2 (`swe-2-max`, `swe-2-high`, `swe-2-medium`; free, 262K context), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
+Default `swe` (alias → `swe-2`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-1-flash-high`, `deepseek-v4-1-flash-max`, `deepseek-v4-flash-max`), Gemini (`gemini-3-8-flash-high`; the uid spells the family with dashes while the Cursor scope spells the same model with dots), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GLM-5.3 (`glm-5-3-flash-high`, `glm-5-3-flash-max`), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), GPT-6 Luna Max (`gpt-6-luna-max`, `gpt-6-luna-max-priority`; a separate family from GPT-5.6), SWE-2 (`swe-2-max`, `swe-2-high`, `swe-2-medium`; free, 262K context), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
 
 **Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `gpt-5-6-luna-max` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-2-max` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
