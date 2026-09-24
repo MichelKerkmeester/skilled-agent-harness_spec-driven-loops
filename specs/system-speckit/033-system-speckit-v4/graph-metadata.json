@@ -149,16 +149,16 @@
     ],
     "causal_summary": "Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-24T15:47:06.135Z",
+    "last_save_at": "2026-09-24T16:11:15.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2c128b3646ca8d87f7b6e016ec89b9eb8a79f47373e929b5d770871e8d6c7c91",
+    "source_fingerprint": "sha256:2602788cc5499f29863719fea74ee04ba9002796218f3248a999002bd97d41e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c35b63af6430d8fe88a12122379797f5a0f0f149b6b052dfae81b8334c057577"
+      "spec.md": "4b927da7f275cd8755bce951e21fb92e331fafa72eebef4721a38bfb56e51366"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade",
     "last_active_at": "2026-09-24T15:10:06.746Z"
