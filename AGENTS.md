@@ -113,7 +113,7 @@ Trigger: About to skip Gate 3, or realized it was skipped, on a turn where it fi
 #### Blast-Radius Management
 
 - **Open non-trivial work with a stakes read**, low-blast and reversible or high-blast and what it touches, and size the effort to it.
-- **Name the rollback, stop for yes** — before delete, overwrite, migrate, deploy, send or install, write how to undo and wait for confirmation. This wait is mandatory and no rule file relaxes it. The ladder and the rest are [`blast-radius.md`](.skilled/repo-rules/blast-radius.md).
+- **Name the rollback, stop for yes** — before an irreversible action or any install, write how to undo and wait for confirmation. Irreversible is the bottom tier of the [`blast-radius.md`](.skilled/repo-rules/blast-radius.md) ladder, such as a send, a deploy or publish, a push outside the allowlist or deleting or overwriting an untracked file. This wait is mandatory and no rule file relaxes it.
 
 #### Execution Behavior
 
