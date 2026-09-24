@@ -4,19 +4,8 @@
   "spec_folder": "mcp-tooling",
   "parent_id": null,
   "children_ids": [
-    "mcp-tooling/001-mcp-coco-integration",
-    "mcp-tooling/002-mcp-testing-playbooks",
-    "mcp-tooling/003-mcp-figma-transfer",
-    "mcp-tooling/004-mcp-click-up-task-management",
-    "mcp-tooling/005-nested-mcp-readme-sync",
-    "mcp-tooling/006-mcp-skill-install-doctor-standardization",
-    "mcp-tooling/007-mcp-tooling-parent",
-    "mcp-tooling/008-mcp-aside",
-    "mcp-tooling/009-mcp-refero",
-    "mcp-tooling/010-mcp-mobbin",
-    "mcp-tooling/011-routing-remediation",
-    "mcp-tooling/012-template-alignment",
-    "mcp-tooling/013-mcp-obsidian"
+    "mcp-tooling/019-official-obsidian-cli",
+    "mcp-tooling/020-obsidian-plugin-reduction"
   ],
   "manual": {
     "depends_on": [],

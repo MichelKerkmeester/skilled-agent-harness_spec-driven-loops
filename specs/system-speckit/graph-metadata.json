@@ -10,7 +10,11 @@
     "system-speckit/029-spec-root-resolution-hardening",
     "system-speckit/031-memory-reindex-embed-performance",
     "system-speckit/032-relocate-specs-folder",
-    "system-speckit/033-system-speckit-v4"
+    "system-speckit/033-system-speckit-v4",
+    "system-speckit/034-create-canonical-specs-root",
+    "system-speckit/035-retire-memory-era-tests",
+    "system-speckit/036-root-numbering-without-track",
+    "system-speckit/037-track-root-children"
   ],
   "manual": {
     "depends_on": [],

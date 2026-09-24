@@ -4,9 +4,20 @@
   "spec_folder": "system-skill-advisor",
   "parent_id": null,
   "children_ids": [
-    "system-skill-advisor/000-rust-backend-rewrite",
     "system-skill-advisor/017-advisor-audit-and-state-containment",
-    "system-skill-advisor/018-codex-node-runtime-alignment"
+    "system-skill-advisor/018-codex-node-runtime-alignment",
+    "system-skill-advisor/019-code-graph-retirement-drift",
+    "system-skill-advisor/020-launcher-test-bootstrap-guard",
+    "system-skill-advisor/021-advisor-suite-drift-reconciliation",
+    "system-skill-advisor/022-playbook-inventory-reconciliation",
+    "system-skill-advisor/023-model-server-default-spawn",
+    "system-skill-advisor/023-semantic-lane-enablement",
+    "system-skill-advisor/024-routing-perfection-research",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door",
+    "system-skill-advisor/026-pre-existing-suite-failures",
+    "system-skill-advisor/027-empty-recommendation-diagnostic",
+    "system-skill-advisor/028-restore-pi-advisor-brief",
+    "system-skill-advisor/029-fix-remaining-advisor-defects"
   ],
   "manual": {
     "depends_on": [],

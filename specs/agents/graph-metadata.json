@@ -6,12 +6,16 @@
   "children_ids": [
     "agents/001-terminal-proof-discipline",
     "agents/002-runtime-surface-coverage",
+    "agents/003-communication-quality",
     "agents/004-agents-md-bloat-audit",
     "agents/005-git-workspace-repo-agnostic",
-    "agents/003-communication-quality",
     "agents/006-restraint-and-routing-gates",
     "agents/007-orchestrator-inline-authority",
-    "agents/010-repo-rule-system-integration"
+    "agents/008-orchestrate-external-cli-delegation",
+    "agents/009-turn-closeout-next-steps",
+    "agents/010-repo-rule-system-integration",
+    "agents/011-retire-code-index-tool-references",
+    "agents/012-agent-avoidance-anti-patterns"
   ],
   "manual": {
     "depends_on": [],

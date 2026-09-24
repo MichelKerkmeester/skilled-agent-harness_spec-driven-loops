@@ -4,13 +4,9 @@
   "spec_folder": "sk-prompt",
   "parent_id": null,
   "children_ids": [
-    "sk-prompt/001-sk-prompt-initial-creation",
-    "sk-prompt/002-sk-improve-prompt-rename",
-    "sk-prompt/003-sk-prompt-testing-playbook-and-agent-rename",
-    "sk-prompt/004-sk-prompt-small-model-optimization",
-    "sk-prompt/005-sk-prompt-knowledge-layering",
-    "sk-prompt/006-sk-prompt-models-rename",
-    "sk-prompt/007-sk-prompt-parent"
+    "sk-prompt/007-sk-prompt-parent",
+    "sk-prompt/008-sk-prompt-standalone-conversion",
+    "sk-prompt/009-prompt-improver-model-eligibility"
   ],
   "manual": {
     "depends_on": [],
