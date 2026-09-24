@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7340,
-    "ok": 11321,
+    "ok": 11325,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22352,
+  "documentsScanned": 22356,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "3dfedd210bc3edfc1c56abb09180d3fad78ac01775589b2467fa807d009e394f",
+  "manifestHash": "947f46afddd95370e3dee09979839204a437313080e45874368913c7fb882588",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27558,
+      "ok": 27567,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -74524,6 +74524,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/scratch",
       "reason": "excluded directory"
     },
     {

@@ -505,35 +505,50 @@ _wn_provision_paths_file() {
 ' "$here"
 }
 
-# provision_worktree [dir] -- install each listed package that is missing one.
-# Idempotent: a package that already has node_modules is skipped. Exits non-zero
-# if any install failed, so a half-provisioned tree is never reported as ready.
+# provision_worktree [dir] -- install missing dependencies and build listed outputs.
+# Idempotent: existing dependencies and outputs are skipped. Exits non-zero if
+# any install or build failed, so a half-provisioned tree is never reported ready.
 provision_worktree() {
-  local dir="${1:-}" list pkg installed=0 skipped=0 failed=0 mode
-  [ -n "$dir" ] || dir="$(_wn_toplevel)" || { echo "not in a git repo" >&2; return 1; }
+  local dir="${1:-}" list pkg artifact _ installed=0 built=0 skipped=0 failed=0 mode
+  # Allocation scans the shared clone, but provisioning must use the current worktree.
+  [ -n "$dir" ] || dir="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "not in a git repo" >&2; return 1; }
   [ -d "$dir" ] || { echo "no such worktree: $dir" >&2; return 1; }
   list="$(_wn_provision_paths_file)" || return 1
   [ -f "$list" ] || { echo "missing provision path list: $list" >&2; return 1; }
 
-  while IFS= read -r pkg; do
+  while read -r pkg artifact _; do
     case "$pkg" in ''|\#*) continue ;; esac
     [ -f "$dir/$pkg/package.json" ] || continue
     if _wn_deps_satisfied "$dir/$pkg" "$dir"; then
-      skipped=$((skipped + 1)); continue
-    fi
-    # npm ci needs a lockfile and fails without one; that failure is easy to
-    # miss because the build that follows can still exit 0 doing nothing.
-    if [ -f "$dir/$pkg/package-lock.json" ]; then mode=ci; else mode=install; fi
-    echo "  provisioning $pkg ($mode)" >&2
-    if ( cd "$dir/$pkg" && npm "$mode" --no-audit --no-fund --silent >/dev/null 2>&1 ); then
-      installed=$((installed + 1))
+      skipped=$((skipped + 1))
     else
-      echo "  FAILED: $pkg" >&2
-      failed=$((failed + 1))
+      # npm ci needs a lockfile and a failed install cannot be followed by a build.
+      if [ -f "$dir/$pkg/package-lock.json" ]; then mode=ci; else mode=install; fi
+      echo "  provisioning $pkg ($mode)" >&2
+      if ( cd "$dir/$pkg" && npm "$mode" --no-audit --no-fund --silent >/dev/null 2>&1 ); then
+        installed=$((installed + 1))
+      else
+        echo "  FAILED: $pkg" >&2
+        failed=$((failed + 1))
+        continue
+      fi
+    fi
+
+    if [ -n "$artifact" ] && [ ! -e "$dir/$pkg/$artifact" ]; then
+      echo "  building $pkg" >&2
+      if ! ( cd "$dir/$pkg" && npm run build --silent >/dev/null 2>&1 ); then
+        echo "  FAILED: $pkg build" >&2
+        failed=$((failed + 1))
+      elif [ ! -e "$dir/$pkg/$artifact" ]; then
+        echo "  FAILED: $pkg build left $artifact missing" >&2
+        failed=$((failed + 1))
+      else
+        built=$((built + 1))
+      fi
     fi
   done < "$list"
 
-  echo "provisioned: $installed installed, $skipped already present, $failed failed" >&2
+  echo "provisioned: $installed installed, $built built, $skipped already present, $failed failed" >&2
   [ "$failed" -eq 0 ]
 }
 
@@ -556,7 +571,7 @@ worktree-naming.sh <command> [args]
   validate-remote-allowlist <branch>  Check the remote-push-permission allowlist.
   create          <slug> [base] [--no-provision]
                                     Create a worktrees/NNN-slug worktree and install its deps.
-  provision       [dir]             Install the dependency trees a worktree needs (idempotent).
+  provision       [dir]             Install the dependency trees a worktree needs and build the outputs the list names (idempotent).
   create-branch   <slug> [base]     Create a branches/NNN-slug branch (no worktree).
   create-detached <slug> [base]     Create a numbered detached worktree.
 USAGE

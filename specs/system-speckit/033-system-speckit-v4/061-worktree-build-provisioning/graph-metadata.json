@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/061-worktree-build-provisioning",
+  "spec_folder": "system-speckit/033-system-speckit-v4/061-worktree-build-provisioning",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "worktree build provisioning",
+      "provision builds missing outputs",
+      "communication projection dist missing",
+      "advisor policy plan dist missing",
+      "worktree build provisioning plan",
+      "provision build step plan",
+      "worktree build provisioning tasks",
+      "provision build step tasks",
+      "implementation summary",
+      "provision builds missing outputs evidence"
+    ],
+    "key_topics": [
+      "worktree",
+      "provisioning",
+      "provision",
+      "missing",
+      "outputs",
+      "communication",
+      "projection",
+      "dist",
+      "advisor",
+      "policy",
+      "plan",
+      "step"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts",
+      "runtime/tests/opencode-plugins-folder-purity.vitest.ts",
+      "runtime/tests/spec-gate-pi-extension.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-provision-paths.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugins-folder-purity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-pi-extension.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provisioning",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`opencode-plugins-folder-purity.vitest.ts` imports every plugin under `.skilled/plugins/`, and one of them imports the build output of `sk-communication/cli-communication-projection`",
+    "created_at": "2026-09-24T06:18:52Z",
+    "last_save_at": "2026-09-24T06:42:42.460Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b8fd6e09f4b5739a6efec9cab911a35fa8c87065f7b6a1b172e82f6f78092a0d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6e7c2e7996ad62600ebc854a62316b38f3e50f15e29f1a97a46023510cf424fa",
+      "plan.md": "faa714599c1b7a3be53ee6997fa9b141e900b138b637e7b69bc777bb2524bb9c",
+      "tasks.md": "a0a8d731bbc42bf60d1ec18fee59a839b3994f7b9b516c4a80e7a0660ffc4caa",
+      "implementation-summary.md": "e985d43d07084fc64adbd213485a26068a05221430e39ccfde7c9b2bd50ea172"
+    },
+    "last_active_at": null
+  }
+}

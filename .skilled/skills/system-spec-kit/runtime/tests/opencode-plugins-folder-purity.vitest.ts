@@ -45,7 +45,22 @@ describe('OpenCode plugins folder purity', () => {
     expect(pluginFiles.length).toBeGreaterThan(0);
 
     for (const pluginFile of pluginFiles) {
-      const pluginModule = await import(pathToFileURL(pluginFile).href);
+      let pluginModule;
+      try {
+        pluginModule = await import(pathToFileURL(pluginFile).href);
+      } catch (error) {
+        if (
+          error instanceof Error &&
+          'code' in error &&
+          error.code === 'ERR_MODULE_NOT_FOUND' &&
+          error.message.includes('/dist/')
+        ) {
+          throw new Error(
+            `${pluginFile} imports a build output this checkout has not built (${error.message}). Run: bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision`,
+          );
+        }
+        throw error;
+      }
       expect(pluginModule, `${pluginFile} must default-export an OpenCode plugin entrypoint`)
         .toHaveProperty('default');
 

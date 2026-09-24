@@ -14,9 +14,18 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 // The extensions resolve the shared core through the runtime symlink layout,
 // which the project's resolve alias bridges back to the real tree.
-import specGateClassify from "../hooks/pi/spec-gate-classify";
-import specGateEnforce from "../hooks/pi/spec-gate-enforce";
+const advisorPolicyPlan = new URL(
+  "../../../system-skill-advisor/runtime/dist/runtime/lib/policy-plan.js",
+  import.meta.url,
+);
+if (!existsSync(advisorPolicyPlan)) {
+  throw new Error(
+    "spec-gate-core imports system-skill-advisor/runtime/dist/runtime/lib/policy-plan.js, which this checkout has not built. Run: bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision",
+  );
+}
 
+const { default: specGateClassify } = await import("../hooks/pi/spec-gate-classify");
+const { default: specGateEnforce } = await import("../hooks/pi/spec-gate-enforce");
 const core = await import("../hooks/lib/spec-gate/spec-gate-core.mjs");
 
 type Handler = (event: any, ctx: any) => Promise<any> | any;

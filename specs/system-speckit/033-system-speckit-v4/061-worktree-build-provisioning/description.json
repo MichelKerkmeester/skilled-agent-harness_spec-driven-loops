@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/061-worktree-build-provisioning",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-24T06:42:42.460Z",
+  "specId": "061",
+  "folderSlug": "worktree-build-provisioning",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-09-26_07-42__worktree-provisioning-now-builds-a-package-when.md"
+  ]
+}
