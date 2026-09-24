@@ -332,8 +332,14 @@ run_validation() {
         local phase_dir
         for phase_dir in "${PHASE_DIRS[@]-}"; do
             [[ -n "$phase_dir" ]] || continue
+            # A numbered child with content but no packet docs holds loop
+            # artifacts such as research/ or review/, not a phase. An empty one
+            # is a phase that was never scaffolded, so it is validated and fails.
             if ! $CHILD_MANIFEST_ACTIVE; then
-                [[ -f "$phase_dir/spec.md" || -f "$phase_dir/description.json" ]] || continue
+                if [[ ! -f "$phase_dir/spec.md" && ! -f "$phase_dir/description.json" ]] \
+                    && [[ -n "$(ls -A "$phase_dir")" ]]; then
+                    continue
+                fi
             fi
             local child_rc=0
             "${ORCHESTRATOR_CMD[@]}" --folder "$phase_dir" ${flags[@]+"${flags[@]}"} || child_rc=$?
