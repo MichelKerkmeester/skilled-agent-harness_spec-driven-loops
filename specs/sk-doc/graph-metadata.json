@@ -13,7 +13,8 @@
     "sk-doc/055-governance-doc-alignment",
     "sk-doc/056-sk-create-readme-writing-style",
     "sk-doc/057-sk-create-changelog-v4-style",
-    "sk-doc/058-playbook-prompt-sync"
+    "sk-doc/058-playbook-prompt-sync",
+    "sk-doc/059-skill-changelog-retrofit"
   ],
   "manual": {
     "depends_on": [],
