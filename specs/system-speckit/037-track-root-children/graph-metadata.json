@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/037-track-root-children",
+  "spec_folder": "system-speckit/037-track-root-children",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "track root children_ids",
+      "refresh-track-roots",
+      "sweep-track-roots",
+      "track-root pre-push gate",
+      "track root drift",
+      "SPECKIT_SKIP_PREPUSH_TRACK_GATE",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "track",
+      "root",
+      "refresh-track-roots",
+      "sweep-track-roots",
+      "track-root",
+      "pre-push",
+      "gate",
+      "drift",
+      "acceptance",
+      "criteria",
+      "folder",
+      "directly"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/lib/README.md",
+      "lib/track-roots.mjs",
+      "spec/sweep-track-roots.mjs",
+      "spec/refresh-track-roots.mjs",
+      "graph/backfill-graph-metadata.ts",
+      "spec/create.sh",
+      "continuity/generate-context.ts",
+      "runtime/cli/tests/track-roots.vitest.ts",
+      "runtime/cli/lib/track-roots.mjs",
+      "runtime/cli/spec/sweep-track-roots.mjs",
+      "runtime/cli/spec/refresh-track-roots.mjs",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/tests/create-track-refresh.vitest.ts",
+      "runtime/cli/spec/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": "lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": "spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "refresh-track-roots.mjs",
+        "kind": "file",
+        "path": "spec/refresh-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": "graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/track-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-track-refresh.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/create-track-refresh.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A track root is a folder directly under `specs/`, such as `specs/sk-doc/`, that holds numbered packets and lists them in the `childrenids` of its `graph-metadata.json`",
+    "created_at": "2026-09-24T09:53:58Z",
+    "last_save_at": "2026-09-24T11:12:48.639Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90119df1de8f8c90dcbd07cb2002e0a1909a00ea32ff09af288a529572bab66e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "89d8bb2a7f038d10becff9707fecc3c57553b97135903f615db537e1d988e47d",
+      "plan.md": "956700c79a9fcba4a71e73a519467f82588fb984e1bac200df89ca3d87cb1ae6",
+      "tasks.md": "6439ea5d65b29b919d8330dd1f64496e6b8bfbb933f7a0a412eb142a9dbd8a92",
+      "implementation-summary.md": "55caa1748a32f6d4ee498b01702a3fd1ad93d1e5639ea59271d84bf0c881f581"
+    },
+    "last_active_at": null
+  }
+}
