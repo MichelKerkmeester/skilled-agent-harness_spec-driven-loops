@@ -254,3 +254,75 @@ describe('thin continuity record', () => {
     expect(readThinContinuityRecord(result.markdown!).record?.packet_pointer).toBe('track/new-packet');
   });
 });
+
+function makeContinuityMarkdown(fields: Record<string, string>): string {
+  const continuity = {
+    packet_pointer: '"track/flow-packet"',
+    last_updated_at: '"2026-09-23T00:00:00Z"',
+    last_updated_by: '"tester"',
+    recent_action: '"Read the fixture block"',
+    next_safe_action: '"Continue the fixture work"',
+    blockers: '[]',
+    key_files: '[]',
+    completion_pct: '40',
+    open_questions: '[]',
+    answered_questions: '[]',
+    ...fields,
+  };
+  return [
+    '---',
+    'title: "Flow Fixture"',
+    '_memory:',
+    '  continuity:',
+    ...Object.entries(continuity).map(([key, value]) => `    ${key}: ${value}`),
+    '---',
+    '',
+    '# Flow Fixture',
+    '',
+  ].join('\n');
+}
+
+describe('hand-written continuity blocks', () => {
+  it('reads one-level flow lists as lists, keeping commas inside quotes', () => {
+    const result = readThinContinuityRecord(makeContinuityMarkdown({
+      blockers: '["Waiting on review", \'Second blocker\']',
+      key_files: '["docs/a, b.md", plain.md]',
+      open_questions: '[Q1, Q2]',
+    }));
+
+    expect(result.ok).toBe(true);
+    expect(result.record?.blockers).toEqual(['Waiting on review', 'Second blocker']);
+    expect(result.record?.key_files).toEqual(['docs/a, b.md', 'plain.md']);
+    expect(result.record?.open_questions).toEqual(['Q1', 'Q2']);
+  });
+
+  it('leaves a flow list it cannot read as text, so validation still reports it', () => {
+    const result = readThinContinuityRecord(makeContinuityMarkdown({ blockers: '["unclosed, "second"' }));
+
+    expect(result.ok).toBe(false);
+    expect(result.errors.map((error) => error.code)).toContain('MEMORY_008');
+  });
+
+  it.each([
+    'None - the phase is closed',
+    'None; nothing left to do',
+    'Commit the reviewed phase',
+    'Close the packet after review',
+    'Hand off to the release owner',
+  ])('accepts a next action that opens with a working verb: %s', (nextSafeAction) => {
+    const result = readThinContinuityRecord(makeContinuityMarkdown({ next_safe_action: JSON.stringify(nextSafeAction) }));
+
+    expect(result.errors).toEqual([]);
+    expect(result.ok).toBe(true);
+  });
+
+  it.each([
+    'Replace template defaults on first save',
+    'Operator decides the rollout order',
+  ])('still rejects a next action that opens with a default or a noun: %s', (nextSafeAction) => {
+    const result = readThinContinuityRecord(makeContinuityMarkdown({ next_safe_action: JSON.stringify(nextSafeAction) }));
+
+    expect(result.ok).toBe(false);
+    expect(result.errors.map((error) => error.code)).toContain('MEMORY_007');
+  });
+});

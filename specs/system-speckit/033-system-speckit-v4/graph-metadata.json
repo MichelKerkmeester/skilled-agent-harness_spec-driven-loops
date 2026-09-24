@@ -59,7 +59,8 @@
     "system-speckit/033-system-speckit-v4/053-legacy-template-default-detection",
     "system-speckit/033-system-speckit-v4/055-advisory-false-alarms",
     "system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state",
-    "system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups"
+    "system-speckit/033-system-speckit-v4/054-ci-cleanup-follow-ups",
+    "system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists"
   ],
   "manual": {
     "depends_on": [],
@@ -139,7 +140,7 @@
     ],
     "causal_summary": "Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-24T04:45:19.602Z",
+    "last_save_at": "2026-09-24T05:01:27.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -150,7 +151,7 @@
     "source_doc_hashes": {
       "spec.md": "b53af0e5c9e0262b8f2cdd0b5c7e3e7f89698dddf5a653bfda0e2b5c89a08bc4"
     },
-    "last_active_child_id": "system-speckit/033-system-speckit-v4/056-corpus-manifest-build-state",
-    "last_active_at": "2026-09-23T20:14:39.202Z"
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists",
+    "last_active_at": "2026-09-24T05:01:27.517Z"
   }
 }

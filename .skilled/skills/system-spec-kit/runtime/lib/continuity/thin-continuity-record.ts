@@ -126,6 +126,10 @@ const MARKDOWN_STRUCTURE_RE = /^\s*(?:#{1,6}\s+|>\s+|```)/;
 const URL_RE = /https?:\/\/|www\./i;
 const MULTI_SPACE_RE = /\s+/g;
 
+// The first word of next_safe_action must say what to do or where things stand.
+// The list covers the imperatives and status words hand-written blocks actually
+// open with. "Replace" is left out on purpose: scaffold defaults open with it,
+// and rejecting them forces the first real save to name a real next action.
 const NEXT_ACTION_VERBS = new Set([
   'add',
   'align',
@@ -133,38 +137,59 @@ const NEXT_ACTION_VERBS = new Set([
   'await',
   'awaiting',
   'backfill',
+  'begin',
   'blocked',
   'build',
   'check',
   'clear',
+  'close',
+  'commit',
   'compare',
   'complete',
+  'confirm',
+  'consume',
   'continue',
   'create',
+  'decide',
   'document',
   'draft',
+  'execute',
   'fix',
+  'hand',
+  'hold',
   'implement',
   'inspect',
   'investigate',
+  'keep',
+  'land',
   'measure',
   'migrate',
   'monitor',
+  'none',
   'observe',
+  'open',
   'paused',
   'pending',
+  'plan',
   'prepare',
+  'proceed',
   'ready',
+  'reconcile',
   'record',
   'refresh',
   'rerun',
+  'resolve',
+  'restart',
   'resume',
   'review',
   'route',
   'run',
   'stabilize',
+  'start',
   'sync',
+  'treat',
   'update',
+  'use',
   'validate',
   'verify',
   'wait',
@@ -296,6 +321,12 @@ function parseYamlScalar(raw: string): YamlValue {
   if (trimmed === '[]') {
     return [];
   }
+  if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+    const sequence = parseFlowSequence(trimmed.slice(1, -1));
+    if (sequence) {
+      return sequence;
+    }
+  }
   if (trimmed === '{}') {
     return {};
   }
@@ -306,6 +337,60 @@ function parseYamlScalar(raw: string): YamlValue {
     return trimmed.slice(1, -1).replace(/''/g, "'");
   }
   return trimmed;
+}
+
+/**
+ * Read a one-level flow list such as `["a", 'b', c]`. Hand-written continuity
+ * blocks often write their lists this way, and reading them as one string made
+ * every such field fail validation. Only plain and quoted values are read: a
+ * nested list or map, an unclosed quote or an empty item returns null, so the
+ * caller keeps the raw text and validation reports it instead of a guess.
+ */
+function parseFlowSequence(inner: string): YamlValue[] | null {
+  if (inner.trim().length === 0) {
+    return [];
+  }
+
+  const items: string[] = [];
+  let current = '';
+  let quote: '"' | "'" | null = null;
+  for (let index = 0; index < inner.length; index += 1) {
+    const char = inner[index];
+    if (quote) {
+      current += char;
+      if (quote === '"' && char === '\\' && index + 1 < inner.length) {
+        index += 1;
+        current += inner[index];
+      } else if (char === quote && quote === "'" && inner[index + 1] === "'") {
+        index += 1;
+        current += inner[index];
+      } else if (char === quote) {
+        quote = null;
+      }
+      continue;
+    }
+    if (char === '"' || char === "'") {
+      quote = char;
+      current += char;
+    } else if ('[]{}'.includes(char)) {
+      return null;
+    } else if (char === ',') {
+      items.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  if (quote) {
+    return null;
+  }
+  items.push(current);
+
+  const values = items.map((item) => item.trim());
+  if (values.some((value) => value.length === 0)) {
+    return null;
+  }
+  return values.map((value) => parseYamlScalar(value));
 }
 
 function parseYamlArray(lines: string[], startIndex: number, indent: number): { value: YamlValue[]; nextIndex: number } {
@@ -602,7 +687,8 @@ function normalizeCompactField(
   }
 
   if (field === 'next_safe_action') {
-    const firstToken = tokenize(candidate)[0]?.toLowerCase() ?? '';
+    // Punctuation that ends the first word ("None;", "Commit:") does not change the word.
+    const firstToken = (tokenize(candidate)[0] ?? '').toLowerCase().replace(/[^\p{L}\p{N}]+$/u, '');
     if (!NEXT_ACTION_VERBS.has(firstToken)) {
       errors.push(buildError('MEMORY_007', field, 'next_safe_action must begin with an imperative or status verb'));
       return null;

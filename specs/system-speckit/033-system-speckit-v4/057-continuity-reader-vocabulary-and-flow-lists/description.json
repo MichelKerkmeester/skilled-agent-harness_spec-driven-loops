@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-24T05:01:27.493Z",
+  "specId": "057",
+  "folderSlug": "continuity-reader-vocabulary-and-flow-lists",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "24-09-26_05-55__taught-the-thin-continuity-reader-the-flow-style.md",
+    "24-09-26_06-01__taught-the-thin-continuity-reader-the-flow-style.md"
+  ]
+}
