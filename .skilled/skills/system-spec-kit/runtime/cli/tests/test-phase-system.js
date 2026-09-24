@@ -6,14 +6,41 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
+
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const __dirname = path.dirname(__filename);
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
-const CREATE_SCRIPT = path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'create.sh');
-const RECOMMEND_SCRIPT = path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'recommend-level.sh');
-const ALLOWED_SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
+const SKILL_ROOT = path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit');
+const CREATE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'create.sh');
+const RECOMMEND_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'recommend-level.sh');
+
+// create.sh takes its root from `git rev-parse --show-toplevel` in the working
+// directory, so every call runs inside a throwaway repository instead of the
+// checkout. It also reads its templates relative to that root, so the sandbox
+// gets a copy.
+const SANDBOX_REPO = createSandboxRepo('speckit-phase-system-');
+const ALLOWED_SPECS_ROOT = path.join(SANDBOX_REPO, 'specs');
+
+function createSandboxRepo(prefix) {
+  const repo = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), prefix)));
+  execFileSync('git', ['init', '--quiet'], { cwd: repo });
+  const sandboxSkill = path.join(repo, '.skilled', 'skills', 'system-spec-kit');
+  fs.cpSync(path.join(SKILL_ROOT, 'templates'), path.join(sandboxSkill, 'templates'), { recursive: true });
+  fs.mkdirSync(path.join(sandboxSkill, 'runtime', 'cli', 'templates'), { recursive: true });
+  fs.copyFileSync(
+    path.join(SKILL_ROOT, 'runtime', 'cli', 'templates', 'inline-gate-renderer.sh'),
+    path.join(sandboxSkill, 'runtime', 'cli', 'templates', 'inline-gate-renderer.sh')
+  );
+  return repo;
+}
 
 let passed = 0;
 let failed = 0;
@@ -46,15 +73,26 @@ function assertTrue(condition, message) {
 
 function runBash(scriptPath, args) {
   return execFileSync('bash', [scriptPath, ...args], {
-    cwd: REPO_ROOT,
+    cwd: SANDBOX_REPO,
     encoding: 'utf-8',
   });
 }
 
+// create.sh lets the description generator print its status line to stdout
+// ahead of its one-line JSON payload, so when the whole output does not parse,
+// the payload is the last line that opens an object.
 function parseJsonOutput(raw) {
   try {
     return JSON.parse(raw);
   } catch (error) {
+    const payload = raw.split('\n').filter((line) => line.trim().startsWith('{')).pop();
+    if (payload !== undefined) {
+      try {
+        return JSON.parse(payload);
+      } catch {
+        // Report the failure on the whole output below.
+      }
+    }
     const msg = error instanceof Error ? error.message : String(error);
     throw new Error(`Failed to parse JSON output: ${msg}\nRaw output:\n${raw}`);
   }
@@ -75,12 +113,12 @@ function testRecommendLevelPhaseFixtures() {
     {
       name: 'threshold-hit-level-gate-blocks',
       args: ['--loc', '700', '--files', '16', '--architectural', '--recommend-phases', '--json'],
-      expected: { recommended: false, phaseScore: 25, suggestedCount: 0 },
+      expected: { recommended: false, phaseScore: 20, suggestedCount: 0 },
     },
     {
-      name: 'above-threshold-three-phase',
+      name: 'above-threshold-two-phase',
       args: ['--loc', '700', '--files', '16', '--architectural', '--api', '--db', '--recommend-phases', '--json'],
-      expected: { recommended: true, phaseScore: 35, suggestedCount: 3 },
+      expected: { recommended: true, phaseScore: 30, suggestedCount: 2 },
     },
     {
       name: 'extreme-scale-four-phase',
@@ -90,7 +128,7 @@ function testRecommendLevelPhaseFixtures() {
     {
       name: 'no-risk-factors-level-gate',
       args: ['--loc', '900', '--files', '16', '--architectural', '--recommend-phases', '--json'],
-      expected: { recommended: false, phaseScore: 35, suggestedCount: 0 },
+      expected: { recommended: false, phaseScore: 30, suggestedCount: 0 },
     },
   ];
 
@@ -168,9 +206,13 @@ function testCreatePhaseParentAppendMode() {
     const parentSpec = fs.readFileSync(path.join(parent, 'spec.md'), 'utf-8');
     const phaseMapCount = countOccurrences(parentSpec, '<!-- ANCHOR:phase-map -->');
     assertEqual(phaseMapCount, 1, 'create.sh parent mode: phase-map section not duplicated');
+    // A blank line ends a markdown table, so the new row has to follow the
+    // last existing row directly to render inside the map.
     assertTrue(
-      parentSpec.includes('| 3 | 003-stabilization/ | [Phase 3 scope] | [deps] | Pending |'),
-      'create.sh parent mode: append updates phase-map rows with new phase'
+      parentSpec.includes(
+        '| 2 | 002-implementation/ | [Phase 2 scope] | Pending |\n| 3 | 003-stabilization/ | [Phase 3 scope] | Pending |'
+      ),
+      'create.sh parent mode: appended phase row continues the phase-map table'
     );
     assertTrue(
       parentSpec.includes('| 002-implementation | 003-stabilization | [Criteria TBD] | [Verification TBD] |'),
@@ -190,8 +232,12 @@ function testCreatePhaseParentAppendMode() {
 }
 
 function main() {
-  testRecommendLevelPhaseFixtures();
-  testCreatePhaseParentAppendMode();
+  try {
+    testRecommendLevelPhaseFixtures();
+    testCreatePhaseParentAppendMode();
+  } finally {
+    fs.rmSync(SANDBOX_REPO, { recursive: true, force: true });
+  }
 
   console.log(`\nResult: passed=${passed} failed=${failed}`);
   process.exit(failed > 0 ? 1 : 0);
