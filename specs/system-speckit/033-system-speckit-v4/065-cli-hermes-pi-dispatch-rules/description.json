@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-24T09:20:28.166Z",
+  "specId": "065",
+  "folderSlug": "cli-hermes-pi-dispatch-rules",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-09-26_10-20__scoped-the-five-sites-in-cli-hermes-and-cli-pi.md"
+  ]
+}

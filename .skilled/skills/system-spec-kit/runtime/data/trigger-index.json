@@ -1,5 +1,5 @@
 {
-  "manifestHash": "65aade823f85b1f272f22c3fb3df36e86101b8f1d73876eaaf9577e06b5558d2",
+  "manifestHash": "d2cbb549257082ee4d05b8073b385ae3553e6a81ab648480d758504dc88bffea",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11392,6 +11392,10 @@
     "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/plan.md",
     "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/spec.md",
     "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -29835,6 +29839,9 @@
     "cli hermes dispatch": [
       128
     ],
+    "cli hermes dispatch rules": [
+      11384
+    ],
     "cli hermes executor kind": [
       1943
     ],
@@ -29855,6 +29862,27 @@
     ],
     "cli hermes mode registry entry": [
       87
+    ],
+    "cli hermes pi dispatch rules": [
+      11382
+    ],
+    "cli hermes pi dispatch rules plan": [
+      11383
+    ],
+    "cli hermes pi dispatch rules tasks": [
+      11385
+    ],
+    "cli hermes pi runtime delegation evidence": [
+      11382
+    ],
+    "cli hermes pi runtime delegation plan": [
+      11383
+    ],
+    "cli hermes pi runtime delegation scope": [
+      11384
+    ],
+    "cli hermes pi runtime delegation tasks": [
+      11385
     ],
     "cli hermes prompt card": [
       88
@@ -30170,6 +30198,9 @@
     ],
     "cli pi devpass glm route": [
       4884
+    ],
+    "cli pi dispatch rules": [
+      11384
     ],
     "cli pi fanout execution": [
       5071
@@ -37199,10 +37230,10 @@
       10348
     ],
     "create sh canonical specs root": [
-      11384,
-      11385,
-      11386,
-      11387
+      11388,
+      11389,
+      11390,
+      11391
     ],
     "create sh canonical tasks": [
       10349
@@ -37238,19 +37269,19 @@
       10041
     ],
     "create sh root numbering": [
-      11392,
-      11393,
-      11394,
-      11395
+      11396,
+      11397,
+      11398,
+      11399
     ],
     "create sh upgrade level sh": [
       1673
     ],
     "create sh writes to opencode specs": [
-      11384,
-      11385,
-      11386,
-      11387
+      11388,
+      11389,
+      11390,
+      11391
     ],
     "create skill": [
       934,
@@ -39027,10 +39058,10 @@
       9361
     ],
     "dead spec kit test files": [
-      11388,
-      11389,
-      11390,
-      11391
+      11392,
+      11393,
+      11394,
+      11395
     ],
     "dead tokenbudget parameter": [
       10185,
@@ -45790,9 +45821,9 @@
       9751
     ],
     "duplicate packet number 001": [
-      11392,
-      11394,
-      11395
+      11396,
+      11398,
+      11399
     ],
     "duplicate review skip behavior": [
       673
@@ -47178,10 +47209,10 @@
       3675
     ],
     "empty phase child skipped": [
-      11388,
-      11389,
-      11390,
-      11391
+      11392,
+      11393,
+      11394,
+      11395
     ],
     "empty recommendation reported as outage": [
       5592
@@ -56172,8 +56203,8 @@
       8442
     ],
     "highest branch number": [
-      11393,
-      11394
+      11397,
+      11398
     ],
     "highest priority review dimension": [
       1344
@@ -58129,7 +58160,8 @@
       11366,
       11370,
       11374,
-      11378
+      11378,
+      11382
     ],
     "implementation summary attestation point": [
       10705
@@ -61489,8 +61521,8 @@
       8049
     ],
     "level contract fallback": [
-      11388,
-      11390
+      11392,
+      11394
     ],
     "level contract headings": [
       1714
@@ -63499,10 +63531,10 @@
       2168
     ],
     "manual playbook runner retired": [
-      11388,
-      11389,
-      11390,
-      11391
+      11392,
+      11393,
+      11394,
+      11395
     ],
     "manual playbook scenario count fix": [
       7933
@@ -64931,7 +64963,7 @@
       10697
     ],
     "memory decommission history": [
-      11382
+      11386
     ],
     "memory decommission inventory": [
       10680
@@ -64955,7 +64987,7 @@
       10675
     ],
     "memory decommission timeline": [
-      11383
+      11387
     ],
     "memory delete causal cleanup": [
       8819
@@ -65577,10 +65609,10 @@
       6374
     ],
     "memory quality test never collected": [
-      11388,
-      11389,
-      11390,
-      11391
+      11392,
+      11393,
+      11394,
+      11395
     ],
     "memory rebuild complete": [
       6458
@@ -69357,8 +69389,8 @@
       577
     ],
     "no tsx template fallback": [
-      11388,
-      11390
+      11392,
+      11394
     ],
     "noaa loop harness plan": [
       5430
@@ -73103,7 +73135,7 @@
       2079
     ],
     "packet numbering without track": [
-      11394
+      11398
     ],
     "packet pointer handover check": [
       10723
@@ -75847,10 +75879,10 @@
       11373
     ],
     "phase map rows never filled": [
-      11388,
-      11389,
-      11390,
-      11391
+      11392,
+      11393,
+      11394,
+      11395
     ],
     "phase map sync normalization": [
       11358,
@@ -75900,7 +75932,7 @@
       7649,
       8794,
       10936,
-      11382
+      11386
     ],
     "phase parent 049": [
       6133
@@ -84743,10 +84775,10 @@
       4600
     ],
     "retire memory era tests": [
-      11388,
-      11389,
-      11390,
-      11391
+      11392,
+      11393,
+      11394,
+      11395
     ],
     "retire memory learn": [
       10477
@@ -87858,8 +87890,8 @@
       10969
     ],
     "scaffold prunes remote tracking refs": [
-      11392,
-      11394
+      11396,
+      11398
     ],
     "scaffold real default status": [
       10548
@@ -87886,7 +87918,7 @@
       11240
     ],
     "scaffold without fetch": [
-      11393
+      11397
     ],
     "scan classifies regular file": [
       10606
@@ -95820,10 +95852,10 @@
       1752
     ],
     "spec kit v4 chronology": [
-      11383
+      11387
     ],
     "spec kit v4 timeline": [
-      11382
+      11386
     ],
     "spec kit version migration": [
       7613,
@@ -96059,10 +96091,10 @@
       10502
     ],
     "spec packet lands in opencode specs": [
-      11384,
-      11385,
-      11386,
-      11387
+      11388,
+      11389,
+      11390,
+      11391
     ],
     "spec packet merge gate": [
       10563
@@ -99477,10 +99509,10 @@
       10205
     ],
     "system speckit v4": [
-      11382
+      11386
     ],
     "system speckit v4 timeline": [
-      11383
+      11387
     ],
     "system to embedder mapping": [
       7090,
@@ -101331,7 +101363,7 @@
       10432
     ],
     "template reduction history": [
-      11382
+      11386
     ],
     "template reduction requirements": [
       10412
@@ -101608,10 +101640,10 @@
       8411
     ],
     "test phase validation cannot load": [
-      11388,
-      11389,
-      11390,
-      11391
+      11392,
+      11393,
+      11394,
+      11395
     ],
     "test plan checkboxes": [
       1089
@@ -102666,10 +102698,10 @@
       10401
     ],
     "track numbering restarts at 001": [
-      11384,
-      11385,
-      11386,
-      11387
+      11388,
+      11389,
+      11390,
+      11391
     ],
     "track prefix identity heal": [
       9751
@@ -104439,7 +104471,7 @@
       979
     ],
     "v4 packet order": [
-      11383
+      11387
     ],
     "v4 parent data repairs": [
       11370,
@@ -107588,7 +107620,7 @@
       1472
     ],
     "which spec was worked on first": [
-      11383
+      11387
     ],
     "which system uses cocoindex or mk spec memory": [
       8319

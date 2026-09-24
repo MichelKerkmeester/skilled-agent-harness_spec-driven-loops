@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7342,
-    "ok": 11342,
+    "missing-frontmatter": 7344,
+    "ok": 11346,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22375,
+  "documentsScanned": 22381,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "65aade823f85b1f272f22c3fb3df36e86101b8f1d73876eaaf9577e06b5558d2",
+  "manifestHash": "d2cbb549257082ee4d05b8073b385ae3553e6a81ab648480d758504dc88bffea",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27613,
+      "ok": 27622,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -5034,6 +5034,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.4.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/agent-routing/inlined-persona-via-agent-router-template.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -8215,6 +8221,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.10.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -74552,6 +74564,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/scratch",
       "reason": "excluded directory"
     },
     {

@@ -67,7 +67,8 @@
     "system-speckit/033-system-speckit-v4/061-worktree-build-provisioning",
     "system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs",
     "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules",
-    "system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules"
+    "system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules",
+    "system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules"
   ],
   "manual": {
     "depends_on": [],
@@ -147,18 +148,18 @@
     ],
     "causal_summary": "Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-24T07:36:39.274Z",
+    "last_save_at": "2026-09-24T09:20:31.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e81528ae4cb97b78589f08cbc75a5411a3e61619b6993b29dbc4c1f2eaef0ad3",
+    "source_fingerprint": "sha256:fefa9914e0236fc4031892bbc69783e345baf497311f01120d73c2f58a3143f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "057f7417ba37e3c0768ce66b056b1020569ade91783625c2bb39e4fb5471010f"
+      "spec.md": "755e1085d4c34a5e0f728bbdec8fd892eb08647250b64b2dda735ea8c7844d66"
     },
-    "last_active_child_id": "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules",
-    "last_active_at": "2026-09-24T07:36:36.848Z"
+    "last_active_child_id": "system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules",
+    "last_active_at": "2026-09-24T09:20:29.609Z"
   }
 }
