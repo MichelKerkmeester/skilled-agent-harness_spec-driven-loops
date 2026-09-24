@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/013-prompting-guide-alignment",
+  "spec_folder": "agents/013-prompting-guide-alignment",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vendor prompting guide alignment",
+      "claude prompting best practices",
+      "gpt-6 prompting guide",
+      "agents.md prompting audit",
+      "over-prompting emphatic caps",
+      "gpt-6 luna devin roster",
+      "three lens prompting review",
+      "prompting guide alignment plan",
+      "three lens dispatch plan",
+      "devin roster gpt-6 luna",
+      "prompting guide alignment tasks",
+      "lens dispatch tasks"
+    ],
+    "key_topics": [
+      "vendor",
+      "prompting",
+      "guide",
+      "alignment",
+      "claude",
+      "best",
+      "practices",
+      "gpt-6",
+      "agents",
+      "audit",
+      "over-prompting",
+      "emphatic"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/synthesis.md",
+      ".skilled/repo-rules/uncertainty-and-honesty.md",
+      ".skilled/repo-rules/blast-radius.md",
+      ".skilled/repo-rules/communication-decisions.md",
+      ".skilled/repo-rules/communication-handoff.md",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/skills/sk-prompt/references/patterns-evaluation.md",
+      ".skilled/skills/sk-prompt/references/depth-framework.md",
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
+      ".hermes/skills/sk-prompt/SKILL.md",
+      ".hermes/skills/cli-devin/SKILL.md",
+      ".pi/models.json",
+      ".codex/AGENTS.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "research/synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "uncertainty-and-honesty.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/uncertainty-and-honesty.md",
+        "source": "derived"
+      },
+      {
+        "name": "blast-radius.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/blast-radius.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-decisions.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "patterns-evaluation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/references/patterns-evaluation.md",
+        "source": "derived"
+      },
+      {
+        "name": "depth-framework.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/references/depth-framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository's instruction surfaces predate the current vendor prompting guides",
+    "created_at": "2026-09-24T08:05:49Z",
+    "last_save_at": "2026-09-24T11:19:20.820Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:18ec6f35181dca35831c4a9d843cfa0ba482791df29457bb441ddab5bab3aefc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3be345e97813464797e41d8b1d01c37689853a8441dbf642bc5d9614588ea60d",
+      "plan.md": "92791bf7a740aae34ef1c9f9ddfa403d0c0f7ce8ee3dadd6d94dcecfabde0f28",
+      "tasks.md": "b603d969eaabb49ee295457a9a676edba585f5fc51210b73cfadab425f491e66",
+      "implementation-summary.md": "82cca27da89e1e52d67c541f57a4e9650637e8e6a5fad373b3fdae38a08b7fb7"
+    },
+    "last_active_at": null
+  }
+}

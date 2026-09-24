@@ -1,0 +1,24 @@
+{
+  "specFolder": "agents/013-prompting-guide-alignment",
+  "description": "Align AGENTS.md, repo rules and sk-prompt with current vendor prompting guides",
+  "keywords": [
+    "align",
+    "agents",
+    "repo",
+    "rules",
+    "sk-prompt",
+    "current",
+    "vendor",
+    "prompting",
+    "guides"
+  ],
+  "lastUpdated": "2026-09-24T09:48:22.308Z",
+  "specId": "013",
+  "folderSlug": "prompting-guide-alignment",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
