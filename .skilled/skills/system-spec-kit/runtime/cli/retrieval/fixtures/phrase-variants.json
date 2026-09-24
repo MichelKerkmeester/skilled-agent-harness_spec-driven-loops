@@ -1,5 +1,5 @@
 {
-  "manifestHash": "02476d437305e9edbea33206eb648c426e3e1721e2a559b4ae4e970a9a69b5f2",
+  "manifestHash": "71fae252c51a6be149e3ea509dc2af737221b434ef46231d36dd82c82aab35be",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7298,6 +7298,9 @@
     "4px grid complexity budget": [
       "4px grid complexity budget"
     ],
+    "4px grid exemption list": [
+      "4px grid exemption list"
+    ],
     "5 backend streams": [
       "5 backend streams"
     ],
@@ -14586,6 +14589,9 @@
     ],
     "chart aesthetics research": [
       "chart aesthetics research"
+    ],
+    "chart and diagram review synthesis": [
+      "chart and diagram review synthesis"
     ],
     "chart bar growth": [
       "chart bar growth"
@@ -24445,6 +24451,9 @@
     "dark palette twin": [
       "dark palette twin"
     ],
+    "dark skin declares five roles": [
+      "dark skin declares five roles"
+    ],
     "dark spine canonical authority": [
       "dark spine canonical authority"
     ],
@@ -24894,6 +24903,9 @@
     ],
     "decommissioned server tasks": [
       "decommissioned server tasks"
+    ],
+    "decoration exemption lost partway through a file": [
+      "decoration exemption lost partway through a file"
     ],
     "decouple and rewire": [
       "decouple and rewire"
@@ -27868,6 +27880,9 @@
     "default on hubs cohort": [
       "default-on hubs cohort"
     ],
+    "default palette changes half the stock colours": [
+      "default palette changes half the stock colours"
+    ],
     "default provider transport": [
       "default provider transport"
     ],
@@ -29309,6 +29324,9 @@
     ],
     "diagnostics ring buffer cap": [
       "diagnostics ring buffer cap"
+    ],
+    "diagram applicator contrast gate": [
+      "diagram applicator contrast gate"
     ],
     "diagram catalog": [
       "diagram catalog"
@@ -50561,6 +50579,9 @@
     "mutation representation format": [
       "mutation representation format"
     ],
+    "mutation suites claim more than their cases prove": [
+      "mutation suites claim more than their cases prove"
+    ],
     "mutation time delivery": [
       "mutation-time delivery"
     ],
@@ -68525,6 +68546,9 @@
     "serial enablement driver": [
       "serial enablement driver"
     ],
+    "series colours below the contrast gate": [
+      "series colours below the contrast gate"
+    ],
     "series mapping check": [
       "series mapping check"
     ],
@@ -70911,6 +70935,9 @@
     "sk design changelog symlinks": [
       "sk-design changelog symlinks"
     ],
+    "sk design chart review verdict": [
+      "sk-design-chart review verdict"
+    ],
     "sk design chart v0 23 0 0": [
       "sk-design-chart v0.23.0.0"
     ],
@@ -70931,6 +70958,9 @@
     ],
     "sk design diagram": [
       "sk-design-diagram"
+    ],
+    "sk design diagram review verdict": [
+      "sk-design-diagram review verdict"
     ],
     "sk design diagram scripts": [
       "sk-design-diagram scripts"
@@ -78760,6 +78790,9 @@
     ],
     "theme package": [
       "theme package"
+    ],
+    "themed delivery ships unmeasured contrast": [
+      "themed delivery ships unmeasured contrast"
     ],
     "themed parent tracks 027": [
       "themed parent tracks 027"
