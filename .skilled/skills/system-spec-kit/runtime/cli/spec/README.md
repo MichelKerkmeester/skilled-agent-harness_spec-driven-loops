@@ -151,7 +151,8 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<na
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh specs/<name>
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/<name> --strict
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh specs/<name>
-node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs [--specs <dir>]
+node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs [--specs <dir>] [--rev <commit>]
+node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs [--specs <dir>] [--track <name>]... [--apply]
 ```
 
 ---

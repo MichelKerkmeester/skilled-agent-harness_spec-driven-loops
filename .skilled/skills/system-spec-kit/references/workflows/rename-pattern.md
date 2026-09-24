@@ -81,6 +81,7 @@ Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to 
 2. Post-edit `rg "<old-name>"` on the historical-surface allow-list → expect SAME count as baseline-before (provenance preserved).
 3. `bash validate.sh --strict <spec-folder>` → exit 0.
 4. Reconcile parent metadata via `generate-context.js` (refreshes `children_ids` + `derived.last_active_child_id`).
+5. When the renamed folder is a packet directly under a track, run `node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs --track <track> --apply`. `generate-context.js` only adds the new name, and the pre-push hook blocks a commit whose track still lists the old one.
 
 ---
 
