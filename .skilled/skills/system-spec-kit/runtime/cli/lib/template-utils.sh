@@ -267,23 +267,135 @@ resolve_level_contract() {
     local loader="$skill_root/node_modules/tsx/dist/loader.mjs"
     local resolver="$skill_root/runtime/lib/templates/level-contract-resolver.ts"
 
+    # Without tsx or the resolver, the same contract is read from the manifest
+    # in plain JavaScript. It mirrors resolveLevelContract and
+    # serializeLevelContract, validation included, and
+    # level-contract-fallback.vitest.ts holds the two to identical output.
     if [[ ! -f "$loader" || ! -f "$resolver" ]]; then
         local manifest="$skill_root/templates/spec-kit-docs.json"
         node - "$level" "$manifest" <<'NODE'
 const fs = require('fs');
 const [level, manifestPath] = process.argv.slice(2);
-try {
-  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-  const contract = manifest.levels?.[level];
-  if (!contract) {
-    throw new Error(`Unknown Level contract: ${level}`);
+const VALID_LEVELS = new Set(['1', '2', '3', '3+', 'phase', 'review', 'research']);
+const DOCUMENT_NAME_RE = /^(?:[A-Za-z0-9][A-Za-z0-9_-]*\/)?[A-Za-z0-9][A-Za-z0-9_-]*\.md$/u;
+
+function contractError(cause) {
+  return new Error(`Internal template contract could not be resolved for Level ${level}`, { cause });
+}
+
+function documentNames(docs) {
+  for (const doc of docs) {
+    if (typeof doc !== 'string' || !DOCUMENT_NAME_RE.test(doc) || doc.includes('..')) {
+      throw contractError();
+    }
   }
-  process.stdout.write(JSON.stringify({
-    requiredCoreDocs: contract.requiredCoreDocs || [],
-    requiredAddonDocs: contract.requiredAddonDocs || [],
-  }));
+  return [...docs];
+}
+
+function documentList(row, field) {
+  const docs = row[field];
+  if (!Array.isArray(docs) || (field === 'requiredCoreDocs' && docs.length === 0)) {
+    throw contractError();
+  }
+  return documentNames(docs);
+}
+
+function lifecycleRequiredDocs(row) {
+  const lifecycle = row.lifecycleRequiredDocs;
+  if (lifecycle === undefined) {
+    return { afterImplementationStarts: [] };
+  }
+  if (!lifecycle || typeof lifecycle !== 'object' || Array.isArray(lifecycle)) {
+    throw contractError();
+  }
+  const docs = lifecycle.afterImplementationStarts ?? [];
+  if (!Array.isArray(docs)) {
+    throw contractError();
+  }
+  return { afterImplementationStarts: documentNames(docs) };
+}
+
+function levelList(sectionId, levels) {
+  if (!sectionId || !Array.isArray(levels) || levels.some((entry) => !VALID_LEVELS.has(entry))) {
+    throw contractError();
+  }
+  return [...levels];
+}
+
+function sectionGates(row) {
+  if (!row.sectionGates || typeof row.sectionGates !== 'object' || Array.isArray(row.sectionGates)) {
+    throw contractError();
+  }
+  const flatGates = {};
+  for (const [sectionId, levels] of Object.entries(row.sectionGates)) {
+    if (Array.isArray(levels)) {
+      flatGates[sectionId] = levelList(sectionId, levels);
+      continue;
+    }
+    if (!levels || typeof levels !== 'object') {
+      throw contractError();
+    }
+    for (const [nestedSectionId, nestedLevels] of Object.entries(levels)) {
+      flatGates[nestedSectionId] = levelList(nestedSectionId, nestedLevels);
+    }
+  }
+  return flatGates;
+}
+
+function sectionGatesByDocument(row) {
+  const byDocument = {};
+  for (const [maybeDocumentName, value] of Object.entries(row.sectionGates)) {
+    if (!maybeDocumentName.endsWith('.md')) {
+      continue;
+    }
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+      throw contractError();
+    }
+    if (!DOCUMENT_NAME_RE.test(maybeDocumentName) || maybeDocumentName.includes('..')) {
+      throw contractError();
+    }
+    byDocument[maybeDocumentName] = {};
+    for (const [sectionId, levels] of Object.entries(value)) {
+      byDocument[maybeDocumentName][sectionId] = levelList(sectionId, levels);
+    }
+  }
+  return byDocument;
+}
+
+try {
+  if (!VALID_LEVELS.has(level)) {
+    throw contractError();
+  }
+  let manifest;
+  try {
+    manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  } catch (error) {
+    throw contractError(error);
+  }
+  const row = manifest.levels?.[level];
+  if (!row || typeof row !== 'object') {
+    throw contractError();
+  }
+  const contract = {
+    requiredCoreDocs: documentList(row, 'requiredCoreDocs'),
+    requiredAddonDocs: documentList(row, 'requiredAddonDocs'),
+    optionalAddonDocs: documentList(row, 'optionalAddonDocs'),
+    lazyAddonDocs: documentList(row, 'lazyAddonDocs'),
+    lifecycleRequiredDocs: lifecycleRequiredDocs(row),
+    sectionGates: sectionGates(row),
+    sectionGatesByDocument: sectionGatesByDocument(row),
+    templateVersions: { ...(manifest.versions ?? {}) },
+    frontmatterMarkerLevel: row.frontmatterMarkerLevel,
+  };
+  if (typeof contract.frontmatterMarkerLevel !== 'number') {
+    throw contractError();
+  }
+  process.stdout.write(JSON.stringify(contract));
 } catch (error) {
   console.error(error instanceof Error ? error.message : String(error));
+  if (process.env.SPECKIT_VERBOSE_RESOLVER === '1' && error instanceof Error && error.cause instanceof Error) {
+    console.error(error.cause.stack ?? error.cause.message);
+  }
   process.exit(3);
 }
 NODE
