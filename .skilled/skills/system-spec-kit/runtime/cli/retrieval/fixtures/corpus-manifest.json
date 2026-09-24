@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8c64e4abe2df28769016e25e5da5bfd61cf39bd3fd7dba208324f774e24b0e5b",
+  "corpusHash": "765e160f1de994848f5e3efc91d6fb6946bda586bbde8034ab9b66bbbd60e066",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -22409,7 +22409,7 @@
     "specs/system-speckit/037-track-root-children/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c2e834a78a0ef839aacd1e9bdee3dc8a1a192a172eadb90011f0bf08d176f0bd",
+  "manifestHash": "552667145c4b08a91f21a1d20cd5f08abb7e1b2516b4b4ea14e7777e70d18f0b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
