@@ -63,6 +63,7 @@ contextType: "implementation"
 - [x] T014 The `cli` vitest project, `test:legacy`, `test:validation` and `pre-push.test.sh` pass
 - [x] T015 The sweep exits 0 on the working tree across all 18 track roots
 - [x] T016 Strict validation of this packet passes
+- [x] T017 Name the writer and the gate in the skill itself: `SKILL.md`, its `README.md`, the rename guide and a feature-catalogue entry, then regenerate the `.hermes` copy of `SKILL.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
