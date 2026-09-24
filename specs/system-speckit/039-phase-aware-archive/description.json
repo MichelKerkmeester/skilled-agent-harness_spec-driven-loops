@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/039-phase-aware-archive",
+  "description": "Archive a phase into its parent's own z_archive and restore it back into the parent, leaving the parent's phase list to the reviewed prune",
+  "keywords": [
+    "archive",
+    "phase",
+    "parent",
+    "own",
+    "restore",
+    "back",
+    "leaving",
+    "list",
+    "reviewed",
+    "prune"
+  ],
+  "lastUpdated": "2026-09-24T15:09:39.004Z",
+  "specId": "039",
+  "folderSlug": "phase-aware-archive",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

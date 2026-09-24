@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/038-track-aware-archive",
-  "spec_folder": "system-speckit/038-track-aware-archive",
+  "packet_id": "system-speckit/039-phase-aware-archive",
+  "spec_folder": "system-speckit/039-phase-aware-archive",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -11,24 +11,24 @@
   },
   "derived": {
     "trigger_phrases": [
-      "track-aware archive",
-      "archive.sh track",
-      "restore to track",
-      "track z_archive"
+      "phase-aware archive",
+      "archive a phase",
+      "restore phase to parent",
+      "packet home"
     ],
     "key_topics": [
-      "track-aware",
+      "phase-aware",
       "archive",
-      "track",
+      "phase",
       "restore",
-      "knew",
-      "one",
-      "specs",
-      "zarchive",
-      "feature",
-      "specification",
-      "keep",
-      "packet"
+      "parent",
+      "packet",
+      "home",
+      "kept",
+      "track",
+      "inside",
+      "still",
+      "went"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -37,11 +37,10 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".hermes/skills/system-spec-kit/SKILL.md",
+      "specs/system-speckit/038-track-aware-archive/implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
       "runtime/cli/spec/README.md",
-      "lib/track-roots.mjs",
       "runtime/cli/tests/archive-track.vitest.ts",
       "runtime/cli/spec/archive.sh"
     ],
@@ -71,12 +70,6 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".hermes/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "archive.sh",
         "kind": "script",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
@@ -95,25 +88,19 @@
         "source": "derived"
       },
       {
-        "name": "track-roots.mjs",
-        "kind": "file",
-        "path": "lib/track-roots.mjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement After",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Archiving",
+        "name": "Purpose One",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -125,13 +112,13 @@
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "The Phase Documentation Map",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Change Type",
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -144,6 +131,12 @@
       },
       {
         "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -167,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "small",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -189,11 +176,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "`archive.sh` knew one archive, `specs/zarchive/`",
-    "created_at": "2026-09-24T14:01:48Z",
-    "last_save_at": "2026-09-24T15:17:50.561Z",
+    "causal_summary": "After packet 038, `archive.sh` kept a track packet inside its track, but a phase still went to the root `specs/zarchive/`",
+    "created_at": "2026-09-24T15:09:38Z",
+    "last_save_at": "2026-09-24T15:17:46.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b867455bd3a34ed710119d0e60afbe98a543bf67a8444f02535147b276224c0",
+    "source_fingerprint": "sha256:81fa211bd39ebac191470aea666006e3f6ae3333944c0da5c6a7f49c01789f70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2ef12c8c79c2f256c1e11871ed45731549c140d1a71e345e9882e1ee8659b986",
-      "plan.md": "d21a0819fbabc6c7ddbaf55fb810ed8317353d79b1d8e5c837aef73045485f66",
-      "tasks.md": "249b82f4c5dedd15879c38a961b1a98aaf4afc88068b6f3fd24a85ff30979ab9",
-      "implementation-summary.md": "ad8700c31f09691e3a809be6df5aa44dc41a99bce457ceb1d375a671f8c627e4"
+      "spec.md": "fa4ceb30320f31ced9c838f0c67ca3dd7aca17a12aad3c145ed01918b79f4d73",
+      "plan.md": "15fee94a71d89301242452a23568c2d970803908589e773111a97ca24bd637f4",
+      "tasks.md": "59d4fa767f2e248225c3523791d63e91a6d7cb72531aa76d5755cb8a34545d65",
+      "implementation-summary.md": "9f00a41c2a46841b8c67dcc2e5c5a71be9f22d47a99875fc4eb4a41db6ecf8e0"
     },
     "last_active_at": null
   }
