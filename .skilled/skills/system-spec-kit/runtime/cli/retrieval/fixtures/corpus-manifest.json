@@ -1,5 +1,5 @@
 {
-  "corpusHash": "765e160f1de994848f5e3efc91d6fb6946bda586bbde8034ab9b66bbbd60e066",
+  "corpusHash": "28e6c311343e2b1f9688c4d5d51384d4907a10fe9ad5421e362bdcba833bbdb2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22387,
+  "includedPathCount": 22391,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -22406,10 +22406,14 @@
     "specs/system-speckit/037-track-root-children/implementation-summary.md",
     "specs/system-speckit/037-track-root-children/plan.md",
     "specs/system-speckit/037-track-root-children/spec.md",
-    "specs/system-speckit/037-track-root-children/tasks.md"
+    "specs/system-speckit/037-track-root-children/tasks.md",
+    "specs/system-speckit/038-track-aware-archive/implementation-summary.md",
+    "specs/system-speckit/038-track-aware-archive/plan.md",
+    "specs/system-speckit/038-track-aware-archive/spec.md",
+    "specs/system-speckit/038-track-aware-archive/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "552667145c4b08a91f21a1d20cd5f08abb7e1b2516b4b4ea14e7777e70d18f0b",
+  "manifestHash": "28676291669570cb05d21bba62a1dce10775d886e0d95be8d3d3582594777504",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27060,6 +27064,10 @@
     },
     {
       "path": "specs/system-speckit/037-track-root-children/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/038-track-aware-archive/scratch",
       "reason": "excluded directory"
     },
     {
