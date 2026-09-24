@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The repository's instruction surfaces predate the current vendor prompting guides",
     "created_at": "2026-09-24T08:05:49Z",
-    "last_save_at": "2026-09-24T13:15:44.628Z",
+    "last_save_at": "2026-09-24T15:45:59.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fcd2e4ff6eb0d3dc03539378be5c800ceab138b6cd21dea2d83880e85f5a901",
+    "source_fingerprint": "sha256:e530c18ab071d6fc5ba4c99d4425677f02e1b5fdf9118344761504aef39bd16d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f33205c60ef4ae43e648ce57c9ce8805c0dadff0dca1606d8cb1e1905890cd89",
       "plan.md": "92791bf7a740aae34ef1c9f9ddfa403d0c0f7ce8ee3dadd6d94dcecfabde0f28",
-      "tasks.md": "b432fbbad4b7f4d9bd102319cb897e754d79ff7ad54958cdc889d2eb7667e8f0",
-      "implementation-summary.md": "f63dbc01358639b574d347635d4b91b6c6ce42461dbfcd00f9fb8d6ccc5e7dba"
+      "tasks.md": "321c5ad5b264e3cdfe949730c5bb0fc5d73763712e8e053a8b1453c6d5a3aa9e",
+      "implementation-summary.md": "ff2298788b08d7bd22319bc7e49f094223dc897a4263aca7ca8e01fd7821913b"
     },
     "last_active_at": null
   }

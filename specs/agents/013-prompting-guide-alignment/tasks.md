@@ -162,7 +162,7 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec, plan and tasks synchronized [EVIDENCE: spec.md §3 covers every edited file except `cli-devin/changelog/v1.4.3.0.md` and `.hermes/skills/sk-prompt/SKILL.md`, which follow mechanically from the version rule and the mirror generator; recorded in implementation-summary.md]
+- [x] CHK-040 [P1] Spec, plan and tasks synchronized [EVIDENCE: spec.md §3 covers every edited file except `cli-devin/changelog/v1.4.4.0.md` and `.hermes/skills/sk-prompt/SKILL.md`, which follow mechanically from the version rule and the mirror generator; recorded in implementation-summary.md]
 - [x] CHK-041 [P1] Every edited rule and instruction file passes the sk-doc validator [EVIDENCE: no new issue; the six governance files fail the README-type overview check identically at base]
 - [x] CHK-042 [P2] cli-devin README updated [EVIDENCE: cli-devin README lists GPT-6 Luna Max in its roster line]
 <!-- /ANCHOR:docs -->
