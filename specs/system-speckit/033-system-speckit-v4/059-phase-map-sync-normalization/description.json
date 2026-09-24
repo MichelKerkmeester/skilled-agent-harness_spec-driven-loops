@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-24T05:55:05.845Z",
+  "specId": "059",
+  "folderSlug": "phase-map-sync-normalization",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-09-26_06-55__made-the-phase-map-sync-tool-leave-map-rows-that.md"
+  ]
+}

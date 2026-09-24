@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7340,
-    "ok": 11313,
+    "ok": 11317,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22344,
+  "documentsScanned": 22348,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "bbc9cd176cef042ccc9578c47d0ac007a3aad34f59f5aaf843d0f84065f19b3f",
+  "manifestHash": "17932c74cb522ee030abad9a578853ad4161409cd7e78bd1a48c0d3782b5d5ae",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27538,
+      "ok": 27548,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -74516,6 +74516,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/scratch",
       "reason": "excluded directory"
     },
     {

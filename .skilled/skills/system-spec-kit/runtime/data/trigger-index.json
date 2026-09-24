@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bbc9cd176cef042ccc9578c47d0ac007a3aad34f59f5aaf843d0f84065f19b3f",
+  "manifestHash": "17932c74cb522ee030abad9a578853ad4161409cd7e78bd1a48c0d3782b5d5ae",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11367,6 +11367,10 @@
     "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/plan.md",
     "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/spec.md",
     "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -34325,6 +34329,18 @@
     "completion gate tasks": [
       10903
     ],
+    "completion pct report only": [
+      11359
+    ],
+    "completion pct report only evidence": [
+      11357
+    ],
+    "completion pct report only plan": [
+      11358
+    ],
+    "completion pct report only tasks": [
+      11360
+    ],
     "completion sentinel": [
       2
     ],
@@ -37091,10 +37107,10 @@
       10347
     ],
     "create sh canonical specs root": [
-      11359,
-      11360,
-      11361,
-      11362
+      11363,
+      11364,
+      11365,
+      11366
     ],
     "create sh canonical tasks": [
       10348
@@ -37133,10 +37149,10 @@
       1673
     ],
     "create sh writes to opencode specs": [
-      11359,
-      11360,
-      11361,
-      11362
+      11363,
+      11364,
+      11365,
+      11366
     ],
     "create skill": [
       934,
@@ -38910,10 +38926,10 @@
       9360
     ],
     "dead spec kit test files": [
-      11363,
-      11364,
-      11365,
-      11366
+      11367,
+      11368,
+      11369,
+      11370
     ],
     "dead tokenbudget parameter": [
       10184,
@@ -47047,10 +47063,10 @@
       3674
     ],
     "empty phase child skipped": [
-      11363,
-      11364,
-      11365,
-      11366
+      11367,
+      11368,
+      11369,
+      11370
     ],
     "empty recommendation reported as outage": [
       5591
@@ -57988,7 +58004,8 @@
       11341,
       11345,
       11349,
-      11353
+      11353,
+      11357
     ],
     "implementation summary attestation point": [
       10704
@@ -63354,10 +63371,10 @@
       2168
     ],
     "manual playbook runner retired": [
-      11363,
-      11364,
-      11365,
-      11366
+      11367,
+      11368,
+      11369,
+      11370
     ],
     "manual playbook scenario count fix": [
       7932
@@ -64786,7 +64803,7 @@
       10696
     ],
     "memory decommission history": [
-      11357
+      11361
     ],
     "memory decommission inventory": [
       10679
@@ -64810,7 +64827,7 @@
       10674
     ],
     "memory decommission timeline": [
-      11358
+      11362
     ],
     "memory delete causal cleanup": [
       8818
@@ -65432,10 +65449,10 @@
       6373
     ],
     "memory quality test never collected": [
-      11363,
-      11364,
-      11365,
-      11366
+      11367,
+      11368,
+      11369,
+      11370
     ],
     "memory rebuild complete": [
       6457
@@ -75607,6 +75624,9 @@
     "phase documentation map refresh": [
       5030
     ],
+    "phase documentation map rows": [
+      11359
+    ],
     "phase five advisor integration": [
       10483
     ],
@@ -75674,10 +75694,20 @@
       5183
     ],
     "phase map rows never filled": [
-      11363,
-      11364,
-      11365,
-      11366
+      11367,
+      11368,
+      11369,
+      11370
+    ],
+    "phase map sync normalization": [
+      11357,
+      11359
+    ],
+    "phase map sync plan": [
+      11358
+    ],
+    "phase map sync tasks": [
+      11360
     ],
     "phase name placeholder": [
       1672
@@ -75717,7 +75747,7 @@
       7648,
       8793,
       10935,
-      11357
+      11361
     ],
     "phase parent 049": [
       6132
@@ -84539,10 +84569,10 @@
       4599
     ],
     "retire memory era tests": [
-      11363,
-      11364,
-      11365,
-      11366
+      11367,
+      11368,
+      11369,
+      11370
     ],
     "retire memory learn": [
       10476
@@ -95590,10 +95620,10 @@
       1752
     ],
     "spec kit v4 chronology": [
-      11358
+      11362
     ],
     "spec kit v4 timeline": [
-      11357
+      11361
     ],
     "spec kit version migration": [
       7612,
@@ -95829,10 +95859,10 @@
       10501
     ],
     "spec packet lands in opencode specs": [
-      11359,
-      11360,
-      11361,
-      11362
+      11363,
+      11364,
+      11365,
+      11366
     ],
     "spec packet merge gate": [
       10562
@@ -97251,6 +97281,9 @@
     ],
     "stats tmp sweep done": [
       2470
+    ],
+    "status agreement check": [
+      11358
     ],
     "status and cleanup": [
       1003
@@ -98808,6 +98841,9 @@
     "sync md template": [
       1063
     ],
+    "sync phase map status": [
+      11359
+    ],
     "sync prompts hermes": [
       89
     ],
@@ -99241,10 +99277,10 @@
       10204
     ],
     "system speckit v4": [
-      11357
+      11361
     ],
     "system speckit v4 timeline": [
-      11358
+      11362
     ],
     "system to embedder mapping": [
       7089,
@@ -101095,7 +101131,7 @@
       10431
     ],
     "template reduction history": [
-      11357
+      11361
     ],
     "template reduction requirements": [
       10411
@@ -101372,10 +101408,10 @@
       8410
     ],
     "test phase validation cannot load": [
-      11363,
-      11364,
-      11365,
-      11366
+      11367,
+      11368,
+      11369,
+      11370
     ],
     "test plan checkboxes": [
       1089
@@ -102427,10 +102463,10 @@
       10400
     ],
     "track numbering restarts at 001": [
-      11359,
-      11360,
-      11361,
-      11362
+      11363,
+      11364,
+      11365,
+      11366
     ],
     "track prefix identity heal": [
       9750
@@ -104188,7 +104224,7 @@
       979
     ],
     "v4 packet order": [
-      11358
+      11362
     ],
     "v4 release notes corrections applied": [
       11052
@@ -107324,7 +107360,7 @@
       1472
     ],
     "which spec was worked on first": [
-      11358
+      11362
     ],
     "which system uses cocoindex or mk spec memory": [
       8318

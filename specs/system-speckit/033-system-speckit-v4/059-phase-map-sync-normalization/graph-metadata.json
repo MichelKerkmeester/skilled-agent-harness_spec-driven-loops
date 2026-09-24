@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization",
+  "spec_folder": "system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase map sync normalization",
+      "sync phase map status",
+      "phase documentation map rows",
+      "completion pct report only",
+      "phase map sync plan",
+      "status agreement check",
+      "completion pct report only plan",
+      "phase map sync tasks",
+      "completion pct report only tasks",
+      "implementation summary",
+      "completion pct report only evidence"
+    ],
+    "key_topics": [
+      "phase",
+      "map",
+      "sync",
+      "normalization",
+      "status",
+      "documentation",
+      "rows",
+      "completion",
+      "pct",
+      "report",
+      "only",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/sync-phase-map-status.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-phase-map-status.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      "runtime/cli/spec/sync-phase-map-status.ts",
+      "runtime/cli/tests/sync-phase-map-status.vitest.ts",
+      "runtime/cli/spec/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-phase-map-status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/sync-phase-map-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sync-phase-map-status.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-phase-map-status.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run on the v4 parent, `sync-phase-map-status.ts` proposed 38 map-row changes",
+    "created_at": "2026-09-24T05:27:03Z",
+    "last_save_at": "2026-09-24T05:55:05.845Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:566ee93f67767322ddbb83989fcdde3ba7d6c04056788ec6fd78991ef73da8f2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c84514f139af7533d42ebbb05426e9234c1a7223986913f35354f666d7d29689",
+      "plan.md": "52e424494a788714d61fcae0ca40a6d53728501bc46e70df2b252fe539e3a8b0",
+      "tasks.md": "7fbffddb9ee878597210ddebd5948496768c0f127567704ef568470019e6947d",
+      "implementation-summary.md": "4aee9094959434e0adacd585beb2f7cf4934ad2971417ccb603b882dbd8b35a2"
+    },
+    "last_active_at": null
+  }
+}

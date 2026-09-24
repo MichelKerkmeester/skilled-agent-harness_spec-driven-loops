@@ -70,7 +70,7 @@ runtime/cli/spec/
 +-- quality-audit.sh             # Batch quality audit helper
 +-- test-validation.sh           # Legacy wrapper for scripts/tests/test-validation.sh
 +-- is-phase-parent.ts           # Phase-parent detection and manifest health check
-+-- sync-phase-map-status.ts     # Sync a phase parent's map table and completion percentages
++-- sync-phase-map-status.ts     # Sync a phase parent's map table; report completion mismatches
 +-- sweep-track-roots.mjs        # Report track-root children_ids versus on-disk packets
 +-- repair-derived.cjs           # Repair packet facts derivable from disk; refuses authored facts
 +-- README-repair-derived.md     # Derived-vs-authored repair boundary reference
@@ -104,7 +104,7 @@ Disallowed direction:
 | `test-validation.sh` | Legacy wrapper forwarding to `runtime/cli/tests/test-validation.sh`. |
 | `archive.sh` | Moves completed or stale spec folders into the archive area. |
 | `is-phase-parent.ts` | Detects whether a folder is a phase parent and reports child-count manifest health. |
-| `sync-phase-map-status.ts` | Corrects a phase parent's map table rows and descendant completion percentages. |
+| `sync-phase-map-status.ts` | Corrects a phase parent's map table rows that disagree with their child's status, warns about a blank line that cuts the table short and about children with no row, and reports descendant `completion_pct` mismatches without writing them, since readers take completion from the implementation summary. |
 | `sweep-track-roots.mjs` | Sweeps every track root (spec-less directory under `specs/` carrying a `graph-metadata.json`) and reports its declared `children_ids` count against the on-disk numbered child directories, one line per track; exits non-zero when they differ. Per-packet validation never reaches a track root, the orchestrator exempts track directories from packet rules, so this sweep is the only check that sees their drift. Read-only: report-only counts, reconciling a drifted root is an operator-run regeneration. |
 | `repair-derived.cjs` | Repairs derivable packet facts (folder name, packet pointer, level, metadata fingerprint) and refuses authored ones; see `README-repair-derived.md`. |
 
