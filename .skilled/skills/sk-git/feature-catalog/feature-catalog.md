@@ -44,7 +44,7 @@ See [`worktree-naming/owner-first-worktree-naming.md`](worktree-naming/owner-fir
 
 #### Description
 
-A `pre-push` git hook runs two gates. The mass-deletion ceiling blocks a destructive range. The remote gate blocks any push to a branch outside the allowlist unless that push is approved, and it treats creating a branch and updating one as different decisions.
+A `pre-push` git hook runs five gates, and this entry covers the two that decide whether a push may leave at all. The other three check skill metadata, compiled routing and track-root lists, as the git-hooks README describes. The mass-deletion ceiling blocks a destructive range. The remote gate blocks any push to a branch outside the allowlist unless that push is approved, and it treats creating a branch and updating one as different decisions.
 
 #### Current Reality
 
