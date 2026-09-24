@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7ed26229bafe9579d25f3b938f2d8db0d0b202ec55291397eca302307b0fdb95",
+  "corpusHash": "70703a5f8c0987a126deb604d276d8d165b7367357432844cd379d933f414f41",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22337,
+  "includedPathCount": 22341,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -22351,6 +22351,10 @@
     "specs/system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists/plan.md",
     "specs/system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists/spec.md",
     "specs/system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -22359,7 +22363,7 @@
     "specs/system-speckit/034-create-canonical-specs-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "84265c8ddde20ee71b78336ad1d6d20f1b4eea61492db7b620611f512c2221a0",
+  "manifestHash": "26331b17c0d96252f2a37867f870084efa6778153643fe41f9f659c48c85744c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26962,6 +26966,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/scratch",
       "reason": "excluded directory"
     },
     {

@@ -75,20 +75,93 @@ render_doc_at_level() {
     bash "$INLINE_RENDERER" --level "$level" "$tmpl" 2>/dev/null
 }
 
-# A level bump renumbers headings, so a raw render diff also reports sections the
-# document already has under a different number. Injecting those would duplicate
-# them. Sections are matched on their text with the leading number stripped.
-filter_sections_absent_from() {
-    local fragment="$1" target="$2"
-    awk -v target="$target" '
-        function key(h) { sub(/^#+[[:space:]]*[0-9]+\.?[[:space:]]*/, "", h); return tolower(h) }
-        BEGIN {
-            while ((getline line < target) > 0)
-                if (line ~ /^#{2,}[[:space:]]/) seen[key(line)] = 1
+# Complete sections are the injection unit, so nested content and anchor pairs
+# stay together when the higher-level template adds material.
+filter_markdown_sections() {
+    local source="$1" mode="$2" criterion="$3"
+    awk -v mode="$mode" -v criterion="$criterion" '
+        function key(h) {
+            sub(/^#+[[:space:]]*/, "", h)
+            sub(/^[0-9]+[.]?[[:space:]]*/, "", h)
+            return tolower(h)
         }
-        /^#{2,}[[:space:]]/ { skip = (key($0) in seen) }
-        !skip { print }
-    ' "$fragment"
+        function keep_section() {
+            if (section_key == "") return 0
+            if (mode == "absent") return !(section_key in seen)
+            if (mode == "named") return section_key == wanted
+            return section_key != wanted
+        }
+        function flush( i) {
+            if (keep_section())
+                for (i = 1; i <= section_count; i++) print section[i]
+            for (i = 1; i <= section_count; i++) delete section[i]
+            section_count = 0
+            section_key = ""
+        }
+        BEGIN {
+            if (mode == "absent") {
+                while ((getline line < criterion) > 0)
+                    if (line ~ /^##[[:space:]]/) seen[key(line)] = 1
+                close(criterion)
+            } else {
+                wanted = key("## " criterion)
+            }
+        }
+        {
+            current = $0
+            if (current ~ /^##[[:space:]]/) {
+                if (section_count > 0 && section[section_count] ~ /^<!-- ANCHOR:[^>]+ -->$/) {
+                    delete section[section_count]
+                    section_count--
+                }
+                tail_index = section_count
+                while (tail_index > 0 && section[tail_index] ~ /^[[:space:]]*$/)
+                    tail_index--
+                if (tail_index > 0 && section[tail_index] == "---") {
+                    for (i = tail_index; i <= section_count; i++) delete section[i]
+                    section_count = tail_index - 1
+                }
+                flush()
+                section_key = key(current)
+                if (previous ~ /^<!-- ANCHOR:[^>]+ -->$/)
+                    section[++section_count] = previous
+                section[++section_count] = current
+            } else if (section_count > 0) {
+                section[++section_count] = current
+            }
+            previous = current
+        }
+        END { flush() }
+    ' "$source"
+}
+
+filter_sections_absent_from() {
+    filter_markdown_sections "$1" absent "$2"
+}
+
+# A document the upgrade creates comes straight from its template and still
+# carries the template's identity, which strict validation rejects. Stamp it
+# the way create.sh stamps the documents of a new packet.
+stamp_created_doc() {
+    local file="$1" level="$2" packet_name feature_name
+    packet_name="$(basename "$SPEC_FOLDER")"
+    feature_name="$(sed -n 's/^# Feature Specification: //p' "$SPEC_FOLDER/spec.md" 2>/dev/null | head -1)"
+    # A title still carrying an unfilled template suffix or slot is not a name;
+    # stamping it in would just reproduce the placeholder strict validation rejects.
+    feature_name="${feature_name%% \[*}"
+    [[ -n "$feature_name" && "$feature_name" != *'['* ]] || feature_name="$packet_name"
+    PACKET_NAME="$packet_name" FEATURE_NAME="$feature_name" DOC_LEVEL="$level" \
+    TODAY="$(date -u +%Y-%m-%d)" NOW_ISO="$(date -u +%Y-%m-%dT%H:%M:%SZ)" perl -0pi -e '
+        s{\[NAME\]}{$ENV{FEATURE_NAME}}g;
+        s/packet_pointer: "[^"]+"/packet_pointer: "scaffold\/$ENV{PACKET_NAME}"/g;
+        s/last_updated_at: "[^"]+"/last_updated_at: "$ENV{NOW_ISO}"/g;
+        s/session_id: "(?:template-session|\[SESSION-ID\])"/session_id: "scaffold-$ENV{PACKET_NAME}"/g;
+        s/\[###-feature-name\]/$ENV{PACKET_NAME}/g;
+        s/\[PACKET-ID\]/$ENV{PACKET_NAME}/g;
+        s/\| \*\*Level\*\* \| \[1\/2\/3\/3\+\] \|/| **Level** | $ENV{DOC_LEVEL} |/g;
+        s/\[YYYY-MM-DD\]/$ENV{TODAY}/g;
+        s/ \[template:[^\]]+\]//g;
+    ' "$file"
 }
 
 # Prints the path to a temp file holding the lines the target level adds.
@@ -102,7 +175,7 @@ derive_addendum_fragment() {
     if ! render_doc_at_level "$doc" "$to_level" > "$new_render" 2>/dev/null; then
         rm -f "$old_render" "$new_render" "$out"; return 1
     fi
-    diff "$old_render" "$new_render" | sed -n 's/^> //p' > "$out"
+    filter_sections_absent_from "$new_render" "$old_render" > "$out"
     rm -f "$old_render" "$new_render"
     if [[ -n "$target" && -f "$target" ]]; then
         local trimmed
@@ -115,20 +188,12 @@ derive_addendum_fragment() {
     printf '%s' "$out"
 }
 
-# Emits only the named section from a fragment; the complement emits the rest.
+# Selects complete sections by normalized heading text.
 fragment_section() {
-    awk -v want="$2" '
-        function key(h) { sub(/^#+[[:space:]]*[0-9]+\.?[[:space:]]*/, "", h); return tolower(h) }
-        /^#{2,}[[:space:]]/ { inb = (key($0) == tolower(want)) }
-        inb { print }
-    ' "$1"
+    filter_markdown_sections "$1" named "$2"
 }
 fragment_without_section() {
-    awk -v skipname="$2" '
-        function key(h) { sub(/^#+[[:space:]]*[0-9]+\.?[[:space:]]*/, "", h); return tolower(h) }
-        /^#{2,}[[:space:]]/ { inb = (key($0) == tolower(skipname)) }
-        !inb { print }
-    ' "$1"
+    filter_markdown_sections "$1" excluding "$2"
 }
 
 # Builds the prefix/suffix pair a spec upgrade injects at two different anchors.
@@ -656,7 +721,11 @@ upgrade_tasks() {
         return 0
     fi
 
-    printf '\n---\n\n' >> "$tasks_file"
+    if awk 'NF { last = $0 } END { exit(last == "---" ? 0 : 1) }' "$tasks_file"; then
+        printf '\n\n' >> "$tasks_file"
+    else
+        printf '\n---\n\n' >> "$tasks_file"
+    fi
     cat "$fragment_path" >> "$tasks_file"
     rm -f "$fragment_path"
     MODIFIED_FILES+=("tasks.md")
@@ -713,14 +782,9 @@ upgrade_plan() {
 
     verbose "Injecting $(basename "$fragment_path") into plan.md"
 
-    # Read the fragment and strip leading HTML comment lines (matching spec.md upgrade pattern)
+    # Preserve section anchors so each injected section remains bounded.
     local fragment_content
-    fragment_content=$(awk '
-        BEGIN { in_header = 1 }
-        in_header && /^<!--.*-->$/ { next }
-        in_header && /^[[:space:]]*$/ { next }
-        { in_header = 0; print }
-    ' "$fragment_path")
+    fragment_content="$(< "$fragment_path")"
 
     # Find insertion point: before any trailing comment block at end of file
     local tmp_file="${plan_file}.tmp"
@@ -772,6 +836,7 @@ create_new_files() {
             else
                 verbose "Creating implementation-summary.md from template"
                 cp "$is_src" "$SPEC_FOLDER/implementation-summary.md"
+                stamp_created_doc "$SPEC_FOLDER/implementation-summary.md" "$to_level"
                 CREATED_FILES+=("implementation-summary.md")
             fi
         else
@@ -799,6 +864,7 @@ create_new_files() {
                 ac_src="$(mktemp)"
                 if render_doc_at_level acceptance-criteria.md 2 > "$ac_src" 2>/dev/null && [[ -s "$ac_src" ]]; then
                     cp "$ac_src" "$ac_dest"
+                    stamp_created_doc "$ac_dest" 2
                     CREATED_FILES+=("acceptance-criteria.md")
                     verbose "Created acceptance-criteria.md from template"
                 else
@@ -873,14 +939,9 @@ upgrade_spec_l1_to_l2() {
 
     verbose "Injecting L2 addendum sections into spec.md"
 
-    # Read the fragment, strip leading HTML comment lines (SPECKIT_ADDENDUM + instruction comments)
+    # Preserve section anchors so each injected section remains bounded.
     local fragment_content
-    fragment_content=$(awk '
-        BEGIN { in_header = 1 }
-        in_header && /^<!--.*-->$/ { next }
-        in_header && /^[[:space:]]*$/ { next }
-        { in_header = 0; print }
-    ' "$fragment_path")
+    fragment_content="$(< "$fragment_path")"
 
     # Find OPEN QUESTIONS section: ## N. OPEN QUESTIONS (any N)
     local oq_line=""
@@ -1345,16 +1406,24 @@ update_markers() {
                     continue
                 fi
 
-                local total_lines
-                total_lines=$(wc -l < "$md_file" | tr -d ' ')
+                # Rendered templates open with YAML frontmatter, so a fixed line
+                # number lands inside it and breaks the YAML. The marker belongs
+                # under the H1 heading, where every scaffolded document keeps it.
+                local marker_after=""
+                marker_after=$(awk '
+                    NR == 1 && $0 == "---" { in_fm = 1; next }
+                    in_fm && $0 == "---" { in_fm = 0; fm_end = NR; next }
+                    in_fm { next }
+                    /^# / { print NR; found = 1; exit }
+                    END { if (!found && fm_end) print fm_end }
+                ' "$md_file")
 
-                if [[ "$total_lines" -ge 2 ]]; then
-                    # Insert at line 3
+                if [[ -n "$marker_after" ]]; then
                     local tmp_marker="${md_file}.tmp"
                     {
-                        head -n 2 "$md_file"
-                        printf '%s\n' "$new_marker"
-                        tail -n +3 "$md_file"
+                        head -n "$marker_after" "$md_file"
+                        printf '\n%s\n' "$new_marker"
+                        tail -n +"$((marker_after + 1))" "$md_file"
                     } > "$tmp_marker"
                     mv "$tmp_marker" "$md_file"
                 else

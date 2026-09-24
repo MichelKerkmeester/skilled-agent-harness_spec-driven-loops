@@ -1,5 +1,5 @@
 {
-  "manifestHash": "84265c8ddde20ee71b78336ad1d6d20f1b4eea61492db7b620611f512c2221a0",
+  "manifestHash": "26331b17c0d96252f2a37867f870084efa6778153643fe41f9f659c48c85744c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28282,6 +28282,9 @@
     "depth thinking rounds": [
       "depth thinking rounds"
     ],
+    "derive addendum fragment": [
+      "derive addendum fragment"
+    ],
     "derive counts from registry": [
       "derive counts from registry"
     ],
@@ -44290,6 +44293,9 @@
     ],
     "level two tasks verification region": [
       "level two tasks verification region"
+    ],
+    "level upgrade malformed docs": [
+      "level upgrade malformed docs"
     ],
     "levels research manifest": [
       "levels.research manifest"
@@ -67982,6 +67988,12 @@
     "section count rule removed": [
       "section count rule removed"
     ],
+    "section fragment derivation": [
+      "section fragment derivation"
+    ],
+    "section fragment tasks": [
+      "section fragment tasks"
+    ],
     "section grammar target state": [
       "section grammar target state"
     ],
@@ -80496,11 +80508,29 @@
     "upgrade level fragments": [
       "upgrade-level fragments"
     ],
+    "upgrade level plan": [
+      "upgrade level plan"
+    ],
     "upgrade level re assembles tasks": [
       "upgrade-level re-assembles tasks"
     ],
+    "upgrade level section fragments": [
+      "upgrade level section fragments"
+    ],
+    "upgrade level section key": [
+      "upgrade-level section key"
+    ],
+    "upgrade level stray lines": [
+      "upgrade-level stray lines"
+    ],
+    "upgrade level tasks": [
+      "upgrade level tasks"
+    ],
     "upgrade level tests": [
       "upgrade-level tests"
+    ],
+    "upgrade level validation evidence": [
+      "upgrade-level validation evidence"
     ],
     "upgrade level workflow": [
       "upgrade level workflow"
