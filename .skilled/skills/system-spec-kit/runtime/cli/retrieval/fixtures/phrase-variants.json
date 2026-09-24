@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8e594600ff97bcaf49eb9144dcdd30bb4426a4dca7224e1dcf1b3aaa4b1de7e8",
+  "manifestHash": "5f328e9658749f0c81aa8ce647d54af5b3bda5220a8d25c518d4be4043cf4153",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11796,6 +11796,9 @@
     "baseline and delta": [
       "baseline and delta"
     ],
+    "baseline capture nesting": [
+      "baseline capture nesting"
+    ],
     "baseline capture plan": [
       "baseline capture plan"
     ],
@@ -13876,11 +13879,29 @@
     "capture baseline before editing": [
       "capture baseline before editing"
     ],
+    "capture baseline nesting": [
+      "capture baseline nesting"
+    ],
+    "capture detection guard": [
+      "capture detection guard"
+    ],
+    "capture folders detection": [
+      "capture folders detection"
+    ],
+    "capture folders untracked": [
+      "capture folders untracked"
+    ],
     "capture interaction states": [
       "capture interaction states"
     ],
     "capture judgment discipline": [
       "capture judgment discipline"
+    ],
+    "capture never copies a capture": [
+      "capture never copies a capture"
+    ],
+    "capture never copies capture": [
+      "capture never copies capture"
     ],
     "capture normalize project render": [
       "capture normalize project render"
@@ -15737,6 +15758,9 @@
     "chunking strategy tuning research": [
       "chunking strategy tuning research"
     ],
+    "ci cleanup follow ups": [
+      "ci cleanup follow-ups"
+    ],
     "ci cleanup handover": [
       "ci cleanup handover"
     ],
@@ -16735,6 +16759,9 @@
     ],
     "cli jev parent hub": [
       "cli-jev parent hub"
+    ],
+    "cli jev pipefail": [
+      "cli-jev pipefail"
     ],
     "cli jev playbook": [
       "cli-jev playbook"
@@ -21088,6 +21115,9 @@
     ],
     "containment branch subsumed": [
       "containment branch subsumed"
+    ],
+    "containment capture snapshot": [
+      "containment capture snapshot"
     ],
     "containment catch 22 closed": [
       "containment catch-22 closed"
@@ -28671,6 +28701,12 @@
     "detected pdf extractor": [
       "detected PDF extractor"
     ],
+    "detection baseline capture skip": [
+      "detection baseline capture skip"
+    ],
+    "detection capture guard": [
+      "detection capture guard"
+    ],
     "detector fired nobody acted": [
       "detector fired nobody acted"
     ],
@@ -30736,6 +30772,9 @@
     ],
     "drift guard acceptance criteria": [
       "drift guard acceptance criteria"
+    ],
+    "drift guard errors": [
+      "drift guard errors"
     ],
     "drift guard fix tasks": [
       "drift guard fix tasks"
@@ -34516,6 +34555,9 @@
     ],
     "fanout synthesis tasks": [
       "fanout synthesis tasks"
+    ],
+    "fanout write containment": [
+      "fanout write containment"
     ],
     "fast": [
       "fast"
@@ -57521,6 +57563,9 @@
     "playbook table stale links": [
       "playbook table stale links"
     ],
+    "playbook test count": [
+      "playbook test count"
+    ],
     "playbook tool gap audit": [
       "playbook tool gap audit"
     ],
@@ -60524,6 +60569,12 @@
     ],
     "readme types": [
       "readme types"
+    ],
+    "readme verdict baseline parity": [
+      "readme verdict baseline parity"
+    ],
+    "readme verdict parity": [
+      "readme verdict parity"
     ],
     "readme voice": [
       "readme voice"
@@ -66363,6 +66414,9 @@
     ],
     "runtime vars stand in gap": [
       "runtime-vars stand-in gap"
+    ],
+    "runtime vitest tmpdir": [
+      "runtime vitest tmpdir"
     ],
     "runtime wiring feasibility": [
       "runtime wiring feasibility"
@@ -74020,6 +74074,12 @@
     "spec gate state leak": [
       "spec gate state leak"
     ],
+    "spec gate tmp exemption": [
+      "spec gate tmp exemption"
+    ],
+    "spec gate under tmp": [
+      "spec gate under tmp"
+    ],
     "spec gate warnings": [
       "spec gate warnings"
     ],
@@ -78740,6 +78800,12 @@
     "tmp sweep tasks": [
       "tmp sweep tasks"
     ],
+    "tmpdir ci workaround": [
+      "tmpdir ci workaround"
+    ],
+    "tmpdir workaround removal": [
+      "tmpdir workaround removal"
+    ],
     "tobackendkind canonical location": [
       "toBackendKind canonical location"
     ],
@@ -83123,6 +83189,9 @@
     ],
     "worktree relocation tasks": [
       "worktree relocation tasks"
+    ],
+    "worktree remove path limit": [
+      "worktree remove path limit"
     ],
     "worktree safety": [
       "worktree safety"
