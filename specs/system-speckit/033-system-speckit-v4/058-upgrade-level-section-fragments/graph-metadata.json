@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments",
+  "spec_folder": "system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "upgrade level section fragments",
+      "upgrade-level stray lines",
+      "derive addendum fragment",
+      "level upgrade malformed docs",
+      "upgrade level plan",
+      "section fragment derivation",
+      "upgrade-level section key",
+      "upgrade level tasks",
+      "section fragment tasks",
+      "implementation summary",
+      "upgrade-level validation evidence"
+    ],
+    "key_topics": [
+      "upgrade",
+      "level",
+      "section",
+      "fragments",
+      "upgrade-level",
+      "stray",
+      "lines",
+      "derive",
+      "addendum",
+      "fragment",
+      "malformed",
+      "docs"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-level-sections.vitest.ts",
+      "runtime/cli/tests/test-upgrade-level.sh",
+      "runtime/cli/spec/upgrade-level.sh",
+      "runtime/cli/tests/upgrade-level-sections.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level-sections.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-level-sections.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-upgrade-level.sh",
+        "kind": "script",
+        "path": "runtime/cli/tests/test-upgrade-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`upgrade-level.sh` works out what a level adds by rendering each document template at the old and the new level and keeping every line `diff` marks as new",
+    "created_at": "2026-09-24T04:52:37Z",
+    "last_save_at": "2026-09-24T05:26:00.819Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:732f2393377bb6153192c5275f252825c5612553cd77c1566e877ffdf570ad8e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0369a104a3e4b9564406f7154b2ff345f4cfc9a9fab93a6601b948712452742a",
+      "plan.md": "5456b169bf8094710aca933b2054528931af35a1f6435fc0d3b74222abb470fc",
+      "tasks.md": "a4138a50f2af8977bd576dad746b74b396bec52a0000b29567e64b018e6daa4e",
+      "implementation-summary.md": "dfce7f8b5646730e1b1679e7b4bb2942df8151953b439049244b20e802a6306a"
+    },
+    "last_active_at": null
+  }
+}

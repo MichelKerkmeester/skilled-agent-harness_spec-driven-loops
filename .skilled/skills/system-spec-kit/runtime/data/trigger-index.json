@@ -1,5 +1,5 @@
 {
-  "manifestHash": "84265c8ddde20ee71b78336ad1d6d20f1b4eea61492db7b620611f512c2221a0",
+  "manifestHash": "26331b17c0d96252f2a37867f870084efa6778153643fe41f9f659c48c85744c",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11364,6 +11364,10 @@
     "specs/system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists/plan.md",
     "specs/system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists/spec.md",
     "specs/system-speckit/033-system-speckit-v4/057-continuity-reader-vocabulary-and-flow-lists/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -37085,10 +37089,10 @@
       10348
     ],
     "create sh canonical specs root": [
-      11356,
-      11357,
-      11358,
-      11359
+      11360,
+      11361,
+      11362,
+      11363
     ],
     "create sh canonical tasks": [
       10349
@@ -37127,10 +37131,10 @@
       1673
     ],
     "create sh writes to opencode specs": [
-      11356,
-      11357,
-      11358,
-      11359
+      11360,
+      11361,
+      11362,
+      11363
     ],
     "create skill": [
       934,
@@ -42740,6 +42744,9 @@
     ],
     "depth thinking rounds": [
       1127
+    ],
+    "derive addendum fragment": [
+      11356
     ],
     "derive counts from registry": [
       4688,
@@ -57966,7 +57973,8 @@
       11327,
       11342,
       11346,
-      11350
+      11350,
+      11354
     ],
     "implementation summary attestation point": [
       10705
@@ -61395,6 +61403,9 @@
     "level two tasks verification region": [
       10463
     ],
+    "level upgrade malformed docs": [
+      11356
+    ],
     "levels research manifest": [
       10565
     ],
@@ -64755,7 +64766,7 @@
       10697
     ],
     "memory decommission history": [
-      11354
+      11358
     ],
     "memory decommission inventory": [
       10680
@@ -64779,7 +64790,7 @@
       10675
     ],
     "memory decommission timeline": [
-      11355
+      11359
     ],
     "memory delete causal cleanup": [
       8819
@@ -75674,7 +75685,7 @@
       7649,
       8794,
       10936,
-      11354
+      11358
     ],
     "phase parent 049": [
       6133
@@ -88687,6 +88698,12 @@
       10549,
       10552
     ],
+    "section fragment derivation": [
+      11355
+    ],
+    "section fragment tasks": [
+      11357
+    ],
     "section grammar target state": [
       569
     ],
@@ -95535,10 +95552,10 @@
       1752
     ],
     "spec kit v4 chronology": [
-      11355
+      11359
     ],
     "spec kit v4 timeline": [
-      11354
+      11358
     ],
     "spec kit version migration": [
       7613,
@@ -95774,10 +95791,10 @@
       10502
     ],
     "spec packet lands in opencode specs": [
-      11356,
-      11357,
-      11358,
-      11359
+      11360,
+      11361,
+      11362,
+      11363
     ],
     "spec packet merge gate": [
       10563
@@ -99189,10 +99206,10 @@
       10205
     ],
     "system speckit v4": [
-      11354
+      11358
     ],
     "system speckit v4 timeline": [
-      11355
+      11359
     ],
     "system to embedder mapping": [
       7090,
@@ -101043,7 +101060,7 @@
       10432
     ],
     "template reduction history": [
-      11354
+      11358
     ],
     "template reduction requirements": [
       10412
@@ -102369,10 +102386,10 @@
       10401
     ],
     "track numbering restarts at 001": [
-      11356,
-      11357,
-      11358,
-      11359
+      11360,
+      11361,
+      11362,
+      11363
     ],
     "track prefix identity heal": [
       9751
@@ -103728,11 +103745,30 @@
       10527,
       10528
     ],
+    "upgrade level plan": [
+      11355
+    ],
     "upgrade level re assembles tasks": [
       10462
     ],
+    "upgrade level section fragments": [
+      11354,
+      11356
+    ],
+    "upgrade level section key": [
+      11355
+    ],
+    "upgrade level stray lines": [
+      11356
+    ],
+    "upgrade level tasks": [
+      11357
+    ],
     "upgrade level tests": [
       1750
+    ],
+    "upgrade level validation evidence": [
+      11354
     ],
     "upgrade level workflow": [
       1729
@@ -104111,7 +104147,7 @@
       979
     ],
     "v4 packet order": [
-      11355
+      11359
     ],
     "v4 release notes corrections applied": [
       11053
@@ -107247,7 +107283,7 @@
       1472
     ],
     "which spec was worked on first": [
-      11355
+      11359
     ],
     "which system uses cocoindex or mk spec memory": [
       8319
