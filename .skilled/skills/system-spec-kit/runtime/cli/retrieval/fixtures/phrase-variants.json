@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d2cbb549257082ee4d05b8073b385ae3553e6a81ab648480d758504dc88bffea",
+  "manifestHash": "a1b09424a420a280963ea1af08c2bdc565034fa21196bf5dc3e44c907b7c9cfb",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -61680,6 +61680,9 @@
     "refresh skill relationships": [
       "refresh skill relationships"
     ],
+    "refresh track roots": [
+      "refresh-track-roots"
+    ],
     "refreshgraphmetadata reindexspecdocs runenrichmentbackfill": [
       "refreshgraphmetadata reindexspecdocs runenrichmentbackfill"
     ],
@@ -75314,6 +75317,9 @@
     "speckit skip prepush naming dead flag": [
       "SPECKIT_SKIP_PREPUSH_NAMING dead flag"
     ],
+    "speckit skip prepush track gate": [
+      "SPECKIT_SKIP_PREPUSH_TRACK_GATE"
+    ],
     "speckit soft delete tombstones default off": [
       "SPECKIT_SOFT_DELETE_TOMBSTONES default off"
     ],
@@ -77345,6 +77351,9 @@
     ],
     "sweep then gate": [
       "sweep then gate"
+    ],
+    "sweep track roots": [
+      "sweep-track-roots"
     ],
     "sweep verification checklist": [
       "sweep verification checklist"
@@ -79469,8 +79478,17 @@
     "track research strategy": [
       "track research strategy"
     ],
+    "track root children ids": [
+      "track root children_ids"
+    ],
+    "track root drift": [
+      "track root drift"
+    ],
     "track root pointer store only": [
       "track root pointer store only"
+    ],
+    "track root pre push gate": [
+      "track-root pre-push gate"
     ],
     "track root store only evidence": [
       "track root store only evidence"

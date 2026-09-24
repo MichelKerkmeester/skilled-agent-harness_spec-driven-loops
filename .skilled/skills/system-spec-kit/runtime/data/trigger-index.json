@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d2cbb549257082ee4d05b8073b385ae3553e6a81ab648480d758504dc88bffea",
+  "manifestHash": "a1b09424a420a280963ea1af08c2bdc565034fa21196bf5dc3e44c907b7c9cfb",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11409,7 +11409,12 @@
     "specs/system-speckit/036-root-numbering-without-track/implementation-summary.md",
     "specs/system-speckit/036-root-numbering-without-track/plan.md",
     "specs/system-speckit/036-root-numbering-without-track/spec.md",
-    "specs/system-speckit/036-root-numbering-without-track/tasks.md"
+    "specs/system-speckit/036-root-numbering-without-track/tasks.md",
+    "specs/system-speckit/037-track-root-children/acceptance-criteria.md",
+    "specs/system-speckit/037-track-root-children/implementation-summary.md",
+    "specs/system-speckit/037-track-root-children/plan.md",
+    "specs/system-speckit/037-track-root-children/spec.md",
+    "specs/system-speckit/037-track-root-children/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -19947,7 +19952,8 @@
       11289,
       11310,
       11315,
-      11326
+      11326,
+      11400
     ],
     "acceptance criteria closure gate": [
       10521,
@@ -81743,6 +81749,12 @@
     "refresh skill relationships": [
       1489
     ],
+    "refresh track roots": [
+      11401,
+      11402,
+      11403,
+      11404
+    ],
     "refreshgraphmetadata reindexspecdocs runenrichmentbackfill": [
       6384
     ],
@@ -96606,6 +96618,9 @@
     "speckit skip prepush naming dead flag": [
       2538
     ],
+    "speckit skip prepush track gate": [
+      11403
+    ],
     "speckit soft delete tombstones default off": [
       8880,
       8882
@@ -98992,6 +99007,9 @@
     ],
     "sweep then gate": [
       2551
+    ],
+    "sweep track roots": [
+      11403
     ],
     "sweep verification checklist": [
       10970
@@ -102709,8 +102727,25 @@
     "track research strategy": [
       1313
     ],
+    "track root children ids": [
+      11400,
+      11401,
+      11402,
+      11403,
+      11404
+    ],
+    "track root drift": [
+      11403
+    ],
     "track root pointer store only": [
       11364
+    ],
+    "track root pre push gate": [
+      11400,
+      11401,
+      11402,
+      11403,
+      11404
     ],
     "track root store only evidence": [
       11362

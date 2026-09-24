@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9ba8338f86a3051bc633725d6c0ccd7469820fbbf77237a71efa499cd3618c46",
+  "corpusHash": "7dd81f7bcc2c7a050b839f8c702f289026aacc2fc39cd46049a5bb3915fdbe23",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22381,
+  "includedPathCount": 22386,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -22400,10 +22400,15 @@
     "specs/system-speckit/036-root-numbering-without-track/implementation-summary.md",
     "specs/system-speckit/036-root-numbering-without-track/plan.md",
     "specs/system-speckit/036-root-numbering-without-track/spec.md",
-    "specs/system-speckit/036-root-numbering-without-track/tasks.md"
+    "specs/system-speckit/036-root-numbering-without-track/tasks.md",
+    "specs/system-speckit/037-track-root-children/acceptance-criteria.md",
+    "specs/system-speckit/037-track-root-children/implementation-summary.md",
+    "specs/system-speckit/037-track-root-children/plan.md",
+    "specs/system-speckit/037-track-root-children/spec.md",
+    "specs/system-speckit/037-track-root-children/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d2cbb549257082ee4d05b8073b385ae3553e6a81ab648480d758504dc88bffea",
+  "manifestHash": "a1b09424a420a280963ea1af08c2bdc565034fa21196bf5dc3e44c907b7c9cfb",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27050,6 +27055,10 @@
     },
     {
       "path": "specs/system-speckit/036-root-numbering-without-track/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/037-track-root-children/scratch",
       "reason": "excluded directory"
     },
     {
