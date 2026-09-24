@@ -111,4 +111,25 @@ describe('inline gate renderer', () => {
     expect(fs.readFileSync(path.join(outDir, 'first.md'), 'utf8')).toBe('A\nB\n');
     expect(fs.readFileSync(path.join(outDir, 'second.md'), 'utf8')).toBe('yes\n');
   });
+
+  it('reads a template path given before --level instead of waiting on stdin', () => {
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'inline-gate-renderer-'));
+    const template = path.join(tmp, 'first.md.tmpl');
+    fs.writeFileSync(template, 'A\n<!-- IF level:1 -->\nB\n<!-- /IF -->\n', 'utf8');
+
+    const stdout = execFileSync(
+      process.execPath,
+      [
+        '--import',
+        path.resolve(__dirname, '../../../node_modules/tsx/dist/loader.mjs'),
+        path.resolve(__dirname, '../templates/inline-gate-renderer.ts'),
+        template,
+        '--level',
+        '1',
+      ],
+      { input: '', encoding: 'utf8' },
+    );
+
+    expect(stdout).toBe('A\nB\n');
+  });
 });

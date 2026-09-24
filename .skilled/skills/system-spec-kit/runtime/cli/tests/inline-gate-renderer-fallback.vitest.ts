@@ -125,6 +125,14 @@ describe('inline gate renderer fallback', () => {
     expect(result.stdout).toBe(renderInlineGates(syntheticTemplate, '3'));
   });
 
+  it('reads a template path given before --level instead of waiting on stdin', () => {
+    const input = path.join(workRoot, 'first-arg.md');
+    fs.writeFileSync(input, 'A\n<!-- IF level:1 -->\nB\n<!-- /IF -->\n', 'utf8');
+    const result = runWrapper([input, '--level', '1'], '');
+    expect(result.status, result.stderr).toBe(0);
+    expect(result.stdout).toBe('A\nB\n');
+  });
+
   it('keeps the basename of an --out-dir input without a .tmpl suffix', () => {
     const input = path.join(workRoot, 'plain.md');
     const outDir = path.join(workRoot, 'plain-out');
