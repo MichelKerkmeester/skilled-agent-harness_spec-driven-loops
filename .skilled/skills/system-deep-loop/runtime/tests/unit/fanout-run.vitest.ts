@@ -1556,6 +1556,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       'glm-5-2', 'glm-5-2-1m', 'glm-5-2-max', 'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
       'glm-5-3-flash-high', 'glm-5-3-flash-max',
       'gpt-5-6-luna-max', 'gpt-5-6-luna-max-priority',
+      'gpt-6-luna-max', 'gpt-6-luna-max-priority',
       'swe', 'swe-1-7', 'swe-1-7-lightning', 'swe-1-7-medium',
       'swe-2-high', 'swe-2-max', 'swe-2-medium',
     ];

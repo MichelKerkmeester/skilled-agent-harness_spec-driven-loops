@@ -23,7 +23,7 @@ Comprehensive reference for all Devin CLI commands, flags, models, configuration
 
 ### Core Principle
 
-Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates six families in scope — DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max), Grok (4.5 and 4.6), and SWE-2 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 48-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-2`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
+Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates seven families in scope — DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max), GPT-6 (Luna Max), Grok (4.5 and 4.6), and SWE-2 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 48-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-2`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
 
 ### Purpose
 
@@ -109,7 +109,7 @@ Credentials:
 
 | Flag | Short | Values | Description |
 |------|-------|--------|-------------|
-| `--model` | | `<model-name>` | Model to use — `swe` (default alias → `swe-2`), plus the curated DeepSeek / GLM-5.2 / GPT-5.6 Luna Max / Grok (4.5 and 4.6) / SWE-2 families (see §5) |
+| `--model` | | `<model-name>` | Model to use — `swe` (default alias → `swe-2`), plus the curated DeepSeek / GLM-5.2 / GPT-5.6 Luna Max / GPT-6 Luna Max / Grok (4.5 and 4.6) / SWE-2 families (see §5) |
 | `--permission-mode` | | canonical: `normal`, `accept-edits`, `smart`, `dangerous`, `autonomous` — aliases: `auto`→`normal`, `yolo`/`bypass`→`dangerous` | Permission mode controlling tool auto-approval. **`devin --help` prints only 4 of these 8 accepted values** — it is not the authoritative enum. See the probe below. |
 | `--print` | `-p` | `[<prompt>]` | Non-interactive mode: print response and exit |
 | `--continue` | `-c` | (none) | Continue the most recent session in the current directory |

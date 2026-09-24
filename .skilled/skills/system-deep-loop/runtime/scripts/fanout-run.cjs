@@ -2422,6 +2422,10 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // the bare `swe` alias to that family, so the default was reaching SWE-2 before
 // these ids were pinnable. `swe-2-max` is dispatch-verified on 3000.10.21; the
 // other two are list-verified only. There is no bare `swe-2` id to pin.
+// The GPT-6 Luna max pair joined 2026-09-24 beside the GPT-5.6 pair, which stays
+// because Devin lists the two generations as separate families.
+// gpt-6-luna-max-priority is dispatch-verified on 3000.11.1; gpt-6-luna-max is
+// list-verified only.
 const DEVIN_ALLOWED_MODELS = new Set([
   'deepseek-v4-1-flash-high',
   'deepseek-v4-1-flash-max',
@@ -2437,6 +2441,8 @@ const DEVIN_ALLOWED_MODELS = new Set([
   'glm-5-3-flash-max',
   'gpt-5-6-luna-max',
   'gpt-5-6-luna-max-priority',
+  'gpt-6-luna-max',
+  'gpt-6-luna-max-priority',
   'swe',
   'swe-1-7',
   'swe-1-7-lightning',
