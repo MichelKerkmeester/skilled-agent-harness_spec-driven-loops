@@ -1240,10 +1240,10 @@ if [[ "$PHASE_MODE" = true ]]; then
 
         while IFS= read -r _line; do
             case "$_line" in
-                *"[YOUR_VALUE_HERE: PHASE_ROW]"*)
+                *"<!-- [PHASE_ROW]"*)
                     printf '%s\n' "$PHASE_ROWS"
                     ;;
-                *"[YOUR_VALUE_HERE: HANDOFF_ROW]"*)
+                *"<!-- [HANDOFF_ROW]"*)
                     if [[ -n "$HANDOFF_ROWS" ]]; then
                         printf '%s\n' "$HANDOFF_ROWS"
                     else
