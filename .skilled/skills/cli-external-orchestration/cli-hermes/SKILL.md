@@ -2,7 +2,7 @@
 name: cli-hermes
 description: "Hermes Agent CLI executor for quiet oneshot coding dispatch, LLM Gateway model routing, project skills and plugins, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.3.0
+version: 1.0.4.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -59,7 +59,7 @@ contract pin:
 Claims marked **source-read, unconfirmed** come from the installed Hermes source (v0.21.1) and
 await the pin.
 
-**Core principle**: use Hermes for what its surface offers, delegate execution to the shared
+**Core principle**: use Hermes for what its surface offers, delegate research and review lineages to the shared
 deep-loop runtime, validate the returned output, and keep the calling AI as conductor.
 
 ---
@@ -191,7 +191,7 @@ The `route_hermes_resources(task)` function body lives in [`shared-smart-router.
 
 ### Execution Ownership
 
-This packet owns provider-specific routing, the availability probe, and prompt construction. The shared deep-loop runtime owns process construction and execution: `cli-hermes` is an `ExecutorKind`, and `buildHermesLineageCommand` in `fanout-run.cjs` emits the dispatch shape below. Do not add a packet-local wrapper, spawn path, or command builder.
+This packet owns provider-specific routing, the availability probe, and prompt construction. For research and review lineages, the shared deep-loop runtime owns process construction and execution: `cli-hermes` is an `ExecutorKind`, and `buildHermesLineageCommand` in `fanout-run.cjs` emits the dispatch shape below. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch runs the same shape directly, in the child environment that ALWAYS rule 11 sets. Do not add a packet-local wrapper, spawn path, or command builder.
 
 **One provider is reachable from the fan-out: `llmgateway`** (DevPass, the operator's LLM Gateway plan), declared as a Hermes custom provider block of that exact name in `~/.hermes/config.yaml` with `key_env: LLMGATEWAY_API_KEY`. That block is an operator step; the repo cannot carry it. Setup and the credential contract are in [providers-and-models.md](./references/providers-and-models.md).
 
@@ -216,7 +216,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 1. Verify the binary with `command -v hermes` and the provider with `hermes config get providers.llmgateway.base_url`.
 2. Classify the request as write, read-only review, or generation; pick the toolset accordingly.
 3. Compose the prompt using [prompt-quality-card.md](./assets/prompt-quality-card.md), persona inlined.
-4. Pass the request to the shared deep-loop runtime.
+4. Pass a research or review lineage to the shared deep-loop runtime; run a single build or doc dispatch with the dispatch shape above.
 5. Capture stdout (the response) and stderr (`session_id:`, `Error:`) separately.
 6. Validate the output, changed files, and required tests before handback.
 
@@ -242,7 +242,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 ### ✅ ALWAYS
 
 1. Run `command -v hermes` before every dispatch, and `hermes config get providers.llmgateway.base_url` for a configured provider.
-2. Delegate execution to the shared deep-loop runtime.
+2. Delegate research and review lineages to the shared deep-loop runtime. It rejects every other loop type, so a single build or doc dispatch runs the dispatch shape in §3 directly.
 3. Use `chat -Q --oneshot` with `--query-file`; pass `--yolo` for writes and omit it for read-only work.
 4. Pass `--ignore-rules`, `--source tool`, and an explicit `-t` list without `delegation` and `memory`.
 5. Keep `--run-budget` under the caller's timeout and read the exit code, then stdout and stderr.
@@ -306,7 +306,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 - The dispatch carries `--yolo` exactly when it writes, `--ignore-rules` always, and an explicit toolset list.
 - Exit code, stdout and stderr are all read; `session_id:` is captured from stderr.
 - Any workspace changes pass the calling workflow's verification gates.
-- The shared deep-loop runtime owns process execution.
+- Research and review lineages run through the shared deep-loop runtime.
 
 ### Packet Quality
 

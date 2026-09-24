@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.10.0
+version: 1.5.11.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -35,7 +35,7 @@ hard_rules:
 
 Orchestrate Pi's terminal coding agent for headless coding, read-only tool-constrained reviews, JSON event-stream integrations, RPC clients, and Pi-native resource discovery. The pinned contract is the source for confirmed command behavior: [Pi contract pin](../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). Pi-native skills, prompt templates, and some package surfaces remain documented but unconfirmed unless a source says otherwise.
 
-**Core principle**: use Pi for the surfaces it exposes, delegate execution to the shared runtime, validate the returned output, and keep the calling AI as conductor.
+**Core principle**: use Pi for the surfaces it exposes, delegate research and review lineages to the shared runtime, validate the returned output, and keep the calling AI as conductor.
 
 ---
 
@@ -138,7 +138,7 @@ The `route_pi_resources(task)` function body lives in [`shared-smart-router.md`]
 
 ### Execution Ownership
 
-This packet owns provider-specific routing, the availability probe, and prompt construction. The shared deep-loop runtime owns process construction and execution. The runtime now supports the `cli-pi` executor kind — its fan-out command builder is implemented (print mode, provider-qualified `--model`, `--thinking` from `reasoningEffort`), so dispatch through the executor kind directly. Do not add a packet-local wrapper, spawn path, or command builder.
+This packet owns provider-specific routing, the availability probe, and prompt construction. For research and review lineages, the shared deep-loop runtime owns process construction and execution: the runtime supports the `cli-pi` executor kind, and its fan-out command builder is implemented (print mode, provider-qualified `--model`, `--thinking` from `reasoningEffort`), so a lineage dispatches through the executor kind directly. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5. Do not add a packet-local wrapper, spawn path, or command builder.
 
 **Five providers are reachable:** `openai-codex`, `opencode-go`, `cline-pass` (Cline Pass), `llmgateway` (**DevPass**, the operator's LLM Gateway plan, metered per token with a 3x credit bonus) and `minimax`. MiMo is reached through `llmgateway` only. Two of them — `cline-pass` and `llmgateway` — are not Pi builtins and exist only because `.pi/models.json` declares them; their setup, credentials and removal are in [.pi/custom-providers.md](../../../../.pi/custom-providers.md).
 
@@ -151,7 +151,7 @@ The pinned contract confirms that headless Pi uses print mode, that JSON mode em
 1. Verify the binary with command -v pi.
 2. Classify the request as print, JSON, RPC, read-only tool-constrained review, native-resource inspection, or generation.
 3. Compose the prompt using [prompt-quality-card.md](./assets/prompt-quality-card.md).
-4. Pass the request to the shared deep-loop runtime.
+4. Pass a research or review lineage to the shared deep-loop runtime; run a single build or doc dispatch with the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
 5. Capture stdout and stderr separately when the runtime allows it.
 6. Validate the output, changed files, and required tests before handback.
 
@@ -206,7 +206,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 ### ✅ ALWAYS
 
 1. Run command -v pi before every dispatch.
-2. Delegate execution to the shared deep-loop runtime.
+2. Delegate research and review lineages to the shared deep-loop runtime. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
 3. Choose print, JSON, or RPC deliberately. RPC is persistent and is not a print-mode alias.
 4. Capture and inspect output text for provider and extension failures.
 5. Use the prompt-quality card's two-tier precedence rule.
@@ -274,7 +274,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 - The selected mode matches the requested output contract.
 - Output is captured and checked for auth, extension, and package errors.
 - Any workspace changes pass the calling workflow's verification gates.
-- The shared deep-loop runtime owns process execution.
+- Research and review lineages run through the shared deep-loop runtime.
 
 ### Packet Quality
 

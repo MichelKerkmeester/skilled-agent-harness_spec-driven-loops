@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules",
-  "spec_folder": "system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules",
+  "packet_id": "system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules",
+  "spec_folder": "system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules",
   "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
@@ -11,30 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cli devin dispatch rules",
-      "cli cursor dispatch rules",
-      "cli devin cursor fanout rule scope",
-      "cli devin cursor dispatch rules plan",
-      "cli devin cursor fanout scope plan",
-      "cli devin cursor dispatch rules tasks",
-      "cli devin cursor fanout scope tasks",
+      "cli hermes dispatch rules",
+      "cli pi dispatch rules",
+      "cli hermes pi runtime delegation scope",
+      "cli hermes pi dispatch rules plan",
+      "cli hermes pi runtime delegation plan",
+      "cli hermes pi dispatch rules tasks",
+      "cli hermes pi runtime delegation tasks",
       "implementation summary",
-      "cli devin cursor dispatch rules",
-      "cli devin cursor fanout scope evidence"
+      "cli hermes pi dispatch rules",
+      "cli hermes pi runtime delegation evidence"
     ],
     "key_topics": [
       "cli",
-      "devin",
+      "hermes",
       "dispatch",
       "rules",
-      "cursor",
-      "fanout",
-      "rule",
+      "runtime",
+      "delegation",
       "scope",
       "plan",
       "tasks",
       "implementation",
-      "summary"
+      "summary",
+      "evidence"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -43,16 +43,16 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
-      ".skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.2.0.md",
-      ".hermes/skills/cli-devin/SKILL.md",
-      ".hermes/skills/cli-cursor/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.4.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.0.md",
+      ".hermes/skills/cli-hermes/SKILL.md",
+      ".hermes/skills/cli-pi/SKILL.md",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
       "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json",
       "specs/system-speckit/033-system-speckit-v4/spec.md",
-      "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/spec.md"
+      "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/spec.md"
     ],
     "entities": [
       {
@@ -82,19 +82,19 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md",
+        "path": ".skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "v1.4.3.0.md",
+        "name": "v1.0.4.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
+        "path": ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.4.0.md",
         "source": "derived"
       },
       {
-        "name": "v1.4.2.0.md",
+        "name": "v1.5.11.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.2.0.md",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.0.md",
         "source": "derived"
       },
       {
@@ -152,7 +152,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Three",
+        "name": "Overview Five",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -164,7 +164,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow None",
+        "name": "Dispatch Lifecycle",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -182,7 +182,7 @@
         "source": "derived"
       },
       {
-        "name": "Scope Execution Ownership",
+        "name": "The Dispatch Shape",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -194,15 +194,15 @@
         "source": "derived"
       },
       {
-        "name": "executor",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "ALWAYS rule 2 and the Execution Ownership section in cli-devin and cli-cursor told an orchestrator to delegate every orchestrated dispatch to `fanout-run.cjs`",
-    "created_at": "2026-09-24T07:31:15Z",
-    "last_save_at": "2026-09-24T09:20:29.591Z",
+    "causal_summary": "cli-hermes and cli-pi told an orchestrator, in five places each, to send every dispatch to the shared deep-loop runtime: the core principle, Execution Ownership, Dispatch Lifecycle step 4, ALWAYS rule 2 and a success criterion",
+    "created_at": "2026-09-24T09:15:36Z",
+    "last_save_at": "2026-09-24T09:20:28.166Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01ddf1cd1e51130807c0120eb0d11eae0f2296f0fc6d0ddafa084d39c0aeff2b",
+    "source_fingerprint": "sha256:d1b41cc473f446d8bee1affc352d80a935bcff72eef62708ee30288c06233e3d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8ef922e9f95f66d7c1650c6cbe6edea2b100a7dd5cd6fe5836a10bb49f3bc024",
-      "plan.md": "70821e10b34f17d97ff407e130bbc7a3cf3fc02f347ae73f70ee2f524074f376",
-      "tasks.md": "cbe740af2fb4db90e3f6f9ceb9634afbfdf3f9ed5ca16a6d273e9d26cd215596",
-      "implementation-summary.md": "ac8872fdcc3f174be0e5335a41db0c148ace399a3b7f421b6df56421a1a39056"
+      "spec.md": "2c5ff770d006e7c6f46871f5e80640139e764344e9cd90f3b8b31b0a39fdd605",
+      "plan.md": "3e0b31dbcc26affedbabeaeed954df9a253b6143e593ede8b03ede97cc0b63e2",
+      "tasks.md": "3f82335e9c2dffb0fc431e9440718015a19698d615101dc7e02959d74a6c62c2",
+      "implementation-summary.md": "87837372d8e73104a6b709e6d5bca0c6c0ae10012b2f180fdd2323b288075e33"
     },
     "last_active_at": null
   }

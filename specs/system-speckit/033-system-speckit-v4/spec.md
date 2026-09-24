@@ -171,6 +171,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 62 | 062-v4-parent-data-repairs/ | This map repaired: row 39 added, the blank line that hid rows 40 onward removed, row 018 marked complete, row 041 marked in progress and rows 56 to 62 added; the simplification-research goal trim recorded | complete |
 | 63 | 063-cli-codex-dispatch-rules/ | cli-codex's fan-out rule covers only research and review lineages and sends a one-shot dispatch to the child envelope, and a new gotcha records that a sandboxed child cannot run checks that start `tsx` | complete |
 | 64 | 064-cli-devin-cursor-dispatch-rules/ | cli-devin's and cli-cursor's fan-out rule covers only research and review lineages and sends a one-shot dispatch to the child envelope, as cli-codex's does | complete |
+| 65 | 065-cli-hermes-pi-dispatch-rules/ | cli-hermes's and cli-pi's rule that sends dispatches to the shared runtime covers only research and review lineages, and a one-shot dispatch runs the CLI directly with the child environment | complete |
 
 ### Phase Transition Rules
 

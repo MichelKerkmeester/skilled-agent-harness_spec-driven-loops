@@ -25,9 +25,9 @@ contextType: "implementation"
 | **Created** | 2026-09-24 |
 | **Branch** | `worktrees/064-save-writer-continuity-fields` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 64 of 64 |
+| **Phase** | 64 of 65 |
 | **Predecessor** | 063-cli-codex-dispatch-rules |
-| **Successor** | None |
+| **Successor** | 065-cli-hermes-pi-dispatch-rules |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "65aade823f85b1f272f22c3fb3df36e86101b8f1d73876eaaf9577e06b5558d2",
+  "manifestHash": "d2cbb549257082ee4d05b8073b385ae3553e6a81ab648480d758504dc88bffea",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16745,6 +16745,9 @@
     "cli hermes dispatch": [
       "cli-hermes dispatch"
     ],
+    "cli hermes dispatch rules": [
+      "cli hermes dispatch rules"
+    ],
     "cli hermes executor kind": [
       "cli-hermes executor kind"
     ],
@@ -16765,6 +16768,27 @@
     ],
     "cli hermes mode registry entry": [
       "cli-hermes mode registry entry"
+    ],
+    "cli hermes pi dispatch rules": [
+      "cli hermes pi dispatch rules"
+    ],
+    "cli hermes pi dispatch rules plan": [
+      "cli hermes pi dispatch rules plan"
+    ],
+    "cli hermes pi dispatch rules tasks": [
+      "cli hermes pi dispatch rules tasks"
+    ],
+    "cli hermes pi runtime delegation evidence": [
+      "cli hermes pi runtime delegation evidence"
+    ],
+    "cli hermes pi runtime delegation plan": [
+      "cli hermes pi runtime delegation plan"
+    ],
+    "cli hermes pi runtime delegation scope": [
+      "cli hermes pi runtime delegation scope"
+    ],
+    "cli hermes pi runtime delegation tasks": [
+      "cli hermes pi runtime delegation tasks"
     ],
     "cli hermes prompt card": [
       "cli-hermes prompt card"
@@ -17056,6 +17080,9 @@
     ],
     "cli pi devpass glm route": [
       "cli-pi devpass glm route"
+    ],
+    "cli pi dispatch rules": [
+      "cli pi dispatch rules"
     ],
     "cli pi fanout execution": [
       "cli-pi fanout execution"

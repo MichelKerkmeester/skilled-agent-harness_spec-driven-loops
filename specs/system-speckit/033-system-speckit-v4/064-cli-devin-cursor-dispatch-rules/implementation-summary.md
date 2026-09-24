@@ -10,16 +10,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules"
-    last_updated_at: "2026-09-24T07:36:35Z"
+    last_updated_at: "2026-09-24T09:20:29Z"
     last_updated_by: "generate-context"
-    recent_action: "Scoped the cli-devin and cli-cursor fan-out rule"
+    recent_action: "Pointed the phase at its successor 065"
     next_safe_action: "Hand the cli-hermes rule 2 wording to the operator"
     blockers: []
     key_files:
       - ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md"
       - ".skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md"
     session_dedup:
-      fingerprint: "sha256:6144e33c86f83bb9c63240fafbc33c0eea99088b7879d267a127ff3096a24a85"
+      fingerprint: "sha256:7ce066e365a10607fb788352909bfa5ada8407b1bdf5d016c5f1218146476db6"
       session_id: "scaffold-064-cli-devin-cursor-dispatch-rules"
       parent_session_id: null
     completion_pct: 100
