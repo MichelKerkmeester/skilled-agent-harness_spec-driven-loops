@@ -124,7 +124,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 15 | 015-apply-path-and-candidate-filter-fixes/ | was `047-review-remediation`; first commit 2026-08-31, last 2026-09-01 | complete |
 | 16 | 016-sequential-thinking-residue-removal/ | was `048-decommissioned-server-residue`; first commit 2026-08-31, last 2026-09-02 | complete |
 | 17 | 017-memory-database-decommission/ | was `049-memory-decommission`; first commit 2026-09-02, last 2026-09-05 | complete |
-| 18 | 018-single-segment-packet-pointer/ | was `050-single-segment-packet-pointer`; first commit 2026-09-02, last 2026-09-07 | draft |
+| 18 | 018-single-segment-packet-pointer/ | was `050-single-segment-packet-pointer`; first commit 2026-09-02, last 2026-09-07 | complete |
 | 19 | 019-memory-decommission-branch-landing/ | was `052-memory-decommission-landing`; first commit 2026-09-04, last 2026-09-06 | complete |
 | 20 | 020-runtime-package-rename/ | was `053-spec-kit-runtime-rename`; first commit 2026-09-04, last 2026-09-05 | complete |
 | 21 | 021-decommission-debt-and-cli-nesting/ | was `054-decommission-debt-fixes`; first commit 2026-09-05, last 2026-09-05 | complete |
@@ -145,9 +145,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 36 | 036-spec-doc-healer/ | was `034-spec-doc-healer`; restored the scaffold values 323 documents lost | complete |
 | 37 | 037-derived-artifact-registry/ | was `035-derived-artifact-registry`; one registry for every derived artifact, planned in three phases | draft |
 | 38 | 038-goal-unification/ | the packet goal.md made the single goal every runtime reads, 12 children | complete |
-
+| 39 | 039-entry-point-symlink-resolution/ | A script reached through a symlink stops skipping its work and exiting 0: the shared entry helper compares canonical paths, and the modules that hand-roll the same comparison move onto it | in progress |
 | 40 | 040-gate-3-option-merge/ | Merge Gate 3 options C and D into one related-packet option and relabel Skip across every surface | complete |
-| 41 | 041-skilled-source-root-migration/ | Root the shared skill, command and agent library at .skilled instead of .opencode, keeping the .opencode aliases as tracked per-entry symlinks | complete |
+| 41 | 041-skilled-source-root-migration/ | Root the shared skill, command and agent library at .skilled instead of .opencode, keeping the .opencode aliases as tracked per-entry symlinks | in progress |
 | 42 | 042-v4-doc-freshness/ | Ten iterations of cited evidence on whether the v4 changelog and the root README still match the tree, then the confirmed corrections | complete |
 | 43 | 043-v4-root-readme/ | Root README writing, readability, structural consistency, and bloat removal | complete |
 | 44 | 044-v4-changelog-late-cycle-entries/ | The After This Draft section records the cli-jev hub promotion and the cli-orca standalone extraction, with the corrected commit total and mode count | complete |
@@ -162,6 +162,14 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 53 | 053-legacy-template-default-detection/ | Template default text already left in older packets is reported as a warning by exact match, without changing any exit code. A repository baseline records how much remains, and a read-only `gpt-6-luna` sample measures whether a cheap backfill is viable | planned |
 | 54 | 054-ci-cleanup-follow-ups/ | The spec gate stops exempting a repository that itself lives under /tmp, so the CI temp-dir workaround goes, two playbooks stop describing the old rule, and the six recorded cli-jev probe scripts run under pipefail, which clears the drift guard's last errors | complete |
 | 55 | 055-advisory-false-alarms/ | Two advisories stop raising false alarms: the sk-git pathspec checks stay silent on a path behind a shell expansion and the completion-evidence sentinel trims a cited `path:line` document back to its packet folder | complete |
+| 56 | 056-corpus-manifest-build-state/ | The trigger-index walker's skip list depends only on the tracked tree, so regenerating the index gives the same skipped paths in a fresh checkout and in an installed, built one | complete |
+| 57 | 057-continuity-reader-vocabulary-and-flow-lists/ | The continuity reader accepts the hand-written blocks it rejected: flow-style YAML lists read as lists, and `next_safe_action` accepts the first words those blocks open with | complete |
+| 58 | 058-upgrade-level-section-fragments/ | A level upgrade adds whole sections instead of every changed line, puts a new document's level marker under its H1 and stamps its identity, so an upgraded packet passes strict validation | complete |
+| 59 | 059-phase-map-sync-normalization/ | The phase-map sync tool leaves rows that already agree, writes a status rather than a note, warns about a blank line that hides rows and about children with no row, and reports `completion_pct` mismatches instead of writing them | complete |
+| 60 | 060-save-resume-pointer-truth/ | A save keeps a track root's pointer in the telemetry store instead of its shared `graph-metadata.json`, and `--help` and seven save and resume docs say what each planner mode writes and when resume follows a pointer | complete |
+| 61 | 061-worktree-build-provisioning/ | Worktree provisioning builds the outputs two runtime suites import and targets the worktree it runs in, and an unprovisioned checkout fails those suites with the command that fixes it | complete |
+| 62 | 062-v4-parent-data-repairs/ | This map repaired: row 39 added, the blank line that hid rows 40 onward removed, row 018 marked complete, row 041 marked in progress and rows 56 to 62 added; the simplification-research goal trim recorded | complete |
+
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

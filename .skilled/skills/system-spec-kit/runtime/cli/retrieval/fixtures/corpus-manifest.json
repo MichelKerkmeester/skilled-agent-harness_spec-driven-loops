@@ -1,5 +1,5 @@
 {
-  "corpusHash": "74d9097e0c2a32b43ffa20712aaafa1d2131d5f3f91792361ba0b93502d0d77a",
+  "corpusHash": "91a7fbb1a506b4bc1637cebf114bcbe865dd022f487dfda8ed455069fbf45f4f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22356,
+  "includedPathCount": 22360,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -22366,6 +22366,10 @@
     "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/plan.md",
     "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/spec.md",
     "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -22378,7 +22382,7 @@
     "specs/system-speckit/035-retire-memory-era-tests/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "947f46afddd95370e3dee09979839204a437313080e45874368913c7fb882588",
+  "manifestHash": "0735bda34b589dbe787c5d0d97109bd88e032589f74cabbd71b98a548920364e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26997,6 +27001,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/scratch",
       "reason": "excluded directory"
     },
     {

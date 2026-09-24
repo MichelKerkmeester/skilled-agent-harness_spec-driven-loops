@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7340,
-    "ok": 11325,
+    "ok": 11329,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22356,
+  "documentsScanned": 22360,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "947f46afddd95370e3dee09979839204a437313080e45874368913c7fb882588",
+  "manifestHash": "0735bda34b589dbe787c5d0d97109bd88e032589f74cabbd71b98a548920364e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27567,
+      "ok": 27576,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -74528,6 +74528,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-24T06:53:01.916Z",
+  "specId": "062",
+  "folderSlug": "v4-parent-data-repairs",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "24-09-26_07-49__repaired-the-v4-parent-s-phase-documentation-map.md",
+    "24-09-26_07-53__repaired-the-v4-parent-s-phase-documentation-map.md"
+  ]
+}
