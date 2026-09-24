@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bbc9cd176cef042ccc9578c47d0ac007a3aad34f59f5aaf843d0f84065f19b3f",
+  "manifestHash": "17932c74cb522ee030abad9a578853ad4161409cd7e78bd1a48c0d3782b5d5ae",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20515,6 +20515,18 @@
     ],
     "completion gate tasks": [
       "completion gate tasks"
+    ],
+    "completion pct report only": [
+      "completion pct report only"
+    ],
+    "completion pct report only evidence": [
+      "completion pct report only evidence"
+    ],
+    "completion pct report only plan": [
+      "completion pct report only plan"
+    ],
+    "completion pct report only tasks": [
+      "completion pct report only tasks"
     ],
     "completion sentinel": [
       "completion sentinel"
@@ -56217,6 +56229,9 @@
     "phase documentation map refresh": [
       "phase documentation map refresh"
     ],
+    "phase documentation map rows": [
+      "phase documentation map rows"
+    ],
     "phase five advisor integration": [
       "phase five advisor integration"
     ],
@@ -56285,6 +56300,15 @@
     ],
     "phase map rows never filled": [
       "phase map rows never filled"
+    ],
+    "phase map sync normalization": [
+      "phase map sync normalization"
+    ],
+    "phase map sync plan": [
+      "phase map sync plan"
+    ],
+    "phase map sync tasks": [
+      "phase map sync tasks"
     ],
     "phase name placeholder": [
       "phase name placeholder"
@@ -75961,6 +75985,9 @@
     "stats tmp sweep done": [
       "stats tmp sweep done"
     ],
+    "status agreement check": [
+      "status agreement check"
+    ],
     "status and cleanup": [
       "status and cleanup"
     ],
@@ -77210,6 +77237,9 @@
     ],
     "sync md template": [
       "sync md template"
+    ],
+    "sync phase map status": [
+      "sync phase map status"
     ],
     "sync prompts hermes": [
       "sync-prompts-hermes"

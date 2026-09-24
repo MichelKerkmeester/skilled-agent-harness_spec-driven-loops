@@ -1,5 +1,5 @@
 {
-  "corpusHash": "cfb8d5c777f90372414a2fea1fb0a04589c746f2462a4691d98220789929d7d7",
+  "corpusHash": "76f672b48f712b648b39f3ad4bd78c866cfe17808e097cc415ae0c2fad6020ef",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22344,
+  "includedPathCount": 22348,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -22354,6 +22354,10 @@
     "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/plan.md",
     "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/spec.md",
     "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -22366,7 +22370,7 @@
     "specs/system-speckit/035-retire-memory-era-tests/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "bbc9cd176cef042ccc9578c47d0ac007a3aad34f59f5aaf843d0f84065f19b3f",
+  "manifestHash": "17932c74cb522ee030abad9a578853ad4161409cd7e78bd1a48c0d3782b5d5ae",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26973,6 +26977,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/058-upgrade-level-section-fragments/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization/scratch",
       "reason": "excluded directory"
     },
     {

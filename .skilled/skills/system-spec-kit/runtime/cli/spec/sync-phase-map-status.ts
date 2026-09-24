@@ -27,7 +27,7 @@ export interface PhaseMapChange {
   readonly source: StatusSource;
 }
 
-/** One completion-percentage field correction on a phase-parent document. */
+/** One reported completion-percentage mismatch in a descendant spec file. */
 export interface CompletionPctChange {
   readonly filePath: string;
   readonly from: number;
@@ -35,16 +35,16 @@ export interface CompletionPctChange {
   readonly reason: string;
 }
 
-/** Full result of a sync run: counts, every change made (or that would be made), and warnings. */
+/** Full result of a sync run: row changes, completion mismatches, and warnings. */
 export interface SyncSummary {
   readonly dryRun: boolean;
   readonly phaseParentPath: string;
   readonly directChildren: number;
   readonly descendantSpecFiles: number;
   readonly phaseMapRowsCorrected: number;
-  readonly completionPctFieldsCorrected: number;
+  readonly completionPctMismatchesFound: number;
   readonly phaseMapChanges: PhaseMapChange[];
-  readonly completionPctChanges: CompletionPctChange[];
+  readonly completionPctMismatches: CompletionPctChange[];
   readonly warnings: string[];
 }
 
@@ -91,6 +91,16 @@ function normalizeStatus(value: string): string {
   return stripMarkdown(value).toLowerCase();
 }
 
+function leadingStatus(value: string): string {
+  return (value.split(/[(;:,.]| - | – | — /u, 1)[0] ?? '').trim();
+}
+
+function statusesAgree(mapStatus: string, childStatus: string): boolean {
+  const leadingMapStatus = leadingStatus(mapStatus);
+  return normalizeStatus(leadingMapStatus) === normalizeStatus(childStatus)
+    || (isCompleteStatus(leadingMapStatus) && isCompleteStatus(childStatus));
+}
+
 function isAmbiguousStatus(status: string | null): boolean {
   if (status === null) {
     return true;
@@ -116,7 +126,8 @@ function parseMetadataRow(content: string, fieldName: string): string | null {
 }
 
 function parseSpecStatus(specContent: string): string | null {
-  return parseMetadataRow(specContent, 'Status');
+  const status = parseMetadataRow(specContent, 'Status');
+  return status === null ? null : leadingStatus(status);
 }
 
 function implementationSummaryClaimsCompletion(folderPath: string): boolean {
@@ -233,10 +244,16 @@ function rewritePhaseMap(
   }
 
   const childrenByFolder = new Map(childStatuses.map((child) => [child.childFolder, child]));
+  const matchedChildFolders = new Set<string>();
   const changes: PhaseMapChange[] = [];
   for (let index = headerLineIndex + 2; index < split.lines.length; index += 1) {
     const line = split.lines[index];
     if (!line.trim().startsWith('|')) {
+      if (line.trim() === '' && split.lines[index + 1]?.trim().startsWith('|')) {
+        warnings.push(
+          `blank line at ${parentSpecPath}:${index + 1} ends the Phase Documentation Map table; rows after it are not read`,
+        );
+      }
       break;
     }
     const cells = splitTableCells(line);
@@ -245,10 +262,11 @@ function rewritePhaseMap(
     if (!child) {
       continue;
     }
+    matchedChildFolders.add(child.childFolder);
 
     const statusCell = cells[statusColumn] ?? '';
     const currentStatus = stripMarkdown(statusCell);
-    if (currentStatus === child.status) {
+    if (statusesAgree(currentStatus, child.status)) {
       continue;
     }
 
@@ -263,6 +281,12 @@ function rewritePhaseMap(
       to: child.status,
       source: child.source,
     });
+  }
+
+  for (const child of childStatuses) {
+    if (!matchedChildFolders.has(child.childFolder)) {
+      warnings.push(`no Phase Documentation Map row for ${child.childFolder}: ${parentSpecPath}`);
+    }
   }
 
   return { content: joinContent(split), changes };
@@ -334,20 +358,15 @@ export function runSyncPhaseMapStatus(options: SyncOptions): SyncSummary {
   writeIfChanged(parentSpecPath, parentSpec, phaseMapResult.content, options.dryRun);
 
   const descendantSpecFiles = collectDescendantSpecFiles(phaseParentPath);
-  const completionPctChanges: CompletionPctChange[] = [];
+  const completionPctMismatches: CompletionPctChange[] = [];
+  // Readers take completion from implementation summaries, so rewriting spec.md
+  // would only change fingerprints.
   for (const specPath of descendantSpecFiles) {
     const change = syncCompletionPct(specPath);
     if (change === null) {
       continue;
     }
-    completionPctChanges.push(change);
-    if (!options.dryRun) {
-      const currentContent = fs.readFileSync(specPath, 'utf8');
-      const updatedContent = replaceFrontmatterCompletionPct(currentContent);
-      if (updatedContent !== null) {
-        fs.writeFileSync(specPath, updatedContent, 'utf8');
-      }
-    }
+    completionPctMismatches.push(change);
   }
 
   return {
@@ -356,9 +375,9 @@ export function runSyncPhaseMapStatus(options: SyncOptions): SyncSummary {
     directChildren: childFolders.length,
     descendantSpecFiles: descendantSpecFiles.length,
     phaseMapRowsCorrected: phaseMapResult.changes.length,
-    completionPctFieldsCorrected: completionPctChanges.length,
+    completionPctMismatchesFound: completionPctMismatches.length,
     phaseMapChanges: phaseMapResult.changes,
-    completionPctChanges,
+    completionPctMismatches,
     warnings,
   };
 }
@@ -412,7 +431,7 @@ function formatSummary(summary: SyncSummary): string {
     `directChildren: ${summary.directChildren}`,
     `descendantSpecFiles: ${summary.descendantSpecFiles}`,
     `phaseMapRowsCorrected: ${summary.phaseMapRowsCorrected}`,
-    `completionPctFieldsCorrected: ${summary.completionPctFieldsCorrected}`,
+    `completionPctMismatchesFound: ${summary.completionPctMismatchesFound}`,
   ];
 
   if (summary.phaseMapChanges.length > 0) {
@@ -421,9 +440,9 @@ function formatSummary(summary: SyncSummary): string {
       lines.push(`- ${path.relative(process.cwd(), change.filePath)} :: ${change.childFolder}: ${change.from} -> ${change.to} (${change.source})`);
     }
   }
-  if (summary.completionPctChanges.length > 0) {
-    lines.push('completionPctChanges:');
-    for (const change of summary.completionPctChanges) {
+  if (summary.completionPctMismatches.length > 0) {
+    lines.push('completionPctMismatches (reported, not written):');
+    for (const change of summary.completionPctMismatches) {
       lines.push(`- ${path.relative(process.cwd(), change.filePath)}: ${change.from} -> ${change.to} (${change.reason})`);
     }
   }
