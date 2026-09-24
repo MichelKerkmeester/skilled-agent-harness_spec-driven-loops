@@ -1,8 +1,8 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7343,
-    "ok": 11337,
+    "missing-frontmatter": 7342,
+    "ok": 11338,
     "valid-empty-list": 3637
   },
   "documentsScanned": 22371,
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "02476d437305e9edbea33206eb648c426e3e1721e2a559b4ae4e970a9a69b5f2",
+  "manifestHash": "71fae252c51a6be149e3ea509dc2af737221b434ef46231d36dd82c82aab35be",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27596,
+      "ok": 27607,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -43917,12 +43917,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/synthesis.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
