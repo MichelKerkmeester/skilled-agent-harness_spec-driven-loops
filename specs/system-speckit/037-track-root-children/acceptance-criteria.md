@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-09-24T12:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded evidence for all eight criteria"
-    next_safe_action: "Push the tooling and the refreshed track roots"
+    next_safe_action: "Push the skill doc integration"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs"
@@ -90,5 +90,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All eight criteria are met. The drift was fixed once, and the writer, the `create.sh` hook-up and the push gate keep it fixed. Left out on purpose: the stale `last_active_child_id` fields, and `anobel.com`'s `description.json`, which waits on the operator.
+All eight criteria are met. The drift was fixed once, and the writer, the `create.sh` hook-up and the push gate keep it fixed. Left out on purpose: the stale `last_active_child_id` fields, and making `archive.sh` aware of tracks.
 <!-- /ANCHOR:closure -->

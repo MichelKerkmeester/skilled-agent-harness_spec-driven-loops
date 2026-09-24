@@ -41,6 +41,8 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "references/workflows/rename-pattern.md",
+      ".hermes/skills/system-spec-kit/SKILL.md",
       "runtime/cli/lib/README.md",
       "lib/track-roots.mjs",
       "spec/sweep-track-roots.mjs",
@@ -53,8 +55,7 @@
       "runtime/cli/spec/sweep-track-roots.mjs",
       "runtime/cli/spec/refresh-track-roots.mjs",
       "runtime/cli/spec/create.sh",
-      "runtime/cli/tests/create-track-refresh.vitest.ts",
-      "runtime/cli/spec/README.md"
+      "runtime/cli/tests/create-track-refresh.vitest.ts"
     ],
     "entities": [
       {
@@ -85,6 +86,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename-pattern.md",
+        "kind": "doc",
+        "path": "references/workflows/rename-pattern.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -188,23 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A track root is a folder directly under `specs/`, such as `specs/sk-doc/`, that holds numbered packets and lists them in the `childrenids` of its `graph-metadata.json`",
     "created_at": "2026-09-24T09:53:58Z",
-    "last_save_at": "2026-09-24T11:12:48.639Z",
+    "last_save_at": "2026-09-24T12:35:55.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90119df1de8f8c90dcbd07cb2002e0a1909a00ea32ff09af288a529572bab66e",
+    "source_fingerprint": "sha256:4a0b371d83ee42a2e6db282be59d96b56189b303572be2e65c30938427ae45ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89d8bb2a7f038d10becff9707fecc3c57553b97135903f615db537e1d988e47d",
+      "spec.md": "f32f5448cce4caf111d40ad3255ea64bf32db31868200a624352cabb134e1513",
       "plan.md": "956700c79a9fcba4a71e73a519467f82588fb984e1bac200df89ca3d87cb1ae6",
-      "tasks.md": "6439ea5d65b29b919d8330dd1f64496e6b8bfbb933f7a0a412eb142a9dbd8a92",
-      "implementation-summary.md": "55caa1748a32f6d4ee498b01702a3fd1ad93d1e5639ea59271d84bf0c881f581"
+      "tasks.md": "4a6715b4c5679f214f48ebf63284bdeb19aff6223a99c90fdae19b847c7b0bc6",
+      "implementation-summary.md": "e58009a614537d7d286bd0f87a65b1f896c275222fcc5d02c1d84a55effb7540"
     },
     "last_active_at": null
   }

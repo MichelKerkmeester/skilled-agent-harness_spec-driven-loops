@@ -58,7 +58,7 @@ Every track root lists exactly the packets it holds, a new packet is listed the 
 
 ### Out of Scope
 - A stale `last_active_child_id` in some tracks. It names a recent packet, not the list of packets, and nothing here reads it
-- `anobel.com`'s `description.json`, which describes a different track. It waits on the operator's answer
+- Correcting `anobel.com`'s `description.json`, which described a different track. The operator chose to rewrite it, and it is untracked like the rest of that folder
 - Gating the linked tracks' own repositories. Neither tracks its spec folder in git, so there is no commit to check
 - Packet-level `children_ids`, which `backfill-graph-metadata.ts` already derives
 
@@ -76,6 +76,9 @@ Every track root lists exactly the packets it holds, a new packet is listed the 
 | `scripts/git-hooks/tests/pre-push.test.sh` | Modify | Nine cases for the gate |
 | `skills/system-spec-kit/runtime/cli/spec/README.md`, `runtime/cli/lib/README.md`, `scripts/git-hooks/README.md` | Modify | Describe the writer, the set comparison and the gate |
 | `.env.example` (repository root) | Modify | List `SPECKIT_SKIP_PREPUSH_TRACK_GATE` |
+| `skills/system-spec-kit/SKILL.md`, `README.md`, `references/workflows/rename-pattern.md` | Modify | Name the writer and the gate where the skill lists its scripts, commands, folder layout and rename steps |
+| `skills/system-spec-kit/feature-catalog/` | Modify | A catalogue entry and its index section |
+| `.hermes/skills/system-spec-kit/SKILL.md` (repository root) | Modify | Regenerated copy of `SKILL.md` |
 | `specs/<track>/graph-metadata.json`, 13 tracks | Modify | `children_ids` set to the packets on disk |
 
 Paths are under `.skilled/` unless stated otherwise.
@@ -191,7 +194,7 @@ Paths are under `.skilled/` unless stated otherwise.
 
 ## 10. OPEN QUESTIONS
 
-- Should `anobel.com`'s `specs/description.json`, which describes `app-remote-agent-chat`, be rewritten to describe the anobel.com track?
+- None. `anobel.com`'s `description.json` was rewritten for its own track on the operator's answer.
 <!-- /ANCHOR:questions -->
 
 ---
