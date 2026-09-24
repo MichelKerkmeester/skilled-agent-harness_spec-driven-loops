@@ -6,10 +6,16 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
+
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const __dirname = path.dirname(__filename);
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
 const SKILL_ROOT = path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit');
@@ -18,7 +24,26 @@ const RECOMMEND_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'recomm
 const VALIDATE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'validate.sh');
 const ARCHIVE_SCRIPT = path.join(SKILL_ROOT, 'runtime', 'cli', 'spec', 'archive.sh');
 const FIXTURE_ROOT = path.join(SKILL_ROOT, 'runtime', 'cli', 'tests', 'fixtures');
-const ALLOWED_SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
+
+// The spec scripts take their root from `git rev-parse --show-toplevel` in the
+// working directory, so every call runs inside a throwaway repository. Run from
+// the checkout, they would scaffold and archive real packets there. create.sh
+// also reads its templates relative to that root, so the sandbox gets a copy.
+const SANDBOX_REPO = createSandboxRepo('speckit-phase-validation-');
+const ALLOWED_SPECS_ROOT = path.join(SANDBOX_REPO, 'specs');
+
+function createSandboxRepo(prefix) {
+  const repo = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), prefix)));
+  execFileSync('git', ['init', '--quiet'], { cwd: repo });
+  const sandboxSkill = path.join(repo, '.skilled', 'skills', 'system-spec-kit');
+  fs.cpSync(path.join(SKILL_ROOT, 'templates'), path.join(sandboxSkill, 'templates'), { recursive: true });
+  fs.mkdirSync(path.join(sandboxSkill, 'runtime', 'cli', 'templates'), { recursive: true });
+  fs.copyFileSync(
+    path.join(SKILL_ROOT, 'runtime', 'cli', 'templates', 'inline-gate-renderer.sh'),
+    path.join(sandboxSkill, 'runtime', 'cli', 'templates', 'inline-gate-renderer.sh')
+  );
+  return repo;
+}
 
 let passed = 0;
 let failed = 0;
@@ -49,14 +74,14 @@ function assertTrue(condition, message) {
   }
 }
 
-function runBash(scriptPath, args, cwd = REPO_ROOT) {
+function runBash(scriptPath, args, cwd = SANDBOX_REPO) {
   return execFileSync('bash', [scriptPath, ...args], {
     cwd,
     encoding: 'utf-8',
   });
 }
 
-function runBashExpectFailure(scriptPath, args, cwd = REPO_ROOT) {
+function runBashExpectFailure(scriptPath, args, cwd = SANDBOX_REPO) {
   try {
     runBash(scriptPath, args, cwd);
     return { code: 0, stdout: '', stderr: '' };
@@ -303,6 +328,22 @@ function buildPhaseValidationFixture(basePath, fixture) {
   }
 }
 
+// validate.sh prints one JSON document per folder it validates: the parent
+// first, then each phase child the run covers.
+function runValidation(fixturePath, extraArgs, message) {
+  const args = [fixturePath, ...extraArgs, '--json'];
+  const result = runBashExpectFailure(VALIDATE_SCRIPT, args);
+  const raw = result.code === 0 ? runBash(VALIDATE_SCRIPT, args) : result.stdout;
+  const documents = raw
+    .split('\n')
+    .filter((line) => line.trim().startsWith('{'))
+    .map((line) => parseJson(line, message));
+  if (documents.length === 0) {
+    throw new Error(`${message}: no JSON document\nRaw output:\n${raw}`);
+  }
+  return documents;
+}
+
 function testPhaseValidationFixtures() {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-phase-validate-'));
   const scenarios = [
@@ -314,39 +355,40 @@ function testPhaseValidationFixtures() {
     'phase-validation/broken-links',
   ];
 
-  for (const scenario of scenarios) {
-    const fixture = loadFixture(scenario);
-    const fixturePath = path.join(tempRoot, scenario.replace(/\//g, '-'));
-    buildPhaseValidationFixture(fixturePath, fixture);
+  try {
+    for (const scenario of scenarios) {
+      const fixture = loadFixture(scenario);
+      const fixturePath = path.join(tempRoot, scenario.replace(/\//g, '-'));
+      buildPhaseValidationFixture(fixturePath, fixture);
 
-    const rawOrError = runBashExpectFailure(VALIDATE_SCRIPT, [fixturePath, '--recursive', '--json']);
-    const rawJson = rawOrError.code === 0 ? runBash(VALIDATE_SCRIPT, [fixturePath, '--recursive', '--json']) : rawOrError.stdout;
-    const result = parseJson(rawJson, `validate.sh fixture parse failed (${scenario})`);
+      const documents = runValidation(fixturePath, ['--recursive'], `validate.sh fixture parse failed (${scenario})`);
+      const childDocuments = documents.slice(1);
 
-    if (fixture.scenario === 'flat') {
-      assertEqual(result.phaseCount ?? 0, 0, `${scenario}: phaseCount=0`);
-      continue;
-    }
+      if (fixture.scenario === 'flat') {
+        assertEqual(childDocuments.length, 0, `${scenario}: validates the parent alone`);
+        continue;
+      }
 
-    assertEqual(result.phaseCount, fixture.phase_names.length, `${scenario}: phaseCount matches fixture`);
-    assertTrue(Array.isArray(result.phases), `${scenario}: phases[] present in JSON output`);
+      assertEqual(childDocuments.length, fixture.phase_names.length, `${scenario}: validates every phase child`);
 
-    if (fixture.empty_child) {
-      assertTrue(result.summary.errors > 0, `${scenario}: empty child produces validation errors`);
-    }
+      if (fixture.empty_child) {
+        const emptyChild = fixture.phase_names[fixture.phase_names.length - 1];
+        const emptyChildDocument = childDocuments.find((document) => path.basename(document.folder) === emptyChild);
+        assertTrue(
+          emptyChildDocument !== undefined && emptyChildDocument.summary.errors > 0,
+          `${scenario}: empty child produces validation errors`
+        );
+      }
 
-    if (!fixture.scenario.startsWith('flat')) {
-      const autoRawOrError = runBashExpectFailure(VALIDATE_SCRIPT, [fixturePath, '--json']);
-      const autoRawJson = autoRawOrError.code === 0
-        ? runBash(VALIDATE_SCRIPT, [fixturePath, '--json'])
-        : autoRawOrError.stdout;
-      const autoResult = parseJson(autoRawJson, `validate.sh auto-recursive parse failed (${scenario})`);
+      const autoDocuments = runValidation(fixturePath, [], `validate.sh auto-recursive parse failed (${scenario})`);
       assertEqual(
-        autoResult.phaseCount,
-        fixture.phase_names.length,
+        autoDocuments.length,
+        documents.length,
         `${scenario}: validate.sh auto-enables recursive mode when phase children exist`
       );
     }
+  } finally {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
   }
 }
 
@@ -427,11 +469,15 @@ function testPathSafetyGuards() {
 }
 
 function main() {
-  testPhaseDetectionFixtures();
-  testPhaseDefaultsContracts();
-  testPhaseCreationFixtures();
-  testPhaseValidationFixtures();
-  testPathSafetyGuards();
+  try {
+    testPhaseDetectionFixtures();
+    testPhaseDefaultsContracts();
+    testPhaseCreationFixtures();
+    testPhaseValidationFixtures();
+    testPathSafetyGuards();
+  } finally {
+    fs.rmSync(SANDBOX_REPO, { recursive: true, force: true });
+  }
 
   console.log(`\nResult: passed=${passed} failed=${failed}`);
   process.exit(failed > 0 ? 1 : 0);

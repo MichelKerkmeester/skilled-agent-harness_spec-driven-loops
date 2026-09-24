@@ -11,11 +11,15 @@ SOURCE_SCRIPTS_DIR="${SCRIPT_DIR}/../spec"
 SOURCE_LIB_DIR="${SCRIPT_DIR}/../lib"
 SOURCE_SCRIPT_TEMPLATES_DIR="${SCRIPT_DIR}/../templates"
 SOURCE_TEMPLATES_DIR="${SCRIPT_DIR}/../../../templates"
+SOURCE_SKILL_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 
 PASS=0
 FAIL=0
 TOTAL=0
-TMP_DIRS=()
+
+# Every sandbox lives under one work root. make_temp_repo runs inside a command
+# substitution, so anything it appended to a list would never reach the trap.
+WORK_ROOT=$(mktemp -d "${TMPDIR:-/tmp}/test-phase-system-XXXXXX")
 
 pass() {
   PASS=$((PASS + 1))
@@ -30,19 +34,14 @@ fail() {
 }
 
 cleanup_all() {
-  local i=0
-  while [[ $i -lt ${#TMP_DIRS[@]} ]]; do
-    [[ -d "${TMP_DIRS[$i]}" ]] && rm -rf "${TMP_DIRS[$i]}"
-    i=$((i + 1))
-  done
+  rm -rf "$WORK_ROOT"
 }
 
 trap cleanup_all EXIT
 
 make_temp_repo() {
   local temp_repo
-  temp_repo=$(mktemp -d "${TMPDIR:-/tmp}/test-phase-system-XXXXXX")
-  TMP_DIRS+=("$temp_repo")
+  temp_repo=$(mktemp -d "$WORK_ROOT/repo-XXXXXX")
 
   mkdir -p "$temp_repo/.specify"
   mkdir -p "$temp_repo/specs"
@@ -57,6 +56,13 @@ make_temp_repo() {
   cp "$SOURCE_LIB_DIR/git-branch.sh" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/lib/git-branch.sh"
   cp "$SOURCE_LIB_DIR/template-utils.sh" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh"
   cp "$SOURCE_SCRIPT_TEMPLATES_DIR/inline-gate-renderer.sh" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh"
+  # Without tsx beside it, the shell renderer falls back to a regex that keeps
+  # only the first matching level block, so every child doc would be one line.
+  # The sandbox borrows the skill's dependencies and runs the real renderer.
+  cp "$SOURCE_SCRIPT_TEMPLATES_DIR/inline-gate-renderer.ts" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.ts"
+  cp "$SOURCE_LIB_DIR/esm-entry.ts" "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.ts"
+  ln -s "$SOURCE_SKILL_ROOT/node_modules" "$temp_repo/.skilled/skills/system-spec-kit/node_modules"
+  printf '{ "type": "module" }\n' > "$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/package.json"
 
   cp -R "$SOURCE_TEMPLATES_DIR"/. "$temp_repo/.skilled/skills/system-spec-kit/templates/"
 
@@ -73,7 +79,7 @@ install_desc_generator_stub() {
   local stub_dir="$temp_repo/.skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder"
   mkdir -p "$stub_dir"
   cat > "$stub_dir/generate-description.js" <<'STUB_EOF'
-const fs = require('fs');
+import fs from 'node:fs';
 const logPath = process.env.DESC_STUB_LOG;
 const targetPath = process.argv[2];
 const level = (() => {
@@ -109,6 +115,7 @@ echo ""
 echo "-- Default phase count --"
 
 repo1=$(make_temp_repo)
+install_desc_generator_stub "$repo1"
 create1="$repo1/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
 
 json1=$(cd "$repo1" && bash "$create1" --json --phase --skip-branch --number 1 "Default phase count")
@@ -128,6 +135,14 @@ else
   fail "Expected 3 child folders, got ${child_count1}"
 fi
 
+parent_spec1="$repo1/specs/$branch1/spec.md"
+map_rows1=$(grep -cE '^\| [0-9]+ \| [0-9]{3}-[^|]*/ \|' "$parent_spec1" || true)
+if [[ "$map_rows1" == "3" ]] && ! grep -qE '\[(PHASE|HANDOFF)_ROW\]' "$parent_spec1"; then
+  pass "New phase parent's map lists all 3 phases and keeps no row marker"
+else
+  fail "Expected 3 phase-map rows and no row marker in the new parent, got ${map_rows1} rows"
+fi
+
 # ───────────────────────────────────────────────────────────────
 # Test 2: --parent appends phases to existing parent folder
 # ───────────────────────────────────────────────────────────────
@@ -135,6 +150,7 @@ echo ""
 echo "-- Parent append mode --"
 
 repo2=$(make_temp_repo)
+install_desc_generator_stub "$repo2"
 create2="$repo2/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
 
 base_json=$(cd "$repo2" && bash "$create2" --json --phase --skip-branch --number 2 --phases 1 --phase-names "foundation" "Parent append base")
@@ -161,6 +177,16 @@ if grep -q "001-foundation" "$repo2/$parent_rel/002-implementation/spec.md" \
   pass "Appended phase child headers link predecessor and successor correctly"
 else
   fail "Appended phase child headers do not contain expected predecessor/successor links"
+fi
+
+# A blank line ends a markdown table, so an appended row must follow the last
+# existing row directly or it renders outside the map.
+map_block2=$(grep -A2 -E '^\| 1 \| 001-foundation/ \|' "$repo2/$parent_rel/spec.md" || true)
+if [[ "$(echo "$map_block2" | sed -n 2p)" == "| 2 | 002-implementation/ |"* ]] \
+  && [[ "$(echo "$map_block2" | sed -n 3p)" == "| 3 | 003-integration/ |"* ]]; then
+  pass "Appended phase rows continue the parent's phase-map table"
+else
+  fail "Appended phase rows do not directly follow the parent's existing rows"
 fi
 
 # ───────────────────────────────────────────────────────────────
