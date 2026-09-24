@@ -98,7 +98,8 @@ _memory:
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-<!-- [PHASE_ROW] — Replaced by create.sh with full 4-column table rows -->
+| 1 | 001-chart-review/ | Four-iteration deep review of sk-design-chart; verdict CONDITIONAL in `synthesis.md` | Complete |
+| 2 | 002-diagram-review/ | Four-iteration deep review of sk-design-diagram; verdict CONDITIONAL with one write-path defect in `synthesis.md` | Complete |
 
 ### Phase Transition Rules
 
@@ -111,7 +112,7 @@ _memory:
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-<!-- [HANDOFF_ROW] — Replaced by create.sh with full 4-column table rows -->
+| 001-chart-review | 002-diagram-review | None: the two reviews ran side by side and neither reads the other's output | `synthesis.md` gives a verdict for each packet |
 <!-- /ANCHOR:phase-map -->
 
 ---

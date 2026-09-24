@@ -1,26 +1,98 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-design/020-chart-and-diagram-review",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-design/020-chart-and-diagram-review",
+  "packet_id": "sk-design/020-chart-and-diagram-review",
+  "spec_folder": "sk-design/020-chart-and-diagram-review",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "sk-design/020-chart-and-diagram-review/001-chart-review",
+    "sk-design/020-chart-and-diagram-review/002-diagram-review"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "[Trigger phrase 1]",
+      "[Trigger phrase 2]"
+    ],
+    "key_topics": [
+      "trigger",
+      "phrase",
+      "one-paragraph",
+      "problem",
+      "statement",
+      "needs",
+      "solving",
+      "feature",
+      "specification",
+      "four-iteration",
+      "deep",
+      "review"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md"],
-    "entities": [],
-    "causal_summary": "four-iteration deep review of the chart and diagram modes on two models",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
     "created_at": "2026-09-11T17:13:02Z",
-    "last_save_at": "2026-09-11T17:13:02Z",
+    "last_save_at": "2026-09-24T06:58:00.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md"]
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:156033621627f2c76848d61a20852619764945cbea1cba7d8c6ac2bea46d725d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4d6bc490fee4300d0d7449bdcdebac75484a9efa0a24bd0987a92202c9babc8a"
+    },
+    "last_active_at": null
   }
 }
