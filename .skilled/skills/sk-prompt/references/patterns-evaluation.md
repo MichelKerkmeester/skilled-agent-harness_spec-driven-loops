@@ -39,15 +39,15 @@ Systematic prompt engineering requires matching the right framework to each task
 
 ### Complete Framework Matrix
 
-| Framework   | Elements                                                     | Best For                         | Avoid When               | Success Rate |
-| ----------- | ------------------------------------------------------------ | -------------------------------- | ------------------------ | ------------ |
-| **RCAF**    | Role, Context, Action, Format                                | 80% of prompts, general tasks    | Over-complex scenarios   | 92%          |
-| **COSTAR**  | Context, Objective, Style, Tone, Audience, Response          | Content creation, communication  | Technical specifications | 94%          |
-| **RACE**    | Role, Action, Context, Execute                               | Urgent tasks, quick iterations   | Detailed requirements    | 88%          |
-| **CIDI**    | Context, Instructions, Details, Input                        | Process documentation, tutorials | Creative exploration     | 90%          |
-| **TIDD-EC** | Task, Instructions, Do's, Don'ts, Examples, Context          | Quality-critical, compliance     | Brainstorming            | 93%          |
-| **CRISPE**  | Capacity, Insight, Statement, Personality, Experiment        | Strategy, exploration            | Routine tasks            | 87%          |
-| **CRAFT**   | Context, Role, Action, Format, Target                        | Complex projects, planning       | Simple queries           | 91%          |
+| Framework   | Elements                                                     | Best For                         | Avoid When               |
+| ----------- | ------------------------------------------------------------ | -------------------------------- | ------------------------ |
+| **RCAF**    | Role, Context, Action, Format                                | 80% of prompts, general tasks    | Over-complex scenarios   |
+| **COSTAR**  | Context, Objective, Style, Tone, Audience, Response          | Content creation, communication  | Technical specifications |
+| **RACE**    | Role, Action, Context, Execute                               | Urgent tasks, quick iterations   | Detailed requirements    |
+| **CIDI**    | Context, Instructions, Details, Input                        | Process documentation, tutorials | Creative exploration     |
+| **TIDD-EC** | Task, Instructions, Do's, Don'ts, Examples, Context          | Quality-critical, compliance     | Brainstorming            |
+| **CRISPE**  | Capacity, Insight, Statement, Personality, Experiment        | Strategy, exploration            | Routine tasks            |
+| **CRAFT**   | Context, Role, Action, Format, Target                        | Complex projects, planning       | Simple queries           |
 
 ### Framework Selection Algorithm
 
@@ -368,8 +368,10 @@ rcaf_cot_fusion:
       step_2: {analyze: "[Examine]", reasoning: "[Approach]"}
       step_3: {synthesize: "[Combine]", reasoning: "[Logic]"}
       step_4: {validate: "[Verify]", reasoning: "[Criteria]"}
-  format: "Show reasoning at each step with final answer highlighted"
+  format: "Each step's conclusion with the criterion that decided it, then the final answer"
 ```
+
+Ask for conclusions and the criteria behind them, not a transcript of the reasoning. A model with built-in thinking already reasons before it answers, and Claude Opus 5.5 can decline a prompt that pushes it to reproduce that reasoning in the response.
 
 **COSTAR + ReAct (Reasoning-Action)**
 
@@ -403,6 +405,8 @@ tidd_ec_fewshot:
     case_3: {input: "[ex3]", output: "[out3]"}
   context: "Apply learned patterns to new inputs"
 ```
+
+Give three to five cases that differ the way real inputs differ, and wrap each in `<example>` tags inside one `<examples>` block. The tags keep the model from reading a demonstration as an instruction, and the variety keeps it from copying one case's quirks.
 
 ### Framework Fusion Summary
 

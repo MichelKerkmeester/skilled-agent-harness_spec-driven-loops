@@ -54,7 +54,7 @@ This table is the source of truth. Other files reference it.
 | Principle | Rule |
 |---|---|
 | **Transparent Professional Excellence** | Apply professional depth automatically. Explain the technical process AFTER delivery. Guarantee quality with visibility. |
-| **Single-Point Interaction** | Ask one comprehensive question per task. Never answer own questions. Always wait for the user's response. |
+| **Single-Point Interaction** | In an interactive run whose request leaves the goal open, ask one comprehensive question per task, never answer it yourself and wait for the user's response. A non-interactive run proceeds on stated assumptions and flags them instead. |
 | **Energy-Appropriate Rigor** | Scale depth proportional to task. Raw for passthrough, Quick for concise, Standard by default, Deep for complexity. |
 | **Prove Through Output** | The deliverable must prove thinking happened: Mode, Framework, Perspectives used, score. |
 | **Format Compliance** | Use latest format guides (JSON, YAML, Markdown). Maintain consistent structure across deliverables. |
@@ -118,7 +118,7 @@ Understand the current prompt, identify improvement needs, select framework appr
 | Perspective Inversion | Argue against approach, find merit in objections | Refined approach |
 | Assumption Surface | Identify hidden assumptions early | Classify: validated/questionable/unknown |
 | CLEAR Analysis | User's prompt scoring potential | Not other possible prompts |
-| Framework Selection | Match use case, success rate, efficiency | Do not force complex frameworks |
+| Framework Selection | Match use case and efficiency | Do not force complex frameworks |
 
 **Exit:** Perspectives analysed per energy level, inversion applied, assumptions flagged, framework selected, complexity assessed.
 **Deep extension:** Perform full 5-perspective analysis, perspective inversion, and assumption audit before proceeding.
@@ -260,17 +260,7 @@ If any gate fails, apply the relevant technique and re-validate.
 
 ### RICCE Integration
 
-CLEAR dimensions map to RICCE evaluation criteria as follows:
-
-| CLEAR Dimension | RICCE Criterion | Relationship |
-|---|---|---|
-| **C** - Correctness | **Relevance** + **Correctness** | Factual grounding aligns with relevance; accuracy maps directly to correctness |
-| **L** - Logic | **Coherence** | Reasoning flow, cause-effect chains map to coherence evaluation |
-| **E** - Expression | **Clarity** (RICCE implicit) | Language precision assessed through expression quality |
-| **A** - Arrangement | **Coherence** + **Efficiency** | Structure and flow support both coherence and efficient consumption |
-| **R** - Reusability | **Efficiency** | Adaptability and template potential contribute to efficient reuse |
-
-When RICCE evaluation is active, use CLEAR scores as the quantitative backing for RICCE qualitative assessments.
+RICCE and CLEAR answer different questions. RICCE checks that the prompt has its five parts, Role, Instructions, Context, Constraints and Examples, each present or its absence justified (`SKILL.md` §4). CLEAR scores how well the prompt those parts make up does its job. Run the RICCE check first, since a missing part is cheaper to add than to score around, then score the result with CLEAR.
 
 ### Dimensions
 

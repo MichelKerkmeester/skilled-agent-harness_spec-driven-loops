@@ -71,8 +71,8 @@ Use one question per dimension before every CLI dispatch. If any answer is "no",
 |-----------|-------|-----------------------|
 | Correctness | `>= 7/10` | Does the prompt accurately describe the task, constraints, and source files without contradictions? |
 | Logic | `>= 7/10` | Does the prompt explain the reasoning path or decision criteria the delegated CLI should follow? |
-| Expression | `>= 10/15` | Is the wording specific enough that a second AI will not have to guess what "good" looks like? |
-| Arrangement | `>= 7/10` | Is the prompt structured in a clean order: task, context, constraints, output, verification? |
+| Expression | `>= 10/15` | Is the wording specific enough that a second AI will not have to guess what "good" looks like, and does it say what to do where a bare "don't" would leave it guessing? |
+| Arrangement | `>= 7/10` | Is the prompt structured in a clean order: task, context, constraints, output, verification? When it embeds long source material, does that material come first and the ask come last? |
 | Reusability | `>= 3/5` | Could this prompt be reused by swapping placeholders instead of rewriting it from scratch? |
 
 ---
