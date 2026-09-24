@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7341,
-    "ok": 11333,
+    "missing-frontmatter": 7343,
+    "ok": 11337,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22365,
+  "documentsScanned": 22371,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1c153ebcf9bf9940d4ede50437e05960c4b786db35fc39ff677c479948fd7ed1",
+  "manifestHash": "02476d437305e9edbea33206eb648c426e3e1721e2a559b4ae4e970a9a69b5f2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27587,
+      "ok": 27596,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -3486,6 +3486,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.2.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/agents-skills-rules/agent-mirror-integrity.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -4676,6 +4682,12 @@
       "line": 1,
       "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.2.0.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -74542,6 +74554,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules/scratch",
       "reason": "excluded directory"
     },
     {

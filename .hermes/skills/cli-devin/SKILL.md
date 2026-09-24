@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI executor for Cognition-backed coding, cloud handoff, subagent delegation, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.2.0
+version: 1.4.3.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -169,9 +169,9 @@ Install via `devin setup` (interactive wizard) or `curl -fsSL https://devin.ai/i
 
 ### Execution Ownership
 
-This packet owns user-facing routing, the `command -v devin` availability probe, prompt construction, and the self-invocation guard. Actual process construction and execution delegate to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-devin`.
+This packet owns user-facing routing, the `command -v devin` availability probe, prompt construction, and the self-invocation guard. Research and review lineages delegate process construction and execution to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-devin`. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
 
-The runtime is the single Devin execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `devin -p` snippets below are operator reference and manual-testing examples; orchestrated dispatches use the shared runtime.
+The runtime is the single Devin execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `devin -p` snippets below are operator reference and manual-testing examples; research and review lineages use the shared runtime, and a one-shot dispatch uses the child envelope.
 
 ### Provider Auth Pre-Flight (Devin Account OAuth)
 
@@ -359,7 +359,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 ### ✅ ALWAYS
 
 1. Verify Devin CLI is installed before first invocation (`command -v devin`).
-2. Delegate orchestrated execution to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-devin`; never build a second adapter in this packet.
+2. Delegate research and review lineages to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-devin`. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5. Never build a second adapter in this packet.
 3. Use `--permission-mode auto` for review/analysis/research; `--permission-mode dangerous` for code generation and file modification — `devin -p` itself defaults to `auto`, so omitting the flag causes a silent no-op on edit tasks. Prefer `dangerous` over `accept-edits` for any task that must read files or run its own verification; `accept-edits` refuses those calls and the dispatch fails silently.
 4. Validate Devin-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.

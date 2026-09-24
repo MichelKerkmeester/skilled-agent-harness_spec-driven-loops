@@ -170,6 +170,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 61 | 061-worktree-build-provisioning/ | Worktree provisioning builds the outputs two runtime suites import and targets the worktree it runs in, and an unprovisioned checkout fails those suites with the command that fixes it | complete |
 | 62 | 062-v4-parent-data-repairs/ | This map repaired: row 39 added, the blank line that hid rows 40 onward removed, row 018 marked complete, row 041 marked in progress and rows 56 to 62 added; the simplification-research goal trim recorded | complete |
 | 63 | 063-cli-codex-dispatch-rules/ | cli-codex's fan-out rule covers only research and review lineages and sends a one-shot dispatch to the child envelope, and a new gotcha records that a sandboxed child cannot run checks that start `tsx` | complete |
+| 64 | 064-cli-devin-cursor-dispatch-rules/ | cli-devin's and cli-cursor's fan-out rule covers only research and review lineages and sends a one-shot dispatch to the child envelope, as cli-codex's does | complete |
 
 ### Phase Transition Rules
 

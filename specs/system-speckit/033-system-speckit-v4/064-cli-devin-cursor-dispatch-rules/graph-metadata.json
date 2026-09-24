@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules",
-  "spec_folder": "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules",
+  "packet_id": "system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules",
+  "spec_folder": "system-speckit/033-system-speckit-v4/064-cli-devin-cursor-dispatch-rules",
   "parent_id": "system-speckit/033-system-speckit-v4",
   "children_ids": [],
   "manual": {
@@ -11,30 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "cli codex dispatch rules",
-      "cli codex fanout rule scope",
-      "codex sandbox listen eperm",
-      "codex child envelope one-shot dispatch",
-      "cli codex dispatch rules plan",
-      "cli codex fanout scope plan",
-      "cli codex dispatch rules tasks",
-      "cli codex fanout scope tasks",
+      "cli devin dispatch rules",
+      "cli cursor dispatch rules",
+      "cli devin cursor fanout rule scope",
+      "cli devin cursor dispatch rules plan",
+      "cli devin cursor fanout scope plan",
+      "cli devin cursor dispatch rules tasks",
+      "cli devin cursor fanout scope tasks",
       "implementation summary",
-      "cli codex sandbox eperm evidence"
+      "cli devin cursor dispatch rules",
+      "cli devin cursor fanout scope evidence"
     ],
     "key_topics": [
       "cli",
-      "codex",
+      "devin",
       "dispatch",
       "rules",
+      "cursor",
       "fanout",
       "rule",
       "scope",
-      "sandbox",
-      "listen",
-      "eperm",
-      "child",
-      "envelope"
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -43,13 +43,16 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
-      ".hermes/skills/cli-codex/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.2.0.md",
+      ".hermes/skills/cli-devin/SKILL.md",
+      ".hermes/skills/cli-cursor/SKILL.md",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
       "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json",
       "specs/system-speckit/033-system-speckit-v4/spec.md",
-      "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/spec.md"
+      "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/spec.md"
     ],
     "entities": [
       {
@@ -79,13 +82,19 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "v1.9.4.0.md",
+        "name": "v1.4.3.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.2.0.md",
         "source": "derived"
       },
       {
@@ -143,7 +152,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Four",
+        "name": "Overview Three",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -155,7 +164,7 @@
         "source": "derived"
       },
       {
-        "name": "Critical Gotchas",
+        "name": "Data Flow None",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -185,21 +194,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "executor",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "ALWAYS rule 2 and the Execution Ownership section told an orchestrator to delegate every orchestrated Codex dispatch to `fanout-run.cjs`",
-    "created_at": "2026-09-24T06:59:47Z",
-    "last_save_at": "2026-09-24T07:36:36.830Z",
+    "causal_summary": "ALWAYS rule 2 and the Execution Ownership section in cli-devin and cli-cursor told an orchestrator to delegate every orchestrated dispatch to `fanout-run.cjs`",
+    "created_at": "2026-09-24T07:31:15Z",
+    "last_save_at": "2026-09-24T07:36:35.453Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d8a79f9d2005f3f0e9f9f6e5682d83418ec24d756f380e42ea7a1db2d94decc",
+    "source_fingerprint": "sha256:259003d2944442e20998f9109e0cb8bf4d820111640dcb0f50a8cad52dcc56ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c93ecf9afae11e3c5d7a27e9eaec7af163da372358f9a20b3ca39bfb5ab81271",
-      "plan.md": "5b1b33721e6cb252bc6b870a0c6a1d81a1d6d51540da51912ad4d2edf67a1c97",
-      "tasks.md": "05a9d38540d73908189994e564c41c3a2b32dc758c9c37f2200e42034a4b9161",
-      "implementation-summary.md": "e09c2d968bca3a4903d076f33852a330df50cb06e8ee52b9622cbb8ca7052005"
+      "spec.md": "4315062b1bf3c2c35a415dd7a96eaaa2ea695733d8fbe6e560cc2db17e8df895",
+      "plan.md": "70821e10b34f17d97ff407e130bbc7a3cf3fc02f347ae73f70ee2f524074f376",
+      "tasks.md": "cbe740af2fb4db90e3f6f9ceb9634afbfdf3f9ed5ca16a6d273e9d26cd215596",
+      "implementation-summary.md": "e9613b9649f047ba9fd49ac8dfb69fed17c065c6a49789f0508607ac71ff68da"
     },
     "last_active_at": null
   }
