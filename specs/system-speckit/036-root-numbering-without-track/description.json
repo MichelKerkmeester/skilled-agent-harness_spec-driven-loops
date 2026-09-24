@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-speckit/036-root-numbering-without-track",
+  "description": "Number create.sh packets at the specs root from the highest existing number",
+  "keywords": [
+    "number",
+    "packets",
+    "specs",
+    "root",
+    "highest",
+    "existing"
+  ],
+  "lastUpdated": "2026-09-24T08:50:36.173Z",
+  "specId": "036",
+  "folderSlug": "root-numbering-without-track",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
