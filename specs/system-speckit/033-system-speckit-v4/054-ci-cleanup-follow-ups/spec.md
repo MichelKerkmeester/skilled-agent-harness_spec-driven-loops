@@ -52,7 +52,7 @@ This is **Phase 54** of the system-speckit v4 parent specification, the follow-u
 - T007 and T008: the spec-mutation playbook wording and its 108 test count, plus the codex hook parity playbook wording.
 - T009: the six cli-jev probe scripts running under set -uo pipefail.
 - T010: the sk-code drift guards at 0 errors.
-- T011: commits 9b95bd06b1 and 9ace27983c on branch worktrees/066-ci-cleanup-follow-ups.
+- T011: commits 7bde922cba and a06dba0800 on branch worktrees/066-ci-cleanup-follow-ups.
 - T012: the packet docs and the parent rows.
 
 **Changelog**:

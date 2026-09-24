@@ -59,7 +59,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T010 Drift guards - **Evidence**: `run-all-drift-guards.sh` reports all 2 guards passed and Errors 0, down from the 6 errors the six probe scripts carried before.
-- [x] T011 Commit - **Evidence**: recorded in the commit list: branch `worktrees/066-ci-cleanup-follow-ups` carries `9b95bd06b1` fix(system-spec-kit): gate a repository under /tmp like any other and `9ace27983c` fix(cli-jev): run the recorded probe scripts under pipefail.
+- [x] T011 Commit - **Evidence**: recorded in the commit list: branch `worktrees/066-ci-cleanup-follow-ups` carries `7bde922cba` fix(system-spec-kit): gate a repository under /tmp like any other and `a06dba0800` fix(cli-jev): run the recorded probe scripts under pipefail.
 - [x] T012 Packet docs and parent rows - **Evidence**: recorded in the identity section: this packet is phase 54 of 55 under `specs/system-speckit/033-system-speckit-v4` with predecessor `050-ci-cleanup-pi-proof`, and the evidence pack records all tasks done with status Complete.
 <!-- /ANCHOR:phase-3 -->
 
@@ -139,7 +139,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] The path and policy fix is covered by a test at the new boundary - **Evidence**: the new core test expects deny under enforcement for a repository rooted under /tmp and the core suite passes 108 of 108 under both temp dirs with `node --experimental-test-module-mocks --test spec-gate-core.test.mjs`.
 - [x] CHK-FIX-005 [P1] The comparison axes and row counts are listed before completion is claimed - **Evidence**: the axes are the four gate suites at 108, 15, 17 and 9 tests and the root project at 1,292 passed, 0 failed and 13 skipped.
 - [x] CHK-FIX-006 [P1] The hostile environment variant runs because the suites read process-wide temp state - **Evidence**: every suite ran twice, once with TMPDIR=/tmp and once with the default temp dir, with the same results.
-- [x] CHK-FIX-007 [P1] Evidence is pinned to explicit commits rather than a moving range - **Evidence**: the tree is pinned to commits `9b95bd06b1` and `9ace27983c` on branch `worktrees/066-ci-cleanup-follow-ups` and every claim above cites a recorded result.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to explicit commits rather than a moving range - **Evidence**: the tree is pinned to commits `7bde922cba` and `a06dba0800` on branch `worktrees/066-ci-cleanup-follow-ups` and every claim above cites a recorded result.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -168,7 +168,7 @@ contextType: "general"
 ## File Organization
 
 - [x] CHK-050 [P1] The test workspaces stay under the system temp dir instead of inside the tree - **Evidence**: `makeWorkspace` in `spec-gate-core.test.mjs` takes a base directory with default `os.tmpdir()` and the suites ran under both temp dirs (wu1).
-- [x] CHK-051 [P1] The change set holds only the recorded files and commits - **Evidence**: this phase's code landed in exactly two commits, `9b95bd06b1` and `9ace27983c`, and the what-changed section of `evidence/dispatch/evidence.md` lists every touched file.
+- [x] CHK-051 [P1] The change set holds only the recorded files and commits - **Evidence**: this phase's code landed in exactly two commits, `7bde922cba` and `a06dba0800`, and the what-changed section of `evidence/dispatch/evidence.md` lists every touched file.
 <!-- /ANCHOR:file-org -->
 
 ---
