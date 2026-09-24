@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/037-track-root-children",
+  "description": "Keep every track root's children_ids equal to its packets on disk, and block a push that breaks it",
+  "keywords": [
+    "keep",
+    "every",
+    "track",
+    "root",
+    "equal",
+    "packets",
+    "disk",
+    "block",
+    "push",
+    "breaks"
+  ],
+  "lastUpdated": "2026-09-24T09:53:58.655Z",
+  "specId": "037",
+  "folderSlug": "track-root-children",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
