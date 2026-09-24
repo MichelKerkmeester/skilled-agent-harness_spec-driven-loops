@@ -71,9 +71,22 @@ export function readWorkingTreeTracks(specsRoot) {
 // 2. COMMIT VIEW
 // ───────────────────────────────────────────────────────────────────
 
+// A push from a linked worktree runs its hooks with GIT_DIR exported and no
+// GIT_WORK_TREE, and git then takes the -C directory itself for the top of the
+// work tree, so specs/ would come back as the repository root. Resolving the
+// repository from the path alone gives the same answer inside a hook and out.
+const REPOSITORY_ENV_KEYS = ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_PREFIX'];
+
+function gitEnv() {
+  const env = { ...process.env };
+  for (const key of REPOSITORY_ENV_KEYS) delete env[key];
+  return env;
+}
+
 function lsTree(repoTop, rev, treePath) {
   const output = execFileSync('git', ['-C', repoTop, 'ls-tree', '-z', rev, `${treePath}/`], {
     encoding: 'utf8',
+    env: gitEnv(),
     maxBuffer: 64 * 1024 * 1024,
   });
   return output.split('\0').filter(Boolean).map((line) => {
@@ -89,7 +102,7 @@ function lsTree(repoTop, rev, treePath) {
  * other repository's files, so it is reported as skipped rather than read.
  */
 export function readCommitTracks(specsRoot, rev) {
-  const repoTop = execFileSync('git', ['-C', specsRoot, 'rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
+  const repoTop = execFileSync('git', ['-C', specsRoot, 'rev-parse', '--show-toplevel'], { encoding: 'utf8', env: gitEnv() }).trim();
   const specsPath = path.relative(repoTop, specsRoot).split(path.sep).join('/');
   const entries = lsTree(repoTop, rev, specsPath);
   const tracks = [];
@@ -107,7 +120,7 @@ export function readCommitTracks(specsRoot, rev) {
     tracks.push({
       name: entry.name,
       metadataPath: `${specsPath}/${entry.name}/${GRAPH_METADATA}`,
-      rawMetadata: execFileSync('git', ['-C', repoTop, 'cat-file', 'blob', metadata.object], { encoding: 'utf8' }),
+      rawMetadata: execFileSync('git', ['-C', repoTop, 'cat-file', 'blob', metadata.object], { encoding: 'utf8', env: gitEnv() }),
       children: inside
         .filter((item) => item.type === 'tree' && SPEC_LEAF_SEGMENT_PATTERN.test(item.name))
         .map((item) => item.name)

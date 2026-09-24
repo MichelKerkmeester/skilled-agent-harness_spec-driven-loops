@@ -285,6 +285,32 @@ expect_hook "another repository's drifted track is not its gate to check" \
   0 "refs/heads/main $TRACK_DRIFT_SHA refs/heads/main $TRACK_OK_SHA"
 expect_quiet "...and the gate says nothing there" "track-roots"
 
+# The cases above call the hook directly. A real push from a linked worktree runs
+# it with GIT_DIR exported and no GIT_WORK_TREE, which once left the sweep unable
+# to read the pushed commit, so the gate failed open on every such push. These two
+# go through `git push` from a worktree.
+PUSH_REMOTE="$TMP/.push-remote.git"; git init -q --bare "$PUSH_REMOTE"
+PUSH_HOOKS="$TMP/.push-hooks"; mkdir -p "$PUSH_HOOKS"; ln -s "$HOOK" "$PUSH_HOOKS/pre-push"
+push_from_worktree() { # push_from_worktree <sha>; returns git push's exit code, stderr in last.err
+  local wt="$TMP/.push-wt" rc=0
+  git -C "$TMP" worktree add -q --detach "$wt" "$1"
+  mkdir -p "$wt/.opencode/skills/system-spec-kit/runtime/cli/spec" "$wt/.opencode/skills/system-spec-kit/runtime/cli/lib"
+  printf 'name: system-spec-kit\n' > "$wt/.opencode/skills/system-spec-kit/SKILL.md"
+  ln -s "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs" "$wt/.opencode/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs"
+  ln -s "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs" "$wt/.opencode/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs"
+  ( cd "$wt" && env "${TRACK_ENV[@]}" git -c core.hooksPath="$PUSH_HOOKS" push -q "$PUSH_REMOTE" HEAD:refs/heads/main ) \
+    >"$TMP/last.out" 2>"$TMP/last.err" || rc=$?
+  git -C "$TMP" worktree remove --force "$wt"
+  return $rc
+}
+# The clean commit goes first: the drifted one sits on top of it, so both are fast-forwards.
+rc=0; push_from_worktree "$TRACK_OK_SHA" || rc=$?
+if [ "$rc" -eq 0 ] && ! grep -qF "track-roots" "$TMP/last.err"; then PASS=$((PASS+1))
+else FAIL=$((FAIL+1)); echo "FAIL: a real push from a worktree with matching track lists did not pass quietly (rc=$rc)"; sed 's/^/    err> /' "$TMP/last.err" >&2; fi
+rc=0; push_from_worktree "$TRACK_DRIFT_SHA" || rc=$?
+if [ "$rc" -ne 0 ] && grep -qF "BLOCKED [gate:track-roots]" "$TMP/last.err"; then PASS=$((PASS+1))
+else FAIL=$((FAIL+1)); echo "FAIL: a real push from a worktree with an unlisted packet was not blocked (rc=$rc)"; sed 's/^/    err> /' "$TMP/last.err" >&2; fi
+
 # ── report ──────────────────────────────────────────────────────
 echo "pre-push tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]
