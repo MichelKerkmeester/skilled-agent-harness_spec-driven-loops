@@ -3,7 +3,9 @@
 # of them and fails in ways that read as broken code rather than missing deps.
 #
 # One path per line, relative to the repository root, naming a directory that
-# holds a package.json. Blank lines and # comments are ignored.
+# holds a package.json. A line may add a second whitespace-separated field: a
+# file relative to the package directory that `npm run build` writes. Provision
+# builds the package when that file is missing. Blank lines and # comments are ignored.
 #
 # Order is install order: a package whose build another package consumes comes
 # first.
@@ -22,8 +24,12 @@
 .skilled/skills/system-spec-kit/runtime
 .skilled/skills/system-spec-kit/runtime/cli
 
-# The advisor daemon and CLI front door.
-.skilled/skills/system-skill-advisor/runtime
+# The advisor daemon and CLI front door. The spec-gate hook core imports its
+# built policy plan directly.
+.skilled/skills/system-skill-advisor/runtime  dist/runtime/lib/policy-plan.js
+
+# The sk-communication projection OpenCode plugin imports this build output.
+.skilled/skills/sk-communication/cli-communication-projection  dist/index.js
 
 # The deep-loop runtime, which the fan-out runner needs.
 .skilled/skills/system-deep-loop/runtime

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "edc75dc8cfd71b81ef61180170e086f3c92c4c89e14cc3a90423a8148be5bb87",
+  "corpusHash": "74d9097e0c2a32b43ffa20712aaafa1d2131d5f3f91792361ba0b93502d0d77a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22352,
+  "includedPathCount": 22356,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -22362,6 +22362,10 @@
     "specs/system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth/plan.md",
     "specs/system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth/spec.md",
     "specs/system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -22374,7 +22378,7 @@
     "specs/system-speckit/035-retire-memory-era-tests/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3dfedd210bc3edfc1c56abb09180d3fad78ac01775589b2467fa807d009e394f",
+  "manifestHash": "947f46afddd95370e3dee09979839204a437313080e45874368913c7fb882588",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26989,6 +26993,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/scratch",
       "reason": "excluded directory"
     },
     {

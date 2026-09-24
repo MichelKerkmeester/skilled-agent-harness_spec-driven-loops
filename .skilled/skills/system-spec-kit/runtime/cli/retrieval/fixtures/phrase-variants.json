@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3dfedd210bc3edfc1c56abb09180d3fad78ac01775589b2467fa807d009e394f",
+  "manifestHash": "947f46afddd95370e3dee09979839204a437313080e45874368913c7fb882588",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8610,6 +8610,9 @@
     ],
     "advisor plugin cli": [
       "advisor plugin cli"
+    ],
+    "advisor policy plan dist missing": [
+      "advisor policy plan dist missing"
     ],
     "advisor post decommission verification": [
       "advisor post-decommission verification"
@@ -20092,6 +20095,9 @@
     ],
     "communication projection default off": [
       "communication projection default off"
+    ],
+    "communication projection dist missing": [
+      "communication projection dist missing"
     ],
     "communication projection doctor": [
       "communication projection doctor"
@@ -59544,6 +59550,18 @@
     "provider transport default": [
       "provider transport default"
     ],
+    "provision build step plan": [
+      "provision build step plan"
+    ],
+    "provision build step tasks": [
+      "provision build step tasks"
+    ],
+    "provision builds missing outputs": [
+      "provision builds missing outputs"
+    ],
+    "provision builds missing outputs evidence": [
+      "provision builds missing outputs evidence"
+    ],
     "provisional benchmark promotion": [
       "provisional benchmark promotion"
     ],
@@ -83231,6 +83249,15 @@
     ],
     "worktree base relocation": [
       "worktree base relocation"
+    ],
+    "worktree build provisioning": [
+      "worktree build provisioning"
+    ],
+    "worktree build provisioning plan": [
+      "worktree build provisioning plan"
+    ],
+    "worktree build provisioning tasks": [
+      "worktree build provisioning tasks"
     ],
     "worktree checklist excluded": [
       "worktree_checklist excluded"

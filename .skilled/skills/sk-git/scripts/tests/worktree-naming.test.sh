@@ -215,6 +215,101 @@ _regression_empty_tmp_guard() {
 }
 expect_rc "empty TMP guard aborts before cd" 1 _regression_empty_tmp_guard
 
+# ── provision listed outputs with a stubbed npm ──────────────────
+PROV="$TMP/prov"
+TREE="$PROV/tree"
+mkdir -p "$PROV/scripts" "$PROV/bin" "$TREE/needs-install" \
+  "$TREE/needs-build" "$TREE/already-built/dist"
+TREE="$(cd "$TREE" && pwd -P)"
+cp "$NAMING" "$PROV/scripts/worktree-naming.sh"
+cat > "$PROV/scripts/worktree-provision-paths.txt" <<'EOF'
+needs-install
+needs-build  dist/index.js
+already-built  dist/index.js
+EOF
+printf '{"dependencies":{"left-pad":"1.0.0"}}\n' > "$TREE/needs-install/package.json"
+printf '{}\n' > "$TREE/needs-build/package.json"
+printf '{}\n' > "$TREE/already-built/package.json"
+: > "$TREE/already-built/dist/index.js"
+cat > "$PROV/bin/npm" <<'EOF'
+#!/usr/bin/env bash
+printf '%s %s\n' "$(basename "$PWD")" "$*" >> "$NPM_LOG"
+case "${1:-}" in
+  ci|install)
+    mkdir -p node_modules/left-pad
+    ;;
+  run)
+    [ "${2:-}" = build ] || exit 0
+    [ -z "${NPM_STUB_BUILD_FAIL:-}" ] || exit 1
+    [ -z "${NPM_STUB_BUILD_NOOP:-}" ] || exit 0
+    mkdir -p dist
+    : > dist/index.js
+    ;;
+esac
+EOF
+chmod +x "$PROV/bin/npm"
+NPM_LOG="$PROV/npm.log"
+export NPM_LOG
+run_fixture_provision() {
+  local fixture_tree="$1"
+  (
+    source "$PROV/scripts/worktree-naming.sh"
+    PATH="$PROV/bin:$PATH" provision_worktree "$fixture_tree"
+  )
+}
+
+run_first_fixture_provision() {
+  run_fixture_provision "$TREE" || return 1
+  [ -e "$TREE/needs-build/dist/index.js" ]
+}
+expect_rc "first run exits 0 and writes listed output" 0 run_first_fixture_provision
+INSTALL_LINES="$(awk '$1 == "needs-install" && $2 == "install" { count++ } END { print count + 0 }' "$NPM_LOG")"
+BUILD_LINES="$(awk '$1 == "needs-build" && $2 == "run" && $3 == "build" { count++ } END { print count + 0 }' "$NPM_LOG")"
+ALREADY_BUILT_LINES="$(awk '$1 == "already-built" { count++ } END { print count + 0 }' "$NPM_LOG")"
+expect_eq "first run installs and builds once" "1 1" "$INSTALL_LINES $BUILD_LINES"
+expect_eq "first run builds only the missing output" "1 0" "$BUILD_LINES $ALREADY_BUILT_LINES"
+
+BUILD_LINES_BEFORE="$BUILD_LINES"
+run_second_fixture_provision() {
+  run_fixture_provision "$TREE" || return 1
+  local build_lines_after
+  build_lines_after="$(awk '$2 == "run" && $3 == "build" { count++ } END { print count + 0 }' "$NPM_LOG")"
+  [ "$build_lines_after" -eq "$BUILD_LINES_BEFORE" ] && [ "$build_lines_after" -eq 1 ]
+}
+expect_rc "second run exits 0 and adds no build line" 0 run_second_fixture_provision
+
+NOOP_TREE="$PROV/noop-tree"
+mkdir -p "$NOOP_TREE/needs-build"
+cp "$TREE/needs-build/package.json" "$NOOP_TREE/needs-build/package.json"
+NPM_STUB_BUILD_NOOP=1 expect_rc "zero-exit build without output fails" 1 run_fixture_provision "$NOOP_TREE"
+
+FAILED_TREE="$PROV/failed-tree"
+mkdir -p "$FAILED_TREE/needs-build"
+cp "$TREE/needs-build/package.json" "$FAILED_TREE/needs-build/package.json"
+NPM_STUB_BUILD_FAIL=1 expect_rc "failed build fails provisioning" 1 run_fixture_provision "$FAILED_TREE"
+
+# ── no-argument provision uses the linked worktree ───────────────
+LINKED="$PROV/linked"
+if git -C "$TMP" worktree add --detach "$LINKED" HEAD >/dev/null 2>&1; then
+  mkdir -p "$TMP/needs-build" "$LINKED/needs-build"
+  printf '{}\n' > "$TMP/needs-build/package.json"
+  printf '{}\n' > "$LINKED/needs-build/package.json"
+  run_linked_fixture_provision() {
+    (
+      cd "$LINKED" || exit 1
+      source "$PROV/scripts/worktree-naming.sh"
+      PATH="$PROV/bin:$PATH" provision_worktree
+    )
+  }
+  expect_rc "provision without dir exits 0 from linked worktree" 0 run_linked_fixture_provision
+  expect_rc "linked worktree receives listed output" 0 test -e "$LINKED/needs-build/dist/index.js"
+  expect_rc "primary checkout receives no listed output" 1 test -e "$TMP/needs-build/dist"
+  git -C "$TMP" worktree remove --force "$LINKED" >/dev/null 2>&1
+else
+  FAIL=$((FAIL + 1))
+  echo "FAIL: linked worktree fixture creation"
+fi
+
 # ── report ─────────────────────────────────────────────────────
 echo "worktree-naming tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]

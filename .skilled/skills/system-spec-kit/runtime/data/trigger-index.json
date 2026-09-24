@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3dfedd210bc3edfc1c56abb09180d3fad78ac01775589b2467fa807d009e394f",
+  "manifestHash": "947f46afddd95370e3dee09979839204a437313080e45874368913c7fb882588",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11375,6 +11375,10 @@
     "specs/system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth/plan.md",
     "specs/system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth/spec.md",
     "specs/system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/061-worktree-build-provisioning/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -21014,6 +21018,9 @@
     ],
     "advisor plugin cli": [
       5533
+    ],
+    "advisor policy plan dist missing": [
+      11367
     ],
     "advisor post decommission verification": [
       5558
@@ -33652,6 +33659,9 @@
     "communication projection default off": [
       2943
     ],
+    "communication projection dist missing": [
+      11367
+    ],
     "communication projection doctor": [
       781
     ],
@@ -37111,10 +37121,10 @@
       10347
     ],
     "create sh canonical specs root": [
-      11367,
-      11368,
-      11369,
-      11370
+      11371,
+      11372,
+      11373,
+      11374
     ],
     "create sh canonical tasks": [
       10348
@@ -37153,10 +37163,10 @@
       1673
     ],
     "create sh writes to opencode specs": [
-      11367,
-      11368,
-      11369,
-      11370
+      11371,
+      11372,
+      11373,
+      11374
     ],
     "create skill": [
       934,
@@ -38930,10 +38940,10 @@
       9360
     ],
     "dead spec kit test files": [
-      11371,
-      11372,
-      11373,
-      11374
+      11375,
+      11376,
+      11377,
+      11378
     ],
     "dead tokenbudget parameter": [
       10184,
@@ -47067,10 +47077,10 @@
       3674
     ],
     "empty phase child skipped": [
-      11371,
-      11372,
-      11373,
-      11374
+      11375,
+      11376,
+      11377,
+      11378
     ],
     "empty recommendation reported as outage": [
       5591
@@ -58010,7 +58020,8 @@
       11349,
       11353,
       11357,
-      11361
+      11361,
+      11365
     ],
     "implementation summary attestation point": [
       10704
@@ -63376,10 +63387,10 @@
       2168
     ],
     "manual playbook runner retired": [
-      11371,
-      11372,
-      11373,
-      11374
+      11375,
+      11376,
+      11377,
+      11378
     ],
     "manual playbook scenario count fix": [
       7932
@@ -64808,7 +64819,7 @@
       10696
     ],
     "memory decommission history": [
-      11365
+      11369
     ],
     "memory decommission inventory": [
       10679
@@ -64832,7 +64843,7 @@
       10674
     ],
     "memory decommission timeline": [
-      11366
+      11370
     ],
     "memory delete causal cleanup": [
       8818
@@ -65454,10 +65465,10 @@
       6373
     ],
     "memory quality test never collected": [
-      11371,
-      11372,
-      11373,
-      11374
+      11375,
+      11376,
+      11377,
+      11378
     ],
     "memory rebuild complete": [
       6457
@@ -75699,10 +75710,10 @@
       5183
     ],
     "phase map rows never filled": [
-      11371,
-      11372,
-      11373,
-      11374
+      11375,
+      11376,
+      11377,
+      11378
     ],
     "phase map sync normalization": [
       11357,
@@ -75752,7 +75763,7 @@
       7648,
       8793,
       10935,
-      11365
+      11369
     ],
     "phase parent 049": [
       6132
@@ -79463,6 +79474,18 @@
       2951,
       2952,
       2953
+    ],
+    "provision build step plan": [
+      11366
+    ],
+    "provision build step tasks": [
+      11368
+    ],
+    "provision builds missing outputs": [
+      11367
+    ],
+    "provision builds missing outputs evidence": [
+      11365
     ],
     "provisional benchmark promotion": [
       973
@@ -84583,10 +84606,10 @@
       4599
     ],
     "retire memory era tests": [
-      11371,
-      11372,
-      11373,
-      11374
+      11375,
+      11376,
+      11377,
+      11378
     ],
     "retire memory learn": [
       10476
@@ -95644,10 +95667,10 @@
       1752
     ],
     "spec kit v4 chronology": [
-      11366
+      11370
     ],
     "spec kit v4 timeline": [
-      11365
+      11369
     ],
     "spec kit version migration": [
       7612,
@@ -95883,10 +95906,10 @@
       10501
     ],
     "spec packet lands in opencode specs": [
-      11367,
-      11368,
-      11369,
-      11370
+      11371,
+      11372,
+      11373,
+      11374
     ],
     "spec packet merge gate": [
       10562
@@ -99301,10 +99324,10 @@
       10204
     ],
     "system speckit v4": [
-      11365
+      11369
     ],
     "system speckit v4 timeline": [
-      11366
+      11370
     ],
     "system to embedder mapping": [
       7089,
@@ -101155,7 +101178,7 @@
       10431
     ],
     "template reduction history": [
-      11365
+      11369
     ],
     "template reduction requirements": [
       10411
@@ -101432,10 +101455,10 @@
       8410
     ],
     "test phase validation cannot load": [
-      11371,
-      11372,
-      11373,
-      11374
+      11375,
+      11376,
+      11377,
+      11378
     ],
     "test plan checkboxes": [
       1089
@@ -102487,10 +102510,10 @@
       10400
     ],
     "track numbering restarts at 001": [
-      11367,
-      11368,
-      11369,
-      11370
+      11371,
+      11372,
+      11373,
+      11374
     ],
     "track prefix identity heal": [
       9750
@@ -104260,7 +104283,7 @@
       979
     ],
     "v4 packet order": [
-      11366
+      11370
     ],
     "v4 release notes corrections applied": [
       11052
@@ -107396,7 +107419,7 @@
       1472
     ],
     "which spec was worked on first": [
-      11366
+      11370
     ],
     "which system uses cocoindex or mk spec memory": [
       8318
@@ -107731,6 +107754,16 @@
     ],
     "worktree base relocation": [
       3858
+    ],
+    "worktree build provisioning": [
+      11365,
+      11367
+    ],
+    "worktree build provisioning plan": [
+      11366
+    ],
+    "worktree build provisioning tasks": [
+      11368
     ],
     "worktree checklist excluded": [
       10449
