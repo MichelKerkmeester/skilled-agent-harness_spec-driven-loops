@@ -27,7 +27,7 @@ trigger_phrases:
   - "how long will this take"
 importance_tier: important
 contextType: reference
-version: 1.3.0.0
+version: 1.3.0.1
 ---
 
 # Rule: Communication decisions
@@ -103,7 +103,7 @@ For a complex or ambiguous request, preface the answer:
 
 1. **ASK:** restate the request in your own words. A paraphrase back, not a question
    back: it proves you understood, and it surfaces a misreading before the work, not after.
-2. **DO:** state your approach in three to seven bullets.
+2. **DO:** state your approach in three to five bullets.
 3. **THEN:** ask only the one or two clarifying questions that would change the
    approach. Consolidate them into a single prompt, per `AGENTS.md` §2, and escalate
    rather than guess, per `AGENTS.md` §7.

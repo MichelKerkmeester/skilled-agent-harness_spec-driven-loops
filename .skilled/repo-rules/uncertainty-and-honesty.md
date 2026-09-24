@@ -20,7 +20,7 @@ trigger_phrases:
   - "hedge that changes nothing"
 importance_tier: important
 contextType: reference
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # Rule: Uncertainty and honest reporting
@@ -53,7 +53,7 @@ you could have answered by reading a file wastes the operator's turn and yours. 
 *cannot* answer by reading is worth asking immediately.
 
 **Ask when it changes the work.** If both readings lead to the same next action, pick
-one, state the assumption, proceed. If they lead somewhere materially different, ask, consolidating every question into one message, before any analysis.
+one, state the assumption, proceed. If they lead somewhere materially different, ask, consolidating every question into one message, before starting the work the answer would change.
 
 ---
 
@@ -70,6 +70,11 @@ parameter names, return types; version numbers, dates, benchmark figures.
 Verify a thing exists before relying on it. When working from recollection rather than
 the file in front of you, say which. Flag a claim shakier than the prose around it
 inline: `I'M UNCERTAIN ABOUT THIS: ...`
+
+**Check a fast-moving name live.** Model ids, CLI flags and tool versions change within
+weeks, and the repo doc that lists them is the first thing to go stale. Before naming one
+as current, check the live tool: its model list, `--help` or `--version`. When you cannot,
+mark its currentness UNKNOWN.
 
 ---
 

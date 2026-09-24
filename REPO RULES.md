@@ -23,7 +23,7 @@ holds no rules of its own.
 |-------|--------|--------------------|
 | 1 | Every `AGENTS.md` §1 hard blocker, the Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene, and every mandatory gate in §2 | No |
 | 2 | An explicit, in-the-moment operator instruction | Not applicable, it is the instruction |
-| 3 | These rule files | Only by level 1 or 2 |
+| 3 | These rule files, and the guidance in a skill's `SKILL.md` | Only by level 1 or 2 |
 | 4 | General judgment | By anything above |
 
 A rule file may tighten `AGENTS.md`. None relaxes a HARD BLOCK or authorizes what
