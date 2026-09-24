@@ -37,7 +37,7 @@ contextType: "implementation"
 
 This is **Phase 16** of the skill changelog retrofit.
 
-**Scope Boundary**: The 108 system-spec-kit changelogs listed in `../scratch/lists/system-spec-kit.txt`. The pilot restored v3+/v3.7.0.0 after two failed attempts, so it goes back through the driver with `--retry-failed`.
+**Scope Boundary**: The 108 system-spec-kit changelogs listed in `../scratch/lists/system-spec-kit.txt`. v3+/v3.7.0.0 failed both the pilot and the phase 001 check run, so it goes back through the driver with `--retry-failed`, resuming from its kept draft.
 
 **Dependencies**:
 - Phase 001's checker, briefs and driver, frozen after the operator's style approval
@@ -113,7 +113,7 @@ Every listed system-spec-kit changelog reads in the current format and still rec
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 001 style approval | This phase cannot start without it | Wait for the operator |
+| Dependency | Phase 001 style approval | This phase cannot start without it | Met: approved with fixes on 2026-09-24 |
 | Risk | A dense file fails its fact check twice | Medium | One `--retry-failed` pass, then the failure is recorded with its reason |
 | Risk | Another session edits a system-spec-kit file during the wave | Medium | Stage only the listed files, and rerun the checker on them before the commit |
 <!-- /ANCHOR:risks -->

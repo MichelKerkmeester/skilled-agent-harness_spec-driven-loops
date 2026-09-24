@@ -76,7 +76,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Pilot: v1.6.1.0 | Pending | Restored in pilot run 2, retry in the wave |
+| Check run: v1.6.1.0 | Done | Kept in the phase 001 check run |
 | Wave | Pending | Waits on the style approval |
 
 ### Deviations and findings

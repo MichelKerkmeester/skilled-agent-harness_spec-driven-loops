@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Rewrite every skill changelog to the current sk-create-changelog format"
-description: "549 of the skill changelogs predate the compact and expanded narrative format that sk-create-changelog now defines, so the release history reads in several older styles. This packet rewrites them in place with GPT-6 Luna, one phase for the tooling and pilot and one phase per skill, keeping every fact."
+description: "547 of the skill changelogs predate the compact and expanded narrative format that sk-create-changelog now defines, so the release history reads in several older styles. This packet rewrites them in place with GPT-6 Luna, one phase for the tooling and pilot and one phase per skill, keeping every fact."
 trigger_phrases:
   - "skill changelog retrofit"
   - "rewrite skill changelogs"
@@ -49,7 +49,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-sk-create-changelog defines two narrative formats for a release, compact and expanded, and its canonical exemplar is `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md`. Of the 574 changelogs under `.skilled/skills/` when this packet started, 549 predate that format. They open with retired machine headers such as `## [**1.2.0.0**] - 2026-03-02`, carry Files Changed tables and test counts, and use change-type sections the contract retires. The release history therefore reads in several older styles at once.
+sk-create-changelog defines two narrative formats for a release, compact and expanded, and its canonical exemplar is `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md`. Of the 574 files in `.skilled/skills/` changelog folders when this packet started, 547 are release entries that predate that format. They open with retired machine headers such as `## [**1.2.0.0**] - 2026-03-02`, carry Files Changed tables and test counts, and use change-type sections the contract retires. The release history therefore reads in several older styles at once.
 
 ### Purpose
 Every skill changelog reads in the current format and still records exactly what shipped in its version, no more and no less.
@@ -63,7 +63,7 @@ Every skill changelog reads in the current format and still records exactly what
 ## 3. SCOPE
 
 ### In Scope
-- The 549 skill changelogs that failed the shape checker when this packet started, including system-spec-kit's `v1+/`, `v2+/` and `v3+/` subfolders. Each skill's list is in `scratch/lists/`.
+- The 547 skill changelogs that failed the shape checker when this packet started, including system-spec-kit's `v1+/`, `v2+/` and `v3+/` subfolders. Each skill's list is in `scratch/lists/`.
 - The checker, the rewrite brief, the fact-check brief and the driver in `scratch/`, built in phase 001.
 
 ### Out of Scope
@@ -71,6 +71,7 @@ Every skill changelog reads in the current format and still records exactly what
 - The canonical exemplar, which is the house style itself.
 - Skill changelogs that already pass the checker, including those added after this packet started.
 - The packet-changelog templates in `.skilled/skills/system-spec-kit/templates/changelog/`, which are templates rather than release entries.
+- The `DESIGN.md` and `source.md` of the design-style bundle at `.skilled/skills/sk-design/sk-design-md-generator/styles/library/bundles/changelog/`. The bundle is named for the changelog site style it captures, and it is not a release history.
 - Changes to sk-create-changelog's own contract. Its rule never to overwrite an existing changelog governs creation. This packet overwrites on purpose, as the operator asked, and records that here rather than amending the rule.
 
 ### Files to Change
@@ -78,7 +79,7 @@ Every skill changelog reads in the current format and still records exactly what
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `specs/sk-doc/059-skill-changelog-retrofit/scratch/*` | Create | 001-tooling-and-pilot | Checker, briefs, driver and run records |
-| `.skilled/skills/<skill>/**/changelog/**/*.md` (549 listed) | Modify | 001 to 016 | Rewritten in place in the compact or expanded format |
+| `.skilled/skills/<skill>/**/changelog/**/*.md` (547 listed) | Modify | 001 to 016 | Rewritten in place in the compact or expanded format |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -90,15 +91,15 @@ Every skill changelog reads in the current format and still records exactly what
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-tooling-and-pilot/ | Checker, briefs, driver and the ten-file pilot | In Progress |
+| 1 | 001-tooling-and-pilot/ | Checker, briefs, driver and the ten-file pilot | Complete |
 | 2 | 002-cli-external-orchestration/ | 112 cli-external-orchestration changelogs, 3 kept in the pilot | Planned |
 | 3 | 003-cli-jev/ | 5 cli-jev changelogs | Planned |
 | 4 | 004-cli-orca/ | 1 cli-orca changelog | Planned |
 | 5 | 005-mcp-code-mode/ | 9 mcp-code-mode changelogs | Planned |
-| 6 | 006-mcp-tooling/ | 55 mcp-tooling changelogs | Planned |
+| 6 | 006-mcp-tooling/ | 55 mcp-tooling changelogs, 1 kept in the phase 001 check run | Planned |
 | 7 | 007-sk-code/ | 29 sk-code changelogs | Planned |
 | 8 | 008-sk-communication/ | 4 sk-communication changelogs | Planned |
-| 9 | 009-sk-design/ | 32 sk-design changelogs, 1 kept in the pilot | Planned |
+| 9 | 009-sk-design/ | 30 sk-design changelogs | Planned |
 | 10 | 010-sk-doc/ | 56 sk-doc changelogs, 1 kept in the pilot | Planned |
 | 11 | 011-sk-git/ | 21 sk-git changelogs, 1 kept in the pilot | Planned |
 | 12 | 012-sk-prompt/ | 14 sk-prompt changelogs | Planned |

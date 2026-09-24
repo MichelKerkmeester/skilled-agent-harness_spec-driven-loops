@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-003 | Given the checker, When it runs on the exemplar, the compliant changelogs and legacy ones, Then the first two pass and the legacy ones fail | Rerun 2026-09-24: exemplar exit 0, 25 of 25 compliant files pass, 543 of the 549 listed files still fail and the other 6 are the pilot passes | Met | - |
-| AC-002 | REQ-001 | Given a kept pilot rewrite, When the checker runs with `--old` and the fact check reads both texts, Then the checker finds no new identifier or number and the fact check returns PASS | `../scratch/pilot-state.jsonl` has `status: pass` for six files, which requires both gates, and the checker rerun on all six exits 0 | Met | - |
+| AC-002 | REQ-001 | Given a kept pilot rewrite, When the checker runs with `--old` and the fact check reads both texts, Then the checker finds no new identifier or number and the fact check returns PASS | `../scratch/pilot-state.jsonl` has `status: pass` for six files, which requires both gates, and the checker rerun on all six exits 0. The stricter checker later rejected sk-design's, which the check run restored, and the check run kept mcp-tooling v1.6.1.0 through the same gates | Met | - |
 | AC-003 | REQ-002 | Given a kept pilot rewrite, When the orchestrator reads it beside its original, Then no user-visible change, breaking change, migration step or required action is missing | The orchestrator read all ten on 2026-09-24 and reported two soft losses (cli-devin, cli-claude-code) that drop context, not a behavior, action or correction | Met | - |
 | AC-004 | REQ-003 | Given a kept pilot rewrite, When `hvr_scan.py` runs on it, Then it reports 0 hard blockers | Rerun on all six: 0 hard blockers each | Met | - |
 | AC-005 | REQ-004 | Given a pilot file that failed its gates twice, When the driver finished with it, Then the file equals its original and its draft is kept | `git diff` is empty for all four failures, and `ls -A ../scratch/failed` lists all four drafts | Met | - |
@@ -86,7 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is Met, but the check run that applies the approved fixes to the four restored files and to sk-design v2.0.0.0 has not finished. The phase closes when that run's results are recorded.
+Every row is Met. The check run applied the approved fixes to the four restored files and to sk-design v2.0.0.0: it kept mcp-tooling v1.6.1.0 and restored the other four, each with a recorded reason. Those four go back through the driver in their own skill phases.
 <!-- /ANCHOR:closure -->

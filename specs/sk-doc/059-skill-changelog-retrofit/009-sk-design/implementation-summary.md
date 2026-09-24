@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 9: sk-design changelogs"
-description: "Not started. This phase rewrites the 32 listed sk-design changelogs once phase 001's pilot style is approved."
+description: "Not started. This phase rewrites the 30 listed sk-design changelogs once phase 001's pilot style is approved."
 trigger_phrases:
   - "sk-design changelog rewrite status"
 importance_tier: "normal"
@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-09-24T18:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "Planned the sk-design wave"
-    next_safe_action: "Continue once phase 001 records the style approval"
+    next_safe_action: "Run the wave with the phase 001 driver"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"
       parent_session_id: null
-    completion_pct: 3
+    completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
@@ -45,11 +45,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This phase waits on the operator's approval of the pilot style in phase 001. Its target list, `../scratch/lists/sk-design.txt`, is in place. The pilot already kept 1 of these: v2.0.0.0.
+Nothing yet. The operator approved the pilot style on 2026-09-24, and this wave has not run. Its target list, `../scratch/lists/sk-design.txt`, is in place. The pilot kept v2.0.0.0, but the stricter checker later rejected it and the phase 001 check run restored it, so it goes back through the driver with `--retry-failed`.
 
 ### Phase 9: sk-design changelogs
 
-The wave will rewrite the 32 listed changelogs, keep each one only when all three gates pass, and commit the skill once.
+The wave will rewrite the 30 listed changelogs, keep each one only when all three gates pass, and commit the skill once.
 
 ### Files Changed
 
@@ -83,7 +83,7 @@ Not delivered yet.
 
 | Check | Result |
 |-------|--------|
-| Target list | PASS: `wc -l < ../scratch/lists/sk-design.txt` counts 32 files |
+| Target list | PASS: `wc -l < ../scratch/lists/sk-design.txt` counts 30 files |
 | Wave run | Pending |
 <!-- /ANCHOR:verification -->
 

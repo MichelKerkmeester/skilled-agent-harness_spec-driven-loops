@@ -37,7 +37,7 @@ contextType: "implementation"
 
 This is **Phase 2** of the skill changelog retrofit.
 
-**Scope Boundary**: The 112 cli-external-orchestration changelogs listed in `../scratch/lists/cli-external-orchestration.txt`. The pilot already kept 3 of these: cli-claude-code v1.0.0.0, cli-pi v1.4.0.0 and cli-devin v1.4.2.0. The pilot restored cli-hermes v1.0.0.0 after two failed attempts, so it goes back through the driver with `--retry-failed`.
+**Scope Boundary**: The 112 cli-external-orchestration changelogs listed in `../scratch/lists/cli-external-orchestration.txt`. The pilot already kept 3 of these: cli-claude-code v1.0.0.0, cli-pi v1.4.0.0 and cli-devin v1.4.2.0. cli-hermes v1.0.0.0 failed both the pilot and the phase 001 check run, so it goes back through the driver with `--retry-failed`, resuming from its kept draft.
 
 **Dependencies**:
 - Phase 001's checker, briefs and driver, frozen after the operator's style approval
@@ -113,7 +113,7 @@ Every listed cli-external-orchestration changelog reads in the current format an
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 001 style approval | This phase cannot start without it | Wait for the operator |
+| Dependency | Phase 001 style approval | This phase cannot start without it | Met: approved with fixes on 2026-09-24 |
 | Risk | A dense file fails its fact check twice | Medium | One `--retry-failed` pass, then the failure is recorded with its reason |
 | Risk | Another session edits a cli-external-orchestration file during the wave | Medium | Stage only the listed files, and rerun the checker on them before the commit |
 <!-- /ANCHOR:risks -->

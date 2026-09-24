@@ -116,6 +116,7 @@ and findings belong here.
 | Phase children 001 to 016 | In Progress | Folders created, per-skill lists in `scratch/lists/` (549 files) |
 | Pilot style approval | Pending | Operator review |
 | Phase docs and goals for 001 to 016 | Done | validate.sh --recursive --strict: 17 of 17 RESULT: PASSED |
+| Scope correction | Done | Two design-bundle files removed from the sk-design list (547 targets); driver accepts only version-named files |
 
 ### Deviations and findings
 

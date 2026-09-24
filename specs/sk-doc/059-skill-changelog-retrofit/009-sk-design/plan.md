@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 9: sk-design changelogs"
-description: "Runs the phase 001 driver over the 32 listed sk-design changelogs on two lanes, keeps each rewrite only when all three gates pass, then commits the skill once."
+description: "Runs the phase 001 driver over the 30 listed sk-design changelogs on two lanes, keeps each rewrite only when all three gates pass, then commits the skill once."
 trigger_phrases:
   - "sk-design changelog rewrite plan"
 importance_tier: "normal"
@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Testing** | The shape checker, `hvr_scan.py` and the fact-check dispatch per file |
 
 ### Overview
-The driver takes `../scratch/lists/sk-design.txt` and the shared state file, so files the pilot already kept are skipped. 31 files run through GPT-6 Luna at xhigh on cli-pi and cli-codex, each gated by the checker, the HVR scan and a fact check. The skill is committed once, after a final gate run over every kept file.
+The driver takes `../scratch/lists/sk-design.txt` and the shared state file, so files the pilot already kept are skipped. 30 files run through GPT-6 Luna at xhigh on cli-pi and cli-codex, each gated by the checker, the HVR scan and a fact check. The skill is committed once, after a final gate run over every kept file.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,7 +35,7 @@ The driver takes `../scratch/lists/sk-design.txt` and the shared state file, so 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 records the operator's style approval
+- [x] Phase 001 records the operator's style approval
 - [x] The target list exists at `../scratch/lists/sk-design.txt`
 - [x] The driver, checker and briefs exist in `../scratch/`
 

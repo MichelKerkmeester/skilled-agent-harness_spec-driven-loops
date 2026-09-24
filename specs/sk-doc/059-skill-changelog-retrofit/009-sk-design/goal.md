@@ -34,7 +34,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** The 32 listed sk-design changelogs read in the current format, and each still records exactly what shipped in its version.
+**Objective:** The 30 listed sk-design changelogs read in the current format, and each still records exactly what shipped in its version.
 
 ### Decisions
 
@@ -76,7 +76,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Pilot: v2.0.0.0 | Done | Kept in pilot run 2 |
+| Pilot: v2.0.0.0 | Pending | Restored in the phase 001 check run, retry in the wave |
 | Wave | Pending | Waits on the style approval |
 
 ### Deviations and findings

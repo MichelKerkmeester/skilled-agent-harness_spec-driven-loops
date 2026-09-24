@@ -41,7 +41,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-tooling-and-pilot |
-| **Completed** | In progress, waiting on the operator's style approval |
+| **Completed** | 2026-09-24 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -75,6 +75,8 @@ Pilot run 2 covered ten files across every legacy style. It kept claude-code v1.
 ## How It Was Delivered
 
 Pilot run 1 exposed three flaws. The fact check flagged the template's fixed "nothing to do" phrases, so a retry left Upgrade Notes empty. v1.0.0.0 was treated as a major bump. Some sentences were filler. That run was stopped and its files restored. The briefs, the checker and the driver were fixed, and run 2 started clean. Run 2 used 32 GPT dispatches and no gateway dispatch, and took 217 to 2,172 seconds per file. cli-codex was faster than cli-pi on every file.
+
+The operator approved the style with fixes. The checker now rejects a one-sentence H4 item and a sentence repeated across sections, the fact check accepts the spec folder's level suffix and treats a summarized field list as a summary rather than a drop, and each file gets three attempts. Those fixes rejected the pilot's sk-design rewrite, so it joined the four restored files in a check run. The run kept mcp-tooling v1.6.1.0. It restored the other four: system-spec-kit v3.7.0.0 drew new findings on every attempt, deep-improvement and one sk-design attempt stopped on a rejected line-range edit in cli-pi, cli-hermes ended on one repeated sentence, and sk-design's rewrite invented an instruction the original contradicts. The rewrite brief now asks for one whole-file write, and a retry now resumes from the kept draft and its last findings.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -101,8 +103,9 @@ Pilot run 1 exposed three flaws. The fact check flagged the template's fixed "no
 | Six pilot passes rerun | PASS: checker exit 0, 0 HVR hard blockers, frontmatter identical |
 | Four pilot failures | PASS: `git diff` empty for each, four drafts in `../scratch/failed/` |
 | Dispatch routing | PASS: 32 GPT, 0 gateway |
-| Orchestrator read of all ten | Pending |
-| Operator style approval | Pending |
+| Orchestrator read of all ten | PASS: two soft losses reported, no dropped behavior, action or correction |
+| Operator style approval | PASS: approved with fixes on 2026-09-24 |
+| Check run over five files | 1 kept, 4 restored with recorded reasons |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -113,4 +116,6 @@ Pilot run 1 exposed three flaws. The fact check flagged the template's fixed "no
 1. **Dense files fail more often.** Four of ten pilot files failed after two attempts. A third attempt, or a retry with `--retry-failed`, is the open question in `spec.md`.
 2. **Saved originals and drafts are hidden files.** Their names start with a dot, so `ls -A` is needed to see them.
 3. **cli-pi is slow on this task.** Its two failures each ran past 2,000 seconds.
+4. **Very long files may not converge.** system-spec-kit v3.7.0.0 (43 KB) drew a different set of findings on each of its three attempts. Five more files over 20 KB wait in phases 007 and 016.
+5. **The first enumeration took in two files that are not changelogs.** A design-style bundle at `sk-design-md-generator/styles/library/bundles/changelog/` sits in a folder named `changelog`. Its `DESIGN.md` and `source.md` were removed from the sk-design list before any wave, and the driver now accepts only files named for a version.
 <!-- /ANCHOR:limitations -->

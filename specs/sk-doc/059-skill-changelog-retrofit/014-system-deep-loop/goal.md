@@ -76,7 +76,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Pilot: deep-improvement v1.2.0.0 | Pending | Restored in pilot run 2, retry in the wave |
+| Pilot: deep-improvement v1.2.0.0 | Pending | Restored in the phase 001 check run, retry in the wave |
 | Wave | Pending | Waits on the style approval |
 
 ### Deviations and findings

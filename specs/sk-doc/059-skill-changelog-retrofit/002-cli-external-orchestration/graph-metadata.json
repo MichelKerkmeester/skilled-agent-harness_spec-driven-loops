@@ -165,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "fixes",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -172,12 +178,6 @@
       },
       {
         "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "112 cli-external-orchestration changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:07Z",
-    "last_save_at": "2026-09-24T18:41:05.392Z",
+    "last_save_at": "2026-09-24T19:59:15.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b9272cd27eb92031b3ee6ee36e1ef579aa54348659c23bc177bbd1bda9196a5",
+    "source_fingerprint": "sha256:ae848a1f7b13e507db08f9f9fa4531a1f87bdc8563dd457e17ff0a1d04dfa3b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5171da9e89b5756a59141d3013c22acd930ae0638d73d221145e414099a9f0b4",
-      "plan.md": "765e925925cbffe703207f41ee412c65f0d371324ec3c60ed509b44f9630e9d3",
-      "tasks.md": "faed1195008ca48a1fc3ba57e5f59007f824dbb68db02b5f3f4241dd6483bb67",
-      "implementation-summary.md": "8206cdcc5ab50fdf2d76d8b16fecfd143c4e9bfcfdb7157bdf24be4ea6cb31ab"
+      "spec.md": "f6566ac171be6216167fd9a72d214db8d8c92c829366bc12b590fa2969412534",
+      "plan.md": "8ebc106415f563f761ec64ee564314165b9914babdaaf013153c0faa3e9f24c6",
+      "tasks.md": "3d713d7dbcdd15cf0b1a98bd16925232b1a9f597f6ec2b729f2ac6990ec7877a",
+      "implementation-summary.md": "353f9f27c99495f97c76e0dfe8b98908dfdebfff4bc9e66d318250baaf646745"
     },
     "last_active_at": null
   }

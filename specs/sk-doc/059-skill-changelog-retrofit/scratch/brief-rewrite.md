@@ -23,7 +23,7 @@ CONTEXT
 ACTION
 1. Read {{FILE}}. An untouched copy of it is at {{OLD}}.
 2. Count the changes it records. Use the compact format for under 10 changes when the version is not a major bump and nothing breaks. Use the expanded format for 10 or more changes, a major bump, or any breaking change. A major bump is vX.0.0.0 with X of 2 or more. A first release (v1.0.0.0 or any v0.x) is not a bump: choose its format by change count and breaking changes alone.
-3. Rewrite {{FILE}} in place in that format.
+3. Rewrite {{FILE}} in place in that format, as one whole-file write. Do not edit it by line ranges or line hashes: a rewrite replaces every line, and a range edit can be rejected on a line-number mismatch. If any edit is rejected, write the whole file again rather than stopping.
 4. Run both checks. Fix the file and rerun until both pass:
    python3 {{CHECKER}} {{FILE}} --old {{OLD}}
    (exit 0 required)

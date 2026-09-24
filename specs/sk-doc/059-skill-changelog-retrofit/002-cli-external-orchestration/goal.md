@@ -79,7 +79,7 @@ and findings belong here.
 | Pilot: cli-claude-code v1.0.0.0 | Done | Kept in pilot run 2 |
 | Pilot: cli-pi v1.4.0.0 | Done | Kept in pilot run 2 |
 | Pilot: cli-devin v1.4.2.0 | Done | Kept in pilot run 2 |
-| Pilot: cli-hermes v1.0.0.0 | Pending | Restored in pilot run 2, retry in the wave |
+| Pilot: cli-hermes v1.0.0.0 | Pending | Restored in the phase 001 check run, retry in the wave |
 | Wave | Pending | Waits on the style approval |
 
 ### Deviations and findings

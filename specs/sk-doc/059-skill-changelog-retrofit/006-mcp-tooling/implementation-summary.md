@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-09-24T18:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "Planned the mcp-tooling wave"
-    next_safe_action: "Continue once phase 001 records the style approval"
+    next_safe_action: "Run the wave with the phase 001 driver"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 2
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This phase waits on the operator's approval of the pilot style in phase 001. Its target list, `../scratch/lists/mcp-tooling.txt`, is in place. The pilot restored v1.6.1.0 after two failed attempts, so it goes back through the driver with `--retry-failed`.
+Nothing yet. The operator approved the pilot style on 2026-09-24, and this wave has not run. Its target list, `../scratch/lists/mcp-tooling.txt`, is in place. The pilot restored v1.6.1.0, and the phase 001 check run then kept it.
 
 ### Phase 6: mcp-tooling changelogs
 

@@ -165,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "fixes",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -177,21 +183,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "32 sk-design changelogs predate the compact and expanded format that sk-create-changelog now defines",
+    "causal_summary": "30 sk-design changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:11Z",
-    "last_save_at": "2026-09-24T18:41:15.098Z",
+    "last_save_at": "2026-09-24T19:59:39.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6298bbb0d2b00f234e14cfcfc8dd958869849ad82c8b05e645c9c3ff4324905",
+    "source_fingerprint": "sha256:c0df85028b5ee91138a3761371e89de20a1367cbabe6c3b30719f13c8302d98b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2095bbc9b4d90031384c2b47493a6906465f82967df6d0a72e56780135ae366b",
-      "plan.md": "d5257fd7f2ebc2b5b9bdcc6732589c7c3ad5b6e2e72ec6b6cb84ad37ada4082e",
-      "tasks.md": "5e5acc9422061962edc520b32eaff05c5ec543dcbe14d1b2c4945dbdf01489b2",
-      "implementation-summary.md": "7403a2cde5c17b5088dd32d707f9f1c1d3e3d9007aff631639774facfa36af69"
+      "spec.md": "a9b7ead3818e31ce6abc0c34c93084122c8e9e1bf0bbb0e3ebac9536b7016959",
+      "plan.md": "2e97fbbbcfc2da788b3e96046ddba1dca4c51fb0e43451ecd5fce2069dfbe1c7",
+      "tasks.md": "221a0be83287e9d71905fa623f8fa8bdf3b5ce28600fec184aeb1d0f335be471",
+      "implementation-summary.md": "6fd69216e4ba3fa04407bcfac4327973c2e104527ef16f5386804f90cd749eb0"
     },
     "last_active_at": null
   }

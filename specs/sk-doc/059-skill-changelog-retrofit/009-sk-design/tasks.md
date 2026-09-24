@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Confirm phase 001 records the operator's style approval
+- [x] T001 Confirm phase 001 records the operator's style approval: approved with fixes, 2026-09-24
 - [ ] T002 Confirm the sk-design files are clean in git before the run (`../scratch/lists/sk-design.txt`)
 <!-- /ANCHOR:phase-1 -->
 

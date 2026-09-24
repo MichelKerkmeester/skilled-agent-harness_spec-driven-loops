@@ -35,7 +35,7 @@ The driver takes `../scratch/lists/system-skill-advisor.txt` and the shared stat
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 001 records the operator's style approval
+- [x] Phase 001 records the operator's style approval
 - [x] The target list exists at `../scratch/lists/system-skill-advisor.txt`
 - [x] The driver, checker and briefs exist in `../scratch/`
 
