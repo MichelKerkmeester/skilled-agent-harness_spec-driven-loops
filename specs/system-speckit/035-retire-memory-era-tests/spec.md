@@ -147,7 +147,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 | REQ-009 | `create.sh --json` prints the JSON payload and nothing else on stdout | The phase test parses stdout strictly and passes |
 | REQ-010 | With no install, `create.sh` scaffolds the documents a tsx checkout does | Each fallback matches its TypeScript source in a parity test that failed before its port, and an install-free Level 2 and 3 scaffold differs from a tsx one only in timestamps |
 | REQ-011 | No phase parent keeps the unfilled row markers | A search of `specs/` for the phase row marker finds no `spec.md` |
-| REQ-012 | A scaffold that skips a generated file for want of a build says so | Level, phase-parent and appended-phase scaffolds with no build each print a warning naming the missing generator, and the test fails without it |
+| REQ-012 | A scaffold that skips a generated file for want of a build says so, and a phase parent that cannot get its description stops | Level and appended-phase scaffolds with no build print a warning naming the missing generator; `--phase` and `--level phase-parent` both exit 1; the test fails without each |
 <!-- /ANCHOR:requirements -->
 
 ---

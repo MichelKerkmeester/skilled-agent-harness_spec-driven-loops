@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Spec-kit dropped its embedding-backed memory database",
     "created_at": "2026-09-23T20:09:53Z",
-    "last_save_at": "2026-09-24T07:28:11.920Z",
+    "last_save_at": "2026-09-24T08:50:14.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0cd4b321ca7e7f693c6606bee8a04131697a90ddd2fae45b3dd88b559c91a9a",
+    "source_fingerprint": "sha256:1a3d3e56e98518ba00e20caaaedf4e891e844ed35117ef88a1c008bca47c58d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "36add49f88fea7eb63589d693d29b6134c33ff50070d914fb9b371fd49c72a26",
-      "plan.md": "28a5e603f761363efcbdc398e06e6f9997b85d1608d2cedb2edcc53051598984",
-      "tasks.md": "a3106aba803d4ebaebb7303c8f5c423f67ec6f373a7dfe605a9893bf6ddda6f0",
-      "implementation-summary.md": "6d3ce4619c809697a6bf65f4dc0f87f8c9c917277e1602fdacc8b5ab710f513c"
+      "spec.md": "2b60297fbd35bb33ea03a88d06ceb891bc574a391450db9a153f3c4659ae1c80",
+      "plan.md": "91c5eb3b292cb6643d6932026ecf332859850a83fd13e07635da52baafd6b26d",
+      "tasks.md": "6683d1a2df73418e2709a533e7d445a1e9d35e3b2a4950b3e94885f3456db165",
+      "implementation-summary.md": "fdd63434dd8bd467a852e82422dc33e4b330e02fb8be12c66da9b6dd00f5b8e1"
     },
     "last_active_at": null
   }
