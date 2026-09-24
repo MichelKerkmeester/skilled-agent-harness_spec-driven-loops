@@ -1,0 +1,14 @@
+.skilled/skills/sk-prompt/changelog/v1.0.0.0.md
+.skilled/skills/sk-prompt/changelog/v1.1.0.0.md
+.skilled/skills/sk-prompt/changelog/v1.2.0.0.md
+.skilled/skills/sk-prompt/changelog/v1.3.1.0.md
+.skilled/skills/sk-prompt/changelog/v1.4.0.0.md
+.skilled/skills/sk-prompt/changelog/v2.0.0.0.md
+.skilled/skills/sk-prompt/changelog/v2.1.0.0.md
+.skilled/skills/sk-prompt/changelog/v2.1.1.0.md
+.skilled/skills/sk-prompt/changelog/v2.1.2.0.md
+.skilled/skills/sk-prompt/changelog/v2.1.3.0.md
+.skilled/skills/sk-prompt/changelog/v2.2.0.0.md
+.skilled/skills/sk-prompt/changelog/v2.3.0.0.md
+.skilled/skills/sk-prompt/changelog/v2.3.1.0.md
+.skilled/skills/sk-prompt/changelog/v3.0.0.0.md

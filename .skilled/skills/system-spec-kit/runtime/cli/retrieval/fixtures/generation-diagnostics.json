@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7354,
-    "ok": 11378,
+    "ok": 11461,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22423,
+  "documentsScanned": 22506,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6cc366c936bc032760cbfb5469371b1ad03e7ace5e4d2fc4ead2fc7eeacee686",
+  "manifestHash": "9975204dddae9cd02d517434340835ce51994d46cd032074ff28d09216c43ea1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27679,
+      "ok": 27767,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -71880,6 +71880,74 @@
     },
     {
       "path": "specs/sk-doc/058-playbook-prompt-sync/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/scratch",
       "reason": "excluded directory"
     },
     {

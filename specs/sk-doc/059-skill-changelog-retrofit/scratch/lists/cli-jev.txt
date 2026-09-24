@@ -1,0 +1,5 @@
+.skilled/skills/cli-jev/changelog/v0.1.0.0.md
+.skilled/skills/cli-jev/changelog/v0.2.0.0.md
+.skilled/skills/cli-jev/cli-usage/changelog/v1.0.0.0.md
+.skilled/skills/cli-jev/cli-usage/changelog/v1.0.1.0.md
+.skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md

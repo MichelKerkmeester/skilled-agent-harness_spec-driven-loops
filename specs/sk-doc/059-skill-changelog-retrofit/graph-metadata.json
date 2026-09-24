@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/059-skill-changelog-retrofit",
+  "spec_folder": "sk-doc/059-skill-changelog-retrofit",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot",
+    "sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration",
+    "sk-doc/059-skill-changelog-retrofit/003-cli-jev",
+    "sk-doc/059-skill-changelog-retrofit/004-cli-orca",
+    "sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode",
+    "sk-doc/059-skill-changelog-retrofit/006-mcp-tooling",
+    "sk-doc/059-skill-changelog-retrofit/007-sk-code",
+    "sk-doc/059-skill-changelog-retrofit/008-sk-communication",
+    "sk-doc/059-skill-changelog-retrofit/009-sk-design",
+    "sk-doc/059-skill-changelog-retrofit/010-sk-doc",
+    "sk-doc/059-skill-changelog-retrofit/011-sk-git",
+    "sk-doc/059-skill-changelog-retrofit/012-sk-prompt",
+    "sk-doc/059-skill-changelog-retrofit/013-sk-vision",
+    "sk-doc/059-skill-changelog-retrofit/014-system-deep-loop",
+    "sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor",
+    "sk-doc/059-skill-changelog-retrofit/016-system-spec-kit"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill changelog retrofit",
+      "rewrite skill changelogs",
+      "changelog format migration",
+      "legacy changelog rewrite",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "skill",
+      "changelog",
+      "retrofit",
+      "rewrite",
+      "changelogs",
+      "format",
+      "migration",
+      "legacy",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/system-spec-kit/changelog/v4.0.0.0.md",
+      "001-tooling-and-pilot/acceptance-criteria.md",
+      "001-tooling-and-pilot/spec.md",
+      "001-tooling-and-pilot/goal.md",
+      "002-cli-external-orchestration/goal.md",
+      "003-cli-jev/goal.md",
+      "004-cli-orca/goal.md",
+      "005-mcp-code-mode/goal.md",
+      "006-mcp-tooling/goal.md",
+      "007-sk-code/goal.md",
+      "008-sk-communication/goal.md",
+      "009-sk-design/goal.md",
+      "010-sk-doc/goal.md",
+      "011-sk-git/goal.md",
+      "012-sk-prompt/goal.md",
+      "013-sk-vision/goal.md",
+      "014-system-deep-loop/goal.md",
+      "015-system-skill-advisor/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drop Files Changed",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-pi",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-create-changelog defines two narrative formats for a release, compact and expanded, and its canonical exemplar is `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md`",
+    "created_at": "2026-09-24T15:48:26Z",
+    "last_save_at": "2026-09-24T18:04:13.813Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:2d8b10bc1dc8f4bb6401b70105df5e06d828a5a28a0100fc668195da0e4b456d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "402af45431548de8614044fe6ed4ebfedb453b985cbef8dea84fbdd6ce2f4291"
+    },
+    "last_active_child_id": "sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot",
+    "last_active_at": "2026-09-24T18:03:45.294Z"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode",
+  "description": "9 mcp-code-mode changelogs predate the compact and expanded format that sk-create-changelog now defines",
+  "keywords": [
+    "mcp-code-mode",
+    "changelogs",
+    "predate",
+    "compact",
+    "expanded",
+    "format",
+    "sk-create-changelog",
+    "now",
+    "defines"
+  ],
+  "lastUpdated": "2026-09-24T17:59:34.980Z",
+  "specId": "005",
+  "folderSlug": "mcp-code-mode",
+  "parentChain": [
+    "sk-doc",
+    "059-skill-changelog-retrofit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

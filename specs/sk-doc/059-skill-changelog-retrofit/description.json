@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/059-skill-changelog-retrofit",
+  "description": "sk-create-changelog defines two narrative formats for a release, compact and expanded, and its canonical exemplar is",
+  "keywords": [
+    "sk-create-changelog",
+    "defines",
+    "two",
+    "narrative",
+    "formats",
+    "release",
+    "compact",
+    "expanded",
+    "canonical",
+    "exemplar"
+  ],
+  "lastUpdated": "2026-09-24T18:03:45.256Z",
+  "specId": "059",
+  "folderSlug": "skill-changelog-retrofit",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "24-09-26_19-03__split-the-skill-changelog-retrofit-into-a-phase.md"
+  ]
+}

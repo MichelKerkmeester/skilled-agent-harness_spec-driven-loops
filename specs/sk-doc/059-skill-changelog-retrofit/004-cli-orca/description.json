@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/059-skill-changelog-retrofit/004-cli-orca",
+  "description": "1 cli-orca changelog predate the compact and expanded format that sk-create-changelog now defines",
+  "keywords": [
+    "cli-orca",
+    "changelog",
+    "predate",
+    "compact",
+    "expanded",
+    "format",
+    "sk-create-changelog",
+    "now",
+    "defines"
+  ],
+  "lastUpdated": "2026-09-24T17:59:34.979Z",
+  "specId": "004",
+  "folderSlug": "cli-orca",
+  "parentChain": [
+    "sk-doc",
+    "059-skill-changelog-retrofit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

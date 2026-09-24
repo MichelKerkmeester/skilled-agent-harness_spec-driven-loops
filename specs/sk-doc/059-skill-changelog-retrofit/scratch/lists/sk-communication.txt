@@ -1,0 +1,4 @@
+.skilled/skills/sk-communication/changelog/v1.0.0.0.md
+.skilled/skills/sk-communication/changelog/v1.1.0.0.md
+.skilled/skills/sk-communication/changelog/v1.2.0.0.md
+.skilled/skills/sk-communication/changelog/v1.3.0.0.md

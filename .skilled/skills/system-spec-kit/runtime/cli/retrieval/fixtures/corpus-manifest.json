@@ -1,5 +1,5 @@
 {
-  "corpusHash": "30a97755288b4c1e449658e1e8dfe5a75257dd6734b85ec7577def0882a2f7ef",
+  "corpusHash": "c3ba54c4d31a1a33a5ad03dc2b6d9b545bc63b7d394fbeb96c22b0e33dc6ab3b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22423,
+  "includedPathCount": 22506,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -11106,6 +11106,89 @@
     "specs/sk-doc/058-playbook-prompt-sync/plan.md",
     "specs/sk-doc/058-playbook-prompt-sync/spec.md",
     "specs/sk-doc/058-playbook-prompt-sync/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/acceptance-criteria.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/implementation-summary.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/plan.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/spec.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/tasks.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/goal.md",
+    "specs/sk-doc/059-skill-changelog-retrofit/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -22445,7 +22528,7 @@
     "specs/system-speckit/039-phase-aware-archive/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6cc366c936bc032760cbfb5469371b1ad03e7ace5e4d2fc4ead2fc7eeacee686",
+  "manifestHash": "9975204dddae9cd02d517434340835ce51994d46cd032074ff28d09216c43ea1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24332,6 +24415,74 @@
     },
     {
       "path": "specs/sk-doc/058-playbook-prompt-sync/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/059-skill-changelog-retrofit/scratch",
       "reason": "excluded directory"
     },
     {

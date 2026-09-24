@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6cc366c936bc032760cbfb5469371b1ad03e7ace5e4d2fc4ead2fc7eeacee686",
+  "manifestHash": "9975204dddae9cd02d517434340835ce51994d46cd032074ff28d09216c43ea1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14539,6 +14539,9 @@
     "changelog evidence stack": [
       "changelog evidence stack"
     ],
+    "changelog format migration": [
+      "changelog format migration"
+    ],
     "changelog format templates": [
       "changelog format templates"
     ],
@@ -14554,14 +14557,32 @@
     "changelog omission rules": [
       "changelog omission rules"
     ],
+    "changelog pilot results": [
+      "changelog pilot results"
+    ],
+    "changelog pilot tasks": [
+      "changelog pilot tasks"
+    ],
     "changelog readability": [
       "changelog readability"
     ],
     "changelog readme conformance": [
       "changelog readme conformance"
     ],
+    "changelog retrofit plan": [
+      "changelog retrofit plan"
+    ],
+    "changelog retrofit tasks": [
+      "changelog retrofit tasks"
+    ],
+    "changelog retrofit tooling": [
+      "changelog retrofit tooling"
+    ],
     "changelog rewrite closeout": [
       "changelog rewrite closeout"
+    ],
+    "changelog rewrite driver": [
+      "changelog rewrite driver"
     ],
     "changelog rewrite evidence": [
       "changelog rewrite evidence"
@@ -14572,8 +14593,14 @@
     "changelog rewrite input": [
       "changelog rewrite input"
     ],
+    "changelog rewrite pilot": [
+      "changelog rewrite pilot"
+    ],
     "changelog rewrite tasks": [
       "changelog rewrite tasks"
+    ],
+    "changelog shape checker": [
+      "changelog shape checker"
     ],
     "changelog shipped vs planned mislabel fix": [
       "changelog shipped vs planned mislabel fix"
@@ -16688,6 +16715,21 @@
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
+    "cli external orchestration changelog retrofit": [
+      "cli-external-orchestration changelog retrofit"
+    ],
+    "cli external orchestration changelog rewrite": [
+      "cli-external-orchestration changelog rewrite"
+    ],
+    "cli external orchestration changelog rewrite plan": [
+      "cli-external-orchestration changelog rewrite plan"
+    ],
+    "cli external orchestration changelog rewrite status": [
+      "cli-external-orchestration changelog rewrite status"
+    ],
+    "cli external orchestration changelog rewrite tasks": [
+      "cli-external-orchestration changelog rewrite tasks"
+    ],
     "cli external orchestration compiled routing": [
       "cli-external-orchestration compiled routing"
     ],
@@ -16859,6 +16901,21 @@
     "cli jev changelog evidence": [
       "cli-jev changelog evidence"
     ],
+    "cli jev changelog retrofit": [
+      "cli-jev changelog retrofit"
+    ],
+    "cli jev changelog rewrite": [
+      "cli-jev changelog rewrite"
+    ],
+    "cli jev changelog rewrite plan": [
+      "cli-jev changelog rewrite plan"
+    ],
+    "cli jev changelog rewrite status": [
+      "cli-jev changelog rewrite status"
+    ],
+    "cli jev changelog rewrite tasks": [
+      "cli-jev changelog rewrite tasks"
+    ],
     "cli jev closeout": [
       "cli-jev closeout"
     ],
@@ -16996,6 +17053,21 @@
     ],
     "cli orca changelog entry": [
       "cli-orca changelog entry"
+    ],
+    "cli orca changelog retrofit": [
+      "cli-orca changelog retrofit"
+    ],
+    "cli orca changelog rewrite": [
+      "cli-orca changelog rewrite"
+    ],
+    "cli orca changelog rewrite plan": [
+      "cli-orca changelog rewrite plan"
+    ],
+    "cli orca changelog rewrite status": [
+      "cli-orca changelog rewrite status"
+    ],
+    "cli orca changelog rewrite tasks": [
+      "cli-orca changelog rewrite tasks"
     ],
     "cli orca decision record": [
       "cli-orca decision record"
@@ -44192,6 +44264,9 @@
     "legacy authority rollback rehearsal": [
       "legacy authority rollback rehearsal"
     ],
+    "legacy changelog rewrite": [
+      "legacy changelog rewrite"
+    ],
     "legacy checklist read path": [
       "legacy checklist read path"
     ],
@@ -46745,6 +46820,21 @@
     "mcp coco index timeout diagnosis": [
       "mcp-coco-index timeout diagnosis"
     ],
+    "mcp code mode changelog retrofit": [
+      "mcp-code-mode changelog retrofit"
+    ],
+    "mcp code mode changelog rewrite": [
+      "mcp-code-mode changelog rewrite"
+    ],
+    "mcp code mode changelog rewrite plan": [
+      "mcp-code-mode changelog rewrite plan"
+    ],
+    "mcp code mode changelog rewrite status": [
+      "mcp-code-mode changelog rewrite status"
+    ],
+    "mcp code mode changelog rewrite tasks": [
+      "mcp-code-mode changelog rewrite tasks"
+    ],
     "mcp code mode frontmatter alignment": [
       "mcp-code-mode frontmatter alignment"
     ],
@@ -47302,6 +47392,21 @@
     ],
     "mcp tooling benchmark reports": [
       "mcp-tooling benchmark reports"
+    ],
+    "mcp tooling changelog retrofit": [
+      "mcp-tooling changelog retrofit"
+    ],
+    "mcp tooling changelog rewrite": [
+      "mcp-tooling changelog rewrite"
+    ],
+    "mcp tooling changelog rewrite plan": [
+      "mcp-tooling changelog rewrite plan"
+    ],
+    "mcp tooling changelog rewrite status": [
+      "mcp-tooling changelog rewrite status"
+    ],
+    "mcp tooling changelog rewrite tasks": [
+      "mcp-tooling changelog rewrite tasks"
     ],
     "mcp tooling compiled routing": [
       "mcp-tooling compiled routing"
@@ -57449,6 +57554,9 @@
     "pilot mode cutover implementation plan": [
       "pilot mode cutover implementation plan"
     ],
+    "pilot run 2": [
+      "pilot run 2"
+    ],
     "pinned sample regression": [
       "pinned sample regression"
     ],
@@ -65377,6 +65485,9 @@
     "rewrite response contract": [
       "rewrite response contract"
     ],
+    "rewrite skill changelogs": [
+      "rewrite skill changelogs"
+    ],
     "rewrite subfolder commands": [
       "rewrite subfolder commands"
     ],
@@ -70350,6 +70461,21 @@
     "sk code build remaining modes tasks": [
       "sk-code build remaining modes tasks"
     ],
+    "sk code changelog retrofit": [
+      "sk-code changelog retrofit"
+    ],
+    "sk code changelog rewrite": [
+      "sk-code changelog rewrite"
+    ],
+    "sk code changelog rewrite plan": [
+      "sk-code changelog rewrite plan"
+    ],
+    "sk code changelog rewrite status": [
+      "sk-code changelog rewrite status"
+    ],
+    "sk code changelog rewrite tasks": [
+      "sk-code changelog rewrite tasks"
+    ],
     "sk code close out": [
       "sk-code close-out"
     ],
@@ -70938,6 +71064,21 @@
     "sk communication benchmark reports": [
       "sk-communication benchmark reports"
     ],
+    "sk communication changelog retrofit": [
+      "sk-communication changelog retrofit"
+    ],
+    "sk communication changelog rewrite": [
+      "sk-communication changelog rewrite"
+    ],
+    "sk communication changelog rewrite plan": [
+      "sk-communication changelog rewrite plan"
+    ],
+    "sk communication changelog rewrite status": [
+      "sk-communication changelog rewrite status"
+    ],
+    "sk communication changelog rewrite tasks": [
+      "sk-communication changelog rewrite tasks"
+    ],
     "sk communication clarity": [
       "sk-communication clarity"
     ],
@@ -71091,6 +71232,21 @@
     "sk design canon tasks": [
       "sk-design canon tasks"
     ],
+    "sk design changelog retrofit": [
+      "sk-design changelog retrofit"
+    ],
+    "sk design changelog rewrite": [
+      "sk-design changelog rewrite"
+    ],
+    "sk design changelog rewrite plan": [
+      "sk-design changelog rewrite plan"
+    ],
+    "sk design changelog rewrite status": [
+      "sk-design changelog rewrite status"
+    ],
+    "sk design changelog rewrite tasks": [
+      "sk-design changelog rewrite tasks"
+    ],
     "sk design changelog symlinks": [
       "sk-design changelog symlinks"
     ],
@@ -71216,6 +71372,21 @@
     ],
     "sk doc canonical template alignment": [
       "sk-doc canonical template alignment"
+    ],
+    "sk doc changelog retrofit": [
+      "sk-doc changelog retrofit"
+    ],
+    "sk doc changelog rewrite": [
+      "sk-doc changelog rewrite"
+    ],
+    "sk doc changelog rewrite plan": [
+      "sk-doc changelog rewrite plan"
+    ],
+    "sk doc changelog rewrite status": [
+      "sk-doc changelog rewrite status"
+    ],
+    "sk doc changelog rewrite tasks": [
+      "sk-doc changelog rewrite tasks"
     ],
     "sk doc compiled routing": [
       "sk-doc compiled routing"
@@ -71373,6 +71544,21 @@
     "sk git capability inventory": [
       "sk-git capability inventory"
     ],
+    "sk git changelog retrofit": [
+      "sk-git changelog retrofit"
+    ],
+    "sk git changelog rewrite": [
+      "sk-git changelog rewrite"
+    ],
+    "sk git changelog rewrite plan": [
+      "sk-git changelog rewrite plan"
+    ],
+    "sk git changelog rewrite status": [
+      "sk-git changelog rewrite status"
+    ],
+    "sk git changelog rewrite tasks": [
+      "sk-git changelog rewrite tasks"
+    ],
     "sk git commit contract update": [
       "sk-git commit contract update"
     ],
@@ -71450,6 +71636,21 @@
     ],
     "sk prompt census path fix": [
       "sk-prompt census path fix"
+    ],
+    "sk prompt changelog retrofit": [
+      "sk-prompt changelog retrofit"
+    ],
+    "sk prompt changelog rewrite": [
+      "sk-prompt changelog rewrite"
+    ],
+    "sk prompt changelog rewrite plan": [
+      "sk-prompt changelog rewrite plan"
+    ],
+    "sk prompt changelog rewrite status": [
+      "sk-prompt changelog rewrite status"
+    ],
+    "sk prompt changelog rewrite tasks": [
+      "sk-prompt changelog rewrite tasks"
     ],
     "sk prompt cli orchestration repoint": [
       "sk-prompt cli-orchestration-repoint"
@@ -71669,6 +71870,21 @@
     ],
     "sk vision catalog package": [
       "sk-vision catalog package"
+    ],
+    "sk vision changelog retrofit": [
+      "sk-vision changelog retrofit"
+    ],
+    "sk vision changelog rewrite": [
+      "sk-vision changelog rewrite"
+    ],
+    "sk vision changelog rewrite plan": [
+      "sk-vision changelog rewrite plan"
+    ],
+    "sk vision changelog rewrite status": [
+      "sk-vision changelog rewrite status"
+    ],
+    "sk vision changelog rewrite tasks": [
+      "sk-vision changelog rewrite tasks"
     ],
     "sk vision class s": [
       "sk-vision class S"
@@ -72926,6 +73142,9 @@
     ],
     "skill benchmark upcaster tasks": [
       "skill benchmark upcaster tasks"
+    ],
+    "skill changelog retrofit": [
+      "skill changelog retrofit"
     ],
     "skill contribution certificate events": [
       "skill contribution certificate events"
@@ -77655,6 +77874,21 @@
     "system deep loop broad review plan": [
       "system-deep-loop broad review plan"
     ],
+    "system deep loop changelog retrofit": [
+      "system-deep-loop changelog retrofit"
+    ],
+    "system deep loop changelog rewrite": [
+      "system-deep-loop changelog rewrite"
+    ],
+    "system deep loop changelog rewrite plan": [
+      "system-deep-loop changelog rewrite plan"
+    ],
+    "system deep loop changelog rewrite status": [
+      "system-deep-loop changelog rewrite status"
+    ],
+    "system deep loop changelog rewrite tasks": [
+      "system-deep-loop changelog rewrite tasks"
+    ],
     "system deep loop compiled routing": [
       "system-deep-loop compiled routing"
     ],
@@ -77760,6 +77994,21 @@
     "system skill advisor architecture rewrite": [
       "system-skill-advisor architecture rewrite"
     ],
+    "system skill advisor changelog retrofit": [
+      "system-skill-advisor changelog retrofit"
+    ],
+    "system skill advisor changelog rewrite": [
+      "system-skill-advisor changelog rewrite"
+    ],
+    "system skill advisor changelog rewrite plan": [
+      "system-skill-advisor changelog rewrite plan"
+    ],
+    "system skill advisor changelog rewrite status": [
+      "system-skill-advisor changelog rewrite status"
+    ],
+    "system skill advisor changelog rewrite tasks": [
+      "system-skill-advisor changelog rewrite tasks"
+    ],
     "system skill advisor cli trusted": [
       "SYSTEM_SKILL_ADVISOR_CLI_TRUSTED"
     ],
@@ -77861,6 +78110,21 @@
     ],
     "system spec kit catalog tool count 54": [
       "system-spec-kit catalog tool count 54"
+    ],
+    "system spec kit changelog retrofit": [
+      "system-spec-kit changelog retrofit"
+    ],
+    "system spec kit changelog rewrite": [
+      "system-spec-kit changelog rewrite"
+    ],
+    "system spec kit changelog rewrite plan": [
+      "system-spec-kit changelog rewrite plan"
+    ],
+    "system spec kit changelog rewrite status": [
+      "system-spec-kit changelog rewrite status"
+    ],
+    "system spec kit changelog rewrite tasks": [
+      "system-spec-kit changelog rewrite tasks"
     ],
     "system spec kit cli matrix corpus": [
       "system-spec-kit cli matrix corpus"
