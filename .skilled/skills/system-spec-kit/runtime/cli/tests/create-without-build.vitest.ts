@@ -69,12 +69,21 @@ describe('create.sh without a build', () => {
     expect(stderr).toMatch(/graph metadata derivation skipped: \S*tsx\/dist\/loader\.mjs is missing/u);
   });
 
-  it('reports the skip for a phase parent and for its validation child', () => {
-    const { payload, stderr } = create(['--level', 'phase-parent', 'No build parent']);
+  // A phase parent's description.json is required, so a parent made without the
+  // generator would fail validation the moment it exists. --phase already stops
+  // here, and --level phase-parent must stop the same way rather than warn.
+  it('stops a phase parent that cannot get its description.json', () => {
+    const result = spawnSync(
+      'bash',
+      [createScript, '--json', '--skip-branch', '--level', 'phase-parent', 'No build parent'],
+      { cwd: workspace, encoding: 'utf8' },
+    );
 
-    expect(payload.CREATED_FILES).not.toContain('description.json');
-    expect(stderr.match(/description\.json skipped/gu) ?? []).toHaveLength(2);
-    expect(stderr).toMatch(/description\.json skipped for 001-validation-phase-\S+: /u);
+    expect(result.status).toBe(1);
+    expect(result.stdout).toBe('');
+    expect(result.stderr).toMatch(
+      /Error: phase parent needs the compiled description generator \(\S*generate-description\.js\); run npm run build under runtime/u,
+    );
   });
 
   it('reports the skip for a phase appended to an existing parent', () => {
