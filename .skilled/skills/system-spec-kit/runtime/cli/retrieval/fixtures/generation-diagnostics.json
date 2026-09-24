@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7342,
-    "ok": 11338,
+    "ok": 11342,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22371,
+  "documentsScanned": 22375,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "71fae252c51a6be149e3ea509dc2af737221b434ef46231d36dd82c82aab35be",
+  "manifestHash": "65aade823f85b1f272f22c3fb3df36e86101b8f1d73876eaaf9577e06b5558d2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27607,
+      "ok": 27613,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -74560,6 +74560,10 @@
     },
     {
       "path": "specs/system-speckit/035-retire-memory-era-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/036-root-numbering-without-track/scratch",
       "reason": "excluded directory"
     },
     {
