@@ -33,6 +33,8 @@ contextType: "implementation"
 
 ### Overview
 Seven commits, one per cause. The first deletes the tests for the retired memory database and the stub-only archive, and the second retires the manual playbook runner. Each removes its files' references in the same change, so no commit leaves a dangling pointer. The revived tests then ran red on three product defects, so the next three commits fix them one at a time: the unfilled phase map, the appended rows outside it, and the unchecked empty phase child. The sixth commit revives and wires the tests, green against the fixed code, and the seventh deletes the five-checks test and closes the packet.
+
+Seven follow-up commits came after the first push. One keeps `create.sh --json` stdout to its payload. Two replace the renderer and level contract fallbacks with plain-JavaScript copies of their TypeScript sources, and a third fixes the argument order both renderers shared. Two more fill the sk-design/020 phase map and keep the packet pointer the commit gate normalized there, and the last records all of it here.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -65,6 +67,7 @@ Test isolation through a throwaway git repository.
 - **Generator stub**: the bash test's existing recording stub, now installed in all three cases
 - **Row placement**: create.sh inserts appended rows at the first non-row line after each table header, where the table actually ends
 - **Child selection**: validate.sh skips a child without packet docs only when it holds something else, so an empty child is validated
+- **Fallback copies**: each shell file that falls back when tsx is missing carries a line-for-line JavaScript copy of its TypeScript source, since several sandboxes copy only the shell file. A parity test copies that file into a tree with no install and compares its output with the source's
 
 ### Data Flow
 Test process to throwaway repo, then `create.sh`, `validate.sh` or `archive.sh` run inside it, then assertions on the files left there, then removal of the repo.
@@ -84,7 +87,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Each revived test runs first as it stands, to record its failure, and again after the fix. After every phase-test run, `git status` on the checkout confirms nothing was written there. The sk-doc README snapshot tests run after the archive deletion, and the `cli` vitest project runs after the runner deletion and the renames.
+Each revived test runs first as it stands, to record its failure, and again after the fix. After every phase-test run, `git status` on the checkout confirms nothing was written there. The sk-doc README snapshot tests run after the archive deletion, and the `cli` vitest project runs after the runner deletion and the renames. Each fallback's parity test runs red against the old fallback before the port, and an injected defect confirms it turns red again. A `git archive` export of the skill with no install then scaffolds packets to compare byte for byte with a tsx scaffold.
 <!-- /ANCHOR:testing -->
 
 ---

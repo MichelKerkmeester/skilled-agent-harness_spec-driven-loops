@@ -17,7 +17,9 @@
       "manual playbook runner retired",
       "memory-quality test never collected",
       "phase map rows never filled",
-      "empty phase child skipped"
+      "empty phase child skipped",
+      "no-tsx template fallback",
+      "level contract fallback"
     ],
     "key_topics": [
       "retire",
@@ -48,12 +50,14 @@
       "runtime/vitest.config.ts",
       "runtime/cli/evals/check-source-dist-alignment.ts",
       "runtime/cli/tests/fixtures/README.md",
+      "runtime/cli/tests/test-phase-system.js",
+      "runtime/cli/templates/inline-gate-renderer.sh",
+      "runtime/cli/lib/template-utils.sh",
+      "runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts",
+      "runtime/cli/tests/inline-gate-renderer.vitest.ts",
+      "specs/sk-design/020-chart-and-diagram-review/spec.md",
       "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
-      "manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md",
-      "feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
-      "runtime/cli/tests/test-phase-system.sh",
-      "runtime/cli/dist/spec-folder/generate-description.js"
+      "manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md"
     ],
     "entities": [
       {
@@ -129,33 +133,39 @@
         "source": "derived"
       },
       {
+        "name": "test-phase-system.js",
+        "kind": "code",
+        "path": "runtime/cli/tests/test-phase-system.js",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.sh",
+        "kind": "script",
+        "path": "runtime/cli/templates/inline-gate-renderer.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-utils.sh",
+        "kind": "script",
+        "path": "runtime/cli/lib/template-utils.sh",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer-fallback.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/inline-gate-renderer.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "session-capturing-pipeline-quality.md",
         "kind": "doc",
         "path": "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-recovery-spec-kit-resume.md",
-        "kind": "doc",
-        "path": "feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "test-phase-system.sh",
-        "kind": "script",
-        "path": "runtime/cli/tests/test-phase-system.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generate-description.js",
-        "kind": "code",
-        "path": "runtime/cli/dist/spec-folder/generate-description.js",
         "source": "derived"
       },
       {
@@ -193,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Spec-kit dropped its embedding-backed memory database",
     "created_at": "2026-09-23T20:09:53Z",
-    "last_save_at": "2026-09-24T05:08:45.239Z",
+    "last_save_at": "2026-09-24T07:04:33.187Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b272c47e18536b6afbd773f5ade40b85b5943f7a5a93e835124af26b91c53413",
+    "source_fingerprint": "sha256:7d4379d58acf85911954820becdf938f872917d548b172f2ef4030bad3e2fc4b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "769cb9551213f75e2f70102a64533945c076c48f856efbee58b75dacf39475ed",
-      "plan.md": "0d5c552f5b162a28d5c06df62a40681d83df2b09e4fce305d2f2bcd7d95a340f",
-      "tasks.md": "15fcdf8c153b06b902fae847671777e16faf15c32faf336215de7aa31e8c3445",
-      "implementation-summary.md": "639a00d175a0350985b580b333bb90e77535da9742536d0d49b46ed5cb9697a8"
+      "spec.md": "02281ae3256eeda970e6d867a0bc8dc797b70b07b4f94c92b67572fb6ae9c236",
+      "plan.md": "db3d924e4773c97a6e4f66b026c0bde740270fc2f6fe81e4ac881b1bed21a530",
+      "tasks.md": "35344fa477616cd55a8472689630d1ddf8bde81526b3ff6aaee220c422030566",
+      "implementation-summary.md": "05ac9534c921e5cb864c3ddff20344bf856acef26bcd7527e1e6c153d82130c3"
     },
     "last_active_at": null
   }
