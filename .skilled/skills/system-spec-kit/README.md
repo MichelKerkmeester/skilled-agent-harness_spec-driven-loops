@@ -211,6 +211,8 @@ specs/<track>/<###-feature-name>/
 
 `implementation-summary.md` is required at all levels but created after implementation completes, not at folder creation time. `generate-context.js` updates the packet continuity state for `/speckit:resume`, refreshes `description.json.lastUpdated` and rewrites the derived fields in `graph-metadata.json` on every run. It is the only writer of those files, so metadata cannot lag behind a save that went through it.
 
+The track folder itself, `specs/<track>/`, holds no spec docs. Its `graph-metadata.json` lists the track's packets in `children_ids`. `create.sh --track` adds each new packet to that list, `refresh-track-roots.mjs --apply` rewrites it from the packet folders on disk, and the pre-push hook blocks a pushed commit whose list disagrees with the packets it holds.
+
 ### Documentation Levels
 
 Not every change needs the same amount of paperwork. A one-line bug fix does not need an architecture decision record. A multi-system refactor does. Four levels match documentation depth to task complexity:

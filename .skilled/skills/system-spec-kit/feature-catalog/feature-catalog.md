@@ -551,6 +551,22 @@ See [`tooling-and-scripts/template-composition-system.md`](tooling-and-scripts/t
 
 ---
 
+### Track-root children lists
+
+#### Description
+
+Keeps each track root's `children_ids` equal to the packets the track holds, and blocks a push whose list disagrees.
+
+#### Current Reality
+
+`create.sh --track` lists each new packet, `refresh-track-roots.mjs --apply` rewrites a list from disk, and the pre-push hook sweeps each pushed commit.
+
+#### Source Files
+
+See [`tooling-and-scripts/track-root-children-lists.md`](tooling-and-scripts/track-root-children-lists.md) for full implementation and test file listings.
+
+---
+
 ### Tree thinning for spec folder consolidation
 
 #### Description
