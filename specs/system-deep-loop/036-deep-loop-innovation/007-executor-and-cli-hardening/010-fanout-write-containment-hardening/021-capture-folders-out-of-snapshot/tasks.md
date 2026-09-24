@@ -59,7 +59,7 @@ contextType: "general"
 
 - [x] T009 Run the suites and typecheck - **Evidence**: `write-containment.vitest.ts` reports 79 passed, the six containment-related test files report 395 passed and 1 skipped, the runtime typecheck exits 0, and the sk-code drift guards report 2 guards passed with 0 errors.
 - [x] T010 Live removal proof - **Evidence**: at the final HEAD `git worktree add --detach` of a fresh worktree with 115,878 tracked files and a longest absolute path of 448 characters and then plain `git worktree remove` both exit 0, with the folder gone and no worktree entry left.
-- [x] T011 Packet docs and parent rows - **Evidence**: the task list in `evidence/dispatch/evidence.md` records T011 done, and the work landed as commits `162a3bd816` and `b7648ec0b0` on branch `worktrees/066-ci-cleanup-follow-ups` rebased onto `origin/main`.
+- [x] T011 Packet docs and parent rows - **Evidence**: the task list in `evidence/dispatch/evidence.md` records T011 done, and the work landed as commits `1c6f97a004` and `8a932df0ab` on branch `worktrees/066-ci-cleanup-follow-ups` rebased onto `origin/main`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -138,7 +138,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Each new test failed before its guard and passes after it - **Evidence**: the two tests in the "baseline content capture" group both failed before their guard and pass after it.
 - [x] CHK-FIX-005 [P1] The scale of the cleanup is stated before completion is claimed - **Evidence**: 24,582 capture files under nine roots were untracked and 246 capture READMEs were dropped from 1,304 baseline entries to 1,058.
 - [x] CHK-FIX-006 [P1] The path length result is rechecked after the rebase so it holds on the final tree - **Evidence**: the longest tracked path is 353 characters after the change, down from 971, and it was rechecked after the rebase onto `origin/main`.
-- [x] CHK-FIX-007 [P1] Evidence is pinned to explicit commits rather than a moving range - **Evidence**: commits `162a3bd816` and `b7648ec0b0` on branch `worktrees/066-ci-cleanup-follow-ups`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to explicit commits rather than a moving range - **Evidence**: commits `1c6f97a004` and `8a932df0ab` on branch `worktrees/066-ci-cleanup-follow-ups`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

@@ -122,8 +122,8 @@ T001 through T011 are all done.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| write-containment.ts snapshot and detection loops | Internal | Green | None. Both guards landed together in commit 162a3bd816 |
-| The capture output in git tracking | Internal | Green | None. It was untracked in commit b7648ec0b0 and the content stays in history |
+| write-containment.ts snapshot and detection loops | Internal | Green | None. Both guards landed together in commit 1c6f97a004 |
+| The capture output in git tracking | Internal | Green | None. It was untracked in commit 8a932df0ab and the content stays in history |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -132,7 +132,7 @@ T001 through T011 are all done.
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: a capture folder lands in a baseline again, detection reports an earlier run's capture as a new violation, or a worktree fails to remove.
-- **Procedure**: revert commit 162a3bd816 and commit b7648ec0b0 on branch worktrees/066-ci-cleanup-follow-ups.
+- **Procedure**: revert commit 1c6f97a004 and commit 8a932df0ab on branch worktrees/066-ci-cleanup-follow-ups.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -178,8 +178,8 @@ Setup (T001) ──► Core (T002 to T008) ──► Verify (T009 to T011)
 - [ ] Monitoring alerts set: N/A - insufficient source context
 
 ### Rollback Procedure
-1. Revert commit 162a3bd816, which restores the unguarded snapshot and detection loops.
-2. Revert commit b7648ec0b0, which restores the tracking of the capture output and of the capture READMEs in the sk-doc baseline.
+1. Revert commit 1c6f97a004, which restores the unguarded snapshot and detection loops.
+2. Revert commit 8a932df0ab, which restores the tracking of the capture output and of the capture READMEs in the sk-doc baseline.
 3. Verify the rollback with the checks in section 5 and expect the state observed before these commits.
 4. Notify stakeholders: N/A - insufficient source context.
 

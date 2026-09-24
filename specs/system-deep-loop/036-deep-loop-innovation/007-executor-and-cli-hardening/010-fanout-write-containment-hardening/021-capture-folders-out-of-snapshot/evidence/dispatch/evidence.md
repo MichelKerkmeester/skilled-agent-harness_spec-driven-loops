@@ -46,8 +46,8 @@ Do not invent any fact that is not here. If a template section has no fact here,
    (1,304 entries to 1,058). Every other entry is unchanged.
 
 ## Commits (on branch worktrees/066-ci-cleanup-follow-ups, rebased onto origin/main)
-- 162a3bd816 fix(deep-loop): keep containment captures out of the snapshot and detection
-- b7648ec0b0 chore(specs): untrack the containment capture output and ignore it
+- 1c6f97a004 fix(deep-loop): keep containment captures out of the snapshot and detection
+- 8a932df0ab chore(specs): untrack the containment capture output and ignore it
 
 ## Verification (all observed)
 - write-containment.vitest.ts: 79 passed.
