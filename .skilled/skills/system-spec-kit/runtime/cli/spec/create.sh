@@ -677,6 +677,25 @@ report_missing_generator() {
 readonly BUILD_REMEDY="Run npm run build under runtime to compile it."
 readonly INSTALL_REMEDY="Run npm install at the skill root, then repair-derived.cjs --folder <packet> --apply."
 
+# A track root declares its packets in children_ids, and the pre-push gate
+# blocks a commit whose list disagrees with the packets it holds. Declaring the
+# new packet here keeps the two in step from the moment the packet exists. A
+# track with no graph-metadata.json declares nothing, so there is nothing to do.
+refresh_track_root() {
+    local specs_root="$1"
+    local track="$2"
+    local refresh_script="$SCRIPT_DIR/refresh-track-roots.mjs"
+    [[ -n "$track" && "$track" != */* && -f "$specs_root/$track/graph-metadata.json" ]] || return 0
+    if [[ ! -f "$refresh_script" ]]; then
+        report_missing_generator "track root refresh" "$refresh_script" "Restore it from the repository."
+        return 0
+    fi
+    # The writer reports on stdout; stdout belongs to the --json payload.
+    if ! node "$refresh_script" --specs "$specs_root" --track "$track" --apply >&2; then
+        echo "  Warning: ${track}/graph-metadata.json was not refreshed; its children_ids may not list the new packet. Rerun refresh-track-roots.mjs --track ${track} --apply." >&2
+    fi
+}
+
 # The presence rule counts a phase parent's description.json as required, so a
 # parent that cannot get one stops here, loudly, instead of passing and failing
 # validation the moment it exists. Both --phase and --level phase-parent call it.
@@ -1555,6 +1574,8 @@ This is **Phase ${_phase_number}** of the ${FEATURE_DESCRIPTION} specification.
         CHILDREN_INFO+=("${_child_folder}|${_child_files_str}")
     done
 
+    refresh_track_root "$REPO_ROOT/specs" "$TRACK"
+
     # ── Output ──
     SPEC_FILE="$FEATURE_DIR/spec.md"
     export SPECIFY_FEATURE="$BRANCH_NAME"
@@ -1752,6 +1773,8 @@ fi
 if [[ "$DOC_LEVEL" == "phase" ]]; then
     scaffold_phase_parent_validation_child "$FEATURE_DIR" "$FEATURE_DESCRIPTION"
 fi
+
+refresh_track_root "$REPO_ROOT/specs" "$TRACK"
 
 # Set paths for output
 SPEC_FILE="$FEATURE_DIR/spec.md"
