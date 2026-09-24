@@ -1307,6 +1307,10 @@ if [[ "$PHASE_MODE" = true ]]; then
             _handoff_has_rows=false
             [[ -n "$HANDOFF_ROWS" ]] && _handoff_has_rows=true
 
+            # New rows go where each table ends, at its first line that is not a
+            # row. A blank line ends a markdown table, so rows placed before the
+            # next heading instead would render outside it. A row marker left
+            # by an earlier scaffold is dropped once the rows take its place.
             awk -v phase_rows_file="$_tmp_phase_rows" -v handoff_rows_file="$_tmp_handoff_rows" -v handoff_has_rows="$_handoff_has_rows" '
                 function print_rows(path, row) {
                     while ((getline row < path) > 0) {
@@ -1316,30 +1320,40 @@ if [[ "$PHASE_MODE" = true ]]; then
                 }
                 BEGIN {
                     in_phase=0;
-                    in_handoff=0;
+                    table="";
                     inserted_phase=0;
                     inserted_handoff=0;
                 }
                 /<!-- ANCHOR:phase-map -->/ {
                     in_phase=1;
                 }
-                in_phase && /^### Phase Transition Rules/ && !inserted_phase {
-                    print_rows(phase_rows_file);
-                    inserted_phase=1;
+                in_phase && /^\| Phase \| Folder \|/ {
+                    table="phase";
                 }
-                in_phase && /^### Phase Handoff Criteria/ {
-                    in_handoff=1;
+                in_phase && /^\| From \| To \|/ {
+                    table="handoff";
                 }
-                in_phase && in_handoff && handoff_has_rows == "true" && $0 ~ /^\| \(single phase - no handoffs\) \| \| \| \|$/ {
+                table != "" && !/^\|/ {
+                    if (table == "phase" && !inserted_phase) {
+                        print_rows(phase_rows_file);
+                        inserted_phase=1;
+                    }
+                    if (table == "handoff" && !inserted_handoff) {
+                        if (handoff_has_rows == "true") {
+                            print_rows(handoff_rows_file);
+                        }
+                        inserted_handoff=1;
+                    }
+                    table="";
+                    if ($0 ~ /^<!-- \[(PHASE|HANDOFF)_ROW\]/) {
+                        next;
+                    }
+                }
+                table == "handoff" && handoff_has_rows == "true" && $0 ~ /^\| \(single phase - no handoffs\) \| \| \| \|$/ {
                     next;
                 }
-                in_phase && /<!-- \/ANCHOR:phase-map -->/ && !inserted_handoff {
-                    if (handoff_has_rows == "true") {
-                        print_rows(handoff_rows_file);
-                    }
-                    inserted_handoff=1;
+                in_phase && /<!-- \/ANCHOR:phase-map -->/ {
                     in_phase=0;
-                    in_handoff=0;
                 }
                 { print }
             ' "$PARENT_SPEC" > "$_tmp_parent_spec"
