@@ -257,7 +257,7 @@ function parseCliArgs(args: string[]): { level: RenderLevel; outDir?: string; fi
   }
   const filePaths = args.filter((arg, index) => {
     if (index === levelIndex || index === levelIndex + 1) return false;
-    if (index === outDirIndex || index === outDirIndex + 1) return false;
+    if (outDirIndex >= 0 && (index === outDirIndex || index === outDirIndex + 1)) return false;
     return !arg.startsWith('--');
   });
   return { level, outDir, filePaths };
