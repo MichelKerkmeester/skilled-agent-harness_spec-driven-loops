@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/059-skill-changelog-retrofit/006-mcp-tooling",
+  "description": "55 mcp-tooling changelogs predate the compact and expanded format that sk-create-changelog now defines",
+  "keywords": [
+    "mcp-tooling",
+    "changelogs",
+    "predate",
+    "compact",
+    "expanded",
+    "format",
+    "sk-create-changelog",
+    "now",
+    "defines"
+  ],
+  "lastUpdated": "2026-09-24T17:59:34.981Z",
+  "specId": "006",
+  "folderSlug": "mcp-tooling",
+  "parentChain": [
+    "sk-doc",
+    "059-skill-changelog-retrofit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

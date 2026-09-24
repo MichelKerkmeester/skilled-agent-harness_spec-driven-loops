@@ -1,0 +1,2 @@
+.skilled/skills/sk-vision/changelog/v0.2.0.0.md
+.skilled/skills/sk-vision/changelog/v0.3.0.0.md

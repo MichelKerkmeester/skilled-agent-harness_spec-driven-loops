@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/059-skill-changelog-retrofit/009-sk-design",
+  "description": "32 sk-design changelogs predate the compact and expanded format that sk-create-changelog now defines",
+  "keywords": [
+    "sk-design",
+    "changelogs",
+    "predate",
+    "compact",
+    "expanded",
+    "format",
+    "sk-create-changelog",
+    "now",
+    "defines"
+  ],
+  "lastUpdated": "2026-09-24T17:59:34.984Z",
+  "specId": "009",
+  "folderSlug": "sk-design",
+  "parentChain": [
+    "sk-doc",
+    "059-skill-changelog-retrofit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

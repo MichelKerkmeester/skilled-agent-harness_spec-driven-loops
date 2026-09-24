@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot",
+  "description": "The 549 legacy skill changelogs span several older styles, and a model asked to rewrite them can drop or invent facts",
+  "keywords": [
+    "legacy",
+    "skill",
+    "changelogs",
+    "span",
+    "several",
+    "older",
+    "styles",
+    "model",
+    "asked",
+    "rewrite",
+    "them",
+    "drop",
+    "invent",
+    "facts"
+  ],
+  "lastUpdated": "2026-09-24T17:58:08.308Z",
+  "specId": "001",
+  "folderSlug": "tooling-and-pilot",
+  "parentChain": [
+    "sk-doc",
+    "059-skill-changelog-retrofit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

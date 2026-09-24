@@ -1,0 +1,10 @@
+.skilled/skills/sk-doc/sk-create-command/changelog/v1.0.1.1.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.0.0.0.md
+.skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.4.0.0.md
+.skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.2.0.md
+.skilled/skills/system-spec-kit/changelog/v3+/v3.7.0.0.md
+.skilled/skills/mcp-tooling/changelog/v1.6.1.0.md
+.skilled/skills/sk-design/changelog/v2.0.0.0.md
+.skilled/skills/system-deep-loop/deep-improvement/changelog/v1.2.0.0.md
+.skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md
+.skilled/skills/sk-git/changelog/v1.6.0.0.md
