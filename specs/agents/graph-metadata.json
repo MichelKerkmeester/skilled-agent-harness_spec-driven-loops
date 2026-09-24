@@ -15,7 +15,9 @@
     "agents/009-turn-closeout-next-steps",
     "agents/010-repo-rule-system-integration",
     "agents/011-retire-code-index-tool-references",
-    "agents/012-agent-avoidance-anti-patterns"
+    "agents/012-agent-avoidance-anti-patterns",
+    "agents/013-prompting-guide-alignment",
+    "agents/014-agent-emphasis-register"
   ],
   "manual": {
     "depends_on": [],
