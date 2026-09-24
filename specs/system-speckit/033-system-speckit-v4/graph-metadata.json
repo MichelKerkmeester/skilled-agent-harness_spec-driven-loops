@@ -65,7 +65,8 @@
     "system-speckit/033-system-speckit-v4/059-phase-map-sync-normalization",
     "system-speckit/033-system-speckit-v4/060-save-resume-pointer-truth",
     "system-speckit/033-system-speckit-v4/061-worktree-build-provisioning",
-    "system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs"
+    "system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs",
+    "system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules"
   ],
   "manual": {
     "depends_on": [],
@@ -145,18 +146,18 @@
     ],
     "causal_summary": "Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped",
     "created_at": "2026-09-06T06:42:39Z",
-    "last_save_at": "2026-09-24T06:53:01.946Z",
+    "last_save_at": "2026-09-24T07:18:56.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:323e3e6cba6620a1c0ca7a4610a7fd045eef495786e1b8e635c808ddd7753f42",
+    "source_fingerprint": "sha256:fab631a8d125ebd71c6285080198ce2bca5a8b0f2497503ca23725625e1d77bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20b2ed9d11e21210f9b7dfc0fe0febab54eb9a6e1e47b22d40d841acda12b243"
+      "spec.md": "e35fc32168a61918aef5a2b2e12cb17ec951080869953de643cdba2baffbaa47"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs",
-    "last_active_at": "2026-09-24T06:53:01.946Z"
+    "last_active_at": "2026-09-24T07:18:46.742Z"
   }
 }

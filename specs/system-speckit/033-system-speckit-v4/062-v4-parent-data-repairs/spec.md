@@ -26,9 +26,9 @@ contextType: "implementation"
 | **Created** | 2026-09-24 |
 | **Branch** | `worktrees/064-save-writer-continuity-fields` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 62 of 62 |
+| **Phase** | 62 of 63 |
 | **Predecessor** | 061-worktree-build-provisioning |
-| **Successor** | None |
+| **Successor** | 063-cli-codex-dispatch-rules |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7340,
-    "ok": 11329,
+    "missing-frontmatter": 7341,
+    "ok": 11333,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22360,
+  "documentsScanned": 22365,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4ab27083a11b26658c4d9515023e36ae15fa886ea90304d940628b0fc9c132d5",
+  "manifestHash": "1c153ebcf9bf9940d4ede50437e05960c4b786db35fc39ff677c479948fd7ed1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27578,
+      "ok": 27587,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -2185,6 +2185,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -74532,6 +74538,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/062-v4-parent-data-repairs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/063-cli-codex-dispatch-rules/scratch",
       "reason": "excluded directory"
     },
     {
