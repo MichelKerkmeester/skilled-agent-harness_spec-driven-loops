@@ -11,6 +11,8 @@
 #
 #   3. Skill metadata:    skill changes must keep root metadata projections fresh.
 #   4. Test suites:       discovered suites report failures, or block when enforced.
+#   5. Track roots:       each pushed commit's track roots must list exactly the
+#                         packets they hold (SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 skips).
 #
 # The gates are independently bypassable; skipping one never skips another.
 #
@@ -366,6 +368,48 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
       exit 1
     fi
   done
+fi
+
+# ── Track-root gate (independently bypassable) ──────────────────────────────
+# A track root lists its packets in children_ids, and no packet rule ever reads
+# that list, so it drifted in most tracks with nothing reporting it. create.sh
+# --track keeps the list current for each new packet; this blocks a commit that
+# would publish a list and a set of packets that disagree. It reads each pushed
+# commit, not the working tree, because a shared checkout carries other sessions'
+# unfinished packets. A symlinked track holds another repository's files, so the
+# sweep leaves it out. The sweep is dependency-free and runs in well under a second.
+# Skip with SPECKIT_SKIP_PREPUSH_TRACK_GATE=1.
+if [[ "${SPECKIT_SKIP_PREPUSH_TRACK_GATE:-0}" != "1" ]] && _in_toolchain_repo && [[ -d "$REPO_ROOT/specs" ]]; then
+  TRACK_SWEEP="$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs"
+  if [[ ! -f "$TRACK_SWEEP" ]]; then
+    echo "" >&2
+    echo "BLOCKED [gate:track-roots]: sweep is missing: $TRACK_SWEEP" >&2
+    echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 git push ..." >&2
+    exit 1
+  else
+    for pushed_sha in $PUSHED_SHAS; do
+      git -C "$REPO_ROOT" cat-file -e "${pushed_sha}^{commit}" 2>/dev/null || continue
+      _track_rc=0
+      _track_out="$(node "$TRACK_SWEEP" --specs "$REPO_ROOT/specs" --rev "$pushed_sha" 2>&1)" || _track_rc=$?
+      if [[ "$_track_rc" -eq 1 ]]; then
+        {
+          echo ""
+          echo "BLOCKED [gate:track-roots]: in commit ${pushed_sha:0:10}, a track root's children_ids"
+          echo "do not list exactly the packets that track holds:"
+          echo "$_track_out" | sed 's/^/  /'
+          echo "Fix: node $(dirname "${TRACK_SWEEP#"$REPO_ROOT"/}")/refresh-track-roots.mjs --apply"
+          echo "     then commit each changed graph-metadata.json together with the packets it"
+          echo "     lists, and push again."
+          echo "Override once, deliberately: SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 git push ..."
+          echo ""
+        } >&2
+        exit 1
+      elif [[ "$_track_rc" -ne 0 ]]; then
+        echo "WARNING [gate:track-roots]: could not sweep commit ${pushed_sha:0:10} (exit $_track_rc); push gate failed open." >&2
+        echo "$_track_out" | sed 's/^/  /' >&2
+      fi
+    done
+  fi
 fi
 
 exit 0
