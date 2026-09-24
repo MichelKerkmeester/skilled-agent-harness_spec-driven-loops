@@ -72,7 +72,7 @@ Fifteen of the eighteen track roots had drifted. `system-deep-loop` listed 26 pa
 | `skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts` | Created | Ten cases for the sweep and the writer |
 | `skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts` | Created | Six cases for the `create.sh` hook-up |
 | `scripts/git-hooks/pre-push` | Modified | The track-root gate |
-| `scripts/git-hooks/tests/pre-push.test.sh` | Modified | Nine cases for the gate |
+| `scripts/git-hooks/tests/pre-push.test.sh` | Modified | Eleven cases for the gate, two of them real pushes from a linked worktree |
 | Three READMEs and `.env.example` | Modified | The writer, the set comparison, the gate and its skip variable |
 | `specs/<track>/graph-metadata.json`, 13 tracks | Modified | `children_ids` set to the packets on disk |
 | `skills/system-spec-kit/SKILL.md`, `README.md`, `references/workflows/rename-pattern.md` | Modified | The skill names the writer and the gate in its script list, quick commands, folder layout and rename steps |
@@ -90,6 +90,8 @@ Paths are under `.skilled/` unless stated otherwise. The two linked track roots,
 The drift was surveyed first, track by track, against the packets on disk. The tests came next and ran red, 8 of 10. The fixture's own commits then failed for an unrelated reason: the machine's global ignore file lists `/specs`, so `git add -A` staged nothing, and the fixture now sets `core.excludesFile=/dev/null`. Each guarded rule was then removed on purpose, one at a time. One removal survived, the rule that only folders count as packets, so a file named like a packet was added to the fixture, and that removal now fails three cases.
 
 The gate first warned when its sweep was missing. The hooks README requires a blocking gate with a missing script to block where the toolchain ships, as the route guard does, so it now blocks and names its skip variable. The global pre-push hook is a symlink to this checkout's working-tree file, which made the uncommitted gate live for every push from this repository while `origin` still held the drifted tracks. The working-tree hook was put back to its committed version until the push, and the new version is committed from a saved copy.
+
+The gate's first real run, pushing the skill doc changes from a linked worktree, warned "could not sweep" and let the push through. Git exports `GIT_DIR` to hooks in a linked worktree without `GIT_WORK_TREE`, so `git -C specs rev-parse --show-toplevel` answered with `specs/` itself and the commit could not be read. Every earlier hook case had called the hook directly, never through `git push`, so none of them saw that environment. The module now runs git with the repository variables removed and finds the repository from the path, and two hook cases push for real from a worktree. Both failed before the fix and fail again when it is removed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -117,7 +119,8 @@ The gate first warned when its sweep was missing. The hooks README requires a bl
 |-------|--------|
 | `track-roots.vitest.ts` | PASS, 10 tests. 8 failed before the scripts existed |
 | `create-track-refresh.vitest.ts` | PASS, 6 tests |
-| `pre-push.test.sh` | PASS=41 FAIL=0, up from 32 |
+| `pre-push.test.sh` | PASS=43 FAIL=0, up from 32 |
+| Real `git push` from a linked worktree | Blocks a commit with an unlisted packet and passes a clean one. Removing the fix fails both |
 | Mutations | 8 on the module and scripts, 4 on `create.sh` and 6 on the gate, each failing its suite, each file restored and compared byte for byte |
 | Sweep of the real `specs/` | Exit 0, all 18 track roots match. Before the refresh: 15 drifted |
 | The 13 refreshed files and `ai-systems` | Every field but `children_ids`, the key order and the two-space format unchanged |

@@ -64,6 +64,7 @@ contextType: "implementation"
 - [x] T015 The sweep exits 0 on the working tree across all 18 track roots
 - [x] T016 Strict validation of this packet passes
 - [x] T017 Name the writer and the gate in the skill itself: `SKILL.md`, its `README.md`, the rename guide and a feature-catalogue entry, then regenerate the `.hermes` copy of `SKILL.md`
+- [x] T018 Make the gate read the pushed commit inside a real push from a linked worktree, where git exports `GIT_DIR`, with two real-push cases (`runtime/cli/lib/track-roots.mjs`, `scripts/git-hooks/tests/pre-push.test.sh`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

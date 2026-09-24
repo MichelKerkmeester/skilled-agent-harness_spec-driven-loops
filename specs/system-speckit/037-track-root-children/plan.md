@@ -76,7 +76,7 @@ A shared library with two thin command-line entry points, called from `create.sh
 | `spec/sweep-track-roots.mjs` | The only reader of a track's list, comparing counts | Update: sets, `--rev` | `track-roots.vitest.ts`; a count-only mutation fails it |
 | `graph/backfill-graph-metadata.ts` | Derives packet lists, refuses track roots | Unchanged | Its child rule, numbered real folders, is the rule the new module uses |
 | `spec/create.sh` | Places packets in a track | Update: refresh after scaffolding | `create-track-refresh.vitest.ts` |
-| `scripts/git-hooks/pre-push` | Push gates | Update: track-root gate | `pre-push.test.sh`, 41 passing |
+| `scripts/git-hooks/pre-push` | Push gates | Update: track-root gate | `pre-push.test.sh`, 43 passing |
 | Track roots under `specs/` | Hold the lists | Update: 13 in this repository, 2 linked | The sweep exits 0 |
 | Validation orchestrator | Exempts tracks from packet rules | Unchanged | Not a consumer of track lists |
 

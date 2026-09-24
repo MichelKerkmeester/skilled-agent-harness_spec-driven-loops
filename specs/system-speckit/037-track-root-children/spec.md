@@ -73,7 +73,7 @@ Every track root lists exactly the packets it holds, a new packet is listed the 
 | `skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts` | Create | Ten cases for the sweep and the writer |
 | `skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts` | Create | Six cases for the `create.sh` hook-up |
 | `scripts/git-hooks/pre-push` | Modify | The track-root gate |
-| `scripts/git-hooks/tests/pre-push.test.sh` | Modify | Nine cases for the gate |
+| `scripts/git-hooks/tests/pre-push.test.sh` | Modify | Eleven cases for the gate, two of them real pushes from a linked worktree |
 | `skills/system-spec-kit/runtime/cli/spec/README.md`, `runtime/cli/lib/README.md`, `scripts/git-hooks/README.md` | Modify | Describe the writer, the set comparison and the gate |
 | `.env.example` (repository root) | Modify | List `SPECKIT_SKIP_PREPUSH_TRACK_GATE` |
 | `skills/system-spec-kit/SKILL.md`, `README.md`, `references/workflows/rename-pattern.md` | Modify | Name the writer and the gate where the skill lists its scripts, commands, folder layout and rename steps |
