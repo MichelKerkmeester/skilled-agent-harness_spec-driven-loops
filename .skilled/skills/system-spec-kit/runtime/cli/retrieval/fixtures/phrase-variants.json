@@ -1,5 +1,5 @@
 {
-  "manifestHash": "26331b17c0d96252f2a37867f870084efa6778153643fe41f9f659c48c85744c",
+  "manifestHash": "bbc9cd176cef042ccc9578c47d0ac007a3aad34f59f5aaf843d0f84065f19b3f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24607,6 +24607,9 @@
     "dead socket respawn adopt or reap": [
       "dead socket respawn adopt or reap"
     ],
+    "dead spec kit test files": [
+      "dead spec-kit test files"
+    ],
     "dead tokenbudget parameter": [
       "dead tokenbudget parameter"
     ],
@@ -32159,6 +32162,9 @@
     ],
     "empty packet closure gate": [
       "empty packet closure gate"
+    ],
+    "empty phase child skipped": [
+      "empty phase child skipped"
     ],
     "empty recommendation reported as outage": [
       "empty recommendation reported as outage"
@@ -46142,6 +46148,9 @@
     "manual playbook results tasks": [
       "manual playbook results tasks"
     ],
+    "manual playbook runner retired": [
+      "manual playbook runner retired"
+    ],
     "manual playbook scenario count fix": [
       "manual playbook scenario count fix"
     ],
@@ -48090,6 +48099,9 @@
     ],
     "memory quality tasks": [
       "memory quality tasks"
+    ],
+    "memory quality test never collected": [
+      "memory-quality test never collected"
     ],
     "memory rebuild complete": [
       "memory rebuild complete"
@@ -56271,6 +56283,9 @@
     "phase main loop cli branches buildlineagecommand": [
       "phase_main_loop cli branches buildLineageCommand"
     ],
+    "phase map rows never filled": [
+      "phase map rows never filled"
+    ],
     "phase name placeholder": [
       "phase name placeholder"
     ],
@@ -64101,6 +64116,9 @@
     ],
     "retire legacy emitters": [
       "retire legacy emitters"
+    ],
+    "retire memory era tests": [
+      "retire memory-era tests"
     ],
     "retire memory learn": [
       "retire memory:learn"
@@ -77565,9 +77583,6 @@
     "system spec kit references drift": [
       "system-spec-kit references drift"
     ],
-    "system spec kit runtime tests archive": [
-      "system-spec-kit runtime/tests/archive"
-    ],
     "system spec kit runtime tests deep loop": [
       "system-spec-kit runtime/tests/deep-loop"
     ],
@@ -78472,6 +78487,9 @@
     ],
     "test only barrel export cleanup": [
       "test-only barrel export cleanup"
+    ],
+    "test phase validation cannot load": [
+      "test-phase-validation cannot load"
     ],
     "test plan checkboxes": [
       "test plan checkboxes"

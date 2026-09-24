@@ -1,5 +1,5 @@
 {
-  "corpusHash": "70703a5f8c0987a126deb604d276d8d165b7367357432844cd379d933f414f41",
+  "corpusHash": "cfb8d5c777f90372414a2fea1fb0a04589c746f2462a4691d98220789929d7d7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22341,
+  "includedPathCount": 22344,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -8103,7 +8103,6 @@
     ".skilled/skills/system-spec-kit/runtime/tests/_support/README.md",
     ".skilled/skills/system-spec-kit/runtime/tests/_support/hooks/README.md",
     ".skilled/skills/system-spec-kit/runtime/tests/adversarial/README.md",
-    ".skilled/skills/system-spec-kit/runtime/tests/archive/README.md",
     ".skilled/skills/system-spec-kit/runtime/tests/deep-loop/README.md",
     ".skilled/skills/system-spec-kit/runtime/tests/description/README.md",
     ".skilled/skills/system-spec-kit/runtime/tests/embedders/README.md",
@@ -22360,10 +22359,14 @@
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
     "specs/system-speckit/034-create-canonical-specs-root/plan.md",
     "specs/system-speckit/034-create-canonical-specs-root/spec.md",
-    "specs/system-speckit/034-create-canonical-specs-root/tasks.md"
+    "specs/system-speckit/034-create-canonical-specs-root/tasks.md",
+    "specs/system-speckit/035-retire-memory-era-tests/implementation-summary.md",
+    "specs/system-speckit/035-retire-memory-era-tests/plan.md",
+    "specs/system-speckit/035-retire-memory-era-tests/spec.md",
+    "specs/system-speckit/035-retire-memory-era-tests/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "26331b17c0d96252f2a37867f870084efa6778153643fe41f9f659c48c85744c",
+  "manifestHash": "bbc9cd176cef042ccc9578c47d0ac007a3aad34f59f5aaf843d0f84065f19b3f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26974,6 +26977,10 @@
     },
     {
       "path": "specs/system-speckit/034-create-canonical-specs-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/035-retire-memory-era-tests/scratch",
       "reason": "excluded directory"
     },
     {
