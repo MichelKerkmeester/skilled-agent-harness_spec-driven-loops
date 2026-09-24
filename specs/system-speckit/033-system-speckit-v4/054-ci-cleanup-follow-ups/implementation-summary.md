@@ -91,7 +91,7 @@ The tests ran red first. The new core test "a repository rooted under /tmp is ga
 
 The tasks ran in order and all are done. T001 read the gate and its tests, T002 wrote the new /tmp test red, T003 made the gate change, T004 ran the four gate suites under both temp dirs, T005 ran the root project under /tmp, T006 removed the CI workaround, T007 fixed the playbook wording, T008 fixed the playbook count, T009 changed the cli-jev scripts to pipefail, T010 ran the drift guards, T011 made the commit and T012 wrote the packet docs and parent rows.
 
-The work landed as two commits on branch worktrees/066-ci-cleanup-follow-ups, rebased onto origin/main. They are 9b95bd06b1 fix(system-spec-kit): gate a repository under /tmp like any other and 9ace27983c fix(cli-jev): run the recorded probe scripts under pipefail.
+The work landed as two commits on branch worktrees/066-ci-cleanup-follow-ups, rebased onto origin/main. They are 7bde922cba fix(system-spec-kit): gate a repository under /tmp like any other and a06dba0800 fix(cli-jev): run the recorded probe scripts under pipefail.
 <!-- /ANCHOR:how-delivered -->
 
 ---

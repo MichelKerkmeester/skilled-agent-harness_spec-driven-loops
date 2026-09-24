@@ -133,7 +133,7 @@ T001 through T012 are done. The packet is complete.
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: a spec-gate suite fails or the drift guard reports errors after these commits land.
-- **Procedure**: revert commits 9b95bd06b1 and 9ace27983c on branch worktrees/066-ci-cleanup-follow-ups.
+- **Procedure**: revert commits 7bde922cba and a06dba0800 on branch worktrees/066-ci-cleanup-follow-ups.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -181,7 +181,7 @@ Setup (T001-T002) ──────────┐
 
 ### Rollback Procedure
 1. Stop any run that depends on the new gate rule.
-2. Revert commits 9b95bd06b1 and 9ace27983c.
+2. Revert commits 7bde922cba and a06dba0800.
 3. Verify the rollback by running the core spec-gate suite and the drift guards again.
 4. Notify stakeholders: N/A - insufficient source context.
 

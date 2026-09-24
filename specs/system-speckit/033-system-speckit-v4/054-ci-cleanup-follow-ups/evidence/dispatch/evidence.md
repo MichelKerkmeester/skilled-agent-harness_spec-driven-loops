@@ -52,8 +52,8 @@ Do not invent any fact that is not here. If a template section has no fact here,
    code only changes if printf itself fails. (wu6)
 
 ## Commits (on branch worktrees/066-ci-cleanup-follow-ups, rebased onto origin/main)
-- 9b95bd06b1 fix(system-spec-kit): gate a repository under /tmp like any other
-- 9ace27983c fix(cli-jev): run the recorded probe scripts under pipefail
+- 7bde922cba fix(system-spec-kit): gate a repository under /tmp like any other
+- a06dba0800 fix(cli-jev): run the recorded probe scripts under pipefail
 
 ## Verification (all observed)
 - Core suite (node --experimental-test-module-mocks --test spec-gate-core.test.mjs): 108 of 108 pass, with TMPDIR=/tmp
