@@ -25,7 +25,7 @@ contextType: "specification"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-24 |
 | **Branch** | `worktrees/067-prompting-guide-alignment` |
 <!-- /ANCHOR:metadata -->

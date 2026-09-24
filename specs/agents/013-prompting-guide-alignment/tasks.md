@@ -63,8 +63,8 @@ contextType: "implementation"
 
 - [x] T016 Run vitest `fanout-run` and `combo-matrix` and read the counts (155 passed, 0 failed)
 - [x] T017 Run the sk-doc validator on every edited `.md`
-- [B] T018 Delete `scratch/sources/` and `scratch/briefs/` (waits on the operator's yes: `AGENTS.md` stop-for-yes on delete)
-- [x] T019 Run `validate.sh --strict` on this packet and read `RESULT: PASSED` (0 errors, 0 warnings; rerun after T018)
+- [x] T018 Delete `scratch/sources/`, `scratch/briefs/` and `scratch/logs/` (operator approved; `ls -a scratch/` shows only `.gitkeep`)
+- [x] T019 Run `validate.sh --strict` on this packet and read `RESULT: PASSED` (0 errors, 0 warnings; rerun after T018 at closeout)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -72,9 +72,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -127,7 +127,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met [EVIDENCE: `acceptance-criteria.md` AC-001 to AC-009 all Met, Closeable: Yes]
 - [x] CHK-021 [P0] A real devin dispatch on `gpt-6-luna-max-priority` returned output [EVIDENCE: `devin -p --model gpt-6-luna-max-priority` returned OK at exit 0; the three Luna briefs ran on it]
 - [x] CHK-022 [P1] Every citation repeated in the synthesis was opened [EVIDENCE: every repeated vendor and repo line re-opened; one wrong line number (`AGENTS.md:97` to `:98`) corrected]
 - [x] CHK-023 [P1] No delegate wrote to the worktree [EVIDENCE: `git diff | shasum` 44a31fdf before and after; only lens files and logs are new]
@@ -173,7 +173,7 @@ contextType: "implementation"
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only [EVIDENCE: vendor copies, briefs and logs live under scratch/ only]
-- [ ] CHK-051 [P1] scratch/ cleaned before completion, vendor snapshots deleted
+- [x] CHK-051 [P1] scratch/ cleaned before completion, vendor snapshots deleted [EVIDENCE: `ls -a scratch/` shows only `.gitkeep`; `rg -F` of 153 vendor sentence fragments over the packet: 0 hits]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -183,8 +183,8 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 10/11 |
-| P1 Items | 11 | 10/11 |
+| P0 Items | 11 | 11/11 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 4 | 4/4 |
 
 **Verification Date**: 2026-09-24
