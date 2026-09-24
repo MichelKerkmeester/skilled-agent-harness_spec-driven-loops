@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fe8d07c7afa3a399372d9f33ada401bdf320e110be5b8ec1c1c47de3d95190c7",
+  "corpusHash": "fd83dc3b55c099e985d7bfbba78ba59ac850454ea55fc71fb236f3a641b9517c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22395,
+  "includedPathCount": 22423,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -863,6 +863,7 @@
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.4.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/availability-probe.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/default-invocation.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/hallucination-fixture-fabricated-flag.md",
@@ -6444,6 +6445,7 @@
     ".skilled/skills/sk-prompt/changelog/v2.3.0.0.md",
     ".skilled/skills/sk-prompt/changelog/v2.3.1.0.md",
     ".skilled/skills/sk-prompt/changelog/v3.0.0.0.md",
+    ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/dimension-floors-block.md",
@@ -8258,6 +8260,24 @@
     "specs/agents/012-agent-avoidance-anti-patterns/plan.md",
     "specs/agents/012-agent-avoidance-anti-patterns/spec.md",
     "specs/agents/012-agent-avoidance-anti-patterns/tasks.md",
+    "specs/agents/013-prompting-guide-alignment/acceptance-criteria.md",
+    "specs/agents/013-prompting-guide-alignment/implementation-summary.md",
+    "specs/agents/013-prompting-guide-alignment/plan.md",
+    "specs/agents/013-prompting-guide-alignment/research/lens-luna-agents.md",
+    "specs/agents/013-prompting-guide-alignment/research/lens-luna-prompt.md",
+    "specs/agents/013-prompting-guide-alignment/research/lens-luna-rules.md",
+    "specs/agents/013-prompting-guide-alignment/research/lens-mimo-agents.md",
+    "specs/agents/013-prompting-guide-alignment/research/lens-mimo-prompt.md",
+    "specs/agents/013-prompting-guide-alignment/research/lens-mimo-rules.md",
+    "specs/agents/013-prompting-guide-alignment/research/lens-opus.md",
+    "specs/agents/013-prompting-guide-alignment/research/sources.md",
+    "specs/agents/013-prompting-guide-alignment/research/synthesis.md",
+    "specs/agents/013-prompting-guide-alignment/spec.md",
+    "specs/agents/013-prompting-guide-alignment/tasks.md",
+    "specs/agents/014-agent-emphasis-register/implementation-summary.md",
+    "specs/agents/014-agent-emphasis-register/plan.md",
+    "specs/agents/014-agent-emphasis-register/spec.md",
+    "specs/agents/014-agent-emphasis-register/tasks.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/acceptance-criteria.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md",
     "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/implementation-summary.md",
@@ -22388,6 +22408,14 @@
     "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/plan.md",
     "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/spec.md",
     "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/research/fanout-attribution.md",
+    "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/research/research.md",
+    "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/research/resource-map.md",
+    "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -22417,7 +22445,7 @@
     "specs/system-speckit/039-phase-aware-archive/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d537372e464168cd9e10e3dc231889fdcc0cecfe86d3563ef5aa308d73c80f97",
+  "manifestHash": "af821500789a214715a427b9366a1d8a882ce097ab50efda907a11c5453332bd",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -23136,6 +23164,14 @@
     },
     {
       "path": "specs/agents/012-agent-avoidance-anti-patterns/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/013-prompting-guide-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/014-agent-emphasis-register/scratch",
       "reason": "excluded directory"
     },
     {
@@ -27052,6 +27088,14 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/065-cli-hermes-pi-dispatch-rules/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/scratch",
       "reason": "excluded directory"
     },
     {
