@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Every test left in spec-kit's test tree now loads, tests code that exists and runs from a package script. Fourteen dead files are gone, five live tests run again, and the three phase defects they found in create.sh and validate.sh are fixed."
+description: "Every test left in spec-kit's test tree now loads, tests code that exists and runs from a package script. Fourteen dead files are gone, five live tests run again, and the three phase defects they found in create.sh and validate.sh are fixed. Follow-ups keep create.sh --json output to its payload, make a scaffold with no install match a tsx one, and fill the sk-design/020 phase map."
 trigger_phrases:
   - "retire memory-era tests"
   - "dead spec-kit test files"
@@ -9,15 +9,17 @@ trigger_phrases:
   - "memory-quality test never collected"
   - "phase map rows never filled"
   - "empty phase child skipped"
+  - "no-tsx template fallback"
+  - "level contract fallback"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/035-retire-memory-era-tests"
-    last_updated_at: "2026-09-24T05:08:14Z"
+    last_updated_at: "2026-09-24T07:10:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Deleted the dead tests, revived five live ones and fixed the three phase defects they exposed"
-    next_safe_action: "Push, then backfill the empty phase maps left by the marker defect"
+    recent_action: "Fixed the no-install fallbacks and the --json output, and filled the sk-design/020 phase map"
+    next_safe_action: "Push the follow-up commits"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
@@ -26,6 +28,10 @@ _memory:
       - ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.js"
       - ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh"
       - ".skilled/skills/system-spec-kit/runtime/cli/package.json"
+      - ".skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/lib/template-utils.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts"
+      - ".skilled/skills/system-spec-kit/runtime/cli/tests/level-contract-fallback.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-035-retire-memory-era-tests"
@@ -67,6 +73,14 @@ Spec-kit's test tree no longer holds tests that cannot run. The ones written for
 
 The phase scripts threw at load, and when they last ran they wrote packets into the checkout's `.opencode/specs`. Brought back, they failed on three things that were real. A new phase parent's map was empty, because a template edit on 2026-09-07 renamed the row markers `create.sh` looks for. Appended phase rows landed after the blank line that ends the table. And an empty phase child had gone unchecked since the shell validator was deleted on 2026-08-29. Each fix landed on its own, with its assertion shown red first.
 
+### Scaffolding with no install
+
+With no `node_modules`, `create.sh` wrote no `spec.md`, `plan.md` or `tasks.md` at all, put a stray template line into `CREATED_FILES` and exited 0. Two fallbacks caused it. The template renderer's kept only the first level block, and the level contract's dropped the optional and lifecycle docs. Each is now a plain-JavaScript copy of its TypeScript source, and a parity test holds the two to identical output at every level. From a `git archive` export of the skill with no install, a Level 2 or 3 scaffold now matches a tsx scaffold byte for byte apart from its timestamps. Porting the renderer also turned up a quirk both copies shared: a template path given before `--level` was dropped, and the renderer read stdin instead. Both now read it.
+
+### The rest
+
+`create.sh --json` printed the description generator's status line ahead of its payload. That output now goes to stderr, and the phase test parses stdout strictly. `specs/sk-design/020-chart-and-diagram-review`, the one parent the marker defect left empty, now lists its two phases and their handoff.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -82,8 +96,14 @@ The phase scripts threw at load, and when they last ran they wrote packets into 
 | `runtime/cli/evals/check-source-dist-alignment.ts` | Modified | Runner allowlist entries removed |
 | `CONTRIBUTING.md`, two feature-catalog entries, two playbook files, `runtime/cli/tests/fixtures/README.md` | Modified | No mention of a deleted file |
 | `sk-doc/scripts/tests/code-folder/*.json` | Modified | Archive folder removed from the README snapshots |
+| `runtime/cli/spec/create.sh`, `runtime/cli/tests/test-phase-system.js` | Modified | Generator output to stderr, strict `--json` parse |
+| `runtime/cli/templates/inline-gate-renderer.sh`, `inline-gate-renderer.ts` | Modified | Renderer fallback copied from its source, template path read before `--level` |
+| `runtime/cli/lib/template-utils.sh` | Modified | Level contract fallback copied from the resolver |
+| `runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts`, `level-contract-fallback.vitest.ts` | Created | Parity tests for the two fallbacks |
+| `runtime/cli/tests/inline-gate-renderer.vitest.ts` | Modified | Template path before `--level` |
+| `specs/sk-design/020-chart-and-diagram-review/spec.md` | Modified | Phase map filled |
 
-Paths are under `.skilled/skills/system-spec-kit/` except `CONTRIBUTING.md` at the repo root and `sk-doc/` under `.skilled/skills/`.
+Paths are under `.skilled/skills/system-spec-kit/` except `CONTRIBUTING.md` at the repo root, `sk-doc/` under `.skilled/skills/`, and `specs/`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -91,7 +111,7 @@ Paths are under `.skilled/skills/system-spec-kit/` except `CONTRIBUTING.md` at t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Seven commits, one per cause. Every deletion was traced to the module or layout it needed, and every live reference outside `specs/` and the changelogs went in the same commit as its file. The revived tests ran first as they stood. Their stale expectations were matched to the code's history: the March scoring fix, the four-column map, the per-folder validation output. The assertions that caught real defects were sharpened, run red, and then turned green by the fix commits.
+Seven commits, one per cause. Every deletion was traced to the module or layout it needed, and every live reference outside `specs/` and the changelogs went in the same commit as its file. The revived tests ran first as they stood. Their stale expectations were matched to the code's history: the March scoring fix, the four-column map, the per-folder validation output. The assertions that caught real defects were sharpened, run red, and then turned green by the fix commits. Seven follow-up commits came after the first push, and the code changes among them went the same way: each fallback's parity test ran red against the old fallback first, and an injected defect in each port turned its test red again before the commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -103,9 +123,10 @@ Seven commits, one per cause. Every deletion was traced to the module or layout 
 |----------|-----|
 | Fix the three defects here rather than pin them as known gaps | The operator's call once the revived tests exposed them |
 | Validate only a child with no files at all | Six real parents keep numbered `research/` or `review/` folders as children, and validating those as packets would turn their runs red |
-| Parse around the status line `create.sh` prints ahead of its JSON | The sibling test already did, and changing the script's output contract is its own change |
-| Give the shell sandbox the real renderer instead of fixing the fallback | The fallback is a separate defect, and the test should exercise the renderer a real checkout runs |
-| Leave the empty maps in existing parents alone | Each parent belongs to its own packet |
+| Send the generator's output to stderr rather than parse around it | The operator's call. In `--json` mode stdout belongs to the payload, and the phase test now fails on anything else |
+| Keep the real renderer in the shell sandbox, and fix the fallback on its own | The phase test should exercise what a real checkout runs, and the fallback has its own parity test |
+| Copy each TypeScript source line for line into its fallback rather than share one module | The fallbacks run where no build or loader exists, and several sandboxes copy only the shell file |
+| Fill the sk-design/020 map here | The operator's call. A search found it was the only parent still holding the row markers |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -119,13 +140,18 @@ Seven commits, one per cause. Every deletion was traced to the module or layout 
 | `test-phase-system.js` | PASS, 27 assertions; 1 failed before the append fix |
 | `test-phase-system.sh` | PASS, 10 assertions; 2 failed before the create.sh fixes |
 | `npm run test:legacy` and `npm run test:validation` in `runtime/cli` | PASS, both |
-| `cli` vitest project | PASS, 1433 tests, 19 declared skips |
+| `cli` vitest project | PASS, 1464 tests, 19 declared skips |
+| `inline-gate-renderer-fallback.vitest.ts` | PASS, 13 tests: 18 templates at 7 levels, a synthetic template, stdin, errors. 11 failed on the old fallback |
+| `level-contract-fallback.vitest.ts` | PASS, 17 tests: 7 levels and 7 malformed manifests. 16 failed on the old fallback |
+| Injected defects in each port | Each turned its parity test red, then reverted to green |
+| Install-free `create.sh` scaffold, Level 2 and 3 | Matches a tsx scaffold apart from `last_updated_at`. The old fallbacks wrote no spec, plan or tasks |
 | Suites that drive create.sh (19 files) and validate.sh (16 files) | PASS after each fix, only declared skips |
 | Checkout and temp directory after the phase tests | Unchanged, no leftover sandbox |
 | sk-doc README manifest and verdict parity | PASS, 819 directories, 1303 READMEs |
 | Source/dist alignment check and playbook provenance suite | PASS |
 | Reference search outside `specs/` and changelogs | Only the generated trigger index, regenerated at push |
-| `root` vitest project | 1 FAIL, `dist-freshness`: 21 runtime `lib` sources carry newer timestamps than their unchanged builds. None is touched here |
+| `root` vitest project | PASS, 1253 tests, 13 declared skips, after a forced rebuild cleared `dist-freshness` in this checkout |
+| `specs/` search for the phase row marker | No `spec.md` holds it |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -133,10 +159,10 @@ Seven commits, one per cause. Every deletion was traced to the module or layout 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Parents scaffolded between 2026-09-07 and this fix have empty phase maps.** `specs/sk-design/020-chart-and-diagram-review` is one. Appending a phase to such a parent now adds its row inside the table, but the earlier rows need a backfill.
-2. **`create.sh --json` is not pure JSON.** The description generator prints a status line to stdout ahead of the payload, so a strict parser fails on it.
-3. **The template renderer's no-tsx fallback keeps only the first level block.** Without `node_modules`, every scaffolded document is a single frontmatter line and `create.sh` still exits 0.
-4. **`dist-freshness` fails on timestamps alone.** The build skips writing unchanged output, so sources touched by the source-root move stay newer than their builds until something forces a rewrite.
+1. **A scaffold made with no build has no `description.json` and a stub graph metadata file.** Both generators need `runtime/cli/dist/` or tsx, and `create.sh` skips them without a warning.
+2. **`dist-freshness` fails on timestamps alone.** The build skips writing unchanged output, so a source touched without a rebuild stays newer than its build. A forced rebuild cleared it here, but another checkout in that state fails the same way until it runs `tsc --build --force`.
+3. **`specs/sk-design/020-chart-and-diagram-review` still fails one check.** `synthesis.md` has no frontmatter, so it carries no trigger phrases. That predates this packet.
+4. **The shipped templates cover less than the renderer does.** None has a fence or a blank line after an inactive gate, so the parity test's synthetic template is what guards those two paths.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Retire memory-era tests and revive the phase tests"
-description: "Spec-kit no longer keeps an embedding-backed memory database, but fourteen files in its test tree still target it, its removed modules or a removed template layout, and five tests for live features never run. The dead files go with their references, and the live ones load, run in throwaway repos and join the package test scripts. Reviving them exposed three phase defects in create.sh and validate.sh, fixed here."
+description: "Spec-kit no longer keeps an embedding-backed memory database, but fourteen files in its test tree still target it, its removed modules or a removed template layout, and five tests for live features never run. The dead files go with their references, and the live ones load, run in throwaway repos and join the package test scripts. Reviving them exposed three phase defects in create.sh and validate.sh, fixed here. Follow-up fixes keep create.sh --json output to its payload, make a scaffold with no install match a tsx one, and fill the one phase map the marker defect left empty."
 trigger_phrases:
   - "retire memory-era tests"
   - "dead spec-kit test files"
@@ -9,6 +9,8 @@ trigger_phrases:
   - "memory-quality test never collected"
   - "phase map rows never filled"
   - "empty phase child skipped"
+  - "no-tsx template fallback"
+  - "level contract fallback"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -53,8 +55,14 @@ Reviving them exposed three defects in the code they cover:
 - `create.sh --parent` prints appended rows after the blank line that ends the phase table, so they render outside the map.
 - `validate.sh --recursive` skips a phase child with no packet docs. The shell engine validated every child, and when it was deleted on 2026-08-29 an empty child stopped being checked at all.
 
+Running them green left three more in the same scripts:
+
+- `create.sh --json` printed the description generator's status line ahead of the JSON, so a strict parser failed on its output.
+- Without tsx at the skill root, the template renderer fell back to a regex that kept only the first level block and ignored `--out-dir`. From a tree with no install, `create.sh` wrote no `spec.md`, `plan.md` or `tasks.md`, put a stray template line into `CREATED_FILES` and exited 0.
+- The level contract fallback in `template-utils.sh` returned only the required docs, so the same tree lost `acceptance-criteria.md` and `implementation-summary.md`, and it accepted a malformed manifest row.
+
 ### Purpose
-Every test file left in spec-kit loads, tests code that exists and runs from a package script, and none of them writes into the checkout.
+Every test file left in spec-kit loads, tests code that exists and runs from a package script, and none of them writes into the checkout. The defects those tests uncover are fixed, including the ones that only show with no install.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,13 +77,16 @@ Every test file left in spec-kit loads, tests code that exists and runs from a p
 - Delete `test-five-checks.js`
 - Refresh the sk-doc README snapshots that list the archive folder
 - Fix the three defects the revived tests expose: the unfilled phase map, the appended rows outside it, and the unchecked empty phase child
+- Keep `create.sh --json` stdout to the JSON payload
+- Make the renderer and level contract fallbacks produce what their TypeScript sources produce, and have both renderers read a template path given before `--level`
+- Fill the phase map of `specs/sk-design/020-chart-and-diagram-review`, the one parent the marker defect left empty
 
 ### Out of Scope
 - The live embedding stack under `shared/embeddings/` and its advisor-owned tests. It still backs the skill advisor
 - Released changelog entries that name the removed files. They are history
-- Spec packet history under `specs/`. It records what was true then
+- Spec packet history under `specs/`, apart from the one phase map filled here. It records what was true then
 - Other scripts in `runtime/cli/tests/` that no package script runs. They get their own review
-- Backfilling the phase maps of parents scaffolded while the markers went unmatched. Each belongs to its own packet
+- The description and graph metadata of a scaffold made with no build. Both need compiled or tsx-run generators, and `create.sh` skips them
 - A numbered child that holds only loop artifacts such as `research/` or `review/`. It is not a phase and stays skipped
 
 ### Files to Change
@@ -99,8 +110,14 @@ Every test file left in spec-kit loads, tests code that exists and runs from a p
 | `runtime/cli/package.json` | Modify | Run the revived phase tests |
 | `runtime/cli/tests/test-five-checks.js` | Delete | Tests a removed template layout |
 | `sk-doc/scripts/tests/code-folder/durable-directory-manifest.json`, `baseline-readme-verdicts.json` | Modify | Remove the archive folder entries |
+| `runtime/cli/spec/create.sh`, `runtime/cli/tests/test-phase-system.js` | Modify | Generator output to stderr, and a strict parse of `--json` stdout |
+| `runtime/cli/templates/inline-gate-renderer.sh`, `inline-gate-renderer.ts` | Modify | A plain-JavaScript copy of the renderer as the fallback, and a template path read before `--level` |
+| `runtime/cli/lib/template-utils.sh` | Modify | A plain-JavaScript copy of the level contract resolver as the fallback |
+| `runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts`, `level-contract-fallback.vitest.ts` | Create | Hold each fallback to its TypeScript source |
+| `runtime/cli/tests/inline-gate-renderer.vitest.ts` | Modify | Cover a template path given before `--level` |
+| `specs/sk-design/020-chart-and-diagram-review/spec.md` | Modify | Fill its phase map |
 
-All paths are under `.skilled/skills/system-spec-kit/` unless they start with `sk-doc/` (under `.skilled/skills/`) or are `CONTRIBUTING.md` (repo root).
+All paths are under `.skilled/skills/system-spec-kit/` unless they start with `sk-doc/` (under `.skilled/skills/`) or `specs/`, or are `CONTRIBUTING.md` (repo root).
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,6 +142,9 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 | REQ-006 | The sk-doc README snapshots stay green | `test_readme_manifest.py` and `test_readme_verdict_parity.py` pass |
 | REQ-007 | A new phase parent's map lists its phases, and appended rows stay inside the table | The revived phase tests fail before the create.sh fixes and pass after |
 | REQ-008 | An empty phase child is validated, and an artifact-only child is still skipped | The empty-child assertions fail before the validate.sh fix and pass after, and no current parent's recursive result changes |
+| REQ-009 | `create.sh --json` prints the JSON payload and nothing else on stdout | The phase test parses stdout strictly and passes |
+| REQ-010 | With no install, `create.sh` scaffolds the documents a tsx checkout does | Each fallback matches its TypeScript source in a parity test that failed before its port, and an install-free Level 2 and 3 scaffold differs from a tsx one only in timestamps |
+| REQ-011 | No phase parent keeps the unfilled row markers | A search of `specs/` for the phase row marker finds no `spec.md` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -135,6 +155,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 - **SC-001**: The fourteen dead files are gone and nothing outside history names them
 - **SC-002**: Five live-feature tests run from package scripts and pass
 - **SC-003**: The three defects they exposed are fixed, each proved by a revived test that failed before its fix
+- **SC-004**: A tree with no install scaffolds the same documents as a tsx checkout, and `--json` output parses strictly
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -147,6 +168,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 | Risk | A deleted test still covered live behaviour | Med | Each deletion is traced to a removed module or layout, and the live embedding factory is confirmed covered by five vitest suites |
 | Risk | A revived test exposes a real regression | Med | Keep the assertion rather than weaken it. Three did, and the operator chose to fix all three in this packet |
 | Risk | The empty-child fix turns a current recursive run red | Med | Only a child with no files at all is newly validated. No parent in the tree has one, and the six parents with an artifact-only child keep their results |
+| Risk | A fallback drifts from its TypeScript source | Med | Each has a parity test comparing its output with its source's, at every level |
 | Dependency | The compiled description generator under `runtime/cli/dist/` | Low | `test:legacy` builds before it runs |
 <!-- /ANCHOR:risks -->
 
