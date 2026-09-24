@@ -16,10 +16,8 @@
       "test-phase-validation cannot load",
       "manual playbook runner retired",
       "memory-quality test never collected",
-      "implementation summary",
-      "what shipped",
-      "validation evidence",
-      "continuation notes"
+      "phase map rows never filled",
+      "empty phase child skipped"
     ],
     "key_topics": [
       "retire",
@@ -36,24 +34,25 @@
       "playbook"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "runtime/cli/spec/create.sh",
+      "runtime/cli/spec/validate.sh",
+      "runtime/cli/tests/test-phase-validation.js",
+      "runtime/cli/tests/memory-quality-phase2-pr3.vitest.ts",
+      "runtime/cli/package.json",
       "runtime/vitest.config.ts",
-      "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
-      "manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md",
       "runtime/cli/evals/check-source-dist-alignment.ts",
       "runtime/cli/tests/fixtures/README.md",
+      "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
+      "manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md",
       "feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
       "manual-testing-playbook/manual-testing-playbook.md",
-      "runtime/cli/tests/test-phase-validation.js",
       "runtime/cli/tests/test-phase-system.sh",
-      "runtime/cli/tests/memory-quality-phase2-pr3.test.ts",
-      "runtime/cli/package.json",
-      "runtime/cli/tests/test-five-checks.js",
       "runtime/cli/dist/spec-folder/generate-description.js"
     ],
     "entities": [
@@ -82,15 +81,39 @@
         "source": "derived"
       },
       {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "runtime/vitest.config.ts",
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
         "source": "derived"
       },
       {
-        "name": "session-capturing-pipeline-quality.md",
-        "kind": "doc",
-        "path": "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-validation.js",
+        "kind": "code",
+        "path": "runtime/cli/tests/test-phase-validation.js",
+        "source": "derived"
+      },
+      {
+        "name": "memory-quality-phase2-pr3.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/memory-quality-phase2-pr3.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "runtime/cli/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -106,6 +129,12 @@
         "source": "derived"
       },
       {
+        "name": "session-capturing-pipeline-quality.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
+        "source": "derived"
+      },
+      {
         "name": "session-recovery-spec-kit-resume.md",
         "kind": "doc",
         "path": "feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
@@ -118,33 +147,9 @@
         "source": "derived"
       },
       {
-        "name": "test-phase-validation.js",
-        "kind": "code",
-        "path": "runtime/cli/tests/test-phase-validation.js",
-        "source": "derived"
-      },
-      {
         "name": "test-phase-system.sh",
         "kind": "script",
         "path": "runtime/cli/tests/test-phase-system.sh",
-        "source": "derived"
-      },
-      {
-        "name": "memory-quality-phase2-pr3.test.ts",
-        "kind": "test",
-        "path": "runtime/cli/tests/memory-quality-phase2-pr3.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "runtime/cli/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "test-five-checks.js",
-        "kind": "code",
-        "path": "runtime/cli/tests/test-five-checks.js",
         "source": "derived"
       },
       {
@@ -155,12 +160,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -190,13 +189,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Change Type",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -204,7 +203,7 @@
     ],
     "causal_summary": "Spec-kit dropped its embedding-backed memory database",
     "created_at": "2026-09-23T20:09:53Z",
-    "last_save_at": "2026-09-23T20:21:11.601Z",
+    "last_save_at": "2026-09-24T05:08:45.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2172aa32e5ae0603932cc9cc355e85466fa417b3e7f968687276dd15051acebb",
+    "source_fingerprint": "sha256:b272c47e18536b6afbd773f5ade40b85b5943f7a5a93e835124af26b91c53413",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "766bfd88e347aed9eba683486901bc0db454a052c428398c0cb1d970e1fadf81",
-      "plan.md": "e74f7bfee7210e82db2704d2c1d1672173ca9dc58260953e5bd03510992b23c7",
-      "tasks.md": "76cce3a3bfa70fa30afb76101b60957d5998ce7ac01a020449795eaf060f74b7",
-      "implementation-summary.md": "10cf9756fd83087ad351e279eddb56c5fba8a32c22a10c09bfea7089acefae32"
+      "spec.md": "769cb9551213f75e2f70102a64533945c076c48f856efbee58b75dacf39475ed",
+      "plan.md": "0d5c552f5b162a28d5c06df62a40681d83df2b09e4fce305d2f2bcd7d95a340f",
+      "tasks.md": "15fcdf8c153b06b902fae847671777e16faf15c32faf336215de7aa31e8c3445",
+      "implementation-summary.md": "639a00d175a0350985b580b333bb90e77535da9742536d0d49b46ed5cb9697a8"
     },
     "last_active_at": null
   }

@@ -1,12 +1,14 @@
 ---
 title: "Feature Specification: Retire memory-era tests and revive the phase tests"
-description: "Spec-kit no longer keeps an embedding-backed memory database, but fourteen files in its test tree still target it, its removed modules or a removed template layout, and five tests for live features never run. The dead files go with their references, and the live ones load, run in throwaway repos and join the package test scripts."
+description: "Spec-kit no longer keeps an embedding-backed memory database, but fourteen files in its test tree still target it, its removed modules or a removed template layout, and five tests for live features never run. The dead files go with their references, and the live ones load, run in throwaway repos and join the package test scripts. Reviving them exposed three phase defects in create.sh and validate.sh, fixed here."
 trigger_phrases:
   - "retire memory-era tests"
   - "dead spec-kit test files"
   - "test-phase-validation cannot load"
   - "manual playbook runner retired"
   - "memory-quality test never collected"
+  - "phase map rows never filled"
+  - "empty phase child skipped"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -23,7 +25,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Implemented |
 | **Created** | 2026-09-23 |
 | **Branch** | None. Work on `main`, packet folder only |
 <!-- /ANCHOR:metadata -->
@@ -45,6 +47,12 @@ Spec-kit dropped its embedding-backed memory database. Only the skill advisor ke
 
 Five tests for live features check nothing. `test-phase-validation.js` and `test-phase-system.js` are CommonJS files in an ES-module package and throw at load, and when they last ran they wrote into the checkout's `.opencode/specs`, the legacy root removed on 2026-09-20. `test-phase-system.sh` stops at its first case, because `create.sh` needs a description generator that its throwaway repo lacks. The two `memory-quality-*.test.ts` files use a suffix the `cli` vitest project does not collect. No package script runs any of the five.
 
+Reviving them exposed three defects in the code they cover:
+
+- `create.sh --phase` never fills a new parent's phase map. Commit `81e26f770fa` renamed the template's row markers and left the script matching the old text, so since 2026-09-07 every new phase parent has an empty map with the marker still in it. `specs/sk-design/020-chart-and-diagram-review` is one.
+- `create.sh --parent` prints appended rows after the blank line that ends the phase table, so they render outside the map.
+- `validate.sh --recursive` skips a phase child with no packet docs. The shell engine validated every child, and when it was deleted on 2026-08-29 an empty child stopped being checked at all.
+
 ### Purpose
 Every test file left in spec-kit loads, tests code that exists and runs from a package script, and none of them writes into the checkout.
 <!-- /ANCHOR:problem -->
@@ -60,12 +68,15 @@ Every test file left in spec-kit loads, tests code that exists and runs from a p
 - Revive the three phase tests and the two memory-quality tests, and wire them into `test:legacy`, `test:validation` and the `cli` vitest project
 - Delete `test-five-checks.js`
 - Refresh the sk-doc README snapshots that list the archive folder
+- Fix the three defects the revived tests expose: the unfilled phase map, the appended rows outside it, and the unchecked empty phase child
 
 ### Out of Scope
 - The live embedding stack under `shared/embeddings/` and its advisor-owned tests. It still backs the skill advisor
 - Released changelog entries that name the removed files. They are history
 - Spec packet history under `specs/`. It records what was true then
 - Other scripts in `runtime/cli/tests/` that no package script runs. They get their own review
+- Backfilling the phase maps of parents scaffolded while the markers went unmatched. Each belongs to its own packet
+- A numbered child that holds only loop artifacts such as `research/` or `review/`. It is not a phase and stays skipped
 
 ### Files to Change
 
@@ -80,8 +91,10 @@ Every test file left in spec-kit loads, tests code that exists and runs from a p
 | `runtime/cli/tests/manual-playbook-runner.{ts,js,vitest.ts}`, `runtime/cli/tests/fixtures/manual-playbook-fixture.{ts,js}` | Delete | Retired playbook runner |
 | `runtime/cli/evals/check-source-dist-alignment.ts` | Modify | Drop the two runner allowlist entries |
 | `runtime/cli/tests/fixtures/README.md`, `feature-catalog/retrieval/session-recovery-spec-kit-resume.md`, `manual-testing-playbook/manual-testing-playbook.md` | Modify | Drop the runner references |
-| `runtime/cli/tests/test-phase-validation.js`, `test-phase-system.js` | Modify | ES-module header, create.sh work in a throwaway git repo |
-| `runtime/cli/tests/test-phase-system.sh` | Modify | Install the generator stub in cases 1 and 2 |
+| `runtime/cli/spec/create.sh` | Modify | Match the template's row markers, and append rows where each table ends |
+| `runtime/cli/spec/validate.sh` | Modify | Validate an empty phase child instead of skipping it |
+| `runtime/cli/tests/test-phase-validation.js`, `test-phase-system.js` | Modify | ES-module header, create.sh work in a throwaway git repo, assertions brought up to date |
+| `runtime/cli/tests/test-phase-system.sh` | Modify | Generator stub in every case, the real renderer, one work root the trap removes |
 | `runtime/cli/tests/memory-quality-phase2-pr3.test.ts`, `memory-quality-phase6-migration.test.ts` | Rename | To `.vitest.ts` |
 | `runtime/cli/package.json` | Modify | Run the revived phase tests |
 | `runtime/cli/tests/test-five-checks.js` | Delete | Tests a removed template layout |
@@ -110,6 +123,8 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 | REQ-004 | The package scripts run the revived tests | `test:legacy` and `test:validation` name the three phase tests |
 | REQ-005 | The skill's `test:root` no longer stops at a deleted file | The script's first steps pass the point where the factory test ran |
 | REQ-006 | The sk-doc README snapshots stay green | `test_readme_manifest.py` and `test_readme_verdict_parity.py` pass |
+| REQ-007 | A new phase parent's map lists its phases, and appended rows stay inside the table | The revived phase tests fail before the create.sh fixes and pass after |
+| REQ-008 | An empty phase child is validated, and an artifact-only child is still skipped | The empty-child assertions fail before the validate.sh fix and pass after, and no current parent's recursive result changes |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -119,6 +134,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 
 - **SC-001**: The fourteen dead files are gone and nothing outside history names them
 - **SC-002**: Five live-feature tests run from package scripts and pass
+- **SC-003**: The three defects they exposed are fixed, each proved by a revived test that failed before its fix
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -129,7 +145,8 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with `s
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | A deleted test still covered live behaviour | Med | Each deletion is traced to a removed module or layout, and the live embedding factory is confirmed covered by five vitest suites |
-| Risk | A revived test exposes a real regression | Med | Fix only what the first run exposes in the test itself, and report a product defect instead of weakening the assertion |
+| Risk | A revived test exposes a real regression | Med | Keep the assertion rather than weaken it. Three did, and the operator chose to fix all three in this packet |
+| Risk | The empty-child fix turns a current recursive run red | Med | Only a child with no files at all is newly validated. No parent in the tree has one, and the six parents with an artifact-only child keep their results |
 | Dependency | The compiled description generator under `runtime/cli/dist/` | Low | `test:legacy` builds before it runs |
 <!-- /ANCHOR:risks -->
 

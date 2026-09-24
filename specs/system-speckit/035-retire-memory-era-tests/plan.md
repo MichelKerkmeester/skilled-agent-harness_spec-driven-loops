@@ -1,12 +1,14 @@
 ---
 title: "Implementation Plan: Retire memory-era tests and revive the phase tests"
-description: "Delete the tests whose targets are gone, in three commits by cause, and revive the live-feature tests by fixing how they load, where they write and whether anything runs them."
+description: "Delete the tests whose targets are gone, revive the live-feature tests by fixing how they load, where they write and whether anything runs them, and fix the three defects they expose."
 trigger_phrases:
   - "retire memory-era tests"
   - "dead spec-kit test files"
   - "test-phase-validation cannot load"
   - "manual playbook runner retired"
   - "memory-quality test never collected"
+  - "phase map rows never filled"
+  - "empty phase child skipped"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -30,7 +32,7 @@ contextType: "implementation"
 | **Testing** | The revived tests themselves, the `cli` vitest project and the sk-doc README snapshot tests |
 
 ### Overview
-Four commits, one per cause. The first deletes the tests for the retired memory database and the stub-only archive. The second retires the manual playbook runner. The third revives the phase and memory-quality tests. The fourth deletes the five-checks test. Each commit removes its files' references in the same change, so no commit leaves a dangling pointer.
+Seven commits, one per cause. The first deletes the tests for the retired memory database and the stub-only archive, and the second retires the manual playbook runner. Each removes its files' references in the same change, so no commit leaves a dangling pointer. The revived tests then ran red on three product defects, so the next three commits fix them one at a time: the unfilled phase map, the appended rows outside it, and the unchecked empty phase child. The sixth commit revives and wires the tests, green against the fixed code, and the seventh deletes the five-checks test and closes the packet.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -44,9 +46,9 @@ Four commits, one per cause. The first deletes the tests for the retired memory 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -61,6 +63,8 @@ Test isolation through a throwaway git repository.
 - **ES-module header**: `createRequire` and `fileURLToPath` give the two phase scripts `require` and `__dirname`, as the already-revived phase command test does
 - **Throwaway repo**: a `git init` directory with a `specs/` folder, used as the working directory for every script call. `create.sh` and `archive.sh` take their root from `git rev-parse --show-toplevel`, so packets land there instead of in the checkout
 - **Generator stub**: the bash test's existing recording stub, now installed in all three cases
+- **Row placement**: create.sh inserts appended rows at the first non-row line after each table header, where the table actually ends
+- **Child selection**: validate.sh skips a child without packet docs only when it holds something else, so an empty child is validated
 
 ### Data Flow
 Test process to throwaway repo, then `create.sh`, `validate.sh` or `archive.sh` run inside it, then assertions on the files left there, then removal of the repo.
@@ -96,7 +100,7 @@ The compiled `runtime/cli/dist/spec-folder/generate-description.js`, which `crea
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Revert the commit for the cause in question. Each deletion is self-contained with its references, so one can return without the others.
+Revert the commit for the cause in question. Each deletion is self-contained with its references, so one can return without the others. Reverting a product fix turns its revived test red, so revert the matching assertion with it.
 <!-- /ANCHOR:rollback -->
 
 ---
