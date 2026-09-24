@@ -55,9 +55,9 @@
       "runtime/cli/lib/template-utils.sh",
       "runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts",
       "runtime/cli/tests/inline-gate-renderer.vitest.ts",
+      "runtime/cli/tests/create-without-build.vitest.ts",
       "specs/sk-design/020-chart-and-diagram-review/spec.md",
-      "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
-      "manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality.md"
+      "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md"
     ],
     "entities": [
       {
@@ -163,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "create-without-build.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/create-without-build.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "session-capturing-pipeline-quality.md",
         "kind": "doc",
         "path": "feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md",
@@ -197,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Change Type",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Spec-kit dropped its embedding-backed memory database",
     "created_at": "2026-09-23T20:09:53Z",
-    "last_save_at": "2026-09-24T07:04:33.187Z",
+    "last_save_at": "2026-09-24T07:28:11.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d4379d58acf85911954820becdf938f872917d548b172f2ef4030bad3e2fc4b",
+    "source_fingerprint": "sha256:f0cd4b321ca7e7f693c6606bee8a04131697a90ddd2fae45b3dd88b559c91a9a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "02281ae3256eeda970e6d867a0bc8dc797b70b07b4f94c92b67572fb6ae9c236",
-      "plan.md": "db3d924e4773c97a6e4f66b026c0bde740270fc2f6fe81e4ac881b1bed21a530",
-      "tasks.md": "35344fa477616cd55a8472689630d1ddf8bde81526b3ff6aaee220c422030566",
-      "implementation-summary.md": "05ac9534c921e5cb864c3ddff20344bf856acef26bcd7527e1e6c153d82130c3"
+      "spec.md": "36add49f88fea7eb63589d693d29b6134c33ff50070d914fb9b371fd49c72a26",
+      "plan.md": "28a5e603f761363efcbdc398e06e6f9997b85d1608d2cedb2edcc53051598984",
+      "tasks.md": "a3106aba803d4ebaebb7303c8f5c423f67ec6f373a7dfe605a9893bf6ddda6f0",
+      "implementation-summary.md": "6d3ce4619c809697a6bf65f4dc0f87f8c9c917277e1602fdacc8b5ab710f513c"
     },
     "last_active_at": null
   }

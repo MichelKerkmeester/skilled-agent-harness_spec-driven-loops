@@ -79,7 +79,7 @@ With no `node_modules`, `create.sh` wrote no `spec.md`, `plan.md` or `tasks.md` 
 
 ### The rest
 
-`create.sh --json` printed the description generator's status line ahead of its payload. That output now goes to stderr, and the phase test parses stdout strictly. `specs/sk-design/020-chart-and-diagram-review`, the one parent the marker defect left empty, now lists its two phases and their handoff.
+`create.sh --json` printed the description generator's status line ahead of its payload. That output now goes to stderr, and the phase test parses stdout strictly. `specs/sk-design/020-chart-and-diagram-review`, the one parent the marker defect left empty, now lists its two phases and their handoff, and its `synthesis.md` has the frontmatter it lacked, so the packet validates clean. A scaffold with no build still cannot write `description.json` or derive its graph metadata, but `create.sh` now says so on stderr, naming the missing generator and how to get it.
 
 ### Files Changed
 
@@ -101,7 +101,8 @@ With no `node_modules`, `create.sh` wrote no `spec.md`, `plan.md` or `tasks.md` 
 | `runtime/cli/lib/template-utils.sh` | Modified | Level contract fallback copied from the resolver |
 | `runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts`, `level-contract-fallback.vitest.ts` | Created | Parity tests for the two fallbacks |
 | `runtime/cli/tests/inline-gate-renderer.vitest.ts` | Modified | Template path before `--level` |
-| `specs/sk-design/020-chart-and-diagram-review/spec.md` | Modified | Phase map filled |
+| `runtime/cli/tests/create-without-build.vitest.ts` | Created | Skipped generators must be reported |
+| `specs/sk-design/020-chart-and-diagram-review/spec.md`, `synthesis.md` | Modified | Phase map filled, synthesis frontmatter added |
 
 Paths are under `.skilled/skills/system-spec-kit/` except `CONTRIBUTING.md` at the repo root, `sk-doc/` under `.skilled/skills/`, and `specs/`.
 <!-- /ANCHOR:what-built -->
@@ -111,7 +112,7 @@ Paths are under `.skilled/skills/system-spec-kit/` except `CONTRIBUTING.md` at t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Seven commits, one per cause. Every deletion was traced to the module or layout it needed, and every live reference outside `specs/` and the changelogs went in the same commit as its file. The revived tests ran first as they stood. Their stale expectations were matched to the code's history: the March scoring fix, the four-column map, the per-folder validation output. The assertions that caught real defects were sharpened, run red, and then turned green by the fix commits. Seven follow-up commits came after the first push, and the code changes among them went the same way: each fallback's parity test ran red against the old fallback first, and an injected defect in each port turned its test red again before the commit.
+Seven commits, one per cause. Every deletion was traced to the module or layout it needed, and every live reference outside `specs/` and the changelogs went in the same commit as its file. The revived tests ran first as they stood. Their stale expectations were matched to the code's history: the March scoring fix, the four-column map, the per-folder validation output. The assertions that caught real defects were sharpened, run red, and then turned green by the fix commits. Seven follow-up commits came after the first push and three after the second, and the code changes among them went the same way: each fallback's parity test ran red against the old fallback first, and an injected defect in each port turned its test red again before the commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -140,7 +141,8 @@ Seven commits, one per cause. Every deletion was traced to the module or layout 
 | `test-phase-system.js` | PASS, 27 assertions; 1 failed before the append fix |
 | `test-phase-system.sh` | PASS, 10 assertions; 2 failed before the create.sh fixes |
 | `npm run test:legacy` and `npm run test:validation` in `runtime/cli` | PASS, both |
-| `cli` vitest project | PASS, 1464 tests, 19 declared skips |
+| `cli` vitest project | PASS, 1467 tests, 19 declared skips |
+| `create-without-build.vitest.ts` | PASS, 3 tests. All 3 failed before the warnings, and 2 failed again with one warning removed |
 | `inline-gate-renderer-fallback.vitest.ts` | PASS, 13 tests: 18 templates at 7 levels, a synthetic template, stdin, errors. 11 failed on the old fallback |
 | `level-contract-fallback.vitest.ts` | PASS, 17 tests: 7 levels and 7 malformed manifests. 16 failed on the old fallback |
 | Injected defects in each port | Each turned its parity test red, then reverted to green |
@@ -152,6 +154,7 @@ Seven commits, one per cause. Every deletion was traced to the module or layout 
 | Reference search outside `specs/` and changelogs | Only the generated trigger index, regenerated at push |
 | `root` vitest project | PASS, 1253 tests, 13 declared skips, after a forced rebuild cleared `dist-freshness` in this checkout |
 | `specs/` search for the phase row marker | No `spec.md` holds it |
+| sk-design/020 validation | PASS with no errors or warnings; recursive PASS with one pre-existing warning per child |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -159,10 +162,9 @@ Seven commits, one per cause. Every deletion was traced to the module or layout 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A scaffold made with no build has no `description.json` and a stub graph metadata file.** Both generators need `runtime/cli/dist/` or tsx, and `create.sh` skips them without a warning.
+1. **A scaffold made with no build has no `description.json` and a stub graph metadata file.** Both generators need `runtime/cli/dist/` or tsx. `create.sh` now warns for each one it skips, but a `--level phase-parent` scaffold still exits 0 without the description its parent needs, where `--phase` stops.
 2. **`dist-freshness` fails on timestamps alone.** The build skips writing unchanged output, so a source touched without a rebuild stays newer than its build. A forced rebuild cleared it here, but another checkout in that state fails the same way until it runs `tsc --build --force`.
-3. **`specs/sk-design/020-chart-and-diagram-review` still fails one check.** `synthesis.md` has no frontmatter, so it carries no trigger phrases. That predates this packet.
-4. **The shipped templates cover less than the renderer does.** None has a fence or a blank line after an inactive gate, so the parity test's synthetic template is what guards those two paths.
+3. **The shipped templates cover less than the renderer does.** None has a fence or a blank line after an inactive gate, so the parity test's synthetic template is what guards those two paths.
 <!-- /ANCHOR:limitations -->
 
 ---

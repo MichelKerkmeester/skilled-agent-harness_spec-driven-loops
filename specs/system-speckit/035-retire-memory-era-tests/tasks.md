@@ -63,6 +63,8 @@ contextType: "implementation"
 - [x] T022 Read a template path given before `--level` in both renderers (`runtime/cli/templates/inline-gate-renderer.{ts,sh}`)
 - [x] T023 Replace the level contract fallback with a plain-JavaScript copy of the resolver (`runtime/cli/lib/template-utils.sh`)
 - [x] T024 Fill the phase map of `specs/sk-design/020-chart-and-diagram-review`
+- [x] T028 Warn on stderr for each generated file skipped for want of a build (`runtime/cli/spec/create.sh`)
+- [x] T029 Give `specs/sk-design/020-chart-and-diagram-review/synthesis.md` a title, description and trigger phrases
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -78,6 +80,8 @@ contextType: "implementation"
 - [x] T025 Each fallback matches its TypeScript source in a parity test that failed before its port, and an injected defect turns that test red (`runtime/cli/tests/inline-gate-renderer-fallback.vitest.ts`, `level-contract-fallback.vitest.ts`)
 - [x] T026 From a `git archive` export with no install, create.sh scaffolds Level 2 and 3 packets that differ from a tsx scaffold only in timestamps
 - [x] T027 A search of `specs/` finds no `spec.md` still holding the phase row marker
+- [x] T030 A scaffold with no build reports every skipped generator, and the test turns red when a warning is removed (`runtime/cli/tests/create-without-build.vitest.ts`)
+- [x] T031 sk-design/020 validates with no errors or warnings, and recursively with one pre-existing warning per child
 <!-- /ANCHOR:phase-3 -->
 
 ---
