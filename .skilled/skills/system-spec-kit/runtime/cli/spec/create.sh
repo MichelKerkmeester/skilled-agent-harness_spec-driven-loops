@@ -663,6 +663,20 @@ finalize_scaffold_templates() {
     done
 }
 
+# A checkout without a build or an install lacks the generators behind
+# description.json and the derived graph metadata. The scaffold still succeeds
+# without them, so each skip names the missing file and how to get it.
+report_missing_generator() {
+    local skipped="$1"
+    local missing="$2"
+    local remedy="$3"
+    local target="${4:-}"
+    echo "  Warning: ${skipped} skipped${target:+ for ${target}}: ${missing} is missing. ${remedy}" >&2
+}
+
+readonly BUILD_REMEDY="Run npm run build under runtime to compile it."
+readonly INSTALL_REMEDY="Run npm install at the skill root, then repair-derived.cjs --folder <packet> --apply."
+
 scaffold_phase_parent_validation_child() {
     local parent_path="$1"
     local feature_name="$2"
@@ -748,7 +762,10 @@ EOF
     desc_script="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
     if [[ -f "$desc_script" ]]; then
         node "$desc_script" "$child_path" "$parent_path" \
-            --description "Phase one for $feature_name" --level "$child_level" >/dev/null 2>&1 || true
+            --description "Phase one for $feature_name" --level "$child_level" >/dev/null 2>&1 \
+            || echo "  Warning: description.json generation failed for $child_name" >&2
+    else
+        report_missing_generator "description.json" "$desc_script" "$BUILD_REMEDY" "$child_name"
     fi
 
     CREATED_FILES+=("$child_name/")
@@ -1470,6 +1487,8 @@ EOF
           else
             echo "  Warning: description.json generation skipped for phase ${_i}" >&2
           fi
+        else
+          report_missing_generator "description.json" "$_DESC_SCRIPT" "$BUILD_REMEDY" "phase ${_i}"
         fi
 
         # Inject parent back-reference into child spec.md
@@ -1694,6 +1713,8 @@ if [[ -f "$_DESC_SCRIPT" ]]; then
   else
     echo "  Warning: description.json generation skipped" >&2
   fi
+else
+  report_missing_generator "description.json" "$_DESC_SCRIPT" "$BUILD_REMEDY"
 fi
 
 # Derive the graph metadata from the documents that were just written, rather
@@ -1712,6 +1733,10 @@ if [[ -f "$_BACKFILL_TS" && -f "$_TSX_LOADER" ]]; then
     node --import "$_TSX_LOADER" "$_BACKFILL_TS" "$_derived_child" >/dev/null 2>&1 \
       || echo "  Warning: graph metadata derivation skipped for ${_derived_child##*/}" >&2
   done
+elif [[ ! -f "$_TSX_LOADER" ]]; then
+  report_missing_generator "graph metadata derivation" "$_TSX_LOADER" "$INSTALL_REMEDY"
+else
+  report_missing_generator "graph metadata derivation" "$_BACKFILL_TS" "Restore it from the repository."
 fi
 
 if [[ "$DOC_LEVEL" == "phase" ]]; then
