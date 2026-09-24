@@ -1,5 +1,5 @@
 {
-  "manifestHash": "552667145c4b08a91f21a1d20cd5f08abb7e1b2516b4b4ea14e7777e70d18f0b",
+  "manifestHash": "28676291669570cb05d21bba62a1dce10775d886e0d95be8d3d3582594777504",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11415,7 +11415,11 @@
     "specs/system-speckit/037-track-root-children/implementation-summary.md",
     "specs/system-speckit/037-track-root-children/plan.md",
     "specs/system-speckit/037-track-root-children/spec.md",
-    "specs/system-speckit/037-track-root-children/tasks.md"
+    "specs/system-speckit/037-track-root-children/tasks.md",
+    "specs/system-speckit/038-track-aware-archive/implementation-summary.md",
+    "specs/system-speckit/038-track-aware-archive/plan.md",
+    "specs/system-speckit/038-track-aware-archive/spec.md",
+    "specs/system-speckit/038-track-aware-archive/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -23444,6 +23448,12 @@
     ],
     "archive root graph node tasks": [
       10070
+    ],
+    "archive sh track": [
+      11406,
+      11407,
+      11408,
+      11409
     ],
     "archived backup restore": [
       1235
@@ -84595,6 +84605,11 @@
     "restore template default": [
       11061
     ],
+    "restore to track": [
+      11406,
+      11407,
+      11408
+    ],
     "restraint routing": [
       1855,
       1858
@@ -102686,6 +102701,12 @@
       9791,
       9792
     ],
+    "track aware archive": [
+      11406,
+      11407,
+      11408,
+      11409
+    ],
     "track b code remediation": [
       9257
     ],
@@ -102775,6 +102796,9 @@
     ],
     "track time on task": [
       298
+    ],
+    "track z archive": [
+      11408
     ],
     "tracks are not packets": [
       10542,
