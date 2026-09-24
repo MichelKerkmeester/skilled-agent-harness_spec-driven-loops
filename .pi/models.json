@@ -10,8 +10,7 @@
       },
       "models": [
         {
-          "id": "cline-pass/deepseek-v4.1-flash",
-          "name": "DeepSeek V4.1 Flash",
+          "id": "cline-pass/deepseek-v4.1-flash", "name": "DeepSeek V4.1 Flash",
           "reasoning": true,
           "contextWindow": 1000000,
           "maxTokens": 393216,
