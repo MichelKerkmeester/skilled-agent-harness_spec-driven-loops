@@ -33,7 +33,7 @@ trigger_phrases:
   - "resume condition"
 importance_tier: important
 contextType: reference
-version: 1.6.0.0
+version: 1.6.0.1
 ---
 
 # Rule: Communication handoff
@@ -72,8 +72,9 @@ telling them what to do about it.
 **Restate the state when the reader must re-orient.** The cadence is triggered, not
 timed. It fires when the direction of the work changes, when two attempts at the same
 fix have failed or when the work resumes after a gap. The restatement says what is
-done, what is open and what changed. It replaces the previous stated state. It does not
-summarize the reply.
+done, what is open and what changed, and carries the operator's standing constraints and
+decisions in their own words, since a paraphrased "do not" is the first thing a resume
+loses. It replaces the previous stated state. It does not summarize the reply.
 
 The failure this prevents: a reader who returns mid task and trusts a stated state that
 the turns since have superseded.

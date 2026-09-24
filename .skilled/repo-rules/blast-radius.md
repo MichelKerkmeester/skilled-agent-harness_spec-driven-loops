@@ -20,7 +20,7 @@ trigger_phrases:
   - "name the rollback first"
 importance_tier: important
 contextType: reference
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # Rule: Blast radius and reversibility
@@ -89,6 +89,11 @@ sentence with something real, **you are not ready to act**; that is the finding,
 goes to the operator.
 
 At tier 3, **stop and wait for a yes.** Not "I'll proceed unless you object." Wait.
+
+**Before you stop, finish what the yes does not depend on.** Do every reversible step
+first, so the operator approves a finished, reviewable result and the yes is the last
+step. Stopping on a plan instead leaves the operator approving work they cannot see, and
+leaves the whole task waiting on the answer.
 
 **Approval does not transfer.** A yes for one destructive action does not cover the next
 one, a later one of the same kind, or a wider version of the same one. A push to a
