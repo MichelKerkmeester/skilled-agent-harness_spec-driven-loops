@@ -1,0 +1,24 @@
+{
+  "type": "config",
+  "topic": "How can every spec folder written under spec-kit v3.x (tags v3.0.0.0 and v3.6.0.0) reach a full pass under the v4 validate.sh --strict without authored LLM edits? Evidence and research questions: specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md sections 2 and 10; residual per-packet data in that packet's scratch/harness/data/.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {"convergenceMode": "default", "stopPolicy": "max-iterations"},
+  "resource_map_present": false,
+  "resource_map": {"emit": true},
+  "runId": "fanout-luna-1790242274086-9tq1wi",
+  "lineageId": "fanout-luna-1790242274086-9tq1wi",
+  "sessionId": "fanout-luna-1790242274086-9tq1wi",
+  "parentSessionId": null,
+  "lineage": {
+    "sessionId": "fanout-luna-1790242274086-9tq1wi",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade",
+  "executor": "cli-codex model=gpt-5.6-luna",
+  "createdAt": "2026-09-24T09:34:29.000Z"
+}

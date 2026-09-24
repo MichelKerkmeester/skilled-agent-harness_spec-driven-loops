@@ -1,0 +1,47 @@
+# Iteration 3: Validator rule provenance (v4 artifact versus v3 defect)
+
+## Focus
+
+Q2: classify each residual rule as a v4 contract addition versus a defect the documents carried under v3, from rule-id provenance at the version tags and the template contract of each era. Resolve the two open mechanics from iteration 2: the entry-status axis behind F-013 and the meaning of the detail-less TEMPLATE_SOURCE message.
+
+## Findings
+
+1. **F-015 Rule-id provenance sorts the 20 classes into three eras.** Tag-tree evidence (v3.0.0.0 frozen 2026-03-27, v3.6.0.0 frozen 2026-06-18): absent at both tags (v4-era rules): GREP_CONVENTION (earliest git appearance 2026-09-04), GENERATED_METADATA_INTEGRITY, GENERATED_METADATA_DRIFT, SCAFFOLD_NEVER_TOUCHED, METADATA_DISK_PATH_CONSISTENCY, STATUS_CROSS_DOC_CONSISTENCY, GRAPH_METADATA_CHILD_IDENTITY. Present only at v3.6.0.0 (mid-window additions): FRONTMATTER_MEMORY_BLOCK, SPEC_DOC_SUFFICIENCY, CANONICAL_SAVE_LINEAGE_REQUIRED. Present at v3.0.0.0: ANCHORS_VALID, LEVEL_MATCH, FILE_EXISTS, TEMPLATE_SOURCE, FOLDER_NAMING, SPEC_DOC_INTEGRITY, TOC_POLICY, FRONTMATTER_VALID, PLACEHOLDER_FILLED (AI_PROTOCOLS is unstable: 1 file at v3.0, 0 at v3.6, present again today). Caveat: rule-id presence shows the check existed, not that it was enforced then; enforcement-at-tag is INFERRED and would be confirmed by running each tag's own validator. [SOURCE: git grep per rule id at v3.0.0.0 and v3.6.0.0 trees; git log -S GREP_CONVENTION]
+
+2. **F-016 Artifact-versus-defect classification.** The seven v4-era rules generate findings that are artifacts of new contracts over old documents: GENERATED_METADATA_INTEGRITY's dominant class is literally "graph-metadata.json is missing while description.json is present" (a sidecar v3 never required) and "source_fingerprint is absent while the generator-hardening rollout expects a persisted fingerprint" (a rollout-era expectation). Within the older rules the split is per pattern: "no anchors found" is a template-era artifact for v3.0-corpus documents (the v3.0 speckit command assets emit no ANCHOR markers; the v3.6 authoring YAMLs do, 42+ references) while duplicate or unclosed anchors are defects under any era. STATUS_CROSS_DOC bucket mismatches, broken markdown links and stale folder paths are real document defects that no v3-era rule checked. [SOURCE: tag-tree greps (ANCHOR: at v3.0.0.0 .opencode/commands/speckit/*: no matches; at v3.6.0.0: 42+), data pattern census iteration 2]
+
+3. **F-017 The entry-status axis behind F-013, resolved.** check-grep-convention.sh runs a helper whose output lines carry per-detail severity labels plus a separate `status` line that sets RULE_STATUS (with a fail fallback for unparsable output). The orchestrator classifies an entry as a warning only when the entry status is warn. Detail severity labels are informational inside an error entry, which is exactly the shape of the 10 warn-only rows from F-013. Consequence: no warnings-level policy can clear those rows; only the helper's own status logic or a rule-level change can. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-grep-convention.sh, helper output protocol lines]
+
+4. **F-018 Correction to F-009: STATUS_CROSS_DOC compares buckets across two documents, so token canonicalization cannot clear it.** check-status-cross-doc-consistency.sh extracts the Status value from spec.md and from implementation-summary.md, classifies each into a bucket, and fails only when the two buckets differ. The per-line details the data shows are each document's own value and bucket. Rewriting tokens to their classified value is cosmetic; the clearing routes are (a) align the two buckets by deriving the true state from evidence (for example tasks.md completion) and rewriting one document's Status value, a meaning-bearing metadata change, or (b) grandfather the class per F-019. A degenerate route, blanking one document's Status so the check reports "not applicable", is REJECTED: it masks future genuine mismatches and breaks the packet's own risk item that new findings must still fail. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-status-cross-doc-consistency.sh]
+
+5. **F-019 The least validator change already exists as a pattern in the rule layer: creation-date grandfathering with per-rule enforcement switches.** The rule layer carries per-rule policy switches (SPECKIT_STATUS_CROSS_DOC_ENFORCE, SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE, SPECKIT_CHILD_DRIFT_ENFORCE, SPECKIT_AC_COVERAGE and SPECKIT_AC_COVERAGE_ENFORCE) and, in check-ac-closure.sh, the exact pattern the upgrade needs: packets created before a rollout cutoff stay advisory on every branch, keyed on packet creation date, while later packets are enforced. Extending that pattern to the four-family policy surface (F-011) is an incremental change to an existing mechanism, keeps every finding in a post-cutoff packet an error, and needs no new validator architecture. Global demotion via the existing ENFORCE=false switches is rejected for the upgrade path: it weakens the rule for new documents too. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-closure.sh (cutoff grandfather), check-ac-coverage.sh, check-metadata-disk-consistency.sh, check-status-cross-doc-consistency.sh, check-graph-metadata-child-drift.sh]
+
+6. **F-020 TEMPLATE_SOURCE is a 70-line-window marker check, mechanically completable.** A document fails when none of its first 70 lines contains the string SPECKIT_TEMPLATE_SOURCE:; the data's bare-filename details match this shape (orchestrator lists only the missing files). The deterministic transform is a structural comment insert carrying an honest provenance value, for example the emitted form this packet's own spec.md line 13 carries. The marker was named in the v3.0-era template style guide, so it was contract-adjacent even at v3.0, though emission in v3.0 templates is not established (style-guide references only). Cost: one comment line per document, no content bytes changed. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts (TEMPLATE_SOURCE check), spec.md:13, git grep SPECKIT_TEMPLATE_SOURCE at v3.0.0.0]
+
+7. **F-021 Rule implementations split across two layers.** Eleven classes live in TypeScript (orchestrator.ts, spec-doc-structure.ts, generated-metadata-integrity.ts) and nine in shell checkers under runtime/cli/rules/ (check-grep-convention.sh, check-status-cross-doc-consistency.sh, check-files.sh, check-folder-naming.sh, check-ai-protocols.sh, check-toc-policy.sh, check-scaffold-never-touched.sh, check-canonical-save-lineage.sh, check-graph-metadata-child-identity.sh and siblings). Any upgrade transform or policy change must satisfy both layers' semantics; the shell layer is where the enforcement-switch and grandfather patterns live. [SOURCE: rule-id to implementation grep map, .skilled/skills/system-spec-kit/runtime/cli/rules/ and runtime/lib/validation/]
+
+## Sources Consulted
+
+- git tag trees v3.0.0.0 (2026-03-27) and v3.6.0.0 (2026-06-18): per-rule-id greps, ANCHOR and SPECKIT_TEMPLATE_SOURCE contract greps
+- .skilled/skills/system-spec-kit/runtime/cli/rules/check-status-cross-doc-consistency.sh (full)
+- .skilled/skills/system-spec-kit/runtime/cli/rules/check-grep-convention.sh (entry-status protocol)
+- .skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-closure.sh, check-ac-coverage.sh, check-metadata-disk-consistency.sh, check-graph-metadata-child-drift.sh (policy levers)
+- .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts (TEMPLATE_SOURCE region)
+- scratch/harness/data/*.jsonl (pattern families from iteration 2, re-read for classification)
+
+## Assessment
+
+- newInfoRatio: 0.75. Rule provenance, the policy-lever inventory and the TEMPLATE_SOURCE mechanics are new. F-018 corrects an iteration-2 transform statement, which is new negative knowledge rather than refinement.
+- Questions considered: Q2 (classification), Q3 (least validator change).
+- Questions answered: Q2 substantially (classification delivered; the one open residue is enforcement-at-tag, INFERRED). Q3 substantially (least change = extend the creation-date grandfather pattern; named what is rejected and why).
+- Confidence: F-015, F-017, F-020 are OBSERVED from source and tag evidence. F-016 mixes OBSERVED patterns with the classification judgment. F-019 is OBSERVED mechanism plus DERIVED recommendation.
+
+## Reflection
+
+- What worked: tag-tree greps instead of history scans. They answer "did this check exist when these documents were written" directly and cheaply, where git log -S timed out twice.
+- What failed: iteration 2 read the STATUS_CROSS_DOC detail lines as self-contained pairs and drew a transform that cannot clear the rule; corrected here in F-018 after reading the checker.
+- Ruled out: token canonicalization alone as the STATUS_CROSS_DOC route (F-018); blanking one document's Status to reach the not-applicable branch (masks future findings, breaks the packet's risk item).
+
+## Recommended Next Focus
+
+Iteration 4: finish Q3 and Q4 from the tool side. Read repair-derived.cjs and backfill-frontmatter.js to establish why both repair tools skip archived packets and what including them would break (Q4), and pin the grandfather-cutoff mechanics (what date field, what happens to a packet edited after the cutoff) so the least-change route is implementable as specified.

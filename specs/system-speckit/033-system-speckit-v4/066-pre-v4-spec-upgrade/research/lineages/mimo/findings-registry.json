@@ -1,0 +1,227 @@
+{
+  "openQuestions": [
+    "Q1: per-rule routes with costs (answered at class level in iteration 2; packet-level harness check remains as follow-on work for the build step)."
+  ],
+  "resolvedQuestions": [
+    "Q2 (resolved, iteration 3): artifact-versus-defect classification delivered in F-015/F-016; residue: enforcement-at-tag is inferred, confirmable by running each tag's validator.",
+    "Q3 (resolved, iterations 3-4): least validator change is the creation-date grandfather pattern extension (F-019); mechanics pinned in F-025 with two closure candidates for the later-edit gap.",
+    "Q4 (resolved, iteration 4): four-mechanism archive answer (F-022/F-024); residual: the graph-metadata child archive switch default is inferred (F-023).",
+    "Q5 (resolved, iteration 5): canonical upgrade order (F-029) and four-check idempotence proof (F-031); composed per-document passes required (F-030); the beyond-reach bucket is the policy layer landing site (F-032)."
+  ],
+  "keyFindings": [
+    {
+      "id": "F-001",
+      "iteration": 1,
+      "statement": "Residual baseline: v3.0 active 111/170 pass (59 fail); v3.6 active 686/1007 pass (321 fail); 0 unreadable",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-002",
+      "iteration": 1,
+      "statement": "Data files are the post two-tool pipeline residual set (111 and 686 reproduce spec.md section 2 exactly)",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-003",
+      "iteration": 1,
+      "statement": "Archived packets fail wholesale (186/186, 911/911), dominated by GENERATED_METADATA_INTEGRITY, GENERATED_METADATA_DRIFT, METADATA_DISK_PATH_CONSISTENCY",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-004",
+      "iteration": 1,
+      "statement": "section 10 rule list is incomplete: 20 rule ids in data, 4 unnamed (GENERATED_METADATA_DRIFT largest)",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-005",
+      "iteration": 1,
+      "statement": "classify.cjs MECH projection reaches 73%/85% only; 46+154 active packets still-authored under that hypothesis, REQ-002 unreachable without wider transforms or validator policy",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-006",
+      "iteration": 1,
+      "statement": "Held-back classes concentrate in STATUS_CROSS_DOC_CONSISTENCY, LEVEL_MATCH, FILE_EXISTS, GREP_CONVENTION with derivable detail patterns",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-007",
+      "iteration": 1,
+      "statement": "Corpus splits match spec.md: data is the full population",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-008",
+      "iteration": 2,
+      "statement": "20 residual rule classes normalize to bounded pattern families; METADATA_DISK_PATH_CONSISTENCY's 1235 archived patterns are one family; GENERATED_METADATA_INTEGRITY has 6 sub-kinds, GENERATED_METADATA_DRIFT 2",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-009",
+      "iteration": 2,
+      "statement": "STATUS_CROSS_DOC_CONSISTENCY detail lines are token-plus-bucket pairs (274 lines, 94 pairs, 97 case-only diffs); superseded on the transform question by F-018",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-010",
+      "iteration": 2,
+      "statement": "Widened projection (active): M-only 138/170 and 927/1007; +templated 143/170 and 962/1007; +policy layer 170/170 and 1007/1007. Derived twice; M tier and endpoint agree, mid tier is classification-sensitive",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-011",
+      "iteration": 2,
+      "statement": "Policy surface bounded to four families: FOLDER_NAMING (56, includes validator test fixtures), SPEC_DOC_INTEGRITY unresolvable links (~200/295), SPEC_DOC_SUFFICIENCY empty sections and missing citation (~30/170), GREP_CONVENTION warn-level trigger quality",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-012",
+      "iteration": 2,
+      "statement": "FILE_EXISTS (163) and LEVEL_MATCH required-file (223) report the same absences twice; one stub-provisioning transform clears both",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-013",
+      "iteration": 2,
+      "statement": "Entry status uses a different axis than detail severity: 10 active rows have error-status GREP_CONVENTION entries whose visible details all read severity=warn",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-014",
+      "iteration": 2,
+      "statement": "Truncation (3 details per rule) bounds projections from above; zero rows hide a failing rule entirely",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-015",
+      "iteration": 3,
+      "statement": "Rule-id provenance: 7 rules absent at both v3.0.0.0 and v3.6.0.0 tags; 3 only at v3.6; 10 at v3.0 (AI_PROTOCOLS unstable). Enforcement-at-tag inferred",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-016",
+      "iteration": 3,
+      "statement": "Artifact-versus-defect: v4-era rule findings are artifacts of new contracts over old docs; 'no anchors found' is a template-era artifact for v3.0 docs while duplicate/unclosed anchors, cross-doc bucket mismatches, broken links and stale paths are real defects",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-017",
+      "iteration": 3,
+      "statement": "Entry-status axis resolved: helper status line sets RULE_STATUS, detail severity labels are informational inside an error entry; no warnings policy clears the F-013 rows",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-018",
+      "iteration": 3,
+      "statement": "Correction to F-009: STATUS_CROSS_DOC compares spec.md vs implementation-summary.md Status buckets; clearing routes are evidence-derived bucket alignment or grandfathering; blanking a Status is rejected (masks future findings)",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-019",
+      "iteration": 3,
+      "statement": "Least validator change: extend check-ac-closure.sh's creation-date grandfather pattern (pre-cutoff packets advisory on every branch) to the F-011 policy surface; per-rule ENFORCE switches exist but global demotion is rejected",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-020",
+      "iteration": 3,
+      "statement": "TEMPLATE_SOURCE is a first-70-lines marker check; deterministic transform is one provenance comment per document (emitted form at spec.md:13); details in data are bare filenames",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-021",
+      "iteration": 3,
+      "statement": "Rule implementations split across TypeScript (3 files, 11 classes) and shell checkers (runtime/cli/rules/, 9 classes) where the enforcement switches and grandfather pattern live",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-022",
+      "iteration": 4,
+      "statement": "Archive exclusion is four mechanisms: FROZEN_TREES + PACKET_NAME_RE (repair-derived), /z_archive/ exclusion (backfill-frontmatter), ARCHIVE_SEGMENT_RE over z_archive|z_future (backfill-graph-metadata); measured pipeline ran archives excluded at the frontmatter step",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-023",
+      "iteration": 4,
+      "statement": "Correction to spec.md section 2: z_future is skipped only at the backfill-graph-metadata layer; repair-derived name-matches 37 of 39 z_future packets and freezes none; residual explanation inferred",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-024",
+      "iteration": 4,
+      "statement": "Include-mode breakage: snapshot-location rewrites, historical sidecar churn, archive-segment pointer writes (correct for moved packets, destructive for snapshots), non-digit folders unreachable; safe mode transforms moved packets additively and routes the rest to the policy layer",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-025",
+      "iteration": 4,
+      "statement": "Cutoff mechanics: 2026-08-30 default, SPECKIT_AC_CLOSURE_CUTOFF override, Created row keying, boundary-day and unparseable-date grandfathering, info verdicts on every branch; later-edit gap needs a finding-level baseline manifest (recommended) or touch-date coupling",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-026",
+      "iteration": 4,
+      "statement": "repair-derived taxonomy: DERIVABLE 6 classes, REDERIVABLE the 4 graph-metadata assertions only; only observed in-document write is the frontmatter packet-pointer line",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-027",
+      "iteration": 4,
+      "statement": "Validator tests bind to runtime/cli/../test-fixtures, not the live corpus; corpus fixture-shaped folders break no tests when upgraded",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-028",
+      "iteration": 5,
+      "statement": "Hard ordering edge is fingerprint invalidation: every doc edit invalidates its stored fingerprint; repair-derived encodes edits-first, re-derive-last including after partial failure",
+      "confidence": "observed"
+    },
+    {
+      "id": "F-029",
+      "iteration": 5,
+      "statement": "Canonical order: stub adds, composed per-doc rewrite plus pairwise status alignment, backfill-frontmatter, repair-derived (ends in re-derive), validate --strict gate, second-run idempotence check",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-030",
+      "iteration": 5,
+      "statement": "Doc transforms must be composed per document: TEMPLATE_SOURCE window shift, two-rule anchor parsing, pairwise status alignment make sequential steps self-triggering",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-031",
+      "iteration": 5,
+      "statement": "Idempotence proof: step fixed point, SC-002 path+sha256 manifest diff, validate JSON identity, apply/dry-run parity, no-new-rule-class assertion per step",
+      "confidence": "derived"
+    },
+    {
+      "id": "F-032",
+      "iteration": 5,
+      "statement": "repair-derived beyond-reach bucket is the policy layer landing site: grandfathered advisory pre-cutoff, error post-cutoff; vocabulary exists",
+      "confidence": "observed"
+    }
+  ],
+  "ruledOutDirections": [
+    "Authored LLM edits to historical packet prose (ruled out by packet scope)",
+    "Running repository repair or validation commands from this lineage (writes outside the lineage or explicitly prohibited)",
+    "Deriving residual volumes from spec.md section 2 alone (no per-rule classes there)",
+    "Treating classify.cjs MECH list as ground truth for mechanical reach (projection hypothesis)",
+    "Warn-severity detail implies a warning entry that --strict ignores (iteration 2: such details sit under error-status entries)",
+    "STATUS_CROSS_DOC_CONSISTENCY needs content judgment (iteration 2: pairs are token classifications; full answer in F-018)",
+    "Migrating the legacy config row to unblock the gateway projection (iteration 2: would drop three non-ledger legacy rows)",
+    "Token canonicalization alone as the STATUS_CROSS_DOC clearing route (iteration 3: cross-doc bucket comparison)",
+    "Blanking one document's Status to reach the not-applicable branch (iteration 3: masks future findings)",
+    "Global ENFORCE=false demotion as the upgrade path (iteration 3: weakens rules for new documents)",
+    "z_future is skipped by repair-derived frozen set or name gate (iteration 4: exclusion lives in the graph-metadata child)",
+    "Corpus fixture-shaped folders are live test inputs (iteration 4: tests bind to their own fixtures root)",
+    "Created-date cutoff keying alone satisfies the later-edit edge case (iteration 4: post-cutoff edits stay advisory)",
+    "Sequential single-purpose document-edit steps (iteration 5)",
+    "Idempotence proven by a clean second validate alone (iteration 5)"
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {},
+  "suppressedCandidates": [],
+  "promotedIdeas": [],
+  "observedIdeas": []
+}

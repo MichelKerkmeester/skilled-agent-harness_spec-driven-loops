@@ -172,6 +172,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 63 | 063-cli-codex-dispatch-rules/ | cli-codex's fan-out rule covers only research and review lineages and sends a one-shot dispatch to the child envelope, and a new gotcha records that a sandboxed child cannot run checks that start `tsx` | complete |
 | 64 | 064-cli-devin-cursor-dispatch-rules/ | cli-devin's and cli-cursor's fan-out rule covers only research and review lineages and sends a one-shot dispatch to the child envelope, as cli-codex's does | complete |
 | 65 | 065-cli-hermes-pi-dispatch-rules/ | cli-hermes's and cli-pi's rule that sends dispatches to the shared runtime covers only research and review lineages, and a one-shot dispatch runs the CLI directly with the child environment | complete |
+| 66 | 066-pre-v4-spec-upgrade/ | [Phase 66 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -201,6 +202,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 052-core-template-canonical-markers | 053-legacy-template-default-detection | 053 matches against the retired-default list that 052 records, so 052 must close first | 053 validates strict, the legacy-default warning leaves every exit code unchanged, and the baseline counts are recorded |
 | 050-ci-cleanup-pi-proof | 054-ci-cleanup-follow-ups | 050 is Complete and leaves the spec gate's /tmp rule, its CI workaround and six cli-jev scripts without pipefail, and 054 shares no files with 051 to 053 | 054 validates strict, every spec-gate suite passes with the temp dir at /tmp and the drift guards report 0 errors |
 | 053-legacy-template-default-detection | 055-advisory-false-alarms | 053 is Planned and 055 shares no files with it, so 055 does not wait for 053 | 055 validates strict, the sk-git suites pass 33 of 33 and the sentinel suite passes 24 of 24 |
+| 050-ci-cleanup-pi-proof | 066-pre-v4-spec-upgrade | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

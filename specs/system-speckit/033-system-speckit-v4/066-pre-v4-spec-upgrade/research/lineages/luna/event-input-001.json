@@ -1,0 +1,13 @@
+{
+  "type": "event",
+  "event": "spec_check_result",
+  "mode": "research",
+  "runId": "fanout-luna-1790242274086-9tq1wi",
+  "lineageId": "fanout-luna-1790242274086-9tq1wi",
+  "sessionId": "fanout-luna-1790242274086-9tq1wi",
+  "folder_state": "spec-present",
+  "normalized_topic": "how can every spec folder written under spec-kit v3.x tags v3.0.0.0 and v3.6.0.0 reach a full pass under the v4 validate.sh strict without authored llm edits",
+  "specPath": "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md",
+  "lockPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/research/lineages/luna/.deep-research.lock",
+  "timestamp": "2026-09-24T09:36:40.000Z"
+}

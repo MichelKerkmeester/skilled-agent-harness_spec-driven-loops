@@ -1,0 +1,39 @@
+{
+  "researchTopic": "How can every spec folder written under spec-kit v3.x (tags v3.0.0.0 and v3.6.0.0) reach a full pass under the v4 validate.sh --strict without authored LLM edits? Evidence and research questions: specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade/spec.md sections 2 and 10; residual per-packet data in that packet's scratch/harness/data/.",
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/051-pre-v4-spec-upgrade",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "label": "luna",
+          "kind": "cli-codex",
+          "model": "gpt-5.6-luna",
+          "reasoningEffort": "max",
+          "serviceTier": "fast",
+          "timeoutSeconds": 2400,
+          "iterations": 5
+        },
+        {
+          "label": "mimo",
+          "kind": "cli-pi",
+          "model": "mimo-v2.6-pro",
+          "reasoningEffort": "high",
+          "timeoutSeconds": 1800,
+          "iterations": 5
+        }
+      ],
+      "concurrency": 2
+    }
+  }
+}
