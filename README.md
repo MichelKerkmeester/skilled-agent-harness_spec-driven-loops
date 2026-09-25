@@ -30,7 +30,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 - **Verification, not vibes:** nothing counts as "done" without fresh evidence, and code-review findings are re-challenged before they stick
 - **Works the same in OpenCode and Claude Code**, with cross-CLI dispatch to five more model providers on top
 
-&nbsp;
+---
 
 ## 2. 🎁 WHAT YOU GET
 
