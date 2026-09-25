@@ -67,6 +67,10 @@ beforeAll(() => {
     const source = path.join(skillRoot, relative);
     if (fs.existsSync(source)) fs.symlinkSync(source, path.join(copy, relative), 'dir');
   }
+  // A hoisted install gives runtime/ no node_modules of its own, and the
+  // freshness check then calls it unprovisioned and never reports it stale.
+  // An empty folder counts as provisioned, and resolution still walks up.
+  fs.mkdirSync(path.join(copy, 'runtime/node_modules'), { recursive: true });
 
   // The build record that proves the dist fresh is keyed by the dist's
   // absolute path, so a copy falls back to mtimes, and its dist was built
