@@ -51,8 +51,8 @@ contextType: "implementation"
 
 - [x] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file: `wave-verify.cjs` reports 5 kept, 0 failed, 0 problems
 - [x] T006 Read a sample of the kept files old beside new: an Opus review read all five beside their originals, and each has a clean review of its current text
-- [ ] T007 Commit the kept cli-jev files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`
-- [ ] T008 Push to main and run `validate.sh --strict` on this phase
+- [x] T007 Commit the kept cli-jev files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`: commit `69e83c1709` holds the five rewrites, and the guard and all nine `sync-*.cjs --check` runs exit 0
+- [x] T008 Push to main and run `validate.sh --strict` on this phase: `git branch -r --contains 69e83c1709` lists `origin/main`, and validation reports `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -60,9 +60,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every listed file has a pass or a recorded failure in `../scratch/state.jsonl`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every listed file has a pass or a recorded failure in `../scratch/state.jsonl`
 <!-- /ANCHOR:completion -->
 
 ---

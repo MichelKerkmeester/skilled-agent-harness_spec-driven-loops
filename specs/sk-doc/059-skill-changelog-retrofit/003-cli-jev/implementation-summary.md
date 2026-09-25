@@ -8,17 +8,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/059-skill-changelog-retrofit/003-cli-jev"
-    last_updated_at: "2026-09-24T18:20:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Planned the cli-jev wave"
-    next_safe_action: "Run the wave with the phase 001 driver"
+    last_updated_at: "2026-09-25T17:07:01Z"
+    last_updated_by: "generate-context"
+    recent_action: "Committed, pushed and validated the cli-jev rewrites"
+    next_safe_action: "Continue with the parent packet's remaining phases"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-doc/059-skill-changelog-retrofit/scratch/lists/cli-jev.txt"
+      - ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.1.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6ad243d38c80f9bf851bcf4be01b352d3e2460819babb392ad5230c533842f0f"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -102,6 +104,9 @@ Each retry resumed from its kept draft with its findings. While the GPT plan was
 | Final state | PASS: the latest `state.jsonl` record of every file is `pass` under the current fact check |
 | Gates | PASS: `wave-verify.cjs` reports 5 kept, 0 failed, 0 problems |
 | Opus review | PASS: all 5 files have a clean review of their current text |
+| Commit | PASS: `69e83c1709` holds the five rewrites and is on `origin/main` |
+| Routing and mirrors | PASS: `compiled-route-guard.cjs` and all nine `sync-*.cjs --check` runs exit 0 after the commit |
+| Phase validation | PASS: `validate.sh --strict` reports `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
