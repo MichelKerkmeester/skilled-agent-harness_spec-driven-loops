@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -243,5 +244,39 @@ describe('graph metadata backfill', () => {
     const refreshed = refreshGraphMetadataForSpecFolder(parent);
 
     expect(refreshed.metadata.derived.last_active_child_id).toBe(existingChildId);
+  });
+});
+
+// The CLI's exit status is its only contract with the scripts that spawn it, so
+// it is checked through a real process rather than through runBackfill.
+describe('graph metadata backfill exit status', () => {
+  const skillRoot = path.resolve(__dirname, '../../..');
+  const backfill = path.join(skillRoot, 'runtime', 'cli', 'graph', 'backfill-graph-metadata.ts');
+  const tsxLoader = path.join(skillRoot, 'node_modules', 'tsx', 'dist', 'loader.mjs');
+
+  function runCli(specsRoot: string) {
+    return spawnSync(
+      process.execPath,
+      ['--import', tsxLoader, backfill, '--all', '--dry-run', '--root', specsRoot],
+      { cwd: skillRoot, encoding: 'utf8' },
+    );
+  }
+
+  it('exits 0 when every folder is read cleanly', () => {
+    const result = runCli(createSpecTree());
+    expect(result.status, result.stderr).toBe(0);
+    expect(JSON.parse(result.stdout).failed).toEqual([]);
+  });
+
+  it('exits 1 and names the folder when one graph file is corrupt', () => {
+    const specsRoot = createSpecTree();
+    const broken = path.join(specsRoot, 'system-spec-kit', '910-backfill-root');
+    fs.writeFileSync(path.join(broken, 'graph-metadata.json'), '{ not json', 'utf-8');
+
+    const result = runCli(specsRoot);
+
+    expect(result.status, result.stderr).toBe(1);
+    const failed = JSON.parse(result.stdout).failed as Array<{ specFolder: string }>;
+    expect(failed.some((item) => item.specFolder.endsWith(path.basename(broken)))).toBe(true);
   });
 });
