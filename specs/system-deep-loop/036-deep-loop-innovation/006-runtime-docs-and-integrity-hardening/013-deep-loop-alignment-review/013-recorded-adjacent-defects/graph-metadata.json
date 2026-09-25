@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Four phases of this packet each ended by recording defects they had measured but not fixed, on the reasoning that the surface belonged to another track",
     "created_at": "2026-09-20T08:33:45.665Z",
-    "last_save_at": "2026-09-20T08:33:45.665Z",
+    "last_save_at": "2026-09-25T16:15:23.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b909dead2394841a1f5d74eda4a622eabebd2694d0229a2acf9ba93e5438b71e",
+    "source_fingerprint": "sha256:604a1e8e2f032168d8d09526233dde7236abbedc44f4b9eaf8924da8e6c2dee8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2d8e340b31d78ac69960593c1f715a67e3a25e857472142b9a8bea9b169926e0",

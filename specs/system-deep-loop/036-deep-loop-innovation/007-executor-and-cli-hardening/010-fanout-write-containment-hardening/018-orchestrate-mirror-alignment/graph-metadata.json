@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The orchestrate agent said it orchestrates through the delegation tool, but its OpenCode permission block did not grant it and its Pi mirror did not declare it, while the Claude mirror did",
     "created_at": "2026-09-20T08:33:43.324Z",
-    "last_save_at": "2026-09-20T08:33:43.324Z",
+    "last_save_at": "2026-09-25T16:15:28.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abb030af02324ea4c9f65cd04cae4b2d783fcd345d8d29d17d558c94f7b728f9",
+    "source_fingerprint": "sha256:cc48760fedf25bb369be584082528883c2ee073302570a42efe986589b4f8a8d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "afb4db87123f26a47a694a48a487467b70f37217de9204fd2fb28e34271b994d",

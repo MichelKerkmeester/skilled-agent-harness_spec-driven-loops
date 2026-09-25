@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The churn detector compared each heartbeat's newly dirty out-of-lineage paths against a per-window threshold and forgot them immediately after",
     "created_at": "2026-09-20T08:33:41.321Z",
-    "last_save_at": "2026-09-20T08:33:41.321Z",
+    "last_save_at": "2026-09-25T16:15:27.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98febb772e68da0acbaf8897eddd0c6e6a5f547dfd845146da20b4c6d5d7d647",
+    "source_fingerprint": "sha256:e9820ed8c26e341a20c72a9700b206cd33593dc0f000a286859735d260575107",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "57384b82c2de8cd54aabeafbbb93ebfb64011231950ddc311fa4a238d6315d79",

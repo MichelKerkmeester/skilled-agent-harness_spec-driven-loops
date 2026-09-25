@@ -48,7 +48,6 @@ interface ManifestLevelRow {
 }
 
 interface ManifestGoalBudget {
-  warnChars: number;
   errorChars: number;
 }
 
@@ -59,9 +58,8 @@ interface SpecKitDocsManifest {
   levels: Record<SpecKitLevel, ManifestLevelRow>;
 }
 
-/** The character budget a goal document's durable slice must fit, with the tier that only warns. */
+/** The one character limit a goal document's durable slice must fit; past it the validator fails. */
 export interface GoalDurableBudget {
-  warnChars: number;
   errorChars: number;
 }
 
@@ -281,9 +279,11 @@ export function resolveLevelContract(level: SpecKitLevel): LevelContract {
 /** Flatten a {@link LevelContract}'s Maps into the plain-object shape JSON serialization needs. */
 /**
  * Resolve the goal durable-slice budget the manifest declares. The template,
- * the playbook and the validator all quote these two numbers, so they live in
- * one place and every reader gets the same pair. A manifest without the block
- * yields no budget, and the validator then checks nothing.
+ * the playbook and the validator all quote this one limit, so it lives in one
+ * place and every reader gets the same number. There is deliberately no
+ * earlier warning tier: a second, lower number reads as the limit and gets
+ * goals cut short of the real one. A manifest without the block yields no
+ * budget, and the validator then checks nothing.
  */
 export function resolveGoalDurableBudget(): GoalDurableBudget | null {
   const manifest = loadManifest('1');
@@ -291,12 +291,11 @@ export function resolveGoalDurableBudget(): GoalDurableBudget | null {
   if (!raw || typeof raw !== 'object') {
     return null;
   }
-  const warnChars = Number(raw.warnChars);
   const errorChars = Number(raw.errorChars);
-  if (!Number.isInteger(warnChars) || !Number.isInteger(errorChars) || warnChars <= 0 || errorChars < warnChars) {
-    throw new Error(`spec-kit-docs.json goalDurableBudget must carry integer warnChars <= errorChars, got ${JSON.stringify(raw)}`);
+  if (!Number.isInteger(errorChars) || errorChars <= 0) {
+    throw new Error(`spec-kit-docs.json goalDurableBudget must carry a positive integer errorChars, got ${JSON.stringify(raw)}`);
   }
-  return { warnChars, errorChars };
+  return { errorChars };
 }
 
 export function serializeLevelContract(contract: LevelContract): SerializedLevelContract {

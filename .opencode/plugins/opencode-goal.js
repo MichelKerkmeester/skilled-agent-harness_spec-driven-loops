@@ -3071,8 +3071,8 @@ async function executeGoalAction(args, context, rawOptions = {}) {
         tokenBudget: args?.tokenBudget,
       });
       const packet = resolvePacketGoalForRecord(goal, { ...options, directory: options.directory || context?.directory });
-      const budgetLine = packet && (packet.budgetState === 'over' || packet.budgetState === 'warn')
-        ? `\npacket_budget=${packet.budgetState}\nwarning=${quoteValue(`durable slice is ${packet.durableChars} characters; past the ${packet.budgetState === 'over' ? 'error' : 'warning'} tier`)}`
+      const budgetLine = packet && packet.budgetState === 'over'
+        ? `\npacket_budget=${packet.budgetState}\nwarning=${quoteValue(`durable slice is ${packet.durableChars} characters; past the ${packet.budget.errorChars}-character limit`)}`
         : (packet ? `\npacket_budget=${packet.budgetState}` : '');
       return goalStateLines(action, goal, options, goal.mutation || 'bound', renderOptions) + budgetLine;
     }

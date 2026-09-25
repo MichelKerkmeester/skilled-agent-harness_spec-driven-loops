@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The quarantine writer targeted one fixed directory per lane and its docs said a later pass replaces the manifest and named files",
     "created_at": "2026-09-20T08:33:42.396Z",
-    "last_save_at": "2026-09-20T08:33:42.396Z",
+    "last_save_at": "2026-09-25T16:15:28.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1ee33bc18412563eb4c9b9f0b663d472264b7f69b3c58d00e448fe32045a48f",
+    "source_fingerprint": "sha256:a97530ba9fdb68eba6d618aed76bad780041d50677aeeeccc18197ad3fdcbef5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f568bfc5a1e78409d26c0d84ff97bbddd7604e23c4c560a501e53a973a5b6e6c",

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Thirteen phases changed one hundred and fifty files on the claim that each surface now says what the code does",
     "created_at": "2026-09-20T08:33:45.822Z",
-    "last_save_at": "2026-09-20T08:33:45.822Z",
+    "last_save_at": "2026-09-25T16:15:23.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:93d91cb878d1d5c41fbdc6fc34184af7d1ce34ee98e3208f668c0d864bdf9326",
+    "source_fingerprint": "sha256:6dcc6893ee8c10b5d19fc34e22e7a7d701b4982bd503735dadb90f37716f8bf3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1f6ddce94221a796cc3730fb84583409c2f9a5992363c96a8f14a36db09e3fb9",

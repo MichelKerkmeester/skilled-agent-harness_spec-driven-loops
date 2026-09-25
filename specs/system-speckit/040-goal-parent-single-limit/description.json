@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-speckit/040-goal-parent-single-limit",
+  "description": "Make 4000 characters the one limit for a parent goal durable slice",
+  "keywords": [
+    "characters",
+    "one",
+    "limit",
+    "parent",
+    "goal",
+    "durable",
+    "slice"
+  ],
+  "lastUpdated": "2026-09-25T15:29:15.923Z",
+  "specId": "040",
+  "folderSlug": "goal-parent-single-limit",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

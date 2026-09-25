@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7354,
-    "ok": 11464,
+    "missing-frontmatter": 7428,
+    "ok": 11468,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22509,
+  "documentsScanned": 22587,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a6cbb387605405f28f47d053613b3f40f0304eea33ee1729b68e9d1a255e4f00",
+  "manifestHash": "b9cce04d0505def7a77e38c1b039a597dddeae4c93b804bc73172a7f49a9dc46",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27778,
+      "ok": 27782,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -36094,6 +36094,18 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/runtime/tests/utils/README.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -38689,13 +38701,277 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/acknowledged-tab-retirement/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/auth-filesystem-wait-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/browser-closed-result-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/browser-destroyed-guest-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/browser-registration-reply-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/browser-viewport-owner-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/cdp-stream-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/claude-branch-proof-streaming/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/claude-history-window-budget/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/claude-task-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/closed-editor-model-lifetime/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/codex-prompt-claim-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/crashpad-read-limit/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/daemon-late-exit/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/daemon-shared-owner-incarnation-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/daemon-stream-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/empty-streamed-delta-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/gitlab-known-host-retirement/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/headless-hydration-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/legacy-import-source-budget/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/local-log-tail-lifetime/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/native-pty-spawn-env-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/nested-repo-processed-queue/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/osc133-carry-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/pending-runtime-pane-close/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/pending-split-close/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/plugin-uninstall-log-retirement/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/plugin-worker-output-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/pty-detector-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/queued-terminal-graph-exit/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/retained-text-slices/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/runtime-rpc-consumed-queue/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/scanner-late-cancel/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/session-search-write-fences/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/ssh-file-metadata-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/ssh-writer-consumed-prefix/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/stale-pty-inventory/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/structured-hold-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/terminal-close-observed-exit/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/terminal-completed-spawn-inputs/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/terminal-mode-tail-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/terminal-wait-leading-blank/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/transcript-record-retention/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/tui-transcript-acquisition/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/tui-transcript-close/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/working-directory-wait-retention/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -38737,6 +39013,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/admin-agent-skill-sharing.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-pty-transcript-capture.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -38755,6 +39037,24 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-skill-provider-paths.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-skill-sharing-threat-model.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-skill-sharing-upstream-boundary.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/agent-status-store.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -38762,6 +39062,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/antigravity-readiness-evidence.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/ci-runner-efficiency.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -38797,6 +39103,54 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/malformed-worktree-registration-removal.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-fresh-launch.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-history-titles.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-resume-transcript-locator.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-runtime-session-provenance.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-session-roots.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-startup-keyboard-query.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/omp-status-input-redaction.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/orcad-operations.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -38809,6 +39163,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/relay-regional-placement.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/remote-wire-compatibility.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -38816,6 +39176,24 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/renderer-agent-status-performance.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/runtime-file-base64-padding.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/sharing-agent-skills.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/spinner-rendering-performance.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -38834,6 +39212,24 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/ssh-reconnect-source-recovery.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/task-provider-identity-validation.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/terminal-artifact-grant-integrity.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/terminal-startup-timing.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -38875,6 +39271,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-signing-runner-time.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/windows-terminal-shell-selection.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -38906,6 +39308,48 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/reference/xterm-patch-regeneration.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-ACCEPTANCE.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-API.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-CHECKLIST.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-IDLE-CUTOVER-PLAN.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-PLAN.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/relay-region-correction/RELAY-REGION-CORRECTION-ROLLOUT.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/review-evidence/pr-19217/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -70727,6 +71171,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/ai-systems",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": "specs/anobel.com",
+      "reason": "symlink not followed"
+    },
+    {
       "path": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages",
       "reason": "excluded directory"
     },
@@ -71161,6 +71613,10 @@
     {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/obsidian",
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages",
@@ -74736,6 +75192,10 @@
     },
     {
       "path": "specs/system-speckit/039-phase-aware-archive/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/040-goal-parent-single-limit/scratch",
       "reason": "excluded directory"
     },
     {

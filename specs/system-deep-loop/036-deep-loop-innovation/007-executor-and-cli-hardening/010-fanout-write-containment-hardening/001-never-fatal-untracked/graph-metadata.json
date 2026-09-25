@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The write-containment guard failed a fan-out iteration whenever an untracked file appeared outside the lane's packet tree, even under the preserve remedy, where nothing is ever rolled back",
     "created_at": "2026-09-20T08:33:40.699Z",
-    "last_save_at": "2026-09-20T08:33:40.699Z",
+    "last_save_at": "2026-09-25T16:15:23.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8bc907f885e8e36813ff4ff1fdd342135859a27c3a6b0d28548754b49b68732",
+    "source_fingerprint": "sha256:5297e29553c6c20c9bd052e684cae1bd56b39b9dbd7f23e89db5a8226f4f6413",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "604f2de7eb32ab5e97cd07baa6f539019356e1ebd2b6eaf389ba049aa61949b9",

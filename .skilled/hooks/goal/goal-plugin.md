@@ -91,7 +91,7 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 | `packet_path` | repo-relative path or empty | The bound packet directory; empty when the goal was set from text. |
 | `packet_state` | `bound`, `missing`, `unbound` | `bound` when the pointer resolves to a document, `missing` when the pointer is set but the document is gone or outside the workspace (a `hint=` line follows and injection is silent), `unbound` when the goal was set from text. |
 | `packet_bound` | `true`, `false` | `true` only when `packet_state=bound`. |
-| `warning` | text | Present after a text `set` whose objective exceeded 4000 characters and was truncated, and after a `bind` whose durable slice is past the warning or error tier. |
+| `warning` | text | Present after a text `set` whose objective exceeded 4000 characters and was truncated, and after a `bind` whose durable slice is past the one 4000-character limit (`packet_budget=over`). Nothing warns below that limit. |
 | `resend_pending` | `true`, `false` | Whether the packet's durable slice changed since it was last marked resent. Log rows and reflow never flip it. |
 | `max_auto_turns` | positive integer | Effective auto-turn cap after `OPENCODE_GOAL_MAX_AUTO_TURNS` and stored state normalization. |
 | `remaining_auto_turns` | integer >= 0 | Auto-continuation turns still available before the cap suppresses continuation. |

@@ -351,7 +351,7 @@ describe('spec-doc-structure contract', () => {
     expect(result.diagnostics.some((d) => d.code === 'SPECDOC_FRONTMATTER_003')).toBe(true);
   });
 
-  it('fails a top-level goal whose durable slice exceeds the error tier', () => {
+  it('fails a top-level goal whose durable slice exceeds the 4000-character limit', () => {
     const folder = makeTempDir('speckit-goal-over-');
     writeGoalDoc(folder, { level: '1', sliceChars: 4001 });
     const result = runSpecDocStructureRule({ folder, level: '1', rule: 'SPEC_DOC_SUFFICIENCY' });
@@ -359,15 +359,17 @@ describe('spec-doc-structure contract', () => {
     expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_005' && d.severity === 'error')).toBe(true);
   });
 
-  it('warns a phase parent goal between the warning and error tiers', () => {
-    const folder = makeTempDir('speckit-goal-warm-');
-    fs.mkdirSync(path.join(folder, '001-child'));
-    fs.writeFileSync(path.join(folder, '001-child', 'goal.md'), '# child\n', 'utf8');
-    writeGoalDoc(folder, { level: 'phase', sliceChars: 3200, bindingRows: ['| 001-child | `001-child/goal.md` |'] });
-    const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
-    expect(result.status).toBe('warn');
-    expect(result.diagnostics.filter((d) => d.code === 'SPECDOC_SUFFICIENCY_005').map((d) => d.severity)).toEqual(['warning']);
-    expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_006')).toBe(false);
+  it('passes a phase parent goal at every size up to the one 4000-character limit', () => {
+    for (const sliceChars of [3200, 4000]) {
+      const folder = makeTempDir('speckit-goal-under-limit-');
+      fs.mkdirSync(path.join(folder, '001-child'));
+      fs.writeFileSync(path.join(folder, '001-child', 'goal.md'), '# child\n', 'utf8');
+      writeGoalDoc(folder, { level: 'phase', sliceChars, bindingRows: ['| 001-child | `001-child/goal.md` |'] });
+      const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
+      expect(result.status, `${sliceChars} characters`).toBe('pass');
+      expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_005'), `${sliceChars} characters`).toBe(false);
+      expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_006')).toBe(false);
+    }
   });
 
   it('leaves a phase child goal unbounded', () => {

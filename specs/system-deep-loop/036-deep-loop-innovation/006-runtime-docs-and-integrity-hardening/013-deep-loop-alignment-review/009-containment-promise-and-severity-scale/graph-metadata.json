@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Two governed domains each had two authorities pronouncing and nothing reconciling them",
     "created_at": "2026-09-20T08:33:45.038Z",
-    "last_save_at": "2026-09-20T08:33:45.038Z",
+    "last_save_at": "2026-09-25T16:15:23.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b036c0b7a0a2c0ee2dc5e16e5a878001de3912c5b42edc7526365044611afa9b",
+    "source_fingerprint": "sha256:d3980577136a4c30e6b478e7cdeaed1f9b5bd7dafa5c2a020bc003c2e4578840",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c0841a4b7bc2e77cc98284772c424edd3e0bf09fcb867f94bbd7a659dc74d8f",

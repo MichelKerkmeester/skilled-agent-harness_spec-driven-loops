@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The retained SWE-2 lineage finished three iterations with 25 finding records in its deltas and numbered findings in its iteration files, yet its registry held no findings",
     "created_at": "2026-09-20T08:33:41.475Z",
-    "last_save_at": "2026-09-20T08:33:41.475Z",
+    "last_save_at": "2026-09-25T16:15:27.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7686c79893bd4455568d807cac03106021fce0da56db0a0a7ada02132ce2b0f",
+    "source_fingerprint": "sha256:a9f1f30860608f7aebed0dca841a4ff5d62916b01e7c98353f6560f42f32c74a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "24edf2b6180c4504d1c697b71294799cec3226092fa74daf10a6c5403aa1c04d",

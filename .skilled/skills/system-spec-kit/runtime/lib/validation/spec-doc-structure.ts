@@ -1058,12 +1058,6 @@ function validateGoalDocument(folder: string, level: string, content: string, di
         severity: 'error',
         detail: `${GOAL_DOC}: durable slice is ${length} characters (> ${budget.errorChars})`,
       });
-    } else if (length > budget.warnChars) {
-      diagnostics.push({
-        code: 'SPECDOC_SUFFICIENCY_005',
-        severity: 'warning',
-        detail: `${GOAL_DOC}: durable slice is ${length} characters (> ${budget.warnChars}); it fails past ${budget.errorChars}`,
-      });
     }
   }
 

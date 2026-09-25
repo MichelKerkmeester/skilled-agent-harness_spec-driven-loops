@@ -46,7 +46,8 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/build-subject-plan.py"
     ],
     "entities": [
       {
@@ -83,6 +84,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-subject-plan.py",
+        "kind": "file",
+        "path": "scripts/build-subject-plan.py",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "2,466 subjects fail the grammar the hook enforces today, 2,912 carry a packet number or a slash as their scope, 572 run past 100 characters, and none carries a word from the packet it belongs to",
     "created_at": "2026-09-11T17:06:02Z",
-    "last_save_at": "2026-09-11T17:08:51.021Z",
+    "last_save_at": "2026-09-25T16:15:22.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ccf1bc4e2e2582c25cf53bcc630997ac77ce08738ac2964541445db43fe99bb",
+    "source_fingerprint": "sha256:c0f15c74116640505742993bc93c802936384bc2058f51b455d4d8c858cc99c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1ea4a1d0233c17e21ef2384412ff2c0dd972cbff69c514ac53e40d9d7b5797a",

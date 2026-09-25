@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The external orchestration router listed six CLI kinds in its opening parenthetical, its leaf-set bullets and its disambiguation rule while its own machine block and the registry carried seven; its skill file said six modes in one line and seven in four others",
     "created_at": "2026-09-20T08:33:43.947Z",
-    "last_save_at": "2026-09-20T08:33:43.947Z",
+    "last_save_at": "2026-09-25T16:15:22.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b5648ade83879f97f5ef16209d2b01dab7df8be81f399fab3114855b07f5cc8",
+    "source_fingerprint": "sha256:13793e2f0aa67244b8629f2fbbfef725c84350fea18046f5074021f2acaa2c68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "93996a2ac4339b2a8ec8ce2da20c236cc8c35928b12de3a85de5a6120b6e84fa",

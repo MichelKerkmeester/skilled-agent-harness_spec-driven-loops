@@ -16,7 +16,8 @@
     "system-speckit/036-root-numbering-without-track",
     "system-speckit/037-track-root-children",
     "system-speckit/038-track-aware-archive",
-    "system-speckit/039-phase-aware-archive"
+    "system-speckit/039-phase-aware-archive",
+    "system-speckit/040-goal-parent-single-limit"
   ],
   "manual": {
     "depends_on": [],

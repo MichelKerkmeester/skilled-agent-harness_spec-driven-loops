@@ -24,7 +24,6 @@
   "goalDurableBudget": {
     "measure": "characters after the frontmatter closing fence up to the log anchor, anchors and comments included",
     "appliesTo": "phase parents and top-level packets; phase children are unbounded",
-    "warnChars": 3000,
     "errorChars": 4000
   },
   "documents": {

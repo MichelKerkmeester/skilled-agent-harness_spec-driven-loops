@@ -23,7 +23,7 @@ version: 3.11.0.0
 
 A packet's goal document can be as long as it needs to be. The objective an operator sets cannot: every runtime goal surface caps what it holds, and a slice that will not fit is truncated at the tail, which is exactly where the completion criteria live.
 
-This playbook fixes the shape of what gets typed. The rule it complements checks the file: a phase parent or top-level `goal.md` warns past 3,000 durable characters and fails past 4,000, measured from the frontmatter's closing fence to the log anchor. Nothing can check what an operator pastes, so the shape below is guidance rather than a gate.
+This playbook fixes the shape of what gets typed. The rule it complements checks the file: a phase parent or top-level `goal.md` has one limit, 4,000 durable characters, measured from the frontmatter's closing fence to the log anchor. Up to 4,000 passes and past it fails. Nothing can check what an operator pastes, so the shape below is guidance rather than a gate.
 
 ---
 
@@ -60,7 +60,7 @@ Leave the criteria in the file alone and the evaluator is judging a table of con
 
 ## 4. WHEN IT WILL NOT FIT
 
-The durable slice has a budget for exactly this reason: the validator warns a parent past 3,000 characters and fails it past 4,000. Children are unbounded. If what you want to set is too long, cut in this order:
+The durable slice has a budget for exactly this reason: the validator fails a parent past 4,000 characters. That is the one limit, with no warning tier below it, so a parent under 4,000 needs no cutting. Children are unbounded. If what you want to set is over the limit, cut in this order:
 
 1. **The frontmatter.** It is never part of the slice. It is bookkeeping for the file, and it is stripped from every chat send, injection and objective before anything is measured.
 2. **The log.** It is not part of the durable slice and never belongs in the objective.
@@ -126,7 +126,7 @@ operator's hands carry it.
 
 ## 7. WORKED EXAMPLE
 
-From a real four-phase packet whose durable slice measures 1,986 characters, well under the 3,000 warning tier:
+From a real four-phase packet whose durable slice measures 1,986 characters, well under the 4,000 limit:
 
 ```text
 Execute specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/goal.md.

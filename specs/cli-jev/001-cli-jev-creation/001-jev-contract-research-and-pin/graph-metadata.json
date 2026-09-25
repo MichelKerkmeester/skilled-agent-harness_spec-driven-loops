@@ -51,10 +51,7 @@
       "scratch/probe-surface.txt",
       "scratch/probe-matrix.sh",
       "scratch/probe-matrix.txt",
-      "scratch/mcp-probe.py",
-      ".skilled/skills/cli-external-orchestration/cli-jev/references/cli-reference.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/references/providers-and-models.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/references/mcp-server.md"
+      "scratch/mcp-probe.py"
     ],
     "entities": [
       {
@@ -124,24 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "cli-reference.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/cli-reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "providers-and-models.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/providers-and-models.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-server.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/mcp-server.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,11 +179,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Vendored",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The hub is about to route work to a binary it does not control, and the only available accounts of that binary are a vendor README, a vendored source tree, and the binary itself",
     "created_at": "2026-09-20T07:39:05Z",
-    "last_save_at": "2026-09-20T11:08:50.824Z",
+    "last_save_at": "2026-09-25T16:14:20.058Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +212,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6986036dd9e80e2525c0655e2e01d63733da76481f3082687cc0433e932523c",
+    "source_fingerprint": "sha256:75150b7fd6e1368c09764206de8898134c811990a7808b342cf8f3b6ab2909f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e6d6487dac4b9a51db9e350c175302a029544efda6fda10bf99bcb24e810d2c",

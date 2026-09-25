@@ -48,7 +48,6 @@
       "goal.md",
       "implementation-summary.md",
       "research/research.md",
-      "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
       "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-changelog.md",
       "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/verdict-readme.md",
       "specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/research/research.md",
@@ -60,7 +59,8 @@
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
       ".skilled/skills/mcp-tooling/mode-registry.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json"
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json",
+      ".opencode/README.md"
     ],
     "entities": [
       {
@@ -103,12 +103,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "CHANGELOG-v4.0.0.0.md",
-        "kind": "doc",
-        "path": "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
         "source": "derived"
       },
       {
@@ -178,6 +172,12 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Both release documents were written to describe a tree that has since moved",
     "created_at": "2026-09-19T18:39:04Z",
-    "last_save_at": "2026-09-20T03:52:12.492Z",
+    "last_save_at": "2026-09-25T16:15:28.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,7 +222,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:763da078fb7a22ed0174a1eca43b6403e1ca72167f280438e70d4c91fc153be6",
+    "source_fingerprint": "sha256:86ae82fe7ce5ece270d26f712809fce38a5a91992b98ce7b1ddb06e690104658",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1301a2dce6873e42b27c2ad0c084c9926067f549bedd2493d4ecf92551a82d86",
