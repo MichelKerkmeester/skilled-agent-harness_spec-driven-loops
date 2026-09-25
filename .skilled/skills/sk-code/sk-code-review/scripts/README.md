@@ -17,7 +17,7 @@ description: "Locks load-bearing rule wording (review-status vocabulary, the Iro
 
 | File | Purpose |
 |------|---------|
-| `check-rule-copies.js` | Asserts that `Review status: APPROVED/REQUESTED_CHANGES/COMMENTED` appear verbatim in `sk-code-review/SKILL.md` and `sk-code-review/README.md`, that `COMMENTED` appears in the changelog and dedup reference, and that at least one Iron Law line in `workflow-verify.md`, `CLAUDE.md` and `AGENTS.md` carries both "completion claim" and "verification". A canary, not a generator, it never rewrites anything |
+| `check-rule-copies.js` | Asserts that `Review status: APPROVED/REQUESTED_CHANGES/COMMENTED` appear verbatim in `sk-code-review/SKILL.md` and `sk-code-review/README.md`, that `COMMENTED` appears in the changelog and dedup reference, and that at least one Iron Law line in `workflow-verify.md` and `AGENTS.md` carries both "completion claim" and "verification". A canary, not a generator, it never rewrites anything |
 | `check-rule-copies.test.sh` | Self-contained bash test that runs the canary against the real repo tree (expects pass) and against two tampered copies with a deleted status string and a reworded Iron Law line (expects each to fail) |
 
 ---
