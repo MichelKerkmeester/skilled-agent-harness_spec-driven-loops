@@ -40,9 +40,9 @@ The driver takes `../scratch/lists/cli-orca.txt` and the shared state file, so f
 - [x] The driver, checker and briefs exist in `../scratch/`
 
 ### Definition of Done
-- [ ] Every listed file is kept or restored with its reason
-- [ ] The final checker and HVR run over the kept files is clean
-- [ ] The cli-orca commit is pushed, with routing and mirrors fresh
+- [x] Every listed file is kept or restored with its reason
+- [x] The final checker and HVR run over the kept files is clean
+- [x] The cli-orca commit is pushed, with routing and mirrors fresh
 <!-- /ANCHOR:quality-gates -->
 
 ---
