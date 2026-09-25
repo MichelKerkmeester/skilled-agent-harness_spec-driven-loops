@@ -32,7 +32,10 @@ const FAIL_DIR = path.join(HERE, 'failed');
 const RUN_DIR = path.join(HERE, 'runs');
 // Each run can name its own stop file, so stopping one run never halts another.
 const STOP_FILE = path.join(HERE, process.env.DRIVER_STOP || 'STOP');
-const STATUS_FILE = path.join(HERE, 'driver-status.json');
+const STATUS_FILE = path.join(HERE, process.env.DRIVER_STATUS || 'driver-status.json');
+// Files a review sends back while a run is going join the front of its queue, so a
+// skill's retries run while that skill is current instead of after every other one.
+const REQUEUE_FILE = path.join(HERE, process.env.DRIVER_REQUEUE || 'requeue.txt');
 const VERIFY_BRIEF = fs.readFileSync(path.join(HERE, 'brief-verify.md'), 'utf8');
 // Each record names the review brief it passed under, so a --reverify pass can
 // find the kept files an older, weaker review let through and resume after a stop.
@@ -511,7 +514,10 @@ async function main() {
   for (const d of [ORIG_DIR, FAIL_DIR, RUN_DIR]) fs.mkdirSync(d, { recursive: true });
   const done = new Map();
   const lastRec = new Map();
-  if (fs.existsSync(opts.state)) {
+  const loadState = () => {
+    done.clear();
+    lastRec.clear();
+    if (!fs.existsSync(opts.state)) return;
     // A record's history carries the findings a retry resumes from. The latest
     // record can lack them, as when every attempt failed without touching the
     // file, so each file's history spans all of its records.
@@ -521,12 +527,17 @@ async function main() {
       done.set(rec.file, rec.status);
       lastRec.set(rec.file, { ...rec, history: [...((earlier && earlier.history) || []), ...(rec.history || [])] });
     }
-  }
-  const queue = read(opts.list).split('\n').map((l) => l.trim()).filter(Boolean).filter((f) => {
+  };
+  loadState();
+  const rewritable = (f) => {
     if (f === EXEMPLAR || !SKILL_CHANGELOG_RE.test(f)) {
       console.error(`refusing ${f}: not a rewritable skill changelog`);
       return false;
     }
+    return true;
+  };
+  const queue = read(opts.list).split('\n').map((l) => l.trim()).filter(Boolean).filter((f) => {
+    if (!rewritable(f)) return false;
     const s = done.get(f);
     if (opts.reverify) {
       const rec = lastRec.get(f);
@@ -544,13 +555,51 @@ async function main() {
     };
     queue.sort((a, b) => size(b) - size(a));
   }
-  const total = queue.length;
+  let total = queue.length;
   console.log(`${now()} queue=${total} lanes=${opts.lanes.map((l) => `${l.name}:${l.slots}`).join(',')}`);
   writeStatus({ total, remaining: queue.length, inFlight: [] });
   const inFlight = new Set();
 
+  // The rename claims the file, so two workers never take the same list, and an
+  // append that lands after the claim waits in a new file for the next pickup.
+  // The state is reloaded first, because an overturn written after this run
+  // started carries the findings the retry resumes from.
+  function takeRequeued() {
+    if (opts.reverify || !fs.existsSync(REQUEUE_FILE)) return;
+    const claimed = `${REQUEUE_FILE}.${process.pid}`;
+    try {
+      fs.renameSync(REQUEUE_FILE, claimed);
+    } catch {
+      return;
+    }
+    const wanted = [...new Set(read(claimed).split('\n').map((l) => l.trim()).filter(Boolean))];
+    fs.unlinkSync(claimed);
+    loadState();
+    let added = 0;
+    let moved = 0;
+    for (const f of wanted.reverse()) {
+      if (!rewritable(f) || inFlight.has(f)) continue;
+      if (done.get(f) === 'pass') {
+        console.log(`${now()} requeue ignored ${f}: its latest record is a pass`);
+        continue;
+      }
+      const at = queue.indexOf(f);
+      if (at === -1) {
+        added += 1;
+      } else {
+        queue.splice(at, 1);
+        moved += 1;
+      }
+      queue.unshift(f);
+    }
+    total += added;
+    console.log(`${now()} requeued ${added} new and ${moved} moved to the front, of ${wanted.length} listed in ${path.basename(REQUEUE_FILE)}`);
+  }
+
   async function worker(lane) {
-    while (queue.length && !fs.existsSync(STOP_FILE)) {
+    while (!fs.existsSync(STOP_FILE)) {
+      takeRequeued();
+      if (!queue.length) break;
       const file = queue.shift();
       inFlight.add(file);
       writeStatus({ total, remaining: queue.length, inFlight: [...inFlight] });
