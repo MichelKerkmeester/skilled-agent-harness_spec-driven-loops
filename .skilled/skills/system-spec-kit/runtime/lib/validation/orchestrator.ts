@@ -41,6 +41,8 @@ export interface ValidationEntry {
   status: 'pass' | 'warn' | 'error' | 'info';
   message: string;
   details: string[];
+  /** True when the entry was an error that the packet's upgrade baseline lists. */
+  recorded?: boolean;
 }
 
 /** Full result of validating one spec folder: every rule entry plus the pass/fail summary. */
@@ -901,6 +903,91 @@ function validateFrontmatterBasics(folder: string, level: SpecKitLevel): Validat
     : entry('FRONTMATTER_VALID', 'warn', `${missing.length} frontmatter continuity warning(s)`, missing);
 }
 
+const UPGRADE_BASELINE_FILE = 'upgrade-baseline.json';
+
+// A re-derive clears these rules. Their detail text also repeats word for word
+// each time metadata goes stale again, so a recorded entry would hide every
+// later regression of that kind. Archive snapshots are exempt, because nothing
+// re-derives them.
+const NEVER_RECORDED_RULES = new Set([
+  'GENERATED_METADATA_INTEGRITY', 'GENERATED_METADATA_DRIFT', 'METADATA_DISK_PATH_CONSISTENCY',
+  'CANONICAL_SAVE_LINEAGE_REQUIRED', 'GRAPH_METADATA_CHILD_IDENTITY',
+]);
+
+// Recorded details must still match after a document's lines shift.
+function stripLineNumbers(detail: string): string {
+  return detail.replace(/(\.[A-Za-z0-9]+):\d+(?::\d+)?/gu, '$1')
+    .replace(/\b(lines?)([= ])\d+(?:-\d+)?/giu, '$1$2')
+    .replace(/\s+/gu, ' ')
+    .trim();
+}
+
+// Reads the packet's recorded findings once. A missing or malformed baseline
+// means nothing is recorded, so validation runs unchanged instead of the read
+// itself failing the run.
+function loadRecordedFindings(folder: string): Map<string, Map<string, number>> | null {
+  try {
+    const raw = JSON.parse(fs.readFileSync(path.join(folder, UPGRADE_BASELINE_FILE), 'utf8')) as {
+      schema?: unknown;
+      findings?: unknown;
+    };
+    if (raw?.schema !== 1 || !Array.isArray(raw.findings)) return null;
+    const recorded = new Map<string, Map<string, number>>();
+    for (const finding of raw.findings) {
+      const record = finding as { rule?: unknown; detail?: unknown };
+      if (typeof record?.rule !== 'string' || typeof record?.detail !== 'string') return null;
+      let details = recorded.get(record.rule);
+      if (!details) {
+        details = new Map<string, number>();
+        recorded.set(record.rule, details);
+      }
+      const key = stripLineNumbers(record.detail);
+      details.set(key, (details.get(key) ?? 0) + 1);
+    }
+    return recorded;
+  } catch {
+    return null;
+  }
+}
+
+// An archived or future snapshot keeps its old recorded location on purpose,
+// and nothing re-derives it, so its metadata findings are permanent facts of
+// the snapshot and may be recorded like any other.
+// Measured below the last `specs` directory, so a checkout that happens to
+// sit inside a folder named z_archive does not turn every packet into a
+// snapshot.
+function isArchivedPacket(folder: string): boolean {
+  const segments = folder.split(path.sep);
+  return segments.slice(segments.lastIndexOf('specs') + 1).some((segment) => segment === 'z_archive' || segment === 'z_future');
+}
+
+// A listed finding is old news and must not block work; anything unlisted is a
+// new mistake and must still fail the run, so every detail of an entry has to
+// be listed before the entry relaxes, and each copy of a repeated detail must
+// be listed too.
+function applyRecordedFindings(folder: string, entries: ValidationEntry[]): void {
+  const recorded = loadRecordedFindings(folder);
+  if (recorded === null) return;
+  for (let index = 0; index < entries.length; index += 1) {
+    const item = entries[index];
+    if (item.status !== 'error') continue;
+    if (NEVER_RECORDED_RULES.has(item.rule) && !isArchivedPacket(folder)) continue;
+    const details = recorded.get(item.rule);
+    if (!details) continue;
+    const keys = (item.details.length > 0 ? item.details : [item.message]).map((key) => stripLineNumbers(key));
+    const counts = new Map<string, number>();
+    for (const key of keys) {
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    }
+    let covered = true;
+    counts.forEach((count, key) => {
+      if (count > (details.get(key) ?? 0)) covered = false;
+    });
+    if (!covered) continue;
+    entries[index] = { ...item, status: 'warn', recorded: true };
+  }
+}
+
 /**
  * Validate one spec folder against its level contract, structural rules, generated-metadata
  * integrity, and the registered shell/JS validator rules.
@@ -956,6 +1043,7 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   const selected = entries.filter((item) => isRuleSelected(item.rule));
   entries.length = 0;
   entries.push(...selected, ...runRegistryShellRules(folder, level, nativeRuleIds, opts));
+  applyRecordedFindings(folder, entries);
 
   const summary = {
     errors: entries.filter((item) => item.status === 'error').length,
@@ -985,6 +1073,8 @@ export const __testables = {
   shouldRunRegistryShellRule,
   hasStartedWork,
   validateFileExists,
+  applyRecordedFindings,
+  stripLineNumbers,
 };
 
 function parseCliArgs(argv: string[]): { folder: string; opts: ValidateOpts } {
@@ -1038,7 +1128,8 @@ function printReport(report: ValidationReport, opts: ValidateOpts): void {
   for (const item of report.entries) {
     if (item.status === 'info' && !opts.verbose) continue;
     const marker = item.status === 'error' ? 'x' : item.status === 'warn' ? '!' : item.status === 'info' ? 'i' : '+';
-    process.stdout.write(`${marker} ${item.rule}: ${item.message}\n`);
+    const recordedNote = item.recorded ? ` (recorded in ${UPGRADE_BASELINE_FILE})` : '';
+    process.stdout.write(`${marker} ${item.rule}: ${item.message}${recordedNote}\n`);
     // A rule names what it actually found only in its details — including an
     // advisory that passes — so they print whenever a rule produced any.
     for (const detail of item.details) process.stdout.write(`    - ${detail}\n`);

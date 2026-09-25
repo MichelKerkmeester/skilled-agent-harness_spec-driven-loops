@@ -741,6 +741,11 @@ function run(): void {
     return;
   }
   process.stdout.write(`${JSON.stringify(result.summary, null, 2)}\n`);
+  // Callers such as repair-derived judge the run by its exit status alone, so a
+  // folder that failed must not end in exit 0.
+  if (result.summary.failed.length > 0) {
+    process.exitCode = 1;
+  }
 }
 
 if (isMainModule(import.meta.url)) {
