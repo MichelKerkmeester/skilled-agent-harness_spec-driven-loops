@@ -23,7 +23,7 @@ BANNED_SECTIONS = re.compile(
 MACHINE_HEADER = re.compile(
     r"^#{1,2}\s+(\[?\**)?(\S+\s+)?v?\d+(\.\d+){1,3}(\**\]?)?(\s*[-–—]\s*\d{4}-\d{2}-\d{2})?\s*$"
 )
-SPEC_LINE = re.compile(r"^> Spec folder: `[^`]+`( \(Level [0-9]\+?\))?$")
+SPEC_LINE = re.compile(r"^> Spec folder: `[^`]+`(?:(?:, | and )`[^`]+`)*( \(Level [0-9]\+?\))?$")
 SENTENCE_END = re.compile(r"[.!?](?=\s+[A-Z`*(\"]|\s*$)")
 
 
@@ -251,6 +251,31 @@ def check(path, old_path=None):
         for num in sorted(set(re.findall(r"(?<![\w.])\d+(?:[.,]\d+)*(?![\w])", body_nospec))):
             if num not in old:
                 errors.append(f"number not in the original: {num}")
+        # A spec folder the original credits is how a reader finds the release's
+        # full record, so the rewrite keeps it even though it is not a behavior.
+        credited, heading = [], ""
+        for line in old.splitlines():
+            if line.startswith("#"):
+                heading = line
+                continue
+            if re.search(r"spec folder", heading, re.I) or re.search(
+                r"spec folder|^\W*(source|spec|packet)s?\W*:", line, re.I
+            ):
+                credited += [m.rstrip(".") for m in re.findall(r"specs/[\w./-]+", line)]
+        if credited and not any(l.strip().startswith("> Spec folder:") for l in body.splitlines()):
+            errors.append(
+                "the original credits a spec folder ("
+                + ", ".join(sorted(set(credited)))
+                + "); keep it as one '> Spec folder:' line after the summary, path as written, two paths joined with 'and'"
+            )
+        for folder in sorted(set(credited)):
+            if folder.rstrip("/") not in body:
+                warnings.append(f"credited spec folder no longer named anywhere: {folder}")
+        # A level the original states records the packet as it stood when the release
+        # shipped, so it stays even when the folder has moved or changed level since.
+        for level in sorted(set(re.findall(r"\(Level [0-9]\+?\)", old))):
+            if level not in body:
+                errors.append(f"the original states {level}; keep it on the '> Spec folder:' line as written")
         if re.search(r"breaking", old, re.I) and "**Breaking:**" not in body:
             upgrade = body.split("## Upgrade", 1)[-1] if "## Upgrade" in body else ""
             if not upgrade.strip() or "No migration required" in upgrade or "No upgrade needed" in upgrade:
