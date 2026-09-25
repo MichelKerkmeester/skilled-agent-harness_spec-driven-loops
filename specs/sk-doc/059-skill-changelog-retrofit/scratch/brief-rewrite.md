@@ -19,6 +19,7 @@ You rewrite one existing skill changelog into the current house format. You keep
 
 CONTEXT
 Everything you need is in this brief. Do not open other files to learn the format.
+- The working directory is {{ROOT}}. Every path in this brief is relative to it. Read, write and run commands with those relative paths, or with the working directory copied exactly in front of them. Never retype the working directory from memory: a mistyped path reads as a missing file, and the file you rewrite always exists.
 - The format contract, sections 2 to 5 of .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md:
 <<<CONTRACT
 {{CONTRACT}}
@@ -34,7 +35,7 @@ ORIGINAL>>>
 - The file records what shipped in that version. Paths and names in it stay as written, even where they have since moved.
 
 ACTION
-1. {{FILE}} is the file you rewrite. On a first attempt it still holds the ORIGINAL above, so you need not read it. When a PREVIOUS ATTEMPT section follows this brief, the file holds your previous draft: read it first and fix it rather than starting over.
+1. {{FILE}} is the file you rewrite. On a first attempt it still holds the ORIGINAL above, so you need not read it. When a PREVIOUS ATTEMPT section follows this brief, the file holds your previous draft, shown in that section: fix it rather than starting over. The orchestrator wrote {{FILE}} moments before this brief reached you, so it always exists. If a read or write of it reports not found, the path you typed is wrong: use the relative path {{FILE}} exactly as written here and continue. Never halt on a missing {{FILE}}.
 2. Count the changes it records. Use the compact format for under 10 changes when the version is not a major bump and nothing breaks. Use the expanded format for 10 or more changes, a major bump, or any breaking change. A major bump is vX.0.0.0 with X of 2 or more. A first release (v1.0.0.0 or any v0.x) is not a bump: choose its format by change count and breaking changes alone.
 3. Before writing, list for yourself every change the ORIGINAL records outside its Files Changed table and outside any section headed Verification or Verified: each bullet, each H4 item and each claim in its opening, notes and upgrade section, including counts, before-and-after values, statements of what stayed unchanged, corrections of earlier wording and support claims. Step 5 checks each one against your file.
 4. Rewrite {{FILE}} in place in that format, as one whole-file write. Do not edit it by line ranges or line hashes: a rewrite replaces every line, and a range edit can be rejected on a line-number mismatch. If any edit is rejected, write the whole file again rather than stopping.
