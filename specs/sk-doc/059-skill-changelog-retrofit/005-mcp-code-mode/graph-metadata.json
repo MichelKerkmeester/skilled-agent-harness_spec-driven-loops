@@ -35,7 +35,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -81,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -100,12 +106,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "9 mcp-code-mode changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:09Z",
-    "last_save_at": "2026-09-25T14:09:05.251Z",
+    "last_save_at": "2026-09-25T15:46:21.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e77cdbfdd43477bcff21648d6393097c5cef7129348ce8a8b9eab04a56bb3fc",
+    "source_fingerprint": "sha256:7a0f66516da13cdd5232f159d5e7a6ffa25d55d40f8477df48fb6988afd42297",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1e7b98c19b6d2f0e867f33b2b9762daba7b08cd3bcb38e12d93d7c75c2b7224",
+      "spec.md": "8d0d5938b08afab8330c128a26a644ec6276f79aa4195450d2588bd6bd52bc40",
       "plan.md": "d6cc138bbc7e0ef321dcf29e423c399d4d5ccf314e6b577d9b95b391d8b45fdc",
-      "tasks.md": "e317ece5d5fa3a626e6d9e4fc4de92370d0a7b287c8893f8fd3b224188a99234",
-      "implementation-summary.md": "1277c4643685aeaf766ee9bbc9a1b498426a2c64b98f8a87f2ca4886cb6ec07d"
+      "tasks.md": "82c309ecc293f651eaecbbb1f9af5b24cfaaf326274fa4b0c2538ba865727219",
+      "implementation-summary.md": "a56fa48083ce25da97860dd1eff7f8b6d0707dc1c620f20b2c6a000b1734b4c8"
     },
     "last_active_at": null
   }

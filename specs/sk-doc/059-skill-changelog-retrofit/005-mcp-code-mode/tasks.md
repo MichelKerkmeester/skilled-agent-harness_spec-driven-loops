@@ -32,7 +32,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Confirm phase 001 records the operator's style approval: approved with fixes, 2026-09-24
-- [ ] T002 Confirm the mcp-code-mode files are clean in git before the run (`../scratch/lists/mcp-code-mode.txt`)
+- [x] T002 Confirm the mcp-code-mode files are clean in git before the run (`../scratch/lists/mcp-code-mode.txt`): each saved original matches its file at `HEAD` byte for byte
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,8 +40,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Run the driver over the list (`../scratch/rewrite-driver.cjs --list ../scratch/lists/mcp-code-mode.txt --state ../scratch/state.jsonl`)
-- [ ] T004 Retry the failures once with `--retry-failed`, and record the reason for any that still fail
+- [x] T003 Run the driver over the list (`../scratch/rewrite-driver.cjs --list ../scratch/lists/mcp-code-mode.txt --state ../scratch/state.jsonl`): eight of nine passed on their first dispatch and v1.0.0.0 at its second attempt
+- [x] T004 Retry the failures once with `--retry-failed`, and record the reason for any that still fail: no run failed a file. Review overturned three passes and the strengthened re-check failed one, and each retry kept its file
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,8 +49,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file
-- [ ] T006 Read a sample of the kept files old beside new
+- [x] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file: `wave-verify.cjs` reports 9 kept, 0 failed, 0 problems
+- [x] T006 Read a sample of the kept files old beside new: an Opus review read all nine beside their originals, and each has a clean review of its current text
 - [ ] T007 Commit the kept mcp-code-mode files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`
 - [ ] T008 Push to main and run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
