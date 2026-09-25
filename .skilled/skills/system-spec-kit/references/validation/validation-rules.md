@@ -61,7 +61,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `COMPLEXITY_MATCH`   | WARNING  | All levels    | Content metrics match declared level           |
 | `AI_PROTOCOLS`       | ERROR    | Level 3/3+    | AI execution protocols present                 |
 | `LEVEL_MATCH`        | ERROR    | All files     | Level consistent across all spec files         |
-| `SPEC_DOC_SUFFICIENCY` | ERROR  | spec docs, goal.md | Anchor sufficiency; for `goal.md` also the durable budget (warn 3000, fail 4000) and binding-row existence |
+| `SPEC_DOC_SUFFICIENCY` | ERROR  | spec docs, goal.md | Anchor sufficiency; for `goal.md` also the durable budget (one limit: fail past 4000) and binding-row existence |
 
 > **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set and their canonical severities live in [`runtime/cli/lib/validator-registry.json`](../../runtime/cli/lib/validator-registry.json).
 
@@ -682,7 +682,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path
 
 ## 12. GOAL DOCUMENT: DURABLE BUDGET AND BINDING
 
-**Severity:** WARNING past 3,000 characters, ERROR past 4,000, ERROR for a missing binding child  
+**Severity:** ERROR past 4,000 characters (the one limit, with no warning tier below it), ERROR for a missing binding child  
 **Rule:** `SPEC_DOC_SUFFICIENCY`, diagnostics `SPECDOC_SUFFICIENCY_005` (budget) and `SPECDOC_SUFFICIENCY_006` (binding)  
 **Description:** A packet `goal.md` carries the directive an operator sets as the session objective. Every runtime goal surface caps what it holds and truncates at the tail, where the completion criteria live, so the slice that gets set has a budget.
 
@@ -692,10 +692,10 @@ The durable slice: everything after the frontmatter's closing `---` up to `<!-- 
 
 ### Where It Applies
 
-- **Phase parents** and **top-level packets**: warn past 3,000, fail past 4,000. These are the documents an operator sets.
+- **Phase parents** and **top-level packets**: one limit of 4,000 characters. Up to 4,000 passes with no diagnostic; past it fails. These are the documents an operator sets.
 - **Phase children**: unbounded. A child binds through its parent and is never set directly.
 
-The numbers live in `templates/spec-kit-docs.json` under `goalDurableBudget`, which the template, this reference and the validator all read from.
+The limit lives in `templates/spec-kit-docs.json` as `goalDurableBudget.errorChars`, which the validator and the goal command read, and which the template and this reference quote.
 
 ### Binding Rows
 
@@ -709,7 +709,7 @@ On a phase parent the `binding` anchor lists each child's goal document. Every r
 SPECDOC_SUFFICIENCY_005: goal.md: durable slice is 4120 characters (> 4000)
 ```
 
-⚠️ **Warn:** the same file at 3,200 characters.
+✅ **Pass:** the same file cut to 3,950 characters. Anything up to 4,000 passes with no diagnostic.
 
 ❌ **Fail:** a binding row `| 003-runtime | \`003-runtime/goal.md\` |` when that file is absent.
 

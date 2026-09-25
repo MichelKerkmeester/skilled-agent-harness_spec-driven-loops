@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Two of four research lanes, on two executor kinds, finished all three iterations and were still rejected with `duplicate state records for iterations: 1,2,3,1,2,3`",
     "created_at": "2026-09-20T08:33:40.855Z",
-    "last_save_at": "2026-09-20T08:33:40.855Z",
+    "last_save_at": "2026-09-25T16:15:23.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59925afa67a7c72728a372f42118d6a80cd67ee92a59885ca968f0a048123c95",
+    "source_fingerprint": "sha256:07238ec741eeeb2a08ed4d986df483a68689016781c2b838f7bc1b6ec38c3331",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "795e1daf43e310253f4946859bdef305fda4f48f9ef48201605666f313b2c33e",

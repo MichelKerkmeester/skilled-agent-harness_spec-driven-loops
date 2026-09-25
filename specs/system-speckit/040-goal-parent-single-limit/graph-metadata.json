@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/040-goal-parent-single-limit",
+  "spec_folder": "system-speckit/040-goal-parent-single-limit",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent goal limit",
+      "goal durable budget",
+      "4000 character goal",
+      "goal warning tier"
+    ],
+    "key_topics": [
+      "parent",
+      "goal",
+      "limit",
+      "durable",
+      "budget",
+      "character",
+      "warning",
+      "tier",
+      "phase",
+      "top-level",
+      "two",
+      "thresholds"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/skills/system-spec-kit/templates/spec-kit-docs.json",
+      ".skilled/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+      ".skilled/hooks/goal/lib/goal-slice.cjs",
+      ".skilled/hooks/goal/bin/goal.cjs",
+      "templates/spec-kit-docs.json",
+      "runtime/lib/templates/level-contract-resolver.ts",
+      "runtime/lib/validation/spec-doc-structure.ts",
+      "templates/addons/goal.md.tmpl",
+      "references/validation/validation-rules.md",
+      "references/workflows/goal-set-string-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-slice.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": "references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": "references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A phase parent or top-level `goal.md` had two thresholds: the validator warned past 3000 durable characters and failed past 4000, and `goal.cjs packet` reported `packetbudget=warn` above 3000",
+    "created_at": "2026-09-25T15:29:15Z",
+    "last_save_at": "2026-09-25T16:19:31.769Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:653d511e32fdf772ceee392df0ec74dfd1627fd76a31a212be05d74f2a9fe372",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "057085ff5bd73539838b475aaff9b7a2eb2d11979f689d56b63bb1079017c3f5",
+      "plan.md": "458521f1bc269c9ca77a90a47c25b97ccc25bfe3918ae09689b2cec0217f4f6b",
+      "tasks.md": "0fcf5f856a5e14d27563a692464ca93e253a33646ed343343962972ad6f97180",
+      "implementation-summary.md": "8e32594cc4f14320d156005c1e1ea9b1691b85b9b2974cf7d42b09b78b25c762"
+    },
+    "last_active_at": null
+  }
+}

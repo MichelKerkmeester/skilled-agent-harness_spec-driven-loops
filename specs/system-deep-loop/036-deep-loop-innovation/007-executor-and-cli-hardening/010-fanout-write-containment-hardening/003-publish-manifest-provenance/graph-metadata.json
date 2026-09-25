@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The attribution table printed `unknown` in the Kind and Model column for every lineage of a completed run",
     "created_at": "2026-09-20T08:33:41.013Z",
-    "last_save_at": "2026-09-20T08:33:41.013Z",
+    "last_save_at": "2026-09-25T16:15:23.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fe40196c26f7a514301dc70a363ab1d35cb6eae1527003732b0d009ee4e16fd",
+    "source_fingerprint": "sha256:3f8738133e02530edfbbf4cc0d26007c5000aa8b00ddc66aa98eee4e038fe9a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7378289bed2799af9eb7da630c93241647f7428da79ff8b4c6db8c61d9ee0ece",

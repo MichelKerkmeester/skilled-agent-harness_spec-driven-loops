@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Four independent mechanisms decide whether a mode is reachable: the per-hub gate reads the registry, the hub router scores signals, the dispatch audit decides which packet governs a command, and the compiled policy is what the runtime actually serves",
     "created_at": "2026-09-20T07:39:06Z",
-    "last_save_at": "2026-09-20T11:29:12.356Z",
+    "last_save_at": "2026-09-25T16:15:23.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f947aeaefeb2132c62f75855b394603c5fe8bea25031f91f900df24f74d95c5",
+    "source_fingerprint": "sha256:73f2a7f5f08c4ba13e4ef93401e06fff4dbf8484a9bae5345e430cac19c53f55",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54df194b9c97cd0d3953e2f5ee5dbd29fed905f9caf80395fd80b87541d1750d",

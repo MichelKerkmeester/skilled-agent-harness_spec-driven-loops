@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a6cbb387605405f28f47d053613b3f40f0304eea33ee1729b68e9d1a255e4f00",
+  "manifestHash": "b9cce04d0505def7a77e38c1b039a597dddeae4c93b804bc73172a7f49a9dc46",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7264,6 +7264,9 @@
     ],
     "4 stream remediation partition": [
       "4 stream remediation partition"
+    ],
+    "4000 character goal": [
+      "4000 character goal"
     ],
     "401 415 post wave validation": [
       "401-415 post-wave validation"
@@ -38350,6 +38353,9 @@
     "goal documentation parity tasks": [
       "goal documentation parity tasks"
     ],
+    "goal durable budget": [
+      "goal durable budget"
+    ],
     "goal durable budget 4000": [
       "goal durable budget 4000"
     ],
@@ -38703,6 +38709,9 @@
     ],
     "goal validator": [
       "goal validator"
+    ],
+    "goal warning tier": [
+      "goal warning tier"
     ],
     "goalprompt": [
       "goalPrompt"
@@ -54896,6 +54905,9 @@
     ],
     "parent goal child phases": [
       "parent goal child phases"
+    ],
+    "parent goal limit": [
+      "parent goal limit"
     ],
     "parent goal resend": [
       "parent goal resend"

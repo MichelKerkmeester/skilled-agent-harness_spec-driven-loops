@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The containment block ran only after every verdict gate passed",
     "created_at": "2026-09-20T08:33:42.088Z",
-    "last_save_at": "2026-09-20T08:33:42.088Z",
+    "last_save_at": "2026-09-25T16:15:28.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37c128bdabbfeeaacf943844d067cfab14835ba6e621c27dc26856059dfdb08b",
+    "source_fingerprint": "sha256:63359309c227c393b8d3f0ae95ab5a95f5f1facb9a53b468287303d26be0d0a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f17ff045e04f6d235050d32bafbcf5cf58e33ed5835a95dfb3a01b1d6353bcd7",

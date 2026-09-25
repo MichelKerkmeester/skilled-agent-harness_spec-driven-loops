@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a6cbb387605405f28f47d053613b3f40f0304eea33ee1729b68e9d1a255e4f00",
+  "manifestHash": "b9cce04d0505def7a77e38c1b039a597dddeae4c93b804bc73172a7f49a9dc46",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -11527,7 +11527,11 @@
     "specs/system-speckit/039-phase-aware-archive/implementation-summary.md",
     "specs/system-speckit/039-phase-aware-archive/plan.md",
     "specs/system-speckit/039-phase-aware-archive/spec.md",
-    "specs/system-speckit/039-phase-aware-archive/tasks.md"
+    "specs/system-speckit/039-phase-aware-archive/tasks.md",
+    "specs/system-speckit/040-goal-parent-single-limit/implementation-summary.md",
+    "specs/system-speckit/040-goal-parent-single-limit/plan.md",
+    "specs/system-speckit/040-goal-parent-single-limit/spec.md",
+    "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -19154,6 +19158,9 @@
     ],
     "4 stream remediation partition": [
       6335
+    ],
+    "4000 character goal": [
+      11520
     ],
     "401 415 post wave validation": [
       6731
@@ -54208,6 +54215,11 @@
     "goal documentation parity tasks": [
       2412
     ],
+    "goal durable budget": [
+      11518,
+      11519,
+      11520
+    ],
     "goal durable budget 4000": [
       11191,
       11192
@@ -54614,6 +54626,12 @@
       10676,
       10677,
       10678
+    ],
+    "goal warning tier": [
+      11518,
+      11519,
+      11520,
+      11521
     ],
     "goalprompt": [
       1682
@@ -73674,6 +73692,12 @@
     ],
     "parent goal child phases": [
       10693
+    ],
+    "parent goal limit": [
+      11518,
+      11519,
+      11520,
+      11521
     ],
     "parent goal resend": [
       11206,

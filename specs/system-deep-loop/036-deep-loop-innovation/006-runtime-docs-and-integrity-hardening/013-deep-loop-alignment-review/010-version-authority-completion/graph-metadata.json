@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phase 003 gave three hubs one version authority and wrote the remaining two into its own out-of-scope list, so `sk-doc` and `mcp-tooling` still carry four and three disagreeing values across their five routing artifacts",
     "created_at": "2026-09-20T08:33:45.195Z",
-    "last_save_at": "2026-09-20T08:33:45.195Z",
+    "last_save_at": "2026-09-25T16:15:23.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28f630922ab3f94fad2b2b5228bf3a72e6880ae808254852b5297756ead37073",
+    "source_fingerprint": "sha256:6dc96c6cee7bc5ee4c8a20daca2e505c1e1e75081c27e569d6ecd89b6d0bc43f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e7b24a80d1952b161411648c3f885b6c376308eec6524d51238aecb88f391810",

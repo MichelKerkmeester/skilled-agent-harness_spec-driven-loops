@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Under restore, the baseline write used `writeFileSync` on the violated path",
     "created_at": "2026-09-20T08:33:42.243Z",
-    "last_save_at": "2026-09-20T08:33:42.243Z",
+    "last_save_at": "2026-09-25T16:15:27.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:377f6e60b20556d13806de1d75782ba21524df78947c9ec43d9a1711018442bc",
+    "source_fingerprint": "sha256:1a57819f9b94acea52fc0acee2f4d7c5ce6f3dc4c1697aa02e99ca4a4685b9ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f8d243f1304d1a1746907d4674941cef40bc7eb2f1fbb6ae4dd78b85f58c7c3d",

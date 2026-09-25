@@ -163,8 +163,8 @@ function runBind(rest, runtimeLabel, options) {
       `packet_budget=${packet.budgetState}`,
       `packet_slice_hash=${core.quoteValue(packet.hash)}`,
       `resend_pending=${core.resendPending(record, record.workspace) ? 'true' : 'false'}`,
-      ...(packet.budgetState === 'over' || packet.budgetState === 'warn'
-        ? [`warning=${core.quoteValue(`durable slice is ${packet.durableChars} characters; ${packet.budgetState === 'over' ? 'past the error tier' : 'past the warning tier'} (${packet.budget.warnChars}/${packet.budget.errorChars})`)}`]
+      ...(packet.budgetState === 'over'
+        ? [`warning=${core.quoteValue(`durable slice is ${packet.durableChars} characters; past the ${packet.budget.errorChars}-character limit`)}`]
         : []),
     ], mutation);
   } catch (error) {

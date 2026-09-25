@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The review measured seven divergences between the confirm and auto variants of the two deep commands",
     "created_at": "2026-09-20T08:33:44.564Z",
-    "last_save_at": "2026-09-20T08:33:44.564Z",
+    "last_save_at": "2026-09-25T16:15:22.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b95e487cf18ef956c76448a9be2832c3c823187139fdfeb167195d56800eae0",
+    "source_fingerprint": "sha256:65fef4df210e4774b53da645ae3b46c7d9dbd5c9958c0f670806ef0590c9d7b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "68c254d522d9d5a021a4684ffa452cfc68a60d75b425cb4cf600b4ac6d7a8ef6",

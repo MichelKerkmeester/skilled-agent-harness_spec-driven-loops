@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The review found ten classes of documentation that the tree contradicts: nine catalog references citing absent paths, a superseded runtime generation cited in three catalogs, a contract count wrong in two READMEs, a playbook asserting no test suite exists against 121 unit test files, removed benchmark artifacts still advertised as live, five test files named under a prefix they no longer carry, a catalog claiming fifty-five entries against fifty-four, a repository-wide checker presented as a local acceptance test, a retired command path with a dead anchor, and two READMEs pointing one",
     "created_at": "2026-09-20T08:33:44.413Z",
-    "last_save_at": "2026-09-20T08:33:44.413Z",
+    "last_save_at": "2026-09-25T16:15:22.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2b4819b240dfb71161fd4efe8acc25d6f6f7a3fc0cd496f6fa86e333504e3e0",
+    "source_fingerprint": "sha256:7d19d1c65e64f3f0d4e3aa4a65f3b3a5b116e75cc12216c034652d589eb3622e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4308f0a59e5f619a7845c8934492b0eebc0520048cac02c0625ecd1856bb1f18",

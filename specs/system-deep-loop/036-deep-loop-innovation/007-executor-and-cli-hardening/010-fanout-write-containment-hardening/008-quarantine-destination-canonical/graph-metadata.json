@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The quarantine writer created directories and wrote content copies, patches and the manifest under a path derived from the lane's own directory without canonicalizing it",
     "created_at": "2026-09-20T08:33:41.785Z",
-    "last_save_at": "2026-09-20T08:33:41.785Z",
+    "last_save_at": "2026-09-25T16:15:27.893Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:391900d72a076d883408abe49834c1a9d5fd1ad1ef890e7ca4a28753e20b00a5",
+    "source_fingerprint": "sha256:b32708ae9c576f9e0136f8cc8ab9eedd333ca9ebeb34971fd01f43881419e9cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a6dd3a31ac0fa34c535f315713ebad4aeadb9751e9a2c9ade23724ab3f561167",

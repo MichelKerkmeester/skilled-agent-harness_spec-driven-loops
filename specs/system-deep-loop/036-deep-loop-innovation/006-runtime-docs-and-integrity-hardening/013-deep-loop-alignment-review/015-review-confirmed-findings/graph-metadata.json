@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A ten-iteration review of the program found seven defects in work every phase had already called verified",
     "created_at": "2026-09-20T08:33:45.976Z",
-    "last_save_at": "2026-09-20T08:33:45.976Z",
+    "last_save_at": "2026-09-25T16:15:23.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e3dbb2bb2d82bd88097eafd323f9206343a1fb18432b7151626a6266b4ce9ce",
+    "source_fingerprint": "sha256:6219d8f23dbb2ebfb568433e4ba26706e41252cb6aacd81e44f1d72001dfdaef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7117269275a8f08ca33cf18fa25301eeb1f76417b357942653a2ca328eedba29",

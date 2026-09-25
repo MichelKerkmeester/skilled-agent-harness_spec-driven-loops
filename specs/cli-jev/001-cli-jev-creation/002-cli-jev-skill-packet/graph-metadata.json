@@ -47,18 +47,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "benchmark/reports/README.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/README.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/references/cli-reference.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/references/providers-and-models.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/references/integration-patterns.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/references/mcp-server.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/assets/question-shaping-card.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/changelog/v1.0.0.0.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/benchmark/README.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/benchmark/reports/README.md",
-      ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/manual-testing-playbook.md"
+      "benchmark/reports/README.md"
     ],
     "entities": [
       {
@@ -101,54 +90,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "benchmark/reports/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-reference.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/cli-reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "providers-and-models.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/providers-and-models.md",
-        "source": "derived"
-      },
-      {
-        "name": "integration-patterns.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/integration-patterns.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-server.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/references/mcp-server.md",
-        "source": "derived"
-      },
-      {
-        "name": "question-shaping-card.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/assets/question-shaping-card.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.0.0.0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/changelog/v1.0.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -204,11 +145,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Declare",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The hub routes to executables whose contracts live in their own documentation",
     "created_at": "2026-09-20T07:39:06Z",
-    "last_save_at": "2026-09-20T11:08:50.824Z",
+    "last_save_at": "2026-09-25T16:15:23.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b19810e48d42b1b6b4a19128c2ae9c891069b0cf45c5aa70a4dd14d3f5f4fb2c",
+    "source_fingerprint": "sha256:24897f829f5e7a380a7536c9a02d77e4b8647b100b279b8840bca21a00c63fa9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b25fad0795cafa318d7b19b75a5336a75222b231404ca324758beea5d3492121",

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The empty-registry advisory checked `keyFindings` for every loop type, but a review registry carries `openFindings`, so both lanes of the ten-iteration review, holding 24 and 8 open findings, raised `lineageregistryempty`",
     "created_at": "2026-09-20T08:33:42.550Z",
-    "last_save_at": "2026-09-20T08:33:42.550Z",
+    "last_save_at": "2026-09-25T16:15:28.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a842cd50ad761391a2118fdb7ccc53b39ffa6fd1155cf229d8c7f0202426be72",
+    "source_fingerprint": "sha256:67a574a9893bc8b2fbcde28368d0d11a83e0bff1cee085ac7366df2d3bc9f639",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dc17e8d1e2a8fe3f127c40b3c49545f433872292b95d57173fcabeeb6b7e7328",

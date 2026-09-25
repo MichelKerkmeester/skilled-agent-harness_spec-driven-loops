@@ -12,7 +12,7 @@
 // drift apart on it.
 
 const { createHash } = require('node:crypto');
-const { existsSync, readFileSync, realpathSync } = require('node:fs');
+const { existsSync, readdirSync, readFileSync, realpathSync, statSync } = require('node:fs');
 const { join, resolve, isAbsolute, relative, dirname } = require('node:path');
 
 const GOAL_FILENAME = 'goal.md';
@@ -267,20 +267,20 @@ function resolvePacketDir(workspace, packetPath) {
 
 /**
  * The durable-slice budget the spec kit declares, read from its contract
- * manifest so this module quotes the same pair of numbers as the validator.
- * Null when the workspace carries no manifest or no budget block.
+ * manifest so this module quotes the same limit as the validator. It is one
+ * number with no warning tier below it, because a lower tier reads as the
+ * limit. Null when the workspace carries no manifest or no budget block.
  *
  * @param {string} workspace - Absolute repo root.
- * @returns {{ warnChars: number, errorChars: number } | null} The tiers, or null.
+ * @returns {{ errorChars: number } | null} The limit, or null.
  */
 function resolveGoalBudget(workspace) {
   try {
     const manifest = JSON.parse(readFileSync(join(resolve(workspace), BUDGET_MANIFEST), 'utf8'));
     const raw = manifest && manifest.goalDurableBudget;
-    const warnChars = Number(raw && raw.warnChars);
     const errorChars = Number(raw && raw.errorChars);
-    if (!Number.isInteger(warnChars) || !Number.isInteger(errorChars) || warnChars <= 0 || errorChars < warnChars) return null;
-    return { warnChars, errorChars };
+    if (!Number.isInteger(errorChars) || errorChars <= 0) return null;
+    return { errorChars };
   } catch {
     return null;
   }
@@ -289,8 +289,7 @@ function resolveGoalBudget(workspace) {
 /**
  * A phase child sits inside a folder that is itself a packet. Its goal binds
  * through the parent and is never set as the operator copy, so no budget
- * applies to it. The validator draws the same line; if these two disagree an
- * operator trims a child goal that nothing was ever going to reject.
+ * applies to it unless it is itself a phase parent.
  *
  * @param {string} packetAbsolute - Absolute packet directory.
  * @returns {boolean} True when the packet is a phase child.
@@ -299,10 +298,92 @@ function isPhaseChild(packetAbsolute) {
   return existsSync(join(dirname(packetAbsolute), 'spec.md'));
 }
 
+// The validator budgets every folder it resolves to the phase level, even one
+// nested inside another packet, and exempts only the other phase children. This
+// module must draw the same line, or an author trims a goal the validator never
+// rejects, or ships one it fails. It loads no TypeScript, so it mirrors the spec
+// kit's rule instead of importing it: the phase-parent classifier with its
+// generator-hardening switch, then the level the folder's spec.md declares.
+const GENERATOR_HARDENING_ENV = 'SPECKIT_GENERATOR_HARDENING';
+const GENERATOR_HARDENING_OPT_OUT = new Set(['false', '0', 'no', 'off', 'disabled']);
+// Under hardening a phase child is any spec-leaf folder; with it off, only the strict slug.
+const SPEC_LEAF_SEGMENT_PATTERN = /^\d{3}(?:[-_].+)?$/;
+const STRICT_PHASE_CHILD_PATTERN = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
+// The validator reads a declared level from this much of spec.md, trying these in order.
+const SPEC_LEVEL_HEAD_CHARS = 4096;
+const DECLARED_LEVEL_PATTERNS = [
+  /SPECKIT_LEVEL:\s*(1|2|3\+?|phase|review|research)/u,
+  /^level:\s*(1|2|3\+?|phase|review|research)\s*$/mu,
+  /\|\s*\*\*Level\*\*\s*\|\s*(1|2|3\+?|phase|review|research)\s*\|/u,
+];
+
+function isGeneratorHardeningEnabled() {
+  const value = process.env[GENERATOR_HARDENING_ENV];
+  return value === undefined || !GENERATOR_HARDENING_OPT_OUT.has(value.trim().toLowerCase());
+}
+
+function carriesSpecDocs(childPath) {
+  return existsSync(join(childPath, 'spec.md')) || existsSync(join(childPath, 'description.json'));
+}
+
+/**
+ * Whether a folder has at least one direct phase child carrying spec.md or
+ * description.json, by the spec kit's own membership rule.
+ *
+ * @param {string} folder - Absolute packet directory.
+ * @returns {boolean} True when the folder is a phase parent.
+ */
+function isPhaseParentFolder(folder) {
+  if (isGeneratorHardeningEnabled()) {
+    let entries;
+    try {
+      entries = readdirSync(folder, { withFileTypes: true });
+    } catch {
+      return false;
+    }
+    return entries.some((entry) => entry.isDirectory()
+      && SPEC_LEAF_SEGMENT_PATTERN.test(entry.name)
+      && carriesSpecDocs(join(folder, entry.name)));
+  }
+  let names;
+  try {
+    names = readdirSync(folder);
+  } catch {
+    return false;
+  }
+  return names.some((name) => {
+    if (!STRICT_PHASE_CHILD_PATTERN.test(name)) return false;
+    const childPath = join(folder, name);
+    try {
+      if (!statSync(childPath).isDirectory()) return false;
+    } catch {
+      return false;
+    }
+    return carriesSpecDocs(childPath);
+  });
+}
+
+function declaresPhaseLevel(folder) {
+  let head;
+  try {
+    head = readFileSync(join(folder, 'spec.md'), 'utf8').slice(0, SPEC_LEVEL_HEAD_CHARS);
+  } catch {
+    return false;
+  }
+  for (const pattern of DECLARED_LEVEL_PATTERNS) {
+    const match = head.match(pattern);
+    if (match) return match[1] === 'phase';
+  }
+  return false;
+}
+
+function budgetApplies(packetAbsolute) {
+  return !isPhaseChild(packetAbsolute) || isPhaseParentFolder(packetAbsolute) || declaresPhaseLevel(packetAbsolute);
+}
+
 function budgetState(durableChars, budget) {
   if (!budget) return 'unknown';
   if (durableChars > budget.errorChars) return 'over';
-  if (durableChars > budget.warnChars) return 'warn';
   return 'ok';
 }
 
@@ -331,7 +412,7 @@ function readPacketGoal(workspace, packetPath) {
   if (splitFrontmatter(content).broken) return null;
   const durableSlice = extractDurableSlice(content);
   const objective = buildObjectiveSlice(content, dir.relative);
-  const budget = isPhaseChild(dir.absolute) ? null : resolveGoalBudget(workspace);
+  const budget = budgetApplies(dir.absolute) ? resolveGoalBudget(workspace) : null;
   return Object.freeze({
     budget,
     budgetState: budgetState(durableSlice.length, budget),

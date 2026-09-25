@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The four command YAMLs drove the fan-out runner with different loop flags: none passed the convergence mode the runner reads, and the confirm review YAML passed neither threshold nor stop policy",
     "created_at": "2026-09-20T08:33:43.014Z",
-    "last_save_at": "2026-09-20T08:33:43.014Z",
+    "last_save_at": "2026-09-25T16:15:28.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56d5c0b15629441054a3b4566e62598d12341da2bdcc5ea663ecca30771eba4d",
+    "source_fingerprint": "sha256:5cff8898aafea939149119c6ce31d025c4385c5d1758994d1546f7d49b596462",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85c668ee5231a32dc2dc310c76fb895d93e738ce6b2d392603a380d08c417b3a",

@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The mode is registered, routed and guarded, but the documents a reader consults first were written before it existed",
     "created_at": "2026-09-20T07:39:08Z",
-    "last_save_at": "2026-09-20T11:08:50.798Z",
+    "last_save_at": "2026-09-25T16:15:22.883Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a602d0e158dac2f908bb834ef66a53786a1a4cd0d6e2eb5f4772c129c369226",
+    "source_fingerprint": "sha256:49681190188b68d5324f852f60fccf5da86fa7cefa147936897b9e14a2e1ba8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6572ebd721997e129d86759df89d993a56309cf0c21fa558a74ee9e64cb13d2",

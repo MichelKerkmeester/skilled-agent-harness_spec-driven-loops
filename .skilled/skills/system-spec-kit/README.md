@@ -233,7 +233,7 @@ A packet can opt into a `goal.md` document with `create.sh --with-goal`, valid a
 
 A session binds to exactly one packet, and that packet's `goal.md` is the single source of the goal on every runtime. Rendering reads the file fresh each time, so editing it changes what the model sees on its next turn. Frontmatter never leaves the file: every surface that shows the goal, including the chat resend and the runtime injection, reads the durable slice only.
 
-The validator warns past 3,000 durable characters and fails past 4,000. That budget applies to phase parents and top-level packets. Phase children are unbounded, and a binding row naming a child `goal.md` that does not exist fails validation.
+The validator holds one limit: it fails a goal past 4,000 durable characters and says nothing below that. The limit applies to phase parents and top-level packets. Phase children are unbounded, and a binding row naming a child `goal.md` that does not exist fails validation.
 
 The full cross-runtime contract, injection behavior per runtime and management commands live in the root `README.md` Goal Plugin section and in `.skilled/hooks/goal/README.md`.
 

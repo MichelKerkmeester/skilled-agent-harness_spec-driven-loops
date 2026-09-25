@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Six trees mirror the same twelve agents, and the translation between them was undocumented and partly lossy",
     "created_at": "2026-09-20T08:33:44.884Z",
-    "last_save_at": "2026-09-20T08:33:44.884Z",
+    "last_save_at": "2026-09-25T16:15:22.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79be3f13f115bf9a186080d4df2daa793af807c4e6784883c824f02390580023",
+    "source_fingerprint": "sha256:4802ca43501622d68ab62000111d6510bfd39743ca420087ce33e5bcf61b55f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fb8e84610b06ec2e281a98aa8f095770bfa6f373c4124b9d049982e8853ea8da",

@@ -245,7 +245,7 @@ test('a phase child goal carries no budget, matching the validator', () => {
   mkdirSync(manifestDir, { recursive: true });
   writeFileSync(
     join(manifestDir, 'spec-kit-docs.json'),
-    JSON.stringify({ goalDurableBudget: { warnChars: 3000, errorChars: 4000 } }),
+    JSON.stringify({ goalDurableBudget: { errorChars: 4000 } }),
     'utf8',
   );
 
@@ -261,4 +261,104 @@ test('a phase child goal carries no budget, matching the validator', () => {
   const child = slice.readPacketGoal(workspace, 'specs/x/001-parent/002-child');
   assert.equal(child.budget, null);
   assert.equal(child.budgetState, 'unknown');
+});
+
+test('a parent goal is ok up to the one 4000-character limit and over only past it', () => {
+  const manifestDir = join(workspace, '.skilled', 'skills', 'system-spec-kit', 'templates');
+  mkdirSync(manifestDir, { recursive: true });
+  // A manifest written before the warning tier was retired still carries it.
+  // That lower number must never come back as a second limit.
+  writeFileSync(
+    join(manifestDir, 'spec-kit-docs.json'),
+    JSON.stringify({ goalDurableBudget: { warnChars: 3000, errorChars: 4000 } }),
+    'utf8',
+  );
+  assert.deepEqual(slice.resolveGoalBudget(workspace), { errorChars: 4000 });
+
+  for (const [chars, state] of [[3500, 'ok'], [4000, 'ok'], [4001, 'over']]) {
+    writePacket(`specs/x/${chars}-fixture`, sizedGoalDoc(chars));
+    const packet = slice.readPacketGoal(workspace, `specs/x/${chars}-fixture`);
+    assert.equal(packet.durableChars, chars);
+    assert.equal(packet.budgetState, state, `${chars} characters`);
+  }
+});
+
+// The budget follows the validator's line: a folder inside another packet is
+// exempt unless it is itself a phase parent. These fixtures build that tree.
+function sizedGoalDoc(chars) {
+  const base = goalDoc();
+  const padding = 'x'.repeat(chars - slice.extractDurableSlice(base).length);
+  return base.replace('Ship the fixture.', `Ship the fixture.${padding}`);
+}
+
+function writeBudgetManifest() {
+  const manifestDir = join(workspace, '.skilled', 'skills', 'system-spec-kit', 'templates');
+  mkdirSync(manifestDir, { recursive: true });
+  writeFileSync(join(manifestDir, 'spec-kit-docs.json'), JSON.stringify({ goalDurableBudget: { errorChars: 4000 } }), 'utf8');
+}
+
+function writeOuterPacket() {
+  mkdirSync(join(workspace, 'specs', 'x', '001-outer'), { recursive: true });
+  writeFileSync(join(workspace, 'specs', 'x', '001-outer', 'spec.md'), '# outer\n', 'utf8');
+}
+
+function writePhaseChildSpec(rel) {
+  mkdirSync(join(workspace, rel), { recursive: true });
+  writeFileSync(join(workspace, rel, 'spec.md'), '# phase\n', 'utf8');
+}
+
+test('a phase parent nested inside another packet is budgeted, as the validator budgets it', () => {
+  writeBudgetManifest();
+  writeOuterPacket();
+  for (const [folder, chars, state] of [['002-at-limit', 4000, 'ok'], ['003-past-limit', 4001, 'over']]) {
+    const nested = `specs/x/001-outer/${folder}`;
+    writePacket(nested, sizedGoalDoc(chars));
+    writePhaseChildSpec(`${nested}/001-leaf`);
+    const packet = slice.readPacketGoal(workspace, nested);
+    assert.equal(packet.durableChars, chars);
+    assert.notEqual(packet.budget, null, `${chars} characters`);
+    assert.equal(packet.budgetState, state, `${chars} characters`);
+  }
+});
+
+test('a plain phase child stays unbudgeted and a top-level packet keeps its budget', () => {
+  writeBudgetManifest();
+  writeOuterPacket();
+  writePacket('specs/x/001-outer/002-plain', sizedGoalDoc(4001));
+  writeFileSync(join(workspace, 'specs', 'x', '001-outer', '002-plain', 'spec.md'), '# plain\n<!-- SPECKIT_LEVEL: 1 -->\n', 'utf8');
+  const child = slice.readPacketGoal(workspace, 'specs/x/001-outer/002-plain');
+  assert.equal(child.budget, null);
+  assert.equal(child.budgetState, 'unknown');
+
+  // A top-level packet with no phases of its own is budgeted for being top-level alone.
+  writePacket('specs/x/002-solo', sizedGoalDoc(4001));
+  const top = slice.readPacketGoal(workspace, 'specs/x/002-solo');
+  assert.deepEqual(top.budget, { errorChars: 4000 });
+  assert.equal(top.budgetState, 'over');
+});
+
+test('the generator-hardening switch decides which child folders make a phase parent', () => {
+  writeBudgetManifest();
+  writeOuterPacket();
+  writePacket('specs/x/001-outer/002-nested', sizedGoalDoc(4001));
+  // An underscore child counts only under hardening, which is on unless opted out.
+  writePhaseChildSpec('specs/x/001-outer/002-nested/001_legacy');
+  const saved = process.env.SPECKIT_GENERATOR_HARDENING;
+  try {
+    delete process.env.SPECKIT_GENERATOR_HARDENING;
+    assert.equal(slice.readPacketGoal(workspace, 'specs/x/001-outer/002-nested').budgetState, 'over');
+    process.env.SPECKIT_GENERATOR_HARDENING = 'off';
+    assert.equal(slice.readPacketGoal(workspace, 'specs/x/001-outer/002-nested').budgetState, 'unknown');
+  } finally {
+    if (saved === undefined) delete process.env.SPECKIT_GENERATOR_HARDENING;
+    else process.env.SPECKIT_GENERATOR_HARDENING = saved;
+  }
+});
+
+test('a nested folder whose spec declares the phase level is budgeted before it has children', () => {
+  writeBudgetManifest();
+  writeOuterPacket();
+  writePacket('specs/x/001-outer/002-declared', sizedGoalDoc(4001));
+  writeFileSync(join(workspace, 'specs', 'x', '001-outer', '002-declared', 'spec.md'), '# declared\n<!-- SPECKIT_LEVEL: phase -->\n', 'utf8');
+  assert.equal(slice.readPacketGoal(workspace, 'specs/x/001-outer/002-declared').budgetState, 'over');
 });

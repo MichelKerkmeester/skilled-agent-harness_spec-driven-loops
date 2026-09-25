@@ -248,10 +248,11 @@ _memory:
 > what an operator sets as the session objective, and it must stay true for the
 > life of the packet. The frontmatter above it is bookkeeping and never leaves
 > this file: it is not sent in chat, not injected, not stored in an objective.
-> Keep the slice short. A phase parent or top-level packet warns past 3000
-> characters and fails past 4000, measured from the frontmatter's closing fence
-> to the log anchor; the runtime goal surfaces cap what they hold, and a
-> truncated objective loses its tail, which is where the criteria live.
+> Keep the slice short. A phase parent or top-level packet has one limit, 4000
+> characters, measured from the frontmatter's closing fence to the log anchor.
+> Up to 4000 passes and past it fails; the runtime goal surfaces cap what they
+> hold, and a truncated objective loses its tail, which is where the criteria
+> live.
 
 ---
 
