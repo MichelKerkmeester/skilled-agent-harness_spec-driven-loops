@@ -34,7 +34,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 
 ## 2. 🎁 WHAT YOU GET
 
-### 📋 Spec Kit: a written record of every change
+### 📋 Spec Kit
 
 Every file change gets a spec folder that records what changed, why and how. Like a lab notebook for software.
 
@@ -43,7 +43,7 @@ Every file change gets a spec folder that records what changed, why and how. Lik
 - Reviews rank findings P0/P1/P2 and re-challenge critical findings before they stick, and an open blocker forces another pass
 - Every packet is plain markdown in your repo, so the history is yours to read, diff and keep
 
-### 🧠 Spec Memory & Search: memory that survives resets
+### 🧠 Spec Memory & Search
 
 Your architecture, decisions and session history are written into the spec folder they belong to, then found again through instant keyword search.
 
@@ -51,7 +51,7 @@ Your architecture, decisions and session history are written into the spec folde
 - A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path
 - A phrase nobody wrote is a clean no-hit, never a nearest guess
 
-### 🔄 Deep Loop: loops that finish the job
+### 🔄 Deep Loop
 
 Research, review and improvement loops run unattended and stop only when their own evidence says done.
 
@@ -59,7 +59,7 @@ Research, review and improvement loops run unattended and stop only when their o
 - One shared runtime under every loop, so you learn the workflow once
 - Run fully hands-off or pause at each step, your choice
 
-### 🎯 Skill Advisor: the right skill at the right time
+### 🎯 Skill Advisor
 
 Type a prompt and the matching expertise loads before any tool runs. No memorizing skill names.
 
@@ -67,7 +67,7 @@ Type a prompt and the matching expertise loads before any tool runs. No memorizi
 - A live skill graph tracks what each skill depends on, enhances and conflicts with
 - Daemon down? A local scorer answers instead and marks itself stale rather than pretending to be live
 
-### 🤖 Agent Library: many models, one conductor
+### 🤖 Agent Library
 
 Twelve specialized agents own focused roles, and supported runtimes can dispatch five more AI CLIs as sub-tools.
 
@@ -75,7 +75,7 @@ Twelve specialized agents own focused roles, and supported runtimes can dispatch
 - The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns
 - Every skill refuses to call itself, so delegation never loops
 
-### 🧩 Plugin & Extension Library: a goal that survives resets and context that stays lean
+### 🧩 Plugin & Extension Library
 
 The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
 
@@ -91,7 +91,7 @@ Behind them: 15 on-demand skills, 32 command entry points and the Code Mode MCP 
 
 Three building blocks carry the whole system:
 
-1. **Structured documentation** (Spec Kit)
+1. **Structured documentation** 
 
    Every file change gets a spec folder recording what changed, why and how. Like a lab notebook for software.
 
