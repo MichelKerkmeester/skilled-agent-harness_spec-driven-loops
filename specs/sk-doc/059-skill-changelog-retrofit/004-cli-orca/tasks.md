@@ -53,6 +53,7 @@ contextType: "implementation"
 - [x] T006 Read a sample of the kept files old beside new: the one file read in full, every change present
 - [x] T007 Commit the kept cli-orca files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`: commit `d62d7a3a1a` holds the one rewrite, and the guard and all nine `sync-*.cjs --check` runs exit 0
 - [x] T008 Push to main and run `validate.sh --strict` on this phase: `git branch -r --contains d62d7a3a1a` lists `origin/main`, and validation reports `RESULT: PASSED`
+- [x] T009 Reopen the committed file when a later rule or review finds a claim the original does not make, retry it and commit the corrected text: reopened for an uncredited spec folder line and three facts lost or bent, kept on cli-codex, clean on a second Opus review, committed in `8f2cbbd4d3` with the guard and all nine mirror checks exiting 0
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -178,13 +178,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "1 cli-orca changelog predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:08Z",
-    "last_save_at": "2026-09-25T18:30:08.795Z",
+    "last_save_at": "2026-09-25T18:31:36.812Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fdb8effe069136ccec7439f2ee97b52ca66ad7d96a37680e5e8b87180a3139e0",
+    "source_fingerprint": "sha256:cfc01df14dabdb8ce7b72ee360877c6e8f3fea406e289b9329de159d7061e29b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8a60d96aac5d836fe1c2f60fe4204e323be9787075d685ec878aeb91e255ee5",
       "plan.md": "6913008e8bce2e43b808a11a339d4aca315c46a1d8fe6e27cd37498c4f247922",
-      "tasks.md": "4c2cfe39565b7c18b4112fa218a295476acfaccbd3d71d862c2a476a41c62c6a",
-      "implementation-summary.md": "438fd0f8e176ba6b408e97e69ebe50a3dd287f259019b46a4b8f67d080c7fe64"
+      "tasks.md": "d08b1880a3b159bff8eb645d405ef83c9135a3bc4cc269087fb66650cadc846a",
+      "implementation-summary.md": "1f33415460e873ec03e437a30d6e91d8fb19a0b21c9f62d14dc1aaf998832639"
     },
     "last_active_at": null
   }
