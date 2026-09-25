@@ -33,7 +33,6 @@ const RUN_DIR = path.join(HERE, 'runs');
 // Each run can name its own stop file, so stopping one run never halts another.
 const STOP_FILE = path.join(HERE, process.env.DRIVER_STOP || 'STOP');
 const STATUS_FILE = path.join(HERE, 'driver-status.json');
-const REWRITE_BRIEF = fs.readFileSync(path.join(HERE, 'brief-rewrite.md'), 'utf8');
 const VERIFY_BRIEF = fs.readFileSync(path.join(HERE, 'brief-verify.md'), 'utf8');
 // Each record names the review brief it passed under, so a --reverify pass can
 // find the kept files an older, weaker review let through and resume after a stop.
@@ -282,8 +281,12 @@ function extractVerdict(text) {
   return null;
 }
 
+// The rewrite brief is read on every dispatch, so a fix to it reaches the next file
+// without restarting the run. The review brief stays fixed for the whole run,
+// because each record names the review it passed under.
 function fillRewrite(file, orig, feedback) {
-  let prompt = REWRITE_BRIEF
+  let prompt = read(path.join(HERE, 'brief-rewrite.md'))
+    .replaceAll('{{ROOT}}', ROOT)
     .replaceAll('{{FILE}}', file)
     .replaceAll('{{OLD}}', path.relative(ROOT, orig))
     .replaceAll('{{CHECKER}}', CHECKER)
@@ -291,8 +294,15 @@ function fillRewrite(file, orig, feedback) {
     .replace('{{CONTRACT}}', () => CONTRACT)
     .replace('{{HOUSE_STYLE}}', () => HOUSE_STYLE)
     .replace('{{ORIGINAL}}', () => read(orig));
+  // A retry shows the draft it fixes, so the executor need not read the file first.
+  // An attempt that wrote nothing left the original in place, and says so instead.
   if (feedback) {
-    prompt += `\nPREVIOUS ATTEMPT\nThe file on disk is your previous attempt. It failed these checks. Fix every item, keeping the fact rules:\n${feedback}\n`;
+    const current = read(path.join(ROOT, file));
+    if (current === read(orig)) {
+      prompt += `\nPREVIOUS ATTEMPT\nYour previous attempt left the file unchanged, so it still holds the ORIGINAL above. Fix every item, keeping the fact rules:\n${feedback}\n`;
+    } else {
+      prompt += `\nPREVIOUS ATTEMPT\nThe file on disk is your previous attempt, shown here. It failed these checks. Fix every item, keeping the fact rules:\n${feedback}\n<<<PREVIOUS DRAFT\n${current}\nPREVIOUS DRAFT>>>\n`;
+    }
   }
   return prompt;
 }
