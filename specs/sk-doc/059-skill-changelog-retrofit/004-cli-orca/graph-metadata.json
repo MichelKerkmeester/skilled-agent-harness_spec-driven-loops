@@ -192,7 +192,7 @@
     ],
     "causal_summary": "1 cli-orca changelog predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:08Z",
-    "last_save_at": "2026-09-25T14:02:02.901Z",
+    "last_save_at": "2026-09-25T18:30:08.795Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf0c4f5288c556d6fcbfbd3ae0780b2babd380d57112a0ae942add3f3d5b66ca",
+    "source_fingerprint": "sha256:fdb8effe069136ccec7439f2ee97b52ca66ad7d96a37680e5e8b87180a3139e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8a60d96aac5d836fe1c2f60fe4204e323be9787075d685ec878aeb91e255ee5",
       "plan.md": "6913008e8bce2e43b808a11a339d4aca315c46a1d8fe6e27cd37498c4f247922",
       "tasks.md": "4c2cfe39565b7c18b4112fa218a295476acfaccbd3d71d862c2a476a41c62c6a",
-      "implementation-summary.md": "1ac415c9d35304a23668466bc4044afc0991fe8314c902c667c2c461e8a60123"
+      "implementation-summary.md": "438fd0f8e176ba6b408e97e69ebe50a3dd287f259019b46a4b8f67d080c7fe64"
     },
     "last_active_at": null
   }

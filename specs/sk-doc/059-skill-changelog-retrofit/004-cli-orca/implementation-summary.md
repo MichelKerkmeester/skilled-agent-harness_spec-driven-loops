@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 4: cli-orca changelogs"
-description: "The one cli-orca changelog, v0.1.0.0, now reads in the expanded format and keeps every fact its original recorded. It passed the current fact check on a re-check after the check was strengthened."
+description: "The one cli-orca changelog, v0.1.0.0, now reads in the expanded format and keeps every fact its original recorded. It was reopened after its first commit for an uncredited spec folder line and three facts it had lost or bent, and its corrected text passed the fact check and a clean Opus review."
 trigger_phrases:
   - "cli-orca changelog rewrite status"
 importance_tier: "normal"
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The one changelog in `../scratch/lists/cli-orca.txt`, `.skilled/skills/cli-orca/changelog/v0.1.0.0.md`, now reads in the sk-create-changelog expanded format. It passed the shape checker against its original, the HVR scan and the current second-model fact check.
+The one changelog in `../scratch/lists/cli-orca.txt`, `.skilled/skills/cli-orca/changelog/v0.1.0.0.md`, now reads in the sk-create-changelog expanded format. It passed the shape checker against its original, the HVR scan and the current second-model fact check, and it has a clean Opus review of its current text.
 
 ### Phase 4: cli-orca changelogs
 
@@ -67,7 +67,9 @@ The skill's first release records eleven changes, so it takes the expanded forma
 
 The main run failed the file after three attempts on cli-pi, and the first retry pass kept it on cli-codex at its second attempt. The fact check was strengthened after review found passes that had dropped facts elsewhere, so every kept file went back through the current check. This one passed it on cli-pi without a change.
 
-The orchestrator read it beside its original and found every change present. Its spec folder line names `specs/cli-orca/001-mcp-orca-cli`, the migration packet the original credits with recording the supersession, at the Level 3 its spec.md states.
+The orchestrator read it beside its original, found every change present and committed it in `d62d7a3a1a`. That reading missed two problems. The rewrite carried a spec folder line for `specs/cli-orca/001-mcp-orca-cli`, but the original names that folder only as the predecessor packet's new home and as the record of the supersession, and it credits the release's gate run to a migration packet it leaves unnamed. The fact rules now say a `specs/` path given for another purpose is not a credit, so the orchestrator reopened the file and sent it back without the line. cli-codex kept the next draft at its first attempt.
+
+An Opus review of that draft found the second problem. It presented the safety rules as new, dropping that the envelope is carried forward and that the archive-hook gate survives on worktree deletion. It also turned "a bulk close stays unverified until the host confirms every process stopped" into a duty on the host. cli-codex fixed all three at its third attempt, a second Opus review found the text clean, and a follow-up commit holds it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,6 +81,7 @@ The orchestrator read it beside its original and found every change present. Its
 |----------|-----|
 | Reuse the phase 001 tooling | The pilot calibrated it, and later fixes only made its gates stricter |
 | Re-check the kept file under the strengthened fact check before committing | A pass under the older check could still hide a dropped fact |
+| Reopen the committed file instead of leaving the error in place | D1 outranks a commit: a claim the original does not make has to go, and the review that followed found three facts the rewrite had lost or bent |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -89,9 +92,10 @@ The orchestrator read it beside its original and found every change present. Its
 | Check | Result |
 |-------|--------|
 | Target list | PASS: `wc -l < ../scratch/lists/cli-orca.txt` counts 1 file |
-| Final state | PASS: the latest `state.jsonl` record is `pass` under the current fact check, on a re-check |
-| Gates | PASS: `wave-verify.cjs` reports 1 kept, 0 failed, 0 problems |
-| Commit | PASS: `d62d7a3a1a` holds the one rewrite and is on `origin/main` |
+| Final state | PASS: the latest `state.jsonl` record is `pass` under the current fact check, after the reopened file's retry |
+| Gates | PASS: `wave-verify.cjs` reports 1 kept, 0 failed, 0 problems, and the checker exits 0 with 0 HVR hard blockers on the corrected text |
+| Opus review | PASS: the corrected text has a clean review |
+| Commit | PASS: `d62d7a3a1a` holds the first rewrite and is on `origin/main` |
 | Routing and mirrors | PASS: `compiled-route-guard.cjs` and all nine `sync-*.cjs --check` runs exit 0 after the commit |
 | Phase validation | PASS: `validate.sh --strict` reports `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
@@ -101,5 +105,6 @@ The orchestrator read it beside its original and found every change present. Its
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The fact check is one model's reading.** The orchestrator's read found nothing missing, but a second reader could still weigh a paraphrase differently.
+1. **The fact check and the review are two models' readings.** Neither found a loss in the corrected text, but a third reader could still weigh a paraphrase differently.
+2. **The first commit carried the errors for a time.** `d62d7a3a1a` published the uncredited spec folder line and the three lost or bent facts until the follow-up commit replaced them.
 <!-- /ANCHOR:limitations -->
