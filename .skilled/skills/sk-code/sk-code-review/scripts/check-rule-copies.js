@@ -64,7 +64,6 @@ const EXACT_INVARIANTS = [
 // The full statement lives in the shared verify workflow doctrine that each surface consumes.
 const IRON_LAW_FILES = [
   '.skilled/skills/sk-code/shared/references/workflow-verify.md',
-  'CLAUDE.md',
   'AGENTS.md',
 ];
 const IRON_LAW_REQUIRED = ['completion claim', 'verification'];

@@ -16,7 +16,7 @@ This scenario validates the rule-invariant canary for `CR-024`. It focuses on `c
 
 ### Why This Matters
 
-Some rules have to read identically in more than one place: the `Review status:` verdict triplet that downstream PR-state dedup logic keys on, and the cross-document Iron Law that forbids completion claims without verification. When an editor updates one copy and forgets the others, the docs silently disagree and the guarantee rots. The `scripts/check-rule-copies.js` canary added in v1.4.0.0 asserts the load-bearing substrings still exist across copies, validates every Iron Law line in `SKILL.md`, the root `CLAUDE.md`, and `AGENTS.md`, and fails loudly when any copy drifts. It is a checker, not a generator. CR-024 proves the clean run passes, the self-test passes, and a tampered copy is caught with a non-zero exit.
+Some rules have to read identically in more than one place: the `Review status:` verdict triplet that downstream PR-state dedup logic keys on, and the cross-document Iron Law that forbids completion claims without verification. When an editor updates one copy and forgets the others, the docs silently disagree and the guarantee rots. The `scripts/check-rule-copies.js` canary added in v1.4.0.0 asserts the load-bearing substrings still exist across copies, validates the Iron Law lines in `workflow-verify.md` and the root `AGENTS.md`, and fails loudly when any copy drifts. It is a checker, not a generator. CR-024 proves the clean run passes, the self-test passes, and a tampered copy is caught with a non-zero exit.
 
 ---
 

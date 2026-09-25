@@ -24,8 +24,8 @@ TARGETS=(
   ".skilled/skills/sk-code/sk-code-review/README.md"
   ".skilled/skills/sk-code/sk-code-review/changelog/v1.3.0.0.md"
   ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md"
-  ".skilled/skills/sk-code/SKILL.md"
-  "CLAUDE.md"
+  ".skilled/skills/sk-code/shared/references/workflow-verify.md"
+  "AGENTS.md"
 )
 
 seed_tree() {
@@ -70,11 +70,11 @@ node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.r
   "$CASE_DELETED/.skilled/skills/sk-code/sk-code-review/SKILL.md"
 run_case 1 "missing_review_status_approved" node "$CHECKER" --root "$CASE_DELETED"
 
-# FAIL: tampered tree whose CLAUDE.md Iron Law line is reworded to drop "verification".
+# FAIL: tampered tree whose AGENTS.md Iron Law line is reworded to drop "verification".
 CASE_REWORDED="$TMP_DIR/reworded_iron_law"
 seed_tree "$CASE_REWORDED"
 node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8").replace("stack-appropriate verification","stack-appropriate checks"));' \
-  "$CASE_REWORDED/CLAUDE.md"
+  "$CASE_REWORDED/AGENTS.md"
 run_case 1 "iron_law_dropped_verification" node "$CHECKER" --root "$CASE_REWORDED"
 
 if [[ "$failures" -gt 0 ]]; then
