@@ -32,7 +32,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Confirm phase 001 records the operator's style approval: approved with fixes, 2026-09-24
-- [ ] T002 Confirm the cli-orca files are clean in git before the run (`../scratch/lists/cli-orca.txt`)
+- [x] T002 Confirm the cli-orca files are clean in git before the run (`../scratch/lists/cli-orca.txt`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,8 +40,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Run the driver over the list (`../scratch/rewrite-driver.cjs --list ../scratch/lists/cli-orca.txt --state ../scratch/state.jsonl`)
-- [ ] T004 Retry the failures once with `--retry-failed`, and record the reason for any that still fail
+- [x] T003 Run the driver over the list (`../scratch/rewrite-driver.cjs --list ../scratch/lists/cli-orca.txt --state ../scratch/state.jsonl`): failed after three attempts on cli-pi
+- [x] T004 Retry the failures once with `--retry-failed`, and record the reason for any that still fail: kept on cli-codex at attempt 2, then passed the strengthened fact check on a `--reverify` pass
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,8 +49,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file
-- [ ] T006 Read a sample of the kept files old beside new
+- [x] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file: `wave-verify.cjs` reports 1 kept, 0 problems
+- [x] T006 Read a sample of the kept files old beside new: the one file read in full, every change present
 - [ ] T007 Commit the kept cli-orca files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`
 - [ ] T008 Push to main and run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->

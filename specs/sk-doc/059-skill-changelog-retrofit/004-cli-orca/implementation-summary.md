@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 4: cli-orca changelogs"
-description: "Not started. This phase rewrites the 1 listed cli-orca changelog once phase 001's pilot style is approved."
+description: "The one cli-orca changelog, v0.1.0.0, now reads in the expanded format and keeps every fact its original recorded. It passed the current fact check on a re-check after the check was strengthened."
 trigger_phrases:
   - "cli-orca changelog rewrite status"
 importance_tier: "normal"
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-cli-orca |
-| **Completed** | Not started |
+| **Completed** | 2026-09-25 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,17 +45,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. The operator approved the pilot style on 2026-09-24, and this wave has not run. Its target list, `../scratch/lists/cli-orca.txt`, is in place.
+The one changelog in `../scratch/lists/cli-orca.txt`, `.skilled/skills/cli-orca/changelog/v0.1.0.0.md`, now reads in the sk-create-changelog expanded format. It passed the shape checker against its original, the HVR scan and the current second-model fact check.
 
 ### Phase 4: cli-orca changelogs
 
-The wave will rewrite the 1 listed changelog, keep each one only when all three gates pass, and commit the skill once.
+The skill's first release records eleven changes, so it takes the expanded format. The rewrite keeps the extraction from `mcp-tooling`, the eight official Orca skill references and snapshots, the routing contract, the safety envelope, the provenance record and the supersession of `mcp-orca-cli` v0.1.0.0 and v0.1.1.0.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | None | The wave has not run |
+| `.skilled/skills/cli-orca/changelog/v0.1.0.0.md` | Rewritten | Current format, facts kept |
+| `../scratch/state.jsonl` | Appended | One record per attempt and re-check |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -63,7 +64,9 @@ The wave will rewrite the 1 listed changelog, keep each one only when all three 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet.
+The main run failed the file after three attempts on cli-pi, and the first retry pass kept it on cli-codex at its second attempt. The fact check was strengthened after review found passes that had dropped facts elsewhere, so every kept file went back through the current check. This one passed it on cli-pi without a change.
+
+The orchestrator read it beside its original and found every change present. Its spec folder line names `specs/cli-orca/001-mcp-orca-cli`, the migration packet the original credits with recording the supersession, at the Level 3 its spec.md states.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -73,7 +76,8 @@ Not delivered yet.
 
 | Decision | Why |
 |----------|-----|
-| Reuse the phase 001 tooling unchanged | The pilot calibrated it, and the parent's decisions freeze it |
+| Reuse the phase 001 tooling | The pilot calibrated it, and later fixes only made its gates stricter |
+| Re-check the kept file under the strengthened fact check before committing | A pass under the older check could still hide a dropped fact |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -83,8 +87,9 @@ Not delivered yet.
 
 | Check | Result |
 |-------|--------|
-| Target list | PASS: `wc -l < ../scratch/lists/cli-orca.txt` counts 1 files |
-| Wave run | Pending |
+| Target list | PASS: `wc -l < ../scratch/lists/cli-orca.txt` counts 1 file |
+| Final state | PASS: the latest `state.jsonl` record is `pass` under the current fact check, on a re-check |
+| Gates | PASS: `wave-verify.cjs` reports 1 kept, 0 failed, 0 problems |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -92,5 +97,5 @@ Not delivered yet.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not started.** Every check waits on the wave.
+1. **The fact check is one model's reading.** The orchestrator's read found nothing missing, but a second reader could still weigh a paraphrase differently.
 <!-- /ANCHOR:limitations -->
