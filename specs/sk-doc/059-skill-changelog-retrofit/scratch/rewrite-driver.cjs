@@ -59,6 +59,8 @@ const REWRITE_TIMEOUT_MS = 30 * 60 * 1000;
 const VERIFY_TIMEOUT_MS = 15 * 60 * 1000;
 const GPT_COOLDOWN_MS = 30 * 60 * 1000;
 const MAX_ATTEMPTS = 3;
+// Enough earlier findings to stop a fix loop, few enough that the latest ones lead.
+const MAX_EARLIER_FINDINGS = 12;
 // The brief's handback reports format=unknown only when the executor never got
 // far enough to read the file, which means its tool runner failed, not the rewrite.
 const TOOLS_DOWN_RE = /RETURN:\s*FAIL\s*\|\s*format=unknown/i;
@@ -287,7 +289,14 @@ function extractVerdict(text) {
 // The rewrite brief is read on every dispatch, so a fix to it reaches the next file
 // without restarting the run. The review brief stays fixed for the whole run,
 // because each record names the review it passed under.
-function fillRewrite(file, orig, feedback) {
+// A dense file most often fails all its attempts by undoing one review's fix to
+// satisfy the next, so a retry also sees what earlier reviews sent back.
+function earlierBlock(earlier) {
+  if (!earlier || !earlier.length) return '';
+  return `\nEARLIER FINDINGS\nEarlier reviews of this file also sent it back for these items. Keep each one fixed while you fix the items above, and never undo one fix to make another. If two items pull against each other, the fact rules win: keep the fact and cut only the repeated wording.\n${earlier.map((x) => `- ${x}`).join('\n')}\n`;
+}
+
+function fillRewrite(file, orig, feedback, earlier) {
   let prompt = read(path.join(HERE, 'brief-rewrite.md'))
     .replaceAll('{{ROOT}}', ROOT)
     .replaceAll('{{FILE}}', file)
@@ -306,18 +315,20 @@ function fillRewrite(file, orig, feedback) {
     } else {
       prompt += `\nPREVIOUS ATTEMPT\nThe file on disk is your previous attempt, shown here. It failed these checks. Fix every item, keeping the fact rules:\n${feedback}\n<<<PREVIOUS DRAFT\n${current}\nPREVIOUS DRAFT>>>\n`;
     }
+    prompt += earlierBlock(earlier);
   }
   return prompt;
 }
 
 // A resumed session already holds the brief, the contract and its own draft, so a
-// retry sends only what failed.
-function fillContinue(file, feedback) {
+// retry sends only what failed, plus earlier findings the session may not have seen.
+function fillContinue(file, feedback, earlier) {
   return [
     `Your rewrite of ${file} failed these checks. Fix every item in the file, keeping the fact rules and every other part of your draft, as one whole-file write.`,
     feedback,
+    earlierBlock(earlier).trim(),
     'Then run the three checks from step 5 again and end with the RETURN line.',
-  ].join('\n');
+  ].filter(Boolean).join('\n');
 }
 
 // The prose an original's facts live in: no frontmatter, no table rows, no Files
@@ -422,6 +433,18 @@ async function processFile(file, lane, prior) {
   let toolRetries = 0;
   const history = [];
 
+  // Every fidelity finding this file has drawn, oldest first, across its earlier
+  // records and this run. Each prompt lists the ones its own findings leave out.
+  const seen = [];
+  const noteFindings = (items) => {
+    for (const x of items) if (!seen.includes(x)) seen.push(x);
+  };
+  let current = [];
+  const earlier = () => seen.filter((x) => !current.includes(x)).slice(-MAX_EARLIER_FINDINGS);
+  for (const h of (prior && prior.history) || []) {
+    if (h.problem === 'fidelity' && h.items) noteFindings(h.items);
+  }
+
   // A retry resumes from the kept draft and its last findings: a fresh start on a
   // long file tends to trade the old findings for new ones instead of converging.
   const draft = path.join(FAIL_DIR, safeName(file));
@@ -429,6 +452,7 @@ async function processFile(file, lane, prior) {
     const last = [...(prior.history || [])].reverse().find((h) => h.items && h.items.length);
     if (last) {
       fs.copyFileSync(draft, abs);
+      current = last.items;
       findings = last.items.map((x) => `- ${x}`).join('\n');
       feedback = findings;
     }
@@ -445,7 +469,7 @@ async function processFile(file, lane, prior) {
     let sessionArg = null;
     if (resume) sessionArg = { id: session.id, resume: true };
     else if (lane === 'pi' && route === 'gpt') sessionArg = { id: crypto.randomUUID(), resume: false };
-    const prompt = resume ? fillContinue(file, feedback) : fillRewrite(file, orig, feedback);
+    const prompt = resume ? fillContinue(file, feedback, earlier()) : fillRewrite(file, orig, feedback, earlier());
     // A retried attempt gets its own log, so the run that failed stays readable.
     const rw = await dispatch(lane, 'rewrite', prompt, `${tag}.a${attempt}${toolRetries ? `r${toolRetries}` : ''}`, sessionArg, route);
     session = rw.sessionId ? { id: rw.sessionId, route } : null;
@@ -483,6 +507,7 @@ async function processFile(file, lane, prior) {
     if (shape.exit !== 0 || hvr.hard !== 0) {
       const items = [...(shape.report.errors || []), ...(hvr.hard > 0 ? hvr.lines.map((l) => `HVR hard blocker: ${l}`) : []), ...(hvr.hard < 0 ? ['HVR scan output unreadable'] : [])];
       history.push({ attempt, route: rw.route, problem: 'gates', items });
+      current = items;
       findings = items.map((x) => `- ${x}`).join('\n');
       feedback = findings;
       continue;
@@ -500,6 +525,8 @@ async function processFile(file, lane, prior) {
       return { status: 'pass', format: shape.report.format, warnings: shape.report.warnings, attempts: attempt, history, route: rw.route, note: 'verifier said FAIL with empty lists' };
     }
     history.push({ attempt, route: rw.route, problem: 'fidelity', items });
+    noteFindings(items);
+    current = items;
     findings = items.map((x) => `- ${x}`).join('\n');
     feedback = findings;
   }
