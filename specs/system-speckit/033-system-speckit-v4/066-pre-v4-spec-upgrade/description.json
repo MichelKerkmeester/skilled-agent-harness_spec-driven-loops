@@ -13,18 +13,20 @@
     "without",
     "exception"
   ],
-  "lastUpdated": "2026-09-24T15:10:06.637Z",
+  "lastUpdated": "2026-09-25T06:10:27.394Z",
   "specId": "066",
   "folderSlug": "pre-v4-spec-upgrade",
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4"
   ],
-  "memorySequence": 4,
+  "memorySequence": 6,
   "memoryNameHistory": [
     "24-09-26_12-43__deep-research-luna-cli-codex-gpt-5-6-luna-max.md",
     "24-09-26_12-44__deep-research-luna-cli-codex-gpt-5-6-luna-max.md",
     "24-09-26_13-45__planning-complete-for-the-pre-v4-upgrade-path.md",
-    "24-09-26_16-10__planning-complete-for-the-pre-v4-upgrade-path.md"
+    "24-09-26_16-10__planning-complete-for-the-pre-v4-upgrade-path.md",
+    "25-09-26_07-08__implementation-closed-out-upgrade-legacy-mjs-the.md",
+    "25-09-26_07-10__implementation-closed-out-upgrade-legacy-mjs-the.md"
   ]
 }
