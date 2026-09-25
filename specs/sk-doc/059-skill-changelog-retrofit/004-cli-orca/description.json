@@ -13,13 +13,15 @@
     "now",
     "defines"
   ],
-  "lastUpdated": "2026-09-24T17:59:34.979Z",
+  "lastUpdated": "2026-09-25T14:02:02.901Z",
   "specId": "004",
   "folderSlug": "cli-orca",
   "parentChain": [
     "sk-doc",
     "059-skill-changelog-retrofit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-09-26_15-02__closed-phase-004-the-cli-orca-rewrite-is.md"
+  ]
 }

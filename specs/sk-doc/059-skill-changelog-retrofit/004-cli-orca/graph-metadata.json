@@ -35,7 +35,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -88,12 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -113,6 +107,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,8 +192,8 @@
     ],
     "causal_summary": "1 cli-orca changelog predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:08Z",
-    "last_save_at": "2026-09-25T13:25:34.953Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-25T14:02:02.901Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -202,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28573433972d85ffd24dd0316359154cfbbd150ef0b24aff4ae37cde39cf80ca",
+    "source_fingerprint": "sha256:bf0c4f5288c556d6fcbfbd3ae0780b2babd380d57112a0ae942add3f3d5b66ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "baad61400b91ee5fb7383d233f472851cf81a709b827f89595571e3d842b38db",
-      "plan.md": "871594f5b9f3b0e2fc2e2a0347d26787087c7a255469e4ee82e1ef35a64dd8bb",
-      "tasks.md": "0bd175197f09c1f1a6033aedbda4ede8fbc4d4268e13628ffea76de2e72fb695",
-      "implementation-summary.md": "d6b737b466b1aa5ab72c7c01e80a3e309948d10bb8d374eac2c92fc37a47aabe"
+      "spec.md": "e8a60d96aac5d836fe1c2f60fe4204e323be9787075d685ec878aeb91e255ee5",
+      "plan.md": "6913008e8bce2e43b808a11a339d4aca315c46a1d8fe6e27cd37498c4f247922",
+      "tasks.md": "4c2cfe39565b7c18b4112fa218a295476acfaccbd3d71d862c2a476a41c62c6a",
+      "implementation-summary.md": "1ac415c9d35304a23668466bc4044afc0991fe8314c902c667c2c461e8a60123"
     },
     "last_active_at": null
   }

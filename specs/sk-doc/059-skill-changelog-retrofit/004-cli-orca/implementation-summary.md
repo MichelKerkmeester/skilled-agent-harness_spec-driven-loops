@@ -8,17 +8,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/059-skill-changelog-retrofit/004-cli-orca"
-    last_updated_at: "2026-09-24T18:20:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Planned the cli-orca wave"
-    next_safe_action: "Run the wave with the phase 001 driver"
+    last_updated_at: "2026-09-25T14:02:02Z"
+    last_updated_by: "generate-context"
+    recent_action: "Committed, pushed and validated the cli-orca rewrite"
+    next_safe_action: "Continue with the parent packet's remaining phases"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/cli-orca/changelog/v0.1.0.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:2191051aedc041f709fefdffbb0d331b45fba0c56f7629a9c663e5521c7eeec4"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -90,6 +91,9 @@ The orchestrator read it beside its original and found every change present. Its
 | Target list | PASS: `wc -l < ../scratch/lists/cli-orca.txt` counts 1 file |
 | Final state | PASS: the latest `state.jsonl` record is `pass` under the current fact check, on a re-check |
 | Gates | PASS: `wave-verify.cjs` reports 1 kept, 0 failed, 0 problems |
+| Commit | PASS: `d62d7a3a1a` holds the one rewrite and is on `origin/main` |
+| Routing and mirrors | PASS: `compiled-route-guard.cjs` and all nine `sync-*.cjs --check` runs exit 0 after the commit |
+| Phase validation | PASS: `validate.sh --strict` reports `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
