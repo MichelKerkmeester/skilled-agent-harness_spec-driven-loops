@@ -46,11 +46,11 @@ The design comes from `research/research.md` §5, §7, §9 and §10, and from fo
 - [x] Operator decisions recorded: wide recorded-findings scope, no placeholder documents, no Status rewrites (`spec.md` REQ-006 and REQ-007)
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`
-- [ ] New Vitest files pass, and so do the existing files for every touched tool
-- [ ] Harness: 170 of 170 (v3.0) and 1,007 of 1,007 (v3.6) active packets pass `--strict` after `--apply`, and a second `--apply` changes no file
-- [ ] `validate.sh --strict` on this packet prints `RESULT: PASSED`
-- [ ] `runtime/cli/spec/README.md` and the v4 changelog Upgrade Notes name the command
+- [x] Every row in `acceptance-criteria.md` is `Met`
+- [x] New Vitest files pass, and so do the existing files for every touched tool
+- [x] Harness: 170 of 170 (v3.0) and 995 of 995 (v3.6) active packets pass `--strict` after `--apply`, counted by v4's packet rule, and a second `--apply` changes no file
+- [x] `validate.sh --strict` on this packet prints `RESULT: PASSED`
+- [x] `runtime/cli/spec/README.md` and the v4.0.0.1 release notes name the command
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -69,13 +69,13 @@ A thin command that runs existing CLI tools as child processes, plus one policy 
 - **Exit-code fix in `runtime/cli/graph/backfill-graph-metadata.ts` (modified).** A folder that fails goes into `failed[]` (`:653-658`), and `run()` still exits 0 (`:730-743`). The fix sets `process.exitCode = 1` when `failed[]` is non-empty. `repair-derived.cjs:324-331` then reports the failure without any change of its own.
 
 ### Data Flow
-One run covers the specs roots it is given, `specs/` and `.opencode/specs/` by default.
+One run covers the specs roots it is given, `specs/` by default. Amended 2026-09-25 to match what was built: the review of the first build limited every write to packets that fail at the start and replaced the shared frontmatter backfill with a fill-only step, and the operator chose the layout refusal and the per-file report on malformed frontmatter. When the packets still live in `.opencode/specs`, the run stops before any write and prints `rm -f specs && git mv .opencode/specs specs && ln -s ../specs .opencode/specs`.
 
-1. Discover packets with `collectSpecFolders` from the backfill module (`backfill-graph-metadata.ts:452-488`). Only active packets are included unless `--include-archive` is passed.
-2. Read-only pass: `validate.sh --strict --json --no-recursive` on each packet. This gives the before count.
-3. Document edits, active packets only: `backfill-frontmatter.js --apply --skip-templates --allow-malformed --roots <root> --report <tmp>`, then `heal-spec-docs.cjs --apply --roots <root>`.
-4. Derivation, active packets only: `repair-derived.cjs --apply --roots <root>` edits packet pointers and re-derives graph metadata. Then `migrate-generated-json` runs with one `--only` per active packet, which regenerates `description.json` and clears the `.opencode/specs/` prefix in `specFolder` that `repair-derived` never writes.
-5. Validate each packet. For a packet that still fails, write `upgrade-baseline.json` with every error detail, leaving out the never-covered rules in an active packet. The write is atomic (temp file, then rename). The file keeps its `recordedAt` when the finding set is unchanged, so a rerun leaves it byte-identical.
+1. Discover packets with `collectSpecFolders` from the backfill module (`backfill-graph-metadata.ts:452-488`), skipping the spec-tree copies that research, review and context runs keep inside a packet. Only active packets are included unless `--include-archive` is passed.
+2. Read-only pass: `validate.sh --strict --json --no-recursive` on each packet. This gives the before count. When a report cannot be read, `--apply` names the reason and writes nothing.
+3. Document edits, failing active packets only: the fill step adds the frontmatter keys a spec document lacks without rewriting a value already there, and names each document whose block it cannot read, leaving it byte-identical. Then `heal-spec-docs.cjs --apply --folder <packet>`.
+4. Derivation, failing active packets only: `repair-derived.cjs --apply --folder <packet>` edits packet pointers and re-derives graph metadata. Then `migrate-generated-json` runs with one `--only` per packet, which regenerates `description.json` and clears the `.opencode/specs/` prefix in `specFolder` that `repair-derived` never writes.
+5. Validate each packet that failed at the start. For one that still fails, write `upgrade-baseline.json` with every copy of every error detail, leaving out the never-covered rules in an active packet. The write is atomic (temp file, then rename). The file keeps its `recordedAt` when the finding set is unchanged, so a rerun leaves it byte-identical.
 6. Validate again. A packet that still fails is reported with its remaining rules, and the run exits 2.
 7. Print one line per changed packet and a summary: packets inspected, passing before and after, and recorded findings by rule.
 
@@ -99,6 +99,7 @@ The exit-code change and the validator hook both touch shared contracts, so ever
 |---------|--------------|--------|--------------|
 | `backfill-graph-metadata.ts` `run()` | Derives graph metadata and reports failures in its JSON summary | Update: exit 1 when `failed[]` is non-empty | New spawn test with a folder that fails |
 | `repair-derived.cjs:324-331` | Spawns the backfill and trusts its exit status | Unchanged. Now reports `FAILED` for a failed re-derive | Existing `repair-derived.vitest.ts` rerun |
+| `.skilled/scripts/git-hooks/pre-commit:572-600` | Runs `repair-derived` over every packet with staged docs and blocks the commit on a non-zero exit | Unchanged, but stricter in effect: a re-derive that fails now blocks the commit, where before it passed as `repaired`. Bypass: `SPECKIT_SKIP_SPEC_REMINT=1` | Measured on 2026-09-24: a graph refresh fails for 0 of 4,114 packets in this checkout, so no commit today is newly blocked |
 | `create.sh:1755-1765` | Spawns the backfill after scaffolding | Unchanged. Prints its existing warning on a non-zero exit | Read: `\|\| echo "Warning: graph metadata derivation skipped"` |
 | `fanout-run.cjs:2904-2970` | Spawns the backfill for metadata refresh | Unchanged. Logs `metadata_refresh_failed` with status `warning` | Read: `failed = ... result.status !== 0` |
 | `doctor-update.yaml:280` | Runs `--active-only` through `tee` | Unchanged. Its `on_failure` warns | Read |
@@ -109,7 +110,7 @@ The exit-code change and the validator hook both touch shared contracts, so ever
 Required inventories:
 - **Same-class producers.** `heal-spec-docs.cjs` also finishes with exit 0 whatever happens. It is left as is, because the command takes its verdict from the validator (Data Flow step 6).
 - **Consumers.** `rg -n --hidden "backfill-graph-metadata" .skilled .github`, run on 2026-09-24, produced the rows above.
-- **Matrix axes.** Packet era (v3.0, v3.6), location (active, `z_archive`, `z_future`), file state (absent, all recorded, one new detail, malformed) and rule class (recordable, never covered).
+- **Matrix axes.** Packet era (v3.0, v3.6), location (active, `z_archive`, `z_future`), file state (absent, all recorded, one new detail, malformed) and rule class (recordable, never covered). That is 2 × 3 × 4 × 2 = 48 rows. The proof runs cover era by location on real trees, `z_future` only in v3.6, which is the only tag holding it. The hook tests cover every file state and both rule classes, and test the rule-class split in an active and an archived packet. No single test walks all 48 rows.
 - **Invariant.** A finding the file does not list is never downgraded. A never-covered rule is never downgraded outside `z_archive` and `z_future`.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -143,10 +144,10 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ### Proof plan
 These checks were fixed before implementation, so the result cannot become the standard.
 
-1. After `--apply` in a harness sandbox, `validate-all.cjs` and `agg.cjs` report 170 of 170 (v3.0) and 1,007 of 1,007 (v3.6) active packets passing `--strict`.
+1. After `--apply` in a harness sandbox, `validate-all.cjs` and `agg.cjs` report 170 of 170 (v3.0) and 995 of 995 (v3.6) active packets passing `--strict`. The count follows v4's packet rule (an `NNN-slug` name, no dot-folder on the path), as the operator set on 2026-09-24.
 2. A second `--apply` on the same sandbox leaves the path-and-sha256 manifest of the specs root identical.
 3. Negative control: one new broken link in an upgraded packet makes `validate.sh --strict` print `RESULT: FAILED` with `SPEC_DOC_INTEGRITY` as an error.
-4. With `--include-archive`, 186 of 186 (v3.0) and 911 of 911 (v3.6) archived packets pass.
+4. With `--include-archive`, 158 of 158 (v3.0) and 895 of 895 (v3.6) archived packets pass, by the same packet rule.
 5. A dry run on a fresh sandbox leaves the manifest identical and exits 1.
 <!-- /ANCHOR:testing -->
 
@@ -219,9 +220,9 @@ Phase 1 (Setup) ──► Phase 2 (Validator hook, exit code) ──► Phase 3 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Harness proof items 1 to 5 recorded in `implementation-summary.md`
-- [ ] No feature flag needed: the hook acts only when a packet holds `upgrade-baseline.json`, and no v4 packet holds one
-- [ ] Full `cli` and `root` Vitest projects rerun from the final state
+- [x] Harness proof items 1 to 5 recorded in `implementation-summary.md`
+- [x] No feature flag needed: the hook acts only when a packet holds `upgrade-baseline.json`, and no v4 packet holds one (0 under `specs/` on 2026-09-25)
+- [x] Full `cli` and `root` Vitest projects rerun from the final state (2026-09-25: cli 1,550 passed, root 1,274 passed, 0 failed)
 
 ### Rollback Procedure
 1. Revert the commit that adds the hook, the exit-code fix and the command.

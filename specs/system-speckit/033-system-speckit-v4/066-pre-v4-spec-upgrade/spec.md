@@ -23,11 +23,11 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-24 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 51 of 51 |
+| **Phase** | 66 of 66 |
 | **Predecessor** | 050-ci-cleanup-pi-proof |
 | **Successor** | None |
 | **Handoff Criteria** | research/research.md names a deterministic route to a full strict pass for every residual finding class, each route checked against the harness data |
@@ -38,7 +38,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 51** of the system-speckit v4 program. It covers what an existing v3.x user's spec folders need after upgrading.
+This is **Phase 66** of the system-speckit v4 program. It covers what an existing v3.x user's spec folders need after upgrading.
 
 **Scope Boundary**: spec folders that already exist when a user upgrades, and the spec-kit tooling that validates and repairs them. New packets created under v4 are out of scope.
 
@@ -72,6 +72,8 @@ Measured on 2026-09-24: real packets extracted from tags `v3.0.0.0` and `v3.6.0.
 
 Archived packets (`z_archive`, `z_future`) pass 0 of 186 (v3.0) and 0 of 911 (v3.6) in every row, because both repair tools skip archives by default.
 
+These counts take every folder that holds a `spec.md`. By v4's own packet rule, an `NNN-slug` name with no dot-folder on the path, v3.6 has 995 active packets, and the archives hold 158 (v3.0) and 895 (v3.6). The other 28 folders are backup copies, test fixtures, review scopes and three letter-suffixed names such as `002b-`. On 2026-09-24 the operator set the criteria to count v4 packets only.
+
 Observations from the same run:
 - `memory/` folders (204 packets at v3.0) trip no rule. `checklist.md` without `acceptance-criteria.md` passes `FILE_EXISTS` and `LEVEL_MATCH`.
 - Both `specs/` and `.opencode/specs/` are discovered roots (`runtime/lib/search/folder-discovery.ts:1385-1392`).
@@ -91,7 +93,7 @@ An upgrading user runs one deterministic command and every existing spec folder 
 ### In Scope
 - Research: for every residual finding class in `scratch/harness/data/`, the route to a pass without authored content, and what each route costs.
 - Build: the upgrade tooling and any validator change the research selects.
-- One Upgrade Notes line in the v4 changelog naming the command.
+- The v4.0.0.1 release notes, which name the command. On 2026-09-24 the operator chose a new release notes file over a line in the already-released v4.0.0.0 notes, covering everything that landed since the v4.0.0.0 tag.
 
 ### Out of Scope
 - Rewriting historical content by LLM. The goal is to make that unnecessary.
@@ -110,7 +112,7 @@ An upgrading user runs one deterministic command and every existing spec folder 
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts` | Create | Tests for the command |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts` | Modify | Exit-code case |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` | Modify | Name the command |
-| `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md` | Modify | Upgrade Notes line |
+| `.skilled/skills/system-spec-kit/changelog/v4.0.0.1.md` | Create | Release notes for everything since the v4.0.0.0 tag, naming the command |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -144,7 +146,7 @@ An upgrading user runs one deterministic command and every existing spec folder 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The harness in `scratch/harness/` reports 170 of 170 (v3.0) and 1,007 of 1,007 (v3.6) active packets passing after the command runs.
+- **SC-001**: The harness in `scratch/harness/` reports 170 of 170 (v3.0) and 995 of 995 (v3.6) active packets passing after the command runs, counted by v4's packet rule.
 - **SC-002**: The count of files the command changed on its second run is zero.
 <!-- /ANCHOR:success-criteria -->
 
@@ -185,8 +187,8 @@ An upgrading user runs one deterministic command and every existing spec folder 
 
 ### Data Boundaries
 - Empty specs root: the command reports zero packets and exits 0.
-- Malformed frontmatter: reported per file, the folder left untouched, the run exit non-zero.
-- Packets under `.opencode/specs/` only: discovered like `specs/`.
+- Malformed frontmatter: the document is left byte-identical and named in the output with the reason, while the rest of its folder is repaired and recorded, and the exit follows the packet's final result. Amended 2026-09-25 by operator decision: leaving the whole folder untouched would keep failing the packets that hold such blocks, 23 active documents on v3.0 and 45 on v3.6.
+- Packets under `.opencode/specs/` only: the run stops before any write and prints `rm -f specs && git mv .opencode/specs specs && ln -s ../specs .opencode/specs`. Amended 2026-09-25 by operator decision: the derivation tools resolve every packet against `specs/`, so a tree still under `.opencode/specs` would be repaired only halfway.
 
 ### Error Scenarios
 - A child tool refuses a write: reported as a failure for that folder, never as repaired.
