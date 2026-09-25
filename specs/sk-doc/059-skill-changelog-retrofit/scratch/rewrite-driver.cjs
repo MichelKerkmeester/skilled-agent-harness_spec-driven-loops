@@ -36,10 +36,13 @@ const STATUS_FILE = path.join(HERE, process.env.DRIVER_STATUS || 'driver-status.
 // Files a review sends back while a run is going join the front of its queue, so a
 // skill's retries run while that skill is current instead of after every other one.
 const REQUEUE_FILE = path.join(HERE, process.env.DRIVER_REQUEUE || 'requeue.txt');
-const VERIFY_BRIEF = fs.readFileSync(path.join(HERE, 'brief-verify.md'), 'utf8');
+// The review brief is read at each use, like the rewrite brief, so an amendment
+// reaches the next check without restarting a run.
+const verifyBrief = () => fs.readFileSync(path.join(HERE, 'brief-verify.md'), 'utf8');
+const briefHash = (text) => crypto.createHash('sha256').update(text).digest('hex').slice(0, 12);
 // Each record names the review brief it passed under, so a --reverify pass can
 // find the kept files an older, weaker review let through and resume after a stop.
-const VERIFY_HASH = crypto.createHash('sha256').update(VERIFY_BRIEF).digest('hex').slice(0, 12);
+const VERIFY_HASH = briefHash(verifyBrief());
 
 // The rewrite brief carries the contract and the house-style opening inline, so a
 // worker spends its turns on the changelog rather than on reading the references.
@@ -369,7 +372,7 @@ function missingIdentifiers(orig, file) {
 function fillVerify(orig, file) {
   const missing = missingIdentifiers(orig, file);
   const list = missing.length ? missing.map((s) => `- \`${s}\``).join('\n') : '(none)';
-  return VERIFY_BRIEF
+  return verifyBrief()
     .replace('{{MISSING}}', () => list)
     .replace('{{ORIGINAL}}', () => read(orig))
     .replace('{{REWRITE}}', () => read(path.join(ROOT, file)));
@@ -646,7 +649,7 @@ async function main() {
         continue;
       }
       counts[res.status] += 1;
-      const rec = { file, lane, ...res, verifyBrief: VERIFY_HASH, started: new Date(started).toISOString(), secs: Math.round((Date.now() - started) / 1000) };
+      const rec = { file, lane, ...res, verifyBrief: briefHash(verifyBrief()), started: new Date(started).toISOString(), secs: Math.round((Date.now() - started) / 1000) };
       fs.appendFileSync(opts.state, `${JSON.stringify(rec)}\n`);
       console.log(`${now()} ${lane} ${res.status} ${file} attempts=${res.attempts} secs=${rec.secs}`);
       writeStatus({ total, remaining: queue.length, inFlight: [...inFlight] });

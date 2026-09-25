@@ -27,7 +27,7 @@ TASK
 List four kinds of problem:
 - unsupported: a claim in REWRITE that ORIGINAL neither states nor directly implies (a new fact, number, name, reason or benefit). Check every sentence under "Why This Release" this way: a motivation the ORIGINAL does not give is unsupported, even when it sounds plausible.
 - dropped: a change ORIGINAL records that REWRITE lacks. This covers every listed change, not only user-visible ones, and also a breaking change, migration step, required action, correction of an earlier claim, count or before-and-after value, and a statement of what stayed unchanged. A fact survives when REWRITE states it in any words.
-- distorted: a claim in REWRITE whose meaning differs from ORIGINAL.
+- distorted: a claim in REWRITE whose meaning differs from ORIGINAL. Check each sentence for a changed noun (a router called a route, the hub's graph called another component's), a changed actor (a change credited to the tool a document describes rather than to the document, or to someone ORIGINAL does not name), a narrowed or widened scope ("those" commands where ORIGINAL says any unregistered command), two separate facts merged into one claim, and a word such as still, remains, stays or earlier that REWRITE adds, or that ORIGINAL uses and REWRITE drops.
 - padding: a sentence in REWRITE that carries no information, such as one that only restates its heading, says a detail was "recorded" or "documented" without saying what it is, or repeats a sentence from another section with only a word or two changed.
 
 These are deliberate and are NOT problems:
