@@ -79,6 +79,7 @@ and findings belong here.
 | Wave | Pending | Waits on the style approval |
 | Style approval | Done | Operator approved the pilot style with fixes on 2026-09-24. The wave may start |
 | Wave | Done | d62d7a3a1a on origin/main holds the one kept rewrite; route guard and nine mirror checks exit 0; validate.sh --strict RESULT: PASSED |
+| Follow-up | Done | 8f2cbbd4d3 on origin/main holds the corrected v0.1.0.0 with the uncredited spec folder line dropped and three lost or bent facts fixed, route guard and nine mirror checks exit 0, validate.sh --strict RESULT: PASSED |
 
 ### Deviations and findings
 

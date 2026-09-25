@@ -8,15 +8,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/059-skill-changelog-retrofit/004-cli-orca"
-    last_updated_at: "2026-09-25T14:02:02Z"
+    last_updated_at: "2026-09-25T18:31:36Z"
     last_updated_by: "generate-context"
-    recent_action: "Committed, pushed and validated the cli-orca rewrite"
+    recent_action: "Committed the corrected cli-orca rewrite in 8f2cbbd4d3 and recorded the reopen"
     next_safe_action: "Continue with the parent packet's remaining phases"
     blockers: []
     key_files:
       - ".skilled/skills/cli-orca/changelog/v0.1.0.0.md"
     session_dedup:
-      fingerprint: "sha256:2191051aedc041f709fefdffbb0d331b45fba0c56f7629a9c663e5521c7eeec4"
+      fingerprint: "sha256:8f7c46a57cf72d4e636e5d344a226c81d14ba61f6f55c7bea5f39d13ee91d0cc"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"
       parent_session_id: null
     completion_pct: 100
@@ -69,7 +69,7 @@ The main run failed the file after three attempts on cli-pi, and the first retry
 
 The orchestrator read it beside its original, found every change present and committed it in `d62d7a3a1a`. That reading missed two problems. The rewrite carried a spec folder line for `specs/cli-orca/001-mcp-orca-cli`, but the original names that folder only as the predecessor packet's new home and as the record of the supersession, and it credits the release's gate run to a migration packet it leaves unnamed. The fact rules now say a `specs/` path given for another purpose is not a credit, so the orchestrator reopened the file and sent it back without the line. cli-codex kept the next draft at its first attempt.
 
-An Opus review of that draft found the second problem. It presented the safety rules as new, dropping that the envelope is carried forward and that the archive-hook gate survives on worktree deletion. It also turned "a bulk close stays unverified until the host confirms every process stopped" into a duty on the host. cli-codex fixed all three at its third attempt, a second Opus review found the text clean, and a follow-up commit holds it.
+An Opus review of that draft found the second problem. It presented the safety rules as new, dropping that the envelope is carried forward and that the archive-hook gate survives on worktree deletion. It also turned "a bulk close stays unverified until the host confirms every process stopped" into a duty on the host. cli-codex fixed all three at its third attempt, a second Opus review found the text clean, and `8f2cbbd4d3` holds it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -95,8 +95,8 @@ An Opus review of that draft found the second problem. It presented the safety r
 | Final state | PASS: the latest `state.jsonl` record is `pass` under the current fact check, after the reopened file's retry |
 | Gates | PASS: `wave-verify.cjs` reports 1 kept, 0 failed, 0 problems, and the checker exits 0 with 0 HVR hard blockers on the corrected text |
 | Opus review | PASS: the corrected text has a clean review |
-| Commit | PASS: `d62d7a3a1a` holds the first rewrite and is on `origin/main` |
-| Routing and mirrors | PASS: `compiled-route-guard.cjs` and all nine `sync-*.cjs --check` runs exit 0 after the commit |
+| Commit | PASS: `d62d7a3a1a` holds the first rewrite and `8f2cbbd4d3` the corrected one, and both are on `origin/main` |
+| Routing and mirrors | PASS: `compiled-route-guard.cjs` and all nine `sync-*.cjs --check` runs exit 0 after each commit |
 | Phase validation | PASS: `validate.sh --strict` reports `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
@@ -106,5 +106,5 @@ An Opus review of that draft found the second problem. It presented the safety r
 ## Known Limitations
 
 1. **The fact check and the review are two models' readings.** Neither found a loss in the corrected text, but a third reader could still weigh a paraphrase differently.
-2. **The first commit carried the errors for a time.** `d62d7a3a1a` published the uncredited spec folder line and the three lost or bent facts until the follow-up commit replaced them.
+2. **The first commit carried the errors for a time.** `d62d7a3a1a` published the uncredited spec folder line and the three lost or bent facts until `8f2cbbd4d3` replaced them.
 <!-- /ANCHOR:limitations -->
