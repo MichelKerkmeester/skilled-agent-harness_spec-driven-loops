@@ -78,6 +78,7 @@ and findings belong here.
 |------|-------|----------|
 | Pilot: sk-create-command v1.0.1.1 | Done | Kept in pilot run 2 |
 | Wave | Pending | Waits on the style approval |
+| Style approval | Done | Operator approved the pilot style with fixes on 2026-09-24. The wave may start |
 
 ### Deviations and findings
 

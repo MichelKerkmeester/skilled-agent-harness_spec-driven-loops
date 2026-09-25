@@ -191,7 +191,7 @@
     ],
     "causal_summary": "12 system-skill-advisor changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:15Z",
-    "last_save_at": "2026-09-24T20:00:00.918Z",
+    "last_save_at": "2026-09-25T14:09:26.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,7 +201,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c63209d0344c984ba2138620c4654e100c9e8d5a25a37f97671337e0e421a93",
+    "source_fingerprint": "sha256:cc3b8a7ec7ab60b0bb18592a8a0c8e66226e7f212c45efc2ee3c7def497379ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13dbab60143ec071ce004b730861437b95426532698b30a1f9f8b7e20a9cbb5a",

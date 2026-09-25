@@ -45,7 +45,7 @@ Frozen. Changing one is an amendment.
 |----|----------|
 | D1 | Facts outrank style. No added fact, and no dropped change, breaking change, migration step or correction. Frontmatter stays byte-identical and paths stay as written. |
 | D2 | Drop Files Changed tables, test counts and internal machinery. Git keeps them. |
-| D3 | GPT-6 Luna xhigh on the GPT plan via cli-pi and cli-codex, one dispatch per CLI. LLM Gateway only while the plan hits a usage limit. |
+| D3 | GPT-6 Luna xhigh via cli-pi, cli-codex, cli-devin and cli-opencode, at most two dispatches per CLI at a time. LLM Gateway only while the GPT plan hits a usage limit. |
 | D4 | Opus orchestrates, reviews and commits. Executors write only their one file. |
 | D5 | A rewrite passes the shape checker, 0 HVR hard blockers and a second-model fact check, or the original is restored. |
 | D6 | Overwriting is a recorded exception to sk-create-changelog's never-overwrite rule. Spec-folder changelogs and the v4.0.0.0 exemplar are out of scope. |
@@ -117,6 +117,17 @@ and findings belong here.
 | Pilot style approval | Pending | Operator review |
 | Phase docs and goals for 001 to 016 | Done | validate.sh --recursive --strict: 17 of 17 RESULT: PASSED |
 | Scope correction | Done | Two design-bundle files removed from the sk-design list (547 targets); driver accepts only version-named files |
+| Pilot style approval | Done | Operator approved with fixes on 2026-09-24, recorded in 001-tooling-and-pilot/implementation-summary.md |
+| D3 amendment | Done | Operator added cli-devin as a third Luna lane on 2026-09-25 after codex 0.157.0 broke and was reinstalled |
+| Fact-check strengthened | In Progress | Review found first-try passes that dropped facts (cli-jev v0.1.0.0, cli-cursor v1.4.1.0). brief-verify.md now lists lost identifiers and counts, corrections and unchanged statements as drops, verify runs at xhigh per D3, and a --reverify pass rechecks every kept file before its commit |
+| D3 amendment 2 | Done | Operator approved on 2026-09-25 two dispatches per CLI and cli-opencode (openai/gpt-6-luna, OpenAI oauth, so the GPT plan) as a fourth lane, after measuring zero usage-limit errors in 674 dispatch logs |
+| Lean workers | Done | Operator approved on 2026-09-25. Applied per dispatch inside this packet's driver, not as an AGENTS.md change: cli-pi skips context files, cli-codex skips the project doc if a probe confirms it. cli-devin and cli-opencode have no such switch and stay governed |
+| Speed changes | In Progress | Operator approved on 2026-09-25: resume the executor session on retries, a coverage self-check in the rewrite brief, Devin's fast tier, and trigger-index builds from a clean export so commits need no parking |
+| Speed changes | Done | Driver runs two dispatches per CLI on cli-pi, cli-codex, cli-devin and cli-opencode, resumes the executor session on a retry, carries the contract, house style and original inline and has the rewriter run coverage-scan.py --one on its own draft. A four-file test passed on all four CLIs (codex 43 s, pi 84 s, devin 359 s, opencode 449 s) |
+| Commits without pausing the lanes | Done | The trigger index builds from a clean export of the git index. Exporting HEAD and regenerating reproduced all four committed index files byte for byte, and the post-commit checks pass with 111 dirty files in the tree |
+| Stated spec level kept | Done | Review found kept rewrites that dropped a (Level N) the original states. The checker now requires it and the rewrite brief says to keep it as written. Nine kept files were overturned for a retry |
+| Opus review of every kept file | In Progress | An Opus review of 31 retried passes found 8 with a real drop or distortion the fact check had passed, and all 11 findings checked out against the files. Every kept file now gets an Opus review before its skill commits, confirmed findings go back for a retry, and scratch/opus-review.jsonl records each clean review by content hash |
+| Executor path typos | Done | cli-opencode's Luna sessions often type the home directory as /Users/michelkerkme/, and 22 of 23 of its tool errors were such reads. A not-found on the target made the governed session halt. The brief now says the target always exists and a not-found means a mistyped path, a retry carries its previous draft inline, and the driver reloads the rewrite brief on every dispatch |
 
 ### Deviations and findings
 

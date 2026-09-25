@@ -143,6 +143,12 @@
         "source": "derived"
       },
       {
+        "name": "An Opus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "the",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -153,29 +159,23 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-create-changelog defines two narrative formats for a release, compact and expanded, and its canonical exemplar is `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md`",
     "created_at": "2026-09-24T15:48:26Z",
-    "last_save_at": "2026-09-25T14:02:02.924Z",
+    "last_save_at": "2026-09-25T14:09:01.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:cbd963ae8058eed4374a69fe108b0dc0d37f557e98859af92dad7e646e600294",
+    "source_fingerprint": "sha256:f03e31d3c68143b822e08ad297ee9e7f535efccb9a6d5a3642613a532295808b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "185f07528e9981f73d4010510a3c920c0f133f24bc70bf81047de8c2034d29c9"
     },
-    "last_active_child_id": "sk-doc/059-skill-changelog-retrofit/004-cli-orca",
-    "last_active_at": "2026-09-25T14:02:02.924Z"
+    "last_active_child_id": "sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot",
+    "last_active_at": "2026-09-25T14:07:23.599Z"
   }
 }

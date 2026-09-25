@@ -191,7 +191,7 @@
     ],
     "causal_summary": "21 sk-git changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:13Z",
-    "last_save_at": "2026-09-24T19:59:46.199Z",
+    "last_save_at": "2026-09-25T14:09:18.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,7 +201,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5926d0b4c8b2e77ff576367ad72d1322a91b532f2c0fd0ff6814181b119c3908",
+    "source_fingerprint": "sha256:e34b48710dd1a6b3f0bf1af022684ec8f73bb2879937a5ee85da4d9bc94ca602",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c75ef731e9f0e6bc06ffd3229ec080b629f0a00cce4e1ec34ec3168ad51e34a7",

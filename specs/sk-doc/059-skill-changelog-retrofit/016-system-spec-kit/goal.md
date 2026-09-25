@@ -78,6 +78,7 @@ and findings belong here.
 |------|-------|----------|
 | Pilot: v3+/v3.7.0.0 | Pending | Restored in the phase 001 check run, retry in the wave |
 | Wave | Pending | Waits on the style approval |
+| Style approval | Done | Operator approved the pilot style with fixes on 2026-09-24. The wave may start |
 
 ### Deviations and findings
 

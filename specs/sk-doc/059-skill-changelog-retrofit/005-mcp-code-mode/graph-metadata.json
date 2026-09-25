@@ -191,7 +191,7 @@
     ],
     "causal_summary": "9 mcp-code-mode changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:09Z",
-    "last_save_at": "2026-09-24T19:59:25.528Z",
+    "last_save_at": "2026-09-25T14:09:05.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,7 +201,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14a9bc6c7462bde9589307527d1cc0c14dc1ff7890d1dd267de584741f4ab083",
+    "source_fingerprint": "sha256:9e77cdbfdd43477bcff21648d6393097c5cef7129348ce8a8b9eab04a56bb3fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1e7b98c19b6d2f0e867f33b2b9762daba7b08cd3bcb38e12d93d7c75c2b7224",

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 1: tooling and pilot"
-description: "The checker, the two briefs and the driver are built, and pilot run 2 kept six of ten rewrites after every gate passed. The four failures were restored with their drafts kept, and the style now waits on the operator."
+description: "The checker, the two briefs, the driver and two commit helpers are built. Pilot run 2 kept six of ten rewrites, the operator approved the style with fixes and the first skill wave tightened the briefs again."
 trigger_phrases:
   - "changelog pilot results"
   - "changelog retrofit tooling"
@@ -10,20 +10,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot"
-    last_updated_at: "2026-09-24T18:03:45Z"
+    last_updated_at: "2026-09-25T14:07:23Z"
     last_updated_by: "generate-context"
-    recent_action: "Wrote the phase docs and goals for all sixteen phases"
-    next_safe_action: "Hand the ten pilot files to the operator for style approval"
+    recent_action: "Recorded the approved style and the first wave brief fixes"
+    next_safe_action: "Continue the phase waves in the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/059-skill-changelog-retrofit/goal.md"
-      - "specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/acceptance-criteria.md"
       - "specs/sk-doc/059-skill-changelog-retrofit/scratch/rewrite-driver.cjs"
+      - "specs/sk-doc/059-skill-changelog-retrofit/scratch/brief-rewrite.md"
+      - "specs/sk-doc/059-skill-changelog-retrofit/scratch/brief-verify.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e9a115fce45fb96dd3a8c74a292ad464d734196ef61d7cf50d52fcded8091088"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -66,6 +66,8 @@ Pilot run 2 covered ten files across every legacy style. It kept claude-code v1.
 | `../scratch/brief-rewrite.md` | Created | The one-file rewrite brief |
 | `../scratch/brief-verify.md` | Created | The fact-check brief |
 | `../scratch/rewrite-driver.cjs` | Created | Lanes, gates, retry, restore and state |
+| `../scratch/wave-verify.cjs` | Created | Confirms each kept rewrite and each restore against HEAD before a commit |
+| `../scratch/wave-park.cjs` | Created | Sets aside rewrites that are not being committed, so the trigger index is built from committed content |
 | Six pilot changelogs | Modified | Rewritten and kept |
 <!-- /ANCHOR:what-built -->
 
@@ -77,6 +79,8 @@ Pilot run 2 covered ten files across every legacy style. It kept claude-code v1.
 Pilot run 1 exposed three flaws. The fact check flagged the template's fixed "nothing to do" phrases, so a retry left Upgrade Notes empty. v1.0.0.0 was treated as a major bump. Some sentences were filler. That run was stopped and its files restored. The briefs, the checker and the driver were fixed, and run 2 started clean. Run 2 used 32 GPT dispatches and no gateway dispatch, and took 217 to 2,172 seconds per file. cli-codex was faster than cli-pi on every file.
 
 The operator approved the style with fixes. The checker now rejects a one-sentence H4 item and a sentence repeated across sections, the fact check accepts the spec folder's level suffix and treats a summarized field list as a summary rather than a drop, and each file gets three attempts. Those fixes rejected the pilot's sk-design rewrite, so it joined the four restored files in a check run. The run kept mcp-tooling v1.6.1.0. It restored the other four: system-spec-kit v3.7.0.0 drew new findings on every attempt, deep-improvement and one sk-design attempt stopped on a rejected line-range edit in cli-pi, cli-hermes ended on one repeated sentence, and sk-design's rewrite invented an instruction the original contradicts. The rewrite brief now asks for one whole-file write, and a retry now resumes from the kept draft and its last findings.
+
+The first skill wave, phase 002, changed the briefs twice more. The fact check passed the cli-external-orchestration v1.1.0.0 and v1.2.0.0 rewrites although one dropped the old name `cli-external` from a rename and the other named the restored mode only as Codex instead of `cli-codex`. Both briefs now say a rename keeps both names and a changed mode, command, skill, flag or file keeps its identifier. The orchestrator overturned those two passes by restoring the originals and recording a fail with the finding, and both passed when the driver ran them again. A cli-pi executor also stopped on the goal posture rule, because the brief forbade opening any packet document while that rule asks for the bound `goal.md`. The brief now allows reading that one file. Two helpers were added for the per-skill commit. `wave-verify.cjs` confirms every kept rewrite and every restore against HEAD. `wave-park.cjs` parks only files in the target lists and holds back any file whose committed version moved while it was parked.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -88,7 +92,7 @@ The operator approved the style with fixes. The checker now rejects a one-senten
 |----------|-----|
 | One file per dispatch | A single file keeps each rewrite reviewable and each failure contained |
 | A second model checks facts | The rewriting model cannot be the only judge of what it dropped |
-| Restore on the second failure | A kept legacy changelog is better than a kept wrong one |
+| Restore after the third failure | A kept legacy changelog is better than a kept wrong one |
 | Overwrite despite sk-create-changelog's never-overwrite rule | The operator asked for the rewrite, and the rule governs creation |
 <!-- /ANCHOR:decisions -->
 
@@ -106,6 +110,7 @@ The operator approved the style with fixes. The checker now rejects a one-senten
 | Orchestrator read of all ten | PASS: two soft losses reported, no dropped behavior, action or correction |
 | Operator style approval | PASS: approved with fixes on 2026-09-24 |
 | Check run over five files | 1 kept, 4 restored with recorded reasons |
+| `wave-park.cjs` sandbox test | PASS: kept, parked, moved-upstream, foreign and unmodified files each handled as designed |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -113,7 +118,7 @@ The operator approved the style with fixes. The checker now rejects a one-senten
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Dense files fail more often.** Four of ten pilot files failed after two attempts. A third attempt, or a retry with `--retry-failed`, is the open question in `spec.md`.
+1. **Dense files fail more often.** Four of ten pilot files failed after two attempts. Each file now gets three attempts, and `--retry-failed` resumes a failed file from its last draft.
 2. **Saved originals and drafts are hidden files.** Their names start with a dot, so `ls -A` is needed to see them.
 3. **cli-pi is slow on this task.** Its two failures each ran past 2,000 seconds.
 4. **Very long files may not converge.** system-spec-kit v3.7.0.0 (43 KB) drew a different set of findings on each of its three attempts. Five more files over 20 KB wait in phases 007 and 016.

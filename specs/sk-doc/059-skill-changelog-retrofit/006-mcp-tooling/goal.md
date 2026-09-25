@@ -78,6 +78,7 @@ and findings belong here.
 |------|-------|----------|
 | Check run: v1.6.1.0 | Done | Kept in the phase 001 check run |
 | Wave | Pending | Waits on the style approval |
+| Style approval | Done | Operator approved the pilot style with fixes on 2026-09-24. The wave may start |
 
 ### Deviations and findings
 
