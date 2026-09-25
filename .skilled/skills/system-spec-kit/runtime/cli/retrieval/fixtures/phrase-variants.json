@@ -1,5 +1,5 @@
 {
-  "manifestHash": "21c9c60f1d5cbea61455c37d92a2c5a2c30583ab1b86d183c3c352f345a38f8f",
+  "manifestHash": "80f5b21fe7bb7b70abf7882d9172f7887b3b86747211d7c173d32e7a91269214",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7069,6 +7069,9 @@
     ],
     "059 tasks": [
       "059 tasks"
+    ],
+    "066 goal prompt": [
+      "066 goal prompt"
     ],
     "10 adherence angles": [
       "10 adherence angles"
@@ -37413,6 +37416,9 @@
     "gate 2 routing optimization": [
       "gate 2 routing optimization"
     ],
+    "gate 3 asks once": [
+      "Gate 3 asks once"
+    ],
     "gate 3 delivery": [
       "gate 3 delivery"
     ],
@@ -49187,6 +49193,9 @@
     "mimo v2 5 to v2 6": [
       "mimo v2.5 to v2.6"
     ],
+    "mimo v2 6 and gpt 6 cutover": [
+      "MiMo v2.6 and GPT-6 cutover"
+    ],
     "mimo v2 6 cutover": [
       "mimo v2.6 cutover"
     ],
@@ -58736,8 +58745,14 @@
     "pre v4 spec upgrade research": [
       "pre-v4 spec upgrade research"
     ],
+    "pre v4 upgrade goal": [
+      "pre-v4 upgrade goal"
+    ],
     "pre v4 upgrade plan": [
       "pre-v4 upgrade plan"
+    ],
+    "pre v4 upgrade summary": [
+      "pre-v4 upgrade summary"
     ],
     "pre v4 upgrade tasks": [
       "pre-v4 upgrade tasks"
@@ -61385,6 +61400,9 @@
     ],
     "recorded findings hook tasks": [
       "recorded findings hook tasks"
+    ],
+    "recorded findings verification": [
+      "recorded findings verification"
     ],
     "recorded upgrade findings": [
       "recorded upgrade findings"
@@ -81156,6 +81174,9 @@
     "updatephaseparentpointer bypasses zod": [
       "updatePhaseParentPointer bypasses zod"
     ],
+    "upgrade baseline evidence": [
+      "upgrade-baseline evidence"
+    ],
     "upgrade baseline json": [
       "upgrade-baseline.json"
     ],
@@ -81164,6 +81185,15 @@
     ],
     "upgrade legacy command": [
       "upgrade-legacy command"
+    ],
+    "upgrade legacy goal": [
+      "upgrade-legacy goal"
+    ],
+    "upgrade legacy results": [
+      "upgrade-legacy results"
+    ],
+    "upgrade legacy spec folders": [
+      "upgrade legacy spec folders"
     ],
     "upgrade legacy tasks": [
       "upgrade-legacy tasks"
@@ -81488,6 +81518,9 @@
     ],
     "v4 0 0 0 release notes": [
       "v4.0.0.0 release notes"
+    ],
+    "v4 0 0 1 release notes": [
+      "v4.0.0.1 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"
