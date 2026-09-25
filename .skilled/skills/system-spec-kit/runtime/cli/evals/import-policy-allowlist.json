@@ -72,6 +72,16 @@
       "expiresAt": "2027-03-06"
     },
     {
+      "file": "cli/tests/level-contract-fallback.vitest.ts",
+      "import": "../../lib/templates/level-contract-resolver",
+      "owner": "spec-kit-maintainers",
+      "reason": "Unit test exercises a runtime internal that has no public api surface",
+      "removeWhen": "the internal gains an api export or the test moves beside the module",
+      "createdAt": "2026-09-25",
+      "lastReviewedAt": "2026-09-25",
+      "expiresAt": "2027-03-25"
+    },
+    {
       "file": "cli/tests/scoped-backfill-boundary.vitest.ts",
       "import": "../../lib/utils/index-scope.js",
       "owner": "spec-kit-maintainers",
