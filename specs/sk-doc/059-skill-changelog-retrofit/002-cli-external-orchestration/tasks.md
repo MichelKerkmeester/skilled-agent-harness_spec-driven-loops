@@ -32,7 +32,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Confirm phase 001 records the operator's style approval: approved with fixes, 2026-09-24
-- [ ] T002 Confirm the cli-external-orchestration files are clean in git before the run (`../scratch/lists/cli-external-orchestration.txt`)
+- [x] T002 Confirm the cli-external-orchestration files are clean in git before the run (`../scratch/lists/cli-external-orchestration.txt`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,8 +40,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Run the driver over the list (`../scratch/rewrite-driver.cjs --list ../scratch/lists/cli-external-orchestration.txt --state ../scratch/state.jsonl`)
-- [ ] T004 Retry the failures once with `--retry-failed`, and record the reason for any that still fail
+- [x] T003 Run the driver over the list on the Luna lanes: 101 of 112 kept in the main run
+- [ ] T004 Retry every failure from its kept draft with `--retry-failed` until each is kept or recorded: in progress, 55 of 112 kept under the current fact check
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -50,7 +50,7 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [ ] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file
-- [ ] T006 Read a sample of the kept files old beside new
+- [ ] T006 Read every kept file old beside new in an Opus review, and send each confirmed finding back for a retry: 44 of 55 kept files clean so far, 31 passes overturned
 - [ ] T007 Commit the kept cli-external-orchestration files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`
 - [ ] T008 Push to main and run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->

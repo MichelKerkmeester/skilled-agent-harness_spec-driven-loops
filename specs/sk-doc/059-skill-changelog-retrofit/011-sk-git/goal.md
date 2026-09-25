@@ -78,6 +78,7 @@ and findings belong here.
 |------|-------|----------|
 | Pilot: v1.6.0.0 | Done | Kept in pilot run 2 |
 | Wave | Pending | Waits on the style approval |
+| Style approval | Done | Operator approved the pilot style with fixes on 2026-09-24. The wave may start |
 
 ### Deviations and findings
 

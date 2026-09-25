@@ -191,7 +191,7 @@
     ],
     "causal_summary": "14 sk-prompt changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:13Z",
-    "last_save_at": "2026-09-24T19:59:50.013Z",
+    "last_save_at": "2026-09-25T14:09:20.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,7 +201,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d7f218a8b373feac2e6b080a565d9de58637f3e37341d61506a99f5350f625a",
+    "source_fingerprint": "sha256:1b6dc22b29729768284f0cc998a9dd3d654e8b8ebb654d70a9f9b4209a05ddc3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "afa3b3c20b30db0e63514281fa98f1c8792d6771263d1de92ea0cbaeacacc7bd",

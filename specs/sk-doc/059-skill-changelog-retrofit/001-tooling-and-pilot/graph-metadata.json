@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 549 legacy skill changelogs span several older styles, and a model asked to rewrite them can drop or invent facts",
     "created_at": "2026-09-24T16:53:59Z",
-    "last_save_at": "2026-09-24T19:59:12.094Z",
+    "last_save_at": "2026-09-25T14:07:23.569Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e46a3c667d5ae33eb9aac0b005333ab6f288d6d0c64ff5688aa02d4c0df1c66",
+    "source_fingerprint": "sha256:907163f6bf8684cc26b1371d2980fd3007dc9d29de18c0ba7d0d357c5d7a371a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "288396f64f2de2746ba93011a6ef73abe7ea681d8c309fd133e3741ea65c1db9",
       "plan.md": "3cb7593455cb5462cbe37d6b87207cffe4e3fad6aafae3277d35b957a621f86b",
       "tasks.md": "407a91606ce1329b310f0ddf866ae3a4ee20de2dd1c8bbb0048fba0c1d10c5cb",
-      "implementation-summary.md": "6232197162880ad48e7e854d4568114a98eb1bedba08d9e72f27f96719291365"
+      "implementation-summary.md": "dfbaca2475360381a6e9b53e6de7c7c77b9e6e58eba40a3307e5c1e597cce21e"
     },
     "last_active_at": null
   }

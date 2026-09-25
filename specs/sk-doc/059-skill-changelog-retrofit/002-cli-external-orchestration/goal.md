@@ -81,6 +81,9 @@ and findings belong here.
 | Pilot: cli-devin v1.4.2.0 | Done | Kept in pilot run 2 |
 | Pilot: cli-hermes v1.0.0.0 | Pending | Restored in the phase 001 check run, retry in the wave |
 | Wave | Pending | Waits on the style approval |
+| Wave | In Progress | Style approved 2026-09-24. Main run kept 101 of 112, retry passes running on cli-pi |
+| Pilot: cli-hermes v1.0.0.0 | Done | Kept in the wave on its second attempt |
+| Wave | In Progress | 55 of 112 kept under the current fact check and 44 with a clean Opus review; 87 files failed the strengthened re-check and 31 passes were overturned, all requeued in the main run |
 
 ### Deviations and findings
 
