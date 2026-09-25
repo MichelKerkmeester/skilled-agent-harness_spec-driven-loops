@@ -243,8 +243,11 @@ def check(path, old_path=None):
         old_front, _ = split_frontmatter(old)
         if old_front != front:
             errors.append("frontmatter changed; it must stay byte-identical")
+        # An original can wrap a code span across lines, so an identifier is looked
+        # up with every whitespace run collapsed to one space on both sides.
+        old_flat = re.sub(r"\s+", " ", old)
         for tok in sorted(set(re.findall(r"`([^`\n]+)`", body))):
-            if tok not in old:
+            if re.sub(r"\s+", " ", tok) not in old_flat:
                 errors.append(f"identifier not in the original: `{tok}`")
         body_nospec = re.sub(r"\(Level [0-9]\+?\)", "", body)
         body_nospec = re.sub(r"`[^`\n]+`", "", body_nospec)
