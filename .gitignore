@@ -380,3 +380,9 @@ specs/**/containment/quarantine/
 # rather than history.
 .opencode/skills/system-spec-kit/runtime/database/
 .skilled/skills/system-spec-kit/runtime/database/
+
+# The default output of sk-doc's frontmatter-version.mjs `compute` when no
+# --manifest-out is given. It is run residue, rewritten on every run, and nothing
+# reads it back unless it is passed explicitly with --from-manifest.
+/frontmatter-version-manifest.csv
+/frontmatter-version-manifest.json
