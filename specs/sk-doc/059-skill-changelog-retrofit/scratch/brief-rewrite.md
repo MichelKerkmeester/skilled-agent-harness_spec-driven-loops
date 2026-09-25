@@ -52,8 +52,8 @@ FACT RULES (these outrank every style rule)
 - Every statement must come from the original. Add no fact, number, path, name, reason or benefit that the original does not state or directly imply.
 - Keep every user-visible behavior change, every breaking change with its migration step, everything the reader must do, and every correction of an earlier wrong claim.
 - A rename keeps both names: say what it was called before and what it is called now.
-- Keep what the original says stayed unchanged (a default, a rule, an allowlist, a behavior), briefly, because readers rely on it. A list of untouched files is the exception.
-- Keep a statement of scope, for example that a release is documentation-only or does not change behavior. A benefit phrase (simpler, clearer, easier to adopt) may be merged or dropped while the change it belongs to is still stated.
+- Keep what the original says stayed unchanged (a default, a rule, an allowlist, a behavior), briefly, because readers rely on it, and keep its exact noun: if the original says routing is unchanged, do not write model routing or dispatch behavior. A list of untouched files is the exception.
+- Keep a statement of scope, for example that a release is documentation-only or does not change behavior. When the original's upgrade or migration note says more than that nothing is needed, such as that the change is rule-only or wording-only, or that readers can pull the latest version when convenient, keep that after the fixed phrase. A statement of scope never becomes a step the reader must take. A benefit phrase (simpler, clearer, easier to adopt) may be merged or dropped while the change it belongs to is still stated.
 - Keep every support claim, for example that a model id was list-verified but not dispatch-tested. Drop verification evidence: the checks, guards, tests and validators that passed, and how the release was proven.
 - Name each changed thing by the identifier the original uses (a mode, command, skill, flag or file), because that is what the reader types or looks for.
 - Drop what the contract drops: Files Changed tables, file-by-file lists, test counts, review-pass counts, line-count deltas and internal machinery the reader never touches.
@@ -63,6 +63,7 @@ FACT RULES (these outrank every style rule)
 - If the original is too thin to fill a section honestly, keep the section short. Never pad it.
 - Every sentence must carry information from the original. Never write filler such as "The release records this detail." When a bullet has nothing more to say, state in plain words what the change means for the reader, using only the original's facts, or merge it into another bullet.
 - Never repeat a sentence across sections, not even with a word or two changed. The at-a-glance bullets summarize, the H4 items explain, and Why This Release gives the motivation only. An at-a-glance bullet states the change itself, with its key name or value, never that a section below records, lists or explains it.
+- ## Why This Release states only a reason the original gives outside its Verification section. A detail from a Verification section is not a reason, and neither is one change among several. When the original gives no reason, a compact file leaves the section out, and an expanded file keeps it to one sentence built from what the original's opening says the release fixes or adds.
 - Never leave a section empty. With no upgrade work, the compact ## Upgrade reads exactly "No migration required." and the expanded ## Upgrade Notes reads exactly "No upgrade needed." Those fixed phrases are the template's, not a new fact.
 
 STYLE RULES
