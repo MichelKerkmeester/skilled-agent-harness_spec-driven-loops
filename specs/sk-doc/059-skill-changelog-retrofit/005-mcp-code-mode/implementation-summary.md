@@ -8,17 +8,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode"
-    last_updated_at: "2026-09-24T18:20:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Planned the mcp-code-mode wave"
-    next_safe_action: "Run the wave with the phase 001 driver"
+    last_updated_at: "2026-09-25T15:48:56Z"
+    last_updated_by: "generate-context"
+    recent_action: "Committed, pushed and validated the mcp-code-mode rewrites"
+    next_safe_action: "Continue with the parent packet's remaining phases"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-doc/059-skill-changelog-retrofit/scratch/lists/mcp-code-mode.txt"
+      - ".skilled/skills/mcp-code-mode/changelog/v1.0.8.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:459a8c2f255c07c2c631f5009024b588116ac8a4a9c62cf885006c5dee6ddf5c"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -101,6 +103,9 @@ Each retry resumed from its kept draft with its findings and passed. A re-check 
 | Final state | PASS: the latest `state.jsonl` record of every file is `pass` under the current fact check |
 | Gates | PASS: `wave-verify.cjs` reports 9 kept, 0 failed, 0 problems |
 | Opus review | PASS: all 9 files have a clean review of their current text |
+| Commit | PASS: `24c9ce3828` holds the nine rewrites and is on `origin/main` |
+| Routing and mirrors | PASS: `compiled-route-guard.cjs` and all nine `sync-*.cjs --check` runs exit 0 after the commit |
+| Phase validation | PASS: `validate.sh --strict` reports `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
