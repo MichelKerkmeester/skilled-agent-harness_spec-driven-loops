@@ -76,7 +76,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase status | In Progress | `spec.md` metadata reads Active, and the orchestrator reports the phase is closing |
+| Phase status | Done | `spec.md` metadata reads Complete, committed `c4aa97df7b` and pushed |
 
 ### Deviations and findings
 

@@ -1,0 +1,6 @@
+codex CL-005
+pi 433
+opencode 433
+devin 433
+cursor 433
+codex 433

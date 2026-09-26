@@ -291,8 +291,15 @@ function hasValidSkillMarkdown(skillPath: string): boolean {
   return /^name:\s*\S+/m.test(frontmatter) && /^description:\s*.+/m.test(frontmatter);
 }
 
+// A daemon pointed at its own database directory keeps its quarantine store
+// there too, so a sandboxed daemon never writes workspace state. The file
+// name differs from the lease database that shares that directory, keeping
+// quarantine writes off the lease heartbeat's lock.
 function quarantineDbPath(workspaceRoot: string, override?: string): string {
-  return override ?? join(resolve(workspaceRoot), '.skilled', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
+  if (override != null) return override;
+  const overrideDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  if (overrideDbDir) return join(resolve(overrideDbDir), 'skill-graph-quarantine.sqlite');
+  return join(resolve(workspaceRoot), '.skilled', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
 }
 
 function initializeQuarantineDb(db: { exec: (sql: string) => void }): void {

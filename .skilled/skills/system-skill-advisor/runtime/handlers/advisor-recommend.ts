@@ -143,9 +143,16 @@ function emptyOutput(args: {
   });
 }
 
+// The canonical flag is checked first so the reason names it when both are set.
+const ADVISOR_DISABLED_FLAGS = [
+  'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED',
+  'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
+] as const;
+
 function disabledOutput(
   workspaceRoot: string,
   effectiveThresholds: PublicThresholds,
+  disabledBy: string,
 ): AdvisorRecommendOutput {
   return emptyOutput({
     workspaceRoot,
@@ -153,7 +160,7 @@ function disabledOutput(
     freshness: 'unavailable',
     trustState: unavailableTrustState('ADVISOR_DISABLED'),
     warnings: ['ADVISOR_DISABLED'],
-    abstainReasons: ['Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED.'],
+    abstainReasons: [`Skill advisor disabled by ${disabledBy}.`],
   });
 }
 
@@ -585,9 +592,9 @@ export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResp
     confidenceThreshold: input.options?.confidenceThreshold,
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
   });
-  const data = process.env.SYSTEM_SKILL_ADVISOR_HOOK_DISABLED === '1'
-    || process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1'
-    ? disabledOutput(workspaceRoot, effectiveThresholds)
+  const disabledBy = ADVISOR_DISABLED_FLAGS.find((flag) => process.env[flag] === '1');
+  const data = disabledBy
+    ? disabledOutput(workspaceRoot, effectiveThresholds, disabledBy)
     : await computeRecommendationOutput(input);
   return {
     content: [{

@@ -13,6 +13,7 @@ vi.mock('node:child_process', () => ({
 }));
 
 import * as skillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
+import * as skillAdvisorRender from '../../../../plugins/lib/skill-advisor-render.js';
 import { renderAdvisorFallbackDirective } from '../lib/render.js';
 
 const MkSkillAdvisorPlugin = skillAdvisorPlugin.default;
@@ -20,7 +21,7 @@ const MkSkillAdvisorPlugin = skillAdvisorPlugin.default;
 type PluginFallbackResult = NonNullable<Parameters<typeof renderAdvisorFallbackDirective>[1]>;
 type PluginFallbackRenderer = (result?: PluginFallbackResult) => string;
 const renderPluginFallbackDirective = (
-  skillAdvisorPlugin as unknown as { renderPluginFallbackDirective?: PluginFallbackRenderer }
+  skillAdvisorRender as unknown as { renderPluginFallbackDirective?: PluginFallbackRenderer }
 ).renderPluginFallbackDirective;
 
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;

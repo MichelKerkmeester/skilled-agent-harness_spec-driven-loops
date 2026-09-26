@@ -1,6 +1,6 @@
 ---
 title: "Codex Hook/Plugin Parity"
-description: "Manual scenario validating the Codex guard-adapter parity set: thin codex adapters over the runtime-neutral hook cores, wired into ~/.codex/hooks.json and confirmed live under codex exec."
+description: "Manual scenario validating the Codex guard-adapter parity set: thin codex adapters over the runtime-neutral hook cores, registered in the repo .codex/hooks.json and confirmed live under codex exec."
 trigger_phrases:
   - "codex hook parity"
   - "cli-codex hooks"
@@ -22,11 +22,11 @@ version: 1.4.0.15
 
 ## 1. OVERVIEW
 
-Claude runs ~14 guard hooks across eight events and OpenCode mirrors them as plugins. Codex CLI (0.144.2) reads hooks only from the user-global `~/.codex/hooks.json`. This scenario validates the Codex parity set: eight thin `runtime/hooks/codex/` (and `scripts/hooks/codex/`, `mcp-server/hooks/codex/`) adapters, each a third consumer of the same runtime-neutral core the Claude hook and OpenCode plugin already share, plus the neutral session scripts wired into Codex lifecycle events.
+Claude runs ~14 guard hooks across eight events and OpenCode mirrors them as plugins. Codex CLI (checked on 0.157.1) reads the user-global `~/.codex/hooks.json`. It also loads the checkout's own `.codex/hooks.json` when `~/.codex/config.toml` marks the checkout `trust_level = "trusted"`. A global copy of the repo entries therefore registers each hook a second time. The repo `.codex/hooks.json` holds 18 entries across six events. Seven of them are the thin guard adapters this scenario validates. They live in `system-spec-kit/runtime/hooks/codex/` and in `.skilled/hooks/dispatch/codex/`, `.skilled/hooks/post-edit-quality/codex/` and `.skilled/hooks/mcp-route-guard/codex/`. Each is a third consumer of the same runtime-neutral core the Claude hook and OpenCode plugin already share. The other 11 entries are the compiled session adapters in `system-spec-kit/runtime/dist/hooks/codex/`, the neutral session scripts wired into Codex lifecycle events and the shared `sk-git/scripts/hooks/git-preflight-advisory.mjs`. This scenario does not test those 11.
 
 Each adapter reads the Codex snake_case stdin payload (`tool_name`, `tool_input`, `cwd`, `session_id`, `prompt`), normalizes the Codex tool vocabulary (`exec`→bash, `apply_patch`→write, `edit`→edit) to what its core expects, calls the neutral core unchanged, emits the Codex response envelope (`hookSpecificOutput.additionalContext`, or an inline `permissionDecision:"deny"` for the two deny-capable guards), and fails open — empty/malformed stdin or any internal error exits 0 with no emit, so a broken adapter never blocks or degrades a Codex session.
 
-The adapters under test:
+The seven adapters under test:
 
 | Adapter | Event | Core · entry | Class |
 |---|---|---|---|
@@ -44,7 +44,7 @@ This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (al
 
 ## 2. SCENARIO CONTRACT
 
-- Preconditions: the eight adapter files exist on disk; the neutral cores are byte-unchanged; `codex` (0.144.x) is on `PATH`; the repo `.codex/hooks.json` registers every adapter; `install-codex-hooks.mjs` has merged the set into `~/.codex/hooks.json`. Node is on `PATH`. For the spec-gate adapters, the compiled `system-spec-kit/shared/dist/gate-3-classifier.js` must be present (a normal built checkout has it).
+- Preconditions: the seven adapter files exist on disk; the neutral cores are byte-unchanged; `codex` (0.144.x or later, checked on 0.157.1) is on `PATH`; the repo `.codex/hooks.json` registers every adapter; `install-codex-hooks.mjs` has merged the set into `~/.codex/hooks.json`. A trusted checkout already loads the project `.codex/hooks.json`, so the global copy runs each hook twice. Node is on `PATH`. For the spec-gate adapters, the compiled `system-spec-kit/shared/dist/gate-3-classifier.js` must be present (a normal built checkout has it).
 - Real user-facing trigger: any Codex CLI session. SessionStart + UserPromptSubmit hooks fire on every turn; the tool-level guards fire when the model makes an `exec`/`apply_patch`/`edit` tool call; the Stop chain fires at turn end.
 - Expected signals: the fixture matrix reports every adapter exits 0 on empty/malformed stdin, `spec-gate-enforce` emits a `permissionDecision:"deny"` envelope when the gate is open + enforce is set, `spec-gate-classify` writes the session's gate state and emits nothing, and `dispatch-audit` writes one `runtime:"codex"` JSONL line for a `codex exec -p` shape; a live `codex exec` run shows `hook: SessionStart/UserPromptSubmit … Completed`, writes a session-scoped `.state/spec-gate/<hex(session_id)>.json` with `status:"open"`, and carries the A–D notice on its first in-gate write.
 - Pass/fail: PASS if every adapter fails open, the deny/advise/audit envelopes are produced for their trigger inputs, the live run fires SessionStart+UserPromptSubmit to completion and the Gate-3 notice reaches the model at its first write, and the installer preserves pre-existing entries idempotently. FAIL if any adapter throws instead of failing open, a deny/advise envelope is malformed or absent for its trigger, a neutral core is modified, or the installer overwrites a pre-existing hook entry.
@@ -55,7 +55,7 @@ This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (al
 
 ### Commands
 
-1. Fixture stdin-pipe smoke for all eight adapters (fail-open on empty + malformed; plus the deny / advise / additionalContext / audit-line envelopes). The deny fixture plants an open gate-state under a disposable project dir (any location works, since the core exempts only paths outside the project), then pipes an `apply_patch` payload with `SYSTEM_SPEC_GATE_ENFORCE=1`:
+1. Fixture stdin-pipe smoke for all seven adapters (fail-open on empty + malformed; plus the deny / advise / additionalContext / audit-line envelopes). The deny fixture plants an open gate-state under a disposable project dir (any location works, since the core exempts only paths outside the project), then pipes an `apply_patch` payload with `SYSTEM_SPEC_GATE_ENFORCE=1`:
 
 ```bash
 # deny path — real permissionDecision:"deny". The apply_patch target lives in the
@@ -96,7 +96,7 @@ timeout 90 codex exec -C "$PROJ" --skip-git-repo-check --dangerously-bypass-hook
 find "$PROJ/.skilled/skills/.state/spec-gate" -name '*.json' -exec cat {} \;
 ```
 
-5. Installer idempotency + preservation (dry-run then real, then re-run):
+5. Installer idempotency + preservation (dry-run then real, then re-run). A trusted checkout already loads the project `.codex/hooks.json`, so this global copy doubles each hook:
 
 ```bash
 node .skilled/bin/install-codex-hooks.mjs --repo "$PWD" --dry-run   # inspect added/skipped
@@ -117,7 +117,7 @@ grep -c 'notify.sh' "$HOME/.codex/hooks.json"                        # Superset 
 
 ## 4. EVIDENCE
 
-Fixture stdin-pipe smoke matrix — 33 assertions across the eight adapters, all PASS (fail-open on empty/malformed for every adapter; plus the envelope-shape assertions):
+Fixture stdin-pipe smoke matrix — 33 assertions across the eight adapters registered on 2026-07-13, all PASS (fail-open on empty/malformed for every adapter; plus the envelope-shape assertions). The eighth was a code-graph `freshness` adapter. It was deregistered later along with the code graph, so its three `freshness` rows record that run only. The seven current adapters account for the other 30 assertions:
 
 ```text
 ======================== FAIL-OPEN (all 8) ========================
@@ -229,9 +229,9 @@ Stop chain (resolved): an earlier run showed one `Stop Failed` while the other t
   - `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs`
   - `.skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs`
   - `.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs`
-- Repo hook registration (versioned source of truth): `.codex/hooks.json`
-- Installer (merge into user-global `~/.codex/hooks.json`): `.skilled/bin/install-codex-hooks.mjs`
-- Spec packet: `.opencode/specs/skilled-agent-orchestration/134-cli-codex-revival/007-codex-hook-parity/`
+- Repo hook registration (versioned source of truth, 18 entries across six events): `.codex/hooks.json`
+- Installer (merge into user-global `~/.codex/hooks.json`): `.skilled/bin/install-codex-hooks.mjs`. A trusted checkout already loads the project file, so the global copy registers each hook a second time.
+- Spec packet: `specs/cli-external-orchestration/z_archive/027-cli-codex-revival/007-codex-hook-parity/`
 
 ---
 
@@ -248,4 +248,4 @@ Stop chain (resolved): an earlier run showed one `Stop Failed` while the other t
 
 **PASS**
 
-The fixture stdin-pipe matrix passed 33/33: every adapter fails open on empty and malformed stdin, `spec-gate-enforce` emits a real `permissionDecision:"deny"` envelope on an open-gate enforce path (and advise / allow / exempt / unmatched-tool on the others), `spec-gate-classify` writes the gate state the live run below reads, and `dispatch-audit` writes a real `runtime:"codex"`, `skill:"cli-codex"` JSONL line. A live `codex exec` run under Codex 0.144.2 fired the SessionStart and UserPromptSubmit chains to completion, `spec-gate-classify` persisted a session-scoped gate-state whose filename decodes to the run's Codex session id (proving the snake_case payload contract), and the model acted on the Gate-3 menu it was given (choosing option E) — under the 2026-07-13 prompt-time contract; classify now emits nothing and the same notice arrives at the first in-gate write. A second live run confirmed the deny path end-to-end: a real `apply_patch` write was blocked by `spec-gate-enforce` (Codex router `Command blocked by PreToolUse hook: DENIED…`, file not created, `would-deny` logged), after fixing the adapter to read the target path from the patch body rather than a `file_path` field. The installer merged 14 entries, preserved the pre-existing Superset `notify.sh` entries, and re-ran idempotently (0 added). One Stop-chain entry reports a live-teardown `Stop Failed` that reproduces in neither isolation nor any guard adapter of this set — a documented, non-blocking residual in pre-existing/lifecycle wiring, safe by the fail-open contract. Every output above was captured from a real process invocation; none is fabricated.
+The fixture stdin-pipe matrix passed 33/33 across the eight adapters registered at the time, seven of which remain: every adapter fails open on empty and malformed stdin, `spec-gate-enforce` emits a real `permissionDecision:"deny"` envelope on an open-gate enforce path (and advise / allow / exempt / unmatched-tool on the others), `spec-gate-classify` writes the gate state the live run below reads, and `dispatch-audit` writes a real `runtime:"codex"`, `skill:"cli-codex"` JSONL line. A live `codex exec` run under Codex 0.144.2 fired the SessionStart and UserPromptSubmit chains to completion, `spec-gate-classify` persisted a session-scoped gate-state whose filename decodes to the run's Codex session id (proving the snake_case payload contract), and the model acted on the Gate-3 menu it was given (choosing option E) — under the 2026-07-13 prompt-time contract; classify now emits nothing and the same notice arrives at the first in-gate write. A second live run confirmed the deny path end-to-end: a real `apply_patch` write was blocked by `spec-gate-enforce` (Codex router `Command blocked by PreToolUse hook: DENIED…`, file not created, `would-deny` logged), after fixing the adapter to read the target path from the patch body rather than a `file_path` field. The installer merged 14 entries, preserved the pre-existing Superset `notify.sh` entries, and re-ran idempotently (0 added). The Stop chain has no residual. The consolidated acceptance run shows Stop 4/4 Completed and 0 Failed. The earlier `Stop Failed` came from `session-cleanup.sh` printing plain text to stdout, and the Stop wiring now sends that output to `/dev/null`. Every output above was captured from a real process invocation; none is fabricated.

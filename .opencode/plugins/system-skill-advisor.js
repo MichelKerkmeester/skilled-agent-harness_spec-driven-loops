@@ -24,6 +24,11 @@ import { createRequire } from 'node:module';
 import { tool } from '@opencode-ai/plugin/tool';
 
 import * as messageIdentity from './lib/opencode-message-identity.js';
+import {
+  FALLBACK_DIRECTIVE,
+  renderCompiledRouteSummaryLine,
+  renderPluginFallbackDirective,
+} from './lib/skill-advisor-render.js';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -47,46 +52,11 @@ const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
 const DEFAULT_MAX_CACHE_ENTRIES = 1000;
 const MAX_BRIDGE_STDOUT_BYTES = 256 * 1024;
 const BRIDGE_TERMINATION_GRACE_MS = 250;
-export const COMPILED_ROUTE_TARGET_CAP = 3;
-export const COMPILED_ROUTE_TARGET_DIGEST_LENGTH = 12;
-export const COMPILED_ROUTE_BOUNDING_ENV = 'SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING';
+const COMPILED_ROUTE_BOUNDING_ENV = 'SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING';
 const DISABLED_ENV = 'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED';
 const DISABLED_ENV_PLUGIN = 'SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED';
 const LEGACY_HOOK_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
 const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
-const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
-// This suffix is shared by headed fallbacks and route briefs so directive
-// lifecycle reduction sees the same block in either case.
-const FALLBACK_DIRECTIVE = '\nDirectives:' + HYGIENE_DIRECTIVE;
-
-/**
- * Mirror the renderer's no-brief fallback; a parity test holds the two to the same text.
- *
- * @param {{status?: string, freshness?: string}} result - Advisor status and freshness
- * @returns {string} Status head followed by the directive block
- */
-export function renderPluginFallbackDirective({ status, freshness } = {}) {
-  const isOutage = (status === undefined && freshness === undefined)
-    || status === 'fail_open'
-    || freshness === 'absent'
-    || (freshness === 'unavailable' && status !== 'skipped');
-  const fallbackCase = isOutage
-    ? 'outage'
-    : status === 'skipped' && freshness === 'unavailable'
-      ? 'skipped'
-      : 'no-match';
-  const outageLabel = freshness === 'absent'
-    ? 'absent'
-    : status === 'degraded'
-      ? 'degraded'
-      : 'fail_open';
-  const head = fallbackCase === 'outage'
-    ? `Advisor: outage (${outageLabel}); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`
-    : fallbackCase === 'skipped'
-      ? 'Advisor: prompt skipped.'
-      : 'Advisor: no skill matched.';
-  return head + FALLBACK_DIRECTIVE;
-}
 
 // Directive-lifecycle dedup: this plugin is a plain-JS mirror of the canonical
 // rule in hooks/lib/directive-lifecycle.ts (same separator, same fail-open
@@ -156,64 +126,6 @@ function compiledServingSignature() {
   } catch {
     return 'serving-unavailable';
   }
-}
-
-// Render the served compiled decision as one additive, human-legible
-// line. It reports the served authority and outcome (route/clarify/defer/reject),
-// never a new routing target — the compiled decision is byte-identical to legacy
-// on routing fields. Returns null when no compiled decision is served, so the
-// injected context stays byte-identical to the legacy brief.
-export function revealCompiledRouteSummaryTargets(summary) {
-  if (!summary || typeof summary !== 'object' || !Array.isArray(summary.targets)) {
-    return [];
-  }
-  return summary.targets.filter((target) => typeof target === 'string');
-}
-
-function digestCompiledRouteTargets(targets) {
-  const canonicalTargets = [...targets].sort();
-  return createHash('sha256')
-    .update(JSON.stringify(canonicalTargets), 'utf8')
-    .digest('hex')
-    .slice(0, COMPILED_ROUTE_TARGET_DIGEST_LENGTH);
-}
-
-export function compiledRouteSummaryTargetDigest(summary) {
-  return digestCompiledRouteTargets(revealCompiledRouteSummaryTargets(summary));
-}
-
-export function renderCompiledRouteSummaryLine(summary, renderOptions = {}) {
-  if (!summary || typeof summary !== 'object') return null;
-  const outcome = typeof summary.outcome === 'string' ? summary.outcome : null;
-  if (!outcome) return null;
-  const hub = typeof summary.hubId === 'string' && summary.hubId ? summary.hubId : 'unknown';
-  const authority = typeof summary.servingAuthority === 'string' && summary.servingAuthority
-    ? summary.servingAuthority
-    : 'compiled';
-  const bounded = renderOptions === true
-    || (renderOptions && typeof renderOptions === 'object' && renderOptions.bounded === true);
-  const reveal = renderOptions && typeof renderOptions === 'object' && renderOptions.reveal === true;
-
-  if (!bounded && !reveal) {
-    const targets = Array.isArray(summary.targets) && summary.targets.length
-      ? summary.targets.join(',')
-      : 'none';
-    return `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${targets}`;
-  }
-
-  const fullTargets = revealCompiledRouteSummaryTargets(summary);
-  if (reveal || fullTargets.length <= COMPILED_ROUTE_TARGET_CAP) {
-    const targets = fullTargets.length ? fullTargets.join(',') : 'none';
-    return `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${targets}`;
-  }
-
-  const visibleTargets = fullTargets.slice(0, COMPILED_ROUTE_TARGET_CAP);
-  const omittedCount = fullTargets.length - visibleTargets.length;
-  const digest = digestCompiledRouteTargets(fullTargets);
-  return [
-    `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${visibleTargets.join(',')},+${omittedCount} more`,
-    `digest=${digest}`,
-  ].join(' ');
 }
 
 const ADVISOR_CLI_PATH = fileURLToPath(new URL('../bin/skill-advisor.cjs', import.meta.url));

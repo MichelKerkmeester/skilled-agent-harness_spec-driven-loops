@@ -390,6 +390,16 @@
       "approvedAt": "2026-08-15"
     },
     {
+      "id": "rr-iter3-093",
+      "corpus": "labeled",
+      "promptHash": "sha256:2b3fccb873c32cdb627a51b6e5fd1b741ccaa7a6493d6b14328e9e77e06c177b",
+      "gold": "sk-code",
+      "localTop": "sk-prompt",
+      "nativeTop": "sk-code",
+      "reason": "divergence captured 2026-09-27: local ranks sk-prompt on the literal token prompt plus its sibling boost from sk-code, while native keeps the gold sk-code",
+      "approvedAt": "2026-09-27"
+    },
+    {
       "id": "rr-iter3-094",
       "corpus": "labeled",
       "promptHash": "sha256:96b4b1686aca76b0402baaa0c44d4e66c534dcca55a515689962a7f3cb18eff8",

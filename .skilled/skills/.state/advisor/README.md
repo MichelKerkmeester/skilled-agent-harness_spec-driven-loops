@@ -24,6 +24,8 @@ The bridge probes advisor status before it builds a native brief. Status combine
 
 The `skill-graph-daemon-lease.sqlite` file here holds two tables. Its `skill_graph_daemon_lease` table is a legacy fallback location, because the active daemon lease now lives under [`system-skill-advisor/runtime/database/`](../../system-skill-advisor/runtime/database/). The advisor watcher uses this same file as the default store for its `quarantined_skill` table.
 
+This folder is the workspace default. A daemon started with `SYSTEM_SKILL_ADVISOR_DB_DIR` set keeps its generation file and its quarantine store in that directory instead, so a sandboxed daemon's state writes stay out of this folder.
+
 The raw runtime data in this folder is git-ignored. Only this `README.md` is tracked, so external users can see the folder and understand its purpose without receiving machine-specific state.
 
 ---
@@ -50,6 +52,8 @@ The raw runtime data in this folder is git-ignored. Only this `README.md` is tra
 | `skill-graph-generation.json` | Generation metadata with `generation`, `updatedAt`, nullable `sourceSignature`, `reason` and `state`. Valid states are `live`, `stale`, `absent` and `unavailable`. |
 | `skill-graph-generation.json.<pid>.<timestamp>.tmp` | Temporary file used during an atomic generation metadata write. A successful write renames it to `skill-graph-generation.json`. |
 | `skill-graph-generation.json.lock` | Transient publication lock containing the process ID, acquisition time and a random ownership token. |
+
+The layout above holds when `SYSTEM_SKILL_ADVISOR_DB_DIR` is unset. When it is set, `skill-graph-generation.json` and its `.tmp` and `.lock` companions live in that directory, and the quarantine table lives in `skill-graph-quarantine.sqlite` there. Freshness pairs the generation counter with the database it describes. A sandboxed daemon that published into this folder would mark the live advisor `unavailable` when it shut down.
 
 Example generation metadata:
 
@@ -124,7 +128,9 @@ The daemon watcher discovers each visible skill's `SKILL.md`, `graph-metadata.js
 
 Before reindexing, the watcher checks that an existing `SKILL.md` starts with frontmatter containing both `name` and `description`. A malformed file causes the watcher to insert or replace a `quarantined_skill` row with reason `MALFORMED_SKILL_MD`. The watcher skips that skill's reindex. Once the file passes the check again, the watcher sets `recovered_at` for its active row and resumes normal processing. An active quarantine keeps `recovered_at` null, and daemon status counts only those active rows.
 
-The `.state/advisor` SQLite file remains the default active quarantine store even though its lease table is only a legacy fallback. This split is intentional in the current code and explains why the database can still change on an active installation that keeps its daemon lease under `mcp-server/database/`.
+The `.state/advisor` SQLite file remains the default active quarantine store even though its lease table is only a legacy fallback. This split is intentional in the current code and explains why the database can still change on an active installation that keeps its daemon lease under `runtime/database/`.
+
+With `SYSTEM_SKILL_ADVISOR_DB_DIR` set, the watcher uses `skill-graph-quarantine.sqlite` in that directory instead. The separate file name keeps quarantine writes off the lease heartbeat's lock, because the lease database shares that directory. An explicit store path passed to the watcher still wins over both locations.
 
 ### 3.4 OPERATOR BOUNDARY
 
@@ -158,7 +164,7 @@ skill source change
   `-- generation publication invalidates skill graph caches
 ```
 
-The standalone `system_skill_advisor` MCP server exposes advisor and skill graph tools. `advisor_recommend` supplies prompt-time recommendations. `advisor_status` reads this generation state for diagnostics, and `advisor_rebuild` or `skill_graph_scan` can publish a fresh generation after updating the graph. The watcher handles ongoing source changes without requiring the prompt plugin to manage files or daemon ownership.
+The advisor daemon serves the advisor and skill graph tools over its IPC socket, and the `.skilled/bin/skill-advisor.cjs` CLI reaches them there. No runtime registers the advisor as an MCP server. `advisor_recommend` supplies prompt-time recommendations. `advisor_status` reads this generation state for diagnostics, and `advisor_rebuild` or `skill_graph_scan` can publish a fresh generation after updating the graph. The watcher handles ongoing source changes without requiring the prompt plugin to manage files or daemon ownership.
 
 This state supports routing but does not replace the recommended skill. For example, the advisor can recommend `sk-doc` for documentation work, then the caller loads and follows that skill. The state files make graph freshness, single-writer ownership and failed skill loading visible to the routing layer.
 
@@ -184,7 +190,7 @@ This state supports routing but does not replace the recommended skill. For exam
 | Resource | Purpose |
 |---|---|
 | [`system-skill-advisor.js`](../../../plugins/system-skill-advisor.js) | OpenCode plugin that requests Skill Advisor briefs and tracks advisor source signatures. |
-| [`system-skill-advisor/SKILL.md`](../../system-skill-advisor/SKILL.md) | Gate 2 routing contract and standalone advisor MCP overview. |
+| [`system-skill-advisor/SKILL.md`](../../system-skill-advisor/SKILL.md) | Gate 2 routing contract and daemon-backed advisor CLI overview. |
 | [`skill-advisor.cjs`](../../../bin/skill-advisor.cjs) | The CLI front door the OpenCode plugin spawns for advisor status and recommendations. |
 | [`generation.ts`](../../system-skill-advisor/runtime/lib/freshness/generation.ts) | Reads, validates and atomically publishes generation metadata. |
 | [`generation-metadata.ts`](../../system-skill-advisor/runtime/schemas/generation-metadata.ts) | Defines the generation metadata schema. |

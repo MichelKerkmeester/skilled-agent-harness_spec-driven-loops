@@ -48,7 +48,8 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json \
   | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['status'], d['data']['count'])"
 
 node .skilled/bin/skill-advisor.cjs advisor_status --workspaceRoot . --warm-only --timeout-ms 3000 >/dev/null 2>&1; echo "warm-only exit=$?"
-node .skilled/bin/skill-advisor.cjs advisor_rebuild --force true --warm-only >/dev/null 2>&1; echo "untrusted exit=$?"
+UNTRUSTED_OUT=$(node .skilled/bin/skill-advisor.cjs advisor_rebuild --force true --warm-only 2>&1); echo "untrusted exit=$?"
+printf '%s\n' "$UNTRUSTED_OUT"
 node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --warm-only >/dev/null 2>&1; echo "trusted exit=$?"
 
 ls "$SANDBOX/sock" 2>/dev/null || echo "socket dir empty"
@@ -59,7 +60,7 @@ rm -rf "$SANDBOX"
 
 - `ok 9` — manifest parity with `TOOL_DEFINITIONS`.
 - `warm-only exit=75` (`backend unavailable`) with no spawn and no socket created.
-- `untrusted exit=64` with `advisor_rebuild requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`, refused client-side before IPC.
+- `untrusted exit=64`, followed by the JSON error envelope the CLI writes to stderr: `"status": "error"`, `"error": "advisor_rebuild requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1"` and `"exitCode": 64`. The call is refused client-side before IPC.
 - `trusted exit=75` — the gate passed and only the absent daemon stopped the call.
 
 ### Evidence
@@ -73,11 +74,22 @@ untrusted exit=64
 trusted exit=75
 ```
 
+The untrusted refusal, rerun on 2026-09-26 with its output captured:
+
+```text
+untrusted exit=64
+{
+  "status": "error",
+  "error": "advisor_rebuild requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1",
+  "exitCode": 64
+}
+```
+
 The final `ls "$SANDBOX/sock" 2>/dev/null || echo "socket dir empty"` command produced no additional stdout after `trusted exit=75`.
 
 ### Pass / Fail
 
-- **PASS**: all four expected signals matched: `ok 9`, `warm-only exit=75`, `untrusted exit=64`, and `trusted exit=75`; the socket-dir listing printed no socket entries.
+- **PASS**: all four expected signals matched: `ok 9`, `warm-only exit=75`, `untrusted exit=64` with the trust-grant message in its envelope, and `trusted exit=75`; the socket-dir listing printed no socket entries.
 
 ### Failure Triage
 

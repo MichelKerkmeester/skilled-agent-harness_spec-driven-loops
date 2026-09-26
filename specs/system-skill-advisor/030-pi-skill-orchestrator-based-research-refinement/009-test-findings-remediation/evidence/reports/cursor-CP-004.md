@@ -1,0 +1,13 @@
+<!-- dispatch: cursor CP-004; ledger: 2026-09-26T22:14:31Z 2026-09-26T22:17:06Z 0 155 -->
+
+RESULT: PASS | scenario=CP-004 | runtime=cursor
+NATIVE: none visible
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+| 1 | SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 skill_advisor.py "help me commit my changes" | 0 | JSON array from local scorer: skill sk-git, confidence 0.95, source local | Forced-local shim returns a JSON array from the Python scorer | yes |
+| 2 | mktemp -d /tmp/cp004.XXXXXX; export sandbox socket and db dirs; shasum generation file | 0 | SANDBOX=/tmp/cp004.3uHJoY; GEN_BEFORE=80e72817bc0415a117361c09b2fc9c62b6f431b8 | Sandbox with its own socket and database dirs; live generation checksum recorded | yes |
+| 3 | node skill-advisor.cjs advisor_recommend --warm-only --timeout-ms 3000 | 75 | status error; error "backend unavailable: connect ENOENT /tmp/cp004.3uHJoY/sock/daemon-ipc.sock"; exitCode 75; warm-only exit=75; sandbox db not created | warm-only exit=75 after that ENOENT envelope and exitCode 75; nothing spawned; sandbox db never created | yes |
+| 4 | node skill-advisor.cjs advisor_recommend --timeout-ms 30000 | 0 | status ok; freshness live; trustState.state live; recommendations [sk-git]; cold-start exit=0 | cold-start exit=0 after status ok from the sandbox daemon with freshness live | yes |
+| 5 | stop sandbox launcher from lease if socket is inside sandbox; shasum compare; rm sandbox | 0 | lease socket /tmp/cp004.3uHJoY/sock/daemon-ipc.sock; sandbox launcher 53079 stopped; live generation file unchanged; sandbox removed | sandbox launcher <pid> stopped and live generation file unchanged | yes |
+DEVIATIONS: Step 5's first invocation ran in a new shell where SANDBOX and GEN_BEFORE were unset, so it printed "no sandbox launcher recorded" and stopped nothing. Teardown was rerun in one shell with SANDBOX=/tmp/cp004.3uHJoY and the step-2 checksum; that run is the row above. Temporary /tmp path files from that recovery were deleted.
+NOTES: sha256 before step 1: skill-graph-generation.json c6b9364604746340a49efd70cf7b0da529dc9cf994ff2b18e21dbf894d2f58bb; .system-skill-advisor-launcher.json 12339b44489a33499c0122180217a2fae12245bf54473af7b848b1eb6fe4c3ab. sha256 after teardown: skill-graph-generation.json c6b9364604746340a49efd70cf7b0da529dc9cf994ff2b18e21dbf894d2f58bb; .system-skill-advisor-launcher.json 12339b44489a33499c0122180217a2fae12245bf54473af7b848b1eb6fe4c3ab. Both unchanged. Launcher pid 53079 and daemon pid 53080 confirmed dead after teardown. Live daemon and live database were not stopped or moved.

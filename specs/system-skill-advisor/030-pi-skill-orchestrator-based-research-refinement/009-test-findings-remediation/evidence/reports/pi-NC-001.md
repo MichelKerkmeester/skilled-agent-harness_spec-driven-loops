@@ -1,0 +1,16 @@
+<!-- dispatch: pi NC-001; ledger: 2026-09-26T22:21:45Z 2026-09-26T22:30:07Z 0 502 -->
+
+RESULT: PASS | scenario=NC-001 | runtime=pi
+NATIVE: Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-code 0.88/0.16 pass.
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+|---|---|---|---|---|---|
+| 1 | `node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{...}' --format json` | 0 | `"status": "ok"`; `workspaceRoot: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`; `effectiveThresholds: {confidenceThreshold: 0.8, uncertaintyThreshold: 0.35, confidenceOnly: false}`; `freshness: "live"`; `recommendations[0].skillId: "system-spec-kit"`; `laneBreakdown` keys exactly `lane, rawScore, weightedScore, weight, shadowOnly`; no `warnings` / `abstainReasons` keys | Envelope `status: "ok"`; `workspaceRoot` = absolute repo root; `effectiveThresholds` exactly `{0.8, 0.35, false}`; `freshness` `live` or `stale`; first rec `skillId: "system-spec-kit"`; `laneBreakdown[]` metadata-only; raw prompt absent from `laneBreakdown`, `trustState`, `cache`, `warnings`, `abstainReasons` | yes |
+| 2 | Save JSON response (same command, `> .../sad-001.json`) | 0 | JSON saved and parsed cleanly (`n_recs=1`, thresholds `{0.8, 0.35, False}` on re-parse) | Save the JSON response | yes |
+| 3 | Inspect `data.workspaceRoot`, `data.effectiveThresholds`, `data.recommendations[0]` | 0 | All three present and as above; `rec0_skillId=system-spec-kit`; `laneBreakdown_keys=['lane','rawScore','shadowOnly','weight','weightedScore']` | Inspect those three fields against expected signals | yes |
+| 3a | `grep -c "save this conversation context to memory" sad-001.json` | 1 (count 0) | Prompt literal absent from entire captured JSON | Raw prompt text not present in attribution/metadata (privacy check) | yes |
+| 3b | `grep '"warnings"...' / '"abstainReasons"...' sad-001.json` | 1 / 1 | Both keys absent from the envelope | Prompt text absent from `warnings`/`abstainReasons` (and no `ADVISOR_DISABLED`) | yes |
+
+DEVIATIONS: The absorbed legacy row's evidence path `/tmp/skill-advisor-playbook/sad-001.json` (and its `mkdir -p /tmp/skill-advisor-playbook` step) was not used: the JSON was saved to a `mktemp -d` directory (`/tmp/nc001.A7dgPm/sad-001.json`) and deleted after inspection, per the hard rule that temporary files live in a mktemp dir removed at the end. The command itself, its prompt and its options were run exactly as the scenario file specifies.
+
+NOTES: Exit code was captured on a second identical invocation of the step-1 command (both runs produced identical output; both exited 0). Scenario contract preconditions held: repo root was the working directory (`pwd` = repo root), `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset (`printenv` exit 1), and `freshness: "live"` confirms a live built advisor runtime (no build was run, per hard rules). Raw-prompt privacy check passes both positively (literal count 0 across the whole JSON) and trivially (`warnings`/`abstainReasons` keys absent). The one `mktemp` cleanup left no residue in `/tmp` and nothing was written inside the repository.

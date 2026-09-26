@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The advisor hook reaches seven runtimes, and each wires it differently: Claude, Codex, Cursor and Devin through spec-kit hook adapters, OpenCode through a plugin that calls the CLI, and Pi through an in-process extension",
     "created_at": "2026-09-26T18:18:35Z",
-    "last_save_at": "2026-09-26T22:18:08.965Z",
+    "last_save_at": "2026-09-26T23:16:21.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad029cb470c2363082516c51e657a1e4c4d29eb7b19052fb6cd6bea7459ca738",
+    "source_fingerprint": "sha256:4605e2ad0b59b5576a1a5796981dcf291603817cf2a730b8151d15a61796b80d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d25dc95cf054ad11d8d9805a008f5b43d42ae90fb0b29010d7f0f5bd48aae3b0",

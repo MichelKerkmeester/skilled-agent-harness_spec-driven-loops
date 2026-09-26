@@ -198,6 +198,8 @@ runtime/
 `-- vitest.config.ts
 ```
 
+`database/` is the default home for the SQLite graph and the launcher state file. With `SYSTEM_SKILL_ADVISOR_DB_DIR` set, `skill-graph.sqlite` and `.system-skill-advisor-launcher.json` live in that directory instead. [`db-path-policy.md`](../references/config/db-path-policy.md) lists every file the override moves.
+
 ---
 
 ## 5. KEY FILES
