@@ -18,7 +18,8 @@
       "sk-create-repo-rule",
       "sk-create-with-human-voice",
       "sk-create-frontmatter",
-      "sk-create-quality-control"
+      "sk-create-quality-control",
+      "sk-create-goal"
     ],
     "outcomes": {
       "single": "one dominant authoring/quality intent routes to one workflow mode",
@@ -172,6 +173,15 @@
       ],
       "resources": [
         "sk-create-frontmatter/SKILL.md"
+      ]
+    },
+    "sk-create-goal": {
+      "weight": 4,
+      "classes": [
+        "create-goal-aliases"
+      ],
+      "resources": [
+        "sk-create-goal/SKILL.md"
       ]
     }
   },
@@ -429,6 +439,34 @@
         "description too long",
         "edit count",
         "field the validator wants"
+      ]
+    },
+    "create-goal-aliases": {
+      "keywords": [
+        "create packet goal",
+        "packet goal",
+        "goal.md",
+        "author goal.md",
+        "revise packet goal",
+        "phase parent goal",
+        "nested phase child goal",
+        "nested goal",
+        "add a goal file",
+        "write a goal file",
+        "draft a goal file",
+        "goal file",
+        "goal document",
+        "goal criteria",
+        "completion checks",
+        "measurable criteria",
+        "durable objective",
+        "phase objective",
+        "parent objective",
+        "objective for a packet",
+        "phase-child goal",
+        "child-phase goal",
+        "binding table",
+        "goal chat slice"
       ]
     },
     "hub-identity": {

@@ -1,0 +1,1 @@
+../../.skilled/commands/create/goal.md

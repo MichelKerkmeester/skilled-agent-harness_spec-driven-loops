@@ -1,0 +1,352 @@
+# ─────────────────────────────────────────────────────────────────
+# CREATE GOAL — AUTO MODE
+# ─────────────────────────────────────────────────────────────────
+role: Packet Goal Author
+purpose: Author or revise a spec packet's goal.md from that packet's own sources
+action: Read the packet sources, pick the operation, render and fill the goal, bind phases, measure, check, hand off
+operating_mode:
+  workflow: linear
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+
+development_philosophy:
+  principle: Derive every goal from the packet's own documents
+  approach: Read -> Route -> Render -> Fill -> Bind -> Measure -> Check -> Hand off
+  mandate: >-
+    The goal template and rendering belong to system-spec-kit; session objective state belongs
+    to the goal hooks. This workflow authors the packet's goal file and prints its chat slice,
+    then stops. A finished goal file is a successful run even though no session state changed.
+
+skill_reference:
+  skill: sk-doc
+  mode: sk-create-goal
+  skill_md: .skilled/skills/sk-doc/sk-create-goal/SKILL.md
+  references:
+    workflows: .skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md
+    standards: .skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md
+    budget: .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md
+    exemplars: .skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md
+  templates:
+    goal: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl
+  tooling:
+    child_scaffold: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh
+    existing_packet_render: .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh
+    packet_report: .skilled/hooks/goal/bin/goal.cjs
+    goal_checker: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs
+
+confidence_framework:
+  thresholds:
+    high:
+      range: 80-100%
+      action: Proceed with citable source
+    medium:
+      range: 40-79%
+      action: Proceed with caution, document assumptions
+    low:
+      range: 0-39%
+      action: STOP - Ask clarification with A/B/C options
+  scoring_weights:
+    packet_role_clarity: 0.35
+    source_document_agreement: 0.25
+    operation_certainty: 0.25
+    budget_headroom: 0.15
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: Present options to user with current findings
+
+request_analysis_framework:
+  solution_flow:
+    - "Parse input: the packet path and the requested operation"
+    - "Run the four routing decisions and record the resolved operation"
+    - "Read the packet's own source specification and acceptance criteria"
+    - "Render through system-spec-kit, then fill to the authoring standards"
+    - "Match any phase-parent binding table to the phase folders on disk"
+    - "Measure, check, then print the chat slice and stop"
+  pre_change_validation:
+    items:
+      - "Packet exists and its role is known (top-level, phase parent, nested child)?"
+      - "The packet's own spec.md and acceptance-criteria.md were read?"
+      - "The operation is recorded from a token or the packet's own files?"
+      - "A session-objective request was redirected instead of authored?"
+      - "Confidence >=80%? (if not: ask)"
+    stop_conditions:
+      - Target packet or a required source document is missing
+      - The sources disagree about a decision, criterion or phase structure
+      - The request is a session-objective request
+      - Any item unchecked
+    stop_action: STOP and report the reason before any goal file is written
+
+input_contract:
+  required:
+    - create_agent_verified
+    - packet_path
+  optional:
+    - operation
+    - execution_mode
+
+user_inputs:
+  packet_path: "[PACKET_PATH] - the spec packet directory the goal belongs to. REQUIRED."
+  operation: "[top-level|phase-parent|child|retrofit|phase-add|amend] - resolved from the packet's own files when omitted."
+  execution_mode: ":auto or :confirm; AUTONOMOUS under :auto."
+
+field_handling:
+  packet_path:
+    validation: an existing spec packet directory
+    required: true
+  operation:
+    validation: "must be one of: top-level, phase-parent, child, retrofit, phase-add, amend"
+    note: >-
+      When no token is present, resolve the operation from the packet's own shape and files
+      through the mode's routing decisions, and record it. Never infer it from unrelated
+      conversation context.
+  execution_mode:
+    validation: AUTONOMOUS
+  defaults:
+    goal_file: goal.md
+    durable_slice_limit: 4000
+    criteria_min: 3
+    criteria_max: 7
+
+context_loading:
+  trigger: Before step 1, non-interactive resolution
+  applies_when: >-
+    Always. The packet's own documents are the only source for goal content; a remembered or
+    guessed summary is never a source.
+  auto_resolution:
+    default: >-
+      Read the packet's spec.md and acceptance-criteria.md. For a phase parent, also read the
+      Phase Documentation Map and list every direct phase-child directory on disk. For a nested
+      child, use only that child's own specification and acceptance criteria.
+    on_absent: Stop and name the missing source before anything is written.
+
+workflow_overview:
+  steps:
+    - id: step_1_route_and_read
+      purpose: Classify the request and pick the operation
+    - id: step_2_plan_render
+      purpose: Choose the system-spec-kit render path and level
+    - id: step_3_render_and_fill
+      purpose: Render the goal and fill it to the authoring standards
+    - id: step_4_bind
+      purpose: Match any binding table to the phase folders on disk
+    - id: step_5_measure_and_check
+      purpose: Prove the durable budget and run the goal checker
+    - id: step_6_handoff
+      purpose: Print the chat slice and stop
+
+workflow:
+
+  step_1_route_and_read:
+    purpose: Classify the request and pick the operation
+    steps:
+      step_session_boundary:
+        action: >-
+          Decide file content versus session state. A request to set, bind, inject or resend a
+          session objective is redirected to the goal hooks with the presentation contract's
+          redirect block; write nothing and stop.
+      step_confirm_packet:
+        action: >-
+          Confirm the target directory exists and classify it: a parent directory containing
+          spec.md means nested child, direct phase-child directories mean phase parent, otherwise
+          top-level. A missing packet routes packet creation to system-spec-kit first.
+      step_read_sources:
+        action: "Read the packet's own spec.md and acceptance-criteria.md, plus the phase map and every direct phase-child directory for a phase parent."
+        on_fail:
+          action: "HALT and name the missing or conflicting source. Never choose a truth silently."
+      step_pick_operation:
+        action: "Record the operation from the token or the packet's own state across the six tokens: top-level, phase-parent, child, retrofit, phase-add, amend."
+        note: "retrofit is adding goal.md to an existing packet that has none; amend is revising an existing goal, including a parent amendment driven by a child change."
+
+  step_2_plan_render:
+    purpose: Choose the system-spec-kit render path and level
+    steps:
+      step_plan:
+        action: >-
+          For a new child packet, plan create.sh with --with-goal. For an existing packet or a
+          phase parent, plan inline-gate-renderer.sh with --level <L>, where a phase parent uses
+          the phase level and other packets use their actual level. Child scaffolding alone never
+          creates the parent goal.
+        note: "This step writes nothing; the render happens in step 3."
+
+  step_3_render_and_fill:
+    purpose: Render the goal and fill it to the authoring standards
+    steps:
+      step_render:
+        action: "Render the goal template through system-spec-kit at the planned path and level. Never copy or fork goal.md.tmpl."
+      step_fill:
+        action: >-
+          Load authoring-standards.md and goal-exemplars.md, then fill the rendered structure with
+          packet-specific content: one objective sentence, frozen decisions, and three to seven
+          self-contained completion criteria copied verbatim into the evaluator-facing objective
+          text. Leave no template placeholders.
+
+  step_4_bind:
+    purpose: Match any binding table to the phase folders on disk
+    steps:
+      step_binding:
+        action: >-
+          For a phase parent, write exactly one binding row per direct phase-child directory, each
+          targeting that child's backticked NNN-slug/goal.md, and keep the table only in the
+          phase-parent goal. Compare the exact folder-name set with the map before writing; on any
+          mismatch, stop and report the differing entries.
+        applies_when: operation is phase-parent, retrofit of a phase parent, phase-add or amend of a parent
+      step_parent_first:
+        action: >-
+          When a child change alters a parent decision or criterion, amend the parent first, then
+          update the child to match. A child goal never overrides a parent decision.
+        applies_when: operation is amend or phase-add
+
+  step_5_measure_and_check:
+    purpose: Prove the durable budget and run the goal checker
+    steps:
+      step_measure:
+        action: "Run the packet report and read packet_durable_chars and packet_budget. Keep a top-level or phase-parent durable slice at or below 4,000 characters; phase children are exempt."
+        on_fail:
+          action: >-
+            Cut in the playbook order: remove repeated child detail and compress decision prose
+            first, shorten criterion wording only as needed. Never remove a criterion or make one
+            uncheckable. If the budget still cannot be met, escalate and ask whether the packet
+            scope should be split.
+      step_check:
+        action: "Run check-goal.cjs on the packet from the repository root and resolve each finding before handoff."
+
+  step_6_handoff:
+    purpose: Print the chat slice and stop
+    steps:
+      step_print_slice:
+        action: "Print the packet report's chat_slice for the operator to set or resend. It is not a session bind, and this workflow changes no session state."
+      step_stop:
+        action: "Stop after the chat slice is printed."
+
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+  critical_steps:
+    step_1_route_and_read:
+      enforcement: MUST run the four routing decisions before any goal file is touched
+      verification: The resolved operation and its source are recorded, and a session-objective request was redirected
+    step_3_render_and_fill:
+      enforcement: MUST render through system-spec-kit, never from a local template copy
+      verification: The render command and level are recorded, and no template placeholder remains
+    step_5_measure_and_check:
+      enforcement: MUST report the measured budget and a clean goal checker before handoff
+      verification: packet_budget is read from the packet report and every checker finding is resolved
+
+gate_logic:
+  hard:
+    H0_write_verified:
+      description: "Command Phase 0 verification must have passed"
+      fail_action: STOP and return to the command setup phase
+    H1_required_fields:
+      description: "A packet path is present, and the operation is recorded"
+      fail_action: STOP and collect missing inputs
+    H2_sources_agree:
+      description: "The packet's own sources agree on decisions, criteria and phase structure before anything is written"
+      fail_action: STOP and report the conflict with both sides named
+    H3_render_contract:
+      description: "Every goal is rendered through system-spec-kit's template and renderer"
+      fail_action: STOP; a local template copy or a hand-built structure is never written
+    H4_binding_complete:
+      description: "A phase parent's binding rows and the direct phase-child directories are the same set"
+      fail_action: STOP and reconcile the phase map with disk before writing the goal
+  soft:
+    S1_slice_headroom:
+      description: "A durable slice near 4,000 characters should say what was compressed"
+      fail_action: Proceed with the cut order recorded
+    S2_criteria_wording:
+      description: "Shortened criteria must stay self-contained and checkable"
+      fail_action: Restore the fuller wording and cut elsewhere
+
+circuit_breaker:
+  enabled: true
+  thresholds:
+    failures: 3
+    recovery_s: 60
+    success_to_close: 1
+  states:
+    CLOSED: normal operation
+    OPEN: skip optional steps, complete with warnings
+    HALF_OPEN: test single operation
+
+quality_standards:
+  template_fidelity:
+    minimum: Every goal follows the system-spec-kit goal template with no local template copy
+    enforcement: Step 3 renders only through system-spec-kit
+  criterion_quality:
+    minimum: Three to seven self-contained criteria, each checkable without opening another file
+    enforcement: Step 3 applies authoring-standards.md before the goal is handed off
+  binding_consistency:
+    minimum: Every direct phase-child directory has exactly one binding row and every row resolves
+    enforcement: Step 4 compares folder names, not counts, and step 5 rechecks targets
+
+autonomous_execution:
+  principle: Execute all steps without user approval gates
+  self_validation: Verify outputs at each step before proceeding
+  error_handling: Auto-fix where possible, escalate on hard failures
+  pause_conditions:
+    - Confidence drops below 40%
+    - The source documents disagree about a decision, criterion or phase structure
+    - The parent phase map and the child directories do not agree
+    - A parent cannot meet the durable budget without losing a criterion
+    - The request needs session-goal state or a change to a system-spec-kit-owned contract
+
+completion_report:
+  owner: presentation-contract
+  note: >-
+    Result wording lives only in create-goal-presentation.txt. Render the block named below for
+    the terminal state reached; do not restate or reword it here.
+  render:
+    authored: "presentation section 7. SUCCESS OUTPUT"
+    redirected: "presentation section 2. SESSION-GOAL REDIRECT"
+    failed: "presentation section 8. FAILURE OUTPUT"
+  status_lines:
+    authored: "STATUS=OK PATH={goal_path}"
+    redirected: "STATUS=OK ACTION=redirected TARGET=goal-hooks"
+    failed: "STATUS=FAIL ERROR=\"{error_message}\""
+
+error_recovery:
+  packet_or_source_missing:
+    action: HALT and name the missing path; route packet creation to system-spec-kit first
+    fallback: Never draft a goal from a remembered summary
+  sources_conflict:
+    action: HALT and report both sides of the conflict
+    fallback: Never choose a truth silently
+  map_disk_mismatch:
+    action: STOP and report the exact map and disk entries that differ
+    fallback: Reconcile the phase map first, then restart the binding workflow
+  over_budget_parent:
+    action: Cut in the playbook order and re-measure
+    fallback: Ask whether the packet scope should be split; never drop a criterion
+  checker_finding:
+    action: Resolve each finding and re-run the checker
+    fallback: Report the unresolved finding and stop before handoff
+  write_failure:
+    action: Check permissions, retry once
+    fallback: Display the drafted goal for manual save
+
+termination:
+  after_step: 6
+  message: Goal authoring workflow complete.
+  next_steps:
+    owner: presentation-contract
+    render: "presentation section 9. NEXT STEPS"
+
+rules:
+  required:
+    - "Run the four routing decisions before writing, on every path"
+    - "Render every goal through system-spec-kit; never copy goal.md.tmpl"
+    - "Compare binding rows with the phase folders by name, never by count"
+    - "Print the chat slice and stop; the operator sets or resends the goal"
+  forbidden:
+    - "Binding a packet to a session, setting or resending a session objective, or tracking whether an operator has set the goal"
+    - "Putting a binding table in a top-level goal or a phase-child goal"
+    - "Omitting a phase child from the parent's binding table or dropping a criterion to meet the budget"
+    - "Modifying system-spec-kit template tooling or the shared validator from this workflow"

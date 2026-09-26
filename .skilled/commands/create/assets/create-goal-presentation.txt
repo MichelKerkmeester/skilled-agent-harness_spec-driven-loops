@@ -1,0 +1,129 @@
+# PRESENTATION CONTRACT — /create:goal
+# User-facing wording only. No routing logic.
+
+## 1. Phase 0 Verification Display
+
+Run this automatic self-check before setup. This is not a user question.
+
+```text
+SELF-CHECK: Are you operating as the @markdown agent?
+
+Indicators:
+- Invoked with @markdown prefix
+- Template-first workflow capabilities are available
+- Packet-goal authoring behavior is available
+- Goal rendering through system-spec-kit is available
+
+If all indicators are present:
+- create_agent_verified = true
+- Continue to setup
+
+If any indicator is missing or uncertain:
+- Stop before loading workflow YAML
+- Display the hard-block message below
+```
+
+Hard-block message:
+
+```text
+BLOCKED: /create:goal requires the @markdown agent.
+
+This command renders a packet goal through system-spec-kit's template and fills it
+against the authoring standards. Run it as @markdown so the template-first workflow
+is in force.
+
+Re-invoke as: @markdown /create:goal <packet path>
+```
+
+## 2. SESSION-GOAL REDIRECT
+
+When the request is to "set the goal" or "resend the goal" as a session objective,
+show this block, write nothing, and stop.
+
+```text
+  This request is a session objective, not a packet goal file.
+  Session objectives belong to the goal hooks: /goal, /goal-opencode, /goal-pi,
+  /goal-cursor, or the host's native goal command.
+  /create:goal authors goal.md files only. Nothing was written.
+
+  STATUS=OK ACTION=redirected TARGET=goal-hooks
+```
+
+## 3. CONSOLIDATED SETUP PROMPT (:confirm and no-suffix)
+
+  Which packet, and which operation?
+
+    Packet path:  the spec packet directory the goal belongs to.
+
+    Operation:    A) top-level   B) phase-parent   C) child
+                  D) retrofit    E) phase-add      F) amend
+                  (omit to resolve it from the packet's own files)
+
+  Mode:           A) auto   B) confirm
+
+## 4. NON-INTERACTIVE SETUP (:auto)
+
+Under `:auto`, the setup prompt is skipped when the prompt body carries a
+pre-bound answers block. Honor every field present and resolve the rest from the
+defaults below. Missing a required field with no default stops the run.
+
+```text
+PRE-BOUND SETUP ANSWERS:
+  packet_path: <spec packet directory>
+  operation: top-level
+  execution_mode: AUTONOMOUS
+```
+
+Default resolution table:
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+| --- | --- | --- | --- | --- |
+| `packet_path` | Yes | Positional argument or marker `packet_path` | none | Yes, when empty |
+| `operation` | Yes | Operation token or marker | resolved from the packet's own files | No |
+| `execution_mode` | Yes | `:auto`, `:confirm`, or marker | `AUTONOMOUS` under `:auto` | No |
+
+## 5. OPERATION REPORT
+
+  Packet     : {packet_path}
+  Role       : {top-level | phase parent | nested child}
+  Operation  : {operation}   (source: {token | packet state})
+  Render     : {create.sh --with-goal | inline-gate-renderer.sh --level <L>}
+  Goal file  : {packet_path}/goal.md
+
+## 6. CHECKPOINT DISPLAY (:confirm)
+
+  Step {n}/6 — {step_name}
+    {what this step produced}
+
+  A) approve   B) review   C) modify   D) abort
+
+  The three checkpoints sit after the operation is chosen, before any goal file
+  is written, and before handoff. A redirected session-objective request is
+  reported, never offered for approval.
+
+## 7. SUCCESS OUTPUT
+
+  Goal written : {packet_path}/goal.md   ({operation})
+  Binding rows : {rows} rows · {folders} phase folders on disk · all matched
+  Measured     : durable {chars}/4000 chars · packet_budget={state}
+  Checked      : check-goal.cjs · {findings} findings, all resolved
+
+  Chat slice for the operator (set or resend it; this command never binds it):
+  ---
+  {chat_slice}
+  ---
+
+  STATUS=OK PATH={packet_path}/goal.md
+
+## 8. FAILURE OUTPUT
+
+  {what failed}
+  {which source, map entry or check refused, and what to reconcile}
+
+  STATUS=FAIL ERROR="{error_message}"
+
+## 9. NEXT STEPS
+
+  Give the printed chat slice to your runtime's goal hook to set or resend the
+  objective. When a child change moved a parent decision or criterion, the parent
+  was amended first: resend the parent slice, not the child's.

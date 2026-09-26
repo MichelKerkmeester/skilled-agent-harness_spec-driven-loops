@@ -1,6 +1,6 @@
 ---
 name: sk-doc
-description: "Documentation & OpenCode-component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, frontmatter."
+description: "Documentation & OpenCode-component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, packet goals, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 2.1.0.0
 metadata:
@@ -8,11 +8,11 @@ metadata:
   family: sk-util
 ---
 
-<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-with-human-voice, sk-create-quality-control, human-voice-rules, hvr, shared-backbone, create-quality-control-pipeline -->
+<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-goal, sk-create-with-human-voice, sk-create-quality-control, human-voice-rules, hvr, shared-backbone, create-quality-control-pipeline -->
 
 # Documentation Authoring Hub (sk-doc)
 
-One advisor identity, fourteen workflow modes across thirteen packets, one shared sk-create-quality-control backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting sk-create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
+One advisor identity, fifteen workflow modes across fourteen packets, one shared sk-create-quality-control backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting sk-create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
 
 **Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json`, `hub-router.json`, and `ROUTER.md` carry the same value, so every hub-root artifact states the same release.
 
@@ -36,6 +36,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **sk-create-repo-rule** | Create, revise or retire a repo-local rule under `repo-rules/` and wire it into `REPO RULES.md` (four decision tests refuse most requests) | `sk-create-repo-rule/` | `/create:repo-rule` |
 | **sk-create-with-human-voice** | Apply the Human Voice Rules to prose, or score prose against them, with a scope gate and a re-scan | `sk-create-with-human-voice/` | `/create:with-human-voice` |
 | **sk-create-frontmatter** | Own the YAML frontmatter contract: per-class field rules, the description budget, and the 4-part `version` derivation | `sk-create-frontmatter/` | — (routes via aliases) |
+| **sk-create-goal** | Author or revise a packet `goal.md`: the durable directive, three to seven self-contained completion criteria, and the phase-parent binding table (session-goal setting stays with the goal hooks) | `sk-create-goal/` | `/create:goal` |
 | **sk-create-quality-control** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `sk-create-quality-control/` | (routes via aliases) |
 
 ### When NOT to Use
@@ -59,7 +60,7 @@ Routing is **registry-driven at runtime and packet-authored at source** in two s
 
 ### Surface Router — per-intent leaf sets
 
-Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, flowcharts, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, repo rules, and the explicit full-toolkit intent), the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub UNKNOWN fallback, never a silent default). Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, flowcharts, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, packet goals, repo rules, and the explicit full-toolkit intent), the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub UNKNOWN fallback, never a silent default). Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
 `ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule). The `shared/` backbone stays the universal sk-create-quality-control source; the surface router only selects leaves.
 
@@ -75,7 +76,7 @@ REGISTRY = SKILL_ROOT / "mode-registry.json"
 HUB_ROUTER = SKILL_ROOT / "hub-router.json"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-with-human-voice, or sk-create-quality-control work",
+    "Confirm whether this is sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-goal, sk-create-with-human-voice, or sk-create-quality-control work",
     "Confirm the target document or component being authored, scaffolded, or reviewed",
     "Provide the available inputs: existing doc, source material, or scaffold parameters",
     "Confirm the validation expectations before completion (DQI/HVR scoring, validate.sh, or packet-specific checks)",
@@ -133,7 +134,7 @@ This hub does **not** use keyed resource discovery (`references/<key>/` or `asse
 sk-doc/
   SKILL.md               # this routing hub (no per-packet logic)
   ROUTER.md              # stage-two surface router (authoring intent -> leaf sets)
-  mode-registry.json     # the fourteen-mode discriminator + advisorRouting (single source of truth)
+  mode-registry.json     # the fifteen-mode discriminator + advisorRouting (single source of truth)
   hub-router.json        # router signals + vocabulary classes
   description.json       # hub advisor descriptor
   graph-metadata.json    # the ONE advisor identity for the whole skill
@@ -141,7 +142,8 @@ sk-doc/
   sk-create-skill/  sk-create-readme/  sk-create-agent/  sk-create-command/
   sk-create-feature-catalog/  sk-create-manual-testing-playbook/
   sk-create-benchmark/  sk-create-changelog/  sk-create-diff/
-  sk-create-repo-rule/  sk-create-frontmatter/  sk-create-with-human-voice/  sk-create-quality-control/    # nested workflow packets
+  sk-create-repo-rule/  sk-create-frontmatter/  sk-create-goal/
+  sk-create-with-human-voice/  sk-create-quality-control/    # nested workflow packets
   scripts/               # facade symlinks -> shared/ + owning packets (tool paths only)
   shared/                # sk-create-quality-control backbone: validators, global standards, shared assets
 ```
@@ -176,10 +178,10 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 
 ## 5. REFERENCES
 
-- Registry: `mode-registry.json` (fourteen modes across thirteen packets, `packetKind: workflow`).
+- Registry: `mode-registry.json` (fifteen modes across fourteen packets, `packetKind: workflow`).
 - Hub router: `hub-router.json` (signals + vocabulary classes).
 - Surface router: `ROUTER.md` (authoring intent to packet-local leaf sets).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
-- Packets: `sk-create-skill/`, `sk-create-readme/`, `sk-create-agent/`, `sk-create-command/`, `sk-create-feature-catalog/`, `sk-create-manual-testing-playbook/`, `sk-create-benchmark/`, `sk-create-changelog/`, `sk-create-diff/`, `sk-create-repo-rule/`, `sk-create-frontmatter/`, `sk-create-with-human-voice/`, `sk-create-quality-control/`.
+- Packets: `sk-create-skill/`, `sk-create-readme/`, `sk-create-agent/`, `sk-create-command/`, `sk-create-feature-catalog/`, `sk-create-manual-testing-playbook/`, `sk-create-benchmark/`, `sk-create-changelog/`, `sk-create-diff/`, `sk-create-repo-rule/`, `sk-create-frontmatter/`, `sk-create-goal/`, `sk-create-with-human-voice/`, `sk-create-quality-control/`.
 - Shared backbone: `shared/scripts/`, `shared/references/`, `shared/assets/`.
 - Parent-skill pattern: `sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.

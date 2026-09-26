@@ -451,5 +451,49 @@
         }
       ]
     }
+  },
+  {
+    "command": "/create:goal",
+    "ownerMode": "sk-create-goal",
+    "description": "Author or revise a packet goal.md: top-level, phase-parent, child, retrofit, phase-add, amend. :auto/:confirm.",
+    "argumentHint": "<packet path> [top-level|phase-parent|child|retrofit|phase-add|amend] [:auto|:confirm]",
+    "userIntent": {
+      "job": "I want a spec packet's goal.md authored, added or revised from that packet's own sources.",
+      "ownedSignals": [
+        "write a goal.md for a packet",
+        "author a phase parent goal",
+        "add a goal to a packet",
+        "author a nested child goal"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".skilled/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-goal",
+        "resource": ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+        "action": "load the packet-goal authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-goal",
+        "resource": ".skilled/commands/create/assets/create-goal-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is a spec packet's goal.md (top-level, phase parent or nested child) authored or revised from that packet's own sources.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/goal-opencode",
+          "when": "Prefer the goal hooks (/goal, /goal-opencode, /goal-pi, /goal-cursor) or the host's native goal command when the request is to set, bind or resend a session objective; this command authors goal files and never touches session state."
+        }
+      ]
+    }
   }
 ]

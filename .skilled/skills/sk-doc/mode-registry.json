@@ -562,6 +562,49 @@
       "advisorRouting": {
         "routingClass": "metadata"
       }
+    },
+    {
+      "workflowMode": "sk-create-goal",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "sk-create-goal",
+      "packetSkillName": "sk-create-goal",
+      "grandfatheredFolderMismatch": false,
+      "command": "/create:goal",
+      "aliases": [
+        "create packet goal",
+        "packet goal",
+        "goal.md",
+        "author goal.md",
+        "revise packet goal",
+        "phase parent goal",
+        "nested phase child goal",
+        "nested goal",
+        "add a goal file",
+        "write a goal file",
+        "draft a goal file",
+        "goal document",
+        "binding table",
+        "goal chat slice"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     }
   ]
 }
