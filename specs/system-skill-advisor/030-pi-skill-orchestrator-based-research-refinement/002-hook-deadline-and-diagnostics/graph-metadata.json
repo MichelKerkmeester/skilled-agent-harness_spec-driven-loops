@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The system-spec-kit Claude shim spawns the advisor hook with `CHILDTIMEOUTMS = 2500` and returns `{}` when it kills the child (`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:22`, `:107-114`)",
     "created_at": "2026-09-26T10:05:44Z",
-    "last_save_at": "2026-09-26T12:12:00.062Z",
+    "last_save_at": "2026-09-26T12:20:40.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbd539c113d3ee86197c938dc773abc2e6072ff6bcb324ceb3a459a8ce0dda36",
+    "source_fingerprint": "sha256:db0fb333aad63d3a17b64193364af9d337859939aecda583ea8ce914c26ebbaa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a15d4284e30ee86719887fb8b5b1dab11a34986229b8f38b09aaf04d9730569f",
       "plan.md": "fb1c45c8b35efc3195e80b75165e0a24cef7d0be90779b018b0c9d6ad5117407",
       "tasks.md": "ddec4f6e6e1989e58922c08b872fdcc92988d77429c4d158d09bedb3438a7053",
-      "implementation-summary.md": "b3de5ff8c1f0002e545c64e14d2e1ffffe800721b315143aea1c9361d83cd476"
+      "implementation-summary.md": "508d7b69c5a136678b7f45a033f3a095addf9fa41b5d12529fe54b697252697b"
     },
     "last_active_at": null
   }

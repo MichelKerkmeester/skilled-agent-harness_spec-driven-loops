@@ -109,7 +109,7 @@ GPT-6 Luna at max effort wrote each change from a one-change brief, through cli-
 |-------|--------|
 | REQ-001 end to end: real shim, real hook, CLI stub sleeping 3 s | New default: fallback directive delivered at 2,294 ms. Old equal 2,500 ms budget: `{}` with `CHILD_TIMEOUT` at 2,544 ms |
 | REQ-002 live, debug on, built dist | Records written for `claude` (shim), `codex` (adapter) and `pi` (in-process), each with `emittedBytes` 260 |
-| Advisor suite, `npx vitest run` | 901 passed, 1 failed, 6 skipped of 908, against a baseline of 888 passed, 3 failed of 897. The 11 added tests are this phase's. The remaining failure, the routing-divergence ratchet, failed at baseline too |
+| Advisor suite, `npx vitest run` | 903 passed, 1 failed, 6 skipped of 910, against a baseline of 888 passed, 3 failed, 6 skipped of 897. The 13 added tests are this phase's. The two command-bridge failures in the baseline were fixed by a concurrent commit, `3fce512201`. The remaining failure, the routing-divergence ratchet, failed at baseline too |
 | Typecheck, both packages | Exit 0 |
 | Shim and adapter tests | 10 of 10 |
 | Plugin suite | 29 of 29 |

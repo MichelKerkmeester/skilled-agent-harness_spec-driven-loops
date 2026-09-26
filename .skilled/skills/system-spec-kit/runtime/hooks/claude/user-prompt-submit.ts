@@ -20,6 +20,8 @@ const TARGET_REL = 'skills/system-skill-advisor/runtime/dist/hooks/claude/user-p
 const MAX_STDIN_BYTES = 1024 * 1024;
 const MAX_STDIO_BYTES = 1024 * 1024;
 const CHILD_TIMEOUT_MS = 2500;
+// Reserve fallback time after advisor CLI; 300 ms covers measured startup overhead with headroom.
+const CHILD_START_MARGIN_MS = 300;
 const READ_CHUNK_BYTES = 64 * 1024;
 const MAX_ROOT_WALK_DEPTH = 14;
 
@@ -99,11 +101,16 @@ function runShim(): string {
     return '{}';
   }
   try {
+    const childEnv = { ...process.env };
+    const advisorTimeoutMs = process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS;
+    if (advisorTimeoutMs === undefined || advisorTimeoutMs.trim() === '') {
+      childEnv.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS = String(CHILD_TIMEOUT_MS - CHILD_START_MARGIN_MS);
+    }
     const result = spawnSync(process.execPath, [target, ...process.argv.slice(2)], {
       cwd: process.cwd(),
       input: readBoundedStdin(),
       encoding: 'utf8',
-      env: process.env,
+      env: childEnv,
       timeout: CHILD_TIMEOUT_MS,
       maxBuffer: MAX_STDIO_BYTES,
       killSignal: 'SIGKILL',

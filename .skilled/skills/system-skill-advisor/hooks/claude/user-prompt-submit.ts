@@ -10,6 +10,7 @@ import { createRequire } from 'node:module';
 import { performance } from 'node:perf_hooks';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isAdvisorRuntime, type AdvisorRuntime } from '../../runtime/lib/advisor-runtime-values.js';
 import { findAdvisorWorkspaceRoot } from '../../runtime/lib/utils/workspace-root.js';
 import {
   buildSkillAdvisorBrief,
@@ -35,6 +36,8 @@ import {
   serializeAdvisorHookDiagnosticRecord,
 } from '../../runtime/lib/metrics.js';
 import { buildSkillAdvisorBriefFromCli } from '../lib/skill-advisor-cli-fallback.js';
+
+export { renderAdvisorFallbackDirective };
 
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -80,6 +83,8 @@ export interface ClaudeHookSpecificOutput {
 export type ClaudeUserPromptSubmitOutput = ClaudeHookSpecificOutput | Record<string, never>;
 
 export interface UserPromptSubmitDependencies {
+  /** In-process callers such as Pi pass their runtime directly. */
+  readonly runtime?: AdvisorRuntime;
   readonly buildBrief?: typeof buildSkillAdvisorBrief;
   readonly buildCliBrief?: typeof buildSkillAdvisorBriefFromCli;
   readonly renderBrief?: typeof renderAdvisorBrief;
@@ -92,6 +97,7 @@ export interface UserPromptSubmitDependencies {
 }
 
 interface HookDiagnosticInput {
+  readonly runtime?: AdvisorRuntime;
   readonly workspaceRoot: string;
   readonly status: AdvisorHookStatus;
   readonly freshness: AdvisorHookFreshness;
@@ -101,12 +107,15 @@ interface HookDiagnosticInput {
   readonly errorDetails?: string;
   readonly skillLabel?: string | null;
   readonly generation?: number;
+  readonly emittedBytes?: number;
+  readonly directivesSuppressed?: boolean;
 }
 
 export const DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500;
 const MAX_PROMPT_BYTES = 64 * 1024;
 const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 const DIRECTIVE_RECEIPT_COMMIT = Symbol('directiveReceiptCommit');
+const pendingDiagnosticWrites = new Set<Promise<unknown>>();
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -205,9 +214,28 @@ export function emitDiagnostic(
     });
     const line = serializeAdvisorHookDiagnosticRecord(diagnosticRecord);
     writeDiagnostic(line);
-    persistDiagnostic(record.workspaceRoot, diagnosticRecord).catch(() => undefined);
+    const pendingWrite = persistDiagnostic(record.workspaceRoot, diagnosticRecord).catch(() => undefined);
+    pendingDiagnosticWrites.add(pendingWrite);
+    void pendingWrite.then(() => pendingDiagnosticWrites.delete(pendingWrite));
   } catch {
     // Diagnostics must never affect hook behavior.
+  }
+}
+
+export async function flushPendingDiagnostics(maxWaitMs = 100): Promise<void> {
+  let timeout: NodeJS.Timeout | undefined;
+  try {
+    if (pendingDiagnosticWrites.size === 0) return;
+    const pendingWrites = Promise.all([...pendingDiagnosticWrites]).then(() => undefined);
+    const timeoutElapsed = new Promise<void>((resolvePromise) => {
+      timeout = setTimeout(resolvePromise, maxWaitMs);
+      timeout.unref();
+    });
+    await Promise.race([pendingWrites, timeoutElapsed]);
+  } catch {
+    // Diagnostics must never affect hook behavior.
+  } finally {
+    if (timeout) clearTimeout(timeout);
   }
 }
 
@@ -224,6 +252,9 @@ export async function handleClaudeUserPromptSubmit(
   input: ClaudeUserPromptSubmitInput | null,
   dependencies: UserPromptSubmitDependencies = {},
 ): Promise<ClaudeUserPromptSubmitOutput> {
+  const environmentRuntime = process.env.SPECKIT_RUNTIME;
+  const runtime = dependencies.runtime
+    ?? (isAdvisorRuntime(environmentRuntime) ? environmentRuntime : 'claude');
   const startedAt = dependencies.now?.() ?? performance.now();
   const elapsed = (): number => Number(((dependencies.now?.() ?? performance.now()) - startedAt).toFixed(3));
   const writeDiagnostic = dependencies.writeDiagnostic;
@@ -231,6 +262,7 @@ export async function handleClaudeUserPromptSubmit(
   try {
     if (!skillAdvisorHookEnabled() || process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1') {
       emitDiagnostic({
+        runtime,
         workspaceRoot: process.cwd(),
         status: 'skipped',
         freshness: 'unavailable',
@@ -242,6 +274,7 @@ export async function handleClaudeUserPromptSubmit(
 
     if (!input) {
       emitDiagnostic({
+        runtime,
         workspaceRoot: process.cwd(),
         status: 'fail_open',
         freshness: 'unavailable',
@@ -257,6 +290,7 @@ export async function handleClaudeUserPromptSubmit(
     const workspaceRoot = workspaceRootFor(input);
     if (prompt === null) {
       emitDiagnostic({
+        runtime,
         workspaceRoot,
         status: 'fail_open',
         freshness: 'unavailable',
@@ -277,12 +311,12 @@ export async function handleClaudeUserPromptSubmit(
     const buildCliBrief = dependencies.buildCliBrief ?? buildSkillAdvisorBriefFromCli;
     let result = injectedBrief
       ? await injectedBrief(prompt, {
-        runtime: 'claude',
+        runtime,
         workspaceRoot,
         subprocessTimeoutMs: claudeHookTimeoutMs(),
       })
       : await buildCliBrief(prompt, {
-        runtime: 'claude',
+        runtime,
         workspaceRoot,
         timeoutMs: claudeHookTimeoutMs(),
       }, {
@@ -344,6 +378,7 @@ export async function handleClaudeUserPromptSubmit(
       effectiveEmitted = emitted;
     }
     emitDiagnostic({
+      runtime,
       workspaceRoot,
       status: result.status,
       freshness: result.freshness,
@@ -352,6 +387,8 @@ export async function handleClaudeUserPromptSubmit(
       errorCode: result.diagnostics?.errorCode,
       errorDetails: result.diagnostics?.errorMessage ?? result.diagnostics?.policyReason ?? result.diagnostics?.staleReason,
       skillLabel: skillLabelFor(result),
+      emittedBytes: Buffer.byteLength(effectiveEmitted, 'utf8'),
+      directivesSuppressed: effectiveEmitted !== emitted,
     }, writeDiagnostic);
 
     const output: ClaudeUserPromptSubmitOutput = {
@@ -375,6 +412,7 @@ export async function handleClaudeUserPromptSubmit(
     return output;
   } catch {
     emitDiagnostic({
+      runtime,
       workspaceRoot: input ? workspaceRootFor(input) : process.cwd(),
       status: 'fail_open',
       freshness: 'unavailable',
@@ -438,7 +476,9 @@ if (IS_CLI_ENTRY) {
       errorDetails: 'Unhandled UserPromptSubmit CLI exception',
     });
     await writeHookOutput({});
-  }).finally(() => {
+  }).finally(async () => {
+    // The exit would otherwise drop diagnostic appends; the cap preserves the shim's kill margin.
+    await flushPendingDiagnostics();
     process.exit(0);
   });
 }
