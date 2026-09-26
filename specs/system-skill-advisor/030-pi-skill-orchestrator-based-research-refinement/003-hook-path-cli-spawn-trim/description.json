@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim",
+  "description": "Hook Path CLI Spawn Trim",
+  "keywords": [
+    "phase",
+    "hook-path-cli-spawn-trim"
+  ],
+  "lastUpdated": "2026-09-26T10:05:45.470Z",
+  "specId": "003",
+  "folderSlug": "hook-path-cli-spawn-trim",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

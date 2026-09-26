@@ -1,0 +1,66 @@
+{
+  "name": "pi-skill-orchestrator",
+  "version": "0.1.26",
+  "description": "Lazy skill discovery, groups, profiles, dependency-aware loading, and optional reversible token-saving filters for the Pi coding agent.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Alan Guice (Badgids)",
+  "homepage": "https://github.com/badgids/pi-skill-orchestrator#readme",
+  "bugs": {
+    "url": "https://github.com/badgids/pi-skill-orchestrator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/badgids/pi-skill-orchestrator.git"
+  },
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "pi-coding-agent",
+    "agent-skills",
+    "skills",
+    "lazy-loading",
+    "context-window",
+    "skill-manager",
+    "skill-groups",
+    "skill-profiles",
+    "token-saving",
+    "tool-output-compression",
+    "context-optimization"
+  ],
+  "files": [
+    "src/",
+    "docs/",
+    "assets",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "VERSION"
+  ],
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "check:source": "node scripts/check-source.mjs",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check:package": "node scripts/check-package.mjs",
+    "check": "npm test && npm run check:source && npm run check:docs && npm run check:package",
+    "pack:check": "npm pack --dry-run --ignore-scripts",
+    "release:check": "npm run check && npm run pack:check",
+    "prepack": "npm run check"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

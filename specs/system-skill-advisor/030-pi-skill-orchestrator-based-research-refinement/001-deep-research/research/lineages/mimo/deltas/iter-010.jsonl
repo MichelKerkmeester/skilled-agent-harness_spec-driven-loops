@@ -1,0 +1,2 @@
+{"type":"finding","id":"F10-1","iteration":10,"rq":"all","mechanism":"consolidated ranked verdict list","orchestratorCitations":[],"advisorCitations":[],"advisorCounterpart":"16 adopt/adapt recommendations and 8 rejections, each traced to iteration findings","verdict":"ADOPT","reason":"The ranked list is the handoff artifact the operator picks refinement phases from.","claimStatus":"MIXED"}
+{"type":"question","id":"Q-ALL","iteration":10,"rq":"all","coverage":"answered","note":"RQ1-RQ7 each carry a one-line answer backed by verified file:line citations; ranking complete."}

@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
+  "description": "The skill advisor and the pi-skill-orchestrator extension solve skill selection with opposite designs",
+  "keywords": [
+    "skill",
+    "advisor",
+    "pi-skill-orchestrator",
+    "extension",
+    "solve",
+    "selection",
+    "opposite",
+    "designs"
+  ],
+  "lastUpdated": "2026-09-26T06:33:25.383Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

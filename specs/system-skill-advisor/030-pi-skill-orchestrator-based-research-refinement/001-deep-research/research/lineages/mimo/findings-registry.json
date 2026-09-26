@@ -1,0 +1,239 @@
+{
+  "sessionId": "fanout-mimo-1790404524761-xsg1vq",
+  "lineageLabel": "mimo",
+  "keyFindings": [
+    {
+      "id": "F1-1",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "ADAPT",
+      "mechanism": "conservative eager-catalog removal with single scope-stub replacement",
+      "reason": "Stripping belongs to a system-prompt-owning extension; adopt the zero-catalog-data stub discipline as a brief-format invariant."
+    },
+    {
+      "id": "F1-2",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "ADOPT",
+      "mechanism": "constant-size scope stub (label + count + fixed instructions)",
+      "reason": "A one-line indexed-candidate count is the cheapest transferable unit of the lazy-catalog design."
+    },
+    {
+      "id": "F1-3",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "REJECT",
+      "mechanism": "brief-replaces-catalog inside the advisor",
+      "reason": "The advisor cannot safely remove prompt content it does not own."
+    },
+    {
+      "id": "F2-1",
+      "iteration": 2,
+      "rq": "RQ1",
+      "verdict": "ADOPT",
+      "mechanism": "delivered-byte accounting + default-on brief dedup",
+      "reason": "The recurring-cost levers exist (dedup, policy skip, cache); they need measurement and wider use."
+    },
+    {
+      "id": "F2-2",
+      "iteration": 2,
+      "rq": "RQ1",
+      "verdict": "ADAPT",
+      "mechanism": "scope-stub + on-demand search replacing the eager catalog",
+      "reason": "Feasible only on system-prompt-owning surfaces (Pi first); elsewhere the stub discipline lives in the brief."
+    },
+    {
+      "id": "F2-3",
+      "iteration": 2,
+      "rq": "RQ1",
+      "verdict": "REJECT",
+      "mechanism": "adopting orchestrator-side cost machinery",
+      "reason": "Advisor policy-skip + exact-prompt cache + dedup already dominate; only the O(n) catalog term is a real gap."
+    },
+    {
+      "id": "F3-1",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "ADAPT",
+      "mechanism": "model-pulled recovery surface named in the fail-open envelope",
+      "reason": "Name the existing advisor_recommend pull handle in the fail-open fallback so timeout turns self-heal."
+    },
+    {
+      "id": "F3-2",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "ADAPT",
+      "mechanism": "bounded model-pulled search results",
+      "reason": "Adopt the pull shape but back it with the advisor scorer, not substring ranking."
+    },
+    {
+      "id": "F3-3",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "REJECT",
+      "mechanism": "pull-replaces-push architecture",
+      "reason": "Pull-only trades a reported transport failure for silent non-discovery."
+    },
+    {
+      "id": "F4-1",
+      "iteration": 4,
+      "rq": "RQ3",
+      "verdict": "ADAPT",
+      "mechanism": "preferred search scope with bounded global fallback",
+      "reason": "Soft family preference with the global pool always open; hard scoping would turn ranking misses into silent blocks."
+    },
+    {
+      "id": "F4-2",
+      "iteration": 4,
+      "rq": "RQ3",
+      "verdict": "REJECT",
+      "mechanism": "fallback authorization set + load gate",
+      "reason": "Nothing to gate at brief time; only replace-on-change state hygiene transfers."
+    },
+    {
+      "id": "F4-3",
+      "iteration": 4,
+      "rq": "RQ3",
+      "verdict": "ADOPT",
+      "mechanism": "empty-scope explicit no-candidate reporting",
+      "reason": "A one-line empty-scope report removes the did-the-advisor-run misreading at negligible cost."
+    },
+    {
+      "id": "F5-1",
+      "iteration": 5,
+      "rq": "RQ4",
+      "verdict": "REJECT",
+      "mechanism": "dependency bundle in the brief",
+      "reason": "Bundle loading belongs to the runtime loading layer; the brief picks the single best root."
+    },
+    {
+      "id": "F5-2",
+      "iteration": 5,
+      "rq": "RQ4",
+      "verdict": "ADAPT",
+      "mechanism": "negation-aware dependency detection from bodies",
+      "reason": "Borrow detection heuristics into reviewed edge maintenance so graph-causal weights track reality."
+    },
+    {
+      "id": "F5-3",
+      "iteration": 5,
+      "rq": "RQ4",
+      "verdict": "ADAPT",
+      "mechanism": "missing/cycle reporting",
+      "reason": "Surface graph health on the advisor_status trust surface, not in model context."
+    },
+    {
+      "id": "F6-1",
+      "iteration": 6,
+      "rq": "RQ5",
+      "verdict": "ADOPT",
+      "mechanism": "name-mention dominance (rank-1 pin)",
+      "reason": "A literal skill-name mention is the highest-intent prompt class and deserves a short-circuit pin."
+    },
+    {
+      "id": "F6-2",
+      "iteration": 6,
+      "rq": "RQ5",
+      "verdict": "REJECT",
+      "mechanism": "raw substring score table",
+      "reason": "Advisor lanes strictly subsume it; importing would subtract capability."
+    },
+    {
+      "id": "F6-3",
+      "iteration": 6,
+      "rq": "RQ5",
+      "verdict": "REJECT",
+      "mechanism": "deterministic alphabetical tie-break",
+      "reason": "Already present in fusion; recorded as a tuning invariant protecting the dedup cache."
+    },
+    {
+      "id": "F7-1",
+      "iteration": 7,
+      "rq": "RQ6",
+      "verdict": "ADOPT",
+      "mechanism": "bounded results (5/8) + 160-char descriptions",
+      "reason": "Proven output shape, directly reusable for the advisor pull surface."
+    },
+    {
+      "id": "F7-2",
+      "iteration": 7,
+      "rq": "RQ6",
+      "verdict": "ADAPT",
+      "mechanism": "whole-brief output bound",
+      "reason": "The token cap counts the head only; count the constant directive so the bound is honest."
+    },
+    {
+      "id": "F7-3",
+      "iteration": 7,
+      "rq": "RQ6",
+      "verdict": "ADAPT",
+      "mechanism": "truncate-and-keep metadata ingestion",
+      "reason": "Keep sanitized prefixes of ranking signal fields instead of dropping over-length values to null."
+    },
+    {
+      "id": "F8-1",
+      "iteration": 8,
+      "rq": "RQ7",
+      "verdict": "REJECT",
+      "mechanism": "conservative warn-not-delete",
+      "reason": "Already embodied as the renderer's fail-closed label sanitizer."
+    },
+    {
+      "id": "F8-2",
+      "iteration": 8,
+      "rq": "RQ7",
+      "verdict": "REJECT",
+      "mechanism": "atomic tmp+rename writes",
+      "reason": "Append-atomic and fail-safe-delegated stores are property-equivalent here."
+    },
+    {
+      "id": "F8-3",
+      "iteration": 8,
+      "rq": "RQ7",
+      "verdict": "ADOPT",
+      "mechanism": "respect for disable-model-invocation",
+      "reason": "Briefs must not recommend skills the runtime refuses to self-invoke; read the flag into the projection."
+    },
+    {
+      "id": "F8-4",
+      "iteration": 8,
+      "rq": "RQ7",
+      "verdict": "ADAPT",
+      "mechanism": "Pi-compat contract tests (deep-import ban)",
+      "reason": "Static contract guards catch Pi refactors before runtime dispatch does."
+    },
+    {
+      "id": "F9-1",
+      "iteration": 9,
+      "rq": "RQ2",
+      "verdict": "ADOPT",
+      "mechanism": "model-callable advisor pull tool beside the brief",
+      "reason": "The OpenCode status-tool precedent makes this a generalization of an existing pattern."
+    },
+    {
+      "id": "F9-2",
+      "iteration": 9,
+      "rq": "RQ7",
+      "verdict": "ADOPT",
+      "mechanism": "hard deadline race on the in-process Pi advisor call",
+      "reason": "Every other adapter hard-bounds its call; the in-process one should too."
+    },
+    {
+      "id": "F9-3",
+      "iteration": 9,
+      "rq": "all",
+      "verdict": "REJECT",
+      "mechanism": "(negative knowledge record)",
+      "reason": "Non-routing surfaces and unrunnable measurements recorded to prevent re-litigation."
+    },
+    {
+      "id": "F10-1",
+      "iteration": 10,
+      "rq": "all",
+      "verdict": "ADOPT",
+      "mechanism": "consolidated ranked verdict list (16 adopt/adapt, 8 reject)",
+      "reason": "Handoff artifact for the operator's refinement-phase selection."
+    }
+  ],
+  "updatedAt": "2026-09-26T12:45:00Z"
+}

@@ -1,0 +1,101 @@
+{
+  "run_id": "1790404524761-xsg1vq",
+  "loop_type": "research",
+  "spec_folder": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
+  "base_artifact_dir": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 2,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "mimo",
+      "state_log": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/research/lineages/mimo/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-26T06:35:24.765Z",
+        "end_at_iso": "2026-09-26T07:17:58.940Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 11
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T08:50:00Z",
+          "deltaMs": 5401060
+        },
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T09:10:00Z",
+          "deltaMs": 6601060
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T09:35:00Z",
+          "deltaMs": 8101060
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T10:00:00Z",
+          "deltaMs": 9601060
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T10:25:00Z",
+          "deltaMs": 11101060
+        }
+      ]
+    },
+    {
+      "label": "swe2max",
+      "state_log": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/research/lineages/swe2max/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-26T06:35:24.771Z",
+        "end_at_iso": "2026-09-26T07:33:14.328Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 2,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T07:55:00Z",
+          "deltaMs": 1185672
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T08:15:00Z",
+          "deltaMs": 2385672
+        }
+      ]
+    }
+  ]
+}

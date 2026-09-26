@@ -1,0 +1,33 @@
+{
+  "topic": "Compare the pi-skill-orchestrator Pi extension (specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main) with system-skill-advisor (.skilled/skills/system-skill-advisor) and determine which orchestrator mechanisms (lazy catalog with scope stub, model-pulled skill_search with bounded results, profile and group scopes with bounded global fallback, recursive dependency loading, ranking signals, output bounds, robustness patterns) the advisor should adopt, adapt or reject to improve routing precision, prompt cost and robustness. Follow the reading list, research questions RQ1-RQ7 and answer shape in the phase spec.md; cite file:line on both sides and label every claim confirmed or inferred.",
+  "researchTopic": "Compare the pi-skill-orchestrator Pi extension (specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main) with system-skill-advisor (.skilled/skills/system-skill-advisor) and determine which orchestrator mechanisms (lazy catalog with scope stub, model-pulled skill_search with bounded results, profile and group scopes with bounded global fallback, recursive dependency loading, ranking signals, output bounds, robustness patterns) the advisor should adopt, adapt or reject to improve routing precision, prompt cost and robustness. Follow the reading list, research questions RQ1-RQ7 and answer shape in the phase spec.md; cite file:line on both sides and label every claim confirmed or inferred.",
+  "specFolder": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "createdAt": "2026-09-26T06:41:58Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "type": "cli-devin",
+    "model": "swe-2-max",
+    "sandboxMode": "workspace-write",
+    "label": "swe2max"
+  },
+  "lineage": {
+    "sessionId": "fanout-swe2max-1790404524761-xsg1vq",
+    "parentSessionId": "2026-09-26-030-001-fanout",
+    "lineageMode": "fanout-lineage",
+    "generation": 1,
+    "label": "swe2max"
+  },
+  "fanout_lineage_artifact_dir": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/research/lineages/swe2max"
+}

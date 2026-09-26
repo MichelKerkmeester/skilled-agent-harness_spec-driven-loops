@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup",
+  "description": "Headless Fallback Status and Dedup",
+  "keywords": [
+    "phase",
+    "headless-fallback-status-and-dedup"
+  ],
+  "lastUpdated": "2026-09-26T10:05:46.051Z",
+  "specId": "004",
+  "folderSlug": "headless-fallback-status-and-dedup",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

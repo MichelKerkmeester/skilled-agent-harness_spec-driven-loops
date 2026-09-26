@@ -1,0 +1,583 @@
+{
+  "mergedFrom": [
+    "mimo",
+    "swe2max"
+  ],
+  "lineageExecutors": {
+    "mimo": {
+      "kind": "cli-pi",
+      "model": "mimo-v2.6-pro",
+      "reasoningEffort": "high"
+    },
+    "swe2max": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "F-R1",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "REJECT",
+      "mechanism": "pull-replaces-push",
+      "reason": "Trades a typed, reported failure for silent non-discovery; both lineages agree.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F-R2",
+      "iteration": 3,
+      "rq": "RQ4",
+      "verdict": "REJECT",
+      "mechanism": "dependency bundle inside the brief",
+      "reason": "Spends the 80-token budget on names the skill body restates on load; loading is the runtime layer's job.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F-R3",
+      "iteration": 3,
+      "rq": "RQ5",
+      "verdict": "REJECT",
+      "mechanism": "orchestrator substring score table import",
+      "reason": "Strict subset of the lexical lane's capability.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F-R4",
+      "iteration": 5,
+      "rq": "RQ3",
+      "verdict": "REJECT",
+      "mechanism": "authorization-set + load-gate transplant",
+      "reason": "The gate authorizes loading; the advisor loads nothing. Only lifecycle state-reset transfers and it already exists.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F-R5",
+      "iteration": 4,
+      "rq": "RQ7",
+      "verdict": "REJECT",
+      "mechanism": "warn-not-delete transplant",
+      "reason": "Embodied by the renderer's fail-closed instruction-label guard (render.ts:83-85,129-145).",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F1",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "ADAPT",
+      "mechanism": "conservative eager-catalog removal + constant-size scope stub",
+      "reason": "replaceNativeSkillCatalog + five-line stub replace Pi's <available_skills>; the advisor's append-only hooks cannot remove prompt content it does not own, so the stub discipline transfers as a brief-format invariant and catalog replacement only on system-prompt-owning surfaces.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F1-1",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "ADAPT",
+      "mechanism": "conservative eager-catalog removal with single scope-stub replacement",
+      "reason": "Stripping belongs to a system-prompt-owning extension; adopt the zero-catalog-data stub discipline as a brief-format invariant.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F1-2",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "ADOPT",
+      "mechanism": "constant-size scope stub (label + count + fixed instructions)",
+      "reason": "A one-line indexed-candidate count is the cheapest transferable unit of the lazy-catalog design.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F1-3",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "REJECT",
+      "mechanism": "brief-replaces-catalog inside the advisor",
+      "reason": "The advisor cannot safely remove prompt content it does not own.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F10-1",
+      "iteration": 10,
+      "rq": "all",
+      "verdict": "ADOPT",
+      "mechanism": "consolidated ranked verdict list (16 adopt/adapt, 8 reject)",
+      "reason": "Handoff artifact for the operator's refinement-phase selection.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F12",
+      "iteration": 3,
+      "rq": "RQ6",
+      "verdict": "ADAPT",
+      "mechanism": "whole-brief bound: count (never clip) the constant directive block",
+      "reason": "Directives are appended after capText (render.ts:435-440) so the real worst case is ~138 tokens not 80; count them in delivered-byte accounting.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F13",
+      "iteration": 3,
+      "rq": "RQ5",
+      "verdict": "ADOPT",
+      "mechanism": "name-mention rank-1 pin, invocation-gated",
+      "reason": "Orchestrator's +200 name-exact guarantees top-1 (search.ts:26); advisor's exact mention scores 1.0 inside a 0.42 lane (explicit.ts:317-321) so a fused competitor can outrank a named skill. Gate to invocation shapes to avoid prose false-pins.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F14",
+      "iteration": 3,
+      "rq": "RQ4",
+      "verdict": "ADAPT",
+      "mechanism": "depends_on derivation assist borrowing conservative body-scan + negation guard",
+      "reason": "Advisor edge store is populated but sparse (depends_on 3/15 nodes); the orchestrator's five-pattern detector with negation guard (dependencies.ts:8-38) fits beside detect-inbound-enhances.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F15",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "ADOPT",
+      "mechanism": "explicit no-match line instead of silent absence",
+      "reason": "Orchestrator emits 'No matching skills found...' (index.ts:687-696); advisor's null brief makes abstention indistinguishable from outage (render.ts:409-412).",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F16",
+      "iteration": 3,
+      "rq": "RQ6",
+      "verdict": "ADAPT",
+      "mechanism": "truncate-and-keep ranking metadata instead of drop-to-null at 512 chars",
+      "reason": "Advisor nulls over-length metadata (metadata-sanitizer.ts:9-11,34); orchestrator keeps bounded prefixes (catalog.ts:7-13). Partial signal beats none.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F17",
+      "iteration": 3,
+      "rq": "RQ6",
+      "verdict": "ADOPT",
+      "mechanism": "pull-surface output shape: <=5 default / <=8 max, <=160-char descriptions",
+      "reason": "Orchestrator's bounded result contract (search.ts:46, index.ts:590,600-609, config.ts:45,138-139) is the right shape for any advisor pull tool; the pushed brief is already tighter.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F18",
+      "iteration": 4,
+      "rq": "RQ2",
+      "verdict": "ADOPT",
+      "mechanism": "pull recovery beside push: name advisor_recommend in the directives-only fallback",
+      "reason": "The orchestrator proves a model can drive retrieval when handed a tool name (index.ts:596-650); the advisor's fail_open currently leaves zero in-turn recovery.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F19",
+      "iteration": 4,
+      "rq": "RQ2",
+      "verdict": "ADOPT",
+      "mechanism": "budget enforcement (deadline race) around the Pi in-process advisor call",
+      "reason": "The Pi hook awaits handleClaudeUserPromptSubmit with no race (prompt-advisor.ts:243-250); the 2500ms budget is self-reported, not enforced. Mimo lineage concurs (F9-2).",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F2-1",
+      "iteration": 2,
+      "rq": "RQ1",
+      "verdict": "ADOPT",
+      "mechanism": "delivered-byte accounting + default-on brief dedup",
+      "reason": "The recurring-cost levers exist (dedup, policy skip, cache); they need measurement and wider use.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F2-2",
+      "iteration": 2,
+      "rq": "RQ1",
+      "verdict": "ADAPT",
+      "mechanism": "scope-stub + on-demand search replacing the eager catalog",
+      "reason": "Feasible only on system-prompt-owning surfaces (Pi first); elsewhere the stub discipline lives in the brief.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F2-3",
+      "iteration": 2,
+      "rq": "RQ1",
+      "verdict": "REJECT",
+      "mechanism": "adopting orchestrator-side cost machinery",
+      "reason": "Advisor policy-skip + exact-prompt cache + dedup already dominate; only the O(n) catalog term is a real gap.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F20",
+      "iteration": 4,
+      "rq": "RQ6",
+      "verdict": "ADOPT",
+      "mechanism": "delivered-byte accounting + directive dedup default-on",
+      "reason": "Three adapters dedup the constant directive tail (user-prompt-submit.ts:303-345, prompt-advisor.ts:129-152, plugin splitDirectiveBrief) but no delivered-byte measurement exists; it is the prerequisite for every cost claim.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F22",
+      "iteration": 4,
+      "rq": "RQ7",
+      "verdict": "REJECT",
+      "mechanism": "atomic-write (tmp+rename) transplant",
+      "reason": "Advisor durable writes are append-atomic bounded JSONL (metrics.ts:295-310) plus a fail-safe delegated store — property-equivalent already.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F23",
+      "iteration": 5,
+      "rq": "RQ7",
+      "verdict": "ADOPT",
+      "mechanism": "disable-model-invocation surfacing in the projection",
+      "reason": "Honored at every orchestrator decision point (catalog.ts:38, index.ts:716-721, dependencies.ts:77-82); parseDocFrontmatter collects the scalar (doc-frontmatter.ts:89-139) but nothing consumes it, so a brief can name a manual-only skill.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F24",
+      "iteration": 5,
+      "rq": "RQ4",
+      "verdict": "ADAPT",
+      "mechanism": "graph-health (missing/cycle/sparse edges) on advisor_status",
+      "reason": "Orchestrator reports bundle.missing/bundle.cycles (index.ts:736-746); advisor's trust surface could carry edge-store health for operators.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F25",
+      "iteration": 5,
+      "rq": "RQ3",
+      "verdict": "ADAPT",
+      "mechanism": "soft scope preference (family/hub prior) with global pool open",
+      "reason": "Advisor has no per-context scope (only the static denylist route-exclusions.ts:59-99); a fusion prior mirrors the orchestrator's bounded-fallback-never-changes-scope discipline.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F26",
+      "iteration": 5,
+      "rq": "RQ7",
+      "verdict": "ADAPT",
+      "mechanism": "static deep-import contract guard for hooks/pi/**",
+      "reason": "Pi hook deep-imports a dist path (prompt-advisor.ts:47-50); a contract test makes dist-layout drift fail loudly instead of silently degrading to advisorFailed.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F3-1",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "ADAPT",
+      "mechanism": "model-pulled recovery surface named in the fail-open envelope",
+      "reason": "Name the existing advisor_recommend pull handle in the fail-open fallback so timeout turns self-heal.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F3-2",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "ADAPT",
+      "mechanism": "bounded model-pulled search results",
+      "reason": "Adopt the pull shape but back it with the advisor scorer, not substring ranking.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F3-3",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "REJECT",
+      "mechanism": "pull-replaces-push architecture",
+      "reason": "Pull-only trades a reported transport failure for silent non-discovery.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F4-1",
+      "iteration": 4,
+      "rq": "RQ3",
+      "verdict": "ADAPT",
+      "mechanism": "preferred search scope with bounded global fallback",
+      "reason": "Soft family preference with the global pool always open; hard scoping would turn ranking misses into silent blocks.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F4-2",
+      "iteration": 4,
+      "rq": "RQ3",
+      "verdict": "REJECT",
+      "mechanism": "fallback authorization set + load gate",
+      "reason": "Nothing to gate at brief time; only replace-on-change state hygiene transfers.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F4-3",
+      "iteration": 4,
+      "rq": "RQ3",
+      "verdict": "ADOPT",
+      "mechanism": "empty-scope explicit no-candidate reporting",
+      "reason": "A one-line empty-scope report removes the did-the-advisor-run misreading at negligible cost.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F5",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "ADOPT",
+      "mechanism": "constant-size indexed-candidate count line",
+      "reason": "'N lazy skill candidates are indexed' (scope.ts:108-115) is the cheapest transferable unit of the lazy-catalog design; ~15 tokens/turn buys discovery-depth awareness.",
+      "_lineages": [
+        "swe2max"
+      ]
+    },
+    {
+      "id": "F5-1",
+      "iteration": 5,
+      "rq": "RQ4",
+      "verdict": "REJECT",
+      "mechanism": "dependency bundle in the brief",
+      "reason": "Bundle loading belongs to the runtime loading layer; the brief picks the single best root.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F5-2",
+      "iteration": 5,
+      "rq": "RQ4",
+      "verdict": "ADAPT",
+      "mechanism": "negation-aware dependency detection from bodies",
+      "reason": "Borrow detection heuristics into reviewed edge maintenance so graph-causal weights track reality.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F5-3",
+      "iteration": 5,
+      "rq": "RQ4",
+      "verdict": "ADAPT",
+      "mechanism": "missing/cycle reporting",
+      "reason": "Surface graph health on the advisor_status trust surface, not in model context.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F6-1",
+      "iteration": 6,
+      "rq": "RQ5",
+      "verdict": "ADOPT",
+      "mechanism": "name-mention dominance (rank-1 pin)",
+      "reason": "A literal skill-name mention is the highest-intent prompt class and deserves a short-circuit pin.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F6-2",
+      "iteration": 6,
+      "rq": "RQ5",
+      "verdict": "REJECT",
+      "mechanism": "raw substring score table",
+      "reason": "Advisor lanes strictly subsume it; importing would subtract capability.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F6-3",
+      "iteration": 6,
+      "rq": "RQ5",
+      "verdict": "REJECT",
+      "mechanism": "deterministic alphabetical tie-break",
+      "reason": "Already present in fusion; recorded as a tuning invariant protecting the dedup cache.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F7-1",
+      "iteration": 7,
+      "rq": "RQ6",
+      "verdict": "ADOPT",
+      "mechanism": "bounded results (5/8) + 160-char descriptions",
+      "reason": "Proven output shape, directly reusable for the advisor pull surface.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F7-2",
+      "iteration": 7,
+      "rq": "RQ6",
+      "verdict": "ADAPT",
+      "mechanism": "whole-brief output bound",
+      "reason": "The token cap counts the head only; count the constant directive so the bound is honest.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F7-3",
+      "iteration": 7,
+      "rq": "RQ6",
+      "verdict": "ADAPT",
+      "mechanism": "truncate-and-keep metadata ingestion",
+      "reason": "Keep sanitized prefixes of ranking signal fields instead of dropping over-length values to null.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F8-1",
+      "iteration": 8,
+      "rq": "RQ7",
+      "verdict": "REJECT",
+      "mechanism": "conservative warn-not-delete",
+      "reason": "Already embodied as the renderer's fail-closed label sanitizer.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F8-2",
+      "iteration": 8,
+      "rq": "RQ7",
+      "verdict": "REJECT",
+      "mechanism": "atomic tmp+rename writes",
+      "reason": "Append-atomic and fail-safe-delegated stores are property-equivalent here.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F8-3",
+      "iteration": 8,
+      "rq": "RQ7",
+      "verdict": "ADOPT",
+      "mechanism": "respect for disable-model-invocation",
+      "reason": "Briefs must not recommend skills the runtime refuses to self-invoke; read the flag into the projection.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F8-4",
+      "iteration": 8,
+      "rq": "RQ7",
+      "verdict": "ADAPT",
+      "mechanism": "Pi-compat contract tests (deep-import ban)",
+      "reason": "Static contract guards catch Pi refactors before runtime dispatch does.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F9-1",
+      "iteration": 9,
+      "rq": "RQ2",
+      "verdict": "ADOPT",
+      "mechanism": "model-callable advisor pull tool beside the brief",
+      "reason": "The OpenCode status-tool precedent makes this a generalization of an existing pattern.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F9-2",
+      "iteration": 9,
+      "rq": "RQ7",
+      "verdict": "ADOPT",
+      "mechanism": "hard deadline race on the in-process Pi advisor call",
+      "reason": "Every other adapter hard-bounds its call; the in-process one should too.",
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "F9-3",
+      "iteration": 9,
+      "rq": "all",
+      "verdict": "REJECT",
+      "mechanism": "(negative knowledge record)",
+      "reason": "Non-routing surfaces and unrunnable measurements recorded to prevent re-litigation.",
+      "_lineages": [
+        "mimo"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 50,
+    "sourceFindings": 50,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.175,
+    "coverageBySources": {}
+  }
+}
