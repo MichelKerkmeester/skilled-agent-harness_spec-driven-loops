@@ -46,21 +46,21 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".pi/models.json",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".skilled/plugins/system-skill-advisor.js",
       "hooks/claude/user-prompt-submit.ts",
       "research/deep-research-config.json",
+      "research/orchestration-summary.json",
+      "research/lineages/mimo/deep-research-state.jsonl",
+      "research/lineages/swe2max/deep-research-state.jsonl",
+      "specs/system-skill-advisor/graph-metadata.json",
+      "specs/sk-doc/059-skill-changelog-retrofit/description.json",
       ".skilled/hooks/skill-advisor/opencode/system-skill-advisor.js",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "specs/sk-doc/059-skill-changelog-retrofit/description.json",
       "research/lineages/swe2max/logs/fanout-lineage.out",
-      "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/spec.md",
-      "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/research/resource-map.md",
-      "research/lineages/mimo/research.md",
-      "research/lineages/swe2max/research.md",
-      "research/lineages/mimo/iterations/iteration-001.md",
-      "research/lineages/swe2max/iterations/iteration-001.md"
+      "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/spec.md"
     ],
     "entities": [
       {
@@ -94,6 +94,12 @@
         "source": "derived"
       },
       {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
         "name": "models.json",
         "kind": "config",
         "path": ".pi/models.json",
@@ -124,9 +130,21 @@
         "source": "derived"
       },
       {
-        "name": "write-containment.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/lineages/mimo/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-skill-advisor/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -136,15 +154,15 @@
         "source": "derived"
       },
       {
-        "name": "fanout-lineage.out",
-        "kind": "file",
-        "path": "research/lineages/swe2max/logs/fanout-lineage.out",
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
         "source": "derived"
       },
       {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/lineages/mimo/iterations/iteration-001.md",
+        "name": "fanout-lineage.out",
+        "kind": "file",
+        "path": "research/lineages/swe2max/logs/fanout-lineage.out",
         "source": "derived"
       },
       {
@@ -188,29 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pi Skill Orchestrator Against System Skill Advisor",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor and the pi-skill-orchestrator extension solve skill selection with opposite designs",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-09-26T10:19:09.235Z",
+    "last_save_at": "2026-09-26T13:42:15.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6bf5b2c720321cb8e788edbe49a99d5d4642a3b1b7602f318184d74ff0827157",
+    "source_fingerprint": "sha256:420e4379ec5d97d47740ae3c8b31277d53236cabd1c66f641454439a9a2fa30c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "718f8a8341b9d950152d970f4991cc18ec94cc3952b73a6ed902a86c4df99d14",
       "plan.md": "ab53d1a63889c819c28731c9fbf1e1a149f4bdcd0dfd7a6370944b1588618c87",
-      "tasks.md": "a07be520bcbbe3515c650faa89e0ae798bfc80b7cfe98f1b62a471fd1806b4bf",
-      "implementation-summary.md": "2da340f368c094b75c2d30a60b9c6af5fbce85e2425ddd92dff9d129b46e7075",
+      "tasks.md": "91ee137dd8127440f8b983c94f8b957007d1638af4bfa10512bc0b6a1ee408af",
+      "implementation-summary.md": "0f922db3148ac7d8ae6f5ff48bce568293ed64d27f9a1e31edaf6dd817717320",
       "research/research.md": "63f49fd6149999c2340e1799e59304a4e6b4f93f2eb88f4109fff9d94b7d27d6"
     },
     "last_active_at": null
