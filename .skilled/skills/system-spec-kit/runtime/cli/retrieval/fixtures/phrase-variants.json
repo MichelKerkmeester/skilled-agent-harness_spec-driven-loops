@@ -1,5 +1,5 @@
 {
-  "manifestHash": "49fba0d5bb9e57f5776a04161de8b2943c9a3ec57cdc5cb425e77f495d1c3f9d",
+  "manifestHash": "17bfb73d9c68cfde8eaa016dd2f22ae2b1e75560b89ffb08c19c3a0f3c648ac0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8821,6 +8821,15 @@
     ],
     "advisor runtime modules": [
       "advisor runtime modules"
+    ],
+    "advisor scenario dispatch plan": [
+      "advisor scenario dispatch plan"
+    ],
+    "advisor scenario matrix": [
+      "advisor scenario matrix"
+    ],
+    "advisor scenarios in every cli": [
+      "advisor scenarios in every cli"
     ],
     "advisor schema bounding": [
       "advisor schema bounding"
@@ -23471,11 +23480,32 @@
     "cross cli intent stability": [
       "cross-CLI intent stability"
     ],
+    "cross cli manual testing": [
+      "cross cli manual testing"
+    ],
     "cross cli process spam": [
       "cross CLI process spam"
     ],
+    "cross cli rerun": [
+      "cross cli rerun"
+    ],
+    "cross cli rerun plan": [
+      "cross cli rerun plan"
+    ],
+    "cross cli rerun results": [
+      "cross cli rerun results"
+    ],
     "cross cli scoring stress playbook": [
       "cross-CLI scoring stress playbook"
+    ],
+    "cross cli test results": [
+      "cross cli test results"
+    ],
+    "cross cli testing plan": [
+      "cross cli testing plan"
+    ],
+    "cross cli testing tasks": [
+      "cross cli testing tasks"
     ],
     "cross consumer fix proof": [
       "cross consumer fix proof"
@@ -40039,6 +40069,12 @@
     "greppable spec docs": [
       "greppable spec docs"
     ],
+    "grok 4 7 cursor allowlist": [
+      "grok 4.7 cursor allowlist"
+    ],
+    "grok implementer luna verifier": [
+      "grok implementer luna verifier"
+    ],
     "grok via devin fan out rejected": [
       "grok via devin fan-out rejected"
     ],
@@ -51552,6 +51588,9 @@
     "native": [
       "native"
     ],
+    "native advisor delivery per runtime": [
+      "native advisor delivery per runtime"
+    ],
     "native advisor features": [
       "native advisor features"
     ],
@@ -51587,6 +51626,9 @@
     ],
     "native first shim": [
       "native first shim"
+    ],
+    "native host advisor evidence": [
+      "native host advisor evidence"
     ],
     "native module checks": [
       "native module checks"
@@ -53647,6 +53689,12 @@
     ],
     "opencode adr 001 detection": [
       "opencode adr-001 detection"
+    ],
+    "opencode advisor plugin export": [
+      "opencode advisor plugin export"
+    ],
+    "opencode advisor plugin loads": [
+      "opencode advisor plugin loads"
     ],
     "opencode agent delegation": [
       "opencode agent delegation"
@@ -68029,6 +68077,9 @@
     "sandbox detection runner": [
       "sandbox detection runner"
     ],
+    "sandbox generation file": [
+      "sandbox generation file"
+    ],
     "sandbox mutation test": [
       "sandbox mutation test"
     ],
@@ -68043,6 +68094,9 @@
     ],
     "sandbox usefulness trials": [
       "sandbox usefulness trials"
+    ],
+    "sandboxed advisor state containment": [
+      "sandboxed advisor state containment"
     ],
     "sanitizeskilllabel": [
       "sanitizeSkillLabel"
@@ -80023,6 +80077,18 @@
     ],
     "test files never run": [
       "test files never run"
+    ],
+    "test findings remediation": [
+      "test findings remediation"
+    ],
+    "test findings remediation plan": [
+      "test findings remediation plan"
+    ],
+    "test findings remediation summary": [
+      "test findings remediation summary"
+    ],
+    "test findings remediation tasks": [
+      "test findings remediation tasks"
     ],
     "test fix sequence": [
       "test fix sequence"
