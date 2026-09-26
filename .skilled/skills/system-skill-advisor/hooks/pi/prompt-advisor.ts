@@ -171,10 +171,10 @@ export function isPiAdvisorDebugEnabled(): boolean {
 }
 
 // Operator-facing, opt-in only. Classifies what the advisor returned this turn
-// so a cli-pi operator can tell a live advisor route from the directives-only
-// failure fallback, and read how long the advisor call took against its timeout
-// budget — enough to distinguish a timeout (durationMs ≈ budgetMs) from an
-// unreachable daemon (fast fallback) without instrumenting the advisor itself.
+// so a cli-pi operator can tell a live advisor route from each fallback case
+// (outage, no match, skipped), and read how long the advisor call took against
+// its timeout budget — enough to distinguish a timeout (durationMs ≈ budgetMs)
+// from an unreachable daemon (fast fallback) without instrumenting the advisor.
 export function formatPiAdvisorDebug(
   context: string | undefined,
   advisorFailed: boolean,
@@ -183,7 +183,10 @@ export function formatPiAdvisorDebug(
   let brief: string;
   if (advisorFailed) brief = "failed";
   else if (!context || !context.trim()) brief = "empty";
-  else if (context.startsWith("Directives:")) brief = "fallback(unavailable)";
+  else if (context.startsWith("Advisor: outage (")) brief = "fallback(outage)";
+  else if (context.startsWith("Advisor: no skill matched.")) brief = "fallback(no-match)";
+  else if (context.startsWith("Advisor: prompt skipped.")) brief = "fallback(skipped)";
+  else if (context.startsWith("Directives:")) brief = "fallback(headless)";
   else {
     const match = context.match(/^Advisor:\s*([A-Za-z]+)/);
     brief = match ? `head(${match[1]})` : "other";

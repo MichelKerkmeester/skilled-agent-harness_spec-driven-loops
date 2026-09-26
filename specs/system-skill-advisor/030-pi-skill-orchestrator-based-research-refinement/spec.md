@@ -12,10 +12,10 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-26T13:05:00Z"
+    last_updated_at: "2026-09-26T13:40:00Z"
     last_updated_by: "orchestrate"
-    recent_action: "Completed 003-hook-path-cli-spawn-trim"
-    next_safe_action: "Implement 004-headless-fallback-status-and-dedup"
+    recent_action: "Completed 004-headless-fallback-status-and-dedup"
+    next_safe_action: "Close 001-deep-research formally"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-26-030-orchestrate"
       parent_session_id: null
-    completion_pct: 75
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "Q2, answered by the operator 2026-09-26: fix the advisor docs to match the CLI-only hook, with the casual-prompt gate in front of the CLI call."
@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Active. Phase 1 research is synthesized. Phases 2 and 3 are complete; phase 4 is in progress |
+| **Status** | Active. Phase 1 research is synthesized. Phases 2, 3 and 4 are complete |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -121,7 +121,7 @@ Phase 1 writes research artifacts only. Each refinement phase lists its exact fi
 | 1 | 001-deep-research/ | Two-lineage deep research: MiMo v2.6 Pro high via cli-pi on LLM Gateway for 10 iterations, SWE-2 MAX via cli-devin for 5 iterations, synthesized by Opus 5.5 at max effort | Active |
 | 2 | 002-hook-deadline-and-diagnostics/ | R1 nested hook deadlines, R3 brief bytes and runtime in diagnostics, R7 Pi dist-path test, R11 crash-safe log trim, R12 Pi call deadline | Complete |
 | 3 | 003-hook-path-cli-spawn-trim/ | R2 skip compiled-route spawns on the hook path, R5 reconnect the casual-prompt gate | Complete |
-| 4 | 004-headless-fallback-status-and-dedup/ | R4 status-aware fallback line, R6 no repeated fallback on Claude and OpenCode | Draft |
+| 4 | 004-headless-fallback-status-and-dedup/ | R4 status-aware fallback line, R6 no repeated fallback on Claude and OpenCode | Complete |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 

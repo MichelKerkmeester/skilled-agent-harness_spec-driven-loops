@@ -28,11 +28,13 @@ const ORIGINAL_DIRECTIVE_DEDUP = process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV];
 const ORIGINAL_ADVISOR_RUNTIME = process.env.SPECKIT_RUNTIME;
 let lifecycleTranscriptDir = '';
 const EXPECTED_ADVISOR_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
-// When no brief is available (skip, fail-open, timeout) the hook still emits
-// hookSpecificOutput with the fallback directive block, matching
-// renderAdvisorFallbackDirective(): the constitutional capsule is always
-// delivered so directives survive even when the advisor cannot run.
-const EXPECTED_FALLBACK_CONTEXT = 'Directives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+const EXPECTED_FALLBACK_DIRECTIVES = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+const EXPECTED_NO_MATCH_CONTEXT = `Advisor: no skill matched.${EXPECTED_FALLBACK_DIRECTIVES}`;
+const EXPECTED_SKIPPED_CONTEXT = `Advisor: prompt skipped.${EXPECTED_FALLBACK_DIRECTIVES}`;
+
+function expectedOutageContext(status: 'fail_open' | 'degraded' | 'absent'): string {
+  return `Advisor: outage (${status}); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json${EXPECTED_FALLBACK_DIRECTIVES}`;
+}
 
 function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;
@@ -71,7 +73,7 @@ async function runHookWithStore(
   deferDirectiveReceipt = false,
 ) {
   const diagnostics = diagnosticsSink();
-  const buildBrief = vi.fn(async () => result);
+  const buildCliBrief = vi.fn(async () => result);
   let effectiveInput = input;
   if (input.transcript_path === undefined) {
     lifecycleTranscriptDir ||= mkdtempSync(join(tmpdir(), 'dl-shared-transcript-'));
@@ -80,13 +82,13 @@ async function runHookWithStore(
     effectiveInput = { ...input, transcript_path: transcriptPath };
   }
   const output = await handleClaudeUserPromptSubmit(effectiveInput, {
-    buildBrief,
+    buildCliBrief,
     renderBrief: renderAdvisorBrief,
     writeDiagnostic: diagnostics.writeDiagnostic,
     directiveLifecycleStore: store,
     deferDirectiveReceipt,
   });
-  return { output, buildBrief, diagnostics };
+  return { output, buildCliBrief, diagnostics };
 }
 
 afterEach(() => {
@@ -206,7 +208,7 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(diagnostic.emittedBytes).toBe(Buffer.byteLength(additionalContext, 'utf8'));
   });
 
-  it('AS2 emits the fallback directive block for an empty prompt skipped by the producer', async () => {
+  it('AS2 emits the skipped fallback head for an empty prompt skipped by the producer', async () => {
     const { output, buildBrief } = await runHook({
       session_id: 's1',
       hook_event_name: 'UserPromptSubmit',
@@ -214,11 +216,11 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       cwd: '/workspace/project',
     }, fixture('skipPolicyEmptyPrompt.json'));
 
-    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_FALLBACK_CONTEXT } });
+    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_SKIPPED_CONTEXT } });
     expect(buildBrief).toHaveBeenCalledTimes(1);
   });
 
-  it('AS3 emits the fallback directive block for /help skipped by the producer', async () => {
+  it('AS3 emits the skipped fallback head for /help skipped by the producer', async () => {
     const { output, buildBrief } = await runHook({
       session_id: 's1',
       hook_event_name: 'UserPromptSubmit',
@@ -226,8 +228,127 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       cwd: '/workspace/project',
     }, fixture('skipPolicyCommandOnly.json'));
 
-    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_FALLBACK_CONTEXT } });
+    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_SKIPPED_CONTEXT } });
     expect(buildBrief).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders no-match and skipped heads before the fallback directives', async () => {
+    const noMatchResult: AdvisorHookResult = {
+      ...fixture('livePassingSkill.json'),
+      brief: null,
+      recommendations: [],
+    };
+    const noMatch = await runHookWithStore({
+      session_id: 'no-match-session',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, noMatchResult, new InMemoryDirectiveLifecycleStore());
+    const skipped = await runHookWithStore({
+      session_id: 'skipped-session',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, fixture('skipPolicyCommandOnly.json'), new InMemoryDirectiveLifecycleStore());
+
+    expect(noMatch.output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_NO_MATCH_CONTEXT },
+    });
+    expect(skipped.output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_SKIPPED_CONTEXT },
+    });
+  });
+
+  it.each([
+    {
+      name: 'a live skipped result with no recommendations',
+      result: {
+        ...fixture('livePassingSkill.json'),
+        status: 'skipped' as const,
+        freshness: 'live' as const,
+        brief: null,
+        recommendations: [],
+      },
+      expectedContext: EXPECTED_NO_MATCH_CONTEXT,
+    },
+    {
+      name: 'an absent skill graph',
+      result: {
+        ...fixture('livePassingSkill.json'),
+        status: 'skipped' as const,
+        freshness: 'absent' as const,
+        brief: null,
+        recommendations: [],
+      },
+      expectedContext: expectedOutageContext('absent'),
+    },
+    {
+      name: 'a stale degraded result with no recommendations',
+      result: {
+        ...fixture('livePassingSkill.json'),
+        status: 'degraded' as const,
+        freshness: 'stale' as const,
+        brief: null,
+        recommendations: [],
+      },
+      expectedContext: EXPECTED_NO_MATCH_CONTEXT,
+    },
+  ])('classifies $name by status and freshness', async ({ name, result, expectedContext }) => {
+    const { output } = await runHook({
+      session_id: `fallback-${name}`,
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, result);
+
+    expect(output).toEqual({
+      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedContext },
+    });
+  });
+
+  it.each([
+    {
+      name: 'no-match',
+      result: { ...fixture('livePassingSkill.json'), brief: null, recommendations: [] },
+      expectedHead: 'Advisor: no skill matched.',
+      maxLength: 40,
+    },
+    {
+      name: 'skipped',
+      result: fixture('skipPolicyCommandOnly.json'),
+      expectedHead: 'Advisor: prompt skipped.',
+      maxLength: 40,
+    },
+    {
+      name: 'fail_open outage',
+      result: fixture('failOpenTimeout.json'),
+      expectedHead: expectedOutageContext('fail_open').split('\n', 1)[0] ?? '',
+      maxLength: 160,
+    },
+    {
+      name: 'degraded outage',
+      result: {
+        ...fixture('failOpenTimeout.json'),
+        status: 'degraded' as const,
+        freshness: 'unavailable' as const,
+      },
+      expectedHead: expectedOutageContext('degraded').split('\n', 1)[0] ?? '',
+      maxLength: 160,
+    },
+  ])('keeps the $name head within its length cap', async ({ name, result, expectedHead, maxLength }) => {
+    const { output } = await runHookWithStore({
+      session_id: `head-length-${name}`,
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, result, new InMemoryDirectiveLifecycleStore());
+    const context = 'hookSpecificOutput' in output
+      ? output.hookSpecificOutput.additionalContext
+      : '';
+    const head = context.split('\n', 1)[0] ?? '';
+
+    expect(head, name).toBe(expectedHead);
+    expect(head.length, name).toBeLessThan(maxLength);
   });
 
   it('AS4 respects SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 without calling the producer', async () => {
@@ -266,7 +387,7 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(validateAdvisorHookDiagnosticRecord(diagnostic)).toBe(true);
   });
 
-  it('AS6 emits {} for producer timeout/fail-open and never emits a block decision', async () => {
+  it('AS6 emits the outage fallback for producer timeout/fail-open without a block decision', async () => {
     const result = fixture('failOpenTimeout.json');
     result.diagnostics = {
       errorCode: 'TIMEOUT',
@@ -280,7 +401,13 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       cwd: '/workspace/project',
     }, result);
 
-    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_FALLBACK_CONTEXT } });
+    const additionalContext = 'hookSpecificOutput' in output
+      ? output.hookSpecificOutput.additionalContext
+      : '';
+    expect(additionalContext).toBe(expectedOutageContext('fail_open'));
+    expect(additionalContext.split('\n', 1)[0]).toMatch(/^Advisor: outage \(fail_open\)/);
+    expect(additionalContext).toContain('skill-advisor.cjs advisor_recommend');
+    expect(additionalContext.endsWith(EXPECTED_FALLBACK_DIRECTIVES)).toBe(true);
     expect(JSON.stringify(output)).not.toMatch(/"decision"\s*:\s*"(block|deny)"/);
     const diagnostic = parseDiagnostic(diagnostics.records[0] ?? '{}');
     expect(diagnostic.status).toBe('fail_open');
@@ -298,7 +425,7 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       cwd: '/workspace/project',
     }, result);
 
-    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_FALLBACK_CONTEXT } });
+    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: expectedOutageContext('fail_open') } });
     const diagnostic = parseDiagnostic(diagnostics.records[0] ?? '{}');
     expect(diagnostic.status).toBe('fail_open');
     expect(diagnostic.errorCode).toBe('PYTHON_MISSING');
@@ -544,26 +671,44 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     });
   });
 
-  it('DL5 always delivers the full fallback brief (no route line to keep)', async () => {
-    const store = new InMemoryDirectiveLifecycleStore();
+  it('DL5 keeps the fallback head on repeats only for a known session', async () => {
     const result = fixture('failOpenTimeout.json');
     result.diagnostics = { errorCode: 'TIMEOUT' };
-    await runHookWithStore({
-      session_id: 's1',
-      hook_event_name: 'UserPromptSubmit',
-      prompt: 'implement a TypeScript hook',
-      cwd: '/workspace/project',
-    }, result, store);
-    const second = await runHookWithStore({
-      session_id: 's1',
-      hook_event_name: 'UserPromptSubmit',
-      prompt: 'implement a TypeScript hook',
-      cwd: '/workspace/project',
-    }, result, store);
+    const expectedFullContext = expectedOutageContext('fail_open');
+    const expectedHead = expectedFullContext.split('\n', 1)[0] ?? '';
+    const knownStore = new InMemoryDirectiveLifecycleStore();
+    const knownSessionContexts: string[] = [];
 
-    expect(second.output).toEqual({
-      hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_FALLBACK_CONTEXT },
-    });
+    for (let turn = 0; turn < 5; turn += 1) {
+      const { output } = await runHookWithStore({
+        session_id: 's1',
+        hook_event_name: 'UserPromptSubmit',
+        prompt: `implement a TypeScript hook ${turn}`,
+        cwd: '/workspace/project',
+      }, result, knownStore);
+      knownSessionContexts.push('hookSpecificOutput' in output
+        ? output.hookSpecificOutput.additionalContext
+        : '');
+    }
+
+    expect(knownSessionContexts[0]).toBe(expectedFullContext);
+    expect(knownSessionContexts.slice(1)).toEqual(Array(4).fill(expectedHead));
+    expect(knownSessionContexts.slice(1).every((context) => !context.includes('Directives:'))).toBe(true);
+
+    const unknownStore = new InMemoryDirectiveLifecycleStore();
+    const unknownSessionContexts: string[] = [];
+    for (let turn = 0; turn < 5; turn += 1) {
+      const { output } = await runHookWithStore({
+        hook_event_name: 'UserPromptSubmit',
+        prompt: `implement a TypeScript hook ${turn}`,
+        cwd: '/workspace/project',
+      }, result, unknownStore);
+      unknownSessionContexts.push('hookSpecificOutput' in output
+        ? output.hookSpecificOutput.additionalContext
+        : '');
+    }
+
+    expect(unknownSessionContexts).toEqual(Array(5).fill(expectedFullContext));
   });
 
   it('DL6 re-delivers the full brief when the transcript shrank (compaction signature)', async () => {

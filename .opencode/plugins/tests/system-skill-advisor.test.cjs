@@ -42,7 +42,10 @@ const CLAUDE_HOOK_PATH = path.join(
   'claude',
   'user-prompt-submit.ts',
 );
-const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]:';
+const FALLBACK_DIRECTIVES_BLOCK = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+const NO_MATCH_FALLBACK_CONTEXT = `Advisor: no skill matched.${FALLBACK_DIRECTIVES_BLOCK}`;
+const SKIPPED_FALLBACK_CONTEXT = `Advisor: prompt skipped.${FALLBACK_DIRECTIVES_BLOCK}`;
+const OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT = 'Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json \'{"prompt":"<request>"}\' --format json' + FALLBACK_DIRECTIVES_BLOCK;
 
 const MODULE_STUBS = new Map([
   ['@opencode-ai/plugin/tool', 'export const tool = (definition) => definition;'],
@@ -356,25 +359,25 @@ test('bounded rendering preserves the cap boundary and handles empty or malforme
   assert.deepEqual(pluginModule.revealCompiledRouteSummaryTargets({ targets: ['alpha', 42] }), ['alpha']);
 });
 
-test('no-brief turns retain hygiene and governor context with OpenCode runtime metadata', async () => {
-  const child = fakeChild({ stdout: cliEnvelope({ recommendations: [] }) });
+test('no-brief turns render the no-match head and hygiene context', async () => {
+  const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
   const calls = [];
   const hooks = await makePlugin({ spawnOverride: spawnSequence([child], calls) });
 
   const output = await runPrompt(hooks);
 
   assert.equal(output.system.length, 1);
-  assert.match(output.system[0], new RegExp(HYGIENE_DIRECTIVE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  assert.equal(output.system[0], NO_MATCH_FALLBACK_CONTEXT);
   assert.equal(child.stdinPayload, null);
   assert.equal(calls[0].args[calls[0].args.indexOf('--prompt') + 1], 'implement the plugin fix');
   assert.deepEqual(calls[0].options.stdio, ['ignore', 'pipe', 'ignore']);
 });
 
-test('missing prompts retain constitutional context while disabled mode stays silent', async () => {
+test('missing prompts render the skipped head while disabled mode stays silent', async () => {
   const child = fakeChild({ stdout: bridgeEnvelope() });
   const hooks = await makePlugin({ spawnOverride: spawnSequence([child]) });
   const missing = await runPrompt(hooks, { prompt: undefined, sessionID: '__global__' });
-  assert.match(missing.system[0], /Comment hygiene \[HARD BLOCK\]:/);
+  assert.equal(missing.system[0], SKIPPED_FALLBACK_CONTEXT);
 
   const disabledHooks = await makePlugin({ enabled: false, spawnOverride: spawnSequence([child]) });
   const disabled = await runPrompt(disabledHooks);
@@ -390,7 +393,7 @@ test('CLI output is bounded and overflow terminates immediately', async () => {
 
   const output = await runPrompt(hooks);
 
-  assert.match(output.system[0], /Comment hygiene \[HARD BLOCK\]:/);
+  assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
   assert.deepEqual(child.kills, ['SIGKILL']);
   assert.match(await status(hooks), /last_error_code=BRIDGE_OUTPUT_LIMIT/);
 });
@@ -407,7 +410,7 @@ test('termination grace stays inside the configured timeout budget', async () =>
 
   assert.ok(elapsedMs < 200, `expected bounded timeout, got ${elapsedMs}ms`);
   assert.deepEqual(child.kills, ['SIGTERM', 'SIGKILL']);
-  assert.match(output.system[0], /Comment hygiene \[HARD BLOCK\]:/);
+  assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
   assert.match(await status(hooks), /last_error_code=TIMEOUT/);
 
   const defaultHooks = await makePlugin({ enabled: false });
@@ -553,7 +556,7 @@ test('unexpected spawn failures fail open without escaping the transform', async
 
   await assert.doesNotReject(() => runPrompt(hooks, {}, output));
 
-  assert.match(output.system[0], /Comment hygiene \[HARD BLOCK\]:/);
+  assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
   assert.match(await status(hooks), /last_error_code=SPAWN_ERROR/);
 });
 
@@ -577,7 +580,7 @@ test('Claude source clamps prompts, keeps fallback parity, and flushes fail-open
   assert.match(hookSource, /DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500/);
   assert.match(hookSource, /MAX_PROMPT_BYTES = 64 \* 1024/);
   assert.match(hookSource, /Buffer\.byteLength\(value\.slice/);
-  assert.match(hookSource, /brief \?\? renderAdvisorFallbackDirective\(renderOptions\)/);
+  assert.match(hookSource, /brief \?\? renderAdvisorFallbackDirective\(renderOptions, result\)/);
   assert.match(hookSource, /const output: ClaudeUserPromptSubmitOutput = \{[\s\S]*observeEmittedAdvisorPolicy\((?:effectiveEmitted|emitted)/);
   assert.match(hookSource, /await writeHookOutput\(\{\}\)/);
   assert.match(rendererSource, /export function renderAdvisorFallbackDirective/);
@@ -592,92 +595,133 @@ test('status exposes prompt-safe configuration health', async () => {
 });
 
 test('same-message advisor contributions are suppressed only after the first delivery', async () => {
-  const child = fakeChild({ stdout: bridgeEnvelope('Advisor: same-message block') });
-  const hooks = await makePlugin({
-    deduplicateTransforms: true,
-    spawnOverride: spawnSequence([child]),
-  });
-  const input = {
-    sessionID: 'advisor-dedup-session',
-    messageID: 'advisor-message-1',
-    transformCallOrdinal: 0,
-    prompt: 'repeat this exact text',
-  };
-  const first = await runPrompt(hooks, input, { system: [] });
-  const second = await runPrompt(hooks, input, { system: [] });
+  // Disable lifecycle dedup so this test measures transform dedup alone.
+  const previousLifecycleDedup = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+  process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '0';
+  try {
+    const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
+    const hooks = await makePlugin({
+      deduplicateTransforms: true,
+      spawnOverride: spawnSequence([child]),
+    });
+    const input = {
+      sessionID: 'advisor-dedup-session',
+      messageID: 'advisor-message-1',
+      transformCallOrdinal: 0,
+      prompt: 'repeat this exact text',
+    };
+    const first = await runPrompt(hooks, input, { system: [] });
+    const second = await runPrompt(hooks, input, { system: [] });
 
-  assert.equal(first.system.length, 1);
-  assert.deepEqual(second.system, []);
+    assert.equal(first.system.length, 1);
+    assert.deepEqual(second.system, []);
 
-  const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
-  const identity = identityModule.resolveMessageIdentity(input);
-  const receipt = identityModule.getMultiTransformReceipt(identity);
-  assert.deepEqual(receipt.transforms.map((entry) => ({
-    transform: entry.transform,
-    outcome: entry.outcome,
-  })), [
-    { transform: 'system-skill-advisor', outcome: 'delivered' },
-    { transform: 'system-skill-advisor', outcome: 'suppressed_duplicate' },
-  ]);
+    const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+    const identity = identityModule.resolveMessageIdentity(input);
+    const receipt = identityModule.getMultiTransformReceipt(identity);
+    assert.deepEqual(receipt.transforms.map((entry) => ({
+      transform: entry.transform,
+      outcome: entry.outcome,
+    })), [
+      { transform: 'system-skill-advisor', outcome: 'delivered' },
+      { transform: 'system-skill-advisor', outcome: 'suppressed_duplicate' },
+    ]);
+  } finally {
+    if (previousLifecycleDedup === undefined) {
+      delete process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+    } else {
+      process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = previousLifecycleDedup;
+    }
+  }
 });
 
 test('distinct advisor messages with identical text both receive full delivery', async () => {
-  const child = fakeChild({ stdout: bridgeEnvelope('Advisor: identical text block') });
-  const hooks = await makePlugin({
-    deduplicateTransforms: true,
-    spawnOverride: spawnSequence([child]),
-  });
-  const first = await runPrompt(hooks, {
-    sessionID: 'advisor-distinct-session',
-    messageID: 'advisor-message-a',
-    transformCallOrdinal: 0,
-    prompt: 'same user text',
-  }, { system: [] });
-  const second = await runPrompt(hooks, {
-    sessionID: 'advisor-distinct-session',
-    messageID: 'advisor-message-b',
-    transformCallOrdinal: 0,
-    prompt: 'same user text',
-  }, { system: [] });
+  const previousLifecycleDedup = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+  process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '0';
+  try {
+    const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
+    const hooks = await makePlugin({
+      deduplicateTransforms: true,
+      spawnOverride: spawnSequence([child]),
+    });
+    const first = await runPrompt(hooks, {
+      sessionID: 'advisor-distinct-session',
+      messageID: 'advisor-message-a',
+      transformCallOrdinal: 0,
+      prompt: 'same user text',
+    }, { system: [] });
+    const second = await runPrompt(hooks, {
+      sessionID: 'advisor-distinct-session',
+      messageID: 'advisor-message-b',
+      transformCallOrdinal: 0,
+      prompt: 'same user text',
+    }, { system: [] });
 
-  assert.deepEqual(second.system, first.system);
-  assert.equal(first.system.length, 1);
+    assert.deepEqual(second.system, first.system);
+    assert.equal(first.system.length, 1);
+  } finally {
+    if (previousLifecycleDedup === undefined) {
+      delete process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+    } else {
+      process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = previousLifecycleDedup;
+    }
+  }
 });
 
 test('flag-off advisor delivery preserves repeated output byte-for-byte', async () => {
-  const child = fakeChild({ stdout: bridgeEnvelope('Advisor: flag-off baseline') });
-  const hooks = await makePlugin({
-    deduplicateTransforms: false,
-    spawnOverride: spawnSequence([child]),
-  });
-  const input = {
-    sessionID: 'advisor-flag-off-session',
-    messageID: 'advisor-message-flag-off',
-    transformCallOrdinal: 0,
-    prompt: 'same user text',
-  };
-  const first = await runPrompt(hooks, input, { system: [] });
-  const second = await runPrompt(hooks, input, { system: [] });
+  const previousLifecycleDedup = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+  process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '0';
+  try {
+    const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
+    const hooks = await makePlugin({
+      deduplicateTransforms: false,
+      spawnOverride: spawnSequence([child]),
+    });
+    const input = {
+      sessionID: 'advisor-flag-off-session',
+      messageID: 'advisor-message-flag-off',
+      transformCallOrdinal: 0,
+      prompt: 'same user text',
+    };
+    const first = await runPrompt(hooks, input, { system: [] });
+    const second = await runPrompt(hooks, input, { system: [] });
 
-  assert.equal(JSON.stringify(second.system), JSON.stringify(first.system));
-  assert.equal(second.system.length, 1);
+    assert.equal(JSON.stringify(second.system), JSON.stringify(first.system));
+    assert.equal(second.system.length, 1);
+  } finally {
+    if (previousLifecycleDedup === undefined) {
+      delete process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+    } else {
+      process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = previousLifecycleDedup;
+    }
+  }
 });
 
 test('unresolvable advisor identity fails open with full delivery', async () => {
-  const child = fakeChild({ stdout: bridgeEnvelope('Advisor: unresolved identity') });
-  const hooks = await makePlugin({
-    deduplicateTransforms: true,
-    spawnOverride: spawnSequence([child]),
-  });
-  const input = {
-    sessionID: 'advisor-unresolved-session',
-    prompt: 'same user text',
-  };
-  const first = await runPrompt(hooks, input, { system: [] });
-  const second = await runPrompt(hooks, input, { system: [] });
+  const previousLifecycleDedup = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+  process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '0';
+  try {
+    const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
+    const hooks = await makePlugin({
+      deduplicateTransforms: true,
+      spawnOverride: spawnSequence([child]),
+    });
+    const input = {
+      sessionID: 'advisor-unresolved-session',
+      prompt: 'same user text',
+    };
+    const first = await runPrompt(hooks, input, { system: [] });
+    const second = await runPrompt(hooks, input, { system: [] });
 
-  assert.deepEqual(second.system, first.system);
-  assert.equal(first.system.length, 1);
+    assert.deepEqual(second.system, first.system);
+    assert.equal(first.system.length, 1);
+  } finally {
+    if (previousLifecycleDedup === undefined) {
+      delete process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+    } else {
+      process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = previousLifecycleDedup;
+    }
+  }
 });
 
 test('malformed advisor identity fields resolve to no identity without throwing', async () => {

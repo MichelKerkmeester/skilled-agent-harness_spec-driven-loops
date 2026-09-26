@@ -38,18 +38,22 @@
       "directives"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".skilled/plugins/system-skill-advisor.js",
       ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
       ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      ".skilled/plugins/system-skill-advisor.js",
       ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
       ".skilled/plugins/tests/system-skill-advisor.test.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/prompt-advisor.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
       "hooks/claude/user-prompt-submit.ts"
     ],
     "entities": [
@@ -78,6 +82,12 @@
         "source": "derived"
       },
       {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".skilled/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
         "name": "render.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
@@ -90,15 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "system-skill-advisor.js",
-        "kind": "code",
-        "path": ".skilled/plugins/system-skill-advisor.js",
-        "source": "derived"
-      },
-      {
         "name": "prompt-advisor.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
         "source": "derived"
       },
       {
@@ -108,9 +118,27 @@
         "source": "derived"
       },
       {
+        "name": "system-skill-advisor-plugin.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "system-skill-advisor.test.cjs",
         "kind": "file",
         "path": ".skilled/plugins/tests/system-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/prompt-advisor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-contexts.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
         "source": "derived"
       },
       {
@@ -172,35 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The fallback is the directives block alone (`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:443-448`)",
     "created_at": "2026-09-26T10:05:45Z",
-    "last_save_at": "2026-09-26T12:11:41.560Z",
+    "last_save_at": "2026-09-26T13:37:46.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0975c0ee6b86fcabfee794a4f62d79116b8eac4ae7be162cba5a9482c6ffc61b",
+    "source_fingerprint": "sha256:5cb38059b2610ae969481f7093e7be6f559a04d9bdee621cd8dda93e11fc867f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7153efe871a067c5a6b54273bd8d3ac7fd10f9f1f473af3827e9f33bb3ad7e7",
-      "plan.md": "164bf993cf09f3904641fd2dabb33bd37a85ac8564de542060e9067d2f5f423d",
-      "tasks.md": "7a2bca11e9eee1b63053d2b50675c6bb0ea23b5cf3e718a36f5bffec95a5105d",
-      "implementation-summary.md": "01ffad85e9e6a2f473e404d61fbcff121add4f990302d03ca5297442d1a9733e"
+      "spec.md": "8b4dbd4bfda7ce1f4d9bcf3b12fc934e6dcb4ca7d2b43a82a9562f5ed865f486",
+      "plan.md": "60bd2c410fb2512ed507eabb2fdc15828493f61b3a3a94c4d1297ea778d85415",
+      "tasks.md": "b08fe8a49627299f54ab1cd439e3cc12cd7f6ac981fb47ad3206dc9f5281fafc",
+      "implementation-summary.md": "4a7a52ccd53733d4ef8732077ce068d3f124e1b432d2e1d6bbece610f5e396b2"
     },
     "last_active_at": null
   }

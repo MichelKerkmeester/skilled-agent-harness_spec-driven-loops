@@ -55,10 +55,39 @@ const DISABLED_ENV_PLUGIN = 'SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED';
 const LEGACY_HOOK_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
 const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
 const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
-// Mirrors the renderer's label + bullets exactly (the renderer is the
-// canonical copy); model names stay out so the capsule never churns with
-// model releases.
-const FALLBACK_DIRECTIVE = 'Directives:' + HYGIENE_DIRECTIVE;
+// This suffix is shared by headed fallbacks and route briefs so directive
+// lifecycle reduction sees the same block in either case.
+const FALLBACK_DIRECTIVE = '\nDirectives:' + HYGIENE_DIRECTIVE;
+
+/**
+ * Mirror the renderer's no-brief fallback; a parity test holds the two to the same text.
+ *
+ * @param {{status?: string, freshness?: string}} result - Advisor status and freshness
+ * @returns {string} Status head followed by the directive block
+ */
+export function renderPluginFallbackDirective({ status, freshness } = {}) {
+  const isOutage = (status === undefined && freshness === undefined)
+    || status === 'fail_open'
+    || freshness === 'absent'
+    || (freshness === 'unavailable' && status !== 'skipped');
+  const fallbackCase = isOutage
+    ? 'outage'
+    : status === 'skipped' && freshness === 'unavailable'
+      ? 'skipped'
+      : 'no-match';
+  const outageLabel = freshness === 'absent'
+    ? 'absent'
+    : status === 'degraded'
+      ? 'degraded'
+      : 'fail_open';
+  const head = fallbackCase === 'outage'
+    ? `Advisor: outage (${outageLabel}); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`
+    : fallbackCase === 'skipped'
+      ? 'Advisor: prompt skipped.'
+      : 'Advisor: no skill matched.';
+  return head + FALLBACK_DIRECTIVE;
+}
+
 // Directive-lifecycle dedup: this plugin is a plain-JS mirror of the canonical
 // rule in hooks/lib/directive-lifecycle.ts (same separator, same fail-open
 // semantics). Deliver the full brief on the first message of a session and
@@ -266,8 +295,7 @@ function isDirectiveLifecycleDedupEnabled() {
 
 function splitDirectiveBrief(context) {
   const index = context.indexOf(DIRECTIVE_SEPARATOR);
-  // index <= 0 means no directive block, or no advisor head before it (the
-  // advisor-failure fallback is directives-only): not reducible.
+  // index <= 0 means no directive block or no non-empty head before it.
   if (index <= 0) return null;
   return { head: context.slice(0, index), directives: context.slice(index) };
 }
@@ -1291,18 +1319,19 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       if (!prompt) {
         state.lastBridgeStatus = 'skipped';
         state.lastErrorCode = 'MISSING_PROMPT';
+        const missingPromptFallback = renderPluginFallbackDirective({ status: 'skipped', freshness: 'unavailable' });
         const fallbackDecision = transformContributionDecision(
           input,
           options,
           messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE,
-          FALLBACK_DIRECTIVE,
+          missingPromptFallback,
           1,
         );
         deliverTransformContribution(fallbackDecision, () => {
-          output.system.push(FALLBACK_DIRECTIVE);
+          output.system.push(missingPromptFallback);
         });
         if (fallbackDecision.shouldDeliver) {
-          await observeBlock(FALLBACK_DIRECTIVE);
+          await observeBlock(missingPromptFallback);
         }
         return;
       }
@@ -1313,9 +1342,16 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         sessionID,
         options,
       });
+      const freshness = response.metadata?.freshness;
+      const fallbackResult = response.status === 'fail_open'
+        ? { status: 'fail_open', freshness: 'unavailable' }
+        : freshness === undefined || freshness === 'unavailable'
+          ? { status: 'fail_open', freshness: 'unavailable' }
+          : { status: 'skipped', freshness };
+      const noBriefFallback = renderPluginFallbackDirective(fallbackResult);
       let advisorBlock = response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
-        : FALLBACK_DIRECTIVE;
+        : noBriefFallback;
       // Only a primitive, non-conflicting host identity can authorize reduced
       // delivery; ambiguous payloads retain the complete policy block.
       const lifecycleDecision = decideOpenCodeDirectiveLifecycle(
@@ -1366,21 +1402,22 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       state.lastBridgeStatus = 'fail_open';
       state.lastErrorCode = 'UNEXPECTED_HOOK_ERROR';
       try {
+        const errorFallback = renderPluginFallbackDirective({ status: 'fail_open', freshness: 'unavailable' });
         if (options.enabled
           && Array.isArray(output.system)
-          && !output.system.includes(FALLBACK_DIRECTIVE)) {
+          && !output.system.some((entry) => typeof entry === 'string' && entry.endsWith(FALLBACK_DIRECTIVE))) {
           const errorFallbackDecision = transformContributionDecision(
             input,
             options,
             messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE,
-            FALLBACK_DIRECTIVE,
+            errorFallback,
             1,
           );
           deliverTransformContribution(errorFallbackDecision, () => {
-            output.system.push(FALLBACK_DIRECTIVE);
+            output.system.push(errorFallback);
           });
           if (errorFallbackDecision.shouldDeliver) {
-            await observeBlock(FALLBACK_DIRECTIVE);
+            await observeBlock(errorFallback);
           }
         }
       } catch {
