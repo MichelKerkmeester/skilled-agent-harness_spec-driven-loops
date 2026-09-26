@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---
@@ -31,16 +31,14 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
-
-> The durable slice runs from here to the log, and it is what the operator sets.
-> A phase parent's limit is 4000 characters; `goal.cjs packet` measures it.
+<!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
 ---
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Find which Jev typed judgments earn a measured, opt-in place in `.skilled`, through 30 research iterations and a fresh Opus synthesis, then scaffold the recommended build phases as Planned children.
+**Objective:** Find which Jev typed judgments earn a measured, opt-in place in `.skilled` through two forced-depth research rounds, an AI Council review and fresh Opus syntheses, then reconcile the Planned build phases with the final synthesis.
 
 ### Decisions
 
@@ -48,26 +46,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | 10 iterations each: `deepseek` (cli-pi, deepseek-v4.1-flash, max), `mimo` (cli-pi, mimo-v2.6-pro, high), `grok` (cli-cursor, grok-4.7-xhigh-fast; no MAX tier) |
-| D2 | Stop policy max-iterations, convergence off, concurrency 3 |
-| D3 | Opus 5.5: medium for context, a fresh max for synthesis, high for build phases |
-| D4 | Autonomous; stop only for a missing credential, an irreversible step or a push |
+| D1 | Round 1: 10 iterations each of `deepseek-v4.1-flash` max and `mimo-v2.6-pro` high (cli-pi) and `grok-4.7-xhigh-fast` (cli-cursor; no MAX tier) |
+| D2 | Round 2: 5 iterations each of `grok-4.7-xhigh-fast`, `mimo-v2.6-pro` high, `swe-2-max` (cli-devin) and `deepseek-v4.1-flash` max, over the repo and `context/` |
+| D3 | Both rounds: stop policy max-iterations, convergence off, all lineages concurrent |
+| D4 | Opus 5.5: a fresh xhigh re-synthesizes round 1 from the council review, a fresh max synthesizes each round, high prepares angles and authors phases |
 | D5 | Every feature is opt-in and dormant unless `jev auth status` exits 0; keyless it behaves exactly as today; Jev gets no secret |
-| D6 | Worktree branch only, path-scoped commits, no push or merge |
-| D7 | Build phases stay Planned; nothing recommended is built here |
-
-### Operator copy
-
-The operator holds this directive as the session objective, and that copy is
-what judges completion, not this file. Whenever anything above the log changes
-(objective, a decision, the binding table, a criterion), resend this file's
-chat slice so the operator can update their copy. The chat slice is the
-durable slice without its frontmatter, HTML comments, anchor markers, `---`
-dividers or heading section numbers, and `goal.cjs packet` prints it as
-`chat_slice`. Never send more than 4000 characters: cut this file first. Keep
-reminding while the copy stays unset, and never stop work for it. A child goal
-change that alters a parent decision or criterion is an amendment to the
-parent: apply it there first, then resend the parent.
+| D6 | Autonomous; stop only for a missing credential, an irreversible step or a push. Worktree branch, path-scoped commits, no push or merge |
+| D7 | Build phases stay Planned: amending or adding one is allowed, building one is not |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -83,6 +68,7 @@ phase and binds as if written here.
 | 001 | `001-deep-research/goal.md` |
 | 002 | `002-advisor-jev-tiebreak-arm/goal.md` |
 | 003 | `003-goal-verifier-jev-shadow/goal.md` |
+| 004 | `004-deep-research-expansion/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -96,15 +82,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
-
-- [ ] `001-deep-research/context/` holds four digests and `research-angles.md` with 30 label-keyed angles
-- [ ] cli-cursor's two allowlists list `grok-4.7-xhigh-fast`, their vitest files pass and a live probe replied `OK`
-- [ ] Lineages `deepseek`, `mimo` and `grok` each hold `iteration-001.md` to `iteration-010.md` and a state log ending `maxIterationsReached`
-- [ ] `research/research.md`, by a fresh Opus 5.5 max leaf, ranks each recommendation build-now, next, later or drop with a seam `file:line`, metric, opt-in behavior and smallest slice
-- [ ] Each phase in the synthesis's proposed list is a Planned child with `spec.md`, `plan.md`, `tasks.md`, `goal.md`, binding and phase-map rows and a `jev auth status` key gate
+- [x] `001-deep-research` is Complete: four digests, 30 angles, `grok-4.7-xhigh-fast` in both cli-cursor allowlists with a live `OK`, and three lineages of 10 iterations ending `maxIterationsReached`
+- [ ] `001-deep-research/research/research.md` is re-synthesized by a fresh Opus 5.5 xhigh leaf from `001-deep-research/ai-council/council-report.md` and lists its changes
+- [ ] `004-deep-research-expansion` lineages `grok`, `mimo`, `swe` and `deepseek` each hold `iteration-001.md` to `iteration-005.md` and a state log ending `maxIterationsReached`
+- [ ] `004-deep-research-expansion/research/research.md`, by a fresh Opus 5.5 max leaf, ranks each recommendation build-now, next, later or drop with a seam `file:line`, metric, key gate and smallest slice
+- [ ] Each build phase the final synthesis proposes is a Planned child with `spec.md`, `plan.md`, `tasks.md`, `goal.md`, binding and phase-map rows and a `jev auth status` key gate
 - [ ] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
 <!-- /ANCHOR:completion -->
 
