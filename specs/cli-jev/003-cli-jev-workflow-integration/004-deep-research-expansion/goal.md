@@ -83,6 +83,7 @@ and findings belong here.
 | Phase opened | In Progress | Scaffolded by `create.sh --phase` on 2026-09-26 |
 | Round-1 re-synthesis | Done | Fresh Opus 5.5 xhigh leaf rewrote `../001-deep-research/research/research.md` with a changes section: build-now R1 and R19 census; next R20, R2 zero-call slice, R21; 14 later; 40 drops; 47 citations checked, none failed. Host reopened `opencode-goal.js:1107`, `score-outcome-rerank.mjs:119-123` and `secret-scrubber.ts:128`, all resolved |
 | Executor pings | Done | `deepseek-v4.1-flash` max, `mimo-v2.6-pro` high, `grok-4.7-xhigh-fast` and `swe-2-max` each replied `OK`, exit 0 |
+| Round-2 preparation | Done | Opus 5.5 high leaf wrote `context/research-angles.md` (20 angles, three waves, coverage table) and `scratch/synthesis-brief.md`; prompt-improver on Sonnet tightened the topic; host restored the label list and saved it as one 900-character line; `buildLoopPrompt` previews resolve each lineage directory and `maxIterations: 5` |
 
 ### Deviations and findings
 
