@@ -1419,18 +1419,38 @@ async function invokeAdvisorRecommendPayload(
   try {
     return await invokeToolPayload('advisor_recommend', args, timeoutMs, trusted, warmOnly);
   } catch (error: unknown) {
+    let failure = error;
+    const options = args.options;
+    if (
+      error instanceof JsonRpcError
+      && error.code === -32602
+      && error.message.includes('includeCompiledRoute')
+      && isRecord(options)
+      && Object.prototype.hasOwnProperty.call(options, 'includeCompiledRoute')
+    ) {
+      // A daemon started before this option existed rejects it, and the
+      // protocol handshake cannot distinguish the two builds.
+      const retryOptions: Record<string, unknown> = { ...options };
+      delete retryOptions.includeCompiledRoute;
+      const retryArgs: Record<string, unknown> = { ...args, options: retryOptions };
+      try {
+        return await invokeToolPayload('advisor_recommend', retryArgs, timeoutMs, trusted, warmOnly);
+      } catch (retryError: unknown) {
+        failure = retryError;
+      }
+    }
     // Only an unreachable daemon reaches this catch: one that answered, even with a
     // tool-level error, returned above. A fallback that also fails rethrows the
     // original error, so the exit code and error envelope stay unchanged.
-    if (exitCodeForError(error) !== EXIT_RETRYABLE) throw error;
+    if (exitCodeForError(failure) !== EXIT_RETRYABLE) throw failure;
     // Warm-only is attach-or-refuse: it never spawns a process, and the local scorer
     // is a spawn, so it must not run here. Rethrow the original failure so the
     // retryable exit code and error envelope stay unchanged.
-    if (warmOnly) throw error;
+    if (warmOnly) throw failure;
     const prompt = args.prompt;
-    if (typeof prompt !== 'string') throw error;
+    if (typeof prompt !== 'string') throw failure;
     const recommendations = await runLocalScorer(prompt).catch(() => null);
-    if (!recommendations) throw error;
+    if (!recommendations) throw failure;
     return {
       payload: {
         status: 'ok',

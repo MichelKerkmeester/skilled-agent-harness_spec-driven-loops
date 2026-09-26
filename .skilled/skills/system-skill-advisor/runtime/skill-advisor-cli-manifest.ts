@@ -37,6 +37,7 @@ const SKILL_ADVISOR_TOOL_DEFINITIONS: readonly ToolDefinition[] = [
             includeAbstainReasons: { type: 'boolean', description: 'Include prompt-safe abstain reasons when no recommendation passes thresholds.' },
             confidenceThreshold: { type: 'number', minimum: 0, maximum: 1, description: 'Minimum confidence a recommendation must reach to be surfaced (0-1); overrides the configured default.' },
             uncertaintyThreshold: { type: 'number', minimum: 0, maximum: 1, description: 'Maximum uncertainty a recommendation may carry to be surfaced (0-1); overrides the configured default.' },
+            includeCompiledRoute: { type: 'boolean', description: 'Attach compiled-route metadata for compiled hubs (default true). Callers that never read it pass false to skip the per-hub compiled-route subprocess.' },
           },
         },
       },

@@ -2,9 +2,16 @@
 // MODULE: Skill Advisor CLI Fallback No-Match Diagnostics Tests
 // ───────────────────────────────────────────────────────────────
 
-import { describe, expect, it } from 'vitest';
+import { EventEmitter } from 'node:events';
+import { describe, expect, it, vi } from 'vitest';
 
-import { resultFromCliData } from '../../../hooks/lib/skill-advisor-cli-fallback.js';
+import {
+  buildSkillAdvisorBriefFromCli,
+  resultFromCliData,
+} from '../../../hooks/lib/skill-advisor-cli-fallback.js';
+
+const mockedChild = vi.hoisted(() => ({ spawn: vi.fn() }));
+vi.mock('node:child_process', () => ({ spawn: mockedChild.spawn }));
 
 const OPTIONS = { maxTokens: 80 } as never;
 
@@ -27,7 +34,62 @@ const PASSING_RECOMMENDATION = {
   uncertainty: 0.1,
 };
 
+function mockCliChild(stdoutText: string) {
+  const stdout = new EventEmitter() as EventEmitter & {
+    setEncoding: (encoding: string) => void;
+    read: () => null;
+  };
+  stdout.setEncoding = () => undefined;
+  stdout.read = () => null;
+
+  const child = new EventEmitter() as EventEmitter & {
+    pid: number;
+    stdout: typeof stdout;
+  };
+  child.pid = 1234;
+  child.stdout = stdout;
+  queueMicrotask(() => {
+    stdout.emit('data', stdoutText);
+    child.emit('close', 0, null);
+  });
+  return child;
+}
+
 describe('skill advisor CLI fallback no-match diagnostics', () => {
+  it('does not request compiled routing data in the CLI payload', async () => {
+    mockedChild.spawn.mockImplementation(() => mockCliChild(JSON.stringify({
+      data: { freshness: 'live', recommendations: [] },
+    })));
+
+    try {
+      await buildSkillAdvisorBriefFromCli(
+        'Inspect the hook',
+        { workspaceRoot: process.cwd(), runtime: 'pi', timeoutMs: 1_000 },
+        { env: {}, now: () => 1 },
+      );
+
+      const spawnCall = mockedChild.spawn.mock.calls[0] as readonly unknown[] | undefined;
+      const cliArgs = spawnCall?.[1] as readonly string[] | undefined;
+      expect(cliArgs).toBeDefined();
+      if (!cliArgs) return;
+
+      const payloadIndex = cliArgs.indexOf('--json') + 1;
+      expect(payloadIndex).toBeGreaterThan(0);
+      if (payloadIndex <= 0) return;
+
+      const encodedPayload = cliArgs[payloadIndex];
+      expect(typeof encodedPayload).toBe('string');
+      if (typeof encodedPayload !== 'string') return;
+
+      const payload = JSON.parse(encodedPayload) as {
+        options?: { includeCompiledRoute?: boolean };
+      };
+      expect(payload.options?.includeCompiledRoute).toBe(false);
+    } finally {
+      mockedChild.spawn.mockReset();
+    }
+  });
+
   it('reports a live advisor with nothing to recommend as a no-match, not an outage', () => {
     const result = build({ freshness: 'live', recommendations: [] });
 

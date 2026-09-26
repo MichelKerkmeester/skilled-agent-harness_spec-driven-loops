@@ -501,7 +501,9 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
         hit: true,
       },
     });
-    return enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot);
+    return input.options?.includeCompiledRoute === false
+      ? parsedCachedOutput
+      : enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot);
   }
 
   const topK = input.options?.topK ?? 3;
@@ -568,7 +570,9 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     value: parsed,
     skillLabels: recommendationLabels(parsed),
   });
-  return enrichCompiledRoutes(parsed, input.prompt, workspaceRoot);
+  return input.options?.includeCompiledRoute === false
+    ? parsed
+    : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot);
 }
 
 export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResponse> {

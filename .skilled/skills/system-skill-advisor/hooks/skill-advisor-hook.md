@@ -22,7 +22,7 @@ The Skill Advisor concern surfaces prompt-safe routing context at the moment a u
 
 The maintained advisor implementation lives in `system-skill-advisor/runtime/`. The four editor runtimes (Claude, Codex, Cursor, Devin) each carry a thin `user-prompt-submit` shim in `system-spec-kit/runtime/hooks/<runtime>/` that resolves and spawns the compiled advisor in `system-skill-advisor`; the real brief-building, scoring, freshness, and rendering logic lives in the advisor package. Pi carries a native TypeScript extension that imports the same advisor module in-process (Pi awaits input handlers before agent processing, so the old two-process blocking-spawn bridge stalled every send). OpenCode integrates through the committed plugin at `.skilled/plugins/system-skill-advisor.js`, which shells out to the advisor CLI.
 
-The single most important property is that it **fails open**. A parsing failure, a missing graph, a scoring error, a render failure, a timeout, or any internal error resolves to `{}` (native) or no context (OpenCode): the prompt proceeds untouched. Every adapter honors the `skill-advisor` kill-switch, default-on.
+The single most important property is that it **fails open**: the prompt always proceeds. When the advisor call times out, fails or finds no route, the handler and the OpenCode plugin emit the directives fallback instead of a brief. An unparseable payload, an unhandled error or a shim that cannot relay its child resolves to `{}`. Every adapter honors the `skill-advisor` kill-switch, default-on.
 
 Paths beginning with `runtime/` in the package-local tables resolve from `.skilled/skills/system-spec-kit/` (for the shims) or `.skilled/skills/system-skill-advisor/` (for the advisor); paths beginning with `.skilled/` are repository-root relative.
 
@@ -34,19 +34,19 @@ On each user-prompt event the adapter:
 
 1. **Kill-switch.** Checks `isHookEnabled('skill-advisor')` (master `SYSTEM_HOOKS_DISABLED` or the `skill-advisor` family). Disabled → empty/skipped prompt-safe output.
 2. **Read the prompt + workspace.** Resolves the workspace root (install-anchored walk, not CWD-relative, so the hook stays correct off-root), reads the prompt text (bounded), and resolves the session id.
-3. **Build the brief.** `buildSkillAdvisorBrief` scores the prompt against the skill graph, checks freshness (`live` / `stale` / `absent` / `unavailable`), and returns an `AdvisorHookResult` with status `ok` / `skipped` / `degraded` / `fail_open`. Default confidence/uncertainty pair is `0.8 / 0.35` unless overridden.
-4. **CLI fallback.** When the native brief is empty and the status is `fail_open`, or `degraded` with `unavailable` freshness, `shouldTrySkillAdvisorCliFallback` hands the prompt to the Node advisor CLI (`bin/skill-advisor.cjs advisor_recommend --no-warm-only`). The CLI is found under `.skilled` first and `.opencode` second, and it starts the daemon itself when the socket is cold.
-5. **Render.** `renderAdvisorBrief` produces the model-visible `Advisor:` text; `renderAdvisorFallbackDirective` produces the degraded-mode directive. Raw prompt text is never persisted in diagnostics, cache metadata, status, or attribution.
+3. **Prompt gate.** `skippedAdvisorResultFor` uses `shouldFireAdvisor` to decline skip commands, short acknowledgements and prompts below its length threshold. A declined prompt returns a skipped result and does not spawn the CLI.
+4. **CLI front door.** The hook calls `buildSkillAdvisorBriefFromCli`, which runs `skill-advisor.cjs advisor_recommend --json ... --no-warm-only` within the `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` budget (2,500 ms by default). The Claude shim sets the child budget to 2,200 ms when the operator has not set the variable. The CLI owns the warm-daemon probe, starts the daemon when the socket is cold and falls back to the local Python scorer with a `degraded` result.
+5. **Render.** `renderAdvisorBrief` produces the model-visible `Advisor:` text. When there is no brief, the handler emits `renderAdvisorFallbackDirective` with the directives block. This covers no-route, skipped, degraded and timeout results. Raw prompt text is never persisted in diagnostics, cache metadata, status, or attribution.
 6. **Directive-lifecycle dedup.** `decideDirectiveLifecycleDelivery` suppresses a re-delivery of the same directive to the same session within its cadence, so a repeated prompt does not re-inject an identical brief.
 7. **Emit.** Native adapters emit a `hookSpecificOutput.additionalContext` JSON envelope; OpenCode appends to `output.system` via `experimental.chat.system.transform`; Pi sends a model-visible message.
 
-The injected brief begins with `Advisor:` and names the recommended skill(s) with their confidence. A degraded or fail-open result emits `{}` (native) or nothing (OpenCode).
+The injected brief begins with `Advisor:` and names the recommended skill(s) with their confidence. The handler returns `{}` when the hook is disabled, input cannot be parsed or an unhandled exception occurs. A shim also returns `{}` when it cannot resolve or relay valid child output, including on timeout. When the handler has no brief, it emits the directives fallback.
 
 ---
 
 ## 3. PER-RUNTIME DELIVERY
 
-Every runtime evaluates the **same** maintained advisor package (`buildSkillAdvisorBrief` + `renderAdvisorBrief`). What differs is the prompt event each runtime fires, how the adapter reaches the advisor (subprocess shim vs in-process import vs plugin CLI call), and the channel the brief is handed back through.
+Every native runtime and Pi run the same hook handler, which gates the prompt, calls the advisor CLI and renders with `renderAdvisorBrief`. The OpenCode plugin calls the CLI itself. The native adapters differ in prompt event, transport and delivery channel.
 
 | Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
 |---|---|---|---|---|
@@ -102,8 +102,8 @@ system-skill-advisor/runtime/
 | `system-skill-advisor/runtime/lib/skill-advisor-brief.ts` | The brief builder: scoring, freshness, status, confidence/uncertainty. |
 | `system-skill-advisor/runtime/lib/render.ts` | `renderAdvisorBrief` / `renderAdvisorFallbackDirective`, produces the model-visible text. |
 | `system-skill-advisor/hooks/lib/directive-lifecycle.ts` | Directive-lifecycle dedup: decides whether a directive should be re-delivered to a session within its cadence. |
-| `system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | `buildSkillAdvisorBriefFromCli` / `shouldTrySkillAdvisorCliFallback`, the Node CLI fallback. Takes the CLI, IPC bridge and database paths from one root, `.skilled` first, then `.opencode`. |
-| `system-skill-advisor/runtime/scripts/skill_advisor.py` | Standalone Python advisor CLI. The hook's CLI fallback does not call it. |
+| `system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | `buildSkillAdvisorBriefFromCli` is the hook's CLI caller. It runs `skill-advisor.cjs advisor_recommend --json ... --no-warm-only` with the hook timeout. The CLI owns daemon startup and local-scorer fallback. The function resolves the CLI, IPC bridge and database paths from one root. It searches `.skilled` first and `.opencode` second. |
+| `system-skill-advisor/runtime/scripts/skill_advisor.py` | Standalone Python advisor CLI. The advisor CLI runs it as the local scorer when the daemon is unreachable; the hook never calls it directly. |
 
 ---
 
@@ -131,7 +131,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Boundary | Rule |
 |---|---|
 | Advisory only | Hooks surface prompt-safe routing context. They do not replace explicit skill loading, persist raw prompt text, or block the user prompt on advisor failures. |
-| Fail-open | All adapters fail open with `{}` or no context when parsing, status, scoring, rendering, or subprocess work fails. The shims return `{}` on `TARGET_UNRESOLVED`, `CHILD_TIMEOUT`, `NONZERO_EXIT`, `EMPTY_OUTPUT`, `INVALID_JSON`, `INPUT_OVERFLOW`, and `SPAWN_ERROR`. |
+| Fail-open | All adapters let the prompt proceed. A failed or empty advisor call yields the directives fallback; a parsing failure or unhandled error yields `{}`. The shims return `{}` on `TARGET_UNRESOLVED`, `CHILD_TIMEOUT`, `NONZERO_EXIT`, `EMPTY_OUTPUT`, `INVALID_JSON`, `INPUT_OVERFLOW`, and `SPAWN_ERROR`. |
 | Freshness | Freshness states `live`, `stale`, `absent`, `unavailable`; status values `ok`, `skipped`, `degraded`, `fail_open`. Default confidence/uncertainty `0.8 / 0.35` unless overridden. |
 | Privacy | Raw prompt text is never persisted in diagnostics, cache metadata, status, or attribution. The OpenCode status tool sanitizes paths (`[configured-node]`, `[skill-advisor-bridge]`). |
 | Dedup | Directive-lifecycle dedup suppresses re-delivery of the same directive to the same session within its cadence. OpenCode adds transform-dedup across co-resident transforms. |

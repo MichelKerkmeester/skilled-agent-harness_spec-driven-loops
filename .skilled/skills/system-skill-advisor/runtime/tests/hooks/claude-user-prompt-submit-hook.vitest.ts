@@ -128,6 +128,46 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(diagnostics.records[0]).not.toMatch(/prompt|stdout|stderr|promptFingerprint|promptExcerpt/);
   });
 
+  it.each(['/help', 'thanks'])('skips %s before calling the CLI producer', async (prompt) => {
+    const diagnostics = diagnosticsSink();
+    const buildCliBrief = vi.fn(async () => fixture('livePassingSkill.json'));
+
+    await handleClaudeUserPromptSubmit({
+      session_id: 'prompt-policy-session',
+      hook_event_name: 'UserPromptSubmit',
+      prompt,
+      cwd: '/workspace/project',
+    }, {
+      buildCliBrief,
+      renderBrief: renderAdvisorBrief,
+      writeDiagnostic: diagnostics.writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+    });
+
+    expect(parseDiagnostic(diagnostics.records[0] ?? '{}').status).toBe('skipped');
+    expect(buildCliBrief).not.toHaveBeenCalled();
+  });
+
+  it('calls the CLI producer for a routable prompt', async () => {
+    const diagnostics = diagnosticsSink();
+    const buildCliBrief = vi.fn(async () => fixture('livePassingSkill.json'));
+
+    await handleClaudeUserPromptSubmit({
+      session_id: 'prompt-policy-session',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement the metrics trim in typescript',
+      cwd: '/workspace/project',
+    }, {
+      buildCliBrief,
+      renderBrief: renderAdvisorBrief,
+      writeDiagnostic: diagnostics.writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+    });
+
+    expect(parseDiagnostic(diagnostics.records[0] ?? '{}').status).toBe('ok');
+    expect(buildCliBrief).toHaveBeenCalledOnce();
+  });
+
   it.each([
     { name: 'defaults to Claude', expectedRuntime: 'claude' },
     { name: 'uses an in-process runtime', expectedRuntime: 'pi', runtime: 'pi' as const },
