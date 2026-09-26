@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-24 |
 | **Branch** | `worktrees/064-save-writer-continuity-fields` |
 | **Parent Spec** | ../spec.md |
@@ -37,7 +37,7 @@ contextType: "implementation"
 
 This is **Phase 11** of the skill changelog retrofit.
 
-**Scope Boundary**: The 21 sk-git changelogs listed in `../scratch/lists/sk-git.txt`. The pilot already kept 1 of these: v1.6.0.0.
+**Scope Boundary**: The 21 sk-git changelogs listed in `../scratch/lists/sk-git.txt`. The pilot kept v1.6.0.0, but the stronger fact check in the phase 001 check run failed it and restored the original. It went back through the driver, which kept it.
 
 **Dependencies**:
 - Phase 001's checker, briefs and driver, frozen after the operator's style approval

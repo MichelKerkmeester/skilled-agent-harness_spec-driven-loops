@@ -41,7 +41,7 @@ contextType: "implementation"
 ## Phase 2: Implementation
 
 - [x] T003 Run the driver over the list on the Luna lanes: 101 of 112 kept in the main run
-- [ ] T004 Retry every failure from its kept draft with `--retry-failed` until each is kept or recorded: in progress, 55 of 112 kept under the current fact check
+- [x] T004 Retry every failure from its kept draft with `--retry-failed` until each is kept or recorded: 112 of 112 kept
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,10 +49,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file
-- [ ] T006 Read every kept file old beside new in an Opus review, and send each confirmed finding back for a retry: 44 of 55 kept files clean so far, 31 passes overturned
-- [ ] T007 Commit the kept cli-external-orchestration files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`
-- [ ] T008 Push to main and run `validate.sh --strict` on this phase
+- [x] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file: `wave-verify.cjs` reports 112 kept, 0 problems
+- [x] T006 Read every kept file old beside new in an Opus review, and send each confirmed finding back for a retry: 112 of 112 clean, 85 passes overturned across 50 files
+- [x] T007 Commit the kept cli-external-orchestration files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`: `67b8c4c344` holds them, and the guard and all nine mirror checks exit 0 after the last skill commit
+- [x] T008 Push to main and run `validate.sh --strict` on this phase: `67b8c4c344` is on `origin/main`, and the phase reports `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -60,9 +60,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every listed file has a pass or a recorded failure in `../scratch/state.jsonl`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every listed file has a pass or a recorded failure in `../scratch/state.jsonl`
 <!-- /ANCHOR:completion -->
 
 ---

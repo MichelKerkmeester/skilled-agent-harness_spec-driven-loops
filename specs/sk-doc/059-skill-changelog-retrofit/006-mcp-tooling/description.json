@@ -13,13 +13,15 @@
     "now",
     "defines"
   ],
-  "lastUpdated": "2026-09-24T17:59:34.981Z",
+  "lastUpdated": "2026-09-26T08:26:15.371Z",
   "specId": "006",
   "folderSlug": "mcp-tooling",
   "parentChain": [
     "sk-doc",
     "059-skill-changelog-retrofit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-09-26_09-26__all-55-mcp-tooling-changelogs-are-kept-reviewed.md"
+  ]
 }

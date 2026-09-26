@@ -32,7 +32,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Confirm phase 001 records the operator's style approval: approved with fixes, 2026-09-24
-- [ ] T002 Confirm the mcp-tooling files are clean in git before the run (`../scratch/lists/mcp-tooling.txt`)
+- [x] T002 Confirm the mcp-tooling files are clean in git before the run (`../scratch/lists/mcp-tooling.txt`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,8 +40,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Run the driver over the list (`../scratch/rewrite-driver.cjs --list ../scratch/lists/mcp-tooling.txt --state ../scratch/state.jsonl`)
-- [ ] T004 Retry the failures once with `--retry-failed`, and record the reason for any that still fail
+- [x] T003 Run the driver over the list on the Luna lanes: 55 of 55 kept, 17 of them in their first run with no send-back
+- [x] T004 Retry every failed or overturned file from its kept draft until each is kept or recorded: 55 of 55 kept
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,10 +49,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file
-- [ ] T006 Read a sample of the kept files old beside new
-- [ ] T007 Commit the kept mcp-tooling files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`
-- [ ] T008 Push to main and run `validate.sh --strict` on this phase
+- [x] T005 Rerun the checker with `--old` and `hvr_scan.py` over every kept file: `wave-verify.cjs` reports 55 kept, 0 problems
+- [x] T006 Read every kept file old beside new in an Opus review, and send each confirmed finding back for a retry: 55 of 55 clean, 117 send-backs across 37 files
+- [x] T007 Commit the kept mcp-tooling files only, then run `compiled-route-guard.cjs` and each mirror generator's `--check`: `7ba6e1ea9d` holds them, and the guard and all nine mirror checks exit 0 after the last skill commit
+- [x] T008 Push to main and run `validate.sh --strict` on this phase: `7ba6e1ea9d` is on `origin/main`, and the phase reports `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -60,9 +60,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every listed file has a pass or a recorded failure in `../scratch/state.jsonl`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every listed file has a pass or a recorded failure in `../scratch/state.jsonl`
 <!-- /ANCHOR:completion -->
 
 ---

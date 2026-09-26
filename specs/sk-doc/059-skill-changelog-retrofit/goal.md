@@ -45,7 +45,7 @@ Frozen. Changing one is an amendment.
 |----|----------|
 | D1 | Facts outrank style. No added fact, and no dropped change, breaking change, migration step or correction. Frontmatter stays byte-identical and paths stay as written. |
 | D2 | Drop Files Changed tables, test counts and internal machinery. Git keeps them. |
-| D3 | GPT-6 Luna xhigh via cli-pi, cli-codex, cli-devin and cli-opencode, at most two dispatches per CLI at a time. LLM Gateway only while the GPT plan hits a usage limit. |
+| D3 | The remaining rewrites run on Opus 5.5 subagents the orchestrator dispatches, at most four at a time. Each one gets the full rewrite brief. The fact check runs on MiMo v2.6 Pro high via the LLM Gateway. Earlier waves ran GPT-6 Luna xhigh on cli-pi, cli-codex, cli-devin and cli-opencode, then MiMo v2.6 Pro high via the gateway. |
 | D4 | Opus orchestrates, reviews and commits. Executors write only their one file. |
 | D5 | A rewrite passes the shape checker, 0 HVR hard blockers and a second-model fact check, or the original is restored. |
 | D6 | Overwriting is a recorded exception to sk-create-changelog's never-overwrite rule. Spec-folder changelogs and the v4.0.0.0 exemplar are out of scope. |
@@ -128,6 +128,15 @@ and findings belong here.
 | Stated spec level kept | Done | Review found kept rewrites that dropped a (Level N) the original states. The checker now requires it and the rewrite brief says to keep it as written. Nine kept files were overturned for a retry |
 | Opus review of every kept file | In Progress | An Opus review of 31 retried passes found 8 with a real drop or distortion the fact check had passed, and all 11 findings checked out against the files. Every kept file now gets an Opus review before its skill commits, confirmed findings go back for a retry, and scratch/opus-review.jsonl records each clean review by content hash |
 | Executor path typos | Done | cli-opencode's Luna sessions often type the home directory as /Users/michelkerkme/, and 22 of 23 of its tool errors were such reads. A not-found on the target made the governed session halt. The brief now says the target always exists and a not-found means a mistyped path, a retry carries its previous draft inline, and the driver reloads the rewrite brief on every dispatch |
+| D3 amendment 3 | Done | Operator moved all rewriting to MiMo v2.6 Pro high via the LLM Gateway, then on 2026-09-26 moved the remaining files to Opus 5.5 subagents with thorough briefs. The agents run at default effort because an effort-pinned agent definition loads only at session start. The MiMo fact check stays |
+| Agent lane | In Progress | The driver's agent lane hands each brief to the orchestrator as a file and waits for the subagent's handback, then runs the same checks and fact check. 19 files MiMo failed restart fresh on it |
+| Agent lane | Done | The Opus agent run finished with 42 passes and 0 fails, and every pass has a clean orchestrator review of its current text. All 547 inventory files now hold a passing record. skill-gate reports 11 of 12 open skills ready to commit, and sk-doc waits only on the parked v2.0.0.0 |
+| wave-verify naming | Done | wave-verify.cjs now names saved originals the way the driver does, so the plus-sign folders under system-spec-kit resolve. system-spec-kit went from 108 problems to 108 kept, and mcp-tooling and sk-vision stay ready |
+| Verify brief Why exemption | Done | Operator approved it on 2026-09-26. brief-verify.md accepts the one-sentence Why the rewrite brief requires, and sk-doc v2.0.0.0 passed the fact check under it and has a clean review |
+| Skill commits | Done | Operator resumed commits on 2026-09-26. The tooling commit f9f23488d3, then one commit per skill: 67b8c4c344, 7ba6e1ea9d, 24841a6882, bc785755a5, 29c9b0e411, b1f6ffc0de, 1b6cb5dc0e, ee5852eae6, e621fbd295, 9a89ac328e, d8ff1d3bc4 and 7f7e8f1242, all on origin/main |
+| Phase children 001 to 016 | Done | All 16 phases are Complete, each with its commit recorded |
+| Final checks | Done | All 547 inventory files: the shape checker with --old exits 0, 0 HVR hard blockers, frontmatter byte-identical, latest state pass. Outside the inventory, five files fail the checker and none is a release changelog: two sk-design style-bundle files in a folder named changelog and the three system-spec-kit changelog templates. The route guard and all nine mirror checks exit 0 at 7f7e8f1242 |
+| Packet validation | Done | validate.sh --recursive --strict on the packet: exit 0, 17 of 17 RESULT: PASSED after every phase closed |
 
 ### Deviations and findings
 
