@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 20,
+    "commandMetadata": 21,
     "allowList": 8,
-    "generated": 28,
+    "generated": 29,
     "typescriptActive": 6,
     "pythonActive": 16
   },
@@ -144,6 +144,21 @@
             "/create:feature-catalog",
             "create:feature-catalog"
           ]
+        }
+      }
+    },
+    {
+      "id": "command-create-goal",
+      "command": "/create:goal",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-goal",
+      "source": ".skilled/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
         }
       }
     },
@@ -469,9 +484,9 @@
           "order": 2,
           "id": "command-memory-save",
           "name": "command-memory-save",
-          "description": "Memory save command bridge for /memory:save context preservation.",
+          "description": "Memory save command bridge for /speckit:save context preservation (the retired /memory:save id is kept as the scorer key).",
           "keywords": [
-            "/memory:save",
+            "/speckit:save",
             "save context",
             "save memory"
           ],
@@ -480,7 +495,7 @@
             "command"
           ],
           "intentSignals": [
-            "/memory:save",
+            "/speckit:save",
             "save context",
             "save memory"
           ]
@@ -676,9 +691,9 @@
           "order": 1,
           "id": "memory:save",
           "name": "memory:save",
-          "description": "Memory save command bridge for /memory:save context preservation.",
+          "description": "Memory save command bridge for /speckit:save context preservation (the retired /memory:save id is kept as the scorer key).",
           "keywords": [
-            "/memory:save",
+            "/speckit:save",
             "save context",
             "save memory",
             "preserve session context"
@@ -688,7 +703,7 @@
             "command"
           ],
           "intentSignals": [
-            "/memory:save",
+            "/speckit:save",
             "save context",
             "save memory",
             "preserve session context"
