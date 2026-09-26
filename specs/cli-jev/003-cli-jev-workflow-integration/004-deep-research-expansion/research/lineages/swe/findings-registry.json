@@ -1,0 +1,72 @@
+{
+  "lineage": "swe",
+  "sessionId": "fanout-swe-1790457982528-yjdrdz",
+  "loop": "research",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 5,
+  "stopReason": "maxIterationsReached",
+  "anglesAnswered": 5,
+  "openQuestions": [
+    {"id": "q-movable-rows", "text": "Does the frozen tau-0.03 slice hold any movable rows?", "status": "open", "answer": "UNKNOWN until the Phase-1 census prints eligible/movable/gold_demoted counts.", "evidence": ["swe iteration-001.md"]},
+    {"id": "q-goal-status-drift", "text": "755 vs 757 goal_status records between BASE and mimo-02 censuses", "status": "open", "answer": "Two-record drift between two censuses; recount at fixture-build time.", "evidence": ["BASE:145", "mimo iteration-002.md"]},
+    {"id": "q-pi-turn-end-await", "text": "Does Pi await async turn_end handlers?", "status": "open", "answer": "deepseek-03's question; not reopened by this lineage.", "evidence": []}
+  ],
+  "resolvedQuestions": [
+    {"id": "q25-brief-recorded", "text": "Does the transcript record the injected PreCompact brief? (open question 25)", "status": "resolved-with-sibling-contest", "resolvedAtIteration": 2, "answer": "In swe-02's census of 47 boundaries across two files: never — zero post-boundary hook attachments, no PreCompact hookEvent exists; post-boundary records are instructions/session_context/date attachments plus the isCompactSummary user record. deepseek-02 observed a hook_success/SessionStart:compact attachment at +13 in a different file. Merged design: read the recorded brief when that attachment exists; replay buildMergedCompactResult (pure over tailFile(path,50), compact-inject.ts:511) as fallback, printing replay_version per row.", "evidence": ["swe-02 TX census", "deepseek iteration-002.md", "compact-inject.ts:105,343-350,511"]},
+    {"id": "q19-verifier-use", "text": "Does any OpenCode or Pi goal session record a verifier verdict? (open question 19, mimo-03's angle)", "status": "resolved", "resolvedAtIteration": 3, "answer": "Zero recorded use on the main checkout: all 5 .state/goal records carry lastVerifierVerdict=not_evaluated, verifierSource=null, lastEvidence empty. goal-core shares OPENCODE_GOAL_STATE_DIR so this covers both runtimes' default dir. D2's gate stays closed; the R2 arm/shadow kill rule fires today.", "evidence": ["state-dir census this session", "goal-core.cjs:39-43", "opencode-goal.js:2423-2427"]},
+    {"id": "q-driver-path", "text": "Drive maybeVerifyGoal via __test vs a new export — which is smaller?", "status": "resolved", "resolvedAtIteration": 3, "answer": "Drive through existing __test: writeGoalAtomic seeds a record with lastEvidence in a mkdtemp stateDir, maybeVerifyGoal runs the real heuristic end-to-end. Zero new exports; the alternative touches the export contract pinned by opencode-goal-export-contract.test.cjs.", "evidence": ["opencode-goal.js:3377-3385,1404,254-256", "003 plan.md:65"]},
+    {"id": "q-parser-reuse", "text": "Can the lint reuse check-goal.cjs's criterion parser without changing exit codes?", "status": "resolved", "resolvedAtIteration": 4, "answer": "The file is safely requireable (require.main guard :691) but exports only packet-level runners (:681-689); the lint imports extractDurableSlice/splitFrontmatter/LOG_ANCHOR from goal-slice.cjs (:13-18) and copies getAnchorBody+getGoalSections+getCriterionItems (~60 LOC). CHECKS :44-49 untouched; exit codes frozen.", "evidence": ["check-goal.cjs:13-18,135-212,681-699"]},
+    {"id": "q-redaction-min-diff", "text": "Smallest change making the two underscore-prefixed unit cases pass?", "status": "resolved", "resolvedAtIteration": 3, "answer": "Asymmetric: opencode-goal.js:474 needs only \\b -> (?<![A-Za-z0-9]); secret-scrubber.ts:128 needs that plus 'service' in its prefix alternation (token isn't standalone there). Reported to owners, not made.", "evidence": ["opencode-goal.js:463-475", "secret-scrubber.ts:124-130"]}
+  ],
+  "keyFindings": [
+    {"id": "f-iter001-decided-universe", "text": "R1's keep rule leaves its decided-row universe undefined; gold-first rows can only tie or lose — the sign test runs on movable rows with gold_demoted reported apart.", "addedAtIteration": 1, "sources": ["ambiguity.ts:22-58", "fusion.ts:749-789"]},
+    {"id": "f-iter001-sign-test-table", "text": "One-sided sign-test min-wins table: n<5 impossible, n=8 needs 7, n=13 needs 10, n=24 needs 17.", "addedAtIteration": 1, "sources": ["computation this iteration"]},
+    {"id": "f-iter001-missing-stdin-flag", "text": "002 plan.md:71's jev choice invocation omits '-s -'; the transport reads state via -s text/@file/-, so the arm as planned sends no state.", "addedAtIteration": 1, "sources": ["002 plan.md:71", "cli-usage/SKILL.md:155"]},
+    {"id": "f-iter001-eval-imports", "text": "score-outcome-rerank.mjs runs on import (:159) and exports nothing — its metric functions must be copied, not imported.", "addedAtIteration": 1, "sources": ["score-outcome-rerank.mjs:159"]},
+    {"id": "f-iter001-doc-divergences", "text": "002's committed docs diverge from BASE in 15 enumerated places (rejected keep rule, 0.95 coefficient, tau veto, no comparators/R21/underpowered).", "addedAtIteration": 1, "sources": ["002 spec.md:33,78,96,112-131,160,176", "plan.md:63-71"]},
+    {"id": "f-iter002-q25-negative", "text": "47 compact boundaries: zero post-boundary hook attachments, no PreCompact hookEvent anywhere — the injected brief is not recorded in these files.", "addedAtIteration": 2, "sources": ["TX census this session"]},
+    {"id": "f-iter002-parser-contract", "text": "Census parser: closed KNOWN_TYPES whitelist at record-type level; stop-with-named-error on malformed JSONL, unknown type, missing uuid/timestamp/message, or compactMetadata off compact_boundary.", "addedAtIteration": 2, "sources": ["TX census", "BASE R19 proof plan"]},
+    {"id": "f-iter002-estimator-port", "text": "Placeholder-state size = verbatim port of vendored estimateTokens (state.ts:22-41) + fitState staging (:198-307) over records mapped to Message; estRequests via batchCalls (compact.ts:81); never preTokens-vs-25000.", "addedAtIteration": 2, "sources": ["state.ts:22-41,198-307", "compact.ts:59-70,76-102"]},
+    {"id": "f-iter002-replay-pure", "text": "buildMergedCompactResult replay needs nothing the transcript lacks — input is tailFile(path,50) raw JSONL (:511) and mergeInput derives solely from those lines (:343-347); must use the tail at each boundary's position.", "addedAtIteration": 2, "sources": ["compact-inject.ts:105,284-350,511"]},
+    {"id": "f-iter002-detectspecfolder-dead", "text": "detectSpecFolder's \\.opencode\\/specs\\/ regex (:182) can never match this repo's specs/ paths on Claude transcripts — the brief's 'Active spec folder' line is dead on this surface.", "addedAtIteration": 2, "sources": ["compact-inject.ts:133,182"]},
+    {"id": "f-iter002-uncheckable-rule", "text": "lastUserInstruction is only proxiable via identifier/path overlap — content-level intent preservation is not field-decidable; prints 'uncheckable'.", "addedAtIteration": 2, "sources": ["TX census field inventory"]},
+    {"id": "f-iter003-clamp-end-to-end", "text": "Clamp defect confirmed end-to-end in both runtimes: capture clamps at 1200 (:1107/:475/:419), clampText appends '...' (:387-388), the heuristic reads '...' as truncation (:2209-2211; goal-core :606-607) — self-inflicted not_met/unclear on any long evidence.", "addedAtIteration": 3, "sources": ["opencode-goal.js:42,382-389,1107,2199-2211", "goal-core.cjs:290-297,596-620"]},
+    {"id": "f-iter003-mimo03-filled", "text": "mimo-03's unrun census answered: 5/5 default-dir goal records not_evaluated, zero recorded verifier use — D2 closed, R2 arm kill fires today.", "addedAtIteration": 3, "sources": ["state-dir census this session", "goal-core.cjs:39-43"]},
+    {"id": "f-iter003-tail-window-missing", "text": "003's docs omit BASE's tail-window arm (the free fix Jev must beat), the two-form fixture, the native pre-label join, the verifier_shadow= show field, and the redaction unit cases; plan.md:69 repeats the -s - omission.", "addedAtIteration": 3, "sources": ["003 spec.md:46,101,106", "plan.md:65-69", "BASE:91-95,144-145"]},
+    {"id": "f-iter003-vocab-mapping", "text": "Verdict vocabularies are asymmetric: OpenCode {met,not_met,blocked} vs goal-core {met,not-met,unclear}; unclear collapses to not_met in math but stays its own row (Pi nudges on it); blocked unreachable by either heuristic.", "addedAtIteration": 3, "sources": ["opencode-goal.js:179,2197-2230", "goal-core.cjs:596-620", "goal-context.ts:233-238"]},
+    {"id": "f-iter004-scratch-corpus", "text": "walkGoalFiles skips only z_archive (:433); review/lineages/**/scratch/ fixture goals enter the real corpus — a defect the checker shares and the lint must not inherit.", "addedAtIteration": 4, "sources": ["check-goal.cjs:417-441", "mimo-02 row 38"]},
+    {"id": "f-iter004-skip-line-split", "text": "Skip-line family naming split: 002 uses 'jev arm skipped:'/'jev arm refused:' while 003 REQ-003 collapses all to 'skipped: <check>' — unify on 002's split; tabled across R1/R19/R20.", "addedAtIteration": 4, "sources": ["002 spec.md:112,125", "003 spec.md:121"]},
+    {"id": "f-iter004-label-schema", "text": "Label rows pin content by text_sha12 and count stale separately; scorer joins on path:line and prints per-rule TP/FP/FN/TN + Wilson interval.", "addedAtIteration": 4, "sources": ["this iteration", "mimo-02 rubric"]},
+    {"id": "f-iter005-unreported-failures", "text": "Two failure modes with no printed line: never-exiting jev spawn on 002's arm (add timeout + unmeasured_timeout; 003's :49 pattern) and replay version skew on 005 (add replay_version=sha256[:12]).", "addedAtIteration": 5, "sources": ["002 REQ-009/010", "opencode-goal.js:49"]},
+    {"id": "f-iter005-build-order", "text": "Build order in code: owner-reported redaction diffs -> 002 census (~180 LOC) -> 005 census (~730) -> 002 arm (+~350, --jev) -> 006 lint (~370) + 003 slice (~420) -> conditional arms; Jev client wrapper extracts at the third arm's build.", "addedAtIteration": 5, "sources": ["swe-01..04", "deepseek-05 F6", "grok-05 F5", "BASE:1235-1259"]}
+  ],
+  "newIdeas": [
+    {"id": "N-swe-05-1", "text": "unmeasured_timeout row status + per-call spawn timeout for the 002 arm (REQ-009/010 gap).", "verdict": "build-now-inside-002", "addedAtIteration": 5},
+    {"id": "N-swe-05-2", "text": "replay_version=sha256[:12] of the built compact-merger per replayed row; replay_unavailable when dist missing.", "verdict": "build-now-inside-005", "addedAtIteration": 5},
+    {"id": "N-swe-04-1", "text": "Scratch-path exclusion (**/lineages/**/scratch/**) for any goal-corpus walker; report scratch separately.", "verdict": "build-now-inside-006", "addedAtIteration": 4},
+    {"id": "N-swe-03-1", "text": "Tail-window arm added to 003's slice (BASE's designated free-fix baseline the docs dropped).", "verdict": "amend-003", "addedAtIteration": 3},
+    {"id": "N-swe-03-2", "text": "Fixture builder build-verifier-fixture.cjs joining goal_status attachments to preceding assistant text (rawEvidence + asIngestedEvidence forms).", "verdict": "amend-003", "addedAtIteration": 3}
+  ],
+  "ruledOutDirections": [
+    {"id": "ruled-out-sign-all-rows", "text": "Sign test over all eligible rows", "reason": "Asymmetric deck: gold-first can only tie/lose; decided = movable rows.", "addedAtIteration": 1},
+    {"id": "ruled-out-import-eval", "text": "Importing score-outcome-rerank.mjs", "reason": "Executes on import, exports nothing.", "addedAtIteration": 1},
+    {"id": "ruled-out-metadata-census", "text": "Metadata-only compaction census", "reason": "Must-survive rules and estimator need user/assistant/tool_result fields.", "addedAtIteration": 2},
+    {"id": "ruled-out-tokenizer", "text": "Real tokenizer for the state estimate", "reason": "Vendored estimator's documented +2-18% bound suffices for feasibility.", "addedAtIteration": 2},
+    {"id": "ruled-out-skip-warn", "text": "Skip-with-warning on unknown record type", "reason": "Corrupts the recall denominator; stop-with-named-error stands.", "addedAtIteration": 2},
+    {"id": "ruled-out-inject-verifier", "text": "Injecting supervisorVerifier to wrap the real heuristic", "reason": "Unexported — injection replaces, never wraps.", "addedAtIteration": 3},
+    {"id": "ruled-out-state-evidence", "text": "OpenCode state records as evidence source", "reason": "All 5 records carry lastEvidence length 0.", "addedAtIteration": 3},
+    {"id": "ruled-out-extend-exports", "text": "Extending check-goal module.exports", "reason": "Zero-contact copy keeps the owned contract untouched; three-caller rule unmet.", "addedAtIteration": 4},
+    {"id": "ruled-out-checks-member", "text": "Wiring the lint into CHECKS", "reason": "Exit codes 0/1/2 are the frozen conformance contract.", "addedAtIteration": 4},
+    {"id": "ruled-out-early-wrapper", "text": "Extracting the Jev client wrapper before the third caller", "reason": "Three-caller rule; skip-line vocabulary stays text-shared.", "addedAtIteration": 5},
+    {"id": "ruled-out-merged-census", "text": "Merging the two censuses into one script", "reason": "Different owners and input domains; independent rollback required.", "addedAtIteration": 5},
+    {"id": "ruled-out-phase-redaction", "text": "Redaction fix inside a Jev phase", "reason": "Owner-facing two-line diff; coupling gates a security fix on a research schedule.", "addedAtIteration": 5}
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "keyFindings": 20,
+    "newIdeas": 5,
+    "ruledOut": 12,
+    "newInfoRatios": [0.85, 0.92, 0.85, 0.85, 0.75]
+  },
+  "lastUpdated": "2025-12-02T00:00:00Z"
+}

@@ -1,0 +1,30 @@
+{
+  "topic": "Deepen and widen the council-revised Jev recommendations for this repository's skills, workflows and logic, measured, opt-in and dormant without a Jev key. Grok lineage: contrarian and outside patterns.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion",
+  "artifactDir": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/lineages/grok",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "createdAt": "2026-09-26T21:40:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "executor": {
+    "kind": "cli-cursor",
+    "model": "grok-4.7-xhigh-fast"
+  },
+  "lineage": {
+    "sessionId": "fanout-grok-1790457982528-yjdrdz",
+    "parentSessionId": "2026-09-26-cli-jev-003-004-fanout",
+    "lineageMode": "new",
+    "generation": 1,
+    "label": "grok"
+  }
+}

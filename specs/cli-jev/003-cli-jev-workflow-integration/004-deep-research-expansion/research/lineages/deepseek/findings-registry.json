@@ -1,0 +1,55 @@
+{
+  "lineage": "deepseek",
+  "sessionId": "fanout-deepseek-1790457982528-yjdrdz",
+  "loop": "research",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 5,
+  "stopReason": "maxIterationsReached",
+  "anglesAnswered": 5,
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "q-gate-network", "text": "Does any of the three D5 checks touch the network or spend quota?", "status": "resolved", "resolvedAtIteration": 1, "answer": "No for the Python package (argparse version literal; env/file reads only; only auth test calls the API). The npm --version path is fetch-free; other npm commands may fetch npm metadata at most once per 24h unless JEV_NO_UPDATE_CHECK=1.", "evidence": ["jev-cli-main/src/jev_cli/__init__.py:327, :396-421", "external repo's/jev-cli-main/src/cli.ts:166-183"]},
+    {"id": "q-key-origin", "text": "Can a key placed in .claude/settings.json env satisfy the Python gate by accident?", "status": "resolved", "resolvedAtIteration": 1, "answer": "Yes. The Python CLI reads TYPESAFE_API_KEY from the environment first and auth status prints stored:true regardless of origin; the same variable name is used by both packages, and the npm docs recommend placing it in the tracked settings env.", "evidence": ["jev-cli-main/src/jev_cli/__init__.py:90-93, :419-421", "external repo's/jev-cli-main/docs/auth.md", "external repo's/jev-cli-main/src/credentials.ts:13-16"]},
+    {"id": "q-brief-recorded", "text": "Does the transcript record the injected brief? (open question 25)", "status": "resolved", "resolvedAtIteration": 2, "answer": "Yes: attachment/hook_success, hookEvent SessionStart, hookName SessionStart:compact, stdout/content holds the brief; at +13 after both boundaries in the sampled file. No PreCompact hook record exists.", "evidence": ["~/.claude/projects/…/00ef27e6-….jsonl census"]},
+    {"id": "q-compact-budget", "text": "What is the production budget of a session.compact function hook? (open question 18)", "status": "partly-resolved", "resolvedAtIteration": 2, "answer": "Not stated in the vendored types (which describe 2.1.274; installed host is 2.1.283). The only figure is test-clock prose of ten seconds. Production value remains UNKNOWN.", "evidence": ["context/external repo's/jev-cli-main/plugin/hooks/types/claude-code.d.ts:10177-10178", "context/external repo's/jev-cli-main/plugin/hooks/fast-jev.ts:9-10"]}
+  ],
+  "keyFindings": [
+    {"id": "f-iter001-version-literal", "text": "Python jev-cli 0.6.2 --version is a hardcoded literal 'jev 0.6.2', self-attesting rather than package metadata.", "addedAtIteration": 1, "sources": ["jev-cli-main/src/jev_cli/__init__.py:327"]},
+    {"id": "f-iter001-npm-semver", "text": "npm jevctl --version prints a bare semver, so the exact-match refusal works by print format.", "addedAtIteration": 1, "sources": ["external repo's/jev-cli-main/src/cli.ts:89"]},
+    {"id": "f-iter001-npm-no-fetch", "text": "npm jevctl --version performs no network fetch; update check skipped for version/update/help and disabled by JEV_NO_UPDATE_CHECK=1.", "addedAtIteration": 1, "sources": ["external repo's/jev-cli-main/src/cli.ts:166-183"]},
+    {"id": "f-iter001-python-env-first", "text": "Python jev-cli resolves TYPESAFE_API_KEY from the environment first; auth status cannot report an env key as such.", "addedAtIteration": 1, "sources": ["jev-cli-main/src/jev_cli/__init__.py:90-93, :419-421"]},
+    {"id": "f-iter001-shared-env-name", "text": "Both packages resolve TYPESAFE_API_KEY; npm docs recommend the tracked-settings env placement (row 43), which also passes the Python gate check.", "addedAtIteration": 1, "sources": ["external repo's/jev-cli-main/docs/auth.md"]},
+    {"id": "f-iter001-exit-matrix", "text": "Exit matrices disagree: Python 0/1/2/3/4/130 vs npm 0/1/2; npm merges usage and transport into exit 1 and auth status exits 1 when none.", "addedAtIteration": 1, "sources": ["jev-cli-main/src/jev_cli/__init__.py:435-443", "external repo's/jev-cli-main/src/errors.ts:2-9"]},
+    {"id": "f-iter001-gate-cost", "text": "Gate: one shell builtin plus two spawns, zero network and zero quota; per-check latency UNKNOWN.", "addedAtIteration": 1, "sources": ["jev-cli-main/src/jev_cli/__init__.py:396-421"]},
+    {"id": "f-iter001-gate-timing", "text": "Gate runs once per run or once per session; mid-run exit 3 stops R1 with rows partial and disables the R2 shadow for the session.", "addedAtIteration": 1, "sources": ["002 spec.md REQ-010", "003 spec.md REQ-011"]},
+    {"id": "f-iter001-r19-r20-gap", "text": "R19 and R20 Jev arms have no per-exit-code handling recorded anywhere; inherit R1's by reference.", "addedAtIteration": 1, "sources": ["001 research.md section 11"]},
+    {"id": "f-iter001-wrapper-gap", "text": "The version check cannot distinguish a shell wrapper printing 'jev 0.6.2'; printing the resolved path is the mitigation.", "addedAtIteration": 1, "sources": ["002 spec.md REQ-002"]},
+    {"id": "f-iter001-status-mask", "text": "Python auth status never prints the key; npm auth status masks it and reports a source column.", "addedAtIteration": 1, "sources": ["jev-cli-main/src/jev_cli/__init__.py:421", "external repo's/jev-cli-main/src/commands/auth.ts:102-106"]},
+    {"id": "f-iter002-types-version", "text": "Vendored claude-code.d.ts describes Claude Code 2.1.274; installed host is 2.1.283.", "addedAtIteration": 2, "sources": ["external repo's/jev-cli-main/plugin/hooks/fast-jev.ts:9-10"]},
+    {"id": "f-iter002-budget-unknown", "text": "No production budget for session.compact is readable; ten seconds is test-clock prose; binary context probe timed out.", "addedAtIteration": 2, "sources": ["external repo's/jev-cli-main/plugin/hooks/types/claude-code.d.ts:10177-10178"]},
+    {"id": "f-iter002-overrun-core", "text": "On throw, overrun or malformed result the hook is skipped and core (stock summary) runs in its place.", "addedAtIteration": 2, "sources": ["context/external repo's/jev-cli-main/plugin/hooks/types/claude-code.d.ts:3024-3026"]},
+    {"id": "f-iter002-boundary-shape", "text": "Compact boundary: system/compact_boundary with compactMetadata keys incl. preCompactDiscoveredTools, preservedSegment, preservedMessages; summary is user/isCompactSummary.", "addedAtIteration": 2, "sources": ["~/.claude/projects/…/00ef27e6-….jsonl"]},
+    {"id": "f-iter002-brief-recorded", "text": "The injected brief is recorded in the hook_success SessionStart:compact attachment stdout/content; no PreCompact hook records exist.", "addedAtIteration": 2, "sources": ["~/.claude/projects/…/00ef27e6-….jsonl"]},
+    {"id": "f-iter002-precompute", "text": "precompute installs nothing; its result is kept for the coming compaction if the conversation still leads.", "addedAtIteration": 2, "sources": ["context/external repo's/jev-cli-main/plugin/hooks/types/claude-code.d.ts:7283-7287"]},
+    {"id": "f-iter002-key-order", "text": "Vendored key resolution order: plugin option, environment, settings env; read outside any gate.", "addedAtIteration": 2, "sources": ["context/external repo's/jev-cli-main/plugin/hooks/fast-jev.ts:237-253"]},
+    {"id": "f-iter002-auto-compact-hook", "text": "60% auto-compact runs on turn.complete via session.usage() and calls session.compact().", "addedAtIteration": 2, "sources": ["context/external repo's/jev-cli-main/plugin/hooks/fast-jev.ts:289-303"]},
+    {"id": "f-iter002-replay-inputs", "text": "Brief replay inputs are transcript-only; the graph-index half is gone.", "addedAtIteration": 2, "sources": [".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:284-370"]},
+    {"id": "f-iter002-brief-column", "text": "R19 brief column: read the recorded injection first; replay buildMergedCompactResult only as fallback.", "addedAtIteration": 2, "sources": ["001 research.md R19"]}
+  ],
+  "newIdeas": [
+    {"id": "N-deepseek-01-1", "text": "Gate-identity line: print accepted version+path once and found version+path on refusal.", "verdict": "next", "addedAtIteration": 1},
+    {"id": "N-deepseek-01-2", "text": "Key-origin line: report whether TYPESAFE_API_KEY is present in the environment.", "verdict": "next", "addedAtIteration": 1},
+    {"id": "N-deepseek-01-3", "text": "Per-exit-code handling table for R19 and R20 inherited by reference from R1's.", "verdict": "next", "addedAtIteration": 1}
+  ],
+  "ruledOutDirections": [
+    {"id": "ruled-out-store-parse", "text": "Parsing the Python auth status store field for key origin", "reason": "The field is static (always the credentials-file path).", "addedAtIteration": 1},
+    {"id": "ruled-out-npm-exit-read", "text": "Reading npm jevctl exit codes as the package discriminator", "reason": "The version check fires first; npm exit 2 is a judgment result.", "addedAtIteration": 1}
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "keyFindings": 41,
+    "newIdeas": 7,
+    "ruledOut": 7
+  },
+  "lastUpdated": "2026-09-26T21:55:00Z"
+}

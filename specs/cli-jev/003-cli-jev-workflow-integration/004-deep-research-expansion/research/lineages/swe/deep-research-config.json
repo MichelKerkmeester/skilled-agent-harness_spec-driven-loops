@@ -1,0 +1,44 @@
+{
+  "topic": "Deepen and widen the council-revised Jev recommendations for this repository's skills, workflows and logic, measured, opt-in and dormant without a Jev key. Baseline is specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/research.md, the round-1 re-synthesis. Iteration N takes angle swe-0N from context/research-angles.md.",
+  "research_topic": "Deepen and widen the council-revised Jev recommendations for this repository's skills, workflows and logic, measured, opt-in and dormant without a Jev key. Read specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/spec.md for the brief, RQ1 to RQ7 and the answer shape. Baseline is specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/research.md, the round-1 re-synthesis: start from its build-now and next items and its section 12 questions, and never restate a finding without new evidence. Your label (grok, mimo, swe or deepseek) is the last path segment of config.fanout_lineage_artifact_dir. Iteration N takes angle label-0N, for example swe-03, and sets Focus Area to that angle's id and title; the per-iteration contract in specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/context/research-angles.md governs the iteration.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion",
+  "artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/lineages/swe",
+  "fanout_lineage_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/lineages/swe",
+  "loop_type": "research",
+  "stopPolicy": "max-iterations",
+  "stop_policy": "max-iterations",
+  "maxIterations": 5,
+  "minIterations": 5,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "off",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-2-max",
+    "reasoningEffort": null,
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-swe-1790457982528-yjdrdz",
+    "generation": 1,
+    "lineageId": "swe",
+    "lineageMode": "detached"
+  },
+  "scopeBoundary": {
+    "writeRoot": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/lineages/swe",
+    "forbiddenWrites": [
+      "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/spec.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/deep-research-config.json",
+      "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/observability-events.jsonl",
+      "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/orchestration-status.log",
+      ".skilled",
+      ".utcp_config.json"
+    ],
+    "writeback": "skipped by detached lineage boundary"
+  },
+  "status": "running"
+}
