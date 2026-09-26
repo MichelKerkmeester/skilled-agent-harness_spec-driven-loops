@@ -108,3 +108,21 @@ for (const [fixtureName, expectedCheck] of NEGATIVE_CASES) {
     }
   });
 }
+
+for (const asset of ['goal-top-level-template.md', 'goal-phase-parent-template.md', 'goal-phase-child-template.md']) {
+  test('an unfilled copy of ' + asset + ' fails placeholder on objective, decision and criteria', () => {
+    const text = fs.readFileSync(path.join(__dirname, '..', '..', 'assets', asset), 'utf8');
+    const block = text.match(/<!-- BEGIN TEMPLATE -->\n```markdown\n([\s\S]*?)\n```\n<!-- END TEMPLATE -->/u);
+    assert.ok(block, asset + ' has no template block');
+    const packetDir = path.join(fixtureRoot, 'unfilled-' + path.basename(asset, '.md'));
+    fs.mkdirSync(packetDir, { recursive: true });
+    fs.writeFileSync(path.join(packetDir, 'goal.md'), block[1] + '\n');
+
+    const result = checkPlaceholders(packetDir, { workspaceRoot: WORKSPACE_ROOT });
+    const details = result.findings.map((finding) => finding.detail);
+    assert.equal(result.passed, false);
+    assert.ok(details.some((detail) => detail.startsWith('objective')), 'objective');
+    assert.ok(details.some((detail) => detail.startsWith('decision')), 'decision');
+    assert.ok(details.some((detail) => detail.startsWith('completion criterion')), 'criteria');
+  });
+}

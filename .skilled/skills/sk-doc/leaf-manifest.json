@@ -99,9 +99,10 @@
     },
     {
       "leaves": [
-        "assets/.gitkeep",
         "assets/goal-exemplars.md",
-        "references/README.md",
+        "assets/goal-phase-child-template.md",
+        "assets/goal-phase-parent-template.md",
+        "assets/goal-top-level-template.md",
         "references/authoring-standards.md",
         "references/budget-and-handoff.md",
         "references/parent-and-nested-goals.md"

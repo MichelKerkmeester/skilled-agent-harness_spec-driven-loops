@@ -8,7 +8,7 @@ trigger_phrases:
   - "goal chat slice"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # sk-create-goal
@@ -24,7 +24,7 @@ version: 1.0.0.0
 | **Use it for** | Authoring or revising a packet `goal.md` through six operations: top-level, phase-parent, child, retrofit, phase-add and amend |
 | **Invoke with** | `/create:goal <packet path> [operation] [:auto|:confirm]`, or a plain request to author a packet goal |
 | **Works on** | An existing spec packet with its own `spec.md` and its own acceptance criteria where the level requires them |
-| **Produces** | One goal rendered from the system-spec-kit template and filled from the packet's sources, plus the parent chat slice for the operator |
+| **Produces** | One goal filled from the template for its kind and the packet's sources, plus the parent chat slice for the operator |
 | **Never touches** | Session objective state. A request to set, bind or resend a goal goes to the goal hooks |
 
 ---
@@ -33,7 +33,7 @@ version: 1.0.0.0
 
 ### What The Mode Does
 
-`sk-create-goal` turns a packet's own specifications into its `goal.md`. Every goal is rendered through the system-spec-kit goal template and filled with one objective sentence, the frozen decisions later work must honor and three to seven completion criteria. Each criterion resolves to an exit code, a count or a named artifact. The mode keeps no template copy of its own.
+`sk-create-goal` turns a packet's own specifications into its `goal.md`. Every goal starts from one of three templates, for a top-level packet, a phase parent or a phase child, and is filled with one objective sentence, the frozen decisions later work must honor and three to seven completion criteria. Each criterion resolves to an exit code, a count or a named artifact. Each template is a checked copy of the system-spec-kit goal template, and a test fails when the two drift apart.
 
 A phase parent also gets a binding table with exactly one row per direct phase-child folder. The table lives only in the phase-parent goal. Each row points at that child's `goal.md`, and the child goal is then authoritative for its own phase.
 
@@ -86,7 +86,7 @@ An operation that alters a parent decision or criterion amends the parent first,
 
 1. **Read the sources.** The packet's own `spec.md` and `acceptance-criteria.md`. For a phase parent, the Phase Documentation Map and every direct phase-child directory. For a nested child, only that child's own documents.
 2. **Route.** File content or session state? What role does the packet play? Does `goal.md` exist? Does a child change force a parent amendment? A session-state request is redirected and nothing is written.
-3. **Render.** `create.sh --with-goal` scaffolds a new child packet. `inline-gate-renderer.sh --level <L>` renders the goal for an existing packet: a phase parent uses the `phase` level and other packets use their own level.
+3. **Start from the template.** Copy the block from [`goal-top-level-template.md`](./assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](./assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](./assets/goal-phase-child-template.md) into `goal.md`. A child that `create.sh --with-goal` scaffolded already has the structure, so fill that file.
 4. **Fill.** Load the authoring standards and the goal exemplars, then write the objective, the decision table and the criteria. Leave no template placeholder behind.
 5. **Bind.** For a phase parent, compare the map's folder names with the direct child folders and the binding rows. All three sets must agree before anything is written.
 6. **Measure.** `goal.cjs packet` reports `packet_durable_chars` and `packet_budget`. A top-level goal or phase parent stays at or under 4,000 characters. Phase children are exempt from the cap.
@@ -157,8 +157,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 |---|---|---|
 | Goal conformance | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>` | `RESULT: PASSED (4/4 checks)`, exit 0 |
 | Budget and slices | `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace "$PWD"` | `packet_budget=ok` and the `chat_slice` printed |
-| Template render | `bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh --level <L> --out-dir <dir> .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl` | The goal structure at the chosen level, with no gate markers left |
-| Checker tests | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs` | `pass 8`, `fail 0` |
+| Checker and template tests | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` | `pass 15`, `fail 0`, including template parity with `goal.md.tmpl` |
 | Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` | `PASS ... scenarios=8 ... violations=0` |
 
 ---
@@ -171,11 +170,13 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 | [`references/parent-and-nested-goals.md`](./references/parent-and-nested-goals.md) | The top-level, phase-parent, child, retrofit, phase-add and amend workflows |
 | [`references/authoring-standards.md`](./references/authoring-standards.md) | Reader checks for objectives, decisions, criteria, logs and voice |
 | [`references/budget-and-handoff.md`](./references/budget-and-handoff.md) | Durable budget measurement, ordered cuts and the runtime handoff matrix |
-| [`references/README.md`](./references/README.md) | The reference index for the goal-owner documents |
+| [`assets/goal-top-level-template.md`](./assets/goal-top-level-template.md) | The blank for a packet with no phases |
+| [`assets/goal-phase-parent-template.md`](./assets/goal-phase-parent-template.md) | The blank for a phase parent, with its binding table |
+| [`assets/goal-phase-child-template.md`](./assets/goal-phase-child-template.md) | The blank for a phase child |
 | [`assets/goal-exemplars.md`](./assets/goal-exemplars.md) | Cited goal excerpts with rubric outcomes |
-| [`scripts/check-goal.cjs`](./scripts/check-goal.cjs) | The read-only goal conformance checker |
+| [`scripts/README.md`](./scripts/README.md) | The checker, its tests and fixtures |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The eight operator scenarios and the run-record contract |
-| [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) | The system-spec-kit template every goal is rendered from |
+| [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) | The system-spec-kit source the three templates copy |
 | [`goal.cjs`](../../../hooks/goal/bin/goal.cjs) | The session-free printer for a packet's goal slices |
 | [Goal hooks README](../../../hooks/goal/README.md) | The runtime goal ownership and session-state boundary |
 | [`/create:goal`](../../../commands/create/goal.md) | The command router with the auto and confirm workflows |
