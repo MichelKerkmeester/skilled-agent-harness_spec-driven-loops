@@ -1,5 +1,5 @@
 {
-  "manifestHash": "51619ffdd51c5667905431fad7b55be34faf4c85374479758446a65a3c6fa581",
+  "manifestHash": "49fba0d5bb9e57f5776a04161de8b2943c9a3ec57cdc5cb425e77f495d1c3f9d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8404,8 +8404,17 @@
     "advisor doc cleanup post extraction": [
       "advisor doc cleanup post-extraction"
     ],
+    "advisor docs alignment": [
+      "advisor docs alignment"
+    ],
     "advisor docs sweep": [
       "advisor docs sweep"
+    ],
+    "advisor docs update plan": [
+      "advisor docs update plan"
+    ],
+    "advisor docs update summary": [
+      "advisor docs update summary"
     ],
     "advisor embedder adapters": [
       "advisor embedder adapters"
@@ -8442,6 +8451,9 @@
     ],
     "advisor feature catalog": [
       "advisor feature catalog"
+    ],
+    "advisor feature catalog update": [
+      "advisor feature catalog update"
     ],
     "advisor feature flag": [
       "advisor feature flag"
@@ -8758,6 +8770,9 @@
     ],
     "advisor refinements deep review": [
       "advisor refinements deep review"
+    ],
+    "advisor refinements review verdict": [
+      "advisor refinements review verdict"
     ],
     "advisor registration removal": [
       "advisor registration removal"
@@ -30469,6 +30484,9 @@
     "docs alignment plan": [
       "docs alignment plan"
     ],
+    "docs alignment summary": [
+      "docs alignment summary"
+    ],
     "docs alignment tasks": [
       "docs alignment tasks"
     ],
@@ -34814,6 +34832,9 @@
     ],
     "fan out deep review plan": [
       "fan-out deep review plan"
+    ],
+    "fan out deep review summary": [
+      "fan-out deep review summary"
     ],
     "fan out deep review tasks": [
       "fan-out deep review tasks"
@@ -57674,6 +57695,9 @@
     "pi advisor dist path test": [
       "pi advisor dist path test"
     ],
+    "pi advisor extension": [
+      "pi advisor extension"
+    ],
     "pi agent": [
       "pi agent"
     ],
@@ -58131,6 +58155,15 @@
     ],
     "pi prompt advisor": [
       "pi prompt advisor"
+    ],
+    "pi prompt advisor budget fix": [
+      "pi prompt advisor budget fix"
+    ],
+    "pi prompt advisor catalog entry": [
+      "pi prompt advisor catalog entry"
+    ],
+    "pi prompt advisor extension": [
+      "pi prompt advisor extension"
     ],
     "pi prompt cache plugin": [
       "pi prompt cache plugin"
@@ -71244,6 +71277,9 @@
     "sk code advisor routing discovery tasks": [
       "sk-code advisor routing discovery tasks"
     ],
+    "sk code alignment advisor refinements": [
+      "sk-code alignment advisor refinements"
+    ],
     "sk code alignment audit": [
       "sk-code alignment audit"
     ],
@@ -76465,6 +76501,9 @@
     ],
     "speckit phase system": [
       "speckit phase system"
+    ],
+    "speckit pi advisor debug": [
+      "SPECKIT_PI_ADVISOR_DEBUG"
     ],
     "speckit pi directive dedup": [
       "SPECKIT_PI_DIRECTIVE_DEDUP"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fcac528defca2abfa5c3ac348f70a6b95a73be67151865789ff3975690c4281d",
+  "corpusHash": "1af1d376a1f68f05b88589b7efd520a2477151158086a2c260a3c7673afdc27f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22849,
+  "includedPathCount": 22856,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -7486,6 +7486,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/pi-prompt-advisor.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/age-haircut.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/archive-handling.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/lifecycle-routing/rollback.md",
@@ -13789,8 +13790,14 @@
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes/tasks.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/implementation-summary.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/plan.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/fanout-attribution.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/review-report.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/spec.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/tasks.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/implementation-summary.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/plan.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/spec.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/tasks.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/bug_report.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/feature_request.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/pull_request_template.md",
@@ -22871,7 +22878,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "51619ffdd51c5667905431fad7b55be34faf4c85374479758446a65a3c6fa581",
+  "manifestHash": "49fba0d5bb9e57f5776a04161de8b2943c9a3ec57cdc5cb425e77f495d1c3f9d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -23589,23 +23596,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/scratch",
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages",
       "reason": "excluded directory"
     },
     {
