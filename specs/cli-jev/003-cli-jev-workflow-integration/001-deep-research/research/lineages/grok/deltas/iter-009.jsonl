@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":9,"angle":"grok-09","newInfoRatio":0.4,"findingsCount":1,"ruledOutCount":1}
+{"type":"finding","id":"f-grok-09-offline-arm","title":"The offline routing choice is the only survivor that fails nothing structural on the fitness checklist","seam":"specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md:54","verdict":"next","confidence":"confirmed","metric":"held-out MRR and right-skill-at-3 against the similarity-only arm"}
+{"type":"ruled_out","id":"r-grok-09-quarter","title":"Building any later row this quarter","reason":"Each fails question 1 or replaces a fact or invents a score"}
