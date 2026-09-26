@@ -2257,6 +2257,8 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
 // list-verified via `cursor-agent --list-models` (not dispatch-tested).
 // Gemini 3.8 Flash High (gemini-3.8-flash-high) replaced the 3.7 tier on 2026-09-04; the first
 // Gemini id in the curated Cursor scope — list-verified and dispatch-tested.
+// Grok 4.7 (grok-4.7-*) joined alongside Grok 4.5 and 4.6 on 2026-09-26, list-verified and
+// dispatch-tested. Cursor lists it without the cursor- prefix the older Grok ids carry.
 const CURSOR_ALLOWED_MODELS = new Set([
   'composer-2.5',
   'composer-2.5-fast',
@@ -2279,6 +2281,14 @@ const CURSOR_ALLOWED_MODELS = new Set([
   'glm-5.2-max',
   'gpt-5.6-luna-max',
   'gpt-5.6-luna-max-fast',
+  'grok-4.7-high',
+  'grok-4.7-high-fast',
+  'grok-4.7-low',
+  'grok-4.7-low-fast',
+  'grok-4.7-medium',
+  'grok-4.7-medium-fast',
+  'grok-4.7-xhigh',
+  'grok-4.7-xhigh-fast',
 ]);
 // An unpinned lineage falls back to these. They are deliberately NOT the model each
 // packet recommends for a hand-written dispatch: that recommendation is advice to an
