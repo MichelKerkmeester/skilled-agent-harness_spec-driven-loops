@@ -1,0 +1,38 @@
+run run_f631ffee8da29e57
+command: node --test tests/session.test.js tests/expired-session.test.js
+
+Coverage
+  Lines      100.00% (3/3)
+  Branches   100.00% (2/2)
+  MC/DC      100.00% (2/2)
+
+By test kind
+  unit            3 test(s)  lines 100.00%  branches 100.00%  MC/DC 100.00%
+
+Measurement
+  Instrumentation  Complete for the measured command and coverage model
+  Scope            Only code reached by the wrapped command is observed; this status does not prove every project test suite was run.
+  Command outputs  /private/var/folders/4q/cdhj37516zzbc7z9ckrst0x40000gn/T/supercov-checkout-Y71iPw/project/.supercov/workspaces/workspace/project
+
+Tests
+  Total       3
+  Passed      3
+
+Remaining
+  Files with uncovered code         0
+  Files with measurement limits     0
+
+Evidence confidence
+  Linked to passing assertions      3 lines
+  Linked to test actions             0 lines
+  Execution only                     0 lines
+  MC/DC linked to assertions         2 conditions
+  Linkage indicates evidence strength; it does not prove that an assertion is correct.
+
+Commands
+  npx supercov runs 'run_f631ffee8da29e57' files
+  npx supercov runs 'run_f631ffee8da29e57' gaps
+  npx supercov runs 'run_f631ffee8da29e57' kinds
+  npx supercov runs 'run_f631ffee8da29e57' runners
+  npx supercov runs 'run_f631ffee8da29e57' scope
+  npx supercov runs run_f631ffee8da29e57 --help

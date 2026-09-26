@@ -1,0 +1,381 @@
+{
+  "description": "Design fixtures only; sources are explanatory documentation, not product run snapshots. These maps have no real run evidence. Non-null example tokens have valid syntax but are not actual Supercov acknowledgements.",
+  "sources": {
+    "src/pricing.ts": "export function priceFor(subtotal: number, discount: number) {\n  return subtotal - discount;\n}\n",
+    "src/shipping.ts": "export function shippingFor(express: boolean) {\n  return express ? 10 : 5;\n}\n",
+    "src/quote.ts": "import { priceFor } from './pricing.ts';\nimport { shippingFor } from './shipping.ts';\nexport function quote(subtotal: number, discount: number, express: boolean) {\n  const price = priceFor(subtotal, discount);\n  const shipping = shippingFor(express);\n  return { price, shipping };\n}\n",
+    "tests/quote.test.ts": "import assert from 'node:assert/strict';\nimport { test } from 'node:test';\nimport { quote } from '../src/quote.ts';\n\ntest('quote', () => {\n  const result = quote(100, 10, false);\n  assert.deepEqual(result, { price: 90, shipping: 5 });\n});\n",
+    "tests/fixture.test.ts": "import assert from 'node:assert/strict';\nimport { test } from 'node:test';\ntest('fixture', () => {\n  const sample = [1, 2];\n  assert.equal(sample.length, 2);\n});\n"
+  },
+  "examples": [
+    {
+      "name": "new-run",
+      "map": {
+        "schemaVersion": 2,
+        "assertions": [
+          {
+            "id": "a_quote",
+            "at": {
+              "file": "tests/quote.test.ts",
+              "line": 7,
+              "column": 3,
+              "text": "assert.deepEqual(result, { price: 90, shipping: 5 })"
+            },
+            "observes": [],
+            "flows": []
+          }
+        ]
+      },
+      "expected": "No mappings recorded; percentage not assessed."
+    },
+    {
+      "name": "two-draft-flows",
+      "map": {
+        "schemaVersion": 2,
+        "assertions": [
+          {
+            "id": "a_quote",
+            "at": {
+              "file": "tests/quote.test.ts",
+              "line": 7,
+              "column": 3,
+              "text": "assert.deepEqual(result, { price: 90, shipping: 5 })"
+            },
+            "observes": [
+              "The returned price equals 90 and shipping equals 5."
+            ],
+            "flows": [
+              {
+                "id": "price",
+                "basis": null,
+                "appliesTo": [
+                  {
+                    "file": "tests/quote.test.ts",
+                    "name": "quote"
+                  }
+                ],
+                "explanation": "The computed price becomes result.price, which this assertion compares exactly.",
+                "nodes": [
+                  {
+                    "id": "price-return",
+                    "at": {
+                      "file": "src/pricing.ts",
+                      "line": 2,
+                      "column": 3,
+                      "text": "return subtotal - discount;"
+                    }
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "price-return",
+                    "to": "$assertion",
+                    "kind": "data",
+                    "basis": "quote() assigns this return value to the price field."
+                  }
+                ],
+                "countsAsAsserted": [
+                  "price-return"
+                ],
+                "watch": [
+                  "src/quote.ts"
+                ]
+              },
+              {
+                "id": "shipping",
+                "basis": null,
+                "appliesTo": [
+                  {
+                    "file": "tests/quote.test.ts",
+                    "name": "quote"
+                  }
+                ],
+                "explanation": "The computed shipping becomes result.shipping, which this assertion compares exactly.",
+                "nodes": [
+                  {
+                    "id": "shipping-return",
+                    "at": {
+                      "file": "src/shipping.ts",
+                      "line": 2,
+                      "column": 3,
+                      "text": "return express ? 10 : 5;"
+                    }
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "shipping-return",
+                    "to": "$assertion",
+                    "kind": "data",
+                    "basis": "quote() assigns this return value to the shipping field."
+                  }
+                ],
+                "countsAsAsserted": [
+                  "shipping-return"
+                ],
+                "watch": [
+                  "src/quote.ts"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": "Both flows are drafts; no credit until valid current tokens and execution evidence exist."
+    },
+    {
+      "name": "acknowledged-shape",
+      "map": {
+        "schemaVersion": 2,
+        "assertions": [
+          {
+            "id": "a_quote",
+            "at": {
+              "file": "tests/quote.test.ts",
+              "line": 7,
+              "column": 3,
+              "text": "assert.deepEqual(result, { price: 90, shipping: 5 })"
+            },
+            "observes": [
+              "The returned price equals 90 and shipping equals 5."
+            ],
+            "flows": [
+              {
+                "id": "price",
+                "basis": "scov2:705a55203e03c60b4f4f946b663fb846694082be5b3f34b810755b03e0445ac5",
+                "appliesTo": [
+                  {
+                    "file": "tests/quote.test.ts",
+                    "name": "quote"
+                  }
+                ],
+                "explanation": "The computed price becomes result.price, which this assertion compares exactly.",
+                "nodes": [
+                  {
+                    "id": "price-return",
+                    "at": {
+                      "file": "src/pricing.ts",
+                      "line": 2,
+                      "column": 3,
+                      "text": "return subtotal - discount;"
+                    }
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "price-return",
+                    "to": "$assertion",
+                    "kind": "data",
+                    "basis": "quote() assigns this return value to the price field."
+                  }
+                ],
+                "countsAsAsserted": [
+                  "price-return"
+                ],
+                "watch": [
+                  "src/quote.ts"
+                ]
+              },
+              {
+                "id": "shipping",
+                "basis": "scov2:18ad75b55780a9a2646a0f5be9ce1201d729e67919187202050fd63373f21fdc",
+                "appliesTo": [
+                  {
+                    "file": "tests/quote.test.ts",
+                    "name": "quote"
+                  }
+                ],
+                "explanation": "The computed shipping becomes result.shipping, which this assertion compares exactly.",
+                "nodes": [
+                  {
+                    "id": "shipping-return",
+                    "at": {
+                      "file": "src/shipping.ts",
+                      "line": 2,
+                      "column": 3,
+                      "text": "return express ? 10 : 5;"
+                    }
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "shipping-return",
+                    "to": "$assertion",
+                    "kind": "data",
+                    "basis": "quote() assigns this return value to the shipping field."
+                  }
+                ],
+                "countsAsAsserted": [
+                  "shipping-return"
+                ],
+                "watch": [
+                  "src/quote.ts"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": "Schema-valid token syntax only. Real eligibility requires matching tokens and run evidence."
+    },
+    {
+      "name": "zero-production-credit",
+      "map": {
+        "schemaVersion": 2,
+        "assertions": [
+          {
+            "id": "a_fixture",
+            "at": {
+              "file": "tests/fixture.test.ts",
+              "line": 5,
+              "column": 3,
+              "text": "assert.equal(sample.length, 2)"
+            },
+            "observes": [
+              "The local fixture contains two elements."
+            ],
+            "flows": [
+              {
+                "id": "fixture-length",
+                "basis": null,
+                "appliesTo": [
+                  {
+                    "file": "tests/fixture.test.ts",
+                    "name": "fixture"
+                  }
+                ],
+                "explanation": "Only the locally constructed test fixture is observed. No measured production statement is credited.",
+                "nodes": [
+                  {
+                    "id": "fixture",
+                    "at": {
+                      "file": "tests/fixture.test.ts",
+                      "line": 4,
+                      "column": 3,
+                      "text": "const sample = [1, 2];"
+                    }
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "fixture",
+                    "to": "$assertion",
+                    "kind": "data"
+                  }
+                ],
+                "countsAsAsserted": [],
+                "watch": []
+              }
+            ]
+          }
+        ]
+      },
+      "expected": "A legitimate explanatory flow with no production credit. Null basis keeps this example a draft."
+    },
+    {
+      "name": "price-change-assessment",
+      "map": {
+        "schemaVersion": 2,
+        "assertions": [
+          {
+            "id": "a_quote",
+            "at": {
+              "file": "tests/quote.test.ts",
+              "line": 7,
+              "column": 3,
+              "text": "assert.deepEqual(result, { price: 90, shipping: 5 })"
+            },
+            "observes": [
+              "The returned price equals 90 and shipping equals 5."
+            ],
+            "flows": [
+              {
+                "id": "price",
+                "basis": "scov2:705a55203e03c60b4f4f946b663fb846694082be5b3f34b810755b03e0445ac5",
+                "appliesTo": [
+                  {
+                    "file": "tests/quote.test.ts",
+                    "name": "quote"
+                  }
+                ],
+                "explanation": "The computed price becomes result.price, which this assertion compares exactly.",
+                "nodes": [
+                  {
+                    "id": "price-return",
+                    "at": {
+                      "file": "src/pricing.ts",
+                      "line": 2,
+                      "column": 3,
+                      "text": "return subtotal - discount;"
+                    }
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "price-return",
+                    "to": "$assertion",
+                    "kind": "data",
+                    "basis": "quote() assigns this return value to the price field."
+                  }
+                ],
+                "countsAsAsserted": [
+                  "price-return"
+                ],
+                "watch": [
+                  "src/quote.ts"
+                ]
+              },
+              {
+                "id": "shipping",
+                "basis": "scov2:18ad75b55780a9a2646a0f5be9ce1201d729e67919187202050fd63373f21fdc",
+                "appliesTo": [
+                  {
+                    "file": "tests/quote.test.ts",
+                    "name": "quote"
+                  }
+                ],
+                "explanation": "The computed shipping becomes result.shipping, which this assertion compares exactly.",
+                "nodes": [
+                  {
+                    "id": "shipping-return",
+                    "at": {
+                      "file": "src/shipping.ts",
+                      "line": 2,
+                      "column": 3,
+                      "text": "return express ? 10 : 5;"
+                    }
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "shipping-return",
+                    "to": "$assertion",
+                    "kind": "data",
+                    "basis": "quote() assigns this return value to the shipping field."
+                  }
+                ],
+                "countsAsAsserted": [
+                  "shipping-return"
+                ],
+                "watch": [
+                  "src/quote.ts"
+                ]
+              }
+            ]
+          }
+        ],
+        "changeAssessments": [
+          {
+            "id": "c_pricing_edit",
+            "basis": null,
+            "affectedFlows": [
+              "a_quote/price"
+            ],
+            "explanation": "The price calculation changed. Shipping uses its separate arguments and implementation."
+          }
+        ]
+      },
+      "expected": "Unacknowledged change response leaves the suite percentage pending. Its ID must exist in managed run metadata."
+    }
+  ]
+}

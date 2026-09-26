@@ -1,0 +1,81 @@
+[package]
+name = "supercov"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+readme = "../../README.md"
+description = "Coverage, security and code quality for coding agents"
+keywords = ["coverage", "mcdc", "testing", "security", "code-quality"]
+categories = ["command-line-utilities", "development-tools::testing"]
+publish = ["crates-io"]
+
+# `cargo install supercov` builds the engine from source, which takes minutes.
+# Every release attaches the same prebuilt binaries the npm packages carry to
+# its GitHub release, so `cargo binstall supercov` downloads one instead. The
+# assets are named for the npm platform rather than the Rust target, so each
+# target points at its own; inside, every tarball is an npm package, with the
+# binary at package/bin/.
+[package.metadata.binstall]
+pkg-fmt = "tgz"
+bin-dir = "package/bin/{ bin }{ binary-ext }"
+
+
+[package.metadata.binstall.overrides.aarch64-apple-darwin]
+pkg-url = "{ repo }/releases/download/v{ version }/supercov-cli-darwin-arm64-{ version }.tgz"
+
+[package.metadata.binstall.overrides.x86_64-apple-darwin]
+pkg-url = "{ repo }/releases/download/v{ version }/supercov-cli-darwin-x64-{ version }.tgz"
+
+[package.metadata.binstall.overrides.aarch64-unknown-linux-gnu]
+pkg-url = "{ repo }/releases/download/v{ version }/supercov-cli-linux-arm64-gnu-{ version }.tgz"
+
+[package.metadata.binstall.overrides.x86_64-unknown-linux-gnu]
+pkg-url = "{ repo }/releases/download/v{ version }/supercov-cli-linux-x64-gnu-{ version }.tgz"
+
+[package.metadata.binstall.overrides.aarch64-unknown-linux-musl]
+pkg-url = "{ repo }/releases/download/v{ version }/supercov-cli-linux-arm64-musl-{ version }.tgz"
+
+[package.metadata.binstall.overrides.x86_64-unknown-linux-musl]
+pkg-url = "{ repo }/releases/download/v{ version }/supercov-cli-linux-x64-musl-{ version }.tgz"
+
+[package.metadata.binstall.overrides.aarch64-pc-windows-msvc]
+pkg-url = "{ repo }/releases/download/v{ version }/supercov-cli-win32-arm64-{ version }.tgz"
+
+[package.metadata.binstall.overrides.x86_64-pc-windows-msvc]
+pkg-url = "{ repo }/releases/download/v{ version }/supercov-cli-win32-x64-{ version }.tgz"
+
+[[bin]]
+name = "supercov"
+path = "src/main.rs"
+
+[dependencies]
+base64.workspace = true
+flate2.workspace = true
+ignore = "0.4"
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+supercov-contracts.workspace = true
+supercov-engine.workspace = true
+time.workspace = true
+
+# HTTPS for `supercov quality`, with the platform's own TLS where it has one.
+#
+# rustls needs a crypto provider, and every provider it has compiles C. On
+# `aarch64-pc-windows-msvc` that C is built by clang, because MSVC's own
+# compiler cannot assemble what `ring` ships -- so a Windows build needs LLVM
+# on PATH, ahead of whatever else put a clang there. Installing Ruby is enough
+# to break that: `ruby/setup-ruby` puts an MSYS2 clang first, which targets
+# mingw and fails the moment it is asked for MSVC.
+#
+# Windows already has a TLS stack. Using schannel there costs no C compiler, no
+# LLVM and no PATH order, and leaves `cargo install supercov` working on a
+# machine that has never heard of clang. Everywhere else keeps rustls, which is
+# what makes the static musl builds possible.
+[target.'cfg(not(windows))'.dependencies]
+ureq = { version = "3.4", default-features = false, features = ["rustls", "json"] }
+
+[target.'cfg(windows)'.dependencies]
+ureq = { version = "3.4", default-features = false, features = ["native-tls", "json"] }

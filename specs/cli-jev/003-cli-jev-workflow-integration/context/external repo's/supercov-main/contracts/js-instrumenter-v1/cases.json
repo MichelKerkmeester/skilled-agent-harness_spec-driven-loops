@@ -1,0 +1,58 @@
+[
+  {
+    "file": "app/decide.ts",
+    "source": "export function decide(a,b,c) {\n  if ((a && b) || !c) return 1;\n  return 0;\n}\n"
+  },
+  {
+    "file": "app/unicode.ts",
+    "source": "const π = true;\nif (π && enabled) work();\n"
+  },
+  {
+    "file": "app/negated.js",
+    "source": "function choose(a, b, c) {\n  if (!(a || b) && c) return 'yes';\n  return 'no';\n}\n"
+  },
+  {
+    "file": "app/nested.ts",
+    "source": "export function nested(a: boolean, b: boolean) {\n  if (a) {\n    if (b || a) return 1;\n  }\n  return 0;\n}\n"
+  },
+  {
+    "file": "app/view.tsx",
+    "source": "export const View = ({a, b}: {a: boolean; b: boolean}) => {\n  if (a && b) return <div>yes</div>;\n  return <div>no</div>;\n};\n"
+  },
+  {
+    "file": "app/ternary.js",
+    "source": "export function choose(a, b) {\n  return a && b ? 'yes' : 'no';\n}\n"
+  },
+  {
+    "file": "app/while.js",
+    "source": "export function count(limit, enabled) {\n  let value = 0;\n  while (value < limit && enabled) value++;\n  return value;\n}\n"
+  },
+  {
+    "file": "app/do-while.js",
+    "source": "export function count(limit, enabled) {\n  let value = 0;\n  do value++; while (value < limit && enabled);\n  return value;\n}\n"
+  },
+  {
+    "file": "app/for.js",
+    "source": "export function count(limit, enabled) {\n  let value = 0;\n  for (; value < limit && enabled; value++) work(value);\n  return value;\n}\n"
+  },
+  {
+    "file": "app/routes/request-variable.ts",
+    "source": "export const loader = async ({ request }) => request.url;\n"
+  },
+  {
+    "file": "app/routes/request-declaration.ts",
+    "source": "export async function action({ request }) { return request.method; }\n"
+  },
+  {
+    "file": "app/routes/request-reexport.ts",
+    "source": "export { generateAction as action, helper } from './handlers';\n"
+  },
+  {
+    "file": "app/api/items/route.ts",
+    "source": "export function GET(request) { return Response.json({ url: request.url }); }\n"
+  },
+  {
+    "file": "app/entry.server.tsx",
+    "source": "export default async function handleRequest(request) { return request.url; }\n"
+  }
+]

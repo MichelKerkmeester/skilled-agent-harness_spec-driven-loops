@@ -1,0 +1,175 @@
+{
+  "name": "supercov",
+  "version": "2.0.1",
+  "description": "Coverage, security and code quality for coding agents",
+  "keywords": [
+    "coverage",
+    "code-coverage",
+    "test-coverage",
+    "branch-coverage",
+    "mcdc",
+    "vitest",
+    "jest",
+    "playwright",
+    "pytest",
+    "security",
+    "code-quality",
+    "coding-agents",
+    "claude-code",
+    "codex",
+    "cli"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supercorp-ai/supercov.git"
+  },
+  "homepage": "https://supercov.com",
+  "bugs": {
+    "url": "https://github.com/supercorp-ai/supercov/issues"
+  },
+  "type": "module",
+  "files": [
+    "bin",
+    "runtime/javascript",
+    "docs/getting-started.md",
+    "docs/agent-loop.md",
+    "docs/assertions.md",
+    "docs/quality.md",
+    "docs/security.md",
+    "docs/assertion-evidence.md",
+    "docs/assertion-maps.md",
+    "docs/assertion-agent.md",
+    "docs/troubleshooting.md",
+    "docs/cli.md",
+    "docs/coverage-model.md",
+    "docs/evidence.md",
+    "docs/supported-suites.md",
+    "docs/verification.md",
+    "docs/performance.md",
+    "docs/workspace-isolation.md",
+    "schemas",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "supercov": "bin/supercov.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    "./playwright": "./runtime/javascript/playwright.mjs",
+    "./register": "./runtime/javascript/register.mjs",
+    "./vitest": "./runtime/javascript/vitest.mjs"
+  },
+  "scripts": {
+    "build": "cargo build -p supercov",
+    "sync:rust-assets": "node scripts/sync-rust-package-assets.mjs",
+    "test:rust-assets": "node scripts/sync-rust-package-assets.mjs --check",
+    "check:rustc-backend-spike": "(cd spikes/rustc-backend && RUSTC_BOOTSTRAP=1 RUSTUP_TOOLCHAIN=1.95.0 cargo fmt --check && RUSTC_BOOTSTRAP=1 RUSTUP_TOOLCHAIN=1.95.0 cargo clippy --all-targets -- -D warnings)",
+    "test:rustc-backend-spike": "node scripts/rustc-backend-spike.mjs",
+    "test:rust-compiler-spikes": "cargo build -p supercov && node scripts/rust-libtest-companion-spike.mjs && node scripts/rust-async-attribution-spike.mjs && node scripts/rust-subprocess-attribution-spike.mjs && node scripts/rust-custom-harness-spike.mjs && node scripts/rust-libtest-builder-lifecycle-spike.mjs",
+    "test": "cargo test --workspace",
+    "test:react": "cargo build -p supercov && node scripts/rust-vitest-projects-integration.mjs && npm --prefix examples/react-verification ci && npm --prefix examples/react-verification run demo && node scripts/react-hydration-compatibility.mjs",
+    "test:release-tooling": "node --test tests/release/*.test.mjs",
+    "test:runtime": "node --test tests/runtime/*.test.mjs",
+    "test:fixture": "cargo build -p supercov && node scripts/rust-fixture-matrix.mjs",
+    "test:packed-npx": "cargo build --release -p supercov && node scripts/packed-npx-integration.mjs",
+    "test:isolation": "cargo build -p supercov && node scripts/isolation-integration.mjs",
+    "test:filesystem": "cargo test --workspace && cargo build -p supercov && node scripts/workspace-crash-integration.mjs",
+    "test:watchdog": "cargo build -p supercov && node scripts/watchdog-integration.mjs",
+    "test:html-report": "cargo build -p supercov && node scripts/html-report-integration.mjs",
+    "test:engine-contract": "cargo build -p supercov && node scripts/engine-contract.mjs",
+    "test:agent": "cargo build -p supercov && node scripts/agent-query-eval.mjs",
+    "test:agent-commands": "cargo build -p supercov && node scripts/check-agent-commands.mjs",
+    "eval:skill": "claude plugin eval plugins/supercov --scaffold --trust-plugin --no-publish --model claude-sonnet-5 --judge-model claude-haiku-4-5 --threshold 0.66 --tag behavior trigger --allow-tools Bash Edit Write --max-cost-usd 15",
+    "eval:skill-triggers": "claude plugin eval plugins/supercov --scaffold --trust-plugin --no-publish --model claude-sonnet-5 --judge-model claude-haiku-4-5 --threshold 0.66 --tag trigger --ablation none --max-cost-usd 5",
+    "test:engine": "cargo fmt --all -- --check && cargo clippy --workspace --all-targets -- -D warnings && cargo test --workspace && npm run test:runtime && npm run test:rust-assets && npm run test:engine-integrations",
+    "test:engine-integrations": "cargo build -p supercov && node scripts/html-report-integration.mjs && node scripts/rust-process-supervision.mjs && node scripts/rust-direct-node-integration.mjs && node scripts/rust-public-run-integration.mjs && node scripts/rust-embedded-runtime-integration.mjs && node scripts/rust-direct-vitest-integration.mjs && node scripts/rust-direct-jest-integration.mjs && node scripts/rust-direct-playwright-integration.mjs && node scripts/rust-custom-browser-playwright-integration.mjs && node scripts/rust-classic-browser-integration.mjs && node scripts/rust-top-packages-integration.mjs && node scripts/rust-generic-esbuild-integration.mjs && node scripts/rust-generic-tsc-integration.mjs && node scripts/rust-generic-build-matrix.mjs && node scripts/rust-vite-playwright-integration.mjs",
+    "test:platform": "cargo test --workspace && cargo build -p supercov && node scripts/rust-process-supervision.mjs && node scripts/workspace-crash-integration.mjs",
+    "test:native-package": "cargo build --release -p supercov && node scripts/native-package-integration.mjs && node scripts/native-release-set-integration.mjs",
+    "test:pypi-wheel": "node scripts/pypi-wheel-integration.mjs",
+    "test:pypi-registry": "node scripts/pypi-registry-integration.mjs",
+    "build:rubygem": "cargo build --release -p supercov && node scripts/build-rubygem.mjs",
+    "test:rubygem": "node scripts/rubygem-integration.mjs",
+    "test:rubygem-registry": "node scripts/rubygem-registry-integration.mjs",
+    "test:syntax": "cargo build -p supercov && node scripts/rust-syntax-matrix.mjs",
+    "test:clang-mcdc": "node scripts/clang-mcdc-oracle.mjs",
+    "test:test262": "cargo build --release -p supercov && node scripts/test262-equivalence.mjs",
+    "benchmark:check": "cargo build --release -p supercov && node scripts/rust-transform-benchmark.mjs",
+    "benchmark:python": "cargo build -p supercov && node scripts/python-benchmark.mjs",
+    "check": "cargo fmt --all -- --check && cargo clippy --workspace --all-targets -- -D warnings && npm run test && npm run test:release-tooling && npm run test:runtime && npm run test:rust-assets && npm run test:agent-commands && npm run test:assertion-maps && npm run test:sweep-target && npm run test:skip-guard && npm run test:windows-tls && node scripts/package-preflight.mjs && node scripts/verify-binstall-metadata.mjs --offline",
+    "release:check": "cargo clean && node scripts/sweep-target.mjs && npm run check && npm run test:engine && npm run test:go && npm run test:jvm && npm run test:launcher && npm run test:fixture && npm run test:watchdog && npm run test:engine-contract && npm run test:agent && npm run test:child-attribution && npm run test:host-loader && npm run test:python && npm run test:ruby-coverage && npm run test:rust-public-cargo && npm run test:packed-npx && npm run test:clang-mcdc && npm run benchmark:check",
+    "release:bump": "node scripts/bump-version.mjs",
+    "sweep": "node scripts/sweep-target.mjs",
+    "oracle:rust": "cargo build --release -p supercov && node scripts/rust-coverage-oracle.mjs",
+    "prepack": "node scripts/package-preflight.mjs",
+    "prepublishOnly": "npm run release:check",
+    "test:child-attribution": "cargo build -p supercov && node scripts/rust-child-attribution-integration.mjs",
+    "test:host-loader": "cargo build -p supercov && node scripts/rust-host-loader-integration.mjs",
+    "test:python": "cargo build -p supercov && node scripts/python-integration.mjs",
+    "test:ruby-coverage": "cargo build -p supercov && node scripts/ruby-coverage-integration.mjs",
+    "test:go": "cargo test --no-fail-fast -p supercov-engine --test go_frontend --test go_run",
+    "test:jvm": "cargo test --no-fail-fast -p supercov-engine --test jvm_frontend --test jvm_run -- --include-ignored --test-threads=1",
+    "test:rust-public-cargo": "cargo build -p supercov && node scripts/rust-public-cargo-integration.mjs",
+    "test:assertion-maps": "cargo build -p supercov && node scripts/assertion-map-schema.mjs --check && node scripts/assertion-map-integration.mjs && node scripts/assertion-map-js-integration.mjs && node scripts/assertion-dogfood-integration.mjs",
+    "test:assertion-maps:js": "cargo build -p supercov && node scripts/assertion-map-schema.mjs --check && node scripts/assertion-map-js-integration.mjs && node scripts/assertion-dogfood-integration.mjs",
+    "sync:assertion-schema": "cargo build -p supercov && node scripts/assertion-map-schema.mjs",
+    "docs:sync": "node scripts/sync-docs.mjs",
+    "docs:check": "node scripts/sync-docs.mjs --check",
+    "test:launcher": "go vet ./cmd/... && go test ./cmd/...",
+    "test:sweep-target": "node scripts/sweep-target-test.mjs",
+    "test:go-versions": "cargo build -p supercov-engine --tests && node scripts/go-version-matrix.mjs",
+    "test:skip-guard": "node scripts/skip-guard-test.mjs",
+    "test:windows-tls": "node scripts/windows-tls-test.mjs"
+  },
+  "optionalDependencies": {
+    "@supercov/cli-darwin-arm64": "2.0.1",
+    "@supercov/cli-darwin-x64": "2.0.1",
+    "@supercov/cli-linux-arm64-gnu": "2.0.1",
+    "@supercov/cli-linux-arm64-musl": "2.0.1",
+    "@supercov/cli-linux-x64-gnu": "2.0.1",
+    "@supercov/cli-linux-x64-musl": "2.0.1",
+    "@supercov/cli-win32-arm64": "2.0.1",
+    "@supercov/cli-win32-x64": "2.0.1"
+  },
+  "peerDependencies": {
+    "@playwright/test": ">=1.55.0",
+    "vite": ">=5.0.0",
+    "vitest": ">=2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@playwright/test": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    },
+    "vitest": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@swc/core": "^1.16.1",
+    "@types/node": "^24.0.0",
+    "@vitest/browser-playwright": "4.1.11",
+    "esbuild": "^0.28.2",
+    "expect": "30.4.1",
+    "jest": "30.5.1",
+    "next": "^16.3.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "test262-harness": "^10.0.0",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vitest": "4.1.11",
+    "webpack": "^5.109.2",
+    "webpack-cli": "^6.0.1",
+    "ws": "^8.21.3",
+    "yaml": "^2.9.0"
+  }
+}

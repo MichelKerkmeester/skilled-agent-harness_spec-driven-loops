@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "jev-cli",
+  "description": "Plugins for TypeSafe's Jev model: typed judgments (verify, screen, find, ask) for Claude Code via the jevctl CLI.",
+  "owner": {
+    "name": "Nasr Shaer",
+    "email": "shaer.nasrallah@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "jev",
+      "description": "Cheap, fast, typed AI judgments inside Claude Code via the jevctl CLI: verify claims against evidence, screen fetched text for prompt injection, rank candidates by meaning, and ask yes/no, multiple-choice, or rating questions.",
+      "author": {
+        "name": "Nasr Shaer"
+      },
+      "source": "./plugin",
+      "category": "development",
+      "homepage": "https://github.com/Nasrallah-AL/jev-cli/tree/main/plugin"
+    }
+  ]
+}

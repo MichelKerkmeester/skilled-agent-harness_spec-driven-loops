@@ -1,0 +1,27 @@
+{
+  "supercov": "supercov 0.0.42 (rust contract v1)",
+  "node": "v24.18.0",
+  "platform": "darwin-arm64",
+  "recordedAt": "2026-09-09T16:54:21.589Z",
+  "before": {
+    "tests": 2,
+    "lines": "3/3",
+    "branches": "2/2",
+    "mcdc": "1/2",
+    "assertionLinkedMcdc": "1/2"
+  },
+  "after": {
+    "tests": 3,
+    "lines": "3/3",
+    "branches": "2/2",
+    "mcdc": "2/2",
+    "assertionLinkedMcdc": "2/2"
+  },
+  "regression": {
+    "change": "Remove && !expired in a temporary copy",
+    "beforeExitCode": 0,
+    "afterExitCode": 1,
+    "failingTest": "an expired session cannot check out"
+  },
+  "sourceUnchanged": true
+}

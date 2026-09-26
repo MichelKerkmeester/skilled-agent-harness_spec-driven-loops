@@ -1,0 +1,12 @@
+{
+  "corpusFiles": 500,
+  "transformMedianMsMax": 5000,
+  "transformP95MsMax": 8000,
+  "outputExpansionRatioMax": 10,
+  "runtimeOverheadRatioMax": 5,
+  "realisticProbeV2OverheadRatioMax": 1.1,
+  "workspaceFiles": 500,
+  "workspaceMedianMsMax": 3000,
+  "workspaceP95MsMax": 5000,
+  "pythonOverheadRatioMax": 4
+}

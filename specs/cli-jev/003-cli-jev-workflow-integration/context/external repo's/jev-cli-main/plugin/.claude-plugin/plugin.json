@@ -1,0 +1,85 @@
+{
+  "name": "jev",
+  "version": "0.2.0",
+  "description": "Cheap, fast, typed AI judgments inside Claude Code via the jevctl CLI (verify, screen, find, classify, extract, rerank, match, route, ask, batch), plus verbatim Jev-guided context compaction that replaces the built-in summary.",
+  "author": {
+    "name": "Nasr Shaer",
+    "email": "shaer.nasrallah@gmail.com"
+  },
+  "homepage": "https://github.com/Nasrallah-AL/jev-cli",
+  "repository": "https://github.com/Nasrallah-AL/jev-cli",
+  "license": "MIT",
+  "keywords": [
+    "jev",
+    "typesafe",
+    "verification",
+    "fact-check",
+    "prompt-injection",
+    "guardrails",
+    "semantic-search",
+    "compaction",
+    "context"
+  ],
+  "userConfig": {
+    "compaction": {
+      "type": "boolean",
+      "title": "Jev compaction",
+      "description": "Replace Claude Code's compaction summary with Jev-guided verbatim compaction (requires CLAUDE_CODE_ENABLE_FUNCTION_HOOKS=1 and TYPESAFE_API_KEY).",
+      "default": true
+    },
+    "apiKey": {
+      "type": "string",
+      "title": "TypeSafe API key",
+      "description": "Leave unset to use TYPESAFE_API_KEY from the environment or settings env.",
+      "sensitive": true
+    },
+    "keepThreshold": {
+      "type": "number",
+      "title": "Keep threshold",
+      "description": "Minimum Jev probability that a tool call or result is still needed.",
+      "default": 0.5
+    },
+    "preserveRecentMessages": {
+      "type": "number",
+      "title": "Recent messages to preserve",
+      "description": "Newest messages never touched.",
+      "default": 6
+    },
+    "compactAtPercent": {
+      "type": "number",
+      "title": "Auto-compact at context %",
+      "description": "turn.complete requests compaction once context usage reaches this percentage. 0 disables auto-compaction.",
+      "default": 60
+    },
+    "minReductionRatio": {
+      "type": "number",
+      "title": "Minimum reduction",
+      "description": "Fall back to the built-in summary when the estimated reduction is below this ratio.",
+      "default": 0.25
+    },
+    "maxStateTokens": {
+      "type": "number",
+      "title": "Max state tokens",
+      "default": 25000,
+      "description": "Estimated token budget for the conversation history sent to Jev with every request. Fitted in stages, never summarized."
+    },
+    "maxRequestTokens": {
+      "type": "number",
+      "title": "Max request tokens",
+      "default": 30000,
+      "description": "Estimated token budget for history plus one batch of questions; more questions mean more requests."
+    },
+    "truncateHeadChars": {
+      "type": "number",
+      "title": "Truncated result head",
+      "default": 300,
+      "description": "Characters of a tool result kept when Jev decides its full output is no longer needed; 0 keeps only the note."
+    },
+    "model": {
+      "type": "string",
+      "title": "Jev model",
+      "default": "jev-latest",
+      "description": "TypeSafe Jev model name, e.g. jev-latest or a pinned jev-1.13.0."
+    }
+  }
+}

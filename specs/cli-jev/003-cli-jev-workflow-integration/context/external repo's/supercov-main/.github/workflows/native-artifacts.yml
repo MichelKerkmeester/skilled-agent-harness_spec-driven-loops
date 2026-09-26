@@ -1,0 +1,208 @@
+name: Native artifact matrix
+
+# Dispatching this workflow on its own builds and verifies the complete
+# release set -- every binary, wheel and gem, proved on its platform -- without
+# a tag and without publishing anything. Run it before a release whenever the
+# matrix or the packaging steps change; the release then rebuilds the same set.
+on:
+  workflow_dispatch:
+    inputs:
+      matrix-json:
+        description: Exact native target matrix to build for this invocation
+        required: false
+        type: string
+        default: '{"include":[{"runner":"macos-15","target":"aarch64-apple-darwin","package":"@supercov/cli-darwin-arm64","artifact":"supercov-cli-darwin-arm64","executable":"supercov","packedInstall":true,"gem":true},{"runner":"macos-15-intel","target":"x86_64-apple-darwin","package":"@supercov/cli-darwin-x64","artifact":"supercov-cli-darwin-x64","executable":"supercov","packedInstall":true,"gem":true},{"runner":"ubuntu-24.04-arm","target":"aarch64-unknown-linux-gnu","package":"@supercov/cli-linux-arm64-gnu","artifact":"supercov-cli-linux-arm64-gnu","executable":"supercov","packedInstall":true,"glibc":"2.28","gem":true},{"runner":"ubuntu-24.04","target":"x86_64-unknown-linux-gnu","package":"@supercov/cli-linux-x64-gnu","artifact":"supercov-cli-linux-x64-gnu","executable":"supercov","packedInstall":true,"glibc":"2.28","gem":true},{"runner":"ubuntu-24.04-arm","target":"aarch64-unknown-linux-musl","package":"@supercov/cli-linux-arm64-musl","artifact":"supercov-cli-linux-arm64-musl","executable":"supercov","musl":true,"gem":true},{"runner":"ubuntu-24.04","target":"x86_64-unknown-linux-musl","package":"@supercov/cli-linux-x64-musl","artifact":"supercov-cli-linux-x64-musl","executable":"supercov","musl":true,"gem":true},{"runner":"windows-latest","target":"x86_64-pc-windows-msvc","package":"@supercov/cli-win32-x64","artifact":"supercov-cli-win32-x64","executable":"supercov.exe","packedInstall":true,"gem":true},{"runner":"windows-11-arm","target":"aarch64-pc-windows-msvc","package":"@supercov/cli-win32-arm64","artifact":"supercov-cli-win32-arm64","executable":"supercov.exe","packedInstall":true,"gem":false}]}'
+      build-targets:
+        description: Build selected targets; false verifies only reused artifacts
+        required: false
+        type: boolean
+        default: true
+      reuse-run-id:
+        description: Optional prior workflow run whose successful target artifacts should be reused
+        required: false
+        type: string
+        default: ''
+
+  workflow_call:
+    inputs:
+      matrix-json:
+        description: Exact native target matrix to build for this invocation
+        required: false
+        type: string
+        default: '{"include":[{"runner":"macos-15","target":"aarch64-apple-darwin","package":"@supercov/cli-darwin-arm64","artifact":"supercov-cli-darwin-arm64","executable":"supercov","packedInstall":true,"gem":true},{"runner":"macos-15-intel","target":"x86_64-apple-darwin","package":"@supercov/cli-darwin-x64","artifact":"supercov-cli-darwin-x64","executable":"supercov","packedInstall":true,"gem":true},{"runner":"ubuntu-24.04-arm","target":"aarch64-unknown-linux-gnu","package":"@supercov/cli-linux-arm64-gnu","artifact":"supercov-cli-linux-arm64-gnu","executable":"supercov","packedInstall":true,"glibc":"2.28","gem":true},{"runner":"ubuntu-24.04","target":"x86_64-unknown-linux-gnu","package":"@supercov/cli-linux-x64-gnu","artifact":"supercov-cli-linux-x64-gnu","executable":"supercov","packedInstall":true,"glibc":"2.28","gem":true},{"runner":"ubuntu-24.04-arm","target":"aarch64-unknown-linux-musl","package":"@supercov/cli-linux-arm64-musl","artifact":"supercov-cli-linux-arm64-musl","executable":"supercov","musl":true,"gem":true},{"runner":"ubuntu-24.04","target":"x86_64-unknown-linux-musl","package":"@supercov/cli-linux-x64-musl","artifact":"supercov-cli-linux-x64-musl","executable":"supercov","musl":true,"gem":true},{"runner":"windows-latest","target":"x86_64-pc-windows-msvc","package":"@supercov/cli-win32-x64","artifact":"supercov-cli-win32-x64","executable":"supercov.exe","packedInstall":true,"gem":true},{"runner":"windows-11-arm","target":"aarch64-pc-windows-msvc","package":"@supercov/cli-win32-arm64","artifact":"supercov-cli-win32-arm64","executable":"supercov.exe","packedInstall":true,"gem":false}]}'
+      build-targets:
+        description: Build selected targets; false verifies only reused artifacts
+        required: false
+        type: boolean
+        default: true
+      reuse-run-id:
+        description: Optional prior workflow run whose successful target artifacts should be reused
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  build:
+    if: inputs.build-targets
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(inputs.matrix-json) }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      # Install matrix targets into the same pinned compiler Cargo selects via
+      # rust-toolchain.toml. Installing them into a moving `stable` toolchain
+      # leaves the pinned compiler without its target standard library.
+      # The components rust-toolchain.toml names are installed here, once,
+      # rather than by rustup on the first cargo call: cargo-zigbuild queries
+      # rustc while cargo runs, and two rustup proxies syncing the same missing
+      # component at once fail with "detected conflict: bin/cargo-fmt".
+      - uses: dtolnay/rust-toolchain@1.95.0
+        with:
+          targets: ${{ matrix.target }}
+          components: clippy, rustfmt
+      - name: Install musl linker
+        if: matrix.musl
+        run: sudo apt-get update -qq && sudo apt-get install -y musl-tools
+      # A gnu binary inherits the glibc of the machine that links it, and this
+      # runner's is 2.39 -- too new for Debian 12, Ubuntu 22.04, RHEL 9 or
+      # Amazon Linux 2023. cargo-zigbuild links with zig's clang against the
+      # glibc named in the target suffix instead, and it finds zig through
+      # `python3 -m ziglang`, so both live in the user site.
+      - name: Install cargo-zigbuild
+        if: matrix.glibc
+        run: python3 -m pip install --user --break-system-packages cargo-zigbuild ziglang
+      # The same-version native packages do not exist until this matrix
+      # publishes them. Install the reproducible JS toolchain while omitting
+      # that circular optional dependency.
+      - run: npm ci --omit=optional
+      - run: node scripts/package-preflight.mjs
+      - name: Read package version
+        run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'SUPERCOV_VERSION=' + require('./package.json').version + '\n')"
+      - name: Verify Windows npm command invocation before compiling
+        if: runner.os == 'Windows'
+        run: node scripts/native-package-integration.mjs --npm-preflight
+      - name: Verify Windows frozen-input path normalization
+        if: runner.os == 'Windows'
+        run: cargo test --target ${{ matrix.target }} -p supercov-engine --test assertion_maps frozen_inputs_accept_absolute_relative_and_windows_verbatim_paths_once
+      - name: Build native binary
+        if: matrix.musl != true && !matrix.glibc
+        run: cargo build --release --target ${{ matrix.target }} -p supercov
+      - name: Build native binary against glibc ${{ matrix.glibc }}
+        if: matrix.glibc
+        run: cargo zigbuild --release --target ${{ matrix.target }}.${{ matrix.glibc }} -p supercov
+      - name: Build static musl binary
+        if: matrix.musl
+        run: cargo build --config 'target.${{ matrix.target }}.linker="musl-gcc"' --release --target ${{ matrix.target }} -p supercov
+      - name: Packed install, real JS/TS runs and assertion map gates
+        if: matrix.packedInstall
+        run: node scripts/native-package-integration.mjs --target ${{ matrix.target }} --binary target/${{ matrix.target }}/release/${{ matrix.executable }}
+      - name: JS/TS assertion maps on Alpine
+        if: matrix.musl
+        shell: bash
+        run: |
+          git archive HEAD | docker run --rm -i \
+            --mount "type=bind,source=$PWD/target/${{ matrix.target }}/release/${{ matrix.executable }},target=/supercov,readonly" \
+            node:24-alpine sh -ec '
+              mkdir /workspace
+              tar -xf - -C /workspace
+              cd /workspace
+              node scripts/assertion-map-alpine-integration.mjs /supercov
+            '
+      - name: Stage native package
+        run: node scripts/package-native.mjs --target ${{ matrix.target }} --binary target/${{ matrix.target }}/release/${{ matrix.executable }} --out native-dist
+      - name: Pack native package
+        # npm 11 treats an unprefixed path containing a slash as a GitHub
+        # repository shorthand. `./` makes this unambiguously local.
+        run: npm pack ./native-dist/${{ matrix.package }} --pack-destination native-dist --ignore-scripts
+      # Every channel ships this same binary. The gem and the wheel are packaged
+      # here, on the platform that can install and run them, and each completes
+      # a real coverage run before the release set will accept it.
+      - uses: ruby/setup-ruby@v1
+        if: matrix.gem
+        with:
+          ruby-version: "3.4"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Build the platform gem
+        if: matrix.gem
+        run: node scripts/build-rubygem.mjs --target ${{ matrix.target }} --binary target/${{ matrix.target }}/release/${{ matrix.executable }}
+      - name: Install the gem and complete a real coverage run
+        if: matrix.gem
+        run: node scripts/rubygem-integration.mjs --target ${{ matrix.target }}
+      - name: Build the platform wheel
+        run: node scripts/build-wheel.mjs --target ${{ matrix.target }} --binary target/${{ matrix.target }}/release/${{ matrix.executable }} --out target/wheels
+      - name: Install the wheel and complete a real coverage run
+        env:
+          SUPERCOV_PYTHON: python
+        run: node scripts/pypi-wheel-integration.mjs --target ${{ matrix.target }}
+      - name: Gather the release files
+        shell: bash
+        run: |
+          cp target/wheels/*.whl native-dist/
+          if [ "${{ matrix.gem }}" = "true" ]; then cp target/rubygems/*.gem native-dist/; fi
+      - name: Validate binary, glibc floor, size gate, and checksums
+        run: node scripts/native-artifact-check.mjs --target ${{ matrix.target }} --binary target/${{ matrix.target }}/release/${{ matrix.executable }} --tarball native-dist/${{ matrix.artifact }}-${{ env.SUPERCOV_VERSION }}.tgz --wheels native-dist --gems native-dist --out native-dist/${{ matrix.artifact }}.checksums.json
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.artifact }}
+          path: |
+            native-dist/${{ matrix.artifact }}-${{ env.SUPERCOV_VERSION }}.tgz
+            native-dist/*.whl
+            native-dist/*.gem
+            native-dist/${{ matrix.artifact }}.checksums.json
+          if-no-files-found: error
+
+  release-set:
+    name: Verify complete native release set
+    needs: build
+    if: ${{ always() && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Download previously validated target artifacts
+        if: inputs.reuse-run-id != ''
+        uses: actions/download-artifact@v8
+        with:
+          run-id: ${{ inputs.reuse-run-id }}
+          github-token: ${{ github.token }}
+          pattern: supercov-*
+          path: native-release
+          merge-multiple: true
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: supercov-*
+          path: native-release
+          merge-multiple: true
+      - name: Repackage a previously validated unscoped release set
+        if: inputs.reuse-run-id != ''
+        run: node scripts/repackage-native-release.mjs native-release native-release-ready
+      - name: Use newly built scoped packages directly
+        if: inputs.reuse-run-id == ''
+        run: mv native-release native-release-ready
+      - run: node scripts/verify-native-release-set.mjs native-release-ready
+      - uses: actions/upload-artifact@v7
+        with:
+          name: supercov-native-release-set
+          path: |
+            native-release-ready/*.tgz
+            native-release-ready/*.whl
+            native-release-ready/*.gem
+            native-release-ready/*.checksums.json
+            native-release-ready/release-set.json
+          if-no-files-found: error

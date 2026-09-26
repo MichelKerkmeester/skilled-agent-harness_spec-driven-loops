@@ -1,0 +1,26 @@
+[
+  {
+    "conditions": 3,
+    "encoded": 0,
+    "outcome": false,
+    "vector": { "values": [null, null, null], "outcome": false }
+  },
+  {
+    "conditions": 3,
+    "encoded": 5,
+    "outcome": false,
+    "vector": { "values": [true, false, null], "outcome": false }
+  },
+  {
+    "conditions": 3,
+    "encoded": 21,
+    "outcome": true,
+    "vector": { "values": [null, false, true], "outcome": true }
+  },
+  {
+    "conditions": 3,
+    "encoded": 26,
+    "outcome": true,
+    "vector": { "values": [true, true, true], "outcome": true }
+  }
+]

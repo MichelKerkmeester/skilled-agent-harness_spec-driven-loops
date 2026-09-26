@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "machine": "Apple Silicon macOS",
+  "corpus": {
+    "lines": 100000,
+    "sourceFiles": 1000,
+    "tests": 20000,
+    "iterations": 200,
+    "pageCache": "warm"
+  },
+  "results": [
+    {
+      "format": "gzip-json",
+      "bytes": 935442,
+      "medianMs": 15.742333,
+      "p95Ms": 16.473042,
+      "integrity": "gzip framing and full parse"
+    },
+    {
+      "format": "rkyv-validated-mmap",
+      "bytes": 3042776,
+      "medianMs": 5.10425,
+      "p95Ms": 5.230917,
+      "integrity": "full-payload SHA-256 followed by complete rkyv bytecheck"
+    },
+    {
+      "format": "flatbuffers-verified-mmap",
+      "bytes": 3786612,
+      "medianMs": 9.118125,
+      "p95Ms": 9.30575,
+      "integrity": "full-payload SHA-256 followed by complete FlatBuffers verification"
+    },
+    {
+      "format": "fixed-layout-paged-sha256",
+      "bytes": 2001056,
+      "medianMs": 0.114458,
+      "p95Ms": 0.128542,
+      "integrity": "SHA-256 header plus SHA-256 of the touched 64 KiB page"
+    }
+  ]
+}

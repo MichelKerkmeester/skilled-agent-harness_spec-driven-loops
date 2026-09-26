@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "targets": [
+    { "rustTarget": "aarch64-apple-darwin", "package": "@supercov/cli-darwin-arm64", "platform": "darwin", "arch": "arm64", "executable": "supercov" , "gemPlatform": "arm64-darwin", "wheelPlatform": "macosx_11_0_arm64"},
+    { "rustTarget": "x86_64-apple-darwin", "package": "@supercov/cli-darwin-x64", "platform": "darwin", "arch": "x64", "executable": "supercov" , "gemPlatform": "x86_64-darwin", "wheelPlatform": "macosx_11_0_x86_64"},
+    { "rustTarget": "aarch64-unknown-linux-gnu", "package": "@supercov/cli-linux-arm64-gnu", "platform": "linux", "arch": "arm64", "libc": "gnu", "executable": "supercov" , "gemPlatform": "aarch64-linux-gnu", "wheelPlatform": "manylinux_2_28_aarch64"},
+    { "rustTarget": "x86_64-unknown-linux-gnu", "package": "@supercov/cli-linux-x64-gnu", "platform": "linux", "arch": "x64", "libc": "gnu", "executable": "supercov" , "gemPlatform": "x86_64-linux-gnu", "wheelPlatform": "manylinux_2_28_x86_64"},
+    { "rustTarget": "aarch64-unknown-linux-musl", "package": "@supercov/cli-linux-arm64-musl", "platform": "linux", "arch": "arm64", "libc": "musl", "executable": "supercov" , "gemPlatform": "aarch64-linux-musl", "wheelPlatform": "musllinux_1_2_aarch64"},
+    { "rustTarget": "x86_64-unknown-linux-musl", "package": "@supercov/cli-linux-x64-musl", "platform": "linux", "arch": "x64", "libc": "musl", "executable": "supercov" , "gemPlatform": "x86_64-linux-musl", "wheelPlatform": "musllinux_1_2_x86_64"},
+    { "rustTarget": "x86_64-pc-windows-msvc", "package": "@supercov/cli-win32-x64", "platform": "win32", "arch": "x64", "executable": "supercov.exe" , "gemPlatform": "x64-mingw-ucrt", "wheelPlatform": "win_amd64"},
+    { "rustTarget": "aarch64-pc-windows-msvc", "package": "@supercov/cli-win32-arm64", "platform": "win32", "arch": "arm64", "executable": "supercov.exe", "wheelPlatform": "win_arm64" }
+  ]
+}

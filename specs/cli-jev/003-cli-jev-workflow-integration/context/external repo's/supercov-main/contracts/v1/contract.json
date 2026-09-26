@@ -1,0 +1,46 @@
+{
+  "contractVersion": 1,
+  "status": "frozen",
+  "residentProcess": false,
+  "evidenceArchive": {
+    "schemaVersion": 3,
+    "file": "evidence.raw.gz",
+    "format": "framed+gzip",
+    "magic": "SUPERCOV-EVIDENCE-3\n"
+  },
+  "runStore": {
+    "schemaVersion": 1,
+    "store": ".supercov",
+    "workspaceStore": "supercov",
+    "publishedRunFiles": ["run.json", "evidence.raw.gz"]
+  },
+  "agentJson": {
+    "schemaVersion": 1,
+    "maxBytes": 65536,
+    "defaultPageSize": 20,
+    "errorCodes": [
+      "AMBIGUOUS_SELECTOR",
+      "DECISION_NOT_FOUND",
+      "FILTER_UNAVAILABLE",
+      "INTERNAL_ERROR",
+      "INVALID_ARGUMENT",
+      "MINIMIZATION_COMPLEXITY_LIMIT",
+      "NO_RUNS",
+      "RESPONSE_TOO_LARGE",
+      "RUN_NOT_FOUND",
+      "SCOPE_UNAVAILABLE",
+      "SOURCE_NOT_FOUND",
+      "TARGET_UNREACHABLE",
+      "TEST_FILTER_EMPTY",
+      "TEST_NOT_FOUND",
+      "UNATTRIBUTED_EVIDENCE",
+      "UNKNOWN_COMMAND"
+    ]
+  },
+  "processSupervision": {
+    "schemaVersion": 1,
+    "diagnosticIntervalMs": 60000,
+    "timeoutExitCode": 124,
+    "terminationGraceMs": 5000
+  }
+}

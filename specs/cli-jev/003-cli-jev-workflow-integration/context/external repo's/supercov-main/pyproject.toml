@@ -1,0 +1,32 @@
+[build-system]
+requires = ["maturin>=1.10,<2"]
+build-backend = "maturin"
+
+[project]
+name = "supercov-cli"
+dynamic = ["version"]
+description = "Coverage, security and code quality for coding agents"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+keywords = ["coverage", "code-coverage", "test-coverage", "branch-coverage", "mcdc", "pytest", "testing", "security", "code-quality", "coding-agents", "claude-code", "codex", "cli"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Rust",
+  "Topic :: Software Development :: Testing",
+]
+
+[project.urls]
+Homepage = "https://supercov.com"
+Repository = "https://github.com/supercorp-ai/supercov"
+Issues = "https://github.com/supercorp-ai/supercov/issues"
+
+[tool.maturin]
+bindings = "bin"
+manifest-path = "crates/supercov-cli/Cargo.toml"
+strip = true

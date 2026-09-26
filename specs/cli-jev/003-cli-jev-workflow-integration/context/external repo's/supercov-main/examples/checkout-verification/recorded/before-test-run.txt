@@ -1,0 +1,11 @@
+✔ a valid session can check out (10.09175ms)
+✔ a signed-out visitor cannot check out (7.68875ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.03825
+[coverage] evidence: /private/var/folders/4q/cdhj37516zzbc7z9ckrst0x40000gn/T/supercov-checkout-Y71iPw/project/.supercov/runs/run_be789b1cf1e6b17f/evidence.raw.gz

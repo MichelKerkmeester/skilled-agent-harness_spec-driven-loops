@@ -1,0 +1,25 @@
+{
+  "probeVersion": 2,
+  "semantics": "frozen",
+  "implementation": "experimental",
+  "decisionEncoding": {
+    "radix": 3,
+    "digits": {
+      "unreached": 0,
+      "false": 1,
+      "true": 2
+    },
+    "outcomeStoredSeparately": true,
+    "javascriptMaximumEncodedConditions": 32,
+    "widerDecisionBehavior": "exact-v1-fallback"
+  },
+  "publishedEvidence": "v1-identical",
+  "attributionEpoch": ["run", "worker", "test", "retry", "phase"],
+  "fallback": "resolve-context-per-probe",
+  "promotion": {
+    "realisticMedianRuntimeRatioMax": 1.1,
+    "semanticEquivalenceRequired": true,
+    "manifestParityRequired": true,
+    "evidenceParityRequired": true
+  }
+}

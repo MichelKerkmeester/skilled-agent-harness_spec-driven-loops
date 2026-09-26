@@ -1,0 +1,40 @@
+name: Checkout verification example
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - examples/checkout-verification/**
+      - .github/workflows/checkout-example.yml
+  pull_request:
+    paths:
+      - examples/checkout-verification/**
+      - .github/workflows/checkout-example.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: examples/checkout-verification
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: examples/checkout-verification/package-lock.json
+      - run: npm ci
+      - run: npm run demo
+      - run: node scripts/verify-tutorial.mjs
+      - name: Package the tutorial starter
+        if: runner.os == 'Linux'
+        run: python3 scripts/package-starter.py "$RUNNER_TEMP/supercov-tutorial.zip"

@@ -1,0 +1,15 @@
+{
+  "name": "supercov",
+  "owner": {
+    "name": "Supercorp",
+    "url": "https://supercorp.ai"
+  },
+  "plugins": [
+    {
+      "name": "supercov",
+      "source": "plugins/supercov",
+      "description": "Coverage, security and code quality for coding agents.",
+      "logo": "assets/logo.png"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+name: React compatibility
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 2 * * *'
+  pull_request:
+    paths:
+      - 'crates/**'
+      - 'Cargo*'
+      - 'runtime/javascript/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'examples/react-verification/**'
+      - 'package*.json'
+      - '.github/workflows/react-compatibility.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: react-compatibility-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - uses: dtolnay/rust-toolchain@1.95.0
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm ci
+        working-directory: examples/react-verification
+      - run: npx playwright install --with-deps chromium
+        working-directory: examples/react-verification
+      - run: cargo build -p supercov
+      - run: npm run test:runtime
+      - run: node scripts/rust-direct-jest-integration.mjs
+      - run: node scripts/rust-direct-vitest-integration.mjs
+      - run: npm run test:react
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: react-example-node-${{ matrix.node }}
+          path: examples/react-verification/recorded
+
+  native:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - uses: dtolnay/rust-toolchain@1.95.0
+      - run: cargo build -p supercov
+      - run: node scripts/react-native-compatibility.mjs
+
+  real-apps:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - uses: dtolnay/rust-toolchain@1.95.0
+      - run: cargo build -p supercov
+      - run: SUPERCOV_REACT_AUDIT_DIR="$RUNNER_TEMP/react-app-audit" node scripts/react-real-apps.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: real-react-apps
+          path: |
+            ${{ runner.temp }}/react-app-audit/*.log
+            ${{ runner.temp }}/react-app-audit/*-summary.json

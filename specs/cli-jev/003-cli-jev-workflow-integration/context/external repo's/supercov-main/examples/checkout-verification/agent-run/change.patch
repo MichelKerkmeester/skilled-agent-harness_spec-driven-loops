@@ -1,0 +1,12 @@
+diff --git a/tests/session.test.js b/tests/session.test.js
+index c998e4b..3065ed6 100644
+--- a/tests/session.test.js
++++ b/tests/session.test.js
+@@ -9,3 +9,7 @@ test('a valid session can check out', () => {
+ test('a signed-out visitor cannot check out', () => {
+   assert.equal(canCheckout(false, false), false);
+ });
++
++test('a signed-in visitor with an expired session cannot check out', () => {
++  assert.equal(canCheckout(true, true), false);
++});

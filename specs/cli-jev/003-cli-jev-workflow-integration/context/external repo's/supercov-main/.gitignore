@@ -1,0 +1,15 @@
+node_modules
+/.cache/
+.supercov
+coverage
+dist
+playwright-report
+test-results
+supercov-report.html
+*.tgz
+/target/
+target/exactness-ratchet/
+
+# Byte-compiled runtime assets, produced by a local syntax check.
+__pycache__/
+*.pyc

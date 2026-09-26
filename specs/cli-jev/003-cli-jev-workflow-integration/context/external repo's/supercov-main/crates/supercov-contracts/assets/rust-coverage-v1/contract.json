@@ -1,0 +1,152 @@
+{
+  "modelVersion": 1,
+  "status": "frozen-private-frontend",
+  "language": "rust",
+  "variant": "rust-source-v1",
+  "decisionSemantics": "masking-mcdc",
+  "conditionOrder": "source-evaluation-order",
+  "probeModel": "ternary-decision-v2",
+  "genericAggregation": "authored-source-obligation",
+  "sourceIdentity": {
+    "version": 1,
+    "digest": "sha256",
+    "idDigestBytes": 12,
+    "separator": "nul",
+    "authoredCanonicalFields": ["model", "obligation-kind", "source-key", "start-byte", "end-byte", "semantic-discriminator"],
+    "syntheticExpansionCanonicalFields": ["model", "obligation-kind", "callsite-source-key", "start-byte", "end-byte", "semantic-discriminator", "expansion-chain", "stable-owner-path", "owner-local-ordinal"],
+    "generatedSourceKeyFields": ["project-relative-package-root", "out-relative-path"],
+    "repeatedAuthoredExpansionsAggregate": true,
+    "distinctSyntheticInvocationsRemainDistinct": true,
+    "ephemeralPathsForbidden": true,
+    "collisionPolicy": "fatal"
+  },
+  "testContextIdentity": {
+    "version": 1,
+    "algorithm": "fnv1a-64",
+    "domain": "supercov-rust-test-v1\u0000",
+    "input": "utf8-libtest-name",
+    "reservedValues": ["0000000000000000", "ffffffffffffffff"],
+    "reservedRemapXor": "a5a5a5a5a5a5a5a5",
+    "collisionPolicy": "fatal-before-launch"
+  },
+  "runnerAttemptIdentity": {
+    "version": 1,
+    "cargoTest": {
+      "retry": 0,
+      "totalAttempts": 1,
+      "identityAuthority": "supercov-supervisor"
+    },
+    "rustdoc": {
+      "retry": 0,
+      "totalAttempts": 1,
+      "identityAuthority": "supercov-rustdoc-outcome-unit"
+    },
+    "nextest": {
+      "minimumVersion": "0.9.138",
+      "maximumVersion": "0.9.140",
+      "verifiedReleasedVersions": ["0.9.138", "0.9.140"],
+      "executionMode": "process-per-test",
+      "identityEnvironment": [
+        "NEXTEST",
+        "NEXTEST_RUN_ID",
+        "NEXTEST_VERSION",
+        "NEXTEST_EXECUTION_MODE",
+        "NEXTEST_BINARY_ID",
+        "NEXTEST_TEST_NAME",
+        "NEXTEST_ATTEMPT",
+        "NEXTEST_TOTAL_ATTEMPTS",
+        "NEXTEST_ATTEMPT_ID",
+        "NEXTEST_STRESS_CURRENT",
+        "NEXTEST_STRESS_TOTAL"
+      ],
+      "attemptNumbering": "one-based",
+      "retryDerivation": "attempt-minus-one",
+      "attemptIdSemantics": "opaque-run-unique",
+      "listPhase": "transparent-no-evidence-publication",
+      "selectionProjection": "exact-pre-and-post-separator",
+      "selectedButUnstarted": "logical-test-identity-only",
+      "concurrentAttempts": "distinct-durable-ordinal-and-attempt-id",
+      "targetRunnerDeath": "unmatched-durable-reservation-fatal",
+      "partialIdentity": "fatal",
+      "stressIteration": "distinct-axis-unsupported-fail-closed"
+    }
+  },
+  "libtestEventTransport": {
+    "protocolVersion": 1,
+    "status": "frozen-private-frontend",
+    "magic": "SCVLTST1",
+    "byteOrder": "little-endian",
+    "headerSize": 64,
+    "recordHeaderSize": 48,
+    "tokenSize": 16,
+    "maximumNameBytes": 1048576,
+    "writer": "exact-toolchain-libtest-console-callback",
+    "eventKinds": ["filtered-out", "filtered", "started", "timeout", "finished"],
+    "terminalResults": ["passed", "failed", "ignored", "benchmarked"],
+    "publication": "append-complete-record-then-flush-before-stock-event-handling",
+    "sequence": "zero-based-strictly-contiguous",
+    "integrity": "token-bound-fnv1a-64",
+    "unknownEvent": "fatal",
+    "truncatedRecord": "fatal",
+    "invalidSemantics": "fatal",
+    "missingTransport": "fatal",
+    "processModel": "one-stock-libtest-process-per-artifact",
+    "outputAuthority": "unmodified-selected-toolchain-libtest",
+    "artifactBinding": {
+      "schemaVersion": 3,
+      "manifestSuffix": ".libtest.json",
+      "digest": "sha256",
+      "requiredBindings": [
+        "compilerCompanionBuildId",
+        "rustcCommitHash",
+        "hostTriple",
+        "eventProtocolVersion",
+        "originalSourceSha256",
+        "eventRuntimeSha256",
+        "patchedSourceSha256",
+        "artifactSha256"
+      ],
+      "artifactLocation": "same-directory-basename-only",
+      "unknownFieldsFatal": true,
+      "mismatch": "fatal-before-test-build"
+    }
+  },
+  "pointKinds": ["statement", "function"],
+  "controlDecisionKinds": [
+    "if",
+    "if-let",
+    "while",
+    "while-let",
+    "let-chain",
+    "match-guard",
+    "assertion"
+  ],
+  "branchKinds": [
+    "decision-outcome",
+    "logical-selection",
+    "loop-entry",
+    "match-arm",
+    "let-else",
+    "try-operator",
+    "assertion-outcome"
+  ],
+  "requiredOwnedSurfaces": [
+    "authored-source",
+    "declarative-macro-expansion",
+    "procedural-macro-expansion",
+    "derive-expansion",
+    "build-script-generated-source",
+    "included-source",
+    "const-evaluation",
+    "doctest-source"
+  ],
+  "requiredIdentityAxes": ["run", "worker", "test", "retry", "phase"],
+  "completenessRequires": [
+    "all-obligations-observed",
+    "masking-mcdc-witness-per-condition",
+    "zero-blocking-limitations",
+    "zero-corrupt-recognized-evidence",
+    "exact-required-identity"
+  ],
+  "externalCoverageInProduct": false
+}

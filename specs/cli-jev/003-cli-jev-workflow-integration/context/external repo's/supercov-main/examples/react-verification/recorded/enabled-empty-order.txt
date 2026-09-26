@@ -1,0 +1,14 @@
+
+> test
+> vitest run
+
+
+ RUN  v4.1.11 /private/var/folders/4q/cdhj37516zzbc7z9ckrst0x40000gn/T/supercov-react-verification-LavbfO
+
+ ❯ tests/checkout.strong.test.tsx (4 tests | 1 failed) 77ms
+   × disables payment for an empty order 3ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 6 passed (7)
+   Start at  23:26:55
+   Duration  490ms (transform 33ms, setup 113ms, import 51ms, tests 157ms, environment 524ms)

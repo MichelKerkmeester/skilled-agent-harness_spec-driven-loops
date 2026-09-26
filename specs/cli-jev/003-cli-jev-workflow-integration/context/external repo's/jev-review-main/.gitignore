@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+.DS_Store
+node_modules/
+reviews/
+*.log
+
+# Local agent installation metadata
+.agents/
+skills-lock.json

@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: a valid session can check out
+ok 1 - a valid session can check out
+  ---
+  duration_ms: 0.25025
+  type: 'test'
+  ...
+# Subtest: a signed-out visitor cannot check out
+ok 2 - a signed-out visitor cannot check out
+  ---
+  duration_ms: 0.040667
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 33.067417

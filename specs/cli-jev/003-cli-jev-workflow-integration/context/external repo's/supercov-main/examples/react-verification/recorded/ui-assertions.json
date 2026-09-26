@@ -1,0 +1,438 @@
+[
+  {
+    "observation": "Passing assertion occurrence recorded.",
+    "id": "a_4e202a3c99e800fa3b48",
+    "at": {
+      "file": "tests/checkout.strong.test.tsx",
+      "line": 9,
+      "column": 3,
+      "text": "expect(screen.getByRole('status')).toHaveTextContent(/^25\\.00$/)"
+    },
+    "questions": [],
+    "inMap": true,
+    "observes": [
+      "The status text equals 25.00 after whitespace normalization."
+    ],
+    "operations": [
+      "expect.toHaveTextContent"
+    ],
+    "observedPassingTests": [
+      "vitest:890140538_0"
+    ],
+    "flows": [
+      {
+        "id": "total",
+        "basis": "scov3:a68e6fd0441a005f7292357464a6040b9d80e9fa219f0673a0857937ecf77e70",
+        "explanation": "For quantity 2 this expression produces 25.00 in the output element. The anchored regular expression checks that rendered text.",
+        "appliesTo": [
+          {
+            "file": "tests/checkout.strong.test.tsx",
+            "name": "displays the exact order total"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "ui-value",
+            "at": {
+              "file": "src/Checkout.tsx",
+              "line": 25,
+              "column": 41,
+              "text": "(quantity * 12.5).toFixed(2)"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "ui-value",
+            "to": "$assertion",
+            "kind": "data"
+          }
+        ],
+        "countsAsAsserted": [
+          "ui-value"
+        ],
+        "watch": [],
+        "freshness": "current",
+        "valid": true,
+        "current": true,
+        "expectedBasis": "scov3:a68e6fd0441a005f7292357464a6040b9d80e9fa219f0673a0857937ecf77e70",
+        "selectors": [
+          {
+            "file": "tests/checkout.strong.test.tsx",
+            "name": "displays the exact order total",
+            "status": "observed",
+            "outcomes": [
+              "passed"
+            ],
+            "reason": "A passing assertion occurrence matches this test."
+          }
+        ],
+        "questions": [],
+        "reasons": [],
+        "notices": [],
+        "exposedTo": [],
+        "eligible": true,
+        "blockers": [],
+        "matchingTests": [
+          "vitest:890140538_0"
+        ],
+        "creditedStatementLines": [
+          [
+            "src/Checkout.tsx",
+            25
+          ]
+        ],
+        "nodeCredit": [
+          {
+            "nodeId": "ui-value",
+            "location": {
+              "file": "src/Checkout.tsx",
+              "line": 25,
+              "column": 41
+            },
+            "status": "credited",
+            "statementIds": [
+              "85ddc07ce7f61f79"
+            ],
+            "matchingTests": [
+              "vitest:890140538_0"
+            ],
+            "reasons": [
+              {
+                "code": "same_test_execution",
+                "message": "Current agent claim, passing assertion, and statement execution in the same selected test."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "observation": "Passing assertion occurrence recorded.",
+    "id": "a_d578cbafcbb6152d4e20",
+    "at": {
+      "file": "tests/checkout.strong.test.tsx",
+      "line": 13,
+      "column": 3,
+      "text": "expect(screen.getByTestId('checkout')).toHaveAccessibleName(\n    'Pay for 2 items',\n  )"
+    },
+    "questions": [],
+    "inMap": true,
+    "observes": [
+      "The payment button has the exact accessible name Pay for 2 items."
+    ],
+    "operations": [
+      "expect.toHaveAccessibleName"
+    ],
+    "observedPassingTests": [
+      "vitest:890140538_1"
+    ],
+    "flows": [
+      {
+        "id": "accessible-name",
+        "basis": "scov3:46d2a6920e01597ab82f327ff200411d71807cc264374aed43fba54f3c5cc5a2",
+        "explanation": "This aria-label template supplies the button accessible name, which the matcher compares with Pay for 2 items.",
+        "appliesTo": [
+          {
+            "file": "tests/checkout.strong.test.tsx",
+            "name": "names the payment action accessibly"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "ui-value",
+            "at": {
+              "file": "src/Checkout.tsx",
+              "line": 28,
+              "column": 21,
+              "text": "`Pay for ${quantity} items`"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "ui-value",
+            "to": "$assertion",
+            "kind": "data"
+          }
+        ],
+        "countsAsAsserted": [
+          "ui-value"
+        ],
+        "watch": [],
+        "freshness": "current",
+        "valid": true,
+        "current": true,
+        "expectedBasis": "scov3:46d2a6920e01597ab82f327ff200411d71807cc264374aed43fba54f3c5cc5a2",
+        "selectors": [
+          {
+            "file": "tests/checkout.strong.test.tsx",
+            "name": "names the payment action accessibly",
+            "status": "observed",
+            "outcomes": [
+              "passed"
+            ],
+            "reason": "A passing assertion occurrence matches this test."
+          }
+        ],
+        "questions": [],
+        "reasons": [],
+        "notices": [],
+        "exposedTo": [],
+        "eligible": true,
+        "blockers": [],
+        "matchingTests": [
+          "vitest:890140538_1"
+        ],
+        "creditedStatementLines": [
+          [
+            "src/Checkout.tsx",
+            28
+          ]
+        ],
+        "nodeCredit": [
+          {
+            "nodeId": "ui-value",
+            "location": {
+              "file": "src/Checkout.tsx",
+              "line": 28,
+              "column": 21
+            },
+            "status": "credited",
+            "statementIds": [
+              "dee96f8bd7c62a49"
+            ],
+            "matchingTests": [
+              "vitest:890140538_1"
+            ],
+            "reasons": [
+              {
+                "code": "same_test_execution",
+                "message": "Current agent claim, passing assertion, and statement execution in the same selected test."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "observation": "Passing assertion occurrence recorded.",
+    "id": "a_ccc93166022409a60442",
+    "at": {
+      "file": "tests/checkout.strong.test.tsx",
+      "line": 19,
+      "column": 3,
+      "text": "expect(screen.getByTestId('checkout')).toBeDisabled()"
+    },
+    "questions": [],
+    "inMap": true,
+    "observes": [
+      "The payment button is disabled for quantity zero."
+    ],
+    "operations": [
+      "expect.toBeDisabled"
+    ],
+    "observedPassingTests": [
+      "vitest:890140538_2"
+    ],
+    "flows": [
+      {
+        "id": "disabled",
+        "basis": "scov3:333cd8de6b90491e3c4d9d0853b7782533eb7b0f68d9a494417b99c90056972d",
+        "explanation": "For quantity zero this expression sets the HTML button disabled property, checked by the matcher. This claim does not cover the saving branch.",
+        "appliesTo": [
+          {
+            "file": "tests/checkout.strong.test.tsx",
+            "name": "disables payment for an empty order"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "ui-value",
+            "at": {
+              "file": "src/Checkout.tsx",
+              "line": 29,
+              "column": 19,
+              "text": "quantity === 0 || saving"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "ui-value",
+            "to": "$assertion",
+            "kind": "data"
+          }
+        ],
+        "countsAsAsserted": [
+          "ui-value"
+        ],
+        "watch": [],
+        "freshness": "current",
+        "valid": true,
+        "current": true,
+        "expectedBasis": "scov3:333cd8de6b90491e3c4d9d0853b7782533eb7b0f68d9a494417b99c90056972d",
+        "selectors": [
+          {
+            "file": "tests/checkout.strong.test.tsx",
+            "name": "disables payment for an empty order",
+            "status": "observed",
+            "outcomes": [
+              "passed"
+            ],
+            "reason": "A passing assertion occurrence matches this test."
+          }
+        ],
+        "questions": [],
+        "reasons": [],
+        "notices": [],
+        "exposedTo": [],
+        "eligible": true,
+        "blockers": [],
+        "matchingTests": [
+          "vitest:890140538_2"
+        ],
+        "creditedStatementLines": [
+          [
+            "src/Checkout.tsx",
+            29
+          ]
+        ],
+        "nodeCredit": [
+          {
+            "nodeId": "ui-value",
+            "location": {
+              "file": "src/Checkout.tsx",
+              "line": 29,
+              "column": 19
+            },
+            "status": "credited",
+            "statementIds": [
+              "618f4a15862d748b"
+            ],
+            "matchingTests": [
+              "vitest:890140538_2"
+            ],
+            "reasons": [
+              {
+                "code": "same_test_execution",
+                "message": "Current agent claim, passing assertion, and statement execution in the same selected test."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "observation": "Passing assertion occurrence recorded.",
+    "id": "a_a4b9266c14e413201f67",
+    "at": {
+      "file": "tests/checkout.strong.test.tsx",
+      "line": 29,
+      "column": 3,
+      "text": "expect(await screen.findByRole('alert')).toHaveTextContent(\n    /^Payment failed\\. Try again\\.$/,\n  )"
+    },
+    "questions": [],
+    "inMap": true,
+    "observes": [
+      "The alert text equals Payment failed. Try again. after whitespace normalization."
+    ],
+    "operations": [
+      "expect.toHaveTextContent"
+    ],
+    "observedPassingTests": [
+      "vitest:890140538_3"
+    ],
+    "flows": [
+      {
+        "id": "error-message",
+        "basis": "scov3:bfac0fcf90c404c6233e4707bfe628b059e9a86afe2e12f8b2deee4599f8479f",
+        "explanation": "The rejected save sets error. React renders this string inside the alert, whose text the anchored regular expression checks after the alert appears.",
+        "appliesTo": [
+          {
+            "file": "tests/checkout.strong.test.tsx",
+            "name": "explains a failed payment"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "ui-value",
+            "at": {
+              "file": "src/Checkout.tsx",
+              "line": 34,
+              "column": 34,
+              "text": "String('Payment failed. Try again.')"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "ui-value",
+            "to": "$assertion",
+            "kind": "data"
+          }
+        ],
+        "countsAsAsserted": [
+          "ui-value"
+        ],
+        "watch": [],
+        "freshness": "current",
+        "valid": true,
+        "current": true,
+        "expectedBasis": "scov3:bfac0fcf90c404c6233e4707bfe628b059e9a86afe2e12f8b2deee4599f8479f",
+        "selectors": [
+          {
+            "file": "tests/checkout.strong.test.tsx",
+            "name": "explains a failed payment",
+            "status": "observed",
+            "outcomes": [
+              "passed"
+            ],
+            "reason": "A passing assertion occurrence matches this test."
+          }
+        ],
+        "questions": [],
+        "reasons": [],
+        "notices": [],
+        "exposedTo": [],
+        "eligible": true,
+        "blockers": [],
+        "matchingTests": [
+          "vitest:890140538_3"
+        ],
+        "creditedStatementLines": [
+          [
+            "src/Checkout.tsx",
+            34
+          ]
+        ],
+        "nodeCredit": [
+          {
+            "nodeId": "ui-value",
+            "location": {
+              "file": "src/Checkout.tsx",
+              "line": 34,
+              "column": 34
+            },
+            "status": "credited",
+            "statementIds": [
+              "0808c18e2286b8b7"
+            ],
+            "matchingTests": [
+              "vitest:890140538_3"
+            ],
+            "reasons": [
+              {
+                "code": "same_test_execution",
+                "message": "Current agent claim, passing assertion, and statement execution in the same selected test."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

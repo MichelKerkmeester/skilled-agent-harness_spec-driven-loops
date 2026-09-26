@@ -1,0 +1,314 @@
+{
+  "testKindSources": {
+    "runner-default": 3
+  },
+  "assertionCoverage": {
+    "available": true,
+    "summary": {
+      "status": "notAssessed",
+      "reason": "No recorded flow explanations",
+      "pendingChanges": 0,
+      "metric": "measured statements",
+      "statements": {
+        "asserted": 0,
+        "declared": 0,
+        "total": 14,
+        "percentage": null
+      },
+      "assertions": 7,
+      "inventoryAssertions": 7,
+      "missingInventoryAssertions": 0,
+      "assertionsWithFlows": 0,
+      "assertionsWithoutFlows": 7,
+      "observedAssertionsWithoutCurrentExplanation": 3,
+      "questions": 0,
+      "currentFlows": 0,
+      "draftFlows": 0,
+      "staleFlows": 0,
+      "invalidFlows": 0,
+      "eligibleFlows": 0,
+      "retiredAssertions": 0,
+      "unobservedAssertions": 4,
+      "inventoryFailures": 0,
+      "unanchoredStatements": 0,
+      "runPassed": true,
+      "lines": {
+        "asserted": 0,
+        "declared": 0,
+        "total": 13,
+        "percentage": null
+      },
+      "excludedStatements": 0
+    },
+    "basis": "agent-assessed; passing assertion identity and same-test execution required; not mutation resistance",
+    "revision": "fcd37e09c35f16a130cef40827dd756114624016abe5046b30a8de7ddaf52b9a",
+    "inheritance": {
+      "from": null,
+      "skipped": []
+    },
+    "map": "/private/var/folders/4q/cdhj37516zzbc7z9ckrst0x40000gn/T/supercov-react-verification-LavbfO/.supercov/runs/run_5c23599854c51519/assertions.json",
+    "validationErrors": [],
+    "scope": "whole run with matching current source; independent of structural query filters"
+  },
+  "run": "run_5c23599854c51519",
+  "command": [
+    "npm",
+    "run",
+    "test:before"
+  ],
+  "hints": [
+    "This run observed only the `unit` test kind and wrapped `npm run test:before`. Other test scripts include test:after. For whole-project coverage, measure the package's full test command: `npx supercov -- npm test`."
+  ],
+  "workspace": "/private/var/folders/4q/cdhj37516zzbc7z9ckrst0x40000gn/T/supercov-react-verification-LavbfO/.supercov/workspaces/workspace/supercov-react-verification-LavbfO",
+  "filters": {
+    "outcome": "all",
+    "kind": null,
+    "runner": null
+  },
+  "model": {
+    "schemaVersion": 1,
+    "variant": "masking-short-circuit",
+    "name": "coverage-completeness-v2",
+    "completenessMeaning": "Every obligation in the measured model was observed by at least one existing test; test assertions and product correctness are separate assumptions.",
+    "measured": [
+      "executable source lines",
+      "executable statements",
+      "function entries",
+      "true and false outcomes of if, ternary, while, do/while, and classic for decisions",
+      "true and false outcomes of every atomic condition in those decisions",
+      "masking MC/DC independence for every atomic condition in those decisions",
+      "short-circuit and right-evaluated selections for &&, ||, and ?? value expressions, including JSX",
+      "short-circuit and evaluated alternatives for logical assignments and optional chains",
+      "provided and default-evaluated parameter and destructuring values",
+      "try success and catch entry",
+      "zero and entered for-in/for-of loops",
+      "entered switch cases, defaults, and implicit no-match alternatives"
+    ],
+    "notMeasured": [
+      "all input values or semantic input partitions",
+      "all execution paths or ordering/concurrency interleavings",
+      "destructuring defaults in classic for initializers (reported as blockers when discovered)",
+      "the internal statements and decisions of runtime-generated eval/Function source",
+      "mutation score or assertion fault-detection strength"
+    ]
+  },
+  "generatedAt": "2026-09-15T20:26:48.452Z",
+  "valid": true,
+  "testExitCode": 0,
+  "stale": false,
+  "staleReasons": [],
+  "structurallyComplete": true,
+  "complete": false,
+  "coverage": {
+    "decisions": 0,
+    "executedDecisions": 0,
+    "coveredDecisions": 0,
+    "conditions": 0,
+    "coveredConditions": 0,
+    "conditionCoveragePct": 100,
+    "lines": {
+      "covered": 15,
+      "total": 15,
+      "percentage": 100
+    },
+    "statements": {
+      "covered": 14,
+      "total": 14,
+      "percentage": 100
+    },
+    "functions": {
+      "covered": 2,
+      "total": 2,
+      "percentage": 100
+    },
+    "branches": {
+      "covered": 6,
+      "total": 6,
+      "percentage": 100
+    },
+    "decisionOutcomes": {
+      "covered": 0,
+      "total": 0,
+      "percentage": 100
+    },
+    "conditionOutcomes": {
+      "covered": 0,
+      "total": 0,
+      "percentage": 100
+    },
+    "valueSelections": {
+      "covered": 4,
+      "total": 4,
+      "percentage": 100
+    },
+    "coverageComplete": true
+  },
+  "measurement": {
+    "complete": true,
+    "limitations": 0,
+    "evidenceCorruptions": 0,
+    "blocking": 0,
+    "declared": 0,
+    "files": 0,
+    "byKind": {
+      "dynamic-code": 0,
+      "semantic-safety": 0,
+      "source-scope": 0
+    }
+  },
+  "coverageByKind": [
+    {
+      "kind": "unit",
+      "tests": 3,
+      "setups": 1,
+      "summary": {
+        "decisions": 0,
+        "executedDecisions": 0,
+        "coveredDecisions": 0,
+        "conditions": 0,
+        "coveredConditions": 0,
+        "conditionCoveragePct": 100,
+        "lines": {
+          "covered": 15,
+          "total": 15,
+          "percentage": 100
+        },
+        "statements": {
+          "covered": 14,
+          "total": 14,
+          "percentage": 100
+        },
+        "functions": {
+          "covered": 2,
+          "total": 2,
+          "percentage": 100
+        },
+        "branches": {
+          "covered": 6,
+          "total": 6,
+          "percentage": 100
+        },
+        "decisionOutcomes": {
+          "covered": 0,
+          "total": 0,
+          "percentage": 100
+        },
+        "conditionOutcomes": {
+          "covered": 0,
+          "total": 0,
+          "percentage": 100
+        },
+        "valueSelections": {
+          "covered": 4,
+          "total": 4,
+          "percentage": 100
+        },
+        "coverageComplete": true
+      }
+    }
+  ],
+  "coverageByRunner": [
+    {
+      "runner": "vitest",
+      "tests": 3,
+      "setups": 1,
+      "summary": {
+        "decisions": 0,
+        "executedDecisions": 0,
+        "coveredDecisions": 0,
+        "conditions": 0,
+        "coveredConditions": 0,
+        "conditionCoveragePct": 100,
+        "lines": {
+          "covered": 15,
+          "total": 15,
+          "percentage": 100
+        },
+        "statements": {
+          "covered": 14,
+          "total": 14,
+          "percentage": 100
+        },
+        "functions": {
+          "covered": 2,
+          "total": 2,
+          "percentage": 100
+        },
+        "branches": {
+          "covered": 6,
+          "total": 6,
+          "percentage": 100
+        },
+        "decisionOutcomes": {
+          "covered": 0,
+          "total": 0,
+          "percentage": 100
+        },
+        "conditionOutcomes": {
+          "covered": 0,
+          "total": 0,
+          "percentage": 100
+        },
+        "valueSelections": {
+          "covered": 4,
+          "total": 4,
+          "percentage": 100
+        },
+        "coverageComplete": true
+      }
+    }
+  ],
+  "attribution": {
+    "browserExplicit": 0,
+    "browserFallback": 0,
+    "serverExplicit": 0,
+    "serverFallback": 0
+  },
+  "transport": {
+    "processes": 3,
+    "childLaunches": 2,
+    "remoteLaunches": 0,
+    "workspaceCapabilities": 0,
+    "scopedServerRecords": 0,
+    "backgroundServerRecords": 0,
+    "corruptRecords": 0,
+    "corruptFiles": 0
+  },
+  "diagnostics": [],
+  "confidence": {
+    "lines": {
+      "unexecuted": 0,
+      "executed": 15,
+      "action": 0,
+      "asserted": 0
+    },
+    "assertionCoveredMcdcConditions": 0
+  },
+  "filesWithGaps": 0,
+  "filesWithCoverageGaps": 0,
+  "filesWithMeasurementLimitations": 0,
+  "tests": 3,
+  "setups": 1,
+  "testOutcomes": {
+    "passed": 3,
+    "failed": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "timedOut": 0,
+    "interrupted": 0,
+    "unknown": 0,
+    "unstarted": 0
+  },
+  "sourceScope": {
+    "kind": "source-discovery",
+    "language": "javascript",
+    "model": "coverage-completeness-v2",
+    "mode": "automatic",
+    "roots": [
+      "src"
+    ],
+    "included": 1,
+    "excluded": 4,
+    "ambiguous": 0
+  }
+}

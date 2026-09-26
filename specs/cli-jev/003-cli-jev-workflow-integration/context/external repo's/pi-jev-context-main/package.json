@@ -1,0 +1,65 @@
+{
+	"name": "pi-jev-context",
+	"version": "0.1.0",
+	"description": "Reversible, relevance-based context pruning for Pi, powered by TypeSafe Jev.",
+	"type": "module",
+	"license": "MIT",
+	"author": "Kevin Pita (https://github.com/kevinpita)",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kevinpita/pi-jev-context.git"
+	},
+	"homepage": "https://github.com/kevinpita/pi-jev-context#readme",
+	"bugs": {
+		"url": "https://github.com/kevinpita/pi-jev-context/issues"
+	},
+	"keywords": [
+		"pi-package",
+		"pi-extension",
+		"pi",
+		"jev",
+		"typesafe",
+		"context-pruning",
+		"coding-agent"
+	],
+	"engines": {
+		"node": ">=22.19.0"
+	},
+	"files": [
+		"src/",
+		"assets/",
+		"LICENSE",
+		"README.md"
+	],
+	"pi": {
+		"extensions": [
+			"./src/index.ts"
+		],
+		"image": "https://raw.githubusercontent.com/kevinpita/pi-jev-context/main/assets/preview.png"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"scripts": {
+		"test": "node --import tsx --test test/*.test.ts",
+		"typecheck": "tsc --noEmit",
+		"lint": "biome check .",
+		"format": "biome check --write .",
+		"check": "npm run typecheck && npm run lint && npm test",
+		"prepack": "npm run check",
+		"test:package": "node scripts/check-package.mjs"
+	},
+	"peerDependencies": {
+		"@earendil-works/pi-ai": "*",
+		"@earendil-works/pi-coding-agent": "*"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.8",
+		"@earendil-works/pi-ai": "0.85.1",
+		"@earendil-works/pi-coding-agent": "0.85.1",
+		"@types/node": "^22.19.0",
+		"tsx": "^4.20.0",
+		"typescript": "~5.9.3"
+	}
+}

@@ -1,0 +1,15 @@
+{
+  "name": "claude-jev",
+  "description": "Jev-backed judgement tools for Claude Code.",
+  "owner": {
+    "name": "oxdev",
+    "url": "https://github.com/buchmark"
+  },
+  "plugins": [
+    {
+      "name": "claude-jev",
+      "source": "./",
+      "description": "MCP tools that turn a question about code into a typed Jev query and return calibrated probabilities."
+    }
+  ]
+}

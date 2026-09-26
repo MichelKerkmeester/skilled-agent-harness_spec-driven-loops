@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - name: Verify tag matches package version
+        run: |
+          PKG="v$(node -p "require('./package.json').version")"
+          test "$PKG" = "${GITHUB_REF_NAME}" || { echo "tag ${GITHUB_REF_NAME} != package ${PKG}"; exit 1; }
+      # Trusted Publishing: npm authenticates this job via GitHub OIDC (id-token: write).
+      # No npm token is stored anywhere. Configure once on npmjs.com under jevctl's
+      # Settings > Trusted Publisher: GitHub Actions, owner Nasrallah-AL, repo jev-cli,
+      # workflow release.yml. Requires npm 11.5.1 or newer, hence the upgrade step.
+      - name: Upgrade npm for Trusted Publishing support
+        run: npm install -g npm@latest && npm --version
+      - name: Publish to npm (skipped if this version is already on npm)
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "::notice::$NAME@$VERSION already published; skipping npm publish."
+          else
+            npm publish --provenance --access public
+          fi
+      - name: Extract changelog section for this version
+        id: notes
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v v="$VERSION" '/^## \[/{p = index($0, "[" v "]") > 0} p' CHANGELOG.md | tail -n +2 > release-notes.md
+          echo "Notes: $(wc -l < release-notes.md) lines"
+      - name: GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: release-notes.md
+          generate_release_notes: true

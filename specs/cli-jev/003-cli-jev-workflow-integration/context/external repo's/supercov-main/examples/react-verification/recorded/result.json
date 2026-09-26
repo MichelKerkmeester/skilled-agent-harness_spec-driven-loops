@@ -1,0 +1,34 @@
+{
+  "node": "v24.21.0",
+  "recordedAt": "2026-09-15T20:26:57.394Z",
+  "before": {
+    "tests": 3,
+    "lineCoverage": 100
+  },
+  "after": {
+    "tests": 7,
+    "reviewedUiFlows": 4
+  },
+  "mutations": [
+    {
+      "name": "wrong-total",
+      "weakSuitePassed": true,
+      "strongSuiteFailed": true
+    },
+    {
+      "name": "wrong-name",
+      "weakSuitePassed": true,
+      "strongSuiteFailed": true
+    },
+    {
+      "name": "enabled-empty-order",
+      "weakSuitePassed": true,
+      "strongSuiteFailed": true
+    },
+    {
+      "name": "wrong-error",
+      "weakSuitePassed": true,
+      "strongSuiteFailed": true
+    }
+  ]
+}

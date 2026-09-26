@@ -1,0 +1,15 @@
+{
+  "name": "supercov-checkout-verification",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/session.test.js tests/expired-session.test.js",
+    "test:before": "node --test tests/session.test.js",
+    "coverage:before": "supercov -- node --test tests/session.test.js",
+    "coverage:after": "supercov -- node --test tests/session.test.js tests/expired-session.test.js",
+    "demo": "node scripts/reproduce.mjs",
+    "record": "node scripts/reproduce.mjs --record"
+  },
+  "devDependencies": { "supercov": "0.0.42" }
+}

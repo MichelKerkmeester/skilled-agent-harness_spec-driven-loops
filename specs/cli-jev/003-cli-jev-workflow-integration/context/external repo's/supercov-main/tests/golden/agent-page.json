@@ -1,0 +1,1 @@
+{"schemaVersion":1,"ok":true,"command":"coverage.gaps","data":{"gaps":[{"file":"src/example.ts"}]},"pagination":{"offset":20,"limit":20,"returned":1,"total":21,"hasMore":false,"nextOffset":null}}

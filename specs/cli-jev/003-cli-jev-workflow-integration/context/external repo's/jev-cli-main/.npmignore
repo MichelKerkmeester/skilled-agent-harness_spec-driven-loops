@@ -1,0 +1,13 @@
+# `files` in package.json is the allowlist; this is a safety net.
+test/
+coverage/
+.github/
+biome.json
+vitest.config.ts
+tsconfig*.json
+.env.example
+.nvmrc
+.editorconfig
+plugin/
+.claude-plugin/
+CLAUDE.md

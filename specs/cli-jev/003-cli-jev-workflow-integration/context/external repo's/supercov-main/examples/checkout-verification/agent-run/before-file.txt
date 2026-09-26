@@ -1,0 +1,19 @@
+src/session.js
+
+Uncovered
+  Lines not executed              0
+  Statements not executed         0
+  Functions not called            0
+  Branch outcomes not taken       0
+  MC/DC conditions not shown      1
+  Measurement limitations         0
+
+Tests touching this file: 2
+
+Gaps
+  NOT COVERED = line never executed; PARTIAL = line executed but some behavior remains untested
+ LINE  STATUS        SOURCE
+    2  PARTIAL       signedIn && !expired
+       Unobserved: no witness pair shows `!expired` independently changing the decision result
+       Inspect: npx supercov runs 'run_888402a5fd64e52c' line 'src/session.js:2'
+showing 1-1 of 1 gap lines

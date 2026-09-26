@@ -1,0 +1,7 @@
+[run]
+branch = true
+parallel = true
+source =
+    $SUPERCOV_PYTHON_SOURCE
+context = $SUPERCOV_PYTHON_CONTEXT
+data_file = $SUPERCOV_PYTHON_DATA

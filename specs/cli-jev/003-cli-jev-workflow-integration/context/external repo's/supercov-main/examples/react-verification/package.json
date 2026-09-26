@@ -1,0 +1,21 @@
+{
+  "name": "supercov-react-verification",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:before": "vitest run tests/checkout.weak.test.tsx",
+    "test:after": "vitest run tests/checkout.strong.test.tsx",
+    "demo": "node scripts/reproduce.mjs"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.1",
+    "@vitest/browser-playwright": "4.1.11",
+    "jsdom": "30.0.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "vitest": "4.1.11"
+  }
+}

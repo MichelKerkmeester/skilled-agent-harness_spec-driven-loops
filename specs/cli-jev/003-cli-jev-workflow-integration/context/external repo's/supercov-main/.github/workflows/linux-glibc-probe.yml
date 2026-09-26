@@ -1,0 +1,92 @@
+name: Linux glibc probe
+
+# The 0.0.36 Linux packages required GLIBC_2.39 -- the glibc of the Ubuntu
+# 24.04 runner that built them -- and so refused to start on Debian 12, Ubuntu
+# 22.04, RHEL 9 and Amazon Linux 2023, the base images of most Node containers
+# among them. A PyPI wheel cannot even be tagged honestly from such a binary.
+# This builds the gnu targets two ways that both link against glibc 2.28, reads
+# each binary's real floor from its ELF version table, and runs the same
+# packed-install coverage gate a release runs, so the release can adopt
+# whichever way holds up with evidence rather than a guess.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  zigbuild:
+    name: cargo-zigbuild ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            target: x86_64-unknown-linux-gnu
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      # Components installed up front: cargo-zigbuild queries rustc while cargo
+      # runs, and two rustup proxies syncing the same missing component race
+      # into "detected conflict: bin/cargo-fmt".
+      - uses: dtolnay/rust-toolchain@1.95.0
+        with:
+          targets: ${{ matrix.target }}
+          components: clippy, rustfmt
+      # cargo-zigbuild links with zig's bundled clang against the glibc version
+      # named in the target suffix; the runner's own glibc no longer matters. It
+      # finds zig through `python3 -m ziglang`, so both live in the user site.
+      - run: python3 -m pip install --user --break-system-packages cargo-zigbuild ziglang
+      - run: cargo-zigbuild --version && python3 -m ziglang version
+      - run: npm ci --omit=optional
+      - run: cargo zigbuild --release --target ${{ matrix.target }}.2.28 -p supercov
+      - name: The binary's real glibc floor
+        run: node scripts/elf-glibc-floor.mjs target/${{ matrix.target }}/release/supercov --max 2.28
+      - name: Packed install and real Rust run
+        run: node scripts/native-package-integration.mjs --target ${{ matrix.target }} --binary target/${{ matrix.target }}/release/supercov
+
+  manylinux:
+    name: manylinux_2_28 container ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    container:
+      image: quay.io/pypa/manylinux_2_28_${{ matrix.arch }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            target: x86_64-unknown-linux-gnu
+            arch: x86_64
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            arch: aarch64
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      # The image has gcc but neither Rust nor clang; rust-toolchain.toml
+      # selects the pinned compiler once rustup is present, and bindgen -- a
+      # build dependency of ruby-prism-sys -- needs the whole clang package:
+      # libclang alone cannot find clang's own limits.h.
+      - name: Install rustup and clang
+        run: |
+          dnf install -y clang
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none --profile minimal
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+      - run: rustc --version && cargo --version && ldd --version | head -1
+      - run: npm ci --omit=optional
+      - run: cargo build --release --target ${{ matrix.target }} -p supercov
+      - name: The binary's real glibc floor
+        run: node scripts/elf-glibc-floor.mjs target/${{ matrix.target }}/release/supercov --max 2.28
+      - name: Packed install and real Rust run
+        run: node scripts/native-package-integration.mjs --target ${{ matrix.target }} --binary target/${{ matrix.target }}/release/supercov

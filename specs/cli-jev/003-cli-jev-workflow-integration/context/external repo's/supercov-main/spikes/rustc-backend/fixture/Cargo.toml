@@ -1,0 +1,15 @@
+[workspace]
+members = ["no-std-fixture", "probe-macros"]
+exclude = ["external-rules"]
+resolver = "3"
+
+[package]
+name = "supercov-rustc-spike-fixture"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+external-rules = { path = "external-rules" }
+no-std-fixture = { path = "no-std-fixture" }
+probe-macros = { path = "probe-macros" }

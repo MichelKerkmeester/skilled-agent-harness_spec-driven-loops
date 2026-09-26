@@ -1,0 +1,38 @@
+{
+  "protocolVersion": 1,
+  "frontendId": "javascript",
+  "frontendVersion": "javascript-v1",
+  "language": "javascript",
+  "structuralSource": "owned-probes",
+  "runners": [
+    {
+      "runner": "playwright",
+      "executionModel": "parallel-context-propagated",
+      "attribution": {
+        "run": "exact",
+        "worker": "exact",
+        "test": "exact",
+        "retry": "exact",
+        "phase": "exact",
+        "action": "exact",
+        "assertion": "exact"
+      },
+      "limitations": []
+    },
+    {
+      "runner": "vitest",
+      "executionModel": "parallel-context-propagated",
+      "attribution": {
+        "run": "exact",
+        "worker": "exact",
+        "test": "exact",
+        "retry": "exact",
+        "phase": "exact",
+        "action": "exact",
+        "assertion": "exact"
+      },
+      "limitations": []
+    }
+  ],
+  "structuralLimitations": []
+}

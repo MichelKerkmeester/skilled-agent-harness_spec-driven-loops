@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "status": "private-spike",
+  "producer": "coverage.py",
+  "supportedCollectorCoresForExactContexts": ["ctrace", "pytrace"],
+  "requiresBranchMeasurement": true,
+  "databaseAccess": "forbidden",
+  "frontendComputesVerdicts": false,
+  "unknownFieldsFatal": true,
+  "preserveUnrecognizedContextsAsBackground": true,
+  "mcdcAvailability": "unavailable-with-blocking-limitation",
+  "columnLocations": "unavailable-with-blocking-limitation"
+}

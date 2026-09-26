@@ -1,0 +1,27 @@
+{
+  "name": "supercov-react-expo-fixture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@react-native/babel-preset": "0.86.3",
+    "@react-native/jest-preset": "0.86.3",
+    "@testing-library/react-native": "14.0.1",
+    "babel-jest": "30.5.1",
+    "babel-preset-expo": "57.0.12",
+    "expo": "57.0.23",
+    "jest": "30.5.1",
+    "jest-expo": "57.0.5",
+    "react": "19.2.4",
+    "react-native": "0.86.3",
+    "test-renderer": "1.2.0"
+  },
+  "private": true
+}

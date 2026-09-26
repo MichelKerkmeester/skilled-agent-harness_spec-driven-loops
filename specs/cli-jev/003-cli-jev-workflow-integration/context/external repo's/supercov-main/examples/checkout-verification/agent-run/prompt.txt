@@ -1,0 +1,1 @@
+Measure code coverage with npx supercov and write one missing test. Only change tests. Rerun the full test suite and show me the test you added and the before-and-after coverage.

@@ -1,0 +1,11 @@
+node_modules/
+
+# Secrets never belong in this repository; the API key lives in the Keychain
+# or in the environment.
+.env
+.env.*
+
+coverage/
+*.tsbuildinfo
+*.log
+.DS_Store

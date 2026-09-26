@@ -1,0 +1,9 @@
+jev-cli (published on npm as jevctl)
+Copyright (c) 2026 Nasr Shaer
+
+This product includes code adapted from jev-mcp,
+Copyright (c) 2026 Joey Kudish, licensed under the MIT License.
+
+This product includes code adapted from fast-jev-compaction
+(https://github.com/tamaratran/fast-jev-compaction), Copyright (c) 2025,
+licensed under the MIT License. See src/vendor/compaction/ and plugin/hooks/.

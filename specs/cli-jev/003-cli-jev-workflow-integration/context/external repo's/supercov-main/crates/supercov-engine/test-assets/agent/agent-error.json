@@ -1,0 +1,1 @@
+{"schemaVersion":1,"ok":false,"command":"coverage.file","error":{"code":"SOURCE_NOT_FOUND","message":"Source file not found: missing.ts","retryable":false,"details":{"selector":"missing.ts"}}}
