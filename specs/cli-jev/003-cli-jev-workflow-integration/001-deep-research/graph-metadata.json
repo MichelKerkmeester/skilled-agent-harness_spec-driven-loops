@@ -46,18 +46,21 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "research/research.md",
+      "scratch/research-topic.txt",
+      "scratch/synthesis-brief.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".claude/settings.json",
       ".pi/models.json",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       "context/repo-rules-digest.md",
       "context/research-angles.md",
-      "scratch/research-topic.txt",
-      "scratch/synthesis-brief.md",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
       ".skilled/bin/compiled-route.cjs",
       "context/seam-map.md",
       "context/jev-material-digest.md",
-      "context/measurement-digest.md"
+      "context/measurement-digest.md",
+      "research/observability-events.jsonl"
     ],
     "entities": [
       {
@@ -91,6 +94,36 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic.txt",
+        "kind": "file",
+        "path": "scratch/research-topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-brief.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-brief.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
         "name": "models.json",
         "kind": "config",
         "path": ".pi/models.json",
@@ -112,24 +145,6 @@
         "name": "research-angles.md",
         "kind": "doc",
         "path": "context/research-angles.md",
-        "source": "derived"
-      },
-      {
-        "name": "research-topic.txt",
-        "kind": "file",
-        "path": "scratch/research-topic.txt",
-        "source": "derived"
-      },
-      {
-        "name": "synthesis-brief.md",
-        "kind": "doc",
-        "path": "scratch/synthesis-brief.md",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
         "source": "derived"
       },
       {
@@ -163,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "observability-events.jsonl",
+        "kind": "file",
+        "path": "research/observability-events.jsonl",
+        "source": "derived"
+      },
+      {
         "name": "Research Phase",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -171,13 +192,7 @@
       {
         "name": "Jev Typed Judgments Across",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -191,39 +206,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-jev` returns typed judgments, and no other part of `.skilled` asks for one",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-26T16:50:55.096Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-26T18:38:11.113Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:a0c72ab58f40952f8c686864e8074ece2a542790808ee8af57a22d2330c11ecf",
+    "source_fingerprint": "sha256:5e223034619a61b389337f8db5c9180d72bc236a5806bbb1a9ce95121fa70b62",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "61002c6e6b21644c1ba309b367e1274ce809aa698fc0217c17d87b13704ef4ee",
+      "spec.md": "37856fd680a9732e9b4859f413af9a6f05c8a4c626486ca36b9c8854d573ddb8",
       "plan.md": "6c2d748a22ed609923dafbef0a036457f1719fc43f6a137d467145b9be349ec4",
-      "tasks.md": "fda5f16fa8c107e23ecd5da289aa34f0415cec39c5deb869cb9ad8e53d9adede",
-      "implementation-summary.md": "65814445557948d7a5e2dd476439f5a389a4cd67270dbdb99d58fd3c91d8fc55"
+      "tasks.md": "b44db466bb2410aec6e32c8454fa7b8a8ac256da6fd9b49890e35f4817804641",
+      "implementation-summary.md": "a02f140ff8a3465ef5c4c8a764ed8ebc76c2ea68b82c34754dc6475b042a75f2",
+      "research/research.md": "677b1339f410163d0aedc5cfb4d8d4e1ef9e9d713b8e7d81a7af0b5765836c31"
     },
     "last_active_at": null
   }

@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -85,12 +85,12 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `context/` holds `repo-rules-digest.md`, `seam-map.md`, `jev-material-digest.md`, `measurement-digest.md` and `research-angles.md`, which defines 30 angles from `deepseek-01` to `grok-10`
-- [ ] `grok-4.7-xhigh-fast` is in `CURSOR_SUPPORTED_MODELS` in `executor-config.ts` and in `CURSOR_ALLOWED_MODELS` in `fanout-run.cjs`, `executor-config.vitest.ts` and `fanout-run.vitest.ts` pass, and a live `Reply OK` probe replied `OK`
-- [ ] `research/lineages/deepseek/`, `mimo/` and `grok/` each hold `iteration-001.md` to `iteration-010.md` and a state log with 10 iteration records whose last record has `stopReason` `maxIterationsReached`
-- [ ] `research/research.md`, written by a fresh Opus 5.5 max leaf, answers RQ1 to RQ7 and ranks each recommendation build-now, next, later or drop with a seam `file:line`, a metric with baseline and harness, opt-in and no-key behavior and a smallest slice
-- [ ] The synthesis marks every citation in its ranked list resolved, drifted or failed, and the orchestrator reopened five citations and three recommendations
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `context/` holds `repo-rules-digest.md`, `seam-map.md`, `jev-material-digest.md`, `measurement-digest.md` and `research-angles.md`, which defines 30 angles from `deepseek-01` to `grok-10`
+- [x] `grok-4.7-xhigh-fast` is in `CURSOR_SUPPORTED_MODELS` in `executor-config.ts` and in `CURSOR_ALLOWED_MODELS` in `fanout-run.cjs`, `executor-config.vitest.ts` and `fanout-run.vitest.ts` pass, and a live `Reply OK` probe replied `OK`
+- [x] `research/lineages/deepseek/`, `mimo/` and `grok/` each hold `iteration-001.md` to `iteration-010.md` and a state log with 10 iteration records whose last record has `stopReason` `maxIterationsReached`
+- [x] `research/research.md`, written by a fresh Opus 5.5 max leaf, answers RQ1 to RQ7 and ranks each recommendation build-now, next, later or drop with a seam `file:line`, a metric with baseline and harness, opt-in and no-key behavior and a smallest slice
+- [x] The synthesis marks every citation in its ranked list resolved, drifted or failed, and the orchestrator reopened five citations and three recommendations
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -107,10 +107,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | In Progress | Scaffolded by `create.sh --phase` on 2026-09-26 |
+| Context and roster | Done | Four digests and `research-angles.md`; `9fe8526284` added `grok-4.7-xhigh-fast`, vitest 257/257, live probe `OK` |
+| Fan-out | Done | Three lineages, 10 iteration files and 10 iteration records each, every log ending `stopReason` `maxIterationsReached` |
+| Synthesis | Done | `research/research.md`: 1 build-now, 1 next, 16 later, 32 drop; section 14 ledger marks each citation; the host reopened seven seams, all resolved, and rechecked R1, R2 and the compaction deferral |
+| Phase closed | Complete | 2026-09-26; `validate.sh --strict` result in the parent goal log |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Grok 4.7 MAX fast | Cursor lists no Grok 4.7 MAX tier on 2026-09-26, so the highest-effort fast id `grok-4.7-xhigh-fast` runs the `grok` lineage |
+| Close report | `synthesis_incomplete`: the merge rebuilt 85 of 112 count-only findings (DeepSeek 8 of 57). The synthesis read the iteration files directly, so the ranking stands |
 <!-- /ANCHOR:log -->

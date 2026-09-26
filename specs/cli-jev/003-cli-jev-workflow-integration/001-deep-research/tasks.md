@@ -55,9 +55,9 @@ contextType: "research"
 - [x] T012 Run the three-lineage fan-out in the background (`research/`)
 - [x] T013 Rerun alone any lineage that ends short of 10 iterations
 - [x] T014 Run the merge and resource-map steps (`research/`)
-- [ ] T015 Dispatch a fresh Opus 5.5 max leaf to write the ranked synthesis (`research/research.md`)
-- [ ] T016 Scaffold the proposed build phases as Planned siblings, one Opus 5.5 high leaf per phase (`../NNN-*/`)
-- [ ] T017 Add each new phase's binding row and phase-map row (`../goal.md`, `../spec.md`)
+- [x] T015 Dispatch a fresh Opus 5.5 max leaf to write the ranked synthesis (`research/research.md`)
+- [x] T016 Scaffold the proposed build phases as Planned siblings, one Opus 5.5 high leaf per phase (`../NNN-*/`)
+- [x] T017 Add each new phase's binding row and phase-map row (`../goal.md`, `../spec.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "research"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T018 Confirm each lineage state log holds 10 records ending `maxIterationsReached`
-- [ ] T019 Reopen five citations and three recommendations from the synthesis against the code
-- [ ] T020 Review the fan-out containment advisories and `git status` for lineage writes outside `research/`
+- [x] T018 Confirm each lineage state log holds 10 records ending `maxIterationsReached`
+- [x] T019 Reopen five citations and three recommendations from the synthesis against the code
+- [x] T020 Review the fan-out containment advisories and `git status` for lineage writes outside `research/`
 - [ ] T021 Run `validate.sh --strict --recursive` on the parent until it prints `RESULT: PASSED`
 - [ ] T022 Run `check-goal.cjs` on the parent and every child
 - [ ] T023 Fill `implementation-summary.md` and save continuity

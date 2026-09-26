@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
+  "description": "In OpenCode autonomous mode the goal plugin decides \"is this goal done\" after each idle",
+  "keywords": [
+    "opencode",
+    "autonomous",
+    "mode",
+    "goal",
+    "plugin",
+    "decides",
+    "done",
+    "idle"
+  ],
+  "lastUpdated": "2026-09-26T18:35:33.576Z",
+  "specId": "003",
+  "folderSlug": "goal-verifier-jev-shadow",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

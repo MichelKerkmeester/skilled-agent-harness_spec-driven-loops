@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal verifier jev shadow",
+      "goal verifier labeled set",
+      "opencode goal verifier accuracy",
+      "jev shadow verifier mode",
+      "verifier keep threshold",
+      "goal verifier jev plan",
+      "labeled set scorer plan",
+      "jev shadow mode plan",
+      "verifier key gate plan",
+      "goal verifier jev tasks",
+      "labeled set scorer tasks",
+      "jev shadow mode tasks"
+    ],
+    "key_topics": [
+      "goal",
+      "verifier",
+      "jev",
+      "shadow",
+      "labeled",
+      "set",
+      "opencode",
+      "accuracy",
+      "mode",
+      "keep",
+      "threshold",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/hooks/goal/opencode/opencode-goal.js",
+      ".opencode/plugins/tests/opencode-goal-supervisor.test.cjs",
+      ".skilled/hooks/goal/goal-plugin.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/plugins/opencode-goal.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-supervisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-supervisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Verifier Labeled Set",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Jev Shadow Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Slice",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Offline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In OpenCode autonomous mode the goal plugin decides \"is this goal done\" after each idle",
+    "created_at": "2026-09-26T18:26:44Z",
+    "last_save_at": "2026-09-26T18:36:00.459Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c6c95b271e77226f08af99182cd9ce784681f3b1447b3d71bed2122f8a07e10c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "df16864da85c91a8ef785558435ea76d7a33bc4e75f269cafb5d4dcd2dc86c65",
+      "plan.md": "8deff8c3293ef9bd44c6dd26046974f4ef2c9090424eeb4ceb12611f56c60d10",
+      "tasks.md": "7ac5ef735bf0f92faf537d48d2a0b6f61cea37d67009908c09e24cead7614f2e",
+      "implementation-summary.md": "e5d7a0eb6f2ac19069ce8ef917e84ce74cef3305f0e0c8538635e60f99610625"
+    },
+    "last_active_at": null
+  }
+}

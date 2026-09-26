@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm",
+  "description": "Nobody has measured whether a Jev `choice` would order the skill advisor's near-tie cluster better than its own fused scores",
+  "keywords": [
+    "nobody",
+    "measured",
+    "whether",
+    "jev",
+    "choice",
+    "order",
+    "skill",
+    "advisor",
+    "near-tie",
+    "cluster",
+    "better",
+    "own",
+    "fused",
+    "scores"
+  ],
+  "lastUpdated": "2026-09-26T18:32:48.303Z",
+  "specId": "002",
+  "folderSlug": "advisor-jev-tiebreak-arm",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

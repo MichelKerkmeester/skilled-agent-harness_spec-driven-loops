@@ -64,7 +64,7 @@ The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a s
 
 ### Purpose
 
-Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. Each one must plug into a named seam, improve a metric we can measure on an existing harness, stay opt-in, and behave sensibly when no Jev key is set. Phase 001 answers that with 30 forced-depth research iterations across three model families and one fresh synthesis. The phases after it are scaffolded from that synthesis as Planned work, so the operator decides what gets built.
+Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. Each one must plug into a named seam, improve a metric we can measure on an existing harness, stay opt-in, and stay dormant unless a Jev key resolves. With no key it behaves exactly as today. Phase 001 answers that with 30 forced-depth research iterations across three model families and one fresh synthesis. The phases after it are scaffolded from that synthesis as Planned work, so the operator decides what gets built.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -86,6 +86,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 - Changing the `cli-jev` hub or its `cli-usage` transport contract.
 - Editing the vendored repositories under `context/`. They are reference material.
 - Storing any key or secret in Jev state, in a digest or in a research artifact.
+- Any feature that calls Jev or changes behavior while `command -v jev && jev auth status` fails. The check only reads, never prints the key and spends no quota (`cli-usage/SKILL.md:98-102`). Each feature also keeps its own opt-in switch, and with no key it runs exactly as it does today.
 - Pushing or merging the worktree branch. Both are the operator's call.
 
 ### Files to Change
@@ -110,7 +111,9 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-deep-research/ | Context digests and research angles, the Grok 4.7 roster entry, a 30-iteration fan-out over DeepSeek, MiMo and Grok, and a fresh Opus synthesis | In Progress |
+| 1 | 001-deep-research/ | Context digests and research angles, the Grok 4.7 roster entry, a 30-iteration fan-out over DeepSeek, MiMo and Grok, and a fresh Opus synthesis | Complete |
+| 2 | 002-advisor-jev-tiebreak-arm/ | Measure offline, by hand, whether a Jev `choice` over the advisor's near-tie cluster beats the scorer's own order on held-out rows. Dormant without a Jev key | Planned |
+| 3 | 003-goal-verifier-jev-shadow/ | Give the goal verifier its first error rates on an operator-labeled set, then add an opt-in shadow `jev` mode to the OpenCode goal plugin only if an offline Jev arm clears a threshold fixed before the build. Dormant without a Jev key | Planned |
 
 ### Phase Transition Rules
 
@@ -124,6 +127,8 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-deep-research | proposed build phases | `research/research.md` ranks every recommendation and lists the phases to scaffold | The synthesis opens every cited `file:line`, and `validate.sh --strict` passes on 001 |
+| 001-deep-research | 002-advisor-jev-tiebreak-arm | `research/research.md` ranks R1 build-now with its seam, metric and first slice | `validate.sh --strict` passes on 001 |
+| 002-advisor-jev-tiebreak-arm | 003-goal-verifier-jev-shadow | Not a hard gate: 003's offline slice can start any time. Its plugin mode waits on 002's per-call latency record | 002's per-call JSONL shows a wall time for every call |
 <!-- /ANCHOR:phase-map -->
 
 ---
