@@ -128,6 +128,7 @@ and findings belong here.
 | Fan-out | Done | Runner exit 0, `failed: 0`; deepseek, mimo and grok each 10 state records and files ending `maxIterationsReached`, all on attempt 1 (grok 11 min, deepseek 20, mimo 44); merge 85 key findings; resource map from 30 deltas |
 | Synthesis | Done | `research/research.md` (112 KB) by a fresh Opus 5.5 max leaf: 1 build-now, 1 next, 16 later, 32 drop, 3 dead ends. The host reopened 7 cited seams (all resolved) and checked R1, R2 and the compaction drop against the code |
 | Build phases | Done | `002-advisor-jev-tiebreak-arm` and `003-goal-verifier-jev-shadow` authored as Planned by one Opus 5.5 high leaf each; the host reran strict validate (`RESULT: PASSED`) and `check-goal` (4/4) on both |
+| Close | Done | All six criteria met: context and angles present; allowlists, vitest 257/257 and probe `OK` (`9fe8526284`); three lineages of 10 ending `maxIterationsReached`; `research.md` ranked; 002 and 003 Planned with binding, phase-map rows and the key gate; recursive strict validate 4 x `RESULT: PASSED`, `check-goal` 4/4 on all four folders. Committed `021437ceda` on the worktree branch; not pushed or merged |
 
 ### Deviations and findings
 

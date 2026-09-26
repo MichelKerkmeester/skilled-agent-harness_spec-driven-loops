@@ -68,9 +68,9 @@ contextType: "research"
 - [x] T018 Confirm each lineage state log holds 10 records ending `maxIterationsReached`
 - [x] T019 Reopen five citations and three recommendations from the synthesis against the code
 - [x] T020 Review the fan-out containment advisories and `git status` for lineage writes outside `research/`
-- [ ] T021 Run `validate.sh --strict --recursive` on the parent until it prints `RESULT: PASSED`
-- [ ] T022 Run `check-goal.cjs` on the parent and every child
-- [ ] T023 Fill `implementation-summary.md` and save continuity
+- [x] T021 Run `validate.sh --strict --recursive` on the parent until it prints `RESULT: PASSED`
+- [x] T022 Run `check-goal.cjs` on the parent and every child
+- [x] T023 Fill `implementation-summary.md` and save continuity
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -78,9 +78,9 @@ contextType: "research"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
