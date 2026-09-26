@@ -44,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       "shared/embeddings/providers/hf-local.ts"
     ],
@@ -64,6 +65,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -185,26 +192,21 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The packet closed with every phase Complete, but a read-only deep review over ten forced iterations found contradictions between what the documents claim and what they record, plus one runtime gap: the committed trigger-index reader accepted a parseable but malformed artifact and silently returned fewer results than it held",
     "created_at": "2026-09-04T07:21:40Z",
-    "last_save_at": "2026-09-11T16:42:47.365Z",
+    "last_save_at": "2026-09-26T08:29:59.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:92a02a8ff58c75c867ce08d639b8b5b02a17e45059b9e78876bf71170b273e1a",
+    "source_fingerprint": "sha256:2e8d20b51067f23ee0420e7d3ca33a0ae701d4ac6e914d26e89812420c052399",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "feeb97035b6efebae4511d4e64bc80b39b1f67d151639936e21186381584a707",

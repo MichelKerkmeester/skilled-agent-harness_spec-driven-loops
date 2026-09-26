@@ -71,6 +71,7 @@ phase and binds as if written here.
 | 004-grep-convention-doc-retrofit | `004-grep-convention-doc-retrofit/goal.md` |
 | 005-ripgrep-retrieval-research | `005-ripgrep-retrieval-research/goal.md` |
 | 006-legacy-memory-surface-inventory | `006-legacy-memory-surface-inventory/goal.md` |
+| 007-decommission-review-p1-p2-fixes | `007-decommission-review-p1-p2-fixes/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
