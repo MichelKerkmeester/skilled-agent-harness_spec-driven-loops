@@ -12,10 +12,10 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-26T13:55:00Z"
+    last_updated_at: "2026-09-26T14:08:00Z"
     last_updated_by: "orchestrate"
-    recent_action: "Completed 004-headless-fallback-status-and-dedup"
-    next_safe_action: "Resolve the 001 close blocker"
+    recent_action: "Closed 001-deep-research after the fan-out dashboard fix"
+    next_safe_action: "None; all four phases are complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-26-030-orchestrate"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Q2, answered by the operator 2026-09-26: fix the advisor docs to match the CLI-only hook, with the casual-prompt gate in front of the CLI call."
@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Active. Phase 1 research is synthesized. Phases 2, 3 and 4 are complete |
+| **Status** | Complete. All four phases are complete |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -99,11 +99,12 @@ Produce an evidence-backed, ranked set of adopt, adapt or reject verdicts, each 
 - General tool-output compression from its Token Saver. Token Saver ideas count only where they bear on advisor output size, brief format or lazy discovery.
 
 ### Files to Change
-Phase 1 writes research artifacts only. Each refinement phase lists its exact files in its own `plan.md`.
+Phase 1 writes research artifacts, plus one fix to the research workflows that its close needed. Each refinement phase lists its exact files in its own `plan.md`.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `001-deep-research/research/` | Create | 001-deep-research | Fan-out lineages, merged state and `research.md` synthesis |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml` | Modify | 001-deep-research | Require the root dashboard only for runs without lineage logs, so a fan-out close can record `synthesis_complete` |
 | `.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts` | Modify | 002-hook-deadline-and-diagnostics | Nested deadline so the advisor hook times out before the shim kills it |
 | `.skilled/skills/system-skill-advisor/hooks/` and `runtime/lib/` | Modify | 002, 003, 004 | Diagnostics, Pi hook guards, hook-path request option, casual-prompt gate, fallback rendering |
 | `.skilled/plugins/system-skill-advisor.js` | Modify | 004-headless-fallback-status-and-dedup | Plugin copy of the fallback line and its repeat handling |
@@ -118,7 +119,7 @@ Phase 1 writes research artifacts only. Each refinement phase lists its exact fi
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-deep-research/ | Two-lineage deep research: MiMo v2.6 Pro high via cli-pi on LLM Gateway for 10 iterations, SWE-2 MAX via cli-devin for 5 iterations, synthesized by Opus 5.5 at max effort | Active |
+| 1 | 001-deep-research/ | Two-lineage deep research: MiMo v2.6 Pro high via cli-pi on LLM Gateway for 10 iterations, SWE-2 MAX via cli-devin for 5 iterations, synthesized by Opus 5.5 at max effort | Complete |
 | 2 | 002-hook-deadline-and-diagnostics/ | R1 nested hook deadlines, R3 brief bytes and runtime in diagnostics, R7 Pi dist-path test, R11 crash-safe log trim, R12 Pi call deadline | Complete |
 | 3 | 003-hook-path-cli-spawn-trim/ | R2 skip compiled-route spawns on the hook path, R5 reconnect the casual-prompt gate | Complete |
 | 4 | 004-headless-fallback-status-and-dedup/ | R4 status-aware fallback line, R6 no repeated fallback on Claude and OpenCode | Complete |

@@ -39,7 +39,7 @@
       "fallback"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,9 @@
       "implementation-summary.md",
       "research/research.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts",
       ".pi/models.json",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".skilled/plugins/system-skill-advisor.js",
@@ -57,16 +60,13 @@
       "research/lineages/swe2max/deep-research-state.jsonl",
       "specs/system-skill-advisor/graph-metadata.json",
       "specs/sk-doc/059-skill-changelog-retrofit/description.json",
-      ".skilled/hooks/skill-advisor/opencode/system-skill-advisor.js",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "research/lineages/swe2max/logs/fanout-lineage.out",
-      "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/spec.md"
+      ".skilled/hooks/skill-advisor/opencode/system-skill-advisor.js"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,6 +97,24 @@
         "name": "deep-research-auto.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-now-yaml-control.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts",
         "source": "derived"
       },
       {
@@ -154,18 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "write-containment.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-lineage.out",
-        "kind": "file",
-        "path": "research/lineages/swe2max/logs/fanout-lineage.out",
-        "source": "derived"
-      },
-      {
         "name": "Research Phase",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,18 +206,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor and the pi-skill-orchestrator extension solve skill selection with opposite designs",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-09-26T13:42:15.318Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-26T14:03:33.735Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -220,14 +220,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:420e4379ec5d97d47740ae3c8b31277d53236cabd1c66f641454439a9a2fa30c",
+    "source_fingerprint": "sha256:b1f1391e76bdb29f0e3ba5d89e6e74222fe3d2f0f34eecf4a5171d445609a10d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "718f8a8341b9d950152d970f4991cc18ec94cc3952b73a6ed902a86c4df99d14",
+      "spec.md": "f80bdef908aeca8930170c881d9cfedfc16a26bf2a13bb1d7c35ee661e1bd9cc",
       "plan.md": "ab53d1a63889c819c28731c9fbf1e1a149f4bdcd0dfd7a6370944b1588618c87",
-      "tasks.md": "91ee137dd8127440f8b983c94f8b957007d1638af4bfa10512bc0b6a1ee408af",
-      "implementation-summary.md": "0f922db3148ac7d8ae6f5ff48bce568293ed64d27f9a1e31edaf6dd817717320",
-      "research/research.md": "63f49fd6149999c2340e1799e59304a4e6b4f93f2eb88f4109fff9d94b7d27d6"
+      "tasks.md": "9df46c4316153b19d6d229e66128c9c1e45a834520d0704390a761c9119489f1",
+      "implementation-summary.md": "d81f273533c1e4367b42fa091b33b222b734c02bb01e5dcdfe331bb2cb95d1fd",
+      "research/research.md": "3c797784d15ccf8e2ce0fbabb78cb3636d335a010b6383d06540086d1a972843"
     },
     "last_active_at": null
   }

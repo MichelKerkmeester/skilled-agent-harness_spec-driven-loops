@@ -12,13 +12,15 @@
     "opposite",
     "designs"
   ],
-  "lastUpdated": "2026-09-26T06:33:25.383Z",
+  "lastUpdated": "2026-09-26T14:02:43.279Z",
   "specId": "001",
   "folderSlug": "deep-research",
   "parentChain": [
     "system-skill-advisor",
     "030-pi-skill-orchestrator-based-research-refinement"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-09-26_15-02__deep-research-closed-two-lineages-mimo-10-swe-2.md"
+  ]
 }
