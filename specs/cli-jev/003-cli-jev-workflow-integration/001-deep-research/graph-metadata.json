@@ -39,7 +39,7 @@
       "lane"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`cli-jev` returns typed judgments, and no other part of `.skilled` asks for one",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-26T18:38:11.113Z",
+    "last_save_at": "2026-09-26T18:40:18.618Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5e223034619a61b389337f8db5c9180d72bc236a5806bbb1a9ce95121fa70b62",
+    "source_fingerprint": "sha256:d905f9f0bb171a5a1f9219f6587b7e310b139ed0cbb2a1f29effa6957b64eb93",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37856fd680a9732e9b4859f413af9a6f05c8a4c626486ca36b9c8854d573ddb8",
       "plan.md": "6c2d748a22ed609923dafbef0a036457f1719fc43f6a137d467145b9be349ec4",
-      "tasks.md": "b44db466bb2410aec6e32c8454fa7b8a8ac256da6fd9b49890e35f4817804641",
+      "tasks.md": "277b9f01a68827f5aaf46900e7ce773ec37ee5ac9503be43591860338f47017a",
       "implementation-summary.md": "a02f140ff8a3465ef5c4c8a764ed8ebc76c2ea68b82c34754dc6475b042a75f2",
       "research/research.md": "677b1339f410163d0aedc5cfb4d8d4e1ef9e9d713b8e7d81a7af0b5765836c31"
     },
