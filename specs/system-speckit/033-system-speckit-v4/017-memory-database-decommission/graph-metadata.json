@@ -175,17 +175,17 @@
     ],
     "causal_summary": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-26T08:30:00.627Z",
+    "last_save_at": "2026-09-26T10:22:34.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:13a13ec793c3390af330ab6b55e4ad6d158d3c7e4c89c65fb5fe9e0d3231b872",
+    "source_fingerprint": "sha256:46eb53f93f8d192cd5aa33ad98783695c2ca2a80f8d0e43e3fb0f58c8f33a812",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "912657c1d57653bfe3452eabed1a8ffa6201ef05bfe364162a3d58e27b125188"
+      "spec.md": "b4f3874c8a0fc14c4ca0ccdce4008c145ea55e2738214926489a19436d103a15"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit",
     "last_active_at": null
