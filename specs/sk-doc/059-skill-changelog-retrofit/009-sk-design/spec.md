@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-24 |
 | **Branch** | `worktrees/064-save-writer-continuity-fields` |
 | **Parent Spec** | ../spec.md |
@@ -37,7 +37,7 @@ contextType: "implementation"
 
 This is **Phase 9** of the skill changelog retrofit.
 
-**Scope Boundary**: The 30 sk-design changelogs listed in `../scratch/lists/sk-design.txt`. The pilot kept v2.0.0.0, but the stricter checker later rejected it and the phase 001 check run restored it, so it goes back through the driver with `--retry-failed`.
+**Scope Boundary**: The 30 sk-design changelogs listed in `../scratch/lists/sk-design.txt`. The pilot kept v2.0.0.0, but the stricter checker later rejected it and the phase 001 check run restored it. It went back through the driver, which kept it.
 
 **Dependencies**:
 - Phase 001's checker, briefs and driver, frozen after the operator's style approval

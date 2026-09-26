@@ -35,7 +35,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -171,13 +171,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "no",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -191,8 +191,8 @@
     ],
     "causal_summary": "29 sk-code changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:10Z",
-    "last_save_at": "2026-09-25T14:09:09.271Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-26T08:26:18.478Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbe203e3aa906f292212f44ffaf38556513a25a34c8be3bd062705a58daaaa14",
+    "source_fingerprint": "sha256:aaff20153685f8d1c473e393d8146d9e7fd7e59db2a16ba37bf76bf3d88ba952",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f65550aaf896fcc2d560f6ec997015f306fd8f0ec7eb6ed816645d11c756594",
+      "spec.md": "5c853e676dc2dce00a1713aa18430d479117927ffb0b8f3c5496ee5c22109224",
       "plan.md": "ca8dfdad818b889518a136b6c13f2505af6853f6accd6579291f3434a27f0011",
-      "tasks.md": "ef48a3bc14991925c7d8280377ef6d38c5b3ea8984700a684fcdc4a84c6b77c2",
-      "implementation-summary.md": "ef97e3fdd2107d515a694696ec8ce5b9364982b6d496c05121e3f8295c289bba"
+      "tasks.md": "a61058b497a8a63d7b4cb10f00fc9e7002fb59eca4347468346e6cf82848d45b",
+      "implementation-summary.md": "03c0a4a7a08dbbf59809d161c64ebc9c879b9c9201851a5f1d58ba38d7d87061"
     },
     "last_active_at": null
   }

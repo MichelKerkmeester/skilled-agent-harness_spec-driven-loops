@@ -52,7 +52,7 @@
       "directive"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -101,12 +101,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -131,6 +125,12 @@
         "source": "derived"
       },
       {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -143,7 +143,19 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "An Opus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Opus",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -153,29 +165,23 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "cli-pi",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-create-changelog defines two narrative formats for a release, compact and expanded, and its canonical exemplar is `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md`",
     "created_at": "2026-09-24T15:48:26Z",
-    "last_save_at": "2026-09-25T18:31:36.832Z",
+    "last_save_at": "2026-09-26T08:29:41.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:f03e31d3c68143b822e08ad297ee9e7f535efccb9a6d5a3642613a532295808b",
+    "source_fingerprint": "sha256:72fc76417a0af1ce62f64984d264520cab44ce79dbb0063b51108f633eecf722",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "185f07528e9981f73d4010510a3c920c0f133f24bc70bf81047de8c2034d29c9"
+      "spec.md": "8cf536af1362a5438e2d7cceacaeb0fc947369468130d4d0ab45d93954f88ed5"
     },
-    "last_active_child_id": "sk-doc/059-skill-changelog-retrofit/004-cli-orca",
-    "last_active_at": "2026-09-25T18:31:36.832Z"
+    "last_active_child_id": "sk-doc/059-skill-changelog-retrofit/016-system-spec-kit",
+    "last_active_at": "2026-09-26T08:27:03.158Z"
   }
 }

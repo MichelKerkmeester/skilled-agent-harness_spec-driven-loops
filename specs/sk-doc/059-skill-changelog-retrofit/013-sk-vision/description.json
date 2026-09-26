@@ -13,13 +13,15 @@
     "now",
     "defines"
   ],
-  "lastUpdated": "2026-09-24T17:59:34.990Z",
+  "lastUpdated": "2026-09-26T08:26:50.976Z",
   "specId": "013",
   "folderSlug": "sk-vision",
   "parentChain": [
     "sk-doc",
     "059-skill-changelog-retrofit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-09-26_09-26__all-2-sk-vision-changelogs-are-kept-reviewed.md"
+  ]
 }
