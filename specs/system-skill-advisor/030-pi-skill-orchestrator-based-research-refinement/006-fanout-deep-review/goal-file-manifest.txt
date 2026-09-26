@@ -1,0 +1,52 @@
+# Review scope: every file phases 2 to 5 of this packet changed, plus the research-workflow
+# fix made while closing phase 1. One repo-relative path per line.
+
+# Hook deadlines, runtime labels and diagnostics (phase 2)
+.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts
+.skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts
+.skilled/skills/system-spec-kit/runtime/hooks/cursor/shared.ts
+.skilled/skills/system-spec-kit/runtime/hooks/devin/shared.ts
+.skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts
+.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts
+.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts
+
+# Hook path request option, stale-daemon retry and casual-prompt gate (phase 3)
+.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
+.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts
+.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts
+.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts
+.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts
+.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts
+.skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+.skilled/skills/system-skill-advisor/ARCHITECTURE.md
+
+# Fallback status heads and dedup (phases 4 and 5)
+.skilled/skills/system-skill-advisor/runtime/lib/render.ts
+.opencode/plugins/system-skill-advisor.js
+
+# Deep-loop convergence steps: only step_convergence_report changed (phase 1 close and phase 5)
+.skilled/commands/deep/assets/deep-research-auto.yaml
+.skilled/commands/deep/assets/deep-research-confirm.yaml
+.skilled/commands/deep/assets/deep-review-auto.yaml
+.skilled/commands/deep/assets/deep-review-confirm.yaml
+
+# Pi edit_lines: only the hash-verified edits section changed (phase 5)
+.pi/extensions/pi-cache-optimizer/index.ts
+.pi/extensions/pi-cache-optimizer/README.md
+
+# Tests for the changes above
+.skilled/skills/system-spec-kit/runtime/tests/hook-adapter-runtime-label.vitest.ts
+.skilled/skills/system-spec-kit/runtime/tests/user-prompt-submit-shim.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/hooks/prompt-advisor.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-observability.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/prompt-policy-gold-replay.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts
+.opencode/plugins/tests/system-skill-advisor.test.cjs
+.skilled/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts
+.pi/extensions/pi-cache-optimizer/tests/hash-verified-edits.test.ts
