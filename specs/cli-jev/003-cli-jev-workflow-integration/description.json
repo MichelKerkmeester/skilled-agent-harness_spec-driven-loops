@@ -1,0 +1,20 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration",
+  "description": "Jev workflow integration deep research",
+  "keywords": [
+    "jev",
+    "workflow",
+    "integration",
+    "deep",
+    "research"
+  ],
+  "lastUpdated": "2026-09-26T15:37:28.467Z",
+  "specId": "003",
+  "folderSlug": "cli-jev-workflow-integration",
+  "parentChain": [
+    "cli-jev"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
