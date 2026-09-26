@@ -34,16 +34,16 @@ contextType: "research"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [P] Write the repository-rules digest (`context/repo-rules-digest.md`)
-- [ ] T002 [P] Write the seam map of every place Jev could plug in, with paths (`context/seam-map.md`)
-- [ ] T003 [P] Write the digest of the vendored Jev material and the ideas file, naming the two `jev` packages apart (`context/jev-material-digest.md`)
-- [ ] T004 [P] Write the digest of harnesses that can measure usefulness (`context/measurement-digest.md`)
-- [ ] T005 Write three lenses and 30 label-keyed angles in four waves, a draft topic and the synthesis brief (`context/research-angles.md`, `scratch/synthesis-brief.md`)
-- [ ] T006 Tighten the topic with the prompt-improver and save it as one line with no double quote, backtick, dollar sign or backslash (`scratch/research-topic.txt`)
-- [ ] T007 [P] Add `grok-4.7-xhigh-fast` to both cli-cursor allowlists (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`, `runtime/scripts/fanout-run.cjs`)
-- [ ] T008 [P] Cover the new id in the allowlist tests (`runtime/tests/unit/executor-config.vitest.ts`, `fanout-run.vitest.ts`)
-- [ ] T009 [P] Document the new id and add a changelog entry (`.skilled/skills/cli-external-orchestration/cli-cursor/`)
-- [ ] T010 Probe the new id live with `Reply OK` and record the reply
+- [x] T001 [P] Write the repository-rules digest (`context/repo-rules-digest.md`)
+- [x] T002 [P] Write the seam map of every place Jev could plug in, with paths (`context/seam-map.md`)
+- [x] T003 [P] Write the digest of the vendored Jev material and the ideas file, naming the two `jev` packages apart (`context/jev-material-digest.md`)
+- [x] T004 [P] Write the digest of harnesses that can measure usefulness (`context/measurement-digest.md`)
+- [x] T005 Write three lenses and 30 label-keyed angles in four waves, a draft topic and the synthesis brief (`context/research-angles.md`, `scratch/synthesis-brief.md`)
+- [x] T006 Tighten the topic with the prompt-improver and save it as one line with no double quote, backtick, dollar sign or backslash (`scratch/research-topic.txt`)
+- [x] T007 [P] Add `grok-4.7-xhigh-fast` to both cli-cursor allowlists (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`, `runtime/scripts/fanout-run.cjs`)
+- [x] T008 [P] Cover the new id in the allowlist tests (`runtime/tests/unit/executor-config.vitest.ts`, `fanout-run.vitest.ts`)
+- [x] T009 [P] Document the new id and add a changelog entry (`.skilled/skills/cli-external-orchestration/cli-cursor/`)
+- [x] T010 Probe the new id live with `Reply OK` and record the reply
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -51,7 +51,7 @@ contextType: "research"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T011 Ping each executor and preview each lineage's prompt through `buildLoopPrompt`
+- [x] T011 Ping each executor and preview each lineage's prompt through `buildLoopPrompt`
 - [ ] T012 Run the three-lineage fan-out in the background (`research/`)
 - [ ] T013 Rerun alone any lineage that ends short of 10 iterations
 - [ ] T014 Run the merge and resource-map steps (`research/`)

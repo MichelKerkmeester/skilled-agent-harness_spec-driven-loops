@@ -48,9 +48,16 @@
       "implementation-summary.md",
       ".pi/models.json",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "context/repo-rules-digest.md",
+      "context/research-angles.md",
+      "scratch/research-topic.txt",
+      "scratch/synthesis-brief.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
-      ".skilled/bin/compiled-route.cjs"
+      ".skilled/bin/compiled-route.cjs",
+      "context/seam-map.md",
+      "context/jev-material-digest.md",
+      "context/measurement-digest.md"
     ],
     "entities": [
       {
@@ -96,6 +103,30 @@
         "source": "derived"
       },
       {
+        "name": "repo-rules-digest.md",
+        "kind": "doc",
+        "path": "context/repo-rules-digest.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-angles.md",
+        "kind": "doc",
+        "path": "context/research-angles.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic.txt",
+        "kind": "file",
+        "path": "scratch/research-topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-brief.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-brief.md",
+        "source": "derived"
+      },
+      {
         "name": "executor-config.ts",
         "kind": "code",
         "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
@@ -111,6 +142,24 @@
         "name": "compiled-route.cjs",
         "kind": "file",
         "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "seam-map.md",
+        "kind": "doc",
+        "path": "context/seam-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-material-digest.md",
+        "kind": "doc",
+        "path": "context/jev-material-digest.md",
+        "source": "derived"
+      },
+      {
+        "name": "measurement-digest.md",
+        "kind": "doc",
+        "path": "context/measurement-digest.md",
         "source": "derived"
       },
       {
@@ -154,53 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Four Opus",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Grok",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "paths",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-jev` returns typed judgments, and no other part of `.skilled` asks for one",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-26T15:44:06.825Z",
+    "last_save_at": "2026-09-26T16:05:30.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05d5af2e33b1417af39367702af2bb5fbc776c00fc0dfde70f5949a394d83066",
+    "source_fingerprint": "sha256:2f208a46597de4d591611257137273e2ef2ad28c50e381dec8d613587d8d5941",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61002c6e6b21644c1ba309b367e1274ce809aa698fc0217c17d87b13704ef4ee",
       "plan.md": "6c2d748a22ed609923dafbef0a036457f1719fc43f6a137d467145b9be349ec4",
-      "tasks.md": "0c87eaf09f00f9c1ec34564d4c9352e60e6f773a3a46e4fd35e0666d75e9dfa7",
+      "tasks.md": "29568a981233fc97d99927f8868a2c304d4e8d0d1d21edace34ccb459b6940f0",
       "implementation-summary.md": "65814445557948d7a5e2dd476439f5a389a4cd67270dbdb99d58fd3c91d8fc55"
     },
     "last_active_at": null

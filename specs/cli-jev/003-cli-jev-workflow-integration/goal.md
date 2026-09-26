@@ -121,8 +121,8 @@ and findings belong here.
 |------|-------|----------|
 | Worktree | Done | `.worktrees/069-cli-jev-workflow-integration` at `f9d701bd13`, provisioned: 4 installed, 2 built, 0 failed |
 | Scaffold | Done | `create.sh --phase` wrote the parent and `001-deep-research` |
-| Context and angles | Pending | |
-| Grok 4.7 roster | Pending | |
+| Context and angles | Done | Four digests (757 lines), `research-angles.md` with 30 angles, topic tightened by prompt-improver on Sonnet (748 chars) |
+| Grok 4.7 roster | Done | `9fe8526284`; vitest 257/257, typecheck clean, guard fresh, live probe `OK` |
 | Fan-out | Pending | |
 | Synthesis | Pending | |
 | Build phases | Pending | |
@@ -134,5 +134,6 @@ and findings belong here.
 | Grok 4.7 MAX fast | `cursor-agent --list-models` on 2026-09-26 lists `grok-4.7-{low,medium,high,xhigh}` with `-fast` variants and no MAX tier. The highest-effort fast id, `grok-4.7-xhigh-fast`, stands in (D1). |
 | Level 1 child has no `acceptance-criteria.md` | sk-create-goal's phase-parent workflow expects one per child. The approved plan keeps the research child at Level 1, as packet 030 did, so its goal criteria come from `spec.md` requirements. |
 | Spec-kit CLI build | `create.sh --phase` first failed in the fresh worktree because `runtime/cli/dist/` was not built; `npm run build` under `runtime/cli` fixed it. |
+| prompt-improver on Opus | The agent definition denies Opus, so the topic pass ran on Sonnet, an eligible pair. |
 | Close blocker | The fan-out close report no longer needs a root dashboard when lineage logs exist (`ed22403e09`), so no close blocker is expected. |
 <!-- /ANCHOR:log -->
