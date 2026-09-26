@@ -105,16 +105,16 @@
     ],
     "causal_summary": "The skill advisor routes by push",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-09-26T12:11:41.567Z",
+    "last_save_at": "2026-09-26T12:54:41.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f901ecc1c0f195b4dc4526236cd668f2353c8761957b370eaee067100abe58ab",
+    "source_fingerprint": "sha256:5f660b7e4279b24826c1e71ca32c92bf64782098d789fe78c178dbe07a8bf479",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "291c1f0e4d0cf94e305af34e5cb8381b7cf8aa1ec8a164c7ed9636845833346e"
+      "spec.md": "b42f0be33c42051ad8c4576a82238f4c2cb729eb0dca54263a14d22942dc8b71"
     },
     "last_active_at": null
   }

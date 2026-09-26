@@ -14,6 +14,7 @@ import { isAdvisorRuntime, type AdvisorRuntime } from '../../runtime/lib/advisor
 import { findAdvisorWorkspaceRoot } from '../../runtime/lib/utils/workspace-root.js';
 import {
   buildSkillAdvisorBrief,
+  skippedAdvisorResultFor,
   type AdvisorHookResult,
   type AdvisorHookStatus,
   type AdvisorHookFreshness,
@@ -303,10 +304,9 @@ export async function handleClaudeUserPromptSubmit(
     }
 
     const renderBrief = dependencies.renderBrief ?? renderAdvisorBrief;
-    // The CLI is the single front door: it owns the warm-daemon probe and the
-    // local-scorer fallback, so an unreachable daemon degrades inside the CLI
-    // rather than needing a second hop here. An injected producer still wins
-    // over the real implementation so the hook stays testable without a daemon.
+    // The CLI owns the warm-daemon probe and local-scorer fallback.
+    // The prompt-policy gate skips prompts that need no advisor before the
+    // CLI call; injected full producers stay ungated for producer-level tests.
     const injectedBrief = dependencies.buildBrief;
     const buildCliBrief = dependencies.buildCliBrief ?? buildSkillAdvisorBriefFromCli;
     let result = injectedBrief
@@ -315,7 +315,7 @@ export async function handleClaudeUserPromptSubmit(
         workspaceRoot,
         subprocessTimeoutMs: claudeHookTimeoutMs(),
       })
-      : await buildCliBrief(prompt, {
+      : skippedAdvisorResultFor(prompt) ?? await buildCliBrief(prompt, {
         runtime,
         workspaceRoot,
         timeoutMs: claudeHookTimeoutMs(),

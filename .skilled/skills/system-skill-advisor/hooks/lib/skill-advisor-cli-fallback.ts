@@ -225,6 +225,9 @@ function runCliRecommend(args: {
       topK: 3,
       includeAttribution: false,
       includeAbstainReasons: true,
+      // The hook never reads compiled routing data, so requesting it only
+      // spends the hook's budget on a subprocess.
+      includeCompiledRoute: false,
       // Forward caller thresholds so the CLI scorer applies them; without this
       // the scorer uses its own defaults and thresholdsFrom trusts the echoed
       // defaults, silently discarding a caller's stricter thresholds.

@@ -397,6 +397,32 @@ export function clearAdvisorBriefCacheForTests(): void {
   (advisorPromptCache as AdvisorPromptCache<unknown>).clear();
 }
 
+/** Return the skipped result when the prompt gate declines, or null when the advisor should run. */
+export function skippedAdvisorResultFor(prompt: string): AdvisorHookResult | null {
+  const startedAt = performance.now();
+  const policy = shouldFireAdvisor(prompt);
+  if (policy.fire) return null;
+
+  const baseDiagnostics: AdvisorHookDiagnostics | null = policy.metalinguisticMentions.length > 0
+    ? {
+      metalinguisticMention: policy.metalinguisticMentions,
+      skillNameSuppressions: policy.metalinguisticMentions,
+    }
+    : null;
+
+  return result({
+    startedAt,
+    status: 'skipped',
+    freshness: 'unavailable',
+    brief: null,
+    diagnostics: {
+      ...(baseDiagnostics ?? {}),
+      policyReason: policy.reason,
+    },
+    freshnessResult: null,
+  });
+}
+
 /** Build the typed skill-advisor result consumed by all runtime hook renderers. */
 export async function buildSkillAdvisorBrief(
   prompt: string,
@@ -404,6 +430,9 @@ export async function buildSkillAdvisorBrief(
 ): Promise<AdvisorHookResult> {
   const startedAt = performance.now();
   try {
+    const skipped = skippedAdvisorResultFor(prompt);
+    if (skipped) return skipped;
+
     const policy = shouldFireAdvisor(prompt);
     const baseDiagnostics: AdvisorHookDiagnostics | null = policy.metalinguisticMentions.length > 0
       ? {
@@ -411,20 +440,6 @@ export async function buildSkillAdvisorBrief(
         skillNameSuppressions: policy.metalinguisticMentions,
       }
       : null;
-
-    if (!policy.fire) {
-      return result({
-        startedAt,
-        status: 'skipped',
-        freshness: 'unavailable',
-        brief: null,
-        diagnostics: {
-          ...(baseDiagnostics ?? {}),
-          policyReason: policy.reason,
-        },
-        freshnessResult: null,
-      });
-    }
 
     const freshness = getAdvisorFreshness(options.workspaceRoot);
     const nonLive = nonLiveResult({

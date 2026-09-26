@@ -224,6 +224,7 @@ export const AdvisorRecommendInputSchema = z.object({
     includeAbstainReasons: z.boolean().optional(),
     confidenceThreshold: z.number().min(0).max(1).optional(),
     uncertaintyThreshold: z.number().min(0).max(1).optional(),
+    includeCompiledRoute: z.boolean().optional(),
   }).strict().optional(),
 }).strict();
 
