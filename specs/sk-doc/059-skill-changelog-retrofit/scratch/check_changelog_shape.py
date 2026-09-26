@@ -25,6 +25,10 @@ MACHINE_HEADER = re.compile(
 )
 SPEC_LINE = re.compile(r"^> Spec folder: `[^`]+`(?:(?:, | and )`[^`]+`)*( \(Level [0-9]\+?\))?$")
 SENTENCE_END = re.compile(r"[.!?](?=\s+[A-Z`*(\"]|\s*$)")
+# A release entry is named for its version, the same rule the rewrite driver
+# applies. A changelog folder also holds templates and README files, and a style
+# bundle can be named changelog, so the folder alone does not make a file an entry.
+RELEASE_ENTRY = re.compile(r"^v\d+(?:\.\d+)+[^/]*\.md$")
 
 
 def split_frontmatter(text):
@@ -296,6 +300,11 @@ def main():
     ap.add_argument("file")
     ap.add_argument("--old")
     args = ap.parse_args()
+    name = args.file.rsplit("/", 1)[-1]
+    if not RELEASE_ENTRY.match(name):
+        skipped = f"not a release entry: '{name}' is not named for a version, so the changelog shape does not apply"
+        print(json.dumps({"file": args.file, "format": None, "skipped": skipped, "errors": [], "warnings": []}, indent=2))
+        sys.exit(0)
     errors, warnings, fmt = check(args.file, args.old)
     print(json.dumps({"file": args.file, "format": fmt, "errors": errors, "warnings": warnings}, indent=2))
     sys.exit(1 if errors else 0)
