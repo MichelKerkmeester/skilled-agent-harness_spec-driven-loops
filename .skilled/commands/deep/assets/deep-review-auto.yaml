@@ -2259,10 +2259,11 @@ workflow:
           [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
           EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-review-synthesis.XXXXXX")"
           node --input-type=module - "$EVENT_DIR" <<'EOF'
-          import { existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-          import { basename, dirname, join } from 'node:path';
+          import { existsSync, lstatSync, readdirSync, readFileSync, realpathSync, statSync, writeFileSync } from 'node:fs';
+          import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
           const paths = {
+            artifactDir: String.raw`{state_paths.packet_dir}`,
             stateLog: String.raw`{state_paths.state_log}`,
             registry: String.raw`{state_paths.findings_registry}`,
             review: String.raw`{state_paths.review_output}`,
@@ -2301,6 +2302,33 @@ workflow:
                 }
               });
             return { records, malformedLines };
+          }
+
+          function lineageStateLogs(artifactDir) {
+            const lineagesDir = join(artifactDir, 'lineages');
+            if (!existsSync(lineagesDir)) return [];
+            if (lstatSync(lineagesDir).isSymbolicLink() || !lstatSync(lineagesDir).isDirectory()) {
+              throw new Error(`lineages must be a real directory: ${lineagesDir}`);
+            }
+            const root = realpathSync(resolve(artifactDir));
+            return readdirSync(lineagesDir, { withFileTypes: true })
+              .map((entry) => {
+                if (entry.isSymbolicLink()) throw new Error(`lineage must be a real directory: ${join(lineagesDir, entry.name)}`);
+                return entry;
+              })
+              .filter((entry) => entry.isDirectory())
+              .sort((left, right) => left.name.localeCompare(right.name, undefined, { numeric: true }))
+              .flatMap((entry) => {
+                const label = entry.name;
+                const candidate = join(lineagesDir, label, 'deep-review-state.jsonl');
+                if (!hasFile(candidate)) return [];
+                const candidatePath = realpathSync(candidate);
+                const rel = relative(root, candidatePath);
+                if (rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) {
+                  throw new Error(`lineage state resolves outside the artifact directory: ${candidate}`);
+                }
+                return [candidatePath];
+              });
           }
 
           function countIterationFindings(record) {
@@ -2383,10 +2411,12 @@ workflow:
           const registryFindingKeys = new Set(collectRegistryFindingKeys(registry));
           const missingStructuredFindingCount = identifiableFindingGroups.filter((keys) => !keys.some((key) => registryFindingKeys.has(key))).length;
           const identifiableFindingCount = identifiableFindingGroups.length;
+          const lineageLogs = lineageStateLogs(paths.artifactDir);
           const missingArtifacts = [
             ['registry', paths.registry],
             ['review', paths.review],
-            ['dashboard', paths.dashboard],
+            // Fan-out keeps its dashboards per lineage.
+            ...(lineageLogs.length > 0 ? [] : [['dashboard', paths.dashboard]]),
           ].filter(([, filePath]) => !hasFile(filePath)).map(([name, filePath]) => ({ name, path: filePath }));
           const invariantFailures = [];
           if (stateLog.malformedLines.length > 0) invariantFailures.push('state_jsonl_parse_failure');
