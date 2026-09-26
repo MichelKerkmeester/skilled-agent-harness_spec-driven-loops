@@ -1,0 +1,5 @@
+
+=== TASK: run scenario 433 ===
+Scenario file: .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md
+Read the whole file first. Then run its test execution steps in order and judge them against its expected signals and pass/fail rules.
+- gtimeout is not installed on this machine. Run each hook call without it, and note that under DEVIATIONS. Keep every other part of the commands exactly as written, including the sandbox socket directory.

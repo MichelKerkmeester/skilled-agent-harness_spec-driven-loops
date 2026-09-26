@@ -1,0 +1,5 @@
+
+=== TASK: run scenario CP-004 ===
+Scenario file: .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+Read the whole file first. Then run its test execution steps in order and judge them against its expected signals and pass/fail rules.
+- Step 2 needs an absent native state. Run it with SPECKIT_IPC_SOCKET_DIR=<mktemp>/sock and SYSTEM_SKILL_ADVISOR_DB_DIR=<mktemp>/db and SPECKIT_DAEMON_REELECTION=0 set on that command only. Never touch the live database or daemon.

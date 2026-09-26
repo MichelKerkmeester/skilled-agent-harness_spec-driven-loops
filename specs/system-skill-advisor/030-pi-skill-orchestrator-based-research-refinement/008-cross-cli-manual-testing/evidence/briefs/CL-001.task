@@ -1,0 +1,6 @@
+
+=== TASK: run scenario CL-001 ===
+Scenario file: .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md
+Read the whole file first. Then run its test execution steps in order and judge them against its expected signals and pass/fail rules.
+- The orchestrator confirmed both runtime builds are current before this run, so skip every build and install step and list each one under DEVIATIONS as 'skipped: prebuilt by orchestrator'.
+- Also run the hook once with a casual prompt: pipe {"prompt":"thanks","cwd":"<repo root>","hook_event_name":"UserPromptSubmit"} into the same compiled hook and record the first line of additionalContext. The expected line is 'Advisor: prompt skipped.'
