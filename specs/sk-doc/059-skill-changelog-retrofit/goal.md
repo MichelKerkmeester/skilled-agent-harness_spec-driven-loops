@@ -137,6 +137,7 @@ and findings belong here.
 | Phase children 001 to 016 | Done | All 16 phases are Complete, each with its commit recorded |
 | Final checks | Done | All 547 inventory files: the shape checker with --old exits 0, 0 HVR hard blockers, frontmatter byte-identical, latest state pass. Outside the inventory, five files fail the checker and none is a release changelog: two sk-design style-bundle files in a folder named changelog and the three system-spec-kit changelog templates. The route guard and all nine mirror checks exit 0 at 7f7e8f1242 |
 | Packet validation | Done | validate.sh --recursive --strict on the packet: exit 0, 17 of 17 RESULT: PASSED after every phase closed |
+| Checker scope | Done | check_changelog_shape.py now skips a file that is not named for a version, with the reason in its report, the same rule the driver applies. The two sk-design style-bundle files and the three system-spec-kit changelog templates were its only failures. A sweep of all 580 files under changelog folders: 0 fail, 5 skipped |
 
 ### Deviations and findings
 
