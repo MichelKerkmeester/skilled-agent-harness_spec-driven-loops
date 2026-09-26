@@ -2444,6 +2444,15 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-create-diff",
         "routing_enabled": False,
     },
+    "command-create-goal": {
+        "description": "",
+        "slash_markers": ["/create:goal"],
+        "inventory_id": "command-create-goal",
+        "command": "/create:goal",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-goal",
+        "routing_enabled": False,
+    },
     "command-create-repo-rule": {
         "description": "",
         "slash_markers": ["/create:repo-rule"],
