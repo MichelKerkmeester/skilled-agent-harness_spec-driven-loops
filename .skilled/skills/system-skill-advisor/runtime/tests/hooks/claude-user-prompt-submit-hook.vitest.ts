@@ -11,6 +11,7 @@ import {
   DEFAULT_CLAUDE_HOOK_TIMEOUT_MS,
   commitClaudeDirectiveDeliveryReceipt,
   emitDiagnostic,
+  flushPendingDiagnostics,
   handleClaudeUserPromptSubmit,
   parseClaudeUserPromptSubmitInput,
   type ClaudeUserPromptSubmitInput,
@@ -24,6 +25,7 @@ import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 const fixturesDir = join(import.meta.dirname, '..', 'legacy', 'advisor-fixtures');
 const ORIGINAL_HOOK_DISABLED = process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
 const ORIGINAL_DIRECTIVE_DEDUP = process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV];
+const ORIGINAL_ADVISOR_RUNTIME = process.env.SPECKIT_RUNTIME;
 let lifecycleTranscriptDir = '';
 const EXPECTED_ADVISOR_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 // When no brief is available (skip, fail-open, timeout) the hook still emits
@@ -94,6 +96,8 @@ afterEach(() => {
   else process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED = ORIGINAL_HOOK_DISABLED;
   if (ORIGINAL_DIRECTIVE_DEDUP === undefined) delete process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV];
   else process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV] = ORIGINAL_DIRECTIVE_DEDUP;
+  if (ORIGINAL_ADVISOR_RUNTIME === undefined) delete process.env.SPECKIT_RUNTIME;
+  else process.env.SPECKIT_RUNTIME = ORIGINAL_ADVISOR_RUNTIME;
 });
 
 describe('Claude UserPromptSubmit advisor hook', () => {
@@ -122,6 +126,44 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(diagnostic.runtime).toBe('claude');
     expect(diagnostic.status).toBe('ok');
     expect(diagnostics.records[0]).not.toMatch(/prompt|stdout|stderr|promptFingerprint|promptExcerpt/);
+  });
+
+  it.each([
+    { name: 'defaults to Claude', expectedRuntime: 'claude' },
+    { name: 'uses an in-process runtime', expectedRuntime: 'pi', runtime: 'pi' as const },
+    { name: 'uses a recognized environment runtime', expectedRuntime: 'codex', environmentRuntime: 'codex' },
+    { name: 'falls back for an unknown environment runtime', expectedRuntime: 'claude', environmentRuntime: 'not-a-runtime' },
+  ])('records runtime and delivered bytes: $name', async ({ expectedRuntime, runtime, environmentRuntime }) => {
+    if (environmentRuntime === undefined) delete process.env.SPECKIT_RUNTIME;
+    else process.env.SPECKIT_RUNTIME = environmentRuntime;
+
+    const diagnosticLines: string[] = [];
+    const writeDiagnostic = vi.fn((line: string) => diagnosticLines.push(line));
+    const result = fixture('livePassingSkill.json');
+    const buildBrief = vi.fn(async () => result);
+    const dependencies = {
+      buildBrief,
+      renderBrief: renderAdvisorBrief,
+      writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+      ...(runtime === undefined ? {} : { runtime }),
+    };
+    const output = await handleClaudeUserPromptSubmit({
+      session_id: 'runtime-diagnostic-session',
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    }, dependencies);
+
+    expect('hookSpecificOutput' in output).toBe(true);
+    const additionalContext = 'hookSpecificOutput' in output
+      ? output.hookSpecificOutput.additionalContext
+      : '';
+    const diagnostic = parseDiagnostic(diagnosticLines[0] ?? '{}');
+    expect(buildBrief).toHaveBeenCalledOnce();
+    expect(writeDiagnostic).toHaveBeenCalledOnce();
+    expect(diagnostic.runtime).toBe(expectedRuntime);
+    expect(diagnostic.emittedBytes).toBe(Buffer.byteLength(additionalContext, 'utf8'));
   });
 
   it('AS2 emits the fallback directive block for an empty prompt skipped by the producer', async () => {
@@ -290,6 +332,44 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     } finally {
       process.off('unhandledRejection', listener);
     }
+  });
+
+  it('flushes pending diagnostic persistence before resolving', async () => {
+    let writeComplete = false;
+    const persistDiagnostic = vi.fn(async () => {
+      await new Promise<void>((resolve) => setTimeout(resolve, 20));
+      writeComplete = true;
+    });
+
+    emitDiagnostic({
+      workspaceRoot: '/workspace/project',
+      status: 'ok',
+      freshness: 'live',
+      durationMs: 1,
+      cacheHit: false,
+    }, () => undefined, persistDiagnostic);
+
+    await flushPendingDiagnostics();
+
+    expect(persistDiagnostic).toHaveBeenCalledOnce();
+    expect(writeComplete).toBe(true);
+  });
+
+  it('bounds the wait for pending diagnostic persistence', async () => {
+    const persistDiagnostic = vi.fn(() => new Promise<void>(() => undefined));
+    emitDiagnostic({
+      workspaceRoot: '/workspace/project',
+      status: 'ok',
+      freshness: 'live',
+      durationMs: 1,
+      cacheHit: false,
+    }, () => undefined, persistDiagnostic);
+
+    const startedAt = performance.now();
+    await flushPendingDiagnostics(50);
+
+    expect(persistDiagnostic).toHaveBeenCalledOnce();
+    expect(performance.now() - startedAt).toBeLessThan(200);
   });
 
   it('DL1 keeps the full brief on the first message and drops only the directive block on a same-content repeat', async () => {

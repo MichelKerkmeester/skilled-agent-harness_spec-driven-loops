@@ -6,23 +6,26 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const HOOK_ROOT = import.meta.dirname.replace(/\/tests$/u, '');
 const STUB_MARKER = 'override-stub-ran';
+const BUDGET_ENV = 'SPECKIT_CLAUDE_HOOK_TIMEOUT_MS';
 const tempDirs: string[] = [];
 
-function writeStub(): string {
+function writeStub(
+  source = `process.stdout.write(JSON.stringify({ marker: '${STUB_MARKER}' }));`,
+): string {
   const dir = mkdtempSync(join(tmpdir(), 'shim-override-'));
   tempDirs.push(dir);
   const stub = join(dir, 'stub.js');
-  writeFileSync(stub, `process.stdout.write(JSON.stringify({ marker: '${STUB_MARKER}' }));\n`);
+  writeFileSync(stub, `${source}\n`);
   return stub;
 }
 
-function runShim(env: Record<string, string>, cwd = HOOK_ROOT) {
+function runShim(env: NodeJS.ProcessEnv, cwd = HOOK_ROOT, inheritProcessEnv = true) {
   return spawnSync(process.execPath, [join(HOOK_ROOT, 'hooks/claude/user-prompt-submit.ts')], {
     cwd,
     input: JSON.stringify({ prompt: 'hello' }),
     encoding: 'utf8',
     timeout: 5000,
-    env: { ...process.env, ...env },
+    env: inheritProcessEnv ? { ...process.env, ...env } : env,
   });
 }
 
@@ -49,6 +52,45 @@ describe('Claude UserPromptSubmit shim', () => {
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain(STUB_MARKER);
+  });
+
+  it('sets the default child budget and preserves an operator-set budget', () => {
+    const stub = writeStub(
+      `process.stdout.write(JSON.stringify({ budget: process.env.${BUDGET_ENV} ?? null }));`,
+    );
+    const configuredResult = runShim({
+      SPECKIT_USER_PROMPT_TARGET: stub,
+      [BUDGET_ENV]: '1234',
+    });
+
+    expect(configuredResult.status).toBe(0);
+    expect(JSON.parse(configuredResult.stdout)).toEqual({ budget: '1234' });
+
+    const unsetBudgetEnv = { ...process.env };
+    delete unsetBudgetEnv[BUDGET_ENV];
+    const defaultResult = runShim({
+      ...unsetBudgetEnv,
+      SPECKIT_USER_PROMPT_TARGET: stub,
+    }, HOOK_ROOT, false);
+
+    expect(defaultResult.status).toBe(0);
+    expect(JSON.parse(defaultResult.stdout)).toEqual({ budget: '2200' });
+  });
+
+  it('lets a slow child finish within the shim timeout', () => {
+    const stub = writeStub(
+      `Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, Number(process.env.${BUDGET_ENV} ?? 2500));\n` +
+        `process.stdout.write(JSON.stringify({ marker: 'slow-stub-finished' }));`,
+    );
+    const unsetBudgetEnv = { ...process.env };
+    delete unsetBudgetEnv[BUDGET_ENV];
+    const result = runShim({
+      ...unsetBudgetEnv,
+      SPECKIT_USER_PROMPT_TARGET: stub,
+    }, HOOK_ROOT, false);
+
+    expect(result.status).toBe(0);
+    expect(JSON.parse(result.stdout)).toEqual({ marker: 'slow-stub-finished' });
   });
 
   it('ignores an override that is relative to the cwd', () => {

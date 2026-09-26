@@ -149,7 +149,8 @@ export function runClaudeHookAdapter(
       cwd: process.cwd(),
       input: JSON.stringify(input),
       encoding: 'utf8',
-      env: process.env,
+      // SPECKIT_RUNTIME labels advisor diagnostics; otherwise Cursor turns are recorded as Claude.
+      env: { ...process.env, SPECKIT_RUNTIME: 'cursor' },
       timeout: timeoutMs,
       maxBuffer: MAX_STDIO_BYTES,
       killSignal: 'SIGKILL',

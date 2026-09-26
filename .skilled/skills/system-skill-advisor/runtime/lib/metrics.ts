@@ -4,9 +4,11 @@
 
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
-import { appendFile, mkdir, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, rename, unlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
+
+import { ADVISOR_RUNTIME_VALUES } from './advisor-runtime-values.js';
 
 import type {
   AdvisorHookFreshness,
@@ -18,7 +20,7 @@ import type {
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────
 
-export const ADVISOR_RUNTIME_VALUES = ['claude', 'copilot', 'opencode'] as const;
+export { ADVISOR_RUNTIME_VALUES } from './advisor-runtime-values.js';
 export const ADVISOR_HOOK_STATUS_VALUES = ['ok', 'skipped', 'stale', 'degraded', 'fail_open'] as const;
 export const ADVISOR_HOOK_FRESHNESS_VALUES = ['live', 'stale', 'absent', 'unavailable'] as const;
 export const ADVISOR_ERROR_CODE_VALUES = [
@@ -56,6 +58,8 @@ export interface AdvisorHookDiagnosticRecord {
   readonly errorDetails?: string;
   readonly skillLabel?: string;
   readonly generation?: number;
+  readonly emittedBytes?: number;
+  readonly directivesSuppressed?: boolean;
 }
 
 export interface AdvisorHookHealthSection {
@@ -308,7 +312,15 @@ async function writeBoundedJsonl(path: string, line: string, maxRecords: number,
     if (maxRecords > 0) {
       const lines = readJsonlLines(path);
       if (lines.length > Math.floor(maxRecords * 1.5)) {
-        await writeFile(path, `${lines.slice(-maxRecords).join('\n')}\n`, 'utf8');
+        const temporaryPath = `${path}.${process.pid}.${Date.now()}.tmp`;
+        // Rename swaps atomically, so a crash mid-trim leaves the old log instead of a truncated one.
+        await writeFile(temporaryPath, `${lines.slice(-maxRecords).join('\n')}\n`, 'utf8');
+        try {
+          await rename(temporaryPath, path);
+        } catch (error) {
+          await unlink(temporaryPath);
+          throw error;
+        }
       }
     }
   });
@@ -354,6 +366,8 @@ export function createAdvisorHookDiagnosticRecord(input: {
   readonly errorDetails?: unknown;
   readonly skillLabel?: string | null;
   readonly generation?: number;
+  readonly emittedBytes?: number;
+  readonly directivesSuppressed?: boolean;
   readonly timestamp?: string;
 }): AdvisorHookDiagnosticRecord {
   const errorCode = normalizeErrorCode(input.errorCode);
@@ -369,6 +383,8 @@ export function createAdvisorHookDiagnosticRecord(input: {
     ...(errorDetails ? { errorDetails } : {}),
     ...(input.skillLabel ? { skillLabel: input.skillLabel } : {}),
     ...(typeof input.generation === 'number' ? { generation: input.generation } : {}),
+    ...(typeof input.emittedBytes === 'number' ? { emittedBytes: input.emittedBytes } : {}),
+    ...(typeof input.directivesSuppressed === 'boolean' ? { directivesSuppressed: input.directivesSuppressed } : {}),
   };
 }
 
@@ -390,7 +406,12 @@ export function validateAdvisorHookDiagnosticRecord(value: unknown): value is Ad
     && (record.errorCode === undefined || enumIncludes(ADVISOR_ERROR_CODE_VALUES, record.errorCode))
     && (record.errorDetails === undefined || typeof record.errorDetails === 'string')
     && (record.skillLabel === undefined || typeof record.skillLabel === 'string')
-    && (record.generation === undefined || typeof record.generation === 'number');
+    && (record.generation === undefined || typeof record.generation === 'number')
+    && (record.emittedBytes === undefined
+      || (typeof record.emittedBytes === 'number'
+        && Number.isInteger(record.emittedBytes)
+        && record.emittedBytes >= 0))
+    && (record.directivesSuppressed === undefined || typeof record.directivesSuppressed === 'boolean');
 }
 
 /** Serialize a validated diagnostic record for JSONL emission. */

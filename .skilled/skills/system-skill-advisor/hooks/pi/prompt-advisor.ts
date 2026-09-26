@@ -8,6 +8,8 @@ const RAW_INPUT_STORE_KEY = Symbol.for("mk.pi.dispatch.raw-input");
 const MAX_CAPTURED_USER_TEXT = 32_768;
 const MAX_CAPTURED_SESSIONS = 64;
 const MAX_TRACKED_SESSIONS = 64;
+// The advisor's CLI budget ends first; this margin only catches a call that hangs past it.
+const PI_ADVISOR_DEADLINE_MARGIN_MS = 300;
 
 interface RawInputStore {
   readonly bySession: Map<string, string>;
@@ -44,9 +46,9 @@ function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unk
 // two-process blocking-spawn bridge stalled every send; calling the same
 // lifecycle code directly removes that stall and lets its module-level prompt
 // cache work.
-const ADVISOR_HOOK_MODULE =
+export const ADVISOR_HOOK_MODULE =
   "../../.skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js";
-const ADVISOR_HOOK_FALLBACK_MODULE =
+export const ADVISOR_HOOK_FALLBACK_MODULE =
   "../../runtime/dist/hooks/claude/user-prompt-submit.js";
 
 // ── Pi-local advisor-brief de-duplication ──────────────────────────
@@ -230,23 +232,49 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
       const advisorModule = await import(ADVISOR_HOOK_MODULE).catch(
         () => import(ADVISOR_HOOK_FALLBACK_MODULE),
       );
-      const { handleClaudeUserPromptSubmit } = advisorModule as {
+      const { handleClaudeUserPromptSubmit, renderAdvisorFallbackDirective } = advisorModule as {
         handleClaudeUserPromptSubmit?: (
           input: {
             prompt?: string;
             cwd?: string;
             hook_event_name?: string;
           },
+          dependencies?: { runtime?: "pi" },
         ) => Promise<AdvisorEnvelope | Record<string, unknown>>;
+        renderAdvisorFallbackDirective?: () => string;
       };
       if (typeof handleClaudeUserPromptSubmit === "function") {
-        const output = await handleClaudeUserPromptSubmit({
-          prompt: event.text,
-          cwd: ctx.cwd,
-          hook_event_name: "UserPromptSubmit",
-        });
-        context = (output as AdvisorEnvelope).hookSpecificOutput
-          ?.additionalContext;
+        let deadlineTimer: ReturnType<typeof setTimeout> | undefined;
+        try {
+          const outcome = await Promise.race([
+            handleClaudeUserPromptSubmit(
+              {
+                prompt: event.text,
+                cwd: ctx.cwd,
+                hook_event_name: "UserPromptSubmit",
+              },
+              { runtime: "pi" },
+            ).then((output) => ({ timedOut: false as const, output })),
+            new Promise<{ timedOut: true }>((resolve) => {
+              const budgetMs = Number(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS) || 2500;
+              deadlineTimer = setTimeout(
+                () => resolve({ timedOut: true }),
+                budgetMs + PI_ADVISOR_DEADLINE_MARGIN_MS,
+              );
+              deadlineTimer.unref();
+            }),
+          ]);
+          if (outcome.timedOut) {
+            if (typeof renderAdvisorFallbackDirective === "function") {
+              context = renderAdvisorFallbackDirective();
+            }
+          } else {
+            context = (outcome.output as AdvisorEnvelope).hookSpecificOutput
+              ?.additionalContext;
+          }
+        } finally {
+          if (deadlineTimer) clearTimeout(deadlineTimer);
+        }
       }
     } catch {
       advisorFailed = true;

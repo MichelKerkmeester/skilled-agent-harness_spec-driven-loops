@@ -2,11 +2,20 @@
 // MODULE: Advisor Observability Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+const { renameMock } = vi.hoisted(() => ({
+  renameMock: vi.fn<(oldPath: string, newPath: string) => Promise<void>>(),
+}));
+
+vi.mock('node:fs/promises', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('node:fs/promises')>();
+  return { ...actual, rename: renameMock };
+});
+
 import {
   ADVISOR_ERROR_CODE_VALUES,
   ADVISOR_HOOK_FRESHNESS_VALUES,
@@ -57,7 +66,7 @@ describe('advisor observability contract', () => {
         labels: ['runtime', 'state'],
       },
     ]);
-    expect(ADVISOR_RUNTIME_VALUES).toEqual(['claude', 'copilot', 'opencode']);
+    expect(ADVISOR_RUNTIME_VALUES).toEqual(['claude', 'copilot', 'opencode', 'pi', 'codex', 'cursor', 'devin']);
     expect(ADVISOR_HOOK_STATUS_VALUES).toEqual(['ok', 'skipped', 'stale', 'degraded', 'fail_open']);
     expect(ADVISOR_HOOK_FRESHNESS_VALUES).toEqual(['live', 'stale', 'absent', 'unavailable']);
     expect(ADVISOR_ERROR_CODE_VALUES).toEqual(expect.arrayContaining([
@@ -93,6 +102,42 @@ describe('advisor observability contract', () => {
       'stdout',
       'stderr',
     ]));
+  });
+
+  it('preserves runtime and delivery metadata in diagnostic serialization', () => {
+    const record = createAdvisorHookDiagnosticRecord({
+      timestamp: '2026-04-19T10:00:00.000Z',
+      runtime: 'pi',
+      status: 'ok',
+      freshness: 'live',
+      durationMs: 12,
+      cacheHit: true,
+      emittedBytes: 312,
+      directivesSuppressed: true,
+    });
+    const serialized = serializeAdvisorHookDiagnosticRecord(record);
+    const parsed = JSON.parse(serialized) as Record<string, unknown>;
+
+    expect(validateAdvisorHookDiagnosticRecord(parsed)).toBe(true);
+    expect(parsed).toMatchObject({
+      runtime: 'pi',
+      emittedBytes: 312,
+      directivesSuppressed: true,
+    });
+  });
+
+  it.each([-1, 1.5, '12'])('rejects invalid emittedBytes value: %s', (emittedBytes) => {
+    const record = {
+      timestamp: '2026-04-19T10:00:00.000Z',
+      runtime: 'pi',
+      status: 'ok',
+      freshness: 'live',
+      durationMs: 12,
+      cacheHit: true,
+      emittedBytes,
+    };
+
+    expect(validateAdvisorHookDiagnosticRecord(record)).toBe(false);
   });
 
   it('rejects diagnostic records with forbidden fields', () => {
@@ -170,5 +215,55 @@ describe('advisor observability contract', () => {
     const persisted = readAdvisorHookOutcomeRecords(workspaceRoot, records.length);
     expect(persisted).toHaveLength(records.length);
     expect(new Set(persisted.map((record) => record.skillLabel)).size).toBe(records.length);
+  });
+
+  it('preserves the full JSONL log when the trim swap fails', async () => {
+    renameMock.mockReset();
+    const workspaceRoot = mkdtempSync(join(tmpdir(), 'advisor-observability-trim-'));
+    const makeRecord = (index: number) => createAdvisorHookOutcomeRecord({
+      runtime: 'opencode',
+      outcome: 'accepted',
+      skillLabel: `trim-test-${index}`,
+      timestamp: '2026-04-19T10:00:00.000Z',
+    });
+    let logPath = '';
+
+    try {
+      for (let index = 0; index < 300; index += 1) {
+        logPath = await persistAdvisorHookOutcomeRecord(workspaceRoot, makeRecord(index));
+      }
+
+      renameMock.mockImplementationOnce(async (temporaryPath) => {
+        expect(readFileSync(temporaryPath, 'utf8').trimEnd().split('\n')).toHaveLength(200);
+        throw new Error('rename failed');
+      });
+
+      let writeError: unknown;
+      try {
+        logPath = await persistAdvisorHookOutcomeRecord(workspaceRoot, makeRecord(300));
+      } catch (error) {
+        writeError = error;
+      }
+
+      const lines = readFileSync(logPath, 'utf8').trimEnd().split('\n');
+      const parsedRecords = lines.map((line) => JSON.parse(line) as { readonly skillLabel: string });
+      expect(parsedRecords.map((record) => record.skillLabel)).toEqual(
+        Array.from({ length: 301 }, (_, index) => `trim-test-${index}`),
+      );
+      expect(renameMock).toHaveBeenCalledTimes(1);
+      expect(writeError).toMatchObject({ message: 'rename failed' });
+
+      const temporaryPath = renameMock.mock.calls[0]?.[0];
+      expect(temporaryPath).toBeDefined();
+      if (temporaryPath === undefined) {
+        throw new Error('Expected the trim swap to receive a temporary file path');
+      }
+      expect(existsSync(temporaryPath)).toBe(false);
+    } finally {
+      if (logPath) {
+        rmSync(logPath, { force: true });
+      }
+      rmSync(workspaceRoot, { recursive: true, force: true });
+    }
   });
 });
