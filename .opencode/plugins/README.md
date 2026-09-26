@@ -80,7 +80,7 @@ plugins/
 | File | Responsibility |
 |---|---|
 | `opencode-goal.js` | The largest plugin. Owns the goal state machine, supervisor, continuation, capabilities, and the goal tool surface. Hooks `session.created`/`status`/`idle`/`deleted`, `experimental.chat.system.transform`, and a family of goal tools. |
-| `system-skill-advisor.js` | Spawns the skill-advisor bridge subprocess per prompt, manages a TTL+LRU prompt cache with in-flight dedup, integrates transform-dedup, and exposes `spec_kit_skill_advisor_status`. |
+| `system-skill-advisor.js` | Spawns the skill-advisor bridge subprocess per prompt, manages a TTL+LRU prompt cache with in-flight dedup, integrates transform-dedup where the opt-in same-message dedup bases its decision on the full advisor block before directive-lifecycle reduction and suppresses a repeated transform for the same message, and exposes `spec_kit_skill_advisor_status`. |
 | `system-spec-gate.js` | Maps OpenCode's transport onto the runtime-neutral spec-gate core. Classify best-effort fetches the last user message via `ctx.client`; enforce throws `system-spec-gate:` on deny; `event` sweeps/advances/evicts state. |
 | `sk-code-post-edit-quality.js` | Correlates `tool.execute.before` file paths to `tool.execute.after` callIDs, runs the post-edit router core, and drains findings on the next transform. |
 | `lib/opencode-message-identity.js` | Shared stable transform identity and dedup state used by the advisor plugin. |
@@ -109,7 +109,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 |---|---|
 | Transport only | Plugin files own the OpenCode transport boundary. Shared policy and runtime-neutral logic belongs under the owning skill. |
 | No stdout/stderr | Plugins never print warnings to stdout or stderr. OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings go through `experimental.chat.system.transform`, tool returns, or bounded workspace logs. |
-| Fail-open | All advisory checks fail open. A disabled plugin, a missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op. Rejection is opt-in per each plugin's own contract (e.g. `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny). |
+| Fail-open | All advisory checks fail open. A disabled plugin, a missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op. The skill advisor is the exception to the no-op because on a subprocess timeout, a parse failure, a missing prompt or an internal error it injects its status-headed fallback (an `Advisor: outage (...)` or `Advisor: prompt skipped.` line above the directives block) and never blocks the prompt. Rejection is opt-in per each plugin's own contract (e.g. `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny). |
 | Kill-switch | Every plugin honors its per-concern kill-switch via the shared `hook-flags.cjs` resolver plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin is a genuine full no-op. |
 | Bounded | Subprocess spawns, caches, pending-event buffers, and workspace logs are all bounded (per-plugin limits documented in each plugin's README). |
 | Tests | Plugin tests stay under `tests/`. |

@@ -29,6 +29,10 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 
 `.skilled/bin/skill-advisor.cjs` defaults the socket dir to `/tmp/system-skill-advisor`, walks the TypeScript source tree for mtimes and refuses stale dist with exit 69 (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override in development), and maps spawn failure to 75. The entrypoint shares the program taxonomy: 0 success, 1 runtime, 64 usage/validation/trust refusal, 69 protocol, 75 retryable. `--warm-only` (default via `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`) probes the socket and exits 75 instead of auto-spawning.
 
+### Stale-daemon compatibility retry
+
+A resident daemon started from an older build rejects the `includeCompiledRoute` request option with JSON-RPC error -32602. The protocol handshake cannot tell the two builds apart. When the error message names `includeCompiledRoute` and the request carried that key, the CLI retries the call exactly once without it (`runtime/skill-advisor-cli.ts:1420-1440`). Every other error path is unchanged. The retry keeps the answer but costs one extra round trip per call until the old daemon stops. After an upgrade the operator should stop the old daemon once and let the next CLI call start a current one.
+
 ### Scan job semantics
 
 `skill_graph_scan` runs as a job: the CLI captures `advisor_status` before and after the scan so the operator sees the generation move, with rebuild/scan wall-time locked by the job-semantics suite.
@@ -57,6 +61,7 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 | `runtime/tests/skill-advisor-cli-job-semantics.vitest.ts` | Automated test | Rebuild/scan job semantics with measured wall-time under mutation |
 | `runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts` | Automated test | Real-launcher orphan reaping (killed parent, removed worktree, warm adoption) |
 | `runtime/tests/handlers/advisor-trust-gate.vitest.ts` | Automated test | Daemon-side trust-gate enforcement including the env grant |
+| `runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts` | Automated test | One retry without the rejected key and no retry for other errors |
 
 ---
 

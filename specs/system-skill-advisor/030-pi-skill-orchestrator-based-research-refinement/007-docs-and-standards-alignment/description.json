@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment",
+  "description": "Phase 1: docs-and-standards-alignment",
+  "keywords": [
+    "phase",
+    "docs-and-standards-alignment"
+  ],
+  "lastUpdated": "2026-09-26T16:09:15.567Z",
+  "specId": "007",
+  "folderSlug": "docs-and-standards-alignment",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

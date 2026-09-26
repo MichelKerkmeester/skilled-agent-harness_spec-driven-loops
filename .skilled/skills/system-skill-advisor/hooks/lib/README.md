@@ -17,7 +17,7 @@ description: "Warm-daemon CLI fallback that the skill-advisor prompt hook falls 
 
 | File | Purpose |
 |------|---------|
-| `skill-advisor-cli-fallback.ts` | Resolves the CLI, IPC bridge and database paths from one root (`.skilled`, then `.opencode`), spawns the advisor CLI with a bounded timeout, parses its JSON payload and normalizes the result (and retryable exit/reason codes) into an `AdvisorHookResult`. |
+| `skill-advisor-cli-fallback.ts` | Resolves the CLI, IPC bridge and database paths from one root (`.skilled`, then `.opencode`), spawns the advisor CLI with a bounded timeout. The request it sends carries `options.includeCompiledRoute: false`, so the daemon skips compiled-route enrichment and starts no `compiled-route.cjs` child. It runs the CLI with `--no-warm-only`, because the CLI is the component that starts the daemon on a cold socket. It parses its JSON payload and normalizes the result (and retryable exit/reason codes) into an `AdvisorHookResult`. |
 
 ---
 

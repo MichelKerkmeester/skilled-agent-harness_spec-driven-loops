@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment",
+  "parent_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor docs alignment",
+      "advisor feature catalog update",
+      "sk-code alignment advisor refinements",
+      "pi prompt advisor catalog entry",
+      "docs alignment plan",
+      "advisor docs update plan",
+      "docs alignment tasks",
+      "docs alignment summary",
+      "advisor docs update summary",
+      "pi prompt advisor budget fix"
+    ],
+    "key_topics": [
+      "advisor",
+      "docs",
+      "alignment",
+      "feature",
+      "catalog",
+      "sk-code",
+      "refinements",
+      "prompt",
+      "entry",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/prompt-advisor.vitest.ts",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/pi-prompt-advisor.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/directive-lifecycle-dedup.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md",
+      ".skilled/skills/system-skill-advisor/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/prompt-advisor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-bridge.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-prompt-advisor.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/pi-prompt-advisor.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle-dedup.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/directive-lifecycle-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-runtime-warm-only-fallbacks.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude-user-prompt-submit.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-hook-transport-down-fail-open.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standards Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Refinements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 2 to 5 changed what an operator sees from the advisor: a no-brief turn now opens with a status line, the hook skips casual prompts before spawning the CLI, `advisorrecommend` takes `includeCompiledRoute`, the CLI retries once for a stale daemon, and each runtime labels its diagnostics",
+    "created_at": "2026-09-26T16:09:14Z",
+    "last_save_at": "2026-09-26T17:31:04.498Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3763dce26501b63a4799b068be431bbbb27487ce1891585c7745c9a430e52a68",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "209acf74bcc1d1dee153450f670105b4db76d8aee983e2ee1fcad171f7ff8094",
+      "plan.md": "103bfccb7295f0ba508811ae76e767efe1ee6c3e239ee15261c7c36b6b604051",
+      "tasks.md": "0e333b523080770a94790635db25092df6d81ad8711365b2d614936a51bfd741",
+      "implementation-summary.md": "16b6e4accef311d8a693560c84012a74980757e9abf3c82f4a3655ca2979d0f3"
+    },
+    "last_active_at": null
+  }
+}
