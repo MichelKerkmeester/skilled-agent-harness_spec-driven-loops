@@ -176,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "Fresh Opus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "it",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -186,17 +192,11 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "baseline",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The AI Council found that round 1 dropped the right ideas but measured too loosely and built in the wrong places",
     "created_at": "2026-09-26T20:24:40Z",
-    "last_save_at": "2026-09-26T20:28:29.848Z",
+    "last_save_at": "2026-09-26T21:07:53.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:efd07e28bab5cc37035d75518fffbb52fdc8222939b3908c548875bf3529ed60",
+    "source_fingerprint": "sha256:0723edddf4208aca3186594351846fdd346513e5c82d153b980ee784edae2eff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "951cd9eed94fef5ffe72ba7571a6482b8b6946a1382a8a01f403a11a3c1c4e36",
       "plan.md": "c1a5787204db3167751c429153c55b06fa3133dc230f0696046ec81cf08c142b",
-      "tasks.md": "927a2ffa728306999dd9584242c9c939996a62dd2ae937ea7d33bae4516cbc7d",
+      "tasks.md": "b0c04d4420a9e60c77d5c58ce1e65bd5a8dcb9f6de99b59b4a812c4797dbf74a",
       "implementation-summary.md": "84f379e096ec8c5bfa938cb46293430430d31b88c7f0f534640b8c04589dc31d"
     },
     "last_active_at": null
