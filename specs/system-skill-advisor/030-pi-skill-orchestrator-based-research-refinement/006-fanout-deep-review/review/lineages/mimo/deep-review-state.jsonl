@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":1,"run":1,"status":"complete","focus":"focus:security","newInfoRatio":0,"timestamp":"2026-09-26T16:20:00Z"}
+{"type":"config","topic":"fanout-mimo-1790437845885-htqb7q","maxIterations":3,"generation":1,"timestamp":"2026-09-26T16:28:31.142Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"complete","focus":"focus:traceability","newInfoRatio":0,"timestamp":"2026-09-26T16:37:21.728Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"complete","focus":"focus:none","newInfoRatio":0,"timestamp":"2026-09-26T16:42:47.778Z"}
+{"type":"event","event":"synthesis_complete","stem":"deep_review.synthesis_complete","runId":"fanout-mimo-1790437845885-htqb7q","sessionId":"fanout-mimo-1790437845885-htqb7q","activeP0":0,"activeP1":1,"activeP2":6,"dimensionCoverage":1,"mode":"review","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached","totalIterations":3,"verdict":"CONDITIONAL","timestamp":"2026-09-26T16:45:25.272Z"}

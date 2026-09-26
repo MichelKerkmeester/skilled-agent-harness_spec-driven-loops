@@ -1,0 +1,3 @@
+Lineage `deepseek` complete: 3/3 iterations (unchanged from the first attempt), verdict PASS with 5 P2 advisories, `synthesis_complete` carrying `stopReason: maxIterationsReached`; the missing terminal artifact `review-report.md` (25.5 KB, all 11 sections + planning packet) and the per-iteration `deltas/iter-00{1,2,3}.jsonl` were compiled inside the lineage dir from the recorded state — no repo file outside it was touched.
+
+FANOUT_LINEAGE_COMPLETE:deepseek
