@@ -1,0 +1,2 @@
+{"type":"event","event":"synthesis_complete","stem":"deep_research.synthesis_complete","lineageId":"research","runId":"research","answeredCount":7,"stopReason":"maxIterationsReached","totalIterations":15,"totalQuestions":7,"timestamp":"2026-09-26T14:00:29.742Z"}
+{"type":"spec_mutation","event":"spec_mutation","phase":"post-synthesis","anchors_touched":["questions"],"diff_summary":"Replaced generated deep-research findings fence from research/research.md.","generatedFence":"deep-research/spec-findings","timestamp":"2026-09-26T14:01:15.126Z"}

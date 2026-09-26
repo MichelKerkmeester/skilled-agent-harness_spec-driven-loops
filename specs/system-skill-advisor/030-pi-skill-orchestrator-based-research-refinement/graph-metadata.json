@@ -37,13 +37,14 @@
       "phase"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-deep-research/research/research.md",
       "002-hook-deadline-and-diagnostics/spec.md",
       "003-hook-path-cli-spawn-trim/spec.md",
       "004-headless-fallback-status-and-dedup/spec.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
       ".skilled/plugins/system-skill-advisor.js"
     ],
@@ -52,6 +53,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
         "source": "derived"
       },
       {
@@ -105,17 +112,18 @@
     ],
     "causal_summary": "The skill advisor routes by push",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-09-26T13:42:16.749Z",
+    "last_save_at": "2026-09-26T14:03:35.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4bd3d91f1f9b360fbea15e7e792f8bd888b845fa583f1c164b1cd20f1173a111",
+    "source_fingerprint": "sha256:7d4461fd935abf6246025facaa3d9abcf59d3a5b7be3651cbd9a4626db408e43",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4369b61d13ef250fa65d6b837077ccaa39fb0ffd48bfe5a56a6d4e9c08283c80"
+      "spec.md": "147e444abbcecbbe51a9d7f6410848edc36580f55b7479e2fb7e4ca236aed45b"
     },
-    "last_active_at": null
+    "last_active_child_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
+    "last_active_at": "2026-09-26T14:02:43.312Z"
   }
 }

@@ -23,7 +23,7 @@ contextType: "research"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Active |
+| **Status** | Complete |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -174,6 +174,18 @@ Each finding names the orchestrator mechanism at `file:line`, the advisor counte
 ## 7. OPEN QUESTIONS
 
 - Which ranked recommendations the operator adopts as refinement phases. Decided after the synthesis.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+_Source: `research/research.md` (two-lineage fan-out: MiMo v2.6 Pro high, 10 iterations; SWE-2 MAX, 5 iterations). Do not edit inside this fence._
+
+- **Verdicts: 3 ADOPT, 9 ADAPT, 14 REJECT.** Keep the pushed brief as the advisor's main route, and spend nothing on the prompt path that the model does not use.
+- **ADOPT:** R1 nest the hook deadlines so the fallback survives the shim; R2 skip compiled-route enrichment on the hook path; R3 export brief bytes and the real runtime in hook diagnostics.
+- **ADAPT:** R4 a status-aware fallback line that names the recovery command; R5 reconnect or retire the prompt-policy gate; R6 deduplicate the headless fallback on Claude and OpenCode; R7 guard the Pi hook's dist path with a contract test; R8 pin a named skill to rank 1 behind a replay; R9 on Pi, a catalog stub plus an advisor-backed search tool; R10 a soft session-family preference behind a replay; R11 an atomic bounded-log trim; R12 race the Pi in-process advisor call against a deadline.
+- **REJECT:** X1 to X14, among them surfacing `disable-model-invocation` (no skill sets it), pull replacing push, and a dependency bundle in the brief.
+- **Premises that failed against code:** the prompt-policy gate ran on no prompt-time path, and a CLI that ran to its budget gave Claude, Codex, Cursor and Devin `{}` while Pi and OpenCode got the directives-only fallback.
+- **Caveat:** SWE-2 MAX read MiMo's finished synthesis before it wrote any verdict, so agreement between the lineages is not independent corroboration.
+- **Convergence:** stop reason maxIterationsReached (policy max-iterations); newInfoRatio fell from 1.00 to 0.35 on both lineages, over 10 MiMo runs and 5 SWE-2 MAX runs.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

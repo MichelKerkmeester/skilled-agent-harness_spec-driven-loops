@@ -58,7 +58,8 @@ contextType: "research"
 - [x] T010 Confirm no change outside `research/` came from the run (`git status`). Evidence: the research commit `5eb9a33763` holds only packet files plus the derived track index `specs/system-skill-advisor/graph-metadata.json`. The two containment advisories name `write-containment.ts` and `specs/sk-doc/059-skill-changelog-retrofit/description.json`, both already modified before the run began.
 - [x] T011 Run `validate.sh --strict` on this phase and the parent, and require `RESULT: PASSED`. Evidence: strict recursive validation of the parent passes in all five folders.
 - [x] T012 Update the parent phase map and `implementation-summary.md` with the outcome (`../spec.md`). Evidence: the parent map lists phases 2 to 4 as the adopted recommendations, and `implementation-summary.md` records the outcome.
-- [B] T013 Run the workflow close: the convergence report, the generated findings block in `spec.md`, config status `complete` and the continuity save (`.skilled/commands/deep/assets/deep-research-auto.yaml`). Blocked: `step_convergence_report` requires `research/deep-research-dashboard.md`, which a fan-out run never writes at the root, so its invariant check reports `synthesis_incomplete` with `missing_synthesis_artifacts` while every findings invariant passes
+- [x] T013 Run the workflow close: the convergence report, the generated findings block in `spec.md`, config status `complete` and the continuity save (`.skilled/commands/deep/assets/deep-research-auto.yaml`). Evidence: the fan-out dashboard fix below unblocked `step_convergence_report`, which recorded `synthesis_complete` through the append gateway (ledger sequence 1, 15 iterations, 7 of 7 questions). Section 17 of `research/research.md` holds the report. The findings fence sits under the `questions` anchor of `spec.md`, recorded as `spec_mutation` (ledger sequence 2), and targeted validation printed `RESULT: PASSED`. The config reads `complete`
+- [x] T014 Require the root dashboard only for runs without lineage logs, in both research workflows (`.skilled/commands/deep/assets/deep-research-auto.yaml`, `deep-research-confirm.yaml`). Evidence: two new cases in `run-now-yaml-control.vitest.ts`; the nine test files that read these workflows pass 146 of 146; reverting the auto workflow fails the fan-out case; `check-contract-drift.cjs` prints `OK commands=3` after the compiled contract was regenerated
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +67,9 @@ contextType: "research"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

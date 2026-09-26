@@ -693,3 +693,12 @@ Each row groups ranges of one file or module that share a result. Refs counts th
 ## 17. Convergence Report
 
 The workflow's `step_convergence_report` appends the convergence block below this heading.
+
+- Stop reason: maxIterationsReached
+- Total iterations: 15 (mimo 10, swe2max 5)
+- Questions answered: 7 / 7
+- Remaining questions: none
+- Last 3 iteration summaries: swe2max run 3, "Advisor read path: five-lane scorer, brief rendering, output bounds" (newInfoRatio 0.9); swe2max run 4, "Advisor delivery surface: hooks, subprocess fallback, prompt policy, robustness" (0.85); swe2max run 5, "Citation verification, edge-store check, cross-lineage agreement, gap closure" (0.35)
+- Convergence threshold: 0.05
+- Divergence summary: no divergent pivots recorded
+- Segment transitions, wave scores, and checkpoint metrics are experimental and omitted from the live report.
