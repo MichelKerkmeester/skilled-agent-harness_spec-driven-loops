@@ -1,0 +1,45 @@
+{
+  "topic": "Compare the pi-skill-orchestrator Pi extension (specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main) with system-skill-advisor (.skilled/skills/system-skill-advisor) and determine which orchestrator mechanisms (lazy catalog with scope stub, model-pulled skill_search with bounded results, profile and group scopes with bounded global fallback, recursive dependency loading, ranking signals, output bounds, robustness patterns) the advisor should adopt, adapt or reject to improve routing precision, prompt cost and robustness. Follow the reading list, research questions RQ1-RQ7 and answer shape in the phase spec.md; cite file:line on both sides and label every claim confirmed or inferred.",
+  "researchTopic": "Compare the pi-skill-orchestrator Pi extension (specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main) with system-skill-advisor (.skilled/skills/system-skill-advisor) and determine which orchestrator mechanisms (lazy catalog with scope stub, model-pulled skill_search with bounded results, profile and group scopes with bounded global fallback, recursive dependency loading, ranking signals, output bounds, robustness patterns) the advisor should adopt, adapt or reject to improve routing precision, prompt cost and robustness. Follow the reading list, research questions RQ1-RQ7 and answer shape in the phase spec.md; cite file:line on both sides and label every claim confirmed or inferred.",
+  "specFolder": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "createdAt": "2026-09-26T06:34:49Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "lineage": {
+    "sessionId": "2026-09-26-030-001-fanout",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "mimo-v2.6-pro",
+        "reasoningEffort": "high",
+        "iterations": 10,
+        "label": "mimo",
+        "count": 1
+      },
+      {
+        "kind": "cli-devin",
+        "model": "swe-2-max",
+        "iterations": 5,
+        "label": "swe2max",
+        "count": 1
+      }
+    ],
+    "concurrency": 2
+  }
+}

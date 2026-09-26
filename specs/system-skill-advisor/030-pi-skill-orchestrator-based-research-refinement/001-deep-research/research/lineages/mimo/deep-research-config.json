@@ -1,0 +1,18 @@
+{
+  "sessionId": "fanout-mimo-1790404524761-xsg1vq",
+  "lineageLabel": "mimo",
+  "loopType": "research",
+  "executor": "cli-pi",
+  "model": "mimo-v2.6-pro",
+  "reasoningEffort": "high",
+  "topic": "Compare pi-skill-orchestrator mechanisms (lazy catalog with scope stub, model-pulled skill_search with bounded results, profile/group scopes with bounded global fallback, recursive dependency loading, ranking signals, output bounds, robustness patterns) against system-skill-advisor and decide adopt/adapt/reject per mechanism for routing precision, prompt cost and robustness.",
+  "specFolder": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "default",
+  "stopPolicy": "max-iterations",
+  "resourceMapPresent": true,
+  "researchQuestions": ["RQ1", "RQ2", "RQ3", "RQ4", "RQ5", "RQ6", "RQ7"],
+  "createdAt": "2026-09-26T08:35:00Z",
+  "notes": "Detached fan-out lineage executed inline by the orchestrating process. Convergence before the cap is telemetry only; the loop broadens review angles instead of synthesizing early."
+}

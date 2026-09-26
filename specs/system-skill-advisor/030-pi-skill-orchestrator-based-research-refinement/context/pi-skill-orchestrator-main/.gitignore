@@ -1,0 +1,9 @@
+node_modules/
+coverage/
+*.log
+*.tgz
+.DS_Store
+.pi/
+.env
+.env.*
+!.env.example

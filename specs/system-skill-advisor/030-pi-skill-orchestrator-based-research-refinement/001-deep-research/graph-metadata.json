@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
+  "parent_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi skill orchestrator research",
+      "skill orchestrator deep research",
+      "lazy skill catalog research",
+      "advisor push vs pull routing",
+      "skill_search scope fallback research",
+      "pi skill orchestrator research plan",
+      "two executor fan-out research",
+      "mimo swe-2 max fan-out",
+      "pi skill orchestrator research tasks",
+      "fan-out research verification",
+      "pi skill orchestrator research status",
+      "fan-out research summary"
+    ],
+    "key_topics": [
+      "skill",
+      "orchestrator",
+      "research",
+      "deep",
+      "lazy",
+      "catalog",
+      "advisor",
+      "push",
+      "pull",
+      "routing",
+      "scope",
+      "fallback"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".pi/models.json",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/plugins/system-skill-advisor.js",
+      "hooks/claude/user-prompt-submit.ts",
+      "research/deep-research-config.json",
+      ".skilled/hooks/skill-advisor/opencode/system-skill-advisor.js",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      "specs/sk-doc/059-skill-changelog-retrofit/description.json",
+      "research/lineages/swe2max/logs/fanout-lineage.out",
+      "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/spec.md",
+      "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/research/resource-map.md",
+      "research/lineages/mimo/research.md",
+      "research/lineages/swe2max/research.md",
+      "research/lineages/mimo/iterations/iteration-001.md",
+      "research/lineages/swe2max/iterations/iteration-001.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".skilled/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/sk-doc/059-skill-changelog-retrofit/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-lineage.out",
+        "kind": "file",
+        "path": "research/lineages/swe2max/logs/fanout-lineage.out",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/mimo/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Skill Orchestrator Mechanisms Against System Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Token Saver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Skill Orchestrator Against System Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor and the pi-skill-orchestrator extension solve skill selection with opposite designs",
+    "created_at": "2026-09-26T06:29:58Z",
+    "last_save_at": "2026-09-26T10:19:09.235Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:6bf5b2c720321cb8e788edbe49a99d5d4642a3b1b7602f318184d74ff0827157",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "718f8a8341b9d950152d970f4991cc18ec94cc3952b73a6ed902a86c4df99d14",
+      "plan.md": "ab53d1a63889c819c28731c9fbf1e1a149f4bdcd0dfd7a6370944b1588618c87",
+      "tasks.md": "a07be520bcbbe3515c650faa89e0ae798bfc80b7cfe98f1b62a471fd1806b4bf",
+      "implementation-summary.md": "2da340f368c094b75c2d30a60b9c6af5fbce85e2425ddd92dff9d129b46e7075",
+      "research/research.md": "63f49fd6149999c2340e1799e59304a4e6b4f93f2eb88f4109fff9d94b7d27d6"
+    },
+    "last_active_at": null
+  }
+}

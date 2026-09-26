@@ -1,0 +1,52 @@
+name: Publish npm package
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Verify release tag matches package version
+        shell: bash
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if [ "$GITHUB_REF_NAME" != "v$VERSION" ]; then
+            echo "Release tag $GITHUB_REF_NAME does not match package version v$VERSION." >&2
+            exit 1
+          fi
+
+      - name: Run release checks
+        run: npm run release:check
+
+      - name: Check whether this version is already published
+        id: npm-version
+        shell: bash
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "pi-skill-orchestrator@$VERSION" version >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "pi-skill-orchestrator@$VERSION is already on npm."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish with npm trusted publishing
+        if: steps.npm-version.outputs.exists == 'false'
+        run: npm publish --access public --provenance

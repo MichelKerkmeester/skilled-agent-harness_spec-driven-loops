@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics",
+  "parent_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor hook deadline",
+      "hook fallback survives shim kill",
+      "advisor diagnostics emitted bytes",
+      "pi advisor dist path test",
+      "bounded jsonl atomic trim",
+      "hook deadline plan",
+      "advisor diagnostics plan",
+      "hook deadline tasks",
+      "advisor diagnostics tasks",
+      "hook deadline summary",
+      "advisor diagnostics summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "hook",
+      "deadline",
+      "fallback",
+      "survives",
+      "shim",
+      "kill",
+      "diagnostics",
+      "emitted",
+      "bytes",
+      "dist",
+      "path"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts",
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/user-prompt-submit-shim.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-adapter-runtime-label.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-observability.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/prompt-advisor.vitest.ts",
+      "hooks/claude/user-prompt-submit.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-runtime-values.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit-shim.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/user-prompt-submit-shim.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-runtime-label.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-adapter-runtime-label.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-observability.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-observability.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "claude-user-prompt-submit-hook.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/prompt-advisor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Deadline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Nested",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-spec-kit Claude shim spawns the advisor hook with `CHILDTIMEOUTMS = 2500` and returns `{}` when it kills the child (`.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:22`, `:107-114`)",
+    "created_at": "2026-09-26T10:05:44Z",
+    "last_save_at": "2026-09-26T12:12:00.062Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fbd539c113d3ee86197c938dc773abc2e6072ff6bcb324ceb3a459a8ce0dda36",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a15d4284e30ee86719887fb8b5b1dab11a34986229b8f38b09aaf04d9730569f",
+      "plan.md": "fb1c45c8b35efc3195e80b75165e0a24cef7d0be90779b018b0c9d6ad5117407",
+      "tasks.md": "ddec4f6e6e1989e58922c08b872fdcc92988d77429c4d158d09bedb3438a7053",
+      "implementation-summary.md": "b3de5ff8c1f0002e545c64e14d2e1ffffe800721b315143aea1c9361d83cd476"
+    },
+    "last_active_at": null
+  }
+}

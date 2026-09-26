@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node:
+          - 22.19.0
+          - 24.x
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          package-manager-cache: false
+
+      - name: Run repository checks
+        run: npm run check
+
+      - name: Check npm package contents
+        run: npm run pack:check
+
+  pi-api:
+    name: Current Pi public API
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          package-manager-cache: false
+
+      - name: Install current Pi public packages for type checking
+        run: >-
+          npm install --no-save --package-lock=false --ignore-scripts
+          typescript@5.9.3 @types/node@22.19.19
+          @earendil-works/pi-coding-agent@latest
+          @earendil-works/pi-tui@latest
+          typebox@latest
+
+      - name: Type-check against current Pi public APIs
+        run: npx tsc -p tsconfig.json

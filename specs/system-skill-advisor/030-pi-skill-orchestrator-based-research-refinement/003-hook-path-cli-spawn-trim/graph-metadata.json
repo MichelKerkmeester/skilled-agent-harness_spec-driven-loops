@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim",
+  "parent_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook path compiled route spawn",
+      "skip compiled route enrichment hook",
+      "casual prompt gate advisor",
+      "shouldFireAdvisor reconnect",
+      "advisor hook cli spawn trim",
+      "hook path cli spawn plan",
+      "include compiled route option plan",
+      "casual prompt gate plan",
+      "hook path cli spawn tasks",
+      "casual prompt gate tasks",
+      "hook path cli spawn summary",
+      "casual prompt gate summary"
+    ],
+    "key_topics": [
+      "hook",
+      "path",
+      "compiled",
+      "route",
+      "spawn",
+      "skip",
+      "enrichment",
+      "casual",
+      "prompt",
+      "gate",
+      "advisor",
+      "shouldfireadvisor"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+      ".skilled/plugins/tests/system-skill-advisor.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-manifest.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".skilled/plugins/tests/system-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spawn Trim",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Caller",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisorrecommend handler runs `enrichCompiledRoutes` on every result, cached or fresh (`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:504`, `:571`)",
+    "created_at": "2026-09-26T10:05:44Z",
+    "last_save_at": "2026-09-26T12:11:41.560Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:52cf05b2258a4f5816d50892e723c1cafa42fd12e3d0178c77ccbfda14548213",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a379b599a323c5931b8e2a0dba6d4265136b359f6e7923de12f6d37093872ad9",
+      "plan.md": "e8e13ee98f8d4c39e9f3c15a29e1bc42a39325795c20509b58d535d36ba18552",
+      "tasks.md": "11e3ee5836c617f8a4b2d890180096b7e72a84e6e7419561fdf65de8ba7ea32a",
+      "implementation-summary.md": "c4af01636f862708c238aebe11cc7bddb0a708e9d5c789d1af15ff9368f0133c"
+    },
+    "last_active_at": null
+  }
+}

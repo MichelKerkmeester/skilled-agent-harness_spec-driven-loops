@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "parent_id": null,
+  "children_ids": [
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi skill orchestrator",
+      "pi-skill-orchestrator research",
+      "skill advisor refinement",
+      "lazy skill loading advisor",
+      "skill orchestrator advisor upgrade"
+    ],
+    "key_topics": [
+      "skill",
+      "orchestrator",
+      "pi-skill-orchestrator",
+      "research",
+      "advisor",
+      "refinement",
+      "lazy",
+      "loading",
+      "upgrade",
+      "routes",
+      "push",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-deep-research/research/research.md",
+      "002-hook-deadline-and-diagnostics/spec.md",
+      "003-hook-path-cli-spawn-trim/spec.md",
+      "004-headless-fallback-status-and-dedup/spec.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
+      ".skilled/plugins/system-skill-advisor.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".skilled/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Skill Orchestrator Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Refinement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor routes by push",
+    "created_at": "2026-09-26T06:29:58Z",
+    "last_save_at": "2026-09-26T12:11:41.567Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f901ecc1c0f195b4dc4526236cd668f2353c8761957b370eaee067100abe58ab",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "291c1f0e4d0cf94e305af34e5cb8381b7cf8aa1ec8a164c7ed9636845833346e"
+    },
+    "last_active_at": null
+  }
+}

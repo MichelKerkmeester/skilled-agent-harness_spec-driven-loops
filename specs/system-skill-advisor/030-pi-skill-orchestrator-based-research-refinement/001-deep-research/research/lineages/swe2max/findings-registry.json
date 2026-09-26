@@ -1,0 +1,231 @@
+{
+  "sessionId": "fanout-swe2max-1790404524761-xsg1vq",
+  "lineageLabel": "swe2max",
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "RQ1",
+    "RQ2",
+    "RQ3",
+    "RQ4",
+    "RQ5",
+    "RQ6",
+    "RQ7"
+  ],
+  "keyFindings": [
+    {
+      "id": "F1",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "ADAPT",
+      "mechanism": "conservative eager-catalog removal + constant-size scope stub",
+      "reason": "replaceNativeSkillCatalog + five-line stub replace Pi's <available_skills>; the advisor's append-only hooks cannot remove prompt content it does not own, so the stub discipline transfers as a brief-format invariant and catalog replacement only on system-prompt-owning surfaces."
+    },
+    {
+      "id": "F5",
+      "iteration": 1,
+      "rq": "RQ1",
+      "verdict": "ADOPT",
+      "mechanism": "constant-size indexed-candidate count line",
+      "reason": "'N lazy skill candidates are indexed' (scope.ts:108-115) is the cheapest transferable unit of the lazy-catalog design; ~15 tokens/turn buys discovery-depth awareness."
+    },
+    {
+      "id": "F15",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "ADOPT",
+      "mechanism": "explicit no-match line instead of silent absence",
+      "reason": "Orchestrator emits 'No matching skills found...' (index.ts:687-696); advisor's null brief makes abstention indistinguishable from outage (render.ts:409-412)."
+    },
+    {
+      "id": "F18",
+      "iteration": 4,
+      "rq": "RQ2",
+      "verdict": "ADOPT",
+      "mechanism": "pull recovery beside push: name advisor_recommend in the directives-only fallback",
+      "reason": "The orchestrator proves a model can drive retrieval when handed a tool name (index.ts:596-650); the advisor's fail_open currently leaves zero in-turn recovery."
+    },
+    {
+      "id": "F19",
+      "iteration": 4,
+      "rq": "RQ2",
+      "verdict": "ADOPT",
+      "mechanism": "budget enforcement (deadline race) around the Pi in-process advisor call",
+      "reason": "The Pi hook awaits handleClaudeUserPromptSubmit with no race (prompt-advisor.ts:243-250); the 2500ms budget is self-reported, not enforced. Mimo lineage concurs (F9-2)."
+    },
+    {
+      "id": "F20",
+      "iteration": 4,
+      "rq": "RQ6",
+      "verdict": "ADOPT",
+      "mechanism": "delivered-byte accounting + directive dedup default-on",
+      "reason": "Three adapters dedup the constant directive tail (user-prompt-submit.ts:303-345, prompt-advisor.ts:129-152, plugin splitDirectiveBrief) but no delivered-byte measurement exists; it is the prerequisite for every cost claim."
+    },
+    {
+      "id": "F22",
+      "iteration": 4,
+      "rq": "RQ7",
+      "verdict": "REJECT",
+      "mechanism": "atomic-write (tmp+rename) transplant",
+      "reason": "Advisor durable writes are append-atomic bounded JSONL (metrics.ts:295-310) plus a fail-safe delegated store — property-equivalent already."
+    },
+    {
+      "id": "F23",
+      "iteration": 5,
+      "rq": "RQ7",
+      "verdict": "ADOPT",
+      "mechanism": "disable-model-invocation surfacing in the projection",
+      "reason": "Honored at every orchestrator decision point (catalog.ts:38, index.ts:716-721, dependencies.ts:77-82); parseDocFrontmatter collects the scalar (doc-frontmatter.ts:89-139) but nothing consumes it, so a brief can name a manual-only skill."
+    },
+    {
+      "id": "F13",
+      "iteration": 3,
+      "rq": "RQ5",
+      "verdict": "ADOPT",
+      "mechanism": "name-mention rank-1 pin, invocation-gated",
+      "reason": "Orchestrator's +200 name-exact guarantees top-1 (search.ts:26); advisor's exact mention scores 1.0 inside a 0.42 lane (explicit.ts:317-321) so a fused competitor can outrank a named skill. Gate to invocation shapes to avoid prose false-pins."
+    },
+    {
+      "id": "F25",
+      "iteration": 5,
+      "rq": "RQ3",
+      "verdict": "ADAPT",
+      "mechanism": "soft scope preference (family/hub prior) with global pool open",
+      "reason": "Advisor has no per-context scope (only the static denylist route-exclusions.ts:59-99); a fusion prior mirrors the orchestrator's bounded-fallback-never-changes-scope discipline."
+    },
+    {
+      "id": "F17",
+      "iteration": 3,
+      "rq": "RQ6",
+      "verdict": "ADOPT",
+      "mechanism": "pull-surface output shape: <=5 default / <=8 max, <=160-char descriptions",
+      "reason": "Orchestrator's bounded result contract (search.ts:46, index.ts:590,600-609, config.ts:45,138-139) is the right shape for any advisor pull tool; the pushed brief is already tighter."
+    },
+    {
+      "id": "F14",
+      "iteration": 3,
+      "rq": "RQ4",
+      "verdict": "ADAPT",
+      "mechanism": "depends_on derivation assist borrowing conservative body-scan + negation guard",
+      "reason": "Advisor edge store is populated but sparse (depends_on 3/15 nodes); the orchestrator's five-pattern detector with negation guard (dependencies.ts:8-38) fits beside detect-inbound-enhances."
+    },
+    {
+      "id": "F24",
+      "iteration": 5,
+      "rq": "RQ4",
+      "verdict": "ADAPT",
+      "mechanism": "graph-health (missing/cycle/sparse edges) on advisor_status",
+      "reason": "Orchestrator reports bundle.missing/bundle.cycles (index.ts:736-746); advisor's trust surface could carry edge-store health for operators."
+    },
+    {
+      "id": "F12",
+      "iteration": 3,
+      "rq": "RQ6",
+      "verdict": "ADAPT",
+      "mechanism": "whole-brief bound: count (never clip) the constant directive block",
+      "reason": "Directives are appended after capText (render.ts:435-440) so the real worst case is ~138 tokens not 80; count them in delivered-byte accounting."
+    },
+    {
+      "id": "F16",
+      "iteration": 3,
+      "rq": "RQ6",
+      "verdict": "ADAPT",
+      "mechanism": "truncate-and-keep ranking metadata instead of drop-to-null at 512 chars",
+      "reason": "Advisor nulls over-length metadata (metadata-sanitizer.ts:9-11,34); orchestrator keeps bounded prefixes (catalog.ts:7-13). Partial signal beats none."
+    },
+    {
+      "id": "F26",
+      "iteration": 5,
+      "rq": "RQ7",
+      "verdict": "ADAPT",
+      "mechanism": "static deep-import contract guard for hooks/pi/**",
+      "reason": "Pi hook deep-imports a dist path (prompt-advisor.ts:47-50); a contract test makes dist-layout drift fail loudly instead of silently degrading to advisorFailed."
+    },
+    {
+      "id": "F-R1",
+      "iteration": 3,
+      "rq": "RQ2",
+      "verdict": "REJECT",
+      "mechanism": "pull-replaces-push",
+      "reason": "Trades a typed, reported failure for silent non-discovery; both lineages agree."
+    },
+    {
+      "id": "F-R2",
+      "iteration": 3,
+      "rq": "RQ4",
+      "verdict": "REJECT",
+      "mechanism": "dependency bundle inside the brief",
+      "reason": "Spends the 80-token budget on names the skill body restates on load; loading is the runtime layer's job."
+    },
+    {
+      "id": "F-R3",
+      "iteration": 3,
+      "rq": "RQ5",
+      "verdict": "REJECT",
+      "mechanism": "orchestrator substring score table import",
+      "reason": "Strict subset of the lexical lane's capability."
+    },
+    {
+      "id": "F-R4",
+      "iteration": 5,
+      "rq": "RQ3",
+      "verdict": "REJECT",
+      "mechanism": "authorization-set + load-gate transplant",
+      "reason": "The gate authorizes loading; the advisor loads nothing. Only lifecycle state-reset transfers and it already exists."
+    },
+    {
+      "id": "F-R5",
+      "iteration": 4,
+      "rq": "RQ7",
+      "verdict": "REJECT",
+      "mechanism": "warn-not-delete transplant",
+      "reason": "Embodied by the renderer's fail-closed instruction-label guard (render.ts:83-85,129-145)."
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Deep-reading TUI surface (ui.ts, autocomplete.ts, shortcuts.ts)",
+      "reason": "Manager-side discovery, deliberately separate from model context",
+      "iteration": 1
+    },
+    {
+      "approach": "Full token-saver.ts read",
+      "reason": "Spec limits Token Saver to bearing on advisor output bounds; compressor internals out of scope",
+      "iteration": 2
+    },
+    {
+      "approach": "Deep-read projection.ts, executor-delegation.ts, feedback-calibration.ts",
+      "reason": "Lane contract sufficient from registry and lane files",
+      "iteration": 3
+    },
+    {
+      "approach": "Full read of system-skill-advisor.js (1499 lines) + devin/cursor adapters",
+      "reason": "Plugin mirrors canonical lifecycle; adapters share the module",
+      "iteration": 4
+    },
+    {
+      "approach": "Live advisor_recommend invocation",
+      "reason": "Would write runtime state outside the lineage write surface",
+      "iteration": 5
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 7,
+    "keyFindings": 21,
+    "convergenceScore": 0.35,
+    "citationVerification": {
+      "citedRangesChecked": 40,
+      "failedCitations": 0
+    },
+    "crossLineage": {
+      "comparedAgainst": "mimo",
+      "verdictPartitionAgreement": true,
+      "divergence": "rank-level framing of the Pi-call deadline fix (V6 vs mimo F9-2)"
+    },
+    "coverageBySources": {
+      "orchestrator": "src/{index,catalog,search,scope,profiles,dependencies,config,types,token-saver,skill-io} + docs",
+      "advisor": "runtime/{handlers,lib,scorer,subprocess,prompt-policy,prompt-cache,metadata-sanitizer,metrics,routing,skill-graph,cross-skill-edges} + hooks/{pi,claude,lib} + plugin + sqlite schema"
+    }
+  }
+}

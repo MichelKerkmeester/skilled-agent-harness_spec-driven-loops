@@ -17,7 +17,8 @@
     "system-skill-advisor/026-pre-existing-suite-failures",
     "system-skill-advisor/027-empty-recommendation-diagnostic",
     "system-skill-advisor/028-restore-pi-advisor-brief",
-    "system-skill-advisor/029-fix-remaining-advisor-defects"
+    "system-skill-advisor/029-fix-remaining-advisor-defects",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
   ],
   "manual": {
     "depends_on": [],
