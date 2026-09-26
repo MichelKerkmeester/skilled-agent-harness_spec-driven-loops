@@ -128,6 +128,7 @@ Exact-string editing fails silently when a file changes between the model's read
 
 - `read` output is annotated with per-line content hashes (`     N:HHHHHHHH→content`).
 - The `edit_lines` tool replaces an inclusive 1-based line range (`from..to`) with `new_text`, but only when the endpoint hashes it is given still match the file as it is now.
+- When the file ends with a newline, `line_count` includes its final empty numbered line, matching Pi's "of N" read notices.
 - On drift, the edit is **refused** with an error naming the drifted line, the claimed vs. actual hash, and the current line content, so the next attempt can be built from a fresh `read`.
 
 **Refusal is the failure mode.** A stale hash never falls back to a fuzzy or best-effort match; a looser match is exactly the silent corruption this path exists to prevent. The existing exact-string `edit` tool is untouched, and the unguarded path remains available for edits built from current content.

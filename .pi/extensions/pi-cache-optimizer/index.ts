@@ -7954,7 +7954,8 @@ export const editLinesSchema = {
       type: 'integer',
       description: 'Total number of lines the file had when it was read. An edit is refused ' +
         'if the file no longer has this many lines, because inserted or removed lines shift ' +
-        'every line number below them.',
+        'every line number below them. A file ending in a newline has a final empty numbered ' +
+        'line; count it, as Pi does in its "of N" read notices.',
     },
     edits: {
       type: 'array',
@@ -8159,6 +8160,14 @@ export function validateEdits(
     );
   }
   if (claimedLineCount !== lines.length) {
+    if (claimedLineCount === lines.length - 1 && lines[lines.length - 1] === '') {
+      return (
+        `edit_lines: the final empty line at line ${lines.length} follows the file's final newline, ` +
+        'and the read numbers it too. ' +
+        `Retry with the file's count (${lines.length}) only if the read's last numbered line was ` +
+        `${lines.length}; otherwise use 'read' again to get fresh content with current hashes.`
+      );
+    }
     return (
       `edit_lines: the file has ${lines.length} lines but the read saw ${claimedLineCount}. ` +
       'Lines were inserted or removed since then, so every line number below the change has ' +
@@ -8427,6 +8436,8 @@ export function registerHashVerifiedEdits(pi: ExtensionAPI): HashVerifiedEditSta
       "Prefer edit_lines for edits to files you've recently read with 'read'. The read output " +
       'includes per-line hashes (format: N:HHHHHHHH→content). Use these hashes with edit_lines ' +
       'to avoid character-perfect old_string reproduction.',
+      'A file ending in a newline has a final empty numbered line; count it, as Pi does in its ' +
+      '"of N" read notices.',
       "Use 'edit' only when you don't have a fresh read with hash annotations, or when you need " +
       'to match a specific string without line numbers.',
       'edit_lines and edit are different tools with different parameter shapes. edit_lines takes ' +
