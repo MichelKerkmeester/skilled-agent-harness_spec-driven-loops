@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent: Pi Skill Orchestrator Research for Skill Advisor Refinement"
-description: "Phased packet that mines the pi-skill-orchestrator extension for mechanisms that could upgrade system-skill-advisor. Phase 1 ran a two-lineage deep research: 10 iterations on MiMo v2.6 Pro (high) through cli-pi on LLM Gateway and 5 on SWE-2 MAX through cli-devin. Phases 2 to 4 implement the nine recommendations the operator adopted: nested hook deadlines and diagnostics, a leaner hook path and a clearer fallback."
+description: "Phased packet that mines the pi-skill-orchestrator extension for mechanisms that could upgrade system-skill-advisor. Phase 1 ran a two-lineage deep research: 10 iterations on MiMo v2.6 Pro (high) through cli-pi on LLM Gateway and 5 on SWE-2 MAX through cli-devin. Phases 2 to 4 implement the nine recommendations the operator adopted: nested hook deadlines and diagnostics, a leaner hook path and a clearer fallback. Phase 5 fixes the limitations they recorded, and phase 6 reviews all of it with two other model families."
 trigger_phrases:
   - "pi skill orchestrator"
   - "pi-skill-orchestrator research"
@@ -12,10 +12,10 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-26T14:08:00Z"
+    last_updated_at: "2026-09-26T16:00:00Z"
     last_updated_by: "orchestrate"
-    recent_action: "Closed 001-deep-research after the fan-out dashboard fix"
-    next_safe_action: "None; all four phases are complete"
+    recent_action: "Completed 005-follow-up-fixes"
+    next_safe_action: "Run the phase 6 fan-out review"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-26-030-orchestrate"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions:
       - "Q2, answered by the operator 2026-09-26: fix the advisor docs to match the CLI-only hook, with the casual-prompt gate in front of the CLI call."
@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete. All four phases are complete |
+| **Status** | Active. Phases 1 to 5 are complete; phase 6 reviews them |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -107,7 +107,10 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | `.skilled/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml` | Modify | 001-deep-research | Require the root dashboard only for runs without lineage logs, so a fan-out close can record `synthesis_complete` |
 | `.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts` | Modify | 002-hook-deadline-and-diagnostics | Nested deadline so the advisor hook times out before the shim kills it |
 | `.skilled/skills/system-skill-advisor/hooks/` and `runtime/lib/` | Modify | 002, 003, 004 | Diagnostics, Pi hook guards, hook-path request option, casual-prompt gate, fallback rendering |
-| `.skilled/plugins/system-skill-advisor.js` | Modify | 004-headless-fallback-status-and-dedup | Plugin copy of the fallback line and its repeat handling |
+| `.skilled/plugins/system-skill-advisor.js` | Modify | 004-headless-fallback-status-and-dedup, 005-follow-up-fixes | Plugin copy of the fallback line and its repeat handling; transform dedup before lifecycle reduction |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` and `deep-review-confirm.yaml` | Modify | 005-follow-up-fixes | The research workflows' fan-out dashboard rule |
+| `.pi/extensions/pi-cache-optimizer/index.ts` | Modify | 005-follow-up-fixes | `edit_lines` trailing-newline refusal |
+| `006-fanout-deep-review/review/` | Create | 006-fanout-deep-review | Two-lineage review state and merged report |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -123,6 +126,8 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | 2 | 002-hook-deadline-and-diagnostics/ | R1 nested hook deadlines, R3 brief bytes and runtime in diagnostics, R7 Pi dist-path test, R11 crash-safe log trim, R12 Pi call deadline | Complete |
 | 3 | 003-hook-path-cli-spawn-trim/ | R2 skip compiled-route spawns on the hook path, R5 reconnect the casual-prompt gate | Complete |
 | 4 | 004-headless-fallback-status-and-dedup/ | R4 status-aware fallback line, R6 no repeated fallback on Claude and OpenCode | Complete |
+| 5 | 005-follow-up-fixes/ | Fan-out review close without a root dashboard, `edit_lines` trailing-newline refusal, plugin transform dedup before lifecycle reduction, trigger index from committed content | Complete |
+| 6 | 006-fanout-deep-review/ | Two-model `/deep:review` of the phase 2 to 5 changes: MiMo v2.6 Pro high and DeepSeek V4.1 Flash max through cli-pi, three iterations each, no early stop | Active |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 
@@ -140,6 +145,8 @@ R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Ea
 | 001-deep-research | 002-hook-deadline-and-diagnostics | `research/research.md` holds the merged, ranked synthesis and the load-bearing citations for R1 to R7, R11 and R12 were opened and confirmed | Lineage state logs show 10 and 5 iteration records, and the orchestrator's citation checks are recorded in each phase spec |
 | 002-hook-deadline-and-diagnostics | 003-hook-path-cli-spawn-trim | Hook diagnostics carry `emittedBytes` and the real runtime, and a baseline of hook `durationMs` exists | A debug-on hook turn per runtime writes a record with both fields |
 | 003-hook-path-cli-spawn-trim | 004-headless-fallback-status-and-dedup | The fallback reaches all four subprocess runtimes, since 002 lands R1, and the hook path no longer spawns compiled-route | A forced slow CLI yields the directives fallback on Claude, and no `compiled-route.cjs` child starts on a hook request |
+| 004-headless-fallback-status-and-dedup | 005-follow-up-fixes | Phases 1 and 4 recorded the review close, plugin dedup and index limitations | Each limitation names its file and line in the phase's implementation summary |
+| 005-follow-up-fixes | 006-fanout-deep-review | A fan-out review close records `synthesis_complete` without a root dashboard | The fan-out review case in `run-now-yaml-control.vitest.ts` passes and fails with the fix reverted |
 <!-- /ANCHOR:phase-map -->
 
 ---

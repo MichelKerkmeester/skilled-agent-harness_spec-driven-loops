@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes",
+  "description": "Phase 1: follow-up-fixes",
+  "keywords": [
+    "phase",
+    "follow-up-fixes"
+  ],
+  "lastUpdated": "2026-09-26T15:21:02.192Z",
+  "specId": "005",
+  "folderSlug": "follow-up-fixes",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

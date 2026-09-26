@@ -7,7 +7,9 @@
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim",
-    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup"
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -37,7 +39,7 @@
       "phase"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-deep-research/research/research.md",
@@ -46,7 +48,9 @@
       "004-headless-fallback-status-and-dedup/spec.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
-      ".skilled/plugins/system-skill-advisor.js"
+      ".skilled/plugins/system-skill-advisor.js",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".pi/extensions/pi-cache-optimizer/index.ts"
     ],
     "entities": [
       {
@@ -71,6 +75,18 @@
         "name": "system-skill-advisor.js",
         "kind": "code",
         "path": ".skilled/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
         "source": "derived"
       },
       {
@@ -112,16 +128,16 @@
     ],
     "causal_summary": "The skill advisor routes by push",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-09-26T14:03:35.312Z",
+    "last_save_at": "2026-09-26T15:47:59.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7d4461fd935abf6246025facaa3d9abcf59d3a5b7be3651cbd9a4626db408e43",
+    "source_fingerprint": "sha256:2fdd0ba4c9a7fa36d33a871dba29e6112d9d2d778886baad4c0e9af33339f374",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "147e444abbcecbbe51a9d7f6410848edc36580f55b7479e2fb7e4ca236aed45b"
+      "spec.md": "f87d37986025c2230c0f0e68b539d893e87f6ddff4979274445b7e127aadf5ab"
     },
     "last_active_child_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
     "last_active_at": "2026-09-26T14:02:43.312Z"
