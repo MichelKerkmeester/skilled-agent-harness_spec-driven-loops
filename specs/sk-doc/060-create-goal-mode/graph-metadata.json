@@ -12,7 +12,8 @@
     "sk-doc/060-create-goal-mode/006-goal-conformance-check",
     "sk-doc/060-create-goal-mode/007-hub-routing-integration",
     "sk-doc/060-create-goal-mode/008-command-and-playbook",
-    "sk-doc/060-create-goal-mode/009-verification-and-closeout"
+    "sk-doc/060-create-goal-mode/009-verification-and-closeout",
+    "sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes"
   ],
   "manual": {
     "depends_on": [],
@@ -199,17 +200,17 @@
     ],
     "causal_summary": "Packet goals already exist in this repository",
     "created_at": "2026-09-25T18:48:45Z",
-    "last_save_at": "2026-09-26T09:11:17.895Z",
+    "last_save_at": "2026-09-26T10:17:21.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:bb5fcec9ec3bd2bfa7b639f9d7f12ff32485bd8596b880d46435198b472b6b0a",
+    "source_fingerprint": "sha256:daa9c6d77f3c354aff86ad5ea1b9fa6b8e10db7af4472c9248cb47e10ab8d524",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ddb284ecc57e03d8404ba3dbdf84b71ab87701e6d6967b0c21adde9bdb66c72"
+      "spec.md": "25339c8fcddd299dec2ca0006afad4016bdaa77947a26dc3cd25802ffc35b6de"
     },
     "last_active_at": null
   }
