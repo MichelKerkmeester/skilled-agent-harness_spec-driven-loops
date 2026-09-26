@@ -229,6 +229,7 @@ describe('deep workflow synthesis-completion invariant YAML control', () => {
   function renderSynthesisCommand(mode: Mode, fixture: ReturnType<typeof createSynthesisFixture>): string {
     const command = extractStepCommand('step_convergence_report', mode === 'research' ? RESEARCH_YAML_PATH : REVIEW_YAML_PATH);
     return renderTemplate(command, {
+      '{state_paths.packet_dir}': fixture.artifactDir,
       '{state_paths.state_log}': fixture.stateLogPath,
       '{state_paths.registry}': fixture.registryPath,
       '{state_paths.findings_registry}': fixture.registryPath,
@@ -286,6 +287,50 @@ describe('deep workflow synthesis-completion invariant YAML control', () => {
       } finally {
         fixture.env.cleanup();
       }
+    }
+  });
+
+  it('logs synthesis_complete for fan-out research when lineage artifacts exist without a root dashboard', () => {
+    const fixture = createSynthesisFixture('research', 'synthesis-fanout-no-root-dashboard', 1);
+    try {
+      const lineageDir = join(fixture.artifactDir, 'lineages', 'alpha');
+      mkdirSync(lineageDir, { recursive: true });
+      writeFileSync(
+        join(lineageDir, 'deep-research-state.jsonl'),
+        `${JSON.stringify({ type: 'iteration', run: 1, findingsCount: 1, findings: ['finding from state'] })}\n`,
+        'utf8',
+      );
+      writeFileSync(fixture.registryPath, JSON.stringify({ keyFindings: [{ id: 'finding from state' }] }), 'utf8');
+      writeFileSync(fixture.outputPath, 'research synthesis\n', 'utf8');
+
+      runRenderedCommand(renderSynthesisCommand('research', fixture), fixture.env);
+
+      const records = readRecords(fixture.stateLogPath);
+      expect(records.at(-1)).toMatchObject({ type: 'event', event: 'synthesis_complete', stopReason: 'converged' });
+    } finally {
+      fixture.env.cleanup();
+    }
+  });
+
+  it('keeps the root dashboard required for research without lineage logs', () => {
+    const fixture = createSynthesisFixture('research', 'synthesis-no-lineage-no-root-dashboard', 1);
+    try {
+      writeFileSync(fixture.registryPath, JSON.stringify({ keyFindings: [{ id: 'finding from state' }] }), 'utf8');
+      writeFileSync(fixture.outputPath, 'research synthesis\n', 'utf8');
+
+      runRenderedCommand(renderSynthesisCommand('research', fixture), fixture.env, 2);
+
+      const records = readRecords(fixture.stateLogPath);
+      expect(records.at(-1)).toMatchObject({
+        type: 'event',
+        event: 'synthesis_incomplete',
+        invariantFailures: expect.arrayContaining(['missing_synthesis_artifacts']),
+      });
+      expect(records.at(-1)?.missingArtifacts).toEqual([
+        expect.objectContaining({ name: 'dashboard', path: fixture.dashboardPath }),
+      ]);
+    } finally {
+      fixture.env.cleanup();
     }
   });
 
