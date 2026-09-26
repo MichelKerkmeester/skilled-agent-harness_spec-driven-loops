@@ -79,6 +79,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 - A deep-research phase: context digests on the repository rules, the Jev seams, the vendored material and the measurement harnesses, then 30 iterations over three lineages and a fresh Opus synthesis.
 - Adding the Grok 4.7 model id to the cli-cursor allowlist, its tests and its docs, because the research needs a Grok 4.7 lane.
 - Scaffolding the build phases the synthesis proposes as Planned children, with filled documents and no implementation.
+- A second research round: an AI Council review of round 1, a council-based re-synthesis, 20 forced iterations over four model families, a final synthesis, and Planned build phases reconciled with it.
 
 ### Out of Scope
 
@@ -114,6 +115,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 1 | 001-deep-research/ | Context digests and research angles, the Grok 4.7 roster entry, a 30-iteration fan-out over DeepSeek, MiMo and Grok, and a fresh Opus synthesis | Complete |
 | 2 | 002-advisor-jev-tiebreak-arm/ | Measure offline, by hand, whether a Jev `choice` over the advisor's near-tie cluster beats the scorer's own order on held-out rows. Dormant without a Jev key | Planned |
 | 3 | 003-goal-verifier-jev-shadow/ | Give the goal verifier its first error rates on an operator-labeled set, then add an opt-in shadow `jev` mode to the OpenCode goal plugin only if an offline Jev arm clears a threshold fixed before the build. Dormant without a Jev key | Planned |
+| 4 | 004-deep-research-expansion/ | Re-synthesize round 1 from the AI Council review, run 20 forced iterations over Grok 4.7, MiMo V2.6 Pro, SWE-2 Max and DeepSeek V4.1 Flash, write the final synthesis and reconcile the Planned build phases | In Progress |
 
 ### Phase Transition Rules
 
@@ -129,6 +131,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 001-deep-research | proposed build phases | `research/research.md` ranks every recommendation and lists the phases to scaffold | The synthesis opens every cited `file:line`, and `validate.sh --strict` passes on 001 |
 | 001-deep-research | 002-advisor-jev-tiebreak-arm | `research/research.md` ranks R1 build-now with its seam, metric and first slice | `validate.sh --strict` passes on 001 |
 | 002-advisor-jev-tiebreak-arm | 003-goal-verifier-jev-shadow | Not a hard gate: 003's offline slice can start any time. Its plugin mode waits on 002's per-call latency record | 002's per-call JSONL shows a wall time for every call |
+| 001-deep-research | 004-deep-research-expansion | `ai-council/council-report.md` and `proposed-resynthesis.md` exist | `validate.sh --strict` passes on 001 |
 <!-- /ANCHOR:phase-map -->
 
 ---

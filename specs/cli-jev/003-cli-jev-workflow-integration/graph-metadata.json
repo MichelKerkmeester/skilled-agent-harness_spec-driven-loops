@@ -6,7 +6,8 @@
   "children_ids": [
     "cli-jev/003-cli-jev-workflow-integration/001-deep-research",
     "cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm",
-    "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow"
+    "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
+    "cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion"
   ],
   "manual": {
     "depends_on": [],
@@ -53,6 +54,9 @@
       "001-deep-research/goal.md",
       "002-advisor-jev-tiebreak-arm/goal.md",
       "003-goal-verifier-jev-shadow/goal.md",
+      "004-deep-research-expansion/goal.md",
+      "001-deep-research/research/research.md",
+      "001-deep-research/ai-council/council-report.md",
       ".opencode/plugins/opencode-goal.js"
     ],
     "entities": [
@@ -84,6 +88,12 @@
         "name": "executor-config.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "001-deep-research/ai-council/council-report.md",
         "source": "derived"
       },
       {
@@ -135,6 +145,12 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -157,27 +173,21 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-26T18:40:16.842Z",
+    "last_save_at": "2026-09-26T20:27:50.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8f9e9b88eff5ecc4baa7310d76be33f5053f9ceabd3bec754139be6cbe1fde91",
+    "source_fingerprint": "sha256:ccd5b1a40f12e1caaeab8379530ed872fa1c6d25223af9bb8ac3c33d7d2ec8db",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26d4ebe41ffbd9d495e6f71f99e894a81554f71582d9a959397e9d528f488077"
+      "spec.md": "9245fba408c3369ad87d92a114ba09fdfeb95b2af04fcc8bfcf106609cd7f5f1"
     },
     "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/001-deep-research",
     "last_active_at": "2026-09-26T18:38:11.145Z"
