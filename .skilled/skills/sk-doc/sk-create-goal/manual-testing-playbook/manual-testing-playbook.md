@@ -169,7 +169,7 @@ Verify the happy path: a goal authored for a single-folder packet passes all fou
 #### Scenario Contract
 Prompt: `Author the goal for the scratch demo packet at $SCRATCH/specs/demo-packet with /create:goal top-level :auto, run the goal check and print the chat slice if it passes.`
 
-The workflow reads the packet sources, renders the goal from the system-spec-kit template and fills objective, decisions and three criteria with no placeholders. The goal check runs before any handoff and the chat slice prints only after the check passes.
+The workflow reads the packet sources, copies the top-level template and fills objective, decisions and three criteria with no placeholders. The goal check runs before any handoff and the chat slice prints only after the check passes.
 
 Desired user-visible outcome: the operator receives a passing goal check and the chat slice to set.
 
@@ -187,7 +187,7 @@ Verify the phased shape: one parent goal carrying a binding row per phase folder
 #### Scenario Contract
 Prompt: `Author the goals for the scratch phase packet at $SCRATCH/specs/demo-phase with /create:goal :auto: one phase-parent goal and one child goal per phase folder, then run the goal check on the parent and on each child.`
 
-The parent goal renders at the phase level with one binding row per direct child directory and each child goal keeps its criteria phase-local. The binding set equals the folder set by name.
+The parent goal starts from the phase-parent template with one binding row per direct child directory and each child goal keeps its criteria phase-local. The binding set equals the folder set by name.
 
 Desired user-visible outcome: the operator sees one parent goal bound to every phase folder and one passing goal check per goal.
 
@@ -205,7 +205,7 @@ Verify the retrofit operation on an existing packet that carries its source docu
 #### Scenario Contract
 Prompt: `Add a goal to the existing scratch packet at $SCRATCH/specs/demo-packet with /create:goal retrofit :auto and verify it before handing it over.`
 
-The workflow confirms the packet exists and has no goal file, renders the canonical template at the packet's level and fills it from the packet's own sources.
+The workflow confirms the packet exists and has no goal file, copies the template for the packet's kind and fills it from the packet's own sources.
 
 Desired user-visible outcome: the packet gains a goal file that passes the goal check and measures within budget.
 

@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Packet Goal Author
 purpose: Author or revise a spec packet's goal.md from that packet's own sources
-action: Read the packet sources, pick the operation, render and fill the goal, bind phases, measure, check, hand off
+action: Read the packet sources, pick the operation, copy the template for the goal's kind and fill it, bind phases, measure, check, hand off
 operating_mode:
   workflow: linear
   workflow_compliance: MANDATORY
@@ -12,9 +12,10 @@ operating_mode:
 
 development_philosophy:
   principle: Derive every goal from the packet's own documents
-  approach: Read -> Route -> Render -> Fill -> Bind -> Measure -> Check -> Hand off
+  approach: Read -> Route -> Template -> Fill -> Bind -> Measure -> Check -> Hand off
   mandate: >-
-    The goal template and rendering belong to system-spec-kit; session objective state belongs
+    goal.md.tmpl belongs to system-spec-kit, and the three asset templates are checked copies of
+    it. Session objective state belongs
     to the goal hooks. This workflow authors the packet's goal file and prints its chat slice,
     then stops. A finished goal file is a successful run even though no session state changed.
 
@@ -28,10 +29,12 @@ skill_reference:
     budget: .skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md
     exemplars: .skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md
   templates:
-    goal: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl
+    top_level: .skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md
+    phase_parent: .skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-parent-template.md
+    phase_child: .skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-child-template.md
+    source: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl
   tooling:
     child_scaffold: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh
-    existing_packet_render: .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh
     packet_report: .skilled/hooks/goal/bin/goal.cjs
     goal_checker: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs
 
@@ -66,7 +69,7 @@ request_analysis_framework:
     - "Parse input: the packet path and the requested operation"
     - "Run the four routing decisions and record the resolved operation"
     - "Read the packet's own source specification and acceptance criteria"
-    - "Render through system-spec-kit, then fill to the authoring standards"
+    - "Start from the asset template for the goal's kind, then fill to the authoring standards"
     - "Match any phase-parent binding table to the phase folders on disk"
     - "Measure, check, then print the chat slice and stop"
   pre_change_validation:
@@ -131,9 +134,9 @@ workflow_overview:
     - id: step_1_route_and_read
       purpose: Classify the request and pick the operation
     - id: step_2_plan_render
-      purpose: Choose the system-spec-kit render path and level
+      purpose: Choose the template for the goal's kind
     - id: step_3_render_and_fill
-      purpose: Render the goal and fill it to the authoring standards
+      purpose: Copy the template and fill it to the authoring standards
     - id: step_4_bind
       purpose: Match any binding table to the phase folders on disk
     - id: step_5_measure_and_check
@@ -165,24 +168,24 @@ workflow:
         note: "retrofit is adding goal.md to an existing packet that has none; amend is revising an existing goal, including a parent amendment driven by a child change."
 
   step_2_plan_render:
-    purpose: Choose the system-spec-kit render path and level
+    purpose: Choose the template for the goal's kind
     steps:
       step_plan:
         action: >-
-          For a new child packet, plan create.sh with --with-goal. For an existing packet or a
-          phase parent, plan inline-gate-renderer.sh with --level <L>, where a phase parent uses
-          the phase level and other packets use their actual level. Child scaffolding alone never
-          creates the parent goal.
-        note: "This step writes nothing; the render happens in step 3."
+          For a new child packet, plan create.sh with --with-goal and fill the goal.md it writes
+          with the phase-child template's guidance. Otherwise plan the asset template for the
+          goal's kind: goal-top-level-template.md, goal-phase-parent-template.md or
+          goal-phase-child-template.md. Child scaffolding alone never creates the parent goal.
+        note: "This step writes nothing; the copy happens in step 3."
 
   step_3_render_and_fill:
-    purpose: Render the goal and fill it to the authoring standards
+    purpose: Copy the template and fill it to the authoring standards
     steps:
       step_render:
-        action: "Render the goal template through system-spec-kit at the planned path and level. Never copy or fork goal.md.tmpl."
+        action: "Copy the block between the planned template's markers into goal.md, or keep the file create.sh scaffolded. Never edit a template's fixed text or goal.md.tmpl."
       step_fill:
         action: >-
-          Load authoring-standards.md and goal-exemplars.md, then fill the rendered structure with
+          Load authoring-standards.md and goal-exemplars.md, then fill the template with
           packet-specific content: one objective sentence, frozen decisions, and three to seven
           self-contained completion criteria copied verbatim into the evaluator-facing objective
           text. Leave no template placeholders.
@@ -234,8 +237,8 @@ workflow_enforcement:
       enforcement: MUST run the four routing decisions before any goal file is touched
       verification: The resolved operation and its source are recorded, and a session-objective request was redirected
     step_3_render_and_fill:
-      enforcement: MUST render through system-spec-kit, never from a local template copy
-      verification: The render command and level are recorded, and no template placeholder remains
+      enforcement: MUST start from the asset template for the goal's kind or a create.sh scaffold
+      verification: The template used is recorded, and no template placeholder remains
     step_5_measure_and_check:
       enforcement: MUST report the measured budget and a clean goal checker before handoff
       verification: packet_budget is read from the packet report and every checker finding is resolved
@@ -252,8 +255,8 @@ gate_logic:
       description: "The packet's own sources agree on decisions, criteria and phase structure before anything is written"
       fail_action: STOP and report the conflict with both sides named
     H3_render_contract:
-      description: "Every goal is rendered through system-spec-kit's template and renderer"
-      fail_action: STOP; a local template copy or a hand-built structure is never written
+      description: "Every goal starts from the asset template for its kind or a create.sh scaffold"
+      fail_action: STOP; a hand-built structure or edited fixed text is never written
     H4_binding_complete:
       description: "A phase parent's binding rows and the direct phase-child directories are the same set"
       fail_action: STOP and reconcile the phase map with disk before writing the goal
@@ -278,8 +281,8 @@ circuit_breaker:
 
 quality_standards:
   template_fidelity:
-    minimum: Every goal follows the system-spec-kit goal template with no local template copy
-    enforcement: Step 3 renders only through system-spec-kit
+    minimum: Every goal starts from the asset template for its kind, whose fixed text matches goal.md.tmpl
+    enforcement: Step 3 copies only from the asset templates or a create.sh scaffold
   criterion_quality:
     minimum: Three to seven self-contained criteria, each checkable without opening another file
     enforcement: Step 3 applies authoring-standards.md before the goal is handed off
@@ -342,7 +345,7 @@ termination:
 rules:
   required:
     - "Run the four routing decisions before writing, on every path"
-    - "Render every goal through system-spec-kit; never copy goal.md.tmpl"
+    - "Start every goal from the asset template for its kind; never edit goal.md.tmpl"
     - "Compare binding rows with the phase folders by name, never by count"
     - "Print the chat slice and stop; the operator sets or resends the goal"
   forbidden:

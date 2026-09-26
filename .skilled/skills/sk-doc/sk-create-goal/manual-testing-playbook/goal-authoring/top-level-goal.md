@@ -17,7 +17,7 @@ This scenario validates the top-level goal for `SCG-001`. It focuses on authorin
 
 ### Why This Matters
 
-The top-level goal is the shape most packets use and the shape every other scenario builds on. The mode must derive the objective and the criteria from the packet's own sources instead of a remembered summary, render the structure from the system-spec-kit template and leave no template text behind. The handoff boundary is part of the test: the check runs first and the chat slice prints only after the check passes, so a runner who sees a chat slice also knows the goal was checked.
+The top-level goal is the shape most packets use and the shape every other scenario builds on. The mode must derive the objective and the criteria from the packet's own sources instead of a remembered summary, take the structure from the top-level template, a checked copy of the system-spec-kit template, and leave no template text behind. The handoff boundary is part of the test: the check runs first and the chat slice prints only after the check passes, so a runner who sees a chat slice also knows the goal was checked.
 
 ---
 
@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `SCG-001` and confirm th
 - Objective: author a top-level goal for a single-folder scratch packet and prove the goal check passes and the budget reads ok
 - Real user request: `My demo packet has a spec and acceptance criteria but no goal yet. Write the goal and show me what to set as the session objective.`
 - Prompt: `Author the goal for the scratch demo packet at $SCRATCH/specs/demo-packet with /create:goal top-level :auto, run the goal check and print the chat slice if it passes.`
-- Expected execution process: the workflow reads the fixture spec and acceptance criteria, renders the goal template at the packet's level and fills an objective sentence, a decision row and three completion criteria copied from the acceptance criteria. It runs the goal check before any handoff and prints the chat slice only after the check passes.
+- Expected execution process: the workflow reads the fixture spec and acceptance criteria, copies the top-level template and fills an objective sentence, a decision row and three completion criteria copied from the acceptance criteria. It runs the goal check before any handoff and prints the chat slice only after the check passes.
 - Expected signals: the goal file exists at the exact packet path, the goal check exits 0 with `RESULT: PASSED (4/4 checks)` and four `PASS <check> findings=0` lines, the packet report prints `packet_budget=ok` and `packet_nested=false`, the `chat_slice` field is present and carries the objective sentence and the criteria count reads 3.
 - Desired user-visible outcome: the operator receives a passing goal check and a chat slice ready to set as the session objective.
 - Pass/fail: PASS if every expected signal appears with no contradictory evidence. FAIL if the check exits non-zero, the budget reads other than `ok`, the chat slice is missing or the criteria count differs from the fixture's three acceptance criteria.

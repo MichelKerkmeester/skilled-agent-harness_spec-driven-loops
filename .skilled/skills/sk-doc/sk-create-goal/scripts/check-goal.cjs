@@ -27,14 +27,20 @@ const PHASE_SPEC_FILE = 'spec.md';
 // Archived goals are historical evidence and stay out of active scan totals.
 const ARCHIVE_DIR = 'z_archive';
 const TICK = String.fromCharCode(96);
-const PLACEHOLDERS = {
-  objective: '[One sentence. What this packet is for. Not how, not progress.]',
-  decision: '[The decision, stated so a reader can tell whether work honors it]',
+const TEMPLATE_ASSETS = [
+  'goal-top-level-template.md',
+  'goal-phase-parent-template.md',
+  'goal-phase-child-template.md'
+];
+const TEMPLATE_BLOCK = /<!-- BEGIN TEMPLATE -->\n```markdown\n([\s\S]*?)\n```\n<!-- END TEMPLATE -->/u;
+const PLACEHOLDERS = mergeAssetPlaceholders({
+  objective: ['[One sentence. What this packet is for. Not how, not progress.]'],
+  decision: ['[The decision, stated so a reader can tell whether work honors it]'],
   criteria: [
     '[A check whose answer is an exit code, a count, or a named artifact]',
     '[Another]'
   ]
-};
+});
 const CHECKS = [
   { name: 'missing-binding-row', run: evaluateMissingBindingRows },
   { name: 'placeholder', run: evaluatePlaceholders },
@@ -255,10 +261,34 @@ function evaluateMissingBindingRows(context) {
     ));
 }
 
+// Each asset template words its placeholders for its goal kind, so an
+// unfilled copy of any of them must fail like an unfilled goal.md.tmpl.
+function mergeAssetPlaceholders(base) {
+  const merged = {
+    objective: [...base.objective],
+    decision: [...base.decision],
+    criteria: [...base.criteria]
+  };
+  for (const asset of TEMPLATE_ASSETS) {
+    const text = fs.readFileSync(path.join(__dirname, '..', 'assets', asset), 'utf8');
+    const block = text.match(TEMPLATE_BLOCK);
+    if (!block) throw new Error('template block missing in assets/' + asset);
+    for (const line of block[1].split(/\r\n|\r|\n/u)) {
+      const objective = line.match(/^\*\*Objective:\*\*\s*(\[[^\]]+\])/u);
+      if (objective) merged.objective.push(objective[1]);
+      const decision = line.match(/^\|\s*D\d+\s*\|\s*(\[[^\]]+\])\s*\|/u);
+      if (decision) merged.decision.push(decision[1]);
+      const criterion = line.match(/^- \[ \] (\[[^\]]+\])/u);
+      if (criterion) merged.criteria.push(criterion[1]);
+    }
+  }
+  return merged;
+}
+
 function evaluatePlaceholders(context) {
   const sections = getGoalSections(context.durableSlice);
   const findings = [];
-  if (sections.objective.includes(PLACEHOLDERS.objective)) {
+  if (PLACEHOLDERS.objective.some((placeholder) => sections.objective.includes(placeholder))) {
     findings.push(createFinding(
       'placeholder',
       'template-placeholder',
@@ -269,7 +299,7 @@ function evaluatePlaceholders(context) {
 
   for (const line of sections.decisions) {
     const cell = getSecondTableCell(line);
-    if (cell && !isTableDivider(cell) && cell.includes(PLACEHOLDERS.decision)) {
+    if (cell && !isTableDivider(cell) && PLACEHOLDERS.decision.some((placeholder) => cell.includes(placeholder))) {
       findings.push(createFinding(
         'placeholder',
         'template-placeholder',

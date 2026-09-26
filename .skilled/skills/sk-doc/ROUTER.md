@@ -260,7 +260,9 @@ RESOURCE_MAP = {
         "sk-create-goal/assets/goal-exemplars.md",
         "sk-create-goal/references/parent-and-nested-goals.md",
         "sk-create-goal/references/budget-and-handoff.md",
-        "sk-create-goal/references/README.md"
+        "sk-create-goal/assets/goal-top-level-template.md",
+        "sk-create-goal/assets/goal-phase-parent-template.md",
+        "sk-create-goal/assets/goal-phase-child-template.md"
     ],
     "FULL_INVENTORY": [
         "sk-create-agent/assets/agent-template.md",
@@ -274,9 +276,10 @@ RESOURCE_MAP = {
         "sk-create-frontmatter/assets/frontmatter-templates.md",
         "sk-create-frontmatter/references/README.md",
         "sk-create-frontmatter/references/frontmatter-versioning.md",
-        "sk-create-goal/assets/.gitkeep",
         "sk-create-goal/assets/goal-exemplars.md",
-        "sk-create-goal/references/README.md",
+        "sk-create-goal/assets/goal-phase-child-template.md",
+        "sk-create-goal/assets/goal-phase-parent-template.md",
+        "sk-create-goal/assets/goal-top-level-template.md",
         "sk-create-goal/references/authoring-standards.md",
         "sk-create-goal/references/budget-and-handoff.md",
         "sk-create-goal/references/parent-and-nested-goals.md",

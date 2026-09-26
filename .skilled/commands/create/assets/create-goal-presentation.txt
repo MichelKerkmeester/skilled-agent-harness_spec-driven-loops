@@ -12,7 +12,7 @@ Indicators:
 - Invoked with @markdown prefix
 - Template-first workflow capabilities are available
 - Packet-goal authoring behavior is available
-- Goal rendering through system-spec-kit is available
+- The sk-create-goal asset templates are available
 
 If all indicators are present:
 - create_agent_verified = true
@@ -28,8 +28,8 @@ Hard-block message:
 ```text
 BLOCKED: /create:goal requires the @markdown agent.
 
-This command renders a packet goal through system-spec-kit's template and fills it
-against the authoring standards. Run it as @markdown so the template-first workflow
+This command fills a packet goal from the mode's template for its kind, a checked copy
+of system-spec-kit's goal template, against the authoring standards. Run it as @markdown so the template-first workflow
 is in force.
 
 Re-invoke as: @markdown /create:goal <packet path>
@@ -87,7 +87,7 @@ Default resolution table:
   Packet     : {packet_path}
   Role       : {top-level | phase parent | nested child}
   Operation  : {operation}   (source: {token | packet state})
-  Render     : {create.sh --with-goal | inline-gate-renderer.sh --level <L>}
+  Template   : {goal-top-level-template.md | goal-phase-parent-template.md | goal-phase-child-template.md | create.sh --with-goal scaffold}
   Goal file  : {packet_path}/goal.md
 
 ## 6. CHECKPOINT DISPLAY (:confirm)

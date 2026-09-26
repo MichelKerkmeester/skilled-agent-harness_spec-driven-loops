@@ -17,7 +17,7 @@ This scenario validates the placeholder refusal for `SCG-005`. It focuses on a t
 
 ### Why This Matters
 
-A rendered goal starts as template text and only becomes a goal when every slot is filled. Template text handed to an operator reads like a decision while committing to nothing and once it sits in the objective copy it judges completion for the life of the packet. The handoff boundary is the other half of the test: the mode runs the check before it prints the chat slice, so a leftover placeholder must stop the handoff rather than ride along with it.
+A new goal starts as template text and only becomes a goal when every slot is filled. Template text handed to an operator reads like a decision while committing to nothing and once it sits in the objective copy it judges completion for the life of the packet. The handoff boundary is the other half of the test: the mode runs the check before it prints the chat slice, so a leftover placeholder must stop the handoff rather than ride along with it.
 
 ---
 
