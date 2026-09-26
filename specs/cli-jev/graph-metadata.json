@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "cli-jev/001-cli-jev-creation",
-    "cli-jev/002-cli-jev-hub-migration"
+    "cli-jev/002-cli-jev-hub-migration",
+    "cli-jev/003-cli-jev-workflow-integration"
   ],
   "manual": {
     "depends_on": [],
