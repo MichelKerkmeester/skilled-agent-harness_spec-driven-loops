@@ -37,9 +37,9 @@ contextType: "research"
 - [x] T001 Scaffold this phase and write its spec, plan, tasks and goal (`./`)
 - [x] T002 Dispatch a fresh Opus 5.5 xhigh leaf to re-synthesize round 1 from the council review (`../001-deep-research/research/research.md`)
 - [x] T003 Reopen three claims the re-synthesis keeps from the council
-- [ ] T004 Dispatch an Opus 5.5 high leaf for 20 angles, a draft topic and the synthesis brief (`context/research-angles.md`, `scratch/synthesis-brief.md`)
-- [ ] T005 Tighten the topic with the prompt-improver on Sonnet and save it as one clean line (`scratch/research-topic.txt`)
-- [ ] T006 Ping all four executors and preview each lineage prompt through `buildLoopPrompt`
+- [x] T004 Dispatch an Opus 5.5 high leaf for 20 angles, a draft topic and the synthesis brief (`context/research-angles.md`, `scratch/synthesis-brief.md`)
+- [x] T005 Tighten the topic with the prompt-improver on Sonnet and save it as one clean line (`scratch/research-topic.txt`)
+- [x] T006 Ping all four executors and preview each lineage prompt through `buildLoopPrompt`
 <!-- /ANCHOR:phase-1 -->
 
 ---

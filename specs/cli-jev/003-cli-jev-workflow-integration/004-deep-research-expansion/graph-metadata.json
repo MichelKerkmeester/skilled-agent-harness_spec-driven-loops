@@ -46,7 +46,10 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "context/research-angles.md",
+      "scratch/research-topic.txt",
+      "scratch/synthesis-brief.md"
     ],
     "entities": [
       {
@@ -83,6 +86,24 @@
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "research-angles.md",
+        "kind": "doc",
+        "path": "context/research-angles.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic.txt",
+        "kind": "file",
+        "path": "scratch/research-topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-brief.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-brief.md",
         "source": "derived"
       },
       {
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "Fresh Opus",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "it",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The AI Council found that round 1 dropped the right ideas but measured too loosely and built in the wrong places",
     "created_at": "2026-09-26T20:24:40Z",
-    "last_save_at": "2026-09-26T21:07:53.336Z",
+    "last_save_at": "2026-09-26T21:26:11.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0723edddf4208aca3186594351846fdd346513e5c82d153b980ee784edae2eff",
+    "source_fingerprint": "sha256:5fbfc0df72876e1bb9bc0ad67b43540e000e88b2d7c4ae172a078e1ecffc4456",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "951cd9eed94fef5ffe72ba7571a6482b8b6946a1382a8a01f403a11a3c1c4e36",
       "plan.md": "c1a5787204db3167751c429153c55b06fa3133dc230f0696046ec81cf08c142b",
-      "tasks.md": "b0c04d4420a9e60c77d5c58ce1e65bd5a8dcb9f6de99b59b4a812c4797dbf74a",
+      "tasks.md": "87b525cb16db7c9cbc8523d88ec2fa2a73f8308f9260fd856d38eed3d96f659a",
       "implementation-summary.md": "84f379e096ec8c5bfa938cb46293430430d31b88c7f0f534640b8c04589dc31d"
     },
     "last_active_at": null
