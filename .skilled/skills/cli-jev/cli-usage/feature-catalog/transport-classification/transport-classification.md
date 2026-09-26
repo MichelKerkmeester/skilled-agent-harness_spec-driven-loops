@@ -72,9 +72,10 @@ The judgment is one input to a decision, never the decision. Three consequences:
    transport supplies the value that steers it, not the work.
 2. **No authorization transfer.** A `choice` answer is evidence about the caller's own options. It is
    not permission for an irreversible step, and nothing in this packet gates one.
-3. **No lineage.** The shared runtime refuses a dispatch from inside a fan-out lineage, and a
-   transport is not an exemption. Jev has no lineage of its own to run, so the bound is one-sided
-   here and still applies.
+3. **No lineage.** Jev cannot run a lineage or start one: it has no `Task`, file or process tools,
+   and each call returns one value and exits. No runtime refusal backs this. The deep-loop recursion
+   guard checks fan-out lineage and the dispatch stack only for a registered `ExecutorKind`, and Jev
+   has none, so the tool surface is the whole bound.
 
 Anchors: `SKILL.md` §3 "Transport Guard" and §7 "Not a Deep-Loop Executor".
 

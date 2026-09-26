@@ -111,8 +111,10 @@ sends a minimal request and reports `{"ok": true, "valid": true, "model": "..."}
 
 Jev does not dispatch itself. Two bounds apply unchanged by this packet:
 
-- **No fan-out lineage and no repeated dispatch stack.** The shared runtime refuses both, and a
-  transport is not an exemption.
+- **No spawn chain, by construction.** Jev cannot start an agent, a CLI or a loop: it has no `Task`,
+  file or process tools, and each call returns one value and exits. No runtime refusal backs this.
+  The deep-loop recursion guard checks fan-out lineage and the dispatch stack only for a registered
+  `ExecutorKind`, and Jev has none, so the tool surface is the whole bound.
 - **A transport pairs with a workflow before any effecting operation.** The judgment selects; the
   workflow acts. A `choice` answer is evidence about the caller's options, never permission.
 

@@ -135,12 +135,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -154,6 +148,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,17 +197,17 @@
     ],
     "causal_summary": "`cli-external-orchestration` routes to seven external CLI executor modes, and every one of them conducts a session that writes into this repository",
     "created_at": "2026-09-20T07:39:05Z",
-    "last_save_at": "2026-09-20T13:09:25.033Z",
+    "last_save_at": "2026-09-26T12:50:00.377Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:89dbeb8d0ab066b944111327763247a6ac0cfdb6da37e5b4af5a6d5e26b3bf95",
+    "source_fingerprint": "sha256:65ab09493cadc6f605bf4c7e8b331d70929392c3103d2bef06945fef50e2356e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51da654fec0cefb7aeb6b5ccab433cffcc275c4273a386412155f275b57acf84"
+      "spec.md": "b5618365637c92be06df2373150a308b916d0403dd2ec9a05585ef5325406b2f"
     },
     "last_active_child_id": "cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout",
     "last_active_at": "2026-09-20T09:03:46.732Z"

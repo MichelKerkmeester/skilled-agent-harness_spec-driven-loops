@@ -31,7 +31,7 @@ Use this skill when a request needs a typed judgment from the `jev` CLI or its M
 
 ## 2. SMART ROUTING
 
-Routing is registry-driven. `mode-registry.json` lists every packet, and `hub-router.json` decides whether the result is the single transport, a defer, or a bundle where the transport supplies the judgment and a workflow mode acts.
+Routing is registry-driven. `mode-registry.json` lists every packet, and `hub-router.json` decides whether the result is the single transport or a defer. The hub declares a bundle outcome because every parent hub must, but with one registered mode it never produces one.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
@@ -58,7 +58,7 @@ read hub-router.json
 ### Outcomes
 
 - `single`: one dominant judgment intent routes to `cli-usage`.
-- `orderedBundle`: a judgment intent paired with a workflow intent dispatches the workflow first, with the transport attached as the judgment source.
+- `orderedBundle`: declared, never produced. The router bundles only when two registered modes both match, and this hub registers one. A request that pairs a judgment with an edit routes `single` to `cli-usage`, and the caller takes the edit to the hub that owns it, as `ESCALATE IF` in §4 says.
 - `defer`: unclear intent asks for disambiguation rather than guessing a value.
 
 ---

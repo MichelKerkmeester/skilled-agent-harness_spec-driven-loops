@@ -53,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 3 phased packet |
 | **Priority** | P1 |
-| **Status** | In Progress — phases 001 to 004 Complete; phase 005 carries the closeout |
+| **Status** | Complete, all five phases closed 2026-09-20 |
 | **Created** | 2026-09-20 |
 | **Branch** | `main` |
 | **Parent Spec** | None (top-level packet) |
@@ -126,7 +126,7 @@ Add `cli-jev` as the hub's eighth mode and its first `packetKind: "transport"`, 
 | 2 | `002-cli-jev-skill-packet/` | The packet built with `sk-create-skill`: eight hard rules, four references, the question-shaping asset, README, changelog, benchmark baseline, playbook root | Complete 2026-09-20 — hub gate green; declared checks implemented in phase 003 |
 | 3 | `003-hub-mode-registration/` | The registry entry and `transport-axis`, all routing surfaces, the dispatch audit shape, the eight implemented checks with fixtures, the compiled-routing harness and the refreshed activation manifest | Complete 2026-09-20 — `parent-skill-check` 0 failures at 8 modes, both routing stages replayed, manifest `fresh: true` |
 | 4 | `004-catalog-and-playbook/` | Feature catalog with implementation anchors and a 22-scenario playbook, 20 scenarios executed without a credential and 2 recorded as skips | Complete 2026-09-20 — both package validators PASS at 0 violations |
-| 5 | `005-docs-governance-and-closeout/` | Roster mentions, the parent's completion metadata, the hub catalog's falsified axis claims, recursive strict validation, trigger-index refresh and continuity save | In Progress |
+| 5 | `005-docs-governance-and-closeout/` | Roster mentions, the parent's completion metadata, the hub catalog's falsified axis claims, recursive strict validation, trigger-index refresh and continuity save | Complete 2026-09-20, recursive strict gate `RESULT: PASSED` over the parent and all five children |
 
 ### Phase Transition Rules
 

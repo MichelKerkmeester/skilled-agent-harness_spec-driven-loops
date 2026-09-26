@@ -54,7 +54,7 @@ Commands are shown from the repository root. Replace angle-bracket placeholders 
 
 ## 6. SCENARIOS
 
-- **[CJ-001](hub-routing/judgment-request-routes-to-transport.md)** — `jev noul` / `jev choice` phrasing resolves `workflowMode: cli-usage`.
+- **[CJ-001](hub-routing/judgment-request-routes-to-transport.md)** — a `jev judgment` request and the six phrasings the hub advertises resolve `workflowMode: cli-usage`.
 - **[CJ-002](hub-routing/alias-still-resolves.md)** — a request naming `cli-jev` resolves the same transport.
 - **[CJ-003](hub-routing/out-of-domain-resolves-nothing.md)** — a request with no Jev signal resolves no mode.
 
@@ -65,6 +65,7 @@ Commands are shown from the repository root. Replace angle-bracket placeholders 
 | Run | Date | Scenarios | Verdict | Report |
 |---|---|---|---|---|
 | hub-routing baseline | 2026-09-20 | CJ-001 … CJ-003 | 3 PASS, 0 FAIL, 0 SKIP; the transport judgment ran end to end | [`2026-09-20-hub-routing-baseline/`](../benchmark/reports/2026-09-20-hub-routing-baseline/) |
+| hub-routing phrasings | 2026-09-26 | CJ-001 … CJ-003 | 3 PASS, 0 FAIL, 0 SKIP; the six advertised phrasings now route, and one out-of-domain replay (`jevons`) routes at stage two only | [`2026-09-26--manual-testing-playbook--hub-routing-phrasings/`](../benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/) |
 
 ---
 
@@ -72,4 +73,4 @@ Commands are shown from the repository root. Replace angle-bracket placeholders 
 
 - **A scenario resolves no mode.** Check `hub-router.json`: the `cli-usage` signal's `vocabularyClasses` must exist in `vocabularyClasses` and the prompt must contain one of their phrases. Verify with `node .skilled/bin/compiled-route.cjs --hub cli-jev --prompt "<prompt>"` after onboarding, or the advisor for the same prompt before it.
 - **A scenario resolves more than one mode.** The hub registers exactly one mode, so a bundle means the router read a different hub's registry; confirm the hub id (`cli-jev`, not `cli-external-orchestration`).
-- **A scenario resolves `cli-external-orchestration`.** The old hub still carries a `cli-jev` router signal; that signal is removed when the transport is decoupled, and this scenario is the regression check for it.
+- **A scenario resolves `cli-external-orchestration`.** The old hub dropped its `cli-jev` router signal when the transport moved here, so a route there means a Jev keyword came back into that hub's `hub-router.json`. Remove it there rather than editing the scenario.

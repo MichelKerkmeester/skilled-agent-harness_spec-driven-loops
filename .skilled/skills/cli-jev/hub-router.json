@@ -7,7 +7,7 @@
     "tieBreak": ["cli-usage"],
     "outcomes": {
       "single": "one dominant jev judgment intent routes to the cli-usage transport",
-      "orderedBundle": "a jev judgment intent paired with a workflow intent routes to the workflow mode first, with cli-usage attached as the judgment source",
+      "orderedBundle": "unreachable while the hub registers one mode: a request that pairs a jev judgment with an edit routes single to cli-usage, and the caller takes the edit to the hub that owns it",
       "defer": "unclear or contradictory intent asks for disambiguation"
     },
     "defaultResource": ["cli-usage/SKILL.md"],
@@ -43,7 +43,11 @@
         "jev run",
         "jev mcp",
         "jev judgment call",
-        "run jev"
+        "run jev",
+        "ask jev",
+        "use jev",
+        "with jev",
+        "through jev"
       ]
     }
   }

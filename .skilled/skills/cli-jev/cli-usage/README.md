@@ -1,6 +1,6 @@
 ---
 title: cli-usage
-description: The cli-jev hub's first transport mode - a TypedSafe Jev judgment bridge that returns a probability, a chosen key, an ordered score, or a batch of typed answers instead of prose.
+description: The cli-jev hub's first transport mode - a TypeSafe Jev judgment bridge that returns a probability, a chosen key, an ordered score, or a batch of typed answers instead of prose.
 trigger_phrases:
   - "jev cli"
   - "jev judgment"

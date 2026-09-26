@@ -1,0 +1,76 @@
+### CJ-001
+PROMPT: Use jev judgment to decide whether this incident is urgent, and give me the probability.
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### CJ-001-phrasing-1
+PROMPT: ask jev for a probability that this plan ships on time
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### CJ-001-phrasing-2
+PROMPT: score these three levels with jev
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### CJ-001-phrasing-3
+PROMPT: run a batch of typed questions through jev
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### CJ-001-phrasing-4
+PROMPT: pick one option with jev
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### CJ-001-phrasing-5
+PROMPT: order levels with jev
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### CJ-001-phrasing-6
+PROMPT: batch typed questions through jev
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### CJ-002
+PROMPT: cli-jev noul for this question.
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### CJ-003
+PROMPT: Summarize the open questions in this spec packet.
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### CJ-003-holdout
+PROMPT: score this flavor of ice cream
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### out-of-domain-1
+PROMPT: Plan a trip to Sarajevo with friends
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### out-of-domain-2
+PROMPT: ask jeeves for directions
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### out-of-domain-3
+PROMPT: use jevons paradox to explain this
+RC: 0
+ROUTE: {"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+
+### guard
+  cli-external-orchestration  fresh
+  cli-jev                     fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+rc=0
