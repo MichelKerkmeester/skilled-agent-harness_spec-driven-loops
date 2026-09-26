@@ -128,6 +128,7 @@ Give goal content an owner: an sk-doc creation mode, `sk-create-goal`, invoked t
 | 8 | 008-command-and-playbook/ | `/create:goal` through `sk-create-command`, its runtime mirrors, and the mode's manual testing playbook | Complete |
 | 9 | 009-verification-and-closeout/ | Run the playbook, author one real goal end to end, measure newcomer reachability, ship the changelog, close the packet | Complete |
 | 10 | 010-asset-templates-and-folder-readmes/ | Per-kind goal templates checked against `goal.md.tmpl`, code-folder READMEs and the references index removed | Complete |
+| 11 | 011-cross-surface-references/ | Name the mode in the READMEs, the `@markdown` agent and the feature catalog, regenerate the advisor command bridges and update the command counts | Complete |
 
 ### Phase Transition Rules
 
@@ -149,6 +150,7 @@ Give goal content an owner: an sk-doc creation mode, `sk-create-goal`, invoked t
 | 007-hub-routing-integration | 008-command-and-playbook | The mode is reachable in both routing stages, not merely registered, and the `6a` failure recorded in phase 002 is closed | Advisor to sk-doc to `sk-create-goal` on real requests, with out-of-domain replays not reaching the mode; the parent-skill check on the sk-doc hub path reports OK |
 | 008-command-and-playbook | 009-verification-and-closeout | The command resolves on every runtime and the playbook package validates | The command mirrors resolve and the playbook validator reports PASS |
 | 009-verification-and-closeout | 010-asset-templates-and-folder-readmes | The mode is shipped and the operator asked for templates, READMEs and the index removal | `node --test` 15 of 15, guard fresh, recursive strict `RESULT: PASSED` |
+| 010-asset-templates-and-folder-readmes | 011-cross-surface-references | The templates shipped and the operator asked for the mode to be named wherever its siblings are | Recursive strict `RESULT: PASSED` with phase 010 committed |
 <!-- /ANCHOR:phase-map -->
 
 ---

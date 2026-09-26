@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/011-cross-surface-references",
+  "description": "The mode was reachable, yet a reader of the root README, the sk-doc hub README, the `@markdown` agent or the sk-doc feature catalog would not learn it",
+  "keywords": [
+    "mode",
+    "reachable",
+    "reader",
+    "root",
+    "readme",
+    "sk-doc",
+    "hub",
+    "markdown",
+    "agent",
+    "feature",
+    "catalog",
+    "learn"
+  ],
+  "lastUpdated": "2026-09-26T11:54:54.873Z",
+  "specId": "011",
+  "folderSlug": "cross-surface-references",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

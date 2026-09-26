@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/060-create-goal-mode/011-cross-surface-references",
+  "spec_folder": "sk-doc/060-create-goal-mode/011-cross-surface-references",
+  "parent_id": "sk-doc/060-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-goal readme references",
+      "create-goal command bridge",
+      "create asset roster goal",
+      "sk-doc mode count",
+      "create-goal references plan",
+      "command bridge regeneration",
+      "create asset roster plan",
+      "mode count update",
+      "create-goal references tasks",
+      "command bridge tasks",
+      "create asset roster tasks",
+      "phase 011 checklist"
+    ],
+    "key_topics": [
+      "create-goal",
+      "readme",
+      "references",
+      "command",
+      "bridge",
+      "asset",
+      "roster",
+      "goal",
+      "sk-doc",
+      "mode",
+      "count",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/README.md",
+      ".skilled/agents/markdown.md",
+      ".claude/agents/markdown.md",
+      ".pi/agents/markdown.md",
+      ".codex/agents/markdown.toml",
+      ".hermes/skills/agent-markdown/SKILL.md",
+      ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-metadata-e2e.vitest.ts",
+      ".skilled/commands/create/assets/tests/fixtures/emitted-name-contract.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.toml",
+        "kind": "file",
+        "path": ".codex/agents/markdown.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/agent-markdown/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-compatibility.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/scoring-compatibility.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata-e2e.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-metadata-e2e.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "emitted-name-contract.json",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/tests/fixtures/emitted-name-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Search",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Enumerations",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mode was reachable, yet a reader of the root README, the sk-doc hub README, the `@markdown` agent or the sk-doc feature catalog would not learn it exists, and the root README still counted fourteen modes",
+    "created_at": "2026-09-26T11:32:28Z",
+    "last_save_at": "2026-09-26T11:55:25.762Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8a72441faf30064a6dc86d78695ef25dd17cd8e8e754e213af913986df6487c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b3cd6bd42f8f96d1f0cbcb2a46130480dd8ab2baa1ea0bf5a3cf9856072c6a7d",
+      "plan.md": "a930b01109ec7445438f8607286be3d05db8995c9fab561c1782dc58cf777baa",
+      "tasks.md": "989b0735196c2e58e4c8d85c6f668bc11e066b4a2eafc86d733fcd2f5f6add9d",
+      "implementation-summary.md": "a66ea769214b68248006315f6c32b872f82d23910b7eea88823afee4aeec4fe7"
+    },
+    "last_active_at": null
+  }
+}

@@ -87,6 +87,7 @@ phase and binds as if written here.
 | 008 | `008-command-and-playbook/goal.md` |
 | 009 | `009-verification-and-closeout/goal.md` |
 | 010 | `010-asset-templates-and-folder-readmes/goal.md` |
+| 011 | `011-cross-surface-references/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -141,6 +142,7 @@ and findings belong here.
 | Phase 009 executed | Done | Playbook 8 of 8 PASS. Real goal on 017 via `phase-add`: 3,728 durable characters, `packet_budget=ok`, seven of seven phases bound, check 4/4. Routing: hub 10 of 10, advisor 9 of 10, 0 of 6 probes. README, `v1.0.0.0.md` and hub link shipped. Parent-skill check OK, five mirror checks pass |
 | Completion criteria | Met | 1: recursive strict `RESULT: PASSED`. 2: `mode-registry.json` binds `/create:goal`, parent-skill check OK. 3: goal requests route advisor to sk-doc to the mode 9 of 10 times, "Set the goal for this session" defers. 4: 8 of 8 checker tests. 5: 017 at 3,728 characters with every phase bound. 6: changelog exists and the link resolves |
 | Phase 010 executed | Done | Operator asked for goal templates, code READMEs and no references index. Three per-kind templates checked by a parity test; the checker rejects an unfilled copy of each; corpus report unchanged over 302 goals; tests 15 of 15; route republished, canary 22 of 22. Strict validation `RESULT: PASSED` |
+| Phase 011 executed | Done | Operator asked for the mode in the READMEs, a changelog hub link and a command like its siblings. The link and command already existed. The root and sk-doc READMEs, the `@markdown` agent and the feature catalog now name it, the advisor bridges were regenerated and both command counts pass. Worked in the main checkout at the operator's choice |
 
 ### Deviations and findings
 
@@ -155,4 +157,6 @@ and findings belong here.
 | Executor switched for 007-009 | On 2026-09-26 cli-codex hit its usage limit (resets Oct 1) and LLM Gateway `gpt-6-luna` failed every second tool turn with "encrypted content could not be verified". The operator chose `llmgateway/mimo-v2.6-pro` at high thinking through cli-pi; a multi-turn smoke test passed first |
 | 017 accept path and its stop rule | 017's phase map names phase 7 `007-deep-review-remediation/`, the folder is `007-decommission-review-p1-p2-fixes/`. The mode would stop on that mismatch; the brief named the disk folder, so the worker went ahead. The rename is for 017's owner, and 017's changed chat slice should be resent by any session holding it |
 | D2 amended, criterion added | Operator chose checked per-kind template copies on 2026-09-26, replacing the render-only decision. The parent gained a binding row for 010 and a seventh criterion for template parity, so its chat slice was resent |
+| 017 items closed | The phase-map rows were renamed and no recorded goal session held 017 |
+| Phase 011 binding row | The parent gained a binding row for 011, so its chat slice was resent |
 <!-- /ANCHOR:log -->
