@@ -898,7 +898,7 @@ describe('resolveCursorApprovalMode', () => {
 });
 
 describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
-  it('is exactly the 21-id enforced allowlist (Gemini 3.7 Flash High, GPT-5.6 Luna Max, plus Grok 4.5 and 4.6), with auto excluded', () => {
+  it('is exactly the 22-id enforced allowlist (Gemini 3.7 Flash High, GPT-5.6 Luna Max, plus Grok 4.5, 4.6 and 4.7), with auto excluded', () => {
     expect([...CURSOR_SUPPORTED_MODELS].sort()).toEqual([
       'composer-2.5',
       'composer-2.5-fast',
@@ -921,6 +921,7 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
       'glm-5.2-max',
       'gpt-5.6-luna-max',
       'gpt-5.6-luna-max-fast',
+      'grok-4.7-xhigh-fast',
     ]);
     expect(CURSOR_SUPPORTED_MODELS).not.toContain('auto');
   });
