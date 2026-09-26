@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/060-create-goal-mode"
     last_updated_at: "2026-09-26T12:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed all nine phases against the completion criteria"
+    recent_action: "Closed phase 010 and amended D2"
     next_safe_action: "None; packet complete. Commit is the operator's call"
     blockers: []
     key_files: []
@@ -47,7 +47,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | `sk-create-goal` under sk-doc, `routingClass: metadata`, command `/create:goal` |
-| D2 | Render through system-spec-kit's goal template; never ship a fork of it |
+| D2 | Per-kind asset templates copy system-spec-kit's goal template; a parity test guards them |
 | D3 | Files only; binding and session objectives stay with the goal hooks |
 | D4 | Gaps in system-spec-kit go to that skill as amendments |
 | D5 | Each phase child is Level 2 with its own bound `goal.md` |
@@ -86,6 +86,7 @@ phase and binds as if written here.
 | 007 | `007-hub-routing-integration/goal.md` |
 | 008 | `008-command-and-playbook/goal.md` |
 | 009 | `009-verification-and-closeout/goal.md` |
+| 010 | `010-asset-templates-and-folder-readmes/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -109,6 +110,7 @@ here are invisible to whatever judges completion.
 - [ ] The conformance check fails each negative fixture for its named reason and passes the positive one
 - [ ] A real goal authored via `/create:goal` is within budget per `goal.cjs packet`, every phase bound
 - [ ] `sk-create-goal/changelog/v1.0.0.0.md` exists and the hub changelog link resolves
+- [ ] The three goal templates in `assets/` pass their parity test against `goal.md.tmpl`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -138,6 +140,7 @@ and findings belong here.
 | Phase 008 executed | Done | `/create:goal` command package, one metadata entry with six operations, both indexes (create count 13), generated runtime copies including Hermes, and an eight-scenario playbook (validator PASS). SCG-007 and SCG-008 ran and passed. Operator approved the Hermes and repo-wide index rows. Strict validation `RESULT: PASSED` |
 | Phase 009 executed | Done | Playbook 8 of 8 PASS. Real goal on 017 via `phase-add`: 3,728 durable characters, `packet_budget=ok`, seven of seven phases bound, check 4/4. Routing: hub 10 of 10, advisor 9 of 10, 0 of 6 probes. README, `v1.0.0.0.md` and hub link shipped. Parent-skill check OK, five mirror checks pass |
 | Completion criteria | Met | 1: recursive strict `RESULT: PASSED`. 2: `mode-registry.json` binds `/create:goal`, parent-skill check OK. 3: goal requests route advisor to sk-doc to the mode 9 of 10 times, "Set the goal for this session" defers. 4: 8 of 8 checker tests. 5: 017 at 3,728 characters with every phase bound. 6: changelog exists and the link resolves |
+| Phase 010 executed | Done | Operator asked for goal templates, code READMEs and no references index. Three per-kind templates checked by a parity test; the checker rejects an unfilled copy of each; corpus report unchanged over 302 goals; tests 15 of 15; route republished, canary 22 of 22. Strict validation `RESULT: PASSED` |
 
 ### Deviations and findings
 
@@ -151,4 +154,5 @@ and findings belong here.
 | Authors halted on failed edits | Phases 003 and 008 stopped when a patch did not match, per the halt rule. Both had written all six files; the orchestrator repaired a doubled anchor and a frontmatter indent in 003 and added the verification command in both |
 | Executor switched for 007-009 | On 2026-09-26 cli-codex hit its usage limit (resets Oct 1) and LLM Gateway `gpt-6-luna` failed every second tool turn with "encrypted content could not be verified". The operator chose `llmgateway/mimo-v2.6-pro` at high thinking through cli-pi; a multi-turn smoke test passed first |
 | 017 accept path and its stop rule | 017's phase map names phase 7 `007-deep-review-remediation/`, the folder is `007-decommission-review-p1-p2-fixes/`. The mode would stop on that mismatch; the brief named the disk folder, so the worker went ahead. The rename is for 017's owner, and 017's changed chat slice should be resent by any session holding it |
+| D2 amended, criterion added | Operator chose checked per-kind template copies on 2026-09-26, replacing the render-only decision. The parent gained a binding row for 010 and a seventh criterion for template parity, so its chat slice was resent |
 <!-- /ANCHOR:log -->

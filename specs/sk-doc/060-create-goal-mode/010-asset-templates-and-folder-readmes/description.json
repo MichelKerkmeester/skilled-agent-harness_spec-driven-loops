@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes",
+  "description": "The mode's `assets/` held only exemplars, so an author had no blank for a top-level, phase-parent or phase-child goal and had to render one through",
+  "keywords": [
+    "mode",
+    "assets",
+    "held",
+    "only",
+    "exemplars",
+    "author",
+    "blank",
+    "top-level",
+    "phase-parent",
+    "phase-child",
+    "goal",
+    "render",
+    "one"
+  ],
+  "lastUpdated": "2026-09-26T10:16:56.097Z",
+  "specId": "010",
+  "folderSlug": "asset-templates-and-folder-readmes",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
