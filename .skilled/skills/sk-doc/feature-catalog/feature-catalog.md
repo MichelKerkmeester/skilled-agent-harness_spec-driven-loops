@@ -1,6 +1,6 @@
 ---
 title: "sk-doc: Feature Catalog"
-description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across thirteen documentation-authoring packets and the default-on compiled-routing fast path that resolves ahead of it."
+description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets and the default-on compiled-routing fast path that resolves ahead of it."
 trigger_phrases:
   - "sk-doc feature catalog"
   - "sk-doc hub capabilities"
@@ -12,13 +12,13 @@ version: 2.1.0.8
 
 # sk-doc: Feature Catalog
 
-This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fourteen workflow modes — spread across thirteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the current-state inventory for the `sk-doc` hub. The hub does not author documentation itself — it resolves which of its fourteen workflow modes (across thirteen packets) a request belongs to and hands off.
+Use this catalog as the current-state inventory for the `sk-doc` hub. The hub does not author documentation itself — it resolves which of its fifteen workflow modes (across fourteen packets) a request belongs to and hands off.
 
 ---
 
@@ -28,11 +28,11 @@ Use this catalog as the current-state inventory for the `sk-doc` hub. The hub do
 
 #### Description
 
-Each of the hub's thirteen packets owns a single `Keyword triggers:` line as the source of truth for its routing vocabulary. Modes and packets are separately addressable: the `sk-create-skill` packet backs two modes (`sk-create-skill` and `sk-create-skill-parent`), so the fourteen workflow modes span thirteen packets rather than mapping one-to-one. `mode-registry.json` and `hub-router.json` are synchronized runtime projections, not an independently-maintained second source.
+Each of the hub's fourteen packets owns a single `Keyword triggers:` line as the source of truth for its routing vocabulary. Modes and packets are separately addressable: the `sk-create-skill` packet backs two modes (`sk-create-skill` and `sk-create-skill-parent`), so the fifteen workflow modes span fourteen packets rather than mapping one-to-one. `mode-registry.json` and `hub-router.json` are synchronized runtime projections, not an independently-maintained second source.
 
 #### Current Reality
 
-`workflowMode` spans `sk-create-skill`, `sk-create-skill-parent`, `sk-create-readme`, `sk-create-agent`, `sk-create-command`, `sk-create-feature-catalog`, `sk-create-manual-testing-playbook`, `sk-create-benchmark`, `sk-create-changelog`, `sk-create-diff`, `sk-create-frontmatter`, `sk-create-repo-rule`, `sk-create-with-human-voice`, and `sk-create-quality-control`. Every packet is `packetKind: "workflow"` — there is no surface axis at this hub.
+`workflowMode` spans `sk-create-skill`, `sk-create-skill-parent`, `sk-create-readme`, `sk-create-agent`, `sk-create-command`, `sk-create-feature-catalog`, `sk-create-manual-testing-playbook`, `sk-create-benchmark`, `sk-create-changelog`, `sk-create-diff`, `sk-create-frontmatter`, `sk-create-repo-rule`, `sk-create-with-human-voice`, `sk-create-goal`, and `sk-create-quality-control`. Every packet is `packetKind: "workflow"` — there is no surface axis at this hub.
 
 #### Source Files
 

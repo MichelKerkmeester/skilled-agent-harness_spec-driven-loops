@@ -1,6 +1,6 @@
 ---
 title: "Packet-Authored, Registry-Projected Routing"
-description: "How the sk-doc hub routes across thirteen documentation-authoring packets, with each packet's own Keyword triggers line as the source of truth and mode-registry.json as a synchronized runtime projection."
+description: "How the sk-doc hub routes across fourteen documentation-authoring packets, with each packet's own Keyword triggers line as the source of truth and mode-registry.json as a synchronized runtime projection."
 trigger_phrases:
   - "packet-authored registry-projected routing"
   - "sk-doc discriminator"
@@ -15,7 +15,7 @@ version: 2.1.0.5
 
 ## 1. OVERVIEW
 
-`sk-doc` routing is registry-driven at runtime and packet-authored at source. Each of its thirteen nested packets owns a single `Keyword triggers:` line that is the source of truth for that packet's routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections the hub reads without re-deriving the mapping during a request.
+`sk-doc` routing is registry-driven at runtime and packet-authored at source. Each of its fourteen nested packets owns a single `Keyword triggers:` line that is the source of truth for that packet's routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized projections the hub reads without re-deriving the mapping during a request.
 
 The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub then picks the packet.
 
@@ -25,7 +25,7 @@ The skill advisor routes any documentation- or component-authoring query to the 
 
 ### The Discriminator
 
-`workflowMode` is the public packet key — `sk-create-skill`, `sk-create-skill-parent`, `sk-create-readme`, `sk-create-agent`, `sk-create-command`, `sk-create-feature-catalog`, `sk-create-manual-testing-playbook`, `sk-create-benchmark`, `sk-create-changelog`, `sk-create-diff`, `sk-create-frontmatter`, `sk-create-repo-rule`, `sk-create-with-human-voice`, and `sk-create-quality-control`. `sk-create-skill-parent` is a second mode layered over the same `sk-create-skill` packet rather than a distinct one. `packetKind` is `workflow` for every packet — there is no surface axis at this hub; the `sk-create-quality-control` validate/score/optimize pipeline is universal doctrine shared from `shared/`, not orthogonal stack-evidence. `backendKind` is `template-scaffold` for every `create-*` generator and `create-quality-control` for the quality-control mode itself.
+`workflowMode` is the public packet key — `sk-create-skill`, `sk-create-skill-parent`, `sk-create-readme`, `sk-create-agent`, `sk-create-command`, `sk-create-feature-catalog`, `sk-create-manual-testing-playbook`, `sk-create-benchmark`, `sk-create-changelog`, `sk-create-diff`, `sk-create-frontmatter`, `sk-create-repo-rule`, `sk-create-with-human-voice`, `sk-create-goal`, and `sk-create-quality-control`. `sk-create-skill-parent` is a second mode layered over the same `sk-create-skill` packet rather than a distinct one. `packetKind` is `workflow` for every packet — there is no surface axis at this hub; the `sk-create-quality-control` validate/score/optimize pipeline is universal doctrine shared from `shared/`, not orthogonal stack-evidence. `backendKind` is `template-scaffold` for every `create-*` generator and `create-quality-control` for the quality-control mode itself.
 
 ### Packet-Authored Vocabulary
 
@@ -40,7 +40,7 @@ Because each packet's `Keyword triggers:` line is authored at the packet, adding
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/sk-doc/SKILL.md` | Shared | States the packet-authored/registry-projected contract and the discriminator. |
-| `.skilled/skills/sk-doc/mode-registry.json` | Shared | Synchronized runtime projection of all thirteen packets. |
+| `.skilled/skills/sk-doc/mode-registry.json` | Shared | Synchronized runtime projection of all fourteen packets. |
 | `.skilled/skills/sk-doc/hub-router.json` | Shared | Router signal data consumed alongside the registry. |
 
 ### Validation And Tests
