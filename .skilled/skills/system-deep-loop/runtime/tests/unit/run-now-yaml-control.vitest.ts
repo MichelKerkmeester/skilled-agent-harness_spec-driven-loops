@@ -334,6 +334,75 @@ describe('deep workflow synthesis-completion invariant YAML control', () => {
     }
   });
 
+  it('logs synthesis_complete for fan-out review when lineage artifacts exist without a root dashboard', () => {
+    const fixture = createSynthesisFixture('review', 'synthesis-review-fanout-no-root-dashboard', 1);
+    try {
+      const lineageDir = join(fixture.artifactDir, 'lineages', 'alpha');
+      mkdirSync(lineageDir, { recursive: true });
+      writeFileSync(
+        join(lineageDir, 'deep-review-state.jsonl'),
+        `${JSON.stringify({
+          type: 'iteration',
+          run: 1,
+          findingsCount: 1,
+          findingDetails: [{ id: 'R1', title: 'finding from state' }],
+        })}\n`,
+        'utf8',
+      );
+      writeFileSync(
+        fixture.registryPath,
+        JSON.stringify({
+          openFindings: [{ findingId: 'R1', title: 'finding from state', status: 'active' }],
+          resolvedFindings: [],
+        }),
+        'utf8',
+      );
+      writeFileSync(fixture.outputPath, 'review synthesis\n', 'utf8');
+
+      runRenderedCommand(renderSynthesisCommand('review', fixture), fixture.env);
+
+      const records = readRecords(fixture.stateLogPath);
+      expect(records.at(-1)).toMatchObject({
+        type: 'event',
+        event: 'synthesis_complete',
+        mode: 'review',
+        stopReason: 'converged',
+      });
+    } finally {
+      fixture.env.cleanup();
+    }
+  });
+
+  it('keeps the root dashboard required for review without lineage logs', () => {
+    const fixture = createSynthesisFixture('review', 'synthesis-review-no-lineage-no-root-dashboard', 1);
+    try {
+      writeFileSync(
+        fixture.registryPath,
+        JSON.stringify({
+          openFindings: [{ findingId: 'R1', title: 'finding from state', status: 'active' }],
+          resolvedFindings: [],
+        }),
+        'utf8',
+      );
+      writeFileSync(fixture.outputPath, 'review synthesis\n', 'utf8');
+
+      runRenderedCommand(renderSynthesisCommand('review', fixture), fixture.env);
+
+      const records = readRecords(fixture.stateLogPath);
+      expect(records.at(-1)).toMatchObject({
+        type: 'event',
+        event: 'synthesis_incomplete',
+        mode: 'review',
+        invariantFailures: expect.arrayContaining(['missing_synthesis_artifacts']),
+      });
+      expect(records.at(-1)?.missingArtifacts).toEqual([
+        expect.objectContaining({ name: 'dashboard', path: fixture.dashboardPath }),
+      ]);
+    } finally {
+      fixture.env.cleanup();
+    }
+  });
+
   it('logs synthesis_incomplete when structured state findings are only partially present in the registry', () => {
     for (const mode of ['research', 'review'] as const) {
       const fixture = createSynthesisFixture(mode, 'synthesis-partial', 2);
