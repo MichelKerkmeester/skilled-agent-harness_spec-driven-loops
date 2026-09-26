@@ -766,6 +766,27 @@ describe('system-skill-advisor OpenCode plugin', () => {
     expect(second.additionalContext).not.toContain('Directives:');
   });
 
+  it('deduplicates repeated transforms before lifecycle reduction', async () => {
+    process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '1';
+    const hooks = await makePlugin({ cacheTTLMs: 5000, deduplicateTransforms: true });
+    const repeatedInput = {
+      sessionID: 's-transform-dedup',
+      sessionIdentityConfirmed: true,
+      messageID: 'm1',
+      transformCallOrdinal: 0,
+      prompt: 'implement feature X',
+    };
+
+    const first = await runPrompt(hooks, repeatedInput, { system: [] });
+    const repeat = await runPrompt(hooks, repeatedInput, { system: [] });
+    const nextMessage = await runPrompt(hooks, { ...repeatedInput, messageID: 'm2' }, { system: [] });
+
+    expect(first.output.system).toHaveLength(1);
+    expect(first.output.system[0]).toContain('Directives:');
+    expect(repeat.output.system).toEqual([]);
+    expect(nextMessage.output.system).toEqual([ROUTE_ONLY_CONTEXT]);
+  });
+
   it('reduces repeated no-route fallbacks to their head for a confirmed session', async () => {
     mockBridgeSuccess(cliResponse([]));
     const hooks = await makePlugin({ cacheTTLMs: 5000 });

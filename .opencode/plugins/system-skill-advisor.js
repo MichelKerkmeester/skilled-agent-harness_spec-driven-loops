@@ -1349,24 +1349,14 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
           ? { status: 'fail_open', freshness: 'unavailable' }
           : { status: 'skipped', freshness };
       const noBriefFallback = renderPluginFallbackDirective(fallbackResult);
-      let advisorBlock = response.brief
+      const advisorBlock = response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
         : noBriefFallback;
-      // Only a primitive, non-conflicting host identity can authorize reduced
-      // delivery; ambiguous payloads retain the complete policy block.
-      const lifecycleDecision = decideOpenCodeDirectiveLifecycle(
-        advisorBlock,
-        directiveIdentity,
-        pendingShadowLifecycle,
-        state,
-      );
-      if (lifecycleDecision.suppressed && lifecycleDecision.reduced) {
-        advisorBlock = lifecycleDecision.reduced;
-      }
       const advisorBlockId = response.brief
         ? messageIdentity.POLICY_BLOCK_IDS.ADVISOR_ROUTE
         : messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE;
       const advisorBlockOrder = response.brief ? 0 : 1;
+      // Hash the full block first so lifecycle reduction cannot evade repeat suppression.
       const advisorDecision = transformContributionDecision(
         input,
         options,
@@ -1374,11 +1364,25 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         advisorBlock,
         advisorBlockOrder,
       );
+      let deliveredAdvisorBlock = advisorBlock;
+      if (advisorDecision.shouldDeliver) {
+        // Only a primitive, non-conflicting host identity can authorize reduced
+        // delivery; ambiguous payloads retain the complete policy block.
+        const lifecycleDecision = decideOpenCodeDirectiveLifecycle(
+          advisorBlock,
+          directiveIdentity,
+          pendingShadowLifecycle,
+          state,
+        );
+        if (lifecycleDecision.suppressed && lifecycleDecision.reduced) {
+          deliveredAdvisorBlock = lifecycleDecision.reduced;
+        }
+      }
       deliverTransformContribution(advisorDecision, () => {
-        output.system.push(advisorBlock);
+        output.system.push(deliveredAdvisorBlock);
       });
       if (advisorDecision.shouldDeliver) {
-        await observeBlock(advisorBlock);
+        await observeBlock(deliveredAdvisorBlock);
       }
       const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary, {
         bounded: options.boundedCompiledRouteSummary,
