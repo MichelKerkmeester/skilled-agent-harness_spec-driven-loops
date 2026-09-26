@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing",
+  "parent_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross cli manual testing",
+      "advisor scenarios in every cli",
+      "grok 4.7 cursor allowlist",
+      "native host advisor evidence",
+      "cross cli testing plan",
+      "advisor scenario dispatch plan",
+      "cross cli testing tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "cross cli test results"
+    ],
+    "key_topics": [
+      "cross",
+      "cli",
+      "manual",
+      "testing",
+      "advisor",
+      "scenarios",
+      "every",
+      "grok",
+      "cursor",
+      "allowlist",
+      "native",
+      "host"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".codex/hooks.json",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      "evidence/ledger.tsv",
+      "evidence/excluded-windows.tsv",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      "evidence/native-diagnostics.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ledger.tsv",
+        "kind": "file",
+        "path": "evidence/ledger.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "excluded-windows.tsv",
+        "kind": "file",
+        "path": "evidence/excluded-windows.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "native-diagnostics.jsonl",
+        "kind": "file",
+        "path": "evidence/native-diagnostics.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Refinements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Grok",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor hook reaches seven runtimes, and each wires it differently: Claude, Codex, Cursor and Devin through spec-kit hook adapters, OpenCode through a plugin that calls the CLI, and Pi through an in-process extension",
+    "created_at": "2026-09-26T18:18:35Z",
+    "last_save_at": "2026-09-26T22:18:08.965Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ad029cb470c2363082516c51e657a1e4c4d29eb7b19052fb6cd6bea7459ca738",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d25dc95cf054ad11d8d9805a008f5b43d42ae90fb0b29010d7f0f5bd48aae3b0",
+      "plan.md": "3af9d052a8113fd64e0e9df43eff5d0cf17d468697076d2d12a38477c5ccba7f",
+      "tasks.md": "802f0127800d194b7daa2ff4a272a616d822e9ff7e512e89ae519b4522097218",
+      "implementation-summary.md": "c2387bfcde63e20078d0ff2311fcdc1e8c69965b4438049d3aca2854bc9ea0dc"
+    },
+    "last_active_at": null
+  }
+}

@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete. All seven phases are complete, and the phase 6 review passed with twelve P2 advisories |
+| **Status** | Active. Phases 1 to 7 are complete, and phase 8 tests the refinements inside every CLI |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -129,6 +129,8 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | 5 | 005-follow-up-fixes/ | Fan-out review close without a root dashboard, `edit_lines` trailing-newline refusal, plugin transform dedup before lifecycle reduction, trigger index from committed content | Complete |
 | 6 | 006-fanout-deep-review/ | Two-model `/deep:review` of the phase 2 to 5 changes: MiMo v2.6 Pro high and DeepSeek V4.1 Flash max through cli-pi, three iterations each, no early stop | Complete |
 | 7 | 007-docs-and-standards-alignment/ | sk-code audit of the phase 2 to 5 code, and the advisor feature catalog, playbooks, READMEs and root README brought up to date, written by MiMo v2.6 Pro high | Complete |
+| 8 | 008-cross-cli-manual-testing/ | The nine related playbook scenarios run inside cli-pi, cli-opencode, cli-devin, cli-cursor and cli-codex with native hook evidence per runtime, after Grok 4.7 joins the Cursor allowlist | Complete |
+| 9 | 009-test-findings-remediation/ | Fix every phase 8 finding and rerun the nine scenarios in all five CLIs until each passes or fails only on a named environment limit | Active |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 
@@ -149,6 +151,8 @@ R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Ea
 | 004-headless-fallback-status-and-dedup | 005-follow-up-fixes | Phases 1 and 4 recorded the review close, plugin dedup and index limitations | Each limitation names its file and line in the phase's implementation summary |
 | 005-follow-up-fixes | 006-fanout-deep-review | A fan-out review close records `synthesis_complete` without a root dashboard | The fan-out review case in `run-now-yaml-control.vitest.ts` passes and fails with the fix reverted |
 | 006-fanout-deep-review | 007-docs-and-standards-alignment | The review has closed, so the files it read can change | `review/review-report.md` exists and the close recorded `synthesis_complete` |
+| 007-docs-and-standards-alignment | 008-cross-cli-manual-testing | The scenarios describe the current hook path | Phase 7's playbook validators report 0 violations |
+| 008-cross-cli-manual-testing | 009-test-findings-remediation | Every FAIL and BLOCKED is traced to code, scenario text or the environment, and each finding is recorded in the phase 9 spec | Phase 8 `implementation-summary.md` classifies each result, and the phase 9 spec lists F1 to F18 |
 <!-- /ANCHOR:phase-map -->
 
 ---
