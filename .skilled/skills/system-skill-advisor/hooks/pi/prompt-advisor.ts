@@ -10,6 +10,16 @@ const MAX_CAPTURED_SESSIONS = 64;
 const MAX_TRACKED_SESSIONS = 64;
 // The advisor's CLI budget ends first; this margin only catches a call that hangs past it.
 const PI_ADVISOR_DEADLINE_MARGIN_MS = 300;
+// Mirrors the Claude hook's default budget, which Pi cannot import statically because it loads the hook lazily.
+const PI_ADVISOR_DEFAULT_BUDGET_MS = 2500;
+
+// The hook applies the same parse rule; diverging here would let Pi's deadline fire
+// before the hook's own budget expires.
+function advisorBudgetMs(): number {
+  const value = process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS;
+  const parsed = Number.parseInt(value ?? "", 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : PI_ADVISOR_DEFAULT_BUDGET_MS;
+}
 
 interface RawInputStore {
   readonly bySession: Map<string, string>;
@@ -191,7 +201,7 @@ export function formatPiAdvisorDebug(
     const match = context.match(/^Advisor:\s*([A-Za-z]+)/);
     brief = match ? `head(${match[1]})` : "other";
   }
-  const budgetMs = Number(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS) || 2500;
+  const budgetMs = advisorBudgetMs();
   return `[advisor-debug] brief=${brief} durationMs=${durationMs} budgetMs=${budgetMs}`;
 }
 
@@ -259,7 +269,7 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
               { runtime: "pi" },
             ).then((output) => ({ timedOut: false as const, output })),
             new Promise<{ timedOut: true }>((resolve) => {
-              const budgetMs = Number(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS) || 2500;
+              const budgetMs = advisorBudgetMs();
               deadlineTimer = setTimeout(
                 () => resolve({ timedOut: true }),
                 budgetMs + PI_ADVISOR_DEADLINE_MARGIN_MS,
