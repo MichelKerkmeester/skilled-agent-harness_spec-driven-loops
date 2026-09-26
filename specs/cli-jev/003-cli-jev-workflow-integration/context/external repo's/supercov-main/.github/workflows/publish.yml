@@ -1,0 +1,293 @@
+name: Publish to npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version to release; must be the one this commit carries
+        required: true
+        type: string
+      rebuild-native:
+        description: Build the native target matrix instead of reusing a complete prior run
+        required: false
+        type: boolean
+        default: true
+      reuse-run-id:
+        description: Prior native-artifact workflow run containing already validated targets
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  actions: read
+  contents: write
+  id-token: write
+
+jobs:
+  native-artifacts:
+    uses: ./.github/workflows/native-artifacts.yml
+    with:
+      build-targets: ${{ inputs.rebuild-native }}
+      reuse-run-id: ${{ inputs.reuse-run-id }}
+    permissions:
+      actions: read
+      contents: read
+
+  publish:
+    needs: native-artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+      - name: Require the requested version to be the one this commit carries
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: node -e 'const carried = require("./package.json").version; if (process.env.RELEASE_VERSION !== carried) { console.error(`This commit carries ${carried}, and ${process.env.RELEASE_VERSION} was requested`); process.exit(1); }'
+      - uses: actions/download-artifact@v8
+        with:
+          name: supercov-native-release-set
+          path: native-release
+      # The downloaded artifacts are about to create these same-version
+      # optional packages, so the publisher intentionally does not fetch them.
+      - run: npm ci --omit=optional
+      # The release commit is validated locally before tagging. Revalidate the
+      # exact native package surface before publishing.
+      - run: node scripts/package-preflight.mjs
+      - name: Revalidate and publish every exact-version native package
+        run: |
+          node scripts/verify-native-release-set.mjs native-release
+          node scripts/publish-native-release.mjs native-release
+      # Published is not the same as readable. npm serves reads through a cache,
+      # and on 0.0.50 a platform package was visible to `npm publish` four
+      # minutes before it was visible to `npm install`. Anyone installing in
+      # that window resolved the primary package and could not fetch its binary.
+      - name: Wait until a reader would find every native package
+        run: node scripts/await-native-release.mjs native-release
+      - name: Publish the primary package only after every native package exists
+        run: npm publish --ignore-scripts --access public
+
+  # PyPI, RubyGems and crates.io publish from the same verified release set,
+  # each through its registry's trusted publishing, so one tag releases every
+  # channel at one version. Each job skips what its registry already has, so a
+  # release that stopped halfway is completed by running the workflow again.
+  pypi:
+    needs: native-artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Require the requested version to be the one this commit carries
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: node -e 'const carried = require("./package.json").version; if (process.env.RELEASE_VERSION !== carried) { console.error(`This commit carries ${carried}, and ${process.env.RELEASE_VERSION} was requested`); process.exit(1); }'
+      - uses: actions/download-artifact@v8
+        with:
+          name: supercov-native-release-set
+          path: native-release
+      - run: mkdir wheels && cp native-release/*.whl wheels/ && ls wheels
+      - uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
+        with:
+          packages-dir: wheels
+          skip-existing: true
+
+  rubygems:
+    needs: native-artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+      - name: Require the requested version to be the one this commit carries
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: node -e 'const carried = require("./package.json").version; if (process.env.RELEASE_VERSION !== carried) { console.error(`This commit carries ${carried}, and ${process.env.RELEASE_VERSION} was requested`); process.exit(1); }'
+      - uses: actions/download-artifact@v8
+        with:
+          name: supercov-native-release-set
+          path: native-release
+      - uses: rubygems/configure-rubygems-credentials@dc5a8d8553e6ee01fc26761a49e99e733d17954a # v2.1.0
+      - run: node scripts/publish-gems.mjs native-release
+
+  crates:
+    needs: native-artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - uses: dtolnay/rust-toolchain@1.95.0
+      - name: Require the requested version to be the one this commit carries
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: node -e 'const carried = require("./package.json").version; if (process.env.RELEASE_VERSION !== carried) { console.error(`This commit carries ${carried}, and ${process.env.RELEASE_VERSION} was requested`); process.exit(1); }'
+      - uses: rust-lang/crates-io-auth-action@c6f97d42243bad5fab37ca0427f495c86d5b1a18 # v1.0.5
+        id: auth
+      - run: node scripts/publish-crates.mjs
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+
+  # The tag is made here, last, and not before: a tag is a claim that this
+  # version shipped, and until every registry has taken it that claim is not
+  # true. It also closes the window that mattered most for Go -- the module
+  # proxy resolves `@latest` from the tag, so a tag pushed before its archives
+  # exist meant `go run ...@latest` named a version nothing could be downloaded
+  # for, for as long as the build took.
+  #
+  # The tag, the release and its files are made by one command, so the moment
+  # the tag appears its archives are going up rather than twenty minutes away.
+  #
+  # A release that stopped halfway is completed by running this again: the
+  # registries skip what they already have, and the tag is reused rather than
+  # remade.
+  release:
+    needs: [publish, pypi, rubygems, crates]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Require the requested version to be the one this commit carries
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: node -e 'const carried = require("./package.json").version; if (process.env.RELEASE_VERSION !== carried) { console.error(`This commit carries ${carried}, and ${process.env.RELEASE_VERSION} was requested`); process.exit(1); }'
+      - uses: actions/download-artifact@v8
+        with:
+          name: supercov-native-release-set
+          path: native-release
+      # Gemini CLI installs its extension from the release, taking the asset
+      # named for the user's platform.
+      - name: Build the Gemini CLI extension
+        run: node scripts/gemini-extension.mjs gemini-release
+      # CHANGELOG.md holds the public notes. Package preflight already refused
+      # the release unless this version has a section, so the release simply
+      # publishes it. Commit messages stay internal.
+      - name: Tag this commit and publish the release with its files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ inputs.version }}
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          tag="v${RELEASE_VERSION}"
+          node scripts/release-notes.mjs > /tmp/release-notes.md
+          if gh release view "$tag" > /dev/null 2>&1; then
+            echo "$tag already exists; attaching its files again."
+            gh release upload "$tag" \
+              native-release/*.tgz native-release/*.whl native-release/*.gem gemini-release/*.tar.gz --clobber
+          else
+            gh release create "$tag" \
+              --target "$RELEASE_SHA" \
+              --title "Release ${RELEASE_VERSION}" \
+              --notes-file /tmp/release-notes.md \
+              native-release/*.tgz native-release/*.whl native-release/*.gem gemini-release/*.tar.gz
+          fi
+
+  # The tap carries a sha256 per platform, so its formula is only correct for
+  # one release and has to be rewritten for the next. Left to a human that step
+  # is the one that gets forgotten, and a tap that is quietly a release behind
+  # installs the wrong binary without saying so.
+  #
+  # Runs after publish, because the formula's checksums are read from the very
+  # assets that job uploads. A failure here cannot un-publish anything; it means
+  # the tap kept the formula it had.
+  #
+  # Needs HOMEBREW_TAP_TOKEN: a fine-grained token with contents:write on
+  # supercorp-ai/homebrew-tap. GITHUB_TOKEN reaches only this repository, even
+  # within the same organisation. Without it the step says so and stops.
+  homebrew:
+    needs: release
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Require the requested version to be the one this commit carries
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: node -e 'const carried = require("./package.json").version; if (process.env.RELEASE_VERSION !== carried) { console.error(`This commit carries ${carried}, and ${process.env.RELEASE_VERSION} was requested`); process.exit(1); }'
+      - name: Point the tap at this release
+        env:
+          TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TAP_TOKEN:-}" ]; then
+            echo "HOMEBREW_TAP_TOKEN is not set, so the tap keeps the formula it has."
+            echo "Add a token with contents:write on supercorp-ai/homebrew-tap to update it here."
+            exit 0
+          fi
+          version="${RELEASE_VERSION}"
+          git clone --depth 1 \
+            "https://x-access-token:${TAP_TOKEN}@github.com/supercorp-ai/homebrew-tap.git" tap
+          mkdir -p tap/Formula
+          node scripts/brew-formula.mjs "$version" > tap/Formula/supercov.rb
+          cd tap
+          if git diff --quiet -- Formula/supercov.rb; then
+            echo "The tap already describes $version."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/supercov.rb
+          git commit -m "supercov $version"
+          git push
+
+  # Pushing a formula is not the same as publishing one that works. The first
+  # one written by hand installed nothing: it asked for package/bin/supercov,
+  # and Homebrew strips a single top-level directory when it extracts, so the
+  # binary was at bin/supercov. `brew audit` passed it happily -- only an
+  # install finds that.
+  homebrew-verify:
+    needs: homebrew
+    runs-on: macos-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - name: Install from the tap and run it
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          version="${RELEASE_VERSION}"
+          brew install supercorp-ai/tap/supercov
+          installed=$(supercov --version)
+          echo "$installed"
+          case "$installed" in
+            *"$version"*) echo "The tap installs $version." ;;
+            *) echo "The tap installed something else: $installed" >&2; exit 1 ;;
+          esac

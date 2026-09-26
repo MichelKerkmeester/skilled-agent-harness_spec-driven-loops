@@ -1,0 +1,31 @@
+{
+  "expression": "(a && b) || c",
+  "conditions": 3,
+  "inputs": [
+    [false, false, false],
+    [false, true, true],
+    [true, false, false],
+    [true, false, true],
+    [true, true, false]
+  ],
+  "observedVectors": [
+    [false, null, false],
+    [false, null, true],
+    [true, false, false],
+    [true, false, true],
+    [true, true, null]
+  ],
+  "outcomes": [false, true, false, true, true],
+  "cases": [
+    {
+      "name": "complete",
+      "inputIndexes": [0, 1, 2, 3, 4],
+      "coveredConditions": 3
+    },
+    {
+      "name": "missing-a-and-b-witnesses",
+      "inputIndexes": [0, 1, 2, 3],
+      "coveredConditions": 1
+    }
+  ]
+}

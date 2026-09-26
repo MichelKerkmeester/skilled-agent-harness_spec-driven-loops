@@ -1,0 +1,10 @@
+[package]
+name = "supercov-subprocess-fixture"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[[bin]]
+name = "supercov-subprocess-child"
+path = "src/bin/child.rs"
+

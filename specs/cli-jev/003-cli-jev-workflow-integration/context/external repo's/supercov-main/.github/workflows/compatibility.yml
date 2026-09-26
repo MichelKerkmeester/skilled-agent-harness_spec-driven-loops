@@ -1,0 +1,379 @@
+name: Compatibility
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Comma-separated job names to run (node, runners, browsers, filesystems, python, ruby, rust, go, jvm, released). Empty runs every job except released."
+        default: ""
+        type: string
+      os:
+        description: "JSON list of runners for the per-OS jobs. Empty runs all five."
+        default: ""
+        type: string
+  # Every language on every platform, on the pull request. The per-OS legs
+  # exist because what breaks is usually a path, a shell or a line ending
+  # rather than logic, and finding that after a merge costs more than the
+  # runners do. Narrow it back to `["ubuntu-latest"]` below if the wait ever
+  # outgrows the value.
+  pull_request:
+permissions:
+  contents: read
+
+jobs:
+  node:
+    if: ${{ inputs.only == '' || contains(format(',{0},', inputs.only), ',node,') }}
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24, 25]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - run: node ../../../bin/supercov.js -- npm test
+        working-directory: tests/fixtures/no-build-node
+
+  runners:
+    if: ${{ inputs.only == '' || contains(format(',{0},', inputs.only), ',runners,') }}
+    name: ${{ matrix.name }} runners
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: minimum
+            playwright: 1.55.1
+            vite: 5.4.19
+            vitest: 2.1.9
+          - name: current
+            playwright: 1.62.1
+            vite: 8.2.2
+            vitest: 4.1.11
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Select runner versions
+        env:
+          PLAYWRIGHT_VERSION: ${{ matrix.playwright }}
+          VITE_VERSION: ${{ matrix.vite }}
+          VITEST_VERSION: ${{ matrix.vitest }}
+        # `@vitest/browser-playwright` is how Vitest 4 ships the browser
+        # provider that earlier versions built in, so it has no release this
+        # leg's Vitest could use and its peer range pins the very version the
+        # leg exists to move away from. Dropping it is what lets the older set
+        # resolve; nothing here runs Vitest Browser Mode, which lives in
+        # `test:react` and `test:engine`.
+        run: |
+          npm pkg delete 'devDependencies.@vitest/browser-playwright'
+          npm install --no-save "@playwright/test@$PLAYWRIGHT_VERSION" "vite@$VITE_VERSION" "vitest@$VITEST_VERSION"
+      # The fixture matrix drives Chromium, Firefox and WebKit.
+      - run: npx playwright install --with-deps
+      - run: npm run test:fixture
+
+  browsers:
+    if: ${{ inputs.only == '' || contains(format(',{0},', inputs.only), ',browsers,') }}
+    name: Playwright ${{ matrix.browser }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run build
+      - run: node ../../../bin/supercov.js -- npm test
+        working-directory: tests/fixtures/generic-playwright
+        env:
+          SUPERCOV_BROWSER: ${{ matrix.browser }}
+
+  filesystems:
+    if: ${{ inputs.only == '' || contains(format(',{0},', inputs.only), ',filesystems,') }}
+    name: Filesystem safety (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.os || '["ubuntu-latest", "ubuntu-24.04-arm", "macos-latest", "windows-latest", "windows-11-arm"]') }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - run: npm ci
+      # The only clippy pass that sees Windows- and macOS-only code.
+      - run: cargo clippy --workspace --all-targets -- -D warnings
+      - run: npm run test:filesystem
+      - run: npm run test:platform
+
+  python:
+    if: ${{ inputs.only == '' || contains(format(',{0},', inputs.only), ',python,') }}
+    name: CPython ${{ matrix.python }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.os || '["ubuntu-latest", "ubuntu-24.04-arm", "macos-latest", "windows-latest", "windows-11-arm"]') }}
+        python: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      # python.org publishes no arm64 Windows build before 3.11, so an arm64
+      # Windows user on 3.9 or 3.10 runs the x64 build under emulation, and
+      # so does this job.
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+          architecture: ${{ matrix.os == 'windows-11-arm' && (matrix.python == '3.9' || matrix.python == '3.10') && 'x64' || '' }}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      # Every interpreter measures itself: the gate refuses to fall back to
+      # another Python on the runner, and asserts the version it measured.
+      - run: npm run test:python
+        env:
+          SUPERCOV_PYTHON: python
+      # Slots are shared pages: close must take them back and a fork must
+      # not write into its parent's, on every platform's mmap.
+      - run: node --test tests/runtime/python-lifecycle.test.mjs tests/runtime/python-cache.test.mjs
+        env:
+          SUPERCOV_PYTHON: python
+      # A probe's cost is the interpreter's: 3.11 specializes the stores a
+      # probe compiles to and 3.9 does not, so every version is held to the
+      # budget, on one host.
+      - if: matrix.os == 'ubuntu-latest'
+        run: npm run benchmark:python
+        env:
+          SUPERCOV_PYTHON: python
+      - if: matrix.os == 'ubuntu-latest'
+        run: python scripts/python-startup-benchmark.py
+
+  ruby:
+    if: ${{ inputs.only == '' || contains(format(',{0},', inputs.only), ',ruby,') }}
+    name: Ruby ${{ matrix.ruby }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.os || '["ubuntu-latest", "ubuntu-24.04-arm", "macos-latest", "windows-latest", "windows-11-arm"]') }}
+        # 3.3 measures through Coverage alone and declares the rest; 3.4 is
+        # the first version the probes can measure everything on.
+        ruby: ["3.3", "3.4", "4.0"]
+        exclude:
+          # RubyInstaller ships no 3.3 for arm64 Windows; 3.4 is the first.
+          - os: windows-11-arm
+            ruby: "3.3"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      # Before Ruby, and that order is the whole point. `ruby/setup-ruby`
+      # installs an MSYS2 toolchain on arm64 Windows and puts its clang on
+      # PATH; `ring` has to compile C for `aarch64-pc-windows-msvc`, picks up
+      # that clang, and it cannot target MSVC. Building first leaves nothing
+      # for the shadowed compiler to be asked to do -- the build below is a
+      # cache hit.
+      - run: cargo build -p supercov
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - run: npm run test:ruby-coverage
+
+  rust:
+    if: ${{ inputs.only == '' || contains(format(',{0},', inputs.only), ',rust,') }}
+    name: Rust suites (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.os || '["ubuntu-latest", "ubuntu-24.04-arm", "macos-latest", "windows-latest", "windows-11-arm"]') }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      # The libtest companion patches the toolchain's own library/test source.
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rust-src
+      # One of the two nextest releases the runner contract is verified against.
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-nextest@0.9.140
+      - run: npm ci
+      - run: npm run test:rust-public-cargo
+
+  go:
+    if: ${{ inputs.only == '' || contains(format(',{0},', inputs.only), ',go,') }}
+    # Go 1.22 on the newest macOS is not a thing that can work: its linker
+    # writes no LC_UUID and macOS 26's dyld refuses to load a binary without
+    # one, so every test binary the toolchain builds aborts before `main`.
+    # That is true of `go test` anywhere, with or without Supercov -- Go fixed
+    # it in 1.23 -- so the pairing is tested where Go 1.22 itself works rather
+    # than dropped. macOS 14 is the oldest image still published.
+    name: Go ${{ matrix.go }} (${{ (matrix.os == 'macos-latest' && matrix.go == '1.22') && 'macos-14' || matrix.os }})
+    runs-on: ${{ (matrix.os == 'macos-latest' && matrix.go == '1.22') && 'macos-14' || matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.os || '["ubuntu-latest", "ubuntu-24.04-arm", "macos-latest", "windows-latest", "windows-11-arm"]') }}
+        # 1.22 is the oldest the generated harness targets; the rest is what
+        # projects are actually on. 1.26 earns its place on its own: it is the
+        # release that let `new` take a value, which the grammar Supercov
+        # parses with cannot express, and nothing below it can compile the
+        # construct to prove the workaround holds.
+        go: ["1.22", "1.25", "1.26", "1.27"]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-go@v6
+        with:
+          go-version: ${{ matrix.go }}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - run: npm run test:go
+        env:
+          # Without this a job whose toolchain setup failed would skip every
+          # test and report success, and Go would look verified on a machine
+          # that never ran it.
+          SUPERCOV_REQUIRE_GO: "1"
+          # And the same again one level down. A test of a construct newer than
+          # this leg's toolchain skips legitimately -- that is what the 1.22
+          # leg is for -- so the skip cannot simply be banned. Naming the
+          # version this job believes it set up makes a skip above it a
+          # failure, which means adding a version to the matrix above enforces
+          # that version by itself.
+          SUPERCOV_REQUIRE_GO_LANG: ${{ matrix.go }}
+      # The launcher is the way a Go project gets Supercov at all, and its
+      # tests are what caught it building a download URL from a version no
+      # release was ever published under. They ran nowhere until here.
+      - run: npm run test:launcher
+        env:
+          SUPERCOV_REQUIRE_GO: "1"
+
+  jvm:
+    if: ${{ inputs.only == '' || contains(format(',{0},', inputs.only), ',jvm,') }}
+    name: JDK ${{ matrix.java }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.os || '["ubuntu-latest", "ubuntu-24.04-arm", "macos-latest", "windows-latest", "windows-11-arm"]') }}
+        # 17 is the floor the documentation claims; 21 is the current LTS.
+        java: ["17", "21"]
+        exclude:
+          # Temurin publishes no 17 for arm64 Windows; 21 is the first.
+          - os: windows-11-arm
+            java: "17"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: gradle/actions/setup-gradle@v5
+      # The platform's own console runner, which one test drives directly to
+      # prove the listener attributes through the platform rather than through
+      # anything Maven or Gradle does around it.
+      # Not preinstalled on any runner. One test compiles Kotlin with the
+      # standalone compiler rather than through Gradle, so that what the
+      # rewriter produces is known to be Kotlin the compiler accepts and not
+      # only something a build plugin tolerated.
+      - name: Install the Kotlin compiler
+        shell: bash
+        run: |
+          version=2.2.20
+          curl -sSL --retry 3 -o "$RUNNER_TEMP/kotlin.zip" \
+            "https://github.com/JetBrains/kotlin/releases/download/v$version/kotlin-compiler-$version.zip"
+          unzip -q "$RUNNER_TEMP/kotlin.zip" -d "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/kotlinc/bin" >> "$GITHUB_PATH"
+      - name: Fetch the JUnit Platform console runner
+        shell: bash
+        run: |
+          jar="$RUNNER_TEMP/junit-platform-console-standalone.jar"
+          curl -sSL --retry 3 -o "$jar" \
+            https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar
+          echo "JUNIT_CONSOLE_JAR=$jar" >> "$GITHUB_ENV"
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - run: npm run test:jvm
+        env:
+          SUPERCOV_REQUIRE_JVM: "1"
+
+  # The binary we ship, on the machine it is shipped for. Three of the eight
+  # native packages had never executed anywhere but the cross-compiler.
+  released:
+    if: ${{ contains(format(',{0},', inputs.only), ',released,') }}
+    name: Released binary (${{ matrix.native }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { native: cli-linux-x64-gnu, os: ubuntu-latest }
+          - { native: cli-linux-arm64-gnu, os: ubuntu-24.04-arm }
+          - { native: cli-linux-x64-musl, os: ubuntu-latest, image: "node:22-alpine" }
+          - { native: cli-linux-arm64-musl, os: ubuntu-24.04-arm, image: "node:22-alpine" }
+          - { native: cli-darwin-arm64, os: macos-latest }
+          - { native: cli-darwin-x64, os: macos-15-intel }
+          - { native: cli-win32-x64, os: windows-latest }
+          - { native: cli-win32-arm64, os: windows-11-arm }
+    steps:
+      - uses: actions/checkout@v6
+      - if: ${{ !matrix.image }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - if: ${{ !matrix.image }}
+        run: node scripts/released-binary-smoke.mjs
+        env:
+          SUPERCOV_EXPECTED_NATIVE: ${{ matrix.native }}
+      # musl through Docker from the host: JavaScript actions cannot run inside
+      # an Alpine container on arm64 runners, and the image brings its own Node.
+      - if: ${{ matrix.image }}
+        run: docker run --rm -e SUPERCOV_EXPECTED_NATIVE=${{ matrix.native }} -v "$PWD:/work" -w /work ${{ matrix.image }} node scripts/released-binary-smoke.mjs

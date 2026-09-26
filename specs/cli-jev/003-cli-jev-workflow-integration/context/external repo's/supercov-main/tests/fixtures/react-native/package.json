@@ -1,0 +1,24 @@
+{
+  "name": "supercov-react-native-fixture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@react-native/babel-preset": "0.87.1",
+    "@react-native/jest-preset": "0.87.1",
+    "@testing-library/react-native": "14.0.1",
+    "babel-jest": "30.5.1",
+    "jest": "30.5.1",
+    "react": "19.2.4",
+    "react-native": "0.87.1",
+    "test-renderer": "1.2.0"
+  },
+  "private": true
+}

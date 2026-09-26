@@ -1,0 +1,38 @@
+run run_be789b1cf1e6b17f
+command: node --test tests/session.test.js
+
+Coverage
+  Lines      100.00% (3/3)
+  Branches   100.00% (2/2)
+  MC/DC      50.00% (1/2)
+
+By test kind
+  unit            2 test(s)  lines 100.00%  branches 100.00%  MC/DC  50.00%
+
+Measurement
+  Instrumentation  Complete for the measured command and coverage model
+  Scope            Only code reached by the wrapped command is observed; this status does not prove every project test suite was run.
+  Command outputs  /private/var/folders/4q/cdhj37516zzbc7z9ckrst0x40000gn/T/supercov-checkout-Y71iPw/project/.supercov/workspaces/workspace/project
+
+Tests
+  Total       2
+  Passed      2
+
+Remaining
+  Files with uncovered code         1
+  Files with measurement limits     0
+
+Evidence confidence
+  Linked to passing assertions      3 lines
+  Linked to test actions             0 lines
+  Execution only                     0 lines
+  MC/DC linked to assertions         1 conditions
+  Linkage indicates evidence strength; it does not prove that an assertion is correct.
+
+Commands
+  npx supercov runs 'run_be789b1cf1e6b17f' files
+  npx supercov runs 'run_be789b1cf1e6b17f' gaps
+  npx supercov runs 'run_be789b1cf1e6b17f' kinds
+  npx supercov runs 'run_be789b1cf1e6b17f' runners
+  npx supercov runs 'run_be789b1cf1e6b17f' scope
+  npx supercov runs run_be789b1cf1e6b17f --help

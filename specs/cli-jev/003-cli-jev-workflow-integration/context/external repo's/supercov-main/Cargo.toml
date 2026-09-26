@@ -1,0 +1,82 @@
+[workspace]
+members = [
+  "crates/supercov-cli",
+  "crates/supercov-contracts",
+  "crates/supercov-engine",
+]
+resolver = "3"
+
+[workspace.package]
+version = "2.0.1"
+edition = "2024"
+rust-version = "1.95"
+license = "MIT"
+repository = "https://github.com/supercorp-ai/supercov"
+
+[workspace.dependencies]
+ar_archive_writer = "0.5.3"
+base64 = "0.22"
+cargo-platform = "0.3.3"
+cargo-config2 = "0.1.45"
+nextest-metadata = "0.15.0"
+object = { version = "0.39.1", default-features = false, features = ["std", "read"] }
+crc32fast = "1"
+flate2 = { version = "1.1", default-features = false, features = ["zlib-rs"] }
+getrandom = "0.3"
+junction = "2.0.0"
+libc = "0.2"
+memmap2 = "0.9.11"
+reflink-copy = "0.1.30"
+ra_ap_syntax = "=0.0.349"
+ruff_python_ast = "=0.0.10"
+ruff_python_parser = "=0.0.10"
+ruby-prism = "=1.9.0"
+ruff_text_size = "=0.0.10"
+oxc_allocator = "0.133.0"
+oxc_ast = "0.133.0"
+oxc_ast_visit = "0.133.0"
+oxc_codegen = { version = "0.133.0", default-features = false, features = ["sourcemap"] }
+oxc_parser = "0.133.0"
+oxc_semantic = "0.133.0"
+oxc_sourcemap = "6.1.1"
+oxc_span = "0.133.0"
+oxc_syntax = "0.133.0"
+oxc_traverse = "0.133.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+schemars = "1.2.2"
+serde_path_to_error = "0.1.20"
+sha2 = "0.10"
+supercov-contracts = { version = "=2.0.1", path = "crates/supercov-contracts" }
+supercov-engine = { version = "=2.0.1", path = "crates/supercov-engine" }
+sysinfo = { version = "0.38.4", default-features = false, features = ["system"] }
+time = { version = "0.3", features = ["formatting", "macros"] }
+tree-sitter = "0.25"
+tree-sitter-go = "0.25.0"
+tree-sitter-java = "0.23.5"
+tree-sitter-kotlin-ng = "1.1.0"
+toml = "1.1.4"
+toml_edit = { version = "0.24.0", features = ["serde"] }
+windows-sys = "0.61.2"
+which = "8.0.6"
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+opt-level = 3
+panic = "abort"
+strip = "symbols"
+
+# Debug-build supercov acts as the per-crate rustc proxy in gates and
+# dogfoods, and companion selection content-hashes multi-megabyte binaries
+# on every invocation. Unoptimized sha2 turns that into tens of seconds per
+# crate and blows production-stage timeouts; hashing must run optimized even
+# in dev builds. No effect on release.
+[profile.dev.package.sha2]
+opt-level = 3
+
+[profile.dev.package.digest]
+opt-level = 3
+
+[profile.dev.package.block-buffer]
+opt-level = 3

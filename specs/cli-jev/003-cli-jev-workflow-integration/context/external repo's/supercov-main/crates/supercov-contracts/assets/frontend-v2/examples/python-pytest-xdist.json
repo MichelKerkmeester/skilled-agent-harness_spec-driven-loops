@@ -1,0 +1,33 @@
+{
+  "protocolVersion": 2,
+  "frontendId": "python",
+  "frontendVersion": "python-coverage-v1",
+  "language": "python",
+  "structuralSource": "native-import",
+  "runners": [{
+    "runner": "pytest",
+    "executionModel": "serial-in-process",
+    "attribution": {
+      "run": "exact",
+      "worker": "exact",
+      "test": "exact",
+      "retry": "exact",
+      "phase": "exact",
+      "action": "unavailable",
+      "assertion": "unavailable"
+    },
+    "limitations": [{
+      "id": "python-action-linkage",
+      "scopes": ["action"],
+      "reason": "pytest exposes no general action lifecycle"
+    }, {
+      "id": "python-assertion-linkage",
+      "scopes": ["assertion"],
+      "reason": "pytest phase outcomes do not identify each passing assertion or the obligations caused by it"
+    }]
+  }],
+  "structuralLimitations": [
+    "python-column-location-unavailable",
+    "python-mcdc-unavailable"
+  ]
+}

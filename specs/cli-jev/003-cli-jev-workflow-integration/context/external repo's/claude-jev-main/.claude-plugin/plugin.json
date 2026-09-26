@@ -1,0 +1,76 @@
+{
+  "name": "claude-jev",
+  "version": "0.1.0",
+  "description": "Ask TypeSafe's Jev model for calibrated judgements during code review, investigation and planning.",
+  "author": {
+    "name": "oxdev"
+  },
+  "homepage": "https://github.com/buchmark/claude-jev",
+  "repository": "https://github.com/buchmark/claude-jev",
+  "license": "MIT",
+  "mcpServers": {
+    "jev": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/dist/server.js"
+      ],
+      "env": {
+        "JEV_API_KEY": "${user_config.apiKey}",
+        "JEV_MODEL": "${user_config.model}",
+        "JEV_ALLOW_SOURCE_READING": "${user_config.allowSourceReading}",
+        "JEV_MAX_FILE_BYTES": "${user_config.maxFileBytes}",
+        "JEV_MAX_FILES_PER_CALL": "${user_config.maxFilesPerCall}",
+        "JEV_MAX_REQUESTS": "${user_config.maxRequests}"
+      }
+    }
+  },
+  "userConfig": {
+    "apiKey": {
+      "type": "string",
+      "title": "TypeSafe API key",
+      "description": "Leave empty to use TYPESAFE_API_KEY from the environment.",
+      "sensitive": true
+    },
+    "model": {
+      "type": "string",
+      "title": "Jev model",
+      "description": "Pin a version to keep thresholds stable across releases.",
+      "default": "jev-latest",
+      "options": [
+        "jev-latest",
+        "jev-preview",
+        "jev-1.13.0"
+      ]
+    },
+    "allowSourceReading": {
+      "type": "boolean",
+      "title": "Let the server read source files",
+      "description": "When off, only text passed in the tool call is sent to TypeSafe.",
+      "default": true
+    },
+    "maxFileBytes": {
+      "type": "number",
+      "title": "Maximum bytes per source",
+      "description": "Longer snippets are truncated before they are sent.",
+      "default": 65536,
+      "min": 512,
+      "max": 1048576
+    },
+    "maxFilesPerCall": {
+      "type": "number",
+      "title": "Maximum sources per call",
+      "description": "Upper bound on files read for one tool call.",
+      "default": 20,
+      "min": 1,
+      "max": 200
+    },
+    "maxRequests": {
+      "type": "number",
+      "title": "Maximum requests per call",
+      "description": "Ceiling on the fan-out when questions do not fit beside the state in one request.",
+      "default": 8,
+      "min": 1,
+      "max": 64
+    }
+  }
+}

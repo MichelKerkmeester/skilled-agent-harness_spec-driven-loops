@@ -1,0 +1,17 @@
+namespace supercov.index;
+
+table Line {
+  file:uint;
+  line:uint;
+  covered:bool;
+  tests:[uint];
+}
+
+table QueryIndex {
+  version:uint;
+  strings:[string];
+  lines:[Line];
+}
+
+root_type QueryIndex;
+file_identifier "SCQI";

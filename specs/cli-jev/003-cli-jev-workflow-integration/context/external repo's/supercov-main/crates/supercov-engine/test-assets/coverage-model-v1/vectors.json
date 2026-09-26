@@ -1,0 +1,88 @@
+{
+  "valid": [
+    {
+      "schemaVersion": 1,
+      "language": "rust",
+      "variant": "rust-source-v1",
+      "name": "Supercov Rust source coverage v1",
+      "completenessMeaning": "Every frozen obligation was satisfied without a blocking limitation.",
+      "measured": ["owned statements", "masking MC/DC"],
+      "notMeasured": ["all semantic input partitions"]
+    }
+  ],
+  "invalid": [
+    {
+      "reason": "unsupported schema",
+      "value": {
+        "schemaVersion": 2,
+        "language": "rust",
+        "variant": "rust-source-v1",
+        "name": "Rust",
+        "completenessMeaning": "Complete.",
+        "measured": ["statements"],
+        "notMeasured": []
+      }
+    },
+    {
+      "reason": "invalid language identifier",
+      "value": {
+        "schemaVersion": 1,
+        "language": "Rust",
+        "variant": "rust-source-v1",
+        "name": "Rust",
+        "completenessMeaning": "Complete.",
+        "measured": ["statements"],
+        "notMeasured": []
+      }
+    },
+    {
+      "reason": "multiline description",
+      "value": {
+        "schemaVersion": 1,
+        "language": "rust",
+        "variant": "rust-source-v1",
+        "name": "Rust\ncoverage",
+        "completenessMeaning": "Complete.",
+        "measured": ["statements"],
+        "notMeasured": []
+      }
+    },
+    {
+      "reason": "empty measured partition",
+      "value": {
+        "schemaVersion": 1,
+        "language": "rust",
+        "variant": "rust-source-v1",
+        "name": "Rust",
+        "completenessMeaning": "Complete.",
+        "measured": [],
+        "notMeasured": ["statements"]
+      }
+    },
+    {
+      "reason": "overlapping partitions",
+      "value": {
+        "schemaVersion": 1,
+        "language": "rust",
+        "variant": "rust-source-v1",
+        "name": "Rust",
+        "completenessMeaning": "Complete.",
+        "measured": ["statements"],
+        "notMeasured": ["statements"]
+      }
+    },
+    {
+      "reason": "unknown field",
+      "value": {
+        "schemaVersion": 1,
+        "language": "rust",
+        "variant": "rust-source-v1",
+        "name": "Rust",
+        "completenessMeaning": "Complete.",
+        "measured": ["statements"],
+        "notMeasured": [],
+        "verdict": "complete"
+      }
+    }
+  ]
+}

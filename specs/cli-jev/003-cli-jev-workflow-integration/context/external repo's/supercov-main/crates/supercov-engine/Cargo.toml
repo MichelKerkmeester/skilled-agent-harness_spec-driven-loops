@@ -1,0 +1,88 @@
+[package]
+name = "supercov-engine"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+readme = "../../README.md"
+description = "Rust instrumentation, evidence, attribution, and query engine for Supercov"
+keywords = ["coverage", "testing", "mcdc", "instrumentation"]
+categories = ["development-tools::testing"]
+publish = ["crates-io"]
+
+[features]
+default = []
+oracle-harnesses = []
+
+[dependencies]
+ignore = "0.4"
+ar_archive_writer.workspace = true
+base64.workspace = true
+cargo-platform.workspace = true
+cargo-config2.workspace = true
+crc32fast.workspace = true
+flate2.workspace = true
+getrandom.workspace = true
+libc.workspace = true
+memmap2.workspace = true
+nextest-metadata.workspace = true
+object.workspace = true
+reflink-copy.workspace = true
+ra_ap_syntax.workspace = true
+ruff_python_ast.workspace = true
+ruff_python_parser.workspace = true
+ruff_text_size.workspace = true
+ruby-prism.workspace = true
+oxc_allocator.workspace = true
+oxc_ast.workspace = true
+oxc_ast_visit.workspace = true
+oxc_codegen.workspace = true
+oxc_parser.workspace = true
+oxc_semantic.workspace = true
+oxc_sourcemap.workspace = true
+oxc_span.workspace = true
+oxc_syntax.workspace = true
+oxc_traverse.workspace = true
+serde.workspace = true
+serde_json = { workspace = true, features = ["float_roundtrip"] }
+schemars.workspace = true
+serde_path_to_error.workspace = true
+sha2.workspace = true
+supercov-contracts.workspace = true
+sysinfo.workspace = true
+toml.workspace = true
+tree-sitter.workspace = true
+tree-sitter-go.workspace = true
+tree-sitter-java.workspace = true
+tree-sitter-kotlin-ng.workspace = true
+toml_edit.workspace = true
+which.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+junction.workspace = true
+windows-sys = { workspace = true, features = [
+  "Win32_Foundation",
+  "Win32_Security",
+  "Win32_System_Console",
+  "Win32_System_Diagnostics_ToolHelp",
+  "Win32_System_JobObjects",
+  "Win32_System_Threading",
+] }
+
+# SHA-256 is on the hot path of opening a query index: every page is verified
+# against its own digest before it is read. On aarch64 the `asm` feature selects
+# sha2's backend for the Armv8 crypto extensions -- Rust intrinsics with their
+# own runtime check, not a C build -- and measured 2708 MB/s against 556 MB/s
+# for the portable path on an M5 Pro.
+#
+# Not on Windows: the feature also pulls in `sha2-asm`, whose build script
+# compiles GNU `.S` sources with `-march=armv8-a+crypto`, and `cl.exe` can do
+# neither. Not on x86 either, where there is nothing to gain: sha2 selects its
+# SHA-NI backend with or without the feature, which only swaps the fallback
+# that a pre-SHA-NI CPU takes.
+[target.'cfg(all(target_arch = "aarch64", not(target_os = "windows")))'.dependencies]
+sha2 = { workspace = true, features = ["asm"] }
+
+[build-dependencies]
+sha2.workspace = true

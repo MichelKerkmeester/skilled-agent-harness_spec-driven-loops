@@ -1,0 +1,52 @@
+[
+  {
+    "file": "runtime/sloppy-with.js",
+    "kind": "script",
+    "source": "const effects = []; const scope = { left: true, right: true, value: 7 }; function run() { let result = 0; with (scope) { if (left && right) result = value; } return result; } function observe() { return effects; }"
+  },
+  {
+    "file": "runtime/direct-eval.js",
+    "kind": "script",
+    "source": "const effects = []; function run() { const local = 4; return eval('local > 2 && local < 8 ? local + 1 : 0'); } function observe() { return effects; }"
+  },
+  {
+    "file": "runtime/dynamic-eval.js",
+    "kind": "script",
+    "source": "const effects = []; function run() { const choose = new Function('left', 'right', 'return left && right ? 3 : 2'); return [choose(true, true), choose(true, false)]; } function observe() { return effects; }"
+  },
+  {
+    "file": "runtime/generators.js",
+    "kind": "script",
+    "source": "const effects = []; function* values(flag) { try { if (flag) yield 1; yield 2; } finally { effects.push('closed'); } } function run() { return [...values(true), ...values(false)]; } function observe() { return effects; }"
+  },
+  {
+    "file": "runtime/class-contexts.js",
+    "kind": "script",
+    "source": "const effects = []; let keyCalls = 0; function key() { keyCalls += 1; return 'field'; } class Parent { value = 2; read() { return this.value; } } class Child extends Parent { static enabled = true; static { if (this.enabled) effects.push('static'); } #private = 3; [key()] = 4; constructor(flag = true) { super(); if (flag && this.#private) effects.push('constructed'); } read() { return super.read() + this.#private + this.field; } } function run() { const child = new Child(); return { value: child.read(), keyCalls }; } function observe() { return effects; }"
+  },
+  {
+    "file": "runtime/async-control.js",
+    "kind": "script",
+    "source": "const effects = []; async function choose(value) { await Promise.resolve(); if (value?.enabled && value.count > 0) { effects.push('yes'); return value.count; } effects.push('no'); return 0; } async function run() { return [await choose({ enabled: true, count: 2 }), await choose(null)]; } function observe() { return effects; }"
+  },
+  {
+    "file": "runtime/module-top-level-await.mjs",
+    "kind": "module",
+    "source": "const effects = []; const loaded = await Promise.resolve(5); export async function run() { if (loaded > 2 && loaded < 8) effects.push('loaded'); return loaded; } export function observe() { return effects; }"
+  },
+  {
+    "file": "runtime/module-import-meta.mjs",
+    "kind": "module",
+    "source": "const effects = []; export function run() { const scheme = import.meta.url.split(':', 1)[0]; if (scheme === 'data') effects.push('data'); return scheme; } export function observe() { return effects; }"
+  },
+  {
+    "file": "runtime/module-async-generator.mjs",
+    "kind": "module",
+    "source": "const effects = []; async function* values() { for (const value of [1, 2, 3]) { if (value > 1) effects.push(value); yield await Promise.resolve(value); } } export async function run() { const result = []; for await (const value of values()) result.push(value); return result; } export function observe() { return effects; }"
+  },
+  {
+    "file": "runtime/module-private-static.mjs",
+    "kind": "module",
+    "source": "const effects = []; class Counter { static #seed = 2; static { if (this.#seed) effects.push('static'); } #value = Counter.#seed; increment(step = 1) { this.#value += step; return this.#value; } } export function run() { const counter = new Counter(); return [counter.increment(), counter.increment(2)]; } export function observe() { return effects; }"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "agent": "Codex agent with a fresh context",
+  "startedAt": "2026-09-09T19:01:02.144Z",
+  "completedAt": "2026-09-09T19:01:38.172Z",
+  "supercov": "supercov 0.0.42 (rust contract v1)",
+  "node": "v24.18.0",
+  "platform": "darwin-arm64",
+  "beforeRun": "run_888402a5fd64e52c",
+  "afterRun": "run_72b1bee32109d71e",
+  "prompt": "Measure code coverage with npx supercov and write one missing test. Only change tests. Rerun the full test suite and show me the test you added and the before-and-after coverage.",
+  "setup": "Dependencies installed before the run. Only starter files were supplied. Shell output captured by a transparent wrapper; no expected test or metrics supplied.",
+  "files": {
+    ".gitignore": {
+      "before": "ceef1570d0d52e000b867e0c9632dca5ff65b5ff84cf26e89a83c0599dedd119",
+      "after": "ceef1570d0d52e000b867e0c9632dca5ff65b5ff84cf26e89a83c0599dedd119"
+    },
+    "package.json": {
+      "before": "1f08a908971d6ce8f62b9179bec1de6e010712aded38782d1f992e31bf55c14b",
+      "after": "1f08a908971d6ce8f62b9179bec1de6e010712aded38782d1f992e31bf55c14b"
+    },
+    "package-lock.json": {
+      "before": "712dfa66b08889b6ae028894cc289247f37dc48c11ef4b77d914ac15e8e4da1d",
+      "after": "712dfa66b08889b6ae028894cc289247f37dc48c11ef4b77d914ac15e8e4da1d"
+    },
+    "src/session.js": {
+      "before": "8e71c7c33d40906a1ae0f7b96134e88c8ad0325e1c40979ca05bd55619c58ab8",
+      "after": "8e71c7c33d40906a1ae0f7b96134e88c8ad0325e1c40979ca05bd55619c58ab8"
+    },
+    "tests/session.test.js": {
+      "before": "6d71115ca6a01eb7f3358751a241e6ff30fac346b759a612066e2c4b8699e540",
+      "after": "52c5c5d22e965b47a6aa9dde1e3d28e0640fc2e996e84d7b7063faf2b24b2e4c"
+    }
+  }
+}

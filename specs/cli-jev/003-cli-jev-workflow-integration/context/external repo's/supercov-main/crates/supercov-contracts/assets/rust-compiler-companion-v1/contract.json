@@ -1,0 +1,29 @@
+{
+  "protocolVersion": 1,
+  "status": "frozen-selection-envelope-private-implementation",
+  "frontendId": "rust",
+  "coverageModelVariant": "rust-source-v1",
+  "evidenceSchemaVersion": 3,
+  "selectionIdentity": [
+    "rustcCommitHash",
+    "hostTriple",
+    "rustcDriverSha256"
+  ],
+  "requiredPublicCapabilities": [
+    "expandedHirProvenance",
+    "runtimeMirProbeInsertion",
+    "generatedSourceProvenance",
+    "ctfePathTracing",
+    "rustdocDoctestTracing",
+    "exactTestHarnessAttribution"
+  ],
+  "unknownFieldsFatal": true,
+  "exactIdentityRequired": true,
+  "externalCoverageEngine": false,
+  "missingOrMismatchedCompanion": "fail-closed",
+  "userRuntimeComponents": [
+    "cargo",
+    "rustc"
+  ],
+  "userDevelopmentComponents": []
+}

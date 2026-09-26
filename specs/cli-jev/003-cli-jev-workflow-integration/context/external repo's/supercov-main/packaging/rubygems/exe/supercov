@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# One gem is built per platform and carries exactly one executable; on Windows
+# it is named with the extension the platform requires.
+candidates = ["supercov", "supercov.exe"].map do |name|
+  File.expand_path("../libexec/#{name}", __dir__)
+end
+binary = candidates.find { |path| File.file?(path) && File.executable?(path) }
+
+unless binary
+  warn "supercov: packaged Rust executable is missing or not executable: #{candidates.join(", ")}"
+  exit 126
+end
+
+exec(binary, *ARGV)

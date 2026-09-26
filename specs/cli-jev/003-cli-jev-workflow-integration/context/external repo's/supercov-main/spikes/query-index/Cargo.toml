@@ -1,0 +1,19 @@
+[package]
+name = "supercov-query-index-spike"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[dependencies]
+flate2 = { version = "1.1", default-features = false, features = ["rust_backend"] }
+flatbuffers = "=25.12.19"
+memmap2 = "0.9.11"
+rkyv = { version = "0.8.18", features = ["little_endian"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+
+[build-dependencies]
+flatbuffers-build = { version = "=0.2.4", features = ["vendored"] }

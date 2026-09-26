@@ -1,0 +1,133 @@
+{
+  "contractVersion": 1,
+  "help": {
+    "exits": 0,
+    "hasRunCommand": true,
+    "hasResourceQueries": true,
+    "hasResidentServeCommand": false
+  },
+  "execution": {
+    "exitCode": 0,
+    "sourceUnchanged": true,
+    "publishedFiles": [
+      "assertions.inputs.cache.json",
+      "assertions.json",
+      "assertions.state.json",
+      "assertions.summary.cache.json",
+      "evidence.raw.gz",
+      "query-index.v1.bin",
+      "run.json"
+    ],
+    "looseEvidenceRetained": false,
+    "terminalWorkRetained": false,
+    "metadata": {
+      "testExitCode": 0,
+      "isolatedBuild": true,
+      "evidenceSchemaVersion": 3,
+      "evidenceFormat": "framed+gzip",
+      "evidenceFile": "evidence.raw.gz",
+      "evidenceSizeMatches": true,
+      "timingFields": [
+        "adapterSetupMs",
+        "evidencePublicationMs",
+        "initializationMs",
+        "instrumentedBuildMs",
+        "testCommandMs",
+        "workspacePreparationMs"
+      ]
+    }
+  },
+  "summary": {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "coverage.summary",
+    "valid": true,
+    "structurallyComplete": true,
+    "complete": false,
+    "coverage": {
+      "decisions": 1,
+      "executedDecisions": 1,
+      "coveredDecisions": 1,
+      "conditions": 2,
+      "coveredConditions": 2,
+      "conditionCoveragePct": 100,
+      "lines": { "covered": 3, "total": 3, "percentage": 100 },
+      "statements": { "covered": 3, "total": 3, "percentage": 100 },
+      "functions": { "covered": 1, "total": 1, "percentage": 100 },
+      "branches": { "covered": 2, "total": 2, "percentage": 100 },
+      "decisionOutcomes": { "covered": 2, "total": 2, "percentage": 100 },
+      "conditionOutcomes": { "covered": 4, "total": 4, "percentage": 100 },
+      "valueSelections": { "covered": 0, "total": 0, "percentage": 100 },
+      "coverageComplete": true
+    },
+    "measurement": {
+      "complete": true,
+      "limitations": 0,
+      "evidenceCorruptions": 0,
+      "blocking": 0,
+      "declared": 0,
+      "files": 0,
+      "byKind": {
+        "dynamic-code": 0,
+        "semantic-safety": 0,
+        "source-scope": 0
+      }
+    },
+    "tests": 0,
+    "outcomes": {
+      "passed": 0,
+      "failed": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "timedOut": 0,
+      "interrupted": 0,
+      "unknown": 0,
+      "unstarted": 0
+    }
+  },
+  "files": {
+    "schemaVersion": 1,
+    "ok": true,
+    "command": "coverage.files",
+    "pagination": {
+      "offset": 0,
+      "limit": 20,
+      "returned": 1,
+      "total": 1,
+      "hasMore": false,
+      "nextOffset": null
+    },
+    "data": {
+      "run": "<run-id>",
+      "filters": { "outcome": "all", "kind": null, "runner": null },
+      "metric": "all",
+      "files": [
+        {
+          "file": "src/decision.js",
+          "uncoveredLines": 0,
+          "uncoveredStatements": 0,
+          "uncoveredFunctions": 0,
+          "missingBranches": 0,
+          "missingMcdcConditions": 0,
+          "measurementLimitations": 0,
+          "limitationKinds": [],
+          "coveredByOtherTests": {
+            "lines": 0,
+            "statements": 0,
+            "functions": 0,
+            "branches": 0,
+            "mcdcConditions": 0
+          },
+          "uncoveredEverywhere": {
+            "lines": 0,
+            "statements": 0,
+            "functions": 0,
+            "branches": 0,
+            "mcdcConditions": 0
+          },
+          "score": 0
+        }
+      ]
+    }
+  }
+}

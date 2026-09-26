@@ -1,0 +1,51 @@
+name: Cross-repository evaluation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    name: ${{ matrix.name }} / ${{ matrix.runner }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: yocto-queue
+            repository: sindresorhus/yocto-queue
+            ref: b07eac099753833b29d06c614149904445739776
+            runner: ava
+            command: npm test
+          - name: express
+            repository: expressjs/express
+            ref: 023767fe9872e029271df1418f73401bff20ff40
+            runner: mocha
+            command: npx mocha --require test/support/env --check-leaks test/app.js
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.ref }}
+          path: external
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Install external repository
+        working-directory: external
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Run unchanged external tests through Supercov
+        working-directory: external
+        env:
+          EXTERNAL_TEST_COMMAND: ${{ matrix.command }}
+        run: node ../bin/supercov.js -- bash -lc "$EXTERNAL_TEST_COMMAND"
+      - name: Verify evidence and source inventory
+        working-directory: external
+        run: node ../scripts/verify-cross-repo-run.mjs

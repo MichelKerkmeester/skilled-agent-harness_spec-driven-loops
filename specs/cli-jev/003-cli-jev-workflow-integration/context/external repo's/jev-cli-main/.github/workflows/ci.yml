@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run typecheck:hooks
+      - name: Vendored compaction hook is in sync
+        run: node scripts/sync-hooks.mjs --check
+      - name: Lint (warnings fail)
+        run: npx biome check . --error-on-warnings
+      - run: npm run build
+      - run: npm test
+      - name: Validate the Claude Code plugin
+        if: matrix.node == 22
+        run: npx --yes @anthropic-ai/claude-code plugin validate ./plugin
+      - name: Smoke test the built binary
+        run: |
+          node dist/cli.js --version
+          node dist/cli.js screen "hello" --dry-run > /dev/null
+      - name: Live end-to-end (only when a key is configured)
+        if: matrix.node == 22 && env.TYPESAFE_API_KEY != ''
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: npm run test:e2e
+
+  # Single status for branch rules to require, so the matrix can change without editing the ruleset.
+  ci-ok:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - run: test "${{ needs.test.result }}" = "success"

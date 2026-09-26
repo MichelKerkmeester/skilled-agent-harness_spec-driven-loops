@@ -1,0 +1,15 @@
+
+> test:before
+> vitest run tests/checkout.weak.test.tsx
+
+
+ RUN  v4.1.11 /private/var/folders/4q/cdhj37516zzbc7z9ckrst0x40000gn/T/supercov-react-verification-LavbfO/.supercov/workspaces/workspace/supercov-react-verification-LavbfO
+
+ ✓ tests/checkout.weak.test.tsx (3 tests) 115ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  23:26:48
+   Duration  935ms (transform 25ms, setup 101ms, import 49ms, tests 115ms, environment 529ms)
+
+[coverage] evidence: /private/var/folders/4q/cdhj37516zzbc7z9ckrst0x40000gn/T/supercov-react-verification-LavbfO/.supercov/runs/run_5c23599854c51519/evidence.raw.gz

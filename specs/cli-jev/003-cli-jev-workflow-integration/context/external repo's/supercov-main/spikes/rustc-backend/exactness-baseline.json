@@ -1,0 +1,164 @@
+{
+  "build_script_build": {
+    "obligations": 139,
+    "declined": 3,
+    "uncompiled": 3,
+    "conditions": 32,
+    "measurable": 136,
+    "boundBodies": 45,
+    "exact": 100
+  },
+  "once_cell": {
+    "obligations": 493,
+    "declined": 5,
+    "uncompiled": 5,
+    "conditions": 27,
+    "measurable": 488,
+    "boundBodies": 646,
+    "exact": 100
+  },
+  "itoa": {
+    "obligations": 343,
+    "declined": 0,
+    "uncompiled": 0,
+    "conditions": 37,
+    "measurable": 343,
+    "boundBodies": 130,
+    "exact": 100
+  },
+  "serde_core": {
+    "obligations": 7768,
+    "declined": 58,
+    "uncompiled": 10,
+    "conditions": 487,
+    "measurable": 7758,
+    "boundBodies": 11605,
+    "exact": 99.38
+  },
+  "proc_macro2": {
+    "obligations": 2353,
+    "declined": 1,
+    "uncompiled": 1,
+    "conditions": 194,
+    "measurable": 2352,
+    "boundBodies": 2355,
+    "exact": 100
+  },
+  "zmij": {
+    "obligations": 588,
+    "declined": 54,
+    "uncompiled": 54,
+    "conditions": 65,
+    "measurable": 534,
+    "boundBodies": 198,
+    "exact": 100
+  },
+  "quote": {
+    "obligations": 657,
+    "declined": 0,
+    "uncompiled": 0,
+    "conditions": 5,
+    "measurable": 657,
+    "boundBodies": 1010,
+    "exact": 100
+  },
+  "syn": {
+    "obligations": 19189,
+    "declined": 141,
+    "uncompiled": 111,
+    "conditions": 1323,
+    "measurable": 19078,
+    "boundBodies": 17763,
+    "exact": 99.84
+  },
+  "tracing_core": {
+    "obligations": 1263,
+    "declined": 2,
+    "uncompiled": 2,
+    "conditions": 51,
+    "measurable": 1261,
+    "boundBodies": 2159,
+    "exact": 100
+  },
+  "bytes": {
+    "obligations": 3292,
+    "declined": 8,
+    "uncompiled": 8,
+    "conditions": 261,
+    "measurable": 3284,
+    "boundBodies": 4012,
+    "exact": 100
+  },
+  "memchr": {
+    "obligations": 2741,
+    "declined": 0,
+    "uncompiled": 0,
+    "conditions": 334,
+    "measurable": 2741,
+    "boundBodies": 2348,
+    "exact": 100
+  },
+  "http": {
+    "obligations": 3879,
+    "declined": 37,
+    "uncompiled": 16,
+    "conditions": 249,
+    "measurable": 3863,
+    "boundBodies": 4100,
+    "exact": 99.46
+  },
+  "serde": {
+    "obligations": 2162,
+    "declined": 32,
+    "uncompiled": 0,
+    "conditions": 44,
+    "measurable": 2162,
+    "boundBodies": 3350,
+    "exact": 98.52
+  },
+  "serde_json": {
+    "obligations": 4458,
+    "declined": 29,
+    "uncompiled": 0,
+    "conditions": 161,
+    "measurable": 4458,
+    "boundBodies": 5291,
+    "exact": 99.35
+  },
+  "either": {
+    "obligations": 645,
+    "declined": 7,
+    "uncompiled": 2,
+    "conditions": 3,
+    "measurable": 643,
+    "boundBodies": 870,
+    "exact": 99.22
+  },
+  "log": {
+    "obligations": 376,
+    "declined": 36,
+    "uncompiled": 0,
+    "conditions": 16,
+    "measurable": 376,
+    "boundBodies": 615,
+    "exact": 90.43
+  },
+  "tracing_attributes": {
+    "obligations": 1348,
+    "declined": 41,
+    "uncompiled": 19,
+    "conditions": 117,
+    "measurable": 1329,
+    "boundBodies": 1045,
+    "exact": 98.34
+  },
+  "tracing": {
+    "obligations": 380,
+    "declined": 16,
+    "uncompiled": 16,
+    "conditions": 25,
+    "measurable": 364,
+    "boundBodies": 545,
+    "exact": 100
+  }
+}

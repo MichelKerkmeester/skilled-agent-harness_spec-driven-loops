@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen",
+  "persistedEntry": "coverage-model.json",
+  "requiredFields": [
+    "schemaVersion",
+    "language",
+    "variant",
+    "name",
+    "completenessMeaning",
+    "measured",
+    "notMeasured"
+  ],
+  "unknownFieldsFatal": true,
+  "frontendLanguageMustMatch": true,
+  "measuredMustBeNonempty": true,
+  "surfaceListsMustBeUnique": true,
+  "surfaceListsMustBeDisjoint": true,
+  "stringsMustBeTrimmedSingleLine": true,
+  "maxIdentifierBytes": 64,
+  "maxDescriptionBytes": 4096,
+  "maxSurfacesPerList": 256
+}

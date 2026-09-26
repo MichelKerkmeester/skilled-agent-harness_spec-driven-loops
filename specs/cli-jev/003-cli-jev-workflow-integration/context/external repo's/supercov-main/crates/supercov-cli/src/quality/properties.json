@@ -1,0 +1,86 @@
+[
+  {
+    "id": "god_class",
+    "task": "Does this class carry several responsibilities that change for different reasons, so that describing what it does needs the word 'and'? A class that is merely long but serves one purpose does not count.",
+    "present": "It carries several independently changing responsibilities.",
+    "absent": "It serves one purpose, however much code that takes.",
+    "evidence": "ordered 52.3% of size-matched human-rated pairs alone"
+  },
+  {
+    "id": "long_method",
+    "task": "Does this file contain at least one method long enough that a reader cannot hold its steps in mind at once, and that visibly does several separable things? A long method that is one flat sequence of trivial statements does not count.",
+    "present": "At least one method is too long to follow as a unit and does several separable things.",
+    "absent": "Every method can be followed as a unit.",
+    "evidence": "71.0% alone; 4 of 4 agreement with a blind reader"
+  },
+  {
+    "id": "deep_nesting",
+    "task": "Does control flow in this file reach three or more levels of nested conditionals and loops inside one method, so that following which conditions hold on a given path takes real effort? Count only control flow: nested data literals, nested type declarations and nested markup are not control flow. A guard that returns immediately does not add a level.",
+    "present": "Some method nests control flow three or more levels deep.",
+    "absent": "Control flow stays within two levels, or nesting is only in data or markup.",
+    "evidence": "72.0% alone, the strongest single check; reworded 2026-09-18 to count only control flow"
+  },
+  {
+    "id": "complex_conditional",
+    "task": "Does this file contain a boolean expression that combines several conditions without naming the combination, so the reader must reconstruct what it means? A two-term condition does not count.",
+    "present": "An unnamed multi-part condition must be reconstructed by the reader.",
+    "absent": "Conditions are simple or are named.",
+    "evidence": "64.2% alone; detected at 0.89 when introduced deliberately"
+  },
+  {
+    "id": "long_parameter_list",
+    "task": "Does a method here take so many parameters that callers must remember an order, where some of those parameters travel together and would be better passed as one thing?",
+    "present": "A method takes many parameters, some of which belong together.",
+    "absent": "Parameter lists are short or each parameter is independent.",
+    "evidence": "51.9% alone; detected at 0.93 when introduced deliberately"
+  },
+  {
+    "id": "duplicated_logic",
+    "task": "Is the same rule or decision expressed more than once in this file, so that changing it would mean changing several places? Similar-looking code that encodes genuinely different rules does not count.",
+    "present": "One rule is expressed in more than one place.",
+    "absent": "Each rule has a single home.",
+    "evidence": "50.8% alone, near chance on size-matched pairs; detected at 0.81 as a change"
+  },
+  {
+    "id": "primitive_obsession",
+    "task": "Are domain concepts in this file carried in a form that cannot distinguish them: raw strings or numbers where a named type would prevent confusion, untyped maps, or an escape hatch such as a bare Object, any, or an untyped dictionary standing in for a real type? Using a primitive for something that really is primitive does not count.",
+    "present": "Domain concepts are carried as primitives, untyped maps, or untyped escape hatches.",
+    "absent": "Domain concepts have names, or are genuinely primitive.",
+    "evidence": "55.8% alone; reworded 2026-09-18 to include untyped escape hatches"
+  },
+  {
+    "id": "dead_code",
+    "task": "Does this file contain code that cannot run or is never used: an unreachable branch, an unused private member, or a commented-out block left behind?",
+    "present": "Something here cannot run or is never used.",
+    "absent": "Everything here is reachable and used.",
+    "evidence": "59.0% alone; detected at 0.96 when introduced deliberately"
+  },
+  {
+    "id": "feature_envy",
+    "task": "Does a method here work mainly with the data of one particular other object, reading or updating its fields more than its own, so it would sit more naturally on that object? Calling an imported function or a service does not count, and neither does a method that simply passes its arguments on.",
+    "present": "A method is more interested in one other object's data than in its own.",
+    "absent": "Methods work mainly with their own data, or merely delegate.",
+    "evidence": "68.2% alone; reworded 2026-09-18 to exclude imported helpers and pure delegation"
+  },
+  {
+    "id": "temporary_field",
+    "task": "Does this class hold a field that is only meaningful during part of its life, left empty or stale the rest of the time, so a reader must know when it is valid?",
+    "present": "A field is only valid during part of the object's life.",
+    "absent": "Every field is meaningful whenever the object exists.",
+    "evidence": "51.9% alone"
+  },
+  {
+    "id": "message_chains",
+    "task": "Does this file reach a value by calling through a sequence of objects, where each call returns an object that is then called again, so a change to any link breaks it? Reading a nested property or a namespaced name, such as A.B.C used as a name, does not count, and neither does a single call on a collaborator.",
+    "present": "A value is obtained by calling through a sequence of returned objects.",
+    "absent": "Values come from direct calls on immediate collaborators, or from plain property or namespace access.",
+    "evidence": "67.1% alone; reworded 2026-09-18 to exclude namespace and property access"
+  },
+  {
+    "id": "magic_values",
+    "task": "Does this file use unexplained literal values in its logic, where the reader cannot tell what the number or string means without guessing? Obvious values such as 0, 1 or an empty string do not count.",
+    "present": "Unexplained literals appear in the logic.",
+    "absent": "Literals are named or self-evident.",
+    "evidence": "65.3% alone; detected at 0.91 when introduced deliberately"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "weakens_tests",
+    "task": "Does this change make an existing test check less than it did, by removing an assertion, skipping a case, or loosening what a value must equal?",
+    "present": "An existing test now checks less.",
+    "absent": "Tests check the same or more.",
+    "evidence": "caught at 0.98, 0.02 on the matched safe change; fired on 4 of 50 real pull requests"
+  },
+  {
+    "id": "data_migration",
+    "task": "Does this change alter a database schema or migrate stored data?",
+    "present": "It changes a schema or rewrites stored data.",
+    "absent": "It leaves stored data and its shape alone.",
+    "evidence": "caught at 0.99, 0.06 on the matched safe change; fired on 7 of 50 real pull requests"
+  },
+  {
+    "id": "debug_leftovers",
+    "task": "Does this change leave behind debugging that was not meant to ship: a console print, a commented-out block, or a temporary flag?",
+    "present": "Debugging left in the change.",
+    "absent": "No debugging remains.",
+    "evidence": "caught at 0.98, 0.06 on the matched safe change; fired on 4 of 50 real pull requests"
+  }
+]

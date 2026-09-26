@@ -1,0 +1,4 @@
+[supercov] instrumenting isolated workspace /private/var/folders/4q/cdhj37516zzbc7z9ckrst0x40000gn/T/supercov-checkout-Y71iPw/project/.supercov/workspaces/workspace/project
+[supercov] attributed 3 native node:assert call(s)
+[supercov] running in isolated workspace: node --test tests/session.test.js tests/expired-session.test.js
+[supercov] timings initialization=36.4ms workspace=18.8ms setup=7.8ms build=0ms tests=117ms evidence=20.1ms total=223.9ms

@@ -1,0 +1,16 @@
+[package]
+name = "supercov-contracts"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+readme = "../../README.md"
+description = "Frozen language-neutral contracts for the Supercov coverage engine"
+keywords = ["coverage", "testing", "mcdc"]
+categories = ["development-tools::testing"]
+publish = ["crates-io"]
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true

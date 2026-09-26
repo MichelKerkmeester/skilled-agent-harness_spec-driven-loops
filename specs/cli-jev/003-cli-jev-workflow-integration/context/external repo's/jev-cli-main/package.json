@@ -1,0 +1,81 @@
+{
+  "name": "jevctl",
+  "version": "0.2.3",
+  "description": "Command-line tool for TypeSafe's Jev AI model. Check claims against evidence, detect prompt injection, find the best match in a list, or ask your own yes/no, multiple-choice, and rating questions. Returns probabilities, not text.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Nasr Shaer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nasrallah-AL/jev-cli.git"
+  },
+  "homepage": "https://jevcli.vectorz.app/",
+  "bugs": "https://github.com/Nasrallah-AL/jev-cli/issues",
+  "bin": {
+    "jev": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md",
+    "SECURITY.md"
+  ],
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf dist",
+    "dev": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "JEV_E2E=1 vitest run test/e2e.test.ts",
+    "check": "npm run typecheck && npm run typecheck:hooks && node scripts/sync-hooks.mjs --check && npm run lint && npm test",
+    "prepublishOnly": "npm run clean && npm run check && npm run build",
+    "sync:hooks": "node scripts/sync-hooks.mjs",
+    "typecheck:hooks": "tsc -p plugin/tsconfig.hooks.json"
+  },
+  "keywords": [
+    "cli",
+    "typesafe",
+    "jev",
+    "system-one",
+    "ai",
+    "verification",
+    "guardrails",
+    "prompt-injection",
+    "semantic-search",
+    "fact-check"
+  ],
+  "dependencies": {
+    "@typesafe-ai/sdk": "^0.6.0",
+    "commander": "^15.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.14",
+    "@types/node": "^26.5.1",
+    "@vitest/coverage-v8": "^5.0.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

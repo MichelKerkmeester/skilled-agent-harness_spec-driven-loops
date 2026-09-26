@@ -1,0 +1,168 @@
+[
+  {
+    "id": "secret_in_source",
+    "cwe": [
+      "CWE-798",
+      "CWE-259",
+      "CWE-321"
+    ],
+    "task": "Does this file contain a literal value that would grant access if copied: a password, API key, access token, private key, signing secret, or a connection string carrying credentials, written into the source rather than read from configuration or the environment? A weak default such as 'changeme' still counts if the program would run with it. A value used only by a test fixture does not count.",
+    "present": "A credential or signing secret is written into the source.",
+    "absent": "Credentials come from configuration or the environment, or none are involved.",
+    "evidence": "caught at 0.99 on a constructed positive, 0.03 on the matched safe file; 0 of 73 on the clean floor; RealVuln recall 96% of 375 labelled findings, but 1 of 76 certified false-positive traps fired (a djangoat fixture credential) and it is the second most frequent fire on unlabelled files (2026-09-20, jev-1.13.0, cut 0.6). Cut 0.5 fitted on the FIT half of RealVuln and reported on TEST (cuts.py): recall up 2-5 points, unlabelled fires up under 1 point",
+    "cut": 0.5
+  },
+  {
+    "id": "injection_sink",
+    "cwe": [
+      "CWE-89",
+      "CWE-78",
+      "CWE-77",
+      "CWE-943",
+      "CWE-90"
+    ],
+    "task": "Does this file build a database query, shell command, LDAP filter or NoSQL filter by concatenating, formatting or interpolating a value that came from outside the program, such as a request parameter, header, form field, message or file content, rather than passing it as a bound parameter or through an API that escapes it? A query built only from constants and program-controlled values does not count. A value is from outside the program when it arrives at run time from a caller, request, message, upload or third-party service; the operator's own configuration, command-line arguments, environment variables and files the program ships with do not count.",
+    "present": "A query or command is assembled from an outside value.",
+    "absent": "Outside values are bound or escaped, or no query or command is built from them.",
+    "evidence": "0.99 / 0.08 constructed; 1 of 73 on the clean floor at 0.65 (a Rust file formatting display strings); RealVuln recall 92% of 291 (2026-09-20, jev-1.13.0, cut 0.6)"
+  },
+  {
+    "id": "unsafe_code_execution",
+    "cwe": [
+      "CWE-94",
+      "CWE-95",
+      "CWE-502",
+      "CWE-1336"
+    ],
+    "task": "Does this file evaluate or deserialise data that came from outside the program in a way that can run code: eval, exec, new Function, a template compiled from an outside string, pickle, unsafe YAML loading, or an unserialize call on outside data? Deserialising a format that cannot carry code, such as JSON, does not count. A value is from outside the program when it arrives at run time from a caller, request, message, upload or third-party service; the operator's own configuration, command-line arguments, environment variables and files the program ships with do not count.",
+    "present": "Outside data is evaluated or deserialised in a way that can run code.",
+    "absent": "Nothing from outside reaches an evaluator or a code-carrying deserialiser.",
+    "evidence": "0.99 / 0.05 constructed; 1 of 73 on the clean floor at 0.65 (a runtime that evals its own shipped plan file); RealVuln recall 92% of 178; v2 fired at 0.92 there before the trust boundary was stated (2026-09-20, jev-1.13.0, cut 0.6). Cut 0.5 fitted on the FIT half of RealVuln and reported on TEST (cuts.py): recall up 2-5 points, unlabelled fires up under 1 point",
+    "cut": 0.5
+  },
+  {
+    "id": "unescaped_output",
+    "cwe": [
+      "CWE-79",
+      "CWE-116"
+    ],
+    "task": "Does this file write a value that came from outside the program into HTML, a DOM, or another markup or script context without escaping it for that context: innerHTML or dangerouslySetInnerHTML with outside data, template autoescaping turned off or bypassed with a safe or Markup marker, or an HTTP response body assembled from outside values? Rendering through a template engine that escapes by default does not count. A value is from outside the program when it arrives at run time from a caller, request, message, upload or third-party service; the operator's own configuration, command-line arguments, environment variables and files the program ships with do not count.",
+    "present": "An outside value reaches markup or script without escaping.",
+    "absent": "Outside values are escaped for the context they are written into, or none are written.",
+    "evidence": "0.98 / 0.18 constructed; 0 of 73 on the clean floor; RealVuln recall 81% of 202, weakest on stored XSS where the sink is in a template and the source in another file (2026-09-20, jev-1.13.0, cut 0.6). Cut 0.5 fitted on the FIT half of RealVuln and reported on TEST (cuts.py): recall up 2-5 points, unlabelled fires up under 1 point. A v4 wording naming attribute and URL contexts was measured 2026-09-21: identical precision and recall at finding level; not adopted",
+    "cut": 0.5
+  },
+  {
+    "id": "path_from_input",
+    "cwe": [
+      "CWE-22",
+      "CWE-73",
+      "CWE-434"
+    ],
+    "task": "Does this file open, read, write, delete, serve or store a file whose path, name or type comes from outside the program without confining it to an intended directory or set of types: a filename taken from a request joined to a directory, an upload saved under its own name, or a download endpoint that takes a path? A path checked against an allow-list, or resolved and verified to stay inside a base directory, does not count. A value is from outside the program when it arrives at run time from a caller, request, message, upload or third-party service; the operator's own configuration, command-line arguments, environment variables and files the program ships with do not count.",
+    "present": "A file operation uses an outside-controlled path, name or type without confinement.",
+    "absent": "File paths are program-controlled or confined, or no file operation takes outside input.",
+    "evidence": "0.97 / 0.10 constructed; 0 of 73 on the clean floor; RealVuln recall 81% of 265 (2026-09-20, jev-1.13.0, cut 0.6)"
+  },
+  {
+    "id": "missing_authorization",
+    "cwe": [
+      "CWE-862",
+      "CWE-863",
+      "CWE-639",
+      "CWE-284",
+      "CWE-306"
+    ],
+    "task": "Does this file contain a request handler that reads, changes or deletes a record chosen by a caller-supplied identifier, or performs an administrative or privileged action, without any visible check that the caller is signed in and allowed to act on that record? A check applied by a decorator, middleware, guard or route group visible in this file counts as a check. A handler that only serves public, non-sensitive data does not count.",
+    "present": "A handler acts on a caller-chosen record or a privileged operation with no visible authorisation.",
+    "absent": "Every such handler is guarded, or the file has none.",
+    "evidence": "0.97 / 0.06 constructed; 1 of 73 on the clean floor at 0.60 (an MCP gateway with no auth, arguably true); RealVuln recall 43% of 448, the weakest check: 69% on human-authored repositories but 29% on the LLM-seeded corpora, and 27% in files over 30 KB; also the most frequent fire on unlabelled files. A per-file question cannot see a guard in another file (2026-09-20, jev-1.13.0, cut 0.6)"
+  },
+  {
+    "id": "weak_authentication",
+    "cwe": [
+      "CWE-287",
+      "CWE-613",
+      "CWE-614",
+      "CWE-347",
+      "CWE-384",
+      "CWE-1004",
+      "CWE-307",
+      "CWE-620",
+      "CWE-640",
+      "CWE-521"
+    ],
+    "task": "Does this file handle a login, session, cookie, token or password in a way that weakens it: a token accepted without verifying its signature or expiry, a password compared in plain text or stored unhashed, a session or cookie set without Secure or HttpOnly or without an expiry, a session identifier kept across login, a login or reset endpoint with no limit on attempts or with a guessable or long-lived reset token, a password change without the current password, a weak password accepted, or a security question or recovery flow that can be guessed? A login that checks a hashed password, limits attempts and issues a verified, expiring token is sound; a file that does not handle authentication does not count.",
+    "present": "Login, session, token or password handling is weakened in a named way.",
+    "absent": "Authentication handling here is sound, or the file has none.",
+    "evidence": "v1 fired 0.56-0.71 on every login handler for asking about attempt limits; reworded 2026-09-20. v3: 0.98 / 0.14 constructed; 0 of 73 on the clean floor; RealVuln recall 80% of 365 (2026-09-20, jev-1.13.0, cut 0.6). v4 wording 2026-09-21 from its CWE classes, attempt limits back in as one clause among many: 45% (v3) against 50% (v4) on fit lines, 61% against 72% on held-out lines; at finding level on the held-out half F1 0.21 to 0.27 with no new clean-file fires, adopted"
+  },
+  {
+    "id": "weak_cryptography",
+    "cwe": [
+      "CWE-327",
+      "CWE-328",
+      "CWE-326",
+      "CWE-330",
+      "CWE-338",
+      "CWE-916"
+    ],
+    "task": "Does this file use cryptography that is known to be weak for its purpose: MD5 or SHA-1 for passwords or signatures, a password hashed without a salt or without a slow hash, DES, RC4 or ECB mode, a fixed or zero IV or nonce, or a non-cryptographic random source such as Math.random or Python's random module for a value that must be unguessable, such as a token, key, password or session identifier? A weak hash used only for a checksum or cache key does not count, and neither does a random value that only needs to be unique, such as a request or run identifier.",
+    "present": "A cryptographic primitive is weak for the purpose it serves here.",
+    "absent": "Cryptography here fits its purpose, or none is used.",
+    "evidence": "v2 fired at 0.63-0.64 on Math.random used for run and request identifiers; reworded 2026-09-20 to separate unguessable from unique. v3: 0.99 / 0.04 constructed; 0 of 73 on the clean floor; RealVuln recall 67% of 158, misses are mostly findings the corpus files under exposure or password hashing (2026-09-20, jev-1.13.0, cut 0.6)"
+  },
+  {
+    "id": "sensitive_data_exposure",
+    "cwe": [
+      "CWE-200",
+      "CWE-209",
+      "CWE-532",
+      "CWE-312"
+    ],
+    "task": "Does this file expose information that should stay private: a password, secret, token, session identifier, or a full payment card or government identifier written to a log or included in a response, or a stack trace or internal error detail returned to the caller? An email address, username or record identifier in a log does not count, and neither does a credential that is merely present in the source without being logged or sent.",
+    "present": "Private data or internal detail leaves the program in a log or a response.",
+    "absent": "Logs and responses carry nothing sensitive.",
+    "evidence": "v1 fired at 0.74 on an email address in a log; reworded 2026-09-20. v3: 0.98 / 0.45 constructed; 0 of 73 on the clean floor; RealVuln recall 71% of 532, the largest class in the corpus; misses are mostly internal error detail returned over HTTP (2026-09-20, jev-1.13.0, cut 0.6). A v4 wording from its CWE classes (error detail, account enumeration) was measured 2026-09-21 on the held-out half: recall 33% to 43% but precision 57% to 39% and clean-file fires 1 to 9 at finding level, F1 unchanged; not adopted. Debug mode moved to insecure_configuration 2026-09-21: the line classifier read app.run(debug=True) as a configuration and the confirming check did not ask about it, so four labelled debug-mode lines confirmed at 0.33"
+  },
+  {
+    "id": "destination_from_input",
+    "cwe": [
+      "CWE-918",
+      "CWE-601"
+    ],
+    "task": "Does this file make an outbound HTTP request to a URL or host, or redirect the caller to a URL, that comes from outside the program without checking it against an allow-list of destinations? A redirect to a relative path within the same site, or a request to a fixed host where only a path or query parameter comes from outside, does not count. A value is from outside the program when it arrives at run time from a caller, request, message, upload or third-party service; the operator's own configuration, command-line arguments, environment variables and files the program ships with do not count.",
+    "present": "An outbound request or a redirect goes wherever an outside value says.",
+    "absent": "Destinations are fixed or allow-listed, or none come from outside.",
+    "evidence": "0.97 / 0.35 constructed; 3 of 73 on the clean floor at 0.65-0.77, all in a gateway whose purpose is to forward to a URL from its command line, and all lower than the 0.91-0.92 of v2 before the trust boundary was stated; RealVuln recall 87% of 172 (2026-09-20, jev-1.13.0, cut 0.6)"
+  },
+  {
+    "id": "unchecked_mass_assignment",
+    "cwe": [
+      "CWE-915",
+      "CWE-1321"
+    ],
+    "task": "Does this file copy a request body or another outside object wholesale into a model, record, settings object or object prototype without limiting it to the fields the caller may set: spreading or merging the body into an update, passing it directly to a create or update call, or a recursive merge that would honour a __proto__ key? Copying only named fields does not count. A value is from outside the program when it arrives at run time from a caller, request, message, upload or third-party service; the operator's own configuration, command-line arguments, environment variables and files the program ships with do not count.",
+    "present": "An outside object is assigned wholesale, so a caller can set fields they should not.",
+    "absent": "Only named fields are copied, or no outside object is assigned.",
+    "evidence": "0.98 / 0.08 constructed; 0 of 73 on the clean floor; RealVuln recall 90% of 142 (2026-09-20, jev-1.13.0, cut 0.6)"
+  },
+  {
+    "id": "insecure_configuration",
+    "cwe": [
+      "CWE-16",
+      "CWE-295",
+      "CWE-352",
+      "CWE-611",
+      "CWE-942",
+      "CWE-1004",
+      "CWE-489",
+      "CWE-215"
+    ],
+    "task": "Does this file switch off or weaken a protection the platform provides: TLS certificate verification disabled, CSRF protection disabled or exempted, CORS allowing any origin together with credentials, an XML parser with external entities enabled, a security header removed, debug mode left enabled for a served application, or a sanitiser or validator commented out or bypassed? A setting applied only in a clearly test-only configuration does not count.",
+    "present": "A provided protection is disabled or weakened.",
+    "absent": "Protections are left in force, or the file configures none.",
+    "evidence": "0.98 / 0.16 constructed; 0 of 73 on the clean floor; RealVuln recall 73% of 253; most misses are CSRF protection that was never present, where this asks whether it was switched off (2026-09-20, jev-1.13.0, cut 0.6). Cut 0.5 fitted on the FIT half of RealVuln and reported on TEST (cuts.py): recall up 2-5 points, unlabelled fires up under 1 point. Debug mode (CWE-489, 215) arrived here from sensitive_data_exposure 2026-09-21; see that check",
+    "cut": 0.5
+  }
+]

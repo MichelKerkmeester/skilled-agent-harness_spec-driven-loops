@@ -1,0 +1,6 @@
+run_888402a5fd64e52c -> run_72b1bee32109d71e
+lines +0pp, branches +0pp, MC/DC +50pp
+gained: 0 lines, 0 branches, 1 MC/DC conditions
+lost: 0 lines, 0 branches, 0 MC/DC conditions
++ MC/DC src/session.js:2 C2 !expired
+showing 1-1 of 1 per category

@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AssertionMap",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "format": "uint32",
+      "minimum": 2,
+      "maximum": 2
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Assertion"
+      }
+    },
+    "changeAssessments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ChangeAssessment"
+      }
+    },
+    "retiredAssertions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Retired"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "assertions"
+  ],
+  "$defs": {
+    "Assertion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "at": {
+          "$ref": "#/$defs/Anchor"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "observes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "flows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Flow"
+          },
+          "default": []
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "at"
+      ]
+    },
+    "Anchor": {
+      "description": "One-based lines and UTF-8 byte columns, for every language. Text is exact.",
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "line": {
+          "type": "integer",
+          "format": "uint",
+          "minimum": 0
+        },
+        "column": {
+          "type": "integer",
+          "format": "uint",
+          "minimum": 0
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "file",
+        "line",
+        "column",
+        "text"
+      ]
+    },
+    "Flow": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "basis": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^scov[0-9]+:[0-9a-f]{64}$"
+        },
+        "explanation": {
+          "type": "string"
+        },
+        "appliesTo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TestSelector"
+          }
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Edge"
+          },
+          "default": []
+        },
+        "countsAsAsserted": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "watch": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "basis",
+        "explanation",
+        "appliesTo",
+        "nodes",
+        "countsAsAsserted",
+        "watch"
+      ]
+    },
+    "TestSelector": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "file",
+        "name"
+      ]
+    },
+    "Node": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "at": {
+          "$ref": "#/$defs/Anchor"
+        },
+        "role": {
+          "type": "string"
+        },
+        "meaning": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "at"
+      ]
+    },
+    "Edge": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "basis": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to",
+        "kind"
+      ]
+    },
+    "ChangeAssessment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "basis": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^scov[0-9]+:[0-9a-f]{64}$"
+        },
+        "affectedFlows": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "explanation": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "basis",
+        "affectedFlows",
+        "explanation"
+      ]
+    },
+    "Retired": {
+      "type": "object",
+      "properties": {
+        "assertion": {
+          "$ref": "#/$defs/Assertion"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "assertion",
+        "reason"
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 3,
+  "status": "frozen",
+  "magic": "SUPERCOV-EVIDENCE-3\n",
+  "framing": "canonical-sorted-length-framed-gzip",
+  "requiredEntries": ["coverage-model.json", "frontend.json", "manifest.json"],
+  "frontendProtocolVersion": 2,
+  "coverageModelSchemaVersion": 1,
+  "unknownFrontendFieldsFatal": true,
+  "unknownCoverageModelFieldsFatal": true,
+  "frontendLanguageMustMatchCoverageModel": true,
+  "malformedRecognizedJsonlFatal": true,
+  "recognizedJsonlRequiresFinalNewline": true
+}

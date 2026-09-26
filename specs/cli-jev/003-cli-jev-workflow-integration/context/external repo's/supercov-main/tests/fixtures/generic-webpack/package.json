@@ -1,0 +1,9 @@
+{
+  "name": "supercov-generic-webpack-fixture",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "webpack --config webpack.config.cjs",
+    "test": "node --test"
+  }
+}

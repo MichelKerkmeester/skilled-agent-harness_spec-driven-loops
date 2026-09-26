@@ -1,0 +1,31 @@
+{
+  "name": "claude-jev",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Claude Code plugin exposing TypeSafe Jev as typed judgement tools over MCP.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buchmark/claude-jev.git"
+  },
+  "homepage": "https://github.com/buchmark/claude-jev",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "esbuild src/infrastructure/server.ts --bundle --platform=node --format=esm --target=node20 --outfile=dist/server.js --banner:js=\"import{createRequire}from'node:module';const require=createRequire(import.meta.url);\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "node dist/server.js --check",
+    "validate:plugin": "claude plugin validate .claude-plugin/marketplace.json"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@types/node": "^26.6.1",
+    "@typesafe-ai/sdk": "^0.6.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}

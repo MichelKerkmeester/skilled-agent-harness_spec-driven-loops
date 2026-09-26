@@ -1,0 +1,20 @@
+{
+  "name": "supercov",
+  "interface": {
+    "displayName": "Supercov"
+  },
+  "plugins": [
+    {
+      "name": "supercov",
+      "source": {
+        "source": "local",
+        "path": "./plugins/supercov"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

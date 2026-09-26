@@ -1,0 +1,7 @@
+{
+  "corpusFiles": 500,
+  "engineMedianMsMax": 50,
+  "engineP95MsMax": 75,
+  "monorepoFiles": 50000,
+  "monorepoExtrapolatedMsMax": 5000
+}

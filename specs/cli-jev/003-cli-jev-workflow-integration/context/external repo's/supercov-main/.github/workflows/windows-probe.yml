@@ -1,0 +1,58 @@
+name: Windows probe
+
+# Windows can only be exercised on a Windows runner: three dependencies compile
+# C and assembly in their build scripts and need MSVC, and nothing else runs the
+# Windows process supervisor. This builds the release binary and runs the same
+# packed-install coverage gate a release runs, without the staging, packing and
+# size gates a release also needs, so a Windows question can be answered in one
+# dispatch.
+#
+# `SUPERCOV_PHASE_TIMING=1` makes the run print where its setup phase went, and
+# the gate runs twice, because a second run over an identical file set on a
+# machine with real-time scanning is not the same measurement as the first.
+
+on:
+  workflow_dispatch:
+    inputs:
+      architectures:
+        description: Which Windows architectures to probe
+        required: false
+        type: choice
+        default: x64
+        options:
+          - x64
+          - both
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(inputs.architectures == 'both' && '{"include":[{"runner":"windows-latest","target":"x86_64-pc-windows-msvc"},{"runner":"windows-11-arm","target":"aarch64-pc-windows-msvc"}]}' || '{"include":[{"runner":"windows-latest","target":"x86_64-pc-windows-msvc"}]}') }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - uses: dtolnay/rust-toolchain@1.95.0
+        with:
+          targets: ${{ matrix.target }}
+      # The same-version native packages do not exist until a release publishes
+      # them, so the circular optional dependency is omitted here as it is
+      # everywhere else that installs before a release.
+      - run: npm ci --omit=optional
+      - run: cargo build --release --target ${{ matrix.target }} -p supercov
+      - name: Packed install and real Rust run, first pass
+        env:
+          SUPERCOV_PHASE_TIMING: 1
+        run: node scripts/native-package-integration.mjs --target ${{ matrix.target }} --binary target/${{ matrix.target }}/release/supercov.exe
+      - name: Packed install and real Rust run, second pass
+        env:
+          SUPERCOV_PHASE_TIMING: 1
+        run: node scripts/native-package-integration.mjs --target ${{ matrix.target }} --binary target/${{ matrix.target }}/release/supercov.exe

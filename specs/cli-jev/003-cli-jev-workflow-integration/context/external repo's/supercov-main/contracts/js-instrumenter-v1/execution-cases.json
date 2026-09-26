@@ -1,0 +1,134 @@
+[
+  {
+    "file": "differential/short-circuit.js",
+    "source": "const effects = [];\nfunction decide(a, b, c) {\n  if ((effects.push(`a:${a}`), a) && (effects.push(`b:${b}`), b) || (effects.push(`c:${c}`), c)) return 'yes';\n  return 'no';\n}\nfunction run() {\n  return [[false,false,false],[false,false,true],[true,false,false],[true,false,true],[true,true,false],[true,true,true]].map((args) => decide(...args));\n}\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/getters.js",
+    "source": "const effects = [];\nconst receiver = {\n  get left() { effects.push('left'); return 1; },\n  get right() { effects.push('right'); return 0; },\n  decide() {\n    if (this.left && this.right) return 'both';\n    return 'not-both';\n  }\n};\nfunction run() { return receiver.decide(); }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/recursion.js",
+    "source": "const effects = [];\nfunction descend(depth) {\n  if ((effects.push(`depth:${depth}`), depth > 0) && descend(depth - 1)) return depth < 3;\n  return depth === 0;\n}\nfunction run() { return descend(4); }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/negation.js",
+    "source": "const effects = [];\nfunction decide(a, b, c) {\n  if (!(a || (effects.push('b'), b)) && (effects.push('c'), c)) return 1;\n  return 0;\n}\nfunction run() { return [decide(false, false, true), decide(false, true, true), decide(true, false, true)]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/ternary.js",
+    "source": "const effects = [];\nfunction decide(a, b) {\n  return (effects.push(`a:${a}`), a) && (effects.push(`b:${b}`), b) ? 'yes' : 'no';\n}\nfunction run() { return [decide(false, false), decide(true, false), decide(true, true)]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/while.js",
+    "source": "const effects = [];\nfunction run() {\n  let index = 0;\n  let total = 0;\n  while ((effects.push(`test:${index}`), index < 3) && total < 6) { total += ++index; }\n  return { index, total };\n}\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/do-while.js",
+    "source": "const effects = [];\nfunction run() {\n  let index = 0;\n  let total = 0;\n  do { total += index; index++; } while ((effects.push(`test:${index}`), index < 3) || total < 1);\n  return { index, total };\n}\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/for.js",
+    "source": "const effects = [];\nfunction run() {\n  let total = 0;\n  for (let index = 0; (effects.push(`test:${index}`), index < 3) && total < 6; index++) { total += index + 1; }\n  return total;\n}\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/wide.js",
+    "source": "const effects = [];\nfunction decide(flags) {\n  if (flags[0] && flags[1] && flags[2] && flags[3] && flags[4] && flags[5] && flags[6] && flags[7] && flags[8] && flags[9] && flags[10] && flags[11] && flags[12] && flags[13] && flags[14] && flags[15] && flags[16] && flags[17] && flags[18] && flags[19] && flags[20] && flags[21] && flags[22] && flags[23] && flags[24] && flags[25] && flags[26] && flags[27] && flags[28] && flags[29] && flags[30] && flags[31] && flags[32]) return 'all';\n  return 'not-all';\n}\nfunction run() {\n  const all = Array.from({ length: 33 }, () => true);\n  const firstFalse = [...all]; firstFalse[0] = false;\n  return [decide(firstFalse), decide(all)];\n}\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/logical-value.js",
+    "source": "const effects = [];\nfunction decide(left, right) { return left || (effects.push('right'), right); }\nfunction run() { return [decide('left', 'unused'), decide('', 'selected')]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/parameter-decision.js",
+    "source": "const effects = [];\nfunction choose(value = typeof process === 'undefined' ? 'browser' : 'node') { effects.push(value); return value; }\nfunction run() { return [choose(), choose('provided')]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/reentrant-parameter-decision.js",
+    "source": "const effects = [];\nlet depth = 0;\nfunction choose(value = ((depth++ === 0 ? choose() : true) && true) ? 'yes' : 'no') { effects.push(value); return value; }\nfunction run() { return choose(); }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/logical-assignment.js",
+    "source": "const effects = [];\nlet stored = 0;\nconst target = new Proxy({}, { get(_object, key) { effects.push('get:' + String(key)); return stored; }, set(_object, key, value) { effects.push('set:' + String(key) + ':' + value); stored = value; return true; } });\nfunction key() { effects.push('key'); return 'value'; }\nfunction right(value) { effects.push('right:' + value); return value; }\nfunction run() { target[key()] ||= right(4); target[key()] &&= right(7); target[key()] ??= right(9); let named; named ||= function () {}; return { stored, name: named.name }; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/optional-member.js",
+    "source": "const effects = [];\nfunction key() { effects.push('key'); return 'value'; }\nfunction read(target) { return target?.[key()]; }\nfunction run() { return [read(null), read({ value: undefined }), read({ value: 3 })]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/optional-call.js",
+    "source": "const effects = [];\nfunction argument() { effects.push('argument'); return 3; }\nconst receiver = { base: 4, method(value) { effects.push('this:' + this.base); return { value: this.base + value }; } };\nfunction run() { const first = receiver.method?.(argument()).value; const missing = undefined; const second = missing?.(argument()); const target = receiver.method?.(argument()); const deleted = delete target?.value; return { first, second, deleted, target }; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/optional-call-continuation.js",
+    "source": "const effects = [];\nconst absent = { method: undefined };\nconst present = { value: 4, method() { effects.push(this === present ? 'receiver' : 'wrong-receiver'); return () => ({ value: this.value }); } };\nfunction run() { const skipped = absent.method?.()().value; const called = present.method?.()().value; return { skipped, called }; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/nested-optional-call.js",
+    "source": "const effects = [];\nconst present = { value: 8, get method() { effects.push('getter'); return function (argument) { effects.push(['call', this === present, argument]); return this.value + argument; }; } };\nfunction key() { effects.push('key'); return 'method'; }\nfunction argument() { effects.push('argument'); return 2; }\nfunction run() { const skippedReceiver = null?.[key()]?.(argument()); const skippedMethod = ({ method: undefined })?.[key()]?.(argument()); const called = present?.[key()]?.(argument()); return { skippedReceiver, skippedMethod, called }; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/optional-super-call.js",
+    "source": "const effects = [];\nclass Parent { method() { effects.push(this instanceof Child ? 'child' : 'wrong'); return () => ({ value: 5 }); } }\nclass Child extends Parent { run() { return super.method?.()().value; } }\nfunction run() { return new Child().run(); }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/delete-optional-call.js",
+    "source": "const effects = [];\nconst target = { nested: { removable: 3 } };\nconst absent = { method: undefined };\nconst present = { method() { effects.push('called'); return target.nested; } };\nfunction run() { const skipped = delete absent.method?.().removable; const removed = delete present.method?.().removable; return { skipped, removed, remains: 'removable' in target.nested }; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/optional-private-call.js",
+    "source": "const effects = [];\nclass Example { value = 6; #present(argument) { effects.push(this instanceof Example ? 'receiver' : 'wrong'); return this.value + argument; } #absent; run() { return [this.#present?.(2), this.#absent?.(3)]; } }\nfunction run() { return new Example().run(); }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/parameter-defaults.js",
+    "source": "const effects = [];\nfunction mark(label, value) { effects.push(label); return value; }\nfunction choose({ value = mark('inner', 'inner') } = mark('outer', {}), callback = function () {}) { return [value, callback.name]; }\nfunction run() { return [choose(), choose({}), choose({ value: 'given' }, function named() {})]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/local-defaults.js",
+    "source": "const effects = [];\nfunction mark(label, value) { effects.push(label); return value; }\nfunction bind(input) { const { value = mark('local', 'fallback'), callback = function () {} } = input; return [value, callback.name]; }\nfunction run() { return [bind({}), bind({ value: 'given', callback: function named() {} })]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/for-of-defaults.js",
+    "source": "const effects = [];\nfunction mark(label, value) { effects.push(label); return value; }\nfunction run() { const values = []; for (const { value = mark('loop', 'fallback') } of [{}, { value: 'given' }]) values.push(value); return values; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/try-catch-finally.js",
+    "source": "const effects = [];\nfunction choose(mode) { try { effects.push('try:' + mode); if (mode === 'throw') throw new TypeError('boom'); if (mode === 'return') return 'returned'; return 'normal'; } catch (error) { effects.push('catch:' + error.name); return 'caught'; } finally { effects.push('finally:' + mode); } }\nfunction run() { return [choose('normal'), choose('return'), choose('throw')]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/enumeration-loops.js",
+    "source": "const effects = [];\nfunction fallback() { effects.push('fallback'); return 10; }\nfunction run() { let total = 0; for (const key in {}) total += key.length; for (const key in { a: 1, bb: 2 }) { if (key === 'a') continue; total += key.length; } for (const [value = fallback()] of [[], [2], []]) { total += value; if (total > 20) break; } return total; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/labeled-enumeration.js",
+    "source": "const effects = [];\nfunction run() { let total = 0; outer: for (const row of [[1, 2], [3]]) { for (const value of row) { effects.push(value); total += value; if (value === 2) continue outer; } } return total; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/switch-no-match.js",
+    "source": "const effects = [];\nfunction discriminant(value) { effects.push('discriminant:' + value); return value; }\nfunction choose(value) { switch (discriminant(value)) { case 1: effects.push('one'); case 2: effects.push('two'); break; } return effects.length; }\nfunction run() { return [choose(1), choose(2), choose(3)]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/switch-default.js",
+    "source": "const effects = [];\nfunction choose(value) { switch (value) { case 1: effects.push('one'); break; default: effects.push('default'); } return effects.length; }\nfunction run() { return [choose(1), choose(3)]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/request-callbacks.js",
+    "source": "const effects = [];\nconst callbacks = { handler(value) { effects.push('handler:' + value); return value; } };\nconst server = { on(event, callback) { effects.push('on:' + event); return callback('request'); } };\nfunction createServer(options, callback) { effects.push('create:' + options.kind); return callback('server'); }\nfunction run() { return [server.on('request', callbacks.handler), createServer({ kind: 'http' }, callbacks.handler)]; }\nfunction observe() { return effects; }\n"
+  },
+  {
+    "file": "differential/parenthesized-assignment-names.js",
+    "source": "function run() { let direct; let logical; (direct) = function () {}; (logical) ||= function () {}; return [direct.name, logical.name]; }\n"
+  },
+  {
+    "file": "differential/optional-call-references.js",
+    "source": "const receiver = { value: 42, read() { return this.value; } };\nfunction run() { return [(receiver.read)?.(), (receiver?.read)?.()]; }\n"
+  },
+  {
+    "file": "differential/script-await-identifier.js",
+    "source": "var await = 42;\nfunction run() { return await; }\n"
+  },
+  {
+    "file": "differential/expression-arrow-parameter-defaults.ts",
+    "source": "const effects = [];\nconst choose = ({ value = (effects.push('default'), 'fallback') } = {}) => value;\nfunction run() { return [choose(), choose({}), choose({ value: 'given' })]; }\nfunction observe() { return effects; }\n"
+  }
+]

@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  # The gate every change is expected to pass, on the change itself. It ran
+  # only when someone remembered to ask for it, which meant a pull request's
+  # green tick said the React and assertion-map jobs had passed and nothing
+  # about `cargo fmt`, clippy, the workspace tests or the packaged assets.
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - uses: dtolnay/rust-toolchain@1.95.0
+        with:
+          components: clippy, rustfmt
+      - run: npm ci
+      - run: npm run check
+
+  # The twelve integration scripts that drive the public wrapper, process
+  # supervision and every JavaScript runner. They lived only in `test:engine`,
+  # which nothing but a release chain runs, so a stale assertion in one of them
+  # sat in main through the 1.0.1 release and was found by the 1.1.0 release
+  # chain -- the worst moment to find it. They run on the change now.
+  engine-integrations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - uses: dtolnay/rust-toolchain@1.95.0
+      - run: npm ci
+      # Three of the scripts drive a real browser through Playwright.
+      - run: npx playwright install --with-deps
+      - run: npm run test:engine-integrations

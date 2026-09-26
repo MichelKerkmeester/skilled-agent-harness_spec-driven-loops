@@ -1,0 +1,38 @@
+run run_888402a5fd64e52c
+command: npm test
+
+Coverage
+  Lines      100.00% (3/3)
+  Branches   100.00% (2/2)
+  MC/DC      50.00% (1/2)
+
+By test kind
+  unit            2 test(s)  lines 100.00%  branches 100.00%  MC/DC  50.00%
+
+Measurement
+  Instrumentation  Complete for the measured command and coverage model
+  Scope            Only code reached by the wrapped command is observed; this status does not prove every project test suite was run.
+  Command outputs  /private/tmp/supercov-tutorial-agent.GYttzs/project/.supercov/workspaces/workspace/project
+
+Tests
+  Total       2
+  Passed      2
+
+Remaining
+  Files with uncovered code         1
+  Files with measurement limits     0
+
+Evidence confidence
+  Linked to passing assertions      3 lines
+  Linked to test actions             0 lines
+  Execution only                     0 lines
+  MC/DC linked to assertions         1 conditions
+  Linkage indicates evidence strength; it does not prove that an assertion is correct.
+
+Commands
+  npx supercov runs 'run_888402a5fd64e52c' files
+  npx supercov runs 'run_888402a5fd64e52c' gaps
+  npx supercov runs 'run_888402a5fd64e52c' kinds
+  npx supercov runs 'run_888402a5fd64e52c' runners
+  npx supercov runs 'run_888402a5fd64e52c' scope
+  npx supercov runs run_888402a5fd64e52c --help

@@ -1,0 +1,9 @@
+086c0ae3648dc7dd  src/session.js:2:7
+signedIn && !expired
+C1 covered + asserted: signedIn
+C2 MISSING: !expired
+confidence asserted; asserted MC/DC 1/2
+vectors:
+  TT -> T  tests=1 confidence=asserted
+  F- -> F  tests=1 confidence=asserted
+showing 1-2 of 2 conditions/vectors/tests per decision
