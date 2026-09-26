@@ -867,8 +867,9 @@ One advisor identity routing to ten modes through `mode-registry.json`: six work
 
 **`sk-doc`**
 
-- **Parent hub for documentation authoring, routed via `mode-registry.json` to fourteen workflow modes across thirteen packets.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
+- **Parent hub for documentation authoring, routed via `mode-registry.json` to fifteen workflow modes across fourteen packets.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
 - **Scaffolds components** (skills, agents, commands) and handles README templates, frontmatter validation and feature-catalog authoring
+- **Authors spec packet goals** through `sk-create-goal`: a top-level, phase-parent or phase-child `goal.md` built from a checked template, with top-level and parent goals held to 4,000 characters
 
 &nbsp;
 #### PROMPTING
@@ -1144,6 +1145,12 @@ Other entries in `.pi/extensions/`:
 - Creates or updates manual testing playbook packages
 - Generates scenario files with test steps, expected results and verification evidence fields
 - Validates against the established playbook format
+
+**`/create:goal`** - spec packet goals
+
+- Authors or revises a packet's `goal.md`: top-level, phase parent, phase child, retrofit, phase-add and amend
+- Starts from the template for the goal's kind, checks the result and prints the chat slice to set as the session objective
+- Modes: `:auto`, `:confirm`
 
 &nbsp;
 #### DEEP

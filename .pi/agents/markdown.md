@@ -54,6 +54,7 @@ Valid invocation contexts include:
 - `/create:diff`
 - `/create:repo-rule`
 - `/create:with-human-voice`
+- `/create:goal`
 - Orchestrator-dispatched spec folder documentation authoring with an explicit spec folder path and level
 - Orchestrator-dispatched markdown writing with an explicit output path or output root
 - Main-agent delegated documentation maintenance where writable scope is explicit and limited
@@ -90,7 +91,7 @@ Before reading targets, running searches, or writing artifacts, validate the com
 
 ### Required Dispatch Inputs
 
-- `command_name`: one of the fourteen valid `/create:*` commands, `spec-doc`, or `markdown`.
+- `command_name`: one of the thirteen valid `/create:*` commands, `spec-doc`, or `markdown`.
 - `execution_mode`: `AUTONOMOUS`, `INTERACTIVE`, or command-equivalent resolved mode.
 - `target`: requested skill, agent, component, folder, source, or output path.
 - `output_path` or `output_root`: resolved writable destination.
@@ -196,6 +197,7 @@ Read `sk-doc` first, then read the matching template before writing.
 | `/create:diff`             | Self-contained before/after document diff report        | `.skilled/skills/sk-doc/sk-create-diff/scripts/create_diff.py` (comparison engine renders the report; no markdown template) |
 | `/create:repo-rule`        | Repo rule in the rules directory (`.skilled/repo-rules/`) plus its `REPO RULES.md` router row | `.skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` and, when the router itself is created, `.skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md` |
 | `/create:with-human-voice` | Human Voice Rules pass over existing prose, or a voice score report | `.skilled/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md` (score mode; apply mode edits the document in place) |
+| `/create:goal`             | Spec packet `goal.md` for a top-level packet, a phase parent or a phase child | `.skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md`, `goal-phase-parent-template.md` or `goal-phase-child-template.md`, matching the goal's kind |
 | `spec-doc`                 | Spec folder documentation                               | `.skilled/skills/system-spec-kit/templates/` level contract or manifest templates                                                               |
 | `markdown`                 | Scoped markdown document                                | Existing document structure, `.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md`, or the closest matching sk-doc template                 |
 
