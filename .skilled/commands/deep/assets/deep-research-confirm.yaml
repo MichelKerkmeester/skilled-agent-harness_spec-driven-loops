@@ -1670,7 +1670,8 @@ workflow:
           const missingArtifacts = [
             ['registry', paths.registry],
             ['research', paths.research],
-            ['dashboard', paths.dashboard],
+            // Fan-out keeps its dashboards per lineage.
+            ...(lineageLogs.length > 0 ? [] : [['dashboard', paths.dashboard]]),
           ].filter(([, filePath]) => !hasFile(filePath)).map(([name, filePath]) => ({ name, path: filePath }));
           const invariantFailures = [];
           if (missingArtifacts.length > 0) invariantFailures.push('missing_synthesis_artifacts');
