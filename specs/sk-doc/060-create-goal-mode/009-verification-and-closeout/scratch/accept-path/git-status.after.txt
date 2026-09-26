@@ -1,0 +1,31 @@
+ M .hermes/skills/sk-doc/SKILL.md
+ M .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json
+ M .skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json
+ M .skilled/commands/README.txt
+ M .skilled/commands/create/README.txt
+ M .skilled/skills/sk-doc/ROUTER.md
+ M .skilled/skills/sk-doc/SKILL.md
+ M .skilled/skills/sk-doc/command-metadata.json
+ M .skilled/skills/sk-doc/description.json
+ M .skilled/skills/sk-doc/graph-metadata.json
+ M .skilled/skills/sk-doc/hub-router.json
+ M .skilled/skills/sk-doc/leaf-manifest.json
+ M .skilled/skills/sk-doc/mode-registry.json
+ M specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json
+ M specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json
+ M specs/sk-doc/graph-metadata.json
+ M specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md
+?? .claude/commands/create/goal.md
+?? .codex/prompts/create-goal.md
+?? .cursor/commands/create-goal.md
+?? .hermes/prompts/create-goal.md
+?? .hermes/skills/sk-create-goal/
+?? .pi/prompts/create-goal.md
+?? .skilled/changelog/sk-doc/create-goal
+?? .skilled/commands/create/assets/create-goal-auto.yaml
+?? .skilled/commands/create/assets/create-goal-confirm.yaml
+?? .skilled/commands/create/assets/create-goal-presentation.txt
+?? .skilled/commands/create/goal.md
+?? .skilled/skills/sk-doc/sk-create-goal/
+?? specs/sk-doc/060-create-goal-mode/
+?? specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md

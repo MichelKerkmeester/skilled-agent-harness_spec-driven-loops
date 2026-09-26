@@ -1,0 +1,10 @@
+164:| 7 | 007-deep-review-remediation/ | Ten-iteration deep review of the finished packet on gpt-5.6-luna (effort max, fast tier) and the remediation of its six findings: a fail-closed trigger-index reader, closed completion rows in phases 001, 002 and 005, the retired-prefix criterion restated to its proven form, owner and checkpoint on every open decision, and the release-environment caveat | Complete |
+186:| 007-deep-review-remediation | (packet complete) | Review verdict CONDITIONAL with P0 0, P1 4, P2 2; every finding verified against the files, fixed or answered, and the packet validates recursively with 0 errors afterwards |
+
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire/
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal/
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/
+specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/

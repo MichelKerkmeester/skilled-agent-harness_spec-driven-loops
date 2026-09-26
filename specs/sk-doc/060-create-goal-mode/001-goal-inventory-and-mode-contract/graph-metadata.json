@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract",
+  "spec_folder": "sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract",
+  "parent_id": "sk-doc/060-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal corpus audit",
+      "goal mode ownership boundary",
+      "goal anatomy contract",
+      "goal authoring decision tests",
+      "sk-create-goal target tree",
+      "goal inventory plan",
+      "goal corpus measurement",
+      "goal ownership contract",
+      "goal defect reproduction commands",
+      "goal inventory tasks",
+      "goal defect reproduction",
+      "goal contract verification"
+    ],
+    "key_topics": [
+      "goal",
+      "corpus",
+      "audit",
+      "mode",
+      "ownership",
+      "boundary",
+      "anatomy",
+      "contract",
+      "authoring",
+      "decision",
+      "tests",
+      "sk-create-goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/goal-corpus-scan.cjs",
+      "scratch/goal-corpus-scan.json",
+      "specs/sk-doc/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-corpus-scan.cjs",
+        "kind": "file",
+        "path": "scratch/goal-corpus-scan.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-corpus-scan.json",
+        "kind": "config",
+        "path": "scratch/goal-corpus-scan.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Every",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The goal contract has durable, chat, and objective slices; phase-parent goals also carry a binding table, while children carry their own phase objectives (`.skilled/hooks/goal/lib/goal-slice.cjs:52-79,87-118`; `.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:46-105`)",
+    "created_at": "2026-09-25T18:48:45Z",
+    "last_save_at": "2026-09-25T20:09:45.340Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5b6eda4355d8ca14b10448ae74c4e2f8aa4c017e265cf0d80ad849202b8669e9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "188cc286a5d53fb65db330b97bad61ccb59d59166b4f122e6755ab5d9b3b881a",
+      "plan.md": "3e15bdaf23eb8840e94772f9d56c9c8ad2e439be2cfa1b064e15ef6a945f8694",
+      "tasks.md": "5218f669447921a1708f825076d0e7c033eaf79c818e8b501a2c304d45a2418c",
+      "implementation-summary.md": "918309e76b219ea07fef4d948ad317879c6abe6c9a57e90e4f15b75f81fb2d69"
+    },
+    "last_active_at": null
+  }
+}

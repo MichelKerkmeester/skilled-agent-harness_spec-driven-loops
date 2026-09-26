@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/060-create-goal-mode/008-command-and-playbook",
+  "spec_folder": "sk-doc/060-create-goal-mode/008-command-and-playbook",
+  "parent_id": "sk-doc/060-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "/create:goal command assets",
+      "sk-create-goal runtime mirrors",
+      "goal-authoring manual testing playbook",
+      "goal command argument hint",
+      "create-goal command plan",
+      "goal command mirrors",
+      "goal-authoring playbook package",
+      "create-goal phase tasks",
+      "goal command verification checklist",
+      "goal playbook implementation tasks",
+      "command mirror checks",
+      "create-goal acceptance criteria"
+    ],
+    "key_topics": [
+      "goal",
+      "command",
+      "assets",
+      "sk-create-goal",
+      "runtime",
+      "mirrors",
+      "goal-authoring",
+      "manual",
+      "testing",
+      "playbook",
+      "argument",
+      "hint"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/create/goal.md",
+      ".skilled/commands/create/assets/create-goal-presentation.txt",
+      ".skilled/skills/sk-doc/command-metadata.json",
+      ".skilled/commands/create/README.txt",
+      ".skilled/commands/README.txt",
+      ".claude/commands/create/goal.md",
+      ".codex/prompts/create-goal.md",
+      ".pi/prompts/create-goal.md",
+      ".cursor/commands/create-goal.md",
+      ".skilled/commands/create/assets/create-goal-auto.yaml",
+      ".skilled/commands/create/assets/create-goal-confirm.yaml",
+      ".hermes/prompts/create-goal.md",
+      ".hermes/skills/sk-create-goal/SKILL.md",
+      ".hermes/skills/sk-doc/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-goal-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/assets/create-goal-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create-goal.md",
+        "kind": "doc",
+        "path": ".codex/prompts/create-goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-goal-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-goal-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-goal-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-goal-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-create-goal/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent packet reserves `/create:goal`, its runtime mirrors and a manual testing playbook for this phase, with command resolution and a passing playbook validator as the outgoing check (specs/sk-doc/060-create-goal-mode/spec.md:100-108, 127-149)",
+    "created_at": "2026-09-25T18:48:52Z",
+    "last_save_at": "2026-09-26T09:11:14.186Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a64df45f81f1855e95c64346b00d957587cd86266d06c045a73d954553747303",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d966237ddbde26955b9e4ecb14cf083f7e7133a8a9b5dcf64eef15d5c03f8cc5",
+      "plan.md": "e24280ef936b046e10f4cc82d1bfbda1b3267674b2fae69c26045f03d0ebdf2a",
+      "tasks.md": "2fddf09795db7507f5cd1aeaaf9f18606bf68137665ba29a30986804acf754a6",
+      "implementation-summary.md": "bf887611cbc6a0670a68653eee0f1b0a914ade590450601bf0e11c61abd4d7d4"
+    },
+    "last_active_at": null
+  }
+}

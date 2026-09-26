@@ -1,0 +1,332 @@
+goals_scanned=300
+phase_parents_scanned=30
+missing-binding-row_findings=203
+placeholder_findings=83
+criteria-count_findings=35
+parent-budget_findings=4
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 001-deep-research/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 002-hermes-contract-pin/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 003-deep-loop-executor-support/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 004-cli-hermes-skill-packet/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 005-hermes-runtime-folder/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 006-hermes-hook-and-plugin-layer/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 007-hermes-model-registry-and-routing/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 008-hermes-playbook-and-catalog/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 009-docs-governance-and-closeout/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 011-dispatch-preflight-parity-research/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 012-runtime-surface-parity-research/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 013-close-silent-preflight-holes/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 014-extend-dispatch-coverage/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 015-wire-executor-builders/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-external-orchestration/071-cli-hermes-creation: no binding-table target row for 016-dispatch-enforcement-ci-guard/goal.md
+[check-goal] FINDING criteria-count specs/cli-external-orchestration/071-cli-hermes-creation: completion criteria count is 11; expected 3 through 7
+[check-goal] FINDING placeholder specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/cli-jev/001-cli-jev-creation/002-cli-jev-skill-packet: completion criterion contains unfilled template text
+[check-goal] FINDING missing-binding-row specs/cli-jev/001-cli-jev-creation: no binding-table target row for 001-jev-contract-research-and-pin/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-jev/001-cli-jev-creation: no binding-table target row for 002-cli-jev-skill-packet/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-jev/001-cli-jev-creation: no binding-table target row for 003-hub-mode-registration/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-jev/001-cli-jev-creation: no binding-table target row for 004-catalog-and-playbook/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-jev/001-cli-jev-creation: no binding-table target row for 005-docs-governance-and-closeout/goal.md
+[check-goal] FINDING criteria-count specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout: completion criteria count is 10; expected 3 through 7
+[check-goal] FINDING missing-binding-row specs/cli-jev/002-cli-jev-hub-migration: no binding-table target row for 001-track-and-packet-migration/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-jev/002-cli-jev-hub-migration: no binding-table target row for 002-hub-scaffold-and-mode-migration/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-jev/002-cli-jev-hub-migration: no binding-table target row for 003-decouple-and-rewire/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-jev/002-cli-jev-hub-migration: no binding-table target row for 004-compiled-fleet-onboarding/goal.md
+[check-goal] FINDING missing-binding-row specs/cli-jev/002-cli-jev-hub-migration: no binding-table target row for 005-playbook-reverification-and-closeout/goal.md
+[check-goal] FINDING missing-binding-row specs/hooks/011-pi-fast-mode-w-subagent-support: binding anchor is missing or malformed for 001-fork-and-package/goal.md
+[check-goal] FINDING missing-binding-row specs/hooks/011-pi-fast-mode-w-subagent-support: binding anchor is missing or malformed for 002-subagent-handoff/goal.md
+[check-goal] FINDING missing-binding-row specs/hooks/011-pi-fast-mode-w-subagent-support: binding anchor is missing or malformed for 003-integration-and-tests/goal.md
+[check-goal] FINDING criteria-count specs/hooks/011-pi-fast-mode-w-subagent-support: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING missing-binding-row specs/hooks/016-cache-optimizer-absorbs-deep-pi: no binding-table target row for 001-reclaim-deepseek-direct-ownership/goal.md
+[check-goal] FINDING missing-binding-row specs/hooks/016-cache-optimizer-absorbs-deep-pi: no binding-table target row for 002-port-cache-economics/goal.md
+[check-goal] FINDING missing-binding-row specs/hooks/016-cache-optimizer-absorbs-deep-pi: no binding-table target row for 003-port-retry-loop-guard/goal.md
+[check-goal] FINDING missing-binding-row specs/hooks/016-cache-optimizer-absorbs-deep-pi: no binding-table target row for 004-port-hash-verified-edits/goal.md
+[check-goal] FINDING missing-binding-row specs/hooks/016-cache-optimizer-absorbs-deep-pi: no binding-table target row for 005-remove-deep-pi/goal.md
+[check-goal] FINDING missing-binding-row specs/hooks/016-cache-optimizer-absorbs-deep-pi: no binding-table target row for 006-reconcile-extension-documentation/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 001-surface-design-plan/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 002-repo-convention-audit/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 003-hub-wiring/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 004-skill-core/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 005-references-stack/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 006-assets-checklists/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 007-manual-testing-playbook/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 008-scanners-and-gates/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 009-banners-and-folder-docs/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 010-kebab-rename/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 011-changelog-and-verification/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 012-doc-template-conformance/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-code/007-sk-code-obsidian-surface: binding anchor is missing or malformed for 013-surface-reality-conformance/goal.md
+[check-goal] FINDING criteria-count specs/sk-code/007-sk-code-obsidian-surface: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING parent-budget specs/sk-code/007-sk-code-obsidian-surface: durable slice is 4734 characters, over the 4000-character limit
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 001-research-communication-context/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 002-synthesis-and-decisions/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 003-root-doc-and-repo-rules/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 004-sk-communication-upgrade/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 005-verification-and-rollout/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 006-reply-shape-rules/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 007-wording-standard-restructure/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 008-decision-and-handoff-rules/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 009-adjacent-surface-rules/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 010-review-remediation/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 011-communication-rule-naming/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 012-reply-rule-delegation-repair/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 013-shorten-handoff-rule-name/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 014-shorten-decision-rule-name/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 015-evidence-rule-seam-links/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-communication/006-sk-communication-clarity: no binding-table target row for 016-code-standards-alignment/goal.md
+[check-goal] FINDING criteria-count specs/sk-communication/006-sk-communication-clarity: completion criteria count is 9; expected 3 through 7
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/026-embedded-style-reference: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/026-embedded-style-reference: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/026-embedded-style-reference: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/026-embedded-style-reference: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/026-embedded-style-reference: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/027-evilcharts-style-reference: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/028-closeout: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/029-holding-the-boundaries: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/029-holding-the-boundaries: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/029-holding-the-boundaries: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/029-holding-the-boundaries: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/029-holding-the-boundaries: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/031-full-family-coverage: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/031-full-family-coverage: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/031-full-family-coverage: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/031-full-family-coverage: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/031-full-family-coverage: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/032-evilcharts-stock: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/032-evilcharts-stock: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/032-evilcharts-stock: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/032-evilcharts-stock: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/032-evilcharts-stock: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/033-visual-verification: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/033-visual-verification: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/033-visual-verification: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/033-visual-verification: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/033-visual-verification: completion criterion contains unfilled template text
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment: completion criteria count is 2; expected 3 through 7
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 001-source-inventory-and-placement/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 002-translation-and-voice/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 003-packet-scaffold/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 004-native-chart-build/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 005-routing-integration/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 006-playbook-and-closeout/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 010-chart-review-remediation/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 011-chart-command-surface/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 012-chart-hover-and-pointer-states/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 013-shadcn-reference-research/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 014-shadcn-adoptions/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 015-shadcn-visual-upgrade/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 016-design-md-theming/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 017-visual-review-fixes/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 018-opus-review-fixes/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 019-cursor-stock-register/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 020-external-reference-library/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 021-visual-upgrade-research/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 022-visual-polish/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 023-metric-delta-header/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 024-micro-forms/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 025-mark-and-indicator-policies/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 026-embedded-style-reference/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 027-evilcharts-style-reference/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 028-closeout/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 029-holding-the-boundaries/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 030-mutation-suite/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 031-full-family-coverage/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 032-evilcharts-stock/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 033-visual-verification/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 034-emphasis-budget/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 035-median-and-ladder-correction/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 036-evilcharts-only-and-open-tables/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 037-remove-gallery/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 038-chart-command-alignment/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart: no binding-table target row for 039-prerelease-versioning-and-residue/goal.md
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/003-md-generator-as-mode: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/006-design-mode-and-command-rename: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/007-close-inherited-failures: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/008-fundamentals-beyond-ui: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/009-router-conformance: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/010-readme-human-voice: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/011-router-vocabulary-repair: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2/012-template-screenshots: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 001-sk-create-chart/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 002-hub-and-fundamentals/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 003-md-generator-as-mode/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 004-chart-and-diagram-cutover/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 005-closure-and-routing-proof/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 006-design-mode-and-command-rename/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 007-close-inherited-failures/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 008-fundamentals-beyond-ui/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 009-router-conformance/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 010-readme-human-voice/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 011-router-vocabulary-repair/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 012-template-screenshots/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-design/018-sk-design-parent-v2: no binding-table target row for 013-fix-sk-design-for-compiled-routing/goal.md
+[check-goal] FINDING criteria-count specs/sk-design/018-sk-design-parent-v2: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING parent-budget specs/sk-design/018-sk-design-parent-v2: durable slice is 5013 characters, over the 4000-character limit
+[check-goal] FINDING criteria-count specs/sk-design/019-sk-design-diagram-upgrade: completion criteria count is 11; expected 3 through 7
+[check-goal] FINDING parent-budget specs/sk-design/019-sk-design-diagram-upgrade: durable slice is 5513 characters, over the 4000-character limit
+[check-goal] FINDING missing-binding-row specs/sk-doc/049-sk-create-frontmatter: no binding-table target row for 001-inventory-and-contract/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-doc/049-sk-create-frontmatter: no binding-table target row for 002-mode-scaffold/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-doc/049-sk-create-frontmatter: no binding-table target row for 003-content-migration/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-doc/049-sk-create-frontmatter: no binding-table target row for 004-routing-integration/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-doc/049-sk-create-frontmatter: no binding-table target row for 005-command-and-playbook/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-doc/049-sk-create-frontmatter: no binding-table target row for 006-verification-and-closeout/goal.md
+[check-goal] FINDING missing-binding-row specs/sk-doc/049-sk-create-frontmatter: no binding-table target row for 007-human-voice-playbook/goal.md
+[check-goal] FINDING criteria-count specs/sk-git/028-crawlable-commit-history: completion criteria count is 10; expected 3 through 7
+[check-goal] FINDING parent-budget specs/sk-git/028-crawlable-commit-history: durable slice is 5758 characters, over the 4000-character limit
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings: completion criterion contains unfilled template text
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 001-angle-driven-review/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 002-roster-completeness/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 003-version-authority/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 004-leaf-manifest-and-doctrine-reachability/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 005-catalog-and-readme-truth/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 006-confirm-variant-parity/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 007-ledger-stem-producers/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 008-agent-mirror-parity/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 009-containment-promise-and-severity-scale/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 010-version-authority-completion/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 011-routing-doctrine-and-discovery/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 012-missing-stress-fixture-root/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 013-recorded-adjacent-defects/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 014-post-work-review/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 015-review-confirmed-findings/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 016-iteration-state-record-contract/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review: no binding-table target row for 017-guard-index-and-parent-doc-fixes/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 001-never-fatal-untracked/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 002-iteration-record-dedupe/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 003-publish-manifest-provenance/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 004-index-lock-retry/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 005-churn-cumulative-arm/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 006-reducer-ordered-lists/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 007-worktree-removal/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 008-quarantine-destination-canonical/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 009-baseline-deletion-detection/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 010-containment-on-failed-lanes/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 011-restore-never-through-symlink/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 012-quarantine-retention-per-pass/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 013-review-lane-advisory-and-strict-config/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 014-alignment-review/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 015-symlink-contained-paths/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 016-command-yaml-alignment/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 017-protocol-and-catalog-alignment/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 018-orchestrate-mirror-alignment/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 019-forced-depth-empty-records/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 020-direct-append-sites-through-gateway/goal.md
+[check-goal] FINDING missing-binding-row specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: no binding-table target row for 021-capture-folders-out-of-snapshot/goal.md
+[check-goal] FINDING criteria-count specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening: completion criteria count is 10; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-deep-loop/036-deep-loop-innovation/scratch: completion criteria count is 0; expected 3 through 7
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue: completion criterion contains unfilled template text
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 001-transport-and-consumer-inventory/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 002-daemon-transport-decision/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 003-cli-front-door-parity/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 004-caller-rewire/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 005-mcp-transport-removal/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 006-runtime-package-rename/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 007-docs-and-residue-sweep/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 008-verification-and-closeout/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 009-deep-review-decommission/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 010-deep-research-residue/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 011-deep-research-swe-2/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 012-deep-research-glm-5-3/goal.md
+[check-goal] FINDING missing-binding-row specs/system-skill-advisor/025-mcp-decommission-cli-front-door: no binding-table target row for 013-research-findings-remediation/goal.md
+[check-goal] FINDING criteria-count specs/system-skill-advisor/025-mcp-decommission-cli-front-door: completion criteria count is 8; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance: completion criteria count is 2; expected 3 through 7
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission: no binding-table target row for 007-decommission-review-p1-p2-fixes/goal.md
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing: completion criteria count is 8; expected 3 through 7
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 001-ripgrep-search-system/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 002-cli-runtime-utilization/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 003-shared-package-utilization/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 004-template-system-and-acceptance-criteria/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 005-overengineering-simplification/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 006-retrieval-drift-remediation/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 007-cli-package-residue-removal/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 008-env-example-dead-flags/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 009-shared-package-dead-half-removal/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 010-template-contract-alignment/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 011-command-surface-contract-realignment/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 012-pre-existing-test-repair/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 013-trigger-phrase-quality-enforcement/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 014-cli-decommission-orphan-removal/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 015-shared-package-post-remediation-cleanup/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 016-template-seams-and-sentinel-repair/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 017-completion-gate-and-catalog-alignment/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 018-scaffold-placeholder-and-upgrade-truth/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 019-ci-push-gates-and-runtime-doc-truth/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 020-rule-headers-registry-coverage-and-playbook-paths/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 021-shared-readme-generator-and-dead-exports/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research: no binding-table target row for 022-doctor-signal-truth-and-conventions-precision/goal.md
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/anchor-inject/ws/specs/t/001-fixture: completion criteria count is 1; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/frontmatter-boundary/exact-fence: completion criteria count is 1; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/frontmatter-boundary/no-frontmatter-at-all: completion criteria count is 1; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/frontmatter-boundary/trailing-space-fence: completion criteria count is 1; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/hostile/outside: completion criteria count is 1; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/hostile/ws/specs/t/001-fixture: completion criteria count is 1; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/replay/ws/specs/t/001-alpha: completion criteria count is 1; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/ws/specs/t/001-fixture: completion criteria count is 1; expected 3 through 7
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions: completion criteria count is 8; expected 3 through 7
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research: completion criterion contains unfilled template text
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation: completion criteria count is 11; expected 3 through 7
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research: objective contains unfilled template text
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research: decision table contains unfilled template text
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research: completion criterion contains unfilled template text
+[check-goal] FINDING placeholder specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research: completion criterion contains unfilled template text
+[check-goal] FINDING criteria-count specs/system-speckit/033-system-speckit-v4/038-goal-unification: completion criteria count is 8; expected 3 through 7
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 012-fix-deep-review-p1-p2-findings-for-source-root-migration/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 013-clear-pre-existing-ci-and-doc-debt/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 014-fix-pre-existing-defects-found-by-migration/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 015-compiled-serving-admission-research/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 016-fix-stale-compiled-routing-docs-and-research-workflow/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 017-build-compiled-serving-gold-admission-checker/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 018-restore-advisor-suite-and-renew-scorer-freeze/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 019-refresh-rollback-snapshots-on-re-mint/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 020-fix-admission-baseline-and-block-ci/goal.md
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration: no binding-table target row for 021-repo-rules-source-root-migration/goal.md
+[check-goal] ERROR /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/068-create-goal-mode/specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/broken-fence/goal.md: goal frontmatter opener has no closing fence

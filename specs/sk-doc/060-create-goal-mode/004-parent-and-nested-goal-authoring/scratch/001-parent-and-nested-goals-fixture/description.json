@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture",
+  "description": "A parent goal can look complete while a direct phase-child directory has no matching binding row",
+  "keywords": [
+    "parent",
+    "goal",
+    "look",
+    "complete",
+    "while",
+    "direct",
+    "phase-child",
+    "directory",
+    "matching",
+    "binding",
+    "row"
+  ],
+  "lastUpdated": "2026-09-25T20:38:25.210Z",
+  "specId": "001",
+  "folderSlug": "parent-and-nested-goals-fixture",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode",
+    "004-parent-and-nested-goal-authoring",
+    "scratch"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

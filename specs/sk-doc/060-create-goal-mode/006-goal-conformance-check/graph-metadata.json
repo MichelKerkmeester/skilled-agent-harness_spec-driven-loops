@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/060-create-goal-mode/006-goal-conformance-check",
+  "spec_folder": "sk-doc/060-create-goal-mode/006-goal-conformance-check",
+  "parent_id": "sk-doc/060-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal conformance check",
+      "phase binding row coverage",
+      "goal template placeholder check",
+      "goal completion criteria count",
+      "goal corpus report",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "goal conformance tasks",
+      "binding coverage fixture",
+      "goal placeholder check"
+    ],
+    "key_topics": [
+      "goal",
+      "conformance",
+      "check",
+      "phase",
+      "binding",
+      "row",
+      "coverage",
+      "template",
+      "placeholder",
+      "completion",
+      "criteria",
+      "count"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures/goal-fixtures.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-goal/references/README.md",
+      "scratch/corpus-report.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-fixtures.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures/goal-fixtures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/references/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-report.txt",
+        "kind": "file",
+        "path": "scratch/corpus-report.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern If",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current validator measures the durable-slice budget and checks that listed binding rows resolve, but it returns when the binding anchor is absent and does not compare rows with phase children on disk (.skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1050-1080)",
+    "created_at": "2026-09-25T18:48:50Z",
+    "last_save_at": "2026-09-26T09:11:11.053Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b31a2d4e92f1a4a65a0e9b735327aa9abf16c9e65b5371f867e7faac715f67d7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a9d698b7a0d7e878b91322b5d14ec1e5c8b3fb3c489a8e826eff19dc2ca410c4",
+      "plan.md": "a4f2102cd28333eee54d671946fbb4cddf414d758850ccef14dd74c21eb3afa8",
+      "tasks.md": "02aa4d681715d75d3ec4d36448f5713a3bf4589ffb3a7a15bd2ce62bdfff9f62",
+      "implementation-summary.md": "b98fd05d5ae5e5e2fccd927d7c5d48ea604f776d99af10d54cba0cc375f4c7eb"
+    },
+    "last_active_at": null
+  }
+}

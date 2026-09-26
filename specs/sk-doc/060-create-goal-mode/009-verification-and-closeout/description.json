@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/009-verification-and-closeout",
+  "description": "Phase 008's outgoing check verifies command mirrors and playbook package conformance, but it does not execute the scenarios against the mode or prove",
+  "keywords": [
+    "phase",
+    "outgoing",
+    "check",
+    "verifies",
+    "command",
+    "mirrors",
+    "playbook",
+    "package",
+    "conformance",
+    "execute",
+    "scenarios",
+    "against",
+    "mode",
+    "prove"
+  ],
+  "lastUpdated": "2026-09-26T09:12:20.534Z",
+  "specId": "009",
+  "folderSlug": "verification-and-closeout",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

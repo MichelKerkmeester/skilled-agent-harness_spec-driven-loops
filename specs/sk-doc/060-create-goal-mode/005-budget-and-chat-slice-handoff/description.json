@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff",
+  "description": "Goal authors need a repeatable way to budget a phase-parent directive while retaining every completion criterion",
+  "keywords": [
+    "goal",
+    "authors",
+    "need",
+    "repeatable",
+    "way",
+    "budget",
+    "phase-parent",
+    "directive",
+    "while",
+    "retaining",
+    "every",
+    "completion",
+    "criterion"
+  ],
+  "lastUpdated": "2026-09-26T04:01:03.885Z",
+  "specId": "005",
+  "folderSlug": "budget-and-chat-slice-handoff",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring",
+  "description": "A parent goal can omit a phase folder that exists on disk: the 017-memory-database-decommission binding table ends at 006, while the",
+  "keywords": [
+    "parent",
+    "goal",
+    "omit",
+    "phase",
+    "folder",
+    "exists",
+    "disk",
+    "017-memory-database-decommission",
+    "binding",
+    "table",
+    "ends",
+    "while"
+  ],
+  "lastUpdated": "2026-09-26T04:26:38.752Z",
+  "specId": "004",
+  "folderSlug": "parent-and-nested-goal-authoring",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

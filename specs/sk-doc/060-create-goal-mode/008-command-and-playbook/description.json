@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/008-command-and-playbook",
+  "description": "The parent packet reserves `/create:goal`, its runtime mirrors and a manual testing playbook for this phase, with command resolution and a passing",
+  "keywords": [
+    "parent",
+    "packet",
+    "reserves",
+    "goal",
+    "runtime",
+    "mirrors",
+    "manual",
+    "testing",
+    "playbook",
+    "phase",
+    "command",
+    "resolution",
+    "passing"
+  ],
+  "lastUpdated": "2026-09-26T08:06:44.068Z",
+  "specId": "008",
+  "folderSlug": "command-and-playbook",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,7 @@
+[check-goal] packet=specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission
+[check-goal] 1/4 FAIL missing-binding-row findings=1
+[check-goal] FINDING missing-binding-row specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission: no binding-table target row for 007-decommission-review-p1-p2-fixes/goal.md
+[check-goal] 2/4 PASS placeholder findings=0
+[check-goal] 3/4 PASS criteria-count findings=0
+[check-goal] 4/4 PASS parent-budget findings=0
+[check-goal] RESULT: FAILED (3/4 checks)
