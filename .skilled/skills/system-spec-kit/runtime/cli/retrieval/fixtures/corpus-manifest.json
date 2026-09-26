@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6f7159982d8e827d3fa33678f2825da409d409c2da3afe3017865570b1361635",
+  "corpusHash": "bf2e65a278d519383709b467f7f2c36841b5d4aee86ced9ed416c701db106c72",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22513,
+  "includedPathCount": 22607,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -5873,6 +5873,9 @@
     ".skilled/skills/sk-doc/ROUTER.md",
     ".skilled/skills/sk-doc/SKILL.md",
     ".skilled/skills/sk-doc/benchmark/README.md",
+    ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/README.md",
+    ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/source.md",
+    ".skilled/skills/sk-doc/benchmark/reports/README.md",
     ".skilled/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/README.md",
     ".skilled/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/failed-runs.md",
     ".skilled/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/findings-and-recommendations.md",
@@ -6159,6 +6162,27 @@
     ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/version-derivation/skip-on-differ.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/references/README.md",
     ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+    ".skilled/skills/sk-doc/sk-create-goal/README.md",
+    ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+    ".skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md",
+    ".skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-child-template.md",
+    ".skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-parent-template.md",
+    ".skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md",
+    ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.0.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/add-goal-to-packet-without-goal.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/cut-over-budget-parent.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/detect-unbound-phase.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/phase-parent-and-nested-child-goals.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/resend-parent-after-child-change.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/route-session-goal-away.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/top-level-goal.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md",
+    ".skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md",
+    ".skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md",
+    ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
@@ -11190,6 +11214,75 @@
     "specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/tasks.md",
     "specs/sk-doc/059-skill-changelog-retrofit/goal.md",
     "specs/sk-doc/059-skill-changelog-retrofit/spec.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/decision-tests.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/goal-anatomy.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/goal-corpus-audit.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/goal.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/mode-boundary.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/plan.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/spec.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/target-tree.md",
+    "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/002-mode-scaffold/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/002-mode-scaffold/goal.md",
+    "specs/sk-doc/060-create-goal-mode/002-mode-scaffold/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/002-mode-scaffold/plan.md",
+    "specs/sk-doc/060-create-goal-mode/002-mode-scaffold/spec.md",
+    "specs/sk-doc/060-create-goal-mode/002-mode-scaffold/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/goal.md",
+    "specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/plan.md",
+    "specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/spec.md",
+    "specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/goal.md",
+    "specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/plan.md",
+    "specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/spec.md",
+    "specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/goal.md",
+    "specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/plan.md",
+    "specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/spec.md",
+    "specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/goal.md",
+    "specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/plan.md",
+    "specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/spec.md",
+    "specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/goal.md",
+    "specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/plan.md",
+    "specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/spec.md",
+    "specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/008-command-and-playbook/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/008-command-and-playbook/goal.md",
+    "specs/sk-doc/060-create-goal-mode/008-command-and-playbook/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/008-command-and-playbook/plan.md",
+    "specs/sk-doc/060-create-goal-mode/008-command-and-playbook/spec.md",
+    "specs/sk-doc/060-create-goal-mode/008-command-and-playbook/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/goal.md",
+    "specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/plan.md",
+    "specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/spec.md",
+    "specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/goal.md",
+    "specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/plan.md",
+    "specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/spec.md",
+    "specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-009-verification-and-closeout.md",
+    "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-010-asset-templates-and-folder-readmes.md",
+    "specs/sk-doc/060-create-goal-mode/goal.md",
+    "specs/sk-doc/060-create-goal-mode/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -21602,6 +21695,7 @@
     "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/plan.md",
     "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/spec.md",
     "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md",
     "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/implementation-summary.md",
     "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/plan.md",
     "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/spec.md",
@@ -22535,7 +22629,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e281ef9d5707232dd3e9ca80090fdd1ea13622adfec0bb8a9817bcf47646da99",
+  "manifestHash": "3252783c03959ebbddd1996f510b590ba289f2521dbccc03288bbc41d106ae47",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -23062,6 +23156,10 @@
     },
     {
       "path": ".skilled/skills/sk-doc/sk-create-frontmatter/assets/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -24490,6 +24588,46 @@
     },
     {
       "path": "specs/sk-doc/059-skill-changelog-retrofit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/002-mode-scaffold/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/008-command-and-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e281ef9d5707232dd3e9ca80090fdd1ea13622adfec0bb8a9817bcf47646da99",
+  "manifestHash": "3252783c03959ebbddd1996f510b590ba289f2521dbccc03288bbc41d106ae47",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7070,6 +7070,9 @@
     "059 tasks": [
       "059 tasks"
     ],
+    "060 create goal mode": [
+      "060-create-goal-mode"
+    ],
     "066 goal prompt": [
       "066 goal prompt"
     ],
@@ -7871,6 +7874,9 @@
     "add a new renderer": [
       "add a new renderer"
     ],
+    "add a phase binding row": [
+      "add a phase binding row"
+    ],
     "add a project rule": [
       "add a project rule"
     ],
@@ -7900,6 +7906,9 @@
     ],
     "add devin executor kind": [
       "add devin executor kind"
+    ],
+    "add goal md to a phase parent": [
+      "add goal.md to a phase parent"
     ],
     "add iconic rule": [
       "add iconic rule"
@@ -11361,6 +11370,9 @@
     "authn authz review checklist": [
       "authn authz review checklist"
     ],
+    "author a packet goal": [
+      "author a packet goal"
+    ],
     "author chart templates": [
       "author chart templates"
     ],
@@ -12486,6 +12498,12 @@
     "bind a packet goal": [
       "bind a packet goal"
     ],
+    "bind every phase goal": [
+      "bind every phase goal"
+    ],
+    "bind or resend a session goal": [
+      "bind or resend a session goal"
+    ],
     "bind packet goal": [
       "bind packet goal"
     ],
@@ -12494,6 +12512,12 @@
     ],
     "binding child paths": [
       "binding child paths"
+    ],
+    "binding completeness amendment": [
+      "binding completeness amendment"
+    ],
+    "binding coverage fixture": [
+      "binding coverage fixture"
     ],
     "bitemporal fix plan": [
       "bitemporal fix plan"
@@ -13128,8 +13152,20 @@
     "budget allocator query surrogate scorer fusion tests": [
       "budget allocator query surrogate scorer fusion tests"
     ],
+    "budget and chat slice": [
+      "budget and chat slice"
+    ],
+    "budget and handoff plan": [
+      "budget and handoff plan"
+    ],
+    "budget and handoff tasks": [
+      "budget and handoff tasks"
+    ],
     "budget aware fan in evidence": [
       "budget-aware fan-in evidence"
+    ],
+    "budget handoff acceptance": [
+      "budget handoff acceptance"
     ],
     "budget novelty coverage wall time stop": [
       "budget novelty coverage wall-time stop"
@@ -15253,6 +15289,15 @@
     "chat message hook seam and message id snapshot": [
       "chat.message hook seam and message-id snapshot"
     ],
+    "chat slice handoff": [
+      "chat slice handoff"
+    ],
+    "chat slice handoff check": [
+      "chat slice handoff check"
+    ],
+    "chat slice versus objective slice": [
+      "chat slice versus objective slice"
+    ],
     "check ac coverage": [
       "check-ac-coverage"
     ],
@@ -15336,6 +15381,12 @@
     ],
     "check git hooks sh shipped": [
       "check-git-hooks.sh shipped"
+    ],
+    "check goal fixtures": [
+      "check-goal fixtures"
+    ],
+    "check goal script": [
+      "check-goal script"
     ],
     "check graph metadata last active": [
       "check-graph-metadata last-active"
@@ -15637,6 +15688,12 @@
     ],
     "child drift enforce flip tasks": [
       "child drift enforce flip tasks"
+    ],
+    "child goal blank": [
+      "child goal blank"
+    ],
+    "child goal parent amendment": [
+      "child goal parent amendment"
     ],
     "child manifest test isolation": [
       "child manifest test isolation"
@@ -18374,6 +18431,9 @@
     "code folder readme pi cache optimizer": [
       "code folder readme pi-cache-optimizer"
     ],
+    "code folder readme plan": [
+      "code folder readme plan"
+    ],
     "code folder readme remediation": [
       "code folder readme remediation"
     ],
@@ -19985,6 +20045,9 @@
     ],
     "command metadata mirror": [
       "command metadata mirror"
+    ],
+    "command mirror checks": [
+      "command mirror checks"
     ],
     "command mirror matrix": [
       "command mirror matrix"
@@ -23038,6 +23101,48 @@
     "create github release tag": [
       "create github release tag"
     ],
+    "create goal acceptance criteria": [
+      "create-goal acceptance criteria"
+    ],
+    "create goal canary case": [
+      "create goal canary case"
+    ],
+    "create goal code readme": [
+      "create-goal code readme"
+    ],
+    "create goal command": [
+      "create:goal command"
+    ],
+    "create goal command assets": [
+      "/create:goal command assets"
+    ],
+    "create goal command plan": [
+      "create-goal command plan"
+    ],
+    "create goal mode": [
+      "create goal mode"
+    ],
+    "create goal mode aliases": [
+      "create goal mode aliases"
+    ],
+    "create goal phase goal": [
+      "create-goal phase goal"
+    ],
+    "create goal phase summary": [
+      "create-goal phase summary"
+    ],
+    "create goal phase tasks": [
+      "create-goal phase tasks"
+    ],
+    "create goal readme evidence": [
+      "create-goal readme evidence"
+    ],
+    "create goal readme tasks": [
+      "create-goal readme tasks"
+    ],
+    "create goal routing republish": [
+      "create-goal routing republish"
+    ],
     "create health md chart": [
       "create health md chart"
     ],
@@ -23064,6 +23169,9 @@
     ],
     "create okr goal": [
       "create okr goal"
+    ],
+    "create packet goal": [
+      "create packet goal"
     ],
     "create parse frontmatter test": [
       "create parse-frontmatter test"
@@ -23220,6 +23328,15 @@
     ],
     "criteria exec hardening gate": [
       "criteria exec hardening gate"
+    ],
+    "criterion count preserved": [
+      "criterion count preserved"
+    ],
+    "criterion count unchanged": [
+      "criterion count unchanged"
+    ],
+    "criterion preserving trim": [
+      "criterion-preserving trim"
     ],
     "criterion superseded not fabricated": [
       "criterion superseded not fabricated"
@@ -33613,11 +33730,17 @@
     "expanded retrieval fixture": [
       "expanded retrieval fixture"
     ],
+    "expected 6a handoff": [
+      "expected 6a handoff"
+    ],
     "expected daemon classifier and process sweep": [
       "expected-daemon-classifier-and-process-sweep"
     ],
     "expected daemon classifier process sweep": [
       "expected daemon classifier process sweep"
+    ],
+    "expected parent skill 6a": [
+      "expected parent-skill 6a"
     ],
     "expected source path correctness": [
       "expected_source_path correctness"
@@ -38230,8 +38353,44 @@
     "goal adr freeze": [
       "goal ADR freeze"
     ],
+    "goal anatomy contract": [
+      "goal anatomy contract"
+    ],
     "goal and key result setup": [
       "goal and key result setup"
+    ],
+    "goal asset templates": [
+      "goal asset templates"
+    ],
+    "goal authoring decision tests": [
+      "goal authoring decision tests"
+    ],
+    "goal authoring final evidence": [
+      "goal authoring final evidence"
+    ],
+    "goal authoring manual testing playbook": [
+      "goal-authoring manual testing playbook"
+    ],
+    "goal authoring mode packet": [
+      "goal authoring mode packet"
+    ],
+    "goal authoring playbook execution": [
+      "goal authoring playbook execution"
+    ],
+    "goal authoring playbook package": [
+      "goal-authoring playbook package"
+    ],
+    "goal authoring reference": [
+      "goal authoring reference"
+    ],
+    "goal authoring route replay": [
+      "goal authoring route replay"
+    ],
+    "goal authoring standards": [
+      "goal authoring standards"
+    ],
+    "goal authoring verification": [
+      "goal authoring verification"
     ],
     "goal before after": [
       "goal before after"
@@ -38239,14 +38398,32 @@
     "goal binding": [
       "goal binding"
     ],
+    "goal binding gaps": [
+      "goal binding gaps"
+    ],
     "goal binding research": [
       "goal binding research"
+    ],
+    "goal binding table": [
+      "goal binding table"
+    ],
+    "goal budget handoff": [
+      "goal budget handoff"
+    ],
+    "goal budget handoff summary": [
+      "goal budget handoff summary"
     ],
     "goal capability probes": [
       "goal capability probes"
     ],
     "goal chat slice": [
       "goal chat slice"
+    ],
+    "goal chat slice handoff": [
+      "goal chat slice handoff"
+    ],
+    "goal cjs packet": [
+      "goal.cjs packet"
     ],
     "goal closure plan": [
       "goal closure plan"
@@ -38257,8 +38434,56 @@
     "goal command": [
       "/goal command"
     ],
+    "goal command argument hint": [
+      "goal command argument hint"
+    ],
+    "goal command completion criteria": [
+      "goal command completion criteria"
+    ],
     "goal command every runtime": [
       "goal command every runtime"
+    ],
+    "goal command handoff": [
+      "goal command handoff"
+    ],
+    "goal command implementation status": [
+      "goal command implementation status"
+    ],
+    "goal command mirror checks": [
+      "goal command mirror checks"
+    ],
+    "goal command mirrors": [
+      "goal command mirrors"
+    ],
+    "goal command package validation": [
+      "goal command package validation"
+    ],
+    "goal command runtime mirrors": [
+      "goal command runtime mirrors"
+    ],
+    "goal command verification checklist": [
+      "goal command verification checklist"
+    ],
+    "goal completion criteria": [
+      "goal completion criteria"
+    ],
+    "goal completion criteria count": [
+      "goal completion criteria count"
+    ],
+    "goal conformance check": [
+      "goal conformance check"
+    ],
+    "goal conformance checker": [
+      "goal conformance checker"
+    ],
+    "goal conformance checker summary": [
+      "goal conformance checker summary"
+    ],
+    "goal conformance tasks": [
+      "goal conformance tasks"
+    ],
+    "goal contract verification": [
+      "goal contract verification"
     ],
     "goal contradiction register": [
       "goal contradiction register"
@@ -38289,6 +38514,27 @@
     ],
     "goal core tasks": [
       "goal core tasks"
+    ],
+    "goal corpus audit": [
+      "goal corpus audit"
+    ],
+    "goal corpus checklist": [
+      "goal corpus checklist"
+    ],
+    "goal corpus exemplars": [
+      "goal corpus exemplars"
+    ],
+    "goal corpus measurement": [
+      "goal corpus measurement"
+    ],
+    "goal corpus report": [
+      "goal corpus report"
+    ],
+    "goal corpus rubric": [
+      "goal corpus rubric"
+    ],
+    "goal criteria checkability": [
+      "goal criteria checkability"
     ],
     "goal criteria field": [
       "goal criteria field"
@@ -38322,6 +38568,12 @@
     ],
     "goal deep review passes": [
       "goal deep review passes"
+    ],
+    "goal defect reproduction": [
+      "goal defect reproduction"
+    ],
+    "goal defect reproduction commands": [
+      "goal defect reproduction commands"
     ],
     "goal devin merge rule": [
       "goal devin merge rule"
@@ -38359,14 +38611,29 @@
     "goal durable budget 4000": [
       "goal durable budget 4000"
     ],
+    "goal durable budget cut": [
+      "goal durable budget cut"
+    ],
     "goal durable slice": [
       "goal durable slice"
     ],
     "goal durable slice budget": [
       "goal durable slice budget"
     ],
+    "goal durable slice contract": [
+      "goal durable slice contract"
+    ],
+    "goal exemplar status": [
+      "goal exemplar status"
+    ],
+    "goal exemplars": [
+      "goal exemplars"
+    ],
     "goal file addon": [
       "goal file addon"
+    ],
+    "goal fixture checklist": [
+      "goal fixture checklist"
     ],
     "goal flag criterion": [
       "goal flag criterion"
@@ -38431,6 +38698,12 @@
     "goal integration seams": [
       "goal integration seams"
     ],
+    "goal inventory plan": [
+      "goal inventory plan"
+    ],
+    "goal inventory tasks": [
+      "goal inventory tasks"
+    ],
     "goal isolation": [
       "goal isolation"
     ],
@@ -38488,6 +38761,9 @@
     "goal log": [
       "goal log"
     ],
+    "goal log and voice": [
+      "goal log and voice"
+    ],
     "goal machine checks": [
       "goal machine checks"
     ],
@@ -38509,6 +38785,9 @@
     "goal md across runtimes": [
       "goal.md across runtimes"
     ],
+    "goal md authoring": [
+      "goal.md authoring"
+    ],
     "goal md frontmatter strip": [
       "goal.md frontmatter strip"
     ],
@@ -38518,11 +38797,50 @@
     "goal md tmpl": [
       "goal.md.tmpl"
     ],
+    "goal mode acceptance run": [
+      "goal mode acceptance run"
+    ],
+    "goal mode closeout directive": [
+      "goal mode closeout directive"
+    ],
+    "goal mode execution evidence": [
+      "goal mode execution evidence"
+    ],
+    "goal mode newcomer baseline": [
+      "goal mode newcomer baseline"
+    ],
+    "goal mode newcomer replay": [
+      "goal mode newcomer replay"
+    ],
+    "goal mode ownership boundary": [
+      "goal mode ownership boundary"
+    ],
+    "goal mode package check": [
+      "goal mode package check"
+    ],
+    "goal mode packet files": [
+      "goal mode packet files"
+    ],
+    "goal mode release link": [
+      "goal mode release link"
+    ],
     "goal non utf8 refusal": [
       "goal non-utf8 refusal"
     ],
+    "goal objective check": [
+      "goal objective check"
+    ],
+    "goal objective failures": [
+      "goal objective failures"
+    ],
     "goal objective pointer criteria": [
       "goal objective pointer criteria"
+    ],
+    "goal objective rubric": [
+      "goal objective rubric"
+    ],
+    "goal objective slice": [
+      "goal objective slice"
     ],
     "goal offer dispatch": [
       "goal offer dispatch"
@@ -38548,8 +38866,44 @@
     "goal overengineering review": [
       "goal overengineering review"
     ],
+    "goal ownership contract": [
+      "goal ownership contract"
+    ],
+    "goal packet binding proof": [
+      "goal packet binding proof"
+    ],
+    "goal packet budget check": [
+      "goal packet budget check"
+    ],
+    "goal packet tree check": [
+      "goal packet tree check"
+    ],
+    "goal phase continuation": [
+      "goal phase continuation"
+    ],
     "goal pi goal opencode goal cursor goal devin": [
       "goal-pi goal-opencode goal-cursor goal-devin"
+    ],
+    "goal placeholder census": [
+      "goal placeholder census"
+    ],
+    "goal placeholder check": [
+      "goal placeholder check"
+    ],
+    "goal playbook closure gate": [
+      "goal playbook closure gate"
+    ],
+    "goal playbook implementation tasks": [
+      "goal playbook implementation tasks"
+    ],
+    "goal playbook scenarios": [
+      "goal playbook scenarios"
+    ],
+    "goal playbook verdicts": [
+      "goal playbook verdicts"
+    ],
+    "goal playbook verification": [
+      "goal playbook verification"
     ],
     "goal plugin": [
       "goal plugin"
@@ -38590,6 +38944,15 @@
     "goal resync tasks": [
       "goal resync tasks"
     ],
+    "goal retrofit": [
+      "goal retrofit"
+    ],
+    "goal retrofit evidence": [
+      "goal retrofit evidence"
+    ],
+    "goal retrofit fixture": [
+      "goal retrofit fixture"
+    ],
     "goal review disposition": [
       "goal review disposition"
     ],
@@ -38598,6 +38961,21 @@
     ],
     "goal rollback": [
       "goal rollback"
+    ],
+    "goal rubric closure": [
+      "goal rubric closure"
+    ],
+    "goal rubric evidence": [
+      "goal rubric evidence"
+    ],
+    "goal rubric examples": [
+      "goal rubric examples"
+    ],
+    "goal rubric verification": [
+      "goal rubric verification"
+    ],
+    "goal runtime binding and resend": [
+      "goal runtime binding and resend"
     ],
     "goal runtime feasibility": [
       "goal runtime feasibility"
@@ -38622,6 +39000,15 @@
     ],
     "goal shape validator restore": [
       "goal shape validator restore"
+    ],
+    "goal standards acceptance": [
+      "goal standards acceptance"
+    ],
+    "goal standards plan": [
+      "goal standards plan"
+    ],
+    "goal standards tasks": [
+      "goal standards tasks"
     ],
     "goal state archive": [
       "goal state archive"
@@ -38662,8 +39049,26 @@
     "goal template frontmatter strip": [
       "goal template frontmatter strip"
     ],
+    "goal template parity test": [
+      "goal template parity test"
+    ],
+    "goal template placeholder check": [
+      "goal template placeholder check"
+    ],
+    "goal template plan": [
+      "goal template plan"
+    ],
+    "goal template renderer ownership": [
+      "goal template renderer ownership"
+    ],
     "goal template shipped": [
       "goal template shipped"
+    ],
+    "goal template tasks": [
+      "goal template tasks"
+    ],
+    "goal templates summary": [
+      "goal templates summary"
     ],
     "goal unification": [
       "goal unification"
@@ -38710,8 +39115,14 @@
     "goal validator": [
       "goal validator"
     ],
+    "goal validator coverage": [
+      "goal validator coverage"
+    ],
     "goal warning tier": [
       "goal warning tier"
+    ],
+    "goal without phases": [
+      "goal without phases"
     ],
     "goalprompt": [
       "goalPrompt"
@@ -50006,8 +50417,20 @@
     "mode scaffold acceptance criteria": [
       "mode scaffold acceptance criteria"
     ],
+    "mode scaffold closure gate": [
+      "mode scaffold closure gate"
+    ],
+    "mode scaffold objective": [
+      "mode scaffold objective"
+    ],
+    "mode scaffold summary": [
+      "mode scaffold summary"
+    ],
     "mode scaffold tasks": [
       "mode scaffold tasks"
+    ],
+    "mode scaffold verification": [
+      "mode scaffold verification"
     ],
     "mode switch": [
       "mode switch"
@@ -51059,6 +51482,9 @@
     "needs rebuild sentinel source constant tasks": [
       "needs-rebuild sentinel source constant tasks"
     ],
+    "negative and positive goal examples": [
+      "negative and positive goal examples"
+    ],
     "negative control constitutional": [
       "negative control constitutional"
     ],
@@ -51119,6 +51545,9 @@
     "nested changelog workflow": [
       "nested changelog workflow"
     ],
+    "nested child goal": [
+      "nested child goal"
+    ],
     "nested codex exec": [
       "nested codex exec"
     ],
@@ -51134,8 +51563,17 @@
     "nested goal amendment": [
       "nested goal amendment"
     ],
+    "nested goal fixture": [
+      "nested goal fixture"
+    ],
     "nested goal lineage resource map": [
       "nested goal lineage resource map"
+    ],
+    "nested goal mode setup": [
+      "nested goal mode setup"
+    ],
+    "nested goal packet files": [
+      "nested goal packet files"
     ],
     "nested goal template addon": [
       "nested goal template addon"
@@ -51143,8 +51581,17 @@
     "nested opencode state leak": [
       "nested opencode state leak"
     ],
+    "nested packet completion criteria": [
+      "nested packet completion criteria"
+    ],
     "nested packet resolves via override": [
       "nested packet resolves via override"
+    ],
+    "nested packet setup tasks": [
+      "nested packet setup tasks"
+    ],
+    "nested phase goal": [
+      "nested phase goal"
     ],
     "nested session worktree isolation": [
       "nested session worktree isolation"
@@ -52093,6 +52540,9 @@
     ],
     "object segmentation sk vision segment": [
       "Object segmentation (sk_vision_segment)"
+    ],
+    "objective slice": [
+      "objective slice"
     ],
     "observability and economics": [
       "observability and economics"
@@ -54227,6 +54677,15 @@
     "outside workspace workspace root": [
       "OUTSIDE_WORKSPACE workspace root"
     ],
+    "over budget fixture": [
+      "over-budget fixture"
+    ],
+    "over budget goal fixture": [
+      "over-budget goal fixture"
+    ],
+    "over budget parent goal": [
+      "over-budget parent goal"
+    ],
     "over capping strong queries": [
       "over-capping strong queries"
     ],
@@ -54663,6 +55122,9 @@
     "packet 096 follow on": [
       "packet 096 follow-on"
     ],
+    "packet acceptance status": [
+      "packet acceptance status"
+    ],
     "packet authored registry projected routing": [
       "packet-authored registry-projected routing"
     ],
@@ -54677,6 +55139,12 @@
     ],
     "packet bound validated continuity": [
       "packet bound validated continuity"
+    ],
+    "packet budget criterion": [
+      "packet budget criterion"
+    ],
+    "packet budget verification": [
+      "packet budget verification"
     ],
     "packet c deep review docs": [
       "packet C deep-review docs"
@@ -54705,8 +55173,14 @@
     "packet goal": [
       "packet goal"
     ],
+    "packet goal authoring boundary": [
+      "packet goal authoring boundary"
+    ],
     "packet goal binding": [
       "packet goal binding"
+    ],
+    "packet goal blank": [
+      "packet goal blank"
     ],
     "packet goal single source": [
       "packet goal single source"
@@ -54873,6 +55347,9 @@
     "paraphrase recall fixture": [
       "paraphrase recall fixture"
     ],
+    "parent and nested goal workflow": [
+      "parent and nested goal workflow"
+    ],
     "parent and subtasks": [
       "parent and subtasks"
     ],
@@ -54897,8 +55374,26 @@
     "parent documents filled": [
       "parent documents filled"
     ],
+    "parent goal amendment": [
+      "parent goal amendment"
+    ],
+    "parent goal authoring acceptance": [
+      "parent goal authoring acceptance"
+    ],
+    "parent goal authoring plan": [
+      "parent goal authoring plan"
+    ],
+    "parent goal authoring tasks": [
+      "parent goal authoring tasks"
+    ],
+    "parent goal blank": [
+      "parent goal blank"
+    ],
     "parent goal budget plan": [
       "parent goal budget plan"
+    ],
+    "parent goal character cap": [
+      "parent goal character cap"
     ],
     "parent goal chat send cap": [
       "parent goal chat send cap"
@@ -54917,6 +55412,9 @@
     ],
     "parent goal set string": [
       "parent goal set string"
+    ],
+    "parent goal workflow summary": [
+      "parent goal workflow summary"
     ],
     "parent handover refresh": [
       "parent handover refresh"
@@ -54998,6 +55496,9 @@
     ],
     "parent set string playbook": [
       "parent set string playbook"
+    ],
+    "parent skill 6a check": [
+      "parent-skill 6a check"
     ],
     "parent skill check promotion plan": [
       "parent-skill-check promotion plan"
@@ -55566,6 +56067,9 @@
     "per kind flag compatibility": [
       "per-kind flag compatibility"
     ],
+    "per kind goal template": [
+      "per-kind goal template"
+    ],
     "per kind state dir isolation": [
       "per-kind state-dir isolation"
     ],
@@ -55968,6 +56472,9 @@
     "phase 005 deferral": [
       "phase 005 deferral"
     ],
+    "phase 005 goal budget": [
+      "phase 005 goal budget"
+    ],
     "phase 005 handover": [
       "phase 005 handover"
     ],
@@ -56064,6 +56571,9 @@
     "phase 009 changelog": [
       "phase 009 changelog"
     ],
+    "phase 009 completion criteria": [
+      "phase 009 completion criteria"
+    ],
     "phase 009 council parity harness": [
       "phase 009 council parity harness"
     ],
@@ -56102,6 +56612,12 @@
     ],
     "phase 010 changelog": [
       "phase 010 changelog"
+    ],
+    "phase 010 checklist": [
+      "phase 010 checklist"
+    ],
+    "phase 010 closeout": [
+      "phase 010 closeout"
     ],
     "phase 010 goal": [
       "phase 010 goal"
@@ -56433,6 +56949,12 @@
     "phase 3 cache optimizer": [
       "phase 3 cache optimizer"
     ],
+    "phase 3 goal criteria": [
+      "phase 3 goal criteria"
+    ],
+    "phase 3 goal exemplars": [
+      "phase 3 goal exemplars"
+    ],
     "phase 4 cache optimizer": [
       "phase 4 cache optimizer"
     ],
@@ -56466,14 +56988,44 @@
     "phase a readme authoring": [
       "Phase A readme authoring"
     ],
+    "phase acceptance closure": [
+      "phase acceptance closure"
+    ],
     "phase acceptance criteria": [
       "phase acceptance criteria"
+    ],
+    "phase add binding": [
+      "phase-add binding"
+    ],
+    "phase add binding check": [
+      "phase-add binding check"
+    ],
+    "phase add binding row": [
+      "phase-add binding row"
+    ],
+    "phase add child goal": [
+      "phase-add child goal"
     ],
     "phase aware archive": [
       "phase-aware archive"
     ],
     "phase b handoff": [
       "phase b handoff"
+    ],
+    "phase binding completeness check": [
+      "phase binding completeness check"
+    ],
+    "phase binding criteria": [
+      "phase binding criteria"
+    ],
+    "phase binding row coverage": [
+      "phase binding row coverage"
+    ],
+    "phase binding verification": [
+      "phase binding verification"
+    ],
+    "phase binding workflow": [
+      "phase binding workflow"
     ],
     "phase c research plan": [
       "Phase C research plan"
@@ -56504,6 +57056,9 @@
     ],
     "phase child contract unify": [
       "phase child contract unify"
+    ],
+    "phase child goal template": [
+      "phase child goal template"
     ],
     "phase child naming": [
       "phase child naming"
@@ -56606,6 +57161,9 @@
     ],
     "phase g summary": [
       "phase g summary"
+    ],
+    "phase goal objective rubric": [
+      "phase goal objective rubric"
     ],
     "phase interactions doc quality": [
       "phase interactions doc quality"
@@ -56741,6 +57299,16 @@
     ],
     "phase parent generator pointer": [
       "phase parent generator pointer"
+    ],
+    "phase parent goal": [
+      "phase parent goal",
+      "phase-parent goal"
+    ],
+    "phase parent goal binding": [
+      "phase parent goal binding"
+    ],
+    "phase parent goal template": [
+      "phase parent goal template"
     ],
     "phase parent health": [
       "phase parent health"
@@ -60681,6 +61249,9 @@
     "read only figma inspect": [
       "read-only figma inspect"
     ],
+    "read only goal corpus scan": [
+      "read-only goal corpus scan"
+    ],
     "read only leaf hermetic ambient config": [
       "read-only leaf hermetic ambient config"
     ],
@@ -61064,6 +61635,15 @@
     ],
     "real app screens": [
       "real app screens"
+    ],
+    "real goal accept path test": [
+      "real goal accept-path test"
+    ],
+    "real packet goal acceptance path": [
+      "real packet goal acceptance path"
+    ],
+    "real packet goal evidence": [
+      "real packet goal evidence"
     ],
     "real tree census": [
       "real tree census"
@@ -61466,6 +62046,9 @@
     ],
     "recursive cte replacement": [
       "recursive cte replacement"
+    ],
+    "recursive goal mode validation": [
+      "recursive goal mode validation"
     ],
     "recursive phase validation": [
       "recursive phase validation"
@@ -64906,6 +65489,9 @@
     "retroactive time log": [
       "retroactive time log"
     ],
+    "retrofit a packet goal": [
+      "retrofit a packet goal"
+    ],
     "retrofit convention moved to ops": [
       "retrofit convention moved to ops"
     ],
@@ -64917,6 +65503,9 @@
     ],
     "retrofit diagnostics schema": [
       "retrofit diagnostics schema"
+    ],
+    "retrofit goal template": [
+      "retrofit goal template"
     ],
     "retrofit mapping cascade": [
       "retrofit mapping cascade"
@@ -66664,6 +67253,9 @@
     "runtime goal adapter isolation": [
       "runtime goal adapter isolation"
     ],
+    "runtime handoff matrix": [
+      "runtime handoff matrix"
+    ],
     "runtime hook adapter": [
       "runtime hook adapter"
     ],
@@ -67963,6 +68555,9 @@
     ],
     "scratch exclusion convergence": [
       "scratch exclusion convergence"
+    ],
+    "scratch fixture metadata rules": [
+      "scratch fixture metadata rules"
     ],
     "scratch folder usage": [
       "scratch folder usage"
@@ -71205,6 +71800,60 @@
     "sk create frontmatter remediation": [
       "sk-create-frontmatter remediation"
     ],
+    "sk create goal": [
+      "sk-create-goal"
+    ],
+    "sk create goal acceptance criteria": [
+      "sk-create-goal acceptance criteria"
+    ],
+    "sk create goal closeout acceptance": [
+      "sk-create-goal closeout acceptance"
+    ],
+    "sk create goal closeout plan": [
+      "sk-create-goal closeout plan"
+    ],
+    "sk create goal closeout summary": [
+      "sk-create-goal closeout summary"
+    ],
+    "sk create goal closeout tasks": [
+      "sk-create-goal closeout tasks"
+    ],
+    "sk create goal hub routing": [
+      "sk-create-goal hub routing"
+    ],
+    "sk create goal hub routing summary": [
+      "sk-create-goal hub routing summary"
+    ],
+    "sk create goal package check": [
+      "sk-create-goal package check"
+    ],
+    "sk create goal packet scaffold": [
+      "sk-create-goal packet scaffold"
+    ],
+    "sk create goal phase closeout": [
+      "sk-create-goal phase closeout"
+    ],
+    "sk create goal phase goal": [
+      "sk-create-goal phase goal"
+    ],
+    "sk create goal runtime mirrors": [
+      "sk-create-goal runtime mirrors"
+    ],
+    "sk create goal scaffold": [
+      "sk-create-goal scaffold"
+    ],
+    "sk create goal scaffold plan": [
+      "sk-create-goal scaffold plan"
+    ],
+    "sk create goal scaffold tasks": [
+      "sk-create-goal scaffold tasks"
+    ],
+    "sk create goal standards": [
+      "sk-create-goal standards"
+    ],
+    "sk create goal target tree": [
+      "sk-create-goal target tree"
+    ],
     "sk create manual testing playbook playbook": [
       "sk-create-manual-testing-playbook playbook"
     ],
@@ -71421,6 +72070,9 @@
     "sk doc compiled routing": [
       "sk-doc compiled routing"
     ],
+    "sk doc compiled routing republish": [
+      "sk-doc compiled routing republish"
+    ],
     "sk doc compliance sweep": [
       "sk-doc compliance sweep"
     ],
@@ -71466,6 +72118,9 @@
     "sk doc hub capabilities": [
       "sk-doc hub capabilities"
     ],
+    "sk doc hub files for create goal": [
+      "sk-doc hub files for create goal"
+    ],
     "sk doc human voice mode": [
       "sk-doc human voice mode"
     ],
@@ -71474,6 +72129,9 @@
     ],
     "sk doc legacy template debt cleanup": [
       "sk-doc legacy template debt cleanup"
+    ],
+    "sk doc newcomer routing count": [
+      "sk-doc newcomer routing count"
     ],
     "sk doc playbook coverage": [
       "sk-doc playbook coverage"
@@ -78830,6 +79488,15 @@
     "template optimization": [
       "template optimization"
     ],
+    "template parity approach": [
+      "template parity approach"
+    ],
+    "template parity evidence": [
+      "template parity evidence"
+    ],
+    "template parity tasks": [
+      "template parity tasks"
+    ],
     "template payload blockers": [
       "template payload blockers"
     ],
@@ -78991,6 +79658,9 @@
     ],
     "ten iteration review finds p0 p1": [
       "ten-iteration review finds P0 P1"
+    ],
+    "ten prompt routing measurement": [
+      "ten prompt routing measurement"
     ],
     "terminal accent one hue": [
       "terminal accent one hue"
@@ -79771,6 +80441,9 @@
     ],
     "top dominant margin aware good verdict": [
       "top-dominant margin-aware good verdict"
+    ],
+    "top level goal template": [
+      "top-level goal template"
     ],
     "top level session worktree wrapper": [
       "top-level session worktree wrapper"
@@ -81072,14 +81745,23 @@
     "unregister an obsidian vault": [
       "unregister an Obsidian vault"
     ],
+    "unregistered mode 6a": [
+      "unregistered mode 6a"
+    ],
     "unregistered mode packet decision": [
       "unregistered mode packet decision"
+    ],
+    "unregistered mode verification": [
+      "unregistered mode verification"
     ],
     "unregistered packet inert premise": [
       "unregistered packet inert premise"
     ],
     "unregistered packet not inert": [
       "unregistered packet not inert"
+    ],
+    "unregistered sk doc mode": [
+      "unregistered sk-doc mode"
     ],
     "unresolved council disagreements after rounds": [
       "unresolved council disagreements after rounds"

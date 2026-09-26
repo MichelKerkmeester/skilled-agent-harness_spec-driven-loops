@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7354,
-    "ok": 11468,
+    "missing-frontmatter": 7369,
+    "ok": 11547,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22513,
+  "documentsScanned": 22607,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e281ef9d5707232dd3e9ca80090fdd1ea13622adfec0bb8a9817bcf47646da99",
+  "manifestHash": "3252783c03959ebbddd1996f510b590ba289f2521dbccc03288bbc41d106ae47",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 27782,
+      "ok": 28009,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -29566,6 +29566,24 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/benchmark/reports/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".skilled/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/README.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -30779,6 +30797,78 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/version-derivation/skip-on-differ.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.0.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/add-goal-to-packet-without-goal.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/cut-over-budget-parent.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/detect-unbound-phase.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/phase-parent-and-nested-child-goals.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/resend-parent-after-child-change.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/route-session-goal-away.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/top-level-goal.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -70523,6 +70613,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures",
       "reason": "excluded directory"
     },
@@ -71948,6 +72042,46 @@
     },
     {
       "path": "specs/sk-doc/059-skill-changelog-retrofit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/002-mode-scaffold/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/006-goal-conformance-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/008-command-and-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/scratch",
       "reason": "excluded directory"
     },
     {
