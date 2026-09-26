@@ -1,0 +1,10 @@
+{
+  "spec_folder": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research",
+  "current_round": 1,
+  "max_rounds": 1,
+  "seats_per_round": 3,
+  "convergence_signal": "two-of-three-agree",
+  "created_at": "2026-09-26T00:00:00.000Z",
+  "updated_at": "2026-09-26T00:00:00.000Z",
+  "status": "complete"
+}
