@@ -16,7 +16,7 @@ version: 1.6.0.0
 
 # cli-external-orchestration: Feature Catalog
 
-This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of seven CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`) or the `cli-jev` transport packet, each independently classifying intent, choosing or confirming a provider, and conducting the dispatched session. The transport is the exception: it returns one typed judgment and runs nothing. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
+This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of seven CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`), each independently classifying intent, choosing or confirming a provider, and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
 
 ---
 
