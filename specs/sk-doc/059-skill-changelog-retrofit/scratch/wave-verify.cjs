@@ -14,8 +14,9 @@ const ROOT = process.cwd();
 const CHECKER = path.join(HERE, 'check_changelog_shape.py');
 const HVR = '.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py';
 
+// Must match the driver's naming, since this reads the originals the driver saved.
 function safeName(file) {
-  return file.replace(/\//g, '__');
+  return file.replace(/[^A-Za-z0-9._-]+/g, '__');
 }
 
 function frontmatter(text) {

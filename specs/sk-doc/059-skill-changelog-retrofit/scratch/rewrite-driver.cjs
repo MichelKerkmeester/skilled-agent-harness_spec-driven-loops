@@ -6,8 +6,8 @@
 // disk; anything else is restored and its draft kept for a human to read.
 // Luna runs through the GPT plan on cli-pi, cli-codex and cli-opencode and falls
 // back to the metered gateway only while that plan reports a usage limit. The
-// cli-devin lane runs the same model on the Devin account. Each CLI runs at most
-// two dispatches at a time.
+// cli-devin lane runs the same model on the Devin account. Each lane runs at most
+// two dispatches at a time, and on the gateway route every lane runs cli-pi.
 //
 // Speed comes from doing less per dispatch, not from a lower effort. The cli-pi and
 // cli-codex workers start without the repository's AGENTS.md, because the brief
@@ -55,12 +55,23 @@ const CONTRACT = (() => {
 })();
 const HOUSE_STYLE = fs.readFileSync(path.join(process.cwd(), EXEMPLAR), 'utf8').split('\n').slice(0, 60).join('\n');
 
-const LANES = ['pi', 'codex', 'devin', 'opencode'];
+const LANES = ['pi', 'codex', 'devin', 'opencode', 'agent'];
 const MAX_SLOTS_PER_CLI = 2;
+// The agent lane is not a CLI: each slot is an Opus subagent the orchestrator
+// dispatches, so it has its own cap. Its fact check still runs on cli-pi.
+const MAX_AGENT_SLOTS = 4;
+const AGENT_WAITER = path.join(HERE, 'agent-wait.cjs');
+// A subagent's brief waits for the orchestrator to dispatch it, so its rewrite gets
+// longer than a CLI's before the attempt counts as timed out.
+const AGENT_TIMEOUT_MS = 120 * 60 * 1000;
 
 const REWRITE_TIMEOUT_MS = 30 * 60 * 1000;
 const VERIFY_TIMEOUT_MS = 15 * 60 * 1000;
 const GPT_COOLDOWN_MS = 30 * 60 * 1000;
+// A run can name its own gateway model, so the files Luna cannot keep on the gateway
+// can run on another model beside a Luna run. MiMo v2.6 Pro tops out at high.
+const GATEWAY_MODEL = process.env.DRIVER_GATEWAY_MODEL || 'llmgateway/gpt-6-luna';
+const GATEWAY_EFFORT = process.env.DRIVER_GATEWAY_EFFORT || 'xhigh';
 const MAX_ATTEMPTS = 3;
 // Enough earlier findings to stop a fix loop, few enough that the latest ones lead.
 const MAX_EARLIER_FINDINGS = 12;
@@ -76,6 +87,10 @@ const MAX_TOOL_RETRIES = 3;
 const TOOL_RETRY_PAUSE_MS = 60000;
 const MISSING_RETRY_PAUSE_MS = 5000;
 const LIMIT_RE = /usage limit|rate[ _-]?limit|too many requests|\b429\b|insufficient_quota|quota exceeded|hit your (usage )?limit|limit reached|exceeded your/i;
+// A refused credential is not a usage limit, so it never opens the gateway route.
+// Every dispatch on a refused key fails within seconds, which spent all of a file's
+// attempts before anyone saw it, so a GPT lane stops taking files instead.
+const AUTH_RE = /incorrect api key provided|invalid_api_key|\b401 unauthorized\b/i;
 // system-spec-kit groups its older changelogs one level down, in v1+/, v2+/ and v3+/.
 // A release entry is named for its version; a design-style bundle that happens to be
 // called "changelog" also lives in a changelog folder and must never be rewritten.
@@ -102,8 +117,9 @@ function parseLanes(spec) {
     const [name, n] = item.split(':');
     const slots = n === undefined ? 1 : Number(n);
     if (!LANES.includes(name)) throw new Error(`unknown lane ${name}`);
-    if (!Number.isInteger(slots) || slots < 1 || slots > MAX_SLOTS_PER_CLI) {
-      throw new Error(`lane ${name} asks for ${n} slots; each CLI runs 1 to ${MAX_SLOTS_PER_CLI}`);
+    const cap = name === 'agent' ? MAX_AGENT_SLOTS : MAX_SLOTS_PER_CLI;
+    if (!Number.isInteger(slots) || slots < 1 || slots > cap) {
+      throw new Error(`lane ${name} asks for ${n} slots; it runs 1 to ${cap}`);
     }
     return { name, slots };
   });
@@ -131,10 +147,11 @@ const read = (p) => fs.readFileSync(p, 'utf8');
 const now = () => new Date().toISOString();
 
 let gptLimitedUntil = 0;
-const counts = { pass: 0, fail: 0, requeued: 0, gatewayDispatches: 0, gptDispatches: 0, devinDispatches: 0 };
+let gptAuthRejected = false;
+const counts = { pass: 0, fail: 0, requeued: 0, gatewayDispatches: 0, gptDispatches: 0, devinDispatches: 0, agentDispatches: 0 };
 
 function writeStatus(extra) {
-  fs.writeFileSync(STATUS_FILE, JSON.stringify({ at: now(), gptLimitedUntil: gptLimitedUntil ? new Date(gptLimitedUntil).toISOString() : null, ...counts, ...extra }, null, 2));
+  fs.writeFileSync(STATUS_FILE, JSON.stringify({ at: now(), gptLimitedUntil: gptLimitedUntil ? new Date(gptLimitedUntil).toISOString() : null, gptAuthRejected, ...counts, ...extra }, null, 2));
 }
 
 // session is null for a one-shot dispatch, or { id, resume } for a rewrite whose
@@ -146,6 +163,15 @@ function buildCommand(lane, route, kind, prompt, lastMessageFile, session) {
   const effort = 'xhigh';
   const noTools = kind === 'verify' ? ['--no-tools'] : [];
   const resume = Boolean(session && session.resume);
+  if (lane === 'agent') {
+    // The rewrite is an Opus subagent's: the waiter hands it the brief through a
+    // file and returns its handback. The fact check stays on the gateway model, so
+    // a second model still reviews every rewrite.
+    if (kind === 'verify') {
+      return ['pi', ['-p', '--offline', '--mode', 'text', '--model', GATEWAY_MODEL, '--thinking', GATEWAY_EFFORT, '--no-context-files', ...noTools, prompt], {}];
+    }
+    return ['node', [AGENT_WAITER, lastMessageFile, prompt], {}];
+  }
   if (lane === 'devin') {
     // Devin bills its own account, not the GPT plan, so it never takes the gateway
     // route. A rewrite runs its own checks, which only the dangerous mode allows.
@@ -158,7 +184,7 @@ function buildCommand(lane, route, kind, prompt, lastMessageFile, session) {
     ], {}];
   }
   if (route === 'gateway') {
-    return ['pi', ['-p', '--offline', '--mode', 'text', '--model', 'llmgateway/gpt-6-luna', '--thinking', effort, '--no-context-files', ...noTools, prompt], {}];
+    return ['pi', ['-p', '--offline', '--mode', 'text', '--model', GATEWAY_MODEL, '--thinking', GATEWAY_EFFORT, '--no-context-files', ...noTools, prompt], {}];
   }
   if (lane === 'pi') {
     const sessionArgs = session ? ['--session-id', session.id] : [];
@@ -228,7 +254,7 @@ function runProcess(cmd, args, logFile, timeoutMs, extraEnv) {
   });
 }
 
-const routeFor = (lane) => (lane === 'devin' ? 'devin' : Date.now() < gptLimitedUntil ? 'gateway' : 'gpt');
+const routeFor = (lane) => (lane === 'devin' || lane === 'agent' ? lane : Date.now() < gptLimitedUntil ? 'gateway' : 'gpt');
 
 async function dispatch(lane, kind, prompt, tag, session = null, route = routeFor(lane)) {
   const base = path.join(RUN_DIR, `${tag}.${kind}.${lane}.${route}`);
@@ -237,8 +263,10 @@ async function dispatch(lane, kind, prompt, tag, session = null, route = routeFo
   const [cmd, args, extraEnv] = buildCommand(lane, route, kind, prompt, lastMessageFile, session);
   if (route === 'gateway') counts.gatewayDispatches += 1;
   else if (route === 'devin') counts.devinDispatches += 1;
+  else if (route === 'agent') counts.agentDispatches += 1;
   else counts.gptDispatches += 1;
-  const res = await runProcess(cmd, args, `${base}.log`, kind === 'verify' ? VERIFY_TIMEOUT_MS : REWRITE_TIMEOUT_MS, extraEnv);
+  const timeout = kind === 'verify' ? VERIFY_TIMEOUT_MS : route === 'agent' ? AGENT_TIMEOUT_MS : REWRITE_TIMEOUT_MS;
+  const res = await runProcess(cmd, args, `${base}.log`, timeout, extraEnv);
   let reply = fs.existsSync(lastMessageFile) ? read(lastMessageFile) : res.output;
   let sessionId = null;
   if (route === 'gpt' && lane === 'opencode') {
@@ -397,6 +425,10 @@ async function getVerdict(lane, orig, file, tag) {
     if (!verdict && vr.route === 'gpt' && LIMIT_RE.test(vr.output)) {
       gptLimitedUntil = Date.now() + GPT_COOLDOWN_MS;
     }
+    if (!verdict && vr.route === 'gpt' && AUTH_RE.test(vr.output)) {
+      gptAuthRejected = true;
+      return { verdict: null, route: vr.route, authRejected: true };
+    }
   }
   return { verdict, route: vr && vr.route };
 }
@@ -444,7 +476,11 @@ async function processFile(file, lane, prior) {
   };
   let current = [];
   const earlier = () => seen.filter((x) => !current.includes(x)).slice(-MAX_EARLIER_FINDINGS);
+  // An orchestrator review reads the whole draft, so every sentence it leaves alone
+  // has passed. Findings older than that review are settled: shown again, they led a
+  // retry to undo sentences the review had accepted.
   for (const h of (prior && prior.history) || []) {
+    if (h.route === 'review') seen.length = 0;
     if (h.problem === 'fidelity' && h.items) noteFindings(h.items);
   }
 
@@ -463,12 +499,14 @@ async function processFile(file, lane, prior) {
 
   // The rewrite session a retry can continue, on the route that created it. cli-devin
   // reports no session id a driver can read safely while two of its dispatches run,
-  // so its retries start fresh.
+  // so its retries start fresh. Gateway retries start fresh too: a resumed Luna gateway
+  // turn is rejected because the upstream cannot decrypt the session's encrypted
+  // reasoning items, so it fails without touching the file.
   let session = null;
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     const before = read(abs);
     const route = routeFor(lane);
-    const resume = Boolean(session && feedback && session.route === route && lane !== 'devin');
+    const resume = Boolean(session && feedback && session.route === route && lane !== 'devin' && route !== 'gateway');
     let sessionArg = null;
     if (resume) sessionArg = { id: session.id, resume: true };
     else if (lane === 'pi' && route === 'gpt') sessionArg = { id: crypto.randomUUID(), resume: false };
@@ -477,9 +515,18 @@ async function processFile(file, lane, prior) {
     const rw = await dispatch(lane, 'rewrite', prompt, `${tag}.a${attempt}${toolRetries ? `r${toolRetries}` : ''}`, sessionArg, route);
     session = rw.sessionId ? { id: rw.sessionId, route } : null;
     const changed = read(abs) !== before;
+    // A requeued file goes back to its original in the tree: a retry may have laid
+    // its draft there, and a run that stops before the requeue comes round would
+    // otherwise leave an unreviewed draft in place.
     if (!changed && (rw.route === 'gpt') && LIMIT_RE.test(rw.output)) {
       gptLimitedUntil = Date.now() + GPT_COOLDOWN_MS;
+      fs.copyFileSync(orig, abs);
       return { requeue: true, reason: 'gpt usage limit' };
+    }
+    if (!changed && (rw.route === 'gpt') && AUTH_RE.test(rw.output)) {
+      gptAuthRejected = true;
+      fs.copyFileSync(orig, abs);
+      return { requeue: true, reason: 'gpt credential rejected' };
     }
     // An executor whose own tools failed never read the file, so the run says
     // nothing about the rewrite. Retry the same attempt after a pause instead of
@@ -515,7 +562,13 @@ async function processFile(file, lane, prior) {
       feedback = findings;
       continue;
     }
-    const { verdict, route: verifyRoute } = await getVerdict(lane, orig, file, `${tag}.a${attempt}`);
+    const { verdict, route: verifyRoute, authRejected } = await getVerdict(lane, orig, file, `${tag}.a${attempt}`);
+    // The unreviewed rewrite is dropped rather than kept as a draft: the file's
+    // earlier draft and findings stay in place for the retry.
+    if (!verdict && authRejected) {
+      fs.copyFileSync(orig, abs);
+      return { requeue: true, reason: 'gpt credential rejected' };
+    }
     if (!verdict) {
       history.push({ attempt, route: verifyRoute, problem: 'verifier gave no verdict' });
       continue;
@@ -628,6 +681,10 @@ async function main() {
 
   async function worker(lane) {
     while (!fs.existsSync(STOP_FILE)) {
+      if (gptAuthRejected && routeFor(lane) === 'gpt') {
+        console.log(`${now()} ${lane} stops taking files: the GPT plan rejected its credential`);
+        break;
+      }
       takeRequeued();
       if (!queue.length) break;
       const file = queue.shift();

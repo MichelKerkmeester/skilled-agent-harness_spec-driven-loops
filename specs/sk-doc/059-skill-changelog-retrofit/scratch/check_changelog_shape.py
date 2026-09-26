@@ -264,7 +264,11 @@ def check(path, old_path=None):
             if re.search(r"spec folder", heading, re.I) or re.search(
                 r"spec folder|^\W*(source|spec|packet)s?\W*:", line, re.I
             ):
-                credited += [m.rstrip(".") for m in re.findall(r"specs/[\w./-]+", line)]
+                # A saved memory file lives inside a spec folder but never credits one,
+                # even when its Files Changed row names the folder it was moved into.
+                credited += [
+                    m.rstrip(".") for m in re.findall(r"specs/[\w./-]+", line) if "/memory/" not in m
+                ]
         if credited and not any(l.strip().startswith("> Spec folder:") for l in body.splitlines()):
             errors.append(
                 "the original credits a spec folder ("
