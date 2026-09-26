@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract",
+  "description": "The goal contract has durable, chat, and objective slices; phase-parent goals also carry a binding table, while children carry their own phase",
+  "keywords": [
+    "goal",
+    "contract",
+    "durable",
+    "chat",
+    "objective",
+    "slices",
+    "phase-parent",
+    "goals",
+    "also",
+    "carry",
+    "binding",
+    "table",
+    "while",
+    "children",
+    "own",
+    "phase"
+  ],
+  "lastUpdated": "2026-09-25T20:09:43.359Z",
+  "specId": "001",
+  "folderSlug": "goal-inventory-and-mode-contract",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

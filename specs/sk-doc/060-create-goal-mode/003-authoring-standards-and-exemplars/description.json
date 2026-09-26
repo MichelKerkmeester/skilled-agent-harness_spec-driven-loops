@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars",
+  "description": "Goal files can retain a template objective, include criteria that require checking other files or state a child count that conflicts with the binding",
+  "keywords": [
+    "goal",
+    "files",
+    "retain",
+    "template",
+    "objective",
+    "include",
+    "criteria",
+    "require",
+    "checking",
+    "state",
+    "child",
+    "count",
+    "conflicts",
+    "binding"
+  ],
+  "lastUpdated": "2026-09-25T20:32:26.069Z",
+  "specId": "003",
+  "folderSlug": "authoring-standards-and-exemplars",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

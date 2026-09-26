@@ -1,0 +1,19 @@
+# Final routing replay, 2026-09-26
+# columns: set index | advisor top@confidence xexit | compiled-route action [targets] xexit | prompt
+NEWCOMER 1 | sk-doc@0.95 x0 | route [sk-create-goal] x0 | Write the goal document for this spec packet and make its completion checks testable.
+NEWCOMER 2 | sk-doc@0.8497 x0 | route [sk-create-goal] x0 | Turn this feature spec into a durable objective and three to seven standalone completion checks.
+NEWCOMER 3 | system-spec-kit@0.82 x0 | route [sk-create-goal] x0 | Draft the phase parent's directive and a complete list of phase-child goal files.
+NEWCOMER 4 | sk-doc@0.8779 x0 | route [sk-create-goal] x0 | Create a phase-child goal from this phase specification.
+NEWCOMER 5 | sk-doc@0.95 x0 | route [sk-create-goal] x0 | Our packet has no goal document. Write one that states purpose and measurable criteria.
+NEWCOMER 6 | sk-doc@0.8606 x0 | route [sk-create-goal] x0 | Make the goal criteria checkable without inspecting other files.
+NEWCOMER 7 | sk-doc@0.95 x0 | route [sk-create-goal] x0 | Write an objective for a packet that will author new documentation.
+NEWCOMER 8 | sk-doc@0.8623 x0 | route [sk-create-goal] x0 | Create the parent objective for this phase plan with a complete child-phase goal list.
+NEWCOMER 9 | sk-doc@0.9381 x0 | route [sk-create-goal] x0 | Write the goal document for a nested sub-phase.
+NEWCOMER 10 | sk-doc@0.8298 x0 | route [sk-create-goal] x0 | Derive a concise phase objective and exit criteria from its spec.
+PROBE 1 | system-spec-kit@0.82 x0 | defer [] x0 | Set the goal for this session.
+PROBE 2 | system-spec-kit@0.82 x0 | defer [] x0 | Bind the goal to this session.
+PROBE 3 | system-spec-kit@0.82 x0 | defer [] x0 | Update the goal for the current session.
+PROBE 4 | ?@? x0 | defer [] x0 | Resend the goal.
+PROBE 5 | cli-external-orchestration@0.95 x0 | defer [] x0 | How do I use /goal-opencode?
+PROBE 6 | cli-external-orchestration@0.95 x0 | defer [] x0 | Read a packet with /goal-cursor.
+EXTRA 1 | sk-doc@0.9474 x0 | route [sk-create-goal] x0 | Write a goal.md for this spec packet.

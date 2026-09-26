@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/002-mode-scaffold",
+  "description": "The parent assigns packet scaffolding to phase 002 and reserves authoring standards, conformance checking, routing and command work for later phases",
+  "keywords": [
+    "parent",
+    "assigns",
+    "packet",
+    "scaffolding",
+    "phase",
+    "reserves",
+    "authoring",
+    "standards",
+    "conformance",
+    "checking",
+    "routing",
+    "command",
+    "work",
+    "later",
+    "phases"
+  ],
+  "lastUpdated": "2026-09-25T20:21:13.344Z",
+  "specId": "002",
+  "folderSlug": "mode-scaffold",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

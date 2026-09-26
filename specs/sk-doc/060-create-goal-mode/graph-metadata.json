@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/060-create-goal-mode",
+  "spec_folder": "sk-doc/060-create-goal-mode",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract",
+    "sk-doc/060-create-goal-mode/002-mode-scaffold",
+    "sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars",
+    "sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring",
+    "sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff",
+    "sk-doc/060-create-goal-mode/006-goal-conformance-check",
+    "sk-doc/060-create-goal-mode/007-hub-routing-integration",
+    "sk-doc/060-create-goal-mode/008-command-and-playbook",
+    "sk-doc/060-create-goal-mode/009-verification-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "060-create-goal-mode",
+      "sk-create-goal",
+      "create goal mode",
+      "author a packet goal",
+      "create:goal command",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "060-create-goal-mode",
+      "sk-create-goal",
+      "goal",
+      "mode",
+      "author",
+      "packet",
+      "command",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "specs/sk-doc/060-create-goal-mode/goal.md",
+      "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md",
+      "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md",
+      ".skilled/skills/sk-doc/mode-registry.json",
+      ".skilled/commands/create/goal.md",
+      ".skilled/skills/sk-doc/command-metadata.json",
+      ".skilled/commands/create/README.txt",
+      ".claude/commands/create/goal.md",
+      ".codex/prompts/create-goal.md",
+      ".pi/prompts/create-goal.md",
+      ".cursor/commands/create-goal.md",
+      "001-goal-inventory-and-mode-contract/mode-boundary.md",
+      "001-goal-inventory-and-mode-contract/goal.md",
+      "002-mode-scaffold/goal.md",
+      "003-authoring-standards-and-exemplars/goal.md",
+      "004-parent-and-nested-goal-authoring/goal.md",
+      "005-budget-and-chat-slice-handoff/goal.md",
+      "006-goal-conformance-check/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/060-create-goal-mode/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "wave1-goal-system-audit.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "wave1-mode-anatomy-audit.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create-goal.md",
+        "kind": "doc",
+        "path": ".codex/prompts/create-goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-boundary.md",
+        "kind": "doc",
+        "path": "001-goal-inventory-and-mode-contract/mode-boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Two Luna",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "LLM Gateway",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the LLM Gateway",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet goals already exist in this repository",
+    "created_at": "2026-09-25T18:48:45Z",
+    "last_save_at": "2026-09-26T09:11:17.895Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:bb5fcec9ec3bd2bfa7b639f9d7f12ff32485bd8596b880d46435198b472b6b0a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5ddb284ecc57e03d8404ba3dbdf84b71ab87701e6d6967b0c21adde9bdb66c72"
+    },
+    "last_active_at": null
+  }
+}

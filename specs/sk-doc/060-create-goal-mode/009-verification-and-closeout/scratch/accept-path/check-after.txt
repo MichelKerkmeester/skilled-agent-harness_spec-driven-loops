@@ -1,0 +1,17 @@
+== check-goal.cjs specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission
+[check-goal] packet=specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission
+[check-goal] 1/4 PASS missing-binding-row findings=0
+[check-goal] 2/4 PASS placeholder findings=0
+[check-goal] 3/4 PASS criteria-count findings=0
+[check-goal] 4/4 PASS parent-budget findings=0
+[check-goal] RESULT: PASSED (4/4 checks)
+exit=0
+
+== check-goal.cjs specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes
+[check-goal] packet=specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes
+[check-goal] 1/4 PASS missing-binding-row findings=0
+[check-goal] 2/4 PASS placeholder findings=0
+[check-goal] 3/4 PASS criteria-count findings=0
+[check-goal] 4/4 PASS parent-budget findings=0
+[check-goal] RESULT: PASSED (4/4 checks)
+exit=0

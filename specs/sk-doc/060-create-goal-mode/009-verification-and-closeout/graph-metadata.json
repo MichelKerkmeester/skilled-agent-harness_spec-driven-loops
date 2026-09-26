@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/060-create-goal-mode/009-verification-and-closeout",
+  "spec_folder": "sk-doc/060-create-goal-mode/009-verification-and-closeout",
+  "parent_id": "sk-doc/060-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-goal phase closeout",
+      "goal authoring playbook execution",
+      "real packet goal acceptance path",
+      "sk-doc newcomer routing count",
+      "goal mode release link",
+      "sk-create-goal closeout plan",
+      "goal mode acceptance run",
+      "ten prompt routing measurement",
+      "goal packet binding proof",
+      "sk-create-goal closeout tasks",
+      "goal playbook verdicts",
+      "real goal accept-path test"
+    ],
+    "key_topics": [
+      "sk-create-goal",
+      "phase",
+      "closeout",
+      "goal",
+      "authoring",
+      "playbook",
+      "execution",
+      "real",
+      "packet",
+      "acceptance",
+      "path",
+      "sk-doc"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-goal/README.md",
+      ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.0.0.0.md",
+      ".skilled/skills/sk-doc/benchmark/reports/README.md",
+      "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md",
+      "scratch/routing-final.txt",
+      "scratch/accept-path/goal-packet.txt",
+      "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-009-verification-and-closeout.md",
+      "specs/sk-doc/060-create-goal-mode/spec.md",
+      "specs/sk-doc/060-create-goal-mode/goal.md",
+      "scratch/accept-path/check-before.txt",
+      "scratch/accept-path/parent-goal.before.md",
+      "scratch/accept-path/phase-map-vs-disk.txt",
+      ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/results.csv",
+      "scratch/accept-path/check-after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-final.txt",
+        "kind": "file",
+        "path": "scratch/routing-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "goal-packet.txt",
+        "kind": "file",
+        "path": "scratch/accept-path/goal-packet.txt",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-060-009-verification-and-closeout.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-009-verification-and-closeout.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-before.txt",
+        "kind": "file",
+        "path": "scratch/accept-path/check-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "parent-goal.before.md",
+        "kind": "doc",
+        "path": "scratch/accept-path/parent-goal.before.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-map-vs-disk.txt",
+        "kind": "file",
+        "path": "scratch/accept-path/phase-map-vs-disk.txt",
+        "source": "derived"
+      },
+      {
+        "name": "results.csv",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/results.csv",
+        "source": "derived"
+      },
+      {
+        "name": "check-after.txt",
+        "kind": "file",
+        "path": "scratch/accept-path/check-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 008's outgoing check verifies command mirrors and playbook package conformance, but it does not execute the scenarios against the mode or prove an accept path against a real packet (specs/sk-doc/060-create-goal-mode/008-command-and-playbook/spec.md:24-33, 82-89, 105-113)",
+    "created_at": "2026-09-25T18:48:52Z",
+    "last_save_at": "2026-09-26T09:12:36.279Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d53fa7cd6393a3bda095966fc14bbd3d3ab941fbce2673cb6d4c3210beee3bce",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3287f4668dd4b877c8dd38517c14b5fa544e2218f0927f33d7deccc0ad369e85",
+      "plan.md": "f178b5d39b3bc00c442e9e366ac548382fb0639ebcf1496a4fd97c6f333f7e86",
+      "tasks.md": "ad07377d9cedfa75cf1883d0d947d5978198a98a218d351ae7a2a37f8005cfc0",
+      "implementation-summary.md": "328128dd7f8c9470ff24613ee45b22e7aa73cfe4935e77e2d6ab781ba104de8f"
+    },
+    "last_active_at": null
+  }
+}

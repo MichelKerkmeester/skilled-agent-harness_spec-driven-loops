@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/002-goal-authoring",
+  "description": "Phase 2: goal-authoring",
+  "keywords": [
+    "phase",
+    "goal-authoring"
+  ],
+  "lastUpdated": "2026-09-25T20:36:29.210Z",
+  "specId": "002",
+  "folderSlug": "goal-authoring",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode",
+    "004-parent-and-nested-goal-authoring",
+    "scratch",
+    "001-parent-and-nested-goals-fixture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

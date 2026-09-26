@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/006-goal-conformance-check",
+  "description": "The current validator measures the durable-slice budget and checks that listed binding rows resolve, but it returns when the binding anchor is absent",
+  "keywords": [
+    "current",
+    "validator",
+    "measures",
+    "durable-slice",
+    "budget",
+    "checks",
+    "listed",
+    "binding",
+    "rows",
+    "resolve",
+    "returns",
+    "anchor",
+    "absent"
+  ],
+  "lastUpdated": "2026-09-26T04:28:54.881Z",
+  "specId": "006",
+  "folderSlug": "goal-conformance-check",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

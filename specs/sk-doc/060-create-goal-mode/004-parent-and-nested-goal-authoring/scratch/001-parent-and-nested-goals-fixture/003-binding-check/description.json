@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/003-binding-check",
+  "description": "Phase 3: binding-check",
+  "keywords": [
+    "phase",
+    "binding-check"
+  ],
+  "lastUpdated": "2026-09-25T20:36:30.065Z",
+  "specId": "003",
+  "folderSlug": "binding-check",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode",
+    "004-parent-and-nested-goal-authoring",
+    "scratch",
+    "001-parent-and-nested-goals-fixture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
