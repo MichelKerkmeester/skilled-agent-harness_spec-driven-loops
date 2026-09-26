@@ -29,6 +29,7 @@
         "feature-catalog/hooks-and-plugin/claude-hook.md",
         "feature-catalog/hooks-and-plugin/goal-opencode-plugin.md",
         "feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md",
+        "feature-catalog/hooks-and-plugin/pi-prompt-advisor.md",
         "feature-catalog/lifecycle-routing/age-haircut.md",
         "feature-catalog/lifecycle-routing/archive-handling.md",
         "feature-catalog/lifecycle-routing/rollback.md",

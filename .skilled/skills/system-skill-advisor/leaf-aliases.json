@@ -136,6 +136,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/hooks-and-plugin/pi-prompt-advisor.md",
+    "diskPath": "feature-catalog/hooks-and-plugin/pi-prompt-advisor.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/lifecycle-routing/age-haircut.md",
     "diskPath": "feature-catalog/lifecycle-routing/age-haircut.md"
   },
