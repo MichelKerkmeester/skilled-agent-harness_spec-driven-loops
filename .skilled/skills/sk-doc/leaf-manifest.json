@@ -99,6 +99,18 @@
     },
     {
       "leaves": [
+        "assets/.gitkeep",
+        "assets/goal-exemplars.md",
+        "references/README.md",
+        "references/authoring-standards.md",
+        "references/budget-and-handoff.md",
+        "references/parent-and-nested-goals.md"
+      ],
+      "packet": "sk-create-goal",
+      "workflowMode": "sk-create-goal"
+    },
+    {
+      "leaves": [
         "assets/manual-testing-playbook-snippet-template.md",
         "assets/manual-testing-playbook-template.md",
         "references/README.md",

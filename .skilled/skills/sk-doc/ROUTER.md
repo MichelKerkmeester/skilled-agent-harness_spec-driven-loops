@@ -21,7 +21,7 @@ This is sk-doc's second-layer (surface) router, first-class at the hub root as
 `ROUTER.md`. The hub selects a workflow mode in [`hub-router.json`](hub-router.json)
 (sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command,
 sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark,
-sk-create-with-human-voice, or sk-create-quality-control);
+sk-create-goal, sk-create-with-human-voice, or sk-create-quality-control);
 this doc maps a request's documentation/authoring intent to the exact packet-local
 leaf resources that mode should load. Every path is either packet-qualified
 (`<packet>/references|assets/…`) or an authored shared-alias disk path (`shared/…`),
@@ -123,6 +123,15 @@ emits leaf paths, and this router never re-decides the mode.
   because `agent frontmatter` belongs to agent-creation and a bare "frontmatter"
   would take that route away from it. The field reference is the always-loaded
   leaf, because resolving the document class comes before any field rule.
+- **goal-authoring leaves** — the goal authoring standards, the goal exemplars,
+  the parent/nested goal workflows and the budget/handoff reference a request to
+  author or revise a packet's `goal.md` loads. Fired by "packet goal / goal.md /
+  goal document / author goal.md / phase parent goal / goal criteria /
+  completion checks" requests. The phrases are qualified rather than bare,
+  because a bare "goal" and the session verbs belong to session-goal management
+  (set, bind, update, resend), which the goal hooks and host commands own. The
+  authoring standards are the always-loaded leaf, because what a goal must state
+  comes before how one is phrased.
 - **full-inventory leaves** — the entire sk-doc toolkit. `FULL_INVENTORY` is the
   single explicit full-toolkit intent; no other intent enumerates the whole hub.
   Fired only by an explicit "show the full sk-doc toolkit / everything sk-doc
@@ -160,6 +169,7 @@ INTENT_SIGNALS = {
     "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff"]},
     "REPO_RULE": {"weight": 4, "keywords": ["repo rule", "repo-rules", "repo rules", "project rule", "repo rule file", "REPO RULES.md", "trigger table", "rule router", "retire a rule", "retire a repo rule", "revise a rule", "revise a repo rule", "add a repo rule", "always-loaded rule", "rule that binds"]},
     "FRONTMATTER": {"weight": 4, "keywords": ["yaml frontmatter", "frontmatter block", "frontmatter template", "frontmatter field", "frontmatter fields", "trigger_phrases", "trigger phrases", "importance_tier", "contextType", "description budget", "4-part version", "X.Y.Z.W", "frontmatter versioning", "frontmatter version", "version field", "frontmatter validation", "missing frontmatter", "frontmatter contract", "yaml header", "goes at the top of the file", "version number at the top", "importance tier", "versioning pass", "stopped showing up in suggestions", "validator says my file is missing", "description too long", "edit count", "field the validator wants"]},
+    "GOAL_AUTHORING": {"weight": 4, "keywords": ["create packet goal", "packet goal", "goal.md", "author goal.md", "revise packet goal", "phase parent goal", "nested phase child goal", "nested goal", "add a goal file", "write a goal file", "draft a goal file", "goal file", "goal document", "goal criteria", "completion checks", "measurable criteria", "durable objective", "phase objective", "parent objective", "objective for a packet", "phase-child goal", "child-phase goal", "binding table", "goal chat slice"]},
     "FULL_INVENTORY": {"weight": 4, "keywords": ["full sk-doc toolkit", "all templates", "entire toolkit", "everything sk-doc offers"]},
 }
 
@@ -245,6 +255,13 @@ RESOURCE_MAP = {
         "sk-create-frontmatter/references/frontmatter-versioning.md",
         "sk-create-frontmatter/references/README.md"
     ],
+    "GOAL_AUTHORING": [
+        "sk-create-goal/references/authoring-standards.md",
+        "sk-create-goal/assets/goal-exemplars.md",
+        "sk-create-goal/references/parent-and-nested-goals.md",
+        "sk-create-goal/references/budget-and-handoff.md",
+        "sk-create-goal/references/README.md"
+    ],
     "FULL_INVENTORY": [
         "sk-create-agent/assets/agent-template.md",
         "sk-create-agent/references/README.md",
@@ -257,6 +274,12 @@ RESOURCE_MAP = {
         "sk-create-frontmatter/assets/frontmatter-templates.md",
         "sk-create-frontmatter/references/README.md",
         "sk-create-frontmatter/references/frontmatter-versioning.md",
+        "sk-create-goal/assets/.gitkeep",
+        "sk-create-goal/assets/goal-exemplars.md",
+        "sk-create-goal/references/README.md",
+        "sk-create-goal/references/authoring-standards.md",
+        "sk-create-goal/references/budget-and-handoff.md",
+        "sk-create-goal/references/parent-and-nested-goals.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md",

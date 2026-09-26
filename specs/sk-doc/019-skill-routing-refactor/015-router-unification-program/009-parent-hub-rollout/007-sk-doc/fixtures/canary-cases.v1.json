@@ -241,6 +241,23 @@
       }
     },
     {
+      "id": "single-create-goal",
+      "prompt": "/create:goal",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-create-goal"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-create-goal"
+        ],
+        "expectedResources": [
+          "sk-create-goal/SKILL.md"
+        ]
+      }
+    },
+    {
       "id": "ordered-create-then-quality",
       "prompt": "create skill and validate documentation quality",
       "expectedAction": "route",

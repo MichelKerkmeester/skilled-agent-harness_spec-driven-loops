@@ -41,7 +41,7 @@ Commands are organized into five groups plus root-level utilities:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
-| **create** | `commands/create/` | 12 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
+| **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 5 | Deep research, review, AI council and improvement loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
@@ -80,13 +80,14 @@ command/
 ├── prompt/                   # Prompt engineering command group
 │   └── improve.md            # Canonical prompt improvement command (/prompt:improve)
 ├── create/                   # Component creation commands — see create/README.txt for the
-│   │                         # full twelve-command table and per-command invocations
+│   │                         # full thirteen-command table and per-command invocations
 │   ├── agent.md              # Create new agent
 │   ├── benchmark.md          # Promote a curated MCP benchmark folder
 │   ├── changelog.md          # Create changelog entry
 │   ├── command.md            # Create or update OpenCode slash command set
 │   ├── diff.md               # Create a before/after document diff report
 │   ├── feature-catalog.md    # Create or update feature catalog package
+│   ├── goal.md               # Author or revise a packet goal.md
 │   ├── manual-testing-playbook.md   # Create or update manual testing playbook package
 │   ├── readme.md             # Create a folder README
 │   ├── repo-rule.md          # Create, revise or retire a repo rule
@@ -145,6 +146,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Diff | `/create:diff <document> [:auto\|:confirm]` | Create a self-contained before/after document diff report |
 | Feature Catalog | `/create:feature-catalog <skill> [create\|update]` | Create or update a rooted `feature-catalog/` package |
 | Folder README | `/create:readme <target>` | Folder README workflow |
+| Goal (Packet) | `/create:goal <packet path> [top-level\|phase-parent\|child\|retrofit\|phase-add\|amend]` | Author or revise a spec packet's `goal.md` from its own sources |
 | Parent Skill | `/create:skill-parent <skill-name> [create\|update] [--modes <m1,m2,...>]` | Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth) |
 | Repo Rule | `/create:repo-rule <what the rule should bind> [create\|revise\|retire]` | Create, revise or retire a repo rule under `repo-rules/`, wired into `REPO RULES.md` |
 | Skill | `/create:skill <name> <operation> [type]` | Unified skill create/update/reference/asset workflow |

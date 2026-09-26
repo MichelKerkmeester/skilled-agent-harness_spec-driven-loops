@@ -52,6 +52,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **diagram** | `/design:diagram <target.html\|target.md> [description\|--import <src>] [--output-format html-svg\|ascii-markdown] [--type <t>] [--format <f>] [:auto\|:confirm]` | Create an HTML/SVG diagram across 27 types, an ASCII/markdown flowchart, or a redraw of a draw.io/Mermaid source |
 | **diff** | `/create:diff <target-document \| --before old --after new> [--report out.html] [--view unified\|side-by-side] [:auto\|:confirm]` | Create a self-contained before/after document diff report via the create-diff engine |
 | **feature-catalog** | `/create:feature-catalog <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `feature-catalog/` package using the shipped `sk-doc` contract |
+| **goal** | `/create:goal <packet path> [top-level\|phase-parent\|child\|retrofit\|phase-add\|amend] [:auto\|:confirm]` | Author or revise a packet `goal.md` for top-level, phase-parent, child, retrofit, phase-add and amend |
 | **manual-testing-playbook** | `/create:manual-testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual-testing-playbook/` package using the shipped `sk-doc` contract |
 | **readme** | `/create:readme <target> [--type <project\|component\|feature\|skill>] [--output <path>] [:auto\|:confirm]` | Folder README creation with `sk-doc` quality standards |
 | **repo-rule** | `/create:repo-rule <what the rule should bind> [create\|revise\|retire] [--rule <name>] [:auto\|:confirm]` | Create, revise or retire a repo rule under `repo-rules/`, wired into `REPO RULES.md` |
@@ -84,6 +85,7 @@ create/
 ├── diagram.md                    # /design:diagram command
 ├── diff.md                       # /create:diff command
 ├── feature-catalog.md            # /create:feature-catalog command
+├── goal.md                       # /create:goal command
 ├── manual-testing-playbook.md    # /create:manual-testing-playbook command
 ├── readme.md                     # /create:readme — folder README command
 ├── repo-rule.md                  # /create:repo-rule command
@@ -167,6 +169,9 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 
 # Add a repo rule and wire it into REPO RULES.md
 /create:repo-rule "how migrations get reviewed" create :confirm
+
+# Author a spec packet's goal.md and print its chat slice
+/create:goal specs/my-track/001-feature top-level :confirm
 
 # Score a document against the Human Voice Rules without editing it
 /create:with-human-voice docs/overview.md score :auto
