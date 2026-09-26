@@ -333,13 +333,12 @@ export async function handleClaudeUserPromptSubmit(
     const deliveryState = deliveryStateOptionsFor(input);
     const renderOptions = { deliveryState };
     const brief = renderBrief(result, renderOptions);
-    const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions);
-    // Directive-lifecycle dedup: deliver the full brief on the first message of
-    // a session and after every lifecycle boundary (startup/resume/compact or a
-    // transcript shrink), and on a proven same-content repeat keep the dynamic
-    // Advisor: route line while dropping the constant directive block. Every
-    // uncertain case (unknown session, fallback brief, kill-switch, any thrown
-    // error) falls open to the full brief so a guardrail is never dropped.
+    const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions, result);
+    // Directive-lifecycle dedup delivers the full brief on the first message
+    // and after lifecycle boundaries or transcript shrink. On proven repeats,
+    // it keeps the head and drops the constant directive block. A headed
+    // fallback reduces like a brief; unknown sessions, the kill switch, and
+    // thrown errors still get the full text.
     let effectiveEmitted = emitted;
     let commitFullReceipt: (() => boolean) | undefined;
     try {

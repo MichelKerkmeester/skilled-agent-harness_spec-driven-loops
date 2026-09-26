@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import promptAdvisor, {
   ADVISOR_HOOK_FALLBACK_MODULE,
   ADVISOR_HOOK_MODULE,
+  formatPiAdvisorDebug,
 } from '../../../hooks/pi/prompt-advisor.js';
 
 type InputHandler = (
@@ -56,6 +57,31 @@ describe('Pi prompt advisor bridge', () => {
       process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS = ORIGINAL_TIMEOUT;
     }
     vi.doUnmock('../../dist/hooks/claude/user-prompt-submit.js');
+  });
+
+  it.each([
+    {
+      context: `Advisor: outage (<status>); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json\nDirectives:\n- x`,
+      brief: 'fallback(outage)',
+    },
+    {
+      context: 'Advisor: no skill matched.\nDirectives:\n- x',
+      brief: 'fallback(no-match)',
+    },
+    {
+      context: 'Advisor: prompt skipped.\nDirectives:\n- x',
+      brief: 'fallback(skipped)',
+    },
+    {
+      context: 'Directives:\n- x',
+      brief: 'fallback(headless)',
+    },
+    {
+      context: 'Advisor: live; use sk-code 0.95/0.20 pass.\nDirectives:\n- x',
+      brief: 'head(live)',
+    },
+  ])('classifies advisor debug context as $brief', ({ context, brief }) => {
+    expect(formatPiAdvisorDebug(context, false, 10)).toContain(`brief=${brief}`);
   });
 
   it('leaves the input untouched when the advisor returns no context', async () => {

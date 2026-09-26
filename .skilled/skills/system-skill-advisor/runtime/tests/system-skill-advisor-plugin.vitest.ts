@@ -12,7 +12,16 @@ vi.mock('node:child_process', () => ({
   spawn: mockedBridge.spawn,
 }));
 
-import MkSkillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
+import * as skillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
+import { renderAdvisorFallbackDirective } from '../lib/render.js';
+
+const MkSkillAdvisorPlugin = skillAdvisorPlugin.default;
+
+type PluginFallbackResult = NonNullable<Parameters<typeof renderAdvisorFallbackDirective>[1]>;
+type PluginFallbackRenderer = (result?: PluginFallbackResult) => string;
+const renderPluginFallbackDirective = (
+  skillAdvisorPlugin as unknown as { renderPluginFallbackDirective?: PluginFallbackRenderer }
+).renderPluginFallbackDirective;
 
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
 const CONTRACT_VECTORS = JSON.parse(readFileSync(resolve(
@@ -34,14 +43,17 @@ const ORIGINAL_ENV = new Map([
 // The dynamic route line kept when the constant directive block is dropped on a
 // same-content repeat within one lifecycle epoch.
 const ROUTE_ONLY_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.';
-// Mirrors what the CLI path renders (renderAdvisorBrief appends the three
-// constant directives after the route line) so the lifecycle dedup exercises
-// the true production brief shape.
+// The route brief and fallbacks share this suffix so lifecycle tests use the
+// production directive block.
 const DIRECTIVES_BLOCK = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
-// The plugin's directives-only fallback (FALLBACK_DIRECTIVE): the three constant
-// directives with the 'Directives:' label and no advisor route line. Asserted by
-// the advisor-failure tests below.
-const FALLBACK_CONTEXT = DIRECTIVES_BLOCK.slice(1);
+const NO_MATCH_FALLBACK_HEAD = 'Advisor: no skill matched.';
+const NO_MATCH_FALLBACK_CONTEXT = `Advisor: no skill matched.${DIRECTIVES_BLOCK}`;
+const SKIPPED_FALLBACK_CONTEXT = `Advisor: prompt skipped.${DIRECTIVES_BLOCK}`;
+const OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT = 'Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json \'{"prompt":"<request>"}\' --format json' + DIRECTIVES_BLOCK;
+const OUTAGE_FAIL_OPEN_FALLBACK_HEAD = OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT.slice(
+  0,
+  OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT.indexOf('\nDirectives:'),
+);
 const CANONICAL_OPENCODE_PLUGIN_SURFACE = [
   'event',
   'experimental.chat.system.transform',
@@ -56,6 +68,12 @@ const LEGACY_OPENCODE_LIFECYCLE_KEYS = [
 const DEFAULT_CLI_RECOMMENDATIONS = [
   { skillId: 'sk-code', confidence: 0.91, uncertainty: 0.23 },
 ];
+
+const FALLBACK_STATUSES = ['ok', 'stale', 'skipped', 'degraded', 'fail_open'] as const satisfies readonly PluginFallbackResult['status'][];
+const FALLBACK_FRESHNESSES = ['live', 'stale', 'absent', 'unavailable'] as const satisfies readonly PluginFallbackResult['freshness'][];
+const FALLBACK_PARITY_CASES = FALLBACK_STATUSES.flatMap((status) => (
+  FALLBACK_FRESHNESSES.map((freshness) => ({ status, freshness }))
+));
 
 function cliResponse(recommendations: ReadonlyArray<Record<string, unknown>> = DEFAULT_CLI_RECOMMENDATIONS) {
   return JSON.stringify({
@@ -187,6 +205,21 @@ describe('system-skill-advisor OpenCode plugin', () => {
     expect(hooks.tool?.spec_kit_skill_advisor_status).toBeDefined();
   });
 
+  it.each(FALLBACK_PARITY_CASES)(
+    'matches the canonical fallback for $status status and $freshness freshness',
+    (result) => {
+      expect(renderPluginFallbackDirective).toBeTypeOf('function');
+      expect(renderPluginFallbackDirective?.(result)).toBe(
+        renderAdvisorFallbackDirective({}, result),
+      );
+    },
+  );
+
+  it('matches the canonical fail-open fallback when no result is available', () => {
+    expect(renderPluginFallbackDirective).toBeTypeOf('function');
+    expect(renderPluginFallbackDirective?.()).toBe(renderAdvisorFallbackDirective());
+  });
+
   it('pushes advisor brief into the OpenCode system transform output', async () => {
     const hooks = await makePlugin();
 
@@ -202,8 +235,8 @@ describe('system-skill-advisor OpenCode plugin', () => {
 
     const result = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(result.additionalContext).toBe(FALLBACK_CONTEXT);
-    expect(result.output.system).toEqual([FALLBACK_CONTEXT]);
+    expect(result.additionalContext).toBe(NO_MATCH_FALLBACK_CONTEXT);
+    expect(result.output.system).toEqual([NO_MATCH_FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
   });
 
@@ -378,8 +411,8 @@ describe('system-skill-advisor OpenCode plugin', () => {
     await vi.advanceTimersByTimeAsync(1011);
     const output = await outputPromise;
 
-    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
-    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
+    expect(output.additionalContext).toBe(OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
     const child = mockedBridge.spawn.mock.results[0]?.value;
     expect(child.kill).toHaveBeenCalledWith('SIGTERM');
@@ -420,8 +453,8 @@ describe('system-skill-advisor OpenCode plugin', () => {
 
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
-    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
+    expect(output.additionalContext).toBe(OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_bridge_status=fail_open');
@@ -435,10 +468,10 @@ describe('system-skill-advisor OpenCode plugin', () => {
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
     const repeat = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
-    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
-    expect(repeat.additionalContext).toBe(FALLBACK_CONTEXT);
-    expect(repeat.output.system).toEqual([FALLBACK_CONTEXT]);
+    expect(output.additionalContext).toBe(OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT]);
+    expect(repeat.additionalContext).toBe(OUTAGE_FAIL_OPEN_FALLBACK_HEAD);
+    expect(repeat.output.system).toEqual([OUTAGE_FAIL_OPEN_FALLBACK_HEAD]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_error_code=PARSE_FAIL');
@@ -450,8 +483,8 @@ describe('system-skill-advisor OpenCode plugin', () => {
 
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
-    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
+    expect(output.additionalContext).toBe(OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT]);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_error_code=NONZERO_EXIT');
   });
@@ -731,6 +764,45 @@ describe('system-skill-advisor OpenCode plugin', () => {
     expect(first.additionalContext).toContain('Comment hygiene');
     expect(second.additionalContext).toBe(ROUTE_ONLY_CONTEXT);
     expect(second.additionalContext).not.toContain('Directives:');
+  });
+
+  it('reduces repeated no-route fallbacks to their head for a confirmed session', async () => {
+    mockBridgeSuccess(cliResponse([]));
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+    const contexts: Array<string | null> = [];
+
+    for (let turn = 0; turn < 5; turn += 1) {
+      const result = await runPrompt(hooks, {
+        sessionID: 's-no-route',
+        prompt: 'implement feature X',
+      });
+      contexts.push(result.additionalContext);
+    }
+
+    expect(contexts).toEqual([
+      NO_MATCH_FALLBACK_CONTEXT,
+      NO_MATCH_FALLBACK_HEAD,
+      NO_MATCH_FALLBACK_HEAD,
+      NO_MATCH_FALLBACK_HEAD,
+      NO_MATCH_FALLBACK_HEAD,
+    ]);
+    expect(contexts.slice(1).every((context) => !context?.includes('Directives:'))).toBe(true);
+  });
+
+  it('keeps the full no-route fallback when session identity is unconfirmed', async () => {
+    mockBridgeSuccess(cliResponse([]));
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+    const contexts: Array<string | null> = [];
+
+    for (let turn = 0; turn < 5; turn += 1) {
+      const result = await runPrompt(hooks, {
+        sessionID: '__global__',
+        prompt: 'implement feature X',
+      });
+      contexts.push(result.additionalContext);
+    }
+
+    expect(contexts).toEqual(Array.from({ length: 5 }, () => NO_MATCH_FALLBACK_CONTEXT));
   });
 
   it('PL2 re-delivers the full brief after a session.compacted lifecycle event', async () => {

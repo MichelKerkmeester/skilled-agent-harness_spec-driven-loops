@@ -21,6 +21,7 @@ import {
 import { isAmbiguousTopTwo } from './scorer/ambiguity.js';
 import type { AdvisorRecommendation } from './subprocess.js';
 import type { AdvisorScoredRecommendation } from './scorer/types.js';
+import type { AdvisorHookResult } from './skill-advisor-brief.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -71,6 +72,16 @@ export interface AdvisorBriefRenderableResult {
     } | null;
   } | null;
 }
+
+export type AdvisorFallbackCase = 'outage' | 'no-match' | 'skipped';
+export type AdvisorFallbackClassification =
+  | {
+    readonly fallbackCase: 'outage';
+    readonly outageLabel: 'absent' | 'degraded' | 'fail_open';
+  }
+  | {
+    readonly fallbackCase: 'no-match' | 'skipped';
+  };
 
 // ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -440,26 +451,49 @@ export function renderAdvisorBrief(
   return rendered;
 }
 
-/** Render the fallback steering directive (hygiene) retained when no advisor brief is available. */
-export function renderAdvisorFallbackDirective(options: AdvisorBriefRenderOptions = {}): string {
-  const rendered = DIRECTIVES_LABEL.slice(1) + HYGIENE_DIRECTIVE;
+/** Classify a result with no brief; no result at all means the advisor did not answer. */
+export function advisorFallbackCase(
+  result?: Pick<AdvisorHookResult, 'status' | 'freshness'>,
+): AdvisorFallbackClassification {
+  if (!result || result.status === 'fail_open' || result.freshness === 'absent'
+    || (result.freshness === 'unavailable' && result.status !== 'skipped')) {
+    return {
+      fallbackCase: 'outage',
+      outageLabel: result?.freshness === 'absent'
+        ? 'absent'
+        : result?.status === 'degraded'
+          ? 'degraded'
+          : 'fail_open',
+    };
+  }
+  if (result.status === 'skipped' && result.freshness === 'unavailable') {
+    return { fallbackCase: 'skipped' };
+  }
+  return { fallbackCase: 'no-match' };
+}
+
+/** Render the fallback status and directive block when no advisor brief is available. */
+export function renderAdvisorFallbackDirective(
+  options: AdvisorBriefRenderOptions = {},
+  result?: Pick<AdvisorHookResult, 'status' | 'freshness'>,
+): string {
+  const classification = advisorFallbackCase(result);
+  const head = classification.fallbackCase === 'outage'
+    ? `Advisor: outage (${classification.outageLabel}); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`
+    : classification.fallbackCase === 'skipped'
+      ? 'Advisor: prompt skipped.'
+      : 'Advisor: no skill matched.';
+  const rendered = head + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
   observeAdvisorPolicy(rendered, options);
   return rendered;
 }
 
-// Shared timeout-fallback renderer. Previously the OpenCode hook
-// emitted a bespoke `Advisor: stale (cold-start timeout)\nFallback marker: ...`
-// string inline. Centralizing the format here keeps every runtime that needs
-// a cold-start timeout fallback aligned on a single contract — `renderAdvisorBrief`
-// itself returns null when there are no recommendations, which is correct for
-// the live-result path; this function is the explicit fallback companion.
-export function renderAdvisorTimeoutFallback(options: AdvisorBriefRenderOptions = {}): string {
-  const rendered = [
-    'Advisor: stale (cold-start timeout)',
-    'Fallback marker: {"stale":true,"reason":"timeout-fallback"}',
-  ].join('\n');
-  observeAdvisorPolicy(rendered, options);
-  return rendered;
+/** Render the outage fallback used when advisor execution times out or is unavailable. */
+export function renderAdvisorTimeoutFallback(
+  options: AdvisorBriefRenderOptions = {},
+  status: Extract<AdvisorHookResult['status'], 'fail_open' | 'degraded'> = 'fail_open',
+): string {
+  return renderAdvisorFallbackDirective(options, { status, freshness: 'unavailable' });
 }
 
 export { sanitizeSkillLabel };
