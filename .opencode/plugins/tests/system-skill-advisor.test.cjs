@@ -595,48 +595,38 @@ test('status exposes prompt-safe configuration health', async () => {
 });
 
 test('same-message advisor contributions are suppressed only after the first delivery', async () => {
-  // Disable lifecycle dedup so this test measures transform dedup alone.
-  const previousLifecycleDedup = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
-  process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '0';
-  try {
-    const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
-    const hooks = await makePlugin({
-      deduplicateTransforms: true,
-      spawnOverride: spawnSequence([child]),
-    });
-    const input = {
-      sessionID: 'advisor-dedup-session',
-      messageID: 'advisor-message-1',
-      transformCallOrdinal: 0,
-      prompt: 'repeat this exact text',
-    };
-    const first = await runPrompt(hooks, input, { system: [] });
-    const second = await runPrompt(hooks, input, { system: [] });
+  const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
+  const hooks = await makePlugin({
+    deduplicateTransforms: true,
+    spawnOverride: spawnSequence([child]),
+  });
+  const input = {
+    sessionID: 'advisor-dedup-session',
+    messageID: 'advisor-message-1',
+    transformCallOrdinal: 0,
+    prompt: 'repeat this exact text',
+  };
+  const first = await runPrompt(hooks, input, { system: [] });
+  const second = await runPrompt(hooks, input, { system: [] });
 
-    assert.equal(first.system.length, 1);
-    assert.deepEqual(second.system, []);
+  assert.equal(first.system.length, 1);
+  assert.deepEqual(second.system, []);
 
-    const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
-    const identity = identityModule.resolveMessageIdentity(input);
-    const receipt = identityModule.getMultiTransformReceipt(identity);
-    assert.deepEqual(receipt.transforms.map((entry) => ({
-      transform: entry.transform,
-      outcome: entry.outcome,
-    })), [
-      { transform: 'system-skill-advisor', outcome: 'delivered' },
-      { transform: 'system-skill-advisor', outcome: 'suppressed_duplicate' },
-    ]);
-  } finally {
-    if (previousLifecycleDedup === undefined) {
-      delete process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
-    } else {
-      process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = previousLifecycleDedup;
-    }
-  }
+  const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+  const identity = identityModule.resolveMessageIdentity(input);
+  const receipt = identityModule.getMultiTransformReceipt(identity);
+  assert.deepEqual(receipt.transforms.map((entry) => ({
+    transform: entry.transform,
+    outcome: entry.outcome,
+  })), [
+    { transform: 'system-skill-advisor', outcome: 'delivered' },
+    { transform: 'system-skill-advisor', outcome: 'suppressed_duplicate' },
+  ]);
 });
 
 test('distinct advisor messages with identical text both receive full delivery', async () => {
   const previousLifecycleDedup = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+  // Lifecycle dedup is off because it correctly reduces repeats to their head; this tests transform dedup alone.
   process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '0';
   try {
     const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
@@ -670,6 +660,7 @@ test('distinct advisor messages with identical text both receive full delivery',
 
 test('flag-off advisor delivery preserves repeated output byte-for-byte', async () => {
   const previousLifecycleDedup = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+  // Lifecycle dedup is off because it correctly reduces repeats to their head; this tests transform dedup alone.
   process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '0';
   try {
     const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
@@ -699,6 +690,7 @@ test('flag-off advisor delivery preserves repeated output byte-for-byte', async 
 
 test('unresolvable advisor identity fails open with full delivery', async () => {
   const previousLifecycleDedup = process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
+  // Lifecycle dedup is off because it correctly reduces repeats to their head; this tests transform dedup alone.
   process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '0';
   try {
     const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
