@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "cli-jev/003-cli-jev-workflow-integration/001-deep-research",
-  "description": "Phase 1: deep-research",
+  "description": "`cli-jev` returns typed judgments, and no other part of `.skilled` asks for one",
   "keywords": [
-    "phase",
-    "deep-research"
+    "cli-jev",
+    "returns",
+    "typed",
+    "judgments",
+    "part",
+    "skilled",
+    "asks",
+    "one"
   ],
-  "lastUpdated": "2026-09-26T15:37:29.828Z",
+  "lastUpdated": "2026-09-26T16:05:26.051Z",
   "specId": "001",
   "folderSlug": "deep-research",
   "parentChain": [
@@ -13,6 +20,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

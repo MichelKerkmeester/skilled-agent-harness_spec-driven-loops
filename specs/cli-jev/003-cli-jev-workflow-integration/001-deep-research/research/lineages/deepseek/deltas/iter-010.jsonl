@@ -1,0 +1,8 @@
+{"type":"iteration","iteration":10,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.58,"status":"complete","focus":"deepseek-10 Smallest-first build order, engineering view","findingsCount":5}
+{"type":"finding","id":"f-iter010-order","label":"Build order by dependence: routing arm, D4 grader, stop replay, severity replay, goal mode (later, conditional on labeled set)","iteration":10,"source":"synthesis of iterations 1-9 plus grok research.md and mimo-003"}
+{"type":"finding","id":"f-iter010-rollbacks","label":"Every slice's rollback is a file deletion or flag removal; no frozen contract, ratchet or default is touched","iteration":10,"source":"iteration 10 analysis"}
+{"type":"finding","id":"f-iter010-helper-trigger","label":"Slices 3-4 would become callers two and three that earn the shared reference client","iteration":10,"source":"iteration 7 caller-three rule"}
+{"type":"finding","id":"f-iter010-acceptance","label":"Iteration 9's failure table is the acceptance criteria set for slices 1, 2 and 5","iteration":10,"source":"iteration 9 failure table"}
+{"type":"finding","id":"f-iter010-goal-revision","label":"Goal mode rank revised next -> later after grok's contest and mimo-003's labeled-set design; shadow-only, heuristic authoritative","iteration":10,"source":"grok research.md and mimo-003"}
+{"type":"ruled_out","direction":"building slice 5 before its labeled set","reason":"safety property requires the blocking-language gate to be measured first; siblings contest the rank","iteration":10}
+{"type":"ruled_out","direction":"creating the shared client helper now","reason":"zero callers until slices 3-4 exist","iteration":10}

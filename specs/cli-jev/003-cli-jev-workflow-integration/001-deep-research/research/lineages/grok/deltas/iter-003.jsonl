@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":3,"runId":"fanout-grok-1790438758756-5mso8j","sessionId":"fanout-grok-1790438758756-5mso8j","lineageId":"fanout-grok-1790438758756-5mso8j","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.7,"status":"complete","focus":"grok-03: The goal hook and compaction, what the outside world tried","findingsCount":3}
+{"type":"finding","id":"f-grok-03-goal-noul","title":"A goal noul must not say met when the heuristic sees blocking language","iteration":3,"severity":"P1"}
+{"type":"finding","id":"f-grok-03-compact-deadline","title":"compact-inject has 1800ms and cannot host a prune","iteration":3,"severity":"P1"}
+{"type":"finding","id":"f-grok-03-enabled-default","title":"jevctl compaction is on unless compaction is false; pi-jev is off by default","iteration":3,"severity":"P1"}
+{"type":"ruled_out","direction":"live prune inside compact-inject","reason":"1800ms budget and history rewrite breaks cache","iteration":3}

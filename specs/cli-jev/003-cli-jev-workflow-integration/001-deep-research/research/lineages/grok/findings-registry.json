@@ -1,0 +1,28 @@
+{
+  "lineage": "grok",
+  "sessionId": "fanout-grok-1790438758756-5mso8j",
+  "keyFindings": [
+    {"id": "f-grok-01-shadow-grader", "title": "A jev grader kind belongs beside mock as a shadow, not as a live drop", "verdict": "later"},
+    {"id": "f-grok-01-near-threshold", "title": "A planted false positive was kept at real 0.57", "verdict": "drop"},
+    {"id": "f-grok-01-context-steer", "title": "Extra context flipped a harmless cat from 0.22 to 0.58", "verdict": "drop"},
+    {"id": "f-grok-01-noop-pass", "title": "noop returns score 1.0, which a missing key must not copy", "verdict": "drop"},
+    {"id": "f-grok-02-live-route", "title": "A live whole-catalogue choice dies inside the 2500ms child", "verdict": "drop"},
+    {"id": "f-grok-02-shadow-cluster", "title": "A shadow choice over the 0.05 ambiguity cluster is the only routing idea that can lose safely", "verdict": "next"},
+    {"id": "f-grok-02-exit-2", "title": "Exit 2 means judgment matched in npm jevctl and usage error in Python jev-cli", "verdict": "drop"},
+    {"id": "f-grok-03-goal-noul", "title": "A goal noul must not say met when the heuristic sees blocking language", "verdict": "later"},
+    {"id": "f-grok-03-compact-deadline", "title": "compact-inject has 1800ms and cannot host a prune", "verdict": "drop"},
+    {"id": "f-grok-03-enabled-default", "title": "jevctl compaction is on unless compaction is false; pi-jev is off by default", "verdict": "drop"},
+    {"id": "f-grok-04-shadow-noul", "title": "Shadow noul beside frozen legacy-convergence authority", "verdict": "later", "metric": "correlation with human repeat labels; baseline UNKNOWN"},
+    {"id": "f-grok-04-agreement-wants-findings", "title": "Cross-executor agreement wants findings, and Jev does not write them", "verdict": "drop", "metric": "none"},
+    {"id": "f-grok-05-severity-choice", "title": "Shadow severity choice recorded beside a P0, ignored by verdict counts", "verdict": "later", "metric": "agreement with adjudicated severity; baseline UNKNOWN"},
+    {"id": "f-grok-05-nomatch-cap", "title": "jev-review cap and noMatch escape are the transferable funnel stages", "verdict": "later", "metric": "none until a gold severity set exists"},
+    {"id": "f-grok-06-screen-missing-zero", "title": "jevctl runScreen coerces a missing injection noul to 0", "verdict": "drop", "metric": "false-pass rate if 0 means not-injection"},
+    {"id": "f-grok-06-screen-later", "title": "Injection noul on fetched text, fail closed, does not replace the filesystem guard", "verdict": "later", "metric": "false block rate on labeled pages; baseline UNKNOWN"},
+    {"id": "f-grok-07-next-check", "title": "A next_check choice may be logged and must not reorder debug phases", "verdict": "later", "metric": "match to the check a person ran next; baseline UNKNOWN"},
+    {"id": "f-grok-07-noul-throws", "title": "noulOf throws MissingAnswerError instead of coercing to 0", "verdict": "later", "metric": "none"},
+    {"id": "f-grok-08-goal-stays-later", "title": "OpenCode has a verifier mode switch, and met still cannot override blocking language", "verdict": "later", "metric": "labeled transcript accuracy; baseline UNKNOWN"},
+    {"id": "f-grok-09-offline-arm", "title": "The offline routing choice is the only survivor that fails nothing structural on the fitness checklist", "verdict": "next", "metric": "held-out MRR and right-skill-at-3 against the similarity-only arm"},
+    {"id": "f-grok-10-first-slice", "title": "The first slice is an offline Python jev-cli choice arm that does not write the ranking", "verdict": "next", "metric": "held-out MRR and right-skill-at-3; Jev delta unmeasured"},
+    {"id": "f-grok-10-loss-kills-choice", "title": "A routing loss kills other closed-set choice ideas for the quarter and does not kill noul questions", "verdict": "later", "metric": "the same held-out comparison"}
+  ]
+}

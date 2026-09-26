@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":5,"angle":"grok-05","newInfoRatio":0.58,"findingsCount":2,"ruledOutCount":2}
+{"type":"finding","id":"f-grok-05-severity-choice","title":"Shadow severity choice recorded beside a P0, ignored by verdict counts","seam":".skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md:62","verdict":"later","confidence":"inferred","metric":"agreement with adjudicated severity; baseline UNKNOWN"}
+{"type":"finding","id":"f-grok-05-nomatch-cap","title":"jev-review cap and noMatch escape are the transferable funnel stages","seam":"specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-review-main/src/review/judgments.ts:196","verdict":"later","confidence":"confirmed","metric":"none until a gold severity set exists"}
+{"type":"ruled_out","id":"r-grok-05-abort","title":"Whole-run abort on one failed screen","reason":"workflow.ts rethrows; a missing key would abort every review"}
+{"type":"ruled_out","id":"r-grok-05-jaccard","title":"noul replacing nearDuplicateMatches","reason":"Body key plus Jaccard 0.15 is a repository fact"}

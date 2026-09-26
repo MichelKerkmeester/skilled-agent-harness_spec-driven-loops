@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":2,"runId":"fanout-grok-1790438758756-5mso8j","sessionId":"fanout-grok-1790438758756-5mso8j","lineageId":"fanout-grok-1790438758756-5mso8j","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.72,"status":"complete","focus":"grok-02: Active skill-advisor recommendations, the bold version and its rebuttal","findingsCount":3}
+{"type":"finding","id":"f-grok-02-live-route","title":"A live whole-catalogue choice dies inside the 2500ms child","iteration":2,"severity":"P1"}
+{"type":"finding","id":"f-grok-02-shadow-cluster","title":"A shadow choice over the 0.05 ambiguity cluster is the only routing idea that can lose safely","iteration":2,"severity":"P1"}
+{"type":"finding","id":"f-grok-02-exit-2","title":"Exit 2 means judgment matched in npm jevctl and usage error in Python jev-cli","iteration":2,"severity":"P1"}
+{"type":"ruled_out","direction":"live jev route inside advisor child","reason":"SIGKILL at 2500ms returns {}","iteration":2}

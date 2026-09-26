@@ -1,0 +1,47 @@
+{
+  "topic": "Research where Jev typed judgments earn a measured, opt-in, UX-first place in this repository's skills, workflows and logic.",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "createdAt": "2026-09-26T16:10:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-cursor",
+    "model": "grok-4.7-xhigh-fast",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-grok-1790438758756-5mso8j",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "label": "grok"
+  },
+  "reducer": {
+    "enabled": false,
+    "note": "Inline lineage executor writes strategy, registry and dashboard directly inside the lineage. The reducer script is not invoked because it can refresh paths outside this directory."
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

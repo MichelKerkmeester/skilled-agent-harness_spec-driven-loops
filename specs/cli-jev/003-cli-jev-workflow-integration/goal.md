@@ -123,7 +123,7 @@ and findings belong here.
 | Scaffold | Done | `create.sh --phase` wrote the parent and `001-deep-research` |
 | Context and angles | Done | Four digests (757 lines), `research-angles.md` with 30 angles, topic tightened by prompt-improver on Sonnet (748 chars) |
 | Grok 4.7 roster | Done | `9fe8526284`; vitest 257/257, typecheck clean, guard fresh, live probe `OK` |
-| Fan-out | Pending | |
+| Fan-out | Done | Runner exit 0, `failed: 0`; deepseek, mimo and grok each 10 state records and files ending `maxIterationsReached`, all on attempt 1 (grok 11 min, deepseek 20, mimo 44); merge 85 key findings; resource map from 30 deltas |
 | Synthesis | Pending | |
 | Build phases | Pending | |
 
@@ -135,5 +135,6 @@ and findings belong here.
 | Level 1 child has no `acceptance-criteria.md` | sk-create-goal's phase-parent workflow expects one per child. The approved plan keeps the research child at Level 1, as packet 030 did, so its goal criteria come from `spec.md` requirements. |
 | Spec-kit CLI build | `create.sh --phase` first failed in the fresh worktree because `runtime/cli/dist/` was not built; `npm run build` under `runtime/cli` fixed it. |
 | prompt-improver on Opus | The agent definition denies Opus, so the topic pass ran on Sonnet, an eligible pair. |
+| Containment advisories | Each lineage flagged `scratch/synthesis-brief.md`, which the orchestrator edited after launch. No lineage wrote outside its directory. |
 | Close blocker | The fan-out close report no longer needs a root dashboard when lineage logs exist (`ed22403e09`), so no close blocker is expected. |
 <!-- /ANCHOR:log -->

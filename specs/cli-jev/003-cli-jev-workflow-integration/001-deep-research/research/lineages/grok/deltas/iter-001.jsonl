@@ -1,0 +1,7 @@
+{"type":"iteration","iteration":1,"runId":"fanout-grok-1790438758756-5mso8j","sessionId":"fanout-grok-1790438758756-5mso8j","lineageId":"fanout-grok-1790438758756-5mso8j","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":1.0,"noveltyJustification":"First pass; the planted 0.57 keep, the noop-as-1.0 path, and the context-steer anecdote are new to this lineage.","status":"complete","focus":"grok-01: Grading AI responses, outside patterns and the case against","findingsCount":4}
+{"type":"finding","id":"f-grok-01-shadow-grader","title":"A jev grader kind belongs beside mock as a shadow, not as a live drop","iteration":1,"severity":"P1"}
+{"type":"finding","id":"f-grok-01-near-threshold","title":"A planted false positive was kept at real 0.57","iteration":1,"severity":"P1"}
+{"type":"finding","id":"f-grok-01-context-steer","title":"Extra context flipped a harmless cat from 0.22 to 0.58","iteration":1,"severity":"P1"}
+{"type":"finding","id":"f-grok-01-noop-pass","title":"noop returns score 1.0, which a missing key must not copy","iteration":1,"severity":"P1"}
+{"type":"ruled_out","direction":"live drop when noul under 0.5","reason":"planted false positive kept at 0.57","iteration":1}
+{"type":"ruled_out","direction":"per-turn good-response noul","reason":"no oracle and noul has no confidence","iteration":1}

@@ -1,0 +1,596 @@
+{
+  "schemaVersion": 1,
+  "lineageId": "mimo",
+  "sessionId": "fanout-mimo-1790438758756-5mso8j",
+  "loopType": "research",
+  "keyFindings": [
+    {
+      "findingId": "f-mimo-001-grader-factory",
+      "title": "The D4 grader factory returns {score, confidence, parse_status} and already takes a grader kind; a jev kind sl",
+      "description": "The D4 grader factory returns {score, confidence, parse_status} and already takes a grader kind; a jev kind slots in at score-model-variant.cjs:207-226, and an unknown kind silently becomes mock at :211",
+      "iteration": 1,
+      "source": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:207-226",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-001-gold-set",
+      "title": "Reviewer fixtures carry the hidden-oracle gold (expectedVerdict plus expectedFindings) with hidden cases as th",
+      "description": "Reviewer fixtures carry the hidden-oracle gold (expectedVerdict plus expectedFindings) with hidden cases as the overfit guard, so the grading agreement metric has a denominator only after the fixtures are counted on disk",
+      "iteration": 1,
+      "source": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md:59-68",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-001-silent-zero",
+      "title": "A grader exception returns score 0.0 confidence 0.0 parse_status failed, so a no-key or failed jev call would ",
+      "description": "A grader exception returns score 0.0 confidence 0.0 parse_status failed, so a no-key or failed jev call would read as maximal hallucination instead of not-measured; the jev arm must report a visible skip",
+      "iteration": 1,
+      "source": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:222-224",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-001-existing-flag",
+      "title": "Grader selection is already an opt-in flag --grader noop|mock|llm with default noop at run-benchmark.cjs:577,5",
+      "description": "Grader selection is already an opt-in flag --grader noop|mock|llm with default noop at run-benchmark.cjs:577,582, so the jev arm needs no new knob and no-key behavior is the untouched default",
+      "iteration": 1,
+      "source": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:577-582",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-001-judge-slot",
+      "title": "The reply harness never calls a model and leaves the blinded judge slot empty (judge human or model), so a jev",
+      "description": "The reply harness never calls a model and leaves the blinded judge slot empty (judge human or model), so a jev judge is measured against a human pass subset without ever serving its score to the compare gate",
+      "iteration": 1,
+      "source": ".skilled/skills/sk-communication/benchmark/reply-harness/README.md:3,11,20",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-001-drop-live-grade",
+      "title": "Live per-turn reply grading and playbook verdict grading fail the UX test: they add a per-turn number or a rep",
+      "description": "Live per-turn reply grading and playbook verdict grading fail the UX test: they add a per-turn number or a report row nobody acts on, and no gold set grades live replies",
+      "iteration": 1,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md:117-130",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-002-eligible-unknown",
+      "title": "Tie-break headroom is UNKNOWN until top-2 margins are counted: the absolute ceiling is 6 rows on the 24-row am",
+      "description": "Tie-break headroom is UNKNOWN until top-2 margins are counted: the absolute ceiling is 6 rows on the 24-row ambiguity slice and 17 on the 70-row holdout, but no capture records how many rows are near-tied",
+      "iteration": 2,
+      "source": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json:25-35",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-002-tau-mismatch",
+      "title": "The eval slice was cut at tau 0.03 while the live ambiguity cluster admits 0.05 on score OR confidence, so an ",
+      "description": "The eval slice was cut at tau 0.03 while the live ambiguity cluster admits 0.05 on score OR confidence, so an arm gated on the slice measures a narrower population than the operator ever sees ambiguity on",
+      "iteration": 2,
+      "source": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:28-35",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-002-arm-design",
+      "title": "The measured arm is an offline jev choice over top-2 or top-3 skill ids on margin-eligible rows, holdout as th",
+      "description": "The measured arm is an offline jev choice over top-2 or top-3 skill ids on margin-eligible rows, holdout as the headline, recorded to JSONL and never served, and never recaptured into the deterministic ratchet baseline",
+      "iteration": 2,
+      "source": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json:8-12",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-002-sink-optin",
+      "title": "The shadow delta sink is opt-in via SPECKIT_ADVISOR_SHADOW_DELTA_PATH or SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED ",
+      "description": "The shadow delta sink is opt-in via SPECKIT_ADVISOR_SHADOW_DELTA_PATH or SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED because advisor_recommend is a read-style call, and its path must stay under the workspace root",
+      "iteration": 2,
+      "source": ".skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts:81-101,144-155",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-002-abstention-rows",
+      "title": "A tie-break cannot move the 13 unknowns and 5 gold-none false fires, and the H2 rerank script skips gold-none ",
+      "description": "A tie-break cannot move the 13 unknowns and 5 gold-none false fires, and the H2 rerank script skips gold-none rows entirely so an abstention arm needs the H1 corpus path instead",
+      "iteration": 2,
+      "source": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-outcome-rerank.mjs:47",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-002-disagreement-surface",
+      "title": "During measurement the operator sees nothing of Jev-scorer disagreements; the only UX-clean post-measurement s",
+      "description": "During measurement the operator sees nothing of Jev-scorer disagreements; the only UX-clean post-measurement surface is a suggested order inside the existing ambiguousWith cluster with the cluster still shown",
+      "iteration": 2,
+      "source": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:44-58",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-003-verifier-ladder",
+      "title": "verifyGoalHeuristic is a regex and keyword ladder with a fixed 0.72 met confidence, evidence under 24 chars st",
+      "description": "verifyGoalHeuristic is a regex and keyword ladder with a fixed 0.72 met confidence, evidence under 24 chars staying unclear, and its result shape already carries source: heuristic so a shadow verifier needs no schema change",
+      "iteration": 3,
+      "source": ".skilled/hooks/goal/lib/goal-core.cjs:586-620",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-003-nudge-ux",
+      "title": "The operator never reads the goal verdict; its errors surface as model behavior via the observe-only nudge on ",
+      "description": "The operator never reads the goal verdict; its errors surface as model behavior via the observe-only nudge on non-met and the last_check line in the injected block, so the measurable UX outcome is repeated work and goal drift",
+      "iteration": 3,
+      "source": ".skilled/hooks/goal/README.md:77",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-003-goal-labels",
+      "title": "The smallest goal-verifier gold set is 30 to 50 operator-labeled turn excerpts across met, not-met and unclear",
+      "description": "The smallest goal-verifier gold set is 30 to 50 operator-labeled turn excerpts across met, not-met and unclear, scored for both the heuristic and a Jev arm; no such set exists today",
+      "iteration": 3,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md:135",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-003-precompact-mechanics",
+      "title": "The precompact tests cover payload caching, overwrite and token budget but nothing about what survives a compa",
+      "description": "The precompact tests cover payload caching, overwrite and token budget but nothing about what survives a compaction, so fact-recall measurement needs a new transcript-plus-must-survive-facts harness",
+      "iteration": 3,
+      "source": ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts:29-60",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-003-compaction-later",
+      "title": "A Jev keep-or-drop compaction pass is precomputed-only at this repository's 1800 ms internal budget, ships off",
+      "description": "A Jev keep-or-drop compaction pass is precomputed-only at this repository's 1800 ms internal budget, ships off by default, and waits behind an unmeasured prompt-cache breakage risk and the cheaper move of enlarging the token budget",
+      "iteration": 3,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/seam-map.md:174-178",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-003-deadline-drop",
+      "title": "Synchronous in-hook Jev calls drop outright: the 60 s client timeout cannot fit the 3 s precompact hook, and a",
+      "description": "Synchronous in-hook Jev calls drop outright: the 60 s client timeout cannot fit the 3 s precompact hook, and any under-10 s seam needs a shadow, cached or async shape",
+      "iteration": 3,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/seam-map.md:9-10",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-004-corpus",
+      "title": "181 archived lineages carry deltas/iter-*.jsonl and their state records hold newInfoRatio, findingsCount and s",
+      "description": "181 archived lineages carry deltas/iter-*.jsonl and their state records hold newInfoRatio, findingsCount and sourceDiversity, so a stop replay needs no new labels and no iteration prose",
+      "iteration": 4,
+      "source": "specs/mcp-tooling/z_archive/010-mcp-mobbin/001-research/research/lineages/luna/deep-research-state.jsonl",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-004-derived-gold",
+      "title": "The gold stop marker is computable from deltas alone as the last iteration adding a first-appearance cited sou",
+      "description": "The gold stop marker is computable from deltas alone as the last iteration adding a first-appearance cited source, filling the measurement digest's named gap for the correct stop point",
+      "iteration": 4,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md:135",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-004-baseline-heuristic",
+      "title": "The baseline to beat is the heuristic's own replayed trade curve (iterations saved at zero first-appearance lo",
+      "description": "The baseline to beat is the heuristic's own replayed trade curve (iterations saved at zero first-appearance loss), not the recorded stop, because forced-depth runs stopped where policy said",
+      "iteration": 4,
+      "source": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md:41-47",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-004-operator-surface",
+      "title": "The only stop idea that changes an operator decision is an evidence-backed suggestion in confirm mode and one ",
+      "description": "The only stop idea that changes an operator decision is an evidence-backed suggestion in confirm mode and one report line; auto mode sees nothing until a measured promotion",
+      "iteration": 4,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md:117-130",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-004-second-rater-later",
+      "title": "A Jev novelty second-rater dashboard column is a report number before it is anything else, so it waits for the",
+      "description": "A Jev novelty second-rater dashboard column is a report number before it is anything else, so it waits for the replay to show disagreements that change a decision",
+      "iteration": 4,
+      "source": ".skilled/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-shadow.ts:10-19",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-004-authority-drop",
+      "title": "Jev input to the STOP decision is dropped: authority before measurement is unserviceable, and cross-lens agree",
+      "description": "Jev input to the STOP decision is dropped: authority before measurement is unserviceable, and cross-lens agreement with the contrarian lineage's kill criterion makes this a two-lens conclusion",
+      "iteration": 4,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md:57-59",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-005-transitions-gold",
+      "title": "Every archived deep-review finding carries a transitions array of iteration/from/to/reason records, so the fin",
+      "description": "Every archived deep-review finding carries a transitions array of iteration/from/to/reason records, so the final adjudicated severity and its downgrade rationale are derivable gold with no labeling",
+      "iteration": 5,
+      "source": "specs/sk-prompt/007-sk-prompt-parent/review/deep-review-findings-registry.json",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-005-p0-sparse",
+      "title": "The sampled severity spread is P0 6, P1 39, P2 24 across 69 findings in 12 registries, so any P0-savings claim",
+      "description": "The sampled severity spread is P0 6, P1 39, P2 24 across 69 findings in 12 registries, so any P0-savings claim needs a corpus-wide P0 census before the metric can stand",
+      "iteration": 5,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md:135",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-005-fixture-census",
+      "title": "The four reviewer fixtures hold 8 cases total and every expectedVerdict is fail, so the grader-arm gold is sin",
+      "description": "The four reviewer fixtures hold 8 cases total and every expectedVerdict is fail, so the grader-arm gold is single-class and a constant-fail grader scores perfect agreement on it",
+      "iteration": 5,
+      "source": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-stale-verdict.json",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-005-thresholds",
+      "title": "The P0 triage arm earns its operator surface only at recall at least 0.9 on surviving P0s and at least 30% rer",
+      "description": "The P0 triage arm earns its operator surface only at recall at least 0.9 on surviving P0s and at least 30% reread-set reduction; below both the operator-facing change is none",
+      "iteration": 5,
+      "source": ".skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md:63,75",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-005-severity-write-drop",
+      "title": "A Jev severity write is dropped: the review contract already makes advisory scores non-gating and the FAIL ver",
+      "description": "A Jev severity write is dropped: the review contract already makes advisory scores non-gating and the FAIL verdict depends on recorded severity, so authority transfer would corrupt a frozen contract",
+      "iteration": 5,
+      "source": ".skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md:62,75",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-005-sibling-contest",
+      "title": "The sibling build orders treat the H9 reviewer fixtures as usable gold; the 8 single-class case census contrad",
+      "description": "The sibling build orders treat the H9 reviewer fixtures as usable gold; the 8 single-class case census contradicts that and requires fixture expansion before any grader agreement number is quoted",
+      "iteration": 5,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages/deepseek/iterations/iteration-010.md",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-006-gold-census",
+      "title": "By my own grep the canary gold is 62 route, 10 defer, 9 reject plus 3 clarify rows across seven hubs, so clari",
+      "description": "By my own grep the canary gold is 62 route, 10 defer, 9 reject plus 3 clarify rows across seven hubs, so clarify and defer claims have 13 rows of gold in total",
+      "iteration": 6,
+      "source": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-006-gate3-policy",
+      "title": "Gate 3 has the highest operator reach and the only real gold (195 labeled prompts at F1 0.9843), but the quest",
+      "description": "Gate 3 has the highest operator reach and the only real gold (195 labeled prompts at F1 0.9843), but the question it guards is session-wide operator policy and the arm drops as product, keeping the corpus as a negative control",
+      "iteration": 6,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md:66-73",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-006-sentinel-budget",
+      "title": "The completion sentinel check budgets 1200 ms under a 1.5 s bound, so every done-gate arm is offline or async ",
+      "description": "The completion sentinel check budgets 1200 ms under a 1.5 s bound, so every done-gate arm is offline or async and no product build adds per-turn cost",
+      "iteration": 6,
+      "source": ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs:90-94",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-006-regex-words",
+      "title": "The completion claim regex fires on generic words including occurred and happened with a 400-char anchor tail,",
+      "description": "The completion claim regex fires on generic words including occurred and happened with a 400-char anchor tail, the exact false-fire surface a Jev noul would pre-answer",
+      "iteration": 6,
+      "source": ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs:64,70",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-006-shared-labels",
+      "title": "One 30 to 50 excerpt labeled set serves both the goal verifier and the done gate because met/not-met/unclear a",
+      "description": "One 30 to 50 excerpt labeled set serves both the goal verifier and the done gate because met/not-met/unclear and claims-completion classes are the same turns read two ways",
+      "iteration": 6,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages/mimo/iterations/iteration-003.md",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-006-clarify-later",
+      "title": "The clarify suggested default is the purest decision-removing surface but waits on a 30-plus-row gold build an",
+      "description": "The clarify suggested default is the purest decision-removing surface but waits on a 30-plus-row gold build and a clarify-rate measurement, with no telemetry of reach found today",
+      "iteration": 6,
+      "source": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-007-three-surfaces",
+      "title": "Exactly three surfaces remove an operator decision: a confirm-mode stop suggestion, a survival-ordered P0 rere",
+      "description": "Exactly three surfaces remove an operator decision: a confirm-mode stop suggestion, a survival-ordered P0 reread, and done-gate advisory suppression, each default-off behind its own measurement gate",
+      "iteration": 7,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md:117-130",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-007-no-new-command",
+      "title": "No new command or hub mode earns existence: a jev-judge surface adds routing without removing a decision, and ",
+      "description": "No new command or hub mode earns existence: a jev-judge surface adds routing without removing a decision, and a harness command is a forwarding wrapper over scripts",
+      "iteration": 7,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-007-grader-report-only",
+      "title": "The D4 grader agreement row passes the proof test but fails the removes-a-decision test; it is measurement inf",
+      "description": "The D4 grader agreement row passes the proof test but fails the removes-a-decision test; it is measurement infrastructure and must not be sold as a UX win",
+      "iteration": 7,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages/mimo/iterations/iteration-001.md",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-007-regex-outcome",
+      "title": "The done gate's proof plan must accept a measured regex fix with zero Jev runtime code as a passing outcome, s",
+      "description": "The done gate's proof plan must accept a measured regex fix with zero Jev runtime code as a passing outcome, since the cheapest reversal-cost move may win outright",
+      "iteration": 7,
+      "source": ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs:64",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-007-egress-announce",
+      "title": "Every surface that calls Jev must print an egress announcement before its first call, and the recipes' PR-clai",
+      "description": "Every surface that calls Jev must print an egress announcement before its first call, and the recipes' PR-claims gate is later-only because it is jevctl-shaped and would insert a send into the merge flow with no gold",
+      "iteration": 7,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-cli-main/docs/recipes.md:5-11",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-008-runner-path",
+      "title": "The reviewer-regression profile disowns the --scorer 5dim run command: its own note routes reviewer fixtures t",
+      "description": "The reviewer-regression profile disowns the --scorer 5dim run command: its own note routes reviewer fixtures through --scorer reviewer gated on SPECKIT_REVIEWER_BENCHMARKS, so the jev grader must be wired into the scorer that actually consumes the fixtures",
+      "iteration": 8,
+      "source": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/reviewer-regression.json",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-008-correctness-gate",
+      "title": "Reviewer fixtures are correctness-gated pass/fail assertions at threshold 1.0 over 8 single-class cases, not a",
+      "description": "Reviewer fixtures are correctness-gated pass/fail assertions at threshold 1.0 over 8 single-class cases, not a graded agreement corpus, so fixture class completion is check 1 of the grader's proof plan",
+      "iteration": 8,
+      "source": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/reviewer-regression.json",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-008-proof-plans",
+      "title": "Every surviving surface now has a pre-build proof plan with metric, baseline, harness, keep-threshold and boun",
+      "description": "Every surviving surface now has a pre-build proof plan with metric, baseline, harness, keep-threshold and boundary cases: routing arm held-out gain plus stability 0.95, grader llm-level agreement, stop suggestion precision 0.9, P0 order recall 0.9 plus 30 percent, done gate false-fire 0.10 cheapest-fix-first",
+      "iteration": 8,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md:96-99",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-008-stability-formula",
+      "title": "Stability checks copy benchmark-stability.cjs: minimum 3 replays, coefficient 1 minus stddev over mean, warnin",
+      "description": "Stability checks copy benchmark-stability.cjs: minimum 3 replays, coefficient 1 minus stddev over mean, warning threshold 0.95",
+      "iteration": 8,
+      "source": ".skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs:20-28",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-008-two-gates",
+      "title": "Two artifacts gate everything downstream and need no key: the shared 30 to 50 excerpt labeled set for the goal",
+      "description": "Two artifacts gate everything downstream and need no key: the shared 30 to 50 excerpt labeled set for the goal and done-gate arms, and the verdict-class-complete fixture expansion for the grader",
+      "iteration": 8,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages/mimo/iterations/iteration-007.md",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-009-money-not-felt",
+      "title": "At vendor-claimed prices every candidate shape costs cents a day or less, so the operator's felt cost is laten",
+      "description": "At vendor-claimed prices every candidate shape costs cents a day or less, so the operator's felt cost is latency and egress, not money, and any expensive claim would be a fabrication",
+      "iteration": 9,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/docs/quality.md:182-186",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-009-latency-lever",
+      "title": "The deadline drops rest on timeout ceilings, not measured latency; the per-call latency probe folded into the ",
+      "description": "The deadline drops rest on timeout ceilings, not measured latency; the per-call latency probe folded into the routing arm's JSONL is the gate that can revive or confirm the 3-second-hook shapes",
+      "iteration": 9,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md:134",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-009-privacy-classes",
+      "title": "Payload sensitivity classes are confirmed by content: replays send repository internals and must strip and sco",
+      "description": "Payload sensitivity classes are confirmed by content: replays send repository internals and must strip and scope state per the transport's secret-record rule, while the goal shadow is standing conversation egress",
+      "iteration": 9,
+      "source": ".skilled/skills/cli-jev/cli-usage/SKILL.md:76-77,209",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-009-announcement-pattern",
+      "title": "The egress announcement composes three existing patterns: pi-jev's enablement warning in the operator voice, s",
+      "description": "The egress announcement composes three existing patterns: pi-jev's enablement warning in the operator voice, supercov's estimate-before-send and dry-run, and provider-and-model recording per result",
+      "iteration": 9,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/pi-jev-context-main/README.md:37",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-009-cache-multiplier",
+      "title": "The compaction pass's true cost is dominated by an unmeasured prompt-cache breakage multiplier, while supercov",
+      "description": "The compaction pass's true cost is dominated by an unmeasured prompt-cache breakage multiplier, while supercov's content-hash cache is the counter-pattern that keeps repeat sends at zero",
+      "iteration": 9,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/docs/quality.md:198-203",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-010-free-first",
+      "title": "Three of the first four build steps cost zero Jev calls: the two local censuses, the labeled set plus fixture ",
+      "description": "Three of the first four build steps cost zero Jev calls: the two local censuses, the labeled set plus fixture expansion, and the stop replay local arms, so the first usable numbers precede any spend",
+      "iteration": 10,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages/mimo/iterations/iteration-008.md",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-010-grader-order-contest",
+      "title": "The grader build can be second but its agreement number cannot be believed until fixture class expansion and t",
+      "description": "The grader build can be second but its agreement number cannot be believed until fixture class expansion and the reviewer-scorer path check pass, so its measurement orders after slice 8's gates",
+      "iteration": 10,
+      "source": ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/reviewer-regression.json",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-010-kill-radius-note",
+      "title": "A routing-arm loss kills the closed-set choice family per grok's criterion but does not kill score-shaped seve",
+      "description": "A routing-arm loss kills the closed-set choice family per grok's criterion but does not kill score-shaped severity replay or measurement infrastructure; a loss changes what gets built, not what gets measured",
+      "iteration": 10,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages/grok/iterations/iteration-010.md",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    },
+    {
+      "findingId": "f-mimo-010-parked-gaps",
+      "title": "Eight ideas park on named gaps (goal transcripts, compaction facts and cache cost, clarify gold and rate, P0 s",
+      "description": "Eight ideas park on named gaps (goal transcripts, compaction facts and cache cost, clarify gold and rate, P0 sparsity, disagreement records, latency p95, PR-claims corpus) and none parked is a rejection",
+      "iteration": 10,
+      "source": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md:133-140",
+      "severity": "P2",
+      "findingClass": "research-finding",
+      "status": "open"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "kq-eligible-rows",
+      "text": "How many corpus rows are margin-eligible for a tie-break arm?",
+      "status": "unknown",
+      "note": "Free census (slice 1) answers it; ceilings are 6 slice rows and 17 holdout rows."
+    },
+    {
+      "id": "kq-latency-p95",
+      "text": "What is the measured per-call latency and cost of the Python jev-cli?",
+      "status": "unknown",
+      "note": "Gap row 1; the routing arm per-call JSONL fills it and decides whether hook-shaped ideas revive."
+    },
+    {
+      "id": "kq-p0-positives",
+      "text": "How many surviving P0 findings exist corpus-wide?",
+      "status": "unknown",
+      "note": "Sample shows 6 P0s in 69 findings; under 20 positives the recall claim is unprovable."
+    },
+    {
+      "id": "kq-clarify-rate",
+      "text": "How often does compiled routing return clarify in real use?",
+      "status": "unknown",
+      "note": "No telemetry found; canary gold has 3 clarify rows."
+    },
+    {
+      "id": "kq-cache-breakage",
+      "text": "Does a Jev keep-or-drop pass break the host provider prompt cache and at what daily cost?",
+      "status": "unknown",
+      "note": "Conceded by pi-jev-context author; unmeasured everywhere."
+    },
+    {
+      "id": "kq-gold-sanity",
+      "text": "Does the transitions-derived adjudicated gold match operator judgment?",
+      "status": "partial",
+      "note": "Proof plan check: operator reads 10 findings; contradiction on 3 or more drops or raises the arm threshold."
+    }
+  ]
+}

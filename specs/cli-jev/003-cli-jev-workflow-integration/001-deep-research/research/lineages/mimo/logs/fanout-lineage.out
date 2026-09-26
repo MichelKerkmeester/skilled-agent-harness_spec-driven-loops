@@ -1,0 +1,13 @@
+The mimo lineage is complete and verified. Closing status:
+
+**What ran:** all 10 iterations inline (angles `mimo-01`…`mimo-10`), each with its iteration file, delta JSONL and state record, followed by phase_synthesis: `research.md`, `findings-registry.json` (55 findings), `resource-map.md`, and the terminal `synthesis_complete` record carrying `stopReason: maxIterationsReached`.
+
+**Verification:** replicated the fan-out runner's own completion checks — iteration files exactly 1–10, state records 1–10 with required and route-proof fields, synthesis record with the max-iterations stopReason, all artifacts non-empty, registry coherent with deltas: **PASS** (15/15 checks).
+
+**Write containment:** every write landed in `…/research/lineages/mimo/`. One flag for the orchestrator, reported not fixed: `scratch/synthesis-brief.md` shows an mtime inside this session window but was never touched by this lineage (it is the orchestrator's pre-run deliverable and the runner's bookkeeping domain).
+
+**What is inferred vs confirmed:** every iteration marks claims opened-in-code versus digest-attributed; the key unknowns (eligible-row count, per-call latency, P0 corpus size) are parked as named gaps, not guesses.
+
+**Operator's to do:** nothing for this lineage. The merged cross-lineage synthesis is the orchestrator's next step.
+
+FANOUT_LINEAGE_COMPLETE:mimo
