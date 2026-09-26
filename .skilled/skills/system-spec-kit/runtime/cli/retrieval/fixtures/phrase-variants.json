@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3252783c03959ebbddd1996f510b590ba289f2521dbccc03288bbc41d106ae47",
+  "manifestHash": "51619ffdd51c5667905431fad7b55be34faf4c85374479758446a65a3c6fa581",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7214,6 +7214,9 @@
     "2026 09 20 cli jev validation": [
       "2026-09-20 cli-jev validation"
     ],
+    "2026 09 26 cli jev validation": [
+      "2026-09-26 cli-jev validation"
+    ],
     "22 scenario release readiness": [
       "22 scenario release readiness"
     ],
@@ -8368,6 +8371,18 @@
     "advisor decoupling": [
       "advisor decoupling"
     ],
+    "advisor diagnostics emitted bytes": [
+      "advisor diagnostics emitted bytes"
+    ],
+    "advisor diagnostics plan": [
+      "advisor diagnostics plan"
+    ],
+    "advisor diagnostics summary": [
+      "advisor diagnostics summary"
+    ],
+    "advisor diagnostics tasks": [
+      "advisor diagnostics tasks"
+    ],
     "advisor diagnostics verification": [
       "advisor diagnostics verification"
     ],
@@ -8422,6 +8437,9 @@
     "advisor extraction parent metadata": [
       "advisor extraction parent metadata"
     ],
+    "advisor fallback status line": [
+      "advisor fallback status line"
+    ],
     "advisor feature catalog": [
       "advisor feature catalog"
     ],
@@ -8475,6 +8493,12 @@
     ],
     "advisor hook 4 runtime parity": [
       "advisor hook 4-runtime parity"
+    ],
+    "advisor hook cli spawn trim": [
+      "advisor hook cli spawn trim"
+    ],
+    "advisor hook deadline": [
+      "advisor hook deadline"
     ],
     "advisor hook diagnostics sink": [
       "advisor hook diagnostics sink"
@@ -8596,6 +8620,9 @@
     "advisor no match diagnostic": [
       "advisor no match diagnostic"
     ],
+    "advisor no skill matched": [
+      "advisor no skill matched"
+    ],
     "advisor owner lease reconnecting proxy": [
       "advisor owner lease reconnecting proxy"
     ],
@@ -8655,6 +8682,9 @@
     ],
     "advisor proxy removal": [
       "advisor proxy removal"
+    ],
+    "advisor push vs pull routing": [
+      "advisor push vs pull routing"
     ],
     "advisor python parity tests": [
       "advisor python parity tests"
@@ -8725,6 +8755,9 @@
     ],
     "advisor refinement deep review": [
       "advisor refinement deep review"
+    ],
+    "advisor refinements deep review": [
+      "advisor refinements deep review"
     ],
     "advisor registration removal": [
       "advisor registration removal"
@@ -12903,6 +12936,9 @@
     "bounded council rollback window": [
       "bounded council rollback window"
     ],
+    "bounded jsonl atomic trim": [
+      "bounded jsonl atomic trim"
+    ],
     "bounded review loop fanout": [
       "bounded review loop fanout"
     ],
@@ -14064,6 +14100,18 @@
     ],
     "case insensitive resource alias": [
       "case-insensitive resource alias"
+    ],
+    "casual prompt gate advisor": [
+      "casual prompt gate advisor"
+    ],
+    "casual prompt gate plan": [
+      "casual prompt gate plan"
+    ],
+    "casual prompt gate summary": [
+      "casual prompt gate summary"
+    ],
+    "casual prompt gate tasks": [
+      "casual prompt gate tasks"
     ],
     "cat 24 409 benchmark": [
       "cat-24-409 benchmark",
@@ -16999,6 +17047,9 @@
     ],
     "cli jev hub routing baseline": [
       "cli-jev hub routing baseline"
+    ],
+    "cli jev hub routing phrasings": [
+      "cli-jev hub routing phrasings"
     ],
     "cli jev parent hub": [
       "cli-jev parent hub"
@@ -19941,11 +19992,18 @@
     "command bridge compatibility": [
       "command bridge compatibility"
     ],
+    "command bridge evidence": [
+      "command bridge evidence"
+    ],
     "command bridge regeneration": [
+      "command bridge regeneration",
       "command-bridge regeneration"
     ],
     "command bridge rename": [
       "command bridge rename"
+    ],
+    "command bridge tasks": [
+      "command bridge tasks"
     ],
     "command bridges": [
       "command bridges"
@@ -22891,6 +22949,18 @@
     "create agent v1 0 1 2": [
       "create-agent v1.0.1.2"
     ],
+    "create asset roster evidence": [
+      "create asset roster evidence"
+    ],
+    "create asset roster goal": [
+      "create asset roster goal"
+    ],
+    "create asset roster plan": [
+      "create asset roster plan"
+    ],
+    "create asset roster tasks": [
+      "create asset roster tasks"
+    ],
     "create benchmark behavior family": [
       "create-benchmark behavior family"
     ],
@@ -23116,6 +23186,9 @@
     "create goal command assets": [
       "/create:goal command assets"
     ],
+    "create goal command bridge": [
+      "create-goal command bridge"
+    ],
     "create goal command plan": [
       "create-goal command plan"
     ],
@@ -23137,8 +23210,20 @@
     "create goal readme evidence": [
       "create-goal readme evidence"
     ],
+    "create goal readme references": [
+      "create-goal readme references"
+    ],
     "create goal readme tasks": [
       "create-goal readme tasks"
+    ],
+    "create goal references plan": [
+      "create-goal references plan"
+    ],
+    "create goal references summary": [
+      "create-goal references summary"
+    ],
+    "create goal references tasks": [
+      "create-goal references tasks"
     ],
     "create goal routing republish": [
       "create-goal routing republish"
@@ -27594,6 +27679,9 @@
     "deep review fail release blocking": [
       "deep-review FAIL release-blocking"
     ],
+    "deep review fan out dashboard": [
+      "deep review fan-out dashboard"
+    ],
     "deep review fanout dispatch task": [
       "deep-review fanout dispatch task"
     ],
@@ -31737,6 +31825,18 @@
     "edit doc page content": [
       "edit doc page content"
     ],
+    "edit lines fix plan": [
+      "edit_lines fix plan"
+    ],
+    "edit lines line count": [
+      "edit_lines line_count"
+    ],
+    "edit lines trailing newline": [
+      "edit_lines trailing newline"
+    ],
+    "edit lines trailing newline fixed": [
+      "edit_lines trailing newline fixed"
+    ],
     "edit not append": [
       "edit not append"
     ],
@@ -34610,6 +34710,18 @@
     "fakepi integration tests": [
       "fakepi integration tests"
     ],
+    "fallback dedup plan": [
+      "fallback dedup plan"
+    ],
+    "fallback dedup summary": [
+      "fallback dedup summary"
+    ],
+    "fallback dedup tasks": [
+      "fallback dedup tasks"
+    ],
+    "fallback names advisor cli": [
+      "fallback names advisor cli"
+    ],
     "fallback router": [
       "fallback router"
     ],
@@ -34624,6 +34736,15 @@
     ],
     "fallback rss gate": [
       "fallback RSS gate"
+    ],
+    "fallback status plan": [
+      "fallback status plan"
+    ],
+    "fallback status summary": [
+      "fallback status summary"
+    ],
+    "fallback status tasks": [
+      "fallback status tasks"
     ],
     "fallbackdecision integration sweep": [
       "fallbackDecision integration sweep"
@@ -34688,6 +34809,15 @@
     "fan out cross lineage merge": [
       "fan-out cross-lineage merge"
     ],
+    "fan out deep review mimo deepseek": [
+      "fan-out deep review mimo deepseek"
+    ],
+    "fan out deep review plan": [
+      "fan-out deep review plan"
+    ],
+    "fan out deep review tasks": [
+      "fan-out deep review tasks"
+    ],
     "fan out executors": [
       "fan-out executors"
     ],
@@ -34723,6 +34853,12 @@
     ],
     "fan out research plan": [
       "fan-out research plan"
+    ],
+    "fan out research summary": [
+      "fan-out research summary"
+    ],
+    "fan out research verification": [
+      "fan-out research verification"
     ],
     "fan out review campaign": [
       "fan-out review campaign"
@@ -36540,6 +36676,15 @@
     ],
     "follow up deep review tasks": [
       "follow-up deep review tasks"
+    ],
+    "follow up fixes plan": [
+      "follow-up fixes plan"
+    ],
+    "follow up fixes summary": [
+      "follow-up fixes summary"
+    ],
+    "follow up fixes tasks": [
+      "follow-up fixes tasks"
     ],
     "follow up quality pass": [
       "follow-up quality pass"
@@ -38632,6 +38777,9 @@
     "goal file addon": [
       "goal file addon"
     ],
+    "goal file manifest review": [
+      "goal file manifest review"
+    ],
     "goal fixture checklist": [
       "goal fixture checklist"
     ],
@@ -40255,6 +40403,9 @@
     "headless colour scheme": [
       "headless colour scheme"
     ],
+    "headless fallback dedup": [
+      "headless fallback dedup"
+    ],
     "headless stream print capture": [
       "headless stream print capture"
     ],
@@ -40985,6 +41136,15 @@
     "hook daemon docs alignment": [
       "hook daemon docs alignment"
     ],
+    "hook deadline plan": [
+      "hook deadline plan"
+    ],
+    "hook deadline summary": [
+      "hook deadline summary"
+    ],
+    "hook deadline tasks": [
+      "hook deadline tasks"
+    ],
     "hook doc reconciliation": [
       "hook doc reconciliation"
     ],
@@ -41014,6 +41174,9 @@
     ],
     "hook fallback signal tasks": [
       "hook fallback signal tasks"
+    ],
+    "hook fallback survives shim kill": [
+      "hook fallback survives shim kill"
     ],
     "hook feature flag decisions": [
       "hook feature flag decisions"
@@ -41116,6 +41279,18 @@
     ],
     "hook parity tasks": [
       "hook parity tasks"
+    ],
+    "hook path cli spawn plan": [
+      "hook path cli spawn plan"
+    ],
+    "hook path cli spawn summary": [
+      "hook path cli spawn summary"
+    ],
+    "hook path cli spawn tasks": [
+      "hook path cli spawn tasks"
+    ],
+    "hook path compiled route spawn": [
+      "hook path compiled route spawn"
     ],
     "hook registration drift": [
       "hook registration drift"
@@ -42211,6 +42386,9 @@
     ],
     "include comments in task output": [
       "include comments in task output"
+    ],
+    "include compiled route option plan": [
+      "include compiled route option plan"
     ],
     "includearchived importance tier recall audit": [
       "includeArchived importance_tier recall audit"
@@ -44350,6 +44528,12 @@
     ],
     "lazy sibling child spawn": [
       "lazy sibling-child spawn"
+    ],
+    "lazy skill catalog research": [
+      "lazy skill catalog research"
+    ],
+    "lazy skill loading advisor": [
+      "lazy skill loading advisor"
     ],
     "lazy startup gating": [
       "lazy startup gating"
@@ -49607,6 +49791,9 @@
     "mimo playbook wave results": [
       "mimo playbook wave results"
     ],
+    "mimo swe 2 max fan out": [
+      "mimo swe-2 max fan-out"
+    ],
     "mimo task dependencies": [
       "mimo task dependencies"
     ],
@@ -50356,6 +50543,9 @@
     ],
     "mode contracts value layer delete": [
       "mode contracts value layer delete"
+    ],
+    "mode count update": [
+      "mode count update"
     ],
     "mode event gateway": [
       "mode event gateway"
@@ -56637,6 +56827,12 @@
     "phase 011 changelog": [
       "phase 011 changelog"
     ],
+    "phase 011 checklist": [
+      "phase 011 checklist"
+    ],
+    "phase 011 closeout": [
+      "phase 011 closeout"
+    ],
     "phase 011 closing verification": [
       "phase 011 closing verification"
     ],
@@ -57475,6 +57671,9 @@
     "phrase quality tasks": [
       "phrase quality tasks"
     ],
+    "pi advisor dist path test": [
+      "pi advisor dist path test"
+    ],
     "pi agent": [
       "pi agent"
     ],
@@ -58001,6 +58200,25 @@
     ],
     "pi skill discovery": [
       "pi skill discovery"
+    ],
+    "pi skill orchestrator": [
+      "pi skill orchestrator"
+    ],
+    "pi skill orchestrator research": [
+      "pi skill orchestrator research",
+      "pi-skill-orchestrator research"
+    ],
+    "pi skill orchestrator research plan": [
+      "pi skill orchestrator research plan"
+    ],
+    "pi skill orchestrator research status": [
+      "pi skill orchestrator research status"
+    ],
+    "pi skill orchestrator research tasks": [
+      "pi skill orchestrator research tasks"
+    ],
+    "pi skill orchestrator review": [
+      "pi skill orchestrator review"
     ],
     "pi slow message send": [
       "pi slow message send"
@@ -58688,6 +58906,9 @@
     ],
     "plugin roster makemd beancount": [
       "plugin roster makemd beancount"
+    ],
+    "plugin transform dedup lifecycle": [
+      "plugin transform dedup lifecycle"
     ],
     "plugin tui overlay fix plan": [
       "plugin TUI overlay fix plan"
@@ -63567,6 +63788,9 @@
     ],
     "repeated claim and focus signatures": [
       "repeated claim and focus signatures"
+    ],
+    "repeated directives fallback": [
+      "repeated directives fallback"
     ],
     "repetition density demote": [
       "repetition density demote"
@@ -70435,6 +70659,9 @@
     "shoulddenypidispatch pi authorization gate": [
       "shouldDenyPiDispatch pi authorization gate"
     ],
+    "shouldfireadvisor reconnect": [
+      "shouldFireAdvisor reconnect"
+    ],
     "shouldpreservegraph": [
       "shouldPreserveGraph"
     ],
@@ -72130,6 +72357,9 @@
     "sk doc legacy template debt cleanup": [
       "sk-doc legacy template debt cleanup"
     ],
+    "sk doc mode count": [
+      "sk-doc mode count"
+    ],
     "sk doc newcomer routing count": [
       "sk-doc newcomer routing count"
     ],
@@ -73420,6 +73650,9 @@
     "skill advisor recall improvement": [
       "skill advisor recall improvement"
     ],
+    "skill advisor refinement": [
+      "skill advisor refinement"
+    ],
     "skill advisor regression py": [
       "skill_advisor_regression.py"
     ],
@@ -74240,6 +74473,12 @@
     "skill not triggering fix": [
       "skill not triggering fix"
     ],
+    "skill orchestrator advisor upgrade": [
+      "skill orchestrator advisor upgrade"
+    ],
+    "skill orchestrator deep research": [
+      "skill orchestrator deep research"
+    ],
     "skill package security audit": [
       "skill package security audit"
     ],
@@ -74351,6 +74590,9 @@
     ],
     "skill script ownership boundary": [
       "skill script ownership boundary"
+    ],
+    "skill search scope fallback research": [
+      "skill_search scope fallback research"
     ],
     "skill section guidance": [
       "skill section guidance"
@@ -74657,6 +74899,9 @@
     ],
     "skip code family distinguish": [
       "skip code family distinguish"
+    ],
+    "skip compiled route enrichment hook": [
+      "skip compiled route enrichment hook"
     ],
     "skip dont break floor of three": [
       "skip dont break floor of three"
@@ -80902,6 +81147,9 @@
     "trigger index reader fails closed": [
       "trigger index reader fails closed"
     ],
+    "trigger index regenerate committed": [
+      "trigger index regenerate committed"
+    ],
     "trigger index regenerated lineages": [
       "trigger index regenerated lineages"
     ],
@@ -81234,6 +81482,9 @@
     ],
     "two data folders collapsed": [
       "two data folders collapsed"
+    ],
+    "two executor fan out research": [
+      "two executor fan-out research"
     ],
     "two lane deep research decision": [
       "two lane deep research decision"
