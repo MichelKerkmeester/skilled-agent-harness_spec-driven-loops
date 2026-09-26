@@ -385,6 +385,7 @@ describe('advisor_recommend handler', () => {
     expect(response.data.freshness).toBe('unavailable');
     expect(response.data.recommendations).toEqual([]);
     expect(response.data.warnings).toEqual(['ADVISOR_DISABLED']);
+    expect(response.data.abstainReasons).toEqual(['Skill advisor disabled by SPECKIT_SKILL_ADVISOR_HOOK_DISABLED.']);
     expect(mockScoreAdvisorPrompt).not.toHaveBeenCalled();
   });
 
@@ -396,6 +397,7 @@ describe('advisor_recommend handler', () => {
     expect(response.data.freshness).toBe('unavailable');
     expect(response.data.recommendations).toEqual([]);
     expect(response.data.warnings).toEqual(['ADVISOR_DISABLED']);
+    expect(response.data.abstainReasons).toEqual(['Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED.']);
     expect(mockScoreAdvisorPrompt).not.toHaveBeenCalled();
   });
 

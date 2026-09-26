@@ -61,13 +61,27 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conver
 npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts
 ```
 
+4. Load the plugin in a real OpenCode session. The unit tests import the module directly, so they cannot catch a module that OpenCode refuses to load. Pin the model, because a run that inherits an out-of-quota default provider prints nothing, and close stdin so the run cannot hang:
+
+```bash
+mkdir -p /tmp/skill-advisor-playbook
+opencode run --print-logs --log-level INFO --dir "$PWD" -m opencode-go/deepseek-v4.1-flash \
+  "List every tool you can call whose name contains advisor. Print only the tool names, one per line." \
+  </dev/null > /tmp/skill-advisor-playbook/cl-005.stdout.txt 2> /tmp/skill-advisor-playbook/cl-005.log
+echo "opencode exit=$?"
+grep -n 'failed to load plugin' /tmp/skill-advisor-playbook/cl-005.log | grep 'system-skill-advisor.js'
+grep -n 'spec_kit_skill_advisor_status' /tmp/skill-advisor-playbook/cl-005.stdout.txt
+```
+
 ### Expected Signals
 
 - The advisor call returns JSON with `status: "ok"` or a prompt-safe fail-open status.
-- Native success carries an `Advisor:` brief rendered from the CLI payload (`route: "cli"`, or `cli-local-scorer` when the daemon was unreachable).
+- Native success carries an `Advisor:` brief rendered from the CLI payload. The brief starts with `Advisor: live;` when the daemon answered with a live graph, and with `Advisor: stale;` when the daemon answered with a stale graph or the CLI answered from its local scorer. The plugin's internal route label is not shown by any step and is not a pass criterion.
 - The payload's `effectiveThresholds` report the 014 threshold pair: `confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`, `confidenceOnly: false`.
 - The plugin spawns `.skilled/bin/skill-advisor.cjs` and never private handler paths.
+- Step 3 passes when the whole plugin suite is green: `Test Files  1 passed (1)` and a `Tests` line where every test passed and none failed. The test count grows as tests are added, so it is not a pass criterion. A count that differs from the recorded evidence is not a mismatch. The same holds for the skipped count in the `-t opt-out` selection, which must still report 3 passed.
 - `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the plugin alone) yields a disabled brief without spawning the advisor. The legacy `SPECKIT_`-prefixed names still work.
+- Step 4 exits `0`. The log has no `failed to load plugin` line naming `system-skill-advisor.js`, so the first `grep` prints nothing. The model's answer lists `spec_kit_skill_advisor_status`, so the second `grep` prints a match. A unit-test pass without this live load is not a PASS.
 
 ### Failure Modes
 
@@ -76,6 +90,8 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/syst
 | Private dist pinning | Plugin imports handler internals directly | Update the plugin to spawn the advisor CLI instead. |
 | Plugin disabled unexpectedly | Status tool reports `disabled_reason` | Check env and plugin options. |
 | CLI timeout | `error: "TIMEOUT"` | Inspect build and Node binary path. |
+| OpenCode rejects the plugin | The log shows `failed to load plugin` naming `system-skill-advisor.js`, for example with `Plugin export is not a function` | OpenCode 1.18.32 rejects a plugin module that exports anything other than functions. Keep the module to its default factory export and move constants and helpers to a separate module. |
+| Status tool missing from the session | No `spec_kit_skill_advisor_status` in the model's answer while the log shows no load failure | Check that `.opencode/plugins/system-skill-advisor.js` is present and current, then rerun step 4. |
 
 ---
 
@@ -142,15 +158,15 @@ Plugin test output:
 
 ```text
  Test Files  1 passed (1)
-      Tests  40 passed (40)
-   Duration  1.93s
+      Tests  65 passed (65)
+   Duration  1.35s
 ```
 
 Disable-flag evidence, from the same test file selected with `-t opt-out`:
 
 ```text
  Test Files  1 passed (1)
-      Tests  3 passed | 37 skipped (40)
+      Tests  3 passed | 62 skipped (65)
 ```
 
 The three opt-out paths are `env opt-out disables bridge invocation`, `shared hook env opt-out disables bridge invocation` and `config opt-out disables bridge invocation`. Each asserts that no advisor process is spawned and that the status tool reports `enabled=false` with the matching `disabled_reason`.
@@ -169,4 +185,4 @@ The plugin resolves the CLI by path and spawns it; it never imports a bridge har
 
 PASS
 
-The advisor CLI call exited 0 with `status: "ok"`, the 014 threshold pair (`confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`, `confidenceOnly: false`) and ranked recommendations, so the CLI path the plugin spawns is live. The plugin test suite then passed 40/40, including the brief-rendering, cache, timeout, fail-open and opt-out paths, and its `-t opt-out` selection proved all three disable routes spawn no advisor process and report `enabled=false`. A `stale` trust state is the documented degraded answer, not a failed run: the plugin renders it as the prompt-safe brief.
+The advisor CLI call exited 0 with `status: "ok"`, the 014 threshold pair (`confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`, `confidenceOnly: false`) and ranked recommendations, so the CLI path the plugin spawns is live. The plugin test suite then passed in full (65/65 on this run), including the brief-rendering, cache, timeout, fail-open and opt-out paths, and its `-t opt-out` selection proved all three disable routes spawn no advisor process and report `enabled=false`. A `stale` trust state is the documented degraded answer, not a failed run: the plugin renders it as the prompt-safe brief.

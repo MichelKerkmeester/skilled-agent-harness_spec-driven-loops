@@ -159,11 +159,24 @@ describe("registered Pi extension boundary", () => {
     expect(result).toBeUndefined();
   });
 
-  // Allowed is not the same as silent: a dispatch missing `</dev/null` still earns the
-  // advisory its skill declares, and an advisory must never read as a denial.
-  it("advises without blocking when a permitted dispatch omits the stdin redirect", async () => {
+  // An authorized executor is still bound by its skill's hard rules: a dispatch
+  // without `</dev/null` can hang on inherited stdin, so the rule blocks it.
+  it("blocks a permitted dispatch that omits the stdin redirect", async () => {
     const { result } = await invokeFactory("dispatch via cli-devin", 'devin -p "task"');
+    expect(result?.block).toBe(true);
+    expect(result?.reason).toContain("[stdin-redirect-required]");
+  });
+
+  // Allowed is not the same as silent: a warn-severity rule earns an advisory,
+  // and an advisory must never read as a denial.
+  it("advises without blocking when a permitted dispatch trips a warn-severity rule", async () => {
+    const { result } = await invokeFactory(
+      "dispatch via cli-opencode",
+      'opencode run --model openai/gpt-5.5 --share "task" </dev/null',
+    );
     expect(result?.block).not.toBe(true);
+    expect(result?.reason).toContain("Dispatch advisory for cli-opencode");
+    expect(result?.reason).toContain("[share-requires-confirmation]");
   });
 
   it.each([

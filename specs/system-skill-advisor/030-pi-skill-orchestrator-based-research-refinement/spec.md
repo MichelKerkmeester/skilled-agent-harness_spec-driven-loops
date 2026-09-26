@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent: Pi Skill Orchestrator Research for Skill Advisor Refinement"
-description: "Phased packet that mines the pi-skill-orchestrator extension for mechanisms that could upgrade system-skill-advisor. Phase 1 ran a two-lineage deep research: 10 iterations on MiMo v2.6 Pro (high) through cli-pi on LLM Gateway and 5 on SWE-2 MAX through cli-devin. Phases 2 to 4 implement the nine recommendations the operator adopted: nested hook deadlines and diagnostics, a leaner hook path and a clearer fallback. Phase 5 fixes the limitations they recorded, phase 6 reviews all of it with two other model families, and phase 7 brings the docs up to date and aligns the code with sk-code."
+description: "Phased packet that mines the pi-skill-orchestrator extension for mechanisms that could upgrade system-skill-advisor. Phase 1 ran a two-lineage deep research: 10 iterations on MiMo v2.6 Pro (high) through cli-pi on LLM Gateway and 5 on SWE-2 MAX through cli-devin. Phases 2 to 4 implement the nine recommendations the operator adopted: nested hook deadlines and diagnostics, a leaner hook path and a clearer fallback. Phase 5 fixes the limitations they recorded, phase 6 reviews all of it with two other model families, phase 7 brings the docs up to date and aligns the code with sk-code, phase 8 tests every refined surface inside five CLIs and phase 9 fixes what those runs found."
 trigger_phrases:
   - "pi skill orchestrator"
   - "pi-skill-orchestrator research"
@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Active. Phases 1 to 7 are complete, and phase 8 tests the refinements inside every CLI |
+| **Status** | Complete. Phases 1 to 9 are complete: phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found and reran the scenarios until all 45 passed |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -130,7 +130,7 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | 6 | 006-fanout-deep-review/ | Two-model `/deep:review` of the phase 2 to 5 changes: MiMo v2.6 Pro high and DeepSeek V4.1 Flash max through cli-pi, three iterations each, no early stop | Complete |
 | 7 | 007-docs-and-standards-alignment/ | sk-code audit of the phase 2 to 5 code, and the advisor feature catalog, playbooks, READMEs and root README brought up to date, written by MiMo v2.6 Pro high | Complete |
 | 8 | 008-cross-cli-manual-testing/ | The nine related playbook scenarios run inside cli-pi, cli-opencode, cli-devin, cli-cursor and cli-codex with native hook evidence per runtime, after Grok 4.7 joins the Cursor allowlist | Complete |
-| 9 | 009-test-findings-remediation/ | Fix every phase 8 finding and rerun the nine scenarios in all five CLIs until each passes or fails only on a named environment limit | Active |
+| 9 | 009-test-findings-remediation/ | Fix every phase 8 finding and rerun the nine scenarios in all five CLIs until each passes or fails only on a named environment limit | Complete |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 

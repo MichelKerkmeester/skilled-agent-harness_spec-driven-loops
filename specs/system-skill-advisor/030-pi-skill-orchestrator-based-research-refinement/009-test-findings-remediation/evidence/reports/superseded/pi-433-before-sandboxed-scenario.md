@@ -1,0 +1,11 @@
+RESULT: PASS | scenario=433 | runtime=pi
+NATIVE: Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-code 0.88/0.16 pass.
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+|---|---|---|---|---|---|
+| 1 | `echo "$WORK" \| SPECKIT_CLAUDE_HOOK_TIMEOUT_MS=300 node $HOOK` (short budget) | 0 | `short: Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json` | Exit 0; first line starts with `Advisor: outage (fail_open); route by hand:` | yes |
+| 2 | `echo "$WORK" \| node $HOOK` (default budget) | 0 | `default: Advisor: live; ambiguous: system-skill-advisor 0.82/0.26 vs sk-vision 0.82/0.30 pass.` | Exit 0; first line starts with `Advisor: live;`, `Advisor: stale;` or `Advisor: outage (fail_open);` | yes |
+| 3 | `echo "$CASUAL" \| node $HOOK` (casual) | 0 | `casual: Advisor: prompt skipped.` | Exit 0; first line is `Advisor: prompt skipped.` | yes |
+| 4 | `rm -rf "$SANDBOX"` (sandbox cleanup) | 0 | No `/tmp/cli-playbook.*` directories remain (the follow-up `ls -d` exited 1 only because the glob matched nothing) | Sandbox removed | yes |
+DEVIATIONS: `gtimeout 20` was omitted from all three hook calls because gtimeout is not installed on this machine (per dispatch instruction). Every other part of the commands was kept exactly as written, including the sandbox `SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"` and the 300 ms `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` budget on the short run. With no external timeout wrapper, the hook's own budget (300 ms short / default) still bounded the CLI call, as evidenced by the short run's `durationMs: 306` fail-open result.
+NOTES: The default-budget run returned `Advisor: live;` with `status: ok, freshness: live` (~1.97 s), meaning the CLI started a daemon for the sandbox socket in time — the scenario's expected-value list explicitly allows `live`, `stale` or `outage` here, so this is a pass. All three stderr JSON telemetry lines report `status` fail_open/ok/skipped respectively, consistent with the contract that the hook degrades output and never blocks the prompt (all exits 0). No flaky reruns; each command ran once and produced its expected signal on the first attempt.

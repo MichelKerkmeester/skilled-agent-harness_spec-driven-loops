@@ -111,12 +111,14 @@ and findings belong here.
 | 005-follow-up-fixes | Done | Phase Documentation Map in `spec.md` reads Complete |
 | 006-fanout-deep-review | Done | Phase Documentation Map in `spec.md` reads Complete |
 | 007-docs-and-standards-alignment | Done | Phase Documentation Map in `spec.md` reads Complete |
-| 008-cross-cli-manual-testing | In Progress | Phase Documentation Map in `spec.md` reads Active or Pending, and the orchestrator reports it open |
-| 009-test-findings-remediation | In Progress | Phase Documentation Map in `spec.md` reads Active or Pending, and the orchestrator reports it open |
+| 008-cross-cli-manual-testing | Done | Phase Documentation Map in `spec.md` reads Complete, committed `c4aa97df7b` and pushed |
+| 009-test-findings-remediation | Done | Phase Documentation Map in `spec.md` reads Complete. F1 to F22 fixed or handed to the operator (F5), and 45 of 45 scenario reruns pass |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Child criteria source | No phase is Level 2, so none has `acceptance-criteria.md`. Each child goal takes its criteria from its own `spec.md` requirements table and success criteria, as the operator approved |
+| New findings during the reruns | F21: a second launcher on the same database shut down the healthy live advisor, because every CLI-started launcher looked orphaned. Scenario 433 triggered it twice. F22: CL-005 asked for a route label no step shows. Both are recorded in the phase 9 spec and fixed there |
+| Cursor native delivery | Re-probed on Cursor `2026.09.26-dd393fe`: `sessionStart` and `sessionEnd` fire under `cursor-agent -p`, `beforeSubmitPrompt` and `stop` do not. The advisor hook is registered correctly, so Cursor's missing native line is a host limit (cli-cursor CU-014) |
 <!-- /ANCHOR:log -->

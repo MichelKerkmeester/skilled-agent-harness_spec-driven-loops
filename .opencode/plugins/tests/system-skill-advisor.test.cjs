@@ -24,6 +24,13 @@ const MESSAGE_IDENTITY_PATH = path.join(
   'lib',
   'opencode-message-identity.js',
 );
+const RENDER_HELPERS_PATH = path.join(
+  WORKSPACE_ROOT,
+  '.skilled',
+  'plugins',
+  'lib',
+  'skill-advisor-render.js',
+);
 const RENDERER_PATH = path.join(
   WORKSPACE_ROOT,
   '.skilled',
@@ -71,6 +78,13 @@ let pluginModulePromise;
 function loadPlugin() {
   pluginModulePromise ??= import(pathToFileURL(PLUGIN_PATH).href);
   return pluginModulePromise;
+}
+
+let renderHelpersPromise;
+
+function loadRenderHelpers() {
+  renderHelpersPromise ??= import(pathToFileURL(RENDER_HELPERS_PATH).href);
+  return renderHelpersPromise;
 }
 
 function bridgeEnvelope(
@@ -256,12 +270,18 @@ test('malformed optional configuration is reported with a prompt-safe code', asy
   }
 });
 
-test('bounded route rendering caps targets and exposes a complete reveal path', async () => {
+test('plugin module exports only its default factory, the shape the OpenCode loader accepts', async () => {
   const pluginModule = await loadPlugin();
+  assert.deepEqual(Object.keys(pluginModule), ['default']);
+  assert.equal(typeof pluginModule.default, 'function');
+});
+
+test('bounded route rendering caps targets and exposes a complete reveal path', async () => {
+  const renderHelpers = await loadRenderHelpers();
   const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
-  const unbounded = pluginModule.renderCompiledRouteSummaryLine(summary);
-  const bounded = pluginModule.renderCompiledRouteSummaryLine(summary, { bounded: true });
-  const revealed = pluginModule.revealCompiledRouteSummaryTargets(summary);
+  const unbounded = renderHelpers.renderCompiledRouteSummaryLine(summary);
+  const bounded = renderHelpers.renderCompiledRouteSummaryLine(summary, { bounded: true });
+  const revealed = renderHelpers.revealCompiledRouteSummaryTargets(summary);
 
   assert.equal(unbounded, legacyCompiledRouteSummaryLine(summary));
   assert.match(bounded, /targets=quality,review,opencode,\+2 more/);
@@ -272,18 +292,18 @@ test('bounded route rendering caps targets and exposes a complete reveal path', 
     assert.ok(bounded.includes(target) || revealed.includes(target), `target ${target} must be visible or revealable`);
   }
   assert.equal(
-    pluginModule.renderCompiledRouteSummaryLine(summary, { reveal: true }),
+    renderHelpers.renderCompiledRouteSummaryLine(summary, { reveal: true }),
     unbounded,
   );
 });
 
 test('flag-off route rendering and plugin delivery remain byte-identical to the baseline', async () => {
-  const pluginModule = await loadPlugin();
+  const renderHelpers = await loadRenderHelpers();
   const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
   const baseline = legacyCompiledRouteSummaryLine(summary);
 
-  assert.equal(pluginModule.renderCompiledRouteSummaryLine(summary), baseline);
-  assert.equal(pluginModule.renderCompiledRouteSummaryLine(summary, { bounded: false }), baseline);
+  assert.equal(renderHelpers.renderCompiledRouteSummaryLine(summary), baseline);
+  assert.equal(renderHelpers.renderCompiledRouteSummaryLine(summary, { bounded: false }), baseline);
 
   const child = fakeChild({
     stdout: cliEnvelope({
@@ -304,7 +324,7 @@ test('flag-off route rendering and plugin delivery remain byte-identical to the 
 });
 
 test('bounded flag selects the bounded line in the OpenCode transform', async () => {
-  const pluginModule = await loadPlugin();
+  const renderHelpers = await loadRenderHelpers();
   const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
   const child = fakeChild({
     stdout: cliEnvelope({
@@ -322,41 +342,41 @@ test('bounded flag selects the bounded line in the OpenCode transform', async ()
 
   assert.equal(
     output.system[1],
-    pluginModule.renderCompiledRouteSummaryLine(summary, { bounded: true }),
+    renderHelpers.renderCompiledRouteSummaryLine(summary, { bounded: true }),
   );
   assert.match(output.system[1], /\+2 more/);
 });
 
 test('target digest is stable for the same membership and changes for a changed omitted set', async () => {
-  const pluginModule = await loadPlugin();
+  const renderHelpers = await loadRenderHelpers();
   const summary = compiledRouteSummary(['alpha', 'beta', 'gamma', 'delta', 'epsilon']);
   const reordered = compiledRouteSummary(['epsilon', 'delta', 'gamma', 'beta', 'alpha']);
   const changedOmitted = compiledRouteSummary(['alpha', 'beta', 'gamma', 'delta', 'zeta']);
 
-  const digest = pluginModule.compiledRouteSummaryTargetDigest(summary);
-  assert.equal(pluginModule.compiledRouteSummaryTargetDigest(reordered), digest);
-  assert.notEqual(pluginModule.compiledRouteSummaryTargetDigest(changedOmitted), digest);
+  const digest = renderHelpers.compiledRouteSummaryTargetDigest(summary);
+  assert.equal(renderHelpers.compiledRouteSummaryTargetDigest(reordered), digest);
+  assert.notEqual(renderHelpers.compiledRouteSummaryTargetDigest(changedOmitted), digest);
   assert.match(
-    pluginModule.renderCompiledRouteSummaryLine(summary, { bounded: true }),
+    renderHelpers.renderCompiledRouteSummaryLine(summary, { bounded: true }),
     new RegExp(`digest=${digest}`),
   );
 });
 
 test('bounded rendering preserves the cap boundary and handles empty or malformed summaries', async () => {
-  const pluginModule = await loadPlugin();
+  const renderHelpers = await loadRenderHelpers();
   const exact = ['alpha', 'beta', 'gamma'];
-  const exactLine = pluginModule.renderCompiledRouteSummaryLine(
+  const exactLine = renderHelpers.renderCompiledRouteSummaryLine(
     compiledRouteSummary(exact),
     { bounded: true },
   );
 
   assert.doesNotMatch(exactLine, /\+\d+ more/);
   assert.equal(
-    pluginModule.renderCompiledRouteSummaryLine(compiledRouteSummary([]), { bounded: true }),
+    renderHelpers.renderCompiledRouteSummaryLine(compiledRouteSummary([]), { bounded: true }),
     'Compiled routing (served=compiled): hub=sk-code outcome=route targets=none',
   );
-  assert.equal(pluginModule.renderCompiledRouteSummaryLine(null, { bounded: true }), null);
-  assert.deepEqual(pluginModule.revealCompiledRouteSummaryTargets({ targets: ['alpha', 42] }), ['alpha']);
+  assert.equal(renderHelpers.renderCompiledRouteSummaryLine(null, { bounded: true }), null);
+  assert.deepEqual(renderHelpers.revealCompiledRouteSummaryTargets({ targets: ['alpha', 42] }), ['alpha']);
 });
 
 test('no-brief turns render the no-match head and hygiene context', async () => {
@@ -371,6 +391,21 @@ test('no-brief turns render the no-match head and hygiene context', async () => 
   assert.equal(child.stdinPayload, null);
   assert.equal(calls[0].args[calls[0].args.indexOf('--prompt') + 1], 'implement the plugin fix');
   assert.deepEqual(calls[0].options.stdio, ['ignore', 'pipe', 'ignore']);
+});
+
+// The plugin spawns its CLI through a path relative to its own directory, so a
+// missing link there fails every advisor call open while the spawn fakes pass.
+test('the advisor CLI the plugin spawns exists on disk', async () => {
+  const child = fakeChild({ stdout: cliEnvelope() });
+  const calls = [];
+  const hooks = await makePlugin({ spawnOverride: spawnSequence([child], calls) });
+
+  await runPrompt(hooks);
+
+  assert.equal(calls.length, 1);
+  const cliPath = calls[0].args[0];
+  assert.match(cliPath, /skill-advisor\.cjs$/);
+  assert.equal(fs.existsSync(cliPath), true, `advisor CLI missing at ${cliPath}`);
 });
 
 test('missing prompts render the skipped head while disabled mode stays silent', async () => {

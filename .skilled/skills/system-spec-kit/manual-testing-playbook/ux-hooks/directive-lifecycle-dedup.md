@@ -86,10 +86,11 @@ npx vitest run \
   --sequence.shuffle --sequence.seed=18018
 ```
 
-4. Run Pi:
+4. Run the Pi suite from `.skilled`, where vitest is installed, through the hooks vitest config. Pi loads these files through `.pi/extensions/` symlinks, so their imports are written for that location, and only the config's alias resolves them from the source tree:
 
 ```bash
-cd .skilled/hooks/dispatch/pi && npx vitest run
+cd .skilled
+npx --no-install vitest run --config hooks/vitest.config.ts --dir hooks/dispatch/pi
 ```
 
 5. From the repository root, create a new durable registered-adapter evidence directory. The harness refuses to overwrite an existing directory:
@@ -99,15 +100,7 @@ node specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-finding
   specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/<new-output-directory>
 ```
 
-6. Create one outcome JSON per runtime/evidence class. Set `executionContext.evidenceRoot` to `.`, `requireDurableEvidence` to `true`, and list the exact prior run folder in `supersedes` when correcting historical evidence. Then persist without overwriting history:
-
-```bash
-node the retired scenario-persistence wrapper \
-  --skill .skilled/skills/system-spec-kit \
-  --scenario ux-hooks-directive-lifecycle-dedup \
-  --variant <runtime-and-evidence-class> \
-  --outcome-json <repo-relative-outcome-json>
-```
+6. Create one outcome JSON per runtime and evidence class. Set `executionContext.evidenceRoot` to `.`, `requireDurableEvidence` to `true`, and list the exact prior run folder in `supersedes` when correcting historical evidence. No command persists these outcomes today. The scenario-persistence wrapper was retired with its benchmark lane, as MTP-005 records in `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/persist-scenario-result.md`. Until a replacement exists, record each verdict, its reason and its evidence path by hand in a new dated folder under `.skilled/skills/system-spec-kit/benchmark/reports/`. Never overwrite an earlier folder.
 
 ### Expected
 
@@ -116,7 +109,7 @@ node the retired scenario-persistence wrapper \
 - Claude/Codex/Cursor/Devin JSON records the native envelope and full/route-only/full cadence. Pi evidence records full/unmodified/full cadence, unchanged receipt count on repeat, kill-switch result, uncertainty disposition, evidence class, and host-delivery status.
 - OpenCode remains `test-seam` evidence unless a real OpenCode host receipt is captured.
 - Cursor native-host status remains `SKIP` while `beforeSubmitPrompt` is dormant.
-- Benchmark reports contain `evidenceArtifacts` with `status: verified`, byte counts, and SHA-256 values. `providerModel` stays `null` unless a model was directly observed.
+- The hand-recorded report names the verdict, reason and repo-relative evidence path, with each evidence file's byte count and SHA-256 value. `providerModel` stays `null` unless a model was directly observed.
 
 ### Evidence
 
@@ -125,7 +118,7 @@ A complete run stores:
 - Focused command logs under the active packet's `evidence/tests/` directory.
 - Registered-adapter JSON under the active packet's `evidence/runtime/<run>/` directory.
 - Race/latency output under the active packet's `evidence/performance/` directory.
-- Append-only benchmark reports under `.skilled/skills/system-spec-kit/benchmark/reports/`.
+- One new dated report folder per run under `.skilled/skills/system-spec-kit/benchmark/reports/`, recorded by hand without overwriting an earlier folder.
 - `supersedes` links from corrected reports to prior false or ambiguous records.
 
 ### Pass / Fail
@@ -140,7 +133,7 @@ A complete run stores:
 2. Host-boundary failure: inspect the advisor boundary target and the system-spec-kit boundary bridge, then the registered session/compaction owner.
 3. Runtime-envelope failure: inspect the corresponding system-spec-kit adapter using its native payload shape.
 4. OpenCode identity failure: inspect primitive/conflicting identity classification and store-wide invalidation in `system-skill-advisor.js`.
-5. Evidence failure: inspect the manual wrapper's durable-evidence hashing, observed-provenance fields, and append-only destination reservation.
+5. Evidence failure: the persistence wrapper that hashed evidence and reserved append-only destinations is retired (see MTP-005 in `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/persist-scenario-result.md`). Check the hand-recorded report instead. Each evidence path must be repo-relative and present, its SHA-256 must match the file, provenance fields must name only observed values and no earlier report folder may be overwritten.
 
 ---
 
@@ -154,7 +147,7 @@ A complete run stores:
 - Host boundary: `.skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`
 - Registered bridge: `.skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts`
 - OpenCode adapter: `.skilled/plugins/system-skill-advisor.js`
-- Persistence wrapper: the retired scenario-persistence wrapper
+- Persistence wrapper: retired with its benchmark lane, see MTP-005 in `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/persist-scenario-result.md`
 
 Provenance: manual only - follow the TEST EXECUTION sequence by hand
 

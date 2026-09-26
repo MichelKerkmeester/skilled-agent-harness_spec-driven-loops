@@ -44,7 +44,7 @@ function sha256(path) {
 }
 
 function adapterPath(runtime) {
-  return join(repoRoot, '.opencode', 'skills', 'system-spec-kit', 'mcp-server', 'dist', 'hooks', runtime, 'user-prompt-submit.js');
+  return join(repoRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'dist', 'hooks', runtime, 'user-prompt-submit.js');
 }
 
 function payload(runtime, transcriptPath, includeSession = true) {

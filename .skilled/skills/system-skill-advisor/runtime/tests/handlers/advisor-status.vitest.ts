@@ -271,6 +271,15 @@ describe('advisor_status handler', () => {
 
     const overrideDir = mkdtempSync(join(tmpdir(), 'advisor-status-override-'));
     writeFileSync(join(overrideDir, 'skill-graph.sqlite'), 'not-a-sqlite-database-file-at-all-this-is-corrupt', 'utf8');
+    // The generation counter follows the DB dir override, so the live
+    // generation the writing daemon published sits beside its database.
+    writeFileSync(join(overrideDir, 'skill-graph-generation.json'), `${JSON.stringify({
+      generation: 11,
+      updatedAt: '2026-04-20T00:00:00.000Z',
+      sourceSignature: null,
+      reason: 'LIVE_FIXTURE',
+      state: 'live',
+    })}\n`, 'utf8');
 
     const previous = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = overrideDir;

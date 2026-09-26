@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation",
+  "description": "Phase 1: test-findings-remediation",
+  "keywords": [
+    "phase",
+    "test-findings-remediation"
+  ],
+  "lastUpdated": "2026-09-26T19:17:38.291Z",
+  "specId": "009",
+  "folderSlug": "test-findings-remediation",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
