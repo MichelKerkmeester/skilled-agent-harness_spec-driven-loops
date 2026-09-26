@@ -120,6 +120,27 @@ describe('hash-verified edit validation', () => {
     assert.match(error!, /5 lines but the read saw 4/);
   });
 
+  test('explains a short count that omits the final empty line after a newline', () => {
+    const newlineTerminatedLines = ['one', 'two', ''];
+    const error = validateEdits(newlineTerminatedLines, [], 2);
+    assert.ok(error);
+    assert.match(error, /final empty line at line 3 follows the file's final newline/i);
+    assert.match(error, /the read numbers it too/i);
+    assert.match(
+      error,
+      /retry with the file's count \(3\) only if the read's last numbered line was 3; otherwise use 'read' again/i,
+    );
+    assert.doesNotMatch(error, /inserted or removed/i);
+  });
+
+  test('keeps the generic count mismatch for files without a final newline', () => {
+    const linesWithoutFinalNewline = ['one', 'two', 'three'];
+    const error = validateEdits(linesWithoutFinalNewline, [], 2);
+    assert.ok(error);
+    assert.match(error, /3 lines but the read saw 2/);
+    assert.match(error, /inserted or removed/i);
+  });
+
   test('requires the line count so a moved line cannot be edited blind', () => {
     const error = validateEdits(lines, [editFor(2, 2)], undefined);
     assert.ok(error);
