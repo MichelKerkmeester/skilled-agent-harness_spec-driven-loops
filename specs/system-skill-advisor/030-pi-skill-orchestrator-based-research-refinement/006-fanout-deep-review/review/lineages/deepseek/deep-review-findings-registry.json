@@ -1,0 +1,106 @@
+{
+  "sessionId": "fanout-deepseek-1790437845885-htqb7q",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Dead exported fallback-gate helper has no caller",
+      "file": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      "line": 160,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery: symbol search found no consumer after the CLI-only hook rewiring" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Operator budget above the shim kill ceiling is silently ineffective",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
+      "line": 105,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery: nested deadline chain verified, ceiling only unreachable under operator override" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Runtime vocabulary drift - three hardcoded enum copies reject the four runtimes phase 002 added",
+      "file": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      "line": 349,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery: canonical tuple comment denies the state; three source copies plus dist twins still narrow to claude/copilot/opencode" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Diagnostics log created with default permissions under os.tmpdir()",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts",
+      "line": 182,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery: no explicit mode on the metrics root or files; prompt-free content lowers impact" }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Confirm-mode review workflow never consumes stop_policy so max-iterations can stop before the ceiling",
+      "file": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+      "line": 38,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery: step_check_convergence in confirm lacks the max-iterations telemetry clause that auto implements, while both files document the same contract" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.2,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "telemetryNote": "convergenceScore carries the severity-weighted new-findings ratio (telemetry only; stopPolicy=max-iterations)"
+}

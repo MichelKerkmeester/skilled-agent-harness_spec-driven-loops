@@ -1,0 +1,13 @@
+Deep-review fan-out lineage `mimo` complete. Closing status:
+
+**What ran and what it returned**
+- **phase_init** — lineage packet built under `…/006-fanout-deep-review/review/lineages/mimo/` only: config, strategy, registry, `prompts|iterations|deltas/`; manifest scope validated (38/38 files exist; `resource-map.md` absent → coverage gate skipped).
+- **3 inline iterations** (no nested dispatch anywhere): 1 correctness+inventory → CONDITIONAL (1 P1, 2 P2); 2 security → PASS (2 P2); 3 traceability+maintainability → PASS (2 P2). Every iteration produced its narrative (final-line verdict intact), `deltas/iter-NNN.jsonl`, and its state record **through `append-mode-event.cjs`** (ledger seq 1–5, receipts read). `verify-iteration.cjs` re-run on all three from the final state: `ok:true`, exit 0.
+- **phase_synthesis** — reducer wrote registry/dashboard/strategy (7 open: **P0=0, P1=1, P2=6**), `review-report.md` carries all 10 sections + Planning Packet, and the terminal `deep_review.synthesis_complete` record is durable (ledger seq 5) and projected into `deep-review-state.jsonl` with **`"stopReason":"maxIterationsReached"`**; config marked `complete`.
+- **Lineage verdict: CONDITIONAL** (registry-recomputed; the per-iteration lines are shape-only self-reports).
+
+**Confirmed vs inferred**: gateway receipts, verify-iteration exits, and the projected state log are observed evidence. The P1 (`edit_lines` interior-hash gap, `index.ts:8201-8216`) was re-read twice and carries a typed claim-adjudication packet with an explicit downgrade trigger — the severity call is the operator's. One deviation is documented in `iterations/iteration-001.md` (State-Write Note): two init-time gateway-schema/projection repairs inside the lineage dir; `validate.sh` was **not** run because the lineage instruction forbids it (runner validates). Other sessions' dirty tree files were left untouched (out of scope per the spec).
+
+**Edited vs committed**: everything is written-but-uncommitted inside the lineage dir (whole `review/` tree is untracked); nothing staged, nothing pushed.
+
+FANOUT_LINEAGE_COMPLETE:mimo

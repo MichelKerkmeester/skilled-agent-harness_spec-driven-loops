@@ -1,18 +1,33 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
-  "description": "Phase 2: fanout-deep-review",
+  "description": "Every change in phases 2 to 5 was written by GPT-6 Luna and checked by one orchestrator, with each check chosen by the same party that wrote the brief",
   "keywords": [
-    "phase",
-    "fanout-deep-review"
+    "every",
+    "change",
+    "phases",
+    "written",
+    "gpt-6",
+    "luna",
+    "checked",
+    "one",
+    "orchestrator",
+    "check",
+    "chosen",
+    "same",
+    "party",
+    "wrote",
+    "brief"
   ],
-  "lastUpdated": "2026-09-26T15:21:03.092Z",
+  "lastUpdated": "2026-09-26T16:54:28.338Z",
   "specId": "006",
   "folderSlug": "fanout-deep-review",
   "parentChain": [
     "system-skill-advisor",
     "030-pi-skill-orchestrator-based-research-refinement"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-09-26_17-54__two-lineage-deep-review-of-the-phase-2-to-5.md"
+  ]
 }

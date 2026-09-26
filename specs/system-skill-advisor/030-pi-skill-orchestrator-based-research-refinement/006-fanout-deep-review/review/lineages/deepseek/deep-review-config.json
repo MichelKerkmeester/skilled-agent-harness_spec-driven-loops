@@ -1,0 +1,73 @@
+{
+  "topic": "Review: specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review (fan-out lineage: deepseek)",
+  "mode": "review",
+  "reviewTarget": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "sessionId": "fanout-deepseek-1790437845885-htqb7q",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 3,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default"
+  },
+  "stopPolicy": "max-iterations",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "label": "deepseek"
+  },
+  "fanout": {
+    "label": "deepseek",
+    "concurrency": 2,
+    "siblingLineage": "mimo"
+  },
+  "createdAt": "2026-09-26T15:52:27Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "lineage": {
+    "sessionId": "fanout-deepseek-1790437845885-htqb7q",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

@@ -22,13 +22,13 @@ contextType: "review"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Active |
+| **Status** | Complete |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 6 |
+| **Phase** | 6 of 7 |
 | **Predecessor** | 005-follow-up-fixes |
-| **Successor** | None |
+| **Successor** | 007-docs-and-standards-alignment |
 | **Handoff Criteria** | Both lineages run all three iterations, `review/review-report.md` holds the merged verdict with every P0 and P1 finding checked against the code by the orchestrator, and the close records `synthesis_complete` |
 <!-- /ANCHOR:metadata -->
 

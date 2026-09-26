@@ -17,10 +17,8 @@
       "goal file manifest review",
       "fan-out deep review plan",
       "fan-out deep review tasks",
-      "implementation summary",
-      "what shipped",
-      "validation evidence",
-      "continuation notes"
+      "fan-out deep review summary",
+      "advisor refinements review verdict"
     ],
     "key_topics": [
       "advisor",
@@ -37,13 +35,15 @@
       "manifest"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".pi/extensions/pi-cache-optimizer/index.ts"
+      "review/review-report.md",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      "review/deep-review-config.json"
     ],
     "entities": [
       {
@@ -71,9 +71,21 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "index.ts",
         "kind": "code",
         "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": "review/deep-review-config.json",
         "source": "derived"
       },
       {
@@ -149,14 +161,14 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Planning Packet",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -173,19 +185,7 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered",
+        "name": "What Was Built Two",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -193,8 +193,8 @@
     ],
     "causal_summary": "Every change in phases 2 to 5 was written by GPT-6 Luna and checked by one orchestrator, with each check chosen by the same party that wrote the brief",
     "created_at": "2026-09-26T15:21:02Z",
-    "last_save_at": "2026-09-26T15:47:57.939Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-26T17:31:27.843Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:352b2269e78432f2f25b50af1a99a11911d0fa7b2260eec9097290a7b7d0735b",
+    "source_fingerprint": "sha256:945a72e8bd2b73fc4c626ca3d70c1bba0fc03b6816ce841314c734aee68b1c6e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5024728f95c67625296e7ba685b00912a3701107e22659ac65b206c09a4bd841",
-      "plan.md": "7ec30fb6621c98afbe4b0586498b445eab8f6f689509bff128bd6b492f235540",
-      "tasks.md": "2e688c1f2e6ab505682c16931b595c54cc54242aff2c2ee27524311be3c88069",
-      "implementation-summary.md": "c7432a175bc93e9eb4a4c06227ba5695457ea21fff078fbdfd9c18e8df37d1b5"
+      "spec.md": "334b70de2ccecf606320fab98848b38bc9e5cdad5175c62e56e9e58abcc3b46c",
+      "plan.md": "345877cc9f36130be55d9157cede870b21cc2a45c1632a18c904854bca34d5dd",
+      "tasks.md": "815359a5ed16a7360b18e98fc27b1a24d69d54adc75bd7fb5255e5e7acc34fa7",
+      "implementation-summary.md": "41820439cae7d15f46275ead84814fd961b686b6b011d6cf564f75da95d4842f"
     },
     "last_active_at": null
   }
