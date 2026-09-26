@@ -348,6 +348,12 @@ export function pinReasoningEffortForModel(
  * Confirmed present verbatim in the live `cursor-agent --list-models` output
  * and dispatch-tested end-to-end (probe dispatch returned a live model
  * response, exit 0) on 2026-08-15.
+ *
+ * Grok 4.7 joined this allowlist (2026-09-26) with one id only,
+ * grok-4.7-xhigh-fast. Cursor lists the 4.7 family without the cursor-
+ * prefix and with no Max tier, so extra-high fast is its highest tier.
+ * Confirmed present verbatim in the live `cursor-agent --list-models` output
+ * and dispatch-tested (probe replied OK, exit 0) on 2026-09-26.
  */
 export const CURSOR_SUPPORTED_MODELS = [
   'composer-2.5',
@@ -371,6 +377,7 @@ export const CURSOR_SUPPORTED_MODELS = [
   'glm-5.2-max',
   'gpt-5.6-luna-max',
   'gpt-5.6-luna-max-fast',
+  'grok-4.7-xhigh-fast',
 ] as const;
 export type CursorSupportedModel = typeof CURSOR_SUPPORTED_MODELS[number];
 
