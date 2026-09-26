@@ -45,7 +45,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 
 | File | Purpose |
 |------|---------|
-| `shared.ts` | Reads and validates a bounded Cursor hook payload, translates it into the shape the `../claude/*.js` adapters already expect, spawns the matching adapter, and emits Cursor's native `{permission, user_message, agent_message}` response envelope. |
+| `shared.ts` | Reads and validates a bounded Cursor hook payload, translates it into the shape the `../claude/*.js` adapters already expect, spawns the matching adapter, and emits Cursor's native `{permission, user_message, agent_message}` response envelope. Sets `SPECKIT_RUNTIME=cursor` for the adapter it spawns. |
 | `session-start.ts` | `sessionStart` adapter. Delegates to `session-prime.js` and returns its context as `agent_message`. |
 | `session-end.ts` | `sessionEnd` adapter (NOT `stop`: see the delivery table above). Delegates to `session-stop.js`. |
 | `post-tool-use.mjs` | Normalizes Cursor tool payloads for post-edit, graph-freshness, and dispatch-audit hooks. |

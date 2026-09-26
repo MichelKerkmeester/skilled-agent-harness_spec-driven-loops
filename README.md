@@ -644,6 +644,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 - Nine commands: eight public (four `advisor_*` for routing, freshness, rebuild and validation, plus four `skill_graph_*` for scan, query, status and graph validation), plus the trusted-caller-only `skill_graph_propagate_enhances`
 - No MCP registration, in `opencode.json` or any other runtime config
 - Daemon unreachable → the CLI answers from the Python scorer at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live
+- **No brief** → the prompt hooks and the OpenCode plugin still say why in one line above the directives: `Advisor: outage (...)` with the command to route by hand, `Advisor: no skill matched.` or `Advisor: prompt skipped.` for casual prompts such as `thanks`, which never reach the CLI
 
 #### How It Works
 
@@ -720,8 +721,9 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 
 #### How Runtimes Talk To It
 
-- **Claude Code**: calls prompt-time hook adapters under `.skilled/skills/system-spec-kit/runtime/hooks/`
+- **Claude Code, Codex, Cursor and Devin**: call the prompt-time hook adapters under `.skilled/skills/system-spec-kit/runtime/hooks/`, and each adapter labels its diagnostics with its own runtime name
 - **OpenCode**: uses `.skilled/plugins/system-skill-advisor.js`, which spawns `.skilled/bin/skill-advisor.cjs` and renders the returned brief through the shared renderer
+- **Pi**: the extension `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` runs the same hook in-process and falls back to the outage status line and the directives if the advisor misses its deadline
 - **Disable everywhere**: set `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the OpenCode plugin alone). The legacy `SPECKIT_`-prefixed names still work
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default
 - **CLI front door**: the same nine commands over the warm daemon for hooks, cron and shell diagnostics. Mutation commands (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) are gated behind `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`

@@ -71,11 +71,11 @@ See [`tooling-and-scripts/canonical-first-spec-root-resolution.md`](tooling-and-
 
 ---
 
-### Warm-only CLI hook fallbacks and plugin bridges
+### CLI hook fallbacks and plugin bridges
 
 #### Description
 
-Prompt-time hooks probe a daemon socket first and fail open fast, so no prompt-time cold spawn happens when a backend is down.
+The Claude prompt hook gates casual prompts first, the CLI it calls owns daemon startup with a bounded cold start and a degraded local answer and the hook fails open without blocking the prompt.
 
 #### Current Reality
 

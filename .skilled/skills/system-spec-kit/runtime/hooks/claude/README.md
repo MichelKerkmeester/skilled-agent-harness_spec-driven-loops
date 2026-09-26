@@ -18,7 +18,7 @@ Hook scripts for Claude Code lifecycle events. These run as external Node.js pro
 |------|-----------|----------|
 | `compact-inject.ts` | PreCompact | Precomputes context from transcript, caches to hook state |
 | `session-prime.ts` | SessionStart | Injects context via stdout based on source (compact/startup/resume/clear) |
-| `user-prompt-submit.ts` | UserPromptSubmit | Thin process-boundary shim: spawns the compiled advisor hook at `system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js` and merges a warm code-graph status section into its `additionalContext` |
+| `user-prompt-submit.ts` | UserPromptSubmit | Thin process-boundary shim: spawns the compiled advisor hook at `system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js` and merges a warm code-graph status section into its `additionalContext`. When `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` is unset or blank, the shim sets it to 2200 ms for the hook it spawns, 300 ms under the 2500 ms timeout at which the shim kills the hook, so the hook can print its fallback first. The shim passes an operator value through unchanged. |
 | `session-stop.ts` | Stop (async) | Parses transcript for token usage, stores snapshots |
 | `completion-evidence-stop.cjs` | Stop (async) | Standalone completion-evidence sentinel, co-resident with `session-stop.ts` on the same Stop matcher; advises when a completion claim lacks packet evidence, never blocks |
 | `claude-transcript.ts` | (library) | JSONL transcript parser, token counting, cost estimation |

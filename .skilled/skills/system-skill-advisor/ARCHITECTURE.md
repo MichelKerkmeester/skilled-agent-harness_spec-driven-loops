@@ -130,7 +130,7 @@ The daemon is composed of focused subsystems that share the IPC layer and the SQ
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-The advisor ships prompt-submit adapters for Claude, Codex, Cursor, Devin and Pi, plus the OpenCode plugin at `.skilled/plugins/system-skill-advisor.js`. The native adapters and Pi run the same hook handler, which gates the prompt, calls the advisor CLI and renders with `renderAdvisorBrief`; the OpenCode plugin calls the CLI itself. When the handler has no brief, including after a timeout or a no-route result, it emits the directives fallback and lets the prompt proceed. The Claude adapter applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to its advisor subprocess. The plugin appends the brief to the system prompt and exposes the advisor status tool.
+The advisor ships prompt-submit adapters for Claude, Codex, Cursor, Devin and Pi, plus the OpenCode plugin at `.skilled/plugins/system-skill-advisor.js`. The native adapters and Pi run the same hook handler, which gates the prompt, calls the advisor CLI and renders with `renderAdvisorBrief`; the OpenCode plugin calls the CLI itself. When the handler has no brief, including after a timeout or a no-route result, it emits the directives fallback and lets the prompt proceed. The Claude adapter applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to its advisor subprocess. When the operator leaves it unset, the Claude shim sets 2,200 ms for the hook under its own 2,500 ms kill so the fallback prints in time. Pi runs the handler in-process and races it against the budget plus 300 ms. The hook's request skips compiled-route enrichment with `includeCompiledRoute: false`. The OpenCode plugin does not send that option. The plugin appends the brief to the system prompt and exposes the advisor status tool.
 
 ---
 
@@ -138,7 +138,7 @@ The advisor ships prompt-submit adapters for Claude, Codex, Cursor, Devin and Pi
 
 Validation runs at two layers.
 
-**Release validation.** `advisor_validate` runs the regression suite and reports threshold semantics (aggregate vs runtime) plus a prompt-safe `telemetry.outcomes.totals` block. Hook diagnostics persist to bounded JSONL sinks so `advisor_validate` can read them back across processes.
+**Release validation.** `advisor_validate` runs the regression suite and reports threshold semantics (aggregate vs runtime) plus a prompt-safe `telemetry.outcomes.totals` block. Hook diagnostics persist to bounded JSONL sinks so `advisor_validate` can read them back across processes. Records carry the runtime that served the turn, the bytes delivered (`emittedBytes`) and whether the directives were suppressed (`directivesSuppressed`). The code writes them only when `SKILL_ADVISOR_DEBUG` is set. The bounded trim writes a temp file and renames it over the log so a crash mid-trim keeps the old log.
 
 **Test surfaces.** Default `npm test` runs unit and integration suites under `runtime/tests/`. Scorer benchmarks live under `runtime/bench/`. Operator playbook scenarios live in `manual-testing-playbook/`.
 

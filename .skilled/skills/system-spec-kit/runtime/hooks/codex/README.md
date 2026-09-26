@@ -17,7 +17,7 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 
 | File | Purpose |
 |------|---------|
-| `shared.ts` | Reads and validates a bounded Codex hook payload, spawns the matching `../claude/*.js` adapter and emits Codex's `hookSpecificOutput` response envelope. |
+| `shared.ts` | Reads and validates a bounded Codex hook payload, spawns the matching `../claude/*.js` adapter and emits Codex's `hookSpecificOutput` response envelope. Sets `SPECKIT_RUNTIME=codex` for the adapter it spawns so advisor diagnostics are labeled `codex`. |
 | `session-start.ts` | `SessionStart` adapter. Delegates to `session-prime.js` and emits the returned context. |
 | `user-prompt-submit.ts` | `UserPromptSubmit` adapter. Delegates to `user-prompt-submit.js` and normalizes its JSON response into the Codex envelope. |
 | `session-stop.ts` | `Stop` adapter. Delegates to `session-stop.js`. |
@@ -39,11 +39,11 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
-npx vitest run tests/directive-lifecycle-adapter-parity.vitest.ts tests/hook-completion-evidence-stop.vitest.ts
+npx vitest run tests/directive-lifecycle-adapter-parity.vitest.ts tests/hook-adapter-runtime-label.vitest.ts tests/hook-completion-evidence-stop.vitest.ts
 node --test hooks/codex/spec-gate-codex.test.mjs
 ```
 
-Expected result: `directive-lifecycle-adapter-parity.vitest.ts` passes for the `codex` case (process-level, spawning the compiled adapter and confirming lifecycle-boundary delivery), `hook-completion-evidence-stop.vitest.ts` covers the sentinel path shared with `completion-evidence-stop.cjs`, and the co-located spec-gate suite passes under `node --test`. `session-start.ts`, `session-stop.ts`, `compact-inject.ts`, `user-prompt-submit.ts` and `shared.ts` have no dedicated Vitest file of their own. They are exercised indirectly through the Claude adapters they delegate to.
+Expected result: `directive-lifecycle-adapter-parity.vitest.ts` passes for the `codex` case (process-level, spawning the compiled adapter and confirming lifecycle-boundary delivery), `hook-completion-evidence-stop.vitest.ts` covers the sentinel path shared with `completion-evidence-stop.cjs`, and the co-located spec-gate suite passes under `node --test`. `tests/hook-adapter-runtime-label.vitest.ts` imports `shared.ts` directly and checks the runtime label. `session-start.ts`, `session-stop.ts`, `compact-inject.ts` and `user-prompt-submit.ts` have no dedicated Vitest file of their own. They are exercised indirectly through the Claude adapters they delegate to.
 
 ---
 

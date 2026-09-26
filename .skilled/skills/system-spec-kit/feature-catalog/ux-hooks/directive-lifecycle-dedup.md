@@ -16,7 +16,7 @@ version: 3.7.0.3
 
 ## 1. OVERVIEW
 
-The skill-advisor brief carries a dynamic `Advisor:` route line followed by constant policy. Model-context runtimes send the complete block on the first proven turn and after lifecycle or transcript boundaries, then may retain only the route line on a proven repeat. Pi's visible input transform instead suppresses its complete advisor-and-dispatch contribution on a proven repeat so the raw user turn remains byte-identical.
+The skill-advisor brief carries a dynamic `Advisor:` route line followed by constant policy. Model-context runtimes send the complete block on the first proven turn and after lifecycle or transcript boundaries, then may retain only the route line on a proven repeat. When no brief exists the advisor hooks emit a fallback that opens with one status line above the directives block: `Advisor: outage (<label>); route by hand: ...`, `Advisor: no skill matched.` or `Advisor: prompt skipped.` Dedup treats that fallback like a brief, so a known, confirmed session gets the whole text on the first no-route turn and the status line alone on later turns, while unknown sessions, the kill switch and thrown errors always get the whole text. Pi's visible input transform instead suppresses its complete advisor-and-dispatch contribution on a proven repeat so the raw user turn remains byte-identical.
 
 Suppression is fail-open. Missing transcript evidence, ambiguous or conflicting identity, clock drift, insecure durable state, store contention, changed policy, and disabled dedup all retain complete delivery.
 
@@ -40,7 +40,7 @@ The implementation separates three responsibilities:
 3. **Runtime adapters**
    - Claude, Codex, Cursor, and Devin use registered system-spec-kit adapters and the canonical advisor target.
    - Session and compaction owners notify the canonical store through a bounded boundary bridge instead of relying only on prompt payload fields.
-   - OpenCode keeps an in-process mirror. Only one primitive, non-conflicting session identity can suppress. Ambiguous boundary events invalidate all older receipts.
+   - OpenCode keeps an in-process mirror. Only one primitive, non-conflicting session identity can suppress. Ambiguous boundary events invalidate all older receipts. With the plugin's opt-in `deduplicateTransforms` on, the plugin hashes the full advisor block for same-message transform dedup before lifecycle reduction runs. Reduction runs only for a block that will be delivered, so dedup suppresses a repeated transform for the same message instead of delivering it as a shorter block.
    - Pi retains its runtime-local bounded lifecycle decision. A byte-identical repeat of the full contribution (route head plus directives) returns no input transform or delivery receipt; first turns, lifecycle resets, a changed contribution (route head or directives), missing identity, advisor failure, and disabled dedup fail open to the declared full-or-dispatch-only behavior. Tool-call dispatch enforcement remains independent of prompt-text cadence.
 
 Kill switches:

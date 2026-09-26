@@ -96,7 +96,7 @@ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
 
 ### OpenCode Plugin Note
 
-The Skill Advisor bridge plugin injects routing advice at prompt time. Constant advisor policy is delivered in full on the first proven message and after registered lifecycle boundaries. Route-only repeats require confirmed primitive identity, valid transcript evidence, matching versioned state, stable generation/epoch clocks, and an atomically advanced high-water mark. Full-delivery receipts commit after stdout handoff; boundary failure poisons older receipts; unsafe or unavailable durable state stays full. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `opencode_goal` and `opencode_goal_status`. Its command router delegates all state reads and writes to `opencode_goal` and `opencode_goal_status`. Active continuation remains opt-in through `OPENCODE_GOAL_AUTONOMY`. Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `opencode_goal` and `opencode_goal_status` in the session tool set. A live model turn persists per-session state.
+The Skill Advisor bridge plugin injects routing advice at prompt time. Constant advisor policy is delivered in full on the first proven message and after registered lifecycle boundaries. Route-only repeats require confirmed primitive identity, valid transcript evidence, matching versioned state, stable generation/epoch clocks, and an atomically advanced high-water mark. When there is no brief, the plugin and the hooks emit a fallback that opens with one status line (`Advisor: outage (...)`, `Advisor: no skill matched.` or `Advisor: prompt skipped.`), and a repeat in a confirmed session keeps that line and drops the directives. With the opt-in `deduplicateTransforms` on, the plugin decides same-message transform dedup on the full block before lifecycle reduction, so a repeated transform for the same message is suppressed. Full-delivery receipts commit after stdout handoff; boundary failure poisons older receipts; unsafe or unavailable durable state stays full. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `opencode_goal` and `opencode_goal_status`. Its command router delegates all state reads and writes to `opencode_goal` and `opencode_goal_status`. Active continuation remains opt-in through `OPENCODE_GOAL_AUTONOMY`. Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `opencode_goal` and `opencode_goal_status` in the session tool set. A live model turn persists per-session state.
 
 ---
 
@@ -110,7 +110,7 @@ The lane weights live in `runtime/lib/scorer/lane-registry.ts`. The scorer reads
 
 Deep-loop routing modes are projected from `mode-registry.json` into generated constants in `lib/scorer/aliases.ts` and the Python compatibility script. A SHA-256 projection hash is folded into the recommend cache signature and checked by the routing-registry drift guard. When a generated deep-loop alias resolves to the merged workflow skill, `advisor_recommend` publishes an optional `workflowMode` field for downstream routing.
 
-`advisor_recommend` accepts five options: `topK` sets how many candidates to return (1 to 10), `includeAttribution` adds per-lane score breakdowns, `includeAbstainReasons` surfaces why lower-ranked candidates were not selected, `confidenceThreshold` overrides the minimum surfaced confidence and `uncertaintyThreshold` overrides the maximum surfaced uncertainty. `advisor_validate` requires `confirmHeavyRun: true` because it executes the full validation bundle (corpus, holdout, parity, safety, latency).
+`advisor_recommend` accepts six options: `topK` sets how many candidates to return (1 to 10), `includeAttribution` adds per-lane score breakdowns, `includeAbstainReasons` surfaces why lower-ranked candidates were not selected, `confidenceThreshold` overrides the minimum surfaced confidence, `uncertaintyThreshold` overrides the maximum surfaced uncertainty and `includeCompiledRoute` is an optional boolean that defaults to true. Passing `false` skips the compiled-route enrichment so no compiled-route subprocess starts. The prompt hooks send `false`. `advisor_validate` requires `confirmHeavyRun: true` because it executes the full validation bundle (corpus, holdout, parity, safety, latency).
 
 ### Prompt-Safe Attribution
 
@@ -151,7 +151,7 @@ The CLI exposes nine commands, each accepting snake case, kebab case and camel c
 
 | Command | Purpose |
 |---|---|
-| `advisor_recommend` | Recommend skills for a prompt (`topK`, `includeAttribution`, `includeAbstainReasons`, `confidenceThreshold`, `uncertaintyThreshold`) |
+| `advisor_recommend` | Recommend skills for a prompt (`topK`, `includeAttribution`, `includeAbstainReasons`, `confidenceThreshold`, `uncertaintyThreshold`, `includeCompiledRoute`) |
 | `advisor_rebuild` | Rebuild the advisor index from checked-in metadata |
 | `advisor_status` | Report freshness, generation, trust state, lane weights and daemon info |
 | `advisor_validate` | Run the corpus, holdout, parity, safety and latency bundle (`confirmHeavyRun: true` required) |
