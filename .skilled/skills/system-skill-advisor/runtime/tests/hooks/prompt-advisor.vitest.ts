@@ -135,6 +135,41 @@ describe('Pi prompt advisor bridge', () => {
     );
   });
 
+  it('keeps the live advisor brief when the timeout env parses non-positive', async () => {
+    process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS = '-100';
+    const handleClaudeUserPromptSubmit = vi.fn(
+      () =>
+        new Promise<{ hookSpecificOutput: { additionalContext: string } }>((resolve) => {
+          setTimeout(() => {
+            resolve({
+              hookSpecificOutput: {
+                additionalContext: 'Advisor: live; use sk-code 0.90/0.10 pass.',
+              },
+            });
+          }, 400);
+        }),
+    );
+    vi.doMock('../../dist/hooks/claude/user-prompt-submit.js', () => ({
+      handleClaudeUserPromptSubmit,
+      renderAdvisorFallbackDirective: () => 'Directives:\n- stub',
+    }));
+
+    const handler = registeredInputHandler();
+    let guard: ReturnType<typeof setTimeout> | undefined;
+    const result = await Promise.race([
+      handler({ text: 'Inspect the hook' }, { cwd: process.cwd() }),
+      new Promise<never>((_resolve, reject) => {
+        guard = setTimeout(() => reject(new Error('input handler exceeded 1,000 ms')), 1_000);
+      }),
+    ]).finally(() => {
+      if (guard) clearTimeout(guard);
+    });
+
+    expect(result).toMatchObject({ action: 'transform' });
+    expect((result as { text: string }).text).toContain('Advisor: live; use sk-code 0.90/0.10 pass.');
+    expect((result as { text: string }).text).not.toContain('Directives:\n- stub');
+  });
+
   it('resolves and imports the advisor hook from both Pi extension locations', async () => {
     const repositoryRoot = findRepositoryRoot();
     const extensionUrl = pathToFileURL(join(repositoryRoot, '.pi/extensions/prompt-advisor.ts'));
