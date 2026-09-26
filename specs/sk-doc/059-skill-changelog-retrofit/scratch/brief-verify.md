@@ -39,6 +39,7 @@ These are deliberate and are NOT problems:
 - The fixed phrases "No migration required." and "No upgrade needed." when ORIGINAL lists no upgrade work. They are the format's wording for "nothing to do", not a new claim.
 - A "(Level N)" suffix on the "> Spec folder:" line. The rewriter reads it from that folder's own spec.md, so ORIGINAL need not state it.
 - Rewording, reordering, headings and section structure that keep the meaning.
+- In the expanded format, when ORIGINAL gives no reason for the release, a one-sentence Why This Release built from what ORIGINAL's opening says the release fixes or adds. The rewrite brief requires it.
 - In the expanded format, an at-a-glance bullet that states a change briefly and an H4 item that explains the same change in more detail. That pairing is the format's design. It is padding only when the two sentences say the same thing with a word or two changed, or when a sentence adds nothing at all.
 - Summarizing a list of fields, parameters, enum members or file names, as long as the behavior they belong to is still described. This covers a name inside such a list only. A rename is a change in its own right: dropping the old name of anything renamed IS a drop. So is dropping the identifier of the thing that changed (a mode, command, skill, flag or file name the reader would type), even when the change itself is described.
 
