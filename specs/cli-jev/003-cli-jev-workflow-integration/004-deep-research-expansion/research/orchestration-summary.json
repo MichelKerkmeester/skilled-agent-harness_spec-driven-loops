@@ -1,0 +1,72 @@
+{
+  "run_id": "1790457982528-yjdrdz",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion",
+  "base_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research",
+  "total_cli_lineages": 4,
+  "orphaned_lineages": [],
+  "total": 4,
+  "succeeded": 4,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "grok",
+      "state_log": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/lineages/grok/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-26T21:26:22.532Z",
+        "end_at_iso": "2026-09-26T21:39:51.912Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 6,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T21:50:00Z",
+          "deltaMs": 488088
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T22:05:00Z",
+          "deltaMs": 1388088
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T22:20:00Z",
+          "deltaMs": 2288088
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T22:40:00Z",
+          "deltaMs": 3488088
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-26T23:05:00Z",
+          "deltaMs": 4988088
+        }
+      ]
+    }
+  ]
+}

@@ -47,9 +47,9 @@ contextType: "research"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 Run the four-lineage fan-out in the background (`research/`)
-- [ ] T008 Rerun alone any lineage that ends short of 5 iterations
-- [ ] T009 Run the merge and resource-map steps (`research/`)
+- [x] T007 Run the four-lineage fan-out in the background (`research/`)
+- [x] T008 Rerun alone any lineage that ends short of 5 iterations
+- [x] T009 Run the merge and resource-map steps (`research/`)
 - [ ] T010 Dispatch a fresh Opus 5.5 max leaf to write the final synthesis (`research/research.md`)
 - [ ] T011 Run `step_convergence_report` and record its event
 - [ ] T012 Reconcile the Planned build phases with the final synthesis, one Opus 5.5 high leaf per phase (`../NNN-*/`)
@@ -61,7 +61,7 @@ contextType: "research"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T014 Confirm each lineage state log holds 5 iteration records ending `maxIterationsReached`
+- [x] T014 Confirm each lineage state log holds 5 iteration records ending `maxIterationsReached`
 - [ ] T015 Reopen five citations and three recommendations from the final synthesis
 - [ ] T016 Review containment advisories and `git status` for writes outside the allowed paths
 - [ ] T017 Run `validate.sh --strict --recursive` on the parent until it prints `RESULT: PASSED`, and `check-goal.cjs` on every folder

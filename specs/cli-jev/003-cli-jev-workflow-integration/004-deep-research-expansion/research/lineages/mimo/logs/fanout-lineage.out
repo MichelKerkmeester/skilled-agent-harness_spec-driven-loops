@@ -1,0 +1,3 @@
+Verification passed: 5 iteration records, 5 deltas parse clean, terminal `stopReason: maxIterationsReached`, and no writes outside the lineage dir (the two paths in the scoped status are the fan-out runner's own `observability-events.jsonl` and sibling lineage activity).
+
+FANOUT_LINEAGE_COMPLETE:mimo

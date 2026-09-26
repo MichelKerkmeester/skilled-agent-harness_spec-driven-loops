@@ -1,0 +1,67 @@
+{
+  "keyFindings": [
+    {
+      "id": "N-grok-03-1",
+      "title": "A missing answer cannot support keep, and none on a gold-in-cluster row is a loss",
+      "iteration": 3,
+      "verdict": "build-now"
+    },
+    {
+      "id": "N-grok-04-1",
+      "title": "Prefix-tolerant credential scrub, with no Jev switch",
+      "iteration": 4,
+      "verdict": "build-now"
+    },
+    {
+      "id": "N-grok-01-1",
+      "title": "R19 census column is the fit stage, including throws",
+      "iteration": 1,
+      "verdict": "build-now"
+    },
+    {
+      "id": "N-grok-05-1",
+      "title": "If only one phase ships, it is 002's zero-call census",
+      "iteration": 5,
+      "verdict": "build-now"
+    },
+    {
+      "id": "N-grok-02-1",
+      "title": "Unsure bands belong in R2's cascade, and jev verify is not the lint",
+      "iteration": 2,
+      "verdict": "next"
+    },
+    {
+      "id": "N-grok-04-2",
+      "title": "Print planned calls, then refuse an oversize prompt",
+      "iteration": 4,
+      "verdict": "next"
+    },
+    {
+      "id": "R10-narrative-gold",
+      "title": "Strict narrative walk found zero usable rejected-P0 rows",
+      "iteration": 4,
+      "verdict": "later"
+    }
+  ],
+  "openQuestions": [
+    {"id": "Q18", "text": "Production hook seconds were not opened"},
+    {"id": "Q19", "text": "Recorded OpenCode or Pi verifier use was not counted"},
+    {"id": "Q21", "text": "ambiguousWith count is 0 in this worktree and unknown elsewhere"}
+  ],
+  "ruledOutDirections": [
+    "npm session.compact hook install",
+    "pi-jev-context live filter as the R19 arm",
+    "jev verify as R20's lint",
+    "rerank as R1's modal pick",
+    "answer cache on R1 reruns",
+    "path-refuse as the fix for prefixed assignment names"
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "convergenceScore": 0.62,
+    "openQuestions": 3,
+    "resolvedQuestions": 4,
+    "keyFindings": 7,
+    "coverageBySources": {}
+  }
+}

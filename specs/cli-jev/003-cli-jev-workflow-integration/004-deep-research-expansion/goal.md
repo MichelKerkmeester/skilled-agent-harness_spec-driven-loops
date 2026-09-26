@@ -84,6 +84,7 @@ and findings belong here.
 | Round-1 re-synthesis | Done | Fresh Opus 5.5 xhigh leaf rewrote `../001-deep-research/research/research.md` with a changes section: build-now R1 and R19 census; next R20, R2 zero-call slice, R21; 14 later; 40 drops; 47 citations checked, none failed. Host reopened `opencode-goal.js:1107`, `score-outcome-rerank.mjs:119-123` and `secret-scrubber.ts:128`, all resolved |
 | Executor pings | Done | `deepseek-v4.1-flash` max, `mimo-v2.6-pro` high, `grok-4.7-xhigh-fast` and `swe-2-max` each replied `OK`, exit 0 |
 | Round-2 preparation | Done | Opus 5.5 high leaf wrote `context/research-angles.md` (20 angles, three waves, coverage table) and `scratch/synthesis-brief.md`; prompt-improver on Sonnet tightened the topic; host restored the label list and saved it as one 900-character line; `buildLoopPrompt` previews resolve each lineage directory and `maxIterations: 5` |
+| Fan-out | Done | Runner exit 0: 4 of 4 succeeded on attempt 1, 0 containment advisories; each lineage 5 iteration files and 5 iteration records ending `maxIterationsReached` (grok 13 min, deepseek 16, mimo 38, swe 48). Merge: 74 key findings (mimo 26, deepseek 21, swe 20, grok 7); resource map from 20 deltas |
 
 ### Deviations and findings
 
@@ -91,4 +92,6 @@ and findings belong here.
 |------|------|
 | Grok 4.7 max | Cursor lists `grok-4.7-{low,medium,high,xhigh}` with `-fast` variants and no MAX tier on 2026-09-26, so `grok-4.7-xhigh-fast` runs `grok`, as in round 1 |
 | Level 1 child has no `acceptance-criteria.md` | Kept at Level 1 like `001-deep-research`; the goal criteria come from `spec.md` requirements |
+| Grok timestamps | The runner flagged 6 of 7 `grok` state timestamps after the run window, as in round 1; timestamps are not evidence of order |
+| Monitor buffering | The first watch piped through `cut`, which buffered its output, so it delivered no event; the re-armed watch used line-buffered `grep` only |
 <!-- /ANCHOR:log -->
