@@ -7,6 +7,7 @@ trigger_phrases:
   - "session-log anchor mismatch"
   - "handover_state routing correction"
   - "V-rule template-contract blocker"
+  - "memory and causal runtime handover anchor naming changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

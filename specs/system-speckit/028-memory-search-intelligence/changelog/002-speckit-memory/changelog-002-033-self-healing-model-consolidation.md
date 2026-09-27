@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Self-Healing Model
 trigger_phrases:
   - "self-healing-model-consolidation changelog"
   - "former 023-self-healing-model-consolidation"
-  - "nested changelog"
+  - "speckit memory self healing model consolidation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Re-election default-on rollout [007-mcp-daemon-reliability/027-reelection-default-on-rollout]"
 description: "Chronological changelog for the Re-election default-on rollout phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability reelection default on rollout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Scope-Change Guard [008-real-world-usefulness-test-planning/006-scope-change-scan-guard]"
 description: "Chronological changelog for the Scope-Change Guard phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph scope change scan guard changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

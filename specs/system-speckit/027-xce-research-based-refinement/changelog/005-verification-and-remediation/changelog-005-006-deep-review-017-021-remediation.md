@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory search ARGUMENTS quoting fix"
   - "017 021 instrumentation cancellation remediation"
   - "027/006 broaden round retrieval scope leak fix"
+  - "verification and remediation deep review 017 021 remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "022-hardcoded-default-remediation-arc rollup"
   - "022-hardcoded-default-remediation-arc phase parent"
   - "022-hardcoded-default-remediation-arc changelog index"
+  - "memory and causal runtime hardcoded default remediation arc changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

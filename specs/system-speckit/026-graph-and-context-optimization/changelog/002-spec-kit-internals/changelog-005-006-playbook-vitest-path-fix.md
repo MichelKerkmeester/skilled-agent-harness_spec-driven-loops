@@ -4,9 +4,7 @@
 title: "Changelog: Playbook Vitest Path Fix (F5) [005-finding-remediation/006-playbook-vitest-path-fix]"
 description: "Chronological changelog for the Playbook Vitest Path Fix (F5) phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec kit internals playbook vitest path fix changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

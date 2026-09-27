@@ -7,6 +7,7 @@ trigger_phrases:
   - "cross-runtime agent consistency"
   - "agent alignment audit"
   - "codex toml agent drift"
+  - "release and program cleanup runtime command agent alignment audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

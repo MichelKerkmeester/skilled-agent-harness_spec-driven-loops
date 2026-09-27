@@ -2,9 +2,7 @@
 title: "Changelog: Live two-session daemon re-election adoption test [007-mcp-daemon-reliability/028-live-session-reelection-validation]"
 description: "Chronological changelog for the Live two-session daemon re-election adoption test phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability live session reelection validation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

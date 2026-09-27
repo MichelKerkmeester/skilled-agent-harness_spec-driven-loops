@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/001 mcp to cli transition rollup"
   - "028 cli workstream complete"
   - "dual stack cli changelog root"
+  - "shared infrastructure mcp to cli tool transition changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

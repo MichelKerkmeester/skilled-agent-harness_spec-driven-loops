@@ -2,9 +2,7 @@
 title: "Changelog: In-Flight State Migration [003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/001-inflight-state-migration]"
 description: "Changelog for the in-flight state migration phase: guarded migration of eligible in-flight deep-loop state at staged cutover."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "staged state migration and authority cutover inflight state migration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -14,7 +14,7 @@ version: 1.1.0.0
 
 # Design System Extractor (md-generator)
 
-Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**: a named, role-driven, ship-ready design-system handoff (named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start CSS + Tailwind) that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`references/`](references/).
+Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**: a named, role-driven, ship-ready design-system handoff (named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start CSS + Tailwind) that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`references/`](../../../.skilled/skills/sk-design/sk-design-md-generator/references).
 
 > **Boundary.** This skill is the **extraction and format-fidelity engine** for design references. It captures what already exists — it does not decide values for a surface that does not exist yet, which belongs to the sibling skill `sk-design`. The transport — `mcp-figma` — moves design data; this skill produces the authoritative measured reference that transport and downstream implementers (`sk-code`) consume. Where both skills apply to the same surface, a measured reference from here outranks `sk-design`'s defaults; where no measurement exists, `sk-design` decides.
 
@@ -127,7 +127,7 @@ The private procedure-card selection table in Section 3 is part of this routing 
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, fall back to the full extract-write-validate pipeline when unsure.
+> Resilience pattern: see [sk-doc smart-router template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, fall back to the full extract-write-validate pipeline when unsure.
 
 ```python
 from pathlib import Path
@@ -341,39 +341,39 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 
 ### Core References (Format & Style)
 
-- [design-md-format.md](references/design-md-format.md) — The authoritative v3 Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces/Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start, with heading conventions and token-to-section mapping.
-- [writing-style-guide.md](references/writing-style-guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
-- [color-role-taxonomy.md](references/color-role-taxonomy.md) — Color role naming conventions and the classification hierarchy (brand, semantic, surface, border, text, interactive).
-- [component-taxonomy.md](references/component-taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
-- [anti-patterns.md](references/anti-patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
-- [quality-checklist.md](references/quality-checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
-- [guided-run.md](references/guided-run.md) - Guided wrapper contract for readiness checks and phase orchestration without auto-authoring DESIGN.md.
+- [design-md-format.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/design-md-format.md) — The authoritative v3 Style Reference section specification: named colour tokens, semantic type scale, named components, Surfaces/Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start, with heading conventions and token-to-section mapping.
+- [writing-style-guide.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/writing-style-guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
+- [color-role-taxonomy.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/color-role-taxonomy.md) — Color role naming conventions and the classification hierarchy (brand, semantic, surface, border, text, interactive).
+- [component-taxonomy.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
+- [anti-patterns.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/anti-patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
+- [quality-checklist.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/quality-checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
+- [guided-run.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/guided-run.md) - Guided wrapper contract for readiness checks and phase orchestration without auto-authoring DESIGN.md.
 
 ### Gold-Standard Examples
 
-- [references/examples/stripe/](references/examples/stripe/) — DESIGN.md + tokens.json + writing-notes.md for Stripe.
-- [references/examples/vercel/](references/examples/vercel/) — DESIGN.md + tokens.json + writing-notes.md for Vercel.
-- [references/examples/linear/](references/examples/linear/) — DESIGN.md + tokens.json + writing-notes.md for Linear.
-- [references/examples/supabase/](references/examples/supabase/) — DESIGN.md + tokens.json + writing-notes.md for Supabase.
-- [references/examples/editorial-exemplar.md](references/examples/editorial-exemplar.md) - Non-SaaS study guide for editorial, culture, hospitality or ecommerce extraction shape. Illustrative only, never a preset.
+- [references/examples/stripe/](../../../.skilled/skills/sk-design/sk-design-md-generator/references/examples/stripe) — DESIGN.md + tokens.json + writing-notes.md for Stripe.
+- [references/examples/vercel/](../../../.skilled/skills/sk-design/sk-design-md-generator/references/examples/vercel) — DESIGN.md + tokens.json + writing-notes.md for Vercel.
+- [references/examples/linear/](../../../.skilled/skills/sk-design/sk-design-md-generator/references/examples/linear) — DESIGN.md + tokens.json + writing-notes.md for Linear.
+- [references/examples/supabase/](../../../.skilled/skills/sk-design/sk-design-md-generator/references/examples/supabase) — DESIGN.md + tokens.json + writing-notes.md for Supabase.
+- [references/examples/editorial-exemplar.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/examples/editorial-exemplar.md) - Non-SaaS study guide for editorial, culture, hospitality or ecommerce extraction shape. Illustrative only, never a preset.
 
 ### Skill-Owned References
 
-- [references/extraction-workflow.md](references/extraction-workflow.md) — The three-phase workflow as it runs in this framework: invocations, output paths, stability classes, and handoff.
-- [references/troubleshooting.md](references/troubleshooting.md) — Failure modes and fixes (Chromium, crawl blocks, dark-mode gaps, validation mismatches).
-- [references/authoring-boundary.md](references/authoring-boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to the sibling authoring skill `sk-design`.
-- [references/guided-run.md](references/guided-run.md) - Guided wrapper behavior and stop conditions for smoke runs and operator handoff.
-- [procedures/design-system-extraction.md](procedures/design-system-extraction.md) - Private measured-extraction procedure support for source evidence, gaps, inconsistencies, and next steps inside this existing mode.
+- [references/extraction-workflow.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/extraction-workflow.md) — The three-phase workflow as it runs in this framework: invocations, output paths, stability classes, and handoff.
+- [references/troubleshooting.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/troubleshooting.md) — Failure modes and fixes (Chromium, crawl blocks, dark-mode gaps, validation mismatches).
+- [references/authoring-boundary.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/authoring-boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to the sibling authoring skill `sk-design`.
+- [references/guided-run.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/guided-run.md) - Guided wrapper behavior and stop conditions for smoke runs and operator handoff.
+- [procedures/design-system-extraction.md](../../../.skilled/skills/sk-design/sk-design-md-generator/procedures/design-system-extraction.md) - Private measured-extraction procedure support for source evidence, gaps, inconsistencies, and next steps inside this existing mode.
 
 ### Design Knowledge
 
-- [references/design-knowledge/README.md](references/design-knowledge/README.md) — Condensed general design-knowledge layer: the Brand-vs-Product operating register (and its six dials), anti-slop principles, cognitive and numeric design laws, token vocabulary, and a design-principles digest. It lets this skill read design intent off a surface, not only CSS. This mode records the extracted surface's register so a captured Style Reference carries the posture forward; it does not author a register from a brief.
+- [references/design-knowledge/README.md](../../../.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/README.md) — Condensed general design-knowledge layer: the Brand-vs-Product operating register (and its six dials), anti-slop principles, cognitive and numeric design laws, token vocabulary, and a design-principles digest. It lets this skill read design intent off a surface, not only CSS. This mode records the extracted surface's register so a captured Style Reference carries the posture forward; it does not author a register from a brief.
 
 ### Assets
 
-- [assets/design-md-prompt-template.md](assets/design-md-prompt-template.md) — Copy-paste WRITE-phase prompt that encodes the cardinal rules and the v3 Style Reference contract.
-- [assets/cardinal-rules-card.md](assets/cardinal-rules-card.md) — One-page fidelity checklist for a pre-validate self-check.
-- [assets/source-of-truth-router-card.md](assets/source-of-truth-router-card.md) — Fill-in card that sorts each value into measured, brief-provided, inferred or absent before writing, so no value is fabricated or backfilled.
+- [assets/design-md-prompt-template.md](../../../.skilled/skills/sk-design/sk-design-md-generator/assets/design-md-prompt-template.md) — Copy-paste WRITE-phase prompt that encodes the cardinal rules and the v3 Style Reference contract.
+- [assets/cardinal-rules-card.md](../../../.skilled/skills/sk-design/sk-design-md-generator/assets/cardinal-rules-card.md) — One-page fidelity checklist for a pre-validate self-check.
+- [assets/source-of-truth-router-card.md](../../../.skilled/skills/sk-design/sk-design-md-generator/assets/source-of-truth-router-card.md) — Fill-in card that sorts each value into measured, brief-provided, inferred or absent before writing, so no value is fabricated or backfilled.
 
 ### Reference Loading Notes
 

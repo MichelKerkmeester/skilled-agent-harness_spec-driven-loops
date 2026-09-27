@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk-spec-memory single writer"
   - "launcher-boundary PID lease"
   - "zombie daemon prevention code-graph spec-memory"
+  - "memory and causal runtime cross launcher lease propagation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

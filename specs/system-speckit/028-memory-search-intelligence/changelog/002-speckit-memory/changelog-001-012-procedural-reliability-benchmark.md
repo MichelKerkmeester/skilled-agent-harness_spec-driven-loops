@@ -2,9 +2,7 @@
 title: "Changelog: Procedural Reliability Memory Benchmark [001-speckit-memory/012-procedural-reliability-benchmark]"
 description: "Chronological changelog for the procedural reliability memory benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory procedural reliability benchmark changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

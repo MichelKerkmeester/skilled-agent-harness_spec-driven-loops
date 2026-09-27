@@ -7,6 +7,7 @@ trigger_phrases:
   - "lean phase parent create.sh"
   - "phase parent pointer bubble up"
   - "check-phase-parent-content validator"
+  - "release and program cleanup phase parent generator pointer polish changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

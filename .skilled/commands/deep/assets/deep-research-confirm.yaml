@@ -368,6 +368,7 @@ workflow:
           minIterations: 3
           # Semantic: newInfoRatio with negative-knowledge emphasis. See SKILL.md §"Convergence Threshold Semantics".
           convergenceThreshold: "{convergence_threshold}"
+          stopPolicy: "{stop_policy}"
           antiConvergence.convergenceMode: "{convergence_mode}"
           antiConvergence.divergent: {}
           stuckThreshold: 3
@@ -392,7 +393,7 @@ workflow:
         action: "Initialize JSONL state log with config record"
         dry_run_boundary: "state-mutation"
         dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_state_log","detail":"The initial config record would be written to the state log.","timestamp":"{ISO_8601_NOW}"}'
-        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"minIdeaObservations":2,"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"lineage":{"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
+        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"stopPolicy":"{stop_policy}","minIdeaObservations":2,"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"lineage":{"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
         output: "{state_paths.state_log}"
 
       step_create_strategy:
@@ -588,6 +589,7 @@ workflow:
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
           - latest_status: "Extract status from latest iteration record, else 'none yet'"
           - convergence_mode: "Extract antiConvergence.convergenceMode when it is one of 'default', 'off', 'sliding-window', or 'divergent'; default to 'default'"
+          - stop_policy: "Extract stopPolicy from deep-research-config.json, default 'convergence'. Valid values: convergence, max-iterations."
           - convergence_mode_warning: "Boolean true when antiConvergence.convergenceMode is present with an unsupported value; use 'default'"
           - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected focus; else 'none yet'"
           - saturated_directions: "List registry.divergence.saturatedDirections; else 'none yet'"
@@ -638,6 +640,7 @@ workflow:
           1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap bypasses quality-guard overrides; record failed guards/blockers as synthesis evidence instead of continuing.
           2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
           3. if convergence_mode == "off": skip convergence stop candidates and continue unless a terminal cap, pause sentinel, or recovery halt has already fired.
+          3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: steps 4 and 5 are telemetry only and cannot set STOP or BLOCKED. Record weighted_stop_score for diagnostics, keep decision = "CONTINUE" and choose a broader next focus.
           4. if remaining_questions == 0: STOP (all_questions_answered)
           5. GRAPH-ASSISTED COMPOSITE CONVERGENCE:
                step_graph_convergence already recorded graph_decision, graph_signals_json, graph_blockers_json, and graph_convergence_score for this run.
@@ -682,6 +685,10 @@ workflow:
           8. if effective_min_iterations > 1 and iteration_count >= effective_min_iterations and min_iterations_guard_already_passed == false:
                min_iterations_guard_pass = true
           9. if decision == "STOP" and reason != "maxIterationsReached":
+               guardResult = checkQualityGuards(state, strategy)
+               if not guardResult.passed:
+                 log: "Quality guard failed: {guardResult.violations}. Overriding STOP to CONTINUE."
+                 decision = "CONTINUE"
           See convergence.md for full pseudocode and signal definitions.
           Segment-aware convergence is experimental/reference-only; live workflow uses the current session as a single segment.
         outputs:
@@ -1509,216 +1516,16 @@ workflow:
           GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
           [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
           EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-research-synthesis.XXXXXX")"
-          node --input-type=module - "$EVENT_DIR" <<'EOF'
-          import { existsSync, lstatSync, readFileSync, realpathSync, readdirSync, writeFileSync } from 'node:fs';
-          import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
-
-          const paths = {
-            artifactDir: String.raw`{state_paths.packet_dir}`,
-            stateLog: String.raw`{state_paths.state_log}`,
-            registry: String.raw`{state_paths.registry}`,
-            research: String.raw`{state_paths.research_output}`,
-            dashboard: String.raw`{state_paths.dashboard}`,
-          };
-
-          function hasFile(filePath) {
-            try {
-              return existsSync(filePath) && !lstatSync(filePath).isSymbolicLink() && lstatSync(filePath).isFile();
-            } catch {
-              return false;
-            }
-          }
-
-          function readJson(filePath) {
-            try {
-              return JSON.parse(readFileSync(filePath, 'utf8'));
-            } catch {
-              return null;
-            }
-          }
-
-          function readJsonl(filePath) {
-            if (!hasFile(filePath)) return { records: [], parseFailures: 0 };
-            const records = [];
-            let parseFailures = 0;
-            for (const line of readFileSync(filePath, 'utf8').split(/\r?\n/).map((entry) => entry.trim()).filter(Boolean)) {
-              try {
-                records.push(JSON.parse(line));
-              } catch {
-                parseFailures += 1;
-              }
-            }
-            return { records, parseFailures };
-          }
-
-          function lineageStateLogs(artifactDir) {
-            const lineagesDir = join(artifactDir, 'lineages');
-            if (!existsSync(lineagesDir)) return [];
-            if (lstatSync(lineagesDir).isSymbolicLink() || !lstatSync(lineagesDir).isDirectory()) {
-              throw new Error(`lineages must be a real directory: ${lineagesDir}`);
-            }
-            const root = realpathSync(resolve(artifactDir));
-            return readdirSync(lineagesDir, { withFileTypes: true })
-              .map((entry) => {
-                if (entry.isSymbolicLink()) throw new Error(`lineage must be a real directory: ${join(lineagesDir, entry.name)}`);
-                return entry;
-              })
-              .filter((entry) => entry.isDirectory())
-              .sort((left, right) => left.name.localeCompare(right.name, undefined, { numeric: true }))
-              .flatMap((entry) => {
-                const label = entry.name;
-                const candidate = join(lineagesDir, label, 'deep-research-state.jsonl');
-                if (!hasFile(candidate)) return [];
-                const candidatePath = realpathSync(candidate);
-                const rel = relative(root, candidatePath);
-                if (rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) {
-                  throw new Error(`lineage state resolves outside the artifact directory: ${candidate}`);
-                }
-                return [candidatePath];
-              });
-          }
-
-          function countIterationFindings(record) {
-            if (!record || record.type !== 'iteration') return 0;
-            const numeric = Number(record.findingsCount);
-            if (Number.isFinite(numeric) && numeric > 0) return Math.floor(numeric);
-            if (Array.isArray(record.keyFindings)) return record.keyFindings.length;
-            if (Array.isArray(record.findings)) return record.findings.length;
-            return 0;
-          }
-
-          function normalizeFindingKey(value) {
-            return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
-          }
-
-          function findingKeys(candidate) {
-            if (typeof candidate === 'string') {
-              const key = normalizeFindingKey(candidate);
-              return key ? [key] : [];
-            }
-            if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return [];
-            return [...new Set([
-              candidate.id,
-              candidate.title,
-              candidate.summary,
-              candidate.text,
-              candidate.finding,
-              candidate.description,
-            ].map(normalizeFindingKey).filter(Boolean))];
-          }
-
-          function collectIterationFindingGroups(record) {
-            if (!record || record.type !== 'iteration') return [];
-            const structured = [record.keyFindings, record.findings]
-              .find((value) => Array.isArray(value) && value.length > 0);
-            if (!Array.isArray(structured)) return [];
-            return structured
-              .map(findingKeys)
-              .filter((keys) => keys.length > 0);
-          }
-
-          function collectRegistryFindingKeys(registry) {
-            if (!Array.isArray(registry?.keyFindings)) return [];
-            return registry.keyFindings.flatMap(findingKeys);
-          }
-
-          const eventDir = process.argv[2];
-          // The scope needs one run-stable token the synthesis step can derive from the
-          // state-log path it was handed; the artifact directory name is that token.
-          const scopeRunId = basename(dirname(paths.stateLog)) || 'research';
-
-          // The state log is a projection the gateway rebuilds from the ledger, so the
-          // synthesis row is staged as a canonical ledger event; a write beside the
-          // projection is dropped by the next refresh.
-          function recordEvent(event) {
-            const data = { ...event };
-            const eventName = data.event;
-            delete data.type;
-            delete data.event;
-            delete data.timestamp;
-            writeFileSync(
-              join(eventDir, `${eventName}.json`),
-              JSON.stringify({
-                stem: `deep_research.${eventName}`,
-                scope: { runId: scopeRunId, lineageId: scopeRunId },
-                data,
-              }),
-              'utf8',
-            );
-          }
-
-          const registry = readJson(paths.registry);
-          const registryFindingCount = Array.isArray(registry?.keyFindings) ? registry.keyFindings.length : null;
-          const lineageLogs = lineageStateLogs(paths.artifactDir);
-          const parsedState = (lineageLogs.length > 0 ? lineageLogs : [paths.stateLog]).map(readJsonl);
-          const stateRecords = parsedState.flatMap((entry) => entry.records);
-          const stateParseFailureCount = parsedState.reduce((sum, entry) => sum + entry.parseFailures, 0);
-          const totalIterations = stateRecords.filter((record) => record?.type === 'iteration').length;
-          const iterationFindingCount = stateRecords.reduce((sum, record) => sum + countIterationFindings(record), 0);
-          const countOnlyFindingCount = stateRecords.reduce((sum, record) => {
-            if (!record || record.type !== 'iteration') return sum;
-            const structured = [record.keyFindings, record.findings, record.findingDetails]
-              .find((value) => Array.isArray(value) && value.length > 0);
-            return structured ? sum : sum + countIterationFindings(record);
-          }, 0);
-          const identifiableFindingGroups = stateRecords.flatMap(collectIterationFindingGroups);
-          const registryFindingKeys = new Set(collectRegistryFindingKeys(registry));
-          const missingStructuredFindingCount = identifiableFindingGroups.filter((keys) => !keys.some((key) => registryFindingKeys.has(key))).length;
-          const identifiableFindingCount = identifiableFindingGroups.length;
-          const sourceFindingCount = Number(registry?.metrics?.sourceFindings);
-          const reconstructionGapCount = Number(registry?.metrics?.reconstructionGaps);
-          const missingArtifacts = [
-            ['registry', paths.registry],
-            ['research', paths.research],
-            // Fan-out keeps its dashboards per lineage.
-            ...(lineageLogs.length > 0 ? [] : [['dashboard', paths.dashboard]]),
-          ].filter(([, filePath]) => !hasFile(filePath)).map(([name, filePath]) => ({ name, path: filePath }));
-          const invariantFailures = [];
-          if (missingArtifacts.length > 0) invariantFailures.push('missing_synthesis_artifacts');
-          if (stateParseFailureCount > 0) invariantFailures.push('state_jsonl_parse_failure');
-          if (registryFindingCount === null) invariantFailures.push('registry_missing_keyFindings');
-          if (iterationFindingCount > 0 && (registryFindingCount ?? 0) === 0) invariantFailures.push('state_findings_not_reflected_in_registry');
-          if (identifiableFindingCount > 0 && registryFindingCount !== null && registryFindingCount < identifiableFindingCount) invariantFailures.push('structured_state_findings_partially_reflected_in_registry');
-          if (missingStructuredFindingCount > 0) invariantFailures.push('structured_state_findings_missing_from_registry');
-          if (countOnlyFindingCount > 0 && (!Number.isFinite(sourceFindingCount) || sourceFindingCount < countOnlyFindingCount)) invariantFailures.push('count_only_state_findings_not_reconstructed');
-          if (Number.isFinite(reconstructionGapCount) && reconstructionGapCount > 0) invariantFailures.push('state_finding_reconstruction_gap');
-
-          if (invariantFailures.length > 0) {
-            recordEvent({
-              type: 'event',
-              event: 'synthesis_incomplete',
-              mode: 'research',
-              severity: 'error',
-              totalIterations,
-              answeredCount: Number('{answered_count}'),
-              totalQuestions: Number('{total_questions}'),
-              stopReason: '{reason}',
-              reason: 'synthesis_artifact_invariant_failed',
-              invariantFailures,
-              missingArtifacts,
-              registryFindingCount,
-              iterationFindingCount,
-              countOnlyFindingCount,
-              identifiableFindingCount,
-              missingStructuredFindingCount,
-              sourceFindingCount: Number.isFinite(sourceFindingCount) ? sourceFindingCount : null,
-              reconstructionGapCount: Number.isFinite(reconstructionGapCount) ? reconstructionGapCount : null,
-              stateParseFailureCount,
-              timestamp: '{ISO_8601_NOW}',
-            });
-            process.exitCode = 2;
-          } else {
-            recordEvent({
-              type: 'event',
-              event: 'synthesis_complete',
-              totalIterations,
-              answeredCount: Number('{answered_count}'),
-              totalQuestions: Number('{total_questions}'),
-              stopReason: '{reason}',
-              timestamp: '{ISO_8601_NOW}',
-            });
-          }
-          EOF
+          CLOSEOUT=".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
+          [ -f "$CLOSEOUT" ] || CLOSEOUT="scripts/synthesis-closeout.cjs"
+          node "$CLOSEOUT" --mode research --event-dir "$EVENT_DIR" \
+            --artifact-dir "{state_paths.packet_dir}" \
+            --state-log "{state_paths.state_log}" \
+            --registry "{state_paths.registry}" \
+            --output "{state_paths.research_output}" \
+            --dashboard "{state_paths.dashboard}" \
+            --stop-reason "{reason}" \
+            --answered-count "{answered_count}" --total-questions "{total_questions}"
           NODE_STATUS=$?
           for eventFile in "$EVENT_DIR"/*.json; do
             [ -e "$eventFile" ] || continue

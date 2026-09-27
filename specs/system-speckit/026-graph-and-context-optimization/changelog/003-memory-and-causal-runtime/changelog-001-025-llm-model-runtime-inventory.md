@@ -6,6 +6,7 @@ trigger_phrases:
   - "embedding variant per subsystem"
   - "embeddinggemma subsystem map"
   - "memory mcp vs cocoindex models"
+  - "memory and causal runtime llm model runtime inventory changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

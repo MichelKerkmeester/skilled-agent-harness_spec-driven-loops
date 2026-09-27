@@ -7,6 +7,7 @@ trigger_phrases:
   - "plugin-loader path drift correction"
   - "superset-notify hook routing fix"
   - "deep-research-review state hygiene"
+  - "release and program cleanup fix additional release readiness findings changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

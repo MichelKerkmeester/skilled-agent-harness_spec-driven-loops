@@ -5,6 +5,7 @@ trigger_phrases:
   - "003/002 003 advisor BM25 changelog"
   - "packed BM25F lexical shadow"
   - "advisor lexical shadow"
+  - "advisor and codegraph advisor packed bm25 lexical changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

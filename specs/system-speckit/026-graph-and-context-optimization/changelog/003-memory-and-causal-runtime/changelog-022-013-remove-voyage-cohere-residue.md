@@ -7,6 +7,7 @@ trigger_phrases:
   - "voyage cohere reranker removal"
   - "cloud reranker auto-routing fix"
   - "cross-encoder local-only narrowing"
+  - "memory and causal runtime remove voyage cohere residue changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Agent Improvement - Reducers & Projections [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections]"
 description: "Changelog for the agent improvement reducers and projections phase: deterministic reducers that replay the typed event ledger for the agent loop."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "agent improvement reducers and projections changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

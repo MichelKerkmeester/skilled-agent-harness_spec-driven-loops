@@ -1,0 +1,31 @@
+ROLE
+You are an independent verifier re-checking two fixes to your own earlier FAIL. You edit no file, you do not run `codex`, and you never run `.skilled/bin/install-codex-hooks.mjs` without `--target` pointing into your own temp directory.
+
+CONTEXT
+- Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`. Base: commit `44dcdc2f82`.
+- Your earlier docs verification failed on two points:
+  1. `.skilled/hooks/hook-install/README.md` said only `.skilled/` orphans are removed, while the installer also removes `.opencode/` orphans.
+  2. Parity step 4 in `.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md` printed the gate state file's contents but not its path, so the Expected line's filename check could not be made.
+- Claimed fixes:
+  - `hook-install/README.md` line 41 now reads `any identity under `.skilled/` or `.opencode/` that no longer exists on disk. Ownership follows the source-root namespace, ...`, and line 122 now reads `Only orphans under `.skilled/` or `.opencode/` are removed.`
+  - `codex-hook-parity.md` line 96 now runs `find ... -newer "$MARK" -print -exec cat {} \;`.
+- You also noted that the orchestrator's live parity run used `--dangerously-bypass-hook-trust`. The orchestrator's answer is `specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/evidence/f5/codex-trusted-checkout-hook-counts.txt`, which reads your own installer-verify run log `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.verify.err`. That run was a plain `codex exec` from the checkout with no bypass flag.
+
+ACTION
+1. `git diff 44dcdc2f82 -- .skilled/hooks/hook-install/README.md .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md`: confirm the three lines above read as claimed, and that nothing else changed since your earlier run apart from them.
+2. Truth: confirm each fixed sentence against `.skilled/bin/install-codex-hooks.mjs` (`SOURCE_ROOT_NAMES`, `sourceRootRelative`, `isRepoOrphan`) and against `find` semantics (`-print` prints the path before `-exec cat`). Quote the lines.
+3. Evidence: in `F5.verify.err`, count the lines that are exactly `hook: SessionStart` and the lines that start with `session id:`, and give the line numbers of the first and last `hook: SessionStart`. Decide whether the evidence file's statement is correct: one session, 16 SessionStart starts = 6 project entries + 6 global copies + 4 third-party, with no bypass flag in `x/run-verify.sh`.
+4. Gates:
+   ```bash
+   bash -c '
+   P=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.stale-patterns.txt
+   FILES=".codex/SYNC.md .skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md .skilled/bin/README.md .skilled/hooks/hook-install/README.md .skilled/hooks/codex-watchdog/README.md .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/full-auto-hooks.md .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md .skilled/skills/cli-external-orchestration/cli-codex/README.md .codex/hooks/README.md .skilled/hooks/README.md"
+   for f in $FILES; do printf "%s: " "$f"; python3 .skilled/skills/sk-doc/scripts/validate_document.py "$f" | tail -1; done
+   grep -n -F -f $P $FILES; echo "stale_grep_exit=$?"
+   grep -n "\.skilled/\`-namespaced\|any identity under \`\.skilled/\` that" .skilled/hooks/hook-install/README.md; echo "old_orphan_wording_exit=$?"'
+   ```
+   Pass: every file `Total issues: 0`; `stale_grep_exit=1`; `old_orphan_wording_exit=1`.
+
+FORMAT
+First line exactly: `RETURN: <PASS|FAIL|BLOCKED> | escalation=<NONE|SCOPE_CONFLICT|LOW_CONFIDENCE|LOGIC_SYNC|VERIFY_FAIL> | confidence=<HIGH|MEDIUM|LOW>`
+Then: Diff check, Truth check, Evidence check (counts and line numbers), Gate output, Out Of Scope observations.

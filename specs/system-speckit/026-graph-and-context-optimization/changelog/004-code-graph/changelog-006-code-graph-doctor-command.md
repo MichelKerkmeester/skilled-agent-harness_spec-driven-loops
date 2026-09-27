@@ -6,6 +6,7 @@ trigger_phrases:
   - "doctor code graph command"
   - "/doctor:code-graph"
   - "code graph diagnostics"
+  - "code graph doctor command changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

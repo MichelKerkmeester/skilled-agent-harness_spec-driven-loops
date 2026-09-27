@@ -2,9 +2,7 @@
 title: "Changelog: Memory Consolidation Cursor and Clock [001-speckit-memory/010-consolidation-cursor-clock]"
 description: "Chronological changelog for the Memory consolidation cursor and clock phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory consolidation cursor clock changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

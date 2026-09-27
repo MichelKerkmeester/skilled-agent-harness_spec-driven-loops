@@ -2,9 +2,7 @@
 title: "Changelog: Vague-Query Model Benchmark [003-spec-data-quality/005-shared-engine-and-research/029-vague-query-model-benchmark]"
 description: "Chronological changelog for the vague-query model benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality vague query model benchmark changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

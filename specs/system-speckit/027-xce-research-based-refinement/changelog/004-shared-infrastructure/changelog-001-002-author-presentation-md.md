@@ -2,9 +2,7 @@
 title: "Changelog: Memory Commands - Author Presentation Markdown [001-memory-commands/002-author-presentation-md]"
 description: "Chronological changelog for the Memory Commands - Author Presentation Markdown phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared infrastructure author presentation md changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

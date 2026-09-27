@@ -7,6 +7,7 @@ trigger_phrases:
   - "live handler embed readiness gap"
   - "harness telemetry envelope parity"
   - "stress test planning packet phase K"
+  - "release and program cleanup stress test results deep research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

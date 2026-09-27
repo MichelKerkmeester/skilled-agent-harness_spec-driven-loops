@@ -7,6 +7,7 @@ trigger_phrases:
   - "factory adr-012 shard fallback"
   - "memory_search z-score degraded fix"
   - "writeVectorsToShard patch"
+  - "memory and causal reindex populates vec memories knn table changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

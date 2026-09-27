@@ -6,6 +6,7 @@ trigger_phrases:
   - "opencode plugin loader"
   - "opencode plugin crash"
   - "plugin2.auth null"
+  - "operator tooling opencode plugin loader remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

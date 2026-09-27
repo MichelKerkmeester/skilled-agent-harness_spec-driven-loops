@@ -7,6 +7,7 @@ trigger_phrases:
   - "exhaustive residue sweep methodology bug"
   - "sidecar ledger README removed"
   - "manual testing playbook CCC reframe"
+  - "code graph remediate residue tail changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

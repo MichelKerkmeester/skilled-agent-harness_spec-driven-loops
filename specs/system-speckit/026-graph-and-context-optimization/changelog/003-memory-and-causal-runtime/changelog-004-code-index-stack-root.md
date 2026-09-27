@@ -5,6 +5,7 @@ trigger_phrases:
   - "004-code-index-stack rollup"
   - "004-code-index-stack phase parent"
   - "004-code-index-stack changelog index"
+  - "memory and causal runtime code index stack changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

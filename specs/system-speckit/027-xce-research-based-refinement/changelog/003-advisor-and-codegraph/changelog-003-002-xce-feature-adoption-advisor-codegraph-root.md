@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor codegraph feature adoption"
   - "027 feature adoption changelog"
   - "027 003/002 shipped"
+  - "advisor and codegraph xce feature adoption advisor codegraph changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

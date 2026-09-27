@@ -2,9 +2,7 @@
 title: "{{TITLE}}"
 description: "{{DESCRIPTION}}"
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "{{CHANGELOG_IDENTITY_PHRASE}}"
 importance_tier: "normal"
 contextType: "implementation"
 ---

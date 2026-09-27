@@ -6,6 +6,7 @@ trigger_phrases:
   - "five port storage seam"
   - "better-sqlite3 adapter ports"
   - "027 004/003 shipped"
+  - "shared infrastructure storage adapter ports changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

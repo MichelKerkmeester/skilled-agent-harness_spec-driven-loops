@@ -1,0 +1,8 @@
+# OpenCode plugin live load (CL-005 step 4), final state, HEAD 5b4a7ffcf0, run 2026-09-27T14:38:16Z to 2026-09-27T14:38:51Z
+opencode 1.18.32 exit=0
+failed to load plugin lines naming system-skill-advisor.js: 0
+failed to load plugin lines in the whole log: 0
+## grep -n 'spec_kit_skill_advisor_status' stdout
+1:spec_kit_skill_advisor_status
+## stdout
+spec_kit_skill_advisor_status

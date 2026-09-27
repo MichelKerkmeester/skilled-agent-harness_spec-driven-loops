@@ -58,7 +58,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `dist-freshness` | `SYSTEM_DIST_FRESHNESS_DISABLED` | none | enabled | warn / rebuild | wired |
 | `session-cleanup` | `SYSTEM_SESSION_CLEANUP_DISABLED` | none | enabled | teardown | wired |
 | `sk-vision` | `SYSTEM_SK_VISION_DISABLED` | none | enabled | inject | wired |
-| `hook-install` | `SYSTEM_HOOK_INSTALL_DISABLED` | none | enabled | install | wired |
+| `hook-install` | `SYSTEM_HOOK_INSTALL_DISABLED` | none | enabled | cleanup / check | wired |
 | `git-commit-hooks` | `SYSTEM_GIT_COMMIT_HOOKS_DISABLED` | none | enabled | deny | wired |
 
 `SYSTEM_SPEC_GATE_ENFORCE` is a separate opt-in control for spec-gate denial, not a kill-switch. `SPECKIT_DIST_AUTO_REBUILD` controls whether a stale dist is rebuilt; it does not disable the freshness check. The `git-commit-hooks` switch is an emergency off switch for the pre-commit chain; with the switch unset, mass-deletion and comment-hygiene checks remain active.
@@ -253,7 +253,7 @@ Beyond the guard-core concerns above, the hub also indexes every remaining repo-
 | `git-hooks-check` | claude, codex, cursor, devin | `.skilled/bin/check-git-hooks.sh` |
 | `git-primary-reconcile` | claude, codex, pi + opencode plugin | `.skilled/bin/git-primary-reconcile.sh` |
 | `session-cleanup` | claude, codex, cursor, devin + opencode plugin | `.skilled/scripts/session-cleanup.sh`, `.skilled/plugins/session-cleanup.js` |
-| `hook-install` | claude, cursor, devin (Codex is the install target) | `.skilled/bin/install-codex-hooks.mjs` |
+| `hook-install` | claude, cursor, devin (Codex's user-global file is the cleanup target) | `.skilled/bin/install-codex-hooks.mjs` |
 | `dist-freshness` (per-runtime `.sh`) | claude, codex, cursor, devin | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` |
 | `sk-vision` | devin | `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs` |
 

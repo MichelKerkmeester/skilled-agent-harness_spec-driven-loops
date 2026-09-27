@@ -2,9 +2,7 @@
 title: "Changelog: Write-Set Conflict Graph [003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph]"
 description: "Changelog for the write-set conflict graph phase: the executable dependency and write-set conflict graph for the eight phase-013 mode migrations."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared mode contracts and fixtures write set conflict graph changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

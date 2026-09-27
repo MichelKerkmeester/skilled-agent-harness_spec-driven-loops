@@ -7,6 +7,7 @@ trigger_phrases:
   - "telemetry measurement run"
   - "live session wrapper"
   - "skill advisor telemetry"
+  - "spec kit internals deferred remediation telemetry run changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

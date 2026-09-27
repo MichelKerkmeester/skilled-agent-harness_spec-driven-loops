@@ -2,9 +2,7 @@
 title: "Changelog: Architecture, Coverage & Transition Contract [001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract]"
 description: "The last planning gate before implementation: ratifies the cross-mode spine, freezes all 178 recommendations into a bijective single-disposition ledger, and fixes the transition, versioning, compatibility, cutover, and rollback contract."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "architecture coverage and transition contract changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

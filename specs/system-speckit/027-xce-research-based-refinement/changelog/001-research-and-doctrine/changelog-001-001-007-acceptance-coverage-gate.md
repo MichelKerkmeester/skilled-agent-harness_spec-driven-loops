@@ -7,6 +7,7 @@ trigger_phrases:
   - "peck T1 teaching"
   - "SPECKIT_AC_COVERAGE"
   - "check-ac-coverage"
+  - "research and doctrine acceptance coverage gate changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

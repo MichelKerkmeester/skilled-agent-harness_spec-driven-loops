@@ -1,0 +1,119 @@
+$ python3 -B compare.py   (harness copied below the output)
+==============================================================================
+V1 fence first, directive anchor | core node exit 0
+HERMES _goal_slice() frontmatter leak: False | chars: 85
+HERMES renders (repr, first 260): 'Bound packet: specs/fixture-v1\n\n## 1. DIRECTIVE\n\nShip the fixture directive sentence.'
+CORE chatSlice frontmatter leak: False | durableSlice leak: False
+CORE objectiveSlice (what the core injects as objective): 'Execute specs/fixture-v1/goal.md.\nDONE WHEN:\n- Criterion one holds\n- Criterion two holds'
+CORE chatSlice (first 200): '# Goal: fixture\n\n## DIRECTIVE\n\nShip the fixture directive sentence.\n\n## COMPLETION\n\n- [ ] Criterion one holds\n- [ ] Criterion two holds'
+HERMES output equals CORE chatSlice: False
+==============================================================================
+V2 leading comments then fence, directive anchor | core node exit 0
+HERMES _goal_slice() frontmatter leak: False | chars: 85
+HERMES renders (repr, first 260): 'Bound packet: specs/fixture-v2\n\n## 1. DIRECTIVE\n\nShip the fixture directive sentence.'
+CORE chatSlice frontmatter leak: False | durableSlice leak: False
+CORE objectiveSlice (what the core injects as objective): 'Execute specs/fixture-v2/goal.md.\nDONE WHEN:\n- Criterion one holds\n- Criterion two holds'
+CORE chatSlice (first 200): '# Goal: fixture\n\n## DIRECTIVE\n\nShip the fixture directive sentence.\n\n## COMPLETION\n\n- [ ] Criterion one holds\n- [ ] Criterion two holds'
+HERMES output equals CORE chatSlice: False
+==============================================================================
+V3 leading comments then fence, no directive anchor | core node exit 0
+HERMES _goal_slice() frontmatter leak: True | chars: 466
+HERMES renders (repr, first 260): 'Bound packet: specs/fixture-v3\n\n<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->\n<!-- generator note one -->\n<!-- generator note two -->\n---\ntitle: "Goal: fixture"\nFM_LEAK_MARKER: "frontmatter-must-not-appear"\n---\n# Goal: fixture\n\n## 1. DIRECTIVE\n\nShip the fixtur'
+CORE chatSlice frontmatter leak: False | durableSlice leak: False
+CORE objectiveSlice (what the core injects as objective): 'Execute specs/fixture-v3/goal.md.\nDONE WHEN:\n- Criterion one holds\n- Criterion two holds'
+CORE chatSlice (first 200): '# Goal: fixture\n\n## DIRECTIVE\n\nShip the fixture directive sentence.\n\n## COMPLETION\n\n- [ ] Criterion one holds\n- [ ] Criterion two holds'
+HERMES output equals CORE chatSlice: False
+==============================================================================
+V4 fence then comments, no directive anchor | core node exit 0
+HERMES _goal_slice() frontmatter leak: False | chars: 389
+HERMES renders (repr, first 260): 'Bound packet: specs/fixture-v4\n\n<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->\n<!-- generator note one -->\n<!-- generator note two -->\n# Goal: fixture\n\n## 1. DIRECTIVE\n\nShip the fixture directive sentence.\n\n<!-- ANCHOR:completion -->\n## 2. COMPLETION\n\n- [ ] Cri'
+CORE chatSlice frontmatter leak: False | durableSlice leak: False
+CORE objectiveSlice (what the core injects as objective): 'Execute specs/fixture-v4/goal.md.\nDONE WHEN:\n- Criterion one holds\n- Criterion two holds'
+CORE chatSlice (first 200): '# Goal: fixture\n\n## DIRECTIVE\n\nShip the fixture directive sentence.\n\n## COMPLETION\n\n- [ ] Criterion one holds\n- [ ] Criterion two holds'
+HERMES output equals CORE chatSlice: False
+==============================================================================
+V5 BOM then fence, no directive anchor | core node exit 0
+HERMES _goal_slice() frontmatter leak: True | chars: 365
+HERMES renders (repr, first 260): 'Bound packet: specs/fixture-v5\n\n\ufeff---\ntitle: "Goal: fixture"\nFM_LEAK_MARKER: "frontmatter-must-not-appear"\n---\n# Goal: fixture\n\n## 1. DIRECTIVE\n\nShip the fixture directive sentence.\n\n<!-- ANCHOR:completion -->\n## 2. COMPLETION\n\n- [ ] Criterion one holds\n- [ ] C'
+CORE chatSlice frontmatter leak: False | durableSlice leak: False
+CORE objectiveSlice (what the core injects as objective): 'Execute specs/fixture-v5/goal.md.\nDONE WHEN:\n- Criterion one holds\n- Criterion two holds'
+CORE chatSlice (first 200): '# Goal: fixture\n\n## DIRECTIVE\n\nShip the fixture directive sentence.\n\n## COMPLETION\n\n- [ ] Criterion one holds\n- [ ] Criterion two holds'
+HERMES output equals CORE chatSlice: False
+==============================================================================
+V6 CRLF fence, no directive anchor | core node exit 0
+HERMES _goal_slice() frontmatter leak: False | chars: 287
+HERMES renders (repr, first 260): 'Bound packet: specs/fixture-v6\n\n# Goal: fixture\n\n## 1. DIRECTIVE\n\nShip the fixture directive sentence.\n\n<!-- ANCHOR:completion -->\n## 2. COMPLETION\n\n- [ ] Criterion one holds\n- [ ] Criterion two holds\n<!-- /ANCHOR:completion -->\n\n<!-- ANCHOR:log -->\n## 3. LOG\n'
+CORE chatSlice frontmatter leak: False | durableSlice leak: False
+CORE objectiveSlice (what the core injects as objective): 'Execute specs/fixture-v6/goal.md.\nDONE WHEN:\n- Criterion one holds\n- Criterion two holds'
+CORE chatSlice (first 200): '# Goal: fixture\n\n## DIRECTIVE\n\nShip the fixture directive sentence.\n\n## COMPLETION\n\n- [ ] Criterion one holds\n- [ ] Criterion two holds'
+HERMES output equals CORE chatSlice: False
+==============================================================================
+WORKSPACE /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/goal-hermes-compare.sjgvwzi3
+EXIT=0
+
+----- harness source -----
+"""Hermes fallback goal rendering versus the shared goal core, on fixture goal.md files."""
+import importlib.util
+import json
+import os
+import subprocess
+import tempfile
+from pathlib import Path
+
+REPO = Path("/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public")
+spec = importlib.util.spec_from_file_location("rg", REPO / ".hermes/plugins/repo-guards/__init__.py")
+rg = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(rg)
+
+FM = '---\ntitle: "Goal: fixture"\nFM_LEAK_MARKER: "frontmatter-must-not-appear"\n---\n'
+COMMENTS = "<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->\n<!-- generator note one -->\n<!-- generator note two -->\n"
+HEAD = "# Goal: fixture\n\n"
+DIRECTIVE = "<!-- ANCHOR:directive -->\n## 1. DIRECTIVE\n\nShip the fixture directive sentence.\n<!-- /ANCHOR:directive -->\n\n"
+PLAIN_DIRECTIVE = "## 1. DIRECTIVE\n\nShip the fixture directive sentence.\n\n"
+COMPLETION = "<!-- ANCHOR:completion -->\n## 2. COMPLETION\n\n- [ ] Criterion one holds\n- [ ] Criterion two holds\n<!-- /ANCHOR:completion -->\n\n"
+LOG = "<!-- ANCHOR:log -->\n## 3. LOG\n\n- row\n<!-- /ANCHOR:log -->\n"
+
+FIXTURES = {
+    "V1 fence first, directive anchor": FM + HEAD + DIRECTIVE + COMPLETION + LOG,
+    "V2 leading comments then fence, directive anchor": COMMENTS + FM + HEAD + DIRECTIVE + COMPLETION + LOG,
+    "V3 leading comments then fence, no directive anchor": COMMENTS + FM + HEAD + PLAIN_DIRECTIVE + COMPLETION + LOG,
+    "V4 fence then comments, no directive anchor": FM + COMMENTS + HEAD + PLAIN_DIRECTIVE + COMPLETION + LOG,
+    "V5 BOM then fence, no directive anchor": "﻿" + FM + HEAD + PLAIN_DIRECTIVE + COMPLETION + LOG,
+    "V6 CRLF fence, no directive anchor": (FM + HEAD + PLAIN_DIRECTIVE + COMPLETION + LOG).replace("\n", "\r\n"),
+}
+
+ws = Path(tempfile.mkdtemp(prefix="goal-hermes-compare."))
+(ws / ".git").mkdir()
+rg.REPO_ROOT = ws  # _goal_slice() reads the module global at call time
+
+CORE_JS = r"""
+const s = require(process.argv[1]);
+const g = s.readPacketGoal(process.argv[2], process.argv[3]);
+process.stdout.write(JSON.stringify(g ? { chat: g.chatSlice, objective: g.objectiveSlice, durable: g.durableSlice } : null));
+"""
+
+for name, content in FIXTURES.items():
+    pkt = "specs/fixture-" + name.split()[0].lower()
+    (ws / pkt).mkdir(parents=True)
+    (ws / pkt / "goal.md").write_bytes(content.encode("utf-8"))
+    os.environ["HERMES_SPEC_FOLDER"] = pkt
+    hermes = rg._goal_slice()
+    proc = subprocess.run(
+        ["node", "-e", CORE_JS, str(REPO / ".skilled/hooks/goal/lib/goal-slice.cjs"), str(ws), pkt],
+        capture_output=True, text=True, check=False,
+    )
+    core = json.loads(proc.stdout or "null")
+    print("=" * 78)
+    print(name, "| core node exit", proc.returncode)
+    print("HERMES _goal_slice() frontmatter leak:", "FM_LEAK_MARKER" in hermes, "| chars:", len(hermes))
+    print("HERMES renders (repr, first 260):", repr(hermes[:260]))
+    if core is None:
+        print("CORE readPacketGoal: null (unbound, broken or unreadable)")
+        continue
+    print("CORE chatSlice frontmatter leak:", "FM_LEAK_MARKER" in core["chat"], "| durableSlice leak:", "FM_LEAK_MARKER" in core["durable"])
+    print("CORE objectiveSlice (what the core injects as objective):", repr(core["objective"]))
+    print("CORE chatSlice (first 200):", repr(core["chat"][:200]))
+    print("HERMES output equals CORE chatSlice:", hermes.split("\n\n", 1)[-1].strip() == core["chat"].strip())
+
+print("=" * 78)
+print("WORKSPACE", ws)

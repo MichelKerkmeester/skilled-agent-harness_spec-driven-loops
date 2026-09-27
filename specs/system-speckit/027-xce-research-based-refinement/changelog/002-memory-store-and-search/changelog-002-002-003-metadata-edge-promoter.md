@@ -7,6 +7,7 @@ trigger_phrases:
   - "schema v33 provenance columns"
   - "packet lineage causal edges"
   - "027 002/002 003 changelog"
+  - "memory store and search metadata edge promoter changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

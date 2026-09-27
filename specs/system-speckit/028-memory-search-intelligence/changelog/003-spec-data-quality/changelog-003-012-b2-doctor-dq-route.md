@@ -2,9 +2,7 @@
 title: "Changelog: B2 Guarded data-quality Route on /doctor [003-spec-data-quality/002-retroactive-automation/012-doctor-dq-route]"
 description: "Chronological changelog for the B2 Guarded data-quality Route on /doctor phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality b2 doctor dq route changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Pre-v4 spec folder upgrade path [033-system-speckit-v4/066-pre-v4-spec-upgrade]"
 description: "Chronological changelog for the Pre-v4 spec folder upgrade path phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "system speckit v4 pre v4 spec upgrade changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

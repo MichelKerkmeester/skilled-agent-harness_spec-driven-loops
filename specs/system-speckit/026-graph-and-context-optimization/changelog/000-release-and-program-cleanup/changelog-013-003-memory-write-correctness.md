@@ -6,6 +6,7 @@ trigger_phrases:
   - "entity density invalidation changelog"
   - "mutation hook entity density"
   - "atomic save orphan recovery"
+  - "release and program cleanup memory write correctness changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

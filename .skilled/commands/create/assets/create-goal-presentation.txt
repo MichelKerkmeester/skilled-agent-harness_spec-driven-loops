@@ -43,7 +43,7 @@ show this block, write nothing, and stop.
 ```text
   This request is a session objective, not a packet goal file.
   Session objectives belong to the goal hooks: /goal, /goal-opencode, /goal-pi,
-  /goal-cursor, or the host's native goal command.
+  or the host's native goal command.
   /create:goal authors goal.md files only. Nothing was written.
 
   STATUS=OK ACTION=redirected TARGET=goal-hooks
@@ -105,10 +105,12 @@ Default resolution table:
 
   Goal written : {packet_path}/goal.md   ({operation})
   Binding rows : {rows} rows · {folders} phase folders on disk · all matched
-  Measured     : durable {chars}/4000 chars · packet_budget={state}
+  Measured     : durable {chars} chars · packet_budget={state}
   Checked      : check-goal.cjs · {findings} findings, all resolved
 
-  Chat slice for the operator (set or resend it; this command never binds it):
+  Chat slice for the operator (set or resend it; this command never binds it).
+  Send it only when the report shows packet_budget=ok, and cut the file first
+  when it is over:
   ---
   {chat_slice}
   ---
@@ -125,5 +127,6 @@ Default resolution table:
 ## 9. NEXT STEPS
 
   Give the printed chat slice to your runtime's goal hook to set or resend the
-  objective. When a child change moved a parent decision or criterion, the parent
+  objective. Send it only when the report shows packet_budget=ok, and cut the
+  file first when it is over. When a child change moved a parent decision or criterion, the parent
   was amended first: resend the parent slice, not the child's.

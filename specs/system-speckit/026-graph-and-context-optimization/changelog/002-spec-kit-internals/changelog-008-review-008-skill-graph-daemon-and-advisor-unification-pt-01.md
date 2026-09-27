@@ -4,6 +4,7 @@ description: "4-iteration deep review of Phase 027. Verdict CONDITIONAL with 0 P
 trigger_phrases:
   - "review 008 pt-01 changelog"
   - "advisor unification review pt-01"
+  - "review 008 skill graph daemon and advisor unification pt changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

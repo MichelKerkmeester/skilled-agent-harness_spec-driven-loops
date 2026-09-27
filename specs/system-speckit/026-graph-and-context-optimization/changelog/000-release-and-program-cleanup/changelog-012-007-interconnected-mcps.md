@@ -6,6 +6,7 @@ trigger_phrases:
   - "deep-loop fanout reliability findings"
   - "code graph skill advisor audit"
   - "fanout concurrency mismatch audit"
+  - "release and program cleanup interconnected mcps changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

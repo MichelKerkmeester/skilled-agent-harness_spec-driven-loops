@@ -7,6 +7,7 @@ trigger_phrases:
   - "COCOINDEX_SKIP_LOCAL_EMBEDDINGS"
   - "ccc daemon ram leak disk reclaim"
   - "031 cocoindex local voyage embeddings gate"
+  - "release and program cleanup cocoindex local voyage embeddings gate changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

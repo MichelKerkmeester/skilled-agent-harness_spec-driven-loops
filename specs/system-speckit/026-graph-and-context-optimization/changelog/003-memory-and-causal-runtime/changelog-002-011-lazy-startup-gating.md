@@ -7,6 +7,7 @@ trigger_phrases:
   - "context server lazy init"
   - "runtime_initialized health field"
   - "tryGetDb non-initializing"
+  - "memory and causal runtime lazy startup gating changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

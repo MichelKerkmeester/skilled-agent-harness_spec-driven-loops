@@ -21,8 +21,8 @@
       "mimo swe-2 max fan-out",
       "pi skill orchestrator research tasks",
       "fan-out research verification",
-      "pi skill orchestrator research status",
-      "fan-out research summary"
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
       "skill",
@@ -44,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
@@ -59,8 +60,7 @@
       "research/lineages/mimo/deep-research-state.jsonl",
       "research/lineages/swe2max/deep-research-state.jsonl",
       "specs/system-skill-advisor/graph-metadata.json",
-      "specs/sk-doc/059-skill-changelog-retrofit/description.json",
-      ".skilled/hooks/skill-advisor/opencode/system-skill-advisor.js"
+      "specs/sk-doc/059-skill-changelog-retrofit/description.json"
     ],
     "entities": [
       {
@@ -79,6 +79,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -200,27 +206,22 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor and the pi-skill-orchestrator extension solve skill selection with opposite designs",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-09-26T14:03:33.735Z",
+    "last_save_at": "2026-09-26T22:17:10.553Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b1f1391e76bdb29f0e3ba5d89e6e74222fe3d2f0f34eecf4a5171d445609a10d",
+    "source_fingerprint": "sha256:9a0d1294f32b56db3c489a7cbceb5a790543ee2d228f83501c5cd3ecaab025d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f80bdef908aeca8930170c881d9cfedfc16a26bf2a13bb1d7c35ee661e1bd9cc",

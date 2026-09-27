@@ -9,6 +9,7 @@ trigger_phrases:
   - "sk-code header"
   - "MODULE header block"
   - "header normalization phase"
+  - "spec kit internals typescript header normalization changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

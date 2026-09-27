@@ -33,6 +33,7 @@ const PRODUCER_SURFACE = [
   join(RUNTIME_REL, 'scripts', 'append-mode-event.cjs'),
   join(RUNTIME_REL, 'scripts', 'reduce-state.cjs'),
   join(RUNTIME_REL, 'scripts', 'verify-iteration.cjs'),
+  join(RUNTIME_REL, 'scripts', 'synthesis-closeout.cjs'),
   join('.skilled', 'skills', 'system-deep-loop', 'deep-research', 'scripts', 'reduce-state.cjs'),
 ];
 

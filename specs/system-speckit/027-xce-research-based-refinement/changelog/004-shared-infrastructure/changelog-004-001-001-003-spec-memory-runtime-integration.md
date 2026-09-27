@@ -5,6 +5,7 @@ trigger_phrases:
   - "spec-memory runtime integration changelog"
   - "spec-memory allowlist changelog"
   - "dual-stack rollout changelog"
+  - "shared infrastructure spec memory runtime integration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

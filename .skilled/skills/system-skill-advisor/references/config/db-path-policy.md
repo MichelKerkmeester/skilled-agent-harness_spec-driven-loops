@@ -79,6 +79,14 @@ This separation gives cleaner mutation scope:
 
 `SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only. The retired `MK_SKILL_ADVISOR_DB_DIR` name has no read site of its own. It reaches this variable only in a process that runs the env alias bridge (`.skilled/hooks/shared/env-aliases.cjs`) before the read, and only while `SYSTEM_SKILL_ADVISOR_DB_DIR` is unset.
 
+The override moves these advisor state files and the model server with the database, so a test or CI run keeps them out of the workspace and does not disturb the live advisor:
+
+- **Generation file.** `skill-graph-generation.json` and its lock and temporary files live in the override directory instead of `.skilled/skills/.state/advisor/` (`runtime/lib/freshness/generation.ts`, `getSkillGraphGenerationPath`). Freshness pairs the counter with the database it describes, so a sandboxed daemon never marks the live advisor unavailable when it shuts down.
+- **Quarantine store.** The watcher writes `skill-graph-quarantine.sqlite` in the override directory. The workspace default, the `.state/advisor` lease SQLite file, is unchanged, and an explicit store path still wins (`runtime/lib/daemon/watcher.ts`, `quarantineDbPath`).
+- **Launcher state and bootstrap lock.** `.system-skill-advisor-launcher.json` and `.system-skill-advisor-launcher.lockdir` sit in the override directory instead of `runtime/database/` (`.skilled/bin/system-skill-advisor-launcher.cjs`, `refreshPaths()`).
+- **Model server.** When no `HF_EMBED_SERVER_URL` is given, the launcher sets it to `hf-embed.sock` in the daemon's database-scoped IPC socket directory (`pinModelServerToAdvisorDatabase()`). A sandbox launcher never shares or signals the workspace model server. The pin is skipped when the IPC socket directory is a `tcp://` address.
+- **Daemon child address.** With or without the override, when the parent sets no `HF_EMBED_SERVER_URL`, `createChildEnv()` gives the daemon child the socket the launcher's own model-server control arms. The child's embedding client reaches the server the launcher serves, even though the launcher sets the child's `SPECKIT_IPC_SOCKET_DIR` to the daemon's own socket directory.
+
 Production and operator docs should treat the package-local path as the default. A runtime override must not be used to silently re-collocate the advisor DB with `system-spec-kit/runtime/database/`.
 
 ### Child-process `MEMORY_DB_PATH` pointer

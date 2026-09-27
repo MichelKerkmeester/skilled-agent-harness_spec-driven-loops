@@ -2,9 +2,7 @@
 title: "Changelog: Legacy Projections [002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections]"
 description: "Changelog for the legacy projections phase: deterministic folds from the verified dark ledger into byte-identical legacy JSONL and JSON artifacts."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "compatibility shadow and rollback bridge legacy projections changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

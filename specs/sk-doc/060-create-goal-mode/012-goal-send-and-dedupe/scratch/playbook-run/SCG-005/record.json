@@ -1,0 +1,111 @@
+{
+  "scenario": "SCG-005",
+  "doc": "refuse-leftover-placeholder.md",
+  "model": "llmgateway/mimo-v2.6-pro",
+  "thinking": "high",
+  "exact_prompt_template": "Author the goal for the scratch demo packet at $SCRATCH/specs/demo-packet with /create:goal top-level :auto. I have not decided the counter update rule yet so leave that decision as the template placeholder.",
+  "steps": [
+    {
+      "step": 1,
+      "kind": "bash",
+      "text": "SCRATCH=$(mktemp -d /tmp/create-goal-playbook.XXXXXX)",
+      "rc": 0,
+      "stdout": "/tmp/create-goal-playbook.D7RXHS\n",
+      "stderr": ""
+    },
+    {
+      "step": 2,
+      "kind": "bash",
+      "text": "mkdir -p \"$SCRATCH/.skilled/skills/system-spec-kit/templates\" \"$SCRATCH/specs/demo-packet\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 3,
+      "kind": "bash",
+      "text": "cp .skilled/skills/system-spec-kit/templates/spec-kit-docs.json \"$SCRATCH/.skilled/skills/system-spec-kit/templates/spec-kit-docs.json\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 4,
+      "kind": "agent",
+      "text": "write the Scratch fixture files below into $SCRATCH exactly as given",
+      "rc": 0,
+      "elapsed_s": 39.5,
+      "repo_status_new": [
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-004/step-05-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-007/step-06-agent.prompt.md",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/claude.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/codex.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/cursor.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/devin.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/payload-fixtures.json"
+      ],
+      "auth_fail": false,
+      "stdout_chars": 557,
+      "fixture_files": [
+        "specs/demo-packet/acceptance-criteria.md",
+        "specs/demo-packet/spec.md"
+      ],
+      "fixture_mismatches_restored": []
+    },
+    {
+      "step": 5,
+      "kind": "agent",
+      "text": "run /create:goal $SCRATCH/specs/demo-packet top-level :auto with the brief to leave the counter update rule decision as the template placeholder text",
+      "rc": 0,
+      "elapsed_s": 476.2,
+      "repo_status_new": [
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-001/scratch-snapshot/specs/demo-packet/acceptance-criteria.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-001/scratch-snapshot/specs/demo-packet/goal.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-001/scratch-snapshot/specs/demo-packet/spec.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-001/step-05-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-002/step-05-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-003/scratch-snapshot/specs/demo-packet/acceptance-criteria.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-003/scratch-snapshot/specs/demo-packet/goal.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-003/scratch-snapshot/specs/demo-packet/spec.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-003/step-06-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/001-alpha/spec.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/002-beta/spec.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/acceptance-criteria.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/goal.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/spec.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-008/step-05-agent.prompt.md",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/codex-registered-adapter/claude.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/codex-registered-adapter/codex.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/codex-registered-adapter/cursor.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/codex-registered-adapter/devin.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/codex-registered-adapter/payload-fixtures.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/claude.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/codex.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/cursor.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/devin.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/payload-fixtures.json"
+      ],
+      "auth_fail": false,
+      "stdout_chars": 1991
+    },
+    {
+      "step": 6,
+      "kind": "bash",
+      "text": "node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/demo-packet --root \"$SCRATCH\"",
+      "rc": 1,
+      "stdout": "[check-goal] packet=specs/demo-packet\n[check-goal] 1/5 PASS missing-binding-row findings=0\n[check-goal] 2/5 FAIL placeholder findings=1\n[check-goal] FINDING placeholder specs/demo-packet: decision table contains unfilled template text\n[check-goal] 3/5 PASS criteria-count findings=0\n[check-goal] 4/5 PASS parent-budget findings=0\n[check-goal] 5/5 PASS frontmatter-fence findings=0\n[check-goal] RESULT: FAILED (4/5 checks)\n",
+      "stderr": ""
+    },
+    {
+      "step": 7,
+      "kind": "bash",
+      "text": "rm -rf \"$SCRATCH\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "snapshot": "scratch-snapshot/"
+    }
+  ],
+  "scratch": "/tmp/create-goal-playbook.D7RXHS",
+  "finished": true
+}

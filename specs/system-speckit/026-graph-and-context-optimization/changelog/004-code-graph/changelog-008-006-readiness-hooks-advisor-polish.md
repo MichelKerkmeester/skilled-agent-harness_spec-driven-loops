@@ -7,6 +7,7 @@ trigger_phrases:
   - "glob-aware scope fingerprint"
   - "CocoIndex snake_case seed normalization"
   - "advisor rebuild mixed-axis predicate"
+  - "code graph readiness hooks advisor polish changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

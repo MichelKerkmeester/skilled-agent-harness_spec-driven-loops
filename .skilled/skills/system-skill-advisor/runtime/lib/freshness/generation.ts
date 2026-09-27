@@ -4,13 +4,14 @@
 
 import { randomBytes } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { GenerationMetadataSchema, type GenerationMetadata } from '../../schemas/generation-metadata.js';
 import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
 import { invalidateSkillGraphCaches, type CacheInvalidationEvent } from './cache-invalidation.js';
 import type { SkillGraphTrustState } from './trust-state.js';
 
-const GENERATION_RELATIVE_PATH = join('.skilled', 'skills', '.state', 'advisor', 'skill-graph-generation.json');
+const GENERATION_FILE_NAME = 'skill-graph-generation.json';
+const GENERATION_RELATIVE_PATH = join('.skilled', 'skills', '.state', 'advisor', GENERATION_FILE_NAME);
 const GENERATION_LOCK_STALE_MS = 30_000;
 const GENERATION_LOCK_WAIT_MS = 250;
 
@@ -28,6 +29,16 @@ export interface PublishGenerationResult {
 }
 
 export function getSkillGraphGenerationPath(workspaceRoot: string): string {
+  // A daemon pointed at its own database directory keeps its generation
+  // counter there too. Freshness pairs the counter with the database it
+  // describes, and a sandboxed daemon publishing into the workspace file
+  // would mark the live advisor unavailable when it shuts down. The override
+  // is read on every call, like the database resolver, so the writer and
+  // every reader agree on one file.
+  const overrideDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  if (overrideDbDir) {
+    return join(resolve(overrideDbDir), GENERATION_FILE_NAME);
+  }
   // Anchor to the real repo root before joining the state-relative path. A
   // caller passing a specs/<packet> cwd would otherwise write its counter into
   // that packet, leaving a stray .state/advisor tree behind; the anchored

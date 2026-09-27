@@ -7,6 +7,7 @@ trigger_phrases:
   - "copilot compact-cache trustState parity"
   - "code-graph readiness-contract propagation"
   - "session-resume AsyncLocalStorage auth binding"
+  - "memory and causal runtime foundational runtime changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

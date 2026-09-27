@@ -7,6 +7,7 @@ trigger_phrases:
   - "conditional pass verdict code graph"
   - "playbook validation hardening synthesis"
   - "22 scenario release readiness"
+  - "code graph release readiness synthesis changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill advisor routing fix"
   - "tokenizer multi-word bug"
   - "gate 2 routing optimization"
+  - "spec kit internals advisor phrase booster tuning changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

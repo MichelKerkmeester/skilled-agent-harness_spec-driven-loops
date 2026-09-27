@@ -2,9 +2,9 @@
 title: "Changelog: README Migration Audit [032/005]"
 description: "Chronological changelog for the post-flip documentation-drift audit, its independent review, and the resulting fix swarm."
 trigger_phrases:
-  - "phase changelog"
   - "readme migration audit"
   - "specs root doc drift"
+  - "relocate specs folder readme migration audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

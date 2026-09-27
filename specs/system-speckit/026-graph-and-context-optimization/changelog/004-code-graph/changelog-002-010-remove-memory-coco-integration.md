@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory coco scope gap"
   - "002 type break repair"
   - "vestigial coco telemetry removal"
+  - "code graph remove memory coco integration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

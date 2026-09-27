@@ -1,0 +1,72 @@
+HERMES-030 live run, 2026-09-26T20:04:40Z
+Deviations from the playbook command, per operator brief: --model gpt-6-luna --reasoning xhigh (playbook: glm-5.3-flash none); prompt via --query-file with the child-dispatch preamble plus one read-only line above the scenario's exact prompt (playbook: -q with the bare prompt); AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 SPECKIT_HERMES_READ_ONLY=1 set; OPENCODE_GOAL_STATE_DIR points at a temp dir outside the repo so the on_session_start bind cannot touch the shared .skilled/skills/.state/goal. Packet is the scenario's own 071 packet, read-only (bind writes only under the state dir).
+Prompt file:
+  | GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+  | 
+  | You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+  | `SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+  | defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+  | and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+  | 
+  | Your write authority is already bound. The spec folder is:
+  |   specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe
+  | 
+  | Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+  | Your task is complete only when files exist on disk and the verification command has been run.
+  | 
+  | For this dispatch the task is read-only: write no files and run no commands. The reply below is the whole deliverable.
+  | 
+  | Your system prompt carries a goal section. Reply with exactly two lines: line 1 = the text after 'Bound packet:' or after 'packet:' if present, else NO_GOAL; line 2 = the goal's objective sentence, or the first line of the goal section, verbatim.
+
+STATE_DIR=/tmp/goal-hermes030.6XuoLZ
+EXIT=0
+ELAPSED_SECONDS=27
+--- stdout (out.txt):
+specs/cli-external-orchestration/071-cli-hermes-creation
+Hermes Agent is integrated as `cli-hermes`, the seventh `cli-external-orchestration` runtime, and every runtime's dispatch preflight actually enforces the rules it declares.
+
+--- stderr (err.txt):
+
+session_id: 20260926_220448_90e856
+
+SID=20260926_220448_90e856
+--- $ node .skilled/hooks/goal/bin/goal.cjs show --runtime hermes --session "$SID" | head -4
+EXIT=0
+STATUS=OK ACTION=show
+goal_present=true
+goal_id=goal-203d0608-95a5-4169-8639-0dc012f89954
+status=active
+--- show, packet fields:
+turns_used=0
+runtime=hermes
+packet_path="specs/cli-external-orchestration/071-cli-hermes-creation"
+packet_state=bound
+packet_bound=true
+--- state dir contents:
+.locks
+b0da79ec8e6c254e9d067a056b37e1deb19d8ef7b9605268184c044038e76838.json
+--- shared repo goal state touched for this SID? (grep SID across .skilled/skills/.state/goal)
+none
+--- agent log lines for this session:
+2026-09-26 22:05:00,465 INFO [20260926_220448_90e856] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-goal plugin=repo-guards position=after_memory chars=2542
+2026-09-26 22:05:01,603 INFO [20260926_220448_90e856] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-session-advisories plugin=repo-guards position=after_memory chars=123
+2026-09-26 22:05:01,785 INFO [20260926_220448_90e856] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-session-context plugin=repo-guards position=after_memory chars=384
+--- git status delta (lines added or removed vs before the dispatch):
+96a97
+>  M .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md
+(end of delta)
+
+===== POST-RUN ANALYSIS =====
+$ python3 (import plugin; compare _goal_slice() and _session_goal(SID) with OPENCODE_GOAL_STATE_DIR=/tmp/goal-hermes030.6XuoLZ)
+fallback _goal_slice() chars: 2542 (agent log section chars=2542)
+core _session_goal() chars uncapped: 5287 | capped by _goal_section: 4000
+quoted line 2 found in fallback: True | in core report: False
+core-path section first line: STATUS=OK ACTION=show
+core-path section last 120 chars: 'nversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes'
+EXIT=0
+
+$ grep SID ~/.hermes/logs/agent.log (timing and tool use)
+2026-09-26 22:05:00,465 INFO [20260926_220448_90e856] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-goal plugin=repo-guards position=after_memory chars=2542
+2026-09-26 22:05:06,716 INFO [20260926_220448_90e856] agent.conversation_loop: Turn ended: reason=text_response(finish_reason=stop) model=gpt-6-luna api_calls=1/1 budget=1/1 tool_turns=0 last_msg_role
+bind record created_at_ms=1790453101870 = 22:05:01.870 local, after the goal section rendered at 22:05:00.465
+git status delta line (.skilled/skills/system-skill-advisor/...playbook) is not from this dispatch: the session ran tool_turns=0 under SPECKIT_HERMES_READ_ONLY=1; it is another session's lane.

@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory_index_scan phase parent changelog"
   - "self-maintaining index program changelog"
   - "checkpoint v2 front proxy enrichment sentinel"
+  - "memory and causal runtime memory index scan implementation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

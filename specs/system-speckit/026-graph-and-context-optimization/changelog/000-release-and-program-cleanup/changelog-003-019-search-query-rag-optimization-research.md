@@ -7,6 +7,7 @@ trigger_phrases:
   - "MCP runtime search optimization research"
   - "query intelligence RAG fusion investigation"
   - "search quality harness planning packet"
+  - "release and program cleanup search query rag optimization research changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

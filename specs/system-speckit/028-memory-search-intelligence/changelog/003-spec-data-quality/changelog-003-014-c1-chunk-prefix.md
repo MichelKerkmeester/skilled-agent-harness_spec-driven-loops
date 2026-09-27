@@ -2,9 +2,7 @@
 title: "Changelog: C1 deterministic header-path plus curated-signal chunk prefix [003-spec-data-quality/003-retrieval-gated-tuning/014-chunk-prefix]"
 description: "Chronological changelog for the C1 deterministic header-path plus curated-signal chunk prefix phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality c1 chunk prefix changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

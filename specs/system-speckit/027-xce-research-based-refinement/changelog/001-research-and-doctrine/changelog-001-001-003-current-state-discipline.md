@@ -6,6 +6,7 @@ trigger_phrases:
   - "CURRENT_STATE_DISCIPLINE validation"
   - "peck T4 teaching"
   - "check-current-state-discipline"
+  - "research and doctrine current state discipline changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

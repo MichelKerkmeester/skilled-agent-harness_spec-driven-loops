@@ -7,6 +7,7 @@ trigger_phrases:
   - "embeddinggemma gguf parity"
   - "llama-cpp default flip decision"
   - "local embeddings llama-cpp benchmark"
+  - "memory and causal runtime node llama cpp evaluation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

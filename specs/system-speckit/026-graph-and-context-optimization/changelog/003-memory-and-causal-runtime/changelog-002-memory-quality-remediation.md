@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory quality remediation"
   - "D1 D8 defect train"
   - "five phase remediation"
+  - "memory and causal runtime memory quality remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "deep research opus 5 plus 5 search output"
   - "search intelligence findings behind 017"
   - "ai output command versus conversation research"
+  - "memory store and search and output intelligence research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

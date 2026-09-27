@@ -2,9 +2,7 @@
 title: "Changelog: 005 — SpecKit Surface Alignment (Remediation) [006-speckit-surface-alignment/root]"
 description: "Chronological changelog for the 005 — SpecKit Surface Alignment (Remediation) spec root."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "speckit surface alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

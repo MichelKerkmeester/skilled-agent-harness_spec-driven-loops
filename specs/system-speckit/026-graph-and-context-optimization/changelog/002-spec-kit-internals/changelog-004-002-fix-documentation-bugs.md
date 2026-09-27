@@ -7,6 +7,7 @@ trigger_phrases:
   - "P0 skill-advisor bug catalog"
   - "skill-advisor link integrity fixes"
   - "documentation quality refactor bugs"
+  - "spec kit internals fix documentation bugs changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Identity and Lock Ownership Hardening [006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening]"
 description: "Changelog for the identity and lock ownership hardening phase: fail-closed identity binding and process-shared single-winner ownership boundaries for authorized transitions, staged leaf publication, append locks, and loop-lock acquisition."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity identity and lock ownership hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

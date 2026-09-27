@@ -7,6 +7,7 @@ trigger_phrases:
   - "getPrefixFor embedding"
   - "hf-local prefix override"
   - "cocoindex query prompt registry"
+  - "memory and causal runtime prefix registry architecture changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

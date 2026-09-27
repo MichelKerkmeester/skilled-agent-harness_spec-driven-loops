@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk-code-index readme"
   - "code graph skill readme"
   - "mcp_server readme refresh"
+  - "code graph system code graph readmes update changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

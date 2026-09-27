@@ -7,6 +7,7 @@ trigger_phrases:
   - "getRerankerFallback helper"
   - "spec-memory P1 registry"
   - "hardcoded default remediation 005"
+  - "memory and causal runtime spec memory p1 registry consolidation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

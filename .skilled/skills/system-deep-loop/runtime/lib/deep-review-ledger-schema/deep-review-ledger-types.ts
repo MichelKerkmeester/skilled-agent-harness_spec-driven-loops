@@ -612,8 +612,8 @@ export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
   'deep_review.run_completed': { status: 'reserved', reason: 'No writer emits it today: closure is the reducer inference from flat rows. The finalization step would speak it once terminal status and counts are appended.' },
   'deep_review.migration': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
   'deep_review.recovery_baseline': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml'] },
-  'deep_review.synthesis_incomplete': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
-  'deep_review.synthesis_complete': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+  'deep_review.synthesis_incomplete': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs'] },
+  'deep_review.synthesis_complete': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs'] },
   'deep_review.claim_adjudication': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
   'deep_review.iteration_error': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
 } as const satisfies Readonly<Record<DeepReviewEventStem, DeepReviewStemProducerStatus>>);

@@ -7,6 +7,7 @@ trigger_phrases:
   - "reindex orchestrator mcp"
   - "embedder tool registration"
   - "two-phase active pointer swap"
+  - "memory and causal runtime mcp tools and reindex changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

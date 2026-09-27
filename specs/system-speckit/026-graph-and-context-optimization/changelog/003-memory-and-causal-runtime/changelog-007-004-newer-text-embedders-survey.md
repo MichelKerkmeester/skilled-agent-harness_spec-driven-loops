@@ -7,6 +7,7 @@ trigger_phrases:
   - "jina-v3 hold decision"
   - "mk-spec-memory candidate refresh"
   - "ibm granite r2 triage"
+  - "memory and causal runtime newer text embedders survey changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

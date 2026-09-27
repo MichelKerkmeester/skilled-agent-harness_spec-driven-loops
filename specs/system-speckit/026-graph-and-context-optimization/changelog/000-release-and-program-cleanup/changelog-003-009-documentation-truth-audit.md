@@ -7,6 +7,7 @@ trigger_phrases:
   - "evergreen reference self-check"
   - "stale claims review 026"
   - "009 deep review audit"
+  - "release and program cleanup documentation truth audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

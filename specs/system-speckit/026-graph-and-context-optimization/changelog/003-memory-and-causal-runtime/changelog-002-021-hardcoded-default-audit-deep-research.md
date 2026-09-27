@@ -2,9 +2,7 @@
 title: "Changelog: Spec: 016/002/021 Hardcoded-Default Audit Deep-Research [002-spec-memory-stack/021-hardcoded-default-audit-deep-research]"
 description: "Chronological changelog for the Spec: 016/002/021 Hardcoded-Default Audit Deep-Research phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "memory and causal runtime hardcoded default audit deep research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

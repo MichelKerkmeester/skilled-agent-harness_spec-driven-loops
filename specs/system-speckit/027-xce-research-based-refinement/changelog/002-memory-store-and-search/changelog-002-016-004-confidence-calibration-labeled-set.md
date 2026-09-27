@@ -6,6 +6,7 @@ trigger_phrases:
   - "relevance-dominant confidence rebalance"
   - "isotonic calibration flag-gated default off"
   - "calibration proxy seed unvalidated"
+  - "memory store and search confidence calibration labeled set changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

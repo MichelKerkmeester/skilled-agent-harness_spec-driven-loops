@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 005 changelog"
   - "smart router remediation"
   - "spec-kit-skill-advisor plugin"
+  - "spec kit internals smart router remediation and opencode plugin changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Edge-Presence Currentness and Temporal Recall [001-speckit-memory/008-edge-presence-currentness]"
 description: "Chronological changelog for the edge-presence currentness and temporal recall phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory edge presence currentness changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

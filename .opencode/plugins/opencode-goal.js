@@ -1279,11 +1279,16 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}, expect
     // Packet binding: the pointer to the goal.md that is the directive, the
     // workspace it resolves against, and the slice hash last resent in chat.
     // Absent on an unbound record; a bound record renders from the file.
+    // Both are filesystem pointers kept verbatim, as the runtime-neutral core
+    // keeps them: text sanitizing would collapse a line break, rewrite words
+    // or truncate, and the stored path would then name a folder that does
+    // not exist. Every read re-checks containment and existence, and every
+    // render either quotes the path or collapses it to one line.
     packetPath: typeof rawGoal.packetPath === 'string' && rawGoal.packetPath.trim()
-      ? sanitizeInlineText(rawGoal.packetPath, 1000)
+      ? rawGoal.packetPath
       : null,
     workspace: typeof rawGoal.workspace === 'string' && rawGoal.workspace.trim()
-      ? sanitizeInlineText(rawGoal.workspace, 1000)
+      ? rawGoal.workspace
       : null,
     boundAtMs: Number.isFinite(rawGoal.boundAtMs) ? Math.max(0, Math.trunc(rawGoal.boundAtMs)) : null,
     lastResentSliceHash: typeof rawGoal.lastResentSliceHash === 'string' && /^sha256:[a-f0-9]{64}$/.test(rawGoal.lastResentSliceHash)

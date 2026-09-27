@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor_recommend advisor_status advisor_validate"
   - "five-lane fusion scorer"
   - "skill advisor ESM migration"
+  - "spec kit internals skill graph daemon native advisor tools changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Bind Sealed Artifacts and Certificates to the Semantic Identity They Claim to Certify [006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding]"
 description: "Changelog for the artifact-certificate binding phase: making every load-bearing identity in a certificate or sealed-artifact claim re-derived from the verified typed payload and compared for exact equality."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity hardening artifact certificate binding changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

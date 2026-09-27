@@ -202,7 +202,7 @@ Phase folders use the same status values as regular spec folders:
 When the current work is already inside a phase parent:
 
 1. Use Option A when the requested work fits the current active, draft, or paused child phase.
-2. Prefer Option D when the work is a distinct but related workstream within the parent's documented purpose and scope. Add the next sequential child phase and update the Phase Documentation Map.
+2. Prefer Option D when the work is a distinct but related workstream within the parent's documented purpose and scope. Add the next sequential child phase and update the Phase Documentation Map. When the parent has a `goal.md`, give the new phase its child goal and binding row with `/create:goal <parent> phase-add`.
 3. Use Option C when another related existing packet is a better scope match.
 4. Use Option B only when the work is new or unrelated to the phase parent's purpose, requirements, and Phase Documentation Map.
 5. Option E remains an explicit documentation opt-out and is never the default.

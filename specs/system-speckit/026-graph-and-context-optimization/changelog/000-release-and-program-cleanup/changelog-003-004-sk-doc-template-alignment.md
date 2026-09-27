@@ -7,6 +7,7 @@ trigger_phrases:
   - "README TOC anchor fix"
   - "DQI compliance audit"
   - "template alignment quality pass"
+  - "release and program cleanup sk doc template alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

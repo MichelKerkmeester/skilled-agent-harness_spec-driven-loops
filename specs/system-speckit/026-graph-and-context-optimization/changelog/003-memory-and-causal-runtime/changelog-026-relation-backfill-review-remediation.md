@@ -7,6 +7,7 @@ trigger_phrases:
   - "hasConflictingValidEdge backfill guard"
   - "backfill skippedConflicting honest count"
   - "026-relation-backfill-review-remediation"
+  - "memory and causal runtime relation backfill review remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

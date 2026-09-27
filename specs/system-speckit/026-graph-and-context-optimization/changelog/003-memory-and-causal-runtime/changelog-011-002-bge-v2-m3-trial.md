@@ -7,6 +7,7 @@ trigger_phrases:
   - "rerank decision arc phase 2"
   - "cross-encoder hold verdict"
   - "rerank sidecar bge hold"
+  - "memory and causal runtime bge v2 m3 trial changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

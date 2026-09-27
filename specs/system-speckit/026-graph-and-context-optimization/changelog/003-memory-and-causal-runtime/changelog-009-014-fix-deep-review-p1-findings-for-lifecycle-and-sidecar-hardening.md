@@ -7,6 +7,7 @@ trigger_phrases:
   - "bounded-cache undefined eviction fix"
   - "process-sweep dry-run apply alias removal"
   - "B1 B2 B3 B4 B5 B6 batch remediation"
+  - "fix deep review p1 findings for lifecycle and sidecar changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

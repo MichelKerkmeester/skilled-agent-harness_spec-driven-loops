@@ -7,6 +7,7 @@ trigger_phrases:
   - "W4 conditional rerank"
   - "W5 shadow learned weights"
   - "rag workstream dispositions"
+  - "release and program cleanup search rag measurement implementation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

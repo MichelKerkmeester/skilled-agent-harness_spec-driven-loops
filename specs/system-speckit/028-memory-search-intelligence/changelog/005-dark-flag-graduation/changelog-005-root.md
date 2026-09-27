@@ -2,9 +2,7 @@
 title: "Changelog: Dark Flag Graduation Phase Parent [005-dark-flag-graduation/root]"
 description: "Chronological changelog for the Dark Flag Graduation Phase Parent spec root."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "dark flag graduation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

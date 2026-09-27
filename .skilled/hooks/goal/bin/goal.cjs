@@ -109,6 +109,8 @@ function printFail(action, error) {
   const code = error?.code || 'GOAL_ERROR';
   const message = error?.message || 'Goal operation failed';
   process.stdout.write(`STATUS=FAIL ACTION=${action} ERROR=${core.quoteValue(message)}\ncode=${code}\n`);
+  // A caller that reads only the exit status must still see the failure.
+  process.exitCode = 1;
 }
 
 function goalLines(goal, runtimeLabel = 'cli') {
@@ -385,6 +387,11 @@ function runLegacyArchive(options) {
 function main(argv) {
   const parsedScope = parseScopeArgs(argv);
   const { action, rest } = parseArgv(parsedScope.argv);
+  // A leading flag no action owns, such as --help, is a typo or a request for
+  // usage, never an objective to store. `--budget` still opens a bare set.
+  if (!core.ACTIONS.includes(action) && action.startsWith('-') && action !== '--budget') {
+    return printFail('unknown', new core.GoalError('UNKNOWN_ACTION', `Unknown action: ${action}`));
+  }
   const normalizedAction = core.ACTIONS.includes(action) ? action : 'set';
   if (parsedScope.error) return printFail(normalizedAction, parsedScope.error);
 

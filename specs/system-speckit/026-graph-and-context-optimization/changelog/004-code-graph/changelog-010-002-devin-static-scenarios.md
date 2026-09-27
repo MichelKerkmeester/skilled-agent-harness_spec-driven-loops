@@ -7,6 +7,7 @@ trigger_phrases:
   - "SWE-1.6 static infra scenarios"
   - "F-019-1 legacy db binding"
   - "F-025-1 devin hook registration broken"
+  - "code graph devin static scenarios changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

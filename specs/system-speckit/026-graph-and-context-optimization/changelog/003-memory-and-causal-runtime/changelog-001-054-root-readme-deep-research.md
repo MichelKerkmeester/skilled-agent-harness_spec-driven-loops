@@ -7,6 +7,7 @@ trigger_phrases:
   - "readme tool count drift"
   - "root readme hvr realignment"
   - "deep research readme audit 054"
+  - "memory and causal runtime root readme deep research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

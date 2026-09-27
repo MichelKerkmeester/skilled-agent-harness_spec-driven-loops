@@ -8,6 +8,7 @@ trigger_phrases:
   - "stale graph highlights"
   - "incremental full-scan recovery"
   - "cross-file dedup"
+  - "code graph context and scan scope changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

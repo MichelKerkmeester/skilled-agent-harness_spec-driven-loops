@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor refinement deep research"
   - "F35 calibration research"
   - "advisor daemon research"
+  - "code research 015 code graph advisor refinement pt 01 changelog"
 importance_tier: "important"
 contextType: "research"
 ---

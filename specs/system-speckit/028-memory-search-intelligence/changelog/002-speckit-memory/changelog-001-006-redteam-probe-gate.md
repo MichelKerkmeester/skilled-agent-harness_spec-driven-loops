@@ -2,9 +2,7 @@
 title: "Changelog: Red-Team Probe Gate [001-speckit-memory/006-redteam-probe-gate]"
 description: "Chronological changelog for the Red-Team Probe Gate phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory redteam probe gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

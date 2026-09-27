@@ -2,9 +2,7 @@
 title: "Changelog: Fleet Authority Cutover [009-innovation-gap-remediation/004-fleet-authority-cutover]"
 description: "Planned serial cutover of the seven remaining mode roots onto the typed ledger, five proven production boundaries per mode, preserved rollback windows, and legacy-writer retirement gated on mode-scoped zero-use telemetry."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "innovation gap remediation fleet authority cutover changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

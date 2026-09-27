@@ -2,9 +2,7 @@
 title: "Changelog: Phase 21: system-skill-advisor Frontmatter Alignment [009-skill-frontmatter-alignment/021-system-skill-advisor]"
 description: "Chronological changelog for the Phase 21: system-skill-advisor Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup system skill advisor changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

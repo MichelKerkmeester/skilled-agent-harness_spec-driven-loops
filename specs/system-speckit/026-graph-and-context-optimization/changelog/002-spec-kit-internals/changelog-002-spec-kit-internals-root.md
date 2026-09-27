@@ -5,6 +5,7 @@ trigger_phrases:
   - "002-spec-kit-internals rollup"
   - "002-spec-kit-internals phase parent"
   - "002-spec-kit-internals changelog index"
+  - "spec kit internals changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

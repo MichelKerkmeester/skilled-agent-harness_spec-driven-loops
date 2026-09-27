@@ -473,7 +473,7 @@ const result = await call_tool_chain({
 - `references/troubleshooting.md` — Auth, status, team-filter, MCP failures
 - `references/INSTALL-GUIDE.md` — Step-by-step install with validation checkpoints
 
-Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc; the phase-validation reference above stays the router's INSTALL-intent target.
+Install guide (front door): [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md) — condensed top-level install doc; the phase-validation reference above stays the router's INSTALL-intent target.
 
 **Scripts:**
 - `scripts/install.sh` — Installs cupt + prints MCP config snippet

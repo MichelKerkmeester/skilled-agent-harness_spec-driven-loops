@@ -6,6 +6,7 @@ trigger_phrases:
   - "008 changelog backfill rollup"
   - "docs catalogs phase parent"
   - "026 changelog backfill parent"
+  - "release and program cleanup docs and catalogs rollup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "execution router policy resolution"
   - "shutdown hook signal handler fix"
   - "dimension fallback mismatch warning"
+  - "fix investigation p1s for execution router policy and shutdown changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

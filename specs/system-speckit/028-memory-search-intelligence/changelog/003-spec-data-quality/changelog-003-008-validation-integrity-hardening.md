@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Validation-Gate Ha
 trigger_phrases:
   - "validation-integrity-hardening changelog"
   - "former 009-validation-integrity-hardening"
-  - "nested changelog"
+  - "spec data quality validation integrity hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

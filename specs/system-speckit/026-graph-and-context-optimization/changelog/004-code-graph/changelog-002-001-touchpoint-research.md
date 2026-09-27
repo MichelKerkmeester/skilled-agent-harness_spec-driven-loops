@@ -7,6 +7,7 @@ trigger_phrases:
   - "code-graph cocoindex decouple research"
   - "deprecation resource map research"
   - "ccc bridge touchpoints"
+  - "code graph touchpoint research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "daemon freshness deadlock changelog"
   - "dist freshness cache prime"
   - "health content_text audit"
+  - "fix deep dive p0 daemon freshness and health truthfulness changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

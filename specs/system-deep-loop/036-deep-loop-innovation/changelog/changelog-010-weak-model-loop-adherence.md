@@ -2,9 +2,7 @@
 title: "Changelog: Weak-Model Loop Adherence [010-weak-model-loop-adherence]"
 description: "Hardened the deep-loop observation-only write boundary in the shared fan-out lineage prompt and weak-model dispatch rules so DeepSeek Flash completes runs without write-containment fatals."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep loop innovation weak model loop adherence changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

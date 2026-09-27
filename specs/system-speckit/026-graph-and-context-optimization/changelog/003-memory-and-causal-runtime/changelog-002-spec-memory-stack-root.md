@@ -5,6 +5,7 @@ trigger_phrases:
   - "002-spec-memory-stack rollup"
   - "002-spec-memory-stack phase parent"
   - "002-spec-memory-stack changelog index"
+  - "memory and causal runtime spec memory stack changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

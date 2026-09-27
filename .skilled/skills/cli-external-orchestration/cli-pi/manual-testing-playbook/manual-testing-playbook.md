@@ -39,7 +39,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 37 deterministic scenarios across 11 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier (or `cli-pi-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
+This playbook provides 36 deterministic scenarios across 11 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier (or `cli-pi-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
 
 Coverage note (2026-08-10): the package covers Pi version/help, settings, extension lifecycle, dispatch controls, providers, prompt quality, and goal isolation. `PI-021` validates the native registered `/goal-pi` command, two-session scoped state, lifecycle identity binding, resume/new-session behavior, explicit legacy migration, and disabled fallback. Native commands short-circuit before a model turn, so the core isolation proof does not require provider credentials.
 

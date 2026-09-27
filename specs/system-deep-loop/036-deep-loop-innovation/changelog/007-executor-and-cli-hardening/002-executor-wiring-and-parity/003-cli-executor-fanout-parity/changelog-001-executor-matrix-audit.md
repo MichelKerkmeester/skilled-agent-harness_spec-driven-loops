@@ -2,9 +2,7 @@
 title: "Changelog: Deep-loop Executor / Provider / Model Matrix Audit [007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit]"
 description: "Freeze the authoritative support matrix for the deep-loop fan-out and produce a gap register with a disposition for every gap."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "cli executor fanout parity executor matrix audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

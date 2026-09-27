@@ -7,6 +7,7 @@ trigger_phrases:
   - "CodeRankEmbed Jina hybrid RRF remediation"
   - "coco-index daemon index failure response"
   - "hybrid boost RRF scaling"
+  - "memory and causal runtime deep review p1 p2 remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

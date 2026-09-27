@@ -7,6 +7,7 @@ trigger_phrases:
   - "P0 fixes mcp server"
   - "code graph readiness bypass fix"
   - "memory delete confirmation gate"
+  - "release and program cleanup fix release readiness findings synthesis changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

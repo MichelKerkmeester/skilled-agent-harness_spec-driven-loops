@@ -2,9 +2,7 @@
 title: "Changelog: B3 Retrieval-Learning Feedback Edge [003-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge]"
 description: "Chronological changelog for the B3 Retrieval-Learning Feedback Edge phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality b3 retrieval feedback edge changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

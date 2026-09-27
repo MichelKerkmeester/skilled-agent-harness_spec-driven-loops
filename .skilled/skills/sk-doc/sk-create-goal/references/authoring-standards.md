@@ -1,13 +1,13 @@
 ---
 title: "Goal Authoring Standards"
-description: "Reader checks for goal objectives, decisions, completion criteria, logs and voice."
+description: "Reader checks for goal objectives, decisions, completion criteria, logs, voice and frontmatter."
 trigger_phrases:
   - "goal authoring standards"
   - "goal objective check"
   - "goal criteria checkability"
   - "goal log and voice"
 importance_tier: important
-contextType: reference
+contextType: implementation
 version: 1.0.0.0
 ---
 
@@ -76,3 +76,15 @@ Failure it prevents: Vague or inflated prose hides what the packet requires and 
 Reader check: Does each authored sentence read plainly under the Human Voice Rules, with claims backed by specific evidence? Yes or no.
 
 Example: "This phase produces findings only. No file outside research/ changes." (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:53`)
+
+---
+
+## 7. FRONTMATTER
+
+Rule: Keep the frontmatter to key-value lines between its opening and closing `---` fences, with no other `---` line inside it.
+
+Failure it prevents: The frontmatter closes at its first `---` line after the opener. An inner one ends it early, and the keys after it reach the durable slice and the chat slice as goal text, where they count against the 4,000-character budget.
+
+Reader check: Does the file hold exactly two `---` lines above its first heading, the opener and the closer? Yes or no. `check-goal.cjs` reports a break as a `frontmatter-fence` finding.
+
+Example: The frontmatter opens at line 1 and closes at line 27, with no fence line between them (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:1-27`).

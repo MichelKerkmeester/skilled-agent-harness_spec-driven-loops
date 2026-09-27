@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory-index isConstitutional patch"
   - "policy markdown sufficiency exempt"
   - "constitutional quality gate exemption"
+  - "memory and causal runtime constitutional quality gate exemption changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "deep-review conditional to pass"
   - "doctor command security hardening"
   - "cross-runtime doctor mirror"
+  - "operator fix deep review findings for doctor update orchestrator changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "003/002 002 advisor provenance changelog"
   - "advisor source_kind guard"
   - "manual edge protection"
+  - "advisor and codegraph advisor provenance guard changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

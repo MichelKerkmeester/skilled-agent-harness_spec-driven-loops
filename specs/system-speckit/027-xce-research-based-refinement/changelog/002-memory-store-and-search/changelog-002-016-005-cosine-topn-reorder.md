@@ -6,6 +6,7 @@ trigger_phrases:
   - "stable head reorder absolute relevance"
   - "SPECKIT_COSINE_TOPN_REORDER default on"
   - "no reranker cosine head reorder"
+  - "memory store and search cosine topn reorder changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Rollout Flip Tooling [012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling]"
 description: "F3 removal of the one-time fleet-enablement stack with F4 flip-authority.cjs resequenced into phase 005 because authority-finalize.vitest.ts tests both targets."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "delete overengineering rollout flip tooling changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

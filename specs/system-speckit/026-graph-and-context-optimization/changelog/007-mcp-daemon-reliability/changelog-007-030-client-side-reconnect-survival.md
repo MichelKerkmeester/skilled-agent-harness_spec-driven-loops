@@ -2,9 +2,7 @@
 title: "Changelog: Phase 30: Client-Side MCP Reconnect Survival [007-mcp-daemon-reliability/030-client-side-reconnect-survival]"
 description: "Chronological changelog for the Phase 30: Client-Side MCP Reconnect Survival phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability client side reconnect survival changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "sk-code-opencode stress test alignment"
   - "budget allocator query surrogate scorer fusion tests"
   - "stress_test vitest coverage"
+  - "release and program cleanup stress test expansion alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

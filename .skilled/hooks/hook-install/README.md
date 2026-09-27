@@ -1,6 +1,6 @@
 ---
 title: "Hook Install: Codex Hook Installer"
-description: "Reconciles the repository's versioned hooks into Codex's user-global hook file, deployed from Claude, Cursor, and Devin. Codex is the install target, not an installer host."
+description: "Keeps Codex's user-global hook file free of copies of the repository's hooks, which Codex already loads from the project. Deployed from Claude, Cursor, and Devin. Codex is the cleanup target, not an installer host."
 trigger_phrases:
   - "codex hook installer"
   - "install codex hooks"
@@ -15,11 +15,11 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-`hook-install/` is the index for the installer that reconciles the repository's versioned hooks into Codex's user-global hook file. Codex reads hooks only from `~/.codex/hooks.json`: a file that lives outside the repo and can silently drift (stale checkout anchor, missing adapter, manual edit). This installer merges the repo's authoritative `.codex/hooks.json` into that user-global file, so Codex runs the current managed hook set without the operator hand-editing a global config.
+`hook-install/` is the index for the installer that keeps Codex's user-global hook file free of this repository's hooks. Codex loads the repository's `.codex/hooks.json` itself for a trusted checkout, so a copy of those entries in `~/.codex/hooks.json` makes every hook run twice per event, and an entry whose adapter was renamed runs a file that no longer exists. The installer removes both kinds and leaves every other entry alone.
 
-It is tooling that *installs* hooks rather than a runtime event hook. It is explicitly invoked as a reconcile step, not run on every turn, and is indexed here so the hub shows every hook-related executable in one place. The same installer backs a non-mutating `--check` mode that the [`codex-watchdog`](../codex-watchdog/README.md) plugin calls on each OpenCode session start to surface drift.
+It is repository tooling rather than a runtime event hook. It is explicitly invoked as a cleanup step, not run on every turn, and is indexed here so the hub shows every hook-related executable in one place. The same installer backs a non-mutating `--check` mode that the [`codex-watchdog`](../codex-watchdog/README.md) plugin calls on each OpenCode session start to surface drift.
 
-One real installer backs the wired runtimes. Claude, Cursor, and Devin carry relative symlinks into `.skilled/bin/`; Codex itself carries no copy: it is the install target, not an installer host.
+One real installer backs the wired runtimes. Claude, Cursor, and Devin carry relative symlinks into `.skilled/bin/`; Codex itself carries no copy: it is the cleanup target, not an installer host.
 
 ---
 
@@ -37,18 +37,17 @@ One real installer backs the wired runtimes. Claude, Cursor, and Devin carry rel
 
 The installer treats hook **identity** as the first adapter path in a command (`node`/`bash`/`python` + a `.js`/`.mjs`/`.cjs`/`.sh` file). Against the user-global target it:
 
-- **Removes** hooks whose identity matches a source hook (the source is authoritative for command shape, so the old entry is replaced).
-- **Removes repo orphans**: any identity under `.skilled/` that no longer exists on disk. Ownership follows the `.skilled/` namespace, so a renamed script orphans its installed entry rather than silently surviving.
+- **Removes** hooks whose identity matches a source hook: Codex already runs that hook from the project file, so the global entry is a second registration.
+- **Removes repo orphans**: any identity under `.skilled/` or `.opencode/` that no longer exists on disk. Ownership follows the source-root namespace, so a renamed script orphans its installed entry rather than silently surviving.
 - **Keeps third-party hooks**: anything the repo does not own is preserved untouched.
-- **Appends** the canonical source groups, with the portable anchor `${CODEX_PROJECT_DIR:-$PWD}` rewritten to the resolved repo path.
 
 ### Drift classification (`--check`)
 
-`analyzeDrift` classifies drift into `missing`, `duplicate`, `command` (command text differs), `orphaned`, `placement` (wrong event), and `structure` (changed but no identity drift). The `--check` report names each category and count.
+`analyzeDrift` classifies drift into `duplicate` (a repo-owned entry still in the global file), `orphaned` (a repo entry whose adapter no longer exists on disk) and `structure` (the file would change without naming an entry, such as an empty group being dropped). The `--check` report names each category and count.
 
 ### Repo anchor safety
 
-`assertSafeRepoAnchor` refuses to anchor hooks at a linked worktree (it compares `git-common-dir` to the primary `.git`), because a worktree's anchor would point at scripts that vanish when the worktree is removed. It throws unless `--allow-worktree` is passed. A missing `git` binary is a skip, not an error.
+`assertSafeRepoAnchor` refuses to run from a linked worktree (it compares `git-common-dir` to the primary `.git`), so ownership and orphan checks always read the primary checkout's hook set and adapters. It throws unless `--allow-worktree` is passed. A missing `git` binary is a skip, not an error.
 
 ---
 
@@ -56,10 +55,10 @@ The installer treats hook **identity** as the first adapter path in a command (`
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/install-codex-hooks.mjs` (symlink → `../../../bin/install-codex-hooks.mjs`) | Explicitly invoked reconcile step | Writes/verifies `~/.codex/hooks.json`; JSON report on stdout, drift on stderr |
+| **Claude** | `claude/install-codex-hooks.mjs` (symlink → `../../../bin/install-codex-hooks.mjs`) | Explicitly invoked reconcile step | Removes repo copies from, or verifies, `~/.codex/hooks.json`; JSON report on stdout, drift on stderr |
 | **Cursor** | `cursor/install-codex-hooks.mjs` (symlink) | Explicitly invoked reconcile step | Same |
 | **Devin** | `devin/install-codex-hooks.mjs` (symlink) | Explicitly invoked reconcile step | Same |
-| **Codex** | — | — | Not applicable. Codex is the install *target* (`~/.codex/hooks.json`), not an installer host; it carries no copy of the installer. |
+| **Codex** | — | — | Not applicable. Codex reads the project's `.codex/hooks.json` and is the cleanup *target* (`~/.codex/hooks.json`), not an installer host; it carries no copy of the installer. |
 | **OpenCode** | — | — | Not applicable. OpenCode observes Codex hook health through the `codex-watchdog` plugin, which calls this installer's `--check` mode. |
 | **Pi** | — | — | Not applicable. |
 
@@ -83,9 +82,9 @@ hook-install/
 
 | File | Responsibility |
 |---|---|
-| `.skilled/bin/install-codex-hooks.mjs` | The installer. Argument parsing, hook-identity matching, source/target reconciliation (remove owned, remove repo orphans, keep third-party, append canonical), drift classification, repo-anchor safety, atomic write with backup, and `--check` / `--dry-run` modes. |
-| `.skilled/.codex/hooks.json` | The versioned source the installer reads (repo-authoritative hook set). Not in this folder. |
-| `~/.codex/hooks.json` | The user-global target the installer reconciles into. Lives outside the repo. |
+| `.skilled/bin/install-codex-hooks.mjs` | The installer. Argument parsing, hook-identity matching, source/target reconciliation (remove owned, remove repo orphans, keep third-party), drift classification, repo-anchor safety, atomic write with backup, and `--check` / `--dry-run` modes. |
+| `.codex/hooks.json` | The versioned project hook set Codex loads for a trusted checkout. The installer reads it to learn which entries are the repo's own. Not in this folder. |
+| `~/.codex/hooks.json` | The user-global file the installer cleans. Lives outside the repo. |
 | `.skilled/hooks/shared/hook-flags.cjs` | The shared kill-switch resolver the installer imports (`isHookEnabled('hook-install')`). |
 
 ---
@@ -118,9 +117,9 @@ Set a kill-switch inline for one command, export it for a session, or persist it
 
 | Boundary | Rule |
 |---|---|
-| Explicitly invoked | Runs as a reconcile step, not on every turn. No runtime event hook. |
-| Source-authoritative | The repo's `.codex/hooks.json` owns command shape; owned entries are replaced, not merged field-by-field. |
-| Third-party preservation | Any hook the repo does not own is kept untouched. Only `.skilled/`-namespaced orphans are removed. |
+| Explicitly invoked | Runs as a cleanup step, not on every turn. No runtime event hook. |
+| Project-owned | The repo's `.codex/hooks.json` defines which entries are the repo's own; the installer removes those from the user-global file and never adds any. |
+| Third-party preservation | Any hook the repo does not own is kept untouched. Only orphans under `.skilled/` or `.opencode/` are removed. |
 | Worktree safety | Refuses to anchor at a linked worktree unless `--allow-worktree` is passed. |
 | Atomic + backed up | A changed target is backed up to `<target>.bak-<timestamp>` and written via temp-file + rename with mode preserved. |
 | Non-fatal check | `--check` never writes; it only reports drift and sets the exit code. |

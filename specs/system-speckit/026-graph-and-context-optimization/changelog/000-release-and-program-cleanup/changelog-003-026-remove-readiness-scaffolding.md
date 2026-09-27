@@ -7,6 +7,7 @@ trigger_phrases:
   - "isEmbeddingModelReady removal"
   - "vestigial readiness dead code"
   - "026-remove-readiness-scaffolding"
+  - "release and program cleanup remove readiness scaffolding changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

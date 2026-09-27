@@ -7,6 +7,7 @@ trigger_phrases:
   - "half precision qwen reranker"
   - "mps oom fp16 bench"
   - "009 fp16 rerank hold"
+  - "memory and causal runtime fp16 rerank changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/004 002 CLI help changelog"
   - "CLI aliases errors"
   - "per command help offline"
+  - "shared infrastructure cli help aliases errors changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

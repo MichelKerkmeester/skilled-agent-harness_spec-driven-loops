@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/001 005 bm25 fidelity changelog"
   - "BM25 indexing lane disposition"
   - "remediation lane 005"
+  - "verification and remediation bm25 indexing fidelity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

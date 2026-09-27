@@ -5,6 +5,7 @@ trigger_phrases:
   - "001-resource-map-deep-loop-fix rollup"
   - "001-resource-map-deep-loop-fix phase parent"
   - "001-resource-map-deep-loop-fix changelog index"
+  - "spec kit internals resource map deep loop fix changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

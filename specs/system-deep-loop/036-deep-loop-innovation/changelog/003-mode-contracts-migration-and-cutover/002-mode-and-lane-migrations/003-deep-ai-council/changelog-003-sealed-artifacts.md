@@ -2,9 +2,7 @@
 title: "Changelog: Deep AI Council - Sealed Reference Artifacts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts]"
 description: "Changelog for the deep ai council sealed reference artifacts phase: the sealing boundary for immutable council inputs and outputs."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep ai council sealed artifacts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

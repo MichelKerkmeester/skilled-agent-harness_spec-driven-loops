@@ -2,9 +2,7 @@
 title: "Changelog: Legacy Writer Retirement [012-runtime-enablement/004-legacy-writer-retirement]"
 description: "Direct-append detection guard, tree-wide inventory, and enforcement under finalized ledger authority without deleting workflow directives."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement legacy writer retirement changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

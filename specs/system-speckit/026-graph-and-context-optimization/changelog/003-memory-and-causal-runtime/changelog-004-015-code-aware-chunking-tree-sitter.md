@@ -7,6 +7,7 @@ trigger_phrases:
   - "tree-sitter grammar registry cocoindex"
   - "import header starvation fix"
   - "CodeAwareSplitter dispatch"
+  - "memory and causal runtime code aware chunking tree sitter changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

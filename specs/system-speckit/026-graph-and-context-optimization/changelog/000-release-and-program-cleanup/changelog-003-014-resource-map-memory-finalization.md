@@ -7,6 +7,7 @@ trigger_phrases:
   - "finalization-log.md"
   - "014-resource-map-memory-finalization"
   - "generate-context indexing pass"
+  - "release and program cleanup resource map memory finalization changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

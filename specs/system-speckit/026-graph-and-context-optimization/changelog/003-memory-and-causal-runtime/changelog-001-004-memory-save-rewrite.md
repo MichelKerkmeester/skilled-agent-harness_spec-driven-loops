@@ -7,6 +7,7 @@ trigger_phrases:
   - "SPECKIT_SAVE_PLANNER_MODE full-auto"
   - "legacy memory file retirement 004"
   - "save flow trim opt-in flags"
+  - "memory and causal runtime memory save rewrite changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

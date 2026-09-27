@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-The `repo-guards` plugin's `on_session_start` binds the packet named by `HERMES_SPEC_FOLDER` through `goal.cjs bind --runtime hermes --session <id>` when no goal is bound yet, and the goal section renders `goal.cjs show` for that session, falling back to the packet's durable slice when the core has nothing. The record lives under the gitignored `.skilled/skills/.state/goal/`.
+The `repo-guards` plugin binds the packet named by `HERMES_SPEC_FOLDER` through `goal.cjs bind --runtime hermes --session <id>` when the session has no goal yet. Whichever runs first binds: the goal section, which Hermes renders before `on_session_start` fires, or that hook. The section then carries the brief the core renders for the session, the same `[active_goal:...]` block the Cursor and Devin adapters inject, and falls back to the packet's objective slice from `goal.cjs packet` only when the core cannot serve the session. The record lives under the gitignored `.skilled/skills/.state/goal/`.
 
 ### Why This Matters
 
@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `HERMES-030` and confirm
 
 - Objective: Confirm the goal section carries the bound packet and its objective, and the shared goal core reports the same goal for the session id.
 - Real user request: `Does a Hermes session get the packet goal the way Pi and Cursor do?`
-- Prompt: `Your system prompt carries a goal section. Reply with exactly two lines: line 1 = the text after 'Bound packet:' or after 'packet:' if present, else NO_GOAL; line 2 = the goal's objective sentence, or the first line of the goal section, verbatim.`
+- Prompt: `Your system prompt carries a goal section. Reply with exactly two lines: line 1 = the packet path the goal section names, from its line 'objective: Execute <path>/goal.md.' or from the text after 'Bound packet:', else NO_GOAL; line 2 = the goal's objective sentence, or the first line of the goal section, verbatim.`
 - Expected execution process: run the command sequence in §3 from the repository root with a 300-second alarm on the dispatch, capture stdout, stderr, exit code and elapsed seconds separately, then judge the result against the pass/fail criteria below.
 - Expected signals: Exit code `0`; line 1 `specs/cli-external-orchestration/071-cli-hermes-creation`; line 2 the packet objective; `goal.cjs show` prints `STATUS=OK ACTION=show` and `goal_present=true`; the agent log shows `repo-guards-goal` under 4000 chars.
 - Evidence: stdout, exit code, elapsed seconds, the stderr session id, the goal core's show output
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `HERMES-030` and confirm
 ```bash
 HERMES_SPEC_FOLDER=specs/cli-external-orchestration/071-cli-hermes-creation HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool \
   --provider llmgateway --model glm-5.3-flash --reasoning none -t file,todo --max-turns 1 --run-budget 90 \
-  -q "Your system prompt carries a goal section. Reply with exactly two lines: line 1 = the text after 'Bound packet:' or after 'packet:' if present, else NO_GOAL; line 2 = the goal's objective sentence, or the first line of the goal section, verbatim." </dev/null >out.txt 2>err.txt
+  -q "Your system prompt carries a goal section. Reply with exactly two lines: line 1 = the packet path the goal section names, from its line 'objective: Execute <path>/goal.md.' or from the text after 'Bound packet:', else NO_GOAL; line 2 = the goal's objective sentence, or the first line of the goal section, verbatim." </dev/null >out.txt 2>err.txt
 echo $?
 cat out.txt
 SID=$(grep -o "session_id: [0-9_a-f]*" err.txt | cut -d" " -f2)
@@ -59,7 +59,7 @@ node .skilled/hooks/goal/bin/goal.cjs show --runtime hermes --session "$SID" | h
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| HERMES-030 | Shared goal core bound by Hermes session id | Confirm the goal section carries the bound packet and its objective, and the shared goal core reports the same goal for the session id. | `Your system prompt carries a goal section. Reply with exactly two lines: line 1 = the text after 'Bound packet:' or after 'packet:' if present, else NO_GOAL; line 2 = the goal's objective sentence, or the first line of the goal section, verbatim.` | the `hermes chat` dispatch in §3 | Exit code `0`; line 1 `specs/cli-external-orchestration/071-cli-hermes-creation`; line 2 the packet objective; `goal.cjs show` prints `STATUS=OK ACTION=show` and `goal_present=true`; the agent log shows `repo-guards-goal` under 4000 chars. | stdout, exit code, elapsed seconds, the stderr session id, the goal core's show output | PASS when the packet and objective are quoted and the core reports the goal for that session; FAIL on `NO_GOAL` or `goal_present=false`; SKIP only on a named blocker. | Harness: plugin not loaded. Dependency: provider missing. Adapter: the core reports no goal, which points at the bind never running on session start |
+| HERMES-030 | Shared goal core bound by Hermes session id | Confirm the goal section carries the bound packet and its objective, and the shared goal core reports the same goal for the session id. | `Your system prompt carries a goal section. Reply with exactly two lines: line 1 = the packet path the goal section names, from its line 'objective: Execute <path>/goal.md.' or from the text after 'Bound packet:', else NO_GOAL; line 2 = the goal's objective sentence, or the first line of the goal section, verbatim.` | the `hermes chat` dispatch in §3 | Exit code `0`; line 1 `specs/cli-external-orchestration/071-cli-hermes-creation`; line 2 the packet objective; `goal.cjs show` prints `STATUS=OK ACTION=show` and `goal_present=true`; the agent log shows `repo-guards-goal` under 4000 chars. | stdout, exit code, elapsed seconds, the stderr session id, the goal core's show output | PASS when the packet and objective are quoted and the core reports the goal for that session; FAIL on `NO_GOAL` or `goal_present=false`; SKIP only on a named blocker. | Harness: plugin not loaded. Dependency: provider missing. Adapter: the core reports no goal, which points at the bind never running, neither at the first goal-section render nor on session start |
 
 ### Recorded Result
 

@@ -7,6 +7,7 @@ trigger_phrases:
   - "fallback RSS gate"
   - "sidecar owner classification"
   - "memory leak remediation phase 008"
+  - "memory and causal sidecar local model and adapter lifecycle changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

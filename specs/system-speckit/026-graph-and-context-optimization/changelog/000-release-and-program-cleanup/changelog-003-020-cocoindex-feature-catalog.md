@@ -7,6 +7,7 @@ trigger_phrases:
   - "020-cocoindex-feature-catalog"
   - "semantic search skill catalog"
   - "coco index feature inventory"
+  - "release and program cleanup cocoindex feature catalog changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

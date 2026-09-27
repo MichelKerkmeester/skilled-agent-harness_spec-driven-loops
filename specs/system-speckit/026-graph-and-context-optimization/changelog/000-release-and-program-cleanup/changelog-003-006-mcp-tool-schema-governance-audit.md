@@ -7,6 +7,7 @@ trigger_phrases:
   - "code_graph_verify schema drift"
   - "governed ingest enforcement audit"
   - "tool count canonical spec_kit_memory"
+  - "release and program cleanup mcp tool schema governance audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

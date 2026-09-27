@@ -5,6 +5,7 @@ trigger_phrases:
   - "006-playbook-run-and-remediation rollup"
   - "006-playbook-run-and-remediation phase parent"
   - "006-playbook-run-and-remediation changelog index"
+  - "spec kit internals playbook run and remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

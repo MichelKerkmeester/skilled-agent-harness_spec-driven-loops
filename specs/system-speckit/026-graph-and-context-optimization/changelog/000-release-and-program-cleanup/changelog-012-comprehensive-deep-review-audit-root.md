@@ -6,6 +6,7 @@ trigger_phrases:
   - "comprehensive audit findings"
   - "system-spec-kit audit rollup"
   - "026 audit child changelogs"
+  - "release and program cleanup comprehensive deep review audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

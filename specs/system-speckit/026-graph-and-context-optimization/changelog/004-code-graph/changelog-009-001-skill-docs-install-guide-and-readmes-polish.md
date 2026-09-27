@@ -7,6 +7,7 @@ trigger_phrases:
   - "architecture launcher reference fix"
   - "hvr cleanup code graph docs"
   - "plugin bridges import drift"
+  - "code graph skill docs install guide and readmes polish changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

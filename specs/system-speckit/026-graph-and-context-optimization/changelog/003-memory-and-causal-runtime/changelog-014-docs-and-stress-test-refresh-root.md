@@ -5,6 +5,7 @@ trigger_phrases:
   - "014 docs stress refresh rollup"
   - "manual testing catalog readme durability rollup"
   - "docs and stress test refresh root changelog"
+  - "memory and causal runtime docs and stress test refresh changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

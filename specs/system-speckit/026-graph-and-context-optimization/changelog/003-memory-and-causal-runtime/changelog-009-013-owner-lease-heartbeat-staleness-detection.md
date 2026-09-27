@@ -7,6 +7,7 @@ trigger_phrases:
   - "classifyOwner stale-heartbeat"
   - "periodic refreshOwnerLease"
   - "mk-code-index-launcher stale heartbeat"
+  - "memory and causal runtime owner lease heartbeat staleness detection changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

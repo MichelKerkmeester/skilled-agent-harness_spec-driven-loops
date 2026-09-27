@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor owner lease reconnecting proxy"
   - "dead socket respawn adopt or reap"
   - "027 003/003 shipped"
+  - "advisor and codegraph skill advisor cross session reconnect changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

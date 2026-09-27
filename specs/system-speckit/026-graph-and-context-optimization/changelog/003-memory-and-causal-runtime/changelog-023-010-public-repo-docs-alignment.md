@@ -7,6 +7,7 @@ trigger_phrases:
   - "root README nomic embedder alignment"
   - "mcp-coco-index references sk-doc alignment"
   - "qwen3 reranker README update"
+  - "memory and causal runtime public repo docs alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

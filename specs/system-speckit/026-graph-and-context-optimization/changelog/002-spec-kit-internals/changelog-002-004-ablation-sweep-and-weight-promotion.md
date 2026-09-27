@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill advisor cosine lane live"
   - "lane-registry weight update"
   - "native scorer lane weights"
+  - "spec kit internals ablation sweep and weight promotion changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

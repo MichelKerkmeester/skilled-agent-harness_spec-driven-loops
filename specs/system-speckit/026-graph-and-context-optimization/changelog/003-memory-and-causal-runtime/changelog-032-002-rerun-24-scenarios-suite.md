@@ -7,6 +7,7 @@ trigger_phrases:
   - "zod-to-json-schema missing mcp startup"
   - "run-2026-05-14b-post-032 evidence"
   - "post-fix substrate validation blocked"
+  - "memory and causal runtime rerun 24 scenarios suite changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

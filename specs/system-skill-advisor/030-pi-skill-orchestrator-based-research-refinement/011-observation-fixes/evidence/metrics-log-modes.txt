@@ -1,0 +1,51 @@
+# Advisor metrics log modes, 2026-09-27
+# directory: $TMPDIR/speckit-skill-advisor-metrics, mode drwx------ (0700) before and after
+before: 53 logs, 7 at 600 and 46 at 644
+after: 53 logs, 53 at 600
+## the 46 logs changed from 644 to 600 (rollback: chmod 644 on each)
+09e4aac5cd5d947a-diagnostics.jsonl
+17df22a78f92f588-outcomes.jsonl
+26d40c4d136202d6-diagnostics.jsonl
+2cde36eadca12266-outcomes.jsonl
+30ec44ef100be104-diagnostics.jsonl
+33a8456aabed7683-outcomes.jsonl
+34fcbe8f2eaaa473-outcomes.jsonl
+40f416e58046e37a-outcomes.jsonl
+4a22f5263f49de83-outcomes.jsonl
+4c92fe421010e85d-outcomes.jsonl
+5827ba05f7086f80-outcomes.jsonl
+587565509aff14a1-diagnostics.jsonl
+5a2a85d74cf7ab40-outcomes.jsonl
+5d12a5cd7daf11ac-outcomes.jsonl
+5f84612dcf6fd729-outcomes.jsonl
+64ed1f60824d3f35-outcomes.jsonl
+6baf7afe572f8da1-diagnostics.jsonl
+6eaab65667ae5065-outcomes.jsonl
+7572924f8140a933-outcomes.jsonl
+77794bc36ca41fb1-outcomes.jsonl
+79b384788e75a0b1-outcomes.jsonl
+7c13fbcb60a5f04d-outcomes.jsonl
+8c8656c9992395cf-outcomes.jsonl
+9532f157af9a9d7d-outcomes.jsonl
+97b081dd463a5fae-outcomes.jsonl
+984b491b7807227d-diagnostics.jsonl
+9ef774fe1b0a7430-outcomes.jsonl
+a4cd858bff18a397-outcomes.jsonl
+a6792a90ae4a7998-outcomes.jsonl
+aa89f772fa89008e-diagnostics.jsonl
+b2101013e00d709f-outcomes.jsonl
+b7cdc2f295eefd48-outcomes.jsonl
+baa65a591a4c1f66-outcomes.jsonl
+bb03a94a4d6e79a7-outcomes.jsonl
+c0439fd3da9d1231-outcomes.jsonl
+c27aa15f3ce2260c-outcomes.jsonl
+c94e6db73d205da3-outcomes.jsonl
+ca263bec513316a1-diagnostics.jsonl
+d364907fffaf2e0a-diagnostics.jsonl
+d3fa010d5d144075-diagnostics.jsonl
+e3af8a7251583e76-diagnostics.jsonl
+e3b08d784fe619ce-outcomes.jsonl
+e68eceddedbc047e-diagnostics.jsonl
+eb52698b9f764b86-outcomes.jsonl
+f4d1062399937ea2-diagnostics.jsonl
+ffe6802f684a378a-outcomes.jsonl

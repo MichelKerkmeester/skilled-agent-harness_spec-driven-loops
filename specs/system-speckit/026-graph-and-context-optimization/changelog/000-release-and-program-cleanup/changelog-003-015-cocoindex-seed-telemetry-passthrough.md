@@ -7,6 +7,7 @@ trigger_phrases:
   - "Q-OPP cocoindex seed fidelity"
   - "code_graph_context telemetry fields"
   - "015 cocoindex telemetry"
+  - "release and program cleanup cocoindex seed telemetry passthrough changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

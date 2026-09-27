@@ -1,0 +1,4 @@
+# install-codex-hooks --check, HEAD bf2067c7eb, 2026-09-27T12:56:56Z
+## node .skilled/bin/install-codex-hooks.mjs --check
+install-codex-hooks: OK ~/.codex/hooks.json
+check_exit=0

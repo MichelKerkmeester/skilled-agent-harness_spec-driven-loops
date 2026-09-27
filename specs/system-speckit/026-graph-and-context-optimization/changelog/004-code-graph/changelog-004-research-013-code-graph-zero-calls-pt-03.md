@@ -6,6 +6,7 @@ trigger_phrases:
   - "zero calls investigation"
   - "handleMemoryContext zero calls"
   - "resolveSubject ambiguity"
+  - "code research 013 code graph zero calls pt 03 changelog"
 importance_tier: "important"
 contextType: "research"
 ---

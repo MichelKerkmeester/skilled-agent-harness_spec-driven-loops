@@ -7,6 +7,7 @@ trigger_phrases:
   - "cli-devin cli-opencode readme pipeline"
   - "Phase A readme authoring"
   - "sk-doc aligned code readmes"
+  - "code graph code folder readmes poc changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

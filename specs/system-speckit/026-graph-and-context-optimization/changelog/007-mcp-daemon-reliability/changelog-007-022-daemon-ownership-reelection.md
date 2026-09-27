@@ -2,9 +2,7 @@
 title: "Changelog: RC-2 daemon ownership re-election (foundation) [007-mcp-daemon-reliability/022-daemon-ownership-reelection]"
 description: "Chronological changelog for the RC-2 daemon ownership re-election (foundation) phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability daemon ownership reelection changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -29,9 +29,7 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
-
-> The durable slice runs from here to the log, and it is what the operator sets.
-> A phase parent's limit is 4000 characters; `goal.cjs packet` measures it.
+<!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
 ---
 
@@ -53,18 +51,6 @@ Frozen choices. Changing one is an amendment.
 | D5 | Each phase child is Level 2 with its own bound `goal.md` |
 | D6 | Routed means a real request reaches the mode through both stages |
 
-### Operator copy
-
-The operator holds this directive as the session objective, and that copy is
-what judges completion, not this file. Whenever anything above the log changes
-(objective, a decision, the binding table, a criterion), resend this file's
-chat slice so the operator can update their copy. The chat slice is the
-durable slice without its frontmatter, HTML comments, anchor markers, `---`
-dividers or heading section numbers, and `goal.cjs packet` prints it as
-`chat_slice`. Never send more than 4000 characters: cut this file first. Keep
-reminding while the copy stays unset, and never stop work for it. A child goal
-change that alters a parent decision or criterion is an amendment to the
-parent: apply it there first, then resend the parent.
 <!-- /ANCHOR:directive -->
 
 ---
@@ -88,6 +74,7 @@ phase and binds as if written here.
 | 009 | `009-verification-and-closeout/goal.md` |
 | 010 | `010-asset-templates-and-folder-readmes/goal.md` |
 | 011 | `011-cross-surface-references/goal.md` |
+| 012 | `012-goal-send-and-dedupe/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -100,10 +87,6 @@ string, not these files.
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
-
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
 
 - [ ] `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`
 - [ ] `mode-registry.json` binds `sk-create-goal` to `/create:goal`; the parent-skill check on sk-doc reports OK
@@ -143,6 +126,7 @@ and findings belong here.
 | Completion criteria | Met | 1: recursive strict `RESULT: PASSED`. 2: `mode-registry.json` binds `/create:goal`, parent-skill check OK. 3: goal requests route advisor to sk-doc to the mode 9 of 10 times, "Set the goal for this session" defers. 4: 8 of 8 checker tests. 5: 017 at 3,728 characters with every phase bound. 6: changelog exists and the link resolves |
 | Phase 010 executed | Done | Operator asked for goal templates, code READMEs and no references index. Three per-kind templates checked by a parity test; the checker rejects an unfilled copy of each; corpus report unchanged over 302 goals; tests 15 of 15; route republished, canary 22 of 22. Strict validation `RESULT: PASSED` |
 | Phase 011 executed | Done | Operator asked for the mode in the READMEs, a changelog hub link and a command like its siblings. The link and command already existed. The root and sk-doc READMEs, the `@markdown` agent and the feature catalog now name it, the advisor bridges were regenerated and both command counts pass. Worked in the main checkout at the operator's choice |
+| Phase 012 executed | Done | Operator asked for one chat-send rule and no duplicate goal nesting logic in system-spec-kit. A read-only Opus 5.5 xhigh analyst scoped it and the orchestrator spot-checked it. After the operator's go-ahead, section 4 of `budget-and-handoff.md` became the one send rule, the templates lost their author instructions and 14 system-spec-kit and speckit files point to sk-create-goal. 18 of 18 criteria met. Strict validation `RESULT: PASSED` |
 
 ### Deviations and findings
 
@@ -159,4 +143,6 @@ and findings belong here.
 | D2 amended, criterion added | Operator chose checked per-kind template copies on 2026-09-26, replacing the render-only decision. The parent gained a binding row for 010 and a seventh criterion for template parity, so its chat slice was resent |
 | 017 items closed | The phase-map rows were renamed and no recorded goal session held 017 |
 | Phase 011 binding row | The parent gained a binding row for 011, so its chat slice was resent |
+| Phase 012 binding row and cut | The parent gained a binding row for 012 at 3,995 of 4,000, then dropped the old fixed text to 2,944. The operator asked this session to stop sending goals, so the changed chat slice was not pasted |
+| Phase 012 follow-up | The operator asked to fix every remaining gap. The injection wording, README pointers, validator hints, implement line, overview section and OpenCode test path were fixed, and the trigger index was regenerated. The directive did not change |
 <!-- /ANCHOR:log -->

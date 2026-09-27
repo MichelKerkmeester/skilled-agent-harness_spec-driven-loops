@@ -15,6 +15,8 @@ version: 3.6.0.52
 
 > Setting a packet's session goal? The shape of what you type — a pointer plus the
 > completion criteria copied out — is in [goal-set-string-playbook.md](./goal-set-string-playbook.md).
+> Writing or amending a `goal.md`, including a phase parent's binding table? Use
+> `/create:goal` from `sk-create-goal`.
 
 Fast lookup for spec folder commands, checklists, and troubleshooting.
 

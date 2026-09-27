@@ -2,9 +2,7 @@
 title: "Changelog: Phase 2: cli-claude-code Frontmatter Alignment [009-skill-frontmatter-alignment/002-cli-claude-code]"
 description: "Chronological changelog for the Phase 2: cli-claude-code Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup cli claude code changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

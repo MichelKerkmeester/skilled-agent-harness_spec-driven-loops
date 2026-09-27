@@ -5,6 +5,7 @@ trigger_phrases:
   - "001-hook-parity rollup"
   - "001-hook-parity phase parent"
   - "001-hook-parity changelog index"
+  - "operator tooling hook parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

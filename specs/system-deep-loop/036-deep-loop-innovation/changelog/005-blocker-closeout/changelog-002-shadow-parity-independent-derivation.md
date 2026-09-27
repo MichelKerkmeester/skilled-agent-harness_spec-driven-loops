@@ -2,9 +2,7 @@
 title: "Changelog: Rebuild Shadow Parity So Both Sides Derive Independently [005-blocker-closeout/002-shadow-parity-independent-derivation]"
 description: "Rebuilds six shadow-parity harness adapters so each side derives independently, proven with injected divergences."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "blocker closeout shadow parity independent derivation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

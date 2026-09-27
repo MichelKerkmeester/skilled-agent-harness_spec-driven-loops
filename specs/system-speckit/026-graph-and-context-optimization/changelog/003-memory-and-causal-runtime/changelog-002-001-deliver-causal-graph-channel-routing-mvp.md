@@ -7,6 +7,7 @@ trigger_phrases:
   - "entity density override routing"
   - "graphChannelInvocationRate telemetry"
   - "graph channel intent driven activation"
+  - "memory and causal deliver causal graph channel routing mvp changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

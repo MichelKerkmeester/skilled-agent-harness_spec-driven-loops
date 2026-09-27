@@ -2,9 +2,7 @@
 title: "Changelog: Memory Commands - Router Rewire [001-memory-commands/003-router-rewire]"
 description: "Chronological changelog for the Memory Commands - Router Rewire phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared infrastructure router rewire changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

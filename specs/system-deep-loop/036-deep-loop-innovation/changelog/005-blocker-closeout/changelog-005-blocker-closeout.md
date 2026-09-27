@@ -2,9 +2,7 @@
 title: "Changelog: Blocker Closeout [005-blocker-closeout]"
 description: "The cutover blocker closeouts: completion-evidence reconcile, shadow-parity independent derivation, legacy-compat event vocabulary, and durable write boundaries."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "blocker closeout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

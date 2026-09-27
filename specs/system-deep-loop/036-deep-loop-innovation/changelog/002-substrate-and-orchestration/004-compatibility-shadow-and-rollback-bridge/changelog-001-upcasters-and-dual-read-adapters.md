@@ -2,9 +2,7 @@
 title: "Changelog: Upcasters & Dual-Read/Single-Write Adapters [002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters]"
 description: "Changelog for the upcasters and dual-read/single-write adapters phase: deterministic event and state upcasting with legacy-authoritative dual reads."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "compatibility shadow and rollback upcasters and dual read adapters changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

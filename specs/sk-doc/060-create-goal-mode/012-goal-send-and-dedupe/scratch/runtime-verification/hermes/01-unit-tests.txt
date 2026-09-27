@@ -1,0 +1,4 @@
+$ python3 -m pytest .hermes/plugins/repo-guards/tests -q -p no:cacheprovider </dev/null   (pytest 8.4.2; cache plugin off so no .pytest_cache lands in the repo)
+...........................................                              [100%]
+43 passed in 0.47s
+EXIT=0

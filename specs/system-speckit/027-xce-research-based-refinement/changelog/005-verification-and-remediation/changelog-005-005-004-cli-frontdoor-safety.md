@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/005/004 cli front-door safety changelog"
   - "cli socket perimeter exit code parity"
   - "prompt-time mutation block hardening"
+  - "verification and remediation cli frontdoor safety changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

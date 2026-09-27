@@ -7,6 +7,7 @@ trigger_phrases:
   - "model-pricing single source of truth"
   - "batch-learning boost math normalization"
   - "tier-2 backlog remediation"
+  - "release and program cleanup analytics and learning remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

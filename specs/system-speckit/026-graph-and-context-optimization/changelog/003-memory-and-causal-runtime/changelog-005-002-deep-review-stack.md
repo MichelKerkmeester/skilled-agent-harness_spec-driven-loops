@@ -7,6 +7,7 @@ trigger_phrases:
   - "cli-devin SWE 1.6 review run"
   - "deep review embedder rescue registry"
   - "CONDITIONAL review verdict embedder"
+  - "memory and causal runtime deep review stack changelog"
 importance_tier: "important"
 contextType: "review"
 ---

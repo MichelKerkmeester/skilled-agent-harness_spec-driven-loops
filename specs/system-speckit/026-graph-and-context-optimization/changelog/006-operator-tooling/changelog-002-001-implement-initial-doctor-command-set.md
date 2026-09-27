@@ -7,6 +7,7 @@ trigger_phrases:
   - "doctor update scaffold"
   - "initial doctor command set"
   - "memory_index_scan tx model"
+  - "operator tooling implement initial doctor command set changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

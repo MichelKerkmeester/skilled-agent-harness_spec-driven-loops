@@ -50,6 +50,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `reduce-state.cjs` | Reduces durable state records into a current runtime projection. |
 | `render-command-contract.cjs` | Renders the command contract used by validation and dispatch. |
 | `status.cjs` | Reports session-scoped graph health and stored row counts. |
+| `synthesis-closeout.cjs` | Checks a finished research or review synthesis against its iteration state, including lineage logs, and stages the completion event for the gateway. |
 | `upsert.cjs` | Stores graph nodes, edges and iteration events. |
 | `verify-iteration.cjs` | Validates iteration artifacts and their required evidence. |
 

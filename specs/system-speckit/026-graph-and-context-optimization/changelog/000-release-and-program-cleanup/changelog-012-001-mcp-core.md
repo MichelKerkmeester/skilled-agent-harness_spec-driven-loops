@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory mutation review findings"
   - "entity density cache stale"
   - "embedding reconcile dry run drift"
+  - "release and program cleanup mcp core changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

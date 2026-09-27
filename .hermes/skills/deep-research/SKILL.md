@@ -73,7 +73,7 @@ Use deep-research for multi-round technical investigation, source triangulation,
 
 ## 2. SMART ROUTING
 
-> Pattern: aligned with the [sk-doc smart-router resilience template](../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md).
+> Pattern: aligned with the [sk-doc smart-router resilience template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md).
 
 ### Resource Domains
 
@@ -269,7 +269,7 @@ This skill is invoked exclusively through `/deep:research:auto` or `/deep:resear
 
 ### Executor Selection Contract
 
-The YAML workflow owns executor selection (native `@deep-research` by default, or a routed CLI executor -- never ad hoc shell loops). Cross-CLI delegation inside an executor sandbox is possible but discouraged: do not invoke the same CLI from within itself, and do not assume auth propagates to child CLIs. The seven executor kinds are owned by `runtime/lib/deep-loop/executor-config.ts`; the inline research YAML currently carries branches for `native`, `cli-claude-code`, `cli-opencode`, and `cli-codex`, while `cli-cursor`, `cli-devin`, and `cli-pi` are handled by the shared fan-out adapters. Flag compatibility remains in [loop-protocol.md §3](references/protocol/loop-protocol.md).
+The YAML workflow owns executor selection (native `@deep-research` by default, or a routed CLI executor -- never ad hoc shell loops). Cross-CLI delegation inside an executor sandbox is possible but discouraged: do not invoke the same CLI from within itself, and do not assume auth propagates to child CLIs. The seven executor kinds are owned by `runtime/lib/deep-loop/executor-config.ts`; the inline research YAML currently carries branches for `native`, `cli-claude-code`, `cli-opencode`, and `cli-codex`, while `cli-cursor`, `cli-devin`, and `cli-pi` are handled by the shared fan-out adapters. Flag compatibility remains in [loop-protocol.md §3](../../../.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md).
 
 Executor invariants:
 
@@ -297,11 +297,11 @@ The live code-graph readiness contract reaches four TrustState values: `live`, `
 
 ### Resource Map Integration
 
-When `{spec_folder}/resource-map.md` exists at init, `resource_map_present: true` is persisted, the map is summarized into `deep-research-strategy.md` `Known Context`, and listed files count as known inventory (gaps flagged only when missing from the map). When absent, `resource_map_present: false` is persisted and the loop continues normally -- absence is informational, not a failure. Full field-level rules live in [state-outputs.md §6](references/state/state-outputs.md).
+When `{spec_folder}/resource-map.md` exists at init, `resource_map_present: true` is persisted, the map is summarized into `deep-research-strategy.md` `Known Context`, and listed files count as known inventory (gaps flagged only when missing from the map). When absent, `resource_map_present: false` is persisted and the loop continues normally -- absence is informational, not a failure. Full field-level rules live in [state-outputs.md §6](../../../.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md).
 
 ### Bounded Context Snapshot Replacement
 
-For codebase-scoped targets, initialization captures a bounded, pointer-based snapshot (source paths/symbols, integration points, conventions, and gaps) into `deep-research-strategy.md` `Known Context` -- oriented toward the first iteration, not a substitute for `@context` or `/speckit:plan`. Full capture rules and routing guidance live in [context-snapshot.md](references/protocol/context-snapshot.md).
+For codebase-scoped targets, initialization captures a bounded, pointer-based snapshot (source paths/symbols, integration points, conventions, and gaps) into `deep-research-strategy.md` `Known Context` -- oriented toward the first iteration, not a substitute for `@context` or `/speckit:plan`. Full capture rules and routing guidance live in [context-snapshot.md](../../../.skilled/skills/system-deep-loop/deep-research/references/protocol/context-snapshot.md).
 
 ### Architecture: 3-Layer Integration
 
@@ -309,19 +309,19 @@ For codebase-scoped targets, initialization captures a bounded, pointer-based sn
 
 ### State Packet Location
 
-The research state packet always lives under the target spec's local `research/` folder: root-spec targets use `{spec_folder}/research/` directly; child-phase and sub-phase targets use **flat-first** -- a first run with an empty `research/` directory writes flat, and a `pt-NN` subfolder (`{basename(spec_folder)}-pt-{NN}`) is allocated only when prior content already exists for a non-matching target. This avoids the unnecessary `pt-01` wrapper on first runs. Worked examples, the ownership model, and the file-protection table live in [state-format.md §2](references/state/state-format.md).
+The research state packet always lives under the target spec's local `research/` folder: root-spec targets use `{spec_folder}/research/` directly; child-phase and sub-phase targets use **flat-first** -- a first run with an empty `research/` directory writes flat, and a `pt-NN` subfolder (`{basename(spec_folder)}-pt-{NN}`) is allocated only when prior content already exists for a non-matching target. This avoids the unnecessary `pt-01` wrapper on first runs. Worked examples, the ownership model, and the file-protection table live in [state-format.md §2](../../../.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md).
 
 State files include `deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, `.deep-research-pause`, `.deep-research.lock`, `resource-map.md`, `research.md`, and `iterations/iteration-NNN.md`.
 
 ### Core Innovation: Fresh Context Per Iteration
 
-Each agent dispatch gets a fresh context window. State continuity comes from files, not memory. This solves context degradation in long research sessions. Design provenance is documented in [quick-reference.md §1](references/guides/quick-reference.md).
+Each agent dispatch gets a fresh context window. State continuity comes from files, not memory. This solves context degradation in long research sessions. Design provenance is documented in [quick-reference.md §1](../../../.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md).
 
 ### Data Flow
 
 Init creates config, strategy, and state logs. Each loop reads state, checks convergence, dispatches `@deep-research`, writes iteration markdown and JSONL deltas, refreshes reducer-owned state, and either continues or synthesizes and saves continuity.
 
-Late-INIT can also anchor the research run to `spec.md`: the workflow acquires the advisory lock at `research/.deep-research.lock`, classifies `folder_state` (always one of `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected`), seeds or appends bounded context before LOOP, and replaces exactly one generated findings fence under the chosen host anchor during SYNTHESIS -- while keeping `research/research.md` canonical. The lock is held from late-INIT through save, skip-save, or cancel cleanup. Full marker syntax, audit events, and bounded mutation rules live in [spec-check-protocol.md](references/protocol/spec-check-protocol.md).
+Late-INIT can also anchor the research run to `spec.md`: the workflow acquires the advisory lock at `research/.deep-research.lock`, classifies `folder_state` (always one of `no-spec`, `spec-present`, `spec-just-created-by-this-run`, or `conflict-detected`), seeds or appends bounded context before LOOP, and replaces exactly one generated findings fence under the chosen host anchor during SYNTHESIS -- while keeping `research/research.md` canonical. The lock is held from late-INIT through save, skip-save, or cancel cleanup. Full marker syntax, audit events, and bounded mutation rules live in [spec-check-protocol.md](../../../.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md).
 
 ### Key Concepts
 
@@ -373,7 +373,7 @@ Convergence uses newInfoRatio/stuck/question signals; JSONL state remains append
 
 ### EXPERIMENTAL / REFERENCE-ONLY FEATURES
 
-Reference-only (documented for future design work, not part of the live executable contract for `/deep:research`; full detail in [loop-protocol.md §4-5](references/protocol/loop-protocol.md)):
+Reference-only (documented for future design work, not part of the live executable contract for `/deep:research`; full detail in [loop-protocol.md §4-5](../../../.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md)):
 1. **Wave orchestration** -- parallel question fan-out and pruning within a single lineage (intra-lineage wave)
 2. **Checkpoint commits** -- per-iteration git commits
 3. **Alternate CLI dispatch** -- process-isolated `claude -p` or similar dispatch modes are used internally by `fanout-run.cjs`; do not write them ad-hoc from within a research session

@@ -7,6 +7,7 @@ trigger_phrases:
   - "factory.ts llama-cpp auto-path bug"
   - "embedding default drift review"
   - "voyage residue deep review"
+  - "memory and causal runtime local llm legacy review changelog"
 importance_tier: "important"
 contextType: "review"
 ---

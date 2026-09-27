@@ -9,6 +9,7 @@ trigger_phrases:
   - "mk-skill-advisor"
   - "userpromptsubmit"
   - "plugin bridge"
+  - "spec kit internals devin advisor hook integration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill-graph vec_metadata"
   - "skill-advisor embedder registry"
   - "022/001 pluggable architecture"
+  - "memory and causal runtime pluggable architecture changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

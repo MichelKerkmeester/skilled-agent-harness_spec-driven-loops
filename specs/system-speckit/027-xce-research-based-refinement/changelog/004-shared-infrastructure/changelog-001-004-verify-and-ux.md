@@ -2,9 +2,7 @@
 title: "Changelog: Memory Commands - Verify and UX [001-memory-commands/004-verify-and-ux]"
 description: "Chronological changelog for the Memory Commands - Verify and UX phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared infrastructure verify and ux changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

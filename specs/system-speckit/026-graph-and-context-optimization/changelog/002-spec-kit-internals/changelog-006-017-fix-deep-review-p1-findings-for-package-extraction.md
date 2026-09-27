@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill advisor P1 remediation"
   - "launcher stale lockdir"
   - "shadow delta path validation"
+  - "spec fix deep review p1 findings for package extraction changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

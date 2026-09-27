@@ -10,7 +10,7 @@ import { pathToFileURL } from 'node:url';
 const repoRoot = process.env.DIRECTIVE_REPO_ROOT || process.cwd();
 const lifecycle = await import(pathToFileURL(join(
   repoRoot,
-  '.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/lib/directive-lifecycle.js',
+  '.skilled/skills/system-skill-advisor/runtime/dist/hooks/lib/directive-lifecycle.js',
 )).href);
 const FULL = 'Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance';
 

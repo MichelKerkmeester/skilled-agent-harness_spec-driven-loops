@@ -7,6 +7,7 @@ trigger_phrases:
   - "F-019-D4 children_ids refresh"
   - "deep-research lock leak fix"
   - "no-resource-map flag plumbing YAML"
+  - "release and program cleanup fix deep loop workflow state changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

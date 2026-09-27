@@ -7,6 +7,7 @@ trigger_phrases:
   - "max iteration hard stop review"
   - "post-dispatch validation taxonomy drift"
   - "JSONL state log integrity review"
+  - "release and program cleanup deep loop workflow integrity audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Phase 11: cross-surface-references [060-create-goal-mode/011-cross-surface-references]"
 description: "Chronological changelog for the Phase 11: cross-surface-references phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "create goal mode cross surface references changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

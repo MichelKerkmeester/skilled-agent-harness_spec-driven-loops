@@ -7,6 +7,7 @@ trigger_phrases:
   - "golden query overlap gate"
   - "lexical normalizer fts5"
   - "bm25 engine flip fts5"
+  - "memory and causal runtime fts5 default lexical with guardrails changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

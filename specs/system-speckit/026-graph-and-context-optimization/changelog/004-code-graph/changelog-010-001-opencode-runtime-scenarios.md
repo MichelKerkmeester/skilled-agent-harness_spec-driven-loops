@@ -7,6 +7,7 @@ trigger_phrases:
   - "parser quarantine finding"
   - "live mcp scenario dispatch"
   - "deepseek code graph scenarios"
+  - "code graph opencode runtime scenarios changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

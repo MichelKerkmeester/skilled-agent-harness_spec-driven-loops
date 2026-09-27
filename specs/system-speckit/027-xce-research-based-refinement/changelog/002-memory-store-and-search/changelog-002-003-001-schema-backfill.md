@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory_trigger_embeddings table"
   - "trigger embedding backfill"
   - "schema v34 semantic trigger"
+  - "memory store and search schema backfill changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

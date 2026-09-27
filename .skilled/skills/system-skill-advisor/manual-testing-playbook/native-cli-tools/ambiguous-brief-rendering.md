@@ -1,6 +1,6 @@
 ---
 title: "NC-004 Ambiguous Brief Rendering"
-description: "Manual validation of top-two ambiguity rendering when recommendations are within 0.05 confidence."
+description: "Manual validation of top-two ambiguity rendering when two passing recommendations are within 0.05 on either score or confidence."
 trigger_phrases:
   - "nc-004"
   - "ambiguous brief rendering"
@@ -18,7 +18,7 @@ expected_leaf_resources:
 
 # NC-004 Ambiguous Brief Rendering
 
-Prompt: Manual validation of top-two ambiguity rendering when recommendations are within 0.05 confidence.
+Prompt: Manual validation of top-two ambiguity rendering when two passing recommendations are within 0.05 on either score or confidence.
 
 
 <!-- sk-doc-template: manual_testing_playbook -->
@@ -66,7 +66,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review opencode 
 ### Expected Signals
 
 - Tests pass.
-- Output includes `ambiguous: true` when the top two passing candidates are within 0.05 confidence.
+- Output includes `ambiguous: true` when a second passing candidate sits within 0.05 of the top passing candidate on either axis: the score gap or the confidence gap. Only a candidate outside both margins leaves the top result unambiguous.
 - Rendered brief does not overstate certainty.
 - Lane breakdown remains prompt-safe.
 
@@ -74,7 +74,7 @@ node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "review opencode 
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| `ambiguous` missing for close top two | Top two scores differ by <= 0.05 but flag is false | Inspect scorer ambiguity threshold. |
+| `ambiguous` missing for close top two | Top two passing candidates differ by <= 0.05 in score or in confidence, but the flag is false | Inspect scorer ambiguity threshold. |
 | Brief names only one route without ambiguity | Renderer output omits ambiguity context | Re-run renderer tests and block release. |
 | Attribution leaks prompt text | Prompt literal appears in lane fields | Treat as privacy failure. |
 

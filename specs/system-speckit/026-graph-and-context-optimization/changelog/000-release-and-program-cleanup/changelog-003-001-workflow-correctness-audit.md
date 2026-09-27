@@ -7,6 +7,7 @@ trigger_phrases:
   - "release-readiness audit fail verdict"
   - "spec_kit memory command review"
   - "P0 single-record delete gate bypass"
+  - "release and program cleanup workflow correctness audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

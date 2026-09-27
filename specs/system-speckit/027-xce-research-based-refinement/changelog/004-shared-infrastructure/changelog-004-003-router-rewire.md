@@ -2,9 +2,7 @@
 title: "Changelog: Doctor Commands - Router Rewire [004-doctor-commands/003-router-rewire]"
 description: "Chronological changelog for the Doctor Commands - Router Rewire phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared infrastructure router rewire changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

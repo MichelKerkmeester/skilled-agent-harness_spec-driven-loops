@@ -2,9 +2,7 @@
 title: "Changelog: Changelogs, Constitutional Docs and Templates Cleanup"
 description: "Chronological changelog for the changelog, constitutional document and template cleanup phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup changelogs constitutional and templates changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

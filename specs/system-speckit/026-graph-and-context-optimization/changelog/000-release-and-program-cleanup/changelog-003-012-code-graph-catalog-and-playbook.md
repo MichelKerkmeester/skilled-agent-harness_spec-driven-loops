@@ -7,6 +7,7 @@ trigger_phrases:
   - "code_graph runtime catalog"
   - "code_graph playbook scenarios"
   - "code graph documentation package"
+  - "release and program cleanup code graph catalog and playbook changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

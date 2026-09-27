@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent: Pi Skill Orchestrator Research for Skill Advisor Refinement"
-description: "Phased packet that mines the pi-skill-orchestrator extension for mechanisms that could upgrade system-skill-advisor. Phase 1 ran a two-lineage deep research: 10 iterations on MiMo v2.6 Pro (high) through cli-pi on LLM Gateway and 5 on SWE-2 MAX through cli-devin. Phases 2 to 4 implement the nine recommendations the operator adopted: nested hook deadlines and diagnostics, a leaner hook path and a clearer fallback."
+description: "Phased packet that mines the pi-skill-orchestrator extension for mechanisms that could upgrade system-skill-advisor. Phase 1 ran a two-lineage deep research: 10 iterations on MiMo v2.6 Pro (high) through cli-pi on LLM Gateway and 5 on SWE-2 MAX through cli-devin. Phases 2 to 4 implement the nine recommendations the operator adopted: nested hook deadlines and diagnostics, a leaner hook path and a clearer fallback. Phase 5 fixes the limitations they recorded, phase 6 reviews all of it with two other model families, phase 7 brings the docs up to date and aligns the code with sk-code, phase 8 tests every refined surface inside five CLIs and phase 9 fixes what those runs found."
 trigger_phrases:
   - "pi skill orchestrator"
   - "pi-skill-orchestrator research"
@@ -12,10 +12,10 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-26T14:08:00Z"
-    last_updated_by: "orchestrate"
-    recent_action: "Closed 001-deep-research after the fan-out dashboard fix"
-    next_safe_action: "None; all four phases are complete"
+    last_updated_at: "2026-09-27T12:30:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Completed 011-observation-fixes"
+    next_safe_action: "None. All eleven phases are complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete. All four phases are complete |
+| **Status** | Complete. Phases 1 to 11 are complete. Phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found until all 45 scenario reruns passed. Phase 10 closed the Codex hook cleanup and every phase 6 review advisory, and phase 11 fixed the seven small problems phase 10 had noticed |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -107,7 +107,10 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | `.skilled/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml` | Modify | 001-deep-research | Require the root dashboard only for runs without lineage logs, so a fan-out close can record `synthesis_complete` |
 | `.skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts` | Modify | 002-hook-deadline-and-diagnostics | Nested deadline so the advisor hook times out before the shim kills it |
 | `.skilled/skills/system-skill-advisor/hooks/` and `runtime/lib/` | Modify | 002, 003, 004 | Diagnostics, Pi hook guards, hook-path request option, casual-prompt gate, fallback rendering |
-| `.skilled/plugins/system-skill-advisor.js` | Modify | 004-headless-fallback-status-and-dedup | Plugin copy of the fallback line and its repeat handling |
+| `.skilled/plugins/system-skill-advisor.js` | Modify | 004-headless-fallback-status-and-dedup, 005-follow-up-fixes | Plugin copy of the fallback line and its repeat handling; transform dedup before lifecycle reduction |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` and `deep-review-confirm.yaml` | Modify | 005-follow-up-fixes | The research workflows' fan-out dashboard rule |
+| `.pi/extensions/pi-cache-optimizer/index.ts` | Modify | 005-follow-up-fixes | `edit_lines` trailing-newline refusal |
+| `006-fanout-deep-review/review/` | Create | 006-fanout-deep-review | Two-lineage review state and merged report |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -123,6 +126,13 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | 2 | 002-hook-deadline-and-diagnostics/ | R1 nested hook deadlines, R3 brief bytes and runtime in diagnostics, R7 Pi dist-path test, R11 crash-safe log trim, R12 Pi call deadline | Complete |
 | 3 | 003-hook-path-cli-spawn-trim/ | R2 skip compiled-route spawns on the hook path, R5 reconnect the casual-prompt gate | Complete |
 | 4 | 004-headless-fallback-status-and-dedup/ | R4 status-aware fallback line, R6 no repeated fallback on Claude and OpenCode | Complete |
+| 5 | 005-follow-up-fixes/ | Fan-out review close without a root dashboard, `edit_lines` trailing-newline refusal, plugin transform dedup before lifecycle reduction, trigger index from committed content | Complete |
+| 6 | 006-fanout-deep-review/ | Two-model `/deep:review` of the phase 2 to 5 changes: MiMo v2.6 Pro high and DeepSeek V4.1 Flash max through cli-pi, three iterations each, no early stop | Complete |
+| 7 | 007-docs-and-standards-alignment/ | sk-code audit of the phase 2 to 5 code, and the advisor feature catalog, playbooks, READMEs and root README brought up to date, written by MiMo v2.6 Pro high | Complete |
+| 8 | 008-cross-cli-manual-testing/ | The nine related playbook scenarios run inside cli-pi, cli-opencode, cli-devin, cli-cursor and cli-codex with native hook evidence per runtime, after Grok 4.7 joins the Cursor allowlist | Complete |
+| 9 | 009-test-findings-remediation/ | Fix every phase 8 finding and rerun the nine scenarios in all five CLIs until each passes or fails only on a named environment limit | Complete |
+| 10 | 010-review-advisories-and-codex-cleanup/ | Run the removal-only Codex installer and restore hook trust, then fix the twelve phase 6 review advisories and the seven siblings found while verifying them | Complete |
+| 11 | 011-observation-fixes/ | Fix the seven small problems phase 10's close-out named: the drift-guard count, an unused import, voice-rule punctuation, placeholder phase descriptions and the `create.sh` numbering behind them, metrics log modes and six Dependabot alerts | Complete |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 
@@ -140,6 +150,13 @@ R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Ea
 | 001-deep-research | 002-hook-deadline-and-diagnostics | `research/research.md` holds the merged, ranked synthesis and the load-bearing citations for R1 to R7, R11 and R12 were opened and confirmed | Lineage state logs show 10 and 5 iteration records, and the orchestrator's citation checks are recorded in each phase spec |
 | 002-hook-deadline-and-diagnostics | 003-hook-path-cli-spawn-trim | Hook diagnostics carry `emittedBytes` and the real runtime, and a baseline of hook `durationMs` exists | A debug-on hook turn per runtime writes a record with both fields |
 | 003-hook-path-cli-spawn-trim | 004-headless-fallback-status-and-dedup | The fallback reaches all four subprocess runtimes, since 002 lands R1, and the hook path no longer spawns compiled-route | A forced slow CLI yields the directives fallback on Claude, and no `compiled-route.cjs` child starts on a hook request |
+| 004-headless-fallback-status-and-dedup | 005-follow-up-fixes | Phases 1 and 4 recorded the review close, plugin dedup and index limitations | Each limitation names its file and line in the phase's implementation summary |
+| 005-follow-up-fixes | 006-fanout-deep-review | A fan-out review close records `synthesis_complete` without a root dashboard | The fan-out review case in `run-now-yaml-control.vitest.ts` passes and fails with the fix reverted |
+| 006-fanout-deep-review | 007-docs-and-standards-alignment | The review has closed, so the files it read can change | `review/review-report.md` exists and the close recorded `synthesis_complete` |
+| 007-docs-and-standards-alignment | 008-cross-cli-manual-testing | The scenarios describe the current hook path | Phase 7's playbook validators report 0 violations |
+| 008-cross-cli-manual-testing | 009-test-findings-remediation | Every FAIL and BLOCKED is traced to code, scenario text or the environment, and each finding is recorded in the phase 9 spec | Phase 8 `implementation-summary.md` classifies each result, and the phase 9 spec lists F1 to F18 |
+| 009-test-findings-remediation | 010-review-advisories-and-codex-cleanup | The removal-only installer and its `--check` exist, and the phase 6 advisories are still open | `install-codex-hooks.mjs --check` runs against a temp copy, and the phase 6 report lists the twelve P2 findings |
+| 010-review-advisories-and-codex-cleanup | 011-observation-fixes | Phase 10's close-out lists the seven observations it left outside its scope | The phase 10 close-out names each observation, and phase 11 `spec.md` records them as O1 to O7 |
 <!-- /ANCHOR:phase-map -->
 
 ---

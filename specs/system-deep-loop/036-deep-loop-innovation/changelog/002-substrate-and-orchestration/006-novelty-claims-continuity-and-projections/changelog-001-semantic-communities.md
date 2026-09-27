@@ -2,9 +2,7 @@
 title: "Changelog: Semantic Communities [002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/001-semantic-communities]"
 description: "Changelog for the semantic communities phase: deterministic semantic-community projection over claim nodes."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "novelty claims continuity and projections semantic communities changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

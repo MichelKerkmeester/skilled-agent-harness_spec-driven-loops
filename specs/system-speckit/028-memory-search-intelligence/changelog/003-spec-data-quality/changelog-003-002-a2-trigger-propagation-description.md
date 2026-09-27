@@ -2,9 +2,7 @@
 title: "Changelog: A2 Trigger Propagation and Derived Description [003-spec-data-quality/001-on-write-quality/002-trigger-propagation-description]"
 description: "Chronological changelog for the A2 Trigger Propagation and Derived Description phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a2 trigger propagation description changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

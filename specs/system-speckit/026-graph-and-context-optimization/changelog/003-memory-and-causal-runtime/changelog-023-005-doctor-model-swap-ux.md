@@ -7,6 +7,7 @@ trigger_phrases:
   - "commercial safe profile"
   - "reranker license governance"
   - "reindex cost estimator"
+  - "memory and causal runtime doctor model swap ux changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Measurement and Traceability [009-innovation-gap-remediation/001-measurement-and-traceability]"
 description: "Derived recommendation-to-runtime traceability join, three-field composition status schema, and consolidation alias manifest over the frozen recommendation ledger."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "innovation gap remediation measurement and traceability changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

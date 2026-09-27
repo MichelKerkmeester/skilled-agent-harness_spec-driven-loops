@@ -6,6 +6,7 @@ trigger_phrases:
   - "qwen3 reranker sidecar"
   - "fastapi rerank http service"
   - "cross-encoder sidecar phase 002"
+  - "memory and causal runtime system rerank sidecar skill changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Fan-out Synthesis Lineage Aggregation [002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation]"
 description: "Changelog for the fan-out synthesis lineage aggregation phase: lineage-aware deep-research fan-in with byte-identical registries and canonical synthesis."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "fanout fanin durable orchestration fanout synthesis lineage aggregation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

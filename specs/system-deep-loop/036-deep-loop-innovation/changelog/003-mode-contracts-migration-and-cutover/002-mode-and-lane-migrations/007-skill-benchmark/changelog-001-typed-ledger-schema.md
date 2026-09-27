@@ -2,9 +2,7 @@
 title: "Changelog: Skill Benchmark Typed Ledger Schema [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema]"
 description: "Changelog for the skill benchmark typed ledger schema phase: the typed append-only event vocabulary for the skill-benchmark variant."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "skill benchmark typed ledger schema changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

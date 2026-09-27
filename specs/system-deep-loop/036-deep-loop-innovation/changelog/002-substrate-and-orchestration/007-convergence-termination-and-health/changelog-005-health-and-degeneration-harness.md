@@ -2,9 +2,7 @@
 title: "Changelog: Health & Degeneration Harness [002-substrate-and-orchestration/007-convergence-termination-and-health/005-health-and-degeneration-harness]"
 description: "Changelog for the health and degeneration harness phase: mode-agnostic health signals that turn degeneration and unusable telemetry into typed signals."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "convergence termination and health and degeneration harness changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

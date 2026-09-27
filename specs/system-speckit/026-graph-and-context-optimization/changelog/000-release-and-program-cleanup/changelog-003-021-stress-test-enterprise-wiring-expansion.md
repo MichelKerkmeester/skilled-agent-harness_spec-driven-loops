@@ -7,6 +7,7 @@ trigger_phrases:
   - "SearchDecisionEnvelope stress run"
   - "enterprise wiring expansion measurement"
   - "021 stress test wiring"
+  - "release and program cleanup stress test enterprise wiring expansion changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

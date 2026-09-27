@@ -2,9 +2,7 @@
 title: "Changelog: Agent Improvement - Shadow Parity [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity]"
 description: "Changelog for the agent improvement shadow parity phase: the shadow-parity harness comparing agent-specific projections event-for-event."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "agent improvement shadow parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

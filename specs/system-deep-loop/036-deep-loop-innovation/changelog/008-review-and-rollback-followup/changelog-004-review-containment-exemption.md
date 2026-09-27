@@ -2,9 +2,7 @@
 title: "Changelog: Review Containment Exemption [008-review-and-rollback-followup/004-review-containment-exemption]"
 description: "Changelog for the review containment exemption phase: exempting runtime-generated state from fatal write-containment reverts so fan-out reviews can run without the runtime's own writes failing the lineage."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review and rollback followup review containment exemption changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

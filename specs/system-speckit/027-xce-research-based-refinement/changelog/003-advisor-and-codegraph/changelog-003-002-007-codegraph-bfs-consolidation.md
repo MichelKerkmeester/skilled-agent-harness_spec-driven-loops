@@ -5,6 +5,7 @@ trigger_phrases:
   - "003/002 007 codegraph BFS changelog"
   - "code graph BFS helper"
   - "blast radius traversal helper"
+  - "advisor and codegraph bfs consolidation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

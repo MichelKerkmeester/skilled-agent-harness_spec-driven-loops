@@ -7,6 +7,7 @@ trigger_phrases:
   - "detector provenance"
   - "blast radius fix"
   - "edge evidence enrichment"
+  - "code graph upgrades changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

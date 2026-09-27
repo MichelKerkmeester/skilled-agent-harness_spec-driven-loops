@@ -2,9 +2,7 @@
 title: "Changelog: Identity Resolver Merge Safety [003-spec-data-quality/006-generated-metadata-build/033-identity-resolver-merge-safety]"
 description: "Chronological changelog for the identity resolver merge safety phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality identity resolver merge safety changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

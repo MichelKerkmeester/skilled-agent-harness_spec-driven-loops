@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill advisor hook automation"
   - "code graph auto-reindex"
   - "hook runtime wiring audit"
+  - "release and program cleanup automation self management research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Deep Improvement Common Services — Typed Ledger Schema [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema]"
 description: "Changelog for the deep improvement common services typed ledger schema phase: the typed append-only event vocabulary for the shared deep improvement services."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep improvement common typed ledger schema changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

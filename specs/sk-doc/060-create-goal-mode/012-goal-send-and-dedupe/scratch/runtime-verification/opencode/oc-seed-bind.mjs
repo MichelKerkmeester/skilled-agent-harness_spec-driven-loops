@@ -1,0 +1,11 @@
+import { pathToFileURL } from 'node:url';
+import { join } from 'node:path';
+const [repo, stateDir, sessionID, packetPath] = process.argv.slice(2);
+const { default: Plugin } = await import(pathToFileURL(join(repo, '.skilled/plugins/opencode-goal.js')).href);
+const hooks = await Plugin({ directory: repo }, { stateDir });
+const out = await hooks.tool.opencode_goal.execute({ action: 'bind', packetPath }, { sessionID, directory: repo });
+console.log(out.split('\n').filter((l) => /^(STATUS|mutation|objective|packet_|resend_pending)/.test(l)).join('\n'));
+const sys = { system: [] };
+await hooks['experimental.chat.system.transform']({ sessionID }, sys);
+console.log('--- in-process transform preview (first 8 lines)');
+console.log(sys.system.join('\n').split('\n').slice(0, 8).join('\n'));

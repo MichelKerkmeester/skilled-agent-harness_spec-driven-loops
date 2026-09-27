@@ -20,7 +20,7 @@ Two narrative formats (compact and expanded) for global component changelogs and
 
 ### The Canonical Exemplar
 
-`.skilled/changelog/system-spec-kit/v4.0.0.0.md` is the house style. Read it before generating any changelog. It demonstrates everything this template enforces: a multi-paragraph opening narrative, a Why This Release section, a What's New at a Glance section, topical H2 sections with benefit-led H4 story items, inline Breaking markers, and concrete Upgrade Notes at the end. Its single earned-evidence table (in six hundred lines) is what the counted dollar costs earned, not a quota a release must reproduce. When this template and the exemplar appear to disagree, the exemplar wins and the discrepancy is recorded.
+`.skilled/changelog/skilled/v4.0.0.0.md` is the house style. Read it before generating any changelog. It demonstrates everything this template enforces: a multi-paragraph opening narrative, a Why This Release section, a What's New at a Glance section, topical H2 sections with benefit-led H4 story items, inline Breaking markers, and concrete Upgrade Notes at the end. Its single earned-evidence table (in six hundred lines) is what the counted dollar costs earned, not a quota a release must reproduce. When this template and the exemplar appear to disagree, the exemplar wins and the discrepancy is recorded.
 
 ### Usage
 
@@ -34,13 +34,24 @@ Nested packet-local changelogs are a different output mode and use the spec-kit 
 
 **Key points**:
 
-- The prose starts with the summary narrative. YAML frontmatter and the editorial title H1 (the exemplar's opening) may precede it. The retired machine header (a bare version-title line, a backlink, a version-date line) stays gone.
+- Every entry opens with a frontmatter block of search metadata, per the Frontmatter Contract in SKILL.md section 5. The editorial title H1 (the exemplar's opening) may follow the block, and then the prose starts with the summary narrative. The retired machine header (a bare version-title line, a backlink, a version-date line) stays gone.
 - Lead with **why** the release matters, never with technical stats.
 - Structure tells a story: what the release does, why it exists, what is new at a glance, then the detail, then what you must do.
 
 ### Compact Format (under 10 changes, non-breaking)
 
 ```markdown
+---
+title: "{component} v{VERSION}"
+description: "{What the release changed, in one or two plain sentences of 250 characters at most.}"
+trigger_phrases:
+  - "{component} v{VERSION}"
+  - "{component} {VERSION}"
+  - "{Topic phrase: 2-6 words from this entry that name what changed}"
+importance_tier: "normal"
+contextType: "general"
+---
+
 {Summary paragraph: 1-3 sentences. What this release does, and why it matters to the person using it. No file paths, no counts of files or tests.}
 
 > Spec folder: `{path}` (Level {N})
@@ -56,9 +67,22 @@ Nested packet-local changelogs are a different output mode and use the spec-kit 
 
 Include the spec-folder line only when the release has a spec folder. Add a short `## Why This Release` section (2-4 sentences) between the summary and the at-a-glance list when the motivation is not obvious from the summary alone.
 
+The frontmatter's `{component}` is the `name:` in the owning folder's `SKILL.md`. With an editorial title H1, `title` becomes `{component} v{VERSION}, {editorial title}`. A Skilled release entry declares `v{VERSION} release notes` and `skilled v{VERSION}` as its identity phrases, and titles itself by its H1 or `Skilled v{VERSION}`.
+
 ### Expanded Format (10+ changes, major, or breaking)
 
 ```markdown
+---
+title: "{component} v{VERSION}"
+description: "{What the release changed, in one or two plain sentences of 250 characters at most.}"
+trigger_phrases:
+  - "{component} v{VERSION}"
+  - "{component} {VERSION}"
+  - "{Topic phrase: 2-6 words from this entry that name what changed}"
+importance_tier: "normal"
+contextType: "general"
+---
+
 {Opening narrative: 1-5 paragraphs telling the story of the release in plain prose. What the release does, in one breath per theme. No headers interrupt this opening.}
 
 > Spec folder: `{path}` (Level {N})
@@ -210,7 +234,7 @@ Count the changes in the release.
 
 ## 6. THE CANONICAL EXAMPLE
 
-Model every expanded release on `.skilled/changelog/system-spec-kit/v4.0.0.0.md`. It is the reference for opening narrative, Why This Release, at-a-glance bullets, topical H2 naming, H4 story items, the earned-evidence table and Upgrade Notes. Older changelog files in the same folders predate this style, so do not copy them.
+Model every expanded release on `.skilled/changelog/skilled/v4.0.0.0.md`. It is the reference for opening narrative, Why This Release, at-a-glance bullets, topical H2 naming, H4 story items, the earned-evidence table and Upgrade Notes. Older changelog files in the same folders predate this style, so do not copy them.
 
 ---
 
@@ -252,7 +276,7 @@ The global component versioning rules in this file do not apply to nested packet
 
 ### Standards
 
-- `.skilled/changelog/system-spec-kit/v4.0.0.0.md` - the canonical exemplar this template derives from
+- `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar this template derives from
 - [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules (banned words, punctuation, structure)
 - [core-standards.md](../../shared/references/core-standards.md) - Markdown structure and naming conventions
 

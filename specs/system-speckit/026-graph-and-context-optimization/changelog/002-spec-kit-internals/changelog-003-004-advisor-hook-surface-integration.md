@@ -7,6 +7,7 @@ trigger_phrases:
   - "buildSkillAdvisorBrief"
   - "AdvisorHookResult renderer"
   - "proactive skill routing runtime"
+  - "spec kit internals advisor hook surface integration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

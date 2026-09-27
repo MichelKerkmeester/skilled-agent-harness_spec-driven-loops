@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { execFileSync } from 'node:child_process';
-import { realpathSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { advisorPromptCache } from '../lib/prompt-cache.js';
@@ -143,9 +143,16 @@ function emptyOutput(args: {
   });
 }
 
+// The canonical flag is checked first so the reason names it when both are set.
+const ADVISOR_DISABLED_FLAGS = [
+  'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED',
+  'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
+] as const;
+
 function disabledOutput(
   workspaceRoot: string,
   effectiveThresholds: PublicThresholds,
+  disabledBy: string,
 ): AdvisorRecommendOutput {
   return emptyOutput({
     workspaceRoot,
@@ -153,7 +160,7 @@ function disabledOutput(
     freshness: 'unavailable',
     trustState: unavailableTrustState('ADVISOR_DISABLED'),
     warnings: ['ADVISOR_DISABLED'],
-    abstainReasons: ['Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED.'],
+    abstainReasons: [`Skill advisor disabled by ${disabledBy}.`],
   });
 }
 
@@ -326,23 +333,40 @@ function publicRecommendation(
   };
 }
 
+// The front door runs from the request's workspaceRoot, and a caller may name
+// another checkout there, such as a worktree under the repository root. Its copy
+// can predate --prompt-stdin and would resolve an empty prompt, so such a copy
+// gets no compiled route rather than the prompt in argv.
+export function frontDoorReadsPromptFromStdin(frontDoorPath: string): boolean {
+  try {
+    return readFileSync(frontDoorPath, 'utf8').includes('--prompt-stdin');
+  } catch {
+    return false;
+  }
+}
+
 function compiledRouteForRecommendation(
   skillId: string,
   prompt: string,
   workspaceRoot: string,
 ): Record<string, unknown> | undefined {
   if (!COMPILED_ROUTING_HUBS.has(skillId)) return undefined;
+  const frontDoor = resolve(workspaceRoot, '.skilled', 'bin', 'compiled-route.cjs');
+  if (!frontDoorReadsPromptFromStdin(frontDoor)) {
+    emitCompiledRoutingBreadcrumb(`compiled-route front door cannot read the prompt from stdin; skipping hub=${skillId}`);
+    return undefined;
+  }
   try {
     const output = execFileSync(process.execPath, [
-      resolve(workspaceRoot, '.skilled', 'bin', 'compiled-route.cjs'),
+      frontDoor,
       '--hub',
       skillId,
-      '--prompt',
-      prompt,
+      '--prompt-stdin',
     ], {
       cwd: workspaceRoot,
       encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
+      input: prompt,
+      stdio: ['pipe', 'pipe', 'pipe'],
       timeout: 5_000,
       maxBuffer: 1_048_576,
     });
@@ -585,9 +609,9 @@ export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResp
     confidenceThreshold: input.options?.confidenceThreshold,
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
   });
-  const data = process.env.SYSTEM_SKILL_ADVISOR_HOOK_DISABLED === '1'
-    || process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1'
-    ? disabledOutput(workspaceRoot, effectiveThresholds)
+  const disabledBy = ADVISOR_DISABLED_FLAGS.find((flag) => process.env[flag] === '1');
+  const data = disabledBy
+    ? disabledOutput(workspaceRoot, effectiveThresholds, disabledBy)
     : await computeRecommendationOutput(input);
   return {
     content: [{

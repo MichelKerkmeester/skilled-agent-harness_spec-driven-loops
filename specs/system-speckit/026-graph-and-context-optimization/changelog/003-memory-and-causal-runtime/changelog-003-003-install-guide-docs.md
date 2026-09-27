@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill-advisor pluggable layer docs"
   - "INSTALL_GUIDE section 12 choosing an embedder"
   - "skill-advisor README embedder configuration"
+  - "memory and causal runtime install guide docs changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

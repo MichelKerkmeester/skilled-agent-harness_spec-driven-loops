@@ -7,6 +7,7 @@ trigger_phrases:
   - "bench successful search rss"
   - "sidecar 5xx fallback rss benchmark"
   - "operator deferred rss severity"
+  - "memory and causal runtime adapter resident memory benchmark changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

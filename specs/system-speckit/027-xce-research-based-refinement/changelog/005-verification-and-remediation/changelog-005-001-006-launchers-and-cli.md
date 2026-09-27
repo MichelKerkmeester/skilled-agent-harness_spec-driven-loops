@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/001 006 launchers CLI changelog"
   - "launcher CLI lane disposition"
   - "remediation lane 006"
+  - "verification and remediation launchers and cli changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

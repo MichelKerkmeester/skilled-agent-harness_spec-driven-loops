@@ -55,6 +55,7 @@ import {
   isAdvisorRuntime,
   type AdvisorRuntime,
 } from './advisor-runtime-values.js';
+import { ADVISOR_PROMPT_MAX_CHARS } from '../schemas/advisor-tool-schemas.js';
 export {
   ADVISOR_RUNTIME_VALUES,
   isAdvisorRuntime,
@@ -434,6 +435,9 @@ export async function buildSkillAdvisorBrief(
     if (skipped) return skipped;
 
     const policy = shouldFireAdvisor(prompt);
+    // advisor_recommend refuses a longer prompt, so a longer one is routed on its head
+    // instead of failing open as an outage.
+    const routedPrompt = policy.canonicalPrompt.slice(0, ADVISOR_PROMPT_MAX_CHARS);
     const baseDiagnostics: AdvisorHookDiagnostics | null = policy.metalinguisticMentions.length > 0
       ? {
         metalinguisticMention: policy.metalinguisticMentions,
@@ -467,7 +471,7 @@ export async function buildSkillAdvisorBrief(
     const cache = advisorPromptCache as AdvisorPromptCache<CachedAdvisorHookResult>;
     cache.invalidateSourceSignatureChange(freshness.sourceSignature);
     const cacheKey = cache.makeKey({
-      canonicalPrompt: policy.canonicalPrompt,
+      canonicalPrompt: routedPrompt,
       sourceSignature: freshness.sourceSignature,
       runtime: options.runtime,
       maxTokens: options.maxTokens,
@@ -493,7 +497,7 @@ export async function buildSkillAdvisorBrief(
       cache.invalidate(cacheKey);
     }
 
-    const subprocess = await runAdvisorSubprocess(policy.canonicalPrompt, {
+    const subprocess = await runAdvisorSubprocess(routedPrompt, {
       workspaceRoot: options.workspaceRoot,
       thresholdConfig: options.thresholdConfig,
       timeoutMs: options.subprocessTimeoutMs,

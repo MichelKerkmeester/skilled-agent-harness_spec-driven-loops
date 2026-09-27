@@ -6,6 +6,7 @@ trigger_phrases:
   - "tri-109 background memory index scan"
   - "synthetic replay corpus changelog"
   - "tri-138 memory health budget"
+  - "verification and remediation residual design units changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

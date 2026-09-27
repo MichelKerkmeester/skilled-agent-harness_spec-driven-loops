@@ -2,9 +2,7 @@
 title: "Changelog: Phase 7: deep-improvement Frontmatter Alignment [009-skill-frontmatter-alignment/007-deep-improvement]"
 description: "Chronological changelog for the Phase 7: deep-improvement Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup deep improvement changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

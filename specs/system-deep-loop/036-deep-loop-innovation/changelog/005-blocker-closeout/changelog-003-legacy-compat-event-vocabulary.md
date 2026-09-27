@@ -2,9 +2,7 @@
 title: "Changelog: Extend the Compatibility Upcasters to the Six Live Event Vocabularies [005-blocker-closeout/003-legacy-compat-event-vocabulary]"
 description: "Writes the six live compatibility vocabularies with full upcaster coverage so ordinary lifecycle records never block a log."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "blocker closeout legacy compat event vocabulary changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: cli devin executor wiring [007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring]"
 description: "Add cli-devin as a wired deep-loop executor kind so fan-out lineages can dispatch through Devin CLI, with an enforced model allowlist and a live-verified flag mapping."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "executor wiring and parity cli devin executor wiring changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -176,7 +176,7 @@ Consume it through the package's subpath exports (`@portable-cli/communication-p
 
 ### The Wording Standard
 
-"Plain English" is not defined in this skill. It is the Human Voice Rules at [`../sk-doc/sk-create-with-human-voice/references/hvr-rules.md`](../sk-doc/sk-create-with-human-voice/references/hvr-rules.md), and the workflow that applies them is the `sk-create-with-human-voice` mode under `sk-doc`. Every rewrite path here routes to that standard instead of carrying a private rubric, so a change to the standard reaches this skill with no edit to a command. The provider receives the standard's reply base as its instruction. The instruction is read from that file the first time a prompt profile is built and then cached. The standard has one home, and the engine carries no copy.
+"Plain English" is not defined in this skill. It is the Human Voice Rules at [`../sk-doc/sk-create-with-human-voice/references/hvr-rules.md`](../../../.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md), and the workflow that applies them is the `sk-create-with-human-voice` mode under `sk-doc`. Every rewrite path here routes to that standard instead of carrying a private rubric, so a change to the standard reaches this skill with no edit to a command. The provider receives the standard's reply base as its instruction. The instruction is read from that file the first time a prompt profile is built and then cached. The standard has one home, and the engine carries no copy.
 
 One part of the standard is excluded, and a projection that honors it has damaged the message it was carrying:
 
@@ -188,7 +188,7 @@ The scoring bands of the pre-publish checklist need no exclusion of their own. T
 
 The pass a provider performs is a smoothing pass, never a cut-and-reorder. An unchanged candidate is recorded as a no-op rather than a pass.
 
-Everything else binds, under the invariants in section 4. Where dropping a banned word would change what the original claimed, the word stays and the claim wins. That precedence is the standard's own, at [`../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`](../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md), which also carries the spans a rewrite may never touch: a quotation, an error string, a command, a path or an identifier.
+Everything else binds, under the invariants in section 4. Where dropping a banned word would change what the original claimed, the word stays and the claim wins. That precedence is the standard's own, at [`../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`](../../../.skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md), which also carries the spans a rewrite may never touch: a quotation, an error string, a command, a path or an identifier.
 
 ### Verification
 

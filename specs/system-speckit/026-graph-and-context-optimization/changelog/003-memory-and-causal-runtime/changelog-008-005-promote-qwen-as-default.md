@@ -7,6 +7,7 @@ trigger_phrases:
   - "arc 008 closes hold path"
   - "qwen sidecar opt-in closure"
   - "rerank sidecar default decision"
+  - "memory and causal runtime promote qwen as default changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

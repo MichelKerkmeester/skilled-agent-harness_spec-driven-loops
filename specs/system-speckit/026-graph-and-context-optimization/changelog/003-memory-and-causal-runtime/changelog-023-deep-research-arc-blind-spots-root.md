@@ -5,6 +5,7 @@ trigger_phrases:
   - "023-deep-research-arc-blind-spots rollup"
   - "023-deep-research-arc-blind-spots phase parent"
   - "023-deep-research-arc-blind-spots changelog index"
+  - "memory and causal runtime deep research arc blind spots changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

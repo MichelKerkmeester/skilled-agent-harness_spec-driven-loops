@@ -6,6 +6,7 @@ trigger_phrases:
   - "lean trio doc sync shipped"
   - "phase definitions save workflow validation rules updated"
   - "phase parent content rule documented"
+  - "release and program cleanup phase parent reference readme sync changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -8,6 +8,7 @@ trigger_phrases:
   - "full-auto fallback"
   - "legacy memory file retirement"
   - "save flow trim"
+  - "memory and causal runtime memory save rewrite changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

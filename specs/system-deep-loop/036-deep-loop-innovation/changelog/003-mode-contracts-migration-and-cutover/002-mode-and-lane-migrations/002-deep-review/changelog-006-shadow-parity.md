@@ -2,9 +2,7 @@
 title: "Changelog: Deep Review Shadow Parity [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/006-shadow-parity]"
 description: "Changelog for the deep review shadow parity phase: running the ledger path in shadow beside the legacy emitter and comparing projections event-for-event."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep review shadow parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

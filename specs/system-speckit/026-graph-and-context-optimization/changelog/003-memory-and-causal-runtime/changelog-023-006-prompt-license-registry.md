@@ -7,6 +7,7 @@ trigger_phrases:
   - "embedder reranker typed accessors"
   - "registry validate daemon startup"
   - "ccc doctor registry check"
+  - "memory and causal runtime prompt license registry changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -136,7 +136,8 @@ test('goal plugin reference links the OpenCode command document', async () => {
 
 test('regression graph key files exclude non-deliverable legacy basenames', async () => {
   // Historical graph metadata must not point at files absent from the deliverable runtime.
-  const phaseRoot = join(opencodeRoot, 'specs', 'system-deep-loop', 'z_archive', '026-goal-opencode-plugin');
+  // Spec folders live at the repository root, one level above the .opencode tree.
+  const phaseRoot = join(opencodeRoot, '..', 'specs', 'system-deep-loop', 'z_archive', '026-goal-opencode-plugin');
   const graph = JSON.parse(await readFile(
     join(phaseRoot, '012-regression-test-backfill', 'graph-metadata.json'),
     'utf8',
@@ -205,6 +206,22 @@ test('executeGoalAction packet reads a packet without binding, and bind refuses 
   const missing = await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/never' }, ctx, readOpts);
   assert.match(String(missing), /STATUS=FAIL/);
   assert.match(String(missing), /PACKET_GOAL_NOT_FOUND/);
+}));
+
+test('executeGoalAction bind keeps a line break in the packet and workspace paths so the binding resolves', async () => withState(async ({ __test, ctx, opts, stateDir }) => {
+  // A folder name may legally hold a line break. The stored pointer has to
+  // name that folder, not a collapsed look-alike that does not exist.
+  const workspace = join(stateDir, 'work\nspace');
+  const packetPath = 'specs/t/a\nb';
+  await writePacketGoal(workspace, packetPath);
+  const bindOpts = { ...opts, directory: workspace };
+  const bindRes = await __test.executeGoalAction({ action: 'bind', packetPath }, ctx, bindOpts);
+  assert.match(String(bindRes), /STATUS=OK ACTION=bind/);
+  assert.match(String(bindRes), /packet_bound=true/);
+  assert.match(String(bindRes), /packet_path="specs\/t\/a\\nb"/);
+  const goal = await __test.readGoal(ctx.sessionID, opts);
+  assert.equal(goal.packetPath, packetPath);
+  assert.ok(goal.workspace.endsWith('work\nspace'), `stored workspace ${JSON.stringify(goal.workspace)}`);
 }));
 
 

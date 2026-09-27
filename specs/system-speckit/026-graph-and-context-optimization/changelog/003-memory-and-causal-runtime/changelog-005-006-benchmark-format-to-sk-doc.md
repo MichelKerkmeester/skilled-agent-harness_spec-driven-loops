@@ -7,6 +7,7 @@ trigger_phrases:
   - "FORMAT.md removed sk-doc"
   - "sk-doc benchmark reference"
   - "benchmark format to sk-doc"
+  - "memory and causal runtime benchmark format to sk doc changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

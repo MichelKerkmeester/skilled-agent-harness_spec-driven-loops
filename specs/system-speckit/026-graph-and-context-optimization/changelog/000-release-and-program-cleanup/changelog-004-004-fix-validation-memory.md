@@ -7,6 +7,7 @@ trigger_phrases:
   - "F-005-A5 F-008-B3 F-009-B4 fixes"
   - "checkpoint snapshot zod quarantine"
   - "check-evidence strict semantic marker"
+  - "release and program cleanup fix validation memory changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

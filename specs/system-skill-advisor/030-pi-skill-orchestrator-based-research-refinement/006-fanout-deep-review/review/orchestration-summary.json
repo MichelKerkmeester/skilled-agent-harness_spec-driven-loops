@@ -1,0 +1,60 @@
+{
+  "run_id": "1790437845885-htqb7q",
+  "loop_type": "review",
+  "spec_folder": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-26T16:21:39.269Z",
+        "end_at_iso": "2026-09-26T16:27:14.116Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 5
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-09-26T16:03:27Z",
+          "deltaMs": 972269
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-09-26T16:09:55Z",
+          "deltaMs": 584269
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-09-26T16:16:22Z",
+          "deltaMs": 197269
+        }
+      ]
+    }
+  ]
+}

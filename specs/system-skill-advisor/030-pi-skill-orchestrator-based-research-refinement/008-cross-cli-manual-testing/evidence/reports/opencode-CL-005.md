@@ -1,0 +1,19 @@
+<!-- dispatch: opencode CL-005; ledger: 2026-09-26T19:30:21Z 2026-09-26T19:36:32Z 0 371 -->
+
+Scenario file read. STEP 0: scanning my runtime context for an `Advisor:` line — none visible in this prompt. Now running the scenario.
+Source inspection confirms the plugin spawns the CLI (line 219, 1075) with no handler imports. Running step 2 (advisor CLI call):
+Step 2 matches expected signals (exit 0, `status: ok`, 014 threshold pair, ranked recs, live trust state). Running step 3 (plugin test suite):
+Step 3 passed 65/65 (suite grew from the scenario's recorded 40). Verifying the disable-flag expected signals and checking for the `spec_kit_skill_advisor_status` tool:
+Now the disable-flag evidence run (`-t opt-out`), as the scenario's evidence section names it for the opt-out expected signal:
+All expected signals verified. Cleaning up the temp directory:
+RESULT: PASS | scenario=CL-005 | runtime=opencode
+NATIVE: none visible
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+| 1 | npm --prefix …/runtime install && run build | — | skipped (see DEVIATIONS); dist artifacts present (advisor-server.js 15668 B, lib/render.js 16175 B) | Advisor runtime build is current | yes |
+| 2 | node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{topK:3,…0.8/0.35…}' --format json | 0 | `status:"ok"`, freshness "live" (generation 482), 3 ranked recs (top: system-spec-kit conf 0.927), `effectiveThresholds:{confidenceThreshold:0.8, uncertaintyThreshold:0.35, confidenceOnly:false}` | JSON with `status:"ok"` or prompt-safe fail-open; 014 threshold pair | yes |
+| 3 | npm --prefix …/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts | 0 | Test Files 1 passed (1); Tests 65 passed (65); Duration 1.00s | Plugin test suite passes (file's recorded evidence 40/40) incl. brief-rendering, cache, timeout, fail-open, opt-out | yes (suite grew 40→65; all pass) |
+| 4 | (supplement) same test -t opt-out | 0 | Tests 3 passed \| 62 skipped (65); the 3 opt-out tests assert no advisor spawn + `enabled=false` + matching `disabled_reason` | File §6 evidence: 3 opt-out paths pass, no advisor spawned, `enabled=false` | yes |
+| 5 | (supplement) source inspection of .skilled/plugins/system-skill-advisor.js | 0 | `ADVISOR_CLI_PATH = fileURLToPath(new URL('../bin/skill-advisor.cjs', …))` at :219, spawn at :1075; imports are node builtins + @opencode-ai/plugin/tool + local helpers only — no handler/bridge-harness imports; disable consts :53-56 cover SYSTEM_SKILL_ADVISOR_* and legacy SPECKIT_* | Plugin spawns .skilled/bin/skill-advisor.cjs, never private handler paths; new + legacy disable names work | yes |
+DEVIATIONS: 'npm --prefix .skilled/skills/system-skill-advisor/runtime install — skipped: prebuilt by orchestrator'; 'npm --prefix .skilled/skills/system-skill-advisor/runtime run build — skipped: prebuilt by orchestrator'. Rows 4–5 are supplementary expected-signal checks (row 4 is the -t opt-out run named in the file's §6 evidence), not changes to steps 1–3.
+NOTES: Running inside OpenCode, but `spec_kit_skill_advisor_status` is not exposed in this dispatched worker's tool surface (not in the session tool list nor the Code Mode registry; the plugin registers it at .skilled/plugins/system-skill-advisor.js:1501 for interactive sessions) — lastBridgeStatus could not be read. Step-2 trustState was "live" vs the file's recorded "stale"; the file documents both as passing. Plugin file is now 1540 lines vs recorded 1476; spawn-path evidence unchanged at :219. The step-2 payload carries no `route` field — route rendering lives in the plugin brief, covered by the passing brief-rendering tests; no `Advisor:` line reached this headless session (expected for a dispatched worker, hence NATIVE above). Temp dir /tmp/cl005.la7eto deleted; no repository writes.

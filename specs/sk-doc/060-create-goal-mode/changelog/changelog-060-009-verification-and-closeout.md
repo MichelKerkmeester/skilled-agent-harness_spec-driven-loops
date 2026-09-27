@@ -2,9 +2,7 @@
 title: "Changelog: Phase 9: verification-and-closeout [060-create-goal-mode/009-verification-and-closeout]"
 description: "Chronological changelog for the Phase 9: verification-and-closeout phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "create goal mode verification and closeout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

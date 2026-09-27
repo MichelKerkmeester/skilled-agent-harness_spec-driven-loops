@@ -5,6 +5,7 @@ trigger_phrases:
   - "000 003 feature catalog changelog"
   - "release cleanup feature catalog"
   - "feature catalog source traceability"
+  - "release cleanup skill feature catalog changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

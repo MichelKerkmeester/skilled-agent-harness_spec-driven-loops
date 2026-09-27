@@ -7,6 +7,7 @@ trigger_phrases:
   - "ccc subcommand removal manage.md"
   - "process harness coco daemon kill removal"
   - "GEMINI.md coco routing fix"
+  - "code graph remediate cross surface residue changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-release-readiness-deep-review-audits rollup"
   - "003-release-readiness-deep-review-audits phase parent"
   - "003-release-readiness-deep-review-audits changelog index"
+  - "release and program cleanup release readiness deep review audits changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

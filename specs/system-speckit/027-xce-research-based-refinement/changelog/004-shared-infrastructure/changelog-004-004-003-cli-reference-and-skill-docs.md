@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/004 003 daemon CLI reference changelog"
   - "CLI reference skill docs"
   - "jsonl single line payload"
+  - "shared infrastructure cli reference and skill docs changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

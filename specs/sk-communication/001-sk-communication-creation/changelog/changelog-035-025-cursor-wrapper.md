@@ -2,9 +2,8 @@
 title: "Changelog: Phase 25 Cursor Wrapper [035-improved-communication/025-cursor-wrapper]"
 description: "Chronological changelog for the Phase 25 Cursor Wrapper phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation cursor wrapper changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

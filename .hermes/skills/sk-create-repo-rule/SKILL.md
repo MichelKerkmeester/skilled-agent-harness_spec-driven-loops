@@ -229,5 +229,5 @@ git holds the history. Full ordering: `references/agents-md-integration.md` §5.
 
 ## 6. REFERENCES
 
-Routed by [`references/README.md`](references/README.md). Load
+Routed by [`references/README.md`](../../../.skilled/skills/sk-doc/sk-create-repo-rule/references/README.md). Load
 `references/decision-tests.md` first on every path; everything else is conditional.

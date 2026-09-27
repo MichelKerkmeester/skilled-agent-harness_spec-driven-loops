@@ -1,6 +1,10 @@
 ---
 title: "Changelog Rollup — Track 001: Research and Doctrine"
-trigger_phrases: []
+description: "Top rollup for the 001-research-and-doctrine/ themed track. Each row links to a phase changelog (or that phase's own rollup)."
+trigger_phrases:
+  - "research and doctrine changelog"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 # Changelog Rollup — Track 001: Research and Doctrine
 

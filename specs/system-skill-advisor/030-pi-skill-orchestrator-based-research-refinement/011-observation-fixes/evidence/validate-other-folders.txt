@@ -1,0 +1,31 @@
+# Strict validation of the 13 other folders whose description.json held a 'Phase 1:' placeholder, 2026-09-27
+# command: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict
+## before regenerating
+cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit | RESULT: FAILED | Summary: Errors: 2 Warnings: 0
+system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions | RESULT: PASSED | Summary: Errors: 0 Warnings: 2
+system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/046-v4-changelog-remediation | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/021-runtime-contract-and-indexability | RESULT: FAILED | Summary: Errors: 3 Warnings: 3
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/024-runtime-contract-and-indexability | RESULT: FAILED | Summary: Errors: 3 Warnings: 3
+## after regenerating
+cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit | RESULT: FAILED | Summary: Errors: 2 Warnings: 0
+system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions | RESULT: PASSED | Summary: Errors: 0 Warnings: 2
+system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/046-v4-changelog-remediation | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/047-v4-changelog-review-fixes | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/033-system-speckit-v4/050-ci-cleanup-pi-proof | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/021-runtime-contract-and-indexability | RESULT: FAILED | Summary: Errors: 3 Warnings: 2
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/024-runtime-contract-and-indexability | RESULT: FAILED | Summary: Errors: 3 Warnings: 2
+## delta: identical except the two scratch/phase-quarantine folders, each one warning fewer (3 to 2). The three scratch FAILED results predate this phase.

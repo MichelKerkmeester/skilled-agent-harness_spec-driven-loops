@@ -7,6 +7,7 @@ trigger_phrases:
   - "dist marker verification"
   - "live MCP probe contract"
   - "MCP rebuild restart contract"
+  - "release and program cleanup mcp daemon rebuild protocol changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

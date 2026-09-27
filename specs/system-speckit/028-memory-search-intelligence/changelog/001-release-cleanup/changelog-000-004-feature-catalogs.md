@@ -2,9 +2,7 @@
 title: "Changelog: Feature Catalog Cleanup"
 description: "Chronological changelog for the feature catalog cleanup phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup feature catalogs changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

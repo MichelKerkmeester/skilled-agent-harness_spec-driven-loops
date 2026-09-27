@@ -1,6 +1,10 @@
 ---
 title: "Changelog Rollup — Track 004: Shared Infrastructure"
-trigger_phrases: []
+description: "Top rollup for the 004-shared-infrastructure/ themed track. Each row links to a phase changelog (or that phase's own rollup)."
+trigger_phrases:
+  - "shared infrastructure changelog"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 # Changelog Rollup — Track 004: Shared Infrastructure
 

@@ -2,9 +2,7 @@
 title: "Changelog: Legacy Writer Retirement [003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement]"
 description: "Changelog for the legacy writer retirement phase: removing the old live emitters and logic replaced by the evidence-ledger spine after every mode has a clean cutover certificate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mode contracts migration and cutover legacy writer retirement changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "002-memory-index-causal-lifecycle rollup"
   - "002-memory-index-causal-lifecycle phase parent"
   - "027 002/002 changelog index"
+  - "memory store and search memory index causal lifecycle changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

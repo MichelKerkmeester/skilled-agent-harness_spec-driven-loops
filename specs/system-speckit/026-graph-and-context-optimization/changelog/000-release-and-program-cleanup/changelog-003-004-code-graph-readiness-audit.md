@@ -7,6 +7,7 @@ trigger_phrases:
   - "release readiness code graph review"
   - "readiness contract deep review"
   - "code graph readiness P0"
+  - "release and program cleanup code graph readiness audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

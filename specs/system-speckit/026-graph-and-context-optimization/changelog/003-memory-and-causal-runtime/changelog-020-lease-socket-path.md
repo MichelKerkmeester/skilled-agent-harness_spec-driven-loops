@@ -7,6 +7,7 @@ trigger_phrases:
   - "prefer stored socket path bridge"
   - "ipc socket dir mismatch lease"
   - "020-lease-socket-path"
+  - "memory and causal runtime lease socket path changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

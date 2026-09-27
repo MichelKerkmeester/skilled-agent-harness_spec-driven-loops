@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 009/007 changelog"
   - "copilot writer wiring"
   - "copilot refreshed timestamp"
+  - "operator tooling copilot writer wiring changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

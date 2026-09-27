@@ -2,9 +2,7 @@
 title: "Changelog: fanout containment sibling lineage scope [007-executor-and-cli-hardening/003-write-containment-hardening/002-fanout-containment-sibling]"
 description: "Stop the fan-out write-containment guard from reverting sibling lineages' artifacts under concurrency."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "write containment hardening fanout containment sibling changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

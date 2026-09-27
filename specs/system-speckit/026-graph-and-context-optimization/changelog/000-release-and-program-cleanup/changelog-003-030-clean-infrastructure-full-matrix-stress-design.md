@@ -7,6 +7,7 @@ trigger_phrases:
   - "feature executor matrix design"
   - "030 full matrix design changelog"
   - "system-spec-kit cli matrix corpus"
+  - "release and program clean infrastructure full matrix stress design changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

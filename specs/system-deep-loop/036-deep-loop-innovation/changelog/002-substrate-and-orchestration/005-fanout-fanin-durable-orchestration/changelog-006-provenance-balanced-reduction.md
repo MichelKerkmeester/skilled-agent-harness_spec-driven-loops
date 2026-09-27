@@ -2,9 +2,7 @@
 title: "Changelog: Provenance-Balanced Reduction [002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction]"
 description: "Changelog for the provenance-balanced reduction phase: deterministic fan-in reducer that balances contribution across source and model provenance."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "fanout fanin durable orchestration provenance balanced reduction changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

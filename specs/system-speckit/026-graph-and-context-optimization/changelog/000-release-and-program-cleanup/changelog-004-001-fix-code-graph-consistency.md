@@ -7,6 +7,7 @@ trigger_phrases:
   - "sqlite busy timeout code graph"
   - "candidate manifest untracked files"
   - "doctor code graph workflow fix"
+  - "release and program cleanup fix code graph consistency changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

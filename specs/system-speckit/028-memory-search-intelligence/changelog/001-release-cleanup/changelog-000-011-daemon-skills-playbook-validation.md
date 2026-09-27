@@ -2,9 +2,7 @@
 title: "Changelog: Daemon Skills Playbook Validation [000-release-cleanup/011-daemon-skills-playbook-validation]"
 description: "Chronological changelog for the daemon skills playbook validation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup daemon skills playbook validation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

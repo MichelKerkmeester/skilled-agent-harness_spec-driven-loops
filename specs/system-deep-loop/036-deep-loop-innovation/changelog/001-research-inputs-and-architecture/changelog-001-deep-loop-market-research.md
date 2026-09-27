@@ -2,9 +2,7 @@
 title: "Changelog: Deep-Loop Market Research (Loop-Engineering Landscape) [001-research-inputs-and-architecture/001-deep-loop-market-research]"
 description: "A 45-iteration non-converging (broadening) /deep:research run over the loop-engineering state of the art, mapping every insight to a specific system-deep-loop subsystem, child, or mode."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "research inputs and architecture deep loop market research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

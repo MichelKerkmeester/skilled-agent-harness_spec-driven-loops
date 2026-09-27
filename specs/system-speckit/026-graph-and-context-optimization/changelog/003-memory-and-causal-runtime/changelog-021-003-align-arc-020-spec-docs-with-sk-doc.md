@@ -7,6 +7,7 @@ trigger_phrases:
   - "H2 heading case drift fix"
   - "skill surface evergreen audit"
   - "arc 020 child doc alignment"
+  - "memory align arc 020 spec docs with sk doc changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

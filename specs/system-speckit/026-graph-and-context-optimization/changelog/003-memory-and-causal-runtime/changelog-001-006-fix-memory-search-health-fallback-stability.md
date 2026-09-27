@@ -7,6 +7,7 @@ trigger_phrases:
   - "folder discovery weak signal gate"
   - "quality fallback fts5 bm25 grep"
   - "causal stats output hygiene fix"
+  - "memory and causal fix memory search health fallback stability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

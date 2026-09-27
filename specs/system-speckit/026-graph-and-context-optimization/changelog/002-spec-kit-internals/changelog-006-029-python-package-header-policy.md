@@ -7,6 +7,7 @@ trigger_phrases:
   - "cocoindex shebang"
   - "sk-code follow-on"
   - "packet 026 audit"
+  - "spec kit internals python package header policy changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

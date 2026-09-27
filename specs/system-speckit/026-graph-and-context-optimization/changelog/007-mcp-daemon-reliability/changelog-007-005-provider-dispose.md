@@ -7,6 +7,7 @@ trigger_phrases:
   - "HfLocalProvider dispose in-flight gate"
   - "invalidateProviderSingleton native session orphan"
   - "sidecar provider recycle on model swap"
+  - "mcp daemon reliability provider dispose changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

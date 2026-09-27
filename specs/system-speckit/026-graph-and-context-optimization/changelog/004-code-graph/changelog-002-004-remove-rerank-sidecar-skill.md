@@ -2,9 +2,7 @@
 title: "Changelog: Remove the system-rerank-sidecar skill [002-deprecate-coco-index/004-remove-rerank-sidecar-skill]"
 description: "Chronological changelog for the Remove the system-rerank-sidecar skill phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph remove rerank sidecar skill changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

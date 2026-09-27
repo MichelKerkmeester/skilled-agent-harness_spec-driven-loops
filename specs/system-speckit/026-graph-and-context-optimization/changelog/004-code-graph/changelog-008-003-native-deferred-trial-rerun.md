@@ -2,9 +2,7 @@
 title: "Changelog: Native Rerun of Deferred Usefulness Cells [008-real-world-usefulness-test-planning/003-native-deferred-trial-rerun]"
 description: "Chronological changelog for the Native Rerun of Deferred Usefulness Cells phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph native deferred trial rerun changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

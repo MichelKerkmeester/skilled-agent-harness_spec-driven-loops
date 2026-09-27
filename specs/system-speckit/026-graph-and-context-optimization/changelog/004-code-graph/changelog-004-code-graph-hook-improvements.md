@@ -8,6 +8,7 @@ trigger_phrases:
   - "blocked-read contracts"
   - "startup payload parity"
   - "graph quality observability"
+  - "code graph hook improvements changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

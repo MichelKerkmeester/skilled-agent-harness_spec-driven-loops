@@ -7,6 +7,7 @@ trigger_phrases:
   - "026 vitest Unit H closure"
   - "fixture drift plural skills rename"
   - "11804 passed vitest"
+  - "release and program cleanup vitest baseline recovery followup changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

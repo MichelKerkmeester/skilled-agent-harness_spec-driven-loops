@@ -7,6 +7,7 @@ trigger_phrases:
   - "MCP namespace ownership fix"
   - "mk-code-index advisor namespace correction"
   - "052 rename packet doc refresh"
+  - "memory and causal runtime mk spec memory rename remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

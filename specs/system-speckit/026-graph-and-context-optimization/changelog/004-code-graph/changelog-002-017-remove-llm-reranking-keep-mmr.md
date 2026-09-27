@@ -7,6 +7,7 @@ trigger_phrases:
   - "cross-encoder removal 017"
   - "mmr only stage 3"
   - "confidence reranker weight removal"
+  - "code graph remove llm reranking keep mmr changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

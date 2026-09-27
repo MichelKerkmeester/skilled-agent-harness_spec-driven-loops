@@ -2,9 +2,7 @@
 title: "Changelog: Deep Research - Resume Adapter [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter]"
 description: "Changelog for the deep research resume adapter phase: rebuilding interrupted live state from the sealed typed ledger."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep research resume adapter changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

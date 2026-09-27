@@ -6,6 +6,7 @@ trigger_phrases:
   - "research synthesis remediation"
   - "source evidence index 020 024"
   - "memory leak phase 001"
+  - "memory and causal runtime research synthesis and remediation map changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "vitest fixture drift fix"
   - "mk-spec-memory test failures"
   - "008 vitest baseline"
+  - "memory and causal runtime spec memory vitest stabilization changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

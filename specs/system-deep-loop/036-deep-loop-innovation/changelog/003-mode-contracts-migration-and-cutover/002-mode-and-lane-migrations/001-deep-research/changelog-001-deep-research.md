@@ -2,9 +2,7 @@
 title: "Changelog: Deep Research Migration [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research]"
 description: "Changelog for the deep research migration group: migrating the autonomous deep research loop onto the typed event-ledger substrate through seven concern children and an independent mode gate."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "deep research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "playbook shell python daemon waves"
   - "CP OP AU AI LC SC PC scenarios"
   - "028 phase 004"
+  - "spec kit internals shell python daemon changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

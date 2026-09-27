@@ -2,9 +2,7 @@
 title: "Changelog: Per-Mode Authority Flip [003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip]"
 description: "Changelog for the per-mode authority flip phase: the fail-closed switch that makes the dark spine canonical for one mode at a time."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "staged state migration and authority per mode authority flip changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

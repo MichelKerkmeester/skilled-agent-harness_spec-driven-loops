@@ -6,6 +6,7 @@ trigger_phrases:
   - "005-memclaw-derived-memory-hardening phase parent"
   - "memclaw memory hardening changelog index"
   - "schema v37 memclaw rollup"
+  - "memory store and search memclaw derived memory hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

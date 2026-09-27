@@ -1,12 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-speckit/033-system-speckit-v4/048-gate-3-mutation-time-delivery",
-  "description": "Phase 1: gate-3-mutation-time-delivery",
+  "description": "The Gate 3 question is delivered by appending a four-option menu to the user's own turn whenever the classifier reads write intent, and the gate",
   "keywords": [
-    "phase",
-    "gate-3-mutation-time-delivery"
+    "gate",
+    "question",
+    "delivered",
+    "appending",
+    "four-option",
+    "menu",
+    "user",
+    "own",
+    "turn",
+    "whenever",
+    "classifier",
+    "reads",
+    "write",
+    "intent"
   ],
-  "lastUpdated": "2026-09-22T06:26:11.946Z",
+  "lastUpdated": "2026-09-23T13:14:43.589Z",
   "specId": "048",
   "folderSlug": "gate-3-mutation-time-delivery",
   "parentChain": [

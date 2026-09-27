@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 002 changelog"
   - "skill advisor graph"
   - "skill-graph.json"
+  - "spec kit internals skill advisor graph changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

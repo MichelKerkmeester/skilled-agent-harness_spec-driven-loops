@@ -2,9 +2,7 @@
 title: "Changelog: Substrate and Orchestration [002-substrate-and-orchestration]"
 description: "Changelog for the substrate and orchestration group of the 036 deep-loop innovation packet: live-tools unblock, transition-authorized ledger core, shared evidence and control services, compatibility and rollback bridge, durable fan-out orchestration, novelty projections, and convergence and health."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "substrate and orchestration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

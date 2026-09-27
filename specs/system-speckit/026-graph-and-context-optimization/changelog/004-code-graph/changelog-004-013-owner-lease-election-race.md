@@ -7,6 +7,7 @@ trigger_phrases:
   - "writeLeaseFile reprobe non-atomic"
   - "launcher 4-layer single-writer election"
   - "code graph P2 benign transient race"
+  - "code graph owner lease election race changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

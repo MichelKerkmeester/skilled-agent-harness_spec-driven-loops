@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-skill-advisor-stack rollup"
   - "003-skill-advisor-stack phase parent"
   - "003-skill-advisor-stack changelog index"
+  - "memory and causal runtime skill advisor stack changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "workspace root hoist above specs"
   - "skill-graph-generation.json in spec folders"
   - "027 003/005 shipped"
+  - "advisor and codegraph advisor state spec folder leak changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

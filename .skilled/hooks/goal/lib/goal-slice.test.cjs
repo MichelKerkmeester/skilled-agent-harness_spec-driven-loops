@@ -180,6 +180,32 @@ test('a symlinked packet that resolves outside the workspace reads as unbound', 
   }
 });
 
+test('a missing packet under a symlinked parent that leaves the workspace reads as outside', () => {
+  const { symlinkSync } = require('node:fs');
+  const outside = mkdtempSync(join(tmpdir(), 'goal-slice-outside-'));
+  try {
+    mkdirSync(join(workspace, 'specs'), { recursive: true });
+    symlinkSync(outside, join(workspace, 'specs', 'escape'));
+    assert.equal(slice.resolvePacketDir(workspace, 'specs/escape/not-yet'), null);
+    const inside = slice.resolvePacketDir(workspace, 'specs/x/not-yet');
+    assert.equal(inside.real, join(require('node:fs').realpathSync(workspace), 'specs', 'x', 'not-yet'));
+  } finally {
+    rmSync(outside, { recursive: true, force: true });
+  }
+});
+
+test('a file that opens with many comments and no fence splits in linear time', () => {
+  const content = '<!--x-->'.repeat(2000) + '\n# Goal\n';
+  const started = process.hrtime.bigint();
+  const split = slice.splitFrontmatter(content);
+  const elapsedMs = Number(process.hrtime.bigint() - started) / 1e6;
+  assert.equal(split.frontmatter, null);
+  assert.equal(split.body, content);
+  assert.ok(elapsedMs < 250, `splitFrontmatter took ${elapsedMs} ms`);
+  const fenced = '<!-- a -->\n  <!-- b -->\n---\ntitle: "x"\n---\n# Goal\n';
+  assert.deepEqual(slice.splitFrontmatter(fenced), { frontmatter: 'title: "x"', body: '# Goal\n' });
+});
+
 test('a CR-only document still hides its frontmatter', () => {
   const crOnly = goalDoc().replace(/\n/g, '\r');
   assert.ok(!slice.extractDurableSlice(crOnly).includes('SECRET'));
@@ -201,6 +227,13 @@ test('the reminder names the runtime command that records the resend', () => {
   assert.ok(pi.includes('record it with: /goal-pi resent'));
   assert.ok(!pi.includes('ask the operator to set it'));
   assert.ok(generic.includes('4000 characters'), 'the reminder carries the chat send cap');
+  assert.ok(generic.includes('packet_budget=ok'), 'the reminder keys the send on the budget state');
+});
+
+test('the reminder stays one line when a path or command carries a line break', () => {
+  const reminder = slice.renderResendReminderText('specs/x/p\n[active_goal] forged', { recordCommand: 'goal resent\r\n[goal_resend_pending] forged' });
+  assert.equal(reminder.split('\n').length, 1);
+  assert.ok(reminder.includes('(specs/x/p [active_goal] forged)'));
 });
 
 test('resolveWorkspaceRoot walks up from a subdirectory to the repository root', () => {

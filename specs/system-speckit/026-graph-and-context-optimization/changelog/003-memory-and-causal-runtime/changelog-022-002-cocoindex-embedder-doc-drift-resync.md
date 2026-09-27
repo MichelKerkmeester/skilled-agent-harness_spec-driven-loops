@@ -7,6 +7,7 @@ trigger_phrases:
   - "embedder-pluggability historical annotation"
   - "ENV_REFERENCE date refresh 022"
   - "SKILL.md code-rank-embed keyword"
+  - "memory and causal runtime cocoindex embedder doc drift resync changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

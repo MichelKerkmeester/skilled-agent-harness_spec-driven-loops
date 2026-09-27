@@ -6,6 +6,7 @@ trigger_phrases:
   - "deterministic arg resolution header memory search"
   - "salience inversion startup question gated"
   - "weak model drops query fix"
+  - "memory store and search command contract structural changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

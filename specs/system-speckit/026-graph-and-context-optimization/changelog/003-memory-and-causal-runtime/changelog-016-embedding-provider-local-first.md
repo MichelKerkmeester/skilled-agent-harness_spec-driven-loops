@@ -7,6 +7,7 @@ trigger_phrases:
   - "ollama default embedder"
   - "embedding provider priority fix"
   - "016-embedding-provider-local-first"
+  - "memory and causal runtime embedding provider local first changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

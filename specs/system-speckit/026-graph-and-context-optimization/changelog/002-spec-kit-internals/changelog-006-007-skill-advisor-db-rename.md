@@ -6,6 +6,7 @@ trigger_phrases:
   - "graph-metadata-index sqlite"
   - "spec-kit skill-graph sqlite collision"
   - "skill advisor db disambiguation"
+  - "spec kit internals skill advisor db rename changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

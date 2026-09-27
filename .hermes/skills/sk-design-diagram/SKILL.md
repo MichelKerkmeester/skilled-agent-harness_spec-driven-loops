@@ -37,7 +37,7 @@ Keyword triggers: `create:diagram`, `/design:diagram`, `diagram`, `theme diagram
 
 ### Use Cases — selection guide
 
-The question a reader needs answered picks the type. The full table — one row per type with its canonical form, variants, ceiling, import paths and skin — lives in [`references/catalog.md`](references/catalog.md), which the corpus check reads in both directions.
+The question a reader needs answered picks the type. The full table — one row per type with its canonical form, variants, ceiling, import paths and skin — lives in [`references/catalog.md`](../../../.skilled/skills/sk-design/sk-design-diagram/references/catalog.md), which the corpus check reads in both directions.
 
 ### When NOT to Use
 
@@ -150,7 +150,7 @@ The route reference per diagram type:
 
 ### Smart Router Pseudocode
 
-The reference implementation of the router lives in [`references/foundations/router-pseudocode.md`](references/foundations/router-pseudocode.md): it holds `discover_markdown_resources()`, `_guard_in_skill()` and the `UNKNOWN_FALLBACK` branch, while the routing rules above are the contract and the pseudocode is one way to hold them.
+The reference implementation of the router lives in [`references/foundations/router-pseudocode.md`](../../../.skilled/skills/sk-design/sk-design-diagram/references/foundations/router-pseudocode.md): it holds `discover_markdown_resources()`, `_guard_in_skill()` and the `UNKNOWN_FALLBACK` branch, while the routing rules above are the contract and the pseudocode is one way to hold them.
 
 
 The router guards paths and loads only existing resources. Format resolution precedes type/pattern selection; ambiguity returns `UNKNOWN_FALLBACK`.
@@ -217,7 +217,7 @@ library is a strict template. The starters are for when you want a skin without 
 
 The **sketchy** variant applies to any minimal variant (SVG turbulence filter; see `references/primitives/primitive-sketchy.md`). The **consultant special** quadrant variant (`quadrant-consultant.html`, BCG/McKinsey-style 2×2) sits beside the plain quadrant form.
 
-To repaint a copy in another visual language, see [`references/design-md-theming.md`](references/design-md-theming.md).
+To repaint a copy in another visual language, see [`references/design-md-theming.md`](../../../.skilled/skills/sk-design/sk-design-diagram/references/design-md-theming.md).
 
 **To create a new diagram:**
 
@@ -315,26 +315,26 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
 
 ### Core References
 
-- [style-guide.md](./references/foundations/style-guide.md) — semantic token roles, typography, stroke/radius/spacing, node treatments, terminal skin, and skin customization. The single source of truth every diagram draws from.
-- [onboarding.md](./references/foundations/onboarding.md) — agent-mediated skin extraction from a website URL, an installed skill, or a local folder: read source → extract → map → propose diff → write with approval.
-- [output-spec.md](./references/foundations/output-spec.md) — the four dials (format, size, detail level, audience): size presets, type ramps, detail ceilings, degrade ladder, fidelity ledger, and checklist.
-- [primitive-annotation.md](./references/primitives/primitive-annotation.md) — italic-serif editorial callout with dashed Bézier leader; max 2 per diagram.
-- [primitive-sketchy.md](./references/primitives/primitive-sketchy.md) — hand-drawn displacement filter; filter shapes, never text.
-- [primitive-terminal.md](./references/primitives/primitive-terminal.md) — fixed terminal-window skin, monospace throughout, one accent; not brand-tokenized.
-- [primitive-icons.md](./references/primitives/primitive-icons.md) — monochrome 24×24 icon library (compute, people, network, data, Kubernetes, action, DevOps, brand, data stack, language, statistical tools, file formats) with license attribution.
-- [ascii-format/pattern-selection.md](./references/ascii-format/pattern-selection.md) — workflow-shape pattern selection and split heuristics for `ascii-markdown` output.
-- [design-md-theming.md](./references/design-md-theming.md) — repainting a delivery from a local Style Reference: what the parser reads, which reference row fills each role, the gates a themed palette clears, and what a run refuses. The applicator is `scripts/apply-design-md.cjs`; it writes themed copies to a scratch directory and refuses to touch the stock library.
-- [derivation-record.md](./references/foundations/derivation-record.md) — why each stock value is what it is, the gates, and every recorded departure.
+- [style-guide.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md) — semantic token roles, typography, stroke/radius/spacing, node treatments, terminal skin, and skin customization. The single source of truth every diagram draws from.
+- [onboarding.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/foundations/onboarding.md) — agent-mediated skin extraction from a website URL, an installed skill, or a local folder: read source → extract → map → propose diff → write with approval.
+- [output-spec.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/foundations/output-spec.md) — the four dials (format, size, detail level, audience): size presets, type ramps, detail ceilings, degrade ladder, fidelity ledger, and checklist.
+- [primitive-annotation.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-annotation.md) — italic-serif editorial callout with dashed Bézier leader; max 2 per diagram.
+- [primitive-sketchy.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-sketchy.md) — hand-drawn displacement filter; filter shapes, never text.
+- [primitive-terminal.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-terminal.md) — fixed terminal-window skin, monospace throughout, one accent; not brand-tokenized.
+- [primitive-icons.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md) — monochrome 24×24 icon library (compute, people, network, data, Kubernetes, action, DevOps, brand, data stack, language, statistical tools, file formats) with license attribution.
+- [ascii-format/pattern-selection.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/ascii-format/pattern-selection.md) — workflow-shape pattern selection and split heuristics for `ascii-markdown` output.
+- [design-md-theming.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/design-md-theming.md) — repainting a delivery from a local Style Reference: what the parser reads, which reference row fills each role, the gates a themed palette clears, and what a run refuses. The applicator is `scripts/apply-design-md.cjs`; it writes themed copies to a scratch directory and refuses to touch the stock library.
+- [derivation-record.md](../../../.skilled/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md) — why each stock value is what it is, the gates, and every recorded departure.
 
 ### Forms and Assets
 
-- [starter-light.html](./assets/diagrams/starter-light.html) — minimal light variant (default).
-- [starter-dark.html](./assets/diagrams/starter-dark.html) — minimal dark variant.
-- [starter-full.html](./assets/diagrams/starter-full.html) — full editorial variant.
-- [starter-terminal.html](./assets/diagrams/starter-terminal.html) — terminal-window variant.
-- [icons.html](./assets/style-reference/harness-diagram/icons.html) — icon gallery; specimen glyphs are decorative (`aria-hidden="true"`).
-- [assets/diagrams/README.md](./assets/diagrams/README.md) — the 38-form library: 27 canonical diagrams, 7 pattern variants, 4 skin starters.
-- [assets/style-reference/README.md](./assets/style-reference/README.md) — one directory per visual language: its `DESIGN.md`, its provenance, its tokens and its glyphs.
+- [starter-light.html](../../../.skilled/skills/sk-design/sk-design-diagram/assets/diagrams/starter-light.html) — minimal light variant (default).
+- [starter-dark.html](../../../.skilled/skills/sk-design/sk-design-diagram/assets/diagrams/starter-dark.html) — minimal dark variant.
+- [starter-full.html](../../../.skilled/skills/sk-design/sk-design-diagram/assets/diagrams/starter-full.html) — full editorial variant.
+- [starter-terminal.html](../../../.skilled/skills/sk-design/sk-design-diagram/assets/diagrams/starter-terminal.html) — terminal-window variant.
+- [icons.html](../../../.skilled/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/icons.html) — icon gallery; specimen glyphs are decorative (`aria-hidden="true"`).
+- [assets/diagrams/README.md](../../../.skilled/skills/sk-design/sk-design-diagram/assets/diagrams/README.md) — the 38-form library: 27 canonical diagrams, 7 pattern variants, 4 skin starters.
+- [assets/style-reference/README.md](../../../.skilled/skills/sk-design/sk-design-diagram/assets/style-reference/README.md) — one directory per visual language: its `DESIGN.md`, its provenance, its tokens and its glyphs.
 
 ---
 

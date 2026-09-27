@@ -5,6 +5,7 @@ trigger_phrases:
   - "spec-memory cli lane rollup"
   - "spec-memory cli changelog root"
   - "001 spec-memory cli complete"
+  - "shared infrastructure spec memory cli changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

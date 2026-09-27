@@ -7,6 +7,7 @@ trigger_phrases:
   - "diagnostics ring buffer cap"
   - "file-watcher queue cap close drain"
   - "advisor projection filesystem-fallback"
+  - "release and program cleanup resource leaks silent errors changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

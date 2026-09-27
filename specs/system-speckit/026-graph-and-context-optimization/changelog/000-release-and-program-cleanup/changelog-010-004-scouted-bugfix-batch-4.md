@@ -12,6 +12,7 @@ trigger_phrases:
   - "cli-gemini auth preflight"
   - "cli-codex auth preflight"
   - "token-budget constitutional count"
+  - "release and program cleanup scouted bugfix batch 4 changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

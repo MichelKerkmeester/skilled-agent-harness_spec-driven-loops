@@ -5,6 +5,7 @@ trigger_phrases:
   - "search hot path performance changelog"
   - "rescue hydration batching"
   - "fts token equivalence"
+  - "fix deep dive p0 p2 search hot path performance changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,8 @@
 title: "Changelog: Phase 019 OpenCode Native Plugin [035-improved-communication/019-opencode-native-plugin]"
 description: "Chronological changelog for the Phase 019 OpenCode Native Plugin phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation opencode native plugin changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

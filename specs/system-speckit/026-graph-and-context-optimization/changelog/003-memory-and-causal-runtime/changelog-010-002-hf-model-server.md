@@ -4,9 +4,7 @@
 title: "Changelog: Build hf-model-server.cjs local HTTP model server [010-embedding-consolidation-hf-local-server/002-hf-model-server]"
 description: "Chronological changelog for the Build hf-model-server.cjs local HTTP model server phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "memory and causal runtime hf model server changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -184,7 +184,7 @@ Trigger: "save context", "save memory", `/speckit:save`
 
 #### GOAL POSTURE RULE [ALWAYS ON]
 Trigger: a session bound to a spec packet, on every turn.
-- The bound packet's `goal.md` is the only source of goal state. Read the file, never a remembered summary, never send its frontmatter anywhere, resend its chat slice unprompted when it changes and never stop work for an unset goal. The chat slice is the durable slice without frontmatter, HTML comments, anchor markers, `---` dividers or heading section numbers. Never send a parent goal over 4,000 characters: cut the file first. Both rules override any resend wording inside a `goal.md`. Once a goal is set, acknowledge it in one line and continue, without restating it or asking whether to proceed. Mechanics are `system-spec-kit`'s.
+- The bound packet's `goal.md` is the only source of goal state. Read the file, never a remembered summary, never send its frontmatter anywhere, resend its chat slice unprompted when it changes and never stop work for an unset goal. Send only the `chat_slice` that `goal.cjs packet` prints: no frontmatter, comments, anchors, dividers, section numbers or template instructions. The 4,000-character limit is measured on the durable slice, so send only at `packet_budget=ok` and cut the file first when it is over. The full rule is `sk-create-goal`'s `references/budget-and-handoff.md` §4. Both rules override any resend wording inside a `goal.md`. Once a goal is set, acknowledge it in one line and continue, without restating it or asking whether to proceed. Goal authoring is `sk-create-goal`'s, and the template and validator are `system-spec-kit`'s.
 
 #### Self-Check (before ANY tool-using response):
 - [ ] File modification? Asked spec folder question?

@@ -1,6 +1,6 @@
 ---
 title: cli-cursor Providers, Models & Invocation
-description: The dedicated per-mode catalog of the Cursor provider, the enforced 22-id model allowlist, defaults, the suffix-baked effort lever and dispatch shape reachable through the cli-cursor mode.
+description: The dedicated per-mode catalog of the Cursor provider, the enforced 29-id model allowlist, defaults, the suffix-baked effort lever and dispatch shape reachable through the cli-cursor mode.
 trigger_phrases:
   - "cursor providers and models"
   - "which model for cursor dispatch"
@@ -14,14 +14,14 @@ version: 1.4.0.15
 
 # cli-cursor Providers, Models & Invocation
 
-The single catalog of the provider, model ids, defaults, effort lever, and dispatch shape the cli-cursor mode can reach. Unlike sibling modes, cli-cursor dispatch is scoped to an ENFORCED 22-id allowlist — this file lists all twenty-two inline because that list is a safety contract.
+The single catalog of the provider, model ids, defaults, effort lever, and dispatch shape the cli-cursor mode can reach. Unlike sibling modes, cli-cursor dispatch is scoped to an ENFORCED 29-id allowlist — this file lists all twenty-nine inline because that list is a safety contract.
 
 ---
 
 ## 1. OVERVIEW
 
 ### Core Principle
-One place to answer "which provider, which model, which effort, how to dispatch" for cli-cursor. This mode reaches exactly one backing provider — Cursor — and is deliberately narrow: dispatch is scoped to a hard-enforced 22-id allowlist, and Cursor's own `auto` router is excluded.
+One place to answer "which provider, which model, which effort, how to dispatch" for cli-cursor. This mode reaches exactly one backing provider — Cursor — and is deliberately narrow: dispatch is scoped to a hard-enforced 29-id allowlist, and Cursor's own `auto` router is excluded.
 
 ### When to Use
 - Choosing a `--model <id>` for a `cursor-agent -p` dispatch from within the enforced allowlist
@@ -40,7 +40,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 ## 2. PROVIDERS & MODELS
 
-cli-cursor has ONE backing provider — **Cursor** — reached through the `cursor-agent` binary. Cursor's live roster spans 150+ hosted-frontier ids (GPT/Claude/Gemini/Grok/GLM/Kimi families), but **cli-cursor dispatch is scoped to exactly these 22 ids — this is an ENFORCED allowlist, not a reference list.** Dispatching any off-list id HARD-FAILS before a command is built (see §6). `auto` (Cursor's own router) is deliberately EXCLUDED — it can silently resolve to a model outside this set, defeating the point of enforcing one.
+cli-cursor has ONE backing provider — **Cursor** — reached through the `cursor-agent` binary. Cursor's live roster spans 150+ hosted-frontier ids (GPT/Claude/Gemini/Grok/GLM/Kimi families), but **cli-cursor dispatch is scoped to exactly these 29 ids — this is an ENFORCED allowlist, not a reference list.** Dispatching any off-list id HARD-FAILS before a command is built (see §6). `auto` (Cursor's own router) is deliberately EXCLUDED — it can silently resolve to a model outside this set, defeating the point of enforcing one.
 
 ### Cursor
 
@@ -69,7 +69,14 @@ Sorted alphabetically by model id, not grouped by family.
 | 19 | `gpt-5.6-luna-max` | GPT-5.6 Luna (via Cursor) | — | Max thinking tier; first GPT-5.6 persona in the allowlist |
 | 20 | `gpt-5.6-luna-max-fast` | GPT-5.6 Luna (via Cursor) | — | Max tier, low-latency `-fast` variant |
 | 21 | `gemini-3.8-flash-high` | Gemini 3.8 (via Cursor) | — | Google Gemini 3.8 Flash, High thinking tier; Cursor displays it as "Gemini 3.8 Flash" — the tier lives in the id suffix |
-| 22 | `grok-4.7-xhigh-fast` | Grok 4.7 (via Cursor) | — | Extra-high tier, low-latency `-fast` variant; no `cursor-` prefix |
+| 22 | `grok-4.7-high` | Grok 4.7 (via Cursor) | — | High thinking tier. Cursor lists the Grok 4.7 ids without the `cursor-` prefix the 4.5 and 4.6 ids carry |
+| 23 | `grok-4.7-high-fast` | Grok 4.7 (via Cursor) | — | High tier, low-latency `-fast` variant |
+| 24 | `grok-4.7-low` | Grok 4.7 (via Cursor) | — | xAI Grok 4.7, low thinking tier |
+| 25 | `grok-4.7-low-fast` | Grok 4.7 (via Cursor) | — | Low tier, low-latency `-fast` variant |
+| 26 | `grok-4.7-medium` | Grok 4.7 (via Cursor) | — | Medium thinking tier |
+| 27 | `grok-4.7-medium-fast` | Grok 4.7 (via Cursor) | — | Medium tier, low-latency `-fast` variant |
+| 28 | `grok-4.7-xhigh` | Grok 4.7 (via Cursor) | — | Extra-high thinking tier |
+| 29 | `grok-4.7-xhigh-fast` | Grok 4.7 (via Cursor) | — | Extra-high tier, low-latency `-fast` variant |
 
 **Any other id — including `auto`, every other GPT-5.6 persona/tier, and every Claude / other Gemini / Kimi id in Cursor's full roster — is out of scope.** Escalate to the operator rather than dispatching or silently substituting the closest-sounding allowed model. Do NOT query `cursor-agent --list-models` to justify an off-list id; that command lists Cursor's full roster, not this skill's scope.
 
@@ -79,7 +86,7 @@ Sorted alphabetically by model id, not grouped by family.
 
 **Gemini 3.8 Flash High joins the allowlist (2026-08-15).** `gemini-3.8-flash-high` is the first Gemini id in the curated Cursor scope (20 → 21). Cursor's display name for it is just "Gemini 3.8 Flash" — the High tier lives in the id suffix, unlike sibling tiers `gemini-3.8-flash-low` and `gemini-3.8-flash-medium`, which stay out of scope. The id was confirmed present verbatim in the live `cursor-agent --list-models` output and **dispatch-tested end-to-end** on 2026-08-15 (probe dispatch returned a live model response, exit 0).
 
-**Grok 4.7 xhigh fast joins the allowlist (2026-09-26).** `grok-4.7-xhigh-fast` takes the curated scope from 21 to 22 and sorts last. Cursor lists the 4.7 family without the `cursor-` prefix the 4.5 and 4.6 ids carry, in four tiers (`low`, `medium`, `high`, `xhigh`), each with a `-fast` sibling, and no Max tier. Only `grok-4.7-xhigh-fast` is in scope; the other seven 4.7 ids stay out of scope. The id was copied from the live `cursor-agent --list-models` output on 2026-09-26 and **dispatch-tested** that day: `cursor-agent -p --model grok-4.7-xhigh-fast` replied `OK` with exit 0.
+**Grok 4.7 joins Grok 4.5 and 4.6 (2026-09-26).** All 8 Grok 4.7 ids were confirmed in the live `cursor-agent models` list and dispatch-tested end to end on 2026-09-26 with `cursor-agent 2026.09.26-dd393fe`, and each returned a live model response with exit 0. Cursor lists these ids without the `cursor-` prefix the Grok 4.5 and 4.6 ids carry. This is an addition to the allowlist, not a swap, so Grok 4.5 and 4.6 stay allowed and the count grows from 21 to 29.
 
 ---
 
@@ -119,7 +126,7 @@ If Cursor is not authenticated, the mode ASKS the operator to run `cursor-agent 
 | GPT-5.6 Luna | Only the Max tier is curated in-scope; `-fast` is the low-latency variant | `gpt-5.6-luna-max`, `gpt-5.6-luna-max-fast` |
 | Grok 4.5 | Pick the exact id with the desired tier suffix (each has a `-fast` sibling) | `-low`, `-low-fast`, `-medium`, `-medium-fast`, `-high`, `-high-fast` |
 | Grok 4.6 | Pick the exact id with the desired tier suffix (each has a `-fast` sibling) — adds `xhigh` beyond 4.5 | `-low`, `-low-fast`, `-medium`, `-medium-fast`, `-high`, `-high-fast`, `-xhigh`, `-xhigh-fast` |
-| Grok 4.7 | Only the extra-high fast id is curated in-scope | `grok-4.7-xhigh-fast` |
+| Grok 4.7 | Pick the exact id with the desired tier suffix (each has a `-fast` sibling). The ids carry no `cursor-` prefix | `-low`, `-low-fast`, `-medium`, `-medium-fast`, `-high`, `-high-fast`, `-xhigh`, `-xhigh-fast` |
 
 **Bracket syntax is rejected outright by the CLI.** Live-tested against installed `cursor-agent 2026.07.23-e383d2b` with `composer-2.5[effort=high]`, Cursor's own `--help` example (`claude-opus-4-8[context=1m,effort=high,fast=false]`), and `cursor-grok-4.5[effort=high]`; each returned `Cannot use this model: ...` with exit 1 before repository dispatch code runs. Use `cursor-grok-4.6-high`, never `cursor-grok-4.6[effort=high]`.
 
@@ -155,7 +162,7 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs` (executor kind `cl
 
 ## 6. ENFORCEMENT & PROFILES (authoritative elsewhere — do not duplicate here)
 
-- **Allowlist enforcement (source of truth)** → `CURSOR_SUPPORTED_MODELS` / `isCursorModelAllowed` in [../../../system-deep-loop/runtime/lib/deep-loop/executor-config.ts](../../../system-deep-loop/runtime/lib/deep-loop/executor-config.ts). The 22-id list inline in §2 MIRRORS this array; the code ENFORCES it (a hard-rejecting check runs before any command is constructed). If the two ever diverge, the code wins — update §2 to match.
+- **Allowlist enforcement (source of truth)** → `CURSOR_SUPPORTED_MODELS` / `isCursorModelAllowed` in [../../../system-deep-loop/runtime/lib/deep-loop/executor-config.ts](../../../system-deep-loop/runtime/lib/deep-loop/executor-config.ts). The 29-id list inline in §2 MIRRORS this array; the code ENFORCES it (a hard-rejecting check runs before any command is constructed). If the two ever diverge, the code wins — update §2 to match.
 - **Fan-out dispatcher** → [../../../system-deep-loop/runtime/scripts/fanout-run.cjs](../../../system-deep-loop/runtime/scripts/fanout-run.cjs) (executor kind `cli-cursor`)
 - **Live full roster** → `cursor-agent --list-models` on the target install (NOT this skill's scope)
 

@@ -2,9 +2,7 @@
 title: "Changelog: Review Drift Remediation [008-review-and-rollback-followup/002-review-drift-remediation]"
 description: "Changelog for the review drift remediation phase: reconciling the 036 parent's children_ids, PHASE DOCUMENTATION MAP, legacy 065 child aliases, and the 029 status contradiction."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review and rollback followup review drift remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

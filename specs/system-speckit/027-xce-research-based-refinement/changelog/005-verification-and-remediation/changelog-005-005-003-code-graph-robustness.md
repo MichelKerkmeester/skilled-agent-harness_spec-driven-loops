@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/005/003 code-graph robustness changelog"
   - "cleanup orphans transaction tombstone fix"
   - "symbol bm25 add idempotency"
+  - "verification and remediation code graph robustness changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

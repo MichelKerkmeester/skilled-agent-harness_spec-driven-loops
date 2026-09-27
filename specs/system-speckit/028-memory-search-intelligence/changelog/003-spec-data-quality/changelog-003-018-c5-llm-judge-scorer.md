@@ -2,9 +2,7 @@
 title: "Changelog: C5 LLM-as-judge quality scorer [003-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer]"
 description: "Chronological changelog for the C5 LLM-as-judge quality scorer phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality c5 llm judge scorer changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

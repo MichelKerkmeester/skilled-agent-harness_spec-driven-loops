@@ -7,6 +7,7 @@ trigger_phrases:
   - "retry-manager failure_reason masking"
   - "embedding generation returned null bug"
   - "circuit breaker provider error"
+  - "memory and causal runtime embedding error propagation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

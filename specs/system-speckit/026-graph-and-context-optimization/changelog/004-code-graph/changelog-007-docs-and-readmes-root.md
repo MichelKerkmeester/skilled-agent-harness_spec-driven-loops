@@ -5,6 +5,7 @@ trigger_phrases:
   - "007-docs-and-readmes rollup"
   - "007-docs-and-readmes phase parent"
   - "007-docs-and-readmes changelog index"
+  - "code graph docs and readmes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

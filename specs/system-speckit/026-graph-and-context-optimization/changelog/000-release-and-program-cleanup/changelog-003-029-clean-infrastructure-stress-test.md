@@ -7,6 +7,7 @@ trigger_phrases:
   - "phase K stress test"
   - "029 clean infrastructure"
   - "v1.0.3 caveat closure"
+  - "release and program cleanup clean infrastructure stress test changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

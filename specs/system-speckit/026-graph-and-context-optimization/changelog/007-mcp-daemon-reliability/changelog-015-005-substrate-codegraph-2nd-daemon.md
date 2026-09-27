@@ -7,6 +7,7 @@ trigger_phrases:
   - "substrate sun_path socket dir fix"
   - "substrate stress harness code-graph"
   - "code-graph daemon substrate runner"
+  - "mcp daemon reliability substrate codegraph 2nd daemon changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

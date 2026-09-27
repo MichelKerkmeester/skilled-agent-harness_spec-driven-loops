@@ -9,6 +9,7 @@ trigger_phrases:
   - "cross-launcher spawn coordination"
   - "SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED"
   - "hf-embed.pid single-winner channel"
+  - "memory and causal runtime skill advisor shared wiring changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

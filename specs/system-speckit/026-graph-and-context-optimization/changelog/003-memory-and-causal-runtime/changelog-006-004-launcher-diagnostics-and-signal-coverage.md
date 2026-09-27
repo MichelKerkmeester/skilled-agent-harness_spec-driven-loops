@@ -7,6 +7,7 @@ trigger_phrases:
   - "isLeaseHeld readonly probe"
   - "mcp launcher startedAt diagnostics"
   - "launcher lease test hygiene"
+  - "memory and causal runtime launcher diagnostics and signal coverage changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

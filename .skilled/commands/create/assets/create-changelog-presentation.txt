@@ -101,7 +101,7 @@ Q2. Execution Mode (if no :auto/:confirm suffix)
 A) Interactive - confirm at each step
 B) Autonomous - execute without prompts
 
-Q3. Publish Release? (if no --release flag)
+Q3. Publish Release? (skilled release line only; if no --release flag)
 A) Yes - create tag and GitHub release after changelog
 B) No - only create the changelog file
 
@@ -135,7 +135,7 @@ Proceed only when every required field has a value.
 `Release Published` reflects what step 7 (`step_7_publish_release`) actually did, not the raw `publish_release` input:
 - `publish_release` was `false` (default or explicit No) -> `Not requested`
 - `publish_release` was `true` and the tag + release were created -> `Yes -- {release_tag} ({release_url})`
-- `publish_release` was `true` but publishing did not happen (nested changelog_mode, tag collision, missing `gh` auth, or skipped/aborted at the Step 7 checkpoint) -> `No -- {reason}`
+- `publish_release` was `true` but publishing did not happen (nested changelog_mode, a component other than `skilled`, tag collision, missing `gh` auth, or skipped/aborted at the Step 7 checkpoint) -> `No -- {reason}`
 
 ```text
 Changelog Created

@@ -7,6 +7,7 @@ trigger_phrases:
   - "ccc stale pipx fix"
   - "bake-off harness CCC resolution"
   - "cocoindex-code direct_url editable"
+  - "memory and causal runtime cocoindex install hygiene changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

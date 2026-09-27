@@ -2,9 +2,7 @@
 title: "Changelog: True-Citation Ledger Density Benchmark [005-dark-flag-graduation/003-true-citation-ledger]"
 description: "Chronological changelog for the True-Citation Ledger Density Benchmark benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation true citation ledger changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

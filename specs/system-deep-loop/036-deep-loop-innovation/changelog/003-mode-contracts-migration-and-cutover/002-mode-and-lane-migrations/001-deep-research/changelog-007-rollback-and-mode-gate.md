@@ -2,9 +2,7 @@
 title: "Changelog: Deep Research - Rollback and Mode Gate [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate]"
 description: "Changelog for the deep research rollback and mode gate phase: the fail-closed rollback switch and independent migration gate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep research rollback and mode gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

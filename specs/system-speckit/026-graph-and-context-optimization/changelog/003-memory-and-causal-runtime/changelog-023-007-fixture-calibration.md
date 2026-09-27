@@ -7,6 +7,7 @@ trigger_phrases:
   - "calibration perturbation harness"
   - "ROBUST verdict gates"
   - "residual miss taxonomy"
+  - "memory and causal runtime fixture calibration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

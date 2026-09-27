@@ -7,6 +7,7 @@ trigger_phrases:
   - "010/002 jina swap partial"
   - "skill-advisor embedder swap deferred"
   - "vec_1024 half-wired"
+  - "memory and causal runtime jina swap and reindex changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

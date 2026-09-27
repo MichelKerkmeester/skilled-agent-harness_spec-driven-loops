@@ -7,6 +7,7 @@ trigger_phrases:
   - "repairSuccessCoverage flag"
   - "vector coverage repair"
   - "missing vector success rows"
+  - "memory and causal runtime success vector coverage hygiene changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

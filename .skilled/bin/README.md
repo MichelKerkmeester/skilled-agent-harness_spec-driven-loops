@@ -24,7 +24,7 @@ Current state:
 - Shared launcher behavior (model-server supervision, stdio-to-socket bridging, sidecar env allowlist) lives in `lib/`. The CLI shims' dist entrypoints reuse `lib/launcher-ipc-bridge.cjs` for socket-path resolution and warm-daemon probes.
 - A second family serves and publishes **compiled routing**. `compiled-route.cjs` is the runtime front door a hub calls to ask whether the compiled router is authoritative for it, falling back to legacy routing when it is not. `compiled-route-status.cjs` reports per-hub serving state with a cause code that separates expected drift from breakage. `compiled-route-guard.cjs` is the gate: it fails when a hub's activation manifest no longer matches what its routing inputs compile to, or when the promoted runtime and its authored source disagree. `compiled-route-sync.cjs` publishes a new closure by tracing, staging, verifying, swapping and then finalizing or reverting. `compiled-route-manifest.cjs` is a thin CLI over the activation-manifest library in `lib/`.
 - `check-no-spec-imports.cjs` proves the durable invariant behind that family: nothing under `bin/` reaches into `specs/` (or its `.opencode/specs` compat alias) at runtime, so the serving path cannot break when the authored tree moves.
-- The remaining files are repository tooling. `worktree-*.sh` launch, prune, guard and report on per-session git worktrees. `git-sync.sh` and `git-live-follow.sh` back the continuous-integration workflow, and `git-primary-reconcile.sh` converges the primary checkout onto its live branch at session start without touching a dirty tree. `check-git-hooks.sh` warns at session start when git hooks are missing or drifted, `relink-local-specs.sh` restores the machine-local spec symlinks after a clean, and `install-codex-hooks.mjs` merges the versioned Codex hook set into the user-global config.
+- The remaining files are repository tooling. `worktree-*.sh` launch, prune, guard and report on per-session git worktrees. `git-sync.sh` and `git-live-follow.sh` back the continuous-integration workflow, and `git-primary-reconcile.sh` converges the primary checkout onto its live branch at session start without touching a dirty tree. `check-git-hooks.sh` warns at session start when git hooks are missing or drifted, `relink-local-specs.sh` restores the machine-local spec symlinks after a clean, and `install-codex-hooks.mjs` removes copies of the repo's Codex hooks from the user-global config.
 
 ---
 
@@ -76,7 +76,7 @@ bin/
 +-- check-git-hooks.sh             # SessionStart guard warning on missing or drifted git hooks
 +-- git-primary-reconcile.sh       # SessionStart reconcile: converge the primary checkout onto its live branch
 +-- relink-local-specs.sh          # Restore machine-local spec symlinks after a destructive clean
-+-- install-codex-hooks.mjs        # Merges the versioned Codex hook set into the user-global config
++-- install-codex-hooks.mjs        # Removes repo-owned Codex hooks from the user-global config
 +-- speckit-completion.cjs         # Completion-state CLI over the runtime-neutral core
 +-- compiled-route.cjs             # Runtime front door: is the compiled router authoritative for a hub
 +-- compiled-route-status.cjs      # Per-hub serving status with a cause code separating drift from breakage
@@ -158,13 +158,13 @@ Main flow:
 | `bash .skilled/bin/worktree-session.sh <runtime> [args]` | CLI | Launch an AI session in its own git worktree + branch + isolated MCP databases. Top-level sessions isolate. orchestrated children (`AI_SESSION_CHILD=1` or already inside a linked worktree) exec in place. `--dry-run` prints the plan. |
 | `bash .skilled/bin/worktree-reaper.sh [--dry-run]` | CLI | Prune merged + clean per-session worktrees, stale socket dirs and session markers. never signals a process. Auto-reap is restricted to proven-inactive exact `work/<runtime>/<slug>` pairs (the whole marker file must match a PID grammar, a malformed marker is treated as ambiguous and the worktree is kept. the branch's runtime/slug must equal the directory basename). |
 | `bash .skilled/bin/worktree-guard.sh` | CLI / SessionStart hook | Detect-and-warn: prints a one-line stderr warning when a top-level session is on shared `main`/`master` instead of an isolated worktree. Non-fatal (always exits 0). silent for children, inside worktrees, non-git dirs, or with `SPECKIT_WORKTREE_GUARD=off`. |
-| `node .skilled/bin/compiled-route.cjs --hub <id> --prompt "<task>"` | CLI | Ask whether the compiled router is authoritative for a hub. Returns a legacy sentinel when it is not. |
+| `node .skilled/bin/compiled-route.cjs --hub <id> --prompt "<task>"` | CLI | Ask whether the compiled router is authoritative for a hub. Returns a legacy sentinel when it is not. `--prompt-stdin` reads the prompt from stdin instead, which keeps a user's prompt out of the process table. |
 | `node .skilled/bin/compiled-route-status.cjs --all` | CLI | Report per-hub serving authority and a cause code separating expected drift from breakage. |
 | `node .skilled/bin/compiled-route-guard.cjs [--warn-only] [--json]` | CLI | Fail when a hub's serving manifest no longer matches its inputs, or when the runtime and its authored source disagree. |
 | `node .skilled/bin/compiled-route-sync.cjs [--check] [--verify] [--finalize <path>] [--revert <path>]` | CLI | Trace the authored closure, publish it atomically, and finalize or revert the retained rollback. |
 | `node .skilled/bin/compiled-route-manifest.cjs <command>` | CLI | Mint, refresh or inspect a hub activation manifest through the library in `lib/`. |
 | `node .skilled/bin/check-no-spec-imports.cjs` | CLI | Prove no file here reaches into the spec tree at runtime. |
-| `node .skilled/bin/install-codex-hooks.mjs` | CLI | Merge the repo's versioned Codex hook set (lifecycle + tool-level guards) into user-global `~/.codex/hooks.json`. Backs up to `.bak-<ts>` first, preserves Superset/user entries, substitutes the repo path, and is idempotent (re-runs add nothing). |
+| `node .skilled/bin/install-codex-hooks.mjs` | CLI | Remove copies of the repo's Codex hooks, and orphaned repo entries, from user-global `~/.codex/hooks.json`; Codex already runs the project's own `.codex/hooks.json`, so a copy would run each hook twice. Backs up to `.bak-<ts>` first, preserves Superset and other third-party entries, and never rewrites a clean file. `--check` exits 1 while a copy or orphan remains. |
 
 ### Daemon-backed CLI shims
 

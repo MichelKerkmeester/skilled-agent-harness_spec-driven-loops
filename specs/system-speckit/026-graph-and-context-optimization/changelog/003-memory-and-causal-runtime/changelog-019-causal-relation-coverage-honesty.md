@@ -6,6 +6,7 @@ trigger_phrases:
   - "relation coverage misleading hint"
   - "memory_causal_stats autorepair no op"
   - "autonomous causal relation backfill not implemented"
+  - "memory and causal runtime causal relation coverage honesty changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

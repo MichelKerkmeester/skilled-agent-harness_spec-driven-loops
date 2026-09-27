@@ -1,0 +1,32 @@
+{
+  "claude": {
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "implement feature",
+    "session_id": "cadence-session",
+    "transcript_path": "<temp-transcript>",
+    "cwd": "<repo-root>"
+  },
+  "codex": {
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "implement feature",
+    "session_id": "cadence-session",
+    "transcript_path": "<temp-transcript>",
+    "cwd": "<repo-root>"
+  },
+  "cursor": {
+    "hook_event_name": "beforeSubmitPrompt",
+    "prompt": "implement feature",
+    "session_id": "cadence-session",
+    "transcript_path": "<temp-transcript>",
+    "workspace_roots": [
+      "<repo-root>"
+    ]
+  },
+  "devin": {
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "implement feature",
+    "session_id": "cadence-session",
+    "transcript_path": "<temp-transcript>",
+    "cwd": "<repo-root>"
+  }
+}

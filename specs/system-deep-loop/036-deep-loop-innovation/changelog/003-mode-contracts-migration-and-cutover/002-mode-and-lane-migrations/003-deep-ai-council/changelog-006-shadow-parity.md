@@ -2,9 +2,7 @@
 title: "Changelog: Deep AI Council — Shadow Parity [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity]"
 description: "Changelog for the deep ai council shadow parity phase: running the ledger path beside the legacy council emitter and comparing projections event-for-event."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep ai council shadow parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

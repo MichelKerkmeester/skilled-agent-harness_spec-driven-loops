@@ -2,9 +2,7 @@
 title: "Changelog: Close the Readiness-Gate, Rollback-Switch and Mode-Contract Conformance Boundaries [006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding]"
 description: "Changelog for the mode-gate and contract binding phase: closing the readiness-gate, rollback-switch and mode-contract conformance boundaries with one shared strict gate validator."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity mode gate and contract binding changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

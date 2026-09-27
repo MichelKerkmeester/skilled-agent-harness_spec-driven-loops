@@ -21,15 +21,26 @@ Filled-in changelog entries in the v4 narrative style, annotated to explain the 
 
 ## 1. OVERVIEW
 
-These examples apply the shared format in [../assets/changelog-template.md](../assets/changelog-template.md) to real content. The canonical full-scale exemplar is `.skilled/changelog/system-spec-kit/v4.0.0.0.md`. Read it for the complete expanded shape: opening narrative, Why This Release, What's New at a Glance, topical sections, Upgrade Notes. The seven-step workflow in [../SKILL.md](../SKILL.md) stays authoritative. Open this file when you want a filled-in entry to model, not the blank template.
+These examples apply the shared format in [../assets/changelog-template.md](../assets/changelog-template.md) to real content. The canonical full-scale exemplar is `.skilled/changelog/skilled/v4.0.0.0.md`. Read it for the complete expanded shape: opening narrative, Why This Release, What's New at a Glance, topical sections, Upgrade Notes. The seven-step workflow in [../SKILL.md](../SKILL.md) stays authoritative. Open this file when you want a filled-in entry to model, not the blank template.
 
 ---
 
 ## 2. COMPACT GLOBAL ENTRY
 
-Compact format for a release under 10 changes with no breaking change. The example is the v1.1.0.0 release of this very packet, written in the format it teaches. The exemplar adds YAML frontmatter and an editorial title H1 above the narrative. Both shapes are valid: the narrative always opens the prose.
+Compact format for a release under 10 changes with no breaking change. The example is the v1.1.0.0 release of this very packet, written in the format it teaches. Every entry opens with its frontmatter block, the search metadata the Frontmatter Contract in SKILL.md section 5 defines. The exemplar also puts an editorial title H1 between the block and the narrative. Both shapes are valid: the narrative always opens the prose.
 
 ```markdown
+---
+title: "sk-create-changelog v1.1.0.0"
+description: "The changelog template now teaches the narrative shape the v4 release notes established, and validation enforces its voice and omission rules."
+trigger_phrases:
+  - "sk-create-changelog v1.1.0.0"
+  - "sk-create-changelog 1.1.0.0"
+  - "changelog narrative template"
+importance_tier: "normal"
+contextType: "general"
+---
+
 The changelog template now teaches the narrative shape the v4 release notes established. Generated changelogs open with why the release matters, name their sections for the domain they change, and drop the machine-era tables that no reader asked for. Voice, omission and conciseness rules are enforced at validation time by the Human Voice scanner and a structural check pass.
 
 > Spec folder: `specs/sk-doc/057-sk-create-changelog-v4-style` (Level 1)
@@ -48,6 +59,7 @@ No migration required. Existing changelog files stay as written, and new changel
 
 **Annotations**:
 
+- The frontmatter block comes first. Its identity phrases name the component and version the way a reader asks for them, and its topic phrase names what changed in the entry's own words.
 - The opening paragraph states what the release does and why it matters in three sentences. No file paths, no file counts, no test numbers.
 - The spec-folder blockquote keeps the packet record without a table.
 - Every at-a-glance bullet opens with a bold lead-in sentence, matching the exemplar's bullets, then adds one plain sentence on the same list line. Four bullets for four themes, not one bullet per file.
@@ -58,7 +70,7 @@ No migration required. Existing changelog files stay as written, and new changel
 
 ## 3. EXPANDED FORMAT EXCERPT
 
-For 10 or more changes, a major bump, or a breaking change. The excerpt condenses one topical section to show the pattern. It is written in the exemplar's style, not quoted from it. Model the opening narrative, Why This Release and at-a-glance sections on `.skilled/changelog/system-spec-kit/v4.0.0.0.md`.
+For 10 or more changes, a major bump, or a breaking change. The excerpt condenses one topical section to show the pattern. It is written in the exemplar's style, not quoted from it. Model the opening narrative, Why This Release and at-a-glance sections on `.skilled/changelog/skilled/v4.0.0.0.md`.
 
 ```markdown
 ## Retrieval
@@ -136,4 +148,4 @@ This packet adds the `create-changelog` sub-skill to the sk-doc parent hub and r
 - [version-bump-rules.md](version-bump-rules.md) - choosing and calculating the global four-part version
 - [topology-edge-cases.md](topology-edge-cases.md) - placement, back-dating, source conflicts, and release edge cases
 - [../SKILL.md](../SKILL.md) - authoritative packet workflow
-- `.skilled/changelog/system-spec-kit/v4.0.0.0.md` - the canonical exemplar
+- `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar

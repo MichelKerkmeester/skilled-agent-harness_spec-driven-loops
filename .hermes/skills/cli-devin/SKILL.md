@@ -105,7 +105,7 @@ if detect_self_invocation():
 
 ### Smart Router
 
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md)):
 
 ```python
 INTENT_SIGNALS = {
@@ -157,7 +157,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
 6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
 
-The `route_devin_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `devin`.
+The `route_devin_resources(task)` function body lives in [`shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `devin`.
 
 ---
 
@@ -165,11 +165,11 @@ The `route_devin_resources(task)` function body lives in [`shared-smart-router.m
 
 ### Prerequisites
 
-Install via `devin setup` (interactive wizard) or `curl -fsSL https://devin.ai/install | bash`. cli-devin authenticates through **Devin account OAuth** — run `devin auth login` and complete the browser flow (or `--force-manual-token-flow` for SSH/remote sessions). Full install, auth, flag, permission-mode, session, and troubleshooting tables live in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
+Install via `devin setup` (interactive wizard) or `curl -fsSL https://devin.ai/install | bash`. cli-devin authenticates through **Devin account OAuth** — run `devin auth login` and complete the browser flow (or `--force-manual-token-flow` for SSH/remote sessions). Full install, auth, flag, permission-mode, session, and troubleshooting tables live in the ALWAYS-loaded [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
 
 ### Execution Ownership
 
-This packet owns user-facing routing, the `command -v devin` availability probe, prompt construction, and the self-invocation guard. Research and review lineages delegate process construction and execution to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-devin`. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
+This packet owns user-facing routing, the `command -v devin` availability probe, prompt construction, and the self-invocation guard. Research and review lineages delegate process construction and execution to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-devin`. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md) §5.
 
 The runtime is the single Devin execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `devin -p` snippets below are operator reference and manual-testing examples; research and review lineages use the shared runtime, and a one-shot dispatch uses the child envelope.
 
@@ -254,13 +254,13 @@ Honor whichever dimensions the user names. Model stays on `swe` and permission m
 
 ### Model Selection
 
-Default `swe` (alias → `swe-2`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-1-flash-high`, `deepseek-v4-1-flash-max`, `deepseek-v4-flash-max`), Gemini (`gemini-3-8-flash-high`; the uid spells the family with dashes while the Cursor scope spells the same model with dots), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GLM-5.3 (`glm-5-3-flash-high`, `glm-5-3-flash-max`), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), GPT-6 Luna Max (`gpt-6-luna-max`, `gpt-6-luna-max-priority`; a separate family from GPT-5.6), SWE-2 (`swe-2-max`, `swe-2-high`, `swe-2-medium`; free, 262K context), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
+Default `swe` (alias → `swe-2`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-1-flash-high`, `deepseek-v4-1-flash-max`, `deepseek-v4-flash-max`), Gemini (`gemini-3-8-flash-high`; the uid spells the family with dashes while the Cursor scope spells the same model with dots), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GLM-5.3 (`glm-5-3-flash-high`, `glm-5-3-flash-max`), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), GPT-6 Luna Max (`gpt-6-luna-max`, `gpt-6-luna-max-priority`; a separate family from GPT-5.6), SWE-2 (`swe-2-max`, `swe-2-high`, `swe-2-medium`; free, 262K context), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md).
 
-**Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `gpt-5-6-luna-max` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-2-max` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `gpt-5-6-luna-max` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-2-max` for max-effort SWE work. Per-task rationale table: [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md) §5.
 
 ### Devin Subagent Delegation
 
-The calling AI is the conductor; Devin's `run_subagent` tool spawns independent workers that share tools and codebase context but operate in their own conversation chain. Two built-in profiles (`subagent_explore` read-only, `subagent_general` full-access) plus custom `.devin/agents/[name]/AGENT.md` profiles shape HOW Devin processes the subtask. Full roster and invocation patterns: [agent-delegation.md](./references/agent-delegation.md).
+The calling AI is the conductor; Devin's `run_subagent` tool spawns independent workers that share tools and codebase context but operate in their own conversation chain. Two built-in profiles (`subagent_explore` read-only, `subagent_general` full-access) plus custom `.devin/agents/[name]/AGENT.md` profiles shape HOW Devin processes the subtask. Full roster and invocation patterns: [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md).
 
 | Task Type | Profile | Model |
 |-----------|---------|-------|
@@ -332,11 +332,11 @@ Commands are not a missing Devin parity feature. The installed `devin --help` li
 
 ### Cloud Handoff
 
-Devin's unique `/handoff` command transfers the current session to a cloud Devin session with its own VM, shell, browser, and full repo access. Use for long-running tasks, complex refactors, CI-like validation, browser-dependent workflows, and parallel execution. Full mechanics and state transfer: [cloud-handoff.md](./references/cloud-handoff.md).
+Devin's unique `/handoff` command transfers the current session to a cloud Devin session with its own VM, shell, browser, and full repo access. Use for long-running tasks, complex refactors, CI-like validation, browser-dependent workflows, and parallel execution. Full mechanics and state transfer: [cloud-handoff.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md).
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary, permission modes, unique capabilities (`/handoff`, `run_subagent`, `devin mcp`, session resume/continue, `--sandbox`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Four gotchas that silently break a dispatch and must be honored at routing time:
+The full flag glossary, permission modes, unique capabilities (`/handoff`, `run_subagent`, `devin mcp`, session resume/continue, `--sandbox`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md). Four gotchas that silently break a dispatch and must be honored at routing time:
 
 - **`devin -p` is non-interactive and exits after one turn** — it prints the response to stdout and exits. For multi-turn work, use `devin -c` (continue) or `devin -r <session-id>` (resume). Do not expect a REPL from `-p`.
 - **`--permission-mode` defaults to `auto` (read-only auto-approve)** — file-modification tasks silently prompt or no-op without elevated mode. Pass `--permission-mode dangerous` whenever the task requires edits, and note that `accept-edits` is only half a grant: it permits writes but refuses the reads and commands an implementer needs, so a dispatch under it can burn its whole budget and exit 0 having written nothing. The `--sandbox` flag selects `autonomous` mode and is the only mode available in sandbox sessions.
@@ -359,7 +359,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 ### ✅ ALWAYS
 
 1. Verify Devin CLI is installed before first invocation (`command -v devin`).
-2. Delegate research and review lineages to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-devin`. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5. Never build a second adapter in this packet.
+2. Delegate research and review lineages to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-devin`. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md) §5. Never build a second adapter in this packet.
 3. Use `--permission-mode auto` for review/analysis/research; `--permission-mode dangerous` for code generation and file modification — `devin -p` itself defaults to `auto`, so omitting the flag causes a silent no-op on edit tasks. Prefer `dangerous` over `accept-edits` for any task that must read files or run its own verification; `accept-edits` refuses those calls and the dispatch fails silently.
 4. Validate Devin-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
@@ -375,7 +375,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 13. **Design Standards Loading (measured-reference contract)** — When dispatching for design or UI work, instruct the dispatched session to: (1) load `sk-design-md-generator`; (2) extract a measured Style Reference DESIGN.md (named color tokens, type scale, components, Quick-Start CSS/Tailwind) from the live source before building UI; (3) build against those measured tokens and run the extraction's validate step to confirm hex/section fidelity. Fallback: if there is no live source to measure, ask for the reference URL or the exact tokens to build against. NEVER treat `mcp-figma` or `sk-design-md-generator` as a taste, visual-direction, or critique authority — the extraction measures real CSS, it does not judge design.
 14. **Pass the design reference manifest to the dispatched session** — when dispatching design or UI work, inline a `DESIGN_DISPATCH_MANIFEST v1` block in the prompt (the child cannot resolve skill paths, so the manifest travels in the payload, not by reference): `styleReferenceExtracted` true, the live `source` that was measured, the measured design tokens / type scale / components the child must build against, `loadedFiles`, and `proofDemandBack`. If the manifest cannot be assembled — no Style Reference extracted, or no live source to measure — ASK before launching the child rather than starting a silent design dispatch. The child returns the demanded proof; the parent reconciles it on the return path.
 15. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-devin, cli-codex, cli-claude-code, cli-opencode, cli-cursor). Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL only the dispatch THIS skill started: capture its PID at launch (`devin -p -- ... & DEVIN_PID=$!`) and kill that captured PID directly plus its own orphan children (`kill -9 "$DEVIN_PID" 2>/dev/null; pkill -9 -P "$DEVIN_PID" 2>/dev/null`), then apply the same PID-scoped `gtimeout` cleanup. **Never use a blanket `pkill -9 -f "devin -p"` pattern** — that matches and kills EVERY running `devin` process on the machine, including the operator's unrelated devin sessions. Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each by its own captured PID as its work returns.
-16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt. when sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `devin -p` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 devin -p -- ... </dev/null`. Harmless when the wrapper is not in use. See `.skilled/bin/README.md` → "Worktree session isolation".
+16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../../../.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt. when sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `devin -p` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 devin -p -- ... </dev/null`. Harmless when the wrapper is not in use. See `.skilled/bin/README.md` → "Worktree session isolation".
 
 17. **Agent-persona injection (attach identity, not just the task).** Every dispatch composes `{resolved agent persona + task prompt}` — never a bare task. Resolve the persona from the ACTIVE runtime's agent directory per AGENTS.md §9 (`.skilled/agents/<name>.md`, `.claude/agents/<name>.md`, etc. — never hardcode one runtime), and map each subtask to the RIGHT agent (`code`→code, `review`→review, `design`→design, research→`deep-research`, docs→`markdown`), not one default. **Devin has a native persona surface:** dispatch via `run_subagent` naming the resolved profile (`.devin/agents/<name>/AGENT.md` mirrors all 13 canonical agents; see "Agent Roster Parity") — native resolution satisfies the rule. On a bare top-level `devin -p` that names no subagent, **INLINE** the persona block into the payload using the same in-payload pattern as the `DESIGN_DISPATCH_MANIFEST` (Rule 14) — the child cannot resolve agent paths by reference. A persona-less dispatch runs the leaf as a generic assistant, silently dropping the agent's tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection"; native precedent: `orchestrate.md` "Agent Loading Protocol". Rare exceptions (native surface used, focused summary for a small-context model, pure-mechanical command) are declared at the dispatch site.
 
@@ -397,7 +397,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 
 ### Memory Handback Protocol
 
-When the calling AI needs to preserve session context from a Devin CLI delegation, run the canonical procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file). The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md). Devin-specific Memory Epilogue template: [assets/prompt-templates.md](./assets/prompt-templates.md) §13.
+When the calling AI needs to preserve session context from a Devin CLI delegation, run the canonical procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file). The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../../.skilled/skills/system-spec-kit/references/cli/memory-handback.md). Devin-specific Memory Epilogue template: [assets/prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md) §13.
 
 ```bash
 printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin [spec-folder]
@@ -409,22 +409,22 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Core References
 
-- [cli-reference.md](./references/cli-reference.md) - Complete CLI subcommands, flags, permission modes, and config reference
-- [integration-patterns.md](./references/integration-patterns.md) - Cross-AI orchestration patterns and workflows
-- [devin-tools.md](./references/devin-tools.md) - Built-in capabilities documentation (run_subagent, /handoff, MCP, session management, Fetch)
-- [agent-delegation.md](./references/agent-delegation.md) - Subagent profile roster, routing table, and invocation patterns
-- [cloud-handoff.md](./references/cloud-handoff.md) - /handoff cloud-handoff mechanics, use cases, and state transfer
-- [manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md) - 20-scenario Devin-native manual validation package
+- [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md) - Complete CLI subcommands, flags, permission modes, and config reference
+- [integration-patterns.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md) - Cross-AI orchestration patterns and workflows
+- [devin-tools.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md) - Built-in capabilities documentation (run_subagent, /handoff, MCP, session management, Fetch)
+- [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md) - Subagent profile roster, routing table, and invocation patterns
+- [cloud-handoff.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md) - /handoff cloud-handoff mechanics, use cases, and state transfer
+- [manual-testing-playbook.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/manual-testing-playbook.md) - 20-scenario Devin-native manual validation package
 
 ### Templates and Assets
 
-- [prompt-templates.md](./assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
-- [prompt-quality-card.md](./assets/prompt-quality-card.md) - Fast-path prompt framework + CLEAR check (ALWAYS loaded)
+- [prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
+- [prompt-quality-card.md](../../../.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md) - Fast-path prompt framework + CLEAR check (ALWAYS loaded)
 
 ### Shared (cli-* family)
 
-- [shared-smart-router.md](../../system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
-- [memory-handback.md](../../system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
+- [shared-smart-router.md](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
+- [memory-handback.md](../../../.skilled/skills/system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
 
 ### External
 
@@ -461,7 +461,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in [AGENTS.md](../../../../AGENTS.md).
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`

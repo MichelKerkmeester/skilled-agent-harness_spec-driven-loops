@@ -11,6 +11,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const {
+  budgetApplies,
   extractDurableSlice,
   resolveGoalBudget,
   splitFrontmatter,
@@ -45,7 +46,8 @@ const CHECKS = [
   { name: 'missing-binding-row', run: evaluateMissingBindingRows },
   { name: 'placeholder', run: evaluatePlaceholders },
   { name: 'criteria-count', run: evaluateCriteriaCount },
-  { name: 'parent-budget', run: evaluateParentBudget }
+  { name: 'parent-budget', run: evaluateParentBudget },
+  { name: 'frontmatter-fence', run: evaluateFrontmatterFence }
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -115,9 +117,11 @@ function loadPacketContext(packetDir, options = {}) {
     packetLabel: getPacketLabel(absolutePacketDir, workspaceRoot),
     goalPath,
     content,
+    body: frontmatter.body,
     durableSlice,
     phaseChildren,
     isPhaseChild: isPhaseChildFolder(absolutePacketDir),
+    budgetApplies: budgetApplies(absolutePacketDir),
     budget,
     workspaceRoot
   };
@@ -335,8 +339,10 @@ function evaluateCriteriaCount(context) {
   )];
 }
 
+// The hook's own test decides which goals carry the cap, so this check and
+// `goal.cjs packet` never disagree about a phase parent nested in a packet.
 function evaluateParentBudget(context) {
-  if (context.isPhaseChild) return [];
+  if (!context.budgetApplies) return [];
   if (!context.budget || !Number.isInteger(context.budget.errorChars)) {
     return [createFinding(
       'parent-budget',
@@ -353,6 +359,22 @@ function evaluateParentBudget(context) {
     'parent-budget',
     'durable slice is ' + durableChars + ' characters, over the '
       + context.budget.errorChars + '-character limit',
+    context
+  )];
+}
+
+// Frontmatter closes at its first fence line, so a `---` inside it ends the
+// block early and the rest reaches both slices as goal text. What is left
+// behind shows up as a bare fence line ahead of the first heading.
+function evaluateFrontmatterFence(context) {
+  const lines = context.body.split(/\r\n|\r|\n/u);
+  const headingIndex = lines.findIndex((line) => /^#{1,6}\s+/u.test(line));
+  const preamble = headingIndex < 0 ? lines : lines.slice(0, headingIndex);
+  if (!preamble.some((line) => /^---[ \t]*$/u.test(line))) return [];
+  return [createFinding(
+    'frontmatter-fence',
+    'frontmatter-fence',
+    'a bare --- line sits before the first heading, so the frontmatter closed early and the text after it reads as goal text',
     context
   )];
 }
@@ -606,7 +628,7 @@ function checkCriteriaCount(packetDir, options = {}) {
 }
 
 /**
- * Measure a non-child goal with the shared durable-slice budget.
+ * Measure a goal the budget applies to with the shared durable-slice budget.
  *
  * @param {string} packetDir - Packet directory containing goal.md.
  * @param {Object} [options] - Optional workspace context.
@@ -616,6 +638,19 @@ function checkCriteriaCount(packetDir, options = {}) {
  */
 function checkParentBudget(packetDir, options = {}) {
   return runOneCheck('parent-budget', evaluateParentBudget, packetDir, options);
+}
+
+/**
+ * Find a fence line left in the body by frontmatter that closed early.
+ *
+ * @param {string} packetDir - Packet directory containing goal.md.
+ * @param {Object} [options] - Optional workspace context.
+ * @param {string} [options.workspaceRoot] - Repository root for budget lookup.
+ * @param {{errorChars: number} | null} [options.budget] - Pre-resolved budget.
+ * @returns {Object} Check name, findings, read errors and pass state.
+ */
+function checkFrontmatterFence(packetDir, options = {}) {
+  return runOneCheck('frontmatter-fence', evaluateFrontmatterFence, packetDir, options);
 }
 
 /**
@@ -684,6 +719,7 @@ module.exports = {
   checkPlaceholders,
   checkCriteriaCount,
   checkParentBudget,
+  checkFrontmatterFence,
   checkGoalPacket,
   scanCorpus
 };

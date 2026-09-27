@@ -2,9 +2,7 @@
 title: "Changelog: Memory MCP Retrieval-Class Routing and Recall-Shape Intelligence [001-speckit-memory/003-retrieval-class-routing]"
 description: "Chronological changelog for the Memory MCP retrieval-class routing and recall-shape intelligence phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory retrieval class routing changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

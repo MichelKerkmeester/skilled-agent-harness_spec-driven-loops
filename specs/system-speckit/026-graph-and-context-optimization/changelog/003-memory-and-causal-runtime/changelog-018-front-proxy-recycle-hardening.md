@@ -7,6 +7,7 @@ trigger_phrases:
   - "cold start timeout proxy"
   - "lease held fail fast"
   - "lazy init process exit daemon"
+  - "memory and causal runtime front proxy recycle hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

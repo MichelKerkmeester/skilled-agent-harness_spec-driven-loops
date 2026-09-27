@@ -7,6 +7,7 @@ trigger_phrases:
   - "probeModelServer"
   - "lazy sibling-child spawn"
   - "launcher supervision hf model server"
+  - "memory and causal runtime launcher supervision changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

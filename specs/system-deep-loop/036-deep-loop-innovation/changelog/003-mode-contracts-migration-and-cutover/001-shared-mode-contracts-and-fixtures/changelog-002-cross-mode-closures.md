@@ -2,9 +2,7 @@
 title: "Changelog: Cross-Mode Closures [003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/002-cross-mode-closures]"
 description: "Changelog for the cross-mode closures phase: hoisting recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures shared by all phase-013 migrations."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared mode contracts and fixtures cross mode closures changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

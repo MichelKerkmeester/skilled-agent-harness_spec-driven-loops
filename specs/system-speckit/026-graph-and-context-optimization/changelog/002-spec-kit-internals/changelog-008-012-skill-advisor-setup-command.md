@@ -2,9 +2,7 @@
 title: "Changelog: Skill Advisor Setup Command [006-skill-advisor/005-advisor-setup-command]"
 description: "Chronological changelog for the Skill Advisor Setup Command phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec kit internals skill advisor setup command changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

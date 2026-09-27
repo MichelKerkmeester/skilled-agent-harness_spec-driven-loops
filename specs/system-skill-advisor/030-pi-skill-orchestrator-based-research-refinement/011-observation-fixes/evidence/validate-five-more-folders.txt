@@ -1,0 +1,17 @@
+# Five more wrong phase labels found by the final-state check, 2026-09-27
+# Same create.sh bug as the 13: an invocation that appended N phases numbered them 1 to N.
+# command: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict
+## before regenerating
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/022-source-capabilities-and-structured-preference | exit=2 | RESULT: FAILED | Summary: Errors: 3  Warnings: 3
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/023-live-proof-and-parity-hardening | exit=2 | RESULT: FAILED | Summary: Errors: 3  Warnings: 3
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/025-source-capabilities-and-structured-preference | exit=2 | RESULT: FAILED | Summary: Errors: 3  Warnings: 3
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/026-live-proof-and-parity-hardening | exit=2 | RESULT: FAILED | Summary: Errors: 3  Warnings: 3
+cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard | exit=0 | RESULT: PASSED | Summary: Errors: 0  Warnings: 0
+## after regenerating
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/022-source-capabilities-and-structured-preference | exit=2 | RESULT: FAILED | Summary: Errors: 3  Warnings: 2
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/023-live-proof-and-parity-hardening | exit=2 | RESULT: FAILED | Summary: Errors: 3  Warnings: 2
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/025-source-capabilities-and-structured-preference | exit=2 | RESULT: FAILED | Summary: Errors: 3  Warnings: 2
+system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/026-live-proof-and-parity-hardening | exit=2 | RESULT: FAILED | Summary: Errors: 3  Warnings: 2
+cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard | exit=0 | RESULT: PASSED | Summary: Errors: 0  Warnings: 0
+## labels: the four quarantine folders were 'Phase 2:' or 'Phase 3:' and now carry their folder number (their spec.md was never written). 016 was 'Phase 4:' and now carries its spec.md's first sentence.
+## rollback: git checkout <commit>^ -- <folder>/description.json

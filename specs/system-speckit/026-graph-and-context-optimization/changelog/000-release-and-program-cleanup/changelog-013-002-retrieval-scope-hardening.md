@@ -6,6 +6,7 @@ trigger_phrases:
   - "retrieval scope changelog"
   - "causal graph hardening changelog"
   - "memory search session trust"
+  - "release and program cleanup retrieval scope hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

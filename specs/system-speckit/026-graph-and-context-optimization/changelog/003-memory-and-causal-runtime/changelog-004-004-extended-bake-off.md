@@ -7,6 +7,7 @@ trigger_phrases:
   - "stella xformers skip apple silicon"
   - "hybrid rerank not firing pipx erratum"
   - "016 004 004 benchmark results"
+  - "memory and causal runtime extended bake off changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

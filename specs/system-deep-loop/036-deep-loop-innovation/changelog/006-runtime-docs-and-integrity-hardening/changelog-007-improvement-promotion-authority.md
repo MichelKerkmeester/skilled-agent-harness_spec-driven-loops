@@ -2,9 +2,7 @@
 title: "Changelog: Bind Promotion, Rollback and Council Persistence to Authenticated Receipts and Authorized Roots [006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority]"
 description: "Changelog for the improvement-promotion authority phase: binding promotion, rollback and council persistence to authenticated receipts and authorized roots so mutable local JSON is never the sole authority."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity hardening improvement promotion authority changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

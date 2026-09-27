@@ -2,9 +2,7 @@
 title: "Changelog: Phase 5: deep-ai-council Frontmatter Alignment [009-skill-frontmatter-alignment/005-deep-ai-council]"
 description: "Chronological changelog for the Phase 5: deep-ai-council Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup deep ai council changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

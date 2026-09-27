@@ -2,9 +2,7 @@
 title: "Changelog: z_future Always Ignored In Backfill [003-spec-data-quality/005-shared-engine-and-research/032-z-future-always-ignored]"
 description: "Chronological changelog for the z_future always ignored in backfill phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality z future always ignored changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

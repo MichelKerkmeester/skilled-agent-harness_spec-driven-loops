@@ -7,6 +7,7 @@ trigger_phrases:
   - "no packet ids in docs"
   - "packet id audit fixes"
   - "evergreen doc cleanup 013"
+  - "release and program cleanup evergreen doc packet id removal changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

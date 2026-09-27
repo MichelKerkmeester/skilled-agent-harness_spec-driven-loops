@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph doc gap investigation"
   - "packet 013 evidence incomplete"
   - "documentation coverage audit"
+  - "code research 030 code graph gap investigation pt 01 changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

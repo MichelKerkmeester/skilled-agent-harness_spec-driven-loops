@@ -7,6 +7,7 @@ trigger_phrases:
   - "SC-004 SC-005 stale"
   - "lane attribution documentation update"
   - "semantic shadow comment correction"
+  - "spec kit internals semantic shadow doc sync changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

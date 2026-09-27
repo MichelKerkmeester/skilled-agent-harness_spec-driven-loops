@@ -1,0 +1,20 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/061-skilled-release-changelog/002-changelog-findability",
+  "description": "Phase 2: changelog-findability",
+  "keywords": [
+    "phase",
+    "changelog-findability"
+  ],
+  "lastUpdated": "2026-09-27T15:13:05.952Z",
+  "specId": "002",
+  "folderSlug": "changelog-findability",
+  "parentChain": [
+    "sk-doc",
+    "061-skilled-release-changelog"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-09-26_16-13__phase-2-built-and-verified-every-changelog-entry.md"
+  ]
+}

@@ -7,6 +7,7 @@ trigger_phrases:
   - "EmbedderAdapter writer wiring"
   - "refreshSkillEmbeddings dispatcher"
   - "010/002 unblock embedder"
+  - "memory and causal skill graph db writer cross wire changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

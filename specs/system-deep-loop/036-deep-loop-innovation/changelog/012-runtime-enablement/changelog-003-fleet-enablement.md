@@ -2,9 +2,7 @@
 title: "Changelog: Fleet Enablement [012-runtime-enablement/003-fleet-enablement]"
 description: "Serial enablement driver, CLI, and tests for the remaining deep-loop modes, with fleet authority flip executed via the registry-direct path."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement fleet enablement changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

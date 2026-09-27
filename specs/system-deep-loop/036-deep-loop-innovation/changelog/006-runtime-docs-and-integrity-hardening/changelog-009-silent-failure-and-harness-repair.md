@@ -2,9 +2,7 @@
 title: "Changelog: Make Invalid Input Fail Loudly and Repair the Harnesses That Produce Evidence [006-runtime-docs-and-integrity-hardening/009-silent-failure-and-harness-repair]"
 description: "Changelog for the silent-failure and harness-repair phase: making invalid input fail loudly and repairing the test harnesses, assets, and playbooks that produce evidence."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity silent failure and harness repair changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

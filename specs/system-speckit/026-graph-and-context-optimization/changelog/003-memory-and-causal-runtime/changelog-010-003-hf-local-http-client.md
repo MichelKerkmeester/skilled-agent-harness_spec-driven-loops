@@ -7,6 +7,7 @@ trigger_phrases:
   - "HF_EMBED_SERVER_READY_TIMEOUT_MS"
   - "server-adopted dimension"
   - "hf-local prefix registry"
+  - "memory and causal runtime hf local http client changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

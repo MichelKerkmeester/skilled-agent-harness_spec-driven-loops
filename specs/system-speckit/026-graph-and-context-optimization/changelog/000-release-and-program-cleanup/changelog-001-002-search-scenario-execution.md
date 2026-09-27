@@ -7,6 +7,7 @@ trigger_phrases:
   - "model hallucination weak retrieval findings"
   - "MCP runtime stress execution results"
   - "cli-opencode cli-codex cli-copilot playbook run"
+  - "release and program cleanup search scenario execution changelog"
 importance_tier: "important"
 contextType: "research"
 ---

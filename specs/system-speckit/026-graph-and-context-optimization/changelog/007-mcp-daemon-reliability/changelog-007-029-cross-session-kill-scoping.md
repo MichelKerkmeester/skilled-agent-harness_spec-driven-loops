@@ -2,9 +2,7 @@
 title: "Changelog: Cross-Session Kill Scoping + Post-Crash Integrity Gate [007-mcp-daemon-reliability/029-cross-session-kill-scoping]"
 description: "Chronological changelog for the Cross-Session Kill Scoping + Post-Crash Integrity Gate phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability cross session kill scoping changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory_health includeFullReport"
   - "context server old space cap"
   - "heap snapshot opt-in"
+  - "memory and causal runtime byte aware health telemetry changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

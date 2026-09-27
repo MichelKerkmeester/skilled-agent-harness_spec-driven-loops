@@ -7,6 +7,7 @@ trigger_phrases:
   - "system_skill_advisor final cleanup"
   - "013/009/006 validation"
   - "stale-doc sweep advisor"
+  - "spec kit internals clean validation and remove deprecated code changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

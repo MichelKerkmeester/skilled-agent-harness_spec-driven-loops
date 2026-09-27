@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory_health autoRepair cleanFiles"
   - "orphan file rows cleanup"
   - "orphanedFiles drift self-heal"
+  - "release and program cleanup autoclean orphan file removal changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

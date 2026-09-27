@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor freshness live after scan"
   - "multi-turn stream-json regression harness"
   - "claude hook parity remediation"
+  - "operator tooling fix claude freshness schema harness changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

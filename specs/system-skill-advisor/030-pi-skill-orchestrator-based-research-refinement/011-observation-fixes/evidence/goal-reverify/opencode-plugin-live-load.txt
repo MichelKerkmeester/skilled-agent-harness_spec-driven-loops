@@ -1,0 +1,16 @@
+# OpenCode plugin live load (CL-005 step 4), HEAD bf2067c7eb, run 2026-09-27T12:57:04Z to 12:57:44Z
+## command
+opencode run --print-logs --log-level INFO --dir "$PWD" -m opencode-go/deepseek-v4.1-flash "List every tool you can call whose name contains advisor. Print only the tool names, one per line." </dev/null > cl-005.stdout.txt 2> cl-005.log
+opencode 1.18.32
+opencode_exit=0
+## grep -n 'failed to load plugin' cl-005.log | grep 'system-skill-advisor.js'
+(no output, grep exit 1)
+failed to load plugin lines in the whole log: 0
+## grep -n 'spec_kit_skill_advisor_status' cl-005.stdout.txt
+1:spec_kit_skill_advisor_status
+## stdout
+spec_kit_skill_advisor_status
+## source of the tool
+opencode.json MCP servers: code_mode only. The tool is registered at .opencode/plugins/system-skill-advisor.js:1408, so it is listed only when the plugin loads.
+## log levels
+lines: 107, ERROR: 0, WARN: 65

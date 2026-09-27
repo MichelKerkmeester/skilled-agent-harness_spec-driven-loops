@@ -24,6 +24,11 @@ import { createRequire } from 'node:module';
 import { tool } from '@opencode-ai/plugin/tool';
 
 import * as messageIdentity from './lib/opencode-message-identity.js';
+import {
+  FALLBACK_DIRECTIVE,
+  renderCompiledRouteSummaryLine,
+  renderPluginFallbackDirective,
+} from './lib/skill-advisor-render.js';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -43,50 +48,18 @@ const DEFAULT_BRIDGE_TIMEOUT_MS = 2500;
 const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 const DEFAULT_NODE_BINARY = 'node';
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
+// advisor_recommend refuses a longer prompt, so a longer one is sent as its head
+// rather than refused and reported as an outage.
+const ADVISOR_PROMPT_MAX_CHARS = 10_000;
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
 const DEFAULT_MAX_CACHE_ENTRIES = 1000;
 const MAX_BRIDGE_STDOUT_BYTES = 256 * 1024;
 const BRIDGE_TERMINATION_GRACE_MS = 250;
-export const COMPILED_ROUTE_TARGET_CAP = 3;
-export const COMPILED_ROUTE_TARGET_DIGEST_LENGTH = 12;
-export const COMPILED_ROUTE_BOUNDING_ENV = 'SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING';
+const COMPILED_ROUTE_BOUNDING_ENV = 'SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING';
 const DISABLED_ENV = 'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED';
 const DISABLED_ENV_PLUGIN = 'SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED';
 const LEGACY_HOOK_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
 const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
-const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
-// This suffix is shared by headed fallbacks and route briefs so directive
-// lifecycle reduction sees the same block in either case.
-const FALLBACK_DIRECTIVE = '\nDirectives:' + HYGIENE_DIRECTIVE;
-
-/**
- * Mirror the renderer's no-brief fallback; a parity test holds the two to the same text.
- *
- * @param {{status?: string, freshness?: string}} result - Advisor status and freshness
- * @returns {string} Status head followed by the directive block
- */
-export function renderPluginFallbackDirective({ status, freshness } = {}) {
-  const isOutage = (status === undefined && freshness === undefined)
-    || status === 'fail_open'
-    || freshness === 'absent'
-    || (freshness === 'unavailable' && status !== 'skipped');
-  const fallbackCase = isOutage
-    ? 'outage'
-    : status === 'skipped' && freshness === 'unavailable'
-      ? 'skipped'
-      : 'no-match';
-  const outageLabel = freshness === 'absent'
-    ? 'absent'
-    : status === 'degraded'
-      ? 'degraded'
-      : 'fail_open';
-  const head = fallbackCase === 'outage'
-    ? `Advisor: outage (${outageLabel}); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`
-    : fallbackCase === 'skipped'
-      ? 'Advisor: prompt skipped.'
-      : 'Advisor: no skill matched.';
-  return head + FALLBACK_DIRECTIVE;
-}
 
 // Directive-lifecycle dedup: this plugin is a plain-JS mirror of the canonical
 // rule in hooks/lib/directive-lifecycle.ts (same separator, same fail-open
@@ -156,64 +129,6 @@ function compiledServingSignature() {
   } catch {
     return 'serving-unavailable';
   }
-}
-
-// Render the served compiled decision as one additive, human-legible
-// line. It reports the served authority and outcome (route/clarify/defer/reject),
-// never a new routing target — the compiled decision is byte-identical to legacy
-// on routing fields. Returns null when no compiled decision is served, so the
-// injected context stays byte-identical to the legacy brief.
-export function revealCompiledRouteSummaryTargets(summary) {
-  if (!summary || typeof summary !== 'object' || !Array.isArray(summary.targets)) {
-    return [];
-  }
-  return summary.targets.filter((target) => typeof target === 'string');
-}
-
-function digestCompiledRouteTargets(targets) {
-  const canonicalTargets = [...targets].sort();
-  return createHash('sha256')
-    .update(JSON.stringify(canonicalTargets), 'utf8')
-    .digest('hex')
-    .slice(0, COMPILED_ROUTE_TARGET_DIGEST_LENGTH);
-}
-
-export function compiledRouteSummaryTargetDigest(summary) {
-  return digestCompiledRouteTargets(revealCompiledRouteSummaryTargets(summary));
-}
-
-export function renderCompiledRouteSummaryLine(summary, renderOptions = {}) {
-  if (!summary || typeof summary !== 'object') return null;
-  const outcome = typeof summary.outcome === 'string' ? summary.outcome : null;
-  if (!outcome) return null;
-  const hub = typeof summary.hubId === 'string' && summary.hubId ? summary.hubId : 'unknown';
-  const authority = typeof summary.servingAuthority === 'string' && summary.servingAuthority
-    ? summary.servingAuthority
-    : 'compiled';
-  const bounded = renderOptions === true
-    || (renderOptions && typeof renderOptions === 'object' && renderOptions.bounded === true);
-  const reveal = renderOptions && typeof renderOptions === 'object' && renderOptions.reveal === true;
-
-  if (!bounded && !reveal) {
-    const targets = Array.isArray(summary.targets) && summary.targets.length
-      ? summary.targets.join(',')
-      : 'none';
-    return `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${targets}`;
-  }
-
-  const fullTargets = revealCompiledRouteSummaryTargets(summary);
-  if (reveal || fullTargets.length <= COMPILED_ROUTE_TARGET_CAP) {
-    const targets = fullTargets.length ? fullTargets.join(',') : 'none';
-    return `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${targets}`;
-  }
-
-  const visibleTargets = fullTargets.slice(0, COMPILED_ROUTE_TARGET_CAP);
-  const omittedCount = fullTargets.length - visibleTargets.length;
-  const digest = digestCompiledRouteTargets(fullTargets);
-  return [
-    `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${visibleTargets.join(',')},+${omittedCount} more`,
-    `digest=${digest}`,
-  ].join(' ');
 }
 
 const ADVISOR_CLI_PATH = fileURLToPath(new URL('../bin/skill-advisor.cjs', import.meta.url));
@@ -719,31 +634,6 @@ async function parseCliResponse(stdout, options) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Clamp prompt text to the requested UTF-8 byte budget.
- *
- * @param {string} prompt - Prompt text to clamp
- * @param {number} maxBytes - Maximum UTF-8 byte count to retain
- * @returns {string} Original prompt or byte-safe prefix within the budget
- */
-function clampPrompt(prompt, maxBytes) {
-  if (typeof prompt !== 'string' || Buffer.byteLength(prompt, 'utf8') <= maxBytes) {
-    return prompt;
-  }
-
-  let low = 0;
-  let high = prompt.length;
-  while (low < high) {
-    const mid = Math.ceil((low + high) / 2);
-    if (Buffer.byteLength(prompt.slice(0, mid), 'utf8') <= maxBytes) {
-      low = mid;
-      continue;
-    }
-    high = mid - 1;
-  }
-  return prompt.slice(0, low);
-}
-
-/**
  * Clamp advisor brief text by JavaScript character count.
  *
  * @param {string} brief - Advisor brief text to clamp
@@ -774,10 +664,18 @@ function insertWithEviction(cache, key, value, maxEntries) {
   }
 }
 
-// Build the advisor CLI argument vector. The prompt is clamped so the whole
-// invocation stays inside the configured prompt-byte budget.
-function advisorCliArgs({ prompt, options }) {
-  const requestOptions = JSON.stringify({
+// The advisor CLI reads its request from stdin (`--json -`), so the prompt never
+// appears in argv, which any local user can read from the process table.
+function advisorCliArgs() {
+  return [ADVISOR_CLI_PATH, 'advisor_recommend', '--json', '-', '--format', 'json'];
+}
+
+// Build the stdin request, or null when the byte budget cannot hold even one prompt
+// character beside the request's fixed part. The prompt keeps at most
+// ADVISOR_PROMPT_MAX_CHARS characters and is clamped by its escaped size, because JSON
+// writes a quote or newline as two bytes and a control character as six.
+function advisorCliRequest({ prompt, options }) {
+  const requestOptions = {
     // Three recommendations keep the two-target ambiguity line available without
     // asking the advisor for a longer list than the brief can use.
     topK: 3,
@@ -785,19 +683,16 @@ function advisorCliArgs({ prompt, options }) {
     includeAbstainReasons: true,
     confidenceThreshold: options.thresholdConfidence,
     uncertaintyThreshold: DEFAULT_THRESHOLD_UNCERTAINTY,
-  });
-  const args = (clampedPrompt) => [
-    ADVISOR_CLI_PATH,
-    'advisor_recommend',
-    '--prompt',
-    clampedPrompt,
-    '--options',
-    requestOptions,
-    '--format',
-    'json',
-  ];
-  const fixedBytes = args('').reduce((total, arg) => total + Buffer.byteLength(arg, 'utf8') + 1, 0);
-  return args(clampPrompt(prompt, Math.max(0, options.maxPromptBytes - fixedBytes)));
+  };
+  const request = (text) => JSON.stringify({ prompt: text, options: requestOptions });
+  let remaining = options.maxPromptBytes - Buffer.byteLength(request(''), 'utf8');
+  let end = 0;
+  for (const char of prompt.slice(0, ADVISOR_PROMPT_MAX_CHARS)) {
+    remaining -= Buffer.byteLength(JSON.stringify(char), 'utf8') - 2;
+    if (remaining < 0) break;
+    end += char.length;
+  }
+  return end > 0 ? request(prompt.slice(0, end)) : null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -989,7 +884,7 @@ function deliverTransformContribution(decision, deliver) {
  * @param {number} [rawOptions.maxTokens] - Maximum advisor brief tokens requested from the advisor CLI
  * @param {string} [rawOptions.nodeBinaryOverride] - Node binary used for the advisor CLI subprocess
  * @param {number} [rawOptions.bridgeTimeoutMs] - Advisor CLI subprocess timeout in milliseconds
- * @param {number} [rawOptions.maxPromptBytes] - Maximum prompt bytes carried by the advisor CLI invocation
+ * @param {number} [rawOptions.maxPromptBytes] - Maximum UTF-8 bytes of the stdin request sent to the advisor CLI, prompt included
  * @param {number} [rawOptions.maxBriefChars] - Maximum injected advisor brief characters
  * @param {number} [rawOptions.maxCacheEntries] - Maximum advisor cache entries
  * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Bound long compiled-route target lists
@@ -1033,7 +928,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
 
   /**
    * Run the advisor CLI and render its JSON response.
-   * The CLI receives the prompt as argv from `advisorCliArgs`, returns stdout
+   * The CLI receives the request on stdin from `advisorCliRequest`, returns stdout
    * JSON parsed by `parseCliResponse`, gets SIGTERM shortly before the deadline,
    * and gets SIGKILL at the deadline if the process has not settled.
    *
@@ -1071,16 +966,28 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         resolve(response);
       };
 
+      const request = advisorCliRequest({ prompt, options });
+      if (request === null) {
+        finish({ brief: null, status: 'fail_open', error: 'PROMPT_BUDGET', metadata: {} });
+        return;
+      }
+
       try {
-        child = options.spawnAdvisor(options.nodeBinary, advisorCliArgs({ prompt, options }), {
+        child = options.spawnAdvisor(options.nodeBinary, advisorCliArgs(), {
           cwd: projectDir,
           env: process.env,
-          stdio: ['ignore', 'pipe', 'ignore'],
+          stdio: ['pipe', 'pipe', 'ignore'],
         });
       } catch {
         finish({ brief: null, status: 'fail_open', error: 'SPAWN_ERROR', metadata: {} });
         return;
       }
+
+      // A child that exits before reading stdin raises EPIPE here, and a child that
+      // failed to start discards the request. The error and close handlers below
+      // settle the call either way.
+      child.stdin?.on?.('error', () => undefined);
+      child.stdin?.end(request);
 
       const graceMs = Math.min(BRIDGE_TERMINATION_GRACE_MS, options.bridgeTimeoutMs);
       termTimer = setTimeout(() => {
@@ -1349,24 +1256,14 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
           ? { status: 'fail_open', freshness: 'unavailable' }
           : { status: 'skipped', freshness };
       const noBriefFallback = renderPluginFallbackDirective(fallbackResult);
-      let advisorBlock = response.brief
+      const advisorBlock = response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
         : noBriefFallback;
-      // Only a primitive, non-conflicting host identity can authorize reduced
-      // delivery; ambiguous payloads retain the complete policy block.
-      const lifecycleDecision = decideOpenCodeDirectiveLifecycle(
-        advisorBlock,
-        directiveIdentity,
-        pendingShadowLifecycle,
-        state,
-      );
-      if (lifecycleDecision.suppressed && lifecycleDecision.reduced) {
-        advisorBlock = lifecycleDecision.reduced;
-      }
       const advisorBlockId = response.brief
         ? messageIdentity.POLICY_BLOCK_IDS.ADVISOR_ROUTE
         : messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE;
       const advisorBlockOrder = response.brief ? 0 : 1;
+      // Hash the full block first so lifecycle reduction cannot evade repeat suppression.
       const advisorDecision = transformContributionDecision(
         input,
         options,
@@ -1374,11 +1271,25 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         advisorBlock,
         advisorBlockOrder,
       );
+      let deliveredAdvisorBlock = advisorBlock;
+      if (advisorDecision.shouldDeliver) {
+        // Only a primitive, non-conflicting host identity can authorize reduced
+        // delivery; ambiguous payloads retain the complete policy block.
+        const lifecycleDecision = decideOpenCodeDirectiveLifecycle(
+          advisorBlock,
+          directiveIdentity,
+          pendingShadowLifecycle,
+          state,
+        );
+        if (lifecycleDecision.suppressed && lifecycleDecision.reduced) {
+          deliveredAdvisorBlock = lifecycleDecision.reduced;
+        }
+      }
       deliverTransformContribution(advisorDecision, () => {
-        output.system.push(advisorBlock);
+        output.system.push(deliveredAdvisorBlock);
       });
       if (advisorDecision.shouldDeliver) {
-        await observeBlock(advisorBlock);
+        await observeBlock(deliveredAdvisorBlock);
       }
       const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary, {
         bounded: options.boundedCompiledRouteSummary,

@@ -1,0 +1,28 @@
+{
+  "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+  "runtime": "opencode",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "PASS",
+  "reason": "Steps 2 to 5 exit 0: the advisor lifecycle files pass 128 tests and the spec-kit adapter files pass 29 under shuffle seed 18018, the Pi dispatch suite passes 50 of 50, and the registered-adapter harness writes summary.json with passed true for claude, codex, cursor and devin.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "llmgateway/mimo-v2.6-pro (high)",
+  "evidence": [
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/evidence/reports/opencode-457.md",
+      "bytes": 8610,
+      "sha256": "d696948017c93a939b3a5398241a73873c78c05dbc3ac9b225724d699204eab3"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/evidence/runtime/opencode-registered-adapter/summary.json",
+      "bytes": 1201,
+      "sha256": "65a60b0846c72fa188118962bf24d9d5d3b80f842b0a9df6323a6f58e91d624a"
+    }
+  ],
+  "recordedAt": "2026-09-27",
+  "recordedBy": "orchestrator, by hand under MTP-005"
+}

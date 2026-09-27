@@ -7,6 +7,7 @@ trigger_phrases:
   - "D2a D2b extraction"
   - "advisor skill graph lifecycle ownership"
   - "mcp server package extraction 011"
+  - "spec kit internals mcp server package extraction changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

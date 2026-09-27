@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory_index_scan event loop starvation fix"
   - "background scan uncancellable wedge fix"
   - "027 002/017 shipped"
+  - "memory store and search reindex scan responsiveness and cancellation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

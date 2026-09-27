@@ -7,6 +7,7 @@ trigger_phrases:
   - "symlink attack temp file fix"
   - "unbounded json parsing sidecar"
   - "arc 010 p0 findings closed"
+  - "fix investigation p0s for resource exhaustion and symlink attack changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

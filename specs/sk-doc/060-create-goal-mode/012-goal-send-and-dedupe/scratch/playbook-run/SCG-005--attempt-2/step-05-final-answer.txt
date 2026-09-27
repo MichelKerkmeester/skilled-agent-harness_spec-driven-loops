@@ -1,0 +1,38 @@
+STATUS=FAIL ERROR="goal checker finding left unresolved: decision table contains unfilled template text"
+
+The step ran end to end. Because the brief kept the counter update rule as template placeholder text, `check-goal.cjs` failed the placeholder check, and `sk-create-goal/SKILL.md` §3 step 7 requires exactly this ending: "A finding left open for any reason, an operator brief included, stops the run: report it, print no chat slice and end with STATUS=FAIL." The chat slice was measured but not handed off.
+
+Files written (only these, all under `/tmp/create-goal-playbook.uxd5Qz`, no repository file touched):
+- `/tmp/create-goal-playbook.uxd5Qz/specs/demo-packet/goal.md`, filled from `goal-top-level-template.md`, operation top-level, AUTONOMOUS. D1 keeps the template decision placeholder per the brief. D2 and all other placeholders are filled or removed.
+
+Last packet report lines I saw (`node .skilled/hooks/goal/bin/goal.cjs packet … --workspace /tmp/create-goal-playbook.uxd5Qz`, exit 0):
+
+```text
+STATUS=OK ACTION=packet
+packet_path="specs/demo-packet"
+packet_nested=false
+packet_durable_chars=1094
+packet_budget=ok
+packet_slice_hash="sha256:924fcf94477a30291f2e1d019488b9c9bea1a83f844ad5c95bcfc93108bd965f"
+```
+
+The same report printed `objective_slice` and `chat_slice`, which I am not reproducing since the checker failed.
+
+Last goal checker lines I saw (`node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs … --root /tmp/create-goal-playbook.uxd5Qz`, exit 1):
+
+```text
+[check-goal] 2/5 FAIL placeholder findings=1
+[check-goal] FINDING placeholder specs/demo-packet: decision table contains unfilled template text
+[check-goal] RESULT: FAILED (4/5 checks)
+```
+
+One divergence worth your eye: `spec.md` Decisions already says "The counter update is append-only. A run never rewrites existing lines." while your brief treats the rule as undecided. I followed the brief and left D1 unfilled, and the deviation is recorded in the goal's log.
+
+Your move: decide the counter update rule, then rerun `/create:goal /tmp/create-goal-playbook.uxd5Qz/specs/demo-packet amend :auto` (or just give me the rule) so D1 fills, the checker passes and the chat slice can be set.
+
+```text
+TEMPLATE=.skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md
+CHECKS=template-copied-between-markers,fixed-text-untouched,operation-top-level,measure-goal.cjs,check-goal.cjs
+NOTES=placeholder-left-by-operator-brief-triggered-checker-finding-no-chat-slice
+DQI=not-claimed-STATUS-FAIL
+```

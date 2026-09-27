@@ -6,6 +6,7 @@ trigger_phrases:
   - "023-008 vec0 deferred"
   - "code chunks vec0 scaffold"
   - "vec0 deferred child packet"
+  - "memory and causal runtime vec0 migration fix deferred changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

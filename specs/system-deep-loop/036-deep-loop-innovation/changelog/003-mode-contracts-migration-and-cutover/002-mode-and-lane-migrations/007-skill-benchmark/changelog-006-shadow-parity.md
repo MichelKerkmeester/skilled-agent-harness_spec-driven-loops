@@ -2,9 +2,7 @@
 title: "Changelog: Skill Benchmark Shadow Parity [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity]"
 description: "Changelog for the skill benchmark shadow parity phase: comparing paired skill scenario projections event-for-event against the legacy emitter."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "skill benchmark shadow parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

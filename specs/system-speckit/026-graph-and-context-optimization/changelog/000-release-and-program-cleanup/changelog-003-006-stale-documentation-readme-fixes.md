@@ -7,6 +7,7 @@ trigger_phrases:
   - "011 deep-review F-001 F-002 F-004 F-006"
   - "tier 1 tier 2 doc cleanup"
   - "embedding readiness readme removed"
+  - "release and program cleanup stale documentation readme fixes changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

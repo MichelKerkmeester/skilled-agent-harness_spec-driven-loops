@@ -7,6 +7,7 @@ trigger_phrases:
   - "hf-local llama-cpp recall overlap"
   - "spearman rank correlation probe"
   - "embedding provider default flip quality"
+  - "memory and causal runtime llama cpp retrieval quality probe changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

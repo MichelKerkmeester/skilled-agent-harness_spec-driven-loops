@@ -9,6 +9,7 @@ trigger_phrases:
   - "daemon self-recovery"
   - "socket-dir canonicalize"
   - "infrastructure hardening"
+  - "mcp daemon reliability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

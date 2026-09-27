@@ -238,7 +238,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `Self-invocation refused` | The caller is already inside Codex (`CODEX_*` env set, `codex` ancestry or a state lock) | Use a different runtime or exit the current Codex session first |
 | `unknown option: --reasoning` or `--quiet` | Those flags do not exist on `codex exec` | Use `-c model_reasoning_effort="high"`. There is no quiet flag. Capture output with `-o file.txt` |
 | Context too large or truncated output | The prompt references broad paths instead of specific files | Name files with `@./path/to/file` and split large tasks |
-| No startup context or advisor brief | Native hooks not enabled | Set `[features].codex_hooks = true` and verify `~/.codex/hooks.json` |
+| No startup context or advisor brief | Native hooks not enabled | Set `[features].codex_hooks = true`, trust the checkout in `~/.codex/config.toml`, and verify `.codex/hooks.json` |
 
 ---
 

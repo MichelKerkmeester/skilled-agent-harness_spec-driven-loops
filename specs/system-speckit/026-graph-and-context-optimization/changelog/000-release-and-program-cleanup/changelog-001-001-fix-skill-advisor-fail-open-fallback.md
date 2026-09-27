@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill_graph_scan trusted caller gate"
   - "008/008 review remediation"
   - "001-fix-skill-advisor-fail-open-fallback"
+  - "release and program fix skill advisor fail open fallback changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

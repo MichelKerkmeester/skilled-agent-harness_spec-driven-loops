@@ -5,6 +5,7 @@ trigger_phrases:
   - "001-skill-graph rollup"
   - "001-skill-graph phase parent"
   - "001-skill-graph changelog index"
+  - "spec kit internals skill graph changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "watcher overclaim fix"
   - "read-path graph freshness"
   - "013 P1-1 remediation"
+  - "release and program cleanup code graph watcher claim retraction changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

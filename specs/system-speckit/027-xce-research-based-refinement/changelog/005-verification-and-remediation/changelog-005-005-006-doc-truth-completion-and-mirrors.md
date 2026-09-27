@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/005/006 doc-truth completion mirrors changelog"
   - "tool count 37 to 39 catalog fix"
   - "runtime mirror path convention reconciliation"
+  - "verification and remediation doc truth completion and mirrors changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

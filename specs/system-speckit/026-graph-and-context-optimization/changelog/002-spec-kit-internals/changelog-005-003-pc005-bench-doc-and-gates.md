@@ -7,6 +7,7 @@ trigger_phrases:
   - "warm p95 50ms"
   - "cold p95 advisory"
   - "skill_advisor_bench dataset flag"
+  - "spec kit internals pc005 bench doc and gates changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

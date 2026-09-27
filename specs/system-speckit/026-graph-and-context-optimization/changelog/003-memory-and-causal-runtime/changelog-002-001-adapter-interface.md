@@ -6,6 +6,7 @@ trigger_phrases:
   - "EmbedderRegistry 016/001"
   - "pluggable embedder types"
   - "BackendKind EmbedderManifest"
+  - "memory and causal runtime adapter interface changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

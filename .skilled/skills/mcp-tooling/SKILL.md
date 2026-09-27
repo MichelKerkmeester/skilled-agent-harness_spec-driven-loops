@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for nine MCP tool bridges: five workflow modes and four read-only design transports routed by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.8.0.0
+version: 1.8.0.1
 metadata:
   author: OpenCode
   family: mcp
@@ -17,6 +17,8 @@ One skill, five workflow bridges, four read-only design transports, and one shar
 `mcp-code-mode` remains the shared MCP execution substrate for the modes that use Code Mode. It is external infrastructure, not a hub member.
 
 **Version authority.** This file's `version` frontmatter is the hub release version and matches the newest entry under `changelog/`. Hub metadata files carry the same value unless a generated contract owns their format.
+
+---
 
 ## 1. WHEN TO USE
 
@@ -41,6 +43,8 @@ Use this hub for any request that names one of its nine tool-bridge surfaces. Th
 - Chrome/CDP debugging belongs to `mcp-chrome-devtools`. Generic agentic browser work belongs to `mcp-aside-devtools`. Orca CLI work belongs to the standalone `cli-orca` skill.
 - A measured Style Reference belongs to `sk-design-md-generator` for Figma, Refero, and Mobbin material. MagicPath themes already provide named variables and fonts, so its transport pairs with `sk-design` for design judgment.
 
+---
+
 ## 2. SMART ROUTING
 
 Routing is two-stage:
@@ -58,11 +62,15 @@ Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identi
 
 The root `ROUTER.md` machine block keeps `INTENT_SIGNALS` and `RESOURCE_MAP` in sync. Every resource path is packet-qualified, resolves on disk, and is represented in the generated leaf manifest.
 
+---
+
 ## 3. TWO-AXIS MODEL
 
 - `packetKind: workflow` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion` can change workspace or external workflow state and use explicit safety gates.
 - `packetKind: transport` — `mcp-figma`, `mcp-refero`, `mcp-mobbin`, and `mcp-magicpath` bridge external read or export surfaces and remain `mutatesWorkspace:false` in this workspace.
 - Design transports never decide design on their own. Figma, Refero, and Mobbin pair with `sk-design-md-generator` for measured references. MagicPath themes already carry named variables and fonts, so its packet pairs with `sk-design` for judgment.
+
+---
 
 ## 4. HOW IT WORKS
 
@@ -105,6 +113,8 @@ mcp-tooling/
 
 `mcp-magicpath` remains a read-only synchronous UTCP CLI transport. Its unregistered vendor write commands stay unreachable from the registered surface. Existing workflow and transport packets retain their own safety contracts.
 
+---
+
 ## 5. RULES
 
 ### ALWAYS
@@ -128,6 +138,8 @@ mcp-tooling/
 - A new member cannot be classified as workflow or transport.
 - Registry modes, stage-one signals, stage-two resource keys, or generated manifest entries disagree.
 - Browser ownership would overlap Chrome/CDP or Aside without a clear state boundary.
+
+---
 
 ## 6. REFERENCES
 

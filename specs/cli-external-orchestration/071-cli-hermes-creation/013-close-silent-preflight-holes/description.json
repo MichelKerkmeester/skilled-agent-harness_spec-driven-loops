@@ -1,12 +1,24 @@
 {
   "level": "2",
   "specFolder": "cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes",
-  "description": "Phase 1: close-silent-preflight-holes",
+  "description": "The dispatch preflight is the only surface that can refuse an incorrect `cli-` dispatch before it runs, and six conditions let it approve one silently",
   "keywords": [
-    "phase",
-    "close-silent-preflight-holes"
+    "dispatch",
+    "preflight",
+    "only",
+    "surface",
+    "refuse",
+    "incorrect",
+    "cli",
+    "runs",
+    "six",
+    "conditions",
+    "let",
+    "approve",
+    "one",
+    "silently"
   ],
-  "lastUpdated": "2026-09-15T18:21:30.595Z",
+  "lastUpdated": "2026-09-15T18:11:38.330Z",
   "specId": "013",
   "folderSlug": "close-silent-preflight-holes",
   "parentChain": [

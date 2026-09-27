@@ -6,6 +6,7 @@ trigger_phrases:
   - "RRF versus cosine calibration bug"
   - "resolveAbsoluteRelevance request quality gate"
   - "cold tier inclusion vector lane backfill"
+  - "memory store and search retrieval gating and recall recovery changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

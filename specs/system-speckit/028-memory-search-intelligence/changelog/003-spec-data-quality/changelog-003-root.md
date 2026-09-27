@@ -2,9 +2,7 @@
 title: "Changelog: Spec-Kit Data Quality by Default [003-spec-data-quality/root]"
 description: "Chronological changelog for the Spec-Kit Data Quality by Default spec root."
 trigger_phrases:
- - "root changelog"
- - "packet changelog"
- - "nested changelog"
+ - "spec data quality changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill advisor graph-metadata authored"
   - "standalone-mcp-with-legacy-bridge scaffold"
   - "advisor extraction child 002"
+  - "spec kit internals system skill advisor package scaffold changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

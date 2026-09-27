@@ -2,9 +2,7 @@
 title: "Changelog: Cycle Detection [002-substrate-and-orchestration/007-convergence-termination-and-health/002-cycle-detection]"
 description: "Changelog for the cycle detection phase: deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "convergence termination and health cycle detection changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

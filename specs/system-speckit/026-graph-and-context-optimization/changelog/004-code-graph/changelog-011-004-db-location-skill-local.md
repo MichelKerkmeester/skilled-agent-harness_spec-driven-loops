@@ -2,9 +2,7 @@
 title: "Changelog: DB Location Skill-Local (fix #1) [011-source-bug-and-misalignment-audit/004-db-location-skill-local]"
 description: "Chronological changelog for the DB Location Skill-Local (fix #1) phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph db location skill local changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

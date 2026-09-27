@@ -2,9 +2,7 @@
 title: "Changelog: Shared Mode Contracts & Fixtures [003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures]"
 description: "Changelog for the shared mode contracts and fixtures group: common interfaces, hoisted cross-mode closures, mixed-version fixtures, and an executable write-set conflict graph that freeze the shared mode boundary before the eight phase-013 migrations."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "shared mode contracts and fixtures changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Doctor Commands - Inventory and Extract [004-doctor-commands/001-inventory-extract]"
 description: "Chronological changelog for the Doctor Commands - Inventory and Extract phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared infrastructure inventory extract changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

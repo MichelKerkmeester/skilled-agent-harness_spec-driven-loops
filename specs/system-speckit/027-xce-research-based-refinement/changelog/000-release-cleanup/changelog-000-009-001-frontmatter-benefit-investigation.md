@@ -2,9 +2,7 @@
 title: "Changelog: Phase 1: Frontmatter Benefit Investigation [009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation]"
 description: "Chronological changelog for the Phase 1: Frontmatter Benefit Investigation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup frontmatter benefit investigation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

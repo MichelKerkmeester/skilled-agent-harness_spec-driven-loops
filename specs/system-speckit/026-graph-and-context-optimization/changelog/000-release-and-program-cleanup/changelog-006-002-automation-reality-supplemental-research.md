@@ -7,6 +7,7 @@ trigger_phrases:
   - "P1 adversarial retest 012"
   - "remediation backlog 031 to 035"
   - "deep-loop graph automation reality"
+  - "release and program cleanup automation reality supplemental research changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

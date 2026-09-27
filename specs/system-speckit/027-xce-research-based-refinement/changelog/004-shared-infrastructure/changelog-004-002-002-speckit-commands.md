@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/002 002 speckit commands changelog"
   - "speckit presentation split"
   - "speckit router references"
+  - "shared infrastructure speckit commands changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

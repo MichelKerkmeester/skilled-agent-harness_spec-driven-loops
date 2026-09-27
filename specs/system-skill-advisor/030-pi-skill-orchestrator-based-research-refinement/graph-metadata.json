@@ -7,7 +7,14 @@
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim",
-    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup"
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -20,7 +27,11 @@
       "pi-skill-orchestrator research",
       "skill advisor refinement",
       "lazy skill loading advisor",
-      "skill orchestrator advisor upgrade"
+      "skill orchestrator advisor upgrade",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "skill",
@@ -32,27 +43,45 @@
       "lazy",
       "loading",
       "upgrade",
-      "routes",
-      "push",
-      "phase"
+      "packet",
+      "goal",
+      "durable"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "goal.md",
       "001-deep-research/research/research.md",
       "002-hook-deadline-and-diagnostics/spec.md",
       "003-hook-path-cli-spawn-trim/spec.md",
       "004-headless-fallback-status-and-dedup/spec.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
-      ".skilled/plugins/system-skill-advisor.js"
+      ".skilled/plugins/system-skill-advisor.js",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      "001-deep-research/goal.md",
+      "002-hook-deadline-and-diagnostics/goal.md",
+      "003-hook-path-cli-spawn-trim/goal.md",
+      "004-headless-fallback-status-and-dedup/goal.md",
+      "005-follow-up-fixes/goal.md",
+      "006-fanout-deep-review/goal.md",
+      "007-docs-and-standards-alignment/goal.md",
+      "008-cross-cli-manual-testing/goal.md",
+      "009-test-findings-remediation/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -71,6 +100,18 @@
         "name": "system-skill-advisor.js",
         "kind": "code",
         "path": ".skilled/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
         "source": "derived"
       },
       {
@@ -108,22 +149,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor routes by push",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-09-26T14:03:35.312Z",
+    "last_save_at": "2026-09-27T14:42:24.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:7d4461fd935abf6246025facaa3d9abcf59d3a5b7be3651cbd9a4626db408e43",
+    "source_fingerprint": "sha256:6241cdcd28b1c0b4d70dee51689f689d636095d78a5dc66a18ffd6609abfab7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "147e444abbcecbbe51a9d7f6410848edc36580f55b7479e2fb7e4ca236aed45b"
+      "spec.md": "cb3f4ec81013e2fec186e000f87456795b3bbe3441499f218a772940cd4fba63"
     },
-    "last_active_child_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research",
-    "last_active_at": "2026-09-26T14:02:43.312Z"
+    "last_active_child_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
+    "last_active_at": "2026-09-26T16:54:28.360Z"
   }
 }

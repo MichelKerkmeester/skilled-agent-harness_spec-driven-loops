@@ -2,9 +2,7 @@
 title: "Changelog: Baseline, taxonomy, and state census [001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census]"
 description: "Freezes the immutable BASE and authoritative deep-loop taxonomy, then captures runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "research inputs and architecture baseline taxonomy and state census changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

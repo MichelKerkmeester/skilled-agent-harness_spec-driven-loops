@@ -6,6 +6,7 @@ trigger_phrases:
   - "prebuild clean removed incremental"
   - "rebuild crashes daemon RC-4"
   - "mcp_server package.json clean fix"
+  - "mcp daemon reliability nondestructive build changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

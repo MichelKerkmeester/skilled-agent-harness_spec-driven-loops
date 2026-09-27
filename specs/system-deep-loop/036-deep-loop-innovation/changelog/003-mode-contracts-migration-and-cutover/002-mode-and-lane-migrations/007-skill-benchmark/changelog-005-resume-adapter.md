@@ -2,9 +2,7 @@
 title: "Changelog: Skill Benchmark - Resume Adapter [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter]"
 description: "Changelog for the skill benchmark resume adapter phase: rebuilding scenario-cell and scoring state from the sealed typed event ledger."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "skill benchmark resume adapter changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

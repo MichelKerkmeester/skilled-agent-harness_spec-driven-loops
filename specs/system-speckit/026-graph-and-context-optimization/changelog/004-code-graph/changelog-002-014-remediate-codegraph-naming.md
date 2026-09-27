@@ -7,6 +7,7 @@ trigger_phrases:
   - "structural search phantom removal"
   - "remediate-codegraph-naming changelog"
   - "ccc handler docs drop"
+  - "code graph remediate codegraph naming changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

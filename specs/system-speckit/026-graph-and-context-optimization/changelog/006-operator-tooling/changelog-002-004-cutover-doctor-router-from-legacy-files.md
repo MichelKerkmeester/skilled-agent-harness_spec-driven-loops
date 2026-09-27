@@ -7,6 +7,7 @@ trigger_phrases:
   - "doctor router cutover from legacy files"
   - "10 to 3 doctor commands"
   - "doctor playbook invocation rewrite"
+  - "operator tooling cutover doctor router from legacy files changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

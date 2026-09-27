@@ -7,6 +7,7 @@ trigger_phrases:
   - "canonical save hardening"
   - "nfkc unification hardening"
   - "routing accuracy hardening"
+  - "memory and causal runtime system hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

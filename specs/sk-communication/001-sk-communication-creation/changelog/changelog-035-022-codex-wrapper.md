@@ -2,9 +2,8 @@
 title: "Changelog: Phase 22 Codex Wrapper [035-improved-communication/022-codex-wrapper]"
 description: "Chronological changelog for the Phase 22 Codex Wrapper phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation codex wrapper changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Gap-Threshold Calibration Benchmark [003-spec-data-quality/006-generated-metadata-build/043-gap-threshold-calibration-benchmark]"
 description: "Chronological changelog for the gap-threshold calibration benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality gap threshold calibration benchmark changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

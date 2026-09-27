@@ -7,6 +7,7 @@ trigger_phrases:
   - "code_graph_query blocked routing"
   - "code graph scan routing contract"
   - "REQ-017 structural graph routing"
+  - "release and program cleanup code graph fail fast routing changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

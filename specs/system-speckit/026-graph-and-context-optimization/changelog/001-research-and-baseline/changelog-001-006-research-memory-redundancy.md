@@ -7,6 +7,7 @@ trigger_phrases:
   - "compact wrapper ownership handoff"
   - "006 packet surface repair"
   - "memory redundancy downstream classification"
+  - "research and baseline research memory redundancy changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

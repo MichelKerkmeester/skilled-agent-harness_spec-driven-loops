@@ -7,6 +7,7 @@ trigger_phrases:
   - "coverage matrix P0 P1 gaps"
   - "stress run 28 files 69 tests"
   - "006 stress coverage audit and run"
+  - "release and program cleanup stress coverage audit and run changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

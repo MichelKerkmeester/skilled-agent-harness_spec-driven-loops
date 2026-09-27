@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor extraction parent metadata"
   - "parent documentation drift"
   - "extraction parent phase inventory"
+  - "spec kit internals parent documentation drift refresh changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

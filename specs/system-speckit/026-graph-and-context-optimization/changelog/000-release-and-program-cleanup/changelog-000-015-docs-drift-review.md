@@ -7,6 +7,7 @@ trigger_phrases:
   - "conditional pass docs review"
   - "37 MCP tools documentation drift"
   - "single manifest drift review"
+  - "release and program cleanup docs drift review changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

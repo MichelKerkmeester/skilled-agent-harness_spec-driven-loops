@@ -5,6 +5,7 @@ trigger_phrases:
   - "001-continuity-memory-runtime rollup"
   - "001-continuity-memory-runtime phase parent"
   - "001-continuity-memory-runtime changelog index"
+  - "memory and causal runtime continuity memory runtime changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

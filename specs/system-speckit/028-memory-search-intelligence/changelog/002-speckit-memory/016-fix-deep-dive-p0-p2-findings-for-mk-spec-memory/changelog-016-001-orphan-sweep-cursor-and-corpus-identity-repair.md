@@ -5,6 +5,7 @@ trigger_phrases:
   - "orphan sweep cursor changelog"
   - "corpus identity repair migration"
   - "system-speckit track heal"
+  - "fix deep orphan sweep cursor and corpus identity repair changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

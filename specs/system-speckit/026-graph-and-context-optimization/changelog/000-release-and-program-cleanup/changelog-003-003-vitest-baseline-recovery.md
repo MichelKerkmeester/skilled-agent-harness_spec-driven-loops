@@ -7,6 +7,7 @@ trigger_phrases:
   - "v3.4.1.0 baseline correction"
   - "fixture drift classification"
   - "vitest triage ledger"
+  - "release and program cleanup vitest baseline recovery changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

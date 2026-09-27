@@ -93,6 +93,23 @@ describe('Claude UserPromptSubmit shim', () => {
     expect(JSON.parse(result.stdout)).toEqual({ marker: 'slow-stub-finished' });
   });
 
+  it('clamps an operator budget to the kill deadline', () => {
+    const slowStub = writeStub(
+      `Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, Number(process.env.${BUDGET_ENV}));\n` +
+        `process.stdout.write(JSON.stringify({ marker: 'slow-stub-finished' }));`,
+    );
+    const slowResult = runShim({ SPECKIT_USER_PROMPT_TARGET: slowStub, [BUDGET_ENV]: '5000' });
+    expect(slowResult.status).toBe(0);
+    expect(JSON.parse(slowResult.stdout)).toEqual({ marker: 'slow-stub-finished' });
+
+    const echoStub = writeStub(
+      `process.stdout.write(JSON.stringify({ budget: process.env.${BUDGET_ENV} ?? null }));`,
+    );
+    const invalidResult = runShim({ SPECKIT_USER_PROMPT_TARGET: echoStub, [BUDGET_ENV]: 'abc' });
+    expect(invalidResult.status).toBe(0);
+    expect(JSON.parse(invalidResult.stdout)).toEqual({ budget: '2200' });
+  });
+
   it('ignores an override that is relative to the cwd', () => {
     const stub = writeStub();
     const result = runShim({ SPECKIT_USER_PROMPT_TARGET: 'stub.js' }, join(stub, '..'));

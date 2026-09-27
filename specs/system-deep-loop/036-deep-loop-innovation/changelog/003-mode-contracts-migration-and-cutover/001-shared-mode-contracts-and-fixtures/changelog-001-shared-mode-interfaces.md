@@ -2,9 +2,7 @@
 title: "Changelog: Shared Mode Interfaces [003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces]"
 description: "Changelog for the shared mode interfaces phase: freezing the typed contract every phase-013 mode implements against the shared substrate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared mode contracts and fixtures shared mode interfaces changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

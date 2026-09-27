@@ -7,6 +7,7 @@ trigger_phrases:
   - "tree-sitter B2 fault recovery"
   - "f-runtime-2 fix"
   - "quarantined parser full scan"
+  - "code graph parser quarantine recovery changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,8 @@
 title: "Changelog: Phase 27 Evaluation and Release Gate [035-improved-communication/027-evaluation-and-release-gate]"
 description: "Chronological changelog for the Phase 27 Evaluation and Release Gate phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation evaluation and release gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

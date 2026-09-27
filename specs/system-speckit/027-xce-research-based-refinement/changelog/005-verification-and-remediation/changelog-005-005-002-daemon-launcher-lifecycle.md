@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/005/002 daemon launcher remediation changelog"
   - "bootstrap lock pid reclaim fix"
   - "owner lease cas reclaim launchers"
+  - "verification and remediation daemon launcher lifecycle changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

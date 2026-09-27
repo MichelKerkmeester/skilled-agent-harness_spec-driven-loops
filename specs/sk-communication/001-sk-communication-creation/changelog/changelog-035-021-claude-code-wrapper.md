@@ -2,9 +2,8 @@
 title: "Changelog: Phase 21 Claude Code Wrapper [035-improved-communication/021-claude-code-wrapper]"
 description: "Chronological changelog for the Phase 21 Claude Code Wrapper phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation claude code wrapper changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

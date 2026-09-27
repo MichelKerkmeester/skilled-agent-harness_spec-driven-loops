@@ -6,6 +6,7 @@ trigger_phrases:
   - "continuity refactor gates"
   - "gates a-f"
   - "canonical continuity"
+  - "memory and causal runtime continuity refactor gates changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

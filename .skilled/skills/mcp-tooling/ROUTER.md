@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp tool bridge resource map"
 importance_tier: important
 contextType: general
-version: 1.8.0.0
+version: 1.8.0.1
 router_state: active
 skill_pointer: SKILL.md
 ---

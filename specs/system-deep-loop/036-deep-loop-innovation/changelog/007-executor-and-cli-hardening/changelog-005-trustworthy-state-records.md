@@ -2,9 +2,7 @@
 title: "Changelog: State Records A Deep Loop Can Trust [007-executor-and-cli-hardening/005-trustworthy-state-records]"
 description: "Stamp deep-loop state records with the time they were appended instead of a time a model invented, and stop failing a completed lineage over the event name it chose."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "executor and cli hardening trustworthy state records changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "5 backend streams"
   - "deep review remediation"
   - "sk-code-opencode audit"
+  - "code graph backend resilience changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

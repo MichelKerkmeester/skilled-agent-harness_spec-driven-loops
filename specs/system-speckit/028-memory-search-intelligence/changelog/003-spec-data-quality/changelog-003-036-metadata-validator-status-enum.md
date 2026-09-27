@@ -2,9 +2,7 @@
 title: "Changelog: Metadata Validator Status Enum [003-spec-data-quality/006-generated-metadata-build/036-metadata-validator-status-enum]"
 description: "Chronological changelog for the metadata validator status enum phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality metadata validator status enum changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

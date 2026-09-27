@@ -9,6 +9,7 @@ trigger_phrases:
   - "intent prompt corpus"
   - "skill advisor tuning"
   - "routing weight sweep"
+  - "spec kit internals routing weight sweep harness changelog"
 importance_tier: "important"
 contextType: "research"
 ---

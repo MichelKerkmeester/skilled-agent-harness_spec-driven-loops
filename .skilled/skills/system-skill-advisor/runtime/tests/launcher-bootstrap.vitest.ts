@@ -21,12 +21,19 @@ const require = createRequire(import.meta.url);
 const ipcBridge = require('../../../../bin/lib/launcher-ipc-bridge.cjs') as {
   resolveIpcSocketDir: (serviceName: string, options?: { dbDir?: string; env?: NodeJS.ProcessEnv }) => string;
 };
+const modelServerSupervision = require('../../../../bin/lib/model-server-supervision.cjs') as {
+  DEFAULT_MODEL_SERVER_SOCKET_DIR: string;
+};
 const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as {
   acquireBootstrapLock: (options?: { staleMs?: number; timeoutMs?: number; retrySleepMs?: number }) => Promise<boolean>;
   advisorDbPath: () => string;
   artifactsReady: () => boolean;
   configureLauncherPathsForTesting: (paths: { runtimeDir: string; dbDir: string; lockDir: string; stateFile: string }) => void;
   createChildEnv: (sourceEnv?: NodeJS.ProcessEnv) => Record<string, string>;
+  resolveModelServerSocketPath: (
+    env?: NodeJS.ProcessEnv,
+    options?: { dbDir?: string },
+  ) => string;
 };
 
 // The child's socket directory is resolved by the shared IPC bridge, which since the
@@ -34,6 +41,14 @@ const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as
 // asks the bridge the same question the launcher does instead of assuming the answer.
 function expectedChildSocketDir(memoryDbPath: string): string {
   return ipcBridge.resolveIpcSocketDir('system-skill-advisor', { dbDir: dirname(memoryDbPath), env: {} });
+}
+
+// configureTempLauncher leaves the model-server file directory on the supervision
+// default. The child address is the launcher resolver's answer for that source env.
+function expectedModelServerUrl(sourceEnv: NodeJS.ProcessEnv): string {
+  return launcher.resolveModelServerSocketPath(sourceEnv, {
+    dbDir: modelServerSupervision.DEFAULT_MODEL_SERVER_SOCKET_DIR,
+  });
 }
 
 describe('system-skill-advisor launcher bootstrap', () => {
@@ -89,18 +104,20 @@ describe('system-skill-advisor launcher bootstrap', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
     const socketDir = expectedChildSocketDir(memoryDbPath);
-    expect(launcher.createChildEnv({
+    const sourceEnv = {
       PATH: '/bin',
       HOME: '/tmp/home',
       SYSTEM_SKILL_ADVISOR_DB_DIR: '/tmp/db',
       AWS_SECRET_ACCESS_KEY: 'should-not-leak',
       RANDOM_PARENT_ENV: 'should-not-leak',
-    })).toEqual({
+    };
+    expect(launcher.createChildEnv(sourceEnv)).toEqual({
       PATH: '/bin',
       HOME: '/tmp/home',
       SYSTEM_SKILL_ADVISOR_DB_DIR: '/tmp/db',
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
+      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
@@ -108,17 +125,19 @@ describe('system-skill-advisor launcher bootstrap', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
     const socketDir = expectedChildSocketDir(memoryDbPath);
+    const sourceEnv = {
+      SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
+      AWS_SECRET_ACCESS_KEY: 'should-not-leak',
+    };
 
     // The daemon reads the trust default from its own environment; this pins the
     // child-env allowlist to that reader so the two cannot drift apart.
     expect(sourceText('../advisor-server.ts')).toContain('process.env.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT');
-    expect(launcher.createChildEnv({
-      SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
-      AWS_SECRET_ACCESS_KEY: 'should-not-leak',
-    })).toEqual({
+    expect(launcher.createChildEnv(sourceEnv)).toEqual({
       SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
+      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
@@ -126,15 +145,17 @@ describe('system-skill-advisor launcher bootstrap', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
     const socketDir = expectedChildSocketDir(memoryDbPath);
-    expect(launcher.createChildEnv({
+    const sourceEnv = {
       SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
       SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
       AWS_SECRET_ACCESS_KEY: 'should-not-leak',
-    })).toEqual({
+    };
+    expect(launcher.createChildEnv(sourceEnv)).toEqual({
       SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
       SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
       MEMORY_DB_PATH: memoryDbPath,
       SPECKIT_IPC_SOCKET_DIR: socketDir,
+      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
     });
   });
 
@@ -185,6 +206,43 @@ describe('system-skill-advisor launcher bootstrap', () => {
     });
 
     expect(childEnv.MEMORY_DB_PATH).toBe(explicitOverride);
+  });
+
+  it('points the child at the model server socket while the daemon socket stays in its database scope', () => {
+    configureTempLauncher();
+    const memoryDbPath = launcher.advisorDbPath();
+    // Only the shared default socket directory is database-scoped. A private
+    // directory is left as-is, so this root is the one that splits the two paths.
+    const socketRoot = '/tmp/system-skill-advisor';
+    const sourceEnv = {
+      PATH: '/bin',
+      SPECKIT_IPC_SOCKET_DIR: socketRoot,
+    };
+    const childEnv = launcher.createChildEnv(sourceEnv);
+
+    expect(childEnv.HF_EMBED_SERVER_URL).toBe(join(socketRoot, 'hf-embed.sock'));
+    expect(childEnv.HF_EMBED_SERVER_URL).toBe(expectedModelServerUrl(sourceEnv));
+    expect(childEnv.SPECKIT_IPC_SOCKET_DIR).toBe(
+      ipcBridge.resolveIpcSocketDir('system-skill-advisor', {
+        dbDir: dirname(memoryDbPath),
+        env: sourceEnv,
+      }),
+    );
+    expect(childEnv.SPECKIT_IPC_SOCKET_DIR.startsWith(`${socketRoot}/`)).toBe(true);
+    expect(dirname(childEnv.HF_EMBED_SERVER_URL)).not.toBe(childEnv.SPECKIT_IPC_SOCKET_DIR);
+  });
+
+  it('forwards an explicit model server address to the child unchanged', () => {
+    configureTempLauncher();
+    // The resolver rewrites http to tcp. An unchanged forward keeps the parent string.
+    const explicit = 'http://127.0.0.1:9';
+    const childEnv = launcher.createChildEnv({
+      PATH: '/bin',
+      HF_EMBED_SERVER_URL: explicit,
+      SPECKIT_IPC_SOCKET_DIR: '/tmp/system-skill-advisor',
+    });
+
+    expect(childEnv.HF_EMBED_SERVER_URL).toBe(explicit);
   });
 });
 

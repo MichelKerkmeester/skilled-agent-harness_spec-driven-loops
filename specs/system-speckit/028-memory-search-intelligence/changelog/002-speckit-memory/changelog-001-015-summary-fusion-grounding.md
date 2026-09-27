@@ -2,9 +2,7 @@
 title: "Changelog: Summary Fusion and World-Summary Grounding [001-speckit-memory/015-summary-fusion-grounding]"
 description: "Chronological changelog for the summary fusion and world-summary grounding phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory summary fusion grounding changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

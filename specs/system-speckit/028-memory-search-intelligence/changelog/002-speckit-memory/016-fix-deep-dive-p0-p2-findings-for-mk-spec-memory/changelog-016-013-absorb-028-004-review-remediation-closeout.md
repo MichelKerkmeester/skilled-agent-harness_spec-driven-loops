@@ -5,6 +5,7 @@ trigger_phrases:
   - "review remediation closeout changelog"
   - "91 item p2 reconstruction"
   - "016 program rollup"
+  - "fix deep dive absorb 028 004 review remediation closeout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "vec_dim lazy table creation"
   - "active embedder pointer schema"
   - "embedder registry factory"
+  - "memory and causal ollama backend and multi dim schema changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

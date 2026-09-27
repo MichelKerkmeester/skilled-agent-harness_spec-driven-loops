@@ -7,6 +7,7 @@ trigger_phrases:
   - "task 36 readme batches"
   - "code readme audit mcp_server"
   - "release cleanup phase 052"
+  - "release and program cleanup missing code readme resource map changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "socket perimeter hardening sun_path guard"
   - "embedding stack deprecated env cleanup"
   - "model server supervision fstat symlink rejection"
+  - "memory and causal runtime live validation bench hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Eval-Harness Extension with Corpus Metric Lanes [001-speckit-memory/019-eval-harness-extension]"
 description: "Chronological changelog for the eval-harness extension with corpus metric lanes phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory eval harness extension changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

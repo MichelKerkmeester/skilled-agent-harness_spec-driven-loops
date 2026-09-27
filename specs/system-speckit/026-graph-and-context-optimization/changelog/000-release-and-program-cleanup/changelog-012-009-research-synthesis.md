@@ -6,6 +6,7 @@ trigger_phrases:
   - "026 audit root cause research"
   - "deep-loop blast radius synthesis"
   - "metadata drift root cause"
+  - "release and program cleanup research synthesis changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

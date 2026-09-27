@@ -2,9 +2,7 @@
 title: "Changelog: Gate, Closeout and Drift [004-gate-closeout-and-drift]"
 description: "Changelog for the gate, closeout and drift group of the 036 deep-loop innovation packet: the whole-system gate, integrate-latest and closeout, and drift census and plan revalidation."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "gate closeout and drift changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

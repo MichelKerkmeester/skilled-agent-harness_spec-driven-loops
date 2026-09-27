@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill-advisor single-writer lease"
   - "isLeaseHeld launcher probe"
   - "WAL busy_timeout skill-graph-db"
+  - "memory and causal runtime concurrent daemon corruption fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

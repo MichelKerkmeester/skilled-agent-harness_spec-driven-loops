@@ -8,7 +8,7 @@
 
 &nbsp;
 
-## 1. SUMMARY
+## 1. 📝 SUMMARY
 An assistant framework that gives your AI coding agent a memory, a paper trail and a team of specialists.
 
 All of it lives inside your own repository, as files you can read and diff.
@@ -17,18 +17,12 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 
 **What's inside**
 
-- 📋 **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
-- 🧠 **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
-- 🎯 **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
-- 🔄 **Autonomous Deep Loops** - research, review and improvement loops that run unattended and stop only when their own evidence says done
-- 🤖 **12 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- 🧰 **15 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
-
-**Why it earns a place**
-
-- **Continuity that survives context resets:** decisions, architecture and history persist across sessions, crashes and compactions
-- **Verification, not vibes:** nothing counts as "done" without fresh evidence, and code-review findings are re-challenged before they stick
-- **Works the same in OpenCode and Claude Code**, with cross-CLI dispatch to five more model providers on top
+- **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
+- **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
+- **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
+- **Autonomous Deep Loops** - research, review and improvement loops that run unattended and stop only when their own evidence says done
+- **12 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
+- **15 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
 ---
 
@@ -79,7 +73,7 @@ Twelve specialized agents own focused roles, and supported runtimes can dispatch
 
 The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
 
-- **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects the durable slice - the directive plus its completion criteria - on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
+- **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects a pointer to it plus its completion criteria on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
@@ -298,7 +292,7 @@ Eighteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Whic
 
 ##### Lazy Add-ons
 
-Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the inline gate renderer on an existing packet. All live in `addons/`.
+Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the inline gate renderer on an existing packet. A `goal.md` for an existing packet comes from `/create:goal` instead. All live in `addons/`.
 
 **`before-after.md`**
 - Record of what changed, why it changed and the resulting effect.
@@ -310,7 +304,7 @@ Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the in
 
 **`goal.md`**
 - The durable directive the packet executes against plus the criteria that decide when it is done.
-- Rendered by `--with-goal`.
+- Scaffolded by `--with-goal`, into each child only under `--phase`. Authored, amended or retrofitted with `/create:goal`, which also writes a phase parent's goal and binding table.
 
 **`resource-map.md`**
 - Lean catalog of every file path the packet analyzed, created, updated or removed, grouped by category.
@@ -644,6 +638,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 - Nine commands: eight public (four `advisor_*` for routing, freshness, rebuild and validation, plus four `skill_graph_*` for scan, query, status and graph validation), plus the trusted-caller-only `skill_graph_propagate_enhances`
 - No MCP registration, in `opencode.json` or any other runtime config
 - Daemon unreachable → the CLI answers from the Python scorer at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live
+- **No brief** → the prompt hooks and the OpenCode plugin still say why in one line above the directives: `Advisor: outage (...)` with the command to route by hand, `Advisor: no skill matched.` or `Advisor: prompt skipped.` for casual prompts such as `thanks`, which never reach the CLI
 
 #### How It Works
 
@@ -720,8 +715,9 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 
 #### How Runtimes Talk To It
 
-- **Claude Code**: calls prompt-time hook adapters under `.skilled/skills/system-spec-kit/runtime/hooks/`
+- **Claude Code, Codex, Cursor and Devin**: call the prompt-time hook adapters under `.skilled/skills/system-spec-kit/runtime/hooks/`, and each adapter labels its diagnostics with its own runtime name
 - **OpenCode**: uses `.skilled/plugins/system-skill-advisor.js`, which spawns `.skilled/bin/skill-advisor.cjs` and renders the returned brief through the shared renderer
+- **Pi**: the extension `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` runs the same hook in-process and falls back to the outage status line and the directives if the advisor misses its deadline
 - **Disable everywhere**: set `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the OpenCode plugin alone). The legacy `SPECKIT_`-prefixed names still work
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default
 - **CLI front door**: the same nine commands over the warm daemon for hooks, cron and shell diagnostics. Mutation commands (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) are gated behind `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`
@@ -985,11 +981,11 @@ The framework extends each runtime through plugins and hooks rather than asking 
 
 Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets.
 
-The packet's `goal.md` is the goal. A session binds to a spec packet, and the runtime injects that file's durable slice (frontmatter stripped, completion criteria as their own `criteria:` list, one per line) on every turn where that runtime injects at all: OpenCode, Pi and Devin inject per turn, Cursor injects at session start. The agent resends the slice in chat whenever a decision or criterion changes, reminding you to set it, and never stops working while it waits.
+The packet's `goal.md` is the goal. A session binds to a spec packet, and the runtime injects the objective slice built from that file (a pointer to it, the binding rule when the packet is phased and the completion criteria as their own `criteria:` list, one per line) on every turn where that runtime injects at all: OpenCode, Pi and Devin inject per turn, Cursor injects at session start. The agent resends the file's chat slice whenever a decision or criterion changes, reminding you to set it, and never stops working while it waits. What that chat slice contains is section 4 of `sk-create-goal`'s `references/budget-and-handoff.md`, and `/create:goal` authors the file.
 
-- **Claude Code and Codex:** use the built-in native `/goal <condition>`. The speckit workflows hand you the stripped slice of the parent `goal.md` to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
+- **Claude Code and Codex:** use the built-in native `/goal <condition>`. The speckit workflows hand you the parent `goal.md`'s chat slice to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
 - **OpenCode:** `/goal-opencode bind <packet-path>` makes the packet goal the session goal. `resent` clears the reminder, `packet <path>` reads a packet, and `set <condition>` still sets a plain text goal. Show, pause, clear and complete run through the `opencode_goal` tools
-- **Pi, Cursor, Devin, Hermes:** the shared core under `.skilled/hooks/goal/` injects the same slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
+- **Pi, Cursor, Devin, Hermes:** the shared core under `.skilled/hooks/goal/` injects the same objective slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
 - **Guarded by the validator:** a phase parent or top-level packet goal has one limit, 4,000 characters, and fails only past it; a binding row naming a child goal that does not exist fails too
 - **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.skilled/hooks/goal/README.md` for the model and `.skilled/hooks/goal/goal-plugin.md` for the OpenCode plugin contract
 
@@ -1507,5 +1503,6 @@ Everything is a file in your own repository.
 - **[→ Skills Index](.skilled/skills/README.txt)** - skills library and invocation patterns
 - **[→ Feature Catalog](.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - current technical reference
 - **[→ Manual Testing Playbook](.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md)** - operator validation scenarios, including runtime lifecycle checks
-- **[→ Latest System Spec-Kit Release Notes](.skilled/skills/system-spec-kit/changelog/v3.9.0.0.md)** - most recent shipped release notes
+- **[→ Release Notes](.skilled/changelog/skilled/)** - every Skilled release, one entry per version
+- **[→ Spec Kit Changelog](.skilled/skills/system-spec-kit/changelog/)** - the version history of the system-spec-kit skill
 - **[→ Daemon CLI Reference](.skilled/skills/system-spec-kit/references/cli/daemon-cli-reference.md)** - full-parity CLI front doors over the warm daemons

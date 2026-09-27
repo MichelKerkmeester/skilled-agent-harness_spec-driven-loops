@@ -7,6 +7,7 @@ trigger_phrases:
   - "hybrid search lexical lane research"
   - "rag fusion lexical engine decision"
   - "option b fts5 guardrails"
+  - "memory and causal runtime bm25 fts5 rag fusion investigation changelog"
 importance_tier: "important"
 contextType: "research"
 ---

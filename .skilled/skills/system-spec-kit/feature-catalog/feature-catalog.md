@@ -71,11 +71,11 @@ See [`tooling-and-scripts/canonical-first-spec-root-resolution.md`](tooling-and-
 
 ---
 
-### Warm-only CLI hook fallbacks and plugin bridges
+### CLI hook fallbacks and plugin bridges
 
 #### Description
 
-Prompt-time hooks probe a daemon socket first and fail open fast, so no prompt-time cold spawn happens when a backend is down.
+The Claude prompt hook gates casual prompts first, the CLI it calls owns daemon startup with a bounded cold start and a degraded local answer and the hook fails open without blocking the prompt.
 
 #### Current Reality
 
@@ -797,7 +797,7 @@ See [`ux-hooks/directive-lifecycle-dedup.md`](ux-hooks/directive-lifecycle-dedup
 
 #### Description
 
-Local `/goal` OpenCode plugin that binds a session to a packet `goal.md`, injects the file's durable slice as active-goal context, and exposes `opencode_goal` tools including `bind`, `resent` and `packet`.
+Local `/goal` OpenCode plugin that binds a session to a packet `goal.md`, injects the objective slice built from the file as active-goal context, and exposes `opencode_goal` tools including `bind`, `resent` and `packet`.
 
 #### Current Reality
 

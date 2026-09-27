@@ -7,6 +7,7 @@ trigger_phrases:
   - "session-snapshot stale ready gate"
   - "z_future z_archive scan exclude"
   - "globalSeenIds INSERT OR IGNORE code-graph"
+  - "code graph fix stale highlights and scan scope changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

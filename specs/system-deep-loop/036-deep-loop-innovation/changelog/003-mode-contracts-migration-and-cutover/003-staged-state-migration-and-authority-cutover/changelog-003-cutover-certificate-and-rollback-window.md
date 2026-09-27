@@ -2,9 +2,7 @@
 title: "Changelog: Cutover Certificate & Rollback Window [003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window]"
 description: "Changelog for the cutover certificate and rollback window phase: the signed evidence bundle authorizing a per-mode authority flip and its monitored rollback window."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "staged state migration and cutover certificate and rollback window changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk_code_index reconnect scan"
   - "empty code graph readiness"
   - "007 phase 002 changelog"
+  - "mcp daemon reliability code graph initial scan changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

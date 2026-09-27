@@ -1,0 +1,26 @@
+# live advisor state after the matrix, HEAD 5b4a7ffcf0, 2026-09-27T14:38:52Z
+## before the matrix
+2026-09-27T13:04:56Z
+f778b8c86a39947c8355c87b5a3cb5c6334770739397cd2f107cb0b2846f2645  .skilled/skills/.state/advisor/skill-graph-generation.json
+fe9807205037e21515500c2ee6276b50218a771b7d2ca2cb48190d1e862f74df  .skilled/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json
+## now
+3f7f3b1ff7cc3fe782943579c0eda82fceb63675f4fe4477adc080d875ebe912  .skilled/skills/.state/advisor/skill-graph-generation.json
+fe9807205037e21515500c2ee6276b50218a771b7d2ca2cb48190d1e862f74df  .skilled/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json
+live daemon: status=ok freshness=live generation=532 lastGenerationBump=2026-09-27T14:35:58.559Z
+## live generation file now
+{
+  "generation": 532,
+  "updatedAt": "2026-09-27T14:35:58.559Z",
+  "sourceSignature": "6e92796cf98ffdff10414270b8e5fd858600422f2496161fc248f6992936b0f0",
+  "reason": "advisor-server-watcher-reindex",
+  "state": "live"
+}
+
+## why the live generation file changed during the matrix
+The live daemon (pid 80305, running since 10:10:39Z) moved from generation 528 to 532 on its file watcher after 13:04Z. Two of the four bumps are timed here.
+13:52:03Z, generation 530: another session saved .skilled/skills/sk-doc/sk-create-changelog/SKILL.md at 13:52:00Z.
+14:35:58Z, generation 532: another session rewrote the system-spec-kit changelog files at 14:35:52Z.
+Both records carry reason advisor-server-watcher-reindex and state live, and the live lease is unchanged.
+A sandbox daemon writes only inside its own sandbox, as generation 1 or a SIGTERM record.
+Each sandboxed run recorded an unchanged live file across its own window: CP-004 in all five CLIs, 433 in all five CLIs and sandbox-daemon-live-state.txt.
+sandbox dirs left under /tmp: 0

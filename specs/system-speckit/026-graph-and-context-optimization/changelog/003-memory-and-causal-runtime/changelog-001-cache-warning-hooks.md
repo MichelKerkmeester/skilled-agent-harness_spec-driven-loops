@@ -6,6 +6,7 @@ trigger_phrases:
   - "cache warning hooks"
   - "producer metadata patch"
   - "replay isolation"
+  - "memory and causal runtime cache warning hooks changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

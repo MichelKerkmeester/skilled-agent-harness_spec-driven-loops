@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar response aliases camelCase"
   - "buildSidecarEnv testables split"
   - "sidecar pending-map discriminator narrowing"
+  - "memory and fix deferred p2s for api response shape changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

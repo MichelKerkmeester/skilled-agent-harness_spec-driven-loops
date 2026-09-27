@@ -2,9 +2,7 @@
 title: "Changelog: Code README Coverage for the system-deep-loop Runtime [006-runtime-docs-and-integrity-hardening/001-runtime-code-readmes]"
 description: "Changelog for the runtime code README coverage phase: adding a README to every missing source-bearing runtime folder and repairing the fourteen recorded defects, to the sk-doc create-readme standard."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity hardening runtime code readmes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

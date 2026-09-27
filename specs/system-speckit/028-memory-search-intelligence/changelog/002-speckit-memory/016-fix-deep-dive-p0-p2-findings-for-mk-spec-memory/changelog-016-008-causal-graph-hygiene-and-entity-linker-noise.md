@@ -5,6 +5,7 @@ trigger_phrases:
   - "causal graph hygiene changelog"
   - "entity linker noise downweight"
   - "surrogate title regeneration"
+  - "fix deep causal graph hygiene and entity linker noise changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---
