@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const assert = require('node:assert/strict');
+const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -137,3 +138,34 @@ for (const asset of ['goal-top-level-template.md', 'goal-phase-parent-template.m
     assert.ok(details.some((detail) => detail.startsWith('completion criterion')), 'criteria');
   });
 }
+
+test('a goal.md path checks the folder that holds it', () => {
+  const folderRun = spawnSync(
+    process.execPath,
+    [path.join(__dirname, '..', 'check-goal.cjs'), '--root', WORKSPACE_ROOT, fixtures.positive],
+    { encoding: 'utf8' }
+  );
+  const goalRun = spawnSync(
+    process.execPath,
+    [path.join(__dirname, '..', 'check-goal.cjs'), '--root', WORKSPACE_ROOT, path.join(fixtures.positive, 'goal.md')],
+    { encoding: 'utf8' }
+  );
+
+  assert.equal(folderRun.status, 0);
+  assert.equal(goalRun.status, 0);
+  assert.equal(goalRun.stdout, folderRun.stdout);
+  assert.ok(goalRun.stdout.includes('RESULT: PASSED'));
+});
+
+test('a path to another file still exits 2 as not a directory', () => {
+  const target = path.join(fixtureRoot, 'not-a-goal.md');
+  fs.writeFileSync(target, 'x\n');
+  const result = spawnSync(
+    process.execPath,
+    [path.join(__dirname, '..', 'check-goal.cjs'), '--root', WORKSPACE_ROOT, target],
+    { encoding: 'utf8' }
+  );
+
+  assert.equal(result.status, 2);
+  assert.ok((result.stdout + result.stderr).includes('packet path is not a directory'));
+});
