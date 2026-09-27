@@ -57,7 +57,7 @@ _memory:
 | **Parent Packet** | sk-doc/061-skilled-release-changelog |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | The framework release notes have their own line under `.skilled/changelog/skilled/`, system-spec-kit writes its own changelog again, and every changelog in the repository can be found by Gate 1 and `/speckit:search` the way a spec document can |
+| **Handoff Criteria** | The framework release notes have their own line under `.skilled/changelog/skilled/`, and system-spec-kit writes its own changelog again. Every changelog in the repository can be found by Gate 1 and `/speckit:search` the way a spec document can, and the tools and docs around changelogs match what ships |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -69,7 +69,7 @@ _memory:
 The system-spec-kit changelog was serving as the repository's global release notes. Its v4 entries describe the whole framework, the skill's own history stops at 3.9.0.0 and sk-create-changelog treats that folder as the home of the release notes. Changelogs are also hard to find: of the 544 changelog files under `.skilled/skills/`, 52 carry `trigger_phrases`, so Gate 1's trigger index and `/speckit:search` reach few of them, while spec documents carry the metadata that makes them findable.
 
 ### Purpose
-Give the Skilled framework one release line of its own, restore system-spec-kit's component changelog, and then make every changelog as findable and searchable as a spec document, both the entries sk-create-changelog writes from now on and the ones already in the repository.
+Give the Skilled framework one release line of its own, restore system-spec-kit's component changelog, and then make every changelog as findable and searchable as a spec document, both the entries sk-create-changelog writes from now on and the ones already in the repository. A last phase brings the tools and docs next to that work in line with it.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -85,6 +85,7 @@ Give the Skilled framework one release line of its own, restore system-spec-kit'
 - sk-create-changelog support for the release line, then search metadata in every entry it writes
 - A search-metadata pass over every existing changelog in the repository
 - Retrieval coverage, so the trigger index and `/speckit:search` reach changelogs
+- The surfaces next to that work: hub resolution in `/create:changelog`, the validator's type detection, the nested generator's escaping and the docs, catalogs and playbooks that describe them
 
 ### Out of Scope
 - Changelogs inside `.worktrees/` checkouts, which belong to other sessions
@@ -96,13 +97,15 @@ Give the Skilled framework one release line of its own, restore system-spec-kit'
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `.skilled/changelog/skilled/**` | Create | 001-release-line-split | Framework release notes, one entry per Skilled release |
-| `.skilled/skills/system-spec-kit/changelog/v4.*.md` | Create | 001-release-line-split, 002-changelog-findability | The skill's own entries, then one for the nested generator change |
-| `.skilled/skills/sk-doc/sk-create-changelog/**`, `.skilled/commands/create/assets/create-changelog-*` | Modify | 001-release-line-split, 002-changelog-findability | Release-line support, then search metadata in the output |
+| `.skilled/skills/system-spec-kit/changelog/v4.*.md` | Create | 001-release-line-split, 002-changelog-findability, 003-adjacent-alignment | The skill's own entries, then one each for the nested generator's phrase and its escaping |
+| `.skilled/skills/sk-doc/sk-create-changelog/**`, `.skilled/commands/create/**` | Modify | 001-release-line-split, 002-changelog-findability, 003-adjacent-alignment | Release-line support, then search metadata in the output, then hub resolution |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/**` | Modify | 001-release-line-split | The release line as a corpus root |
-| `.skilled/skills/system-spec-kit/templates/changelog/*.md`, `runtime/cli/spec-folder/nested-changelog.ts`, its vitest and `references/workflows/nested-changelog.md` | Modify | 002-changelog-findability | The nested generator writes an identity phrase in place of the template defaults |
-| `.skilled/skills/sk-doc/shared/scripts/validate_document.py`, `shared/assets/template-rules.json`, `scripts/tests/test_changelog_validator.py`, `changelog/` | Modify, Create | 002-changelog-findability | A frontmatter check for changelog entries, and the hub's entry for it |
+| `.skilled/skills/system-spec-kit/templates/changelog/*.md`, `runtime/cli/spec-folder/nested-changelog.ts`, its vitest and `references/workflows/nested-changelog.md` | Modify | 002-changelog-findability, 003-adjacent-alignment | The nested generator writes an identity phrase in place of the template defaults, then escapes what it pastes |
+| `.skilled/skills/sk-doc/shared/scripts/validate_document.py`, `shared/assets/template-rules.json`, `scripts/tests/test_changelog_validator.py`, `changelog/` | Modify, Create | 002-changelog-findability, 003-adjacent-alignment | A frontmatter check for changelog entries, then type detection by folder, and the hub's entries for both |
 | `.skilled/changelog/skilled/**/v*.md`, `.skilled/skills/**/changelog/**/v*.md`, `specs/**/changelog/**/changelog-*.md` | Modify | 002-changelog-findability | Search metadata on every existing entry, frontmatter only |
 | `README.md`, `PUBLIC-RELEASE.md`, `.skilled/skills/sk-git/references/finish-workflows.md` | Modify | 001-release-line-split | References to the release line |
+| `.skilled/skills/sk-doc/feature-catalog/**`, `sk-create-frontmatter/assets/frontmatter-templates.md`, system-spec-kit `feature-catalog/**`, `manual-testing-playbook/**` and `runtime/cli/retrieval/lib/README.md` | Modify, Create | 003-adjacent-alignment | Catalog entries, a playbook scenario and reference docs that describe the changelog work |
+| `.opencode/SYNC.md`, `.opencode/README.md`, `.skilled/changelog/skilled/v4.0.0.2.md`, two packets' `graph-metadata.json` | Modify | 003-adjacent-alignment | Rows for links that exist, the release's Changelogs section and `parent_id` as JSON null |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -116,6 +119,7 @@ Give the Skilled framework one release line of its own, restore system-spec-kit'
 |-------|--------|-------|--------|
 | 1 | 001-release-line-split/ | Give the Skilled release notes their own line under `.skilled/changelog/skilled/`, restore system-spec-kit's component changelog, teach sk-create-changelog the release line and keep Gate 1 finding the notes | Complete |
 | 2 | 002-changelog-findability/ | Make every changelog as findable and searchable as a spec document: search metadata in what sk-create-changelog writes, the same metadata on every existing changelog, and retrieval coverage to match | Complete |
+| 3 | 003-adjacent-alignment/ | Bring the surfaces next to the changelog work in line with it: hub resolution in `/create:changelog`, the validator's type detection, the nested generator's escaping and the docs, catalogs and playbooks that describe them | Complete |
 
 ### Phase Transition Rules
 
@@ -129,6 +133,7 @@ Give the Skilled framework one release line of its own, restore system-spec-kit'
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-release-line-split | 002-changelog-findability | Phase 1's edits to sk-create-changelog, the retrieval roots and the moved notes have landed, so phase 2 changes those files on a stable base | Phase 1's lanes have stopped and `validate.sh --strict` passes on `001-release-line-split` |
+| 002-changelog-findability | 003-adjacent-alignment | Phase 2's entries, validator check and generator phrase have landed, so phase 3 fixes the surfaces next to them on a stable base | Phase 2 is committed and pushed, and `validate.sh --strict` passes on `002-changelog-findability` |
 <!-- /ANCHOR:phase-map -->
 
 ---

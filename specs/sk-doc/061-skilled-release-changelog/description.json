@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/061-skilled-release-changelog",
   "description": "Skilled release changelog: the framework release line and findable changelogs",
   "keywords": [
@@ -10,13 +11,14 @@
     "findable",
     "changelogs"
   ],
-  "lastUpdated": "2026-09-27T12:01:29.165Z",
+  "lastUpdated": "2026-09-27T18:34:16.206Z",
   "specId": "061",
   "folderSlug": "skilled-release-changelog",
   "parentChain": [
     "sk-doc"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-09-26_19-34__all-three-phases-are-built-and-verified-phase-3.md"
+  ]
 }
