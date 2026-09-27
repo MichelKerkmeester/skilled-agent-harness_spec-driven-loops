@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.11.0
+version: 1.5.11.1
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -38,7 +38,7 @@ hard_rules:
 > whose kind already appears in the dispatch stack. Those bound a runaway spawn chain and are
 > unchanged. The sibling cli-X packets keep their own guards; this carve-out is Pi's alone.
 
-Orchestrate Pi's terminal coding agent for headless coding, read-only tool-constrained reviews, JSON event-stream integrations, RPC clients, and Pi-native resource discovery. The pinned contract is the source for confirmed command behavior: [Pi contract pin](../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). Pi-native skills, prompt templates, and some package surfaces remain documented but unconfirmed unless a source says otherwise.
+Orchestrate Pi's terminal coding agent for headless coding, read-only tool-constrained reviews, JSON event-stream integrations, RPC clients, and Pi-native resource discovery. The pinned contract is the source for confirmed command behavior: [Pi contract pin](../../../.skilled/specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). Pi-native skills, prompt templates, and some package surfaces remain documented but unconfirmed unless a source says otherwise.
 
 **Core principle**: use Pi for the surfaces it exposes, delegate research and review lineages to the shared runtime, validate the returned output, and keep the calling AI as conductor.
 
@@ -75,7 +75,7 @@ Run this probe before every dispatch. Do not build a command when it fails.
 command -v pi || echo "Not installed. Install @earendil-works/pi-coding-agent before dispatch."
 ~~~
 
-The pinned contract confirms the binary version used for the contract run and the headless entry point. For exact flags and observed failure behavior, load [cli-reference.md](./references/cli-reference.md).
+The pinned contract confirms the binary version used for the contract run and the headless entry point. For exact flags and observed failure behavior, load [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md).
 
 ### Resource Loading Levels
 
@@ -87,7 +87,7 @@ The pinned contract confirms the binary version used for the contract run and th
 
 ### Smart Router
 
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md)):
 
 ```python
 INTENT_SIGNALS = {
@@ -135,7 +135,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
 6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
 
-The `route_pi_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `pi`.
+The `route_pi_resources(task)` function body lives in [`shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `pi`.
 
 ---
 
@@ -143,20 +143,20 @@ The `route_pi_resources(task)` function body lives in [`shared-smart-router.md`]
 
 ### Execution Ownership
 
-This packet owns provider-specific routing, the availability probe, and prompt construction. For research and review lineages, the shared deep-loop runtime owns process construction and execution: the runtime supports the `cli-pi` executor kind, and its fan-out command builder is implemented (print mode, provider-qualified `--model`, `--thinking` from `reasoningEffort`), so a lineage dispatches through the executor kind directly. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5. Do not add a packet-local wrapper, spawn path, or command builder.
+This packet owns provider-specific routing, the availability probe, and prompt construction. For research and review lineages, the shared deep-loop runtime owns process construction and execution: the runtime supports the `cli-pi` executor kind, and its fan-out command builder is implemented (print mode, provider-qualified `--model`, `--thinking` from `reasoningEffort`), so a lineage dispatches through the executor kind directly. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md) §5. Do not add a packet-local wrapper, spawn path, or command builder.
 
-**Five providers are reachable:** `openai-codex`, `opencode-go`, `cline-pass` (Cline Pass), `llmgateway` (**DevPass**, the operator's LLM Gateway plan, metered per token with a 3x credit bonus) and `minimax`. MiMo is reached through `llmgateway` only. Two of them — `cline-pass` and `llmgateway` — are not Pi builtins and exist only because `.pi/models.json` declares them; their setup, credentials and removal are in [.pi/custom-providers.md](../../../../.pi/custom-providers.md).
+**Five providers are reachable:** `openai-codex`, `opencode-go`, `cline-pass` (Cline Pass), `llmgateway` (**DevPass**, the operator's LLM Gateway plan, metered per token with a 3x credit bonus) and `minimax`. MiMo is reached through `llmgateway` only. Two of them — `cline-pass` and `llmgateway` — are not Pi builtins and exist only because `.pi/models.json` declares them; their setup, credentials and removal are in [.pi/custom-providers.md](../../../.pi/custom-providers.md).
 
-**Closed roster — non-roster models are FORBIDDEN.** Dispatch ONLY the models in [references/providers-and-models.md](./references/providers-and-models.md) §2, which is the single place the ids, thinking ceilings and per-provider id shapes are recorded; this file names the providers but deliberately does not restate their models. The deep-loop fan-out hard-rejects any off-roster id (`isPiModelAllowed` over `PI_SUPPORTED_MODELS`); even a direct `pi --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet + `PI_SUPPORTED_MODELS`) first.
+**Closed roster — non-roster models are FORBIDDEN.** Dispatch ONLY the models in [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md) §2, which is the single place the ids, thinking ceilings and per-provider id shapes are recorded; this file names the providers but deliberately does not restate their models. The deep-loop fan-out hard-rejects any off-roster id (`isPiModelAllowed` over `PI_SUPPORTED_MODELS`); even a direct `pi --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet + `PI_SUPPORTED_MODELS`) first.
 
-The pinned contract confirms that headless Pi uses print mode, that JSON mode emits JSONL events, and that RPC mode is a persistent JSONL protocol. These are different contracts. Do not treat RPC as a one-shot print invocation. See [cli-reference.md](./references/cli-reference.md) and [integration-patterns.md](./references/integration-patterns.md).
+The pinned contract confirms that headless Pi uses print mode, that JSON mode emits JSONL events, and that RPC mode is a persistent JSONL protocol. These are different contracts. Do not treat RPC as a one-shot print invocation. See [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md) and [integration-patterns.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md).
 
 ### Dispatch Lifecycle
 
 1. Verify the binary with command -v pi.
 2. Classify the request as print, JSON, RPC, read-only tool-constrained review, native-resource inspection, or generation.
-3. Compose the prompt using [prompt-quality-card.md](./assets/prompt-quality-card.md).
-4. Pass a research or review lineage to the shared deep-loop runtime; run a single build or doc dispatch with the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
+3. Compose the prompt using [prompt-quality-card.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md).
+4. Pass a research or review lineage to the shared deep-loop runtime; run a single build or doc dispatch with the child dispatch envelope in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md) §5.
 5. Capture stdout and stderr separately when the runtime allows it.
 6. Validate the output, changed files, and required tests before handback.
 
@@ -179,9 +179,9 @@ Pi reports missing provider credentials in output. The pinned contract observed 
 
 Pi's native resource surfaces are documented separately because their discovery behavior is not uniformly live-confirmed:
 
-- [native-skills-and-extensions.md](./references/native-skills-and-extensions.md) covers skills, prompt templates, and extensions.
-- [mcp-and-third-party-packages.md](./references/mcp-and-third-party-packages.md) covers packages, MCP, and community bridges.
-- [agent-delegation.md](./references/agent-delegation.md) covers Pi's built-in tool surface and the delegation boundary.
+- [native-skills-and-extensions.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md) covers skills, prompt templates, and extensions.
+- [mcp-and-third-party-packages.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md) covers packages, MCP, and community bridges.
+- [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md) covers Pi's built-in tool surface and the delegation boundary.
 
 ### Prompt Construction
 
@@ -189,7 +189,7 @@ The caller remains responsible for task scope, files, acceptance criteria, and v
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Gotchas that silently break a dispatch and must be honored at routing time:
+The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md). Gotchas that silently break a dispatch and must be honored at routing time:
 
 - **Redirect stdin on every non-interactive dispatch: `</dev/null`.** Without it `pi -p` inherits the
   parent terminal's stdin and hangs indefinitely, emitting **nothing at all** — not a partial answer,
@@ -211,7 +211,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 ### ✅ ALWAYS
 
 1. Run command -v pi before every dispatch.
-2. Delegate research and review lineages to the shared deep-loop runtime. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
+2. Delegate research and review lineages to the shared deep-loop runtime. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md) §5.
 3. Choose print, JSON, or RPC deliberately. RPC is persistent and is not a print-mode alias.
 4. Capture and inspect output text for provider and extension failures.
 5. Use the prompt-quality card's two-tier precedence rule.
@@ -220,7 +220,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 8. Keep the current runtime as conductor and Pi as delegated executor.
 9. Treat Pi-native discovery claims as confirmed only when backed by the pinned contract or a linked live documentation page.
 10. Compose every dispatch as `{resolved agent persona + task prompt}`, never a bare task. Resolve the persona from the ACTIVE runtime's agent directory (AGENTS.md §9; never hardcode a runtime) and map each subtask to the right agent (code, review, design, deep-research, markdown). Core Pi has no native persona surface on `pi -p`, so INLINE the persona block into the payload — the child cannot resolve agent paths by reference. A persona-less leaf runs as a generic assistant, dropping its tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
-11. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt. The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
+11. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt. The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../../../.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
 12. Give a build dispatch one change per brief: name the file, the edit, and the check that proves it. A brief that asks the child to read a subsystem before it edits spends its context first; a DeepSeek V4.1 Flash build brief carrying five changes across five runtime files read about 995,000 characters in 25 minutes and wrote nothing. Chain the changes as separate dispatches and check each diff before sending the next.
 
 ### ⛔ NEVER
@@ -249,22 +249,22 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 
 ### Core References
 
-- [cli-reference.md](./references/cli-reference.md) - Confirmed CLI flags, modes, auth failure behavior, model selection, and command examples
-- [providers-and-models.md](./references/providers-and-models.md) - Authenticated provider/model roster, the `--thinking` effort scale, and the GPT-5.6 ceiling cross-map
-- [pi-tools.md](./references/pi-tools.md) - Pi capabilities with no sibling analog (RPC, native extensions/prompts, tool surface)
-- [integration-patterns.md](./references/integration-patterns.md) - Conductor/executor patterns, cross-validation, and anti-patterns
-- [agent-delegation.md](./references/agent-delegation.md) - Pi's built-in tool surface and the delegation boundary
-- [native-skills-and-extensions.md](./references/native-skills-and-extensions.md) - Pi-native discovery surfaces with confidence labels
-- [mcp-and-third-party-packages.md](./references/mcp-and-third-party-packages.md) - MCP and community package boundaries
+- [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md) - Confirmed CLI flags, modes, auth failure behavior, model selection, and command examples
+- [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md) - Authenticated provider/model roster, the `--thinking` effort scale, and the GPT-5.6 ceiling cross-map
+- [pi-tools.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md) - Pi capabilities with no sibling analog (RPC, native extensions/prompts, tool surface)
+- [integration-patterns.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md) - Conductor/executor patterns, cross-validation, and anti-patterns
+- [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md) - Pi's built-in tool surface and the delegation boundary
+- [native-skills-and-extensions.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md) - Pi-native discovery surfaces with confidence labels
+- [mcp-and-third-party-packages.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md) - MCP and community package boundaries
 
 ### Templates and Assets
 
-- [prompt-quality-card.md](./assets/prompt-quality-card.md) - Thin delegator to the canonical prompt-models card
-- [prompt-templates.md](./assets/prompt-templates.md) - Print, JSON, RPC, review, and generation scaffolds
+- [prompt-quality-card.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md) - Thin delegator to the canonical prompt-models card
+- [prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md) - Print, JSON, RPC, review, and generation scaffolds
 
 ### External Sources
 
-- [Pi contract pin](../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md) - Local live-verification evidence
+- [Pi contract pin](../../../.skilled/specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md) - Local live-verification evidence
 - [Pi skills documentation](https://pi.dev/docs/latest/skills) - Documentation-only native skill surface
 - [Pi RPC documentation](https://pi.dev/docs/latest/rpc) - Documentation-only RPC surface
 - [Pi JSON documentation](https://pi.dev/docs/latest/json) - Documentation-only JSON event stream
@@ -314,7 +314,7 @@ sk-code owns surface detection and code verification. system-spec-kit owns Gate 
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers markdown resources dynamically. Start with the CLI reference and prompt-quality card, then load only the references matching the task. Use [prompt-templates.md](./assets/prompt-templates.md) for repeatable prompt construction.
+The router discovers markdown resources dynamically. Start with the CLI reference and prompt-quality card, then load only the references matching the task. Use [prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md) for repeatable prompt construction.
 
 Related skills: cli-opencode, cli-claude-code, cli-codex, cli-cursor, and cli-devin for sibling CLI dispatch; sk-code for code standards; system-deep-loop for execution; and system-spec-kit for packet handback.
 
