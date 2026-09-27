@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-27, from `../007-classifier-deep-research/research/research.md` section 8 (F: sk-design), rows 91 and 93 and open question 47 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -54,7 +54,7 @@ This is **Phase 14** of the cli-jev workflow integration specification. It turns
 - A diagnosis of the SD-007 drift and the smallest fix the owner approves, after which the admission harness scores 4 of 4
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name. That folder does not exist (checked 2026-09-27 at build close), so there is nothing to refresh.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -141,7 +141,7 @@ The option A rows are the same-class inventory from `rg -n 'isPass[^A-Za-z]|>= ?
 |----|-------------|
 | REQ-001 | Rerun `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "make a bar chart of monthly revenue"` at build time and keep its stdout. On `"action":"route"`, rewrite rule 6 so it tells the reader to take the mode from that call and to fall back to the routing section on a legacy sentinel or an error, matching the callout at `SKILL.md:48-52`. On a legacy sentinel, leave rule 6 as it is and report the result instead |
 | REQ-002 | Record the owner's choice between option A (docs follow the code) and option B (the code enforces the 80-point rule) in section 10 of this spec, with the date, before any md-generator file changes |
-| REQ-006 | Make no classifier or model call, and change no file outside `.skilled/skills/sk-design/` and this phase folder, except sk-design's activation manifest when REQ-008 takes the vocabulary option. Code the build writes carries no spec path, packet or phase number or requirement id in a comment |
+| REQ-006 | Make no classifier or model call, and change no file outside `.skilled/skills/sk-design/` and this phase folder, except generated derivatives of in-scope sources: the `sync-skills-hermes.cjs` copies under `.hermes/skills/` of changed sk-design `SKILL.md` files, and sk-design's activation manifest with its `specs/sk-doc/019` mirror, which the route-remint gate re-mints. No other `.skilled/bin` file changes (amended at close, see `goal.md`). Code the build writes carries no spec path, packet or phase number or requirement id in a comment |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -179,7 +179,7 @@ The option A rows are the same-class inventory from `rg -n 'isPass[^A-Za-z]|>= ?
 | Dependency | Option B needs the backend's dev dependencies | `backend/node_modules` is absent in this worktree (checked 2026-09-27), so the vitest suite cannot run without an install | Installs need a named rollback (delete `backend/node_modules`) and the operator's yes. Option A needs no install |
 | Risk | The front door stops routing sk-design before the build | Med | REQ-001's legacy branch keeps rule 6 and reports it rather than writing a false rule |
 | Risk | A mode scenario tests a boundary to another mode, so its owning mode is the wrong gold | Med | The report names each miss with the scenario's own expected mode where the scenario states one, and says which gold it scored against |
-| Risk | `parent-skill-check.cjs` is red before any change | Low | It exited 1 on 2026-09-27 on `12-lib` (`Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'`). Per the coordinator it fails that way on every hub in this worktree for a provisioning reason, so it is not an sk-design fault. Phase `018-worktree-provision-shared-link` plans that fix. Until it lands, the build compares against this baseline, not against 0 |
+| Risk | `parent-skill-check.cjs` is red before any change | Low | It exited 1 on 2026-09-27 on `12-lib` (`Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'`). Per the coordinator it fails that way on every hub in this worktree for a provisioning reason, so it is not an sk-design fault. Phase `018-worktree-provision-shared-link` plans that fix. Until it lands, the build compares against this baseline, not against 0. At the build baseline (`6f47c32dce`, after the main merge) it exited 0 with 0 warnings, so the build compared against 0 |
 | Risk | The SD-007 fix moves other routes | Med | A vocabulary change is compiled for the whole hub. The replay reruns after the fix and any scenario that routes worse blocks the fix |
 | Risk | The SD-007 gold is the fault, not the router | Med | The prompt is `Improve doc quality and add flowcharts for the new feature docs.` and names no data chart, while the gold expects chart and diagram. The diagnosis decides between a vocabulary change and a gold correction and puts the choice to the owner |
 <!-- /ANCHOR:risks -->
