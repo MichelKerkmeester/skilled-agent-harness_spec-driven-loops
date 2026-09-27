@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
-  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint",
   "parent_id": "cli-jev/003-cli-jev-workflow-integration",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "goal verifier jev shadow",
-      "goal verifier labeled set",
-      "opencode goal verifier accuracy",
-      "jev shadow verifier mode",
-      "verifier keep threshold",
-      "pi goal verify nudge census",
-      "verifier tail-window arm",
-      "goal verifier jev plan",
-      "labeled set scorer plan",
-      "jev shadow mode plan",
-      "verifier key gate plan",
-      "pi goal nudge census plan"
+      "goal criteria lint",
+      "lint-goal-criteria",
+      "score-goal-lint",
+      "goal criteria rubric rules 4 and 5",
+      "r20 jev arm not built",
+      "goal criteria lint plan",
+      "lint-goal-criteria plan",
+      "score-goal-lint plan",
+      "goal criteria rubric labels",
+      "goal criteria lint tasks",
+      "lint-goal-criteria tasks",
+      "goal criteria labels tasks"
     ],
     "key_topics": [
       "goal",
-      "verifier",
+      "criteria",
+      "lint",
+      "lint-goal-criteria",
+      "score-goal-lint",
+      "rubric",
+      "rules",
+      "r20",
       "jev",
-      "shadow",
-      "labeled",
-      "set",
-      "opencode",
-      "accuracy",
-      "mode",
-      "keep",
-      "threshold",
-      "verify"
+      "arm",
+      "plan",
+      "labels"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -46,10 +46,10 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/plugins/opencode-goal.js",
-      ".opencode/plugins/tests/opencode-goal-supervisor.test.cjs",
-      ".skilled/hooks/goal/goal-plugin.md",
-      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+      "scripts/README.md",
+      ".skilled/hooks/goal/lib/goal-slice.cjs",
+      ".skilled/commands/create/assets/create-goal-auto.yaml"
     ],
     "entities": [
       {
@@ -83,49 +83,37 @@
         "source": "derived"
       },
       {
-        "name": "opencode-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/opencode-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-goal-supervisor.test.cjs",
+        "name": "check-goal.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/tests/opencode-goal-supervisor.test.cjs",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
         "source": "derived"
       },
       {
-        "name": "goal-plugin.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "name": "goal-slice.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-slice.cjs",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "create-goal-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-goal-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Build Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Goal Verifier Pi Census",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Call Arms",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Jev Shadow Mode",
+        "name": "Criteria Lint",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -143,6 +131,18 @@
         "source": "derived"
       },
       {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -155,7 +155,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Slice",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,27 +191,15 @@
         "source": "derived"
       },
       {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Jev",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Not To Build",
-        "kind": "proper_noun",
-        "path": "goal.md",
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Two runtimes judge \"is this goal done\" with a heuristic",
-    "created_at": "2026-09-26T18:26:44Z",
-    "last_save_at": "2026-09-27T04:48:30.249Z",
+    "causal_summary": "No machine check tests rules 4 and 5 of `sk-create-goal`",
+    "created_at": "2026-09-27T04:39:32Z",
+    "last_save_at": "2026-09-27T04:48:28.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f395ed7374b959d1f91567dd198f51eabaef98d700de2b2162d80bc1179dd979",
+    "source_fingerprint": "sha256:0a93250f7164d4a5dc713fb3a1275f2f48fef62aa35eed765356de7a12ece787",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1444f5ffc562ee838c2d86bdf041b6f4f7788de0d5e1db8d98d2c590a70dbb58",
-      "plan.md": "cbcc5ddc3b1fd779daf6468b4337b2be418994f6ab7ffe9401d02343432cdf38",
-      "tasks.md": "4ce784e2d3935b1192f6287ed447a6f96b6ca3c422d394dab9204482d40baffe",
-      "implementation-summary.md": "949968ac6aa141f332fd1417eaf87e7a819b6f63f01a61efc7018c22809919bb"
+      "spec.md": "7f1714c90ba2117af716772e851af8fd6857171a4f52c97bfce87e76c87ac756",
+      "plan.md": "0ebca64a3766dea563632e08181416010a7fa83c62cd76c55aed436c725a5488",
+      "tasks.md": "3c708cef9c495461846202d334b714839ed80ca51b331e4a457ce3dab96435ab",
+      "implementation-summary.md": "c3126a2d53fa115599caf992487e9caa21cd543bbb3f0f06b3b0a0472c00f3c2"
     },
     "last_active_at": null
   }

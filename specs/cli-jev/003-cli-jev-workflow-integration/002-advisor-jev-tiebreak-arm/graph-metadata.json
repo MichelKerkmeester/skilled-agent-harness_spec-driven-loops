@@ -16,13 +16,13 @@
       "score-jev-tiebreak",
       "advisor ambiguity cluster jev",
       "jev arm skipped no credential",
+      "jev tie-break power line",
       "advisor jev tie-break plan",
       "score-jev-tiebreak plan",
       "jev census baseline column",
       "jev arm key gate",
       "advisor jev tie-break tasks",
-      "score-jev-tiebreak tasks",
-      "jev key gate tasks"
+      "score-jev-tiebreak tasks"
     ],
     "key_topics": [
       "advisor",
@@ -36,7 +36,7 @@
       "ambiguity",
       "skipped",
       "credential",
-      "plan"
+      "power"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -127,13 +127,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview The",
+        "name": "The Python",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -157,7 +157,7 @@
         "source": "derived"
       },
       {
-        "name": "its",
+        "name": "comparators",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -169,33 +169,33 @@
         "source": "derived"
       },
       {
-        "name": "zero",
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Not To Build",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "a",
         "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "MRR",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Nobody has measured whether a Jev `choice` would order the skill advisor's near-tie cluster better than its own fused scores",
     "created_at": "2026-09-26T18:26:43Z",
-    "last_save_at": "2026-09-26T18:32:55.053Z",
+    "last_save_at": "2026-09-27T04:47:31.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30d53ac5f843b055f06f18945d07ace8bed4af8127b587865c20fbd85ce4dd2a",
+    "source_fingerprint": "sha256:070f9b4fab2bafce41c8a973dd18502981f3164a7bbec6f50bce5dbcfab6a145",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c9b444b4142a0ba449a64a3659b0dce31d022b0e79b307486d66b4a97d4af1e1",
-      "plan.md": "2b5a3301b17f39de258df25bcb6c60c53037f6d6a791fdf4947d7a2b790e1cf7",
-      "tasks.md": "ce9734717beea52da810680df16f4cd19d4cb9350bf2a8ddca075b8794d9a544",
-      "implementation-summary.md": "2e54a03b7662a72de886de257b57ddc80fc3a5012d2ddd23611d4fa8f28e66af"
+      "spec.md": "98cb7abf6884ff783af9dc23d3e966681d93b29427905d558986f18c20eaa8a3",
+      "plan.md": "485959fa231496625cb750a63a7171d8a9a4c0ad85c0b4db660e1feecdcd58f2",
+      "tasks.md": "8230b1360ea9a8444c524e0f48ccec69b32245487aac8ba961d7f3be39679bfa",
+      "implementation-summary.md": "f6b2b00e28435e60d2ce56ead9a240dcf40936b4e3cda59e44559c44b9d81507"
     },
     "last_active_at": null
   }

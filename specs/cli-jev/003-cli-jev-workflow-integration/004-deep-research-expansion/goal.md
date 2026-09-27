@@ -59,12 +59,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `../001-deep-research/research/research.md` carries a section listing its changes against the first synthesis, written by a fresh Opus 5.5 xhigh leaf from the council review
-- [ ] `context/research-angles.md` defines 20 angles from `grok-01` to `deepseek-05`, and `scratch/research-topic.txt` holds the topic on one line
-- [ ] `research/lineages/grok/`, `mimo/`, `swe/` and `deepseek/` each hold `iteration-001.md` to `iteration-005.md` and a state log with 5 iteration records whose last record has `stopReason` `maxIterationsReached`
-- [ ] `research/research.md`, written by a fresh Opus 5.5 max leaf, answers RQ1 to RQ7 and ranks each recommendation build-now, next, later or drop with a seam `file:line`, a metric with baseline and harness, the `jev auth status` key gate and a smallest slice
-- [ ] The synthesis marks every citation resolved, drifted or failed, and the orchestrator reopened five citations and three recommendations
-- [ ] Every build phase the final synthesis proposes is a Planned child of the parent with `spec.md`, `plan.md`, `tasks.md` and `goal.md`, and `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `../001-deep-research/research/research.md` carries a section listing its changes against the first synthesis, written by a fresh Opus 5.5 xhigh leaf from the council review
+- [x] `context/research-angles.md` defines 20 angles from `grok-01` to `deepseek-05`, and `scratch/research-topic.txt` holds the topic on one line
+- [x] `research/lineages/grok/`, `mimo/`, `swe/` and `deepseek/` each hold `iteration-001.md` to `iteration-005.md` and a state log with 5 iteration records whose last record has `stopReason` `maxIterationsReached`
+- [x] `research/research.md`, written by a fresh Opus 5.5 max leaf, answers RQ1 to RQ7 and ranks each recommendation build-now, next, later or drop with a seam `file:line`, a metric with baseline and harness, the `jev auth status` key gate and a smallest slice
+- [x] The synthesis marks every citation resolved, drifted or failed, and the orchestrator reopened five citations and three recommendations
+- [x] Every build phase the final synthesis proposes is a Planned child of the parent with `spec.md`, `plan.md`, `tasks.md` and `goal.md`, and `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -88,6 +88,7 @@ and findings belong here.
 | Final synthesis | Done | Fresh Opus 5.5 max leaf: 2 build-now (R1, R19), 3 next (R2, R20, R21), 15 later, 1 drop (R14); 149 citations checked, 142 resolved, 5 drifted, 2 failed; phases 002 and 003 amended, 005-compaction-recall-harness and 006-goal-criteria-lint new |
 | Host recheck | Done | Reopened `jev_cli/__init__.py:307` (judgments use `JEV_PROVIDER`) and `:339` (auth defaults to `official`), and confirmed the gap live with a dummy OpenRouter key: `auth status` exit 3, with `--provider openrouter` exit 0. Pi nudges: 1,616 `goal-verify-nudge` messages in 37 of this repo's session files against the synthesis's 1,457 in 28, so the magnitude holds and the exact count drifts by counting method. Compactions: 210 boundaries in this project against the synthesis's 222 |
 | Close report | Done | `synthesis_incomplete`: the merge rebuilt 74 of 118 count-only findings (grok 7 of 21, swe 20 of 30, deepseek 21 of 41, mimo whole); the synthesis read every iteration file directly |
+| Phase reconciliation | Done | One Opus 5.5 high leaf per phase: `002` and `003` amended to section 13 (REQ ids kept, new REQ-013 and REQ-014 in 002, REQ-013 to REQ-015 in 003), `005-compaction-recall-harness` and `006-goal-criteria-lint` authored new. Each leaf ran strict validate (`RESULT: PASSED`, 0 warnings) and `check-goal` (4/4). Host confirmed each leaf's test placement against the vitest and `node --test` configs, the baseline env at `capture-scorer-eval-baseline.mjs:35-46` and the `--value` limit at `cli-reference.md:65`. The parent gained binding, phase-map and handoff rows |
 
 ### Deviations and findings
 

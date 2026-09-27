@@ -52,8 +52,8 @@ contextType: "research"
 - [x] T009 Run the merge and resource-map steps (`research/`)
 - [x] T010 Dispatch a fresh Opus 5.5 max leaf to write the final synthesis (`research/research.md`)
 - [x] T011 Run `step_convergence_report` and record its event
-- [ ] T012 Reconcile the Planned build phases with the final synthesis, one Opus 5.5 high leaf per phase (`../NNN-*/`)
-- [ ] T013 Update the parent binding table and phase map (`../goal.md`, `../spec.md`)
+- [x] T012 Reconcile the Planned build phases with the final synthesis, one Opus 5.5 high leaf per phase (`../NNN-*/`)
+- [x] T013 Update the parent binding table and phase map (`../goal.md`, `../spec.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -64,8 +64,8 @@ contextType: "research"
 - [x] T014 Confirm each lineage state log holds 5 iteration records ending `maxIterationsReached`
 - [x] T015 Reopen five citations and three recommendations from the final synthesis
 - [x] T016 Review containment advisories and `git status` for writes outside the allowed paths
-- [ ] T017 Run `validate.sh --strict --recursive` on the parent until it prints `RESULT: PASSED`, and `check-goal.cjs` on every folder
-- [ ] T018 Fill `implementation-summary.md`, save continuity and commit on the worktree branch
+- [x] T017 Run `validate.sh --strict --recursive` on the parent until it prints `RESULT: PASSED`, and `check-goal.cjs` on every folder
+- [x] T018 Fill `implementation-summary.md`, save continuity and commit on the worktree branch
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -73,9 +73,9 @@ contextType: "research"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

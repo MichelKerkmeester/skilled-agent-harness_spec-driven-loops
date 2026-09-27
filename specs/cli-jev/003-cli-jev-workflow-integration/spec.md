@@ -87,7 +87,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 - Changing the `cli-jev` hub or its `cli-usage` transport contract.
 - Editing the vendored repositories under `context/`. They are reference material.
 - Storing any key or secret in Jev state, in a digest or in a research artifact.
-- Any feature that calls Jev or changes behavior while `command -v jev && jev auth status` fails. The check only reads, never prints the key and spends no quota (`cli-usage/SKILL.md:98-102`). Each feature also keeps its own opt-in switch, and with no key it runs exactly as it does today.
+- Any feature that calls Jev or changes behavior while `command -v jev && jev auth status --provider <the provider its judgments use>` fails. The check only reads, never prints the key and spends no quota (`cli-usage/SKILL.md:98-102`). Each feature also keeps its own opt-in switch, and with no key it runs exactly as it does today.
 - Pushing or merging the worktree branch. Both are the operator's call.
 
 ### Files to Change
@@ -113,9 +113,11 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Context digests and research angles, the Grok 4.7 roster entry, a 30-iteration fan-out over DeepSeek, MiMo and Grok, and a fresh Opus synthesis | Complete |
-| 2 | 002-advisor-jev-tiebreak-arm/ | Measure offline, by hand, whether a Jev `choice` over the advisor's near-tie cluster beats the scorer's own order on held-out rows. Dormant without a Jev key | Planned |
-| 3 | 003-goal-verifier-jev-shadow/ | Give the goal verifier its first error rates on an operator-labeled set, then add an opt-in shadow `jev` mode to the OpenCode goal plugin only if an offline Jev arm clears a threshold fixed before the build. Dormant without a Jev key | Planned |
+| 2 | 002-advisor-jev-tiebreak-arm/ | A zero-call census of the advisor's near-tie rows with three comparators and a power line first, then, offline and by hand, whether a Jev `choice` beats the scorer under a keep rule that can fail. Dormant without a Jev key | Planned |
+| 3 | 003-goal-verifier-jev-shadow/ | A zero-call Pi census of goal-verify nudges, then the verifier's first error rates from three zero-call arms on an operator-labeled set. A Jev arm and an opt-in shadow mode in the OpenCode goal plugin follow only past a gate fixed before the build. Dormant without a Jev key | Planned |
 | 4 | 004-deep-research-expansion/ | Re-synthesize round 1 from the AI Council review, run 20 forced iterations over Grok 4.7, MiMo V2.6 Pro, SWE-2 Max and DeepSeek V4.1 Flash, write the final synthesis and reconcile the Planned build phases | In Progress |
+| 5 | 005-compaction-recall-harness/ | A zero-call census of host compactions over transcripts the operator names: what the stock summary and the recorded brief keep, and a printed stop line that decides whether an offline Jev deletion arm is worth building. Dormant without a Jev key | Planned |
+| 6 | 006-goal-criteria-lint/ | A lexical lint of goal criteria against rules 4 and 5 of `sk-create-goal`, under a rubric the operator adopts before labeling. A Jev arm only past the stop rule. Dormant without a Jev key | Planned |
 
 ### Phase Transition Rules
 
@@ -132,6 +134,8 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 001-deep-research | 002-advisor-jev-tiebreak-arm | `research/research.md` ranks R1 build-now with its seam, metric and first slice | `validate.sh --strict` passes on 001 |
 | 002-advisor-jev-tiebreak-arm | 003-goal-verifier-jev-shadow | Not a hard gate: 003's offline slice can start any time. Its plugin mode waits on 002's per-call latency record | 002's per-call JSONL shows a wall time for every call |
 | 001-deep-research | 004-deep-research-expansion | `ai-council/council-report.md` and `proposed-resynthesis.md` exist | `validate.sh --strict` passes on 001 |
+| 004-deep-research-expansion | 002, 003, 005 and 006 | `research/research.md` ranks R1 and R19 build-now and R2 and R20 next, each with its seam, metric, key gate and first slice. Build order: 002's census first, with 005's census and 003's Pi census beside it, since none makes a call | `validate.sh --strict` passes on 004 |
+| 005-compaction-recall-harness | 006-goal-criteria-lint | Not a hard gate: 006's lexical lint waits only on the operator's adopted rubric and labels | 006's `spec.md` records the adopted rubric before any labeling |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint",
+  "description": "No machine check tests rules 4 and 5 of `sk-create-goal`",
+  "keywords": [
+    "machine",
+    "check",
+    "tests",
+    "rules",
+    "sk-create-goal"
+  ],
+  "lastUpdated": "2026-09-27T04:48:23.360Z",
+  "specId": "006",
+  "folderSlug": "goal-criteria-lint",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
