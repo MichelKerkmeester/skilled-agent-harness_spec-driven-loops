@@ -1,0 +1,245 @@
+### CHT-004 | sk-design-chart | sk-design-chart/manual-testing-playbook/corpus-integrity/a-chart-that-draws-nothing.md
+PROMPT: Check the chart corpus properly, not just whether the files are shaped right.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CHT-006 | sk-design-chart | sk-design-chart/manual-testing-playbook/corpus-integrity/catalog-resolves-both-ways.md
+PROMPT: We keep getting asked for a chart the catalogue does not cover. Add one and wire it in.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CHT-005 | sk-design-chart | sk-design-chart/manual-testing-playbook/corpus-integrity/colour-comes-from-one-source.md
+PROMPT: Restyle these charts to our brand colours.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CHT-009 | sk-design-chart | sk-design-chart/manual-testing-playbook/delivery-and-routing/a-delivery-on-a-dark-system.md
+PROMPT: I opened the chart you sent and it is a bright white rectangle in the middle of my dark screen.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CHT-008 | sk-design-chart | sk-design-chart/manual-testing-playbook/delivery-and-routing/form-choice-and-the-diagram-boundary.md
+PROMPT: Make a waterfall chart of the budget movement from gross to net.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-chart","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-chart"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CHT-007 | sk-design-chart | sk-design-chart/manual-testing-playbook/delivery-and-routing/opens-with-no-build-step.md
+PROMPT: Send me the chart so I can open it on my laptop on the train.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CHT-002 | sk-design-chart | sk-design-chart/manual-testing-playbook/reading-the-chart/axis-ladder-fits-the-tallest-mark.md
+PROMPT: This chart looks wrong. Everything is squashed into the bottom half and I cannot see the difference between the middle bars.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CHT-001 | sk-design-chart | sk-design-chart/manual-testing-playbook/reading-the-chart/headline-agrees-with-the-data.md
+PROMPT: Turn these depot pick times into a chart I can put in the board pack.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CHT-003 | sk-design-chart | sk-design-chart/manual-testing-playbook/reading-the-chart/nothing-runs-past-the-drawing-edge.md
+PROMPT: Make me this chart, then open it and tell me if anything is cut off. The last one had a label hanging off the side.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CAP-001 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/capture-review/capture-review.md
+PROMPT: Here's the render of the diagram that's going into our docs — tell me what a person actually sees wrong with it before we publish.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CMD-001 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/command-and-hub-integration/design-diagram-command.md
+PROMPT: /design:diagram docs/order-flow.html "sequence diagram of our order placement flow" :auto — sequence diagram of the order flow, no questions.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CMD-002 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/command-and-hub-integration/hub-registration.md
+PROMPT: When someone says "redraw this drawio", the system should route to the diagram skill.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### DIA-002 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/diagram-generation/editorial-style-and-connectors.md
+PROMPT: Make a swimlane diagram of our support handoff process, and make it consistent with our docs.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### DIA-003 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md
+PROMPT: Onboard the diagram skill to my site, https://example.com.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### DIA-004 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/diagram-generation/primitive-variants.md
+PROMPT: Make a loop diagram for my newsletter post about compounding habits — hand-drawn style, with a couple of annotations.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### DIA-001 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/diagram-generation/type-selection-and-routing.md
+PROMPT: Draw an architecture diagram of our checkout service and its dependencies.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### IMP-001 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/import-export/drawio-import.md
+PROMPT: Here's our system diagram from draw.io — make it presentable for a blog post.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### IMP-003 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/import-export/export-guidance.md
+PROMPT: Give me a PNG of that architecture diagram for the slide deck.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### IMP-002 | sk-design-diagram | sk-design-diagram/manual-testing-playbook/import-export/mermaid-import.md
+PROMPT: Simplify this Mermaid flowchart into something clean for our docs.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"template-scaffold","packetId":"sk-design-diagram","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-diagram"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-030 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/boundary/extraction-defers-to-md-generator.md
+PROMPT: Extract the design system from stripe.com.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-031 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/boundary/implementation-defers-to-sk-code.md
+PROMPT: Write the API client for this form.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-021 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md
+PROMPT: Our brand green fails contrast on white, what do we do?
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-020 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/conflict-handling/project-system-precedence.md
+PROMPT: Our design system says 24px spacing here, but you suggested 32px.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-022 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md
+PROMPT: Add a drop shadow to this card.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-001 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/routing/diagnose-entry.md
+PROMPT: This dashboard looks amateur, can you make it better?
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-003 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/routing/motion-entry.md
+PROMPT: How long should this dropdown animation be?
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-004 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/routing/procedure-entry.md
+PROMPT: I need to design a new settings screen, where do I start?
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-002 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/routing/review-entry.md
+PROMPT: Can you review this component for accessibility problems?
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-011 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/value-discipline/no-runtime-shades.md
+PROMPT: I need a slightly darker blue for the hover state, can you just darken it 10%?
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-010 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/value-discipline/on-scale-values.md
+PROMPT: How much padding should this card have?
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SKD-012 | sk-design-fundamentals | sk-design-fundamentals/manual-testing-playbook/value-discipline/unit-discipline.md
+PROMPT: Set the headline to 2.5em
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### A11Y-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/accessibility/accessibility-section.md
+PROMPT: Does the design system capture accessibility data?
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### BOUNDARY-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/authoring-boundary/authoring-boundary.md
+PROMPT: The brief says the brand red is #ff0000 and the body font is Inter. Put those in the design system you extracted from the live site.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### CLUSTER-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/cluster/oklch-clustering.md
+PROMPT: Confirm the color tokens are clustered and stability-classified correctly.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### DARKMODE-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/dark-mode/dark-mode-gate.md
+PROMPT: Does the Style Reference carry dark-mode values? Show me the condition.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### DETECT-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/detectors/framework-icon-motion-detection.md
+PROMPT: What framework, icons, and motion did the extractor detect?
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### ESCALATE-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/escalation/anti-bot-escalation.md
+PROMPT: Extract the design system from this site: https://www.cloudflare.com
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### EXTRACT-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/extract/live-extraction.md
+PROMPT: Extract the design system from example.com.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### FIDELITY-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/fidelity/verbatim-value-fidelity.md
+PROMPT: Check that the Style Reference you wrote copies every value exactly from tokens.json — no estimates, no rounding.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### GUIDED-014 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md
+PROMPT: Run the guided wrapper on this site and stop before validation if DESIGN.md isn't written yet.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### INTERACT-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/interaction/interaction-state-matrix.md
+PROMPT: Extract the design system including interaction states from example.com.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### PROCCARD-003 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md
+PROMPT: Subagents are unavailable, but validate this DESIGN.md against tokens.json in the current session.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### PROCCARD-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/procedure-card-contract/card-selection-proof.md
+PROMPT: Extract a measured design system and write a DESIGN.md from a live URL.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### PROCCARD-002 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/procedure-card-contract/no-card-fallback.md
+PROMPT: Study the existing style reference as a calibration example without extracting or writing measured artifacts.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### REPORT-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/report/report-generation.md
+PROMPT: Generate a visual report of the extracted design system.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### SETUP-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/setup/tool-readiness.md
+PROMPT: Set up the design extractor tool so I can extract a design system from a URL.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### PROVENANCE-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/source-of-truth/source-of-truth-card.md
+PROMPT: Walk through each value in this design system and tell me where it came from before we trust it.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-fundamentals","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-fundamentals"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### STUDY-015 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/study/editorial-exemplar-study.md
+PROMPT: Show me a non-SaaS example and what our Style Reference should take from it.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
+### VALIDATE-001 | sk-design-md-generator | sk-design-md-generator/manual-testing-playbook/validate/phantom-hex-detection.md
+PROMPT: Validate the Style Reference I just wrote against its tokens.json.
+RC: 0
+ROUTE: {"hubId":"sk-design","action":"route","selectionKind":"single","targets":[{"backendKind":"surface-router","packetId":"sk-design-md-generator","packetKind":"workflow","skillId":"sk-design","workflowMode":"sk-design-md-generator"}],"effectivePolicyHash":"cdc874749f2cf8babb969500f411045747280859667e3adaff6797017817d581","generation":1}
+
