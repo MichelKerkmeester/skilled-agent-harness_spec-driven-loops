@@ -1,5 +1,5 @@
 {
-  "corpusHash": "10b90a695ace8dee36c0577a17a90406d6fe8fdad2dad84bc2378212cf93c065",
+  "corpusHash": "ab4100f07575aba61926adb32c5440a86436d02e422c175ddca89c0350d63109",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23012,
+  "includedPathCount": 23013,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -13949,6 +13949,7 @@
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/plan.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/spec.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/tasks.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/goal.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/implementation-summary.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/plan.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/spec.md",
@@ -23034,7 +23035,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0e63c689ffd37ea9968a613287a758762e67875d84cd8db4073daa3e661b3d13",
+  "manifestHash": "59850e46a027201be040f8ec8f2962ad52b6bc7adb07e082584d7c23c6cec9da",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
