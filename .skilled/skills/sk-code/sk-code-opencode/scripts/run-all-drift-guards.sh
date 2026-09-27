@@ -3,14 +3,13 @@
 # Run all sk-code drift guards as one gate.
 # ───────────────────────────────────────────────────────────────
 #
-# sk-code's three drift guards are disjoint and were runnable only one at a
-# time: the alignment-drift verifier (language integrity + dead-route check),
-# the stack-folder verifier (language reference folders resolve), and the
-# router-sync suite (machine router vs filesystem/prose, plus the compiled
-# destination <-> leaf-manifest <-> RESOURCE_MAP bijection). This is the single
-# entry point that runs all three in sequence, prints a PASS/FAIL line per
-# guard, and exits non-zero if any one fails, so a completion gate never has to
-# remember three separate commands.
+# sk-code's two live drift guards are disjoint and were runnable only one at a
+# time: the alignment-drift verifier (language integrity + dead-route check) and
+# the stack-folder verifier (language reference folders resolve). This is the
+# single entry point that runs both in sequence, prints a PASS/FAIL line per
+# guard and exits non-zero if either fails, so a completion gate never has to
+# remember separate commands. A third guard, the router-sync suite, is retired,
+# and the note after the guard calls records what it checked.
 #
 # Offline and deterministic: no network, no model dispatch, no state carried
 # between runs. Paths resolve from this script's own location, so it runs from

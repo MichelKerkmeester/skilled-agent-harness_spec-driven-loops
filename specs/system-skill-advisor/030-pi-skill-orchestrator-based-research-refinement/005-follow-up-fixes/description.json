@@ -1,11 +1,14 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes",
-  "description": "Phase 1: follow-up-fixes",
+  "description": "Four defects remain from phases 1 to 4",
   "keywords": [
-    "phase",
-    "follow-up-fixes"
+    "four",
+    "defects",
+    "remain",
+    "phases"
   ],
-  "lastUpdated": "2026-09-26T15:21:02.192Z",
+  "lastUpdated": "2026-09-26T15:48:29.834Z",
   "specId": "005",
   "folderSlug": "follow-up-fixes",
   "parentChain": [
@@ -13,6 +16,5 @@
     "030-pi-skill-orchestrator-based-research-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

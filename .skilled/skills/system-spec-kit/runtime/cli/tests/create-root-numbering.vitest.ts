@@ -94,6 +94,33 @@ describe('create.sh numbering at the specs root', () => {
   });
 });
 
+// A phase appended to a parent is numbered after the children already there, and
+// the scaffold text that names it must carry that number, not its position in the
+// one invocation that created it.
+describe('create.sh numbering of an appended phase', () => {
+  it('names a phase appended after two others Phase 3', () => {
+    const parent = path.join('specs', '001-parent-work');
+    for (const child of ['001-first-step', '002-second-step']) {
+      fs.mkdirSync(path.join(workspace, parent, child), { recursive: true });
+    }
+    fs.writeFileSync(path.join(workspace, parent, 'spec.md'), '# Parent work\n');
+
+    const result = spawnSync(
+      'bash',
+      [
+        createScript, '--json', '--skip-branch', '--phase', '--parent', parent,
+        '--phases', '1', '--phase-names', 'third-step', 'Parent work',
+      ],
+      { cwd: workspace, encoding: 'utf8' },
+    );
+    expect(result.status, result.stderr).toBe(0);
+
+    const graphPath = path.join(workspace, parent, '003-third-step', 'graph-metadata.json');
+    const graph = JSON.parse(fs.readFileSync(graphPath, 'utf8')) as { derived: { causal_summary: string } };
+    expect(graph.derived.causal_summary).toBe('Phase 3: third-step');
+  });
+});
+
 // The fixture commit runs no hooks: a global core.hooksPath would otherwise
 // apply the host repository's commit gates to this throwaway one.
 function commit() {

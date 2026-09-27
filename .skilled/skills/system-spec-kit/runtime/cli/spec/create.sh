@@ -1484,11 +1484,14 @@ EOF
         _child_folder="${CHILD_FOLDERS[$((_i - 1))]}"
         _child_path="$FEATURE_DIR/$_child_folder"
         _child_created_files=()
+        # An appended child follows the parent's existing phases, so the text that
+        # names it carries its phase number, not its position in this invocation.
+        _phase_number=$((PHASE_START_INDEX + _i - 1))
 
         # Create child directory structure
         mkdir -p "$_child_path" "$_child_path/scratch"
         touch "$_child_path/scratch/.gitkeep"
-        create_graph_metadata_file "$_child_path" "Phase ${_i}: ${_child_folder#*-}" "planned"
+        create_graph_metadata_file "$_child_path" "Phase ${_phase_number}: ${_child_folder#*-}" "planned"
         _child_paths+=("$_child_path")
 
         # Copy Level 1 templates to child folder
@@ -1510,19 +1513,19 @@ EOF
           _phase_name="${_child_folder#*-}"  # strip numeric prefix
           # Use parent of FEATURE_DIR as base so parentChain includes the parent folder
           if node "$_DESC_SCRIPT" "$_child_path" "$(dirname "$FEATURE_DIR")" \
-            --description "Phase ${_i}: ${_phase_name}" --level "$CHILD_DOC_LEVEL" >&2; then
+            --description "Phase ${_phase_number}: ${_phase_name}" --level "$CHILD_DOC_LEVEL" >&2; then
             _child_created_files+=("description.json")
           else
-            echo "  Warning: description.json generation skipped for phase ${_i}" >&2
+            echo "  Warning: description.json generation skipped for phase ${_phase_number}" >&2
           fi
         else
-          report_missing_generator "description.json" "$_DESC_SCRIPT" "$BUILD_REMEDY" "phase ${_i}"
+          report_missing_generator "description.json" "$_DESC_SCRIPT" "$BUILD_REMEDY" "phase ${_phase_number}"
         fi
 
         # Inject parent back-reference into child spec.md
         _child_spec="$_child_path/spec.md"
         if [[ -f "$_child_spec" ]]; then
-            finalize_scaffold_templates "$_child_path" "$_child_folder" "Phase ${_i}: ${_child_folder#*-}"
+            finalize_scaffold_templates "$_child_path" "$_child_folder" "Phase ${_phase_number}: ${_child_folder#*-}"
 
             # Determine predecessor and successor
             if [[ $_i -eq 1 ]]; then

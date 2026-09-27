@@ -12,10 +12,10 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-27T10:30:00Z"
-    last_updated_by: "orchestrate"
-    recent_action: "Completed 010-review-advisories-and-codex-cleanup"
-    next_safe_action: "None. All ten phases are complete"
+    last_updated_at: "2026-09-27T12:30:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Completed 011-observation-fixes"
+    next_safe_action: "None. All eleven phases are complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete. Phases 1 to 10 are complete. Phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found until all 45 scenario reruns passed. Phase 10 closed the Codex hook cleanup and every phase 6 review advisory |
+| **Status** | Complete. Phases 1 to 11 are complete. Phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found until all 45 scenario reruns passed. Phase 10 closed the Codex hook cleanup and every phase 6 review advisory, and phase 11 fixed the seven small problems phase 10 had noticed |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -132,6 +132,7 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | 8 | 008-cross-cli-manual-testing/ | The nine related playbook scenarios run inside cli-pi, cli-opencode, cli-devin, cli-cursor and cli-codex with native hook evidence per runtime, after Grok 4.7 joins the Cursor allowlist | Complete |
 | 9 | 009-test-findings-remediation/ | Fix every phase 8 finding and rerun the nine scenarios in all five CLIs until each passes or fails only on a named environment limit | Complete |
 | 10 | 010-review-advisories-and-codex-cleanup/ | Run the removal-only Codex installer and restore hook trust, then fix the twelve phase 6 review advisories and the seven siblings found while verifying them | Complete |
+| 11 | 011-observation-fixes/ | Fix the seven small problems phase 10's close-out named: the drift-guard count, an unused import, voice-rule punctuation, placeholder phase descriptions and the `create.sh` numbering behind them, metrics log modes and six Dependabot alerts | Complete |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 
@@ -155,6 +156,7 @@ R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Ea
 | 007-docs-and-standards-alignment | 008-cross-cli-manual-testing | The scenarios describe the current hook path | Phase 7's playbook validators report 0 violations |
 | 008-cross-cli-manual-testing | 009-test-findings-remediation | Every FAIL and BLOCKED is traced to code, scenario text or the environment, and each finding is recorded in the phase 9 spec | Phase 8 `implementation-summary.md` classifies each result, and the phase 9 spec lists F1 to F18 |
 | 009-test-findings-remediation | 010-review-advisories-and-codex-cleanup | The removal-only installer and its `--check` exist, and the phase 6 advisories are still open | `install-codex-hooks.mjs --check` runs against a temp copy, and the phase 6 report lists the twelve P2 findings |
+| 010-review-advisories-and-codex-cleanup | 011-observation-fixes | Phase 10's close-out lists the seven observations it left outside its scope | The phase 10 close-out names each observation, and phase 11 `spec.md` records them as O1 to O7 |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,11 +1,17 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation",
-  "description": "Phase 1: test-findings-remediation",
+  "description": "Phase 8 ran the advisor scenarios inside five CLIs",
   "keywords": [
     "phase",
-    "test-findings-remediation"
+    "ran",
+    "advisor",
+    "scenarios",
+    "inside",
+    "five",
+    "clis"
   ],
-  "lastUpdated": "2026-09-26T19:17:38.291Z",
+  "lastUpdated": "2026-09-27T10:22:30.483Z",
   "specId": "009",
   "folderSlug": "test-findings-remediation",
   "parentChain": [
@@ -13,6 +19,5 @@
     "030-pi-skill-orchestrator-based-research-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

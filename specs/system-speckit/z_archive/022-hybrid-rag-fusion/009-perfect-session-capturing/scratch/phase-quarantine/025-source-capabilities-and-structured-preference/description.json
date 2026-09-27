@@ -1,11 +1,11 @@
 {
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/025-source-capabilities-and-structured-preference",
-  "description": "Phase 2: source-capabilities-and-structured-preference",
+  "description": "Phase 25: source-capabilities-and-structured-preference",
   "keywords": [
     "phase",
     "source-capabilities-and-structured-preference"
   ],
-  "lastUpdated": "2026-07-09T11:26:11.531Z",
+  "lastUpdated": "2026-09-27T12:14:38.954Z",
   "specId": "025",
   "folderSlug": "source-capabilities-and-structured-preference",
   "parentChain": [
@@ -17,5 +17,6 @@
     "phase-quarantine"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }
