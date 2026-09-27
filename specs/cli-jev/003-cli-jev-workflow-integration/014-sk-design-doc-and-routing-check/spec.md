@@ -243,7 +243,8 @@ The option A rows are the same-class inventory from `rg -n 'isPass[^A-Za-z]|>= ?
 
 ## 10. OPEN QUESTIONS
 
-- **Owner choice on the md-generator gate. Not yet made.** Record it here as a new line that starts with `Owner choice:`, then the letter A or B, the date and who chose.
+- **Owner choice on the md-generator gate. Made.** Recorded on the next line, which starts with `Owner choice:`, then the letter, the date and who chose.
+Owner choice: A, 2026-09-27, the operator, releasing this phase "with gate option A" in the orchestrating session
   - Option A, docs follow the code. Rewrite the doc sites in section 3 to say the gate passes on zero hard failures, and print the dual score as information. Cost: 26 lines in 11 doc files, no code, no install.
   - Option B, the code enforces 80. Replace `isValidationPass` with `score >= 80 && claimsScore >= 80` plus a no-critical-failure clause, add vitest cases and install the backend's dev dependencies to run them. Cost: a code change, an install and a looser gate.
   - **Recommendation: option A.** The code's gate is stricter than the documented one, so enforcing 80 would loosen it. `score` drops 5 points per hard failure (`validate.ts:662`), so a document with one to four hard failures outside `provenance` scores 80 to 95 with `claimsScore` 100 and passes the documented rule, while the code fails it today. `claimsScore` drops 10 points per `provenance` failure (`:661`) and `provenance` is a hard category (`schema-v3.ts:9`), so `claimsScore < 80` already implies at least three hard failures. The tests pin the current contract: `validate.test.ts:176-199` passes an advisory-only document and fails one with a single phantom hex at score 95, and `schema-v3.test.ts:250-257` keeps corpus divergence advisory. The docs' "critical failure" has no counterpart in the code.
