@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2e7104aa83ac4f48222699336def17fe9829840166145d07f8f950b6a4e79932",
+  "corpusHash": "9fe8cf6992d73045133b99ddb583bdd142c128ff3777fa9f0a34891ddaa580e4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23081,
+  "includedPathCount": 23086,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -5971,6 +5971,7 @@
     ".skilled/skills/sk-doc/changelog/v2.0.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.1.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.0.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.2.1.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
@@ -6113,12 +6114,15 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.2.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.2.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/route-skilled-release-entry.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/skip-release-for-component.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/search-metadata/render-nested-identity-phrase.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/search-metadata/write-global-entry-metadata.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/topology/route-global-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/topology/route-phase-child-nested.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/avoid-version-collision.md",
@@ -7906,6 +7910,7 @@
     ".skilled/skills/system-spec-kit/changelog/v4.0.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.1.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v4.1.2.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -23103,7 +23108,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7b6cac1b3fca04e861a39d145fdfd7b47e8bda3dfc04c5508f9d23715eb9e335",
+  "manifestHash": "3729d3505b2abce5df64cc6747adb5c81ab560138c1bda717a2b2e7e63e6c3d8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
