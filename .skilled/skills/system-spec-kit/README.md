@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 3.8.0.0
+version: 4.1.0.99
 ---
 
 # System Spec Kit
