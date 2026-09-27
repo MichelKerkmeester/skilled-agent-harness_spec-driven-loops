@@ -475,7 +475,9 @@ create_detached_worktree() {
 # would be wrong twice over: an exports map with no root entry makes an
 # installed package unresolvable, and a hoisted dependency resolves from a
 # different directory than the one that declared it. A package that declares
-# nothing is satisfied by definition.
+# nothing is satisfied by definition. A @spec-kit/* entry is a local file link,
+# so beside a real dependency it proves no install and is skipped; it decides
+# only when the package declares nothing else, or that package is never linked.
 _wn_deps_satisfied() {
   local pkgdir="$1" root="$2" dep cur
   dep="$(node -e '
@@ -483,9 +485,9 @@ _wn_deps_satisfied() {
     let manifest;
     try { manifest = JSON.parse(fs.readFileSync(path.join(process.argv[1], "package.json"), "utf8")); }
     catch { process.exit(1); }
-    const names = Object.keys({ ...(manifest.dependencies || {}), ...(manifest.devDependencies || {}) })
-      .filter((n) => !n.startsWith("@spec-kit/"));
-    process.stdout.write(names[0] || "");
+    const all = Object.keys({ ...(manifest.dependencies || {}), ...(manifest.devDependencies || {}) });
+    const names = all.filter((n) => !n.startsWith("@spec-kit/"));
+    process.stdout.write(names[0] || all[0] || "");
   ' "$pkgdir" 2>/dev/null)" || return 1
   [ -n "$dep" ] || return 0
   cur="$(cd "$pkgdir" 2>/dev/null && pwd -P)" || return 1
