@@ -10,7 +10,6 @@ import { performance } from 'node:perf_hooks';
 import type {
   AdvisorHookFreshness,
   AdvisorHookResult,
-  AdvisorHookStatus,
   AdvisorRuntime,
   SkillAdvisorBriefOptions,
 } from '../../runtime/lib/skill-advisor-brief.js';
@@ -243,7 +242,7 @@ function runCliRecommend(args: {
       // The CLI owns daemon reachability now: it starts the daemon when the socket is
       // cold and bounds that wait itself. Without this flag the child env's prompt-time
       // marker makes the CLI default to warm-only, which refuses with exit 75 and never
-      // starts anything — leaving every cold session with no brief at all.
+      // starts anything, leaving every cold session with no brief at all.
       '--no-warm-only',
     ], {
       cwd: args.paths.repoRoot,

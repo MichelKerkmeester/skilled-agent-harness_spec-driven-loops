@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing",
-  "description": "Phase 1: cross-cli-manual-testing",
+  "description": "The advisor hook reaches seven runtimes, and each wires it differently: Claude, Codex, Cursor and Devin through spec-kit hook adapters, OpenCode",
   "keywords": [
-    "phase",
-    "cross-cli-manual-testing"
+    "advisor",
+    "hook",
+    "reaches",
+    "seven",
+    "runtimes",
+    "wires",
+    "differently",
+    "claude",
+    "codex",
+    "cursor",
+    "devin",
+    "spec-kit",
+    "adapters",
+    "opencode"
   ],
-  "lastUpdated": "2026-09-26T18:18:36.326Z",
+  "lastUpdated": "2026-09-26T22:18:07.354Z",
   "specId": "008",
   "folderSlug": "cross-cli-manual-testing",
   "parentChain": [
@@ -13,6 +26,5 @@
     "030-pi-skill-orchestrator-based-research-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

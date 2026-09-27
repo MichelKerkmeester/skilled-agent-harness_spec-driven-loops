@@ -1,0 +1,11 @@
+# Dependabot alerts dismissed on the operator's yes, 2026-09-27
+# number | severity | package | manifest | state | reason | dismissed_at
+1066 | high | rubyzip | specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/Gemfile.lock | dismissed | not_used | 2026-09-27T11:58:16Z
+1068 | low | cookie | specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json | dismissed | not_used | 2026-09-27T11:58:17Z
+1070 | critical | next | specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json | dismissed | not_used | 2026-09-27T11:58:18Z
+1071 | critical | next | specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json | dismissed | not_used | 2026-09-27T11:58:20Z
+1072 | high | js-yaml | specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json | dismissed | not_used | 2026-09-27T11:58:21Z
+1073 | high | sharp | specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json | dismissed | not_used | 2026-09-27T11:58:22Z
+comment on each: Vendored reference snapshot: no code at this manifest path is installed, built or run, and .github/dependabot.yml scopes Dependabot to runtime roots only. Dismissed on the same basis as the other not_used dismissals for vendored snapshot manifests.
+open alerts after: 0
+rollback: gh api -X PATCH repos/{owner}/{repo}/dependabot/alerts/<n> -f state=open

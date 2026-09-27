@@ -61,7 +61,7 @@ This surface carries the system-code evidence for the sk-code hub: language stan
 bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
 ```
 
-A clean exit means the alignment verifier, the stack-folder verifier, the router-sync suite and the leaf-manifest bijection all pass. A non-zero exit reports a drift.
+A clean exit means the alignment verifier and the stack-folder verifier both pass. A non-zero exit reports a drift.
 
 ---
 

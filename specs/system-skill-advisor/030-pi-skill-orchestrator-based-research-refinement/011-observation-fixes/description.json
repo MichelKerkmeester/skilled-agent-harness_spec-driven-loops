@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes",
+  "description": "Phase 10's close-out listed seven small problems it had seen outside its own scope",
+  "keywords": [
+    "phase",
+    "close-out",
+    "listed",
+    "seven",
+    "small",
+    "problems",
+    "seen",
+    "outside",
+    "own",
+    "scope"
+  ],
+  "lastUpdated": "2026-09-27T12:03:17.557Z",
+  "specId": "011",
+  "folderSlug": "observation-fixes",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

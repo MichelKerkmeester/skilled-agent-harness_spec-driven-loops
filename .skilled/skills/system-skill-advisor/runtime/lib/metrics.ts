@@ -235,7 +235,7 @@ const MAX_CONTEXT_TAGS = 16;
 
 // Context tags are the only free-form payload on a skill-execution outcome, so
 // they are bounded and sanitized hard: drop non-strings, normalize whitespace,
-// cap length, dedupe, and cap count. The caller owns prompt-safety — this only
+// cap length, dedupe, and cap count. The caller owns prompt-safety. This only
 // guarantees the stored shape stays small and closed.
 function sanitizeContextTags(value: unknown): string[] {
   if (!Array.isArray(value)) {

@@ -56,8 +56,9 @@ checklists and, by default, does not scan markdown. The opt-in `--check-router`
 flag adds one narrow exception: it checks that every RESOURCE_MAP/DEFAULT_RESOURCE
 leaf a `SKILL.md` router names exists on disk (a dead-route guard, scoped to the
 router block only). It still never inspects markdown prose. RESOURCE_MAP
-parent-child *equality* is enforced separately by `sk-code-router-sync.vitest.ts`,
-not by this script. These remain manual review gates:
+parent-child *equality* is not checked by this script either. The
+`sk-code-router-sync.vitest.ts` suite that checked it was deleted with the
+skill-benchmark lane. These remain manual review gates:
 
 - exact visual header shape beyond the marker-level checks above;
 - naming conventions;
@@ -119,16 +120,18 @@ code-opencode has exactly one alignment source of truth: the three-part interfac
 below. Later coverage and activation work must consume this interface rather than
 re-derive a second RESOURCE_MAP parser or a local eligibility map.
 
-1. **Doc pointer** — this file plus the code-opencode `SKILL.md` SMART ROUTING
-   block, which name `sk-code-router-sync.vitest.ts` as the RESOURCE_MAP-equality
-   guard (the markdown-blind `verify_alignment_drift.py` is not that authority).
-2. **Bijection module** — `qualifiedIdToLeaf` in
-   `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`:
-   the one bridge from a compiled router destination id
-   (`<hub>/<workflowMode>/<packet>/<kind>/<slug>`) to a `leaf-manifest.json` mode,
-   exercised by the router-sync suite.
-3. **Orchestrator** — `scripts/run-all-drift-guards.sh`: the single command that
-   runs all three drift guards and exits non-zero if any one fails.
+1. **Doc pointer.** This file plus the code-opencode `SKILL.md` SMART ROUTING
+   block, which record that the `sk-code-router-sync.vitest.ts` equality guard
+   was deleted and that nothing checks RESOURCE_MAP equality now. The
+   markdown-blind `verify_alignment_drift.py` is not that authority.
+2. **Bijection module.** `qualifiedIdToLeaf` in
+   `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`
+   is the one bridge from a compiled router destination id
+   (`<hub>/<workflowMode>/<packet>/<kind>/<slug>`) to a `leaf-manifest.json` mode.
+   `sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs` tests the
+   module, and `.skilled/bin/lib/compiled-route-admission.cjs` uses it.
+3. **Orchestrator.** `scripts/run-all-drift-guards.sh` is the single command that
+   runs both live drift guards and exits non-zero if either fails.
 
 Any new check that needs code-opencode RESOURCE_MAP alignment extends this
 interface; it must not stand up a competing parser or eligibility map.
