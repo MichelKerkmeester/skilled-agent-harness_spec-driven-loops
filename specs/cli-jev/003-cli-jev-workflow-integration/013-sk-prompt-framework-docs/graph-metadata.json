@@ -39,7 +39,7 @@
       "only"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,10 +47,13 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/agents/prompt-improver.md",
       ".skilled/skills/sk-prompt/assets/framework-registry.json",
       ".skilled/skills/sk-prompt/SKILL.md",
-      ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md"
+      ".skilled/skills/sk-prompt/changelog/v3.0.2.0.md",
+      ".hermes/skills/sk-prompt/SKILL.md",
+      ".skilled/agents/prompt-improver.md",
+      ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
+      "scratch/briefs/00-index.md"
     ],
     "entities": [
       {
@@ -90,12 +93,6 @@
         "source": "derived"
       },
       {
-        "name": "prompt-improver.md",
-        "kind": "doc",
-        "path": ".skilled/agents/prompt-improver.md",
-        "source": "derived"
-      },
-      {
         "name": "framework-registry.json",
         "kind": "config",
         "path": ".skilled/skills/sk-prompt/assets/framework-registry.json",
@@ -108,9 +105,27 @@
         "source": "derived"
       },
       {
+        "name": "v3.0.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/changelog/v3.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".skilled/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
         "name": "v3.0.1.0.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "00-index.md",
+        "kind": "doc",
+        "path": "scratch/briefs/00-index.md",
         "source": "derived"
       },
       {
@@ -184,23 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-prompt/SKILL.md` promises seven frameworks (lines 3, 12 and 38, rechecked 2026-09-27), and its selection matrix routes to CRISPE and CRAFT (lines 313 and 315)",
     "created_at": "2026-09-27T11:50:19Z",
-    "last_save_at": "2026-09-27T12:03:33.222Z",
+    "last_save_at": "2026-09-27T16:31:51.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a4a2580bc303ed4414e4ffa86ecbd93ff7474bee921b88a13f919b4c45bfba6",
+    "source_fingerprint": "sha256:2e738113e3ada6ff6fb50454e083995de1fe73657bb891f642c8a28d36b7bc10",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "afdd22c78dd7a76eb20f7e7877dc22f0f2088b25e822345da66620b693c14966",
+      "spec.md": "bce3617b69ebd2c6f595a722176481d49e778ab70bace4f972551e1e55ee0b3c",
       "plan.md": "28c647fe7fa95d1b9950e6e3f237acd32626e396cde62ee7161c0b04592ff14d",
-      "tasks.md": "4bd1b96316b7bc7ee002b92261feaa31d951f8033c94af25d10602b0db03d538",
-      "implementation-summary.md": "a8c56ef13976be6eb9405d5940a9f6d43d54394e1ca4941bb6d7dc527e89d718"
+      "tasks.md": "0c6933b2109516cbb4005c296d54e968ec481fdae339212b472edacec3ebb9b7",
+      "implementation-summary.md": "751b88c0a75b1e6036c21488df041f5c53aa5fb5579469c52f7d8c869384c59f"
     },
     "last_active_at": null
   }

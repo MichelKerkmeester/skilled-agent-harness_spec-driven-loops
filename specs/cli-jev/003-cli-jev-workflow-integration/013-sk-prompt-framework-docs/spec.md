@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -142,7 +142,7 @@ All three paths belong to `sk-prompt`, a standalone skill since the completed pa
 | Risk | A model ignores the section-read rule and reads the whole file | Low: the byte saving is lost for that run, nothing breaks | The rule names the literal headings so a reader can find them with `grep -n`. The measurement proves the read set's size, not that a model obeys it. D1 of the parent bars a live run in this phase |
 | Risk | The owner renames a heading the rule names | Med: the rule points at a heading that no longer exists | The build's check greps the three headings in `patterns-evaluation.md` and the same strings in `SKILL.md` |
 | Risk | CLEAR scoring quality drops if section 10 is not enough | Low: section 10 holds the dimensions, rubrics and interdependencies, and `depth-framework.md` keeps the floors | The owner can widen the read set later. The rule keeps the on-demand full read |
-| Risk | Collision with in-flight sk-prompt work | Low: no open work found | `git log -5 -- .skilled/skills/sk-prompt` shows `ee5852eae6` (2026-09-26, changelogs), `86e99e7fc1` and `239bc805db` (2026-09-24). `HEAD..main` holds no sk-prompt commit and the working tree has no sk-prompt change (checked 2026-09-27). The build rechecks both |
+| Risk | Collision with in-flight sk-prompt work | Low: no open work found | `git log -5 -- .skilled/skills/sk-prompt` shows `ee5852eae6` (2026-09-26, changelogs), `86e99e7fc1` and `239bc805db` (2026-09-24). `HEAD..main` holds no sk-prompt commit and the working tree has no sk-prompt change (checked 2026-09-27). The build's recheck found one newer commit, `094cdb9f8a` (2026-09-27), which adds search metadata to `changelog/*.md` only and touches neither edited file, and a clean working tree |
 <!-- /ANCHOR:risks -->
 
 ---

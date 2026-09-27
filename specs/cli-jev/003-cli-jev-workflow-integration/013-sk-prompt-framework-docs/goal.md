@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs"
-    last_updated_at: "2026-09-27T12:01:40Z"
-    last_updated_by: "authoring-leaf"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-09-27T18:30:00Z"
+    last_updated_by: "closure-leaf"
+    recent_action: "Recorded the build evidence; every completion criterion is met"
+    next_safe_action: "None. The phase is closed; the orchestrator commits"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -82,12 +82,12 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `node -p` over `.skilled/skills/sk-prompt/assets/framework-registry.json` prints the ids `rcaf,race,cidi,tidd-ec,costar` and `true` for both `/CRISPE/` and `/CRAFT/` tested against its `description`
-- [ ] `grep -c 'FRAMEWORK DEEP DIVES'` and `grep -c 'CLEAR EVALUATION MASTERY'` on `.skilled/skills/sk-prompt/SKILL.md` each print at least 2, and `grep -c '"all frameworks"'` on it prints 1
-- [ ] `wc -c < .skilled/skills/sk-prompt/SKILL.md` prints at most 24000, and `implementation-summary.md` records the before read of 59,661 bytes and the CRAFT section read of 9,686 bytes
-- [ ] `validate_document.py` on `SKILL.md` prints `VALID`, `quick_validate.py .skilled/skills/sk-prompt` exits 0, `check-prompt-quality-card-sync.sh .` prints `GUARD PASS` and `npx vitest run model-benchmark/tests/sweep-foundation.vitest.ts` exits 0
-- [ ] `git diff --name-only 00480a8d5c..HEAD -- .skilled/skills/sk-prompt` lists exactly `SKILL.md`, `assets/framework-registry.json` and one file under `changelog/`
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `node -p` over `.skilled/skills/sk-prompt/assets/framework-registry.json` prints the ids `rcaf,race,cidi,tidd-ec,costar` and `true` for both `/CRISPE/` and `/CRAFT/` tested against its `description`
+- [x] `grep -c 'FRAMEWORK DEEP DIVES'` and `grep -c 'CLEAR EVALUATION MASTERY'` on `.skilled/skills/sk-prompt/SKILL.md` each print at least 2, and `grep -c '"all frameworks"'` on it prints 1
+- [x] `wc -c < .skilled/skills/sk-prompt/SKILL.md` prints at most 24000, and `implementation-summary.md` records the before read of 59,661 bytes and the CRAFT section read of 9,686 bytes
+- [x] `validate_document.py` on `SKILL.md` prints `VALID`, `quick_validate.py .skilled/skills/sk-prompt` exits 0, `check-prompt-quality-card-sync.sh .` prints `GUARD PASS` and `npx vitest run model-benchmark/tests/sweep-foundation.vitest.ts` exits 0
+- [x] `git diff --name-only 6f47c32dce..HEAD -- .skilled/skills/sk-prompt` lists exactly `SKILL.md`, `assets/framework-registry.json` and one file under `changelog/`
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -104,7 +104,11 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | Spec, plan, tasks, acceptance criteria and this goal authored from `research.md` section 7 and a recheck of every cited line on 2026-09-27 at `00480a8d5c` |
-| Build | Pending | Nothing is built yet |
+| Concurrent-access recheck | Done | 2026-09-27, orchestrator: `git status --short -- .skilled/skills/sk-prompt .hermes/skills/sk-prompt` printed nothing. The newest skill commit is `094cdb9f8a` (changelog search metadata only), and no commit after `86e99e7fc1` touches `SKILL.md`. `sync-skills-hermes.cjs --check` printed `PASS: 71 Hermes skill copies in sync`, exit 0. Build-start HEAD `6f47c32dce` |
+| Baseline | Done | 2026-09-27, orchestrator: 23081, 36580, 3066, 3950, 2670 and 538 bytes, `rcaf,race,cidi,tidd-ec,costar false false`, `VALID`, `Skill is valid!`, `GUARD PASS` and `Tests  26 passed (26)`, each exit 0 |
+| Build | Done | 2026-09-27: four briefs run by `pi` (`llmgateway/deepseek-v4.1-flash`, thinking max), each verified by the orchestrator. 01 registry description (`true true`, numstat `1 1`), 02 section-read rule (greps 2, 2 and 1, `SKILL.md` 23893 bytes), 03 version 3.0.1.0 to 3.0.2.0, 04 `changelog/v3.0.2.0.md` (`VALID`, `Document type: changelog`). The orchestrator regenerated the Hermes mirror. Commit `e3cf07f4f9` |
+| Verification | Done | 2026-09-27, orchestrator: `rcaf,race,cidi,tidd-ec,costar true true`, `deep=2 clear=2 allfw=1`, `SKILL.md` 23893 bytes, section counts unchanged, `VALID`, `Skill is valid!`, `GUARD PASS`, `Tests  26 passed (26)`, each exit 0. `git diff --name-only 6f47c32dce..HEAD -- .skilled/skills/sk-prompt` lists exactly `SKILL.md`, `assets/framework-registry.json` and `changelog/v3.0.2.0.md` |
+| Phase docs | Done | 2026-09-27: tasks, acceptance criteria, this log and `implementation-summary.md` record the evidence. `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` exits 0 |
 
 ### Deviations and findings
 
@@ -116,4 +120,9 @@ and findings belong here.
 | Research byte count | The research's 59,661 bytes counts `SKILL.md` and `patterns-evaluation.md`. A `$improve` run also loads `references/depth-framework.md` (21,817 bytes) as `DEFAULT_RESOURCE`, so the full read is 81,478 bytes. Out of this phase's scope, listed as an open question in `spec.md` |
 | Scaffold title | `create.sh` titled the docs "Phase 4". Corrected to Phase 13, the folder's number and the metadata's "13 of 17" |
 | Sweep test baseline | Not run while planning, to avoid writing a vitest cache outside this folder. T003 records it before the first edit |
+| Hermes mirror (build) | `.hermes/skills/sk-prompt/SKILL.md` is a generated copy of `SKILL.md` and sits outside the spec's Files to Change and D3. The orchestrator regenerated it with the owner's sync tool, as the owner's earlier `SKILL.md` commits `239bc805db` and `86e99e7fc1` did, and `--check` printed `PASS: 71 Hermes skill copies in sync`. Source: `scratch/briefs/00-index.md` row 6 |
+| Version bump (build) | The spec does not name `SKILL.md`'s `version`. It moved from 3.0.1.0 to 3.0.2.0 to match the new changelog, following the owner's precedent `239bc805db` and sk-create-changelog's patch rule for a docs change. Source: `scratch/briefs/00-index.md` row 4 and brief 03 |
+| Parent changelog (build) | `spec.md` Phase Context asks for a refresh of `../changelog/`. `specs/cli-jev/003-cli-jev-workflow-integration/changelog/` does not exist, so there was nothing to refresh. Source: the orchestrator's build evidence, rechecked with `ls` on the parent folder |
+| Brief 04 expectation (build) | Brief 04 expected `grep -c 'sk-prompt v3.0.2.0'` to print 1. The file prints 2, the title and a trigger phrase, as the sibling `v3.0.1.0.md` does. The brief was wrong, not the file. Source: the orchestrator's build evidence |
+| Diff base moved (2026-09-27) | The main merge (`d6e512e6b5`) brought `094cdb9f8a`, which touched 15 sk-prompt changelog files, so the diff from `00480a8d5c` listed them before any build edit. The operator approved the merge; the fifth criterion and AC-007 now diff from the build-start HEAD `6f47c32dce`, taken after the concurrent-access recheck printed a clean status |
 <!-- /ANCHOR:log -->
