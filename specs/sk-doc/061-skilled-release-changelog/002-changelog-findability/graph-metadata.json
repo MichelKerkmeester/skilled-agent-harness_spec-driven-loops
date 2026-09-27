@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/061-skilled-release-changelog/002-changelog-findability",
+  "spec_folder": "sk-doc/061-skilled-release-changelog/002-changelog-findability",
+  "parent_id": "sk-doc/061-skilled-release-changelog",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changelog-findability",
+      "changelog search metadata",
+      "changelog identity phrases",
+      "born findable changelog entries",
+      "changelog frontmatter retrofit",
+      "changelog findability plan",
+      "changelog retrofit lanes",
+      "changelog identity phrase rule",
+      "changelog judgment lanes",
+      "changelog findability tasks",
+      "changelog retrofit checklist",
+      "changelog metadata verification"
+    ],
+    "key_topics": [
+      "changelog-findability",
+      "changelog",
+      "search",
+      "metadata",
+      "identity",
+      "phrases",
+      "born",
+      "findable",
+      "entries",
+      "frontmatter",
+      "retrofit",
+      "findability"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+      ".skilled/commands/create/assets/create-changelog-auto.yaml",
+      ".skilled/commands/create/assets/create-changelog-confirm.yaml",
+      ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/nested-changelog.vitest.ts",
+      ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+      ".skilled/skills/sk-doc/scripts/tests/test_changelog_validator.py",
+      "templates/changelog/phase.md",
+      "references/workflows/nested-changelog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "worked-examples.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "phase.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/nested-changelog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "test_changelog_validator.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_changelog_validator.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A spec document is findable because its frontmatter names it: a title, a description and trigger phrases the Gate 1 index turns into lookups",
+    "created_at": "2026-09-27T12:01:38Z",
+    "last_save_at": "2026-09-27T13:04:40.326Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4f5b6ea76c940985b94ea456fde44c083ae915e5ccdf90995ee3d02592b3d229",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d6e9a78d1ca9936178e2371fc488226a1682ff80010a52f8f9f28be841e0d3cc",
+      "plan.md": "a1bc4bfb7d228ac055367c0f7d4381b6fbeadba3a7494109507e6da7cfb68971",
+      "tasks.md": "7ad99ffb1a49770ba3420487c715fa415b52146d9e60a93ceb90b4a14570c154",
+      "decision-record.md": "b1da0161cc774c6a59e024e38ce2b9ace62897064e468b7fa704a2d3d0da85f1",
+      "implementation-summary.md": "dd54eccb4c7511b40ff9f32354fedef4e3dc987f504f348bff8a7d19b277bf78"
+    },
+    "last_active_at": null
+  }
+}
