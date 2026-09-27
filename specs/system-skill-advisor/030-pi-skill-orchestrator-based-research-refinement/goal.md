@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-27T12:20:00Z"
+    last_updated_at: "2026-09-27T13:10:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Phase 11 closed the seven observations phase 10 named"
+    recent_action: "Adopted the D1 amendment and bound the phase 11 goal"
     next_safe_action: "None. All eleven phases are complete"
     blockers: []
     key_files: []
@@ -44,7 +44,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Grok 4.7 xhigh-fast through cli-cursor implements code fixes, and GPT-6 Luna max fast through cli-codex verifies them. Opus agents lead design and docs. The orchestrator dispatches every CLI run itself. |
+| D1 | Grok 4.7 xhigh-fast through cli-cursor implements code fixes, and GPT-6 Luna max fast through cli-codex verifies them. A fix of a few lines with its own objective check may be made by the orchestrator, and it still gets a Luna verify. Opus agents lead design and docs. The orchestrator dispatches every CLI run itself. |
 | D2 | The session changes the operator's global Codex files only when the operator directs it, backs each file up first and records the rollback. |
 | D3 | The spec-kit hook shim keeps not forwarding its child's stderr. Scenarios read advisor diagnostics from the diagnostics JSONL. |
 | D4 | danger-full-access for cli-codex applies to scenario test runs only. |
@@ -71,6 +71,7 @@ phase and binds as if written here.
 | 008-cross-cli-manual-testing | `008-cross-cli-manual-testing/goal.md` |
 | 009-test-findings-remediation | `009-test-findings-remediation/goal.md` |
 | 010-review-advisories-and-codex-cleanup | `010-review-advisories-and-codex-cleanup/goal.md` |
+| 011-observation-fixes | `011-observation-fixes/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -129,5 +130,6 @@ and findings belong here.
 | D2 and criterion 6 amended, operator-directed | On 2026-09-27 the operator said nothing may stay open or deferred and handed the session the Codex cleanup and the twelve phase 6 advisories. D2 changed from "never edits the global file" to "edits the global Codex files only on the operator's direction, with a backup and a rollback". Criterion 6 changed from "the operator has the exact entry to remove" to the installer's `--check` passing and every advisory fixed. Phase 10 does that work |
 | D1 deviation, not cleared in advance | In phase 11 the orchestrator made the code edits itself instead of dispatching Grok 4.7 through cli-cursor. The plan named the choice, but D1 is frozen and the operator was not asked first. GPT-6 Luna max fast through cli-codex then verified the five code files with a reverse check and returned PASS. The close-out report proposes an amendment for edits of a few lines |
 | Phase 11 labels beyond the approval | The operator approved rebuilding thirteen `Phase 1:` labels. The final-state check found five more from the same bug, numbered 2 to 4, and they went into the phase 11 `spec.md` before they were touched |
-| Phase 11 has no child goal | Phase 11 was added after the ten phases closed and ran against this directive and its own `spec.md`, so the binding table has no row for it |
+| D1 amended, operator-directed | On 2026-09-27 the operator adopted the amendment phase 11 proposed. D1 changed from "Grok implements code fixes and Luna verifies them" to also allow "a fix of a few lines with its own objective check may be made by the orchestrator, and it still gets a Luna verify" |
+| Phase 11 goal written late | Phase 11 was added after the ten phases closed and first ran with no goal of its own. The amendment workflow requires this goal to bind every direct child, so `011-observation-fixes/goal.md` was written from the phase's `spec.md` and bound above |
 <!-- /ANCHOR:log -->

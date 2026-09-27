@@ -66,6 +66,7 @@ contextType: "implementation"
 - [x] T018 `validate.sh --strict --recursive` prints `RESULT: PASSED` for packet 030, all 12 folders
 - [x] T019 Add the five more wrong labels the final-state check found to `spec.md`, rebuild them and match their own baseline: 016 PASSED and the four quarantine folders FAILED before and after, one warning fewer each (`evidence/validate-five-more-folders.txt`)
 - [x] T020 GPT-6 Luna max fast through cli-codex verifies the five code files with a reverse check. It returns PASS with high confidence, and the base `create.sh` fails the new test with `Phase 1: third-step`
+- [x] T021 Adopt the operator's D1 amendment in the parent goal, write this phase's goal from `spec.md` and bind it in the parent. The parent packet command reports `packet_budget=ok`
 <!-- /ANCHOR:phase-3 -->
 
 ---
