@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.2.1.0
+version: 2.2.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
