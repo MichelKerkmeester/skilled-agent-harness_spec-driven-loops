@@ -1,0 +1,42 @@
+{
+  "topic": "mimo lineage: UX and measurement for classifier-driven context and review reduction",
+  "sessionId": "fanout-mimo-1790490452777-942a1f",
+  "createdAt": "2026-09-27T06:33:55Z",
+  "completedAt": "2026-09-27T11:15:00Z",
+  "stopReason": "maxIterationsReached",
+  "openQuestions": [
+    "Byte-to-token conversion: no file records both for one payload (every token figure derived at 4 B/token)",
+    "Hook spawn/connect cost inside hook deadlines (LOCAL:50)",
+    "True sk-prompt/sk-design run counts (corpus conflates build discussion; marked-week tally needed)",
+    "Cite-drift prevalence in live docs (UNKNOWN until the scanner runs)"
+  ],
+  "resolvedQuestions": [
+    "The round-3 measuring stick: p50 384,219 / p95 887,519 cache-read tokens per assistant turn",
+    "The strict post-pass residue is 0 of 2,435 passing validator invocations in 40 days",
+    "Re-read waste floor is 84 per 40 days after the partial/edit/post-compaction split",
+    "Skill/reference loads are 36,015,038 of 378,331,270 tool-result bytes (9.5%)",
+    "289 labeled rows host the two-backend comparison; gaps below ~10 points are unresolvable",
+    "sk-design's benchmark tree is empty; 53 scenario files exist; sk-prompt has zero gold files"
+  ],
+  "keyFindings": [
+    {"id": "N-mimo-01-baseline", "finding": "Carried context per turn p50 384,219 / p95 887,519 cache-read tokens (66,498 unique messages)", "iteration": 1},
+    {"id": "N-mimo-04-buckets", "finding": "Skill/reference loads 36.0 MB / 8,413 loads per 40 days = 9.5% of tool-result bytes", "iteration": 4},
+    {"id": "N-mimo-04-reread-split", "finding": "Re-reads split to 84 remainder waste (1,497 partial, 1,076 edit-preceding, 292 post-compaction)", "iteration": 4},
+    {"id": "N-mimo-08-strict-zero", "finding": "Strict post-pass same-folder edits: 0 of 2,435 passing validator invocations", "iteration": 8},
+    {"id": "N-mimo-03-deciding-line", "finding": "Pre-registered deciding line: Deem non-inferior iff gap <= 10 points AND flip <= 0.10, else INCONCLUSIVE", "iteration": 3},
+    {"id": "N-mimo-06-empty-benchmark", "finding": "sk-design benchmark tree empty; 53 scenarios counted; zero-call replay is build-now", "iteration": 6},
+    {"id": "N-mimo-07-nosurface", "finding": "No surface answers 'which backend and commit did feature X use'; /doctor:classifier proposed", "iteration": 7},
+    {"id": "N-mimo-09-order", "finding": "Measurement-first order: free numbers at 0 operator minutes, first judged feature at 80 min, rest 3.5-5 h", "iteration": 9},
+    {"id": "N-mimo-10-survivor-kills", "finding": "One printed kill line per survivor; half evaluable today with zero calls", "iteration": 10}
+  ],
+  "ruledOutDirections": [
+    "Re-read classifier (loses to zero-call ledger at any precision)",
+    "Validator-residue flagger on post-pass edits (population empty)",
+    "CLEAR-score classifier (weighted sum, no labels)",
+    "sk-design routing classifier (keyword scorer is already the closed set)",
+    "Framework-pick classifier before a docs-only fix (same bytes, free)",
+    "Thresholds on raw Deem probabilities (uncalibrated temperature 1.0)",
+    "Dollar-based cost claims (BASE2 row 52)",
+    "Phrase-walk category counting (superseded by structural counting; BASE2 row 50's dead end)"
+  ]
+}

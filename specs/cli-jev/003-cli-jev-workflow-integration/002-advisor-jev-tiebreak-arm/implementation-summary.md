@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Offline Advisor Jev Tie-Break Arm (Planned)"
-description: "Nothing is built yet. This phase is Planned: its spec, plan, tasks and goal, amended on 2026-09-27 from the final synthesis, describe one read-only script and its vitest file that measure a Jev choice against the advisor's near-tie order, and no result exists."
+description: "Nothing is built yet. This phase is Planned: its spec, plan, tasks and goal, amended twice on 2026-09-27, describe one read-only script and its vitest file that measure a Jev or local Deem choice against the advisor's near-tie order, and no result exists."
 trigger_phrases:
   - "advisor jev tie-break summary"
   - "score-jev-tiebreak status"
@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm"
-    last_updated_at: "2026-09-27T04:46:15Z"
+    last_updated_at: "2026-09-27T09:31:54Z"
     last_updated_by: "amendment-leaf"
-    recent_action: "Amended the planning documents from the final synthesis, section 13"
+    recent_action: "Amended the planning documents for two backends from the round-3 synthesis, section 14"
     next_safe_action: "Build the advisor dist, then write the zero-call census, comparators and power line"
     blockers: []
     key_files:
@@ -26,7 +26,8 @@ _memory:
     completion_pct: 0
     open_questions:
       - "How many rows are movable, and how many gold-first rows can a pick demote"
-      - "Should the Gate 3 calibration also run at no headroom"
+      - "Should the Jev half of the Gate 3 calibration also run at no headroom"
+      - "Does a Deem choice beat the scorer's order and hold across 3 option orders"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -57,7 +58,7 @@ Nothing yet. This phase is Planned, and no code, report or measurement exists fo
 
 ### Phase 2: advisor-jev-tiebreak-arm
 
-The plan is one read-only script, `score-jev-tiebreak.mjs`, beside the advisor's routing-accuracy evals, and one vitest file under the advisor's `tests/parity/`. By default the script reads the near-tie cluster for every skill-firing row of the labeled and holdout files and counts the rows whose gold skill is in the cluster but not first. It scores the scorer's order against three zero-call comparators and prints a power line that says whether a `keep` is reachable, all with zero Jev calls. Behind `--jev`, and only when `jev 0.6.2` is on PATH and `jev auth status --provider P` exits 0 for the provider the judgments use, it asks a Jev `choice` inside each cluster three times and returns one pre-registered verdict. When the census finds only 1 to 4 movable rows, the same switch runs a Gate 3 calibration instead. See `spec.md` for the requirements and `plan.md` for the order of work.
+The plan is one read-only script, `score-jev-tiebreak.mjs`, beside the advisor's routing-accuracy evals, and one vitest file under the advisor's `tests/parity/`. By default the script reads the near-tie cluster for every skill-firing row of the labeled and holdout files and counts the rows whose gold skill is in the cluster but not first. It scores the scorer's order against three zero-call comparators and prints a power line that says whether a `keep` is reachable, all with zero Jev calls. Behind `--jev`, and only when `jev 0.6.2` is on PATH and `jev auth status --provider P` exits 0 for the provider the judgments use, it asks a Jev `choice` inside each cluster three times and returns one pre-registered verdict. When the census finds only 1 to 4 movable rows, the same switch runs the Jev half of a Gate 3 calibration instead. Behind `--deem` (proposed), and only when `cli-deem health` (proposed, phase 008) passes the pinned Deem check, it asks the local Deem the same `choice` in three option orders over at most 25 cluster keys plus `none` and returns a verdict in its own column. Every `--deem` run also runs R21's Deem half, 195 local `noul` calls. See `spec.md` for the requirements and `plan.md` for the order of work.
 
 ### Files Changed
 
@@ -71,7 +72,7 @@ The plan is one read-only script, `score-jev-tiebreak.mjs`, beside the advisor's
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The planning documents were first written from recommendation R1 and proposed phase 002 in `../001-deep-research/research/research.md`. On 2026-09-27 they were amended from the final synthesis, `../004-deep-research-expansion/research/research.md` section 13, with the key gate from the parent goal's amended decision D5. `spec.md` section 4 traces each changed requirement, and the goal log lists them one per line.
+Not delivered. The planning documents were first written from recommendation R1 and proposed phase 002 in `../001-deep-research/research/research.md`. On 2026-09-27 they were amended from the final synthesis, `../004-deep-research-expansion/research/research.md` section 13, with the key gate from the parent goal's amended decision D5. A second amendment the same day added the Deem arm and R21's Deem half from `../007-classifier-deep-research/research/research.md` section 14, under the parent goal's D1 and D5. `spec.md` section 4 traces each changed requirement, and the goal log lists them one per line.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -107,7 +108,7 @@ Not delivered. The planning documents were first written from recommendation R1 
 
 1. **No numbers exist yet.** Movable and decided rows, the comparator metrics, the verdict and per-call latency are all UNKNOWN until the census and one keyed run.
 2. **A keep may be out of reach.** At most 55 rows can move. Between 5 and 20 decided rows a `keep` needs a true win rate of 0.80 to 0.96, which the power line will state before any call.
-3. **The arm needs an operator step.** A Jev key for the provider the judgments use must be set before `--jev` does anything. Without one the arm prints `jev arm skipped: no credential`.
+3. **Each arm needs an operator step.** A Jev key for the provider the judgments use must be set before `--jev` does anything. Without one the arm prints `jev arm skipped: no credential`. The Deem arm needs `cli-deem` from phase 008 and a server the operator started with `deem-ctl`. Without them it prints a `deem arm skipped:` line.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,0 +1,18 @@
+{
+  "topic": "Find where a classifier model, Jev hosted or local Deem 0.8B, cuts the main AI's context and manual review work in this repository.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "artifactDir": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages/grok",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "off",
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "loopType": "research",
+  "executor": "cli-cursor",
+  "model": "grok-4.7-xhigh-fast",
+  "sessionId": "fanout-grok-1790490452777-942a1f",
+  "label": "grok",
+  "createdAt": "2026-09-27T06:27:00Z",
+  "status": "running",
+  "resource_map_present": false
+}

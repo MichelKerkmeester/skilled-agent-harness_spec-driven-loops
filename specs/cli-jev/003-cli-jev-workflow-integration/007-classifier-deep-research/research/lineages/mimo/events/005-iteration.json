@@ -1,0 +1,14 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "status": "complete",
+  "focus": "mimo-05: sk-prompt measured: usage, cost and gold",
+  "findingsCount": 5,
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "First usage bound and per-run cost baseline for sk-prompt; gold confirmed absent by direct search; registry split confirmed by own read.",
+  "keyQuestions": ["E"],
+  "answeredQuestions": ["E-part-usage", "E-part-gold", "E-part-cost"],
+  "ruledOut": ["CLEAR-score classifier (drops, no labels)", "dollar figures in any savings line (BASE2 row 52)"],
+  "timestamp": "2026-09-27T08:35:00Z",
+  "sessionId": "fanout-mimo-1790490452777-942a1f"
+}

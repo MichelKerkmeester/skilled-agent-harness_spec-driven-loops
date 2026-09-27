@@ -1,0 +1,55 @@
+{
+  "topic": "Find where a classifier model, Jev hosted or local Deem 0.8B, cuts the main AI's context and manual review work in this repository. DeepSeek lens: seams, gating and failure paths, including the two-backend gate.",
+  "research_topic": "Find where a classifier model, Jev hosted or local Deem 0.8B, cuts the main AI's context and manual review work in this repository. Brief, questions A-H and answer shape: specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/spec.md. Iteration N takes angle label-NN from specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/research-angles.md, whose contract governs. Label is the last path segment of config.fanout_lineage_artifact_dir.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages/deepseek",
+  "fanout_lineage_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages/deepseek",
+  "loop_type": "research",
+  "stopPolicy": "max-iterations",
+  "stop_policy": "max-iterations",
+  "maxIterations": 10,
+  "minIterations": 10,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "off",
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations",
+    "divergent": {},
+    "note": "Convergence before maxIterations is telemetry only; broaden review angles instead of synthesizing early."
+  },
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1790490452777-942a1f",
+    "generation": 1,
+    "lineageId": "deepseek",
+    "lineageMode": "detached",
+    "fanoutRole": "detached-parallel-lineage"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "scopeBoundary": {
+    "writeRoot": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages/deepseek",
+    "readAnywhere": true,
+    "noLiveJevCall": true,
+    "noDeemServerCall": true,
+    "noEnvFile": true
+  },
+  "createdAt": "2026-09-27T08:27:00Z",
+  "status": "in_progress"
+}

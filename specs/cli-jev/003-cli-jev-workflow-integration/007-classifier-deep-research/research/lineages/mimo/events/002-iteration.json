@@ -1,0 +1,14 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "status": "complete",
+  "focus": "mimo-02: The judgment calls an AI still makes after validators pass",
+  "findingsCount": 6,
+  "newInfoRatio": 1.0,
+  "noveltyJustification": "First counted post-pass residue rate and first structural category census; also corrects two voided iteration-1 counts with new evidence.",
+  "keyQuestions": ["D", "C"],
+  "answeredQuestions": ["D-part-residue", "D-part-labels", "C-part-recount"],
+  "ruledOut": ["phrase-walk category counting (superseded by structural severity-row counting)"],
+  "timestamp": "2026-09-27T07:10:00Z",
+  "sessionId": "fanout-mimo-1790490452777-942a1f"
+}

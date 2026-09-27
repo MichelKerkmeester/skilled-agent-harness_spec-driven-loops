@@ -1,0 +1,14 @@
+{
+  "stem": "deep_research.synthesis_complete",
+  "scope": {
+    "runId": "fanout-mimo-1790490452777-942a1f",
+    "lineageId": "fanout-mimo-1790490452777-942a1f"
+  },
+  "data": {
+    "totalIterations": 10,
+    "answeredCount": 8,
+    "totalQuestions": 8,
+    "stopReason": "maxIterationsReached"
+  },
+  "occurredAt": "2026-09-27T11:15:00Z"
+}

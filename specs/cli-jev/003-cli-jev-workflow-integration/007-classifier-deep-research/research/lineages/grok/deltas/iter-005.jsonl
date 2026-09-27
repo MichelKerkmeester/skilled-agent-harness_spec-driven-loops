@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":5,"status":"complete","focus":"grok-05: Framework label sets","findingsCount":3,"newInfoRatio":0.85,"noveltyJustification":"SKILL.md claims 7 frameworks; framework-registry.json holds 5. CRISPE and CRAFT have no template.","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"deep-research","timestamp":"2026-09-27T08:00:00Z"}
+{"type":"finding","id":"N-grok-05-1","label":"Offline choice over the five registry framework ids plus none","verdict":"later","question":"E"}
+{"type":"finding","id":"N-grok-05-2","label":"Do not classify CLEAR or put a classifier in /prompt:improve","verdict":"drop","question":"E"}

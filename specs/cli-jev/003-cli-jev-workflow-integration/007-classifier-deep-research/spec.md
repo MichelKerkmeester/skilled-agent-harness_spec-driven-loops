@@ -23,13 +23,13 @@ contextType: "research"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 7 |
+| **Phase** | 7 of 9 |
 | **Predecessor** | 006-goal-criteria-lint |
-| **Successor** | None until the synthesis proposes phases |
+| **Successor** | 008-cli-classifier-hub |
 | **Handoff Criteria** | All five lineages reach their cap with one lead review per iteration, `research/research.md` answers questions A to H in the answer shape with every citation marked resolved, drifted or failed, and 002, 003, 005 and 006 plus every new Planned phase carry the two-backend gate |
 <!-- /ANCHOR:metadata -->
 

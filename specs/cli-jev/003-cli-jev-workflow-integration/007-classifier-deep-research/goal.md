@@ -59,12 +59,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] An online check for an existing Deem CLI and a Mac serving route is recorded, the Deem install plan with its rollback went to the operator, and `context/deem-local.md` records the 0.8B bf16 passing a health check with latency and memory, or why it does not serve here
-- [ ] `context/research-angles.md` defines 45 angles from `grok-01` to `glm-05`, and each lead previewed its lineage prompt before launch
-- [ ] `research/lineages/grok/`, `deepseek/`, `mimo/` and `swe/` hold `iteration-001.md` to `iteration-010.md`, `glm/` holds `iteration-001.md` to `iteration-005.md`, and each state log's last record has `stopReason` `maxIterationsReached`
-- [ ] Each lineage's `steer.md` holds one lead review per iteration
-- [ ] `research/research.md`, by a fresh Opus 5.5 max leaf, answers questions A to H in the answer shape, marks every citation resolved, drifted or failed and ranks each recommendation build-now, next, later or drop
-- [ ] 002, 003, 005 and 006 carry the two-backend gate, each new phase the synthesis proposes is a Planned child with `spec.md`, `plan.md`, `tasks.md` and `goal.md`, and `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] An online check for an existing Deem CLI and a Mac serving route is recorded, the Deem install plan with its rollback went to the operator, and `context/deem-local.md` records the 0.8B bf16 passing a health check with latency and memory, or why it does not serve here
+- [x] `context/research-angles.md` defines 45 angles from `grok-01` to `glm-05`, and each lead previewed its lineage prompt before launch
+- [x] `research/lineages/grok/`, `deepseek/`, `mimo/` and `swe/` hold `iteration-001.md` to `iteration-010.md`, `glm/` holds `iteration-001.md` to `iteration-005.md`, and each state log's last record has `stopReason` `maxIterationsReached`
+- [x] Each lineage's `steer.md` holds one lead review per iteration
+- [x] `research/research.md`, by a fresh Opus 5.5 max leaf, answers questions A to H in the answer shape, marks every citation resolved, drifted or failed and ranks each recommendation build-now, next, later or drop
+- [x] 002, 003, 005 and 006 carry the two-backend gate, each new phase the synthesis proposes is a Planned child with `spec.md`, `plan.md`, `tasks.md` and `goal.md`, and `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -81,6 +81,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | In Progress | Scaffolded by `create.sh --phase` on 2026-09-27 after the operator approved the round-3 prompt |
+| Deem served | Done | 0.8B bf16 on MPS at `127.0.0.1:8300` after the operator's yes, kept current by the launchd schedule `com.skilled.deem-update`. Measurements and the update and rollback paths are in `context/deem-local.md` |
+| Angles and leads | Done | 45 angles in `context/research-angles.md`. Five Opus 5.5 high leads previewed their prompts, and their refinements became §7 |
+| Fan-out | Done | Launched 2026-09-27T06:27:32Z from `506e4e6430`. Runner exit 0, 5 of 5 lineages fulfilled on the first attempt, no containment advisory. Durations: grok 16 min, deepseek 28, glm 54, swe 56, mimo 75 |
+| Lead reviews | Done | One review per iteration in each `steer.md`, each closing with a lineage summary for the synthesis |
+| Merge | Done | 57 key findings merged from 5 lineages, and `research/resource-map.md` from 45 delta sources |
+| Synthesis | Done | `research/research.md` by a fresh Opus 5.5 max leaf, from the corrected brief. The host reopened six citations and three recommendations, all holding |
+| Phases | Done | 002, 003, 005 and 006 amended for two backends, and 008 and 009 authored as Planned, by six Opus 5.5 high leaves briefed by `scratch/phase-brief.md` |
+| Close | Done | `validate.sh --strict --recursive` passes on all 10 folders, and `check-goal.cjs` passes 4/4 on each |
 
 ### Deviations and findings
 
@@ -89,4 +97,9 @@ and findings belong here.
 | GLM route | The operator's prompt named cli-cline. The fan-out runner has no Cline route (`fanout-run.cjs:2185-2188`), so `glm-5.3-flash` max runs on cli-pi, which the operator approved |
 | Grok tier | Cursor lists no Grok 4.7 MAX tier, so `grok-4.7-xhigh-fast` runs `grok`, as in rounds 1 and 2 |
 | Deem calls | Only the orchestrator calls the local Deem server, so five concurrent lineages cannot load it at once or skew its latency numbers |
+| Steering reach | D6 assumed each iteration reads `steer.md` first. The loop has no per-iteration steering input, and lineages checked the file only sometimes, several writing "no `steer.md`" while it existed. From the second review on, the leads wrote each entry mainly as labeled annotations for the synthesis (`DEFECT`, `DRIFTED-CITE`, `WEAK-CLAIM`, `STRONG-FINDING`) |
+| Dedupe rule | §7 ALL-7 said to dedupe token usage by `message.id` but did not say to count content blocks across all records. `mimo` iteration 1 applied the dedupe to tool calls, which voids its tool-call counts. The rule was completed mid-run and carried to every lead and the synthesis brief |
+| `deem-ctl` | The leads found three gaps: an update with the server stopped skipped its decision check, a failed restore was reported as restored, and there was no manual rollback. All three were fixed and tested after the run. Lineage citations refer to the earlier file |
+| sk-design routing | `sk-design/SKILL.md` rule 6 (lines 202-203) says the hub is outside the compiled router, but `compiled-route.cjs` routes it. That doc line is stale. Fixing it is outside this phase's scope, so it is left for the operator |
+| glm self-edit | glm rewrote its own iterations 2 and 3 to remove stray non-Latin tokens, inside its own directory. No rerun was needed |
 <!-- /ANCHOR:log -->

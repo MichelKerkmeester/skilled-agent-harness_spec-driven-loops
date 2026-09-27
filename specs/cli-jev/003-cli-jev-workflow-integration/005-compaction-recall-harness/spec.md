@@ -1,6 +1,6 @@
 ---
 title: "Build Phase: Compaction Recall Census"
-description: "Measure, with zero Jev calls, what this project's host compactions keep in the stock summary and the recorded brief, and whether the vendored staged fit can hold these sessions at all. One printed stop line then decides whether an offline Jev deletion arm is worth specifying."
+description: "Measure, with zero model calls, what this project's host compactions keep in the stock summary and the recorded brief, and whether the vendored staged fit can hold these sessions at all. One printed stop line then decides whether an offline deletion arm on either backend is worth specifying."
 trigger_phrases:
   - "compaction recall census"
   - "score-compaction-recall"
@@ -27,7 +27,7 @@ contextType: "implementation"
 | **Created** | 2026-09-27 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 6 |
+| **Phase** | 5 of 9 |
 | **Predecessor** | 004-deep-research-expansion |
 | **Successor** | 006-goal-criteria-lint |
 | **Handoff Criteria** | The census has run over the 10 to 20 sessions the operator named and printed its `method:` and `scope:` lines, one row per boundary and one `stop:` line, and `implementation-summary.md` records that stop line. Not a hard gate for 006, whose lint reads goal files and no transcript |
@@ -38,14 +38,14 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 5** of the cli-jev workflow integration specification. It builds recommendation R19 with R11 folded in, from `../004-deep-research-expansion/research/research.md` (section 3, `### R19 (build-now)`; section 4; section 11, `### R19.`; section 13, `### 005-compaction-recall-harness`). R11, the compaction brief selection pass, lives here only as the census's brief column.
+This is **Phase 5** of the cli-jev workflow integration specification. It builds recommendation R19 with R11 folded in, from `../004-deep-research-expansion/research/research.md` (section 3, `### R19 (build-now)`; section 4; section 11, `### R19.`; section 13, `### 005-compaction-recall-harness`). R11, the compaction brief selection pass, lives here only as the census's brief column. The text about the later arm is amended for two backends, Jev and Deem, by `../007-classifier-deep-research/research/research.md` (section 14, `### 005-compaction-recall-harness`, recommendation R19 and condition C9). The census and its stop line are unchanged.
 
-**Scope Boundary**: One new read-only census script, its test and its synthetic fixtures. It reads transcript files the operator names, writes one report outside them, never spawns `jev`, never installs or edits a hook and changes no existing behavior. Host compaction runs exactly as today.
+**Scope Boundary**: One new read-only census script, its test and its synthetic fixtures. It reads transcript files the operator names, writes one report outside them, never spawns `jev` or `cli-deem` (proposed, phase 008), never installs or edits a hook and changes no existing behavior. Host compaction runs exactly as today.
 
 **Dependencies**:
 - The operator names 10 to 20 Claude Code session files. The census never discovers transcripts on its own
 - The built spec-kit runtime `dist`, only for the `--replay` path that imports the brief builder
-- None on 002 or 003 for the census. A later Jev arm waits on the conditions in section 3
+- None on 002 or 003 for the census. A later model arm waits on the conditions in section 3
 
 **Deliverables**:
 - `score-compaction-recall.mjs` with one row per boundary and one stop line
@@ -63,11 +63,11 @@ This is **Phase 5** of the cli-jev workflow integration specification. It builds
 
 ### Problem Statement
 
-Nobody has measured what a host compaction in this project keeps, so there is no baseline a Jev deletion pass could be judged against. Compaction happens often here: a parsed count on 2026-09-27 found 212 `compact_boundary` records in 93 main-session transcript files and 14 more in 999 subagent files, each a wait the operator's turn absorbs (p50 about 104 s, research section 4). Two keepers exist and neither has been scored: the host's stock summary, recorded as a `user` record with `isCompactSummary` after each boundary, and the recovered-context brief that the `SessionStart:compact` hook injects from the PreCompact cache (`.skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:8`, `session-prime.ts:98`). The vendored Jev compaction procedure fits the whole history into a 25,000-token state before it asks any question (`state.ts:198-306`, `compact.ts:24`), and whether it can do that for sessions that start compacting at 450,019 tokens or more is UNKNOWN. The use-case map lists compaction keep-or-drop as "None today", so no harness exists.
+Nobody has measured what a host compaction in this project keeps, so there is no baseline a deletion pass on either backend could be judged against. Compaction happens often here: a parsed count on 2026-09-27 found 212 `compact_boundary` records in 93 main-session transcript files and 14 more in 999 subagent files, each a wait the operator's turn absorbs (p50 about 104 s, research section 4). Two keepers exist and neither has been scored: the host's stock summary, recorded as a `user` record with `isCompactSummary` after each boundary, and the recovered-context brief that the `SessionStart:compact` hook injects from the PreCompact cache (`.skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:8`, `session-prime.ts:98`). The vendored Jev compaction procedure fits the whole history into a 25,000-token state before it asks any question (`state.ts:198-306`, `compact.ts:24`), and whether it can do that for sessions that start compacting at 450,019 tokens or more is UNKNOWN. The use-case map lists compaction keep-or-drop as "None today", so no harness exists.
 
 ### Purpose
 
-Produce, with zero Jev calls, one row per host compaction and one stop line that says whether an offline Jev deletion arm is worth specifying, while every run leaves the host's compaction, the hooks and the transcripts exactly as they are.
+Produce, with zero model calls, one row per host compaction and one stop line that says whether an offline deletion arm on either backend is worth specifying, while every run leaves the host's compaction, the hooks and the transcripts exactly as they are.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -88,8 +88,8 @@ Produce, with zero Jev calls, one row per host compaction and one stop line that
 
 ### Out of Scope
 
-- Any Jev arm, including the offline deletion arm. This phase ends at the stop line. The arm, if the stop line allows it, is a later amendment with its own `--jev` switch, the parent's D5 key gate (`command -v jev`, `jev --version` printing `jev 0.6.2` and `jev auth status --provider <the provider its judgments use>` exiting 0) with that one `--provider` on every check and call, the redaction cases in the plugin, the scrubber and goal-core (research question 17), the operator's acceptance of its payload, which is the highest class in the packet, and a per-call latency measured in 002.
-- Any live form. The PreCompact command hook has a 3 s timeout (`.claude/settings.json:215-222`, What Not To Build row 5), and a function-hook form needs research question 18, the function-hook budget, answered first. Only the `precompute` trigger would ever be considered (`claude-code.d.ts:7278-7285`).
+- Any model arm, including the offline deletion arm. This phase ends at the stop line. The arm, if the stop line allows it, is a later amendment with its own `--deem` and `--jev` switches (both proposed), and each backend runs only when its own check passes, once per run. A Jev arm keeps every condition listed here: the parent's D1 Jev check (`command -v jev`, `jev --version` printing `jev 0.6.2` and `jev auth status --provider <the provider its judgments use>` exiting 0) with that one `--provider` on every check and call, the redaction cases in the plugin, the scrubber and goal-core (research question 17), the operator's acceptance of its payload, which is the highest class in the packet, and a per-call latency measured in 002. A Deem arm needs the Deem check, `cli-deem health` (proposed, phase 008), which refuses the stub backend within 2,000 ms and prints the backend, the model id and the commit pair. It also needs batches of at most 32 tool calls (64 questions, `deem_server.py:995-997`) and one timed call at fitted-state size first (007 research question 41). It needs no redaction cases and no payload acceptance, because nothing leaves the machine. When both checks pass the arm prefers Deem, because the payload is the operator's own sessions, and a run never fails over silently from one backend to the other. A Deem keep holds only for the commit pair it was measured on and reruns on a changed pair. With neither switch set, or with every check failing, the output is byte-identical to the census and no binary is spawned.
+- Any live form. The PreCompact command hook has a 3 s timeout (`.claude/settings.json:215-222`, What Not To Build row 5), and a function-hook form needs research question 18, the function-hook budget, answered first. Only the `precompute` trigger would ever be considered (`claude-code.d.ts:7278-7285`). A live Deem form would only ever use the `precompute` trigger, and no form starts the server. It would fall back to the stock summary on any error (R19).
 - Installing the vendored npm `jevctl` compaction hook, which runs unless disabled and reads a key outside the D5 gate (rows 6 and 43).
 - Per-turn history pruning of the pi-jev-context kind (row 44).
 - Dividing host `preTokens` by the 25,000-token `maxStateTokens` (row 45). The ceiling applies to the fitted state after staged shrinking.
@@ -119,7 +119,7 @@ Produce, with zero Jev calls, one row per host compaction and one stop line that
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The census makes zero Jev calls and has no Jev code path | With a stub `jev` first on PATH that appends one line per invocation to a log, every census run, with or without `--replay`, leaves the log empty. The script contains no `spawn` or `exec` of `jev` |
+| REQ-001 | The census makes zero model calls and has no model code path | With stub `jev` and `cli-deem` binaries first on PATH, each appending one line per invocation to its own log, every census run, with or without `--replay`, leaves both logs empty. The script contains no `spawn` or `exec` of `jev` or `cli-deem` |
 | REQ-002 | The census reads only what the operator names | Run with no `--transcripts` argument, it prints `no transcripts named`, reads nothing and exits 2. It never defaults to `~/.claude/projects` or any other directory |
 | REQ-003 | The parser is a closed whitelist that fails loudly | A record whose `type` is not in `KNOWN_TYPES`, a line that is not JSON or a boundary missing `compactMetadata` stops that session with `parse error: <file>:<line>: <reason>`. Other sessions still run, the stopped session is counted in `sessions_stopped` and the process exits 1 when any session stopped. No record is skipped with only a warning |
 | REQ-004 | The counting method and scope are printed | The report's first two lines are `method: parsed JSON records with type=system, subtype=compact_boundary and compactMetadata present` and `scope: <n> main-session files, <n> subagent files, <n> boundaries (<n> main, <n> subagent)`. A file under a `subagents/` path segment is a subagent file. The boundary total equals an independent parsed count over the same files, and a substring count of `compact_boundary` is never used |
@@ -154,7 +154,7 @@ Produce, with zero Jev calls, one row per host compaction and one stop line that
 - **A boundary with no brief.** Brief status `absent`, with the window's other `SessionStart:compact` status. Its brief recall is `n/a` and leaves the brief average. Under `--replay` it takes the replay path instead.
 - **An oversized file.** Streamed. Above `--max-file-bytes` it is counted `sessions_skipped_oversized`, named by basename and size and never parsed.
 - **An oversized state.** `fitState` throws. The row records `fit_throw`, the count rises and the census continues.
-- **A stub `jev` on PATH.** Never invoked (REQ-001).
+- **Stub `jev` and `cli-deem` binaries on PATH.** Neither is invoked (REQ-001).
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -162,8 +162,8 @@ Produce, with zero Jev calls, one row per host compaction and one stop line that
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The operator knows, from one run over 10 to 20 named sessions and with no key, whether a Jev deletion pass can fit these sessions, what the stock summary and the brief each keep and whether the arm is worth specifying.
-- **SC-002**: No run changes a hook, a transcript, the host's compaction or any existing file, and no run spawns `jev`.
+- **SC-001**: The operator knows, from one run over 10 to 20 named sessions and with no key, whether a deletion pass on either backend can fit these sessions, what the stock summary and the brief each keep and whether the arm is worth specifying.
+- **SC-002**: No run changes a hook, a transcript, the host's compaction or any existing file, and no run spawns `jev` or `cli-deem`.
 
 ### Stop Line
 
@@ -179,7 +179,7 @@ Definitions. `fit_throws` is the share of boundaries whose `fitState` throws. `o
 
 ### Proof Plan
 
-1. The ten test cases pass with a stub `jev` first on PATH and an empty stub log.
+1. The ten test cases pass with stub `jev` and `cli-deem` binaries first on PATH and both stub logs empty.
 2. Over the named sessions, the `scope:` boundary total matches an independent parsed count over the same files. Boundary: a mismatch voids the run.
 3. The report holds no `CANARY-` string on the fixture run, and the key-name grep returns no match.
 4. The stop line prints once. On this project's full transcript set the brief column should find a brief near 218 of 222 boundaries and the marker near 210, the research's counts on its own date. Counts drift upward as sessions run, so these are a sanity range, not a pass mark.
@@ -209,7 +209,7 @@ Definitions. `fit_throws` is the share of boundaries whose `fitState` throws. `o
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Can a Jev deletion pass fit these sessions at all (research question 24)? The fit column answers it.
+- Can a deletion pass on either backend fit these sessions at all (research question 24)? The fit column answers it.
 - Are the unbriefed boundaries the cancelled `SessionStart:compact` hooks (question 35)? The brief column's window status answers it.
 - Does rule-derived recall agree with an operator's reading (question 27)? The operator's 3-session read after the census answers it.
 - Does Claude Code bound a `session.compact` function hook's run time in production, and at what (question 18)? Unresolved. It blocks any live form, not this census. One timed run with a stub hook on 2.1.283, or a host reference, answers it.

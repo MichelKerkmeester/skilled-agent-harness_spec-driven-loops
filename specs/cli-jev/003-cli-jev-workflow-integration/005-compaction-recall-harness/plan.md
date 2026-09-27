@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Compaction Recall Census"
-description: "One new read-only census script under system-spec-kit's runtime scripts: a closed-whitelist streaming parser over transcripts the operator names, per-boundary rows for the stock summary, the recorded brief and the vendored staged fit, and one stop line, with zero Jev calls."
+description: "One new read-only census script under system-spec-kit's runtime scripts: a closed-whitelist streaming parser over transcripts the operator names, per-boundary rows for the stock summary, the recorded brief and the vendored staged fit, and one stop line, with zero model calls."
 trigger_phrases:
   - "compaction recall census plan"
   - "score-compaction-recall plan"
@@ -26,11 +26,11 @@ contextType: "implementation"
 | **Language/Stack** | Node.js ES module (`.mjs`), no new dependency |
 | **Framework** | Node's `readline` over file streams. The built spec-kit `dist` only for `--replay` |
 | **Storage** | None in the repository. One JSON report at the path the operator passes with `--out` |
-| **Testing** | Vitest through the package's bounded runner, synthetic fixtures with a canary string, a stub `jev` for the zero-call proof |
+| **Testing** | Vitest through the package's bounded runner, synthetic fixtures with a canary string, stub `jev` and `cli-deem` (proposed, phase 008) binaries for the zero-call proof |
 
 ### Overview
 
-The script streams each session file the operator names, checks every record against a closed type whitelist and finds each compaction boundary. For each boundary it reads the stock summary and the recorded brief from the records that follow, rebuilds the history before it in the vendored message shape, runs a port of the vendored staged fit and a no-model truncation pass, and scores both keepers under five must-survive rules. It prints one row per boundary and one stop line, and it never spawns `jev`.
+The script streams each session file the operator names, checks every record against a closed type whitelist and finds each compaction boundary. For each boundary it reads the stock summary and the recorded brief from the records that follow, rebuilds the history before it in the vendored message shape, runs a port of the vendored staged fit and a no-model truncation pass, and scores both keepers under five must-survive rules. It prints one row per boundary and one stop line, and it never spawns `jev` or `cli-deem`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -60,7 +60,7 @@ A standalone offline census: stream, classify, score, print. It lives in a new `
 
 ### Key Components
 
-- **Arguments**: `--transcripts <dir-or-file>` (repeatable, required), `--out <file>` (required, refused inside a named transcript directory), `--replay` (off by default), `--max-file-bytes <n>` (default 1 GiB, proposed). No argument names a provider, a key or `jev`.
+- **Arguments**: `--transcripts <dir-or-file>` (repeatable, required), `--out <file>` (required, refused inside a named transcript directory), `--replay` (off by default), `--max-file-bytes <n>` (default 1 GiB, proposed). No argument names a provider, a key or a backend, and the census has no `--jev` or `--deem` switch (both proposed for the later arm only).
 - **`parseTranscript()`**: a `readline` stream per file. Each line is parsed as JSON and its `type` checked against `KNOWN_TYPES`, the 21 record types seen in main-session files on 2026-09-27. A bad line, an unknown type or a boundary missing `compactMetadata` stops that session with `parse error: <file>:<line>: <reason>`. A file under a `subagents/` path segment is classed as a subagent file.
 - **`findBoundaries()`**: `system` records whose `subtype` is `compact_boundary` and that carry `compactMetadata`. It reads `trigger`, `preTokens`, `postTokens`, `durationMs` and `preservedSegment`, plus `isSidechain` and `entrypoint` from the record.
 - **`readStockSummary()`**: the first `user` record with `isCompactSummary` within 30 records after the boundary. Its text is held in memory for scoring only.
@@ -92,8 +92,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 3. Add the fit column first, because it decides the arm: the estimator port, `toMessages()` and the throw count, with the generated oversized-state case.
 4. Add the recorded-brief and stock-summary readers, the truncation pass and the five rules.
 5. Add `--replay` last, off by default.
-6. Run the census over the named sessions with a stub `jev` first on PATH, read the stop line and record it in `implementation-summary.md`.
-7. Stop there. Any Jev arm is a later amendment to this phase.
+6. Run the census over the named sessions with stub `jev` and `cli-deem` binaries first on PATH, read the stop line and record it in `implementation-summary.md`.
+7. Stop there. Any model arm, on Jev or Deem, is a later amendment to this phase with its own `--deem` and `--jev` switches and the conditions in `spec.md` section 3.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -101,14 +101,14 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Commands run from the repository root unless a row says otherwise, with `S=.skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs`. `$STUB` is a temporary directory outside the repository holding an executable `jev` that appends its arguments to `$STUB/log`. `$NAMED` is the directory of session files the operator named, and `$OUT` a report path outside it and outside the repository.
+Commands run from the repository root unless a row says otherwise, with `S=.skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs`. `$STUB` is a temporary directory outside the repository holding executable `jev` and `cli-deem` stubs that append their arguments to `$STUB/jev.log` and `$STUB/cli-deem.log`. `$NAMED` is the directory of session files the operator named, and `$OUT` a report path outside it and outside the repository.
 
 | Check | Command | Expected output |
 |-------|---------|-----------------|
-| Unit cases | from `.skilled/skills/system-spec-kit/runtime`: `npm test -- --run tests/compaction-recall.vitest.ts` | 10 passed, exit 0. The cases: a missing written file gives 1 violation; an unknown type exits 1 with a named error; a malformed line does the same; an empty directory exits 0 with `compactions=0`; a clean session gives 0 violations; an oversized state records `fit_throw` and continues; a recorded brief is read and not replayed; a boundary without one takes the replay path with `replay_version`; the report holds no `CANARY-` string; a stub `jev` log stays empty |
+| Unit cases | from `.skilled/skills/system-spec-kit/runtime`: `npm test -- --run tests/compaction-recall.vitest.ts` | 10 passed, exit 0. The cases: a missing written file gives 1 violation; an unknown type exits 1 with a named error; a malformed line does the same; an empty directory exits 0 with `compactions=0`; a clean session gives 0 violations; an oversized state records `fit_throw` and continues; a recorded brief is read and not replayed; a boundary without one takes the replay path with `replay_version`; the report holds no `CANARY-` string; the stub `jev` and `cli-deem` logs stay empty |
 | No transcripts named | `node $S --out $OUT` | `no transcripts named`, exit 2, no report written |
 | Report inside the transcripts | `node $S --transcripts $NAMED --out $NAMED/r.json` | `refused: report path inside transcript directory`, exit 2 |
-| Census, zero calls | `PATH="$STUB:$PATH" node $S --transcripts $NAMED --out $OUT` | A `method:` line, a `scope:` line, one row per boundary, exactly one `stop:` line, exit 0 or exit 1 with each stopped session named. `$STUB/log` is empty |
+| Census, zero calls | `PATH="$STUB:$PATH" node $S --transcripts $NAMED --out $OUT` | A `method:` line, a `scope:` line, one row per boundary, exactly one `stop:` line, exit 0 or exit 1 with each stopped session named. `$STUB/jev.log` and `$STUB/cli-deem.log` are empty |
 | Boundary total | an independent parsed count over `$NAMED`: parse each line as JSON and count records with `type` `system`, `subtype` `compact_boundary` and `compactMetadata` | The same total as the `scope:` line |
 | No key names | `grep -niE 'api_key\|apikey\|secret\|bearer' $S .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` | No match, exit 1 |
 | Read-only | `git status --porcelain` | Only the script, the test, the fixtures directory and `runtime/scripts/README.md` |
@@ -121,7 +121,7 @@ Commands run from the repository root unless a row says otherwise, with `S=.skil
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The operator's named session files. The built spec-kit runtime `dist` for `--replay` only (`npm run build` under `.skilled/skills/system-spec-kit/runtime`). No package is installed, no `jev` is needed and no key is read.
+The operator's named session files. The built spec-kit runtime `dist` for `--replay` only (`npm run build` under `.skilled/skills/system-spec-kit/runtime`). No package is installed, neither `jev` nor a Deem server is needed and no key is read.
 <!-- /ANCHOR:dependencies -->
 
 ---

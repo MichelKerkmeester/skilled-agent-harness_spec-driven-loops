@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":2,"status":"complete","focus":"grok-02: Wire compatibility, field by field","findingsCount":6,"newInfoRatio":0.95,"noveltyJustification":"Field-level request and exit table for the Python jev-cli against parse_question.","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"deep-research","timestamp":"2026-09-27T07:05:00Z"}
+{"type":"finding","id":"N-grok-02-1","label":"Translator in Python jev-cli for criteria to options/levels and value/level back to noul/score","verdict":"next","question":"A"}
+{"type":"finding","id":"N-grok-02-2","label":"Do not treat jevctl TYPESAFE_BASE_URL as cli-deem","verdict":"drop","question":"G"}

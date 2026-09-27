@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub",
+  "description": "Four Planned phases want a Deem arm (002, 003, 005 and 006), and the repository has 0 runtime Deem callers",
+  "keywords": [
+    "four",
+    "planned",
+    "phases",
+    "want",
+    "deem",
+    "arm",
+    "repository",
+    "runtime",
+    "callers"
+  ],
+  "lastUpdated": "2026-09-27T09:28:35.858Z",
+  "specId": "008",
+  "folderSlug": "cli-classifier-hub",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

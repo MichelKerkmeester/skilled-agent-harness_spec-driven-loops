@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness"
-    last_updated_at: "2026-09-27T07:30:00Z"
-    last_updated_by: "orchestrator-session"
-    recent_action: "Authored the durable directive"
+    last_updated_at: "2026-09-27T09:25:00Z"
+    last_updated_by: "phase-amendment-leaf"
+    recent_action: "Amended the later-arm text for two backends, Jev and Deem"
     next_safe_action: "The operator names 10 to 20 session files, then write the parser and the fit column"
     blockers: []
     key_files:
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Measure, with zero Jev calls, what this project's host compactions keep in the stock summary and the recorded brief and whether the vendored staged fit can hold these sessions at all, so that one printed stop line decides whether an offline Jev deletion arm is worth specifying.
+**Objective:** Measure, with zero model calls, what this project's host compactions keep in the stock summary and the recorded brief and whether the vendored staged fit can hold these sessions at all, so that one printed stop line decides whether an offline deletion arm on either backend is worth specifying.
 
 ### Decisions
 
@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | New files only: `.skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs`, `runtime/tests/compaction-recall.vitest.ts` and `runtime/tests/compaction-recall-fixtures/`, plus one inventory row in `runtime/scripts/README.md`. No hook, setting or transcript changes |
-| D2 | This phase builds no Jev arm and has no `jev` spawn path. A later arm is an amendment with its own `--jev` switch, and it waits on the redaction cases, the operator's acceptance of its payload and a latency measured in 002 |
+| D2 | This phase builds no model arm and has no `jev` or `cli-deem` (proposed) spawn path. A later arm is an amendment with its own `--deem` and `--jev` switches (proposed), each gated by its own check, and it prefers Deem when both pass. A Jev arm waits on the redaction cases, the operator's acceptance of its payload and a latency measured in 002. A Deem arm waits on batches of at most 32 tool calls and one timed call at fitted-state size, and needs no redaction or payload acceptance |
 | D3 | The census reads only session files the operator names, and the report holds counts, scores, enum labels, stage names, file basenames, boundary `uuid` values and line numbers, never transcript text. Fixtures are synthetic |
 | D4 | The parser is a closed type whitelist that stops a session with a named file, line and reason, counts it and exits 1. Nothing is skipped with only a warning |
 | D5 | Boundaries are counted from parsed records with `type` `system`, `subtype` `compact_boundary` and `compactMetadata`, never by substring, and the report prints that method and its scope |
@@ -87,7 +87,7 @@ here are invisible to whatever judges completion.
 
 - [ ] `npm test -- --run tests/compaction-recall.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime`, reports 10 passed and exits 0
 - [ ] A census run over the 10 to 20 session files the operator named prints a `method:` line, a `scope:` line, one row per boundary and exactly one line starting `stop:`, and its `scope:` boundary total equals an independent count of parsed records with `type` `system` and `subtype` `compact_boundary` over the same files
-- [ ] With a stub `jev` first on PATH that logs every invocation, the census run leaves the stub log empty
+- [ ] With stub `jev` and `cli-deem` binaries first on PATH that log every invocation, the census run leaves both stub logs empty
 - [ ] `grep -niE 'api_key|apikey|secret|bearer'` on `score-compaction-recall.mjs` and `compaction-recall.vitest.ts` returns no match
 - [ ] `git status --porcelain` lists only `runtime/scripts/compaction-recall/`, `runtime/tests/compaction-recall.vitest.ts`, `runtime/tests/compaction-recall-fixtures/` and `runtime/scripts/README.md` under `.skilled/skills/system-spec-kit/`, and no file in the named transcript directory changes
 - [ ] `validate.sh --strict` on `specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness` prints `RESULT: PASSED`
@@ -107,6 +107,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning documents | Done | `spec.md`, `plan.md`, `tasks.md` and this goal authored from `004-deep-research-expansion/research/research.md` R19, section 4 and proposed phase 005 |
+| Two-backend amendment | Done 2026-09-27 | Amended for two backends per 007 `research.md` section 14 (`### 005-compaction-recall-harness`), R19 and C9, and parent goal D1 and D5. All eight rows of the section 14 table applied to `spec.md`, then carried into `plan.md`, `tasks.md`, `implementation-summary.md` and this goal. No requirement id added |
 | Session list | Pending | The operator's task (T001) |
 | Build | Pending | Nothing is built. The phase is Planned |
 
@@ -118,5 +119,8 @@ and findings belong here.
 | Count drift | Parsed records on 2026-09-27: 212 boundaries in 93 main-session files and 14 in 999 subagent files. A substring match gives 270 lines. The research counted 222 and the orchestrator 210 on earlier passes, so D5 pins the method and the report prints it |
 | Test placement | The research put the test beside the script. The vitest include glob is `runtime/tests/**` and the scripts README says that folder holds scripts only, so the test and fixtures go under `runtime/tests/` |
 | Report narrowed | The research's report printed counts, names and paths. Paths and identifiers come from transcript text, so D3 keeps the report to counts and scores, and the operator's spot read uses basename and line number |
+| Amendment approval | Section 14 says each amendment waits for the operator's approval. Parent goal D1, D5 and its fourth completion criterion direct these amendments, so that approval is recorded as given |
+| What changed in the directive | Objective: "zero Jev calls" to "zero model calls" and "offline Jev deletion arm" to "offline deletion arm on either backend". D2: names both proposed switches, the Deem preference and each backend's preconditions (C9). Criterion 3: stub `cli-deem` joins stub `jev`. The census, its stop line (D7) and the other criteria are unchanged |
+| Key gate reference | `spec.md` cited "the parent's D5 key gate". The parent goal now states the Jev check under D1, so the amended text cites D1 |
 | Level 1 has no `acceptance-criteria.md` | The criteria above come from `spec.md` REQ-001 to REQ-007, its stop line and its proof plan. `recommend-level.sh --loc 730 --files 9` scores Level 1 |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,19 @@
+set rows movable k_crit win_rate_for_80pct_power
+ambiguity 24 24 17 0.76
+ambiguity 24 12 10 0.87
+ambiguity 24 6 6 0.97
+holdout 70 70 43 0.66
+holdout 70 35 23 0.71
+holdout 70 18 13 0.78
+labeled 195 195 110 0.6
+labeled 195 98 58 0.63
+labeled 195 49 31 0.68
+combined 289 289 159 0.58
+combined 289 144 83 0.61
+combined 289 72 44 0.66
+unpaired_n_per_arm p1=0.95 p2=0.98 gap=0.030000000000000027 n=585
+unpaired_n_per_arm p1=0.9 p2=0.95 gap=0.04999999999999993 n=431
+unpaired_n_per_arm p1=0.92 p2=0.95 gap=0.029999999999999916 n=1055
+unpaired_n_per_arm p1=0.85 p2=0.95 gap=0.09999999999999998 n=137
+calibration: 10bin_ECE_min_rows=200 5bin_ECE_min_rows=100 single_temp_fit_min_rows=50
+sets_total_rows=289

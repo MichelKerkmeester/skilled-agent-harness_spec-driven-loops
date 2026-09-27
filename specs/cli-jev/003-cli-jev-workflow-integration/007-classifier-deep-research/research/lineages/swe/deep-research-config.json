@@ -1,0 +1,44 @@
+{
+  "topic": "Find where a classifier model, Jev hosted or local Deem 0.8B, cuts the main AI's context and manual review work in this repository. Iteration N takes angle swe-NN from context/research-angles.md.",
+  "research_topic": "Find where a classifier model, Jev hosted or local Deem 0.8B, cuts the main AI's context and manual review work in this repository. Brief, questions A-H and answer shape: specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/spec.md. Your label is the last path segment of config.fanout_lineage_artifact_dir. Iteration N takes angle label-NN, two digits (e.g. swe-03, grok-10), from specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/research-angles.md, whose contract governs. Read steer.md in your lineage directory first if it exists, then specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md. Write only inside your lineage directory. Never call jev or the Deem server. Cite file:line for every claim.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages/swe",
+  "fanout_lineage_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages/swe",
+  "loop_type": "research",
+  "stopPolicy": "max-iterations",
+  "stop_policy": "max-iterations",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "off",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-2-max",
+    "reasoningEffort": null,
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-swe-1790490452777-942a1f",
+    "generation": 1,
+    "lineageId": "swe",
+    "lineageMode": "detached"
+  },
+  "scopeBoundary": {
+    "writeRoot": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages/swe",
+    "forbiddenWrites": [
+      "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/spec.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/deep-research-config.json",
+      "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/observability-events.jsonl",
+      "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/orchestration-status.log",
+      ".skilled",
+      ".utcp_config.json"
+    ],
+    "writeback": "skipped by detached lineage boundary"
+  },
+  "status": "running"
+}

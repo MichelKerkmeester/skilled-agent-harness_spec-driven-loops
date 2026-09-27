@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness",
-  "description": "Nobody has measured what a host compaction in this project keeps, so there is no baseline a Jev deletion pass could be judged against",
+  "description": "Nobody has measured what a host compaction in this project keeps, so there is no baseline a deletion pass on either backend could be judged against",
   "keywords": [
     "nobody",
     "measured",
@@ -10,13 +10,13 @@
     "project",
     "keeps",
     "baseline",
-    "jev",
+    "backend",
     "deletion",
     "pass",
     "judged",
     "against"
   ],
-  "lastUpdated": "2026-09-27T04:47:38.582Z",
+  "lastUpdated": "2026-09-27T09:26:17.063Z",
   "specId": "005",
   "folderSlug": "compaction-recall-harness",
   "parentChain": [
