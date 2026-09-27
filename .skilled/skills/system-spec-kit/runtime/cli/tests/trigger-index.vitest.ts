@@ -1,7 +1,9 @@
+import { spawnSync } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -13,10 +15,23 @@ import {
   queryTokens,
   scorePhrase,
 } from '../retrieval/lib/normalize.mjs';
-import { buildIndex, generate } from '../retrieval/generate-trigger-index.mjs';
+import {
+  buildIndex,
+  DEFAULT_DIAGNOSTICS_PATH,
+  DEFAULT_INDEX_PATH,
+  DEFAULT_MANIFEST_PATH,
+  DEFAULT_VARIANTS_PATH,
+  generate,
+  resolveArtifactPaths,
+} from '../retrieval/generate-trigger-index.mjs';
 import { loadIndex, lookup, specFolderMatches,
   parseArgs,
 } from '../retrieval/lookup-trigger-index.mjs';
+
+const RETRIEVAL_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'retrieval');
+const GENERATOR_SCRIPT = path.join(RETRIEVAL_DIR, 'generate-trigger-index.mjs');
+const LOOKUP_SCRIPT = path.join(RETRIEVAL_DIR, 'lookup-trigger-index.mjs');
+const TRACKED_SIDECARS = [DEFAULT_MANIFEST_PATH, DEFAULT_DIAGNOSTICS_PATH, DEFAULT_VARIANTS_PATH];
 
 const tempRoots = new Set<string>();
 
@@ -591,6 +606,107 @@ describe('generate', () => {
   });
 });
 
+describe('generate output paths', () => {
+  function trackedSidecarHashes(): string[] {
+    return TRACKED_SIDECARS.map((file) => (fs.existsSync(file) ? sha256File(file) : 'absent'));
+  }
+
+  it('writes every sidecar beside an --out aimed elsewhere and leaves the tracked fixtures alone', () => {
+    const root = makeTempDir('speckit-trigger-sidecars-');
+    writeDoc(root, 'specs/track/a.md', frontmatter(['spec folder question']));
+    const indexPath = path.join(root, 'out', 'idx.json');
+    const before = trackedSidecarHashes();
+
+    const report = generate({ ignoredPaths: [], indexPath, repoRoot: root, roots: CORPUS_ROOTS });
+
+    expect(report.published).toBe(true);
+    expect(fs.readdirSync(path.join(root, 'out')).sort())
+      .toEqual(['corpus-manifest.json', 'generation-diagnostics.json', 'idx.json', 'phrase-variants.json']);
+    expect(trackedSidecarHashes()).toEqual(before);
+  });
+
+  it('writes a refused build\'s diagnostics beside --out rather than over the tracked fixture', () => {
+    const root = makeTempDir('speckit-trigger-sidecars-refused-');
+    writeDoc(root, 'specs/track/broken.md', '---\ntitle: "D"\ntrigger_phrases: scalar value\n---\n');
+    const indexPath = path.join(root, 'out', 'idx.json');
+    const before = trackedSidecarHashes();
+
+    const report = generate({ ignoredPaths: [], indexPath, repoRoot: root, roots: CORPUS_ROOTS });
+
+    expect(report.published).toBe(false);
+    expect(fs.readdirSync(path.join(root, 'out'))).toEqual(['generation-diagnostics.json']);
+    expect(trackedSidecarHashes()).toEqual(before);
+  });
+
+  it('keeps the tracked sidecars for the routine rebuild however its --out is spelled', () => {
+    const tracked = {
+      diagnostics: DEFAULT_DIAGNOSTICS_PATH,
+      manifest: DEFAULT_MANIFEST_PATH,
+      variants: DEFAULT_VARIANTS_PATH,
+    };
+    expect(resolveArtifactPaths()).toEqual({ ...tracked, index: DEFAULT_INDEX_PATH });
+
+    const dotted = path.join(path.dirname(DEFAULT_INDEX_PATH), '..', 'data', path.basename(DEFAULT_INDEX_PATH));
+    expect(resolveArtifactPaths({ indexPath: dotted })).toEqual({ ...tracked, index: dotted });
+
+    // A relative --out is elsewhere, and an explicit sidecar path still wins.
+    expect(resolveArtifactPaths({ indexPath: 'scratch/idx.json', manifestPath: '/tmp/m.json' })).toEqual({
+      diagnostics: path.join('scratch', 'generation-diagnostics.json'),
+      index: 'scratch/idx.json',
+      manifest: '/tmp/m.json',
+      variants: path.join('scratch', 'phrase-variants.json'),
+    });
+  });
+});
+
+describe('generate --check', () => {
+  /** A temp repository the CLI accepts: it needs the spec-kit sentinel to pick a source root. */
+  function checkedCorpus(): { indexPath: string; root: string } {
+    const root = makeTempDir('speckit-trigger-check-');
+    writeDoc(root, '.skilled/skills/system-spec-kit/SKILL.md', frontmatter(['spec kit sentinel']));
+    writeDoc(root, 'specs/track/a.md', frontmatter(['spec folder question']));
+    const indexPath = path.join(root, 'out', 'trigger-index.json');
+    const built = runGenerator(['--repo-root', root, '--out', indexPath, '--quiet']);
+    expect(built.status).toBe(0);
+    return { indexPath, root };
+  }
+
+  function runGenerator(args: string[]) {
+    return spawnSync(process.execPath, [GENERATOR_SCRIPT, ...args], { encoding: 'utf8' });
+  }
+
+  function snapshot(directory: string): Record<string, string> {
+    return Object.fromEntries(fs.readdirSync(directory).sort()
+      .map((name) => [name, sha256File(path.join(directory, name))]));
+  }
+
+  it('exits 0 when the index matches the corpus and writes nothing', () => {
+    const { indexPath, root } = checkedCorpus();
+    const before = snapshot(path.dirname(indexPath));
+
+    const checked = runGenerator(['--check', '--repo-root', root, '--out', indexPath]);
+
+    expect(checked.status).toBe(0);
+    expect(checked.stdout).toContain('stale documents   : 0 (0 missing from the index)');
+    expect(snapshot(path.dirname(indexPath))).toEqual(before);
+  });
+
+  it('exits 1 and names the document when one was added after the index was built', () => {
+    const { indexPath, root } = checkedCorpus();
+    const before = snapshot(path.dirname(indexPath));
+    writeDoc(root, 'specs/track/b.md', frontmatter(['late phrase']));
+
+    const checked = runGenerator(['--check', '--repo-root', root, '--out', indexPath, '--json']);
+
+    expect(checked.status).toBe(1);
+    const report = JSON.parse(checked.stdout);
+    expect(report.fresh).toBe(false);
+    expect(report.missingDocuments).toBe(1);
+    expect(report.staleDocuments).toEqual([{ added: ['late phrase'], path: 'specs/track/b.md', removed: [] }]);
+    expect(snapshot(path.dirname(indexPath))).toEqual(before);
+  });
+});
+
 describe('publishJson', () => {
   it('leaves the target and no temporary file behind when validation rejects', () => {
     const root = makeTempDir('speckit-trigger-publish-');
@@ -690,6 +806,52 @@ describe('lookup', () => {
     expect(specFolderMatches('specs/track/a.md', 'specs/track')).toBe(true);
     expect(specFolderMatches('specs/track/child/a.md', 'specs/track')).toBe(true);
     expect(specFolderMatches('specs/tracking/a.md', 'specs/track')).toBe(false);
+  });
+});
+
+describe('lookup --scoring-only', () => {
+  function fixtureIndexPath(): string {
+    const root = makeTempDir('speckit-trigger-scoring-');
+    writeDoc(root, 'specs/track/exact.md', frontmatter(['Spec Folder Question']));
+    writeDoc(root, 'specs/track/overlap.md', frontmatter(['question of folder and spec']));
+    writeDoc(root, 'specs/other/partial.md', frontmatter(['specification workbench']));
+    writeDoc(root, 'specs/other/midword.md', frontmatter(['unspecified behaviour drift']));
+    const options = generationPaths(root);
+    generate(options);
+    return options.indexPath;
+  }
+
+  function runLookup(indexPath: string, prompt: string, extra: string[] = []) {
+    const run = spawnSync(process.execPath, [
+      LOOKUP_SCRIPT, '--index', indexPath, '--json', '--no-index-hash', ...extra, '--', prompt,
+    ], { encoding: 'utf8' });
+    return { answer: JSON.parse(run.stdout), status: run.status };
+  }
+
+  it('returns only the scoring rows and exits 0 when the prompt scores', () => {
+    const scored = runLookup(fixtureIndexPath(), 'Spec folder question', ['--scoring-only']);
+
+    expect(scored.status).toBe(0);
+    expect(scored.answer.results.map((r: { matchClass: string; path: string }) => [r.matchClass, r.path])).toEqual([
+      ['exact', 'specs/track/exact.md'],
+      ['token-overlap', 'specs/track/overlap.md'],
+    ]);
+  });
+
+  it('returns no rows and exits 1 when nothing scores', () => {
+    const missed = runLookup(fixtureIndexPath(), 'cified drift zone', ['--scoring-only']);
+
+    expect(missed.status).toBe(1);
+    expect(missed.answer.results).toEqual([]);
+    expect(missed.answer.truncated).toBe(false);
+  });
+
+  it('keeps the score-0 row and exit 0 for the same miss without the flag', () => {
+    const unflagged = runLookup(fixtureIndexPath(), 'cified drift zone');
+
+    expect(unflagged.status).toBe(0);
+    expect(unflagged.answer.results.map((r: { matchClass: string; path: string; score: number }) => [r.matchClass, r.path, r.score]))
+      .toEqual([['partial', 'specs/other/midword.md', 0]]);
   });
 });
 

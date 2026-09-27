@@ -77,6 +77,12 @@ The one-time grep-convention retrofit pipeline lives in `../ops/retrofit-convent
 
 Five fixtures were captured once, when the lexical lanes were accepted, and have no runtime reader: `latency-report.json`, `semantic-probes.json`, `prompt-set.json`, `recipe-execution.json` and `daemon-off-proof.json`. Each pins the `manifestHash` of the snapshot it was taken on, and regeneration does not refresh that pin, so a mismatch against the committed manifest is expected and is not a staleness signal. `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json` are the opposite: every generator run rewrites them, and `/doctor speckit-retrieval` treats a manifest whose hash differs from the committed index as a committed pair that one run did not produce. The manifest's `promptSetHash` stays `null` until a parity consumer pins a prompt set there; the slot is kept so landing that value leaves the manifest hash stable.
 
+### Scratch builds and the freshness check
+
+Only a build that writes the committed index rewrites those three sidecars. When `--out` names any other path, every sidecar not named with `--manifest`, `--diagnostics` or `--variants` lands beside `--out`, including the diagnostics a refused build writes, so a scratch build leaves `fixtures/` untouched. A plain run, or one whose `--out` resolves to the committed index, keeps the tracked paths.
+
+`generate-trigger-index.mjs --check` says whether an index still matches the corpus. It walks and reads the corpus as a build does and compares each document's declared phrases with the phrases the index attributes to it, the same comparison the save path runs for one packet (`lib/freshness.mjs`). It also counts index paths the corpus no longer holds. It writes nothing and exits `0` when nothing differs, `1` when a document is stale, an index path is obsolete or the corpus is untrusted, and `2` on a bad invocation or an unreadable index. A manifest hash that differs while every phrase matches is printed as a note and does not fail the check. It costs one full corpus walk, so it runs as the report-only `advisory-checks.yml` step and by hand, never per lookup.
+
 ---
 
 ## 4. KEY FILES
