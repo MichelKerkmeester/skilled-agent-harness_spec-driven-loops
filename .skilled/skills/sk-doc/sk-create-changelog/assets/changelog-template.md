@@ -20,7 +20,7 @@ Two narrative formats (compact and expanded) for global component changelogs and
 
 ### The Canonical Exemplar
 
-`.skilled/changelog/system-spec-kit/v4.0.0.0.md` is the house style. Read it before generating any changelog. It demonstrates everything this template enforces: a multi-paragraph opening narrative, a Why This Release section, a What's New at a Glance section, topical H2 sections with benefit-led H4 story items, inline Breaking markers, and concrete Upgrade Notes at the end. Its single earned-evidence table (in six hundred lines) is what the counted dollar costs earned, not a quota a release must reproduce. When this template and the exemplar appear to disagree, the exemplar wins and the discrepancy is recorded.
+`.skilled/changelog/skilled/v4.0.0.0.md` is the house style. Read it before generating any changelog. It demonstrates everything this template enforces: a multi-paragraph opening narrative, a Why This Release section, a What's New at a Glance section, topical H2 sections with benefit-led H4 story items, inline Breaking markers, and concrete Upgrade Notes at the end. Its single earned-evidence table (in six hundred lines) is what the counted dollar costs earned, not a quota a release must reproduce. When this template and the exemplar appear to disagree, the exemplar wins and the discrepancy is recorded.
 
 ### Usage
 
@@ -210,7 +210,7 @@ Count the changes in the release.
 
 ## 6. THE CANONICAL EXAMPLE
 
-Model every expanded release on `.skilled/changelog/system-spec-kit/v4.0.0.0.md`. It is the reference for opening narrative, Why This Release, at-a-glance bullets, topical H2 naming, H4 story items, the earned-evidence table and Upgrade Notes. Older changelog files in the same folders predate this style, so do not copy them.
+Model every expanded release on `.skilled/changelog/skilled/v4.0.0.0.md`. It is the reference for opening narrative, Why This Release, at-a-glance bullets, topical H2 naming, H4 story items, the earned-evidence table and Upgrade Notes. Older changelog files in the same folders predate this style, so do not copy them.
 
 ---
 
@@ -252,7 +252,7 @@ The global component versioning rules in this file do not apply to nested packet
 
 ### Standards
 
-- `.skilled/changelog/system-spec-kit/v4.0.0.0.md` - the canonical exemplar this template derives from
+- `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar this template derives from
 - [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules (banned words, punctuation, structure)
 - [core-standards.md](../../shared/references/core-standards.md) - Markdown structure and naming conventions
 

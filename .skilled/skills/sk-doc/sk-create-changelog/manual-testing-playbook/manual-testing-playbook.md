@@ -13,7 +13,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The package covers topology, version and format behavior and release boundaries. Scenarios use the shipped `SKILL.md`, README, template and references as sources. There is no feature catalog for this mode. Each scenario carries the full execution contract in one category file.
+The package covers topology, version and format behavior, release boundaries and the Skilled release line. Scenarios use the shipped `SKILL.md`, README, template and references as sources. There is no feature catalog for this mode. Each scenario carries the full execution contract in one category file.
 
 The negative checks matter because a changelog can look polished while landing in the wrong place or using the wrong version. A correct run also refuses to invent release mechanics that belong to `sk-git`.
 
@@ -64,7 +64,7 @@ The package is releasable when all mapped scenarios pass, global and nested outp
 
 ## 6. ORCHESTRATION AND WAVE PLANNING
 
-Run source and topology scenarios first. Run version and format scenarios after the output mode is known. Run the release boundary scenario last. Keep global version checks separate from nested checks because nested files do not use global four-part versioning. Record the source, output mode, target path and evidence for each wave.
+Run source and topology scenarios first. Run version and format scenarios after the output mode is known. Run the release boundary and release-line scenarios last. Keep global version checks separate from nested checks because nested files do not use global four-part versioning. Record the source, output mode, target path and evidence for each wave.
 
 ---
 
@@ -122,13 +122,35 @@ Verify that an unresolved component match stops before writing a guessed global 
 
 ---
 
-## 10. AUTOMATED TEST CROSS-REFERENCE
+## 10. RELEASE LINE (`CHG-008..CHG-010`)
+
+### CHG-008 | Route a Skilled release entry to the release line
+
+Verify that naming `skilled` writes a release entry to `.skilled/changelog/skilled/` with a version above every existing entry, generation folders included.
+
+> **Scenario:** [CHG-008](release-line/route-skilled-release-entry.md)
+
+### CHG-009 | Never infer the release line from a changed path
+
+Verify that changed files under a skill resolve to that skill by whole path segment and never to `skilled`.
+
+> **Scenario:** [CHG-009](release-line/never-infer-release-line.md)
+
+### CHG-010 | Skip the release for a component other than skilled
+
+Verify that `--release` on another component keeps the changelog and creates no tag or GitHub release.
+
+> **Scenario:** [CHG-010](release-line/skip-release-for-component.md)
+
+---
+
+## 11. AUTOMATED TEST CROSS-REFERENCE
 
 | Check | Coverage | Playbook overlap |
 |---|---|---|
 | `validate_document.py` | Changelog structure and required prose sections | Direct on CHG-005 |
 | `check_authored_name_kebab.py` | Component and phase slug shape | Direct on CHG-001 and CHG-002 |
 | `nested-changelog.js` | Packet-local output path and template | Direct on CHG-002 |
-| Existing global changelog folders | Version sequencing and collision review | Direct on CHG-001 and CHG-004 |
+| Existing global changelog folders | Version sequencing and collision review | Direct on CHG-001, CHG-004 and CHG-008 |
 
 This playbook records changelog authoring behavior. It does not own Git branch, tag, commit, pull request or release mechanics.

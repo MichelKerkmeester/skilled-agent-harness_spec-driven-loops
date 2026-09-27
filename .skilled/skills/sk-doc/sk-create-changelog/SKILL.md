@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global or packet-local changelogs in the v4 narrative style, with topology detection, versions, voice enforcement, omission rules, and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
@@ -41,7 +41,7 @@ Use another `sk-doc` packet when:
 5. The work source is too ambiguous to resolve to a spec folder, component hint, or recent git history.
 6. The user asks for Git branch, commit or PR work, or for release mechanics beyond the `--release` tag and GitHub release.
 
-Use `sk-git` for Git workflow ownership. This packet may prepare release notes when `/create:changelog --release` is requested. The tag and GitHub release themselves run in the command YAMLs' release step (§8).
+Use `sk-git` for Git workflow ownership. This packet may prepare release notes when `/create:changelog skilled --release` is requested. The tag and GitHub release themselves run in the command YAMLs' release step (§8), and only for the `skilled` release line.
 
 ---
 
@@ -158,7 +158,7 @@ At least one source input is required:
 | `component_hint` | When `source_type = component` | Component name or keyword to match against discovered changelog folders |
 | `version_bump` | Optional | One of `major`, `minor`, `patch`, `build`, or `auto` (default) |
 | `--nested` | Optional | Forces packet-local nested changelog mode |
-| `--release` | Optional | After a global changelog is written, tags the version and publishes the GitHub release with the changelog as its body (§8) |
+| `--release` | Optional | After a `skilled` release entry is written, tags the version and publishes the GitHub release with the entry as its body (§8). Any other component skips the release |
 
 Input handling rules:
 
@@ -235,7 +235,7 @@ Canonical nested templates are `.skilled/skills/system-spec-kit/templates/change
 
 ## 5. CHANGELOG FORMAT CONTRACT
 
-Read `assets/changelog-template.md` before generating global changelog content. It defines the two-tier narrative format, the voice rules, the omission decision-aid, and the conciseness caps. The canonical exemplar every generated changelog must be able to sit beside is `.skilled/changelog/system-spec-kit/v4.0.0.0.md`.
+Read `assets/changelog-template.md` before generating global changelog content. It defines the two-tier narrative format, the voice rules, the omission decision-aid, and the conciseness caps. The canonical exemplar every generated changelog must be able to sit beside is `.skilled/changelog/skilled/v4.0.0.0.md`.
 
 ### Shared Format Facts
 
@@ -349,14 +349,15 @@ ls -d .skilled/changelog/*/ 2>/dev/null | sort
 
 Resolution strategy:
 
-1. Treat each discovered folder as a plain component name (e.g. `sk-doc`, `system-spec-kit`, `sk-code`). The real folders under `.skilled/changelog/` are not numerically prefixed. The auto workflow's older `NN--component-name` / `00--` fallback pattern is stale, so match on the plain folder names as they exist on disk.
-2. Match changed file paths against discovered component names.
+1. Treat each discovered folder as a plain component name (e.g. `sk-doc`, `system-spec-kit`, `sk-code`). The folders under `.skilled/changelog/` are not numerically prefixed, so match on the plain folder names as they exist on disk. One folder is not a skill: `skilled` is the framework release line, with one entry per Skilled release.
+2. Match changed file paths against discovered component names by whole path segment, never by substring.
 3. Match `.skilled/skills/{name}/**` to the folder named `{name}` when possible.
 4. Match `.skilled/commands/**` to the folder that owns those commands when possible.
 5. Match `.skilled/agents/**` to the folder that owns those agents when possible.
-6. Match `component_hint` against discovered folder names by substring.
+6. Match `component_hint` against discovered folder names exactly.
 7. Match spec path segments against discovered folder names as a tiebreaker.
-8. If no folder matches, do not invent or default to a fallback folder. Pause and ask which component this changelog belongs to.
+8. Resolve to `skilled` only when `component_hint` names it. A changed path never selects it, because a framework release is chosen by the operator, never inferred from one file.
+9. If no folder matches, do not invent or default to a fallback folder. Pause and ask which component this changelog belongs to.
 
 Component selection rules:
 
@@ -380,7 +381,7 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
 
 1. **Analyze context.** Determine source type from the request or setup output. For a spec folder, read implementation summary, tasks, and spec files, then extract work summary, files changed, change type, level, and output mode. For a component hint, gather recent commits and affected files for that component. For git history, inspect recent commits and diff stats. Compile `work_context` with summary, files, change type, and source.
 2. **Resolve output target.** If nested mode, run the nested changelog generator with `--json`, read the root or phase nested template, extract the output path, and skip global component mapping. If global mode, discover `.skilled/changelog/*/`, parse component folders, match changed files and hints, choose the primary component, list secondary components, and verify `.skilled/changelog/{resolved_folder}/` exists.
-3. **Determine version.** If nested mode, skip version calculation. If global mode, list existing files in the target folder, parse the latest `vX.Y.Z.B` version, choose bump type from explicit `--bump` or auto-detection, calculate the next version, and increment the build segment if the file already exists.
+3. **Determine version.** If nested mode, skip version calculation. If global mode, list the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on), parse the latest `vX.Y.Z.B` version, choose bump type from explicit `--bump` or auto-detection, calculate the next version, and increment the build segment if the file already exists.
 4. **Generate content.** Read `assets/changelog-template.md` for global mode or the spec-kit nested template for nested mode. Set date when needed. Select compact format for fewer than 10 non-breaking, non-major changes and expanded format for 10 or more changes, a major bump, or any breaking change. Write the narrative opening that leads with why the release matters. Apply the omission decision-aid: drop file inventories, test metrics, schema churn and mid-cycle internal experiments by default, and compress reverted work to one story sentence. Add tables only when the numbers themselves are the story. Generate the topical sections, at-a-glance bullets, and upgrade notes with bold lead-ins.
 5. **Validate quality.** Check format, version, and content before writing. Confirm required sections are present, version is strictly greater than the latest global version, no target file exists, summary is non-empty, every path the changelog names exists, and upgrade guidance is present. Auto-fix small missing sections when safe, then revalidate.
 6. **Write the file.** If nested mode, run `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write` and verify the output path. If global mode, write `.skilled/changelog/{primary_component}/v{next_version}.md` and read back the first lines to verify creation. If secondary components exist, note them as additional changelog candidates rather than writing extra files silently.
@@ -445,7 +446,7 @@ For GitHub release notes, use the changelog content with any YAML frontmatter an
 Full changelog: `.skilled/changelog/{component}/v{VERSION}.md`
 ```
 
-The command YAMLs own the release itself, as `step_7_publish_release`, and run it only when `publish_release` is explicitly true. The tag is `v{next_version}`, the version just written. The step checks for a tag collision and for an authenticated `gh`, then runs `git tag -a`, `git push origin {release_tag}` and `gh release create {release_tag} --notes-file {notes_file}`, which publishes immediately with no draft stage. `:confirm` shows the exact commands and runs them only after approval. A packet-local changelog never releases, because it has no repo-wide version to tag. This packet prepares the release body and nothing more.
+The command YAMLs own the release itself, as `step_7_publish_release`, and run it only when `publish_release` is explicitly true and the component is `skilled`, the framework release line. Any other component skips the release, because component versions share the `vX.X.X.X` shape with release tags and a component version must never become one. The tag is `v{next_version}`, the version just written, and the release title is the tag followed by the entry's editorial title, the H1 without its leading version. The step checks for a tag collision and for an authenticated `gh`, then runs `git tag -a`, `git push origin {release_tag}` and `gh release create {release_tag} --title {release_title} --notes-file {notes_file}`, which publishes immediately with no draft stage. `:confirm` shows the exact commands and runs them only after approval. A packet-local changelog never releases, because it has no repo-wide version to tag. This packet prepares the release body and nothing more.
 
 ---
 
@@ -458,7 +459,7 @@ Global changelog checks:
 1. Target path is `.skilled/changelog/{component}/v{VERSION}.md`.
 2. Target component folder exists before writing.
 3. Version follows `vX.Y.Z.B`.
-4. Version is strictly greater than the latest existing version in that folder.
+4. Version is strictly greater than the latest existing version in that folder, counting its generation folders.
 5. No file already exists at the target version path.
 6. The prose opens with the summary narrative, not a machine version header, per the shared template. Frontmatter and the editorial title, the exemplar's shape, are allowed.
 7. Spec folder blockquote is present when source is a spec folder.

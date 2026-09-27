@@ -21,7 +21,7 @@ Filled-in changelog entries in the v4 narrative style, annotated to explain the 
 
 ## 1. OVERVIEW
 
-These examples apply the shared format in [../assets/changelog-template.md](../assets/changelog-template.md) to real content. The canonical full-scale exemplar is `.skilled/changelog/system-spec-kit/v4.0.0.0.md`. Read it for the complete expanded shape: opening narrative, Why This Release, What's New at a Glance, topical sections, Upgrade Notes. The seven-step workflow in [../SKILL.md](../SKILL.md) stays authoritative. Open this file when you want a filled-in entry to model, not the blank template.
+These examples apply the shared format in [../assets/changelog-template.md](../assets/changelog-template.md) to real content. The canonical full-scale exemplar is `.skilled/changelog/skilled/v4.0.0.0.md`. Read it for the complete expanded shape: opening narrative, Why This Release, What's New at a Glance, topical sections, Upgrade Notes. The seven-step workflow in [../SKILL.md](../SKILL.md) stays authoritative. Open this file when you want a filled-in entry to model, not the blank template.
 
 ---
 
@@ -58,7 +58,7 @@ No migration required. Existing changelog files stay as written, and new changel
 
 ## 3. EXPANDED FORMAT EXCERPT
 
-For 10 or more changes, a major bump, or a breaking change. The excerpt condenses one topical section to show the pattern. It is written in the exemplar's style, not quoted from it. Model the opening narrative, Why This Release and at-a-glance sections on `.skilled/changelog/system-spec-kit/v4.0.0.0.md`.
+For 10 or more changes, a major bump, or a breaking change. The excerpt condenses one topical section to show the pattern. It is written in the exemplar's style, not quoted from it. Model the opening narrative, Why This Release and at-a-glance sections on `.skilled/changelog/skilled/v4.0.0.0.md`.
 
 ```markdown
 ## Retrieval
@@ -136,4 +136,4 @@ This packet adds the `create-changelog` sub-skill to the sk-doc parent hub and r
 - [version-bump-rules.md](version-bump-rules.md) - choosing and calculating the global four-part version
 - [topology-edge-cases.md](topology-edge-cases.md) - placement, back-dating, source conflicts, and release edge cases
 - [../SKILL.md](../SKILL.md) - authoritative packet workflow
-- `.skilled/changelog/system-spec-kit/v4.0.0.0.md` - the canonical exemplar
+- `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar
