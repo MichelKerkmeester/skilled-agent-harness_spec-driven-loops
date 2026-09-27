@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/061-skilled-release-changelog",
+  "spec_folder": "sk-doc/061-skilled-release-changelog",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/061-skilled-release-changelog/001-release-line-split",
+    "sk-doc/061-skilled-release-changelog/002-changelog-findability"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled release changelog",
+      "framework release line",
+      "changelog findability",
+      "searchable changelogs"
+    ],
+    "key_topics": [
+      "skilled",
+      "release",
+      "changelog",
+      "framework",
+      "line",
+      "findability",
+      "searchable",
+      "changelogs",
+      "system-spec-kit",
+      "serving",
+      "repository",
+      "global"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "specs/sk-doc/061-skilled-release-changelog/001-release-line-split/implementation-summary.md",
+      "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/spec.md",
+      "runtime/cli/spec-folder/nested-changelog.ts",
+      "references/workflows/nested-changelog.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-git/references/finish-workflows.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": "runtime/cli/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.md",
+        "kind": "doc",
+        "path": "references/workflows/nested-changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "finish-workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/finish-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-spec-kit changelog was serving as the repository's global release notes",
+    "created_at": "2026-09-27T12:01:28Z",
+    "last_save_at": "2026-09-27T13:14:10.257Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ac8b70ed270b9a86cafe6be4351ae8dbd8e1487b46a72438475392abd5e92d07",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9515ef106d8329cd94d281310c12f42bfe5ff48df7a9f322bc15e25cef6fb75b"
+    },
+    "last_active_child_id": "sk-doc/061-skilled-release-changelog/001-release-line-split",
+    "last_active_at": "2026-09-27T12:31:06.339Z"
+  }
+}
