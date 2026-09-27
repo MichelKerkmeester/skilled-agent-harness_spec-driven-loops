@@ -23,6 +23,7 @@ import json
 import os
 import re
 import subprocess
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -122,8 +123,8 @@ READ_ONLY_MESSAGE = (
 )
 
 # The bound packet's goal, rendered into the session prompt. Hermes supplies a session identity, so
-# the shared goal core binds and serves the goal per session; the environment packet is the
-# fallback for a session that has no bound goal of its own.
+# the shared goal core binds the environment packet to the session and renders the goal brief per
+# session; the packet's objective slice is the fallback for a session the core cannot serve.
 SPEC_FOLDER_ENV = "HERMES_SPEC_FOLDER"
 GOAL_CLI = REPO_ROOT / ".skilled" / "hooks" / "goal" / "bin" / "goal.cjs"
 GOAL_RUNTIME = "hermes"
@@ -658,49 +659,13 @@ def pre_verify(session_id: str = "", final_response: str = "", **_: Any) -> Opti
         return None
 
 
-def _goal_slice() -> str:
-    """The bound packet's durable goal slice: the directive block of its goal.md, frontmatter stripped."""
-    folder = os.environ.get(SPEC_FOLDER_ENV, "").strip()
-    if not folder:
-        return ""
-    goal_path = (REPO_ROOT / folder / "goal.md") if not os.path.isabs(folder) else Path(folder) / "goal.md"
-    try:
-        goal_path.resolve().relative_to(REPO_ROOT.resolve())
-    except ValueError:
-        return ""
-    if not goal_path.is_file():
-        return ""
-    text = goal_path.read_text(encoding="utf-8", errors="replace")
-    start = text.find("<!-- ANCHOR:directive -->")
-    end = text.find("<!-- /ANCHOR:directive -->")
-    body = text[start + len("<!-- ANCHOR:directive -->"):end] if 0 <= start < end else text
-    if body.startswith("---"):
-        closing = body.find("\n---", 3)
-        if closing > 0:
-            body = body[closing + 4:]
-    body = body.strip()
-    if len(body) > GOAL_SLICE_MAX_CHARS:
-        body = body[:GOAL_SLICE_MAX_CHARS].rstrip() + "\n[goal slice truncated]"
-    return f"Bound packet: {folder}\n\n{body}"
-
-
-def _goal_cli(action: str, session_id: str, *extra: str) -> Optional[str]:
-    """Run one shared goal-core action for a Hermes session and return its stdout, or None.
-
-    The core keys a goal on the native session identity, so a missing one reads as "no answer"
-    rather than guessing an identity the record would then be stored under.
-    """
-    if not session_id or not GOAL_CLI.is_file():
+def _goal_core(*args: str) -> Optional[str]:
+    """Run the shared goal CLI and return its stdout, or None when it is absent, fails or is silent."""
+    if not GOAL_CLI.is_file():
         return None
     try:
         completed = subprocess.run(
-            [
-                "node", str(GOAL_CLI), action,
-                "--runtime", GOAL_RUNTIME,
-                "--session", session_id,
-                "--workspace", str(REPO_ROOT),
-                *extra,
-            ],
+            ["node", str(GOAL_CLI), *args],
             cwd=str(REPO_ROOT),
             capture_output=True,
             text=True,
@@ -712,26 +677,85 @@ def _goal_cli(action: str, session_id: str, *extra: str) -> Optional[str]:
     return (completed.stdout or "").strip() or None
 
 
-def _session_goal(session_id: str) -> Optional[str]:
-    """The shared goal core's lines for this session's bound goal, or None.
+def _goal_cli(action: str, session_id: str, *extra: str) -> Optional[str]:
+    """Run one shared goal-core action for a Hermes session and return its stdout, or None.
 
-    A session with no goal of its own reads as None so the caller keeps the environment fallback,
-    and an unavailable core reads the same way rather than blocking the prompt.
+    The core keys a goal on the native session identity, so a missing one reads as "no answer"
+    rather than guessing an identity the record would then be stored under.
     """
-    report = _goal_cli("show", session_id)
+    if not session_id:
+        return None
+    return _goal_core(
+        action, "--runtime", GOAL_RUNTIME, "--session", session_id, "--workspace", str(REPO_ROOT), *extra
+    )
+
+
+def _report_value(report: Optional[str], key: str) -> Optional[str]:
+    """One field of a successful goal-core report, decoded when the core quoted it, or None.
+
+    The core writes a text field as a JSON string, so a newline inside one can never start a
+    line of its own and each field is exactly one line of the report.
+    """
     if report is None or not report.startswith("STATUS=OK"):
         return None
-    if "goal_present=true" not in report.splitlines()[1:]:
+    prefix = f"{key}="
+    for line in report.splitlines()[1:]:
+        if not line.startswith(prefix):
+            continue
+        raw = line[len(prefix):]
+        if not raw.startswith('"'):
+            return raw
+        try:
+            value = json.loads(raw)
+        except ValueError:
+            return None
+        return value if isinstance(value, str) else None
+    return None
+
+
+def _goal_slice() -> str:
+    """The environment packet's objective slice as the shared goal core projects it, or empty.
+
+    The core is the one place the frontmatter boundary is drawn, including a byte-order mark or
+    comments ahead of the fence, so this reads its projection rather than slicing the file again.
+    A core that cannot answer leaves the section empty, which fails open like the other hooks.
+    """
+    folder = os.environ.get(SPEC_FOLDER_ENV, "").strip()
+    if not folder:
+        return ""
+    goal_path = (REPO_ROOT / folder / "goal.md") if not os.path.isabs(folder) else Path(folder) / "goal.md"
+    try:
+        goal_path.resolve().relative_to(REPO_ROOT.resolve())
+    except ValueError:
+        return ""
+    if not goal_path.is_file():
+        return ""
+    body = (_report_value(_goal_core("packet", folder, "--workspace", str(REPO_ROOT)), "objective_slice") or "").strip()
+    if not body:
+        return ""
+    if len(body) > GOAL_SLICE_MAX_CHARS:
+        body = body[:GOAL_SLICE_MAX_CHARS].rstrip() + "\n[goal slice truncated]"
+    return f"Bound packet: {folder}\n\n{body}"
+
+
+def _session_goal(session_id: str, folder: str) -> Optional[str]:
+    """This session's goal report from the shared core, binding the environment packet first when
+    the session carries no goal of its own. None when the core cannot answer.
+
+    Hermes renders the prompt sections before on_session_start fires and freezes the prompt once
+    rendered, so a bind left to the session hook alone arrives after the goal section has already
+    read an empty record. Both callers therefore read through this one idempotent bind: whichever
+    runs first binds, and the other finds the record. A session that already carries a goal, bound
+    here or through the CLI, keeps it.
+    """
+    report = _goal_cli("show", session_id)
+    present = _report_value(report, "goal_present")
+    if present is None:
         return None
-    return report
-
-
-def _strip_frontmatter(text: str) -> str:
-    if text.startswith("---"):
-        closing = text.find("\n---", 3)
-        if closing > 0:
-            return text[closing + 4:]
-    return text
+    if present == "true" or not folder:
+        return report
+    bound = _goal_cli("bind", session_id, folder)
+    return bound if _report_value(bound, "goal_present") is not None else None
 
 
 def _persona() -> str:
@@ -757,8 +781,11 @@ def _persona() -> str:
 
 
 def _session_id(session_info: Any) -> str:
-    """The native session identity Hermes attaches to a prompt renderer call, or empty."""
-    if not isinstance(session_info, dict):
+    """The native session identity Hermes attaches to a prompt renderer call, or empty.
+
+    Hermes hands every renderer a read-only mapping proxy rather than a dict, so any mapping counts.
+    """
+    if not isinstance(session_info, Mapping):
         return ""
     return str(session_info.get("session_id") or "")
 
@@ -786,9 +813,19 @@ def _persona_section(_session_info: Any) -> str:
 
 
 def _goal_section(session_info: Any) -> str:
+    """The session's goal brief, else the environment packet's objective slice.
+
+    Only the brief the core renders reaches the prompt, the same block the other runtimes inject,
+    never the report around it: its bookkeeping lines would spend the section cap before the brief.
+    A session goal with no brief, one paused, complete or whose packet is gone, injects nothing,
+    as it does on every other runtime.
+    """
     try:
-        text = _session_goal(_session_id(session_info)) or _goal_slice()
-        return text[:SECTION_MAX_CHARS]
+        folder = os.environ.get(SPEC_FOLDER_ENV, "").strip()
+        report = _session_goal(_session_id(session_info), folder)
+        if _report_value(report, "goal_present") == "true":
+            return (_report_value(report, "injection_preview") or "")[:SECTION_MAX_CHARS]
+        return _goal_slice()[:SECTION_MAX_CHARS]
     except Exception:
         return ""
 
@@ -845,20 +882,16 @@ def on_session_start(session_id: str = "", **_: Any) -> None:
     """Bind the environment's packet to this session's own goal record when it has none.
 
     Hermes supplies the session identity the shared core keys goal state on, so the session can
-    carry its own record instead of reading the environment path at render time. A session that
-    already carries a goal -- bound here or through the CLI -- keeps it, and a core that cannot
-    answer leaves the record untouched for the environment fallback to serve.
+    carry its own record instead of reading the environment path at render time. The goal section
+    usually binds first, because the prompt renders before this hook fires; both share one bind,
+    so this pass finds the record and leaves it. A core that cannot answer leaves the record
+    untouched.
     """
     try:
         folder = os.environ.get(SPEC_FOLDER_ENV, "").strip()
         if not folder or not session_id:
             return
-        report = _goal_cli("show", session_id)
-        if report is None or not report.startswith("STATUS=OK"):
-            return
-        if "goal_present=true" in report:
-            return
-        _goal_cli("bind", session_id, folder)
+        _session_goal(session_id, folder)
     except Exception:
         pass
 

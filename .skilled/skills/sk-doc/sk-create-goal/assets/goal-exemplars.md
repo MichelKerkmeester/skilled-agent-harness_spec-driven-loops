@@ -6,7 +6,7 @@ trigger_phrases:
   - "goal rubric examples"
   - "goal objective failures"
 importance_tier: normal
-contextType: reference
+contextType: general
 version: 1.0.0.0
 ---
 

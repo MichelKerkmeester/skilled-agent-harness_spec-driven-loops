@@ -36,6 +36,7 @@ Priority-based checklists for each phase of the SpecKit workflow.
 - [ ] Task breakdown created
 - [ ] Acceptance criteria defined
 - [ ] Spec folder created with required files
+- [ ] When an operator will set the packet as a session objective, its `goal.md` is authored with `/create:goal`, and a phase parent binds every child goal
 
 ### P1 - Must Complete
 

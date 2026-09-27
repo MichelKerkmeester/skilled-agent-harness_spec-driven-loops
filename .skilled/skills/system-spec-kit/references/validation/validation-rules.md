@@ -692,8 +692,10 @@ The durable slice: everything after the frontmatter's closing `---` up to `<!-- 
 
 ### Where It Applies
 
-- **Phase parents** and **top-level packets**: one limit of 4,000 characters. Up to 4,000 passes with no diagnostic; past it fails. These are the documents an operator sets.
-- **Phase children**: unbounded. A child binds through its parent and is never set directly.
+- **Phase parents** and **top-level packets**: one limit of 4,000 characters. Up to 4,000 passes with no diagnostic; past it fails. These are the documents an operator sets. A folder that resolves to the phase level counts as a phase parent even when it sits inside another packet.
+- **Phase children** that are not themselves phase parents: unbounded. A child binds through its parent and is never set directly.
+
+The goal command and `check-goal.cjs` draw the same line. Section 2 of sk-create-goal's [budget-and-handoff.md](../../../sk-doc/sk-create-goal/references/budget-and-handoff.md) states it for goal authors.
 
 The limit lives in `templates/spec-kit-docs.json` as `goalDurableBudget.errorChars`, which the validator and the goal command read, and which the template and this reference quote.
 
@@ -706,7 +708,7 @@ On a phase parent the `binding` anchor lists each child's goal document. Every r
 ❌ **Fail:** a parent `goal.md` whose slice measures 4,120 characters.
 
 ```
-SPECDOC_SUFFICIENCY_005: goal.md: durable slice is 4120 characters (> 4000)
+SPECDOC_SUFFICIENCY_005: goal.md: durable slice is 4120 characters (> 4000). Cut it in the order section 3 of sk-create-goal's references/budget-and-handoff.md gives, and never drop a criterion.
 ```
 
 ✅ **Pass:** the same file cut to 3,950 characters. Anything up to 4,000 passes with no diagnostic.
@@ -714,12 +716,12 @@ SPECDOC_SUFFICIENCY_005: goal.md: durable slice is 4120 characters (> 4000)
 ❌ **Fail:** a binding row `| 003-runtime | \`003-runtime/goal.md\` |` when that file is absent.
 
 ```
-SPECDOC_SUFFICIENCY_006: goal.md: binding row names '003-runtime/goal.md' which does not exist
+SPECDOC_SUFFICIENCY_006: goal.md: binding row names '003-runtime/goal.md' which does not exist inside the packet. Author the child goal and its row with /create:goal <parent> phase-add, or child when the folder already exists.
 ```
 
 ### How to Fix
 
-Cut in the order the [set-string playbook](../workflows/goal-set-string-playbook.md) gives: frontmatter is already excluded, then the log, restated child detail, decision prose, criterion wording. Never drop a criterion. For a binding failure, author the child goal with `create.sh --with-goal` or render it from `templates/addons/goal.md.tmpl`.
+Cut in the order section 3 of `sk-create-goal`'s [budget-and-handoff.md](../../../sk-doc/sk-create-goal/references/budget-and-handoff.md) gives. Never drop a criterion. For a binding failure, author the missing child goal and its row with `/create:goal <parent> phase-add`, or `child` when the folder already exists.
 
 ---
 

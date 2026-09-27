@@ -1,0 +1,123 @@
+{
+  "scenario": "SCG-001",
+  "doc": "top-level-goal.md",
+  "model": "llmgateway/mimo-v2.6-pro",
+  "thinking": "high",
+  "exact_prompt_template": "Author the goal for the scratch demo packet at $SCRATCH/specs/demo-packet with /create:goal top-level :auto, run the goal check and print the chat slice if it passes.",
+  "steps": [
+    {
+      "step": 1,
+      "kind": "bash",
+      "text": "SCRATCH=$(mktemp -d /tmp/create-goal-playbook.XXXXXX)",
+      "rc": 0,
+      "stdout": "/tmp/create-goal-playbook.nQ192G\n",
+      "stderr": ""
+    },
+    {
+      "step": 2,
+      "kind": "bash",
+      "text": "mkdir -p \"$SCRATCH/.skilled/skills/system-spec-kit/templates\" \"$SCRATCH/specs/demo-packet\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 3,
+      "kind": "bash",
+      "text": "cp .skilled/skills/system-spec-kit/templates/spec-kit-docs.json \"$SCRATCH/.skilled/skills/system-spec-kit/templates/spec-kit-docs.json\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 4,
+      "kind": "agent",
+      "text": "write the Scratch fixture files below into $SCRATCH exactly as given",
+      "rc": 0,
+      "elapsed_s": 179.9,
+      "repo_status_new": [
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-002/step-05-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-003/step-06-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-004/step-05-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-005/step-05-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/001-alpha/spec.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/002-beta/spec.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/acceptance-criteria.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/goal.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-006/scratch-snapshot/specs/demo-phase/spec.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-007/step-06-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-008/step-05-agent.prompt.md",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/claude.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/codex.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/cursor.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/devin.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/payload-fixtures.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/claude.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/codex.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/cursor.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/devin.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/opencode-registered-adapter/payload-fixtures.json"
+      ],
+      "auth_fail": false,
+      "stdout_chars": 1193,
+      "fixture_files": [
+        "specs/demo-packet/acceptance-criteria.md",
+        "specs/demo-packet/spec.md"
+      ],
+      "fixture_mismatches_restored": []
+    },
+    {
+      "step": 5,
+      "kind": "agent",
+      "text": "run /create:goal $SCRATCH/specs/demo-packet top-level :auto",
+      "rc": 0,
+      "elapsed_s": 255.4,
+      "repo_status_new": [],
+      "auth_fail": false,
+      "stdout_chars": 2515
+    },
+    {
+      "step": 6,
+      "kind": "bash",
+      "text": "test -f \"$SCRATCH/specs/demo-packet/goal.md\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 7,
+      "kind": "bash",
+      "text": "node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/demo-packet --root \"$SCRATCH\"",
+      "rc": 0,
+      "stdout": "[check-goal] packet=specs/demo-packet\n[check-goal] 1/5 PASS missing-binding-row findings=0\n[check-goal] 2/5 PASS placeholder findings=0\n[check-goal] 3/5 PASS criteria-count findings=0\n[check-goal] 4/5 PASS parent-budget findings=0\n[check-goal] 5/5 PASS frontmatter-fence findings=0\n[check-goal] RESULT: PASSED (5/5 checks)\n",
+      "stderr": ""
+    },
+    {
+      "step": 8,
+      "kind": "bash",
+      "text": "node .skilled/hooks/goal/bin/goal.cjs packet specs/demo-packet --workspace \"$SCRATCH\"",
+      "rc": 0,
+      "stdout": "STATUS=OK ACTION=packet\npacket_path=\"specs/demo-packet\"\npacket_nested=false\npacket_durable_chars=1042\npacket_budget=ok\npacket_slice_hash=\"sha256:c309790308fce761d2e343e2be2c1410d7116e693027e3e1985416a0648f3aee\"\nobjective_slice=\"Execute specs/demo-packet/goal.md.\\nDONE WHEN:\\n- counter.txt grows by exactly one line per run\\n- an interleaved run appends after the earlier run line\\n- no existing line is rewritten or removed\"\nchat_slice=\"# Goal: Demo packet specification\\n\\n## DURABLE DIRECTIVE\\n\\n**Objective:** Define one append-only counter update for counter.txt so that counter.txt grows by exactly one line per run, an interleaved run appends after the earlier run line, and no existing line is rewritten or removed.\\n\\n### Decisions\\n\\nFrozen choices. Changing one is an amendment.\\n\\n| ID | Decision |\\n|----|----------|\\n| D1 | The counter update is append-only: a run only appends lines to counter.txt |\\n| D2 | A run never rewrites existing lines |\\n\\n## COMPLETION CRITERIA\\n\\n- [ ] counter.txt grows by exactly one line per run\\n- [ ] an interleaved run appends after the earlier run line\\n- [ ] no existing line is rewritten or removed\"\n",
+      "stderr": ""
+    },
+    {
+      "step": 9,
+      "kind": "bash",
+      "text": "grep -c '^- \\[ \\]' \"$SCRATCH/specs/demo-packet/goal.md\"",
+      "rc": 0,
+      "stdout": "3\n",
+      "stderr": ""
+    },
+    {
+      "step": 10,
+      "kind": "bash",
+      "text": "rm -rf \"$SCRATCH\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "snapshot": "scratch-snapshot/"
+    }
+  ],
+  "scratch": "/tmp/create-goal-playbook.nQ192G",
+  "finished": true
+}

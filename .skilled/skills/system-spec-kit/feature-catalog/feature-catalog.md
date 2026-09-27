@@ -797,7 +797,7 @@ See [`ux-hooks/directive-lifecycle-dedup.md`](ux-hooks/directive-lifecycle-dedup
 
 #### Description
 
-Local `/goal` OpenCode plugin that binds a session to a packet `goal.md`, injects the file's durable slice as active-goal context, and exposes `opencode_goal` tools including `bind`, `resent` and `packet`.
+Local `/goal` OpenCode plugin that binds a session to a packet `goal.md`, injects the objective slice built from the file as active-goal context, and exposes `opencode_goal` tools including `bind`, `resent` and `packet`.
 
 #### Current Reality
 

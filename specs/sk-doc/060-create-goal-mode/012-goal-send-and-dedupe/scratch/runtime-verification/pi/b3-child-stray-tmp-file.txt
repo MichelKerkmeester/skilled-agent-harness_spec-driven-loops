@@ -1,0 +1,22 @@
+Goal executed and completed: the canary-packet goal.md is done, and both criteria are verified.
+
+Completion evidence (confirmed, not inference):
+- PI_CRIT_ALPHA_344A4C3A holds: the objective line and both criteria lines reached this model verbatim in the injected goal block, and the context-probe turn echoed them exactly.
+- PI_CRIT_BETA_344A4C3A holds: the frontmatter canary string never appeared in the sent slice; the injection carried objective and criteria only.
+- Both checkboxes are ticked in the goal document, and the LOG row PI_LOG_CANARY_344A4C3A is Closed with that evidence via the goal log append.
+- The resend was recorded via the goal CLI with the same scope /goal-pi resent uses; slice hash sha256:bed726a56a0bc573c63d538f0f59d7c9cfd2e122246ffe55850acf0b8bdda2fb.
+
+Goal verifier: met (explicit completion signal tied to the goal objective).
+
+Resent chat slice (packet_budget=ok):
+
+# Goal: runtime verification canary
+
+## DURABLE DIRECTIVE
+
+**Objective:** Prove the OBJECTIVE_CANARY_Q7 goal slice reaches the model from the bound packet file.
+
+## COMPLETION CRITERIA
+
+- [x] PI_CRIT_ALPHA_344A4C3A holds
+- [x] PI_CRIT_BETA_344A4C3A holds

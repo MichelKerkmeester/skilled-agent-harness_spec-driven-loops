@@ -21,8 +21,13 @@ const LOG_ANCHOR = '<!-- ANCHOR:log -->';
 // fence. Trailing spaces or tabs on either fence are tolerated because an
 // editor can leave them and a stricter match would let the whole block
 // through as body, which is the one leak this module exists to prevent.
-const FRONTMATTER_PATTERN = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n([\s\S]*?)\n---[ \t]*(?:\n|$)/;
-const FRONTMATTER_OPENER_PATTERN = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n/;
+// A leading comment's body cannot cross a `-->`, so each comment matches one
+// way only. A lazy body could stretch across the next comment's terminator,
+// and a file that opens with many comments and no fence then backtracks
+// through every way of grouping them, which stalls every hook render.
+const LEADING_COMMENTS = String.raw`(?:\s*<!--(?:(?!-->)[\s\S])*-->)*\s*`;
+const FRONTMATTER_PATTERN = new RegExp(String.raw`^(?:\uFEFF)?${LEADING_COMMENTS}---[ \t]*\n([\s\S]*?)\n---[ \t]*(?:\n|$)`);
+const FRONTMATTER_OPENER_PATTERN = new RegExp(String.raw`^(?:\uFEFF)?${LEADING_COMMENTS}---[ \t]*\n`);
 const BUDGET_MANIFEST = '.skilled/skills/system-spec-kit/templates/spec-kit-docs.json';
 const HTML_COMMENT_PATTERN = /<!--[\s\S]*?-->\n?/g;
 // A heading's section number addresses a place in the file, not the objective,
@@ -192,6 +197,10 @@ function durableSliceHash(content) {
   return `sha256:${createHash('sha256').update(normalized, 'utf8').digest('hex')}`;
 }
 
+function singleLine(value) {
+  return String(value ?? '').replace(/[\r\n\u2028\u2029]+/g, ' ').trim();
+}
+
 /**
  * The one-line reminder every runtime appends to its injection while the
  * durable slice is ahead of what was last resent. On an adapted runtime the
@@ -205,10 +214,14 @@ function durableSliceHash(content) {
  * @returns {string} The reminder line.
  */
 function renderResendReminderText(packetPath, options = {}) {
-  const record = typeof options.recordCommand === 'string' && options.recordCommand.trim()
-    ? `then record it with: ${options.recordCommand.trim()}`
+  // Both values come from outside this module, and a folder name can carry a
+  // line break. Kept on one line, neither can forge a second instruction line
+  // or a control marker inside the text a model reads as steering.
+  const recordCommand = typeof options.recordCommand === 'string' ? singleLine(options.recordCommand) : '';
+  const record = recordCommand
+    ? `then record it with: ${recordCommand}`
     : 'then record it with the goal command\'s resent action';
-  return `[goal_resend_pending] The bound packet goal.md (${packetPath}) changed above its log. Resend its chat slice in chat so the operator sees the change, ${record}. The goal command's packet action prints that slice as chat_slice, with no frontmatter, comments, anchors, dividers or section numbers. Never send more than 4000 characters: when the slice is longer, cut the file first. Keep working meanwhile.`;
+  return `[goal_resend_pending] The bound packet goal.md (${singleLine(packetPath)}) changed above its log. Resend its chat slice in chat so the operator sees the change, ${record}. The goal command's packet action prints that slice as chat_slice, with no frontmatter, comments, anchors, dividers or section numbers. Send it only when that report shows packet_budget=ok, which keeps it within 4000 characters, and cut the file first when it shows over. Keep working meanwhile.`;
 }
 
 /**
@@ -247,20 +260,27 @@ function resolvePacketDir(workspace, packetPath) {
   // A symlink inside the workspace can point anywhere on disk. Containment is
   // judged on the real paths, so a packet that resolves outside stays unbound.
   // The real path is also what a lock is keyed on, so an alias and its target
-  // contend for the same lock.
+  // contend for the same lock. A path that does not exist yet is judged on its
+  // deepest existing ancestor, since a symlinked parent decides where it lands.
   let real = absolute;
-  if (existsSync(absolute)) {
+  if (existsSync(root)) {
+    let existing = absolute;
+    while (!existsSync(existing)) {
+      const parent = dirname(existing);
+      if (parent === existing) break;
+      existing = parent;
+    }
     let realRoot;
-    let realTarget;
+    let realExisting;
     try {
       realRoot = realpathSync(root);
-      realTarget = realpathSync(absolute);
+      realExisting = realpathSync(existing);
     } catch {
       return null;
     }
-    const realRel = relative(realRoot, realTarget);
+    const realRel = relative(realRoot, realExisting);
     if (realRel.startsWith('..') || isAbsolute(realRel)) return null;
-    real = realTarget;
+    real = existing === absolute ? realExisting : join(realExisting, relative(existing, absolute));
   }
   return { absolute, real, relative: rel.split('\\').join('/') };
 }
@@ -377,6 +397,13 @@ function declaresPhaseLevel(folder) {
   return false;
 }
 
+/**
+ * Whether the durable-slice cap applies: every packet except a phase child
+ * that is not itself a phase parent.
+ *
+ * @param {string} packetAbsolute - Absolute packet directory.
+ * @returns {boolean} True when the budget applies.
+ */
 function budgetApplies(packetAbsolute) {
   return !isPhaseChild(packetAbsolute) || isPhaseParentFolder(packetAbsolute) || declaresPhaseLevel(packetAbsolute);
 }
@@ -440,6 +467,7 @@ module.exports = {
   durableSliceHash,
   resolvePacketDir,
   resolveGoalBudget,
+  budgetApplies,
   resolveWorkspaceRoot,
   readPacketGoal,
   renderResendReminderText,

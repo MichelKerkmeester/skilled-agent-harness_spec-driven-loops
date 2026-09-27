@@ -1,0 +1,30 @@
+===== Hermes mirror or sync checks covering .hermes/plugins =====
+$ git grep -l -e 'hermes/plugins' -e 'repo-guards' -- ':!specs' ':!*.md'
+.hermes/plugins/repo-guards/__init__.py
+.hermes/plugins/repo-guards/plugin.yaml
+.hermes/plugins/repo-guards/tests/test_repo_guards.py
+.skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-14-phase-008-first-pass/results.csv
+.skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-14-phase-008-first-pass/skill-benchmark-report.json
+.skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-14-phase-008-second-pass/results.csv
+.skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-14-phase-008-second-pass/skill-benchmark-report.json
+.skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-15-phase-008-third-pass/results.csv
+.skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-15-phase-008-third-pass/skill-benchmark-report.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+Result: no sync or mirror tool references .hermes/plugins. The plugin's own pytest suite is the only check over it.
+
+Closest Hermes mirror check (mirrors SKILL.md files only; this change edits no SKILL.md):
+$ node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+DRIFT cli-cursor
+DRIFT deep-review
+FAIL: 2 drifted, 0 stale; run without --check to regenerate
+EXIT=1
+Both drifts are outside this change and outside its allowed scope:
+  cli-cursor: source .skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md carries another session's uncommitted edit (git status: M).
+  deep-review: source .skilled/skills/system-deep-loop/deep-review/SKILL.md changed in commit 6b0a01f72b without a regenerated mirror (mirror mtime Sep 17 21:58:14 2026).
+
+===== Doc sweep for text describing the Hermes goal section or its fallback =====
+$ grep -n -i 'hermes' .skilled/hooks/goal/README.md .skilled/hooks/goal/goal-plugin.md
+EXIT=1 (1 = no Hermes text in either file, nothing to correct)
+cli-hermes lines corrected: see the diff of the five cli-hermes files listed in the report. Left as they are because still true: references/hook-contract.md (on_session_start binds, sections carry the core's goal else the packet slice), index and link rows naming the HERMES-020 file, and every benchmark report (historical records).

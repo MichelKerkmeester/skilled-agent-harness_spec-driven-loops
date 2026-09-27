@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `SCG-005` and confirm th
 - Real user request: `Write the demo packet goal. I still have not decided how the counter should update so leave that decision open for now.`
 - Prompt: `Author the goal for the scratch demo packet at $SCRATCH/specs/demo-packet with /create:goal top-level :auto. I have not decided the counter update rule yet so leave that decision as the template placeholder.`
 - Expected execution process: the goal is authored with the decision row left as the template placeholder text. The goal check runs before any handoff and its placeholder check reports the unfilled slot. The run stops at the failed check and no chat slice is printed.
-- Expected signals: the goal check exits 1 with `FAIL placeholder findings=1` and `RESULT: FAILED (3/4 checks)`, a `FINDING` line reads `decision table contains unfilled template text`, the other three checks report `PASS <check> findings=0` and the transcript contains no `chat_slice` field after the failed check.
+- Expected signals: the goal check exits 1 with `FAIL placeholder findings=1` and `RESULT: FAILED (4/5 checks)`, a `FINDING` line reads `decision table contains unfilled template text`, the other four checks report `PASS <check> findings=0` and the transcript contains no `chat_slice` field after the failed check.
 - Desired user-visible outcome: the author is told the goal is not ready and which section still carries template text.
 - Pass/fail: PASS if the placeholder check fails with the named finding and nothing is handed off. FAIL if the check exits 0, the finding names a different slot without the seeded one being reported or a chat slice is printed while the finding stands.
 
@@ -43,7 +43,7 @@ Operators run the exact prompt and command sequence for `SCG-005` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SCG-005 | Refuse a leftover placeholder | Fail the goal check on a seeded template placeholder and block the handoff | `Author the goal for the scratch demo packet at $SCRATCH/specs/demo-packet with /create:goal top-level :auto. I have not decided the counter update rule yet so leave that decision as the template placeholder.` | 1. `bash: SCRATCH=$(mktemp -d /tmp/create-goal-playbook.XXXXXX)` -> 2. `bash: mkdir -p "$SCRATCH/.skilled/skills/system-spec-kit/templates" "$SCRATCH/specs/demo-packet"` -> 3. `bash: cp .skilled/skills/system-spec-kit/templates/spec-kit-docs.json "$SCRATCH/.skilled/skills/system-spec-kit/templates/spec-kit-docs.json"` -> 4. `agent: write the Scratch fixture files below into $SCRATCH exactly as given` -> 5. `agent: run /create:goal $SCRATCH/specs/demo-packet top-level :auto with the brief to leave the counter update rule decision as the template placeholder text` -> 6. `bash: node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/demo-packet --root "$SCRATCH"` -> 7. `bash: rm -rf "$SCRATCH"` | Step 6 exits 1 with `RESULT: FAILED (3/4 checks)`, `FAIL placeholder findings=1` and a `FINDING` line reading `decision table contains unfilled template text`. `PASS missing-binding-row findings=0`, `PASS criteria-count findings=0` and `PASS parent-budget findings=0` stay green. No `chat_slice` field appears in the transcript after step 6 | The prompt, the reply text, the full step 6 transcript and the transcript tail after step 6 showing no chat slice | PASS if the placeholder check fails with the named finding and the run stops without a handoff. FAIL if step 6 exits 0, the finding is absent, the seeded slot is not the one reported or a chat slice is printed while the finding stands | 1. Read the `FINDING` detail to see which slot still holds template text and compare it against the seeded decision row. 2. If the check exits 0, confirm the seeded goal file still contains the literal placeholder text, because a run that filled the slot tested a different scenario. 3. If a chat slice printed after the failed check, the handoff ran before the check result was read and the boundary defect is the finding regardless of the goal content |
+| SCG-005 | Refuse a leftover placeholder | Fail the goal check on a seeded template placeholder and block the handoff | `Author the goal for the scratch demo packet at $SCRATCH/specs/demo-packet with /create:goal top-level :auto. I have not decided the counter update rule yet so leave that decision as the template placeholder.` | 1. `bash: SCRATCH=$(mktemp -d /tmp/create-goal-playbook.XXXXXX)` -> 2. `bash: mkdir -p "$SCRATCH/.skilled/skills/system-spec-kit/templates" "$SCRATCH/specs/demo-packet"` -> 3. `bash: cp .skilled/skills/system-spec-kit/templates/spec-kit-docs.json "$SCRATCH/.skilled/skills/system-spec-kit/templates/spec-kit-docs.json"` -> 4. `agent: write the Scratch fixture files below into $SCRATCH exactly as given` -> 5. `agent: run /create:goal $SCRATCH/specs/demo-packet top-level :auto with the brief to leave the counter update rule decision as the template placeholder text` -> 6. `bash: node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/demo-packet --root "$SCRATCH"` -> 7. `bash: rm -rf "$SCRATCH"` | Step 6 exits 1 with `RESULT: FAILED (4/5 checks)`, `FAIL placeholder findings=1` and a `FINDING` line reading `decision table contains unfilled template text`. `PASS missing-binding-row findings=0`, `PASS criteria-count findings=0`, `PASS parent-budget findings=0` and `PASS frontmatter-fence findings=0` stay green. No `chat_slice` field appears in the transcript after step 6 | The prompt, the reply text, the full step 6 transcript and the transcript tail after step 6 showing no chat slice | PASS if the placeholder check fails with the named finding and the run stops without a handoff. FAIL if step 6 exits 0, the finding is absent, the seeded slot is not the one reported or a chat slice is printed while the finding stands | 1. Read the `FINDING` detail to see which slot still holds template text and compare it against the seeded decision row. 2. If the check exits 0, confirm the seeded goal file still contains the literal placeholder text, because a run that filled the slot tested a different scenario. 3. If a chat slice printed after the failed check, the handoff ran before the check result was read and the boundary defect is the finding regardless of the goal content |
 
 ### Commands
 
@@ -80,15 +80,15 @@ The counter update is append-only. A run never rewrites existing lines.
 - [ ] no existing line is rewritten or removed
 ```
 
-The decision row that step 5 seeds is the goal template's own placeholder text:
+The decision row that step 5 seeds is the top-level asset template's own placeholder text, which `/create:goal top-level` copies:
 
 ```text
-| D1 | [The decision, stated so a reader can tell whether work honors it] |
+| D1 | [A frozen choice from spec.md or decision-record.md, stated so a reader can tell whether work honors it] |
 ```
 
 ### Expected
 
-Step 6 is the whole scenario. The goal check walks the four named checks and the placeholder check reports the unfilled decision row with the detail `decision table contains unfilled template text`. The other three checks stay green, so the finding is about template text and nothing else. Because the mode runs the check before any handoff, the run stops at the failed check and the transcript ends without a `chat_slice` field.
+Step 6 is the whole scenario. The goal check walks the five named checks and the placeholder check reports the unfilled decision row with the detail `decision table contains unfilled template text`. The other four checks stay green, so the finding is about template text and nothing else. Because the mode runs the check before any handoff, the run stops at the failed check and the transcript ends without a `chat_slice` field.
 
 ### Evidence
 
@@ -108,7 +108,7 @@ Capture the prompt and reply text, the complete step 6 transcript including the 
 
 ### Optional Supplemental Checks
 
-Seed the objective placeholder `[One sentence. What this packet is for. Not how, not progress.]` and confirm the finding detail reads `objective contains unfilled template text`. Then seed a criterion placeholder and confirm the detail reads `completion criterion contains unfilled template text`. Finally fill every slot and confirm the run proceeds to a green check and a handoff, which proves the gate blocks only on real findings.
+Seed the objective placeholder `[One sentence naming the outcome this packet delivers, taken from its spec.md purpose. Not how, not progress.]` and confirm the finding detail reads `objective contains unfilled template text`. Then seed a criterion placeholder and confirm the detail reads `completion criterion contains unfilled template text`. Finally fill every slot and confirm the run proceeds to a green check and a handoff, which proves the gate blocks only on real findings.
 
 ---
 
@@ -126,7 +126,7 @@ Seed the objective placeholder `[One sentence. What this packet is for. Not how,
 | File | Role |
 |---|---|
 | [`../../scripts/check-goal.cjs`](../../scripts/check-goal.cjs) | The `placeholder` check and its three finding details |
-| [`../../../../system-spec-kit/templates/addons/goal.md.tmpl`](../../../../system-spec-kit/templates/addons/goal.md.tmpl) | The template whose placeholder text step 5 seeds |
+| [`../../assets/goal-top-level-template.md`](../../assets/goal-top-level-template.md) | The template whose placeholder text step 5 seeds |
 | [`../../SKILL.md`](../../SKILL.md) | The rule that the check runs and resolves before any handoff |
 | [`../../references/authoring-standards.md`](../../references/authoring-standards.md) | The objective and decision reader checks the filled goal is held to |
 

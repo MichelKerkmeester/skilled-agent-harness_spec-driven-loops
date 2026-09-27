@@ -1,0 +1,87 @@
+{
+  "scenario": "SCG-006",
+  "doc": "detect-unbound-phase.md",
+  "model": "llmgateway/mimo-v2.6-pro",
+  "thinking": "high",
+  "exact_prompt_template": "Before I sign off the phase parent at $SCRATCH/specs/demo-phase, run the goal check and tell me whether the binding table covers every phase folder.",
+  "steps": [
+    {
+      "step": 1,
+      "kind": "bash",
+      "text": "SCRATCH=$(mktemp -d /tmp/create-goal-playbook.XXXXXX)",
+      "rc": 0,
+      "stdout": "/tmp/create-goal-playbook.6y5gSE\n",
+      "stderr": ""
+    },
+    {
+      "step": 2,
+      "kind": "bash",
+      "text": "mkdir -p \"$SCRATCH/.skilled/skills/system-spec-kit/templates\" \"$SCRATCH/specs/demo-phase/001-alpha\" \"$SCRATCH/specs/demo-phase/002-beta\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 3,
+      "kind": "bash",
+      "text": "cp .skilled/skills/system-spec-kit/templates/spec-kit-docs.json \"$SCRATCH/.skilled/skills/system-spec-kit/templates/spec-kit-docs.json\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": 4,
+      "kind": "agent",
+      "text": "write the Scratch fixture files below into $SCRATCH exactly as given",
+      "rc": 0,
+      "elapsed_s": 48.7,
+      "repo_status_new": [
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-004/step-05-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-005/step-05-agent.prompt.md",
+        "?? specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-007/step-06-agent.prompt.md",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/claude.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/codex.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/cursor.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/devin.json",
+        "?? specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/evidence/runtime/cursor-registered-adapter/payload-fixtures.json"
+      ],
+      "auth_fail": false,
+      "stdout_chars": 839,
+      "fixture_files": [
+        "specs/demo-phase/001-alpha/spec.md",
+        "specs/demo-phase/002-beta/spec.md",
+        "specs/demo-phase/acceptance-criteria.md",
+        "specs/demo-phase/goal.md",
+        "specs/demo-phase/spec.md"
+      ],
+      "fixture_mismatches_restored": []
+    },
+    {
+      "step": 5,
+      "kind": "bash",
+      "text": "node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/demo-phase --root \"$SCRATCH\"",
+      "rc": 1,
+      "stdout": "[check-goal] packet=specs/demo-phase\n[check-goal] 1/5 FAIL missing-binding-row findings=1\n[check-goal] FINDING missing-binding-row specs/demo-phase: no binding-table target row for 002-beta/goal.md\n[check-goal] 2/5 PASS placeholder findings=0\n[check-goal] 3/5 PASS criteria-count findings=0\n[check-goal] 4/5 PASS parent-budget findings=0\n[check-goal] 5/5 PASS frontmatter-fence findings=0\n[check-goal] RESULT: FAILED (4/5 checks)\n",
+      "stderr": ""
+    },
+    {
+      "step": 6,
+      "kind": "bash",
+      "text": "grep -c '002-beta' \"$SCRATCH/specs/demo-phase/goal.md\"",
+      "rc": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "step": 7,
+      "kind": "bash",
+      "text": "rm -rf \"$SCRATCH\"",
+      "rc": 0,
+      "stdout": "",
+      "stderr": "",
+      "snapshot": "scratch-snapshot/"
+    }
+  ],
+  "scratch": "/tmp/create-goal-playbook.6y5gSE",
+  "finished": true
+}

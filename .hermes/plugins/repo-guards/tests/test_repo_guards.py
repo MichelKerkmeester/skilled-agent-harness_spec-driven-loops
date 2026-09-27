@@ -7,12 +7,35 @@ import importlib.util
 import json
 import os
 import sys
+import tempfile
+import types
 import unittest
 from pathlib import Path
 from unittest import mock
 
 PLUGIN_DIR = Path(__file__).resolve().parent.parent
 REPO_ROOT = PLUGIN_DIR.parent.parent.parent
+HERMES_PACKET = "specs/cli-external-orchestration/071-cli-hermes-creation"
+FRONTMATTER_MARKER = "frontmatter-only-marker"
+
+
+def goal_document(lead: str = "") -> str:
+    """A packet goal.md with frontmatter, one completion criterion and no directive anchor."""
+    return (
+        f'{lead}---\ntitle: "Goal: demo"\nleak_check: "{FRONTMATTER_MARKER}"\n---\n'
+        "# Goal: demo\n\n**Objective:** Ship the demo.\n\n"
+        "<!-- ANCHOR:completion -->\n## DONE WHEN\n\n- [ ] The demo ships\n<!-- /ANCHOR:completion -->\n"
+    )
+
+
+def hermes_session_info(session_id: str) -> types.MappingProxyType:
+    """What Hermes hands a prompt-section renderer: a read-only proxy, never a plain dict."""
+    return types.MappingProxyType({"session_id": session_id, "platform": "cli", "cwd": str(REPO_ROOT)})
+
+
+def packet_report(folder: str = HERMES_PACKET) -> str:
+    """The goal core's session-free `packet` answer, carrying only the field the fallback reads."""
+    return f"STATUS=OK ACTION=packet\nobjective_slice={json.dumps(f'Execute {folder}/goal.md.')}\n"
 
 
 def advisor_stdout(recommendations, *, freshness="live", ambiguous=False, status="ok", **overrides):
@@ -61,6 +84,25 @@ class RepoGuardsTests(unittest.TestCase):
             if name in os.environ:
                 self.addCleanup(os.environ.__setitem__, name, os.environ[name])
                 os.environ.pop(name)
+        # A test that reaches the real goal core binds into a throwaway store, never the repo's own.
+        state_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(state_dir.cleanup)
+        state_env = mock.patch.dict(os.environ, {"OPENCODE_GOAL_STATE_DIR": state_dir.name})
+        state_env.start()
+        self.addCleanup(state_env.stop)
+
+    def _workspace(self, goal_text: str, packet: str = "specs/demo/001-demo") -> str:
+        """A throwaway repository holding one packet goal.md, served to the plugin as its root."""
+        root = tempfile.TemporaryDirectory()
+        self.addCleanup(root.cleanup)
+        workspace = Path(root.name).resolve()
+        (workspace / ".git").mkdir()
+        (workspace / packet).mkdir(parents=True)
+        (workspace / packet / "goal.md").write_text(goal_text, encoding="utf-8")
+        patcher = mock.patch.object(self.plugin, "REPO_ROOT", workspace)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        return packet
 
     def test_registers_every_declared_hook(self):
         self.assertEqual(
@@ -535,12 +577,50 @@ class RepoGuardsTests(unittest.TestCase):
             self.assertIsNone(self.plugin.pre_tool_call("delegate_task", batch, session_id="s2"))
 
     def test_goal_slice_comes_from_the_bound_packet(self):
-        with mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": "specs/cli-external-orchestration/071-cli-hermes-creation"}):
+        with mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": HERMES_PACKET}):
             text = self.plugin._goal_slice()
-        self.assertIn("Bound packet: specs/cli-external-orchestration/071-cli-hermes-creation", text)
-        self.assertIn("Objective:", text)
+        self.assertIn(f"Bound packet: {HERMES_PACKET}", text)
+        self.assertIn(f"Execute {HERMES_PACKET}/goal.md.", text)
         self.assertNotIn("_memory:", text)
         self.assertLessEqual(len(text), 4000)
+
+    def test_goal_section_binds_the_environment_packet_before_its_first_render(self):
+        # Hermes renders the prompt sections before on_session_start fires and freezes the prompt,
+        # so a section that waited for the session hook's bind would never show the session its goal.
+        packet = self._workspace(goal_document())
+        with mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": packet}):
+            text = self.ctx.sections["repo-guards-goal"](hermes_session_info("render-first"))
+        lines = text.splitlines()
+        self.assertTrue(text.startswith("[active_goal:"), text[:200])
+        self.assertIn(f"objective: Execute {packet}/goal.md.", lines)
+        self.assertIn("criteria:", lines)
+        self.assertIn("- The demo ships", lines)
+        self.assertNotIn("Bound packet:", text)
+        # The render left the session bound, so the session hook that follows finds the record.
+        with mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": packet}), \
+             mock.patch.object(self.plugin, "_goal_cli", wraps=self.plugin._goal_cli) as goal_cli:
+            self.plugin.on_session_start("render-first")
+        self.assertEqual([call.args[0] for call in goal_cli.call_args_list], ["show"])
+
+    def test_goal_section_injects_the_rendered_brief_and_never_the_raw_report(self):
+        packet = self._workspace(goal_document())
+        with mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": packet}):
+            self.plugin.on_session_start("hook-first")
+            text = self.ctx.sections["repo-guards-goal"]({"session_id": "hook-first"})
+        for report_field in ("STATUS=OK", "goal_prompt=", "injection_preview=", "goal_present="):
+            self.assertNotIn(report_field, text)
+        self.assertTrue(text.startswith("[active_goal:"), text[:200])
+        self.assertTrue(text.endswith("[/active_goal]"), text[-200:])
+        self.assertIn(f"objective: Execute {packet}/goal.md.", text.splitlines())
+
+    def test_goal_fallback_leaks_no_frontmatter_behind_a_bom_or_leading_comments(self):
+        for lead in ("﻿", "<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->\n<!-- a second comment -->\n"):
+            packet = self._workspace(goal_document(lead))
+            with mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": packet}):
+                text = self.ctx.sections["repo-guards-goal"]({})
+            self.assertNotIn(FRONTMATTER_MARKER, text, repr(lead))
+            self.assertNotIn("title:", text, repr(lead))
+            self.assertIn(f"Execute {packet}/goal.md.", text, repr(lead))
 
     def test_goal_slice_is_empty_outside_the_repo_or_without_a_packet(self):
         with mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": "../../etc"}):
@@ -550,12 +630,14 @@ class RepoGuardsTests(unittest.TestCase):
             self.assertEqual(self.plugin._goal_slice(), "")
 
     def test_goal_section_prefers_the_session_goal_over_the_environment_packet(self):
+        brief = "[active_goal:goal-1]\nstatus: active\nobjective: ship hook parity\n[/active_goal]"
         report = (
             "STATUS=OK ACTION=show\n"
             "goal_present=true\n"
             "goal_id=goal-1\n"
             "status=active\n"
             'objective="ship hook parity"\n'
+            f"injection_preview={json.dumps(brief)}\n"
             'packet_path="specs/x"\n'
             "packet_state=bound\n"
         )
@@ -567,9 +649,9 @@ class RepoGuardsTests(unittest.TestCase):
             return mock.Mock(stdout=report, stderr="", returncode=0)
 
         with mock.patch.object(self.plugin.subprocess, "run", side_effect=fake_run), \
-             mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": "specs/cli-external-orchestration/071-cli-hermes-creation"}):
+             mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": HERMES_PACKET}):
             text = self.ctx.sections["repo-guards-goal"]({"session_id": "s9"})
-        self.assertEqual(text, report.strip())
+        self.assertEqual(text, brief)
         self.assertNotIn("Bound packet:", text)
         self.assertEqual(
             seen["argv"],
@@ -584,16 +666,29 @@ class RepoGuardsTests(unittest.TestCase):
         self.assertTrue(seen["kwargs"]["capture_output"] and seen["kwargs"]["text"])
 
     def test_goal_section_falls_back_to_the_environment_packet(self):
-        folder = "specs/cli-external-orchestration/071-cli-hermes-creation"
-        for stdout in (
+        folder = HERMES_PACKET
+
+        def core_answering_show_with(show):
+            def fake_run(argv, **kwargs):
+                if argv[2] == "packet":
+                    return mock.Mock(stdout=packet_report(folder))
+                if argv[2] == "show":
+                    return mock.Mock(stdout=show)
+                return mock.Mock(stdout='STATUS=FAIL ACTION=bind ERROR="state locked"\ncode=GOAL_ERROR\n')
+            return fake_run
+
+        # A session the core cannot show, or cannot bind, still gets the packet's objective slice.
+        for show in (
             "STATUS=OK ACTION=show\ngoal_present=false\nstore_health=no_active_goal\n",
             'STATUS=FAIL ACTION=show ERROR="session value is required"\n',
             "",
         ):
-            with mock.patch.object(self.plugin.subprocess, "run", return_value=mock.Mock(stdout=stdout)), \
+            with mock.patch.object(self.plugin.subprocess, "run", side_effect=core_answering_show_with(show)), \
                  mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": folder}):
                 text = self.ctx.sections["repo-guards-goal"]({"session_id": "s9"})
-            self.assertIn(f"Bound packet: {folder}", text, stdout)
+            self.assertIn(f"Bound packet: {folder}", text, show)
+            self.assertIn(f"Execute {folder}/goal.md.", text, show)
+        # A core that cannot run at all leaves the section empty rather than reading the file itself.
         for failure in (
             OSError("no node"),
             self.plugin.subprocess.TimeoutExpired("node", self.plugin.CORE_TIMEOUT_SECONDS),
@@ -601,20 +696,24 @@ class RepoGuardsTests(unittest.TestCase):
             with mock.patch.object(self.plugin.subprocess, "run", side_effect=failure), \
                  mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": folder}):
                 text = self.ctx.sections["repo-guards-goal"]({"session_id": "s9"})
-            self.assertIn(f"Bound packet: {folder}", text, failure)
+            self.assertEqual(text, "", failure)
 
     def test_goal_section_without_a_session_reads_the_environment_packet(self):
-        folder = "specs/cli-external-orchestration/071-cli-hermes-creation"
-        with mock.patch.object(self.plugin.subprocess, "run") as run, \
+        folder = HERMES_PACKET
+        with mock.patch.object(self.plugin.subprocess, "run", return_value=mock.Mock(stdout=packet_report(folder))) as run, \
              mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": folder}):
             text = self.ctx.sections["repo-guards-goal"]({})
-        run.assert_not_called()
+        # With no session identity nothing is shown or bound: only the session-free packet read runs.
+        self.assertEqual(
+            [call.args[0] for call in run.call_args_list],
+            [["node", str(self.plugin.GOAL_CLI), "packet", folder, "--workspace", str(self.plugin.REPO_ROOT)]],
+        )
         self.assertIn(f"Bound packet: {folder}", text)
 
     def test_goal_section_trims_the_session_goal_to_the_section_cap(self):
-        report = "STATUS=OK ACTION=show\ngoal_present=true\n" + "x" * 5000
+        report = f"STATUS=OK ACTION=show\ngoal_present=true\ninjection_preview={json.dumps('x' * 5000)}\n"
         with mock.patch.object(self.plugin.subprocess, "run", return_value=mock.Mock(stdout=report)), \
-             mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": "specs/cli-external-orchestration/071-cli-hermes-creation"}):
+             mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": HERMES_PACKET}):
             text = self.ctx.sections["repo-guards-goal"]({"session_id": "s9"})
         self.assertEqual(len(text), self.plugin.SECTION_MAX_CHARS)
 
@@ -629,9 +728,14 @@ class RepoGuardsTests(unittest.TestCase):
                 self.assertEqual(self.plugin._persona(), "", bad)
 
     def test_session_section_carries_the_goal_and_the_read_only_notice(self):
+        def goal_core_without_a_session_goal(argv, **kwargs):
+            if argv[2] == "packet":
+                return mock.Mock(stdout=packet_report())
+            raise OSError("no node")
+
         with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {"additionalContext": "Session context received."}}), \
-             mock.patch.object(self.plugin.subprocess, "run", side_effect=OSError("no node")), \
-             mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": "specs/cli-external-orchestration/071-cli-hermes-creation", "SPECKIT_HERMES_READ_ONLY": "1", "HERMES_AGENT_PERSONA": "markdown"}):
+             mock.patch.object(self.plugin.subprocess, "run", side_effect=goal_core_without_a_session_goal), \
+             mock.patch.dict(os.environ, {"HERMES_SPEC_FOLDER": HERMES_PACKET, "SPECKIT_HERMES_READ_ONLY": "1", "HERMES_AGENT_PERSONA": "markdown"}):
             context = self.ctx.sections["repo-guards-session-context"]({"session_id": "s"})
             persona = self.ctx.sections["repo-guards-persona"]({"session_id": "s"})
             goal = self.ctx.sections["repo-guards-goal"]({"session_id": "s"})

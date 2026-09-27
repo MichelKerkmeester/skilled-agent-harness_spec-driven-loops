@@ -80,8 +80,9 @@ VALIDATE  --> Recursive validation of all children + parent as integrated unit
 
 | Command / Script                        | Purpose                                            |
 |-----------------------------------------|----------------------------------------------------|
-| `/spec_kit:plan :with-phases`           | Phase decomposition (integrated into plan/complete)|
+| `/speckit:plan :with-phases`            | Phase decomposition (integrated into plan/complete)|
 | `create.sh --phase --phases N --phase-names a,b,c`| Create parent + child phase folder structure       |
+| `/create:goal <parent> phase-parent`, `phase-add` | Author the parent goal and bind each child goal (`sk-create-goal`) |
 | `validate.sh --recursive`              | Validate parent + all child phases as a unit       |
 | `recommend-level.sh --recommend-phases` | Phase recommendation scoring alongside level       |
 

@@ -1,0 +1,16 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a tool-surface probe. Do not read or edit any file.
+TASK: Call the tool named `opencode_goal` exactly once with arguments {"action":"set","objective":"LIVE_OC_SET_CANARY_4417 probe goal"}. Then call the tool named `opencode_goal_status` once with no arguments. Print the first three lines each tool returned, verbatim.
+If either tool is not in your tool set, print exactly TOOL_UNAVAILABLE and the list of tool names you do have, then stop.

@@ -42,7 +42,7 @@ scripts/
 
 | File | Responsibility |
 |---|---|
-| `check-goal.cjs` | Runs the four named checks on one packet, or on every active goal with `--all`. Exports `CHECKS`, `checkMissingBindingRows`, `checkPlaceholders`, `checkCriteriaCount`, `checkParentBudget`, `checkGoalPacket` and `scanCorpus`. |
+| `check-goal.cjs` | Runs the five named checks on one packet, or on every active goal with `--all`. Exports `CHECKS`, `checkMissingBindingRows`, `checkPlaceholders`, `checkCriteriaCount`, `checkParentBudget`, `checkFrontmatterFence`, `checkGoalPacket` and `scanCorpus`. |
 | `tests/check-goal.test.cjs` | Proves the positive fixture passes every check, each negative fixture fails only its named check, and an unfilled copy of each asset template fails the placeholder check. |
 | `tests/template-parity.test.cjs` | Fails when an asset template's fixed text drifts from `goal.md.tmpl` at that template's level. |
 | `tests/fixtures/goal-fixtures.cjs` | Writes throwaway goal packets into a temporary directory for the checker tests. |
@@ -54,7 +54,7 @@ scripts/
 The checker imports only Node built-ins and `../../../../hooks/goal/lib/goal-slice.cjs`. It reads `goal.md` and the direct phase-child directories of the packet it is given, plus the three asset templates. It changes no file and no session state.
 
 ```text
-packet/goal.md ──▶ goal-slice.cjs (durable slice, budget) ──▶ four checks ──▶ findings + exit code
+packet/goal.md ──▶ goal-slice.cjs (durable slice, budget) ──▶ five checks ──▶ findings + exit code
 ../assets/goal-*-template.md ──▶ placeholder wording ──┘
 ```
 
@@ -67,7 +67,7 @@ node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>
 node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all
 ```
 
-One packet prints each check and `RESULT: PASSED (4/4 checks)` or `RESULT: FAILED`, and exits 0 only when all four pass. `--all` scans every active goal outside `z_archive/` and exits 2 when any goal has a finding. `--root <path>` sets the workspace root.
+One packet prints each check and `RESULT: PASSED (5/5 checks)` or `RESULT: FAILED`, and exits 0 only when all five pass. `--all` scans every active goal outside `z_archive/` and exits 2 when any goal has a finding. `--root <path>` sets the workspace root.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Goal OpenCode plugin"
-description: "Local /goal-opencode OpenCode plugin that binds a session to a packet goal.md, injects its durable slice as active-goal context, exposes opencode_goal tools including bind, resent and packet, and documents restart and validation boundaries."
+description: "Local /goal-opencode OpenCode plugin that binds a session to a packet goal.md, injects the objective slice built from it as active-goal context, exposes opencode_goal tools including bind, resent and packet, and documents restart and validation boundaries."
 trigger_phrases:
   - "goal opencode plugin"
   - "opencode-goal"
