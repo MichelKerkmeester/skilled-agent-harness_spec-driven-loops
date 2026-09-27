@@ -277,7 +277,8 @@ _ac_analyze_canonical() {
     # Args:
     #   $1 - Path to acceptance-criteria.md
     # Returns:
-    #   Prints a tab-separated row: rows, covered, malformed, malformed-ids
+    #   Prints a tab-separated row: rows, covered, malformed, malformed-ids, cited.
+    #   An empty list is written as "-", since read with a tab IFS merges empty fields.
 
     local ac_file="$1"
     awk '
@@ -289,6 +290,18 @@ _ac_analyze_canonical() {
         }
         function lower(v) { return tolower(v) }
         function has_file_line(v) { return v ~ /(^|[[:space:](`])[^[:space:]|()`:]*[.\/][^[:space:]|()`:]*:[0-9]+([[:space:]).,;`]|$)/ }
+        # Each accepted citation as "ID (path:line)". A trailing boundary character can open the next one, so it stays.
+        function cited_in(v, id,   rest, m, out) {
+            out = ""; rest = v
+            while (match(rest, /(^|[[:space:](`])[^[:space:]|()`:]*[.\/][^[:space:]|()`:]*:[0-9]+([[:space:]).,;`]|$)/)) {
+                m = substr(rest, RSTART, RLENGTH)
+                if (m ~ /[0-9]$/) rest = ""
+                else { rest = substr(rest, RSTART + RLENGTH - 1); m = substr(m, 1, length(m) - 1) }
+                sub(/^[[:space:](`]/, "", m)
+                out = out (out == "" ? "" : ", ") id " (" m ")"
+            }
+            return out
+        }
         BEGIN { fence = 0; in_table = 0; c_id = 0; c_ev = 0; c_status = 0; rows = 0; covered = 0; malformed = 0 }
         /^[[:space:]]*(```|~~~)/ { fence = 1 - fence; next }
         fence { next }
@@ -324,6 +337,7 @@ _ac_analyze_canonical() {
             evidence = c_ev ? norm(cell[c_ev]) : ""
             ev_l = lower(evidence)
             if (ev_l == "" || ev_l == "-" || ev_l == "n/a") next
+            if (has_file_line(evidence)) cited = cited (cited == "" ? "" : ", ") cited_in(evidence, toupper(id))
             if (has_file_line(evidence)) { covered++; next }
             # The same exemption the traceability path grants: a row that says
             # automation is infeasible and gives a rationale is covered.
@@ -333,7 +347,7 @@ _ac_analyze_canonical() {
             if (length(malformed_ids) > 0) malformed_ids = malformed_ids ", " toupper(id)
             else malformed_ids = toupper(id)
         }
-        END { printf "%d\t%d\t%d\t%s\n", rows, covered, malformed, malformed_ids }
+        END { printf "%d\t%d\t%d\t%s\t%s\n", rows, covered, malformed, (malformed_ids == "" ? "-" : malformed_ids), (cited == "" ? "-" : cited) }
     ' "$ac_file"
 }
 
@@ -344,6 +358,17 @@ _ac_analyze_traceability() {
         function trim(value) { gsub(/^[[:space:]]+|[[:space:]]+$/, "", value); return value }
         function lower(value) { return tolower(value) }
         function has_file_line(value) { return value ~ /(^|[[:space:](])[^[:space:]|():]*[.\/][^[:space:]|():]*:[0-9]+([[:space:]).,;]|$)/ }
+        function cited_in(v, id,   rest, m, out) {
+            out = ""; rest = v
+            while (match(rest, /(^|[[:space:](])[^[:space:]|():]*[.\/][^[:space:]|():]*:[0-9]+([[:space:]).,;]|$)/)) {
+                m = substr(rest, RSTART, RLENGTH)
+                if (m ~ /[0-9]$/) rest = ""
+                else { rest = substr(rest, RSTART + RLENGTH - 1); m = substr(m, 1, length(m) - 1) }
+                sub(/^[[:space:](]/, "", m)
+                out = out (out == "" ? "" : ", ") id " (" m ")"
+            }
+            return out
+        }
         BEGIN { rows = 0; covered = 0; malformed = 0; in_verification = (merged_tasks != "true") }
         merged_tasks == "true" && /<!-- ANCHOR:protocol -->/ { in_verification = 1; next }
         merged_tasks == "true" && /<!-- \/ANCHOR:(summary|sign-off) -->/ { in_verification = 0; next }
@@ -369,6 +394,7 @@ _ac_analyze_traceability() {
             }
 
             if ((class_l ~ /tested/ || class_l ~ /partial/) && has_file_line(evidence)) {
+                cited = cited (cited == "" ? "" : ", ") cited_in(evidence, ac_id)
                 covered++
                 next
             }
@@ -379,8 +405,78 @@ _ac_analyze_traceability() {
                 else malformed_ids = ac_id
             }
         }
-        END { printf "%d\t%d\t%d\t%s\n", rows, covered, malformed, malformed_ids }
+        END { printf "%d\t%d\t%d\t%s\t%s\n", rows, covered, malformed, (malformed_ids == "" ? "-" : malformed_ids), (cited == "" ? "-" : cited) }
     ' "$traceability_file"
+}
+
+# Bash builtins avoid directory-read awk failures and a process per citation.
+_ac_file_has_line() {
+    local path="$1"
+    local line="$2"
+    local line_num
+    local count=0
+    local _line
+
+    [[ -f "$path" && -r "$path" ]] || return 1
+    [[ "$line" =~ ^[0-9]+$ ]] || return 1
+    line_num=$((10#$line))
+    [[ "$line_num" -ge 1 ]] || return 1
+
+    while IFS= read -r _line || [[ -n "$_line" ]]; do
+        count=$((count+1))
+        [[ "$count" -ge "$line_num" ]] && return 0
+    done < "$path"
+
+    return 1
+}
+
+_ac_citation_resolves() {
+    local folder="$1"
+    local root="$2"
+    local cite="$3"
+    local path="${cite%:*}"
+    local line="${cite##*:}"
+
+    if [[ "$path" == /* ]]; then
+        _ac_file_has_line "$path" "$line"
+        return $?
+    fi
+
+    if [[ -f "$folder/$path" && -r "$folder/$path" ]]; then
+        _ac_file_has_line "$folder/$path" "$line"
+        return $?
+    fi
+
+    [[ -n "$root" ]] || return 1
+    _ac_file_has_line "$root/$path" "$line"
+}
+
+_ac_unresolved_citations() {
+    local folder="$1"
+    local root="$2"
+    local list="$3"
+    local rest="$list"
+    local entry
+    local cite
+    local unresolved=""
+
+    while [[ -n "$rest" ]]; do
+        if [[ "$rest" == *", "* ]]; then
+            entry="${rest%%, *}"
+            rest="${rest#*, }"
+        else
+            entry="$rest"
+            rest=""
+        fi
+        cite="${entry##* (}"
+        cite="${cite%)}"
+        if ! _ac_citation_resolves "$folder" "$root" "$cite"; then
+            unresolved="${unresolved}${unresolved:+, }$entry"
+        fi
+    done
+
+    printf '%s' "$unresolved"
+    return 0
 }
 
 run_check() {
@@ -407,7 +503,10 @@ run_check() {
         return 0
     fi
 
-    local analysis rows covered malformed malformed_ids total
+    local analysis rows covered malformed malformed_ids cited unresolved root total
+    # One lookup per run. Outside a repository the working directory stands in for the root.
+    root="$(git -C "$folder" rev-parse --show-toplevel 2>/dev/null)" || root=""
+    [[ -n "$root" ]] || root="$(pwd)"
     local ac_file="$folder/acceptance-criteria.md"
     local canonical=false
     if [[ -f "$ac_file" ]]; then
@@ -427,7 +526,9 @@ run_check() {
         fi
         analysis="$(_ac_analyze_traceability "$traceability_file" "$merged_tasks")"
     fi
-    IFS=$'\t' read -r rows covered malformed malformed_ids <<< "$analysis"
+    IFS=$'\t' read -r rows covered malformed malformed_ids cited <<< "$analysis"
+    if [[ "$malformed_ids" == "-" ]]; then malformed_ids=""; fi
+    if [[ "$cited" == "-" ]]; then cited=""; fi
 
     if [[ "$canonical" == true ]]; then
         total="$rows"
@@ -457,6 +558,10 @@ run_check() {
     fi
     if [[ "${malformed:-0}" -gt 0 ]]; then
         RULE_DETAILS+=("Malformed evidence citation(s): ${malformed_ids:-unknown}")
+    fi
+    unresolved="$(_ac_unresolved_citations "$folder" "$root" "$cited")"
+    if [[ -n "$unresolved" ]]; then
+        RULE_DETAILS+=("Unresolved evidence citation(s): $unresolved")
     fi
 
     if [[ "$covered" -ge "$required" ]]; then

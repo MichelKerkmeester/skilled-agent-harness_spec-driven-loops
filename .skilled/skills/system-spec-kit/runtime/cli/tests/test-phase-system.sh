@@ -71,7 +71,7 @@ make_temp_repo() {
 
 # Installs a stub in place of the real (workspace-linked, not copyable into a
 # throwaway sandbox) description generator. The stub only records each
-# invocation's target path and --level to DESC_STUB_LOG so tests can assert on
+# invocation's target path and --level to DESC_STUB_LOG, and its --description to DESC_STUB_LABEL_LOG when that is set, so tests can assert on
 # WHICH paths create.sh attempted to write to, independent of the real
 # generator's own output correctness.
 install_desc_generator_stub() {
@@ -88,6 +88,14 @@ const level = (() => {
 })();
 if (logPath) {
   fs.appendFileSync(logPath, `${targetPath}\t${level}\n`);
+}
+const labelLogPath = process.env.DESC_STUB_LABEL_LOG;
+const description = (() => {
+  const idx = process.argv.indexOf('--description');
+  return idx >= 0 ? process.argv[idx + 1] : '';
+})();
+if (labelLogPath) {
+  fs.appendFileSync(labelLogPath, `${targetPath}\t${description}\n`);
 }
 process.exit(0);
 STUB_EOF
@@ -234,6 +242,39 @@ if grep -q "	1$" "$desc_log"; then
   pass "Append mode still generates description.json for the newly created child phase"
 else
   fail "Expected a level-1 description-generator invocation for the new child phase"
+fi
+
+# ───────────────────────────────────────────────────────────────
+# Test 4: an appended child is labeled with its own phase number
+# ───────────────────────────────────────────────────────────────
+echo ""
+echo "-- Appended phase labels --"
+
+repo4=$(make_temp_repo)
+install_desc_generator_stub "$repo4"
+create4="$repo4/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+label_log="$repo4/desc-labels.log"
+
+base_json=$(cd "$repo4" && DESC_STUB_LABEL_LOG="$label_log" bash "$create4" --json --phase --skip-branch --number 4 --phases 1 --phase-names "foundation" "Label base parent")
+parent_rel="specs/$(echo "$base_json" | json_field "BRANCH_NAME")"
+
+if grep -qF "$(printf '%s\t%s' "001-foundation" "Phase 1: foundation")" "$label_log"; then
+  pass "A new parent's first child is labeled Phase 1"
+else
+  fail "Expected first child label to be Phase 1: foundation"
+fi
+
+(cd "$repo4" && DESC_STUB_LABEL_LOG="$label_log" bash "$create4" --json --phase --parent "$parent_rel" --phases 2 --phase-names "implementation,integration" "Label append run" >/dev/null)
+
+if grep -qF "$(printf '%s\t%s' "002-implementation" "Phase 2: implementation")" "$label_log" \
+  && grep -qF "$(printf '%s\t%s' "003-integration" "Phase 3: integration")" "$label_log" \
+  && [[ "$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1]))["derived"]["causal_summary"])' "$repo4/$parent_rel/002-implementation/graph-metadata.json")" == "Phase 2: implementation" ]] \
+  && [[ "$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1]))["derived"]["causal_summary"])' "$repo4/$parent_rel/003-integration/graph-metadata.json")" == "Phase 3: integration" ]] \
+  && grep -qF "Phase 2: implementation" "$repo4/$parent_rel/002-implementation/spec.md" \
+  && grep -qF "Phase 3: integration" "$repo4/$parent_rel/003-integration/spec.md"; then
+  pass "Appended children carry Phase 2 and Phase 3 in description, graph metadata and spec title"
+else
+  fail "Expected appended child labels to match phase numbers in description, graph metadata and spec title"
 fi
 
 echo ""

@@ -67,7 +67,7 @@ node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>
 node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all
 ```
 
-One packet prints each check and `RESULT: PASSED (5/5 checks)` or `RESULT: FAILED`, and exits 0 only when all five pass. `--all` scans every active goal outside `z_archive/` and exits 2 when any goal has a finding. `--root <path>` sets the workspace root.
+`<packet>` is a packet folder or the path to its `goal.md`. One packet prints each check and `RESULT: PASSED (5/5 checks)` or `RESULT: FAILED`, and exits 0 only when all five pass. `--all` scans every active goal outside `z_archive/` and exits 2 when any goal has a finding. `--root <path>` sets the workspace root.
 
 ---
 
