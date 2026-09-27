@@ -8,7 +8,7 @@ trigger_phrases:
   - "changelog evidence stack"
 importance_tier: normal
 contextType: implementation
-version: 3.6.0.7
+version: 4.1.0.15
 ---
 
 # Nested Changelog Workflow

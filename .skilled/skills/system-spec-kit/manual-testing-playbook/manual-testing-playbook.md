@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-09-03"
-version: 4.0.0.0
+version: 4.1.0.99
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -207,6 +207,7 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | M-004 | Main-agent review and verdict handoff | [M-004](tooling-and-scripts/main-agent-review-and-verdict-handoff.md) | — |
 | 420 | Markdown link integrity guard | [420](tooling-and-scripts/markdown-link-integrity-guard.md) | [markdown-link-integrity-guard](../feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md) |
 | 138 | MODULE header compliance via verify_alignment_drift.py | [138](tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md) | [code-standards-alignment](../feature-catalog/tooling-and-scripts/code-standards-alignment.md) |
+| 458 | Nested changelog generator | [458](tooling-and-scripts/nested-changelog-generator.md) | [nested-changelog-generator](../feature-catalog/tooling-and-scripts/nested-changelog-generator.md) |
 | 152 | No symlinks in lib/ tree | [152](tooling-and-scripts/no-symlinks-in-lib-tree.md) | [architecture-boundary-enforcement](../feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md) |
 | 419 | Orphan MCP runtime lifecycle guardrails | [419](tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md) | [orphan-mcp-sweeper-and-launchagent-template](../feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md) |
 | 425 | Orphan sweep stop-hook activation | [425](tooling-and-scripts/orphan-sweep-stop-hook-activation.md) | [orphan-sweep-stop-hook-activation](../feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
