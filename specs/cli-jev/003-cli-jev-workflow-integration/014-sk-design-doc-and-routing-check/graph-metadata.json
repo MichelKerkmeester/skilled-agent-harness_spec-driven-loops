@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design rule 6 stale",
+      "sk-design compiled routing rule",
+      "md-generator 80-point gate",
+      "md-generator isPass docs",
+      "sk-design routing accuracy",
+      "sk-design playbook routing replay",
+      "sk-design rule 6 rewrite plan",
+      "md-generator gate option plan",
+      "sk-design routing replay plan",
+      "compiled-route-admission sk-design",
+      "task breakdown",
+      "implementation tasks"
+    ],
+    "key_topics": [
+      "sk-design",
+      "rule",
+      "stale",
+      "compiled",
+      "routing",
+      "md-generator",
+      "80-point",
+      "gate",
+      "ispass",
+      "docs",
+      "accuracy",
+      "playbook"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-design/SKILL.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-design/manifest.json",
+      ".skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/quality-checklist.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/assets/design-md-prompt-template.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/assets/cardinal-rules-card.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/validate/validate.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/validate/phantom-hex-detection.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/fidelity/verbatim-value-fidelity.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/authoring-boundary/authoring-boundary.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/source-of-truth/source-of-truth-card.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-design/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "quality-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/quality-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-md-prompt-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/assets/design-md-prompt-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "cardinal-rules-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/assets/cardinal-rules-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/validate/validate.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "phantom-hex-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/validate/phantom-hex-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "verbatim-value-fidelity.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/fidelity/verbatim-value-fidelity.md",
+        "source": "derived"
+      },
+      {
+        "name": "authoring-boundary.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/authoring-boundary/authoring-boundary.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-of-truth-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/source-of-truth/source-of-truth-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rule 6 at `.skilled/skills/sk-design/SKILL.md:202-203` says \"Never quote a compiled routing decision for this hub",
+    "created_at": "2026-09-27T11:50:20Z",
+    "last_save_at": "2026-09-27T12:09:42.921Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1f0609525d018e36b89ad625d3c390f98df4072098cb21941466f18de4149a57",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0f2cf60a829acd131f42f5e0138bcfabf5fb01713d11bf4be734644cf39f63e9",
+      "plan.md": "922b12c6223937d3ca05690635ab2233a9a0be90332b8680d1249d4b07d2f549",
+      "tasks.md": "a574a509564e043b649d66d591ed5cfd2cfffc6cc5c8b9ec735a2f4c91fa1fa3",
+      "implementation-summary.md": "cc57361f1a7a6e24afb1fd1d6f19f3e3a26f996b16b2ef60d1fabf3d3d9b9ee7"
+    },
+    "last_active_at": null
+  }
+}

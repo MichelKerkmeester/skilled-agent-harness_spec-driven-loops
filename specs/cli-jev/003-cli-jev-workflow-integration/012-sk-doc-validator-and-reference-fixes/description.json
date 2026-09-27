@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes",
+  "description": "Phase 12: sk-doc-validator-and-reference-fixes",
+  "keywords": [
+    "phase",
+    "sk-doc-validator-and-reference-fixes"
+  ],
+  "lastUpdated": "2026-09-27T11:50:19.108Z",
+  "specId": "012",
+  "folderSlug": "sk-doc-validator-and-reference-fixes",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

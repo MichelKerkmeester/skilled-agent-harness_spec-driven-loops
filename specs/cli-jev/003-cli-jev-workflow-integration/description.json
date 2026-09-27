@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "cli-jev/003-cli-jev-workflow-integration",
   "description": "Jev workflow integration deep research",
   "keywords": [
@@ -8,13 +9,14 @@
     "deep",
     "research"
   ],
-  "lastUpdated": "2026-09-26T15:37:28.467Z",
+  "lastUpdated": "2026-09-27T12:20:47.234Z",
   "specId": "003",
   "folderSlug": "cli-jev-workflow-integration",
   "parentChain": [
     "cli-jev"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-09-26_13-20__planned-nine-owner-fix-phases-010-to-018-found.md"
+  ]
 }

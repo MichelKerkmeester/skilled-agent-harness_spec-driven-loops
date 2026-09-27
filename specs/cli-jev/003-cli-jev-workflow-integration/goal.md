@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
-    last_updated_at: "2026-09-26T16:10:00Z"
-    last_updated_by: "orchestrator-session"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Gather context for 001-deep-research"
+    last_updated_at: "2026-09-27T11:57:12Z"
+    last_updated_by: "parent-leaf"
+    recent_action: "Bound phases 010 to 017 and cut the slice to budget"
+    next_safe_action: "Validate phases 010 to 017, then close criteria 4 and 5"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/spec.md"
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Find where a classifier model, Jev (hosted) or Deem (open weights, local), cuts the main AI's context and manual review work: research first, then reconcile the Planned build phases with a fresh synthesis.
+**Objective:** Find where a classifier model, Jev (hosted) or Deem (open weights, local), cuts the main AI's context and manual review work: research, then reconcile the Planned phases with a fresh synthesis and plan the owner fixes the research found.
 
 ### Decisions
 
@@ -47,10 +47,10 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Two backends: every feature runs on Jev or Deem, dormant unless one is available (Jev: `jev auth status --provider <p>` exits 0; Deem: the local server passes a health check). With neither, behavior is exactly today's. Jev gets no secret |
-| D2 | New hub `cli-classifier` holds `cli-jev` (moved) and `cli-deem` (new). Check online for a Deem CLI first, else derive `cli-deem` from `cli-jev`. The research decides its shape |
-| D3 | Deem 0.8B bf16 is served on this Mac after my yes to a plan naming its rollback, and kept current with Deem's releases. Nothing else is built |
-| D4 | Round 3 in `007`: one fan-out run, max-iterations, convergence off, lineages isolated, none calls Jev: `grok-4.7-xhigh-fast` (cli-cursor), `deepseek-v4.1-flash` max, `mimo-v2.6-pro` high (cli-pi) and `swe-2-max` (cli-devin) 10 each; `glm-5.3-flash` max (cli-pi) 5 |
-| D5 | One Opus 5.5 high lead per lineage reviews and steers each iteration; a fresh Opus 5.5 max synthesizes; Opus 5.5 high amends and authors phases |
+| D2 | New hub `cli-classifier` holds `cli-jev` (moved) and `cli-deem` (new) |
+| D3 | Deem 0.8B bf16 is served on this Mac, kept current with Deem's releases. Nothing else is built |
+| D4 | Round 3 is one fan-out run in `007`, none calling Jev |
+| D5 | Opus 5.5 high leaves author and amend phases, one per phase |
 | D6 | Autonomous; stop only for the Deem install yes, a missing credential or a push. Worktree 069, path-scoped commits, no push or merge, no key in any file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
@@ -73,6 +73,15 @@ phase and binds as if written here.
 | 007 | `007-classifier-deep-research/goal.md` |
 | 008 | `008-cli-classifier-hub/goal.md` |
 | 009 | `009-cli-jev-hub-move/goal.md` |
+| 010 | `010-trigger-index-search-fixes/goal.md` |
+| 011 | `011-spec-validator-fixes/goal.md` |
+| 012 | `012-sk-doc-validator-and-reference-fixes/goal.md` |
+| 013 | `013-sk-prompt-framework-docs/goal.md` |
+| 014 | `014-sk-design-doc-and-routing-check/goal.md` |
+| 015 | `015-fanout-merge-and-steering-fixes/goal.md` |
+| 016 | `016-deem-local-hardening/goal.md` |
+| 017 | `017-deem-search-narrowing-arm/goal.md` |
+| 018 | `018-worktree-provision-shared-link/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -89,8 +98,8 @@ string, not these files.
 - [x] I got a Deem install plan with its rollback before any install, and `007-classifier-deep-research/context/deem-local.md` records the 0.8B bf16 passing a health check with latency and memory, or why it does not serve
 - [x] In `007-classifier-deep-research`, lineages `grok`, `deepseek`, `mimo` and `swe` each hold 10 iteration files and `glm` holds 5, and every state log ends `maxIterationsReached`
 - [x] `007-classifier-deep-research/research/research.md`, by a fresh Opus 5.5 max leaf, covers Deem on this Mac, drops that flip under Deem, context reduction, validators, sk-prompt, sk-design, open discovery and build order, ranking each idea with a seam `file:line`, metric, backend gate and smallest slice
-- [x] 002, 003, 005 and 006 carry the two-backend gate, and each phase the synthesis proposes, `cli-classifier` and `cli-deem` included, is a Planned child with spec, plan, tasks, goal, binding and phase-map rows
-- [x] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
+- [ ] 002, 003, 005 and 006 carry the two-backend gate, and each phase the synthesis proposes (`cli-classifier` and `cli-deem` included) and each owner-fix phase 010 to 018 is a Planned child with spec, plan, tasks, goal, binding and phase-map rows
+- [ ] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -121,6 +130,7 @@ and findings belong here.
 | Round 3 synthesis | Done | `007-classifier-deep-research/research/research.md` (1,665 lines) by a fresh Opus 5.5 max leaf: 2 build-now, 4 next, 18 later, 1 drop, R23 to R26 new. 136 citations checked: 130 resolved, 2 drifted, 4 failed, none load-bearing. The host reopened six citations (all resolved) and checked R1, R19 and R23, R23 by a live wire test: Deem answers `jev-cli`'s `choice` and `score` with HTTP 400 |
 | Round 3 phases | Done | 002, 003, 005 and 006 amended for two backends. `008-cli-classifier-hub` and `009-cli-jev-hub-move` authored as Planned. One Opus 5.5 high leaf per phase |
 | Round 3 close | Done | `validate.sh --strict --recursive`: `RESULT: PASSED` on all 10 folders with 0 errors and 0 warnings. `check-goal.cjs`: 4/4 on the parent and all nine children. `step_convergence_report` recorded `synthesis_incomplete` (57 of 173 count-only findings), as in rounds 1 and 2 |
+| Owner-fix phases | In Progress | 2026-09-27: `create.sh` scaffolded 010 to 018, and one Opus 5.5 high leaf fills each. The parent leaf filled the spec's phase-map, handoff and scope rows and added eight binding rows. Criteria 4 and 5 are reopened until each new child passes `validate.sh --strict` and `check-goal.cjs` |
 
 ### Deviations and findings
 
@@ -140,4 +150,6 @@ and findings belong here.
 | Round 3 run corrections | Steering reached iterations only sometimes, so the leads wrote their reviews as annotations for the synthesis. The transcript dedupe rule was completed mid-run. `deem-ctl` gained a checked update with the server stopped, an honest failed-restore message and `rollback`. Details in `007-classifier-deep-research/goal.md` |
 | Deem exposure | Deem's server answers any web page (`Access-Control-Allow-Origin: *`, no authentication). It listens on localhost only, so it exposes compute, not data. Closing it needs a patch to Deem or a proxy, the operator's call |
 | Close report | `step_convergence_report` ran and recorded `synthesis_incomplete`: the merge rebuilt 85 of 112 count-only findings (deepseek 8 of 57; mimo and grok whole). The synthesis read all 30 iteration files directly, so its ranking stands. The merge parser gap is recorded in `research.md` section 17, not fixed here (out of scope). |
+| Parent amendment for 010 to 017 (2026-09-27) | Eight binding rows took the durable slice from 3,905 to 4,126 characters. Cuts followed the budget reference's order. D4 lost the lineage roster and D5 the leads and synthesis wording, both restated by `007-classifier-deep-research/goal.md` D2, D6 and D7. D2 lost the online-check and derive clause, which `007` D1 and D3 settled. The objective dropped two words and names the owner fixes. Criterion 4 names phases 010 to 017, and no criterion was dropped. Result: 3,986 characters, `packet_budget=ok` |
+| Phase 018 added (2026-09-27) | The coordinator added `018-worktree-provision-shared-link`. One binding row and criterion 4's range (010 to 018) took the slice to 4,041 characters. D3 lost "after my yes to a plan naming its rollback", which `007-classifier-deep-research/goal.md` D1 states in full and criterion 1 still checks. No criterion was dropped. The spec's handoff row records that 008's and 009's `parent-skill-check.cjs` checks depend on 018 in a freshly provisioned worktree |
 <!-- /ANCHOR:log -->

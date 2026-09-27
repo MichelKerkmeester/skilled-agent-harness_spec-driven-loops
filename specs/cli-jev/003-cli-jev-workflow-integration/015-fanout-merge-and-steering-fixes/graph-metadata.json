@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fanout merge under-count",
+      "count-only findings not reconstructed",
+      "synthesis_incomplete fan-out merge",
+      "lineage steer.md per iteration",
+      "buildLoopPrompt steering",
+      "fanout-merge reconstruction gap",
+      "fanout merge fix plan",
+      "short registry reconstruction plan",
+      "delta finding records merge",
+      "steer.md prompt line plan",
+      "fanout merge fix tasks",
+      "steer.md prompt tasks"
+    ],
+    "key_topics": [
+      "fanout",
+      "merge",
+      "under-count",
+      "count-only",
+      "findings",
+      "reconstructed",
+      "fan-out",
+      "lineage",
+      "steer",
+      "per",
+      "iteration",
+      "buildloopprompt"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/implementation-summary.md",
+      "runtime/package.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merge Under",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration Steering",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Monolith",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In all three research rounds of this packet, `stepconvergencereport` recorded `synthesisincomplete` with the single invariant `countonlystatefindingsnotreconstructed`",
+    "created_at": "2026-09-27T11:50:21Z",
+    "last_save_at": "2026-09-27T12:05:46.318Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:906fa05cf02403b6a0db607b21dbdc804d96241933a592903233614ba670fdf6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f081883a00de49961272a1d40e62e99d19fc16f87380b5f661c16362a33e219f",
+      "plan.md": "71789cf5a95dbb58db11f21a3d1ae58145d1d976921f523e80959aca1fa43a77",
+      "tasks.md": "4847bc2e6577728db04c4f967f7400bc62499d924fb8d23469b73da46948dcff",
+      "implementation-summary.md": "1ef11a1c84a9ceb58d0f392ccc5cdc17aee5a8c0dcc18b7071516e779636632a"
+    },
+    "last_active_at": null
+  }
+}

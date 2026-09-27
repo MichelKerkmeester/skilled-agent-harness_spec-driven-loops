@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deem cors exposure",
+      "deem access log",
+      "deem-ctl versioning",
+      "deem n orders decision",
+      "deem local hardening",
+      "deem hardening plan",
+      "deem access log plan",
+      "deem cors options rollback",
+      "deem-ctl backup rollback",
+      "deem hardening tasks",
+      "deem access log tasks",
+      "deem cors decision tasks"
+    ],
+    "key_topics": [
+      "deem",
+      "cors",
+      "exposure",
+      "access",
+      "log",
+      "deem-ctl",
+      "versioning",
+      "orders",
+      "decision",
+      "local",
+      "hardening",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The local Deem server sends `Access-Control-Allow-Origin: ` on every answer (`serve/deemserver.py:809`) and on every preflight (`:837`) and checks no credential, so any web page open in the operator's browser can post questions to `127.0.0.1:8300` and read the answers",
+    "created_at": "2026-09-27T11:50:22Z",
+    "last_save_at": "2026-09-27T12:02:20.904Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c6eb4f10bede6dfc6424c9b4305e6d54eb03f010a8734609a6379c5da734ec98",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c5eb9db9c427bf33e87285bd9e41d5dc7114dccfc70a6f463fd9d322f3847a26",
+      "plan.md": "b93868f926ff8b487905214a0ddb06ec4186ec5f7f8e98ad57d77d150ea1b589",
+      "tasks.md": "e9181bd53561a982c1bfe15cea3ce39242732b3e33a09cd8e56fcbfeaacf852f",
+      "implementation-summary.md": "c255286a85f022d9170a9d25b907cd9af089ae5c3ce90e0872f9f6c57e1071fc"
+    },
+    "last_active_at": null
+  }
+}

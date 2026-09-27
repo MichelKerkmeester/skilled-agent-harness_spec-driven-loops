@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt framework docs",
+      "sk-prompt 7 against 5 frameworks",
+      "framework-registry subset of seven",
+      "patterns-evaluation section read",
+      "sk-prompt read only chosen framework",
+      "sk-prompt framework docs plan",
+      "patterns-evaluation section read plan",
+      "framework registry description fix",
+      "sk-prompt byte measurement",
+      "sk-prompt framework docs tasks",
+      "framework registry description task",
+      "patterns-evaluation section read task"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "framework",
+      "docs",
+      "against",
+      "frameworks",
+      "framework-registry",
+      "subset",
+      "seven",
+      "patterns-evaluation",
+      "section",
+      "read",
+      "only"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/agents/prompt-improver.md",
+      ".skilled/skills/sk-prompt/assets/framework-registry.json",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".skilled/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "framework-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-prompt/assets/framework-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Not To Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Loading Levels",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-prompt/SKILL.md` promises seven frameworks (lines 3, 12 and 38, rechecked 2026-09-27), and its selection matrix routes to CRISPE and CRAFT (lines 313 and 315)",
+    "created_at": "2026-09-27T11:50:19Z",
+    "last_save_at": "2026-09-27T12:03:33.222Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2a4a2580bc303ed4414e4ffa86ecbd93ff7474bee921b88a13f919b4c45bfba6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "afdd22c78dd7a76eb20f7e7877dc22f0f2088b25e822345da66620b693c14966",
+      "plan.md": "28c647fe7fa95d1b9950e6e3f237acd32626e396cde62ee7161c0b04592ff14d",
+      "tasks.md": "4bd1b96316b7bc7ee002b92261feaa31d951f8033c94af25d10602b0db03d538",
+      "implementation-summary.md": "a8c56ef13976be6eb9405d5940a9f6d43d54394e1ca4941bb6d7dc527e89d718"
+    },
+    "last_active_at": null
+  }
+}

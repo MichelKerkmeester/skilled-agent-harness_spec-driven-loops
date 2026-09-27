@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deem search narrowing arm",
+      "deem spec track narrowing",
+      "jev spec track narrowing",
+      "score-track-narrowing",
+      "track-level retrieval baseline",
+      "narrowing not reranking",
+      "track narrowing plan",
+      "score-track-narrowing plan",
+      "deem narrowing keep rule",
+      "track-level baseline plan",
+      "track narrowing tasks",
+      "score-track-narrowing tasks"
+    ],
+    "key_topics": [
+      "deem",
+      "search",
+      "narrowing",
+      "arm",
+      "spec",
+      "track",
+      "jev",
+      "score-track-narrowing",
+      "track-level",
+      "retrieval",
+      "baseline",
+      "reranking"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "runtime/data/trigger-index.json",
+      "retrieval/README.md",
+      "tests/trigger-index.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-probes.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.vitest.ts",
+        "kind": "test",
+        "path": "tests/trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The committed trigger-index lookup finds exact wording and little else",
+    "created_at": "2026-09-27T11:50:23Z",
+    "last_save_at": "2026-09-27T12:09:49.393Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:819664cb9e099d8a2d55970155e602e43e76f6d3b2531b6b073f8c6e1bd5fd12",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "68f74f61e6022548b4eb56615646c16dc2cfb293cc564324385980bd129fc73e",
+      "plan.md": "11f3d6d83416964412364d50c7dcf398f117eed585d29ab5bb9f1e5f9528e41e",
+      "tasks.md": "8152554d9887b17ac4b75b8dc3f0ae4e82f2617651df55b140effb632168f5d7",
+      "implementation-summary.md": "6da0df721cac948ca2c2cbb57d6fdea45d594100ad0cec08cb63dc27eaa6392a"
+    },
+    "last_active_at": null
+  }
+}

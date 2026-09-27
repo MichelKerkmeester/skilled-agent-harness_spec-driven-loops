@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes",
+  "description": "Phase 15: fanout-merge-and-steering-fixes",
+  "keywords": [
+    "phase",
+    "fanout-merge-and-steering-fixes"
+  ],
+  "lastUpdated": "2026-09-27T11:50:21.942Z",
+  "specId": "015",
+  "folderSlug": "fanout-merge-and-steering-fixes",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check",
+  "description": "sk-design rule 6 says the hub is outside compiled routing while the live front door routes it, the md-generator docs promise an 80-point gate the code lacks, and the hub has no routing accuracy number",
+  "keywords": [
+    "phase",
+    "sk-design-doc-and-routing-check"
+  ],
+  "lastUpdated": "2026-09-27T11:50:20.976Z",
+  "specId": "014",
+  "folderSlug": "sk-design-doc-and-routing-check",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
