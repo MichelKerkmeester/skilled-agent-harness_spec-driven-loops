@@ -98,8 +98,8 @@ string, not these files.
 - [x] I got a Deem install plan with its rollback before any install, and `007-classifier-deep-research/context/deem-local.md` records the 0.8B bf16 passing a health check with latency and memory, or why it does not serve
 - [x] In `007-classifier-deep-research`, lineages `grok`, `deepseek`, `mimo` and `swe` each hold 10 iteration files and `glm` holds 5, and every state log ends `maxIterationsReached`
 - [x] `007-classifier-deep-research/research/research.md`, by a fresh Opus 5.5 max leaf, covers Deem on this Mac, drops that flip under Deem, context reduction, validators, sk-prompt, sk-design, open discovery and build order, ranking each idea with a seam `file:line`, metric, backend gate and smallest slice
-- [ ] 002, 003, 005 and 006 carry the two-backend gate, and each phase the synthesis proposes (`cli-classifier` and `cli-deem` included) and each owner-fix phase 010 to 018 is a Planned child with spec, plan, tasks, goal, binding and phase-map rows
-- [ ] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
+- [x] 002, 003, 005 and 006 carry the two-backend gate, and each phase the synthesis proposes (`cli-classifier` and `cli-deem` included) and each owner-fix phase 010 to 018 is a Planned child with spec, plan, tasks, goal, binding and phase-map rows
+- [x] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -130,7 +130,7 @@ and findings belong here.
 | Round 3 synthesis | Done | `007-classifier-deep-research/research/research.md` (1,665 lines) by a fresh Opus 5.5 max leaf: 2 build-now, 4 next, 18 later, 1 drop, R23 to R26 new. 136 citations checked: 130 resolved, 2 drifted, 4 failed, none load-bearing. The host reopened six citations (all resolved) and checked R1, R19 and R23, R23 by a live wire test: Deem answers `jev-cli`'s `choice` and `score` with HTTP 400 |
 | Round 3 phases | Done | 002, 003, 005 and 006 amended for two backends. `008-cli-classifier-hub` and `009-cli-jev-hub-move` authored as Planned. One Opus 5.5 high leaf per phase |
 | Round 3 close | Done | `validate.sh --strict --recursive`: `RESULT: PASSED` on all 10 folders with 0 errors and 0 warnings. `check-goal.cjs`: 4/4 on the parent and all nine children. `step_convergence_report` recorded `synthesis_incomplete` (57 of 173 count-only findings), as in rounds 1 and 2 |
-| Owner-fix phases | In Progress | 2026-09-27: `create.sh` scaffolded 010 to 018, and one Opus 5.5 high leaf fills each. The parent leaf filled the spec's phase-map, handoff and scope rows and added eight binding rows. Criteria 4 and 5 are reopened until each new child passes `validate.sh --strict` and `check-goal.cjs` |
+| Owner-fix phases | Done | Verified from the final state after `c000edec2f`. Criterion 4: the phase map, the folders on disk and the binding targets are equal sets of 18 (001 to 018), every target `goal.md` exists, and phases 010 to 018 each hold spec, plan, tasks, acceptance-criteria, goal and implementation-summary with status Planned. Criterion 5: `validate.sh --strict --recursive` printed `RESULT: PASSED` for all 19 folders with `Errors: 0  Warnings: 0` and exit 0, and `check-goal.cjs` printed `RESULT: PASSED` on the parent and all 18 children (19 of 19) |
 
 ### Deviations and findings
 
