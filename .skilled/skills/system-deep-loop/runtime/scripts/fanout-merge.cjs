@@ -235,6 +235,57 @@ function loadIterationFindings(root, lineageDir, label) {
   return findingsByRun;
 }
 
+function loadDeltaFindings(root, lineageDir, label) {
+  const deltasDir = path.join(lineageDir, 'deltas');
+  if (!fs.existsSync(deltasDir)) return new Map();
+  requireRealDirectory(root, deltasDir, `lineage ${label} deltas directory`);
+  const findingsByRun = new Map();
+  const remember = (run, value) => {
+    const bucket = findingsByRun.get(run) ?? [];
+    bucket.push(value);
+    findingsByRun.set(run, bucket);
+  };
+  for (const entry of fs.readdirSync(deltasDir, { withFileTypes: true })) {
+    const nameMatch = entry.name.match(/^iter-(\d+)\.jsonl$/);
+    if (!nameMatch) continue;
+    const sourcePath = path.join(deltasDir, entry.name);
+    if (entry.isSymbolicLink() || !entry.isFile()) {
+      throw inputError(`lineage ${label} delta source must be a real file: ${sourcePath}`);
+    }
+    const realFile = resolveOptionalRealFile(root, sourcePath, `lineage ${label} delta source`);
+    const fileRun = Number(nameMatch[1]);
+    const sourceRelative = path.relative(root, realFile).replace(/\\/g, '/');
+    const lines = fs.readFileSync(realFile, 'utf8').split(/\r?\n/);
+    lines.forEach((line) => {
+      if (!line.trim()) return;
+      let record;
+      try {
+        record = JSON.parse(line);
+      } catch {
+        remember(fileRun, null);
+        return;
+      }
+      if (!record || typeof record !== 'object' || record.type !== 'finding') return;
+      const iterationNumber = Number(record.iteration);
+      const run = Number.isFinite(iterationNumber) ? Math.floor(iterationNumber) : fileRun;
+      const text = firstNonEmptyString([record.title, record.label, record.finding, record.text]);
+      if (!text) {
+        remember(run, null);
+        return;
+      }
+      const position = (findingsByRun.get(run)?.length ?? 0) + 1;
+      remember(run, {
+        id: record.id || `delta-finding-${run}-${position}`,
+        title: text,
+        text,
+        addedAtIteration: run,
+        _iteration_source: sourceRelative,
+      });
+    });
+  }
+  return findingsByRun;
+}
+
 function stableValue(value) {
   if (Array.isArray(value)) {
     return value.map(stableValue);
@@ -1037,8 +1088,8 @@ function normalizeResearchFindingCandidate(candidate, record, index) {
   };
 }
 
-function researchCandidatesFromIteration(record, iterationFindingsByRun = new Map()) {
-  if (!record || record.type !== 'iteration') return [];
+function researchCandidatesFromIteration(record, iterationFindingsByRun = new Map(), deltaFindingsByRun = new Map()) {
+  if (!record || record.type !== 'iteration') return { candidates: [], unmatched: 0 };
   const run = Number.isFinite(Number(record.run ?? record.iteration)) ? Math.floor(Number(record.run ?? record.iteration)) : 0;
   const expectedCount = Number(record.findingsCount);
   const structured = [record.keyFindings, record.findings, record.findingDetails]
@@ -1047,7 +1098,7 @@ function researchCandidatesFromIteration(record, iterationFindingsByRun = new Ma
     if (Number.isFinite(expectedCount) && expectedCount > 0 && structured.length !== Math.floor(expectedCount)) {
       throw inputError(`iteration ${run} findingsCount=${Math.floor(expectedCount)} does not match ${structured.length} structured finding(s)`);
     }
-    return structured;
+    return { candidates: structured, unmatched: 0 };
   }
 
   const iterationFindings = iterationFindingsByRun.get(run) ?? [];
@@ -1063,23 +1114,22 @@ function researchCandidatesFromIteration(record, iterationFindingsByRun = new Ma
     : [];
   if (Number.isFinite(expectedCount) && expectedCount > 0) {
     const normalizedExpectedCount = Math.floor(expectedCount);
-    if (iterationFindings.length === normalizedExpectedCount) return iterationFindings;
-    if (graphFindings.length === normalizedExpectedCount) return graphFindings;
-    if (iterationFindings.length > 0 || graphFindings.length > 0) {
-      throw inputError(
-        `iteration ${run} findingsCount=${normalizedExpectedCount} does not match markdown=${iterationFindings.length} or graph=${graphFindings.length} finding evidence`,
-      );
+    if (iterationFindings.length === normalizedExpectedCount) return { candidates: iterationFindings, unmatched: 0 };
+    if (graphFindings.length === normalizedExpectedCount) return { candidates: graphFindings, unmatched: 0 };
+    const deltaFindings = deltaFindingsByRun.get(run) ?? [];
+    if (deltaFindings.length === normalizedExpectedCount && deltaFindings.every(Boolean)) {
+      return { candidates: deltaFindings, unmatched: 0 };
     }
-    throw inputError(`iteration ${run} reports ${normalizedExpectedCount} finding(s) without structured, markdown, or graph finding evidence`);
+    return { candidates: [], unmatched: normalizedExpectedCount };
   }
 
-  if (iterationFindings.length > 0) return iterationFindings;
-  if (graphFindings.length > 0) return graphFindings;
-  return [];
+  if (iterationFindings.length > 0) return { candidates: iterationFindings, unmatched: 0 };
+  if (graphFindings.length > 0) return { candidates: graphFindings, unmatched: 0 };
+  return { candidates: [], unmatched: 0 };
 }
 
 /**
- * Reconstruct a minimal research findings registry from a lineage state log.
+ * Rebuild a research findings registry from a lineage state log, counting what no evidence matches.
  *
  * Leaf-only research lineages may have substantive iteration records but no
  * registry file on disk. This maps state-log findings into keyFindings so the
@@ -1087,20 +1137,22 @@ function researchCandidatesFromIteration(record, iterationFindingsByRun = new Ma
  *
  * @param {Array<Object>} stateRecords - Parsed JSONL state records.
  * @param {string} label - Lineage label, for attribution.
- * @returns {{keyFindings:Array,Object}|null} Reconstructed registry, or null when no findings exist.
+ * @returns {{keyFindings:Array,Object}|null} Rebuilt registry with sourceFindings and reconstructionGaps metrics, or null when it holds neither findings nor counted gaps.
  */
-function reconstructResearchRegistryFromState(stateRecords, label, iterationFindingsByRun = new Map()) {
+function rebuildResearchRegistryFromState(stateRecords, label, iterationFindingsByRun = new Map(), deltaFindingsByRun = new Map()) {
   if (!Array.isArray(stateRecords)) return null;
   const keyFindings = [];
+  let reconstructionGaps = 0;
   for (const record of stateRecords) {
-    const candidates = researchCandidatesFromIteration(record, iterationFindingsByRun);
+    const { candidates, unmatched } = researchCandidatesFromIteration(record, iterationFindingsByRun, deltaFindingsByRun);
+    reconstructionGaps += unmatched;
     candidates.forEach((candidate, index) => {
       const mapped = normalizeResearchFindingCandidate(candidate, record, index);
       if (!mapped) return;
       keyFindings.push({ ...mapped, _lineages: [label] });
     });
   }
-  if (keyFindings.length === 0) return null;
+  if (keyFindings.length === 0 && reconstructionGaps === 0) return null;
   const iterationsCompleted = stateRecords.filter((record) => record?.type === 'iteration').length;
   const latestIteration = stateRecords.filter((record) => record?.type === 'iteration').at(-1);
   const convergenceScore = latestIteration?.convergenceSignals?.compositeStop
@@ -1116,6 +1168,8 @@ function reconstructResearchRegistryFromState(stateRecords, label, iterationFind
       openQuestions: 0,
       resolvedQuestions: 0,
       keyFindings: keyFindings.length,
+      sourceFindings: keyFindings.length,
+      reconstructionGaps,
       convergenceScore,
       coverageBySources: {},
     },
@@ -1123,9 +1177,42 @@ function reconstructResearchRegistryFromState(stateRecords, label, iterationFind
   };
 }
 
-function hasUsableResearchFindings(registry) {
-  return Boolean(registry && [registry.keyFindings, registry.findings]
-    .some((findings) => Array.isArray(findings) && findings.length > 0));
+/**
+ * Reconstruct a minimal research findings registry from a lineage state log.
+ *
+ * Module consumers, the result-envelope legacy shadow among them, compare against this
+ * shape, so it leaves out the gap metrics and returns null when no finding was rebuilt.
+ *
+ * @param {Array<Object>} stateRecords - Parsed JSONL state records.
+ * @param {string} label - Lineage label, for attribution.
+ * @returns {{keyFindings:Array,Object}|null} Reconstructed registry, or null when it rebuilt no finding.
+ */
+function reconstructResearchRegistryFromState(stateRecords, label, iterationFindingsByRun = new Map(), deltaFindingsByRun = new Map()) {
+  const rebuilt = rebuildResearchRegistryFromState(stateRecords, label, iterationFindingsByRun, deltaFindingsByRun);
+  if (!rebuilt || rebuilt.keyFindings.length === 0) return null;
+  const metrics = { ...rebuilt.metrics };
+  delete metrics.sourceFindings;
+  delete metrics.reconstructionGaps;
+  return { ...rebuilt, metrics };
+}
+
+function researchRegistryFindingCount(registry) {
+  if (!registry) return 0;
+  const findings = [registry.keyFindings, registry.findings]
+    .find((value) => Array.isArray(value) && value.length > 0);
+  return Array.isArray(findings) ? findings.length : 0;
+}
+
+function countOnlyResearchFindings(stateRecords) {
+  return stateRecords.reduce((sum, record) => {
+    if (!record || record.type !== 'iteration') return sum;
+    const structured = [record.keyFindings, record.findings, record.findingDetails]
+      .find((value) => Array.isArray(value) && value.length > 0);
+    if (structured) return sum;
+    const numeric = Number(record.findingsCount);
+    if (!Number.isFinite(numeric) || numeric <= 0) return sum;
+    return sum + Math.floor(numeric);
+  }, 0);
 }
 
 function mergeReconstructedResearchRegistry(registry, reconstructed) {
@@ -1207,14 +1294,19 @@ async function main() {
     if (!registry && loopType === 'review') {
       registry = reconstructReviewRegistryFromState(stateRecords, label);
     }
-    if (loopType === 'research' && !hasUsableResearchFindings(registry)) {
+    const registryCount = researchRegistryFindingCount(registry);
+    const countOnlyTotal = countOnlyResearchFindings(stateRecords);
+    if (loopType === 'research' && (registryCount === 0 || registryCount < countOnlyTotal)) {
       // Reconstruction can throw when one iteration's findingsCount contradicts its
-      // structured/markdown/graph evidence. That must degrade only this lineage — left
+      // structured findings array. That must degrade only this lineage — left
       // uncaught, the throw unwinds out of this per-lineage loop and aborts the merge
       // for every other lineage along with it, dropping their findings too.
+      // A lineage that wrote a few summary findings hides its count-only findings
+      // unless a short registry is rebuilt too.
+      const deltaFindingsByRun = loadDeltaFindings(artifactRoot, lineageDir, label);
       let reconstructed = null;
       try {
-        reconstructed = reconstructResearchRegistryFromState(stateRecords, label, iterationFindingsByRun);
+        reconstructed = rebuildResearchRegistryFromState(stateRecords, label, iterationFindingsByRun, deltaFindingsByRun);
       } catch (error) {
         const warning = {
           type: 'lineage_reconstruction_failed',
@@ -1225,10 +1317,17 @@ async function main() {
         reconstructionWarnings.push(warning);
         process.stderr.write(JSON.stringify(warning) + '\n');
       }
-      if (reconstructed) {
-        reconstructed.metrics.sourceFindings = reconstructed.keyFindings.length;
-        reconstructed.metrics.reconstructionGaps = 0;
+      if (reconstructed && (registryCount === 0 || reconstructed.keyFindings.length > registryCount)) {
         registry = mergeReconstructedResearchRegistry(registry, reconstructed);
+      } else if (registryCount > 0) {
+        // A kept registry names its gap whether the rebuild came back short or threw.
+        registry = {
+          ...registry,
+          metrics: {
+            ...(registry.metrics && typeof registry.metrics === 'object' ? registry.metrics : {}),
+            reconstructionGaps: Math.max(0, countOnlyTotal - registryCount),
+          },
+        };
       }
     }
     // Executor provenance is persisted next to the lineage before dispatch; the state
