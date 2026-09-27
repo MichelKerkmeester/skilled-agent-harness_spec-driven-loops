@@ -105,6 +105,7 @@ Every surface next to the changelog work does and describes what ships, and each
 | `.skilled/skills/system-spec-kit/feature-catalog/**`, `manual-testing-playbook/**` | Create, Modify | The identity phrase entry and scenario |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md`, `references/workflows/nested-changelog.md` | Modify | The corpus roots and the version |
 | `.skilled/skills/sk-doc/README.md` | Modify | The version |
+| `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json` | Modify | The release line as a durable directory, which phase 1 created |
 | `.opencode/SYNC.md`, `.opencode/README.md` | Modify | The links that exist |
 | `.skilled/changelog/skilled/v4.0.0.2.md` | Modify | The Changelogs section |
 | `specs/system-speckit/027-xce-research-based-refinement/graph-metadata.json`, `specs/sk-git/023-live-follow-disjoint-ff/graph-metadata.json` | Modify | `parent_id` as JSON null |

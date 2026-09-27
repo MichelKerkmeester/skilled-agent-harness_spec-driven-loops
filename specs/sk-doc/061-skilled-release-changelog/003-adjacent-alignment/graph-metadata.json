@@ -60,7 +60,7 @@
       ".opencode/README.md",
       ".skilled/changelog/skilled/v4.0.0.2.md",
       ".hermes/skills/sk-doc/SKILL.md",
-      "references/workflows/nested-changelog.md"
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json"
     ],
     "entities": [
       {
@@ -160,9 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "nested-changelog.md",
-        "kind": "doc",
-        "path": "references/workflows/nested-changelog.md",
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 1 and 2 changed what a changelog is, and several surfaces next to them still describe or perform the old behavior",
     "created_at": "2026-09-27T17:18:04Z",
-    "last_save_at": "2026-09-27T18:34:57.490Z",
+    "last_save_at": "2026-09-27T18:56:10.122Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b977b92d1e2bd15de1d75d04cd4b96275fc05ee6dda87d6f0813269706243c2",
+    "source_fingerprint": "sha256:36ac07e106a7596ea1e02cd189e960a9b111017a060073f5034317f7d6a00727",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9efebbe5f803058710742c28809cc9628313f80690725851c7a9bd782810420d",
+      "spec.md": "f14205b5b34d3551ace8a078fdc42fa221d2cf90c224c76af5e7646127f4101a",
       "plan.md": "a2cbc09d7f1e2d3c33667c52c35279701d05405dd19a2865d25c6e8e24a48de7",
-      "tasks.md": "1b6bf400c747ba157b84608603c703636ca72e5a2036d09bb03db6ff83033e8d",
-      "implementation-summary.md": "382189d2c9c7e6a1788e5c6ae1e6fcb89cfaceb8c81ac5d64233d3a3e95e8f23"
+      "tasks.md": "151b5eb2482ffd2e16b08f634fb05ba15fa89f4e9593b526eba919e34618dd8a",
+      "implementation-summary.md": "91ba5562bc72f6b32e3c1976b5db0350b6b6852a47fa0d939854464f97ff8eee"
     },
     "last_active_at": null
   }

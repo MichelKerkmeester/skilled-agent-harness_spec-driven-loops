@@ -69,6 +69,7 @@ contextType: "implementation"
 - [x] T021 Rerun each reproduction and confirm it now passes (`acceptance-criteria.md` AC-001 to AC-003, AC-009)
 - [x] T022 Run the suites, the validator sweep, the playbook and catalog validators, the drift guards and the voice scan (AC-004, AC-006, AC-007, AC-011, drift guards exit 0)
 - [x] T023 Validate this folder and the parent with `validate.sh --strict` (both `RESULT: PASSED`, 0 errors and 0 warnings, the parent recursively)
+- [x] T024 Refresh the frozen README manifest, which CI's sk-doc Script Tests failed on from the push that created `.skilled/changelog/skilled/` (`test_readme_manifest.py` reproduces 827 of 827)
 <!-- /ANCHOR:phase-3 -->
 
 ---
