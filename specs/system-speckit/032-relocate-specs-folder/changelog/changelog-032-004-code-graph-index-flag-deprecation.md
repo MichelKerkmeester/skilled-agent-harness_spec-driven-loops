@@ -2,8 +2,8 @@
 title: "Changelog: Code Graph Index Flag Deprecation [032/004]"
 description: "Chronological changelog for removing the dead SPECKIT_CODE_GRAPH_INDEX_* maintainer-mode flag mechanism."
 trigger_phrases:
-  - "phase changelog"
   - "code graph index flag deprecation"
+  - "relocate specs folder code graph index flag deprecation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

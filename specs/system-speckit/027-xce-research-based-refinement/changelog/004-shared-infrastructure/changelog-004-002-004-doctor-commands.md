@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/002 004 doctor commands changelog"
   - "doctor command presentation split"
   - "doctor diagnostics dashboard"
+  - "shared infrastructure doctor commands changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

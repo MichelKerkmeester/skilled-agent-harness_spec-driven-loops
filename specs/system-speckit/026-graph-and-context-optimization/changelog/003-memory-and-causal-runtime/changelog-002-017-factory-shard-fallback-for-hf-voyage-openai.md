@@ -7,6 +7,7 @@ trigger_phrases:
   - "ADR-012 provider resolver follow-on"
   - "context-vectors shard naming audit"
   - "no non-Ollama active embedder resolver"
+  - "memory and factory shard fallback for hf voyage openai changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

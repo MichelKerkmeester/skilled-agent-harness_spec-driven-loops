@@ -2,9 +2,7 @@
 title: "Changelog: Phase 22: system-spec-kit Frontmatter Alignment [009-skill-frontmatter-alignment/022-system-spec-kit]"
 description: "Chronological changelog for the Phase 22: system-spec-kit Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup system spec kit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

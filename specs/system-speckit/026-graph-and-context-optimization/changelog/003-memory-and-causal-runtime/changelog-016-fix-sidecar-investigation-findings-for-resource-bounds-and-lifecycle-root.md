@@ -5,6 +5,7 @@ trigger_phrases:
   - "016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle rollup"
   - "016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle phase parent"
   - "016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle changelog index"
+  - "fix sidecar investigation findings for resource bounds and lifecycle changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

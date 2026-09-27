@@ -7,6 +7,7 @@ trigger_phrases:
   - "CG-002 CG-006 CG-007 CG-008 CG-009 CG-010 CG-037 deferred"
   - "cg-remediation branch deferred findings"
   - "code graph audit wip conflict revert"
+  - "code graph deferred wip overlapping findings changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

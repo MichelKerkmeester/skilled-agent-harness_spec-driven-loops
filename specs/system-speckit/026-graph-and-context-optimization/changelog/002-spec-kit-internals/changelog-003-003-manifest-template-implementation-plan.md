@@ -7,6 +7,7 @@ trigger_phrases:
   - "level-contract resolver"
   - "inline gate renderer"
   - "legacy template removal"
+  - "spec kit internals manifest template implementation plan changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

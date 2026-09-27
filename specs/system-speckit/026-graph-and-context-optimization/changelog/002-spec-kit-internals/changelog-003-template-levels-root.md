@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-template-levels rollup"
   - "003-template-levels phase parent"
   - "003-template-levels changelog index"
+  - "spec kit internals template levels changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

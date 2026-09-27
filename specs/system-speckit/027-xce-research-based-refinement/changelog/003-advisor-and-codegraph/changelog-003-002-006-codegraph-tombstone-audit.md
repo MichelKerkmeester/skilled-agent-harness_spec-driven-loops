@@ -5,6 +5,7 @@ trigger_phrases:
   - "003/002 006 codegraph tombstone changelog"
   - "code graph tombstone audit"
   - "SPECKIT_CODE_GRAPH_TOMBSTONES"
+  - "advisor and codegraph tombstone audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

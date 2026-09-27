@@ -7,6 +7,7 @@ trigger_phrases:
   - "corpus parity gate deep-research"
   - "optimizer manifest configpaths rename"
   - "sk-deep to deep rename phase 3"
+  - "operator tooling advisor adjacent 116 realignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

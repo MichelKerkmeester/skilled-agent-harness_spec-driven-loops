@@ -2,9 +2,7 @@
 title: "Changelog: Novelty, Claims, Continuity & Projections [002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections]"
 description: "Changelog for the novelty, claims, continuity and projections phase: semantic communities, contradiction/supersession events, claim continuity, next-focus semantics, and transactional projections and gauges."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "novelty claims continuity and projections changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "secondary launcher attach bridge"
   - "lease held by no bridge socket"
   - "socket-server ipc skill-advisor code-index"
+  - "daemon bridge socket for skill advisor and code index changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

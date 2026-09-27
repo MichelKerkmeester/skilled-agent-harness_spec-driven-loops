@@ -2,9 +2,7 @@
 title: "Changelog: Read-Only cli-codex Deep-Alignment Audit Leaf [007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf]"
 description: "Run the cli-codex deep-alignment leaf under --sandbox read-only and move iteration-artifact writing to the dispatch wrapper so the leaf can never reach for apply_patch."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "executor wiring and cli codex read only audit leaf changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

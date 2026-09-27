@@ -5,6 +5,7 @@ trigger_phrases:
   - "durability stress domain"
   - "stress durability checkpoint enrichment recycle"
   - "014 004 stress test changelog"
+  - "memory and causal runtime stress test durability domain changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

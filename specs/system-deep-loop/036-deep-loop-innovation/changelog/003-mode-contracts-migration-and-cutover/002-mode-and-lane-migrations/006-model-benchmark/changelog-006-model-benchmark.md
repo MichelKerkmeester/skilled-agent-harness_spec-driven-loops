@@ -2,9 +2,7 @@
 title: "Changelog: Model Benchmark Migration [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark]"
 description: "Changelog for the model benchmark migration group: migrating the model-benchmark variant's multi-model runs and scoring matrix onto the typed event-ledger substrate."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "model benchmark changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correctness, profile-keyed DB naming cleanup, operator docs & catalog drift, fixture refresh, legacy dependency/comment residue. cli-codex gpt-5.5 reasoning=high service_tier=standard (NOT fast). [001-local-embeddings-foundation/030-post-027-findings-remediation]"
 description: "Chronological changelog for the Fix all 21 P1 + 16 P2 findings from 027 deep-review. 6 workstreams: profile identity & dtype contract, provider fallback correctness, profile-keyed DB naming cleanup, operator docs & catalog drift, fixture refresh, legacy dependency/comment residue. cli-codex gpt-5.5 reasoning=high service_tier=standard (NOT fast). phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "memory and causal runtime post 027 findings remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "phase DAG runner code graph"
   - "diff hunk symbol attribution"
   - "012/002 shipped"
+  - "graph impact and affordance code graph phase runner changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "004-fix-deep-research-findings rollup"
   - "004-fix-deep-research-findings phase parent"
   - "004-fix-deep-research-findings changelog index"
+  - "release and program cleanup fix deep research findings changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "codex userpromptsubmit hook"
   - "codex startup context injection"
   - "codex advisor brief hook"
+  - "operator tooling codex native startup advisor hooks changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

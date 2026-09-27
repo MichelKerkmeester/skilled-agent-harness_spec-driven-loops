@@ -2,9 +2,7 @@
 title: "Changelog: Deep Review - Sealed Reference Artifacts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts]"
 description: "Changelog for the deep review sealed reference artifacts phase: content-addressed, immutable reference artifacts for the deep review mode."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep review sealed artifacts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

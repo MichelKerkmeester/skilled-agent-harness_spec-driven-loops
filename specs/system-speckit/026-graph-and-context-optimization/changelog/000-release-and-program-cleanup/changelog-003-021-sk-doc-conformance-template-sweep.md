@@ -7,6 +7,7 @@ trigger_phrases:
   - "feature catalog cleanup"
   - "templates sharded removal"
   - "stress-test rename stress_test"
+  - "release and program cleanup sk doc conformance template sweep changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "embeddinggemma removal"
   - "bootstrap precedence chain embedder"
   - "ensureActiveEmbedder daemon bootstrap"
+  - "memory and auto embedder selection and llama cpp purge changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

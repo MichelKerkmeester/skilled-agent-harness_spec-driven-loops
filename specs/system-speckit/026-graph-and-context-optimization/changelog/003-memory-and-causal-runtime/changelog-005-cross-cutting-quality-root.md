@@ -5,6 +5,7 @@ trigger_phrases:
   - "005-cross-cutting-quality rollup"
   - "005-cross-cutting-quality phase parent"
   - "005-cross-cutting-quality changelog index"
+  - "memory and causal runtime cross cutting quality changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

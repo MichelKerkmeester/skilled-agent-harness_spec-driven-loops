@@ -2,9 +2,7 @@
 title: "Changelog: Speckit Commands - Router Rewire [002-speckit-commands/003-router-rewire]"
 description: "Chronological changelog for the Speckit Commands - Router Rewire phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared infrastructure router rewire changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

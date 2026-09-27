@@ -7,6 +7,7 @@ trigger_phrases:
   - "enable tool search research"
   - "token waste findings"
   - "f1-f24 recommendation set"
+  - "research and baseline claude optimization settings changelog"
 importance_tier: "important"
 contextType: "research"
 ---

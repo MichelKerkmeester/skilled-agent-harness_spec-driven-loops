@@ -7,6 +7,7 @@ trigger_phrases:
   - "rerank ab benchmark hold"
   - "rerank sidecar arc phase 004"
   - "cat-24 benchmark fixture"
+  - "memory and causal runtime spec memory rerank benchmark changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

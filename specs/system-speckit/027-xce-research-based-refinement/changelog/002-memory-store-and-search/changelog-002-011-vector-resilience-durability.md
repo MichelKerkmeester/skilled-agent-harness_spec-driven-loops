@@ -6,6 +6,7 @@ trigger_phrases:
   - "repair pending sentinel completeness check"
   - "shard repair survives restart"
   - "027 002/011 shipped"
+  - "memory store and search vector resilience durability changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

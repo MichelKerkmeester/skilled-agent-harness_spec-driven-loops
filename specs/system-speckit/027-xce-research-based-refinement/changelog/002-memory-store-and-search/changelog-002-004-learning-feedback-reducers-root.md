@@ -5,6 +5,7 @@ trigger_phrases:
   - "004-learning-feedback-reducers rollup"
   - "004-learning-feedback-reducers phase parent"
   - "learning feedback reducers changelog index"
+  - "memory store and search learning feedback reducers changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

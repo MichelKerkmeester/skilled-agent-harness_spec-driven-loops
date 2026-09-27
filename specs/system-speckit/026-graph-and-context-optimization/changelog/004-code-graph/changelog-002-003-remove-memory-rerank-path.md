@@ -2,9 +2,7 @@
 title: "Changelog: Remove mk-spec-memory local cross-encoder path [002-deprecate-coco-index/003-remove-memory-rerank-path]"
 description: "Chronological changelog for the Remove mk-spec-memory local cross-encoder path phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph remove memory rerank path changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

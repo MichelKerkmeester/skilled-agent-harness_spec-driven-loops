@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Graph Preservation
 trigger_phrases:
   - "graph-preservation-quality-benchmark changelog"
   - "former 021-graph-preservation-quality-benchmark"
-  - "nested changelog"
+  - "dark flag graduation graph preservation quality benchmark changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

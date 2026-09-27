@@ -7,6 +7,7 @@ trigger_phrases:
   - "009 memory leak phase 10"
   - "operator runbook process cleanup"
   - "bundled regression sweep 009"
+  - "memory and causal runtime final regression and operator runbook changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

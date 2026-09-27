@@ -7,6 +7,7 @@ trigger_phrases:
   - "v3 remediation local embeddings"
   - "launcher parity spec kit memory"
   - "hf-local q8 default"
+  - "memory and causal runtime v3 remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

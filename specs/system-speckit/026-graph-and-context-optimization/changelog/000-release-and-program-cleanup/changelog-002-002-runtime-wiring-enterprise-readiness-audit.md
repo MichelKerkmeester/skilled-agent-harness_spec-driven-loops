@@ -7,6 +7,7 @@ trigger_phrases:
   - "telemetry first search audit"
   - "phase g runtime wiring"
   - "enterprise readiness audit wiring"
+  - "release and program cleanup runtime wiring enterprise readiness audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

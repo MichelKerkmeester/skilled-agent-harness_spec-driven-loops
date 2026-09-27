@@ -7,6 +7,7 @@ trigger_phrases:
   - "system to embedder mapping"
   - "ollama bge promotion indexer research"
   - "which system uses cocoindex or mk-spec-memory"
+  - "memory and causal runtime indexer surface investigation changelog"
 importance_tier: "important"
 contextType: "research"
 ---

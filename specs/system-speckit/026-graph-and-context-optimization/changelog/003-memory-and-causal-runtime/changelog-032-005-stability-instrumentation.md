@@ -7,6 +7,7 @@ trigger_phrases:
   - "circuit flap telemetry"
   - "memory_health process pid rss"
   - "circuit breaker flapping boolean"
+  - "memory and causal runtime stability instrumentation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

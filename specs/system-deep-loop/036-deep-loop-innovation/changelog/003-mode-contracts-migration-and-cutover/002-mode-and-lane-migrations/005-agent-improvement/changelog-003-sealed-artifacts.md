@@ -2,9 +2,7 @@
 title: "Changelog: Agent Improvement - Sealed Reference Artifacts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/003-sealed-artifacts]"
 description: "Changelog for the agent improvement sealed reference artifacts phase: content-addressed, immutable artifacts for the agent-improvement variant."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "agent improvement sealed artifacts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

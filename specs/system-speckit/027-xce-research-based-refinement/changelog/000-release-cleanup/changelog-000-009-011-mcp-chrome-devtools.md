@@ -2,9 +2,7 @@
 title: "Changelog: Phase 11: mcp-chrome-devtools Frontmatter Alignment [009-skill-frontmatter-alignment/011-mcp-chrome-devtools]"
 description: "Chronological changelog for the Phase 11: mcp-chrome-devtools Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup mcp chrome devtools changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

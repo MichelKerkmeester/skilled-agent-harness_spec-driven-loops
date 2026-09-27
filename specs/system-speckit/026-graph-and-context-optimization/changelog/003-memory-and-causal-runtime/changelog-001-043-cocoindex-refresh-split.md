@@ -7,6 +7,7 @@ trigger_phrases:
   - "refresh_index default false"
   - "mcp search no implicit refresh"
   - "cocoindex mcp refresh split 043"
+  - "memory and causal runtime cocoindex refresh split changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

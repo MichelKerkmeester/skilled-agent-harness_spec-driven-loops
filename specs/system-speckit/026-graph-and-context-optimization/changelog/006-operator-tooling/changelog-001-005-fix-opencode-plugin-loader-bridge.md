@@ -7,6 +7,7 @@ trigger_phrases:
   - "opencode plugin bridge isolation"
   - "skill-advisor hook remap opencode"
   - "plugin_bridges relocation"
+  - "operator tooling fix opencode plugin loader bridge changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

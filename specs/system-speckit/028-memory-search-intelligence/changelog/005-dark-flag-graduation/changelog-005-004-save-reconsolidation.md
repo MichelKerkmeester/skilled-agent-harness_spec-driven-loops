@@ -2,9 +2,7 @@
 title: "Changelog: Save-Reconsolidation Merge Precision [005-dark-flag-graduation/004-save-reconsolidation]"
 description: "Chronological changelog for the save-reconsolidation merge precision benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation save reconsolidation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

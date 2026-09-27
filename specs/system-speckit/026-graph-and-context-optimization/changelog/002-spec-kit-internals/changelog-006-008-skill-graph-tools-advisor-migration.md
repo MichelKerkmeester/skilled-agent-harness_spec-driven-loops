@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill_graph tools move to advisor"
   - "move skill_graph_ handlers"
   - "mcp__system_skill_advisor__skill_graph"
+  - "spec kit internals skill graph tools advisor migration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Code Graph Source Bug & Misalignment Audit [011-source-bug-and-misalignment-audit/001-source-bug-audit-findings]"
 description: "Chronological changelog for the Code Graph Source Bug & Misalignment Audit phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph source bug audit findings changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

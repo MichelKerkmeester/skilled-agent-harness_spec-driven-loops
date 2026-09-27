@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Drift-Marker Nativ
 trigger_phrases:
   - "drift-marker-native-consolidation changelog"
   - "former 022-drift-marker-native-consolidation"
-  - "nested changelog"
+  - "speckit memory drift marker native consolidation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

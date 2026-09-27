@@ -2,9 +2,7 @@
 title: "Changelog: Append Gateway and Legacy Projection [012-runtime-enablement/001-append-gateway-and-projection]"
 description: "Append gateway that binds, validates, authorizes, fences, and projects every mode event, plus the first production legacy projection contract and shell CLI entry point."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement append gateway and projection changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

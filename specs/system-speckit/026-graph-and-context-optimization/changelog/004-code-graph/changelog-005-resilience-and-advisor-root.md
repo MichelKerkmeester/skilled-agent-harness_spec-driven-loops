@@ -5,6 +5,7 @@ trigger_phrases:
   - "005-resilience-and-advisor rollup"
   - "005-resilience-and-advisor phase parent"
   - "005-resilience-and-advisor changelog index"
+  - "code graph resilience and advisor changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Content-Addressed Derived ID for Derived Causal Artifacts [001-speckit-memory/009-derived-id-provenance]"
 description: "Chronological changelog for the content-addressed derived ID for derived causal artifacts phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory derived id provenance changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

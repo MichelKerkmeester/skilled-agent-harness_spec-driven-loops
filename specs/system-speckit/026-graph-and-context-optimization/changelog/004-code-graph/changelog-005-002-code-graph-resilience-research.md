@@ -7,6 +7,7 @@ trigger_phrases:
   - "code graph recovery playbook"
   - "exclude-rule confidence tiers"
   - "code graph verification battery"
+  - "code graph resilience research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

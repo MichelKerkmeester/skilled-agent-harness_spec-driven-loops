@@ -7,6 +7,7 @@ trigger_phrases:
   - "deprecated tier bulk delete memory"
   - "fts vec mismatch orphan files diagnosis"
   - "findAdvisorWorkspaceRoot strict sentinel"
+  - "release and program runtime root memory cleanup followup fixes changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

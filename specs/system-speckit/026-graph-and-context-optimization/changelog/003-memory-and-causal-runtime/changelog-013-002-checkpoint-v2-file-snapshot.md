@@ -6,6 +6,7 @@ trigger_phrases:
   - "vacuum into checkpoint create restore"
   - "checkpoint v2 gate-fix sharded runtime"
   - "checkpoint restore journal crash-safety"
+  - "memory and causal runtime checkpoint v2 file snapshot changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

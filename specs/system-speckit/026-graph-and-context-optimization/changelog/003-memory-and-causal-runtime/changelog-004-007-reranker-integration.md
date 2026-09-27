@@ -7,6 +7,7 @@ trigger_phrases:
   - "COCOINDEX_RERANK opt-in"
   - "reranker.py cocoindex"
   - "hybrid RRF reranker integration"
+  - "memory and causal runtime reranker integration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

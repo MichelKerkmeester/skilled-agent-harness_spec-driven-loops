@@ -6,6 +6,7 @@ trigger_phrases:
   - "governance alignment changelog"
   - "comment hygiene checker broadened"
   - "verify alignment drift severity"
+  - "release and program cleanup governance alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

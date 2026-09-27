@@ -9,6 +9,7 @@ trigger_phrases:
   - "cli-opencode deepseek deferred dispatch"
   - "semicolon sweep skill advisor"
   - "documentation quality refactor"
+  - "spec kit internals finalize documentation quality refactor changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

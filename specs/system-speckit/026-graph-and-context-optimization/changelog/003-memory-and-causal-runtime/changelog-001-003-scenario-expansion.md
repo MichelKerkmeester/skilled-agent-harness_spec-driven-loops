@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk-spec-memory scenario coverage gaps"
   - "embedder tooling playbook scenarios"
   - "cat-24 calibration repair"
+  - "memory and causal runtime scenario expansion changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

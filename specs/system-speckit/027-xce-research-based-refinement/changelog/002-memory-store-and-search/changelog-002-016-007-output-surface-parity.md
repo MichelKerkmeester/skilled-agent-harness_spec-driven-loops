@@ -6,6 +6,7 @@ trigger_phrases:
   - "one score one scale one name similarity"
   - "ban confidence percentage rendered output"
   - "surface parity command direct conversation"
+  - "memory store and search output surface parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "post-014 test suite partial"
   - "hf-local llama-cpp test coverage"
   - "local embedding feature validation"
+  - "memory and causal runtime local llm feature test suite changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

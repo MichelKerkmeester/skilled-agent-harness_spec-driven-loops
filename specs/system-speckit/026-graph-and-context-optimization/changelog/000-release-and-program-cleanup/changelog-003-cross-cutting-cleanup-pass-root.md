@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-cross-cutting-cleanup-pass rollup"
   - "003-cross-cutting-cleanup-pass phase parent"
   - "003-cross-cutting-cleanup-pass changelog index"
+  - "release and program cleanup cross cutting cleanup pass changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

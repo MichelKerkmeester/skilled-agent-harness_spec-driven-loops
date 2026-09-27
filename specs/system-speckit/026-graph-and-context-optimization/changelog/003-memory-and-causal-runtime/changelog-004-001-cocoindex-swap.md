@@ -7,6 +7,7 @@ trigger_phrases:
   - "jina-embeddings-v2-base-code default"
   - "cocoindex embedder default"
   - "018/001 cocoindex"
+  - "memory and causal runtime cocoindex swap changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

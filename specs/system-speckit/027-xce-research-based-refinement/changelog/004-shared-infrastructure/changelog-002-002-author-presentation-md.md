@@ -2,9 +2,7 @@
 title: "Changelog: Speckit Commands - Author Presentation Markdown [002-speckit-commands/002-author-presentation-md]"
 description: "Chronological changelog for the Speckit Commands - Author Presentation Markdown phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared infrastructure author presentation md changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

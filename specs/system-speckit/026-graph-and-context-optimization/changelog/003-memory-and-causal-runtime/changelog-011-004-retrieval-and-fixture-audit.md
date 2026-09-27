@@ -7,6 +7,7 @@ trigger_phrases:
   - "candidate coverage zero pre-rerank 011-004"
   - "RETRIEVAL_WORK branch decision arc 011"
   - "fixture freshness audit rerank sidecar"
+  - "memory and causal runtime retrieval and fixture audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "resolveIpcSocketPath missing dir"
   - "code-graph socket startup crash"
   - "allowed socket root canonicalize"
+  - "mcp daemon reliability ipc socket dir canonicalize changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

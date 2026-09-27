@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/005/005 spec-folder metadata reconciliation changelog"
   - "description.json omitted children parity"
   - "phase parent stale pointer fix"
+  - "verification and remediation spec folder metadata reconciliation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

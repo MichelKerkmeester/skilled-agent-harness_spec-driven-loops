@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory_health index freshness block"
   - "incremental index orphan sweep move reconciliation"
   - "013 memory index implementation changelog"
+  - "memory and causal runtime memory index scan implementation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

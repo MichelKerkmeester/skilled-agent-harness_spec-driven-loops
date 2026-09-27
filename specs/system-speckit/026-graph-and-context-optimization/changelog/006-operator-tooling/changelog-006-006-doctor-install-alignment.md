@@ -8,6 +8,7 @@ trigger_phrases:
   - "code-graph db path docs"
   - "doctor mutation class read-only"
   - "tool count drift 36"
+  - "operator tooling doctor install alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

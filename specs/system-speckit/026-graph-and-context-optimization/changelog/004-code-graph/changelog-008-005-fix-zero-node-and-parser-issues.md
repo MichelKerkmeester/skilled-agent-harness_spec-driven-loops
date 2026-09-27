@@ -2,9 +2,7 @@
 title: "Changelog: Code-Graph Bug Remediation [008-real-world-usefulness-test-planning/005-fix-zero-node-and-parser-issues]"
 description: "Chronological changelog for the Code-Graph Bug Remediation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph fix zero node and parser issues changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

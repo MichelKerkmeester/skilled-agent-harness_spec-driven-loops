@@ -6,6 +6,7 @@ trigger_phrases:
   - "warmup rss 687 to 136"
   - "chunked packed postings width promotion"
   - "027 002/010 shipped"
+  - "memory store and search bm25 warmup churn reduction changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

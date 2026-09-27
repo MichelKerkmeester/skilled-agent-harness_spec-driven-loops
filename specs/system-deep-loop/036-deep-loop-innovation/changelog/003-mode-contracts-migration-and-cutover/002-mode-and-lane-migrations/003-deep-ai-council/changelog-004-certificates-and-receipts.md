@@ -2,9 +2,7 @@
 title: "Changelog: Deep AI Council - Certificates & Receipts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/004-certificates-and-receipts]"
 description: "Changelog for the deep ai council certificates and receipts phase: per-run certificates and per-transition receipts over the typed event-ledger substrate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep ai council certificates and receipts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

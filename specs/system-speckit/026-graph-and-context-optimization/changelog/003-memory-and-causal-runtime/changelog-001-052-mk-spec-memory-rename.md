@@ -6,6 +6,7 @@ trigger_phrases:
   - "spec-kit-memory MCP server rename"
   - "MCP namespace rename mk-spec-memory"
   - "spec_kit_memory to mk_spec_memory migration"
+  - "memory and causal runtime mk spec memory rename changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

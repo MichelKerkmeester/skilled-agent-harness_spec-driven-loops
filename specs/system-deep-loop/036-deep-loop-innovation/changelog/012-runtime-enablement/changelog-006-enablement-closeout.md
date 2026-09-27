@@ -2,9 +2,7 @@
 title: "Changelog: Enablement Closeout [012-runtime-enablement/006-enablement-closeout]"
 description: "Claim sweep identifying the unreachable flip precondition, epic status reconciliation, feature catalog, and manual-testing playbook against the finalized runtime."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement closeout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

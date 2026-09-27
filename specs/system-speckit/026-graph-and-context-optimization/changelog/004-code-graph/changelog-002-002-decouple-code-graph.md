@@ -2,9 +2,7 @@
 title: "Changelog: Decouple system-code-graph from CocoIndex [002-deprecate-coco-index/002-decouple-code-graph]"
 description: "Chronological changelog for the Decouple system-code-graph from CocoIndex phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph decouple code graph changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

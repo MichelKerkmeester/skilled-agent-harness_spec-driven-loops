@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 011 changelog"
   - "tree-sitter dist path fix"
   - "cross-file calls resolution"
+  - "code graph broader scope excludes changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

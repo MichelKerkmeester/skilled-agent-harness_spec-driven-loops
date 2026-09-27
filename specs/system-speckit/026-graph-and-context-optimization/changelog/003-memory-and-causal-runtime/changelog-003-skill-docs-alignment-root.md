@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-skill-docs-alignment rollup"
   - "003-skill-docs-alignment phase parent"
   - "003-skill-docs-alignment changelog index"
+  - "memory and causal runtime skill docs alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

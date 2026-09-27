@@ -7,6 +7,7 @@ trigger_phrases:
   - "socket symlink reject fail closed"
   - "session id dfs bound"
   - "deploy-mcp.sh rebuild recycle helper"
+  - "release and program cleanup last 50 commits review remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

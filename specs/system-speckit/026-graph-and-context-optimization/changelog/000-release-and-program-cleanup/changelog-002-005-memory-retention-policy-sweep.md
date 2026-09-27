@@ -7,6 +7,7 @@ trigger_phrases:
   - "retention policy sweep"
   - "memory_retention_sweep tool"
   - "governed memory cleanup"
+  - "release and program cleanup memory retention policy sweep changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

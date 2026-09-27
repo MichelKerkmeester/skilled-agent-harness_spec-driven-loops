@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill-id drift gold matching"
   - "advisor validate gold comparison"
   - "advisor validate accuracy recovery"
+  - "spec kit internals advisor validate alias matching changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

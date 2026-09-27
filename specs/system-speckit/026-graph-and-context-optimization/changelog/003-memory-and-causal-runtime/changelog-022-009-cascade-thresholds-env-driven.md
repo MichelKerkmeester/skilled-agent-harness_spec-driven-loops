@@ -7,6 +7,7 @@ trigger_phrases:
   - "auto-select.ts timing constants"
   - "cascade probe timeout env"
   - "022 009 cascade"
+  - "memory and causal runtime cascade thresholds env driven changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

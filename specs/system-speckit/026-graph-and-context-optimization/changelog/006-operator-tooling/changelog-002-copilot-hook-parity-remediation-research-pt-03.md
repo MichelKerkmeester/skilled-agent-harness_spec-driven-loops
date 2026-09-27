@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 009/002 research pt-03 changelog"
   - "copilot schema crash research"
   - "copilot neither bash nor powershell"
+  - "operator tooling copilot hook parity remediation research pt 03 changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

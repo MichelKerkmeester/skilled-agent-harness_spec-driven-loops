@@ -2,9 +2,7 @@
 title: "Changelog: Async Sleep-Time Consolidation [001-speckit-memory/018-sleeptime-consolidation]"
 description: "Chronological changelog for the async sleep-time consolidation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory sleeptime consolidation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

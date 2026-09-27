@@ -7,6 +7,7 @@ trigger_phrases:
   - "structural semantic retrieval fusion"
   - "027 memory context research"
   - "split-payload response shape"
+  - "release and program cleanup memory context structural channel research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

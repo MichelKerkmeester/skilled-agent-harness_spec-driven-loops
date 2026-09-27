@@ -7,6 +7,7 @@ trigger_phrases:
   - "spec packet path leak fix"
   - "command asset provenance cleanup"
   - "032 doc cleanup"
+  - "release and program public doc internal spec reference removal changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -4,6 +4,7 @@ description: "Review-only phase. Tier-2 code review of Copilot hook parity remed
 trigger_phrases:
   - "phase 009/002 review pt-01 changelog"
   - "copilot tier2 review"
+  - "operator tooling copilot hook parity remediation review pt 01 changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

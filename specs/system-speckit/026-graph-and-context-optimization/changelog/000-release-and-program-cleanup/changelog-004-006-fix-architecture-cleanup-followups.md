@@ -7,6 +7,7 @@ trigger_phrases:
   - "F-018-D3 schema duplication"
   - "watcher orchestrator split"
   - "architecture cleanup remediation 006"
+  - "release and program cleanup fix architecture cleanup followups changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "embedding stack concurrency fix"
   - "shutdown marker atomic swap reindex"
   - "launcher lease child pid supervision"
+  - "memory and causal runtime single writer durability cluster changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

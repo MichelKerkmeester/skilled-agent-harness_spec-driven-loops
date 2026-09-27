@@ -7,6 +7,7 @@ trigger_phrases:
   - "validate-doc-model-refs.js fix"
   - "reactive-EOF idle kill mitigation"
   - "RERANKER_CANONICAL voyage cohere"
+  - "memory and causal runtime arc 022 followons changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

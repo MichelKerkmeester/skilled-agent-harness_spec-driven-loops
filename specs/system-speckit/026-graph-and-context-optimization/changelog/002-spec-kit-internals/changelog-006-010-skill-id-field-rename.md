@@ -7,6 +7,7 @@ trigger_phrases:
   - "align skill_advisor graph id"
   - "advisor graph health fix"
   - "parity drift rr-iter3-146"
+  - "spec kit internals skill id field rename changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

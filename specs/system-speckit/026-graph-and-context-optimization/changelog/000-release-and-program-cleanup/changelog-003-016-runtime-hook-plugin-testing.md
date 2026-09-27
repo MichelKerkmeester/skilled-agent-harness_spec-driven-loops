@@ -7,6 +7,7 @@ trigger_phrases:
   - "hook live testing matrix"
   - "cli hook runner results"
   - "016-runtime-hook-plugin-testing"
+  - "release and program cleanup runtime hook plugin testing changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

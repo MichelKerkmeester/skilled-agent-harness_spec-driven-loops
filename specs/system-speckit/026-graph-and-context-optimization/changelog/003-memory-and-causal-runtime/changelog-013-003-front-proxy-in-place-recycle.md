@@ -6,6 +6,7 @@ trigger_phrases:
   - "launcher reconnecting frame proxy"
   - "transparent reconnect rss recycle"
   - "createSessionProxy backend-only daemon"
+  - "memory and causal runtime front proxy in place recycle changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

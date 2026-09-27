@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Presentation-Layer
 trigger_phrases:
   - "presentation-layer-fixes changelog"
   - "former 006-presentation-layer-fixes"
-  - "nested changelog"
+  - "speckit surface alignment presentation layer fixes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

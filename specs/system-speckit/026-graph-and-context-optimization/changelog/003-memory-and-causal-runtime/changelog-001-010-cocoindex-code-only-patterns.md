@@ -7,6 +7,7 @@ trigger_phrases:
   - "DEFAULT_INCLUDED_PATTERNS doc cleanup"
   - "cocoindex skill mirror dedup 010"
   - "014/010 code-only done"
+  - "memory and causal runtime cocoindex code only patterns changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Make Alignment Coverage, Seal State and Lane Identity Provable [006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity]"
 description: "Changelog for the alignment-coverage integrity phase: making alignment coverage fail closed, lane identity injective and agreed between the two readers, and coverage credit evidence-bound."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity hardening alignment coverage integrity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

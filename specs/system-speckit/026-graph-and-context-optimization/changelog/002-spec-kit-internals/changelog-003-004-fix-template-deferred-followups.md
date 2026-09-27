@@ -7,6 +7,7 @@ trigger_phrases:
   - "template validation orchestrator"
   - "template manifest versions"
   - "canonical save advisory lock"
+  - "spec kit internals fix template deferred followups changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

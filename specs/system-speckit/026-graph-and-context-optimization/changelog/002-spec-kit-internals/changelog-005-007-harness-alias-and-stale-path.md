@@ -7,6 +7,7 @@ trigger_phrases:
   - "lane weight sweep stale path"
   - "skill advisor alias groups"
   - "deep- alias resolution"
+  - "spec kit internals harness alias and stale path changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

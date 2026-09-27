@@ -2,9 +2,7 @@
 title: "Changelog: Lexical-Grounding Floor [001-speckit-memory/026-lexical-grounding-floor]"
 description: "Chronological changelog for the lexical-grounding floor phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory lexical grounding floor changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

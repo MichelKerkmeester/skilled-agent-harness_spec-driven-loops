@@ -2,9 +2,7 @@
 title: "Changelog: devin + cursor Fan-out Exec Hardening [007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening]"
 description: "Re-map the devin and cursor lineage builders from live-verified CLI behavior so read-only leaves are genuinely read-only and workspace-write leaves never stall."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "cli executor fanout parity devin cursor exec hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

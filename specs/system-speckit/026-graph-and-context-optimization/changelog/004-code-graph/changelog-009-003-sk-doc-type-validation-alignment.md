@@ -2,9 +2,7 @@
 title: "Changelog: 003-sk-doc-type-validation-alignment [009-system-code-graph-uplift-phase-parent/003-sk-doc-type-validation-alignment]"
 description: "Chronological changelog for the 003-sk-doc-type-validation-alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph sk doc type validation alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

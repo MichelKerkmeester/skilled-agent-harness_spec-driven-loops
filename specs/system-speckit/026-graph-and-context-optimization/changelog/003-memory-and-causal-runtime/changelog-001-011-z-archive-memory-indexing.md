@@ -7,6 +7,7 @@ trigger_phrases:
   - "ARCHIVE_MULTIPLIERS decay fix"
   - "index-scope z_archive exclusion"
   - "memory index decay multiplier"
+  - "memory and causal runtime z archive memory indexing changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "spawn-three regression test"
   - "launcher boundary pid race"
   - "daemon sqlite launcher asymmetry"
+  - "memory and causal runtime skill advisor zombie launcher fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

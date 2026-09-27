@@ -9,6 +9,7 @@ trigger_phrases:
   - "skill advisor README sweep"
   - "026 sk-code findings"
   - "README compliance 97 percent"
+  - "spec kit internals sk code readme audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

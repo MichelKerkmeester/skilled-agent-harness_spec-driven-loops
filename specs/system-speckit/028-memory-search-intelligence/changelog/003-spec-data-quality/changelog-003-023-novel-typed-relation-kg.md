@@ -2,9 +2,7 @@
 title: "Changelog: Novel typed-relation KG auto-extracted [003-spec-data-quality/004-novel-research/023-novel-typed-relation-kg]"
 description: "Chronological changelog for the Novel typed-relation KG auto-extracted phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality novel typed relation kg changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

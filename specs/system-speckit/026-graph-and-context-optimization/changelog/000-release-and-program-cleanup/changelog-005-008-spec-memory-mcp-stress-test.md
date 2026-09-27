@@ -7,6 +7,7 @@ trigger_phrases:
   - "345 playbook scenarios"
   - "39 mcp tools sweep"
   - "z_archive post-113 validation"
+  - "release and program cleanup spec memory mcp stress test changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

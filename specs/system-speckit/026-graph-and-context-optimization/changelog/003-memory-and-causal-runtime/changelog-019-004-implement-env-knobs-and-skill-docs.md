@@ -7,6 +7,7 @@ trigger_phrases:
   - "reaper telemetry path forwarding"
   - "start.sh reaper allowlist"
   - "rerank sidecar lifecycle docs"
+  - "memory and causal implement env knobs and skill docs changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

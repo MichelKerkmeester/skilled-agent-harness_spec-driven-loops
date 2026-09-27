@@ -2,9 +2,7 @@
 title: "Changelog: Innovation Gap Remediation [009-innovation-gap-remediation]"
 description: "Measurement and traceability, substrate identity fail-closed, pilot-mode cutover, fleet authority cutover with legacy-writer retirement, and closeout drift reconciliation for the 036 gap-analysis findings."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "innovation gap remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

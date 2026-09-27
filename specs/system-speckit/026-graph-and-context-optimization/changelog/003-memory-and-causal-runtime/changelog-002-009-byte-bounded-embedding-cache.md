@@ -7,6 +7,7 @@ trigger_phrases:
   - "embedding cache byte budgets"
   - "input kind document query cache"
   - "embedding cache profile key migration"
+  - "memory and causal runtime byte bounded embedding cache changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

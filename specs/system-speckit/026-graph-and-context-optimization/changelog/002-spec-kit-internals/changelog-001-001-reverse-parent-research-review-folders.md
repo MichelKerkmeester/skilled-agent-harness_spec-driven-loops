@@ -7,6 +7,7 @@ trigger_phrases:
   - "deep loop folder placement rollback"
   - "migrate misplaced child packets"
   - "review-research-paths rollback"
+  - "spec kit internals reverse parent research review folders changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

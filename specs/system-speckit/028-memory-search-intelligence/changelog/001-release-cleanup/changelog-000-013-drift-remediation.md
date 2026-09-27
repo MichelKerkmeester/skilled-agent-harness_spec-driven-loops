@@ -2,9 +2,8 @@
 title: "Changelog: Drift Remediation [000-release-cleanup/013-drift-remediation]"
 description: "Chronological changelog for the post-release drift-audit remediation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "drift remediation"
+  - "release cleanup drift remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

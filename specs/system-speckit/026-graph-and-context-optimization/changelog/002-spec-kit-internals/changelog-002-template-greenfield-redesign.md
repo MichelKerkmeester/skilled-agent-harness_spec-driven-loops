@@ -7,6 +7,7 @@ trigger_phrases:
   - "C+F hybrid"
   - "capability flags"
   - "manifest-driven design"
+  - "spec kit internals template greenfield redesign changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "strict validate memory_save divergence"
   - "shouldBypassTemplateContract spec doc"
   - "memory save dry-run rejection spec doc"
+  - "memory and causal runtime template contract divergence changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

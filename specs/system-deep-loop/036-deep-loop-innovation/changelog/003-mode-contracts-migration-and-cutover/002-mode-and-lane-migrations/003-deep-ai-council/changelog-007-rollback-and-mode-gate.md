@@ -2,9 +2,7 @@
 title: "Changelog: Deep AI Council - Rollback & Mode Gate [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate]"
 description: "Changelog for the deep ai council rollback and mode gate phase: the fail-closed rollback switch and independent mode gate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep ai council rollback and mode gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

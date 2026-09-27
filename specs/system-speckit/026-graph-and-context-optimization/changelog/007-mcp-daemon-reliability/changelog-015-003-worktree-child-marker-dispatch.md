@@ -7,6 +7,7 @@ trigger_phrases:
   - "cli-codex child session marker"
   - "cli-opencode child session marker"
   - "orchestrated sub-session worktree sharing"
+  - "mcp daemon reliability worktree child marker dispatch changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "ollama embedder registry cocoindex"
   - "nomic-embed-text cocoindex"
   - "ollama daemon readiness gate"
+  - "memory and causal runtime cocoindex ollama adapter changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

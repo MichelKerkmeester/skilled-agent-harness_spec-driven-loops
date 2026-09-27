@@ -7,6 +7,7 @@ trigger_phrases:
   - "copilot live wrapper spec kit gap"
   - "5-runtime hook review"
   - "hook parity P0 findings"
+  - "release and program cleanup cross runtime hook parity audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

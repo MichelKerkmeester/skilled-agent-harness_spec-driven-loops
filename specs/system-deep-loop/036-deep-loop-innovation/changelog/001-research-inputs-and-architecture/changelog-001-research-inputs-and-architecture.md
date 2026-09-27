@@ -2,9 +2,7 @@
 title: "Changelog: Research Inputs and Architecture [001-research-inputs-and-architecture]"
 description: "Market and effectiveness research, baseline taxonomy and state census, and the architecture coverage and transition contract."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "research inputs and architecture changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

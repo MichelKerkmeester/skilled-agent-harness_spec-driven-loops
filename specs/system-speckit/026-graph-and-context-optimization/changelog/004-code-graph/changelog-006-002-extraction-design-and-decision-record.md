@@ -7,6 +7,7 @@ trigger_phrases:
   - "system-code-graph ADR-001"
   - "code graph topology co-resident decision"
   - "code graph tool-id stability research"
+  - "code graph extraction design and decision record changelog"
 importance_tier: "important"
 contextType: "research"
 ---

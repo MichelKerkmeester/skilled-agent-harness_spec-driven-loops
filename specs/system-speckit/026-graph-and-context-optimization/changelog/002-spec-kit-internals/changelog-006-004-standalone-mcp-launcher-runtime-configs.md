@@ -6,6 +6,7 @@ trigger_phrases:
   - "system_skill_advisor runtime config"
   - "skill-advisor-launcher.cjs"
   - "advisor mcp registration"
+  - "spec kit internals standalone mcp launcher runtime configs changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

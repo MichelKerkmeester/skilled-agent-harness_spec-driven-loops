@@ -2,9 +2,7 @@
 title: "Changelog: mk-code-index reconnecting session proxy [007-mcp-daemon-reliability/020-code-index-reconnecting-proxy]"
 description: "Chronological changelog for the mk-code-index reconnecting session proxy phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability code index reconnecting proxy changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

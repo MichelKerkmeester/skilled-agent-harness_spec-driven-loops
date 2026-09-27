@@ -2,9 +2,7 @@
 title: "Changelog: Transition-Authorized Ledger Core [002-substrate-and-orchestration/002-transition-authorized-ledger-core]"
 description: "Changelog for the transition-authorized ledger core phase: co-landed versioned event envelope, typed append-only ledger, replay fingerprints, and fail-closed transition-authorization gateway as one dark substrate."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "transition authorized ledger core changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

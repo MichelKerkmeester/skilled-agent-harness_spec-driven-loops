@@ -7,6 +7,7 @@ trigger_phrases:
   - "multi-ai-council reference frontmatter"
   - "predicates folder readme"
   - "sk-doc canonical template alignment"
+  - "release and program cleanup documentation alignment readme fill in changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "audit 033 034 036 typescript"
   - "import type tsdoc audit"
   - "post-program quality pass 001"
+  - "release and program cleanup sk code opencode standards audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

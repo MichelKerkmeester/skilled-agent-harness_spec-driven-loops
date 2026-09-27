@@ -7,6 +7,7 @@ trigger_phrases:
   - "cli-copilot Gate 3 bypass fix"
   - "targetAuthority discriminated union"
   - "P0 cli-copilot mutation remediation"
+  - "release and program cleanup copilot target authority gate helper changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 012/004 changelog"
   - "F-002 zero-node guard"
   - "F-003 parse-error preservation"
+  - "code graph remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

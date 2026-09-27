@@ -7,6 +7,7 @@ trigger_phrases:
   - "spec kit internals reorg"
   - "003-template-levels phase"
   - "sweep fleet marker"
+  - "spec kit internals sweep fleet marker validation changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

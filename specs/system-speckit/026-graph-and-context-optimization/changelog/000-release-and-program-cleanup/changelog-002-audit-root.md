@@ -5,6 +5,7 @@ trigger_phrases:
   - "002-audit rollup"
   - "002-audit phase parent"
   - "002-audit changelog index"
+  - "release and program cleanup audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Deep Improvement Common Services - Certificates and Receipts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts]"
 description: "Changelog for the deep improvement common services certificates and receipts phase: per-run certificates and per-transition receipts over the typed event-ledger substrate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep improvement common certificates and receipts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

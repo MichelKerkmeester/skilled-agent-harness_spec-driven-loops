@@ -2,9 +2,7 @@
 title: "Changelog: Stream-Fold Gauges [002-substrate-and-orchestration/003-shared-evidence-and-control-services/005-stream-fold-gauges]"
 description: "Changelog for the stream-fold gauges phase: observability gauges computed as deterministic folds over the ledger event stream."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared evidence and control services stream fold gauges changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

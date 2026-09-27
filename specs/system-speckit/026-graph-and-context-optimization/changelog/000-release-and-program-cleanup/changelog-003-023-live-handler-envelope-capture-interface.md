@@ -7,6 +7,7 @@ trigger_phrases:
   - "search decision envelope audit test"
   - "handleMemorySearch behavioral seam"
   - "decision audit JSONL capture"
+  - "release and program cleanup live handler envelope capture interface changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

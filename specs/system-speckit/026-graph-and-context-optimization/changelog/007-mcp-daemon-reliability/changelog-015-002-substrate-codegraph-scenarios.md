@@ -4,9 +4,7 @@
 title: "Changelog: Substrate Code-Graph scenario tool-contract fix [015-infra-followup-hardening/002-substrate-codegraph-scenarios]"
 description: "Three substrate playbooks called code_graph_query(query, num_results) which was always rejected because that tool requires operation+subject. Corrected to code_graph_context(input, queryMode: neighborhood)."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability substrate codegraph scenarios changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

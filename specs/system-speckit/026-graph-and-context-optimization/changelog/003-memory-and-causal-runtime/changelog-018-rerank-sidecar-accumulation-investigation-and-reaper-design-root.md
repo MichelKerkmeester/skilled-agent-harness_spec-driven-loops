@@ -5,6 +5,7 @@ trigger_phrases:
   - "018-rerank-sidecar-accumulation-investigation-and-reaper-design rollup"
   - "018-rerank-sidecar-accumulation-investigation-and-reaper-design phase parent"
   - "018-rerank-sidecar-accumulation-investigation-and-reaper-design changelog index"
+  - "memory and rerank sidecar accumulation investigation and reaper design changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

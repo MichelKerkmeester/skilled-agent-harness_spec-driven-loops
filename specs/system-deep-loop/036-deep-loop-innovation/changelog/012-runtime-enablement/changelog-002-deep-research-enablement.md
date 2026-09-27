@@ -2,9 +2,7 @@
 title: "Changelog: Deep-Research Enablement [012-runtime-enablement/002-deep-research-enablement]"
 description: "Pilot mode write-protocol migration onto the append gateway, authority flip on observed classification evidence, and post-flip fan-out proving the legacy file is a pure projection."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement deep research enablement changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

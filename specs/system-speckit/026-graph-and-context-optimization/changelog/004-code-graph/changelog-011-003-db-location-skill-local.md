@@ -7,6 +7,7 @@ trigger_phrases:
   - "spec-kit database path fix"
   - "fix 1 db relocation"
   - "CG-038 reversal"
+  - "code graph db location skill local changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

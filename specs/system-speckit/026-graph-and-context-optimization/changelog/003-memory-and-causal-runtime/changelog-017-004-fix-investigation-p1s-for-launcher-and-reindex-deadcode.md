@@ -7,6 +7,7 @@ trigger_phrases:
   - "ensure-rerank-sidecar atomic owner token"
   - "sidecar env allowlist fix"
   - "reindex dead cancellation polling removal"
+  - "memory fix investigation p1s for launcher and reindex deadcode changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "buildCopilotPromptArg test coverage"
   - "cli-matrix vitest rewrite"
   - "promptFileBody dispatch test"
+  - "release and program cleanup cli copilot dispatch test parity changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

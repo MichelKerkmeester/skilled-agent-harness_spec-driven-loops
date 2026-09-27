@@ -7,6 +7,7 @@ trigger_phrases:
   - "daemon task registry shutdown"
   - "memory leak remediation phase 006"
   - "remove project cancel index"
+  - "memory and causal cocoindex remove cancel and index lifecycle changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

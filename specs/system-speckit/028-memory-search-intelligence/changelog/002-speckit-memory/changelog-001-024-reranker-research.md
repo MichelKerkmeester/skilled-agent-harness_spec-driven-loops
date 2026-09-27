@@ -2,9 +2,7 @@
 title: "Changelog: Citation-Ledger Reranker Research [001-speckit-memory/024-reranker-research]"
 description: "Chronological changelog for the citation-ledger reranker research phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory reranker research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

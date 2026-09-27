@@ -7,6 +7,7 @@ trigger_phrases:
   - "cosine embedding seed"
   - "intent prompt sweep real"
   - "seeded corpus evaluation"
+  - "spec kit internals seeded corpus evaluation sweep changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

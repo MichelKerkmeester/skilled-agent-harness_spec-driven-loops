@@ -2,9 +2,7 @@
 title: "Changelog: Phase 16: sk-doc Frontmatter Alignment [009-skill-frontmatter-alignment/016-sk-doc]"
 description: "Chronological changelog for the Phase 16: sk-doc Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup sk doc changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

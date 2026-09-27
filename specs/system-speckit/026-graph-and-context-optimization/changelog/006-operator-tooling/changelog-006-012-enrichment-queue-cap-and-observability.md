@@ -2,9 +2,7 @@
 title: "Changelog: Cap the enrichment queue and expose scheduler health [006-operator-tooling/012-enrichment-queue-cap-and-observability]"
 description: "Chronological changelog for the Cap the enrichment queue and expose scheduler health phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "operator tooling enrichment queue cap and observability changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

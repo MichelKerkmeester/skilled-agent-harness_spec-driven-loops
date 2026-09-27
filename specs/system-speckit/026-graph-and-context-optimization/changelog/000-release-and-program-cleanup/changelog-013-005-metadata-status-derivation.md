@@ -6,6 +6,7 @@ trigger_phrases:
   - "table status fallback changelog"
   - "deriveStatus draft fix"
   - "026 027 metadata reconciliation"
+  - "release and program cleanup metadata status derivation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

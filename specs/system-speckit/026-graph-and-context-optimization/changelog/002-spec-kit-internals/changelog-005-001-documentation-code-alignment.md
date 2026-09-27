@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill-advisor manual testing playbook"
   - "Phase 020 code alignment audit"
   - "hook-routing smoke test"
+  - "spec kit internals documentation code alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

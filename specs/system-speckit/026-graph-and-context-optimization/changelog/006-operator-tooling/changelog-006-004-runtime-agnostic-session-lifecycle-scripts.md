@@ -2,9 +2,7 @@
 title: "Changelog: Runtime-agnostic session lifecycle scripts [006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts]"
 description: "The session-lifecycle shell scripts now work across every AI CLI runtime instead of solely Claude Code, and the orphan sweeper no longer kills an operator's opencode run MCP children."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "operator tooling runtime agnostic session lifecycle scripts changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

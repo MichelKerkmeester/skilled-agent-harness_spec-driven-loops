@@ -2,9 +2,7 @@
 title: "Changelog: Envelope Fidelity Enforcement [001-speckit-memory/027-envelope-fidelity-enforcement]"
 description: "Chronological changelog for the envelope fidelity enforcement phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory envelope fidelity enforcement changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Drift Census and Plan Revalidation [004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation]"
 description: "Changelog for the drift census and plan revalidation phase: census the drift since the 036 planning baseline and return a per-phase verdict with commit-level and path:line evidence."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "gate closeout and drift census and plan revalidation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

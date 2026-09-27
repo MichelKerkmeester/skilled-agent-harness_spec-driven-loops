@@ -2,9 +2,7 @@
 title: "Changelog: Rewrite sk-create-changelog template and workflow to the v4 narrative style [057-sk-create-changelog-v4-style/root]"
 description: "Chronological changelog for the Rewrite sk-create-changelog template and workflow to the v4 narrative style spec root."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "sk create changelog v4 style changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

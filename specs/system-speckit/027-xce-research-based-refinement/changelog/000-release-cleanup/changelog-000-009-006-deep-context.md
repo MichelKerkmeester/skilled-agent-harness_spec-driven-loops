@@ -2,9 +2,7 @@
 title: "Changelog: Phase 6: deep-context Frontmatter Alignment [009-skill-frontmatter-alignment/006-deep-context]"
 description: "Chronological changelog for the Phase 6: deep-context Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup deep context changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

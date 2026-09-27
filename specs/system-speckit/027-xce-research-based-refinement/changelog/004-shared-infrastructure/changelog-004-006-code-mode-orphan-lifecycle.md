@@ -6,6 +6,7 @@ trigger_phrases:
   - "stdio server exits with session"
   - "ppid orphan reap"
   - "027 004/006 shipped"
+  - "shared infrastructure code mode orphan lifecycle changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

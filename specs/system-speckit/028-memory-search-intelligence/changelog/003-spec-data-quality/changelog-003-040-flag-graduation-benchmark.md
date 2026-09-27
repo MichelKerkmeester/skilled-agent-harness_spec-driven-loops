@@ -2,9 +2,7 @@
 title: "Changelog: Flag Graduation Benchmark [003-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark]"
 description: "Chronological changelog for the flag graduation benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality flag graduation benchmark changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

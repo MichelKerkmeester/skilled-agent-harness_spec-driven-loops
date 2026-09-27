@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/001 004 vector checkpoint changelog"
   - "vector checkpoint lane disposition"
   - "remediation lane 004"
+  - "verification and remediation vector and checkpoint durability changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

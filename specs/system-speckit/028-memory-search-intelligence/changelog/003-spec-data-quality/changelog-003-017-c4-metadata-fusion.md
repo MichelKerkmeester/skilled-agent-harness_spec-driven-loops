@@ -2,9 +2,7 @@
 title: "Changelog: C4 metadata fusion alpha-blend [003-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion]"
 description: "Chronological changelog for the C4 metadata fusion alpha-blend phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality c4 metadata fusion changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "fresh regression remediation rollup"
   - "027 75 seat three model review changelog"
   - "remediate every deep-review finding rollup"
+  - "verification and remediation fresh regression remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

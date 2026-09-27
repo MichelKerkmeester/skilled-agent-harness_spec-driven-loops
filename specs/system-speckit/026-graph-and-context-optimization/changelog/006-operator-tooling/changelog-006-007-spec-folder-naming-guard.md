@@ -2,9 +2,7 @@
 title: "Changelog: Spec-Folder Naming-Convention Guard [006-operator-tooling/007-spec-folder-naming-guard]"
 description: "Chronological changelog for the Spec-Folder Naming-Convention Guard phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "operator tooling spec folder naming guard changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

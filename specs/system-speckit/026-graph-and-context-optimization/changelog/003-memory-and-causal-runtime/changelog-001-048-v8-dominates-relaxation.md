@@ -7,6 +7,7 @@ trigger_phrases:
   - "parent handover V8 false positive"
   - "direct child spec allowlist"
   - "validate-memory-quality dominance threshold"
+  - "memory and causal runtime v8 dominates relaxation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

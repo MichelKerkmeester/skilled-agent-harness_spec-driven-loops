@@ -2,9 +2,7 @@
 title: "Changelog: Shared Evidence & Control Services [002-substrate-and-orchestration/003-shared-evidence-and-control-services]"
 description: "Changelog for the shared evidence and control services phase: receipts + effect recovery, sealed reference artifacts, blinded adjudication, hierarchical typed budgets, stream-fold gauges, locks/fencing, and continuity identities."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "shared evidence and control services changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

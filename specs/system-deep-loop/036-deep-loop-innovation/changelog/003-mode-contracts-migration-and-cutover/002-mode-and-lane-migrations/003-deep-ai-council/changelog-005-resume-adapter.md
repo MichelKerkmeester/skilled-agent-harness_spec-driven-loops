@@ -2,9 +2,7 @@
 title: "Changelog: Deep AI Council Resume Adapter [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter]"
 description: "Changelog for the deep ai council resume adapter phase: reconstructing interrupted multi-seat deliberations from the sealed ledger."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep ai council resume adapter changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

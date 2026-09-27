@@ -2,9 +2,7 @@
 title: "Changelog: Code-Graph Edge Lifecycle Dark-Flag Benchmark [005-dark-flag-graduation/006-codegraph-edge-lifecycle]"
 description: "Chronological changelog for the code-graph edge lifecycle dark-flag benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation codegraph edge lifecycle changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

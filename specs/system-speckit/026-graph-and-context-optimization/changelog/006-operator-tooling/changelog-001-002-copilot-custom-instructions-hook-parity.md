@@ -7,6 +7,7 @@ trigger_phrases:
   - "copilot managed context block"
   - "copilot advisor brief workaround"
   - "copilot user-prompt-submit hook"
+  - "operator tooling copilot custom instructions hook parity changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

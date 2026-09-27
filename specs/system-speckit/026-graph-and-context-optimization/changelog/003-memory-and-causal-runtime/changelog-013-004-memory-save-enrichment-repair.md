@@ -6,6 +6,7 @@ trigger_phrases:
   - "schema v30 enrichment marker"
   - "repair on replay scan backfill"
   - "post-insert enrichment completion"
+  - "memory and causal runtime memory save enrichment repair changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

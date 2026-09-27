@@ -7,6 +7,7 @@ trigger_phrases:
   - "retry retention non-destructive"
   - "call-time retention config"
   - "embedding backlog prevention"
+  - "memory and causal runtime embedding status integrity changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

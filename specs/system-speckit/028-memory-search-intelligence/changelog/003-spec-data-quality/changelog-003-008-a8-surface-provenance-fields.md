@@ -2,9 +2,7 @@
 title: "Changelog: A8 Surface Provenance Fields [003-spec-data-quality/001-on-write-quality/008-surface-provenance-fields]"
 description: "Chronological changelog for the A8 Surface Provenance Fields phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a8 surface provenance fields changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

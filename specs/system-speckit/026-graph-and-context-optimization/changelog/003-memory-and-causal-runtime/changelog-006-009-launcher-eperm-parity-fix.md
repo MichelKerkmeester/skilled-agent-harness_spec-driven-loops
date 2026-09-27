@@ -7,6 +7,7 @@ trigger_phrases:
   - "launcher EPERM parity"
   - "leaseHeldFromFile EPERM"
   - "009 eperm parity"
+  - "memory and causal runtime launcher eperm parity fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

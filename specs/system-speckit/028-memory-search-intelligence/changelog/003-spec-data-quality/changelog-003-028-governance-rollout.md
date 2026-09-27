@@ -2,9 +2,7 @@
 title: "Changelog: Governance and Rollout Layer [003-spec-data-quality/005-shared-engine-and-research/028-governance-rollout]"
 description: "Chronological changelog for the Governance and Rollout Layer phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality governance rollout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

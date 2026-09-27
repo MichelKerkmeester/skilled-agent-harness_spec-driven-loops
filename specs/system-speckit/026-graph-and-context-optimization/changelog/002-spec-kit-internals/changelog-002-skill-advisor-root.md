@@ -5,6 +5,7 @@ trigger_phrases:
   - "002-skill-advisor rollup"
   - "002-skill-advisor phase parent"
   - "002-skill-advisor changelog index"
+  - "spec kit internals skill advisor changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

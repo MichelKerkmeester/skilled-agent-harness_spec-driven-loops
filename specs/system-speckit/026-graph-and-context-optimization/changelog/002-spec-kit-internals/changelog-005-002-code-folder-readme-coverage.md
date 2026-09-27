@@ -4,9 +4,7 @@
 title: "Changelog: Phase B sk-doc-aligned READMEs for system-skill-advisor"
 description: "system-skill-advisor had 7 files failing sk-doc validation. Phase B closed the gap by authoring 2 new fixture READMEs and adding TOC anchor blocks to 5 existing READMEs."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec kit internals code folder readme coverage changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

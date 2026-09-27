@@ -2,9 +2,7 @@
 title: "Changelog: Sealed Reference Artifacts [002-substrate-and-orchestration/003-shared-evidence-and-control-services/002-sealed-reference-artifacts]"
 description: "Changelog for the sealed reference artifacts phase: immutable content-addressed artifact store sealed into replay evidence."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared evidence and control services sealed reference artifacts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/001 008 doc truth changelog"
   - "doc truth test fidelity disposition"
   - "remediation lane 008"
+  - "verification and remediation doc truth and test fidelity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

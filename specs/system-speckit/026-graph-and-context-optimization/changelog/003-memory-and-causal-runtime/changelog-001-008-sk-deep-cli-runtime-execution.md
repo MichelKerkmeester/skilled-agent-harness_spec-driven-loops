@@ -7,6 +7,7 @@ trigger_phrases:
   - "sk-deep-research cli-codex dispatch"
   - "EXECUTOR_KIND_FLAG_SUPPORT"
   - "prompt pack iteration template"
+  - "memory and causal runtime sk deep cli runtime execution changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

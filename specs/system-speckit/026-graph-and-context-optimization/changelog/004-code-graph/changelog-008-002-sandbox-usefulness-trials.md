@@ -2,9 +2,7 @@
 title: "Changelog: Real-World Usefulness Test Execution [008-real-world-usefulness-test-planning/002-sandbox-usefulness-trials]"
 description: "Chronological changelog for the Real-World Usefulness Test Execution phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph sandbox usefulness trials changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

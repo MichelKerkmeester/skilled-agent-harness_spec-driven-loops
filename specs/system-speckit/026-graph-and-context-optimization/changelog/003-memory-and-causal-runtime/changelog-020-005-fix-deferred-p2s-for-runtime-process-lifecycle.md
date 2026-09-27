@@ -7,6 +7,7 @@ trigger_phrases:
   - "reindex execution-router lifecycle"
   - "InvalidDatabaseDirError reindex"
   - "adapter rotation credential cache clear"
+  - "memory and fix deferred p2s for runtime process lifecycle changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

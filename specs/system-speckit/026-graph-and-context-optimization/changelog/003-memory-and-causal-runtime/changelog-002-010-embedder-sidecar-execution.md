@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar_workers memory health"
   - "execution router embedder policy"
   - "local embedder process boundary"
+  - "memory and causal runtime embedder sidecar execution changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

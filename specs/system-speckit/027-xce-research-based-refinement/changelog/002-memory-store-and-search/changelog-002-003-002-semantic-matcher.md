@@ -6,6 +6,7 @@ trigger_phrases:
   - "semantic trigger shadow matcher"
   - "cosine trigger matching"
   - "SPECKIT_SEMANTIC_TRIGGERS flag"
+  - "memory store and search semantic matcher changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

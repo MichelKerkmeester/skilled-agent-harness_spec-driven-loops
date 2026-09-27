@@ -2,9 +2,7 @@
 title: "Changelog: Ledger Read Cache [012-runtime-enablement/008-ledger-read-cache]"
 description: "Opt-in, default-off verified-events read cache on AppendOnlyLedger, enabled on the per-lineage effect ledger for a measured ~40% per-dispatch win."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement ledger read cache changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

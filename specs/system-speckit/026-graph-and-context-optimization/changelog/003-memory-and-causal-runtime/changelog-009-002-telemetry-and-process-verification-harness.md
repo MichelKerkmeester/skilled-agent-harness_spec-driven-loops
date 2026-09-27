@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory leak remediation phase 002"
   - "dry-run process evidence collector"
   - "harness fixture tests"
+  - "memory and causal runtime telemetry and process verification harness changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

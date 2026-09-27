@@ -2,9 +2,7 @@
 title: "Changelog: Clean runtime artifacts, hooks, sweeper [002-deprecate-coco-index/008-runtime-artifacts-cleanup]"
 description: "Chronological changelog for the Clean runtime artifacts, hooks, sweeper phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph runtime artifacts cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

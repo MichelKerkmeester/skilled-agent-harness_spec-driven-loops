@@ -2,9 +2,7 @@
 title: "Changelog: A9 Read-Time Content-Hash Integrity Verification [003-spec-data-quality/001-on-write-quality/009-content-hash-integrity]"
 description: "Chronological changelog for the A9 Read-Time Content-Hash Integrity Verification phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a9 content hash integrity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

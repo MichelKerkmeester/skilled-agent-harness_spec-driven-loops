@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph impact affordance review"
   - "006/007 closure verification"
   - "D1 detect_changes path traversal finding"
+  - "graph impact and affordance deep research review changelog"
 importance_tier: "important"
 contextType: "review"
 ---

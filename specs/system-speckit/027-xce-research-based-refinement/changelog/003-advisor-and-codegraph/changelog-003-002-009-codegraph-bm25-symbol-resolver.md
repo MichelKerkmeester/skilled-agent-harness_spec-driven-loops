@@ -5,6 +5,7 @@ trigger_phrases:
   - "003/002 009 codegraph BM25 symbol changelog"
   - "BM25 fuzzy symbol lookup"
   - "code graph symbol resolver"
+  - "advisor and codegraph bm25 symbol resolver changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

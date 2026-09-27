@@ -2,9 +2,7 @@
 title: "Changelog: Authority Registry CAS Reduction [012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction]"
 description: "F7 CAS-mutator reduction of authority-registry.ts plus resequenced F4 flip-authority.cjs removal, keeping the read path and lock family byte-for-byte."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "delete overengineering authority registry cas reduction changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

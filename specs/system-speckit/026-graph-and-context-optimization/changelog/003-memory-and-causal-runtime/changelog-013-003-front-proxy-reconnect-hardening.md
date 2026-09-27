@@ -6,6 +6,7 @@ trigger_phrases:
   - "protocol-drift fail-closed re-handshake"
   - "multi-client reconnect transparency"
   - "launcher session proxy bridge"
+  - "memory and causal runtime front proxy reconnect hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

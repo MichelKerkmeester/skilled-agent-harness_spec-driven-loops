@@ -5,6 +5,7 @@ trigger_phrases:
   - "010-scouted-bugfix-train rollup"
   - "010-scouted-bugfix-train phase parent"
   - "010-scouted-bugfix-train changelog index"
+  - "release and program cleanup scouted bugfix train changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

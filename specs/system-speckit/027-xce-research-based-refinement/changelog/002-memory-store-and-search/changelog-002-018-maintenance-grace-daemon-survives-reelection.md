@@ -6,6 +6,7 @@ trigger_phrases:
   - "daemon reaped mid-reindex by contending launcher fix"
   - "maintenance-active marker launcher adopt guard"
   - "027 002/018 shipped"
+  - "memory store and search maintenance grace daemon survives reelection changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 008 changelog"
   - "skill graph daemon"
   - "advisor unification"
+  - "spec kit internals skill graph daemon and advisor unification changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

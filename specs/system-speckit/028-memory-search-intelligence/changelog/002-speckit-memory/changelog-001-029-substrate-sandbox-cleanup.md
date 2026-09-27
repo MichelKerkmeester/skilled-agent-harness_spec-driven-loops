@@ -2,9 +2,7 @@
 title: "Changelog: Substrate Stress Harness Sandbox Cleanup [001-speckit-memory/029-substrate-sandbox-cleanup]"
 description: "Chronological changelog for the substrate stress harness sandbox cleanup phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory substrate sandbox cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/002 005 deep commands changelog"
   - "deep command router split"
   - "deep presentation assets"
+  - "shared infrastructure deep commands changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

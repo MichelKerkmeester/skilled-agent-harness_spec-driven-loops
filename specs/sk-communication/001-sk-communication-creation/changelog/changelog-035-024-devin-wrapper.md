@@ -2,9 +2,8 @@
 title: "Changelog: Phase 24 Devin Wrapper [035-improved-communication/024-devin-wrapper]"
 description: "Chronological changelog for the Phase 24 Devin Wrapper phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation devin wrapper changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

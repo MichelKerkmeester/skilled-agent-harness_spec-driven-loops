@@ -2,9 +2,7 @@
 title: "Changelog: Catalog and Playbook Coverage Audit [000-release-cleanup/010-catalog-playbook-coverage-audit]"
 description: "Chronological changelog for the catalog and playbook coverage audit phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup catalog playbook coverage audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

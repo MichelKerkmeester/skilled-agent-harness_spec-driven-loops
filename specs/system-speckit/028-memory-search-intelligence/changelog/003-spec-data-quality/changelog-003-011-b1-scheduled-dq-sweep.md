@@ -2,9 +2,7 @@
 title: "Changelog: B1 Scheduled DQ Sweep [003-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep]"
 description: "Chronological changelog for the B1 Scheduled DQ Sweep phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality b1 scheduled dq sweep changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

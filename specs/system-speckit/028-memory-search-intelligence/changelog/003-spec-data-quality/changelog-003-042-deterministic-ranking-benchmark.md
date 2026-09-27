@@ -2,9 +2,7 @@
 title: "Changelog: Deterministic-Ranking Benchmark [003-spec-data-quality/006-generated-metadata-build/042-deterministic-ranking-benchmark]"
 description: "Chronological changelog for the deterministic-ranking benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality deterministic ranking benchmark changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

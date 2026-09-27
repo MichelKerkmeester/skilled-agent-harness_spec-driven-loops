@@ -4,9 +4,7 @@
 title: "Changelog: 10-iter P2 cleanup"
 description: "18 P2 findings fixed in code, 3 marked not applicable, and 7 deferred to named follow-on packets."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec kit fix followup p2 findings for package extraction changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

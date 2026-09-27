@@ -2,9 +2,7 @@
 title: "Changelog: Whole-System Gate [004-gate-closeout-and-drift/001-whole-system-gate]"
 description: "Changelog for the whole-system gate phase: freeze an exact candidate SHA, run every mode and parity gate, replay and crash-recovery checks, counterfactual and degeneration tests, blocking SOL review, and recursive strict validation."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "gate closeout and drift whole system gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "malformed vector shard quarantine"
   - "vector auto-rebuild degraded state"
   - "027 002/008 shipped"
+  - "memory store and search vector read path resilience changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "v1.0.2 verdict replayability"
   - "findings-rubric.json stress test"
   - "stress cycle doc drift fix"
+  - "release and program fix mcp stress cycle doc observability changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

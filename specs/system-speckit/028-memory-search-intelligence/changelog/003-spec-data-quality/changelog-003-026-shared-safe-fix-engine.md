@@ -2,9 +2,7 @@
 title: "Changelog: Shared Safe-Fix Engine [003-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine]"
 description: "Chronological changelog for the Shared Safe-Fix Engine phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality shared safe fix engine changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

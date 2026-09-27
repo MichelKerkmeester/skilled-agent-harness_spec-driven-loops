@@ -7,6 +7,7 @@ trigger_phrases:
   - "SKILL_GRAPH_SQLITE_PATH fix"
   - "skill_graph_compiler path fix"
   - "skill_advisor sqlite path"
+  - "spec kit internals fix script filesystem scope changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

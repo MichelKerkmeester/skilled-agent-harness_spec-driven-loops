@@ -7,6 +7,7 @@ trigger_phrases:
   - "vi.useFakeTimers envelope"
   - "env snapshot restore vitest"
   - "gate-d-resume-perf hard-coded path"
+  - "release and program cleanup fix test reliability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "SidecarClient removal"
   - "embedding execution router simplification"
   - "hf-local direct adapter path"
+  - "memory and causal runtime retire sidecar changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

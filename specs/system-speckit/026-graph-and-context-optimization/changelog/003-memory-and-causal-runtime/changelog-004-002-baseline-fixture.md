@@ -7,6 +7,7 @@ trigger_phrases:
   - "baseline fixture 002"
   - "fixture-validate.sh"
   - "018/002 baseline fixture"
+  - "memory and causal runtime baseline fixture changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

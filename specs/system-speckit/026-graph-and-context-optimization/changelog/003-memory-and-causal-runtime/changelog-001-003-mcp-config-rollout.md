@@ -7,6 +7,7 @@ trigger_phrases:
   - "HF_EMBEDDINGS_MODEL config"
   - "hf-local auto resolver"
   - "dotenv loader MCP launcher"
+  - "memory and causal runtime mcp config rollout changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

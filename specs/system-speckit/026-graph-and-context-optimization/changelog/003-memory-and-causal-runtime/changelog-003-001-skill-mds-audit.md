@@ -7,6 +7,7 @@ trigger_phrases:
   - "021/001 changelog"
   - "jina embedder doc fixes"
   - "embedder default gemma to jina"
+  - "memory and causal runtime skill mds audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

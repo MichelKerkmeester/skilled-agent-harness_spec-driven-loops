@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar constructor split"
   - "sidecar termination grace period"
   - "sidecar response narrowing"
+  - "fix investigation p1s for sidecar client constructor and helpers changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

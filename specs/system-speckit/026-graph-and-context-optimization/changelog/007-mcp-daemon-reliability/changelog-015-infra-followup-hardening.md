@@ -9,6 +9,7 @@ trigger_phrases:
   - "mcp daemon reliability"
   - "worktree guard wiring"
   - "substrate stress harness"
+  - "mcp daemon reliability infra followup hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

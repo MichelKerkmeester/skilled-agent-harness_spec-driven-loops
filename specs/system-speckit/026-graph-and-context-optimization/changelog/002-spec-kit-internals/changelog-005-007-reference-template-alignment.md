@@ -4,9 +4,7 @@
 title: "Changelog: System Skill Advisor Reference Template Alignment [005-skill-advisor-documentation/007-reference-template-alignment]"
 description: "Chronological changelog for the System Skill Advisor Reference Template Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec kit internals reference template alignment changelog"
 importance_tier: "normal"
 contextType: "documentation"
 ---

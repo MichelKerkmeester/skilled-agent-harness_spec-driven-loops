@@ -2,10 +2,8 @@
 title: "Changelog: 001-search-scenario-design"
 description: "9-scenario corpus, 5-dimension scoring rubric, per-CLI dispatch matrix, and four executable dispatch scripts for the Search Intelligence Stress-Test Playbook."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
   - "001-search-scenario-design changelog"
+  - "release and program cleanup scenario design changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

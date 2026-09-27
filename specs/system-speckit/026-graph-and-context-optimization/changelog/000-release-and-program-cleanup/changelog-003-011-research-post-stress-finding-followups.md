@@ -7,6 +7,7 @@ trigger_phrases:
   - "cli-copilot Gate 3 bypass research"
   - "code-graph fast-fail testability"
   - "CocoIndex seed-fidelity passthrough"
+  - "release and program cleanup research post stress finding followups changelog"
 importance_tier: "important"
 contextType: "research"
 ---

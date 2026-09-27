@@ -5,6 +5,7 @@ trigger_phrases:
   - "027 001/002 rollup"
   - "gem-team adoption changelog rollup"
   - "agent io contract phase rollup"
+  - "research and doctrine gem team adoption changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

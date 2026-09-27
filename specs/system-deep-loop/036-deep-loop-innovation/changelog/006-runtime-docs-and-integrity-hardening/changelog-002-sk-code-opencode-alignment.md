@@ -2,9 +2,7 @@
 title: "Changelog: sk-code / code-opencode Alignment for the system-deep-loop Runtime [006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment]"
 description: "Changelog for the sk-code / code-opencode alignment phase: auditing the system-deep-loop runtime against the code-opencode surface conventions and aligning the divergences while preserving behavior."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity hardening sk code opencode alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

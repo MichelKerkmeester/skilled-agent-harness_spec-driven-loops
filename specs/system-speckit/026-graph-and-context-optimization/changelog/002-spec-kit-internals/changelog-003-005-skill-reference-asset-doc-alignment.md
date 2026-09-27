@@ -7,6 +7,7 @@ trigger_phrases:
   - "system-spec-kit stale reference cleanup"
   - "manifest-backed template documentation"
   - "skill entry documentation alignment"
+  - "spec kit internals skill reference asset doc alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

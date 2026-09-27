@@ -2,9 +2,7 @@
 title: "Changelog: Write-Containment Concurrent-Writer Safety [007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety]"
 description: "Stop the deep-loop write-containment guard from irreversibly deleting untracked out-of-scope files it cannot attribute to the leaf, so fan-out runs safely on a dirty, multi-actor working tree."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "write containment hardening write containment concurrent safety changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

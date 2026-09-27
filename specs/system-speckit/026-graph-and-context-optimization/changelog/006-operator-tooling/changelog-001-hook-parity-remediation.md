@@ -6,6 +6,7 @@ trigger_phrases:
   - "hook parity remediation"
   - "opencode transport diagnostic"
   - "codex advisor hook"
+  - "operator tooling hook parity remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

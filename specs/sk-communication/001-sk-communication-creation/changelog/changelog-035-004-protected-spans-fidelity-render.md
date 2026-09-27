@@ -2,9 +2,7 @@
 title: "Changelog: Phase 004 Protected Spans, Fidelity, and Render [035-improved-communication/004-protected-spans-fidelity-render]"
 description: "Chronological changelog for the Phase 004 Protected Spans, Fidelity, and Render phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "sk communication creation protected spans fidelity render changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

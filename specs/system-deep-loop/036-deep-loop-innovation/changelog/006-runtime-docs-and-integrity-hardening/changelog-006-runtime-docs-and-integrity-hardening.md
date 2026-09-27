@@ -2,9 +2,7 @@
 title: "Changelog: Runtime Docs and Integrity Hardening [006-runtime-docs-and-integrity-hardening]"
 description: "Changelog for the runtime-docs and integrity-hardening group of the 036 deep-loop innovation packet: runtime code READMEs, sk-code alignment, and the artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority, routing-parity, silent-failure, docs-drift, and identity-lock hardening clusters."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "runtime docs and integrity hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

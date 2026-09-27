@@ -2,9 +2,7 @@
 title: "Changelog: Orphan-sweep Stop-hook activation [007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation]"
 description: "Chronological changelog for the Orphan-sweep Stop-hook activation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability orphan sweep stop hook activation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

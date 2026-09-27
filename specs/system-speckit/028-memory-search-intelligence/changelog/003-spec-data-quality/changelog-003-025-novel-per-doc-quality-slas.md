@@ -2,9 +2,7 @@
 title: "Changelog: Per-Doc Quality SLAs [003-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas]"
 description: "Chronological changelog for the Per-Doc Quality SLAs phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality novel per doc quality slas changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

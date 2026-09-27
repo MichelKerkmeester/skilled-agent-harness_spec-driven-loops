@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 012/005 changelog"
   - "scope-fingerprint guard"
   - "forceScopeChange"
+  - "code graph scope guard changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

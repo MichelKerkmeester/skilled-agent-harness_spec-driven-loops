@@ -2,9 +2,7 @@
 title: "Changelog: Tree-sitter parser resilience [008-real-world-usefulness-test-planning/008-tree-sitter-parser-crash-resilience]"
 description: "Chronological changelog for the Tree-sitter parser resilience phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph tree sitter parser crash resilience changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

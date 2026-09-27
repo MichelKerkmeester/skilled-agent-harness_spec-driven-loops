@@ -9,6 +9,7 @@ trigger_phrases:
   - "cli-devin SWE 1.6 audit"
   - "skill-advisor findings ledger"
   - "docs quality audit research"
+  - "spec kit internals documentation quality audit research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

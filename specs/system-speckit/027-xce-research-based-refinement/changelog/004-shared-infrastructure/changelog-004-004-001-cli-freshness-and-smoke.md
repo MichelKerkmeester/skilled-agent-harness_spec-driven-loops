@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/004 001 CLI freshness changelog"
   - "offline CLI smoke"
   - "dist stale rebuild required"
+  - "shared infrastructure cli freshness and smoke changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

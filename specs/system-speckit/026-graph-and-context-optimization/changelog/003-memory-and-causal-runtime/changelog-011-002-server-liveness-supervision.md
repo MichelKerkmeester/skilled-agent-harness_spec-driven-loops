@@ -8,7 +8,7 @@ trigger_phrases:
   - "wedged but loading detection"
   - "inference liveness health fields"
   - "crash-loop cooldown ENOSPC resilient writes"
-  - "phase changelog"
+  - "memory and causal runtime server liveness supervision changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

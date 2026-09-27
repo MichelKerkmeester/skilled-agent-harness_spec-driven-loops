@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor freshness release readiness"
   - "P1 rebuild workspaceRoot"
   - "daemon freshness review"
+  - "release and program cleanup skill advisor freshness audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

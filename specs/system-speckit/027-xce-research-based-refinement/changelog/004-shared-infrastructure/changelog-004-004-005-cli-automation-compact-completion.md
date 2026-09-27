@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/004 005 compact completion changelog"
   - "list-tools compact names-only"
   - "daemon CLI shell completion"
+  - "shared infrastructure cli automation compact completion changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

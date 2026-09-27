@@ -2,9 +2,7 @@
 title: "Changelog: Integrate Latest & Closeout [004-gate-closeout-and-drift/002-integrate-latest-and-closeout]"
 description: "Changelog for the integrate latest and closeout phase: integrate the latest origin in a clean worktree, re-census touched contracts, reopen drifted phases, rerun the whole-system gate on the exact final SHA, and reconcile open items and generated metadata."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "gate closeout and drift integrate latest and closeout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

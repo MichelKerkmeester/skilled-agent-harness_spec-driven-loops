@@ -2,9 +2,7 @@
 title: "Changelog: Deep Review - Reducers & Projections [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections]"
 description: "Changelog for the deep review reducers and projections phase: pure reducers that replay the typed event ledger into deterministic state projections."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep review reducers and projections changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

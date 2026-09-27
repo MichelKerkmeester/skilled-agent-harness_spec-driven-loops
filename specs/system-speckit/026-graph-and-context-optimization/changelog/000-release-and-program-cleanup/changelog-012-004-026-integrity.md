@@ -6,6 +6,7 @@ trigger_phrases:
   - "026 changelog accuracy"
   - "completion claim reconciliation"
   - "program graph metadata stale"
+  - "release and program cleanup integrity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

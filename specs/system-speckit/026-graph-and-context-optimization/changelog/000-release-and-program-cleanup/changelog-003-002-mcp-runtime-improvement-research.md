@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory context truncation root cause"
   - "cocoindex mirror duplicate research"
   - "weak retrieval guardrail investigation"
+  - "release and program cleanup mcp runtime improvement research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "code-index runtime integration changelog"
   - "code-index phase 3 changelog"
   - "code-graph bridge repair changelog"
+  - "shared infrastructure code index runtime integration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

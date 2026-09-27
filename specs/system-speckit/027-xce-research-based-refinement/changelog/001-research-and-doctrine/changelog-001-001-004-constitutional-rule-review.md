@@ -7,6 +7,7 @@ trigger_phrases:
   - "peck T2 teaching"
   - "constitutional-rule-staleness diagnostic"
   - "180-day constitutional review"
+  - "research and doctrine constitutional rule review changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

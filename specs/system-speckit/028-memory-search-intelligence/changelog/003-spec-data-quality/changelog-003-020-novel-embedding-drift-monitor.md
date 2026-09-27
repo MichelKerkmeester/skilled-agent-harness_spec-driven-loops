@@ -2,9 +2,7 @@
 title: "Changelog: Novel embedding-drift monitoring plus alerting [003-spec-data-quality/004-novel-research/020-novel-embedding-drift-monitor]"
 description: "Chronological changelog for the Novel embedding-drift monitoring plus alerting phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality novel embedding drift monitor changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: A3 Enum-Constrain JSON Metadata Schemas [003-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas]"
 description: "Chronological changelog for the A3 Enum-Constrain JSON Metadata Schemas phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a3 enum constrain schemas changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

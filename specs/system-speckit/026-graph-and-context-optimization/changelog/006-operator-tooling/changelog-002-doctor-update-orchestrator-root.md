@@ -5,6 +5,7 @@ trigger_phrases:
   - "002-doctor-update-orchestrator rollup"
   - "002-doctor-update-orchestrator phase parent"
   - "002-doctor-update-orchestrator changelog index"
+  - "operator tooling doctor update orchestrator changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

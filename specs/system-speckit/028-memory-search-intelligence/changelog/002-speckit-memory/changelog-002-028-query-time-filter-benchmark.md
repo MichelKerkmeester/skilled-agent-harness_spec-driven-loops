@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Query-Time Existen
 trigger_phrases:
   - "query-time-filter-benchmark changelog"
   - "former 020-query-time-filter-benchmark"
-  - "nested changelog"
+  - "speckit memory query time filter benchmark changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

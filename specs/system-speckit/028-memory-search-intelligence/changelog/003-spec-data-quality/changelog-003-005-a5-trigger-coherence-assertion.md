@@ -2,9 +2,7 @@
 title: "Changelog: Cross-Surface trigger_phrases Coherence Assertion [003-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion]"
 description: "Chronological changelog for the Cross-Surface trigger_phrases Coherence Assertion phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a5 trigger coherence assertion changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

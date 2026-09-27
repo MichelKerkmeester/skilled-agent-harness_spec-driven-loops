@@ -6,6 +6,7 @@ trigger_phrases:
   - "027 release gate changelog"
   - "release cleanup phase parent"
   - "027 000 shipped"
+  - "release cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

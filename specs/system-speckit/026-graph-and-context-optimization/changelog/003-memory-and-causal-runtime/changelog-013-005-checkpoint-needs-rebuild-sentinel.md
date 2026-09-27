@@ -6,6 +6,7 @@ trigger_phrases:
   - "post-restore derived rebuild self-heal"
   - "checkpoint v2 restore stale derived"
   - "boot scan rebuild repair"
+  - "memory and causal runtime checkpoint needs rebuild sentinel changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

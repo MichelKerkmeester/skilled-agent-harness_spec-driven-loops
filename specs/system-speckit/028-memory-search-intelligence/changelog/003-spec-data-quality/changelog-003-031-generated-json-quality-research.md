@@ -2,9 +2,7 @@
 title: "Changelog: 031 Generated JSON Quality and Safety Research [003-spec-data-quality/005-shared-engine-and-research/031-generated-metadata-quality-research]"
 description: "Chronological changelog for the 031 generated json quality and safety research phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality generated json quality research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

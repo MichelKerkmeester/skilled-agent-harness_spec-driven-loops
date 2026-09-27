@@ -2,9 +2,7 @@
 title: "Changelog: Deep Alignment - Reducers & Projections [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections]"
 description: "Changelog for the deep alignment reducers and projections phase: pure reducers that replay the typed event ledger into deterministic state."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep alignment reducers and projections changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

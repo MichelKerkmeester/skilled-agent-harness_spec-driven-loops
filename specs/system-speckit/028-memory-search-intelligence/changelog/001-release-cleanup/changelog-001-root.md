@@ -2,9 +2,7 @@
 title: "Changelog: Release Cleanup Phase Parent [001-release-cleanup/root]"
 description: "Chronological changelog for the Release Cleanup Phase Parent spec root."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "release cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

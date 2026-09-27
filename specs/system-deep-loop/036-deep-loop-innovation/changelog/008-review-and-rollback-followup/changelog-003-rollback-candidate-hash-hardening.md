@@ -2,9 +2,7 @@
 title: "Changelog: Rollback Candidate Hash Hardening [008-review-and-rollback-followup/003-rollback-candidate-hash-hardening]"
 description: "Changelog for the rollback candidate hash hardening phase: enforced promoted-candidate-only rollback authority by removing dual-hash acceptance in assertRollbackHashGuard."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review and rollback followup rollback candidate hash hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

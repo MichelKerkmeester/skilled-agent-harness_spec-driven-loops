@@ -2,9 +2,7 @@
 title: "Changelog: Eval Benchmark Fidelity Remediation [004-review-remediation/001-eval-benchmark-fidelity]"
 description: "Chronological changelog for the eval benchmark fidelity remediation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review remediation eval benchmark fidelity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

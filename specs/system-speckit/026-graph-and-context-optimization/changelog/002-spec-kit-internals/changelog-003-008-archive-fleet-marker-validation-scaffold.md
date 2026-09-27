@@ -4,9 +4,7 @@
 title: "Changelog: z-archive-marker-validation-sweep [003-template-levels/008-archive-fleet-marker-validation-scaffold]"
 description: "Scaffold phase establishing Level 3 template structure for archive fleet marker validation across the spec-kit internals."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec kit internals archive fleet marker validation scaffold changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

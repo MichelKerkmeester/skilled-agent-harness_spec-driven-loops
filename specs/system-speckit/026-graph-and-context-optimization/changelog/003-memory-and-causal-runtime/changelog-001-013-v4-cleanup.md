@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory health dtype"
   - "hf-local dtype options"
   - "searchresult mutable default fix"
+  - "memory and causal runtime v4 cleanup changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

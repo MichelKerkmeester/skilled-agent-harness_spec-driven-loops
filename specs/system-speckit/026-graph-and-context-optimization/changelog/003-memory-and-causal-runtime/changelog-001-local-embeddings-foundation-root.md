@@ -5,6 +5,7 @@ trigger_phrases:
   - "001-local-embeddings-foundation rollup"
   - "001-local-embeddings-foundation phase parent"
   - "001-local-embeddings-foundation changelog index"
+  - "memory and causal runtime local embeddings foundation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

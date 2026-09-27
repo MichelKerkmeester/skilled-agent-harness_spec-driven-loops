@@ -7,6 +7,7 @@ trigger_phrases:
   - "weak retrieval refusal contract"
   - "do_not_cite_results"
   - "RecoveryAction ask_disambiguation"
+  - "release and program cleanup memory search citation response policy changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

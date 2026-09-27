@@ -7,6 +7,7 @@ trigger_phrases:
   - "cli-opencode subagent contract fix"
   - "cli prompt template model pin"
   - "cli gemini yolo approval gate"
+  - "release and program cleanup fix cli orchestrator doc drift changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

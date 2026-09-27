@@ -2,9 +2,7 @@
 title: "Changelog: Stress-Test the Six External CLI Deep-Loop Adapters and Fan-Out Orchestration [007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks]"
 description: "A planned child defining a deterministic stress-test and manual-testing program so adapter and fan-out regressions are caught before a live deep-loop run."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "executor and cli hardening cli adapter stress and playbooks changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

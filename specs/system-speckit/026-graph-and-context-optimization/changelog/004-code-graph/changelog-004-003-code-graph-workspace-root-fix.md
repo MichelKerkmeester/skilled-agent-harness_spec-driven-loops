@@ -7,6 +7,7 @@ trigger_phrases:
   - "IPC socket /tmp fix"
   - "code graph startup crash"
   - "-32000 JSON-RPC fix"
+  - "code graph workspace root fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

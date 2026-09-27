@@ -5,6 +5,7 @@ trigger_phrases:
   - "skill advisor cli research changelog"
   - "skill advisor feasibility changelog"
   - "mk_skill_advisor cli verdict changelog"
+  - "shared infrastructure skill advisor cli research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

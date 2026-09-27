@@ -7,6 +7,7 @@ trigger_phrases:
   - "terminateChild dual-promise fix"
   - "processLiveness explicit error handling"
   - "sidecar P1 lifecycle findings"
+  - "memory fix investigation p1s for sidecar process ownership lifecycle changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

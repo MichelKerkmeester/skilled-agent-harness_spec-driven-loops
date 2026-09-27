@@ -7,6 +7,7 @@ trigger_phrases:
   - "rankingSignals array of strings"
   - "fallbackDecision per-handler bullets"
   - "code graph readiness contract handler-local"
+  - "release and program cleanup feature catalog playbook degraded alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

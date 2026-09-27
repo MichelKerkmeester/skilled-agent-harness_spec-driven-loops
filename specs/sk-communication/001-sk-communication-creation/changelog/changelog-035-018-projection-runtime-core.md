@@ -2,9 +2,8 @@
 title: "Changelog: Phase 18 Projection Runtime Core [035-improved-communication/018-projection-runtime-core]"
 description: "Chronological changelog for the Phase 18 Projection Runtime Core phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation projection runtime core changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

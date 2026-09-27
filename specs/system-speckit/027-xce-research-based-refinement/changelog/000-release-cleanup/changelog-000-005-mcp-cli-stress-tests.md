@@ -5,6 +5,7 @@ trigger_phrases:
   - "000 005 stress tests changelog"
   - "schema v37 stress coverage"
   - "daemon cli stress coverage"
+  - "release cleanup mcp cli stress tests changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

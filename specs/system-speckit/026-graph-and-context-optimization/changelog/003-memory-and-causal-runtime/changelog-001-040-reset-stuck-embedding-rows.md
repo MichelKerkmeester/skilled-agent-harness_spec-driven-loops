@@ -7,6 +7,7 @@ trigger_phrases:
   - "retry-manager stuck embedding rows"
   - "040 embedding row reset"
   - "memory index orphan rows"
+  - "memory and causal runtime reset stuck embedding rows changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

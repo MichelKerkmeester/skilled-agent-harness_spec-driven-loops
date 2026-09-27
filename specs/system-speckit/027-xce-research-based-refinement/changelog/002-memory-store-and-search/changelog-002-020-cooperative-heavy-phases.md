@@ -6,6 +6,7 @@ trigger_phrases:
   - "event loop lag sampler reindex scan"
   - "trigger embedding backfill chunk and yield"
   - "027 002/020 shipped"
+  - "memory store and search cooperative heavy phases changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

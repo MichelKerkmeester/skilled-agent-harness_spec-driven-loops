@@ -7,6 +7,7 @@ trigger_phrases:
   - "graphify adopt adapt reject"
   - "two-pass extraction research findings"
   - "graphify evidence tagging"
+  - "research and baseline graphify changelog"
 importance_tier: "important"
 contextType: "research"
 ---

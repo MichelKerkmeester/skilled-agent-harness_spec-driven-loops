@@ -2,9 +2,7 @@
 title: "Changelog: Daemon-reliability doc alignment [007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment]"
 description: "Chronological changelog for the Daemon-reliability doc alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability doc alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

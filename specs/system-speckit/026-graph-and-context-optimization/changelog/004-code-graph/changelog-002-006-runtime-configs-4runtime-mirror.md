@@ -2,9 +2,7 @@
 title: "Changelog: Remove coco from runtime configs + 4-runtime mirror [002-deprecate-coco-index/006-runtime-configs-4runtime-mirror]"
 description: "Chronological changelog for the Remove coco from runtime configs + 4-runtime mirror phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph runtime configs 4runtime mirror changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

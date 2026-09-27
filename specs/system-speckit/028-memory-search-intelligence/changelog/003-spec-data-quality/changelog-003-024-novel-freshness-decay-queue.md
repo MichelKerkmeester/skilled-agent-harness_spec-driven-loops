@@ -2,9 +2,7 @@
 title: "Changelog: Novel Freshness Decay Auto-Refresh Queue [003-spec-data-quality/004-novel-research/024-novel-freshness-decay-queue]"
 description: "Chronological changelog for the Novel Freshness Decay Auto-Refresh Queue phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality novel freshness decay queue changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

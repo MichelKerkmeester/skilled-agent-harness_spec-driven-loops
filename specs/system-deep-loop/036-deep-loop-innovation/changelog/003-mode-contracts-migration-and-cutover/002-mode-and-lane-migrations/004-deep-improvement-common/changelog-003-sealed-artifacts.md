@@ -2,9 +2,7 @@
 title: "Changelog: Deep Improvement Common Services - Sealed Reference Artifacts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts]"
 description: "Changelog for the deep improvement common services sealed reference artifacts phase: content-addressed, tamper-evident artifacts for the shared backbone."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep improvement common sealed artifacts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Remove the mcp-coco-index skill [002-deprecate-coco-index/005-remove-coco-index-skill]"
 description: "Chronological changelog for the Remove the mcp-coco-index skill phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph remove coco index skill changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

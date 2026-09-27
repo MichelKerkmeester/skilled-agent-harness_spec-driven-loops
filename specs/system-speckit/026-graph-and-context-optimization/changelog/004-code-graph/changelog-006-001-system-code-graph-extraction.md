@@ -7,6 +7,7 @@ trigger_phrases:
   - "standalone code graph MCP"
   - "code graph physical move"
   - "014 extraction handover"
+  - "code graph system code graph extraction changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

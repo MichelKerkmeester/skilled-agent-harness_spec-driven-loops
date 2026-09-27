@@ -7,6 +7,7 @@ trigger_phrases:
   - "code graph downgraded overhead"
   - "scope policy rerun"
   - "drift detector rerun"
+  - "code graph native rerun changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

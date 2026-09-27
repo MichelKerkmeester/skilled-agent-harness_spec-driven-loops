@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill advisor setup command"
   - "doctor skill-advisor command"
   - "005-advisor-setup-command"
+  - "spec kit internals skill advisor setup command changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

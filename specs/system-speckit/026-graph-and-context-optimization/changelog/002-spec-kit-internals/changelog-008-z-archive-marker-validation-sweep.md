@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 010/008 changelog"
   - "z_archive marker validation"
   - "archive marker sweep"
+  - "spec kit internals z archive marker validation sweep changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

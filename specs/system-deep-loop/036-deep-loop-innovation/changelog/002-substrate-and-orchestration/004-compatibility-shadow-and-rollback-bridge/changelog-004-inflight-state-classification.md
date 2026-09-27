@@ -2,9 +2,7 @@
 title: "Changelog: In-Flight State Classification [002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification]"
 description: "Changelog for the in-flight state classification phase: total fail-closed classification of in-flight state into upcast, pin, fork, migrate, or block."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "compatibility shadow and rollback bridge inflight state classification changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

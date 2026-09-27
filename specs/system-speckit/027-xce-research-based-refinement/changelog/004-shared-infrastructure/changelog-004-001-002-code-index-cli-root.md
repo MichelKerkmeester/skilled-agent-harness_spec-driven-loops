@@ -5,6 +5,7 @@ trigger_phrases:
   - "code-index cli lane rollup"
   - "code-index cli changelog root"
   - "002 code-index cli complete"
+  - "shared infrastructure code index cli changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

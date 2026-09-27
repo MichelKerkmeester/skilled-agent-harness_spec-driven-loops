@@ -2,9 +2,7 @@
 title: "Changelog: Deep Improvement Common Services - Resume Adapter [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter]"
 description: "Changelog for the deep improvement common services resume adapter phase: rebuilding shared backbone state from the sealed typed event ledger."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep improvement common resume adapter changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

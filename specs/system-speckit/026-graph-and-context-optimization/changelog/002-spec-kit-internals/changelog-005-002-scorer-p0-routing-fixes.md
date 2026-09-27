@@ -7,6 +7,7 @@ trigger_phrases:
   - "scorer P0 routing fixes"
   - "F1b ambiguity abstention"
   - "skill advisor scorer parity"
+  - "spec kit internals scorer p0 routing fixes changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

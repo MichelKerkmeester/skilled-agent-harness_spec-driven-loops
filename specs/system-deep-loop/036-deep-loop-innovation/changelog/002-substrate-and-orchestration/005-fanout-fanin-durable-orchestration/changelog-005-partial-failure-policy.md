@@ -2,9 +2,7 @@
 title: "Changelog: Partial-Failure Policy [002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/005-partial-failure-policy]"
 description: "Changelog for the partial-failure policy phase: typed failure taxonomy and deterministic thresholds deciding whether fan-in proceeds or aborts."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "fanout fanin durable orchestration partial failure policy changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

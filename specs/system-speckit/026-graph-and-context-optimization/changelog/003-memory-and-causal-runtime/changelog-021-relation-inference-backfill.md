@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory_causal_stats backfill command"
   - "spec document chain causal edges"
   - "021-relation-inference-backfill"
+  - "memory and causal runtime relation inference backfill changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

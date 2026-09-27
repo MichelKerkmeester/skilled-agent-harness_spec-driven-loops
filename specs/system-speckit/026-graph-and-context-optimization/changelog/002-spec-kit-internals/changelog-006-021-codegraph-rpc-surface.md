@@ -7,6 +7,7 @@ trigger_phrases:
   - "replace spec-kit classifier shim"
   - "codegraph rpc surface phase"
   - "classifier RPC summary"
+  - "spec kit internals codegraph rpc surface changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

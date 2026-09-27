@@ -2,9 +2,7 @@
 title: "Changelog: Residual Correctness with RRF Scale and Maintenance Grace TTL [001-speckit-memory/021-residual-correctness]"
 description: "Chronological changelog for the residual correctness phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory residual correctness changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

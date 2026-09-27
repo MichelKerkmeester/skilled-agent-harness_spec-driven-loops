@@ -2,9 +2,7 @@
 title: "Changelog: Replay Fingerprints [002-substrate-and-orchestration/002-transition-authorized-ledger-core/003-replay-fingerprints]"
 description: "Changelog for the replay fingerprints phase: independently versioned replay fingerprints over closed typed-ledger ranges with byte-stable outputs and fail-closed mismatch detection."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "transition authorized ledger core replay fingerprints changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

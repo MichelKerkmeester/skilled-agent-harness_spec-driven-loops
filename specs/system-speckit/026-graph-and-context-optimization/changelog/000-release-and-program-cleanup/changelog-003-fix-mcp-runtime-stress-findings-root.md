@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-fix-mcp-runtime-stress-findings rollup"
   - "003-fix-mcp-runtime-stress-findings phase parent"
   - "003-fix-mcp-runtime-stress-findings changelog index"
+  - "release and program cleanup fix mcp runtime stress findings changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

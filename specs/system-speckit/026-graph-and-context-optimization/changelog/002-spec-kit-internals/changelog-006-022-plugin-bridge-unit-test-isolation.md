@@ -9,6 +9,7 @@ trigger_phrases:
   - "018 plugin bridge follow-on"
   - "spec kit skill advisor bridge"
   - "plugin bridge vitest"
+  - "spec kit internals plugin bridge unit test isolation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

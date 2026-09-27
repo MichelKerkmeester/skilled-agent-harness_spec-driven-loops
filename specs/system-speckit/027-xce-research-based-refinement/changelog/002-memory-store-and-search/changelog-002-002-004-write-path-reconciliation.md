@@ -6,6 +6,7 @@ trigger_phrases:
   - "statediff subscriber layer"
   - "mutation hooks action batches"
   - "027 002/002 004 changelog"
+  - "memory store and search write path reconciliation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

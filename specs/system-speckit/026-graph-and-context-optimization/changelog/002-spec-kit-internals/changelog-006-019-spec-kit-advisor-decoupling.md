@@ -7,6 +7,7 @@ trigger_phrases:
   - "spec-kit advisor isolation"
   - "advisor import cleanup"
   - "system-skill-advisor package extraction"
+  - "spec kit internals spec kit advisor decoupling changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

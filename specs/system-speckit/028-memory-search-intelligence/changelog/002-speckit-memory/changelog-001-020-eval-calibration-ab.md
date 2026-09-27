@@ -2,9 +2,7 @@
 title: "Changelog: Eval-Gated Confidence Calibration and Shipped-Lever AB [001-speckit-memory/020-eval-calibration-ab]"
 description: "Chronological changelog for the eval-gated confidence calibration and shipped-lever AB phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory eval calibration ab changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

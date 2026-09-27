@@ -2,9 +2,7 @@
 title: "Changelog: New-Feature Research and Build [001-speckit-memory/023-new-feature-research-build]"
 description: "Chronological changelog for the TRACK B new-feature arc: eval-v2 built and kept as the measurability gate, 3 features built default-off and fresh-Opus held, and the append-not-displace truncation finding."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory new feature research build changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

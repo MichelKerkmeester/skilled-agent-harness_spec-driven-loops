@@ -7,6 +7,7 @@ trigger_phrases:
   - "F10 F23 F63 F64 F71 F75 closure"
   - "worker dimension provider fallback removal"
   - "execution router sidecar worker P2"
+  - "memory and fix deferred p2s for provider adapter redesign changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Cross-Package Flag
 trigger_phrases:
   - "cross-package-flag-governance changelog"
   - "former 016-cross-package-flag-governance"
-  - "nested changelog"
+  - "dark flag graduation cross package flag governance changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

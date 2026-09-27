@@ -7,6 +7,7 @@ trigger_phrases:
   - "E_LINEAGE stale logical key repair"
   - "importance tier high to important migration"
   - "memory index scan 503 failures"
+  - "memory and causal runtime lineage and metadata repair runner changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

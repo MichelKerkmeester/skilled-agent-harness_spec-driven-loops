@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk-spec-memory dual owner fix"
   - "reap before takeover"
   - "launcher lease 11 of 11"
+  - "memory and causal runtime spec memory launcher ownership hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "hybrid trigger handler"
   - "semantic union fallback"
   - "SPECKIT_SEMANTIC_TRIGGERS_MODE union"
+  - "memory store and search hybrid handler changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

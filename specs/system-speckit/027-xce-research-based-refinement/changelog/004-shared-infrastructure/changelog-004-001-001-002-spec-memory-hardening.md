@@ -5,6 +5,7 @@ trigger_phrases:
   - "spec-memory cli hardening changelog"
   - "dual spawn vitest changelog"
   - "cli parity suite changelog"
+  - "shared infrastructure spec memory hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "selectable maintainer mode"
   - "deep review 008 009 remediation"
   - "027 004/009 shipped"
+  - "shared infrastructure code graph code only indexing changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

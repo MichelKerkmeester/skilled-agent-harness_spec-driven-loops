@@ -5,6 +5,7 @@ trigger_phrases:
   - "code-index hardening changelog"
   - "code-index phase 2 changelog"
   - "code-index cli dual-client changelog"
+  - "shared infrastructure code index hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Result Envelopes & Resume/Salvage [002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage]"
 description: "Changelog for the result envelopes and resume/salvage phase: typed per-leaf result envelopes and ledger-fold resume that never re-runs completed leaves."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "fanout fanin durable orchestration result envelopes and resume salvage changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

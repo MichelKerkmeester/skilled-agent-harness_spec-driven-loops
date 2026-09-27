@@ -7,6 +7,7 @@ trigger_phrases:
   - "parser error persistence"
   - "deep research 008-003"
   - "bug surface remediation backlog"
+  - "code graph bug surface research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

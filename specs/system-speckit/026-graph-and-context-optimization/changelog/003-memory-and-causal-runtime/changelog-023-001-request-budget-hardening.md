@@ -7,6 +7,7 @@ trigger_phrases:
   - "search budget validation coco index"
   - "request cost hardening retrieval stack"
   - "high-offset query fails fast"
+  - "memory and causal runtime request budget hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

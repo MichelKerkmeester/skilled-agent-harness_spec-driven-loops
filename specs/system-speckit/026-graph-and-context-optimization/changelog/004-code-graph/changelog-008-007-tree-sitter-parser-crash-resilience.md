@@ -7,6 +7,7 @@ trigger_phrases:
   - "bash WASM symbol fault"
   - "memory access out of bounds fix"
   - "schema v5 parser quarantine"
+  - "code graph tree sitter parser crash resilience changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

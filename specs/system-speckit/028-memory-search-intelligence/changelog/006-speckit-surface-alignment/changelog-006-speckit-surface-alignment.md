@@ -5,6 +5,7 @@ trigger_phrases:
   - "008 surface alignment changelog"
   - "speckit surface alignment remediation"
   - "recorded failure closure changelog"
+  - "speckit surface alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

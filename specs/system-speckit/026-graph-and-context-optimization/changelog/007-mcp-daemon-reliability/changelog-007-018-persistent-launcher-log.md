@@ -2,9 +2,7 @@
 title: "Changelog: Persistent launcher log [007-mcp-daemon-reliability/018-persistent-launcher-log]"
 description: "Chronological changelog for the Persistent launcher log phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability persistent launcher log changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

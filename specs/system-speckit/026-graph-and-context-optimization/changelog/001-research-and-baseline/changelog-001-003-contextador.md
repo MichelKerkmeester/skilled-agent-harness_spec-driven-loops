@@ -7,6 +7,7 @@ trigger_phrases:
   - "mainframe shared cache research"
   - "self-healing context loop research"
   - "contextador token reduction claim"
+  - "research and baseline contextador changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

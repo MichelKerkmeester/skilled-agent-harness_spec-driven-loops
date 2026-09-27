@@ -7,6 +7,7 @@ trigger_phrases:
   - "isDefaultEndUserScope predicate"
   - "code graph fresh clone setup"
   - "auto-build index on first read"
+  - "code graph empty graph first time auto scan changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

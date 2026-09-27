@@ -2,9 +2,7 @@
 title: "Changelog: Make Fan-Out Fulfillment Evidence-Derived and Dispatch Containment Enforced [006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity]"
 description: "Changelog for the fan-out dispatch integrity phase: making fan-out fulfillment derived from a per-mode artifact contract and dispatch containment enforced uniformly across kinds."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity hardening fanout dispatch integrity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

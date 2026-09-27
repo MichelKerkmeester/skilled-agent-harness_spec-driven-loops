@@ -6,6 +6,7 @@ trigger_phrases:
   - "real world usefulness test execution"
   - "sandbox usefulness trial"
   - "code graph usefulness trial"
+  - "code graph execution changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

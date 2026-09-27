@@ -8,6 +8,7 @@ trigger_phrases:
   - "level-contract resolver"
   - "delete level dirs"
   - "workflow invariance"
+  - "spec kit internals template greenfield impl changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

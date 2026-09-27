@@ -7,6 +7,7 @@ trigger_phrases:
   - "code graph router alignment"
   - "sk-doc reference subfolders"
   - "code graph compatibility stubs"
+  - "code graph reference template alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

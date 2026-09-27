@@ -6,6 +6,7 @@ trigger_phrases:
   - "016 seven phases S1 S5 O1 O2"
   - "retrieval calibration output parity rollup"
   - "027 002/016 shipped"
+  - "memory store and search and output intelligence changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

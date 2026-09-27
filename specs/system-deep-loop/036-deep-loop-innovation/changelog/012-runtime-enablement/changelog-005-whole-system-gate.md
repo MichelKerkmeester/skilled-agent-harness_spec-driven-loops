@@ -2,9 +2,7 @@
 title: "Changelog: Whole-System Gate [012-runtime-enablement/005-whole-system-gate]"
 description: "Frozen-SHA whole-system gate with seven enumerated checks, blocking receipts, and a literal PASS on the finalized runtime tree."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement whole system gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

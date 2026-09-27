@@ -2,9 +2,7 @@
 title: "Changelog: Novel Context-Budget-Fitting Assembler [003-spec-data-quality/004-novel-research/022-novel-context-budget-assembler]"
 description: "Chronological changelog for the Novel Context-Budget-Fitting Assembler phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality novel context budget assembler changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

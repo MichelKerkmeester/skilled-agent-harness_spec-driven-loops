@@ -2,9 +2,7 @@
 title: "Changelog: Skill and Repo README Cleanup"
 description: "Chronological changelog for the skill and repo README cleanup phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup skill and repo readmes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

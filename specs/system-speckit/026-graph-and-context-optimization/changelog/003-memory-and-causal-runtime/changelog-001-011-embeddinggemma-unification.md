@@ -7,6 +7,7 @@ trigger_phrases:
   - "cocoindex embeddinggemma default"
   - "purge qwen3 embeddings"
   - "hf-local onnx embeddinggemma"
+  - "memory and causal runtime embeddinggemma unification changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

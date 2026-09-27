@@ -7,6 +7,7 @@ trigger_phrases:
   - "system skill advisor package extraction 003"
   - "skill advisor db resolver env override"
   - "finalize advisor move spec path rewrite"
+  - "spec kit internals advisor source db tests migration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

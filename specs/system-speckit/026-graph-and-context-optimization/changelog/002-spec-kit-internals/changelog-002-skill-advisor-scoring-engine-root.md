@@ -5,6 +5,7 @@ trigger_phrases:
   - "002-skill-advisor-scoring-engine rollup"
   - "002-skill-advisor-scoring-engine phase parent"
   - "002-skill-advisor-scoring-engine changelog index"
+  - "spec kit internals skill advisor scoring engine changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

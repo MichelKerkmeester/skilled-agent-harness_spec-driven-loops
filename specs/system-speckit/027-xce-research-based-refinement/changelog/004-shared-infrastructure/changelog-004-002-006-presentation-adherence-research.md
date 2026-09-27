@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/002 006 adherence research changelog"
   - "presentation adherence research"
   - "10 angle results"
+  - "shared infrastructure presentation adherence research changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

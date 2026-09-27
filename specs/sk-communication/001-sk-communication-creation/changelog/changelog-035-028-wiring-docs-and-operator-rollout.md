@@ -2,9 +2,8 @@
 title: "Changelog: Phase 28 Wiring Docs and Operator Rollout [035-improved-communication/028-wiring-docs-and-operator-rollout]"
 description: "Chronological changelog for the Phase 28 Wiring Docs and Operator Rollout phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation wiring docs and operator rollout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

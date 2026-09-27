@@ -2,9 +2,7 @@
 title: "Changelog: Docs and Closeout [007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout]"
 description: "Close the cli-executor-fanout-parity packet: reconcile the parent metadata to Complete, record each phase's delivered outcome, and point docs at the frozen support matrix."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "cli executor fanout parity docs and closeout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "mps oom batch size hypothesis"
   - "rerank local max docs cap"
   - "008 cap top-k hold verdict"
+  - "memory and causal runtime cap rerank top k changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

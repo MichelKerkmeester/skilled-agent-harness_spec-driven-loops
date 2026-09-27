@@ -2,9 +2,7 @@
 title: "Changelog: Deep Improvement Common Services - Shadow Parity [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity]"
 description: "Changelog for the deep improvement common services shadow parity phase: the shared shadow-parity harness with logical event pairing and independent projections."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep improvement common shadow parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

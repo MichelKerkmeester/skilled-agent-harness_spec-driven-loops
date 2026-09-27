@@ -7,6 +7,7 @@ trigger_phrases:
   - "forceScopeChange"
   - "F-002 scope fingerprint guard"
   - "scan promotion blocked scope mismatch"
+  - "code graph scope change scan guard changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

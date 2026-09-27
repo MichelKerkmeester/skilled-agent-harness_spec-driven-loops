@@ -7,6 +7,7 @@ trigger_phrases:
   - "phase parent false positive SPEC_DOC_INTEGRITY"
   - "release readiness audit 008"
   - "validator P0 findings review"
+  - "release and program cleanup validator spec document integrity audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

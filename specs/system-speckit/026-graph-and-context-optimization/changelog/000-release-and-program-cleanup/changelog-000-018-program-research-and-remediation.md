@@ -2,9 +2,7 @@
 title: "Changelog: 026 Program Research and Remediation [000-release-and-program-cleanup/018-program-research-and-remediation]"
 description: "Chronological changelog for the 026 Program Research and Remediation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release and program cleanup program research and remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

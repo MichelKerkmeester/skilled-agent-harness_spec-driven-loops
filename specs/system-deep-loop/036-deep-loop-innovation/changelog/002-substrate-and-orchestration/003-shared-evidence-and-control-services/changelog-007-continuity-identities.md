@@ -2,9 +2,7 @@
 title: "Changelog: Continuity Identities [002-substrate-and-orchestration/003-shared-evidence-and-control-services/007-continuity-identities]"
 description: "Changelog for the continuity identities phase: stable lineage, claim, candidate, and mode-session identities across resume, handover, replay, and cross-mode boundaries."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared evidence and control services continuity identities changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

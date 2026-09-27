@@ -2,9 +2,7 @@
 title: "Changelog: Agentic Tool-Loop Recall Strategy [001-speckit-memory/016-iterative-agentic-recall]"
 description: "Chronological changelog for the agentic tool-loop recall strategy phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory iterative agentic recall changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

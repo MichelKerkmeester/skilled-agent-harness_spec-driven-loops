@@ -2,9 +2,7 @@
 title: "Changelog: Phase 12: goal-send-and-dedupe [060-create-goal-mode/012-goal-send-and-dedupe]"
 description: "Chronological changelog for the Phase 12: goal-send-and-dedupe phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "create goal mode goal send and dedupe changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

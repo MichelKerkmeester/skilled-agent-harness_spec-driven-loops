@@ -2,9 +2,7 @@
 title: "Changelog: Full Enablement and Finalize [012-runtime-enablement/010-full-enablement-finalize]"
 description: "Window-free finalize of all eight modes to new_authoritative_final, legacy shadow writer dropped, verify-authority final-tier recognition, and whole-system gate literal PASS with proven reader-contract negative control."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement full enablement finalize changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

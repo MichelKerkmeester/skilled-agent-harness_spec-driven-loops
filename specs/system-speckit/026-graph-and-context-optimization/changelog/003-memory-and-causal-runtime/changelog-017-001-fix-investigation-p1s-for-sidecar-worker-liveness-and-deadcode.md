@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar worker liveness structured result"
   - "rejected provider promise eviction"
   - "sidecar pre-parse id policy"
+  - "fix investigation p1s for sidecar worker liveness and deadcode changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

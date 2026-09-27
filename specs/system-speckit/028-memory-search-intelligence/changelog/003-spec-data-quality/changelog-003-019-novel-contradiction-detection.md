@@ -2,9 +2,7 @@
 title: "Changelog: Novel Cross-Doc Contradiction and Staleness Detection [003-spec-data-quality/004-novel-research/019-novel-contradiction-detection]"
 description: "Chronological changelog for the Novel Cross-Doc Contradiction and Staleness Detection phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality novel contradiction detection changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

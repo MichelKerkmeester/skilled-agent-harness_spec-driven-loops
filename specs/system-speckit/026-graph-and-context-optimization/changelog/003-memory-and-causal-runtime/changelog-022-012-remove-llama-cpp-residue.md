@@ -7,6 +7,7 @@ trigger_phrases:
   - "remove llama-cpp references"
   - "NODE_LLAMA_CPP_GPU cleanup"
   - "embedder residue cleanup"
+  - "memory and causal runtime remove llama cpp residue changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

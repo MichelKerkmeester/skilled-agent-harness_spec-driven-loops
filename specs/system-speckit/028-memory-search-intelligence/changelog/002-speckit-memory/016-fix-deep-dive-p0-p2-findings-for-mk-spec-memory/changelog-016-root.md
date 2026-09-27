@@ -5,6 +5,7 @@ trigger_phrases:
   - "016 deep-dive remediation program"
   - "016 program changelog rollup"
   - "mk-spec-memory deep dive findings"
+  - "fix deep dive p0 p2 findings for mk spec changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Rewrite docs + 27 YAML assets to HYBRID search policy [002-deprecate-coco-index/007-docs-readme-search-routing]"
 description: "Chronological changelog for the Rewrite docs + 27 YAML assets to HYBRID search policy phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph docs readme search routing changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

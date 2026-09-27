@@ -2,9 +2,7 @@
 title: "Changelog: Hierarchical Typed Budgets [002-substrate-and-orchestration/003-shared-evidence-and-control-services/004-hierarchical-typed-budgets]"
 description: "Changelog for the hierarchical typed budgets phase: token, cost, iteration, and wall-time budgets that nest by scope and fail closed when exhausted."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared evidence and control services hierarchical typed budgets changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

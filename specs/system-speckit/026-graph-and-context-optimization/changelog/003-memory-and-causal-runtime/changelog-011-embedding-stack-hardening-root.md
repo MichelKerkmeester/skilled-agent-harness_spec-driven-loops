@@ -5,6 +5,7 @@ trigger_phrases:
   - "011-embedding-stack-hardening rollup"
   - "011-embedding-stack-hardening phase parent"
   - "011-embedding-stack-hardening changelog index"
+  - "memory and causal runtime embedding stack hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Canonical Dispatch Receipts [002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts]"
 description: "Changelog for the canonical dispatch receipts phase: durable authorized pre-spawn ledger receipts for leaf dispatches."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "fanout fanin durable orchestration canonical dispatch receipts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "tree-sitter skip-list"
   - "parser quarantine sentinel"
   - "external_scanner_reset bash"
+  - "code graph tree sitter parser resilience changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

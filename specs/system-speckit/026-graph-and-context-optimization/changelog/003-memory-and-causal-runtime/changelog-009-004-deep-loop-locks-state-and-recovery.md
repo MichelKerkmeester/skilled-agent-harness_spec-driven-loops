@@ -7,6 +7,7 @@ trigger_phrases:
   - "jsonl repair corrupt trailing"
   - "atomic state write deep-loop"
   - "memory leak remediation phase 004"
+  - "memory and causal deep loop locks state and recovery changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

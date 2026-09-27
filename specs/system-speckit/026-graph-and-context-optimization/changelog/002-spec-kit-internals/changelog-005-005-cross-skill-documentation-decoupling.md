@@ -7,6 +7,7 @@ trigger_phrases:
   - "zero tables readme section 1"
   - "terse arch conform"
   - "cross-skill documentation cleanup"
+  - "spec kit internals cross skill documentation decoupling changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

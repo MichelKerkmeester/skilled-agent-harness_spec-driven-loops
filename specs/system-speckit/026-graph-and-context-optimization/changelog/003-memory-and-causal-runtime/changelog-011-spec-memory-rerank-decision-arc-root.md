@@ -5,6 +5,7 @@ trigger_phrases:
   - "011-spec-memory-rerank-decision-arc rollup"
   - "011-spec-memory-rerank-decision-arc phase parent"
   - "011-spec-memory-rerank-decision-arc changelog index"
+  - "memory and causal runtime spec memory rerank decision arc changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

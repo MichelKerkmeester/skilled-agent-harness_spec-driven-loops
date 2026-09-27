@@ -7,6 +7,7 @@ trigger_phrases:
   - "COCOINDEX_CODE_CHUNK_SIZE"
   - "chunk overlap env override"
   - "stage A chunking defaults"
+  - "memory and causal runtime chunking strategy tuning changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

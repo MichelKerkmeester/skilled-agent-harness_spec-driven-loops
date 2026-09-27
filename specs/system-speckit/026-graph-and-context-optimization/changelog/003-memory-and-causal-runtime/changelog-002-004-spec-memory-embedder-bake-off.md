@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk-spec-memory embedder shipped"
   - "cat-24/409 closure"
   - "retrieval-rescue layer default-on"
+  - "memory and causal runtime spec memory embedder bake off changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

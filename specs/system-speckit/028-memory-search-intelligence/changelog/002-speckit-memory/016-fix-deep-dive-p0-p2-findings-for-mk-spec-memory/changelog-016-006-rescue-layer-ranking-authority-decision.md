@@ -5,6 +5,7 @@ trigger_phrases:
   - "rescue layer ranking authority changelog"
   - "eval production parity harness"
   - "adr-002 deferred"
+  - "fix deep dive p0 rescue layer ranking authority decision changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Deep Alignment - Resume Adapter [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter]"
 description: "Changelog for the deep alignment resume adapter phase: interruption-safe recovery from the sealed typed event ledger."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep alignment resume adapter changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

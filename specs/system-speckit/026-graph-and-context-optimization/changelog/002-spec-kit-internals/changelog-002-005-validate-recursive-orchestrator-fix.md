@@ -7,6 +7,7 @@ trigger_phrases:
   - "run_node_orchestrator recursion"
   - "recursive validation orchestrator path"
   - "phase children silently skipped"
+  - "spec kit internals validate recursive orchestrator fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

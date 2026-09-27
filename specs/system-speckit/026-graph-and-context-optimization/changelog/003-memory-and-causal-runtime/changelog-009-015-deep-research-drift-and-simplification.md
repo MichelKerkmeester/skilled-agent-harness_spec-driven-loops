@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar 110 findings synthesis"
   - "arc 010 phase 015 research"
   - "sidecar drift dead code security"
+  - "memory and causal runtime deep research drift and simplification changelog"
 importance_tier: "important"
 contextType: "research"
 ---

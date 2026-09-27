@@ -2,9 +2,7 @@
 title: "Changelog: Determinism and Content-ID Foundation [001-speckit-memory/002-determinism-content-id-foundation]"
 description: "Chronological changelog for the Determinism and Content-ID Foundation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory determinism content id foundation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "002-causal-graph-channel-routing rollup"
   - "002-causal-graph-channel-routing phase parent"
   - "002-causal-graph-channel-routing changelog index"
+  - "memory and causal runtime causal graph channel routing changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

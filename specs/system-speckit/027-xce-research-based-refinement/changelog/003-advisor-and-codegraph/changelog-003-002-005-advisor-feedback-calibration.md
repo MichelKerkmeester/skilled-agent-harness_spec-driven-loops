@@ -5,6 +5,7 @@ trigger_phrases:
   - "003/002 005 advisor feedback changelog"
   - "shadow calibration reducer"
   - "advisor feedback calibration"
+  - "advisor and codegraph advisor feedback calibration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---
