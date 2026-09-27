@@ -1,5 +1,5 @@
 {
-  "corpusHash": "aadc054f88710424aa4b6ef7727d5316565df655f6b0846b62d169f3e330eeff",
+  "corpusHash": "e93444b52b1ae4096118aaaeb7b8a4baac8b60c8a7ee6e25cf1b78e06f6dcd9c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -22997,7 +22997,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5fa5610521719e215470179e645c2fecb22cca0e43a11ff60ae187ca69abdf4b",
+  "manifestHash": "f1fb4149d36f9813129bfa34dac6bb488829a368c114af69077c393417643d46",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
