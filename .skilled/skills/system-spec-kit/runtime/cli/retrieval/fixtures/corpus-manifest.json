@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9fe8cf6992d73045133b99ddb583bdd142c128ff3777fa9f0a34891ddaa580e4",
+  "corpusHash": "39679f4f7e87c344ebee81b1176efce046b4ee91cfa02ceeeae958ef599a7a90",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23086,
+  "includedPathCount": 23097,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -5972,7 +5972,9 @@
     ".skilled/skills/sk-doc/changelog/v2.1.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.1.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
+    ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-claude-code.md",
@@ -6115,6 +6117,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
@@ -7911,6 +7914,7 @@
     ".skilled/skills/system-spec-kit/changelog/v4.1.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.2.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v4.1.3.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -7937,6 +7941,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/nested-changelog-generator.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md",
@@ -8008,6 +8013,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/main-agent-review-and-verdict-handoff.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/nested-changelog-generator.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/no-symlinks-in-lib-tree.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
@@ -11533,6 +11539,11 @@
     "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/plan.md",
     "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/spec.md",
     "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/tasks.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/acceptance-criteria.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/implementation-summary.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/plan.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/spec.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/tasks.md",
     "specs/sk-doc/061-skilled-release-changelog/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
@@ -23108,7 +23119,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3729d3505b2abce5df64cc6747adb5c81ab560138c1bda717a2b2e7e63e6c3d8",
+  "manifestHash": "82b3a9fdd42decb6620e07a197c043897abcfbe22231a281acaad017ab7a188d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25124,6 +25135,10 @@
     },
     {
       "path": "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/scratch",
       "reason": "excluded directory"
     },
     {

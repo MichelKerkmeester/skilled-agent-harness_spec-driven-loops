@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3729d3505b2abce5df64cc6747adb5c81ab560138c1bda717a2b2e7e63e6c3d8",
+  "manifestHash": "82b3a9fdd42decb6620e07a197c043897abcfbe22231a281acaad017ab7a188d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8039,6 +8039,21 @@
     "adherence research tasks": [
       "adherence research tasks"
     ],
+    "adjacent alignment": [
+      "adjacent-alignment"
+    ],
+    "adjacent alignment acceptance criteria": [
+      "adjacent-alignment acceptance criteria"
+    ],
+    "adjacent alignment plan": [
+      "adjacent-alignment plan"
+    ],
+    "adjacent alignment summary": [
+      "adjacent-alignment summary"
+    ],
+    "adjacent alignment tasks": [
+      "adjacent-alignment tasks"
+    ],
     "adjacent span coalescing": [
       "adjacent-span-coalescing"
     ],
@@ -15019,6 +15034,9 @@
     "changelog enrichment steps": [
       "changelog enrichment steps"
     ],
+    "changelog entry frontmatter check": [
+      "changelog entry frontmatter check"
+    ],
     "changelog evidence stack": [
       "changelog evidence stack"
     ],
@@ -15064,6 +15082,9 @@
     ],
     "changelog generator modes": [
       "changelog generator modes"
+    ],
+    "changelog hub component resolution": [
+      "changelog hub component resolution"
     ],
     "changelog identity phrase": [
       "{{CHANGELOG_IDENTITY_PHRASE}}"
@@ -15146,6 +15167,9 @@
     "changelog search metadata": [
       "changelog search metadata"
     ],
+    "changelog search metadata validation": [
+      "changelog search metadata validation"
+    ],
     "changelog shape checker": [
       "changelog shape checker"
     ],
@@ -15158,6 +15182,18 @@
     "changelog structural edits": [
       "changelog structural edits"
     ],
+    "changelog surface closure gate": [
+      "changelog surface closure gate"
+    ],
+    "changelog surface fix tasks": [
+      "changelog surface fix tasks"
+    ],
+    "changelog surface fixes": [
+      "changelog surface fixes"
+    ],
+    "changelog surface fixes results": [
+      "changelog surface fixes results"
+    ],
     "changelog swarm plan": [
       "changelog swarm plan"
     ],
@@ -15166,6 +15202,12 @@
     ],
     "changelog topology edge cases": [
       "changelog topology edge cases"
+    ],
+    "changelog trigger phrases required": [
+      "changelog trigger phrases required"
+    ],
+    "changelog type detection": [
+      "changelog type detection"
     ],
     "changelog v4 style": [
       "changelog v4 style"
@@ -45030,6 +45072,9 @@
     "hub card references removed": [
       "hub-card references removed"
     ],
+    "hub component resolution plan": [
+      "hub component resolution plan"
+    ],
     "hub de registration": [
       "hub de-registration"
     ],
@@ -57099,17 +57144,26 @@
     "nested changelog generate description adopters": [
       "nested-changelog generate-description adopters"
     ],
+    "nested changelog generator": [
+      "nested changelog generator"
+    ],
     "nested changelog helper replace": [
       "nested-changelog helper replace"
     ],
     "nested changelog identity phrase": [
       "nested changelog identity phrase"
     ],
+    "nested changelog js": [
+      "nested-changelog.js"
+    ],
     "nested changelog output override": [
       "nested-changelog output override"
     ],
     "nested changelog templates": [
       "nested changelog templates"
+    ],
+    "nested changelog title escaping": [
+      "nested changelog title escaping"
     ],
     "nested changelog workflow": [
       "nested changelog workflow"
@@ -61035,6 +61089,9 @@
     ],
     "packet canonicalization": [
       "packet canonicalization"
+    ],
+    "packet changelog identity phrase": [
+      "packet changelog identity phrase"
     ],
     "packet changelog templates": [
       "packet changelog templates"
@@ -79662,6 +79719,9 @@
     "sk create changelog 1 3 0 0": [
       "sk-create-changelog 1.3.0.0"
     ],
+    "sk create changelog 1 3 1 0": [
+      "sk-create-changelog 1.3.1.0"
+    ],
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
     ],
@@ -79691,6 +79751,9 @@
     ],
     "sk create changelog v1 3 0 0": [
       "sk-create-changelog v1.3.0.0"
+    ],
+    "sk create changelog v1 3 1 0": [
+      "sk-create-changelog v1.3.1.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -80385,6 +80448,9 @@
     "sk doc 2 2 1 0": [
       "sk-doc 2.2.1.0"
     ],
+    "sk doc 2 2 2 0": [
+      "sk-doc 2.2.2.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -80618,6 +80684,9 @@
     ],
     "sk doc v2 2 1 0": [
       "sk-doc v2.2.1.0"
+    ],
+    "sk doc v2 2 2 0": [
+      "sk-doc v2.2.2.0"
     ],
     "sk doc validator findings obsidian surface": [
       "sk-doc validator findings obsidian surface"
@@ -88795,6 +88864,9 @@
     "system spec kit 4 1 2 0": [
       "system-spec-kit 4.1.2.0"
     ],
+    "system spec kit 4 1 3 0": [
+      "system-spec-kit 4.1.3.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -89139,6 +89211,9 @@
     ],
     "system spec kit v4 1 2 0": [
       "system-spec-kit v4.1.2.0"
+    ],
+    "system spec kit v4 1 3 0": [
+      "system-spec-kit v4.1.3.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -92984,6 +93059,9 @@
     "validate document per class": [
       "validate_document per class"
     ],
+    "validate document py changelog": [
+      "validate_document.py changelog"
+    ],
     "validate folder": [
       "validate folder"
     ],
@@ -93226,6 +93304,9 @@
     ],
     "validator auto fire reality": [
       "validator auto-fire reality"
+    ],
+    "validator changelog type detection": [
+      "validator changelog type detection"
     ],
     "validator driven alignment sweep": [
       "validator-driven alignment sweep"
