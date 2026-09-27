@@ -38,14 +38,14 @@ The build first replays the current merge over temp copies of the three rounds' 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The REQ-001 diagnosis table is in `implementation-summary.md` and reproduces 85, 74 and 65
-- [ ] The build tree holds both Grok roster commits, `ac156a7112` and `9fe8526284`
-- [ ] A baseline run of `fanout-merge.vitest.ts` and `fanout-run.vitest.ts` is recorded with its pass count
+- [x] The REQ-001 diagnosis table is in `implementation-summary.md` and reproduces 85, 74 and 65
+- [x] The build tree holds both Grok roster commits, `ac156a7112` and `9fe8526284`
+- [x] A baseline run of `fanout-merge.vitest.ts` and `fanout-run.vitest.ts` is recorded with its pass count
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is Met with observed output
-- [ ] The two test files pass with the baseline count plus the new tests
-- [ ] The replay prints the REQ-007 numbers, and the three committed `research/` directories show no change
+- [x] Every row in `acceptance-criteria.md` is Met with observed output
+- [x] The two test files pass with the baseline count plus the new tests
+- [x] The replay prints the REQ-007 numbers, and the three committed `research/` directories show no change
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -63,7 +63,7 @@ Monolith scripts. `fanout-merge.cjs` is a CLI with exported pure helpers. `fanou
 - **`buildLoopPrompt`** (`fanout-run.cjs:1406-1525`): gains one conditional steering line
 
 ### Data Flow
-The merge loads each lineage's registry, state log, iteration files and now its delta files. For a lineage that needs it, it rebuilds findings per iteration and compares the rebuilt total with the registry's. It writes the merged registry with per-lineage sums of `sourceFindings` and `reconstructionGaps` (`:760-767`). The convergence step in the workflow YAML reads those two metrics and decides `synthesis_complete` or `synthesis_incomplete`, unchanged.
+The merge loads each lineage's registry, state log, iteration files and now its delta files. For a lineage that needs it, it rebuilds findings per iteration and compares the rebuilt total with the registry's. It writes the merged registry with per-lineage sums of `sourceFindings` and `reconstructionGaps` (`:760-767`). The convergence check in `.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:347-359` reads those two metrics and raises the `synthesis_incomplete` invariants, unchanged.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -76,7 +76,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `fanout-merge.cjs` reconstruction gate and helpers | Producer of `keyFindings`, `metrics.sourceFindings` and `metrics.reconstructionGaps` | Update | New and existing tests in `fanout-merge.vitest.ts`, plus the three-round replay |
-| `deep-research-auto.yaml:2215-2216` and `deep-research-confirm.yaml:1683-1684` | Consumer. Turns the two metrics into `synthesis_incomplete` invariants | Unchanged | The replay's round 1 metrics satisfy the `:2215` condition, since `sourceFindings` is at least `countOnlyFindingCount` |
+| `.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:347-359` (the planning premise placed this check in `deep-research-auto.yaml` and `deep-research-confirm.yaml`, where it is not) | Consumer. Turns the two metrics into `synthesis_incomplete` invariants | Unchanged | The replay's round 1 metrics clear both invariants, since `sourceFindings` 134 is at least `countOnlyFindingCount` 112 and the gap is 0 |
 | `reconstructReviewRegistryFromState` and the review merge | Same file, review loop | Unchanged | `rg -n "loopType === 'review'" fanout-merge.cjs` shows the edited branch is research-only |
 | `reduce-state.cjs` lineage delta aggregation | Reads the same delta files for the resource map | Unchanged, not a consumer of the merge change | Its existing tests stay green in the full runtime suite |
 | `requireRealDirectory` and `resolveOptionalRealFile` (`fanout-merge.cjs:120-146`) | Path guards for lineage files | Unchanged, gain the delta directory as a caller | The existing symlink tests for iteration sources still pass |
@@ -131,7 +131,7 @@ Each step and its observable check:
 |------------|------|--------|-------------------|
 | Committed lineage files of rounds 1 to 3 | Internal | Green: tracked in this worktree | No diagnosis and no fixture source |
 | `system-deep-loop` runtime `node_modules` with vitest | Internal | Green: `runtime/node_modules` exists | Tests cannot run |
-| Both Grok roster commits in the build tree | Internal | Yellow: split across this branch and `main` | A merge conflict in `fanout-run.cjs` |
+| Both Grok roster commits in the build tree | Internal | Green: both are ancestors of the build base `6f47c32dce`, and `fanout-run.cjs` matches `main` there | A merge conflict in `fanout-run.cjs` |
 <!-- /ANCHOR:dependencies -->
 
 ---
