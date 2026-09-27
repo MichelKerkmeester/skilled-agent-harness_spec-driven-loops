@@ -79,7 +79,7 @@ Twelve specialized agents own focused roles, and supported runtimes can dispatch
 
 The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
 
-- **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects the durable slice - the directive plus its completion criteria - on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
+- **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects a pointer to it plus its completion criteria on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
@@ -298,7 +298,7 @@ Eighteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Whic
 
 ##### Lazy Add-ons
 
-Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the inline gate renderer on an existing packet. All live in `addons/`.
+Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the inline gate renderer on an existing packet. A `goal.md` for an existing packet comes from `/create:goal` instead. All live in `addons/`.
 
 **`before-after.md`**
 - Record of what changed, why it changed and the resulting effect.
@@ -310,7 +310,7 @@ Render with `--with-lazy-addons` or `--with-goal` on `create.sh`, or with the in
 
 **`goal.md`**
 - The durable directive the packet executes against plus the criteria that decide when it is done.
-- Rendered by `--with-goal`.
+- Scaffolded by `--with-goal`, into each child only under `--phase`. Authored, amended or retrofitted with `/create:goal`, which also writes a phase parent's goal and binding table.
 
 **`resource-map.md`**
 - Lean catalog of every file path the packet analyzed, created, updated or removed, grouped by category.
@@ -987,11 +987,11 @@ The framework extends each runtime through plugins and hooks rather than asking 
 
 Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets.
 
-The packet's `goal.md` is the goal. A session binds to a spec packet, and the runtime injects that file's durable slice (frontmatter stripped, completion criteria as their own `criteria:` list, one per line) on every turn where that runtime injects at all: OpenCode, Pi and Devin inject per turn, Cursor injects at session start. The agent resends the slice in chat whenever a decision or criterion changes, reminding you to set it, and never stops working while it waits.
+The packet's `goal.md` is the goal. A session binds to a spec packet, and the runtime injects the objective slice built from that file (a pointer to it, the binding rule when the packet is phased and the completion criteria as their own `criteria:` list, one per line) on every turn where that runtime injects at all: OpenCode, Pi and Devin inject per turn, Cursor injects at session start. The agent resends the file's chat slice whenever a decision or criterion changes, reminding you to set it, and never stops working while it waits. What that chat slice contains is section 4 of `sk-create-goal`'s `references/budget-and-handoff.md`, and `/create:goal` authors the file.
 
-- **Claude Code and Codex:** use the built-in native `/goal <condition>`. The speckit workflows hand you the stripped slice of the parent `goal.md` to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
+- **Claude Code and Codex:** use the built-in native `/goal <condition>`. The speckit workflows hand you the parent `goal.md`'s chat slice to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
 - **OpenCode:** `/goal-opencode bind <packet-path>` makes the packet goal the session goal. `resent` clears the reminder, `packet <path>` reads a packet, and `set <condition>` still sets a plain text goal. Show, pause, clear and complete run through the `opencode_goal` tools
-- **Pi, Cursor, Devin, Hermes:** the shared core under `.skilled/hooks/goal/` injects the same slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
+- **Pi, Cursor, Devin, Hermes:** the shared core under `.skilled/hooks/goal/` injects the same objective slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
 - **Guarded by the validator:** a phase parent or top-level packet goal has one limit, 4,000 characters, and fails only past it; a binding row naming a child goal that does not exist fails too
 - **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.skilled/hooks/goal/README.md` for the model and `.skilled/hooks/goal/goal-plugin.md` for the OpenCode plugin contract
 

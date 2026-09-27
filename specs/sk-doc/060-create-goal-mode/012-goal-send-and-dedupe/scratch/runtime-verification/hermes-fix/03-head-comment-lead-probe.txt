@@ -1,0 +1,4 @@
+HEAD: leaks frontmatter marker = True
+HEAD: section = 'Bound packet: specs/demo/001-demo\n\n<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->\n<!-- a second comment -->\n---\ntitle: "Goal: demo"\nleak_check: "frontmatter-only-marker"\n---\n# Goal: demo\n\n**Objective:** Ship the demo.\n\n<!-- ANCHOR:completion -->\n## DONE WHEN\n\n- [ ] The demo ships\n<!-- /ANCHOR:completion -->'
+FIXED: leaks frontmatter marker = False
+FIXED: section = 'Bound packet: specs/demo/001-demo\n\nExecute specs/demo/001-demo/goal.md.\nDONE WHEN:\n- The demo ships'

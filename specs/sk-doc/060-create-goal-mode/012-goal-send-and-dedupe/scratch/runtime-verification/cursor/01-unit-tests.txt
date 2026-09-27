@@ -1,0 +1,25 @@
+$ node --test .skilled/hooks/goal/cursor/goal-cursor.test.mjs </dev/null
+✔ injects the active_goal brief as agent_message when a goal is active (64.774334ms)
+✔ records a turn touch when injecting an active goal (61.987333ms)
+✔ two Cursor sessions inject only their own active goal (111.370459ms)
+✔ conversation_id is the supported fallback when session_id is absent (60.326833ms)
+✔ no-op when no goal is set (38.780375ms)
+✔ legacy-only state never injects into a Cursor session (37.858167ms)
+✔ no-op when the active goal is paused (51.513208ms)
+✔ no-op when the goal plugin is disabled, even with an active goal (46.590208ms)
+✔ no-op when the goal is cleared (58.686084ms)
+✔ fails open on malformed stdin (not JSON) (51.112ms)
+✔ fails open on empty stdin (40.682875ms)
+✔ missing Cursor identity fails open without selecting a goal (50.388291ms)
+✔ fails open (never throws) when the shared state file is corrupt JSON (65.033333ms)
+✔ the Cursor command is fail-closed for management and only ever invokes the session-free packet read (3.661625ms)
+✔ a bound packet injects the resend reminder until the slice is marked resent (132.81125ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 930.736625
+EXIT=0

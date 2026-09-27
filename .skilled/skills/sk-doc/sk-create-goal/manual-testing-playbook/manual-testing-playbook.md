@@ -164,7 +164,7 @@ This section records wave planning and capacity guidance for a full manual run o
 ### SCG-001 | Top-level goal
 
 #### Description
-Verify the happy path: a goal authored for a single-folder packet passes all four named goal checks and measures within the durable budget.
+Verify the happy path: a goal authored for a single-folder packet passes all five named goal checks and measures within the durable budget.
 
 #### Scenario Contract
 Prompt: `Author the goal for the scratch demo packet at $SCRATCH/specs/demo-packet with /create:goal top-level :auto, run the goal check and print the chat slice if it passes.`
@@ -223,7 +223,7 @@ Verify that an over-budget parent goal is cut in the documented cut order down t
 #### Scenario Contract
 Prompt: `The parent goal at $SCRATCH/specs/demo-phase is over the durable budget. Use /create:goal amend :auto to cut it in the documented cut order without dropping a completion criterion and show the budget field after each cut.`
 
-The frontmatter and log cuts must leave `packet_durable_chars` unchanged because both sit outside the measured slice. The later cuts remove child restatement and compress decision prose and criterion wording.
+The frontmatter and log cuts must leave `packet_durable_chars` unchanged because both sit outside the measured slice, and so must the leftover-instruction cut, because a goal filled from the current templates carries none. The later cuts remove child restatement and compress decision prose and criterion wording.
 
 Desired user-visible outcome: the operator sees the budget field drop to `ok` with every criterion still present.
 
@@ -309,7 +309,7 @@ Desired user-visible outcome: the operator receives an up-to-date parent chat sl
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `sk-create-goal/scripts/tests/check-goal.test.cjs` | Unit fixtures for the four named checks and their per-check exports | SCG-005 and SCG-006 exercise the same checks through the operator path |
+| `sk-create-goal/scripts/tests/check-goal.test.cjs` | Unit fixtures for the five named checks and their per-check exports | SCG-005 and SCG-006 exercise the same checks through the operator path |
 | `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly. It gates the playbook rather than the mode the playbook tests |
 
 Note: the mode ships no end-to-end test that authors a goal from packet sources. No automated check decides whether an authored objective reads true against its specification. This playbook is the operator-facing manual coverage for that gap and does not claim otherwise.

@@ -1,0 +1,4 @@
+$ python3 -m pytest .hermes/plugins/repo-guards/tests -q   (baseline before the change: 43 passed)
+..............................................                           [100%]
+46 passed in 0.93s
+EXIT=0

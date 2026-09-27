@@ -20,6 +20,7 @@ const {
   checkPlaceholders,
   checkCriteriaCount,
   checkParentBudget,
+  checkFrontmatterFence,
   checkGoalPacket
 } = require('../check-goal.cjs');
 
@@ -32,7 +33,8 @@ const DIRECT_CHECKS = {
   'missing-binding-row': checkMissingBindingRows,
   placeholder: checkPlaceholders,
   'criteria-count': checkCriteriaCount,
-  'parent-budget': checkParentBudget
+  'parent-budget': checkParentBudget,
+  'frontmatter-fence': checkFrontmatterFence
 };
 const NEGATIVE_CASES = [
   ['binding-row-removed-but-identifier-mentioned', 'missing-binding-row'],
@@ -40,7 +42,9 @@ const NEGATIVE_CASES = [
   ['decision-placeholder', 'placeholder'],
   ['criterion-placeholder', 'placeholder'],
   ['criteria-count-out-of-range', 'criteria-count'],
-  ['over-budget-parent', 'parent-budget']
+  ['over-budget-parent', 'parent-budget'],
+  ['over-budget-nested-phase-parent', 'parent-budget'],
+  ['frontmatter-inner-fence', 'frontmatter-fence']
 ];
 
 let fixtureRoot;
@@ -78,6 +82,13 @@ test('positive fixture passes every named check', () => {
 test('anchored criteria count even after a numbered directive list', () => {
   const result = checkCriteriaCount(fixtures.directiveCriteria, { workspaceRoot: WORKSPACE_ROOT });
   assert.equal(result.errors.length, 0);
+  assert.equal(result.passed, true);
+});
+
+test('an over-length phase child that is not a phase parent passes the budget', () => {
+  const result = checkGoalPacket(fixtures.overBudgetPhaseChild, { workspaceRoot: WORKSPACE_ROOT });
+  assert.equal(result.errors.length, 0);
+  assert.equal(result.isPhaseChild, true);
   assert.equal(result.passed, true);
 });
 

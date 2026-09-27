@@ -129,6 +129,7 @@ Give goal content an owner: an sk-doc creation mode, `sk-create-goal`, invoked t
 | 9 | 009-verification-and-closeout/ | Run the playbook, author one real goal end to end, measure newcomer reachability, ship the changelog, close the packet | Complete |
 | 10 | 010-asset-templates-and-folder-readmes/ | Per-kind goal templates checked against `goal.md.tmpl`, code-folder READMEs and the references index removed | Complete |
 | 11 | 011-cross-surface-references/ | Name the mode in the READMEs, the `@markdown` agent and the feature catalog, regenerate the advisor command bridges and update the command counts | Complete |
+| 12 | 012-goal-send-and-dedupe/ | Give the goal chat-send rule one home in sk-create-goal, remove author instructions from the goal templates, and point system-spec-kit and speckit goal nesting to `/create:goal` | Complete |
 
 ### Phase Transition Rules
 
@@ -151,6 +152,7 @@ Give goal content an owner: an sk-doc creation mode, `sk-create-goal`, invoked t
 | 008-command-and-playbook | 009-verification-and-closeout | The command resolves on every runtime and the playbook package validates | The command mirrors resolve and the playbook validator reports PASS |
 | 009-verification-and-closeout | 010-asset-templates-and-folder-readmes | The mode is shipped and the operator asked for templates, READMEs and the index removal | `node --test` 15 of 15, guard fresh, recursive strict `RESULT: PASSED` |
 | 010-asset-templates-and-folder-readmes | 011-cross-surface-references | The templates shipped and the operator asked for the mode to be named wherever its siblings are | Recursive strict `RESULT: PASSED` with phase 010 committed |
+| 011-cross-surface-references | 012-goal-send-and-dedupe | Phase 011 shipped and the operator asked for one send rule and no duplicate nesting logic | A read-only xhigh scope analysis, spot-checked, and the operator's review before any rule or template changes |
 <!-- /ANCHOR:phase-map -->
 
 ---

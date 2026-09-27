@@ -184,7 +184,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
 ```
 
-Add `--with-lazy-addons` to scaffold `before-after.md`, `timeline.md`, `roadmap.md` and `decision-record.md`, and `--with-goal` to scaffold `goal.md`; both work at every level.
+Add `--with-lazy-addons` to scaffold `before-after.md`, `timeline.md`, `roadmap.md` and `decision-record.md`, and `--with-goal` to scaffold `goal.md`. Both work at every level, but with `--phase` the goal flag writes a `goal.md` into each child only. Author a parent goal, or any goal after scaffolding, with `/create:goal`.
 
 **Optional Templates:**
 ```bash

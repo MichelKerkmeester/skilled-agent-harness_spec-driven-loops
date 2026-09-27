@@ -281,7 +281,8 @@ while [[ $i -le $# ]]; do
             echo "  --with-lazy-addons  Add before-after.md, timeline.md, roadmap.md, and decision-record.md"
             echo "                      (off by default; all are valid at every level)"
             echo "  --with-goal         Add goal.md, the durable directive an operator sets as the session objective"
-            echo "                      (off by default; valid at every level and on phase parents)"
+            echo "                      (off by default; valid at every level. With --phase it writes child goals only,"
+            echo "                      and --level phase-parent writes a parent goal. Author or amend goals with /create:goal)"
             echo "  --subfolder <path>  Create versioned sub-folder in existing spec folder"
             echo "                      Auto-increments version (001, 002, etc.)"
             echo "  --topic <name>      Topic name for sub-folder (used with --subfolder)"
@@ -292,6 +293,7 @@ while [[ $i -le $# ]]; do
             echo "  --phase-names <list>  Comma-separated names for child phases"
             echo "  --parent <path>     Add phases to existing parent spec folder (with --phase)"
             echo "  --phase-parent <path>  Alias for --parent in phase mode (supports nested specs/ paths)"
+            echo "                      Bind a new phase's goal with /create:goal <parent> phase-add"
             echo "                      Example: --phase-names \"foundation,implementation,integration\""
             echo "  --short-name <name> Provide a custom short name (2-4 words) for the branch"
             echo "  --number N          Specify branch number manually (overrides auto-detection)"
@@ -1649,7 +1651,8 @@ This is **Phase ${_phase_number}** of the ${FEATURE_DESCRIPTION} specification.
         echo "  Next steps:"
         echo "    1. Define phase scopes in parent spec.md Phase Documentation Map"
         echo "    2. Fill out each child spec.md with phase-specific requirements"
-        echo "    3. Use /spec_kit:plan on each phase folder for detailed planning"
+        echo "    3. Use /speckit:plan on each phase folder for detailed planning"
+        echo "    4. Author the parent goal and bind each phase goal with /create:goal <parent> phase-parent"
         echo ""
         echo "───────────────────────────────────────────────────────────────────"
     fi
@@ -1881,8 +1884,10 @@ else
     else
         echo "    5. Add on-demand docs with --with-lazy-addons when needed"
     fi
-    if ! $WITH_GOAL; then
-        echo "    6. Add goal.md with --with-goal when an operator will set this packet as a session objective"
+    if $WITH_GOAL; then
+        echo "    6. Fill goal.md with /create:goal"
+    else
+        echo "    6. Add goal.md with --with-goal or /create:goal when an operator will set this packet as a session objective"
     fi
     echo ""
     echo "───────────────────────────────────────────────────────────────────"

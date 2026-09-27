@@ -171,6 +171,15 @@ function extractTurnEndText(event: TurnEndEvent): string {
  * `turn_end` handler below records the turn and, when the heuristic verifier
  * finds the goal not yet met, surfaces a non-blocking nudge via
  * `pi.sendMessage`. It never re-queues, steers, or blocks a turn.
+ *
+ * `turn_end` fires while the agent is still streaming. A custom message sent
+ * then with default options is steered into the running agent, which restarts
+ * a run that already gave its final answer. `triggerTurn: false` stops the
+ * restart but appends the nudge after the final answer, and print mode then
+ * prints nothing because it only prints a trailing assistant message. So the
+ * nudge uses `deliverAs: "nextTurn"`: Pi holds it and sends it as context with
+ * the next user prompt, and starts no turn. The session-start restore passes
+ * `triggerTurn: false`, which appends it at once while no turn is running.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -211,7 +220,10 @@ export default function goalContext(pi: ExtensionAPI): void {
       const goal = core.readGoalRecord(options);
       const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL, workspace: options.scope.workspace });
       if (!brief) return;
-      pi.sendMessage({ customType: "goal-context-restore", content: brief, display: false });
+      pi.sendMessage(
+        { customType: "goal-context-restore", content: brief, display: false },
+        { triggerTurn: false },
+      );
     } catch {
       // Fail open because a goal-state bug must never block session start.
       return undefined;
@@ -231,11 +243,14 @@ export default function goalContext(pi: ExtensionAPI): void {
       core.recordTurn({}, options);
 
       if (verdict.verdict !== "met") {
-        pi.sendMessage({
-          customType: "goal-verify-nudge",
-          content: `[goal_verify] verdict=${verdict.verdict}; reason=${verdict.reason}`,
-          display: false,
-        });
+        pi.sendMessage(
+          {
+            customType: "goal-verify-nudge",
+            content: `[goal_verify] verdict=${verdict.verdict}; reason=${verdict.reason}`,
+            display: false,
+          },
+          { deliverAs: "nextTurn" },
+        );
       }
     } catch {
       // Fail open because a verify bug must never block or alter a turn.

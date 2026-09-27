@@ -1,0 +1,144 @@
+STATE_DIR=/tmp/goal-cursor-cu027.pQGsro
+
+## 1. Set Goal A and Goal B with explicit Cursor session flags
+$ node .skilled/hooks/goal/bin/goal.cjs --runtime cursor --session session-a --workspace "$PWD" set 'Goal A objective alpha'
+STATUS=OK ACTION=set
+mutation=created
+goal_present=true
+goal_id=goal-6bd4e78b-801f-4e86-89b3-455aa8d33089
+status=active
+objective="Goal A objective alpha"
+goal_prompt="Role: Focused cursor execution agent operating under the active session goal.\nObjective: Goal A objective alpha\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action."
+token_budget=none
+turns_used=0
+tokens_used=0
+usage_source=turn-count-estimate
+created_at_ms=1790452913412
+updated_at_ms=1790452913412
+runtime=cursor
+last_check=not_evaluated
+verifier_reason=""
+injection_preview="[active_goal:goal-6bd4e78b-801f-4e86-89b3-455aa8d33089]\nstatus: active\nobjective: Goal A objective alpha\ngoal_prompt:\nRole: Focused cursor execution agent operating under the active session goal.\nObjective: Goal A objective alpha\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"
+packet_path=""
+packet_state=unbound
+packet_bound=false
+EXIT=0
+
+$ node .skilled/hooks/goal/bin/goal.cjs --runtime cursor --session session-b --workspace "$PWD" set 'Goal B objective bravo'
+STATUS=OK ACTION=set
+mutation=created
+goal_present=true
+goal_id=goal-5468584d-a831-40f9-8b05-80432ed21f71
+status=active
+objective="Goal B objective bravo"
+goal_prompt="Role: Focused cursor execution agent operating under the active session goal.\nObjective: Goal B objective bravo\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action."
+token_budget=none
+turns_used=0
+tokens_used=0
+usage_source=turn-count-estimate
+created_at_ms=1790452913469
+updated_at_ms=1790452913469
+runtime=cursor
+last_check=not_evaluated
+verifier_reason=""
+injection_preview="[active_goal:goal-5468584d-a831-40f9-8b05-80432ed21f71]\nstatus: active\nobjective: Goal B objective bravo\ngoal_prompt:\nRole: Focused cursor execution agent operating under the active session goal.\nObjective: Goal B objective bravo\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"
+packet_path=""
+packet_state=unbound
+packet_bound=false
+EXIT=0
+
+da9ae078e593dfc32f0e742ea3ffae6ebfd21fec15c46e4789c5e52a2b4cb18d.json
+de41f9d407794a98ca74a76fe67a945a2a9187cf647cc5feeb09348ee00cebdf.json
+
+A_FILE=/tmp/goal-cursor-cu027.pQGsro/de41f9d407794a98ca74a76fe67a945a2a9187cf647cc5feeb09348ee00cebdf.json
+B_FILE=/tmp/goal-cursor-cu027.pQGsro/da9ae078e593dfc32f0e742ea3ffae6ebfd21fec15c46e4789c5e52a2b4cb18d.json
+before: A=570e91b9ca0df9df B=d69e6d84a686f7d4
+
+## 2. Invoke adapter with session-a
+$ printf '%s' '{"session_id":"session-a","workspace_roots":["'"$PWD"'"]}' | node .skilled/hooks/goal/cursor/goal-inject.mjs
+{"permission":"allow","agent_message":"[active_goal:goal-6bd4e78b-801f-4e86-89b3-455aa8d33089]\nstatus: active\nobjective: Goal A objective alpha\ngoal_prompt:\nRole: Focused Cursor execution agent operating under the active session goal.\nObjective: Goal A objective alpha\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"}EXIT=0
+
+after A: A=4d46030dce33d4a9 B=d69e6d84a686f7d4
+NON_OWNER_B_BYTES=UNCHANGED
+OWNER_A_TOUCH=RECORDED
+
+## 3. Invoke adapter with session-b
+$ printf '%s' '{"session_id":"session-b","workspace_roots":["'"$PWD"'"]}' | node .skilled/hooks/goal/cursor/goal-inject.mjs
+{"permission":"allow","agent_message":"[active_goal:goal-5468584d-a831-40f9-8b05-80432ed21f71]\nstatus: active\nobjective: Goal B objective bravo\ngoal_prompt:\nRole: Focused Cursor execution agent operating under the active session goal.\nObjective: Goal B objective bravo\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"}EXIT=0
+
+after B: A=4d46030dce33d4a9 (A after its own call=4d46030dce33d4a9)
+NON_OWNER_A_BYTES=UNCHANGED
+
+## 4. conversation_id fallback
+$ node .skilled/hooks/goal/bin/goal.cjs --runtime cursor --session conversation-c --workspace "$PWD" set 'Goal C objective charlie'
+STATUS=OK ACTION=set
+mutation=created
+goal_present=true
+goal_id=goal-2fa94965-72eb-469a-a250-bff12644deae
+status=active
+objective="Goal C objective charlie"
+goal_prompt="Role: Focused cursor execution agent operating under the active session goal.\nObjective: Goal C objective charlie\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action."
+token_budget=none
+turns_used=0
+tokens_used=0
+usage_source=turn-count-estimate
+created_at_ms=1790452913835
+updated_at_ms=1790452913835
+runtime=cursor
+last_check=not_evaluated
+verifier_reason=""
+injection_preview="[active_goal:goal-2fa94965-72eb-469a-a250-bff12644deae]\nstatus: active\nobjective: Goal C objective charlie\ngoal_prompt:\nRole: Focused cursor execution agent operating under the active session goal.\nObjective: Goal C objective charlie\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"
+packet_path=""
+packet_state=unbound
+packet_bound=false
+EXIT=0
+
+$ printf '%s' '{"conversation_id":"conversation-c","workspace_roots":["'"$PWD"'"]}' | node .skilled/hooks/goal/cursor/goal-inject.mjs
+{"permission":"allow","agent_message":"[active_goal:goal-2fa94965-72eb-469a-a250-bff12644deae]\nstatus: active\nobjective: Goal C objective charlie\ngoal_prompt:\nRole: Focused Cursor execution agent operating under the active session goal.\nObjective: Goal C objective charlie\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"}EXIT=0
+
+## 5. Missing identity
+$ printf '%s' '{}' | node .skilled/hooks/goal/cursor/goal-inject.mjs
+{"permission":"allow"}EXIT=0
+
+$ printf '%s' '{"workspace_roots":["'"$PWD"'"]}' | node .skilled/hooks/goal/cursor/goal-inject.mjs
+{"permission":"allow"}EXIT=0
+
+## 6. Disabled state
+$ printf '%s' '{"session_id":"session-a","workspace_roots":["'"$PWD"'"]}' | OPENCODE_GOAL_DISABLED=1 node .skilled/hooks/goal/cursor/goal-inject.mjs
+{"permission":"allow"}EXIT=0
+
+DISABLED_NO_INCREMENT=TRUE
+
+## 7. Malformed scoped state (corrupt session-b file)
+$ printf '%s' '{"session_id":"session-b","workspace_roots":["'"$PWD"'"]}' | node .skilled/hooks/goal/cursor/goal-inject.mjs
+{"permission":"allow"}EXIT=0
+
+## 8. Legacy-only state (fresh state dir holding only active-goal.json)
+$ printf '%s' '{"session_id":"session-a","workspace_roots":["'"$PWD"'"]}' | OPENCODE_GOAL_STATE_DIR=/tmp/goal-cursor-legacy.JJHgH4 node .skilled/hooks/goal/cursor/goal-inject.mjs
+{"permission":"allow"}EXIT=0
+
+LEGACY_BYTES=UNCHANGED
+active-goal.json
+
+## 9. Parsed registration (.cursor/hooks.json)
+$ python3 -c 'import json;d=json.load(open(".cursor/hooks.json"));e=[h for h in d["hooks"]["sessionStart"] if "goal/cursor/goal-inject.mjs" in h["command"]];print("sessionStart goal entries:",len(e));print(e[0]["command"].split(" ||")[0]);import os;print("adapter exists:",os.path.isfile(".skilled/hooks/goal/cursor/goal-inject.mjs"))'
+sessionStart goal entries: 1
+node .skilled/hooks/goal/cursor/goal-inject.mjs
+adapter exists: True
+EXIT=0
+
+## 10. Command document (.cursor/commands/goal-cursor.md) fail-closed text
+$ grep -n 'UNSUPPORTED_SESSION_BINDING\|lacks native session identity\|Do not call' .cursor/commands/goal-cursor.md
+19:- Anything else: `STATUS=FAIL ACTION=<action> ERROR="Cursor command lacks native session identity"` and `code=UNSUPPORTED_SESSION_BINDING`.
+36:STATUS=FAIL ACTION=<action> ERROR="Cursor command lacks native session identity"
+37:code=UNSUPPORTED_SESSION_BINDING
+47:- Do not call `bin/goal.cjs` with a session action from this command; `packet` reads a file and `packet-log` appends one row, and neither binds anything.
+EXIT=0
+
+## 11. Focused test (as listed in the scenario sequence)
+$ node --test .skilled/hooks/goal/cursor/goal-cursor.test.mjs </dev/null 2>&1 | grep -E '^ℹ (tests|pass|fail)'
+ℹ tests 15
+ℹ pass 15
+ℹ fail 0
+EXIT=0
+

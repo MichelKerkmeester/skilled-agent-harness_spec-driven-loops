@@ -8,7 +8,7 @@ trigger_phrases:
   - "goal chat slice"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # sk-create-goal
@@ -89,13 +89,13 @@ An operation that alters a parent decision or criterion amends the parent first,
 3. **Start from the template.** Copy the block from [`goal-top-level-template.md`](./assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](./assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](./assets/goal-phase-child-template.md) into `goal.md`. A child that `create.sh --with-goal` scaffolded already has the structure, so fill that file.
 4. **Fill.** Load the authoring standards and the goal exemplars, then write the objective, the decision table and the criteria. Leave no template placeholder behind.
 5. **Bind.** For a phase parent, compare the map's folder names with the direct child folders and the binding rows. All three sets must agree before anything is written.
-6. **Measure.** `goal.cjs packet` reports `packet_durable_chars` and `packet_budget`. A top-level goal or phase parent stays at or under 4,000 characters. Phase children are exempt from the cap.
-7. **Check.** Run the goal checker and resolve every finding.
+6. **Measure.** `goal.cjs packet` reports `packet_durable_chars` and `packet_budget`. A goal the cap applies to stays at or under 4,000 characters. Section 2 of [`budget-and-handoff.md`](references/budget-and-handoff.md) says which goals those are.
+7. **Check.** Run the goal checker and resolve every finding. A finding left open for any reason stops the run before the hand-off, with `STATUS=FAIL` and no chat slice.
 8. **Hand off.** Print the `chat_slice` for the operator to set or resend, then stop.
 
 ### Cutting An Over-Budget Parent
 
-Cut in the playbook order. The frontmatter comes first because it sits outside the measured slice. The log comes next because it is outside the durable directive. Then remove parent text that restates a child, then shorten decision prose, then shorten criterion wording only when still over. Never drop a criterion to fit the budget. If the parent still runs long, ask whether the packet scope should be split.
+Cut in the order section 3 of [`budget-and-handoff.md`](references/budget-and-handoff.md) gives, and rerun the packet report after the cuts. Never drop a criterion to fit the budget. If the parent still runs long, ask whether the packet scope should be split.
 
 ---
 
@@ -107,16 +107,17 @@ Cut in the playbook order. The frontmatter comes first because it sits outside t
 node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>
 ```
 
-Four checks run on every packet it is given:
+Five checks run on every packet it is given:
 
 | Check | What it proves |
 |---|---|
 | `missing-binding-row` | Every direct phase-child folder has a target row in the phase-parent binding table |
 | `placeholder` | No template text remains in the objective, the decision table or the criteria |
 | `criteria-count` | The goal carries three to seven completion criteria |
-| `parent-budget` | A top-level or phase-parent durable slice is at or under 4,000 characters |
+| `parent-budget` | A goal the cap applies to has a durable slice at or under 4,000 characters |
+| `frontmatter-fence` | No bare `---` line sits before the first heading, which would mean the frontmatter closed early |
 
-A clean run prints `[check-goal] RESULT: PASSED (4/4 checks)` and exits 0. A finding names the check, the packet and the detail. Phase children skip the budget check, because the cap does not apply to them.
+A clean run prints `[check-goal] RESULT: PASSED (5/5 checks)` and exits 0. A finding names the check, the packet and the detail. The budget check skips only a phase child that is not itself a phase parent, the same line section 2 of [`budget-and-handoff.md`](references/budget-and-handoff.md) draws.
 
 ---
 
@@ -155,7 +156,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| Goal conformance | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>` | `RESULT: PASSED (4/4 checks)`, exit 0 |
+| Goal conformance | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>` | `RESULT: PASSED (5/5 checks)`, exit 0 |
 | Budget and slices | `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace "$PWD"` | `packet_budget=ok` and the `chat_slice` printed |
 | Checker and template tests | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` | `pass 15`, `fail 0`, including template parity with `goal.md.tmpl` |
 | Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` | `PASS ... scenarios=8 ... violations=0` |
@@ -168,7 +169,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 |---|---|
 | [`SKILL.md`](./SKILL.md) | The workflow contract, the rules and the ownership boundaries |
 | [`references/parent-and-nested-goals.md`](./references/parent-and-nested-goals.md) | The top-level, phase-parent, child, retrofit, phase-add and amend workflows |
-| [`references/authoring-standards.md`](./references/authoring-standards.md) | Reader checks for objectives, decisions, criteria, logs and voice |
+| [`references/authoring-standards.md`](./references/authoring-standards.md) | Reader checks for objectives, decisions, criteria, logs, voice and frontmatter |
 | [`references/budget-and-handoff.md`](./references/budget-and-handoff.md) | Durable budget measurement, ordered cuts and the runtime handoff matrix |
 | [`assets/goal-top-level-template.md`](./assets/goal-top-level-template.md) | The blank for a packet with no phases |
 | [`assets/goal-phase-parent-template.md`](./assets/goal-phase-parent-template.md) | The blank for a phase parent, with its binding table |
@@ -180,4 +181,4 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 | [`goal.cjs`](../../../hooks/goal/bin/goal.cjs) | The session-free printer for a packet's goal slices |
 | [Goal hooks README](../../../hooks/goal/README.md) | The runtime goal ownership and session-state boundary |
 | [`/create:goal`](../../../commands/create/goal.md) | The command router with the auto and confirm workflows |
-| [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) | Release notes for this mode |
+| [`changelog/`](./changelog/) | Release notes for each version of this mode |

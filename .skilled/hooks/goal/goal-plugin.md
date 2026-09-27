@@ -30,7 +30,7 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 |---|---|---|
 | Plugin | `.skilled/plugins/opencode-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `opencode_goal`, and `opencode_goal_status`. |
 | Command | `.skilled/commands/goal-opencode.md` | State-free `/goal-opencode` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
-| State | `.skilled/skills/.state/goal/` | Per-session JSON record keyed by a fixed SHA-256 digest of the session id: the packet pointer, the operator copy, liveness and telemetry. The directive is the bound packet's `goal.md`. |
+| State | `.skilled/skills/.state/goal/` | Per-session JSON record keyed by a fixed SHA-256 digest of the session id: the packet pointer, the objective slice, liveness and telemetry. The directive is the bound packet's `goal.md`. |
 | Slice | `.skilled/hooks/goal/lib/goal-slice.cjs` | The packet goal projections the plugin renders from; shared with the runtime-neutral core so the frontmatter boundary is defined once. |
 | Tests | `.skilled/plugins/tests/opencode-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 

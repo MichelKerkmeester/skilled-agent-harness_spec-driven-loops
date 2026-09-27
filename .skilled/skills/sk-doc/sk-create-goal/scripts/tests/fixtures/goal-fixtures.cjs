@@ -56,10 +56,11 @@ function buildGoal(options = {}) {
   const directiveCriteria = options.directiveCriteria || [];
   const completionOpen = options.completionAnchor ? ['<!-- ANCHOR:completion -->'] : [];
   const completionClose = options.completionAnchor ? ['<!-- /ANCHOR:completion -->'] : [];
+  const frontmatter = options.frontmatter || ['title: Fixture Goal'];
 
   const lines = [
     '---',
-    'title: Fixture Goal',
+    ...frontmatter,
     '---',
     '# Goal: Fixture',
     '',
@@ -119,15 +120,23 @@ function writePacket(parentDir, name, options = {}) {
   return packetDir;
 }
 
+// A folder with its own spec.md, so every packet written inside it is a phase child.
+function writeHost(parentDir, name) {
+  const hostDir = path.join(parentDir, name);
+  fs.mkdirSync(hostDir, { recursive: true });
+  fs.writeFileSync(path.join(hostDir, 'spec.md'), '# Fixture host\n', 'utf8');
+  return hostDir;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Create the passing packets and six isolated negative packet fixtures.
+ * Create the passing packets and eight isolated negative packet fixtures.
  *
  * @param {string} fixtureRoot - Temporary directory owned by the caller.
- * @returns {{positive: string, directiveCriteria: string, negatives: Object<string, string>}} Fixture paths by name.
+ * @returns {{positive: string, directiveCriteria: string, overBudgetPhaseChild: string, negatives: Object<string, string>}} Fixture paths by name.
  */
 function createGoalFixtures(fixtureRoot) {
   fs.mkdirSync(fixtureRoot, { recursive: true });
@@ -138,6 +147,12 @@ function createGoalFixtures(fixtureRoot) {
     completionAnchor: true,
     directiveCriteria: VALID_CRITERIA
   });
+  // A plain phase child binds through its parent, so its length is never capped.
+  const overBudgetPhaseChild = writePacket(
+    writeHost(fixtureRoot, 'child-host'),
+    'over-budget-phase-child',
+    { children: [], objective: 'A'.repeat(4200) }
+  );
 
   const negatives = {
     'binding-row-removed-but-identifier-mentioned': writePacket(
@@ -183,10 +198,20 @@ function createGoalFixtures(fixtureRoot) {
       fixtureRoot,
       'over-budget-parent',
       { objective: 'A'.repeat(4200) }
+    ),
+    'over-budget-nested-phase-parent': writePacket(
+      writeHost(fixtureRoot, 'nested-host'),
+      'over-budget-nested-phase-parent',
+      { objective: 'A'.repeat(4200) }
+    ),
+    'frontmatter-inner-fence': writePacket(
+      fixtureRoot,
+      'frontmatter-inner-fence',
+      { frontmatter: ['title: Fixture Goal', '---', 'status: active'] }
     )
   };
 
-  return { positive, directiveCriteria, negatives };
+  return { positive, directiveCriteria, overBudgetPhaseChild, negatives };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
