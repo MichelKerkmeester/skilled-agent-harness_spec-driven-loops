@@ -97,7 +97,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
   (no output)
   ```
 - `cd .skilled/skills/system-spec-kit/scripts && npm run check` failed:
-  Recorded before the CLI nesting; the `@spec-kit/scripts` workspace and two of the listed test files no longer exist, the boundary script is repaired, and `npm run check` passes with the listed test imports governed by the allowlist.
+  Recorded before the CLI nesting; the `@spec-kit/scripts` workspace and two of the listed test files no longer exist, the boundary script is repaired, and `npm run check` passes with the listed test imports governed by the allowlist. Two rows for `memory-pipeline-regressions.vitest.ts` were later removed from the capture below, because that test no longer imports `../../shared/embeddings` and the lines they cited are gone. The `17 violation(s)` count is the original recording.
 
   ```text
   > @spec-kit/scripts@1.7.2 check
@@ -114,8 +114,6 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
     tests/graph-metadata-backfill.vitest.ts:7 → ../../runtime/lib/graph/graph-metadata-parser.js
     tests/graph-metadata-refresh.vitest.ts:8 → ../../runtime/lib/graph/graph-metadata-parser.js
     tests/level-contract-resolver.vitest.ts:6 → ../../runtime/lib/templates/level-contract-resolver
-    tests/memory-pipeline-regressions.vitest.ts:67 → ../../shared/embeddings
-    tests/memory-pipeline-regressions.vitest.ts:109 → ../../shared/embeddings
     tests/memory-template-contract.vitest.ts:5 → ../../shared/parsing/memory-template-contract
     tests/scaffold-golden-snapshots.vitest.ts:8 → ../../runtime/lib/templates/level-contract-resolver
     tests/scoped-backfill-boundary.vitest.ts:11 → ../../runtime/lib/utils/index-scope.js

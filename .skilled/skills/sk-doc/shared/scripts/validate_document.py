@@ -218,8 +218,8 @@ def load_rules() -> Dict[str, Any]:
     return load_template_rules(Path(__file__).resolve().parent)
 
 
-def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) -> str:
-    """Detect document type from file path or content."""
+def _detect_document_type_with_source(file_path: str, content: str, rules: Dict[str, Any]) -> Tuple[str, str]:
+    """Detect document type and whether a path rule ('rule') or the README default ('default') decided it."""
     path_lower = str(file_path).lower()
     assert_supported_root_path(path_lower)
     portable_path = PurePosixPath(path_lower.replace('\\', '/'))
@@ -231,7 +231,7 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
         # named by meaning alone. The root index file (whose parent IS the
         # manual_testing_playbook dir) is intentionally excluded.
         if portable_path.parent.parent.name in PLAYBOOK_DIR_NAMES:
-            return 'playbook_feature'
+            return 'playbook_feature', 'rule'
     # Per-feature catalog leaves sit one level below the catalog root
     # (feature-catalog/<category>/<feature>.md). These carry the Validation And Tests
     # table whose Type taxonomy and placeholder rows the generic readme path misses.
@@ -239,32 +239,37 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
     # root index file (whose parent IS the feature_catalog dir) stays excluded.
     if any(f'/{name}/' in path_lower or f'\\{name}\\' in path_lower for name in CATALOG_DIR_NAMES):
         if portable_path.parent.parent.name in CATALOG_DIR_NAMES:
-            return 'feature_catalog'
+            return 'feature_catalog', 'rule'
     if '/command/' in path_lower or '\\command\\' in path_lower or '/commands/' in path_lower or '\\commands\\' in path_lower:
-        return 'command'
+        return 'command', 'rule'
     # An install guide is a document a skill owns next to its own SKILL.md, named
     # INSTALL-GUIDE.md. Classify it by that filename, the only thing that marks it.
     if 'install_guide' in Path(path_lower).stem or 'install-guide' in Path(path_lower).stem:
-        return 'install_guide'
+        return 'install_guide', 'rule'
     # Changelog files: under .skilled/changelog/, .skilled/skills/*/changelog/,
     # or spec-folder nested changelog/ subdirectories. Files match v{VERSION}.md or changelog-*.md
     if '/changelog/' in path_lower or '\\changelog\\' in path_lower:
-        return 'changelog'
+        return 'changelog', 'rule'
     if path_lower.endswith('readme.md'):
-        return 'readme'
+        return 'readme', 'rule'
     if path_lower.endswith('skill.md'):
-        return 'skill'
+        return 'skill', 'rule'
     if '/specs/' in path_lower or '\\specs\\' in path_lower:
-        return 'spec'
+        return 'spec', 'rule'
     if '/agents/' in path_lower or '\\agents\\' in path_lower or '/agent/' in path_lower or '\\agent\\' in path_lower:
-        return 'agent'
+        return 'agent', 'rule'
     if '/references/' in path_lower or '\\references\\' in path_lower:
-        return 'reference'
+        return 'reference', 'rule'
     if '/assets/' in path_lower or '\\assets\\' in path_lower:
-        return 'asset'
+        return 'asset', 'rule'
 
     # Default to readme for general markdown
-    return 'readme'
+    return 'readme', 'default'
+
+
+def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) -> str:
+    """Detect document type from file path or content."""
+    return _detect_document_type_with_source(file_path, content, rules)[0]
 
 
 def has_emoji(text: str) -> bool:
@@ -1627,8 +1632,9 @@ def validate_document(
             'exit_code': 2
         }
 
+    type_source = 'explicit'
     if doc_type is None:
-        doc_type = detect_document_type(file_path, content, rules)
+        doc_type, type_source = _detect_document_type_with_source(file_path, content, rules)
     elif doc_type == 'code-folder':
         doc_type = 'code_folder'
 
@@ -1657,6 +1663,16 @@ def validate_document(
         all_errors.extend(validate_changelog_frontmatter(content, file_path, doc_type_rules))
     if doc_type == 'code_folder':
         all_errors.extend(validate_code_folder(content, file_path))
+
+    # README rules applied by default look like a README verdict, so say it was a fallback.
+    if type_source == 'default':
+        all_errors.append({
+            'type': 'document_type_fallback',
+            'severity': 'warning',
+            'message': f'No document type rule matched {file_path}, so README rules were applied. Pass --type to choose the rule set.',
+            'fix_hint': 'Pass --type <type> to validate against the intended rule set',
+            'auto_fixable': False,
+        })
 
     blocking_errors = [e for e in all_errors if e.get('severity') == 'blocking']
     warnings = [e for e in all_errors if e.get('severity') == 'warning']
