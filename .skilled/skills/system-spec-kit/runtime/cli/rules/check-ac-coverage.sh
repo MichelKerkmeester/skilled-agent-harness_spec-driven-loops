@@ -296,7 +296,7 @@ _ac_analyze_canonical() {
             while (match(rest, /(^|[[:space:](`])[^[:space:]|()`:]*[.\/][^[:space:]|()`:]*:[0-9]+([[:space:]).,;`]|$)/)) {
                 m = substr(rest, RSTART, RLENGTH)
                 if (m ~ /[0-9]$/) rest = ""
-                else { rest = substr(rest, RSTART + RLENGTH - 1); m = substr(m, 1, length(m) - 1) }
+                else { rest = substr(rest, RSTART + RLENGTH - 1); sub(/^[.,;]/, "", rest); m = substr(m, 1, length(m) - 1) }
                 sub(/^[[:space:](`]/, "", m)
                 out = out (out == "" ? "" : ", ") id " (" m ")"
             }
@@ -363,7 +363,7 @@ _ac_analyze_traceability() {
             while (match(rest, /(^|[[:space:](])[^[:space:]|():]*[.\/][^[:space:]|():]*:[0-9]+([[:space:]).,;]|$)/)) {
                 m = substr(rest, RSTART, RLENGTH)
                 if (m ~ /[0-9]$/) rest = ""
-                else { rest = substr(rest, RSTART + RLENGTH - 1); m = substr(m, 1, length(m) - 1) }
+                else { rest = substr(rest, RSTART + RLENGTH - 1); sub(/^[.,;]/, "", rest); m = substr(m, 1, length(m) - 1) }
                 sub(/^[[:space:](]/, "", m)
                 out = out (out == "" ? "" : ", ") id " (" m ")"
             }
@@ -394,7 +394,9 @@ _ac_analyze_traceability() {
             }
 
             if ((class_l ~ /tested/ || class_l ~ /partial/) && has_file_line(evidence)) {
-                cited = cited (cited == "" ? "" : ", ") cited_in(evidence, ac_id)
+                # ", " separates list entries, so an id cell naming several ids keeps a bare comma.
+                list_id = ac_id; gsub(/,[[:space:]]*/, ",", list_id)
+                cited = cited (cited == "" ? "" : ", ") cited_in(evidence, list_id)
                 covered++
                 next
             }
@@ -419,6 +421,8 @@ _ac_file_has_line() {
 
     [[ -f "$path" && -r "$path" ]] || return 1
     [[ "$line" =~ ^[0-9]+$ ]] || return 1
+    # Past nine digits the arithmetic below can wrap, and no cited file is that long.
+    [[ "${#line}" -le 9 ]] || return 1
     line_num=$((10#$line))
     [[ "$line_num" -ge 1 ]] || return 1
 
