@@ -297,6 +297,9 @@ expect_detail "citations joined by a comma or semicolon split cleanly" "Unresolv
 d="$TMP/longline"; mkdir -p "$d"; printf 'one\n' > "$d/a.sh"
 expect_unresolved "a line number too long to be real does not resolve" "AC-001 (a.sh:18446744073709551617)" "$d" "" "AC-001 (a.sh:18446744073709551617)"
 
+d="$TMP/climb"; mkdir -p "$d"; printf 'one\n' > "$TMP/outside.sh"
+expect_unresolved "a citation that climbs out of the folder resolves only to a real file" "AC-002 (../missing-outside.sh:1)" "$d" "" "AC-001 (../outside.sh:1), AC-002 (../missing-outside.sh:1)"
+
 d="$TMP/legacy-ids"; mkpacket "$d"; printf 'one\n' > "$d/a.sh"
 printf '%s\n' '# Tasks' '<!-- ANCHOR:protocol -->' '| AC-ID | Class | Evidence |' '|-------|-------|----------|' \
     '| AC-001, AC-002 | tested | a.sh:1 |' '| AC-003 | tested | gone.sh:4 |' '<!-- /ANCHOR:summary -->' > "$d/tasks.md"
