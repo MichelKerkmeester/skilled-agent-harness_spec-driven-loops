@@ -123,6 +123,16 @@ describe('buildSkillAdvisorBrief', () => {
     expect(runAdvisorSubprocess).toHaveBeenCalledTimes(1);
   });
 
+  it('routes a prompt longer than advisor_recommend accepts on its head', async () => {
+    const prompt = 'implement the typescript cli fix '.repeat(700);
+    const result = await buildSkillAdvisorBrief(prompt, options);
+
+    expect(result.status).toBe('ok');
+    const sent = vi.mocked(runAdvisorSubprocess).mock.calls[0]?.[0] ?? '';
+    expect(sent).toHaveLength(10_000);
+    expect(prompt.startsWith(sent)).toBe(true);
+  });
+
   it('uses the shared ambiguous renderer contract for payload and brief content', async () => {
     vi.mocked(runAdvisorSubprocess).mockResolvedValue({
       ok: true,

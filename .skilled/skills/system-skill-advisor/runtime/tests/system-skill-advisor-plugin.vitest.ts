@@ -157,9 +157,11 @@ function statusMetric(status: string | undefined, key: string) {
 }
 
 function cliPromptAt(index: number): string {
-  const argv = mockedBridge.spawn.mock.calls[index]?.[1] as readonly string[] | undefined;
-  const promptIndex = argv ? argv.indexOf('--prompt') : -1;
-  return promptIndex === -1 ? '' : String(argv?.[promptIndex + 1] ?? '');
+  const child = mockedBridge.spawn.mock.results[index]?.value as { stdin?: { end?: ReturnType<typeof vi.fn> } } | undefined;
+  const request = child?.stdin?.end?.mock.calls[0]?.[0];
+  if (typeof request !== 'string') return '';
+  const parsed = JSON.parse(request) as { prompt?: unknown };
+  return typeof parsed.prompt === 'string' ? parsed.prompt : '';
 }
 
 describe('system-skill-advisor OpenCode plugin', () => {
@@ -649,6 +651,17 @@ describe('system-skill-advisor OpenCode plugin', () => {
     const clampedPrompt = cliPromptAt(0);
     expect(Buffer.byteLength(clampedPrompt, 'utf8')).toBeLessThanOrEqual(DEFAULT_MAX_PROMPT_BYTES);
     expect(clampedPrompt.length).toBeLessThan(prompt.length);
+  });
+
+  it('keeps the prompt out of the CLI argv', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    await runPrompt(hooks, { sessionID: 's-argv', prompt: 'review code for security' });
+
+    const argv = mockedBridge.spawn.mock.calls[0]?.[1] as readonly string[] | undefined;
+    expect(argv?.slice(1)).toEqual(['advisor_recommend', '--json', '-', '--format', 'json']);
+    expect(argv?.some((argument) => argument.includes('review code for security'))).toBe(false);
+    expect(cliPromptAt(0)).toBe('review code for security');
   });
 
   it('evicts oldest cache entry when max cache entries is exceeded', async () => {

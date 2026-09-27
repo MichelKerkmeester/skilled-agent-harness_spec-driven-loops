@@ -87,4 +87,5 @@ and findings belong here.
 | Scenario set | REQ-004 now names all nine related scenarios, matching parent criterion 4, so NC-001 and 433 are rerun in every CLI too |
 | New findings in the reruns | F21, a second launcher shutting down the live advisor, and F22, an unobservable CL-005 signal, were recorded in `spec.md` before work on them started, and REQ-008 covers F21 |
 | Codex hook double registration | On 2026-09-27 the operator chose the removal-only installer. T024 changed the installer and its tests, and T025 changed the eleven docs that stated the old copy contract. The one run against `~/.codex/hooks.json` stays the operator's, and `implementation-summary.md` gives the three commands and the rollback |
+| Installer run, resolved | On 2026-09-27 phase 10 ran the installer on the operator's direction and restored trust for the three moved hooks. `--check` prints `OK`, and a live Codex run starts each hook once |
 <!-- /ANCHOR:log -->

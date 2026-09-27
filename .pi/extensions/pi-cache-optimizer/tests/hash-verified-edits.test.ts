@@ -163,6 +163,37 @@ describe('hash-verified edit validation', () => {
     assert.match(error!, /line 3 hash mismatch/);
   });
 
+  test('accepts interior drift when the caller omits line_hashes', () => {
+    // Interior hashes are opt-in: without them only the endpoints and the line count are checked.
+    const wide = ['a', 'b', 'c', 'd'];
+    const edit: HashEdit = {
+      from: 1,
+      from_hash: lineHash('a'),
+      to: 4,
+      to_hash: lineHash('d'),
+      new_text: 'x',
+    };
+    const drifted = ['a', 'b', 'CHANGED', 'd'];
+    assert.equal(validateEdits(drifted, [edit], wide.length), null);
+  });
+
+  test('refuses a line_hashes list that does not cover the whole range', () => {
+    const wide = ['a', 'b', 'c', 'd'];
+    const edit: HashEdit = {
+      from: 1,
+      from_hash: lineHash('a'),
+      to: 4,
+      to_hash: lineHash('d'),
+      new_text: 'x',
+      line_hashes: [lineHash('a'), lineHash('b')],
+    };
+    const drifted = ['a', 'b', 'CHANGED', 'd'];
+    const error = validateEdits(drifted, [edit], drifted.length);
+    assert.ok(error, 'a short list must refuse');
+    assert.match(error!, /holds 2 hashes but lines 1\.\.4 span 4/);
+    assert.equal(validateEdits(wide, [{ ...edit, from: 2, from_hash: lineHash('b'), to: 2, to_hash: lineHash('b'), line_hashes: [] }], wide.length), null);
+  });
+
   test('accepts an edit whose endpoint hashes still match', () => {
     assert.equal(validateEdits(lines, [editFor(2, 3)], lines.length), null);
     assert.equal(validateEdits(lines, [editFor(2, 2)], lines.length), null);

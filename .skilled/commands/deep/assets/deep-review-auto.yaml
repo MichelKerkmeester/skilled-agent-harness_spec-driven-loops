@@ -2100,8 +2100,10 @@ workflow:
           - "{state_paths.state_log}"
           - "{state_paths.findings_registry}"
           - "{state_paths.strategy}"
+        read_patterns:
+          - "{state_paths.packet_dir}/lineages/*/deep-review-state.jsonl"
         extract:
-          - iteration_count: "Count lines where type === 'iteration'"
+          - iteration_count: "When direct lineage state logs exist, count type === 'iteration' across those logs in stable lineage order; otherwise count the root state log. Never add root compatibility records to lineage records."
           - p0_count: "Total P0 findings across all iterations (deduped)"
           - p1_count: "Total P1 findings across all iterations (deduped)"
           - p2_count: "Total P2 findings across all iterations (deduped)"
@@ -2258,215 +2260,19 @@ workflow:
           GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
           [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
           EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-review-synthesis.XXXXXX")"
-          node --input-type=module - "$EVENT_DIR" <<'EOF'
-          import { existsSync, lstatSync, readdirSync, readFileSync, realpathSync, statSync, writeFileSync } from 'node:fs';
-          import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
-
-          const paths = {
-            artifactDir: String.raw`{state_paths.packet_dir}`,
-            stateLog: String.raw`{state_paths.state_log}`,
-            registry: String.raw`{state_paths.findings_registry}`,
-            review: String.raw`{state_paths.review_output}`,
-            dashboard: String.raw`{state_paths.dashboard}`,
-          };
-
-          function hasFile(filePath) {
-            try {
-              return existsSync(filePath) && statSync(filePath).isFile();
-            } catch {
-              return false;
-            }
-          }
-
-          function readJson(filePath) {
-            try {
-              return JSON.parse(readFileSync(filePath, 'utf8'));
-            } catch {
-              return null;
-            }
-          }
-
-          function readJsonl(filePath) {
-            if (!hasFile(filePath)) return { records: [], malformedLines: [] };
-            const records = [];
-            const malformedLines = [];
-            readFileSync(filePath, 'utf8')
-              .split(/\r?\n/)
-              .forEach((line, index) => {
-                const trimmed = line.trim();
-                if (!trimmed) return;
-                try {
-                  records.push(JSON.parse(trimmed));
-                } catch {
-                  malformedLines.push(index + 1);
-                }
-              });
-            return { records, malformedLines };
-          }
-
-          function lineageStateLogs(artifactDir) {
-            const lineagesDir = join(artifactDir, 'lineages');
-            if (!existsSync(lineagesDir)) return [];
-            if (lstatSync(lineagesDir).isSymbolicLink() || !lstatSync(lineagesDir).isDirectory()) {
-              throw new Error(`lineages must be a real directory: ${lineagesDir}`);
-            }
-            const root = realpathSync(resolve(artifactDir));
-            return readdirSync(lineagesDir, { withFileTypes: true })
-              .map((entry) => {
-                if (entry.isSymbolicLink()) throw new Error(`lineage must be a real directory: ${join(lineagesDir, entry.name)}`);
-                return entry;
-              })
-              .filter((entry) => entry.isDirectory())
-              .sort((left, right) => left.name.localeCompare(right.name, undefined, { numeric: true }))
-              .flatMap((entry) => {
-                const label = entry.name;
-                const candidate = join(lineagesDir, label, 'deep-review-state.jsonl');
-                if (!hasFile(candidate)) return [];
-                const candidatePath = realpathSync(candidate);
-                const rel = relative(root, candidatePath);
-                if (rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) {
-                  throw new Error(`lineage state resolves outside the artifact directory: ${candidate}`);
-                }
-                return [candidatePath];
-              });
-          }
-
-          function countIterationFindings(record) {
-            if (!record || record.type !== 'iteration') return 0;
-            const numeric = Number(record.findingsCount);
-            if (Number.isFinite(numeric) && numeric > 0) return Math.floor(numeric);
-            if (Array.isArray(record.findingDetails)) return record.findingDetails.length;
-            return 0;
-          }
-
-          function normalizeFindingKey(value) {
-            return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
-          }
-
-          function findingKeys(candidate) {
-            if (typeof candidate === 'string') {
-              const key = normalizeFindingKey(candidate);
-              return key ? [key] : [];
-            }
-            if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return [];
-            return [...new Set([
-              candidate.id,
-              candidate.findingId,
-              candidate.title,
-              candidate.summary,
-              candidate.text,
-              candidate.finding,
-              candidate.description,
-            ].map(normalizeFindingKey).filter(Boolean))];
-          }
-
-          function collectIterationFindingGroups(record) {
-            if (!record || record.type !== 'iteration' || !Array.isArray(record.findingDetails)) return [];
-            return record.findingDetails
-              .map(findingKeys)
-              .filter((keys) => keys.length > 0);
-          }
-
-          function collectRegistryFindingKeys(registry) {
-            return [registry?.openFindings, registry?.resolvedFindings, registry?.repeatedFindings]
-              .filter(Array.isArray)
-              .flatMap((findings) => findings)
-              .flatMap(findingKeys);
-          }
-
-          const eventDir = process.argv[2];
-          // The scope needs one run-stable token the synthesis step can derive from the
-          // state-log path it was handed; the artifact directory name is that token.
-          const scopeRunId = basename(dirname(paths.stateLog)) || 'review';
-
-          // The state log is a projection the gateway rebuilds from the ledger, so the
-          // synthesis row is staged as a canonical ledger event; a write beside the
-          // projection is dropped by the next refresh.
-          function recordEvent(event) {
-            const data = { ...event };
-            const eventName = data.event;
-            delete data.type;
-            delete data.event;
-            delete data.timestamp;
-            writeFileSync(
-              join(eventDir, `${eventName}.json`),
-              JSON.stringify({
-                stem: `deep_review.${eventName}`,
-                scope: { runId: scopeRunId, sessionId: scopeRunId },
-                data,
-              }),
-              'utf8',
-            );
-          }
-
-          const registry = readJson(paths.registry);
-          const openCount = Array.isArray(registry?.openFindings) ? registry.openFindings.length : null;
-          const resolvedCount = Array.isArray(registry?.resolvedFindings) ? registry.resolvedFindings.length : 0;
-          const repeatedCount = Array.isArray(registry?.repeatedFindings) ? registry.repeatedFindings.length : 0;
-          const registryFindingCount = openCount === null ? null : openCount + resolvedCount + repeatedCount;
-          const stateLog = readJsonl(paths.stateLog);
-          const stateRecords = stateLog.records;
-          const iterationFindingCount = stateRecords.reduce((sum, record) => sum + countIterationFindings(record), 0);
-          const identifiableFindingGroups = stateRecords.flatMap(collectIterationFindingGroups);
-          const registryFindingKeys = new Set(collectRegistryFindingKeys(registry));
-          const missingStructuredFindingCount = identifiableFindingGroups.filter((keys) => !keys.some((key) => registryFindingKeys.has(key))).length;
-          const identifiableFindingCount = identifiableFindingGroups.length;
-          const lineageLogs = lineageStateLogs(paths.artifactDir);
-          const missingArtifacts = [
-            ['registry', paths.registry],
-            ['review', paths.review],
-            // Fan-out keeps its dashboards per lineage.
-            ...(lineageLogs.length > 0 ? [] : [['dashboard', paths.dashboard]]),
-          ].filter(([, filePath]) => !hasFile(filePath)).map(([name, filePath]) => ({ name, path: filePath }));
-          const invariantFailures = [];
-          if (stateLog.malformedLines.length > 0) invariantFailures.push('state_jsonl_parse_failure');
-          if (missingArtifacts.length > 0) invariantFailures.push('missing_synthesis_artifacts');
-          if (registryFindingCount === null) invariantFailures.push('registry_missing_openFindings');
-          if (iterationFindingCount > 0 && (registryFindingCount ?? 0) === 0) invariantFailures.push('state_findings_not_reflected_in_registry');
-          if (identifiableFindingCount > 0 && registryFindingCount !== null && registryFindingCount < identifiableFindingCount) invariantFailures.push('structured_state_findings_partially_reflected_in_registry');
-          if (missingStructuredFindingCount > 0) invariantFailures.push('structured_state_findings_missing_from_registry');
-
-          if (invariantFailures.length > 0) {
-            recordEvent({
-              type: 'event',
-              event: 'synthesis_incomplete',
-              mode: 'review',
-              severity: 'warning',
-              totalIterations: Number('{iteration_count}'),
-              activeP0: Number('{active_p0}'),
-              activeP1: Number('{active_p1}'),
-              activeP2: Number('{active_p2}'),
-              dimensionCoverage: Number('{dimension_coverage}'),
-              verdict: '{verdict}',
-              releaseReadinessState: '{release_readiness_state}',
-              stopReason: '{reason}',
-              reason: 'synthesis_artifact_invariant_failed',
-              invariantFailures,
-              missingArtifacts,
-              registryFindingCount,
-              iterationFindingCount,
-              identifiableFindingCount,
-              missingStructuredFindingCount,
-              stateParseFailureCount: stateLog.malformedLines.length,
-              timestamp: '{ISO_8601_NOW}',
-            });
-          } else {
-            recordEvent({
-              type: 'event',
-              event: 'synthesis_complete',
-              mode: 'review',
-              totalIterations: Number('{iteration_count}'),
-              activeP0: Number('{active_p0}'),
-              activeP1: Number('{active_p1}'),
-              activeP2: Number('{active_p2}'),
-              dimensionCoverage: Number('{dimension_coverage}'),
-              verdict: '{verdict}',
-              releaseReadinessState: '{release_readiness_state}',
-              stopReason: '{reason}',
-              timestamp: '{ISO_8601_NOW}',
-            });
-          }
-          EOF
+          CLOSEOUT=".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
+          [ -f "$CLOSEOUT" ] || CLOSEOUT="scripts/synthesis-closeout.cjs"
+          node "$CLOSEOUT" --mode review --event-dir "$EVENT_DIR" \
+            --artifact-dir "{state_paths.packet_dir}" \
+            --state-log "{state_paths.state_log}" \
+            --registry "{state_paths.findings_registry}" \
+            --output "{state_paths.review_output}" \
+            --dashboard "{state_paths.dashboard}" \
+            --stop-reason "{reason}" \
+            --active-p0 "{active_p0}" --active-p1 "{active_p1}" --active-p2 "{active_p2}" \
+            --dimension-coverage "{dimension_coverage}" \
+            --verdict "{verdict}" \
+            --release-readiness-state "{release_readiness_state}"
           NODE_STATUS=$?
           for eventFile in "$EVENT_DIR"/*.json; do
             [ -e "$eventFile" ] || continue

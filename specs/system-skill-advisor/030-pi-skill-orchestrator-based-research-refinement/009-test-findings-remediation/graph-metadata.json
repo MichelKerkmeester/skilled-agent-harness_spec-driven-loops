@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 8 ran the advisor scenarios inside five CLIs",
     "created_at": "2026-09-26T19:17:37Z",
-    "last_save_at": "2026-09-27T06:00:30.009Z",
+    "last_save_at": "2026-09-27T10:23:01.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b16a4b8dc8c4f352919b24a2bb9b8784c2b13e0898fd22b13cea5ffb9bb9476",
+    "source_fingerprint": "sha256:7fa2a19019ff6dc7794d478758a5746bbe6b4274ed834ccb22ef729da4ef65ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "695c779337986036d368d5dd8fbdd40876f9735ab89f3db57149a32cd577abfd",
       "plan.md": "66ec11bed566df753cb17c7bd975c7df92a3ef7b816ca0e2ac0c0a5462a28f06",
       "tasks.md": "7fc5668dfaf6a09be0746f084a0bd3c63239cb8a231736e3673b817d304bc622",
-      "implementation-summary.md": "0c2aa1883814999a702cafb4270398730757f2a17a1041f19ceab3d9673efb6f"
+      "implementation-summary.md": "f47e69cdd86716c7d40f53e59f29fb345e5db20371ba66b508b44b091b65935f"
     },
     "last_active_at": null
   }

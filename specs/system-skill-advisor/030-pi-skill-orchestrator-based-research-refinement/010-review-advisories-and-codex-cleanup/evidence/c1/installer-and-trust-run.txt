@@ -1,0 +1,7 @@
+# Installer run against the real ~/.codex/hooks.json, 2026-09-27
+backups taken first: ~/.codex/hooks.json.bak-pre-installer-2026-09-27T07-14-57Z and ~/.codex/config.toml.bak-retrust-2026-09-27T07-14-57Z
+dry-run: removed 18, orphaned 0, kept 25 (same as the phase 9 read-only runs after the jcode deletion)
+real run: node .skilled/bin/install-codex-hooks.mjs </dev/null -> exit 0, changed=true, removed=18, orphaned=0, kept=25, installer backup ~/.codex/hooks.json.bak-2026-09-27T07-15-03-730Z (see installer-run.json)
+check after: install-codex-hooks: OK /Users/michelkerkmeester/.codex/hooks.json (exit 0)
+file size: 19422 bytes before, 8454 bytes after
+rollback: cp ~/.codex/hooks.json.bak-2026-09-27T07-15-03-730Z ~/.codex/hooks.json and cp ~/.codex/config.toml.bak-retrust-2026-09-27T07-14-57Z ~/.codex/config.toml

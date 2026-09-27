@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-27T06:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Deleted the stale jcode Codex hook entry"
-    next_safe_action: "Operator runs the installer, then re-trusts"
+    next_safe_action: "None. Phase 10 ran the installer and restored the trust"
     blockers: []
     key_files:
       - ".skilled/bin/install-codex-hooks.mjs"
@@ -189,7 +189,7 @@ Native delivery during the reruns, from the diagnostics JSONL and each tester's 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Codex runs every repository hook twice until the operator runs the installer once (F5).** The session never writes `~/.codex/hooks.json`. From the checkout root:
+1. **Resolved in phase 10: Codex ran every repository hook twice until the installer ran once (F5).** On 2026-09-27 phase 10 ran it on the operator's direction and restored trust for the three moved hooks. `--check` now prints `OK`, and a live `codex exec` starts each hook once (`../010-review-advisories-and-codex-cleanup/evidence/`). What follows is the record of the steps it took, from the checkout root:
 
    ```bash
    node .skilled/bin/install-codex-hooks.mjs --dry-run   # expect 18 entries under "removed", "orphaned": [] and only third-party entries under "kept"

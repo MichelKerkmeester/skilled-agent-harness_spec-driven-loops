@@ -51,8 +51,8 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 2. Run the plugin's advisor call path directly:
 
 ```bash
-node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" \
-  --options '{"topK":3,"includeAttribution":false,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}' --format json
+printf '%s' '{"prompt":"save this conversation context to memory","options":{"topK":3,"includeAttribution":false,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}' \
+  | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json
 ```
 
 3. Inspect the plugin status tool through its test (runs without an interactive OpenCode session):
@@ -126,8 +126,8 @@ Preconditions observed:
 Advisor CLI command (step 2), run from the repository root:
 
 ```bash
-node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" \
-  --options '{"topK":3,"includeAttribution":false,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}' --format json
+printf '%s' '{"prompt":"save this conversation context to memory","options":{"topK":3,"includeAttribution":false,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}' \
+  | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json
 ```
 
 Advisor CLI output (exit code 0; response abbreviated to the routing fields):

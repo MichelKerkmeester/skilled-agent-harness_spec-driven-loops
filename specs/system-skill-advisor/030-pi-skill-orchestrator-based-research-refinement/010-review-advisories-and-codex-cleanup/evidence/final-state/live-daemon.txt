@@ -1,0 +1,20 @@
+# The live advisor daemon at the final state, 2026-09-27T10:18Z
+# The daemon that predated the fixes (launcher 9254, server 9260, started 04:37:33Z) had exited by 10:10Z. The session sent it no signal.
+# A launcher then cold-started a new daemon from a rebuilt dist (ps prints local time, UTC+2):
+    PID STARTED                      COMMAND
+  79958 Sun Sep 27 12:10:33 2026     /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.s
+  80305 Sun Sep 27 12:10:39 2026     /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.s
+dist build (advisor-recommend.js, advisor-tool-schemas.js, metrics.js mtime, UTC): 2026-09-27T10:10:39Z
+dist-freshness: All watched dist outputs are fresh.
+fixes present in that dist: --prompt-stdin in handlers/advisor-recommend.js x3, ADVISOR_RUNTIME_VALUES in schemas/advisor-tool-schemas.js x2, ADVISOR_PROMPT_MAX_CHARS x2
+
+# advisor_validate runtime check, refused on a deliberately invalid outcome so nothing is recorded:
+  runtime=pi | Invalid arguments for advisor_validate: advisor_validate.outcomeEvents[0].outcome must be one of: accepted, corrected, ignored
+  runtime=codex | Invalid arguments for advisor_validate: advisor_validate.outcomeEvents[0].outcome must be one of: accepted, corrected, ignored
+  runtime=cursor | Invalid arguments for advisor_validate: advisor_validate.outcomeEvents[0].outcome must be one of: accepted, corrected, ignored
+  runtime=devin | Invalid arguments for advisor_validate: advisor_validate.outcomeEvents[0].outcome must be one of: accepted, corrected, ignored
+  runtime=bogus | Invalid arguments for advisor_validate: advisor_validate.outcomeEvents[0].runtime must be one of: claude, copilot, opencode, pi, codex, cursor, devin
+
+# metrics directory and the log the final Codex run wrote:
+  drwx------ $TMPDIR/speckit-skill-advisor-metrics
+  -rw------- $TMPDIR/speckit-skill-advisor-metrics/a9f078f65abeed95-diagnostics.jsonl

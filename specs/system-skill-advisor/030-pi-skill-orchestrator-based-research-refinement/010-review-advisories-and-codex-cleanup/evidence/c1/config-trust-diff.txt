@@ -1,0 +1,14 @@
+# diff ~/.codex/config.toml.bak-retrust-2026-09-27T07-14-57Z ~/.codex/config.toml, after config/batchWrite of three keys
+# batchWrite result: {"status":"ok","version":"sha256:d9b49596059e6a30851ebea246fe37a8fcdc1d7adde0f5ab07491ec03a860738","filePath":"/Users/michelkerkmeester/.codex/config.toml","overriddenMetadata":null}
+110c110
+< trusted_hash = "sha256:024cc055c67890d2d436364490bacaf8bee2c8224efdf66add12889091efd082"
+---
+> trusted_hash = "sha256:0514fa8861fa752349708dd1d0ee0167c9333984d1f2bf93b3c8e5fb5be0b2aa"
+113c113
+< trusted_hash = "sha256:0514fa8861fa752349708dd1d0ee0167c9333984d1f2bf93b3c8e5fb5be0b2aa"
+---
+> trusted_hash = "sha256:b9674f1ef82659aecbd346ee56c3c6d6fc9327df619774917e78c0b2b134ab64"
+482a483,485
+> [hooks.state."/Users/michelkerkmeester/.codex/hooks.json:session_start:0:1"]
+> trusted_hash = "sha256:87545efe882d91c73e06a6216984f32c339e4cc5f1bc2d5c3039146246b2aca5"
+> 

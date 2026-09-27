@@ -42,12 +42,21 @@ function mockCliChild(stdoutText: string) {
   stdout.setEncoding = () => undefined;
   stdout.read = () => null;
 
+  const stdin = {
+    written: '',
+    on: () => stdin,
+    end(text?: string) {
+      stdin.written += text ?? '';
+    },
+  };
   const child = new EventEmitter() as EventEmitter & {
     pid: number;
     stdout: typeof stdout;
+    stdin: typeof stdin;
   };
   child.pid = 1234;
   child.stdout = stdout;
+  child.stdin = stdin;
   queueMicrotask(() => {
     stdout.emit('data', stdoutText);
     child.emit('close', 0, null);
@@ -56,10 +65,12 @@ function mockCliChild(stdoutText: string) {
 }
 
 describe('skill advisor CLI fallback no-match diagnostics', () => {
-  it('does not request compiled routing data in the CLI payload', async () => {
-    mockedChild.spawn.mockImplementation(() => mockCliChild(JSON.stringify({
-      data: { freshness: 'live', recommendations: [] },
-    })));
+  it('sends the payload on stdin, keeps the prompt out of argv and skips compiled routing', async () => {
+    let child: ReturnType<typeof mockCliChild> | undefined;
+    mockedChild.spawn.mockImplementation(() => {
+      child = mockCliChild(JSON.stringify({ data: { freshness: 'live', recommendations: [] } }));
+      return child;
+    });
 
     try {
       await buildSkillAdvisorBriefFromCli(
@@ -71,20 +82,42 @@ describe('skill advisor CLI fallback no-match diagnostics', () => {
       const spawnCall = mockedChild.spawn.mock.calls[0] as readonly unknown[] | undefined;
       const cliArgs = spawnCall?.[1] as readonly string[] | undefined;
       expect(cliArgs).toBeDefined();
-      if (!cliArgs) return;
+      expect(child).toBeDefined();
+      if (!cliArgs || !child) return;
 
-      const payloadIndex = cliArgs.indexOf('--json') + 1;
-      expect(payloadIndex).toBeGreaterThan(0);
-      if (payloadIndex <= 0) return;
+      expect(cliArgs[cliArgs.indexOf('--json') + 1]).toBe('-');
+      expect(cliArgs.some((argument) => argument.includes('Inspect the hook'))).toBe(false);
 
-      const encodedPayload = cliArgs[payloadIndex];
-      expect(typeof encodedPayload).toBe('string');
-      if (typeof encodedPayload !== 'string') return;
-
-      const payload = JSON.parse(encodedPayload) as {
+      const payload = JSON.parse(child.stdin.written) as {
+        prompt?: string;
         options?: { includeCompiledRoute?: boolean };
       };
+      expect(payload.prompt).toBe('Inspect the hook');
       expect(payload.options?.includeCompiledRoute).toBe(false);
+    } finally {
+      mockedChild.spawn.mockReset();
+    }
+  });
+
+  it('sends at most the advisor prompt limit on stdin', async () => {
+    let child: ReturnType<typeof mockCliChild> | undefined;
+    mockedChild.spawn.mockImplementation(() => {
+      child = mockCliChild(JSON.stringify({ data: { freshness: 'live', recommendations: [] } }));
+      return child;
+    });
+    const prompt = 'Inspect the hook '.repeat(1000);
+
+    try {
+      await buildSkillAdvisorBriefFromCli(
+        prompt,
+        { workspaceRoot: process.cwd(), runtime: 'pi', timeoutMs: 1_000 },
+        { env: {}, now: () => 1 },
+      );
+
+      expect(child).toBeDefined();
+      if (!child) return;
+      const payload = JSON.parse(child.stdin.written) as { prompt?: string };
+      expect(payload.prompt).toBe(prompt.slice(0, 10_000));
     } finally {
       mockedChild.spawn.mockReset();
     }

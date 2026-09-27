@@ -90,11 +90,12 @@ function splitPiDirectiveBrief(context: string): PiDirectiveBriefParts | null {
   if (index > 0) {
     return { head: context.slice(0, index), directives: context.slice(index) };
   }
-  // Advisor-failure / no-route fallback: the brief is the directive block with
-  // no advisor head. Normalize it to the separator-prefixed form so an
-  // identical directive block dedups to the same key whether or not a head was
-  // present; record an empty head. Without this the operator-visible directives
-  // repeat on every headless-brief turn.
+  // Advisor builds older than the status-headed fallback rendered the no-brief
+  // fallback as the directive block alone, and Pi can still load such a build
+  // from a dist that was not rebuilt. Accepting that form with an empty head
+  // keeps it eligible for dedup; without this its directives repeat on every
+  // turn. The dedup key stays the whole contribution, so a headless brief never
+  // matches a headed one and a changed head re-delivers.
   const label = PI_DIRECTIVE_SEPARATOR.slice(1);
   if (context.startsWith(label)) {
     return { head: "", directives: PI_DIRECTIVE_SEPARATOR + context.slice(label.length) };

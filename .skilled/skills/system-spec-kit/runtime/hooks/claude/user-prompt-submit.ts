@@ -102,10 +102,14 @@ function runShim(): string {
   }
   try {
     const childEnv = { ...process.env };
-    const advisorTimeoutMs = process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS;
-    if (advisorTimeoutMs === undefined || advisorTimeoutMs.trim() === '') {
-      childEnv.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS = String(CHILD_TIMEOUT_MS - CHILD_START_MARGIN_MS);
-    }
+    // The advisor must finish before this shim kills it, or its fallback output is lost.
+    const childBudgetCeilingMs = CHILD_TIMEOUT_MS - CHILD_START_MARGIN_MS;
+    const operatorBudgetMs = Number.parseInt(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS ?? '', 10);
+    childEnv.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS = String(
+      Number.isFinite(operatorBudgetMs) && operatorBudgetMs > 0
+        ? Math.min(operatorBudgetMs, childBudgetCeilingMs)
+        : childBudgetCeilingMs,
+    );
     const result = spawnSync(process.execPath, [target, ...process.argv.slice(2)], {
       cwd: process.cwd(),
       input: readBoundedStdin(),
