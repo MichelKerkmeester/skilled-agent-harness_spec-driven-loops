@@ -14,7 +14,7 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-Codex reads hooks only from the user-global `~/.codex/hooks.json`: a file that can silently drift from the repo (stale checkout anchor, missing adapter, manual edit). Claude and OpenCode hooks are repo-local and cannot drift. The watchdog closes that gap: on each OpenCode session start it runs the Codex hook installer's non-mutating `--check` and records drift for the operator.
+Codex loads the repo's `.codex/hooks.json` for a trusted checkout, but the user-global `~/.codex/hooks.json` can still carry a copy of those hooks, which makes each one run twice, or an entry whose adapter was renamed. Claude and OpenCode hooks are repo-local and cannot drift. The watchdog surfaces that drift: on each OpenCode session start it runs the Codex hook installer's non-mutating `--check` and records drift for the operator.
 
 It runs as an **OpenCode plugin** (the observing runtime) that watches the Codex configuration. There is no adapter on any other runtime: this is an OpenCode-plugin-hosted concern. Surfacing only; repair stays an explicit installer run.
 
@@ -26,7 +26,7 @@ On `session.created`, the plugin:
 
 1. Checks the `codex-watchdog` kill switch. If disabled, returns immediately.
 2. Extracts the session ID and dedupes per session (bounded set, max 1000 entries with LRU eviction). A session that already warned is not re-checked.
-3. Runs `node .skilled/bin/install-codex-hooks.mjs --check` via `execFileSync` with a 5-second timeout and `stdio: 'ignore'`. This is the installer's non-mutating verification mode: it exits 0 when the user-global Codex hooks match the repo, non-zero on drift.
+3. Runs `node .skilled/bin/install-codex-hooks.mjs --check` via `execFileSync` with a 5-second timeout and `stdio: 'ignore'`. This is the installer's non-mutating verification mode: it exits 0 when the user-global Codex hook file holds no repo-owned or orphaned entry, non-zero on drift.
 4. If the check exits non-zero (drift detected, or the installer could not run), appends one line to the bounded workspace log `.skilled/logs/codex-hooks-watchdog.log`:
 
 ```text

@@ -48,7 +48,7 @@ Expected result: exit 0 with zero document issues.
 node .skilled/bin/install-codex-hooks.mjs --check
 ```
 
-Expected result: the managed Codex hook installation reports no drift.
+Expected result: `install-codex-hooks: OK <path>`, meaning the user-global Codex hook file holds no copy of these entries.
 
 ---
 

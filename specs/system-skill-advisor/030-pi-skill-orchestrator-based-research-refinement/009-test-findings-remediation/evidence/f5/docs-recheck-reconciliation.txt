@@ -1,0 +1,10 @@
+# Why only the three fixed lines changed between Luna's first docs verify (05:00-05:10Z) and the re-check (05:12-05:18Z)
+# git diff --stat against 44dcdc2f82, recorded by the orchestrator at about 05:05Z, before the fixes:
+#   .skilled/hooks/hook-install/README.md                    29 changed lines
+#   plugins-and-hooks/codex-hook-parity.md                   31 changed lines
+# after the fixes (git diff --numstat, insertions deletions):
+#   16	17	.skilled/hooks/hook-install/README.md
+#   16	15	.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md
+# README: 29 -> 33, which is lines 41 and 122 (unchanged from HEAD before) each becoming one deletion and one insertion.
+# Parity: 31 -> 31, because line 96 was already a changed line; adding -print rewrote it without changing the count.
+# Luna's re-check confirmed both fixes against the installer and find(1), all eleven validators at 0 issues and the stale grep empty.

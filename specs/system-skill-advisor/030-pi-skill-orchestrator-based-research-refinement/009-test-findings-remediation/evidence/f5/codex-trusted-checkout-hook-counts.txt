@@ -1,0 +1,7 @@
+# Codex hook starts in the installer verifier run of 2026-09-27: one 'codex exec' session from the checkout root WITHOUT --dangerously-bypass-hook-trust
+# (x/run-verify.sh: codex exec --model gpt-6-luna -c model_reasoning_effort=max -c service_tier=fast -c approval_policy=never --sandbox workspace-write)
+session id lines: 1
+SessionStart started=16 completed=15 failed=1 | UserPromptSubmit started=7
+# 16 = 6 project .codex/hooks.json entries + 6 global copies + 4 third-party (nodeterm, GitKraken gk, orca, jcode).
+# So the project entries load for a trusted checkout without the bypass flag. The docs verifier's log is not counted:
+# it printed the parity step 4 output file, so its hook lines include that file's content.

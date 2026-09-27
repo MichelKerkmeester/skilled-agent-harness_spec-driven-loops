@@ -42,8 +42,9 @@ should still include it so direct Codex invocations behave the same way.
 
 ## 3. REGISTRATION
 
-Codex reads hook entries from `~/.codex/hooks.json` using the Claude-style
-outer array plus nested `hooks` array shape:
+Codex reads hook entries from the user-global `~/.codex/hooks.json` and, for a
+trusted checkout, from the checkout's own `.codex/hooks.json`. Both use the
+Claude-style outer array plus nested `hooks` array shape:
 
 ```json
 {
@@ -100,9 +101,10 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
 > adapters parse the path from the patch body. A Stop hook's stdout is parsed as a
 > response envelope, so neutral shell scripts wired to Stop must not emit stdout.
 
-Install/refresh the full repo hook set (lifecycle + guards) into user-global
-`~/.codex/hooks.json` with `.skilled/bin/install-codex-hooks.mjs` — it backs up,
-merges (preserving Superset/user entries), and is idempotent.
+Codex loads the full repo hook set (lifecycle and guards) from `.codex/hooks.json`.
+The user-global `~/.codex/hooks.json` must hold no copy of it, or every hook runs
+twice. `.skilled/bin/install-codex-hooks.mjs` removes such copies, backs up first,
+and keeps Superset and other third-party entries.
 
 ---
 

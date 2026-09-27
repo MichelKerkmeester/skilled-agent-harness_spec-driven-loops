@@ -1,0 +1,57 @@
+# Read-only checks of the new installer against the real ~/.codex/hooks.json, 2026-09-27
+# The file was byte-identical before and after both commands: same mtime, size and SHA-1, and the backup count stayed 18.
+
+$ node .skilled/bin/install-codex-hooks.mjs --check
+install-codex-hooks: DRIFT ~/.codex/hooks.json (duplicate=18)   exit 1
+
+$ node .skilled/bin/install-codex-hooks.mjs --dry-run   (summary)   exit 0
+dryRun=true changed=true added-key-present=false removed=18 orphaned=0 kept=26
+drift: duplicate=18 orphaned=0 structure=false
+
+removed (event:adapter identity):
+  PostToolUse:.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs
+  PostToolUse:.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
+  PreCompact:.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/compact-inject.js
+  PreToolUse:.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs
+  PreToolUse:.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs
+  PreToolUse:.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs
+  PreToolUse:.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs
+  SessionStart:.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js
+  SessionStart:.skilled/bin/worktree-guard.sh
+  SessionStart:.skilled/bin/check-git-hooks.sh
+  SessionStart:.skilled/bin/git-primary-reconcile.sh
+  SessionStart:.skilled/bin/git-live-follow.sh
+  SessionStart:.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
+  Stop:.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-stop.js
+  Stop:.skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs
+  Stop:.skilled/scripts/session-cleanup.sh
+  UserPromptSubmit:.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js
+  UserPromptSubmit:.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs
+
+kept, by event and tool (third-party, never touched):
+  PermissionRequest | nodeterm codex.sh x1
+  PermissionRequest | GitKraken gk ai hook run x1
+  PermissionRequest | orca codex-hook.sh x1
+  PostCompact | GitKraken gk ai hook run x1
+  PostToolUse | nodeterm codex.sh x1
+  PostToolUse | GitKraken gk ai hook run x1
+  PostToolUse | orca codex-hook.sh x1
+  PreCompact | GitKraken gk ai hook run x1
+  PreToolUse | nodeterm codex.sh x1
+  PreToolUse | GitKraken gk ai hook run x1
+  PreToolUse | orca codex-hook.sh x1
+  SessionEnd | GitKraken gk ai hook run x1
+  SessionStart | jcode setup-hotkey x1
+  SessionStart | nodeterm codex.sh x1
+  SessionStart | GitKraken gk ai hook run x1
+  SessionStart | orca codex-hook.sh x1
+  Stop | nodeterm codex.sh x1
+  Stop | GitKraken gk ai hook run x1
+  Stop | orca codex-hook.sh x1
+  SubagentStart | GitKraken gk ai hook run x1
+  SubagentStart | orca codex-hook.sh x1
+  SubagentStop | GitKraken gk ai hook run x1
+  SubagentStop | orca codex-hook.sh x1
+  UserPromptSubmit | nodeterm codex.sh x1
+  UserPromptSubmit | GitKraken gk ai hook run x1
+  UserPromptSubmit | orca codex-hook.sh x1

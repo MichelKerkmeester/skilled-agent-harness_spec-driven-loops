@@ -1,0 +1,46 @@
+ROLE
+You are an independent verifier. You did not write this change. Decide from evidence you produce whether it is complete and correct. You edit no file except the temporary restore in the reverse check, which you undo before you finish. You never run the installer without `--target` pointing into your own temp directory: a run without it reads or writes the operator's real `~/.codex/hooks.json`, which is forbidden. The orchestrator runs the read-only checks against the real file itself.
+
+CONTEXT
+- Claimed change: `.skilled/bin/install-codex-hooks.mjs` is now removal-only. It removes user-global entries whose adapter identity the project `.codex/hooks.json` owns (they duplicate the registration Codex already loads from the project) and orphaned repo entries, keeps third-party entries, drops an event left with no groups, and never adds. `--check` reports `duplicate=N`, `orphaned=N`, and `structure=1` when the file would change without naming an entry. The test file `.skilled/bin/tests/install-codex-hooks-source-root.test.cjs` was updated to match (19 tests; 21 before).
+- Claimed defect: the installer appended every project hook to `~/.codex/hooks.json`, so Codex ran each repo hook twice per event (project file plus global copy).
+- Pre-change copies (read them, never modify or delete them):
+  - installer: `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.base-installer.mjs`
+  - test: `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.base-test.cjs`
+  Both are byte-identical to commit `44dcdc2f82`.
+- Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`. Another session has an uncommitted edit to `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json`; list it if you see it and do not judge it. A docs worker may be editing markdown files at the same time; ignore markdown.
+
+ACTION
+1. Scope: `git status --porcelain -- .skilled/bin` lists the installer and the test (plus the manifest named above). Nothing else under `.skilled/bin/tests/` changed.
+2. Installer diff checks, from `diff -u <base installer> .skilled/bin/install-codex-hooks.mjs`:
+   - no code path adds entries: `grep -n "push(...groups)\|canonicalSourceGroups\|substituteRepo\|respellSourceRoot\|findSourceRoot\|reconciliation.added" .skilled/bin/install-codex-hooks.mjs` prints nothing;
+   - ownership and orphan detection (`hookIdentity`, `sourceRootRelative`, `ownershipKey`, `collectSourceIdentities`, `isRepoOrphan`) have no changed lines in the diff; the only change near them is the one comment line above `SOURCE_ROOT_NAMES`;
+   - an event whose groups were all removed is deleted, and an event that was already empty in the target is left as it was: read the condition and state why it holds;
+   - `--check` still exits 0 in sync and 1 on drift; `--dry-run`, the backup and the atomic write are unchanged;
+   - new comments state a durable why with no spec path, phase number or finding id; no em dash in added lines; `awk 'NR==5{print length($0)}'` prints the same number for the base and the new installer.
+3. Behavior probe in your own temp directory (`T=$(mktemp -d)`, `mkdir -p "$T/home/.codex"`, and every run as `HOME="$T/home" node .skilled/bin/install-codex-hooks.mjs --target "$T/home/.codex/hooks.json" ...` from the repository root):
+   - a target of `{"hooks":{"SessionStart":[{"hooks":[]}]}}`: `--check` exits 1 and prints `DRIFT ... (structure=1)`;
+   - a target holding one repo copy under `PreCompact` (command `bash -c 'cd "/abs/repo" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/codex/compact-inject.js'`), an empty `Stop` array and one third-party `SessionStart` entry (`node /opt/third-party/notify.js`): `--check` exits 1 with `duplicate=1`; a plain run exits 0, its JSON has no `added` key, `PreCompact` is gone, `Stop` stays `[]`, the third-party entry stays, and one `.bak-` file exists; `--check` then exits 0 with `install-codex-hooks: OK`.
+   Remove `$T` when done.
+4. Test diff checks, from `diff -u <base test> .skilled/bin/tests/install-codex-hooks-source-root.test.cjs`: section 3 now expects `--check` to report `duplicate=1` before install, the owned entry removed, only the third-party entry left, and `--check` OK after; section 4 has no changed lines; section 5 is one test proving a third-party-only file passes `--check` and is never rewritten or backed up. No other assertion was loosened.
+5. Gates, from the repository root:
+   ```bash
+   node --check .skilled/bin/install-codex-hooks.mjs; echo "syntax_exit=$?"
+   node --test .skilled/bin/tests/install-codex-hooks-source-root.test.cjs 2>&1 | tail -10; echo "test_exit=${PIPESTATUS[0]}"
+   ```
+   Pass: `syntax_exit=0`; `ℹ tests 19`, `ℹ pass 19`, `ℹ fail 0`; `test_exit=0`.
+6. Reverse check: the new tests must fail against the pre-change installer.
+   ```bash
+   cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+   F=.skilled/bin/install-codex-hooks.mjs; K=$(mktemp)
+   cp "$F" "$K"
+   ( trap 'cp "$K" "$F"' EXIT
+     cp /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.base-installer.mjs "$F"
+     node --test .skilled/bin/tests/install-codex-hooks-source-root.test.cjs 2>&1 | grep -E "^ℹ (tests|pass|fail)"; echo "reverse_exit=${PIPESTATUS[0]}" )
+   cmp "$K" "$F" && echo RESTORED; rm -f "$K"
+   ```
+   Pass: `ℹ tests 19`, `ℹ pass 6`, `ℹ fail 13` (the 12 section-3 rows and the section-5 test fail at base; the 6 orphan rows pass), then `RESTORED` prints.
+
+FORMAT
+First line exactly: `RETURN: <PASS|FAIL|BLOCKED> | escalation=<NONE|SCOPE_CONFLICT|LOW_CONFIDENCE|LOGIC_SYNC|VERIFY_FAIL> | confidence=<HIGH|MEDIUM|LOW>`
+Then: Scope, Installer diff checks, Behavior probe output, Test diff checks, Gate output, Reverse check output, Out Of Scope observations.

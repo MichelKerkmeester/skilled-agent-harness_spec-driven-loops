@@ -1,0 +1,56 @@
+ROLE
+You are an independent verifier. You did not write this change. Decide from evidence you produce whether it is complete and correct. You edit no file. You never run `.skilled/bin/install-codex-hooks.mjs` without `--target` pointing into your own temp directory, and you do not run `codex` at all.
+
+CONTEXT
+- Claimed change: eleven docs no longer describe `.skilled/bin/install-codex-hooks.mjs` as copying the repository's Codex hooks into `~/.codex/hooks.json`, and no longer tell a tester to look for the repo hooks there. They now say Codex reads the checkout's `.codex/hooks.json` for a trusted checkout, and the installer removes repo-owned copies and orphans from the user-global file.
+- Files:
+  1. `.codex/SYNC.md`
+  2. `.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md`
+  3. `.skilled/bin/README.md`
+  4. `.skilled/hooks/hook-install/README.md`
+  5. `.skilled/hooks/codex-watchdog/README.md`
+  6. `.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md`
+  7. `.skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/full-auto-hooks.md`
+  8. `.skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md`
+  9. `.skilled/skills/cli-external-orchestration/cli-codex/README.md`
+  10. `.codex/hooks/README.md`
+  11. `.skilled/hooks/README.md`
+- Base: commit `44dcdc2f82` (HEAD). Repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
+- The installer change itself was verified separately. Read `.skilled/bin/install-codex-hooks.mjs` for the truth check.
+- Evidence the orchestrator captured, for the claim that Codex loads the project file (read these, do not rerun them):
+  - `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.parity-step4.raw`: the rewritten parity step 4, run live from the checkout with `perl -e 'alarm shift; exec @ARGV' 90 codex exec -C "$PWD" --dangerously-bypass-hook-trust -s read-only ...`. It printed 16 `hook: SessionStart` starts.
+  - `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.real-dryrun.json`: a `--dry-run` of the new installer against the real global file (18 repo entries under `removed`, 6 of them `SessionStart`; the third-party entries under `kept`).
+  - The project `.codex/hooks.json` registers 6 `SessionStart` entries.
+  Decide whether 16 = project entries + global copies + third-party entries, and say what that implies about Codex loading the project file.
+- Two edits beyond the docs brief were made by the orchestrator: parity step 4 uses `perl -e 'alarm shift; exec @ARGV' 90` instead of `timeout 90`, because `timeout` is not installed on this macOS host; and the `hook-install` row in the kill-switch index of `.skilled/hooks/README.md` now reads `cleanup / check` instead of `install`.
+
+ACTION
+1. Scope: `git status --porcelain` on the eleven files shows each as modified. `git diff 44dcdc2f82 -- <file>` for each: every changed line must be one that described the old contract, or one of the two orchestrator edits. List anything else.
+2. Truth check against `.skilled/bin/install-codex-hooks.mjs`. Quote the installer line that backs each claim:
+   - it adds no entry (no code path appends source groups);
+   - it removes entries whose identity the project file owns, and orphans under `.skilled/` or `.opencode/`;
+   - it keeps third-party entries, backs up before writing, and never rewrites an unchanged file;
+   - `--check` reports `duplicate`, `orphaned` and `structure`, and exits 1 on any of them;
+   - the `--dry-run` report has no `added` key;
+   - a linked worktree is refused unless `--allow-worktree` is passed.
+   A doc sentence the code does not support is a FAIL. The claim that Codex loads a trusted checkout's `.codex/hooks.json` is judged from the evidence files above, not the installer.
+3. Scenario checks:
+   - parity step 4's command block runs from the checkout root (`-C "$PWD"`), prints the session id line, and finds the gate state with `-newer "$MARK"`; step 4 and step 5 Expected lines match what the commands print;
+   - parity step 5 no longer mentions `added`;
+   - CX-016 inspects the project `.codex/hooks.json` in its prompt (both copies), its step 1 command, its signals, its pass/fail and its source table, and the playbook index row for CX-016 matches.
+4. Style checks on every changed line: no em dash in new text (an existing `—` in text that was kept is fine); no spec, packet, phase, task or finding id; each changed table row keeps the same count of unescaped `|` as its neighbours; the tree comment on `.skilled/bin/README.md` line 79 keeps its `#` column.
+5. Gates:
+   ```bash
+   bash -c '
+   P=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.stale-patterns.txt
+   FILES=".codex/SYNC.md .skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md .skilled/bin/README.md .skilled/hooks/hook-install/README.md .skilled/hooks/codex-watchdog/README.md .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/full-auto-hooks.md .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md .skilled/skills/cli-external-orchestration/cli-codex/README.md .codex/hooks/README.md .skilled/hooks/README.md"
+   for f in $FILES; do printf "%s: " "$f"; python3 .skilled/skills/sk-doc/scripts/validate_document.py "$f" | tail -1; done
+   grep -n -F -f $P $FILES; echo "stale_grep_exit=$?"
+   for f in $FILES; do printf "%s HEAD_hits=%s\n" "$f" "$(git show 44dcdc2f82:"$f" | grep -F -c -f $P)"; done'
+   ```
+   Pass: every file `Total issues: 0`; the stale grep prints nothing and `stale_grep_exit=1`; every `HEAD_hits` is 1 or more, which shows the pattern list catches the old text in each file.
+6. Residual search, report only: `rg -n "~/.codex/hooks.json" .skilled .codex --glob '*.md' --glob '!**/node_modules/**' --glob '!**/changelog/**' --glob '!**/benchmark/reports/**'` and list any remaining sentence outside the eleven files that still says the installer copies or merges hooks into the global file, or tells a tester to find the repo hooks there. Dated evidence records (a run log with a date) are history, not a residual.
+
+FORMAT
+First line exactly: `RETURN: <PASS|FAIL|BLOCKED> | escalation=<NONE|SCOPE_CONFLICT|LOW_CONFIDENCE|LOGIC_SYNC|VERIFY_FAIL> | confidence=<HIGH|MEDIUM|LOW>`
+Then: Scope, Truth check (claim, installer file:line or evidence file), Scenario checks, Style checks, Gate output, Residual list, Out Of Scope observations.
