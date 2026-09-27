@@ -39,7 +39,7 @@
       "validator"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,19 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scripts/README.md",
-      "tests/test-phase-system.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh",
       ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
+      "runtime/cli/spec/create.sh",
+      "scripts/README.md",
+      "tests/test-phase-system.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh",
       "tests/check-ac-coverage.sh",
       "references/validation/validation-rules.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md"
+      "scratch/briefs/00-index.md"
     ],
     "entities": [
       {
@@ -99,21 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "scripts/README.md",
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
         "source": "derived"
       },
       {
         "name": "test-phase-system.sh",
         "kind": "script",
-        "path": "tests/test-phase-system.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-ac-coverage.sh",
-        "kind": "script",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh",
         "source": "derived"
       },
       {
@@ -135,9 +130,21 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
+        "source": "derived"
+      },
+      {
         "name": "create.sh",
         "kind": "script",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "00-index.md",
+        "kind": "doc",
+        "path": "scratch/briefs/00-index.md",
         "source": "derived"
       },
       {
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`ACCOVERAGE` treats any `file:line` shape in a Verification cell as evidence",
     "created_at": "2026-09-27T11:50:17Z",
-    "last_save_at": "2026-09-27T12:10:50.576Z",
+    "last_save_at": "2026-09-27T18:04:00.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56f0c0955eff8da95eb86bfecae0a4df01b64946c2f248ec1eb5363451742b07",
+    "source_fingerprint": "sha256:cbbc15ff7954aca4fdd4559dffd59d1ebd521c5762d3c4e1567f48b3dc4a09eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8894ddc961e5460628fb1f1714b58ffe382a13bfcdc91018abf8ad23c6c10efa",
-      "plan.md": "4e6a31e2896c79da3fff4ad8129e70d0a767987b05e66e58eaccf9f33860e0c3",
-      "tasks.md": "e5f7cc52299fca5b93d66680e93a4d09d5580ede01cf77428df2560e02ee891d",
-      "implementation-summary.md": "fefba345a7a122a7d617070be9b20c0d559e0b9efc1e3b45f30b3aad84f8498b"
+      "spec.md": "f65826bbaf7b733296b7dfb5407f4a1c3e899c3e3604b575956e9203095aec69",
+      "plan.md": "a978db9c35755be3f78f3c929aff36b9c33a56b0c403d35f57e842745f37e743",
+      "tasks.md": "74a9a7625ec3e0a5a8ce07c35050a40c9be8e4d5d1919e8452fc67e17e32f4ea",
+      "implementation-summary.md": "df4b04476a4ba0b23e5e21ec89aed6b665322e6441284ae58aa1943bd1e4563b"
     },
     "last_active_at": null
   }
