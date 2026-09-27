@@ -1,5 +1,5 @@
 {
-  "manifestHash": "177869996cb37dc13dc162daec85abe8b0d897f183b2847ed900ad64c0ed47b4",
+  "manifestHash": "87799a4a07087860ca38fee9035d75aa48fabad539e6b96835efaaa6d2fe7ad8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8608,6 +8608,9 @@
     "advisor local sqlite declaration": [
       "advisor local sqlite declaration"
     ],
+    "advisor long prompt head": [
+      "advisor long prompt head"
+    ],
     "advisor manual testing playbook": [
       "advisor manual testing playbook"
     ],
@@ -8688,6 +8691,9 @@
     ],
     "advisor projection filesystem fallback": [
       "advisor projection filesystem-fallback"
+    ],
+    "advisor prompt over stdin": [
+      "advisor prompt over stdin"
     ],
     "advisor protocol version": [
       "advisor protocol version"
@@ -19676,6 +19682,18 @@
     ],
     "codex home auth": [
       "CODEX_HOME auth"
+    ],
+    "codex hook cleanup": [
+      "codex hook cleanup"
+    ],
+    "codex hook cleanup plan": [
+      "codex hook cleanup plan"
+    ],
+    "codex hook cleanup summary": [
+      "codex hook cleanup summary"
+    ],
+    "codex hook cleanup tasks": [
+      "codex hook cleanup tasks"
     ],
     "codex hook contract": [
       "codex hook contract"
@@ -66004,6 +66022,18 @@
     "review 008 pt 01 changelog": [
       "review 008 pt-01 changelog"
     ],
+    "review advisories closure": [
+      "review advisories closure"
+    ],
+    "review advisories closure summary": [
+      "review advisories closure summary"
+    ],
+    "review advisories plan": [
+      "review advisories plan"
+    ],
+    "review advisories tasks": [
+      "review advisories tasks"
+    ],
     "review agent structural impact removal": [
       "review agent structural impact removal"
     ],
@@ -70706,6 +70736,9 @@
     ],
     "shared synopsis extractor": [
       "shared synopsis extractor"
+    ],
+    "shared synthesis close out": [
+      "shared synthesis close-out"
     ],
     "shared types database interface types": [
       "shared types database interface types"
