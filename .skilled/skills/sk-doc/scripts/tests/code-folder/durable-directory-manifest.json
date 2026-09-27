@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 826,
+  "derived_count": 827,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -22,6 +22,7 @@
     ".skilled/bin",
     ".skilled/bin/lib",
     ".skilled/bin/tests",
+    ".skilled/changelog/skilled",
     ".skilled/commands/create",
     ".skilled/commands/create/assets",
     ".skilled/commands/deep/assets",
