@@ -142,6 +142,14 @@ FIXTURE_TREE_PATTERNS = [
     'sk-doc/scripts/tests/exclusions/',  # classification fixtures for the README audit
 ]
 
+# Runtime instruction files are the operating contract a coding agent loads at
+# startup, so every section in one loads into every session. They keep their
+# runtime's own template rather than a document type's required sections.
+# Matched by exact name.
+INSTRUCTION_FILE_NAMES = [
+    'AGENTS.md',
+]
+
 # Specialized leaf-doc root dir names. Both the hyphen and underscore forms are
 # accepted while the naming migration is in flight; the shared resolver is the
 # single source of truth so this validator and the guards never diverge on which
@@ -183,6 +191,9 @@ def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
     for pattern in FIXTURE_TREE_PATTERNS:
         if pattern in normalized:
             return True, f"Fixture tree: matches pattern '{pattern}'"
+
+    if normalized.rsplit('/', 1)[-1] in INSTRUCTION_FILE_NAMES:
+        return True, "Instruction file: keeps its runtime's own section template"
 
     return False, None
 
@@ -783,6 +794,13 @@ def validate_required_sections(content: str, doc_type_rules: Dict[str, Any]) -> 
     )
     if is_router:
         required = doc_type_rules.get('routerRequiredSections', required)
+
+    # A surface packet is a read-only evidence base a parent hub bundles beside a
+    # workflow mode, not a workflow of its own, so it carries no WHEN TO USE, SMART
+    # ROUTING or HOW IT WORKS. Its opening section says when the hub bundles it, which
+    # marks the shape, and the packet is held to its evidence core instead.
+    if any(section_present(sig) for sig in doc_type_rules.get('surfaceDetectPrimary', [])):
+        required = doc_type_rules.get('surfaceRequiredSections', required)
 
     for req_section in required:
         found = req_section in found_sections

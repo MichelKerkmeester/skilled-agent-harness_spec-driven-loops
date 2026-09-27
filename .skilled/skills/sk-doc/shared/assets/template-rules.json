@@ -92,6 +92,14 @@
         "how_it_works",
         "rules"
       ],
+      "surfaceDetectPrimary": [
+        "when_the_hub_bundles_this"
+      ],
+      "surfaceRequiredSections": [
+        "when_the_hub_bundles_this",
+        "reference_map",
+        "surface_standards"
+      ],
       "recommendedSections": [
         "success_criteria",
         "integration_points",
