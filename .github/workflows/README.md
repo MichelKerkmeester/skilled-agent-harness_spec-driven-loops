@@ -23,7 +23,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 
 | Workflow | Responsibility |
 |---|---|
-| `advisory-checks.yml` | Runs advisory test suites and doc-model references. Reports without gating. |
+| `advisory-checks.yml` | Runs advisory test suites, doc-model references and the trigger index freshness check (`generate-trigger-index.mjs --check`). Reports without gating. |
 | `agent-mirror-sync.yml` | Keeps the `.skilled` and `.claude` agent mirrors aligned. |
 | `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. |
 | `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |
