@@ -2,9 +2,7 @@
 title: "Changelog: Memory Schema and Concurrency Remediation [004-review-remediation/002-memory-schema-and-concurrency]"
 description: "Chronological changelog for the memory schema and concurrency remediation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review remediation memory schema and concurrency changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

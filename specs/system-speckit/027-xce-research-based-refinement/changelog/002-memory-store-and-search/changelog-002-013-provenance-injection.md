@@ -6,6 +6,7 @@ trigger_phrases:
   - "automated writers source kind tagged"
   - "write ingress guard provenance"
   - "027 002/013 shipped"
+  - "memory store and search provenance injection changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

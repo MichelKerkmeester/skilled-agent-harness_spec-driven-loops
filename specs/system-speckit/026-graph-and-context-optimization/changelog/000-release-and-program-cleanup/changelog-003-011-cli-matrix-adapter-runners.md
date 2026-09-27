@@ -7,6 +7,7 @@ trigger_phrases:
   - "adapter-common.ts shared contract"
   - "70-cell CLI manifest"
   - "matrix meta-runner"
+  - "release and program cleanup cli matrix adapter runners changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

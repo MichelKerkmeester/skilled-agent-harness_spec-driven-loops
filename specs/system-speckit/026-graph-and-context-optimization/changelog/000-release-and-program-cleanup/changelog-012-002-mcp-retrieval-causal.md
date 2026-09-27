@@ -6,6 +6,7 @@ trigger_phrases:
   - "community fallback scope leak"
   - "causal graph bare ids"
   - "memory search audit findings"
+  - "release and program cleanup mcp retrieval causal changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

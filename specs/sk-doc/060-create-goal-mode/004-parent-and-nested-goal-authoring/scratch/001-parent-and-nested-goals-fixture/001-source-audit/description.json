@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit",
-  "description": "Phase 1: source-audit",
+  "description": "A parent can list the right number of phases while naming folders that do not exist",
   "keywords": [
-    "phase",
-    "source-audit"
+    "parent",
+    "list",
+    "right",
+    "number",
+    "phases",
+    "while",
+    "naming",
+    "folders",
+    "exist"
   ],
-  "lastUpdated": "2026-09-25T20:36:28.387Z",
+  "lastUpdated": "2026-09-26T09:43:15.401Z",
   "specId": "001",
   "folderSlug": "source-audit",
   "parentChain": [
@@ -16,6 +24,5 @@
     "001-parent-and-nested-goals-fixture"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

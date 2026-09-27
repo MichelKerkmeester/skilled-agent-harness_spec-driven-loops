@@ -2,9 +2,7 @@
 title: "Changelog: Executor Wiring & Fan-out Parity [007-executor-and-cli-hardening/002-executor-wiring-and-parity]"
 description: "Group the deep-loop CLI fan-out executor work: wiring individual executor kinds and proving every cli/provider/model combination is reachable end-to-end."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "executor wiring and parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

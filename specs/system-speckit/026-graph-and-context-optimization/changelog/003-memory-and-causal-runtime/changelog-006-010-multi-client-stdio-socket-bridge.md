@@ -7,6 +7,7 @@ trigger_phrases:
   - "launcher bridge concurrency"
   - "LEASE_HELD_BY bridge"
   - "daemon IPC socket server"
+  - "memory and causal runtime multi client stdio socket bridge changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

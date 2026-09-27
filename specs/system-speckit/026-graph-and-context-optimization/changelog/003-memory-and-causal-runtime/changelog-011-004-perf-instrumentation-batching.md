@@ -6,7 +6,7 @@ trigger_phrases:
   - "embed path instrumentation p50 p95"
   - "real /api/embed batching"
   - "ready-once latch cache-into-reindex"
-  - "phase changelog"
+  - "memory and causal runtime perf instrumentation batching changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "hard exclusion audit memory_health shipped"
   - "tool ownership drift gate pre-commit"
   - "derived tool ownership map 37 tools"
+  - "memory store and search stale audit and tool ownership changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

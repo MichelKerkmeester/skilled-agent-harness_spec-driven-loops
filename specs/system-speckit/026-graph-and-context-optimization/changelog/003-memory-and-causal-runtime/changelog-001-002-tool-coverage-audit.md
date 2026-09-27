@@ -7,6 +7,7 @@ trigger_phrases:
   - "council graph uncovered tools"
   - "embedder tools need scenarios"
   - "playbook tool gap audit"
+  - "memory and causal runtime tool coverage audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

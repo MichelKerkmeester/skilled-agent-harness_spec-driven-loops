@@ -6,6 +6,7 @@ trigger_phrases:
   - "reserved feedback type rejection shipped"
   - "shadow-only feedback invariant lock-in"
   - "future reducer symmetric damping invariant"
+  - "memory store and search feedback log and 005 reframe changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

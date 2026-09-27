@@ -7,6 +7,7 @@ trigger_phrases:
   - "phase 2 path extraction fix"
   - "corrected phase2 baseline"
   - "probe 10 fixture truth"
+  - "memory and causal runtime bench harness and fixture audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

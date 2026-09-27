@@ -5,6 +5,7 @@ trigger_phrases:
   - "002/004 env tests integration changelog"
   - "feedback reducers integration closeout"
   - "feedback-reducers-integration"
+  - "memory store and search env tests integration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

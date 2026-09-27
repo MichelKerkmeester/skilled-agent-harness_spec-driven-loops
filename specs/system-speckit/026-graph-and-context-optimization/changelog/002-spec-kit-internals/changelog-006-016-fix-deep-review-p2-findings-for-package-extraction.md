@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk_skill_advisor deep-review cleanup"
   - "MK_SKILL_ADVISOR_DB_DIR environment variable"
   - "skill advisor rename invariants test"
+  - "spec fix deep review p2 findings for package extraction changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

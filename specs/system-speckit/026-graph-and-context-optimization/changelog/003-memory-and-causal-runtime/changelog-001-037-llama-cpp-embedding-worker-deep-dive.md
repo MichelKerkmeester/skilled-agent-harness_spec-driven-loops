@@ -7,6 +7,7 @@ trigger_phrases:
   - "embedding worker token budget preflight"
   - "node-llama-cpp context size auto"
   - "model.tokenize API hotfix 3.17.1"
+  - "memory and causal llama cpp embedding worker deep dive changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

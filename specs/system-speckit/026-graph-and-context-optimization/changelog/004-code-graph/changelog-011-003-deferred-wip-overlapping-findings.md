@@ -2,9 +2,7 @@
 title: "Changelog: Deferred WIP-Overlapping Findings [011-source-bug-and-misalignment-audit/003-deferred-wip-overlapping-findings]"
 description: "Chronological changelog for the Deferred WIP-Overlapping Findings phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph deferred wip overlapping findings changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

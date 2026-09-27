@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/001 003 search triggers changelog"
   - "search trigger lane disposition"
   - "remediation lane 003"
+  - "verification and remediation search and triggers changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

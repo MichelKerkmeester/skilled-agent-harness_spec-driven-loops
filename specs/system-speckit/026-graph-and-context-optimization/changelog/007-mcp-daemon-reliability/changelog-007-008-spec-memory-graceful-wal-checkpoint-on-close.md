@@ -7,6 +7,7 @@ trigger_phrases:
   - "close_db truncate wal"
   - "context-index.sqlite corruption prevention"
   - "fts5 corruption prevention follow-up"
+  - "mcp daemon spec memory graceful wal checkpoint on close changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

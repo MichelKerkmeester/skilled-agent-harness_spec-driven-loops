@@ -13,6 +13,7 @@ vi.mock('node:child_process', () => ({
 }));
 
 import * as skillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
+import * as skillAdvisorRender from '../../../../plugins/lib/skill-advisor-render.js';
 import { renderAdvisorFallbackDirective } from '../lib/render.js';
 
 const MkSkillAdvisorPlugin = skillAdvisorPlugin.default;
@@ -20,7 +21,7 @@ const MkSkillAdvisorPlugin = skillAdvisorPlugin.default;
 type PluginFallbackResult = NonNullable<Parameters<typeof renderAdvisorFallbackDirective>[1]>;
 type PluginFallbackRenderer = (result?: PluginFallbackResult) => string;
 const renderPluginFallbackDirective = (
-  skillAdvisorPlugin as unknown as { renderPluginFallbackDirective?: PluginFallbackRenderer }
+  skillAdvisorRender as unknown as { renderPluginFallbackDirective?: PluginFallbackRenderer }
 ).renderPluginFallbackDirective;
 
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
@@ -156,9 +157,11 @@ function statusMetric(status: string | undefined, key: string) {
 }
 
 function cliPromptAt(index: number): string {
-  const argv = mockedBridge.spawn.mock.calls[index]?.[1] as readonly string[] | undefined;
-  const promptIndex = argv ? argv.indexOf('--prompt') : -1;
-  return promptIndex === -1 ? '' : String(argv?.[promptIndex + 1] ?? '');
+  const child = mockedBridge.spawn.mock.results[index]?.value as { stdin?: { end?: ReturnType<typeof vi.fn> } } | undefined;
+  const request = child?.stdin?.end?.mock.calls[0]?.[0];
+  if (typeof request !== 'string') return '';
+  const parsed = JSON.parse(request) as { prompt?: unknown };
+  return typeof parsed.prompt === 'string' ? parsed.prompt : '';
 }
 
 describe('system-skill-advisor OpenCode plugin', () => {
@@ -650,6 +653,17 @@ describe('system-skill-advisor OpenCode plugin', () => {
     expect(clampedPrompt.length).toBeLessThan(prompt.length);
   });
 
+  it('keeps the prompt out of the CLI argv', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    await runPrompt(hooks, { sessionID: 's-argv', prompt: 'review code for security' });
+
+    const argv = mockedBridge.spawn.mock.calls[0]?.[1] as readonly string[] | undefined;
+    expect(argv?.slice(1)).toEqual(['advisor_recommend', '--json', '-', '--format', 'json']);
+    expect(argv?.some((argument) => argument.includes('review code for security'))).toBe(false);
+    expect(cliPromptAt(0)).toBe('review code for security');
+  });
+
   it('evicts oldest cache entry when max cache entries is exceeded', async () => {
     const hooks = await makePlugin({ cacheTTLMs: 5000, maxCacheEntries: 2 });
 
@@ -764,6 +778,27 @@ describe('system-skill-advisor OpenCode plugin', () => {
     expect(first.additionalContext).toContain('Comment hygiene');
     expect(second.additionalContext).toBe(ROUTE_ONLY_CONTEXT);
     expect(second.additionalContext).not.toContain('Directives:');
+  });
+
+  it('deduplicates repeated transforms before lifecycle reduction', async () => {
+    process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '1';
+    const hooks = await makePlugin({ cacheTTLMs: 5000, deduplicateTransforms: true });
+    const repeatedInput = {
+      sessionID: 's-transform-dedup',
+      sessionIdentityConfirmed: true,
+      messageID: 'm1',
+      transformCallOrdinal: 0,
+      prompt: 'implement feature X',
+    };
+
+    const first = await runPrompt(hooks, repeatedInput, { system: [] });
+    const repeat = await runPrompt(hooks, repeatedInput, { system: [] });
+    const nextMessage = await runPrompt(hooks, { ...repeatedInput, messageID: 'm2' }, { system: [] });
+
+    expect(first.output.system).toHaveLength(1);
+    expect(first.output.system[0]).toContain('Directives:');
+    expect(repeat.output.system).toEqual([]);
+    expect(nextMessage.output.system).toEqual([ROUTE_ONLY_CONTEXT]);
   });
 
   it('reduces repeated no-route fallbacks to their head for a confirmed session', async () => {

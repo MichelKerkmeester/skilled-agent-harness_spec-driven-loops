@@ -5,6 +5,7 @@ trigger_phrases:
   - "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes rollup"
   - "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes phase parent"
   - "020-fix-investigation-deferred-p2s-for-behavior-and-api-changes changelog index"
+  - "fix investigation deferred p2s for behavior and api changes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

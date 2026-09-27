@@ -2,9 +2,7 @@
 title: "Changelog: Playbook Findings Remediation [000-release-cleanup/012-playbook-findings-remediation]"
 description: "Chronological changelog for the playbook findings remediation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup playbook findings remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

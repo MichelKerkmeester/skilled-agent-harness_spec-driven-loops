@@ -7,6 +7,7 @@ trigger_phrases:
   - "msgspec decode failure cocoindex"
   - "cocoindex daemon client disconnect"
   - "mcp-coco-index timeout diagnosis"
+  - "memory and causal runtime cocoindex mcp reliability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

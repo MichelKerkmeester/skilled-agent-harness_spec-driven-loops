@@ -7,6 +7,7 @@ trigger_phrases:
   - "code graph diagnostic command"
   - "code graph doctor phase a"
   - "doctor code-graph auto confirm yaml"
+  - "code graph doctor diagnostic command phase a changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

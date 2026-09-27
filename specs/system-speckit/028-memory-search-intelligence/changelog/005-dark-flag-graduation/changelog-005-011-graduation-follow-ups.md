@@ -2,9 +2,7 @@
 title: "Changelog: Dark Flag Graduation Follow-Ups [005-dark-flag-graduation/007-graduation-follow-ups]"
 description: "Chronological changelog for the dark flag graduation follow-up phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation follow ups changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

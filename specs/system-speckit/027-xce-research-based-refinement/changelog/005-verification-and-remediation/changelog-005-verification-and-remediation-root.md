@@ -1,6 +1,10 @@
 ---
 title: "Changelog Rollup — Track 005: Verification and Remediation"
-trigger_phrases: []
+description: "Top rollup for the 005-verification-and-remediation/ themed track."
+trigger_phrases:
+  - "verification and remediation changelog"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 # Changelog Rollup — Track 005: Verification and Remediation
 

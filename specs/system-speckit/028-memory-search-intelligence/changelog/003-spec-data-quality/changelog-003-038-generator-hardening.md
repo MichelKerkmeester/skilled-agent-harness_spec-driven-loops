@@ -2,9 +2,7 @@
 title: "Changelog: Generator Hardening [003-spec-data-quality/006-generated-metadata-build/038-generator-hardening]"
 description: "Chronological changelog for the generator hardening phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality generator hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

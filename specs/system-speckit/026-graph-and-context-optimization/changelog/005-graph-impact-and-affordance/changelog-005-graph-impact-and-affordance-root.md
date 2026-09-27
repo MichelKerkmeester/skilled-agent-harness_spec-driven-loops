@@ -5,6 +5,7 @@ trigger_phrases:
   - "005-graph-impact-and-affordance rollup"
   - "005-graph-impact-and-affordance phase parent"
   - "005-graph-impact-and-affordance changelog index"
+  - "graph impact and affordance changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

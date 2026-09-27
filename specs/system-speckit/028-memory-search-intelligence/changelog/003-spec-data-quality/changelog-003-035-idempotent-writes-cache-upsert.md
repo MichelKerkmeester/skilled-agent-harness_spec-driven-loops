@@ -2,9 +2,7 @@
 title: "Changelog: Idempotent Writes Cache Upsert [003-spec-data-quality/006-generated-metadata-build/035-idempotent-writes-cache-upsert]"
 description: "Chronological changelog for the idempotent writes cache upsert phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality idempotent writes cache upsert changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -1,0 +1,6 @@
+scenario_id,runtime,evidence_class,verdict
+ux-hooks-directive-lifecycle-dedup,pi,cross-cli-dispatch,PASS
+ux-hooks-directive-lifecycle-dedup,opencode,cross-cli-dispatch,PASS
+ux-hooks-directive-lifecycle-dedup,devin,cross-cli-dispatch,PASS
+ux-hooks-directive-lifecycle-dedup,cursor,cross-cli-dispatch,PASS
+ux-hooks-directive-lifecycle-dedup,codex,cross-cli-dispatch,PASS

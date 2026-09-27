@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-speckit/033-system-speckit-v4/045-v4-changelog-voice-rewrite",
-  "description": "Phase 1: v4-changelog-voice-rewrite",
+  "description": "`../CHANGELOG-v4.0.0.0.md` tells the v4 story in the shape of the draft it grew from, and that shape costs the reader",
   "keywords": [
-    "phase",
-    "v4-changelog-voice-rewrite"
+    "changelog-v4",
+    "tells",
+    "story",
+    "shape",
+    "draft",
+    "grew",
+    "costs",
+    "reader"
   ],
-  "lastUpdated": "2026-09-21T10:02:49.914Z",
+  "lastUpdated": "2026-09-21T18:43:26.703Z",
   "specId": "045",
   "folderSlug": "v4-changelog-voice-rewrite",
   "parentChain": [

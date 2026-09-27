@@ -10,6 +10,16 @@ const MAX_CAPTURED_SESSIONS = 64;
 const MAX_TRACKED_SESSIONS = 64;
 // The advisor's CLI budget ends first; this margin only catches a call that hangs past it.
 const PI_ADVISOR_DEADLINE_MARGIN_MS = 300;
+// Mirrors the Claude hook's default budget, which Pi cannot import statically because it loads the hook lazily.
+const PI_ADVISOR_DEFAULT_BUDGET_MS = 2500;
+
+// The hook applies the same parse rule; diverging here would let Pi's deadline fire
+// before the hook's own budget expires.
+function advisorBudgetMs(): number {
+  const value = process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS;
+  const parsed = Number.parseInt(value ?? "", 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : PI_ADVISOR_DEFAULT_BUDGET_MS;
+}
 
 interface RawInputStore {
   readonly bySession: Map<string, string>;
@@ -80,11 +90,12 @@ function splitPiDirectiveBrief(context: string): PiDirectiveBriefParts | null {
   if (index > 0) {
     return { head: context.slice(0, index), directives: context.slice(index) };
   }
-  // Advisor-failure / no-route fallback: the brief is the directive block with
-  // no advisor head. Normalize it to the separator-prefixed form so an
-  // identical directive block dedups to the same key whether or not a head was
-  // present; record an empty head. Without this the operator-visible directives
-  // repeat on every headless-brief turn.
+  // Advisor builds older than the status-headed fallback rendered the no-brief
+  // fallback as the directive block alone, and Pi can still load such a build
+  // from a dist that was not rebuilt. Accepting that form with an empty head
+  // keeps it eligible for dedup; without this its directives repeat on every
+  // turn. The dedup key stays the whole contribution, so a headless brief never
+  // matches a headed one and a changed head re-delivers.
   const label = PI_DIRECTIVE_SEPARATOR.slice(1);
   if (context.startsWith(label)) {
     return { head: "", directives: PI_DIRECTIVE_SEPARATOR + context.slice(label.length) };
@@ -191,7 +202,7 @@ export function formatPiAdvisorDebug(
     const match = context.match(/^Advisor:\s*([A-Za-z]+)/);
     brief = match ? `head(${match[1]})` : "other";
   }
-  const budgetMs = Number(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS) || 2500;
+  const budgetMs = advisorBudgetMs();
   return `[advisor-debug] brief=${brief} durationMs=${durationMs} budgetMs=${budgetMs}`;
 }
 
@@ -259,7 +270,7 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
               { runtime: "pi" },
             ).then((output) => ({ timedOut: false as const, output })),
             new Promise<{ timedOut: true }>((resolve) => {
-              const budgetMs = Number(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS) || 2500;
+              const budgetMs = advisorBudgetMs();
               deadlineTimer = setTimeout(
                 () => resolve({ timedOut: true }),
                 budgetMs + PI_ADVISOR_DEADLINE_MARGIN_MS,

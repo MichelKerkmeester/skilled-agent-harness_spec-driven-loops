@@ -5,6 +5,7 @@ trigger_phrases:
   - "skill-advisor cli lane rollup"
   - "skill-advisor cli changelog root"
   - "003 skill-advisor cli complete"
+  - "shared infrastructure skill advisor cli changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

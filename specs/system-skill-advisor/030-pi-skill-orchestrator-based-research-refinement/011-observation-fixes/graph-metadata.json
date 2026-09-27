@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes",
+  "parent_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 10 observations",
+      "appended phase numbering",
+      "drift guard count",
+      "placeholder phase description",
+      "phase 10 observations plan",
+      "appended phase numbering fix",
+      "drift guard docs plan",
+      "phase 10 observations tasks",
+      "appended phase numbering tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
+    ],
+    "key_topics": [
+      "phase",
+      "observations",
+      "appended",
+      "numbering",
+      "drift",
+      "guard",
+      "count",
+      "placeholder",
+      "description",
+      "plan",
+      "docs",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "evidence/metrics-log-modes.txt",
+      "evidence/dependabot-dismissals.txt",
+      "scripts/README.md",
+      ".hermes/skills/sk-code-opencode/SKILL.md",
+      "evidence/goal-reverify/harness-notes.txt",
+      ".github/dependabot.yml",
+      "evidence/validate-other-folders.txt",
+      "evidence/validate-five-more-folders.txt",
+      "evidence/goal-reverify/sandbox-daemon-live-state.txt",
+      "evidence/goal-reverify/ledger.tsv",
+      "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json",
+      "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/Gemfile.lock",
+      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-opencode/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "metrics-log-modes.txt",
+        "kind": "file",
+        "path": "evidence/metrics-log-modes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dependabot-dismissals.txt",
+        "kind": "file",
+        "path": "evidence/dependabot-dismissals.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "harness-notes.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/harness-notes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dependabot.yml",
+        "kind": "config",
+        "path": ".github/dependabot.yml",
+        "source": "derived"
+      },
+      {
+        "name": "validate-other-folders.txt",
+        "kind": "file",
+        "path": "evidence/validate-other-folders.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-five-more-folders.txt",
+        "kind": "file",
+        "path": "evidence/validate-five-more-folders.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sandbox-daemon-live-state.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/sandbox-daemon-live-state.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ledger.tsv",
+        "kind": "file",
+        "path": "evidence/goal-reverify/ledger.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "Gemfile.lock",
+        "kind": "file",
+        "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/Gemfile.lock",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 10's close-out listed seven small problems it had seen outside its own scope",
+    "created_at": "2026-09-27T11:43:49Z",
+    "last_save_at": "2026-09-27T14:42:24.562Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b288b75e4f1e28762f0d60b0fa5a951b62a5125c92fad9c23967ccefb3776a83",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ecbe5be385efe48b6b3c94cf079d6f96c077bd92471080bde1c53d05f6341135",
+      "plan.md": "248802ed512c22445a657751ce96e7935b74352a20f43095d7c578f7397b9adc",
+      "tasks.md": "96a6dc15c19089de6a861591970a14c1b4c02e6944486a1d9f11ff38c2a10780",
+      "implementation-summary.md": "12bfa14df2edc566266060ec11670a013cb4352d7d030ca3d0816cf4c13b534d"
+    },
+    "last_active_at": null
+  }
+}

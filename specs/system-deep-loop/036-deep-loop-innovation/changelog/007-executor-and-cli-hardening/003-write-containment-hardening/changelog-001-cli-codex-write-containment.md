@@ -2,9 +2,7 @@
 title: "Changelog: codex Write-Containment Guard for Deep-Loop Dispatches [007-executor-and-cli-hardening/003-write-containment-hardening/001-cli-codex-write-containment]"
 description: "Structural post-dispatch guard that reverts and fails any codex leaf write outside its artifact directory, closing the asymmetry with the cli-opencode dispatch branch."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "write containment hardening cli codex write containment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

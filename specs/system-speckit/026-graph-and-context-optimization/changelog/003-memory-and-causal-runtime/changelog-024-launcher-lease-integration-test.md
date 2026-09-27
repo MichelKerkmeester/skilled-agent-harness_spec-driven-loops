@@ -7,6 +7,7 @@ trigger_phrases:
   - "lib copy fixture module-not-found"
   - "un-skip launcher lease suite"
   - "024-launcher-lease-integration-test"
+  - "memory and causal runtime launcher lease integration test changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "027 phase parent readiness findings"
   - "027 child metadata drift"
   - "027 graph status audit"
+  - "release and program cleanup launch state changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

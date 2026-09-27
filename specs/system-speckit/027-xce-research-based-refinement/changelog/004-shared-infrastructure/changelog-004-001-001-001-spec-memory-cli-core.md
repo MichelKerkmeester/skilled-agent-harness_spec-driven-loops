@@ -5,6 +5,7 @@ trigger_phrases:
   - "spec-memory cli core changelog"
   - "cli subcommand codegen changelog"
   - "spec-memory shim changelog"
+  - "shared infrastructure spec memory cli core changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

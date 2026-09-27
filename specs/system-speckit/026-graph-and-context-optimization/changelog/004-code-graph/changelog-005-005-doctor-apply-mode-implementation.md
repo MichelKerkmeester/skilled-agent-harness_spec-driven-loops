@@ -7,6 +7,7 @@ trigger_phrases:
   - "apply mode phase b implementation"
   - "code graph recovery procedures"
   - "gold battery gating apply"
+  - "code graph doctor apply mode implementation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

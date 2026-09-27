@@ -5,6 +5,7 @@ trigger_phrases:
   - "001-playbook-quality-audit rollup"
   - "001-playbook-quality-audit phase parent"
   - "001-playbook-quality-audit changelog index"
+  - "memory and causal runtime playbook quality audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

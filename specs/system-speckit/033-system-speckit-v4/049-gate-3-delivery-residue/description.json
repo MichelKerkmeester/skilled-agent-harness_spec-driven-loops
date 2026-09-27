@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/033-system-speckit-v4/049-gate-3-delivery-residue",
-  "description": "Phase 1: gate-3-delivery-residue",
+  "description": "Phase 048 removed turn-time Gate-3 injection and moved delivery to the first mutation for six runtimes",
   "keywords": [
     "phase",
-    "gate-3-delivery-residue"
+    "removed",
+    "turn-time",
+    "gate-3",
+    "injection",
+    "moved",
+    "delivery",
+    "first",
+    "mutation",
+    "six",
+    "runtimes"
   ],
-  "lastUpdated": "2026-09-22T07:42:03.438Z",
+  "lastUpdated": "2026-09-22T10:04:41.670Z",
   "specId": "049",
   "folderSlug": "gate-3-delivery-residue",
   "parentChain": [
@@ -13,6 +23,5 @@
     "033-system-speckit-v4"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

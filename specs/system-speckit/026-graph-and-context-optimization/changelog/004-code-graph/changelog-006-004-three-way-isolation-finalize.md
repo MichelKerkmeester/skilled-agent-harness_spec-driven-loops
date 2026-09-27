@@ -6,6 +6,7 @@ trigger_phrases:
   - "delete system-spec-kit smoke test"
   - "cross-skill import removal 040"
   - "skill isolation code-graph skill-advisor"
+  - "code graph three way isolation finalize changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

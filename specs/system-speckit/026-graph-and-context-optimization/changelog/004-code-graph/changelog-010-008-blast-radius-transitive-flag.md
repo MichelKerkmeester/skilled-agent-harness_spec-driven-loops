@@ -7,6 +7,7 @@ trigger_phrases:
   - "f-022-1 fix"
   - "effectiveDepth gate query handler"
   - "blast radius default depth change"
+  - "code graph blast radius transitive flag changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

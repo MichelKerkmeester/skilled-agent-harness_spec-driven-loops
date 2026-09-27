@@ -7,8 +7,9 @@
 //     differs from the lease's recorded executablePath, treat it as already-dead.
 //   - owner-lease stale reclaim must be a single O_EXCL CAS (no double-acquire).
 
+import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -103,6 +104,36 @@ describe('system-skill-advisor owner-lease CAS reclaim', () => {
     const reclaim = launcher.acquireOwnerLeaseFile();
     expect(reclaim.acquired).toBe(true);
     expect(launcher.readOwnerLeaseFile()?.ownerPid).toBe(process.pid);
+  });
+
+  it('keeps a live owner whose parent is pid 1 and whose heartbeat is fresh', () => {
+    const spawned = spawnSync('/bin/sh', ['-c', 'sleep 120 >/dev/null 2>&1 & echo $!'], { encoding: 'utf8' });
+    const pid = Number.parseInt(String(spawned.stdout).trim(), 10);
+    try {
+      configureTempLauncher();
+      launcher.clearOwnerLeaseFile();
+      const first = launcher.acquireOwnerLeaseFile();
+      expect(first.acquired).toBe(true);
+      const realLease = launcher.readOwnerLeaseFile();
+      writeFileSync(launcher.ownerLeasePath(), `${JSON.stringify({
+        ...realLease,
+        ownerPid: pid,
+        ppid: process.pid,
+        lastHeartbeatIso: new Date().toISOString(),
+        ttlMs: 60000,
+      }, null, 2)}\n`);
+      const before = readFileSync(launcher.ownerLeasePath());
+      const reclaim = launcher.acquireOwnerLeaseFile();
+      expect(reclaim.acquired).toBe(false);
+      expect(reclaim.classification).toBe('live-owner');
+      expect(readFileSync(launcher.ownerLeasePath())).toEqual(before);
+    } finally {
+      try {
+        process.kill(pid, 'SIGKILL');
+      } catch {
+        // The sleeper may already have exited.
+      }
+    }
   });
 });
 

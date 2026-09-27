@@ -1086,7 +1086,7 @@ function writeTextAtomic(targetPath, text) {
 
 /**
  * Bind the session to a packet. The packet's goal.md becomes the directive;
- * the record keeps only the pointer, the operator copy derived from it, and
+ * the record keeps only the pointer, the objective slice derived from it, and
  * bookkeeping. Binding never guesses: the path must resolve inside the
  * workspace and the document must exist.
  */
@@ -1128,7 +1128,7 @@ function bindGoal({ packetPath, tokenBudget = null, runtimeLabel = null } = {}, 
   });
 }
 
-/** Drop the packet pointer. The record and its operator copy stay as they are. */
+/** Drop the packet pointer. The record and its objective slice stay as they are. */
 function unbindGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   return withScopeMutation(rawOptions, (goalScope) => {

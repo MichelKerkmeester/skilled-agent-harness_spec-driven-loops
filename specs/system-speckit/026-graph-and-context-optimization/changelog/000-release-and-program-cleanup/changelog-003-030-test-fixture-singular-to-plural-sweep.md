@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor test path rename 37 failures"
   - "opencode skill to skills test fixtures"
   - "perl sweep advisor vitest"
+  - "release and program test fixture singular to plural sweep changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

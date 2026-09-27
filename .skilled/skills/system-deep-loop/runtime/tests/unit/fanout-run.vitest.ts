@@ -1417,7 +1417,10 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
       'gemini-3.8-flash-high',
       'glm-5.2-high', 'glm-5.2-max',
       'gpt-5.6-luna-max', 'gpt-5.6-luna-max-fast',
-      'grok-4.7-xhigh-fast',
+      'grok-4.7-high', 'grok-4.7-high-fast',
+      'grok-4.7-low', 'grok-4.7-low-fast',
+      'grok-4.7-medium', 'grok-4.7-medium-fast',
+      'grok-4.7-xhigh', 'grok-4.7-xhigh-fast',
     ];
     for (const model of allowed) {
       const command = buildLineageCommand({ kind: 'cli-cursor', model }, 'p', 'workspace-write', 'default', opts);

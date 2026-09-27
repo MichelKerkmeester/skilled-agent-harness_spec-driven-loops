@@ -7,6 +7,7 @@ trigger_phrases:
   - "stale skill_graph_daemon_lease cleanup"
   - "mcp handshake einval launcher fix"
   - "launcher lease clear recipe"
+  - "memory and causal sun path and stale lease followups changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

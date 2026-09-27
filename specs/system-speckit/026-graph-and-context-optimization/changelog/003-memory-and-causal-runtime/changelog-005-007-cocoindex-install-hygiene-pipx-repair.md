@@ -6,6 +6,7 @@ trigger_phrases:
   - "CocoIndex install hygiene repair"
   - "stale ccc executable"
   - "pipx editable direct_url"
+  - "memory and causal runtime cocoindex install hygiene pipx repair changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

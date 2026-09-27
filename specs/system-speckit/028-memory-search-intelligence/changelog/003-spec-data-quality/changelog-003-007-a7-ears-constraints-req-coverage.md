@@ -2,9 +2,7 @@
 title: "Changelog: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate [003-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage]"
 description: "Chronological changelog for the A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a7 ears constraints req coverage changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

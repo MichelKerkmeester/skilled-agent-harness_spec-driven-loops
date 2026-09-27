@@ -387,11 +387,11 @@ git -C <primary-worktree> merge-base --is-ancestor <pushed-sha> HEAD \
    ```
 
 2. **Locate or create changelog**:
-   - Check for existing changelog at `.skilled/changelog/*/vX.X.X.X.md`
+   - Check for the release entry at `.skilled/changelog/skilled/vX.X.X.X.md`
    - If found: use as release notes source
    - If not found: ask user whether to create one or use commit log
 
-**Guided workflow available:** For a structured changelog + release workflow, use the `/create:changelog --release :auto` command. It handles changelog creation, tag creation, and GitHub release publishing in one guided flow. Step 6 below is the manual alternative.
+**Guided workflow available:** For a structured changelog + release workflow, use the `/create:changelog skilled --release :auto` command. It handles changelog creation, tag creation, and GitHub release publishing in one guided flow. Step 6 below is the manual alternative.
 
 3. **Create annotated tag**:
    ```bash
@@ -472,7 +472,7 @@ git -C <primary-worktree> merge-base --is-ancestor <pushed-sha> HEAD \
 | Hotfix for production | Option 1 or 2 (Merge/PR) | Never discard or keep hotfixes |
 | Spike/research | Option 4 (Discard) | Research doesn't need to be merged |
 | Release requested by user | Step 6 (Create Release) | Creates annotated tag + GitHub release with formatted notes |
-| Release with changelog | `/create:changelog --release :auto` | Guided changelog + tag + release workflow |
+| Release with changelog | `/create:changelog skilled --release :auto` | Guided changelog + tag + release workflow |
 
 ---
 
@@ -722,7 +722,7 @@ Agent: "I'm using the git-commit skill to commit, then creating the release."
 > git push origin main
 
 [Create Changelog]
-Created .skilled/changelog/01--system-spec-kit/v2.1.0.0.md
+Created .skilled/changelog/skilled/v2.1.0.0.md
 
 [Tag and Release]
 > git tag -a v2.1.0.0 -m "v2.1.0.0: OAuth2 authentication + API rate limiting"
@@ -751,7 +751,7 @@ Adds secure login and request throttling so the API can handle real-world traffi
 1. Run database migration: `npm run migrate`
 2. Set `OAUTH_CLIENT_ID` and `OAUTH_SECRET` environment variables
 
-Full changelog: [changelog/01--system-spec-kit/v2.1.0.0.md](https://github.com/user/repo/blob/main/.opencode/changelog/01--system-spec-kit/v2.1.0.0.md)
+Full changelog: [changelog/skilled/v2.1.0.0.md](https://github.com/user/repo/blob/main/.skilled/changelog/skilled/v2.1.0.0.md)
 EOF
 )"
 

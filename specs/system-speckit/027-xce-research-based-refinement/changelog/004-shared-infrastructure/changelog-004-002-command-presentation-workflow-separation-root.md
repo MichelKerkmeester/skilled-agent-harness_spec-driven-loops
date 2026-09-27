@@ -6,6 +6,7 @@ trigger_phrases:
   - "command presentation router split"
   - "027 004/002 shipped"
   - "command family refactor changelog"
+  - "shared infrastructure command presentation workflow separation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

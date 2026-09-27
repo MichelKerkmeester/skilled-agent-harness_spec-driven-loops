@@ -2,9 +2,7 @@
 title: "Changelog: Manual Testing Playbook Cleanup"
 description: "Chronological changelog for the manual testing playbook cleanup phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup manual testing playbooks changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

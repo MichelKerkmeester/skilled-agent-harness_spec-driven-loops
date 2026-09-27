@@ -6,6 +6,7 @@ trigger_phrases:
   - "feedback retention reducer"
   - "SPECKIT_FEEDBACK_RETENTION_LEARNING"
   - "edge-tier-basement"
+  - "memory store and search feedback retention reducer changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

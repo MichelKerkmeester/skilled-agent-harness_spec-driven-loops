@@ -7,6 +7,7 @@ trigger_phrases:
   - "COCOINDEX_QUERY_EXPANSION"
   - "camelCase snake_case query expansion"
   - "query expansion FTS5 dense fanout"
+  - "memory and causal runtime query expansion identifier bridging changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "EmbeddingGemma q4 variant"
   - "quantized ONNX embedding load"
   - "hf-local dtype knob"
+  - "memory and causal runtime q4 quantization changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

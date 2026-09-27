@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk_code_index tool count fix"
   - "skill-advisor orphan references"
   - "mk_skill_advisor tool count"
+  - "code graph cross skill doc polish changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

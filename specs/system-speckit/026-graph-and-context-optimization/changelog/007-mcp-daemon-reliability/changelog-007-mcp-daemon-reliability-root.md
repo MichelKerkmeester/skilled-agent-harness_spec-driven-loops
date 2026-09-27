@@ -5,6 +5,7 @@ trigger_phrases:
   - "007-mcp-daemon-reliability rollup"
   - "007-mcp-daemon-reliability phase parent"
   - "007-mcp-daemon-reliability changelog index"
+  - "mcp daemon reliability changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

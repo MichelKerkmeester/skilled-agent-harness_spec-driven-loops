@@ -5,6 +5,7 @@ trigger_phrases:
   - "envelope presentation changelog"
   - "cursor scope tenant leak fix"
   - "command tree byte parity"
+  - "fix deep dive envelope presentation and command doc alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

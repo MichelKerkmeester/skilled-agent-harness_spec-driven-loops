@@ -2,9 +2,7 @@
 title: "Changelog: Skill Benchmark Migration [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark]"
 description: "Changelog for the skill benchmark migration group: migrating the skill-benchmark variant's scenario runs and scoring onto the typed event-ledger substrate."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "skill benchmark changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

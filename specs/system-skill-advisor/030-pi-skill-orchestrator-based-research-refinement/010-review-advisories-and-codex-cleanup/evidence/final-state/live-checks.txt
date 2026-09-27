@@ -1,0 +1,21 @@
+# Live checks against the new advisor daemon, 2026-09-27T10:19Z, from the checkout root
+# 1. A 20,000-character prompt through the Claude hook shim (dist/hooks/claude/user-prompt-submit.js). Before the fix it got 'Advisor: outage (fail_open)'
+claude_exit=0
+Advisor: live; use sk-code 0.84/0.12 pass.
+# 2. The same prompt through the real OpenCode plugin with its real spawn and the real advisor CLI
+prompt_chars=20000
+brief=Advisor: live; use sk-code 0.84/0.12 pass.
+last_error_code=none
+plugin_exit=0
+# 3. --json - and --json '<object>' through the bin shim
+stdin_exit=0
+argv_exit=0
+stdin [('sk-code', 0.9498), ('system-deep-loop', 0.82), ('sk-design', 0.82)]
+argv  [('sk-code', 0.9498), ('system-deep-loop', 0.82), ('sk-design', 0.82)]
+SAME
+# 4. Process-table poll every 20 ms for 12 s while a marked prompt ran through the Claude hook and the plugin
+polls=142 hits=0
+argv lines holding the marker: 0
+# 5. The standalone Python CLI with --force-native: 15,000 ASCII characters, then 11,250 characters that are 11,700 in JavaScript
+py_ascii: source=native sk-code
+py_emoji: source=native sk-code

@@ -5,6 +5,7 @@ trigger_phrases:
   - "009-phase-parent-lean-trio-documentation rollup"
   - "009-phase-parent-lean-trio-documentation phase parent"
   - "009-phase-parent-lean-trio-documentation changelog index"
+  - "release and program cleanup phase parent lean trio documentation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

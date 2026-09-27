@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph readiness snapshot envelope"
   - "mapGraphReadinessToTelemetry helper"
   - "PP-1 TC-3 expected fail flip"
+  - "release and program cleanup memory search degraded readiness wiring changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -4,7 +4,7 @@
 
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
-import { appendFile, mkdir, rename, unlink, writeFile } from 'node:fs/promises';
+import { appendFile, chmod, mkdir, rename, unlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 
@@ -180,6 +180,10 @@ const MAX_HEALTH_RECORDS = 30;
 const MAX_DURABLE_DIAGNOSTIC_RECORDS = 200;
 const MAX_DURABLE_OUTCOME_RECORDS = 200;
 const DURABLE_METRICS_ROOT = join(tmpdir(), 'speckit-skill-advisor-metrics');
+// The logs record which skills a user works with, so only that user may read them.
+const PRIVATE_DIR_MODE = 0o700;
+const PRIVATE_FILE_MODE = 0o600;
+const securedLogPaths = new Set<string>();
 let dirReady = false;
 const writeQueues = new Map<string, Promise<void>>();
 
@@ -231,7 +235,7 @@ const MAX_CONTEXT_TAGS = 16;
 
 // Context tags are the only free-form payload on a skill-execution outcome, so
 // they are bounded and sanitized hard: drop non-strings, normalize whitespace,
-// cap length, dedupe, and cap count. The caller owns prompt-safety — this only
+// cap length, dedupe, and cap count. The caller owns prompt-safety. This only
 // guarantees the stored shape stays small and closed.
 function sanitizeContextTags(value: unknown): string[] {
   if (!Array.isArray(value)) {
@@ -273,8 +277,21 @@ function envNumber(name: string, fallback: number): number {
 
 async function ensureParentDir(path: string): Promise<void> {
   if (!dirReady) {
-    await mkdir(dirname(path), { recursive: true });
-    dirReady = true;
+    const dir = dirname(path);
+    await mkdir(dir, { recursive: true, mode: PRIVATE_DIR_MODE });
+    // mkdir keeps an existing directory's mode, so tighten one an older writer created.
+    // Only a chmod that succeeded marks the directory ready, so a failed one is
+    // retried on the next write.
+    dirReady = await chmod(dir, PRIVATE_DIR_MODE).then(() => true, () => false);
+  }
+}
+
+// appendFile applies its mode only when it creates the file, so tighten an older log.
+// Only a chmod that succeeded is remembered, so a failed one is retried on the next write.
+async function securePrivateLog(path: string): Promise<void> {
+  if (securedLogPaths.has(path)) return;
+  if (await chmod(path, PRIVATE_FILE_MODE).then(() => true, () => false)) {
+    securedLogPaths.add(path);
   }
 }
 
@@ -308,13 +325,14 @@ async function writeBoundedJsonl(path: string, line: string, maxRecords: number,
     // under concurrency. Bounding stays correct under the same per-path queue: trim
     // only once the file drifts past 1.5x the cap, so the common path is a cheap
     // append and the read-trim-rewrite amortizes to once per ~0.5*maxRecords writes.
-    await appendFile(path, `${line}\n`, 'utf8');
+    await appendFile(path, `${line}\n`, { encoding: 'utf8', mode: PRIVATE_FILE_MODE });
+    await securePrivateLog(path);
     if (maxRecords > 0) {
       const lines = readJsonlLines(path);
       if (lines.length > Math.floor(maxRecords * 1.5)) {
         const temporaryPath = `${path}.${process.pid}.${Date.now()}.tmp`;
         // Rename swaps atomically, so a crash mid-trim leaves the old log instead of a truncated one.
-        await writeFile(temporaryPath, `${lines.slice(-maxRecords).join('\n')}\n`, 'utf8');
+        await writeFile(temporaryPath, `${lines.slice(-maxRecords).join('\n')}\n`, { encoding: 'utf8', mode: PRIVATE_FILE_MODE });
         try {
           await rename(temporaryPath, path);
         } catch (error) {

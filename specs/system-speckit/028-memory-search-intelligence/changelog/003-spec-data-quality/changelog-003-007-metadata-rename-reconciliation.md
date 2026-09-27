@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for JSON Metadata Rena
 trigger_phrases:
   - "metadata-rename-reconciliation changelog"
   - "former 008-metadata-rename-reconciliation"
-  - "nested changelog"
+  - "spec data quality metadata rename reconciliation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

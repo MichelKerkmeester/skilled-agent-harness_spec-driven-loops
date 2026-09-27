@@ -2,9 +2,7 @@
 title: "Changelog: Staged State Migration & Authority Cutover [003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover]"
 description: "Changelog for the staged state migration and authority cutover group: classifying and migrating eligible in-flight state, then cutting authority per mode under shadow-parity, rollback, and certificate gates."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "staged state migration and authority cutover changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

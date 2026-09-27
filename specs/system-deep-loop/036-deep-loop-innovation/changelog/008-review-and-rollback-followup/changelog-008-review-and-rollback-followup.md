@@ -2,9 +2,7 @@
 title: "Changelog: Review and Rollback Follow-up [008-review-and-rollback-followup]"
 description: "Changelog for the review and rollback follow-up group of the 036 deep-loop innovation packet: runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "review and rollback followup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

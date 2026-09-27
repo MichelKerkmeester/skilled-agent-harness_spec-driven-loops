@@ -56,7 +56,7 @@ create-changelog is the `sk-doc` workflow behind `/create:changelog`. It resolve
 cat .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
 ```
 
-You get the compact and expanded shapes, the voice and omission rules and the conciseness caps, all modeled on the v4 exemplar at `.skilled/changelog/system-spec-kit/v4.0.0.0.md`.
+You get the compact and expanded shapes, the voice and omission rules and the conciseness caps, all modeled on the v4 exemplar at `.skilled/changelog/skilled/v4.0.0.0.md`.
 
 **Step 3: Check voice and structure.**
 
@@ -101,7 +101,7 @@ Reach for create-changelog when a shipped change needs a global component releas
 
 | What you see | Why | Fix |
 |---|---|---|
-| No component folder matches | `component_hint` doesn't resemble any real folder under `.skilled/changelog/` | Run `ls -d .skilled/changelog/*/` first, then match by substring or path segment. Never invent a folder |
+| No component folder matches | `component_hint` doesn't resemble any real folder under `.skilled/changelog/` | Run `ls -d .skilled/changelog/*/` first, then match by exact name or whole path segment. Never invent a folder |
 | Version calculation looks off | Auto-detection defaulted to patch without a clear signal and the target file already exists | Pass an explicit `--bump` or let the build segment auto-increment on collision |
 | Entry looks like it belongs to the packet, not the whole project | The spec folder is a phase child or already has `changelog/` | Nested mode is likely correct here. Use `--nested` or let auto-detection route it |
 | File uses `Added`/`Changed`/`Fixed` headings | The caller asked for a different external format | Rewrite the content as topical sections named for the domain they change, unless the user explicitly needs that other format |
@@ -122,7 +122,7 @@ A: Global when the source resolves to a component hint, git history or a spec fo
 
 **Q: Can this workflow also cut the GitHub release?**
 
-A: Yes, when you pass `--release`. After a global changelog is written, the command tags `v<version>`, pushes the tag and publishes the GitHub release with the changelog as its body. `:confirm` shows the commands and waits for approval first. A packet-local changelog never releases, because it has no repo-wide version to tag.
+A: Yes, for the `skilled` release line, when you pass `--release`. After the release entry is written, the command tags `v<version>`, pushes the tag and publishes the GitHub release with the entry as its body. `:confirm` shows the commands and waits for approval first. Any other component skips the release, because a component version is not a repository release. A packet-local changelog never releases either, because it has no repo-wide version to tag.
 
 **Q: What if two components were both heavily touched?**
 
@@ -136,7 +136,7 @@ A: List every affected component in the report and write to the primary one by f
 |---|---|---|
 | Global format | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`, with the summary narrative first, the spec-folder blockquote when sourced from a spec, the sections its tier requires and upgrade guidance |
 | Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <changelog-file>` | Zero hard blockers |
-| Version sequencing | List the target folder and compare against the calculated version | New version is strictly greater than the latest existing one and no file already exists at that exact path |
+| Version sequencing | List the target folder and its generation folders, then compare against the calculated version | New version is strictly greater than the latest existing one and no file already exists at that exact path |
 | Nested output | Confirm the file landed under the packet's `changelog/` folder with the correct `changelog-<packet>-root.md` or `changelog-<packet>-<phase>.md` name | File exists at the expected nested path |
 
 ---

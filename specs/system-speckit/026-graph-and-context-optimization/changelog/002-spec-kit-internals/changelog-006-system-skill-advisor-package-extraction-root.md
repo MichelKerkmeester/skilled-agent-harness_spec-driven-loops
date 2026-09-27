@@ -5,6 +5,7 @@ trigger_phrases:
   - "006-system-skill-advisor-package-extraction rollup"
   - "006-system-skill-advisor-package-extraction phase parent"
   - "006-system-skill-advisor-package-extraction changelog index"
+  - "spec kit internals system skill advisor package extraction changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

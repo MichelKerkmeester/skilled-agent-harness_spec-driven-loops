@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 3.8.0.0
+version: 4.1.0.99
 ---
 
 # System Spec Kit
@@ -229,11 +229,11 @@ The LOC ranges are guidance, not hard rules. Risk, complexity and the number of 
 
 ### Goal Documents
 
-A packet can opt into a `goal.md` document with `create.sh --with-goal`, valid at every level and on phase parents. It holds the durable objective and completion criteria a session works toward across turns, rendered from `templates/addons/goal.md.tmpl`.
+A packet can opt into a `goal.md` document with `create.sh --with-goal`, valid at every level. With `--phase` it writes a goal into each child only, and `--level phase-parent --with-goal` writes a parent goal. `/create:goal` from `sk-create-goal` authors, amends or retrofits any goal. It holds the durable objective and completion criteria a session works toward across turns, rendered from `templates/addons/goal.md.tmpl`.
 
-A session binds to exactly one packet, and that packet's `goal.md` is the single source of the goal on every runtime. Rendering reads the file fresh each time, so editing it changes what the model sees on its next turn. Frontmatter never leaves the file: every surface that shows the goal, including the chat resend and the runtime injection, reads the durable slice only.
+A session binds to exactly one packet, and that packet's `goal.md` is the single source of the goal on every runtime. Rendering reads the file fresh each time, so editing it changes what the model sees on its next turn. Frontmatter never leaves the file. The chat resend sends the chat slice and the runtime injects the objective slice, and both are built from the durable slice alone.
 
-The validator holds one limit: it fails a goal past 4,000 durable characters and says nothing below that. The limit applies to phase parents and top-level packets. Phase children are unbounded, and a binding row naming a child `goal.md` that does not exist fails validation.
+The validator holds one limit: it fails a goal past 4,000 durable characters and says nothing below that. The limit applies to top-level packets and to every phase parent, including one nested inside another packet. A phase child that is not itself a phase parent is unbounded, as section 2 of sk-create-goal's [budget-and-handoff.md](../sk-doc/sk-create-goal/references/budget-and-handoff.md) says, and a binding row naming a child `goal.md` that does not exist fails validation.
 
 The full cross-runtime contract, injection behavior per runtime and management commands live in the root `README.md` Goal Plugin section and in `.skilled/hooks/goal/README.md`.
 

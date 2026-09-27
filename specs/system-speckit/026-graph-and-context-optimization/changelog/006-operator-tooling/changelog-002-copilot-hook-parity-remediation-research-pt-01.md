@@ -4,6 +4,7 @@ description: "Research-only phase. Deep review of Copilot hook parity remediatio
 trigger_phrases:
   - "phase 009/002 research pt-01 changelog"
   - "copilot deep review remediation"
+  - "operator tooling copilot hook parity remediation research pt 01 changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

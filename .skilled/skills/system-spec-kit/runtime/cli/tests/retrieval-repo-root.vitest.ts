@@ -65,7 +65,7 @@ describe('corpus roots follow the source root a checkout carries', () => {
   it('spells the roots under .opencode when that is the only source root', () => {
     const repo = checkout('.opencode');
     try {
-      expect(corpusRootsFor(repo)).toEqual(['specs', '.opencode/skills', '.opencode/hooks']);
+      expect(corpusRootsFor(repo)).toEqual(['specs', '.opencode/skills', '.opencode/hooks', '.opencode/changelog/skilled']);
       expect(walkCorpus(repo).files).toContain('.opencode/skills/system-spec-kit/SKILL.md');
     } finally {
       fs.rmSync(repo, { recursive: true, force: true });

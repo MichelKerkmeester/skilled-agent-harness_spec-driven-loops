@@ -2,9 +2,7 @@
 title: "Changelog: Locks & Fencing [002-substrate-and-orchestration/003-shared-evidence-and-control-services/006-locks-and-fencing]"
 description: "Changelog for the locks and fencing phase: shared concurrency-safety service for ledger append, projections, and per-lineage state."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared evidence and control services locks and fencing changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

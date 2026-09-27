@@ -7,6 +7,7 @@ trigger_phrases:
   - "substrate stress test diagnostic row fix"
   - "mk-spec-memory launcher clean close"
   - "FTS5 shadow divergent repair"
+  - "mcp daemon reliability daemon lifecycle healing changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

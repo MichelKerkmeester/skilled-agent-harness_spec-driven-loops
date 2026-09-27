@@ -9,6 +9,7 @@ trigger_phrases:
   - "advisor hook diagnostics sink"
   - "workspaceRoot advisor surface"
   - "prompt-safe telemetry outcomes"
+  - "spec kit internals advisor hook brief improvements changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

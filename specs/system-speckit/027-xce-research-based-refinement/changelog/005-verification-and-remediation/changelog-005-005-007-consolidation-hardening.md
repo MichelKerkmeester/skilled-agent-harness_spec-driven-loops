@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/005/007 consolidation hardening changelog"
   - "consolidation read-only scan lock-free"
   - "consolidation single connection handle"
+  - "verification and remediation consolidation hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

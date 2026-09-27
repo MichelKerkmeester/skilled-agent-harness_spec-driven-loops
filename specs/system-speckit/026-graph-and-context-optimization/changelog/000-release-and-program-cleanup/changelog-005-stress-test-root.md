@@ -5,6 +5,7 @@ trigger_phrases:
   - "005-stress-test rollup"
   - "005-stress-test phase parent"
   - "005-stress-test changelog index"
+  - "release and program cleanup stress test changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

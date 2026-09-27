@@ -2,9 +2,7 @@
 title: "Changelog: Retrieval Floor Experiment [003-spec-data-quality/005-shared-engine-and-research/027-retrieval-floor-experiment]"
 description: "Chronological changelog for the Retrieval Floor Experiment phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality retrieval floor experiment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

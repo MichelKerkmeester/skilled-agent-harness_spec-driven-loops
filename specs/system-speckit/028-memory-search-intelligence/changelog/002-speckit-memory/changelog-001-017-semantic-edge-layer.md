@@ -2,9 +2,7 @@
 title: "Changelog: Semantic Edge Layer [001-speckit-memory/017-semantic-edge-layer]"
 description: "Chronological changelog for the semantic edge layer phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory semantic edge layer changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

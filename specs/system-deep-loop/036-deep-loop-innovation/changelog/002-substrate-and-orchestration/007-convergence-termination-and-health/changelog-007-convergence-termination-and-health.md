@@ -2,9 +2,7 @@
 title: "Changelog: Convergence, Termination & Health [002-substrate-and-orchestration/007-convergence-termination-and-health]"
 description: "Changelog for the convergence, termination and health phase: path-covering termination, cycle detection, stopping clocks, value-of-computation allocation, and a health and degeneration harness."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "convergence termination and health changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

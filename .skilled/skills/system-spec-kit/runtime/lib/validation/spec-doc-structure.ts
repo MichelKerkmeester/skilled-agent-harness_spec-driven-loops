@@ -1047,6 +1047,11 @@ function isPhaseChildFolder(folder: string): boolean {
   return fs.existsSync(path.join(path.dirname(folder), 'spec.md'));
 }
 
+// Goal authoring belongs to sk-create-goal, so a goal finding names the fix
+// there instead of restating the cut order or the binding workflow here.
+const GOAL_BUDGET_FIX = "Cut it in the order section 3 of sk-create-goal's references/budget-and-handoff.md gives, and never drop a criterion.";
+const GOAL_BINDING_FIX = 'Author the child goal and its row with /create:goal <parent> phase-add, or child when the folder already exists.';
+
 function validateGoalDocument(folder: string, level: string, content: string, diagnostics: RuleDiagnostic[]): void {
   const budget = resolveGoalDurableBudget();
   const budgetApplies = level === 'phase' || !isPhaseChildFolder(folder);
@@ -1056,7 +1061,7 @@ function validateGoalDocument(folder: string, level: string, content: string, di
       diagnostics.push({
         code: 'SPECDOC_SUFFICIENCY_005',
         severity: 'error',
-        detail: `${GOAL_DOC}: durable slice is ${length} characters (> ${budget.errorChars})`,
+        detail: `${GOAL_DOC}: durable slice is ${length} characters (> ${budget.errorChars}). ${GOAL_BUDGET_FIX}`,
       });
     }
   }
@@ -1074,7 +1079,7 @@ function validateGoalDocument(folder: string, level: string, content: string, di
       diagnostics.push({
         code: 'SPECDOC_SUFFICIENCY_006',
         severity: 'error',
-        detail: `${GOAL_DOC}: binding row names '${target}' which does not exist inside the packet`,
+        detail: `${GOAL_DOC}: binding row names '${target}' which does not exist inside the packet. ${GOAL_BINDING_FIX}`,
       });
     }
   }

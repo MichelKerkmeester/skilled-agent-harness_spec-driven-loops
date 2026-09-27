@@ -7,6 +7,7 @@ trigger_phrases:
   - "replay harness isolation"
   - "hook-state producer patch"
   - "continuity producer boundary"
+  - "memory and causal runtime cache warning hooks changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

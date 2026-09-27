@@ -2,9 +2,7 @@
 title: "Changelog: Spec-Kit Memory MCP Phase Parent [002-speckit-memory/root]"
 description: "Chronological changelog for the Spec-Kit Memory MCP Phase Parent spec root."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "speckit memory changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "COCOINDEX_CANONICAL_MIRROR"
   - "rerank window mirror pollution"
   - "path_utils mirror helper"
+  - "memory and causal runtime mirror dedup canonical preference changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

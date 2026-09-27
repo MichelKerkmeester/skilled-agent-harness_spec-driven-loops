@@ -7,6 +7,7 @@ trigger_phrases:
   - "018/003 comparison measure"
   - "embedder benchmark fixture"
   - "KEEP-JINA-CODE ratification"
+  - "memory and causal runtime comparison measure changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

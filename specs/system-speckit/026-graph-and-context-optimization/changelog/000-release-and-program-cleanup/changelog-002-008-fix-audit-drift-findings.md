@@ -7,6 +7,7 @@ trigger_phrases:
   - "derived metadata extract sync fix"
   - "skill advisor catalog alignment"
   - "FIXME sa-star stress test cleanup"
+  - "release and program cleanup fix audit drift findings changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

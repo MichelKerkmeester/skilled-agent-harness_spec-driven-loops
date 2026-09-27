@@ -7,6 +7,7 @@ trigger_phrases:
   - "SPECKIT_REVIEWER_BENCHMARKS"
   - "reviewer fixture schema"
   - "deep-improvement reviewer scorer"
+  - "research and doctrine reviewer prompt benchmark substrate changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

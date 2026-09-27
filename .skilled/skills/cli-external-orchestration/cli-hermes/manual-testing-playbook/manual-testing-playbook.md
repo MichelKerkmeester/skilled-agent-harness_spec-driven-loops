@@ -278,7 +278,7 @@ This category proves the repo's sk-git preflight advisory reaches a Hermes sessi
 
 ## 15. GOAL HOOK (`HERMES-015`, `HERMES-020`, `HERMES-028`, `HERMES-030`)
 
-This category checks the plugin's system-prompt section surface, which is how the repo's session-start context reaches a Hermes session given that Hermes ignores an `on_session_start` callback's return value. With `HERMES_SPEC_FOLDER` set, that section also carries the bound packet's path and its durable goal slice.
+This category checks the plugin's system-prompt section surface, which is how the repo's session-start context reaches a Hermes session given that Hermes ignores an `on_session_start` callback's return value. With `HERMES_SPEC_FOLDER` set, a separate `repo-guards-goal` section carries the goal brief the shared goal core renders for the packet it binds to the session.
 
 - `HERMES-015`: [Plugin session-context section](goal-hook/plugin-session-context-section.md)
 - `HERMES-020`: [Bound packet goal slice](goal-hook/bound-packet-goal-slice.md)

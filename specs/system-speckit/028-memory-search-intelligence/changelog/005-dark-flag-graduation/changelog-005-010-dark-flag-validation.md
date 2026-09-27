@@ -2,9 +2,7 @@
 title: "Changelog: Dark Flag Graduation Production Coverage Validation [005-dark-flag-graduation/006-dark-flag-validation]"
 description: "Chronological changelog for the dark flag graduation production coverage validation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation dark flag validation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

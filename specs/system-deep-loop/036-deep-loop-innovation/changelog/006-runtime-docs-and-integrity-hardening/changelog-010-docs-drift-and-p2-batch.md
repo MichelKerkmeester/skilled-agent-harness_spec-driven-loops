@@ -2,9 +2,7 @@
 title: "Changelog: Batch the P2 Backlog and the Three Doc-Contract P1s [006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch]"
 description: "Changelog for the docs-drift and P2 batch phase: clearing documentation and registry drift plus small co-located code hygiene in one sweep, replacing duplicated facts with links to one source."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity docs drift and p2 batch changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

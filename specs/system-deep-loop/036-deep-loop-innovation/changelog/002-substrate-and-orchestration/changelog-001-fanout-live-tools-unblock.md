@@ -2,9 +2,7 @@
 title: "Changelog: Fan-out Live-Tools Unblock [002-substrate-and-orchestration/001-fanout-live-tools-unblock]"
 description: "Changelog for the fan-out live-tools unblock phase: dispatch-only typed liveTools.webSearch policy, fail-closed capability matrix, per-kind command adapters with invocation fingerprints, and deterministic manifest expansion."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "substrate and orchestration fanout live tools unblock changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

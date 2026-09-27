@@ -2,9 +2,7 @@
 title: "Changelog: Legacy-Compat Converters [012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters]"
 description: "F1 removal of seven per-mode legacy-compatibility.ts ledger schema upcasters deleted as one cross-calling set, with deep-research-ledger-schema and legacy-real-log.ts kept as live callers."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "delete overengineering legacy compat converters changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Phase 4: cli-opencode Frontmatter Alignment [009-skill-frontmatter-alignment/004-cli-opencode]"
 description: "Chronological changelog for the Phase 4: cli-opencode Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup cli opencode changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

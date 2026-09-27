@@ -7,6 +7,7 @@ trigger_phrases:
   - "ipc bridge handshake single-winner"
   - "launcher-ipc-bridge probe"
   - "mcp daemon wedge reconnect fix"
+  - "mcp daemon reliability bridge liveness reap changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

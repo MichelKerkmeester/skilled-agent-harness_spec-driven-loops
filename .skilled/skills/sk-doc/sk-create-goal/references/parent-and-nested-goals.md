@@ -8,16 +8,16 @@ trigger_phrases:
   - "phase-add binding"
   - "parent goal amendment"
 importance_tier: important
-contextType: reference
-version: 1.1.0.0
+contextType: implementation
+version: 1.2.0.0
 ---
 # Parent and Nested Goal Authoring
 
-Use these workflows only after the packet and its phase structure exist. Read [`authoring-standards.md`](authoring-standards.md) and [`goal-exemplars.md`](../assets/goal-exemplars.md) before drafting. Start from the template for the goal's kind: [`goal-top-level-template.md`](../assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](../assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](../assets/goal-phase-child-template.md). Each is a checked copy of system-spec-kit's [goal template](../../../system-spec-kit/templates/addons/goal.md.tmpl), which owns the file structure.
-
 ---
 
-## 1. SOURCE AND ROLE CHECK
+## 1. OVERVIEW AND SOURCE CHECK
+
+Use these workflows only after the packet and its phase structure exist. Read [`authoring-standards.md`](authoring-standards.md) and [`goal-exemplars.md`](../assets/goal-exemplars.md) before drafting. Start from the template for the goal's kind: [`goal-top-level-template.md`](../assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](../assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](../assets/goal-phase-child-template.md). Each is a checked copy of system-spec-kit's [goal template](../../../system-spec-kit/templates/addons/goal.md.tmpl), which owns the file structure.
 
 Classify the target before writing. A top-level packet has its own specification and no parent packet spec. A phase parent has direct numbered phase-child folders. A nested child has a parent folder that contains `spec.md`.
 
@@ -130,6 +130,6 @@ When a requested child change alters a parent decision or criterion, apply the a
 node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace "$PWD"
 ```
 
-The operator resends that `chat_slice`. A change contained within one child's phase needs no parent amendment or resend. A change to the parent objective, decisions, binding table or criteria does require a resend. The [goal set-string playbook](../../../system-spec-kit/references/workflows/goal-set-string-playbook.md) defines the durable slice and handoff.
+The operator resends that `chat_slice`. A change contained within one child's phase needs no parent amendment or resend. A change to the parent objective, decisions, binding table or criteria does require a resend. Section 4 of [`budget-and-handoff.md`](budget-and-handoff.md) says what that chat slice contains and when it may be sent.
 
 Verify every amendment with recursive strict validation and the parent packet command. Confirm that the parent still lists every direct child and reports `packet_budget=ok`. For a child-only change, validate the child and its parent recursively.

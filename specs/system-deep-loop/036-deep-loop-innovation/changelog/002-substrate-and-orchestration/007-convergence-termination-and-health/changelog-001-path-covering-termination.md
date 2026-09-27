@@ -2,9 +2,7 @@
 title: "Changelog: Path-Covering Termination [002-substrate-and-orchestration/007-convergence-termination-and-health/001-path-covering-termination]"
 description: "Changelog for the path-covering termination phase: replay-stable termination on proven, mode-specific search-space coverage."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "convergence termination and health path covering termination changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

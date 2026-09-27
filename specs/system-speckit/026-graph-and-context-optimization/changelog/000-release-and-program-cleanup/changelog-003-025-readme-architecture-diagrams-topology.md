@@ -7,6 +7,7 @@ trigger_phrases:
   - "box-art diagram spec-kit"
   - "mcp_server README diagrams"
   - "025-readme-architecture-diagrams-topology"
+  - "release and program cleanup readme architecture diagrams topology changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

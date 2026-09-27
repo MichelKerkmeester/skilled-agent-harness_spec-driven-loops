@@ -7,6 +7,7 @@ trigger_phrases:
   - "profile-keyed db naming"
   - "provider fallback cascade correctness"
   - "embeddings p1 p2 findings"
+  - "memory and causal runtime post 027 findings remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

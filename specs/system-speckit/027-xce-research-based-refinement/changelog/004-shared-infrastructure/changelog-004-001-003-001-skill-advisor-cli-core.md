@@ -5,6 +5,7 @@ trigger_phrases:
   - "skill-advisor cli core changelog"
   - "skill-advisor phase 1 changelog"
   - "skill-advisor shim changelog"
+  - "shared infrastructure skill advisor cli core changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

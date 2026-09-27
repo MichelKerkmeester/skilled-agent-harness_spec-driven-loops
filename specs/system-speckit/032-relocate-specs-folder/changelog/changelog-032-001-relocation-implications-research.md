@@ -2,8 +2,8 @@
 title: "Changelog: Relocation Implications Research [032/001]"
 description: "Chronological changelog for the specs-root relocation go/no-go research phase."
 trigger_phrases:
-  - "phase changelog"
   - "relocation implications research"
+  - "relocate specs folder relocation implications research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

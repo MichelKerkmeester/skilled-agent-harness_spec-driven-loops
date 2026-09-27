@@ -7,6 +7,7 @@ trigger_phrases:
   - "spec kit memory advisor proxy"
   - "system skill advisor standalone cutover"
   - "advisor plugin bridge cutover"
+  - "spec kit internals hook compatibility consumer cutover changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

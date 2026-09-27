@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor env hardening"
   - "skill advisor subprocess environment"
   - "child process env allowlist"
+  - "spec kit internals subprocess environment whitelist changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

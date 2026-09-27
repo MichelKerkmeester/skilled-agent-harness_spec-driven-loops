@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/060-create-goal-mode/012-goal-send-and-dedupe",
+  "spec_folder": "sk-doc/060-create-goal-mode/012-goal-send-and-dedupe",
+  "parent_id": "sk-doc/060-create-goal-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal chat send rule",
+      "parent goal chat slice",
+      "goal template bloat",
+      "goal nesting dedupe",
+      "goal send rule plan",
+      "goal template instruction removal",
+      "goal nesting pointers",
+      "canonical cut order",
+      "goal send rule tasks",
+      "goal template cut tasks",
+      "goal nesting pointer tasks",
+      "phase 012 verification checklist"
+    ],
+    "key_topics": [
+      "goal",
+      "chat",
+      "send",
+      "rule",
+      "parent",
+      "slice",
+      "template",
+      "bloat",
+      "nesting",
+      "dedupe",
+      "plan",
+      "instruction"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/runtime-verification/runtime-verification.md",
+      ".skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md",
+      ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+      ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/hooks/goal/lib/goal-slice.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+      ".opencode/plugins/README.md",
+      ".skilled/hooks/goal/README.md",
+      "references/config/hook-system.md",
+      "references/validation/phase-checklists.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-verification.md",
+        "kind": "doc",
+        "path": "scratch/runtime-verification/runtime-verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "budget-and-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-slice.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-system.md",
+        "kind": "doc",
+        "path": "references/config/hook-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-checklists.md",
+        "kind": "doc",
+        "path": "references/validation/phase-checklists.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`renderChatSlice()` removes the frontmatter, comments, anchors, dividers and section numbers, but it keeps every line of the template's author instructions",
+    "created_at": "2026-09-26T13:49:44Z",
+    "last_save_at": "2026-09-27T09:32:20.957Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:92f87cc30c82e4f6e28f4f491db80b8ea7685c1fdc02923cec35855f03e31d15",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8c2d2bb4739f472ec399afe1570786acb8fab6f3863cd8239ebd24d84a383542",
+      "plan.md": "6417e2907e33edb5609a59cf75f4c24551add072467b84606a8ab992f6f6cff3",
+      "tasks.md": "a19431cb696ad3a451055b68bbcf12c7d6f9d9c4e14bd1ec613dfd12231d2108",
+      "implementation-summary.md": "0f8e433dd4e35885da2715cb4a8e61548a08edd44dab60b2e882b1eb55816756"
+    },
+    "last_active_at": null
+  }
+}

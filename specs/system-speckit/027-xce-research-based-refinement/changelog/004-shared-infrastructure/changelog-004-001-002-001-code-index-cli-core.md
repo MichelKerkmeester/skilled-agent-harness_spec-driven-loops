@@ -5,6 +5,7 @@ trigger_phrases:
   - "code-index cli core changelog"
   - "code-index phase 1 changelog"
   - "code-index shim changelog"
+  - "shared infrastructure code index cli core changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

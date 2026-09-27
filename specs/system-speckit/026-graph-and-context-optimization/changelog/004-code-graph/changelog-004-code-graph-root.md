@@ -5,6 +5,7 @@ trigger_phrases:
   - "004-code-graph rollup"
   - "004-code-graph phase parent"
   - "004-code-graph changelog index"
+  - "code graph changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

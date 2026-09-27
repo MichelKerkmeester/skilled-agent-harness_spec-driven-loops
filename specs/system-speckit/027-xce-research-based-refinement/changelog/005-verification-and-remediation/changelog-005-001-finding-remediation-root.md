@@ -5,6 +5,7 @@ trigger_phrases:
   - "027 finding remediation rollup"
   - "epic sweep remediation changelog"
   - "playbook stress stage report"
+  - "verification and remediation finding remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

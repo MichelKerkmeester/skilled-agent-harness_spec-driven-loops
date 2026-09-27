@@ -7,6 +7,7 @@ trigger_phrases:
   - "trust tree rerank shadow wiring audit"
   - "empty folder audit system-spec-kit"
   - "phase G planning packet"
+  - "release and program cleanup enterprise readiness verification expansion research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

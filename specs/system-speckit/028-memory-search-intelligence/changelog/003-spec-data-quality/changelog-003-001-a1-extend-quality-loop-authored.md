@@ -2,9 +2,7 @@
 title: "Changelog: A1 Extend the Live Quality Machinery to Authored Specs [003-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored]"
 description: "Chronological changelog for the A1 Extend the Live Quality Machinery to Authored Specs phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a1 extend quality loop authored changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

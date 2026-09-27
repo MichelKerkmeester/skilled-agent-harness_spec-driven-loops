@@ -7,6 +7,7 @@ trigger_phrases:
   - "revert embeddings provider pin"
   - "sqlite3 shell-out replacement"
   - "factory auto resolution vitest"
+  - "memory and causal runtime embedder auto resolution fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

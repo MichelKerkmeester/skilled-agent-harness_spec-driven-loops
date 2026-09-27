@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar-worker TSDoc"
   - "021 002 alignment changelog"
   - "cjs jsdoc documentation drift"
+  - "align rerank sidecar cjs and sidecar worker with sk changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

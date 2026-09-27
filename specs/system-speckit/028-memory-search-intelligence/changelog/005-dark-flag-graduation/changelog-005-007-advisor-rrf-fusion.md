@@ -2,9 +2,7 @@
 title: "Changelog: Advisor RRF Fusion Benchmark [005-dark-flag-graduation/007-advisor-rrf-fusion]"
 description: "Chronological changelog for the Advisor RRF Fusion Benchmark benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation advisor rrf fusion changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

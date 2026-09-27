@@ -7,6 +7,7 @@ trigger_phrases:
   - "F35 calibration"
   - "daemon availability"
   - "advisor shim fix"
+  - "code graph advisor refinement changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -476,4 +476,15 @@ describe('system-skill-advisor launcher lease', () => {
     expect(second.stderr).toContain('SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER is disabled; skipping lease check');
     expect(existsSync(workspace.leaseFilePath)).toBe(true);
   });
+
+  // A launcher pointed at its own database leaves the workspace database directory alone.
+  it('keeps a sandboxed launcher state file and bootstrap lock out of the workspace database directory', async () => {
+    const workspace = createWorkspace();
+    spawnLauncher(workspace);
+    await waitForLeaseOwner(workspace);
+
+    const workspaceDbDir = join(workspace.root, '.skilled/skills/system-skill-advisor/runtime/database');
+    expect(existsSync(join(workspaceDbDir, '.system-skill-advisor-launcher.json'))).toBe(false);
+    expect(existsSync(join(workspaceDbDir, '.system-skill-advisor-launcher.lockdir'))).toBe(false);
+  });
 });

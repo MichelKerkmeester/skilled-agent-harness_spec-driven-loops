@@ -7,6 +7,7 @@ trigger_phrases:
   - "runAutoMigrationIfNeeded"
   - "hf-local to llama-cpp startup migration"
   - "018 auto-migration changelog"
+  - "memory and causal runtime llama cpp auto migration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

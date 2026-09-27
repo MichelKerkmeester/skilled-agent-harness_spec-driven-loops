@@ -2,9 +2,7 @@
 title: "Changelog: Fan-out / Fan-in Durable Orchestration [002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration]"
 description: "Changelog for the fan-out / fan-in durable orchestration phase: dispatch receipts, result envelopes, resume/salvage, branch IDs and leases and waves, budget-aware fan-in, partial-failure policy, and provenance-balanced reduction."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "fanout fanin durable orchestration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

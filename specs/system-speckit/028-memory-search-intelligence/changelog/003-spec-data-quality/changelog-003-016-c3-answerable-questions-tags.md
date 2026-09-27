@@ -2,9 +2,7 @@
 title: "Changelog: C3 answerable_questions and semantic_intent tags [003-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags]"
 description: "Chronological changelog for the C3 answerable_questions and semantic_intent tags phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality c3 answerable questions tags changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

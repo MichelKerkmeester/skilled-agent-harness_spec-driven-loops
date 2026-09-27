@@ -7,6 +7,7 @@ trigger_phrases:
   - "session-manager-stress vitest"
   - "npm run stress mcp server"
   - "dedicated stress folder migration"
+  - "release and program cleanup stress test folder migration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

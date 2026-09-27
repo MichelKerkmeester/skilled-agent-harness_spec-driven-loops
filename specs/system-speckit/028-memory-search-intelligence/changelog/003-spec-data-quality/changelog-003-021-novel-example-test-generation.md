@@ -2,9 +2,7 @@
 title: "Changelog: Novel GO Automatic Example and Test Generation From Specs [003-spec-data-quality/004-novel-research/021-novel-example-test-generation]"
 description: "Chronological changelog for the Novel GO Automatic Example and Test Generation From Specs phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality novel example test generation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -1,0 +1,33 @@
+▶ install-codex-hooks removes an owned hook spelled under either source-root name
+  ✔ today: installed under .opencode, source under .opencode (1845.632375ms)
+  ✔ today: installed under .opencode, source under .skilled (314.612958ms)
+  ✔ today: installed under .skilled, source under .opencode (305.673042ms)
+  ✔ today: installed under .skilled, source under .skilled (303.080083ms)
+  ✔ skilled-only: installed under .opencode, source under .opencode (302.927833ms)
+  ✔ skilled-only: installed under .opencode, source under .skilled (304.967167ms)
+  ✔ skilled-only: installed under .skilled, source under .opencode (308.477125ms)
+  ✔ skilled-only: installed under .skilled, source under .skilled (302.251625ms)
+  ✔ whole-link: installed under .opencode, source under .opencode (301.401042ms)
+  ✔ whole-link: installed under .opencode, source under .skilled (306.587667ms)
+  ✔ whole-link: installed under .skilled, source under .opencode (308.728958ms)
+  ✔ whole-link: installed under .skilled, source under .skilled (368.822083ms)
+✔ install-codex-hooks removes an owned hook spelled under either source-root name (5274.194209ms)
+▶ install-codex-hooks removes an orphaned hook spelled under either source-root name
+  ✔ today: orphan installed under .opencode (177.412167ms)
+  ✔ today: orphan installed under .skilled (202.223792ms)
+  ✔ skilled-only: orphan installed under .opencode (192.721875ms)
+  ✔ skilled-only: orphan installed under .skilled (186.312ms)
+  ✔ whole-link: orphan installed under .opencode (186.583375ms)
+  ✔ whole-link: orphan installed under .skilled (182.16875ms)
+✔ install-codex-hooks removes an orphaned hook spelled under either source-root name (1127.730125ms)
+▶ install-codex-hooks leaves a user-global file without repo-owned entries alone
+  ✔ third-party entries only: the check passes and an install writes nothing (249.152958ms)
+✔ install-codex-hooks leaves a user-global file without repo-owned entries alone (249.222417ms)
+ℹ tests 19
+ℹ suites 3
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6691.097459

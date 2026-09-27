@@ -7,6 +7,7 @@ trigger_phrases:
   - "54-tool count readme"
   - "advisor_rebuild readme"
   - "matrix_runners stress_test readme"
+  - "release and program cleanup readme cascade refresh changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -1,11 +1,23 @@
 {
+  "level": "3",
   "specFolder": "cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin",
-  "description": "Phase 1: jev-contract-research-and-pin",
+  "description": "The hub is about to route work to a binary it does not control, and the only available accounts of that binary are a vendor README, a vendored source",
   "keywords": [
-    "phase",
-    "jev-contract-research-and-pin"
+    "hub",
+    "about",
+    "route",
+    "work",
+    "binary",
+    "control",
+    "only",
+    "available",
+    "accounts",
+    "vendor",
+    "readme",
+    "vendored",
+    "source"
   ],
-  "lastUpdated": "2026-09-20T07:39:06.149Z",
+  "lastUpdated": "2026-09-20T11:06:03.758Z",
   "specId": "001",
   "folderSlug": "jev-contract-research-and-pin",
   "parentChain": [
@@ -13,6 +25,5 @@
     "001-cli-jev-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

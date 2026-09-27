@@ -7,6 +7,7 @@ trigger_phrases:
   - "convergence persist-snapshot round-id"
   - "devin compact recovery"
   - "mk-spec-memory launcher toctou"
+  - "release and program cleanup scouted bugfix batch 3 changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -120,6 +120,27 @@ describe('hash-verified edit validation', () => {
     assert.match(error!, /5 lines but the read saw 4/);
   });
 
+  test('explains a short count that omits the final empty line after a newline', () => {
+    const newlineTerminatedLines = ['one', 'two', ''];
+    const error = validateEdits(newlineTerminatedLines, [], 2);
+    assert.ok(error);
+    assert.match(error, /final empty line at line 3 follows the file's final newline/i);
+    assert.match(error, /the read numbers it too/i);
+    assert.match(
+      error,
+      /retry with the file's count \(3\) only if the read's last numbered line was 3; otherwise use 'read' again/i,
+    );
+    assert.doesNotMatch(error, /inserted or removed/i);
+  });
+
+  test('keeps the generic count mismatch for files without a final newline', () => {
+    const linesWithoutFinalNewline = ['one', 'two', 'three'];
+    const error = validateEdits(linesWithoutFinalNewline, [], 2);
+    assert.ok(error);
+    assert.match(error, /3 lines but the read saw 2/);
+    assert.match(error, /inserted or removed/i);
+  });
+
   test('requires the line count so a moved line cannot be edited blind', () => {
     const error = validateEdits(lines, [editFor(2, 2)], undefined);
     assert.ok(error);
@@ -140,6 +161,37 @@ describe('hash-verified edit validation', () => {
     const error = validateEdits(drifted, [edit], drifted.length);
     assert.ok(error, 'interior drift must refuse');
     assert.match(error!, /line 3 hash mismatch/);
+  });
+
+  test('accepts interior drift when the caller omits line_hashes', () => {
+    // Interior hashes are opt-in: without them only the endpoints and the line count are checked.
+    const wide = ['a', 'b', 'c', 'd'];
+    const edit: HashEdit = {
+      from: 1,
+      from_hash: lineHash('a'),
+      to: 4,
+      to_hash: lineHash('d'),
+      new_text: 'x',
+    };
+    const drifted = ['a', 'b', 'CHANGED', 'd'];
+    assert.equal(validateEdits(drifted, [edit], wide.length), null);
+  });
+
+  test('refuses a line_hashes list that does not cover the whole range', () => {
+    const wide = ['a', 'b', 'c', 'd'];
+    const edit: HashEdit = {
+      from: 1,
+      from_hash: lineHash('a'),
+      to: 4,
+      to_hash: lineHash('d'),
+      new_text: 'x',
+      line_hashes: [lineHash('a'), lineHash('b')],
+    };
+    const drifted = ['a', 'b', 'CHANGED', 'd'];
+    const error = validateEdits(drifted, [edit], drifted.length);
+    assert.ok(error, 'a short list must refuse');
+    assert.match(error!, /holds 2 hashes but lines 1\.\.4 span 4/);
+    assert.equal(validateEdits(wide, [{ ...edit, from: 2, from_hash: lineHash('b'), to: 2, to_hash: lineHash('b'), line_hashes: [] }], wide.length), null);
   });
 
   test('accepts an edit whose endpoint hashes still match', () => {

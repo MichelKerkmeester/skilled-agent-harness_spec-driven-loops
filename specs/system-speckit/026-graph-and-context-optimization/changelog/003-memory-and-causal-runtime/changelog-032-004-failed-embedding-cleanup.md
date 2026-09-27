@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory_index embedding_status failed"
   - "one-shot embedding retry script"
   - "llama-cpp Metal context repair"
+  - "memory and causal runtime failed embedding cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

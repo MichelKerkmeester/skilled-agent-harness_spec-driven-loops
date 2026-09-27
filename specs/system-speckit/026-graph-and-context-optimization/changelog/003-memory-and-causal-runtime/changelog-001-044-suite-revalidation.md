@@ -7,6 +7,7 @@ trigger_phrases:
   - "nested codex exec startup failure"
   - "metal context race spec-kit-memory"
   - "24-- local llm query intelligence revalidation"
+  - "memory and causal runtime suite revalidation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

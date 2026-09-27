@@ -142,6 +142,14 @@ FIXTURE_TREE_PATTERNS = [
     'sk-doc/scripts/tests/exclusions/',  # classification fixtures for the README audit
 ]
 
+# Runtime instruction files are the operating contract a coding agent loads at
+# startup, so every section in one loads into every session. They keep their
+# runtime's own template rather than a document type's required sections.
+# Matched by exact name.
+INSTRUCTION_FILE_NAMES = [
+    'AGENTS.md',
+]
+
 # Specialized leaf-doc root dir names. Both the hyphen and underscore forms are
 # accepted while the naming migration is in flight; the shared resolver is the
 # single source of truth so this validator and the guards never diverge on which
@@ -183,6 +191,9 @@ def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
     for pattern in FIXTURE_TREE_PATTERNS:
         if pattern in normalized:
             return True, f"Fixture tree: matches pattern '{pattern}'"
+
+    if normalized.rsplit('/', 1)[-1] in INSTRUCTION_FILE_NAMES:
+        return True, "Instruction file: keeps its runtime's own section template"
 
     return False, None
 
@@ -783,6 +794,13 @@ def validate_required_sections(content: str, doc_type_rules: Dict[str, Any]) -> 
     )
     if is_router:
         required = doc_type_rules.get('routerRequiredSections', required)
+
+    # A surface packet is a read-only evidence base a parent hub bundles beside a
+    # workflow mode, not a workflow of its own, so it carries no WHEN TO USE, SMART
+    # ROUTING or HOW IT WORKS. Its opening section says when the hub bundles it, which
+    # marks the shape, and the packet is held to its evidence core instead.
+    if any(section_present(sig) for sig in doc_type_rules.get('surfaceDetectPrimary', [])):
+        required = doc_type_rules.get('surfaceRequiredSections', required)
 
     for req_section in required:
         found = req_section in found_sections
@@ -1432,6 +1450,127 @@ def validate_command_frontmatter(
     return errors
 
 
+# A changelog entry is findable only through the search metadata in its
+# frontmatter, the same five keys a spec document carries. Only entry files are
+# held to it: a version file or a packet-local changelog file. Any other document
+# in a changelog folder, such as its README, keeps the structural rules alone.
+CHANGELOG_ENTRY_NAME = re.compile(r'^(?:v\d+(?:\.\d+){1,3}|changelog-.+)\.md$')
+CHANGELOG_VERSION_NAME = re.compile(r'^v(\d+(?:\.\d+){1,3})\.md$')
+
+
+def _skip_leading_trivia(content: str) -> int:
+    """Offset past leading whitespace and HTML comments.
+
+    The trigger index skips both before it looks for the opening fence, so the
+    check reads an entry's block exactly where the index reads it.
+    """
+    index = 0
+    while index < len(content):
+        if content[index] in ' \t\r\n':
+            index += 1
+            continue
+        if content.startswith('<!--', index):
+            close = content.find('-->', index + 4)
+            if close == -1:
+                break
+            index = close + 3
+            continue
+        break
+    return index
+
+
+def _changelog_trigger_phrases(frontmatter: str) -> List[str]:
+    """Read trigger_phrases from a frontmatter block, in list or inline form."""
+    match = re.search(r'^trigger_phrases:[ \t]*(.*)$', frontmatter, re.MULTILINE)
+    if not match:
+        return []
+    inline = match.group(1).strip()
+    if inline:
+        if inline.startswith('[') and inline.endswith(']'):
+            items = [_strip_matching_quotes(item) for item in inline[1:-1].split(',')]
+            return [item for item in items if item]
+        return []
+    phrases: List[str] = []
+    for line in frontmatter[match.end():].split('\n')[1:]:
+        member = re.match(r'^\s+-\s+(.+?)\s*$', line)
+        if member:
+            phrases.append(_strip_matching_quotes(member.group(1)))
+        elif line.strip() and not line[0].isspace():
+            break
+    return [phrase for phrase in phrases if phrase]
+
+
+def validate_changelog_frontmatter(
+    content: str,
+    file_path: str,
+    doc_type_rules: Dict[str, Any],
+) -> List[Dict[str, Any]]:
+    """Validate the search metadata block of a changelog entry.
+
+    Blocks an entry that has no frontmatter block, lacks a required key, declares
+    no trigger phrase or, for a version file, declares no phrase naming its version.
+    """
+    errors: List[Dict[str, Any]] = []
+    file_name = PurePosixPath(str(file_path).replace('\\', '/')).name
+    if not CHANGELOG_ENTRY_NAME.match(file_name):
+        return errors
+
+    text = content[1:] if content.startswith('﻿') else content
+    head = text[_skip_leading_trivia(text):]
+    if not head.startswith('---'):
+        errors.append({
+            'type': 'changelog_frontmatter_missing',
+            'severity': 'blocking',
+            'message': 'Changelog entry has no frontmatter block, so the trigger index cannot find it',
+            'fix_hint': 'Open the entry with the frontmatter block the sk-create-changelog Frontmatter Contract defines',
+        })
+        return errors
+
+    match = re.match(r'^---[ \t]*\r?\n(.*?)\r?\n---', head, re.DOTALL)
+    if not match:
+        errors.append({
+            'type': 'changelog_frontmatter_unclosed',
+            'severity': 'blocking',
+            'message': 'Changelog entry frontmatter is not closed (missing closing ---)',
+            'fix_hint': 'Close the frontmatter block with a trailing ---',
+        })
+        return errors
+
+    frontmatter = match.group(1)
+    required_fields = doc_type_rules.get('frontmatterFields', {}).get('required', [])
+    for field in required_fields:
+        pattern = rf'^{re.escape(field)}:' if field == 'trigger_phrases' else rf'^{re.escape(field)}:[ \t]*\S'
+        if not re.search(pattern, frontmatter, re.MULTILINE):
+            errors.append({
+                'type': 'changelog_frontmatter_missing_field',
+                'severity': 'blocking',
+                'message': f"Changelog entry frontmatter is missing required field '{field}'",
+                'fix_hint': f"Add '{field}:' to the frontmatter block",
+            })
+
+    phrases = _changelog_trigger_phrases(frontmatter)
+    if re.search(r'^trigger_phrases:', frontmatter, re.MULTILINE) and not phrases:
+        errors.append({
+            'type': 'changelog_trigger_phrases_empty',
+            'severity': 'blocking',
+            'message': 'Changelog entry declares no trigger phrase',
+            'fix_hint': 'List the identity phrases for the entry path, then a topic phrase',
+        })
+
+    version = CHANGELOG_VERSION_NAME.match(file_name)
+    if version and phrases:
+        named = re.compile(rf'(?<![\d.]){re.escape(version.group(1))}(?![\d.])')
+        if not any(named.search(phrase) for phrase in phrases):
+            errors.append({
+                'type': 'changelog_version_phrase_missing',
+                'severity': 'blocking',
+                'message': f"Changelog entry declares no trigger phrase naming its version {version.group(1)}",
+                'fix_hint': f"Add the identity phrases, such as '<component> v{version.group(1)}'",
+            })
+
+    return errors
+
+
 def validate_document(
     file_path: str,
     doc_type: Optional[str] = None,
@@ -1514,6 +1653,8 @@ def validate_document(
         all_errors.extend(validate_agent_frontmatter(content, file_path))
     if doc_type == 'command':
         all_errors.extend(validate_command_frontmatter(content, file_path, doc_type_rules))
+    if doc_type == 'changelog':
+        all_errors.extend(validate_changelog_frontmatter(content, file_path, doc_type_rules))
     if doc_type == 'code_folder':
         all_errors.extend(validate_code_folder(content, file_path))
 

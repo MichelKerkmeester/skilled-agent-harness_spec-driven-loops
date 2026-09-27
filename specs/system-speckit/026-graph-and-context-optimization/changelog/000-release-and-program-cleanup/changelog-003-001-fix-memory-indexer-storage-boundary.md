@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory indexer review remediation"
   - "E_MEMORY_INDEX_SCOPE_EXCLUDED"
   - "checkpoint readme poisoning"
+  - "release and program cleanup fix memory indexer storage boundary changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "sk-doc readme template expansion"
   - "code folder readme remediation"
   - "hvr blocker readme fix"
+  - "release and program cleanup readme code template governance changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Deep Review - Typed Ledger Schema [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema]"
 description: "Changelog for the deep review typed ledger schema phase: the typed append-only event vocabulary for the deep review mode."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep review typed ledger schema changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

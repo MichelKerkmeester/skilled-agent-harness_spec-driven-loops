@@ -7,6 +7,7 @@ trigger_phrases:
   - "auto sentinel default embedder"
   - "ensureActiveEmbedder cascade"
   - "llama-cpp purge skill-advisor"
+  - "memory and causal shared embedder logic with spec memory changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

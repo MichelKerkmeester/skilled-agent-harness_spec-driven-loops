@@ -19,6 +19,7 @@ vi.mock('chokidar', () => ({
 import { acquireSkillGraphLease, readLeaseSnapshot } from '../lib/daemon/lease.js';
 import { startSkillGraphDaemon } from '../lib/daemon/lifecycle.js';
 import {
+  __testables as watcherTestables,
   countActiveQuarantines,
   createSkillGraphWatcher,
   discoverWatchTargets,
@@ -317,6 +318,24 @@ describe('skill graph watcher foundation', () => {
 
     expect(watcher.status().circuitOpen).toBe(true);
     await watcher.close();
+  });
+
+  it('keeps the quarantine store inside the DB dir override and the workspace default without it', () => {
+    const root = workspace('skill-graph-quarantine-path');
+    const previous = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+    try {
+      process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = join(root, 'sandbox-db');
+      expect(watcherTestables.quarantineDbPath(root)).toBe(join(root, 'sandbox-db', 'skill-graph-quarantine.sqlite'));
+      expect(watcherTestables.quarantineDbPath(root, join(root, 'explicit.sqlite'))).toBe(join(root, 'explicit.sqlite'));
+
+      delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+      expect(watcherTestables.quarantineDbPath(root)).toBe(
+        join(root, '.skilled', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite'),
+      );
+    } finally {
+      if (previous === undefined) delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+      else process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = previous;
+    }
   });
 });
 

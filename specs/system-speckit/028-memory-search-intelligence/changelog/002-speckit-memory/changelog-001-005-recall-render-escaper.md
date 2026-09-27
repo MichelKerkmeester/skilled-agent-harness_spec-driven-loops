@@ -2,9 +2,7 @@
 title: "Changelog: Recall-to-Render Trust Escaper and Substrate-Kind Recall Correctness [001-speckit-memory/005-recall-render-escaper]"
 description: "Chronological changelog for the recall-to-render trust escaper and substrate-kind recall correctness phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory recall render escaper changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

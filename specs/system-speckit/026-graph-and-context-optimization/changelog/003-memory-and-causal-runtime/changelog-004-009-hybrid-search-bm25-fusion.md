@@ -7,6 +7,7 @@ trigger_phrases:
   - "sqlite fts5 code retrieval"
   - "rrf fusion cocoindex"
   - "COCOINDEX_HYBRID"
+  - "memory and causal runtime hybrid search bm25 fusion changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

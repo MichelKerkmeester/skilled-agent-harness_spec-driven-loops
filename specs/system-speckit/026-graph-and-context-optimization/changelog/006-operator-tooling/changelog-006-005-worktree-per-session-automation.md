@@ -7,6 +7,7 @@ trigger_phrases:
   - "launch wrapper child detection guard hook"
   - "worktree session wrapper reaper built"
   - "worktree automation status core built"
+  - "operator tooling worktree per session automation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory leak remediation phase 9"
   - "BoundedMap TtlMap audit rotation"
   - "embedder sidecar hardening parent death"
+  - "memory and causal runtime spec memory runtime retention cleanup changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

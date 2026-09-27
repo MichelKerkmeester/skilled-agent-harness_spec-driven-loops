@@ -6,6 +6,7 @@ trigger_phrases:
   - "governed ingest metadata dropped"
   - "tool schema parity review"
   - "memory ingest call shape drift"
+  - "release and program cleanup mcp session index schema changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

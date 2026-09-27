@@ -7,6 +7,7 @@ trigger_phrases:
   - "read-only readiness probe status handler"
   - "readiness action full_scan selective_reindex"
   - "014 code graph status readiness snapshot"
+  - "release and program cleanup code graph status readiness snapshot changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

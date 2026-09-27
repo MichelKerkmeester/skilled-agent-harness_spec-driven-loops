@@ -2,9 +2,7 @@
 title: "Changelog: Fix Doctor Bootstrap Symlink Restart Loop [002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop]"
 description: "Chronological changelog for the Fix Doctor Bootstrap Symlink Restart Loop phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "operator tooling fix bootstrap symlink restart loop changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

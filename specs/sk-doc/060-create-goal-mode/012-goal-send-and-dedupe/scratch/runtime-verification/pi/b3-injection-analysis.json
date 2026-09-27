@@ -1,0 +1,15 @@
+{
+ "user_msg_has_active_goal_block": true,
+ "user_msg_has_criteria_canary": true,
+ "user_msg_has_resend_pending": true,
+ "user_msg_has_frontmatter_canary": false,
+ "user_msg_has_log_canary": false,
+ "restore_msg_has_criteria_canary": true,
+ "restore_msg_has_frontmatter_canary": false,
+ "tool_calls_before_first_answer": 0,
+ "first_answer_stopReason": "stop",
+ "first_answer": "objective: Execute specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/runtime-verification/pi/canary-packet/goal.md.\n- PI_CRIT_ALPHA_344A4C3A holds\n- PI_CRIT_BETA_344A4C3A holds\n\n[goal_resend_pending] The bound packet goal.md (specs/sk-doc/060-create-goal-mode/012-goal-mo",
+ "next_entry": "goal-verify-nudge: [goal_verify] verdict=unclear; reason=Evidence lacks an explicit completion signal",
+ "entry_after_nudge_stopReason": "toolUse",
+ "total_entries": 60
+}

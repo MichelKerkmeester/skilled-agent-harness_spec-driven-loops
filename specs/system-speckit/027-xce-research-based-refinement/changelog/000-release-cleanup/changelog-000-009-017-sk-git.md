@@ -2,9 +2,7 @@
 title: "Changelog: Phase 17: sk-git Frontmatter Alignment [009-skill-frontmatter-alignment/017-sk-git]"
 description: "Chronological changelog for the Phase 17: sk-git Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup sk git changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

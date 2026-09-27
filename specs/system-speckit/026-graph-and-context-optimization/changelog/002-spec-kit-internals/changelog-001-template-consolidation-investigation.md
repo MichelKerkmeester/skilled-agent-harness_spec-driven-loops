@@ -7,6 +7,7 @@ trigger_phrases:
   - "compose.sh analysis"
   - "PARTIAL recommendation"
   - "template levels research"
+  - "spec kit internals template consolidation investigation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

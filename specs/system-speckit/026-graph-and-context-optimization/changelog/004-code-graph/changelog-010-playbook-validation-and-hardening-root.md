@@ -5,6 +5,7 @@ trigger_phrases:
   - "010-playbook-validation-and-hardening rollup"
   - "010-playbook-validation-and-hardening phase parent"
   - "010-playbook-validation-and-hardening changelog index"
+  - "code graph playbook validation and hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

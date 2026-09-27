@@ -2,9 +2,7 @@
 title: "Changelog: Logical Branch IDs, Leases & Waves [002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves]"
 description: "Changelog for the logical branch IDs, leases and waves phase: stable branch identities, fenced worker leases, and ordered wave scheduling over the capped pool."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "fanout fanin durable orchestration logical branch ids leases waves changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

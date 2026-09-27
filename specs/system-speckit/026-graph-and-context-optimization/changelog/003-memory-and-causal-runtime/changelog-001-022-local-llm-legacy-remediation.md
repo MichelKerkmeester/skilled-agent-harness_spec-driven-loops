@@ -7,6 +7,7 @@ trigger_phrases:
   - "ephemeral governance silent reject"
   - "retry-throughput env knob"
   - "local-llm legacy remediation scope shift"
+  - "memory and causal runtime local llm legacy remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

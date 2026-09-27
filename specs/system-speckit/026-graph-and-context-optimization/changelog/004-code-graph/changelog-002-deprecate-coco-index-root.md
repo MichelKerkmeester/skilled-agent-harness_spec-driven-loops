@@ -5,6 +5,7 @@ trigger_phrases:
   - "002-deprecate-coco-index rollup"
   - "002-deprecate-coco-index phase parent"
   - "002-deprecate-coco-index changelog index"
+  - "code graph deprecate coco index changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

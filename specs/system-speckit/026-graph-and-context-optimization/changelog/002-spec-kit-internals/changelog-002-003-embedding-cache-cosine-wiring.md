@@ -2,9 +2,7 @@
 title: "Changelog: Skill embedding cache and cosine-similarity lane wiring [002-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring]"
 description: "Chronological changelog for the Skill embedding cache and cosine-similarity lane wiring phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec kit internals embedding cache cosine wiring changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

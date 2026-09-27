@@ -2,9 +2,7 @@
 title: "Changelog: Agent Improvement - Rollback & Mode Gate [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate]"
 description: "Changelog for the agent improvement rollback and mode gate phase: the fail-closed rollback switch and independent migration gate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "agent improvement rollback and mode gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

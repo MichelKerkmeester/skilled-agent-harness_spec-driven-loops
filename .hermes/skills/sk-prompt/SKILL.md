@@ -318,8 +318,8 @@ See the Smart Routing pseudocode (Section 2) for the complete routing logic.
 | 5-7 | Creativity | CRISPE |
 | 6-8 | Precision | TIDD-EC |
 | 7-10 | Comprehensive | CRAFT |
-See [patterns-evaluation.md](./references/patterns-evaluation.md) for complete framework details.
-See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodology.
+See [patterns-evaluation.md](../../../.skilled/skills/sk-prompt/references/patterns-evaluation.md) for complete framework details.
+See [depth-framework.md](../../../.skilled/skills/sk-prompt/references/depth-framework.md) for the DEPTH methodology.
 
 ### Scoring Systems
 
@@ -386,14 +386,14 @@ See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodol
 
 ### Core References
 
-- [depth-framework.md](./references/depth-framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
-- [patterns-evaluation.md](./references/patterns-evaluation.md) - 7 framework definitions, CLEAR scoring
+- [depth-framework.md](../../../.skilled/skills/sk-prompt/references/depth-framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
+- [patterns-evaluation.md](../../../.skilled/skills/sk-prompt/references/patterns-evaluation.md) - 7 framework definitions, CLEAR scoring
 
 ### Asset Files
 
-- [format-guide-markdown.md](./assets/format-guide-markdown.md) - Markdown format deep-dive: fundamentals, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
-- [format-guide-json.md](./assets/format-guide-json.md) - JSON format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
-- [format-guide-yaml.md](./assets/format-guide-yaml.md) - YAML format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, templates, validation, best practices
+- [format-guide-markdown.md](../../../.skilled/skills/sk-prompt/assets/format-guide-markdown.md) - Markdown format deep-dive: fundamentals, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
+- [format-guide-json.md](../../../.skilled/skills/sk-prompt/assets/format-guide-json.md) - JSON format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
+- [format-guide-yaml.md](../../../.skilled/skills/sk-prompt/assets/format-guide-yaml.md) - YAML format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, templates, validation, best practices
 
 ### Reference Loading Notes
 

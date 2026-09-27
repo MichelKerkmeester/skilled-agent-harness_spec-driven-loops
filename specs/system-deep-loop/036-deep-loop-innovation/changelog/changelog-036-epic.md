@@ -5,6 +5,7 @@ trigger_phrases:
   - "036 epic changelog"
   - "whole-epic rollup"
   - "deep-loop-innovation epic"
+  - "deep loop innovation epic changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

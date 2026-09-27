@@ -7,6 +7,7 @@ trigger_phrases:
   - "embeddinggemma llama-cpp hf-local docs"
   - "stale all-MiniLM voyage wording fix"
   - "code graph incremental scan head drift"
+  - "memory and causal runtime catalog playbook alignment audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

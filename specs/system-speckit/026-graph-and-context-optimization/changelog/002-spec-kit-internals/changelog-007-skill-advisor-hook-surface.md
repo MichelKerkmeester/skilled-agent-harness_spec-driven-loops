@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 007 changelog"
   - "skill advisor hook surface"
   - "advisor hook 4-runtime parity"
+  - "spec kit internals skill advisor hook surface changelog"
 importance_tier: "critical"
 contextType: "implementation"
 ---

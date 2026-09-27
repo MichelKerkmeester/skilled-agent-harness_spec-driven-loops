@@ -5,6 +5,7 @@ trigger_phrases:
   - "010-embedding-consolidation-hf-local-server rollup"
   - "010-embedding-consolidation-hf-local-server phase parent"
   - "010-embedding-consolidation-hf-local-server changelog index"
+  - "memory and causal runtime embedding consolidation hf local server changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

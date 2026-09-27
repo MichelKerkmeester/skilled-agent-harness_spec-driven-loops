@@ -7,6 +7,7 @@ trigger_phrases:
   - "68 p2 findings embedder"
   - "sidecar cleanup deferred"
   - "reindex barrel cleanup"
+  - "fix investigation p2s for deadcode drift comment cleanup sweep changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

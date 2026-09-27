@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Query-Channel Cali
 trigger_phrases:
   - "query-channel-calibration changelog"
   - "former 010-query-channel-calibration"
-  - "nested changelog"
+  - "speckit memory query channel calibration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

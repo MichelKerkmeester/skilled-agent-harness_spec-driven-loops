@@ -7,6 +7,7 @@ trigger_phrases:
   - "cg-remediation branch fixes"
   - "applied source and doc fixes 011"
   - "code graph audit remediation"
+  - "code graph applied source and doc fixes changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

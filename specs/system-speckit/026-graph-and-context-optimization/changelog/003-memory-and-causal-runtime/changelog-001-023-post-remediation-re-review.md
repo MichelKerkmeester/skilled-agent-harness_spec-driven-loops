@@ -7,6 +7,7 @@ trigger_phrases:
   - "llama-cpp hf-local cascade residue review"
   - "022 remediation deep review"
   - "local embeddings foundation 023"
+  - "memory and causal runtime post remediation re review changelog"
 importance_tier: "important"
 contextType: "review"
 ---

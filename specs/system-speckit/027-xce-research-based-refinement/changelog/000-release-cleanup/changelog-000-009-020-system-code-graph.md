@@ -2,9 +2,7 @@
 title: "Changelog: Phase 20: system-code-graph Frontmatter Alignment [009-skill-frontmatter-alignment/020-system-code-graph]"
 description: "Chronological changelog for the Phase 20: system-code-graph Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup system code graph changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

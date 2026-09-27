@@ -7,6 +7,7 @@ trigger_phrases:
   - "benchmark report promotion"
   - "benchmarks folder discoverability"
   - "benchmark_creation.md sk-doc"
+  - "memory and causal runtime skill local benchmarks format changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

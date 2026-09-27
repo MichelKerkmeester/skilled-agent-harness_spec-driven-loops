@@ -2,9 +2,8 @@
 title: "Changelog: Phase 23 Pi Wrapper [035-improved-communication/023-pi-wrapper]"
 description: "Chronological changelog for the Phase 23 Pi Wrapper phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation pi wrapper changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

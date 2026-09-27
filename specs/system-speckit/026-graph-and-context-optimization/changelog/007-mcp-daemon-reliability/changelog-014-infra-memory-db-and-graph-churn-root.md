@@ -5,6 +5,7 @@ trigger_phrases:
   - "014-infra-memory-db-and-graph-churn rollup"
   - "014-infra-memory-db-and-graph-churn phase parent"
   - "014-infra-memory-db-and-graph-churn changelog index"
+  - "mcp daemon reliability infra memory db and graph churn changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

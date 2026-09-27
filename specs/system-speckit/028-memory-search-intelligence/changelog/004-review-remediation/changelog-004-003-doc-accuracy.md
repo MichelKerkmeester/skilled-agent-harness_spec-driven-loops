@@ -2,9 +2,7 @@
 title: "Changelog: Doc Accuracy Remediation [004-review-remediation/003-doc-accuracy]"
 description: "Chronological changelog for the doc accuracy remediation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review remediation doc accuracy changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

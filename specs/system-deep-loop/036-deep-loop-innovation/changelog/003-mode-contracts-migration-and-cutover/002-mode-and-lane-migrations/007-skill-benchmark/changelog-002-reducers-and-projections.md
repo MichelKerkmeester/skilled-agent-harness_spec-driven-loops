@@ -2,9 +2,7 @@
 title: "Changelog: Skill Benchmark reducers and projections [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections]"
 description: "Changelog for the skill benchmark reducers and projections phase: pure reducers that replay the typed skill event ledger into deterministic state."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "skill benchmark reducers and projections changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

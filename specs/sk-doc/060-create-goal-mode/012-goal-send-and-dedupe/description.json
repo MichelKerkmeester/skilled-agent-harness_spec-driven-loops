@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/060-create-goal-mode/012-goal-send-and-dedupe",
+  "description": "`renderChatSlice()` removes the frontmatter, comments, anchors, dividers and section numbers, but it keeps every line of the template's author",
+  "keywords": [
+    "renderchatslice",
+    "removes",
+    "frontmatter",
+    "comments",
+    "anchors",
+    "dividers",
+    "section",
+    "numbers",
+    "keeps",
+    "every",
+    "line",
+    "template",
+    "author"
+  ],
+  "lastUpdated": "2026-09-26T19:21:30.993Z",
+  "specId": "012",
+  "folderSlug": "goal-send-and-dedupe",
+  "parentChain": [
+    "sk-doc",
+    "060-create-goal-mode"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "26-09-26_20-21__deep-review-of-sk-create-goal-and-its-cross-repo.md"
+  ]
+}

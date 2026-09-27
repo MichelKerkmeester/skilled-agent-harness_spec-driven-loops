@@ -9,6 +9,7 @@ trigger_phrases:
   - "NEEDS CLARIFICATION space variant"
   - "check-placeholders mustache removed"
   - "placeholder fenced code exclusion"
+  - "spec kit internals orchestrator placeholder parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

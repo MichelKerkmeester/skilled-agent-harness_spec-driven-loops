@@ -2,9 +2,7 @@
 title: "Changelog: Deep Improvement Common Services Migration [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common]"
 description: "Changelog for the deep improvement common services migration group: migrating the shared evaluator-first loop and its services onto the typed event-ledger substrate before the three benchmark variants consume them."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "deep improvement common changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

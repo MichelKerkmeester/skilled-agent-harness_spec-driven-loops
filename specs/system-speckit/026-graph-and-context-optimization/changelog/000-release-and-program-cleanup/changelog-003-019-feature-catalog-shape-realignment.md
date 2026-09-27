@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill_advisor feature catalog rebuild"
   - "code_graph catalog canonical sections"
   - "catalog OVERVIEW CURRENT REALITY realignment"
+  - "release and program cleanup feature catalog shape realignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

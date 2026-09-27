@@ -6,6 +6,7 @@ trigger_phrases:
   - "codex hook parity"
   - "codex sessionstart hook"
   - "codex userpromptsubmit hook"
+  - "operator tooling codex hook parity remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

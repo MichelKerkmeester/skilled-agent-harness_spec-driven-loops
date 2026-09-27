@@ -2,9 +2,7 @@
 title: "Changelog: Fence the enrichment scheduler and startup scan in fatalShutdown before closeDb [006-operator-tooling/011-enrichment-and-scan-shutdown-fence]"
 description: "Chronological changelog for the Fence the enrichment scheduler and startup scan in fatalShutdown before closeDb phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "operator tooling enrichment and scan shutdown fence changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

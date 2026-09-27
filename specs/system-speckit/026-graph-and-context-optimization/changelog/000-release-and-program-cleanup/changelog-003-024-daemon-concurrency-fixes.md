@@ -7,6 +7,7 @@ trigger_phrases:
   - "generation lock token ownership"
   - "cache invalidation monotonic"
   - "shutdown ordering fix"
+  - "release and program cleanup daemon concurrency fixes changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

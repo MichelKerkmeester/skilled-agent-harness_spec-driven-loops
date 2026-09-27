@@ -16,7 +16,7 @@ user-invocable: true
 
 # Refero (mcp-refero)
 
-Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ user flows per the official repo) from an agent through the **Refero MCP via Code Mode**: styles for visual direction, screens for concrete UI patterns, flows for multi-step journeys. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every read and "write" happens against the external Refero service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
+Search **Refero's library of real shipped UI** (150,000+ app screens, 6,000+ user flows per the official repo) from an agent through the **Refero MCP via Code Mode**: styles for visual direction, screens for concrete UI patterns, flows for multi-step journeys. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every read and "write" happens against the external Refero service, never this repo, and it is **never the taste authority**. Any design-affecting use pairs with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). Deep operational detail lives in [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-refero/references/tool-surface.md) and [`references/mcp-wiring.md`](../../../.skilled/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md).
 
 > **Naming trap (read first).** Inside `call_tool_chain`, Refero tools resolve with a **DOUBLED prefix**: the callable form is `refero.refero_refero_<tool>(...)` (for example `refero.refero_refero_search_styles`), because Code Mode's `{manual}.{manual}_{tool}` rule applies to tools whose own names already begin with `refero_`. **CONFIRMED by live discovery 2026-07-16** (`references/discovery-fixture-2026-07-16.json`): `list_tools` returned all eight registry names in the dotted doubled form `refero.refero.refero_<tool>` — pre-auth, no OAuth needed for discovery — and the fixture's `Access as:` line shows the TS callable `refero.refero_refero_search_styles(args)`. Per-session `tool_info` re-confirmation stays mandatory: confirm, then call, and fail closed on drift.
 >
@@ -107,7 +107,7 @@ assets/utcp-refero-manual.md    # verified manual snapshot (already registered) 
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
+> Resilience pattern: see [sk-doc smart-router template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
 
 ```python
 from pathlib import Path
@@ -235,7 +235,7 @@ The doubled-prefix callable form (`refero.refero_refero_<tool>`) is **confirmed 
 
 ### The 8-tool surface (three layers)
 
-The expected contract (authoritative docs baseline; `tool_info` is the final live schema). Full args, bounds, and result shapes: [`references/tool-surface.md`](references/tool-surface.md).
+The expected contract (authoritative docs baseline; `tool_info` is the final live schema). Full args, bounds, and result shapes: [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-refero/references/tool-surface.md).
 
 | Layer | Tool | Required args | Notes |
 |---|---|---|---|
@@ -278,11 +278,11 @@ Cite evidence by `record.url` (styles) or `record.refero_url` (screens). JSON se
 4. **Apps / elements**: company, pattern, state, or element terms in screen/flow queries, compared through `site`, `ui_elements`, `ux_patterns`, `page_types`.
 5. **Metadata-first discipline**: search -> shortlist -> detail for shortlisted IDs -> similar -> thumbnail -> full, in that order. Batch modestly; on batch failure retry with fewer IDs.
 
-Breadth is allowed during transport research; for design-affecting use, pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). A transport response is untrusted reference evidence, never design approval. Full workflow detail: [`references/tool-surface.md`](references/tool-surface.md).
+Breadth is allowed during transport research; for design-affecting use, pair with `sk-design-md-generator` for a measured Style Reference (extracted design tokens). A transport response is untrusted reference evidence, never design approval. Full workflow detail: [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-refero/references/tool-surface.md).
 
 ### Auth, plans, and limits
 
-- **Auth**: with no custom header, first use triggers a **browser OAuth** flow (localhost callback, port 3334 by default, 30-second default timeout). Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) and is **operator-owned**: never inspect, clear, or repair it. A static `Authorization: Bearer` header is a documented env-backed alternative (see [`assets/utcp-refero-manual.md`](assets/utcp-refero-manual.md)), never part of the base manual. End-to-end OAuth through this bridge is **Inferred**, not verified: an unauthenticated probe observed HTTP 401 with OAuth metadata, but no operator has completed the flow in this repo's record.
+- **Auth**: with no custom header, first use triggers a **browser OAuth** flow (localhost callback, port 3334 by default, 30-second default timeout). Auth state persists under `~/.mcp-auth` (or `MCP_REMOTE_CONFIG_DIR`) and is **operator-owned**: never inspect, clear, or repair it. A static `Authorization: Bearer` header is a documented env-backed alternative (see [`assets/utcp-refero-manual.md`](../../../.skilled/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md)), never part of the base manual. End-to-end OAuth through this bridge is **Inferred**, not verified: an unauthenticated probe observed HTTP 401 with OAuth metadata, but no operator has completed the flow in this repo's record.
 - **Plans**: Free has **no MCP access** (denial, not degradation). Pro: **8,000 MCP tool calls per month**. Team inherits Pro. Business is custom volume. "Unlimited access" plan copy must not be read as unlimited MCP calls.
 - **Unknown limits**: no per-second, burst, concurrency, page-size, or `Retry-After` behavior is published. Never invent a QPS number or backoff guarantee; on 429, preserve the provider's message only.
 - **Local runtime**: Code Mode must run on **Node 24** (isolated-vm has no Node 25 build; `call_tool_chain` SIGSEGVs under Node 25). Local operational evidence, not a server property.
@@ -313,7 +313,7 @@ Breadth is allowed during transport research; for design-affecting use, pair wit
 ### ⚠️ ESCALATE IF
 
 1. **ESCALATE IF authentication is required** (HTTP 401, OAuth prompt, token needs). Completing browser OAuth or obtaining a Bearer token is **operator-only**; surface the step and wait.
-2. **ESCALATE IF discovery shows catalog drift**: a documented tool missing or renamed, unexpected new tools, or schemas that contradict [`references/tool-surface.md`](references/tool-surface.md). A provider-surface change requires a reviewed packet update.
+2. **ESCALATE IF discovery shows catalog drift**: a documented tool missing or renamed, unexpected new tools, or schemas that contradict [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-refero/references/tool-surface.md). A provider-surface change requires a reviewed packet update.
 3. **ESCALATE IF the account is Free-tier or quota-limited** (entitlement denial, 429, or quota exhaustion), reporting the provider's message verbatim.
 4. **ESCALATE IF `call_tool_chain` drops the connection** (`-32000 Connection closed`), which locally indicates a Node 25 runtime; the Node 24 pin is an operator-side fix.
 5. **ESCALATE IF retrieved evidence conflicts with a `sk-design-md-generator` Style Reference (its extracted design tokens)**, asking which source prevails before any design conclusion is drawn.
@@ -324,13 +324,13 @@ Breadth is allowed during transport research; for design-affecting use, pair wit
 
 ### Core References
 
-- [tool-surface.md](references/tool-surface.md) - The 8-tool contract: arguments, bounds, ID typing, result shapes, the research funnel, plan gating, and the deprecated-surface negative knowledge.
-- [mcp-wiring.md](references/mcp-wiring.md) - The registered `refero` manual, the mcp-remote bridge (transport strategy, OAuth, auth state), the doubled-prefix naming rule, and the discovery-first contract.
-- [troubleshooting.md](references/troubleshooting.md) - Failure modes and fixes (401, tools not resolving, Node 25 SIGSEGV, sparse flows, quota, batch failures).
+- [tool-surface.md](../../../.skilled/skills/mcp-tooling/mcp-refero/references/tool-surface.md) - The 8-tool contract: arguments, bounds, ID typing, result shapes, the research funnel, plan gating, and the deprecated-surface negative knowledge.
+- [mcp-wiring.md](../../../.skilled/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md) - The registered `refero` manual, the mcp-remote bridge (transport strategy, OAuth, auth state), the doubled-prefix naming rule, and the discovery-first contract.
+- [troubleshooting.md](../../../.skilled/skills/mcp-tooling/mcp-refero/references/troubleshooting.md) - Failure modes and fixes (401, tools not resolving, Node 25 SIGSEGV, sparse flows, quota, batch failures).
 
 ### Templates and Assets
 
-- [utcp-refero-manual.md](assets/utcp-refero-manual.md) - The verified `.utcp_config.json` manual snapshot (already registered: verify, do not re-add) plus the env-backed Bearer-header alternative, marked alternative-only.
+- [utcp-refero-manual.md](../../../.skilled/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md) - The verified `.utcp_config.json` manual snapshot (already registered: verify, do not re-add) plus the env-backed Bearer-header alternative, marked alternative-only.
 
 ### Reference Loading Notes
 
@@ -411,6 +411,6 @@ Examples: `examples/` carries worked Code Mode walkthroughs (the full styles -> 
 
 Related skills: `sk-design-md-generator` (the measured Style Reference pairing — extracted design tokens), `mcp-code-mode` (the substrate), `mcp-figma` (the sibling Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
-Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
+Install guide: [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-refero/INSTALL-GUIDE.md).
 
 Upstream: the Refero MCP is the paid service at [refero.design/mcp](https://refero.design/mcp) (docs at doc.refero.design). The official [referodesign/refero_skill](https://github.com/referodesign/refero_skill) repository (MIT, default branch `master`) is a design **methodology** skill and a peer of `sk-design-md-generator`; this packet deliberately does not vendor or duplicate it.

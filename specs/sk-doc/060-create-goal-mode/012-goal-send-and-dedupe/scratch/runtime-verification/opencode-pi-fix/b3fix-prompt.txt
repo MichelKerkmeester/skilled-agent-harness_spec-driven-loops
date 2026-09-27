@@ -1,0 +1,15 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a context probe. Do NOT call any tool and do NOT read any file.
+TASK: Look only at the text of this user message as you received it. If it contains a block starting with `[active_goal:`, copy verbatim the line of that block that starts with `objective:` and every line directly under `criteria:`. Also copy the first 80 characters of any line starting with `[goal_resend_pending]`. If there is no such block, print exactly NO_ACTIVE_GOAL_BLOCK.

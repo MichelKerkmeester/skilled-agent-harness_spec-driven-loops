@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-post-program-quality-pass rollup"
   - "003-post-program-quality-pass phase parent"
   - "003-post-program-quality-pass changelog index"
+  - "release and program cleanup post program quality pass changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

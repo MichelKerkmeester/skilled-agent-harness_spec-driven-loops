@@ -5,6 +5,7 @@ trigger_phrases:
   - "000 006 command alignment changelog"
   - "release cleanup command docs"
   - "command docs schema v37"
+  - "release cleanup command alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

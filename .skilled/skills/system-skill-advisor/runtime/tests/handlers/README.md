@@ -30,6 +30,7 @@ Current state:
 
 ```text
 handlers/
++-- advisor-recommend-compiled-route-option.vitest.ts  # Compiled-route option behavior
 +-- advisor-recommend-unavailable.vitest.ts  # Unavailable recommendation path
 +-- advisor-recommend.vitest.ts              # Recommendation handler contract
 +-- advisor-status.vitest.ts                 # Status handler freshness states
@@ -44,6 +45,7 @@ handlers/
 
 | File | Responsibility |
 |---|---|
+| `advisor-recommend-compiled-route-option.vitest.ts` | Verifies that `includeCompiledRoute: false` skips enrichment on fresh and cached returns. |
 | `advisor-recommend.vitest.ts` | Verifies recommendation payloads, attribution, freshness and dispatch integration. |
 | `advisor-status.vitest.ts` | Verifies live, stale, absent and unavailable status output. |
 | `advisor-validate.vitest.ts` | Covers validation handler behavior for advisor regression checks. |

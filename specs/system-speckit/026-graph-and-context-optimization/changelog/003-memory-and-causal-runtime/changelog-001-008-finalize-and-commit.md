@@ -7,6 +7,7 @@ trigger_phrases:
   - "local embeddings post-merge checklist"
   - "voyage egress check post-merge"
   - "014 terminal packet"
+  - "memory and causal runtime finalize and commit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

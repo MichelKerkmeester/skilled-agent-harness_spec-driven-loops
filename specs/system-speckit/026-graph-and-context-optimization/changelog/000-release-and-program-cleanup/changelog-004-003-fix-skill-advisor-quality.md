@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph-causal conflict signal"
   - "token-stuffing dispersion guard"
   - "review-plus-write disambiguation"
+  - "release and program cleanup fix skill advisor quality changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

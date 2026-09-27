@@ -1,6 +1,6 @@
 ---
 title: "Codex CLI — Runtime Sync Manifest"
-description: "How .codex derives from .skilled: the two generators that own agents and prompts, the outbound hooks installer, and how to detect drift."
+description: "How .codex derives from .skilled: the two generators that own agents and prompts, the installer that keeps the user-global hook file free of repo copies, and how to detect drift."
 ---
 
 # Codex CLI Sync Manifest
@@ -15,7 +15,7 @@ Codex differs from every sibling runtime in two ways.
 
 First, it cannot consume the shared trees directly: it needs TOML agents and a flat prompt namespace. So instead of symlinks, two generators transform `.skilled/` into Codex's dialect. Both own their output directory completely — they delete anything they did not generate.
 
-Second, its hook configuration is **outbound**. Codex reads hooks from the user-global `~/.codex/hooks.json`, not from this repo, so `install-codex-hooks.mjs` reconciles the repo's `.codex/hooks.json` into that global file while preserving any third-party entries it finds there.
+Second, Codex reads this repo's `.codex/hooks.json` itself once the checkout is trusted, so the user-global `~/.codex/hooks.json` must not carry copies of those entries: a copy registers each hook twice and Codex runs it twice per event. `install-codex-hooks.mjs` keeps the global file clean by removing repo-owned entries and orphans while preserving any third-party entries it finds there.
 
 Canonical for agents is `.skilled/agents/` (note: *not* `.claude/agents/`, which is what Cursor and Devin use — the two upstreams differ).
 
@@ -28,7 +28,7 @@ Canonical for agents is `.skilled/agents/` (note: *not* `.claude/agents/`, which
 | `agents/*.toml` | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents.cjs --check` |
 | `prompts/*.md` (33) | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
 | `hooks/*` (18 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — mirror generator |
-| `hooks.json` | **hand-authored** | — | n/a locally; installed outbound to `~/.codex/hooks.json` |
+| `hooks.json` | **hand-authored** | — | read by Codex from this checkout; never copied to `~/.codex/hooks.json` |
 | `config.toml` | **hand-authored** | — | MCP servers inlined here, unlike `.claude`/`.cursor` which use `mcp.json` |
 | `AGENTS.md` | **hand-authored** global voice/tone doc, plus one generated Gate 1 pointer block outside the nodeterm markers | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` (`--check` reports drift) | `~/.codex/AGENTS.md` symlinks *to it* |
 | `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook` | No |
@@ -50,7 +50,7 @@ User request: $ARGUMENTS
 
 - Any `.skilled/agents/*.md` changes → re-run `sync-agents.cjs`.
 - Any `.skilled/commands/**` file is added, renamed or deleted → re-run `sync-prompts.cjs`. Renames matter: a deleted canonical file leaves a stale prompt that points at nothing.
-- `.codex/hooks.json` changes → re-run `install-codex-hooks.mjs` to push it to `~/.codex/hooks.json`.
+- `.codex/hooks.json` changes → nothing to install, because Codex reads the file from the checkout. Run `install-codex-hooks.mjs --check` to confirm the user-global file holds no stale copy.
 - A hook is registered in `hooks.json` → run the mirror generator for the matching `hooks/` symlink.
 
 ---
@@ -65,7 +65,7 @@ node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs
 # 2. Refresh the hooks discovery mirror
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
-# 3. Push repo hook config to the user-global file Codex actually reads
+# 3. Remove stale copies of repo hooks from the user-global Codex hook file
 node .skilled/bin/install-codex-hooks.mjs          # backs up first; --dry-run to preview
 ```
 
@@ -111,7 +111,7 @@ developer_instructions = '''
 | Generated prompts | `node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check` | 0 ok / 1 drift |
 | Hooks discovery mirror | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
 | Prompt mirror identity | `node .skilled/commands/scripts/validate-command-references.cjs` | 0 ok / 1 violation |
-| Outbound hook install | `node .skilled/bin/install-codex-hooks.mjs --check` | 0 ok / 1 drift |
+| User-global hook hygiene | `node .skilled/bin/install-codex-hooks.mjs --check` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
 
 **Orphaned entries.** Ownership is keyed on the adapter path, so renaming a hook script leaves the old entry unrecognised in `~/.codex/hooks.json` — where the preserve-third-party rule would keep it forever, invoking a file that no longer exists. The installer therefore treats **any `.skilled/` or `.opencode/` path missing on disk as its own orphan** and prunes it; paths outside both roots are never touched, whether or not they resolve. This is not hypothetical: the `mcp_server` → `mcp-server` rename left five dead entries across `SessionStart`, `UserPromptSubmit`, `Stop` and `PreCompact`, and `--check` reported OK the whole time because every *expected* entry was present.

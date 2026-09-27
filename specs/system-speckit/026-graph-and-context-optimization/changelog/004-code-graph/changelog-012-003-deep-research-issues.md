@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph deep research synthesis"
   - "code graph findings classification"
   - "remediation backlog 012"
+  - "code graph deep research issues changelog"
 importance_tier: "important"
 contextType: "research"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Phase 10: asset-templates-and-folder-readmes [060-create-goal-mode/010-asset-templates-and-folder-readmes]"
 description: "Chronological changelog for the Phase 10: asset-templates-and-folder-readmes phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "create goal mode asset templates and folder readmes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -9,6 +9,7 @@ trigger_phrases:
   - "smart router ci check"
   - "on demand keyword tuning"
   - "cli unknown fallback"
+  - "spec kit internals smart remediation opencode plugin changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

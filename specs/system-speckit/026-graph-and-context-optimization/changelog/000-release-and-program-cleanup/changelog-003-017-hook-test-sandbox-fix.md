@@ -7,6 +7,7 @@ trigger_phrases:
   - "SKIPPED_SANDBOX live CLI"
   - "BLOCKED_BY_TEST_SANDBOX misclassification"
   - "direct smoke vs live CLI evidence"
+  - "release and program cleanup hook test sandbox fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

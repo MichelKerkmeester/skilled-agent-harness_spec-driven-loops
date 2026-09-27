@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory search runtime bugs"
   - "truncation wrapper fix"
   - "intent classifier drift"
+  - "memory and causal runtime memory search runtime bugs changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { existsSync, realpathSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import { tmpdir } from 'node:os';
+import { ADVISOR_RUNTIME_VALUES } from '../lib/advisor-runtime-values.js';
 import { SCORER_LANE_IDS } from '../lib/scorer/lane-registry.js';
 
 export const AdvisorFreshnessSchema = z.enum(['live', 'stale', 'absent', 'unavailable']);
@@ -214,10 +215,14 @@ const semanticLaneHealthSchema = z.object({
 // `advisor_recommend` tool intentionally does NOT accept `affordances`.
 // Internal callers that need request-local affordance scoring should invoke
 // `scoreAdvisorPrompt` directly with `AdvisorScoringOptions.affordances`.
+// advisor_recommend routes on at most this many prompt characters. A caller holding a
+// longer prompt sends its head, so a long prompt is routed rather than refused.
+export const ADVISOR_PROMPT_MAX_CHARS = 10_000;
+
 export const AdvisorRecommendInputSchema = z.object({
   // workspaceRoot must resolve under the allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema.optional(),
-  prompt: z.string().min(1).max(10_000),
+  prompt: z.string().min(1).max(ADVISOR_PROMPT_MAX_CHARS),
   options: z.object({
     topK: z.number().int().min(1).max(10).optional(),
     includeAttribution: z.boolean().optional(),
@@ -346,7 +351,7 @@ export const AdvisorValidateInputSchema = z.object({
   // Capturing prompts to close that gap would violate the prompt-safety
   // invariant and is intentionally not supported.
   outcomeEvents: z.array(z.object({
-    runtime: z.enum(['claude', 'copilot', 'opencode']),
+    runtime: z.enum(ADVISOR_RUNTIME_VALUES),
     outcome: z.enum(['accepted', 'corrected', 'ignored']),
     skillId: z.string().min(1),
     correctedSkillId: z.string().min(1).optional(),

@@ -5,6 +5,7 @@ trigger_phrases:
   - "004-skill-advisor-production-hardening rollup"
   - "004-skill-advisor-production-hardening phase parent"
   - "004-skill-advisor-production-hardening changelog index"
+  - "spec kit internals skill advisor production hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

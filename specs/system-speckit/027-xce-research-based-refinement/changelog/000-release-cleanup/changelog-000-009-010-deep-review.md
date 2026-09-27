@@ -2,9 +2,7 @@
 title: "Changelog: Phase 10: deep-review Frontmatter Alignment [009-skill-frontmatter-alignment/010-deep-review]"
 description: "Chronological changelog for the Phase 10: deep-review Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup deep review changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

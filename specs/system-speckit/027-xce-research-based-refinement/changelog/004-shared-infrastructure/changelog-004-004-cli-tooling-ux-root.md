@@ -6,6 +6,7 @@ trigger_phrases:
   - "daemon cli ux changelog"
   - "cli help aliases completion"
   - "027 004/004 shipped"
+  - "shared infrastructure cli tooling ux changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

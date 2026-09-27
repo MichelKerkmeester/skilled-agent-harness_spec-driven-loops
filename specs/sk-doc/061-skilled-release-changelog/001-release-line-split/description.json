@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/061-skilled-release-changelog/001-release-line-split",
+  "description": "Phase 1: release-line-split",
+  "keywords": [
+    "phase",
+    "release-line-split"
+  ],
+  "lastUpdated": "2026-09-27T12:31:06.315Z",
+  "specId": "001",
+  "folderSlug": "release-line-split",
+  "parentChain": [
+    "sk-doc",
+    "061-skilled-release-changelog"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-09-26_13-31__phase-1-built-and-verified-the-skilled-release.md"
+  ]
+}

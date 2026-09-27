@@ -2,9 +2,7 @@
 title: "Changelog: Conditional Budget-Aware Fan-in [002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin]"
 description: "Changelog for the conditional budget-aware fan-in phase: fan-in that awaits only enough durable results and stops on budget or evidence sufficiency."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "fanout fanin durable orchestration conditional budget aware fanin changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

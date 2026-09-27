@@ -7,6 +7,7 @@ trigger_phrases:
   - "synthesis artifact staging"
   - "pt-NN wrapper child phase"
   - "iteration audit trail staging"
+  - "release and program deep review research skill contract fixes changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

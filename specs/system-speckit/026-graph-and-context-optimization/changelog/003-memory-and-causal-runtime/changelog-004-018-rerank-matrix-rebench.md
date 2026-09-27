@@ -7,6 +7,7 @@ trigger_phrases:
   - "BGE vs jina-v3 corrected pipeline verdict"
   - "ADR-021 reranker decision"
   - "016/004/018 rerank verdict"
+  - "memory and causal runtime rerank matrix rebench changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

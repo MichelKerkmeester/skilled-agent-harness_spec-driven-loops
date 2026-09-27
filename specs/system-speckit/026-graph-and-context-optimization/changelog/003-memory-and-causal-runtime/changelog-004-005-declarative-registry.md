@@ -6,6 +6,7 @@ trigger_phrases:
   - "CocoIndex embedder catalog"
   - "registered_embedders scaffold"
   - "jina-code default alignment"
+  - "memory and causal runtime declarative registry changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

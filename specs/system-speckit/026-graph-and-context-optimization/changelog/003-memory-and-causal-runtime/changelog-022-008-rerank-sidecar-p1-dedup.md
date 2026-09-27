@@ -7,6 +7,7 @@ trigger_phrases:
   - "rerank-sidecar default consolidation"
   - "cross-language sync comments rerank"
   - "port 8765 model revision canonical"
+  - "memory and causal runtime rerank sidecar p1 dedup changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

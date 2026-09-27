@@ -2,9 +2,7 @@
 title: "Changelog: Off-Corpus Eval Fixture and False-Confirm Gate [001-speckit-memory/025-off-corpus-eval-fixture-gate]"
 description: "Chronological changelog for the off-corpus eval fixture and false-confirm gate phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory off corpus eval fixture gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

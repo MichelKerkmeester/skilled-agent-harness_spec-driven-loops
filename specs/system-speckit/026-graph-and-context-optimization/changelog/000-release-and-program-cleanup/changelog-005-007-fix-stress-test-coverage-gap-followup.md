@@ -7,6 +7,7 @@ trigger_phrases:
   - "sa-001 sa-003 daemon lifecycle stress"
   - "deep-loop-graph-convergence-stress"
   - "043 stress remediation"
+  - "release and program fix stress test coverage gap followup changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

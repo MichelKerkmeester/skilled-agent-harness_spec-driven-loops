@@ -7,6 +7,7 @@ trigger_phrases:
   - "includeTransitive no-op"
   - "session-start artifact path"
   - "deferred_decisions path fix"
+  - "code graph followup hook docs and 022 changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

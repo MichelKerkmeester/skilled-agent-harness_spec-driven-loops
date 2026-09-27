@@ -6,6 +6,7 @@ trigger_phrases:
   - "peck spec-kit gap report"
   - "T1 T2 T3 T4 peck teachings"
   - "peck anti-teachings"
+  - "research and doctrine peck teachings for spec kit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

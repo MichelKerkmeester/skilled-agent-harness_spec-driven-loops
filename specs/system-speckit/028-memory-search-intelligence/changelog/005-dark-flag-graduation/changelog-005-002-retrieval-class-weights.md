@@ -2,9 +2,7 @@
 title: "Changelog: Retrieval-Class Channel Weights Benchmark [005-dark-flag-graduation/002-retrieval-class-weights]"
 description: "Chronological changelog for the Retrieval-Class Channel Weights Benchmark benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation retrieval class weights changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

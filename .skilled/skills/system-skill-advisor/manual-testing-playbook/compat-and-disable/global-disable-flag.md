@@ -62,10 +62,26 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .skilled/skills/system-skill-advis
 npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts -t "opt-out"
 ```
 
-4. One hook adapter:
+4. One hook adapter. The spec-kit shim never forwards its child's stderr, so read the skipped record from the diagnostics JSONL that `SKILL_ADVISOR_DEBUG=1` turns on:
 
 ```bash
-printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit"}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js
+DIAG=$(node --input-type=module -e "const m = await import('./.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/metrics.js'); console.log(m.advisorHookDiagnosticsPath(process.cwd()))")
+BEFORE=$(cat "$DIAG" 2>/dev/null | wc -l | tr -d ' ')
+printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit"}' \
+  | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 SKILL_ADVISOR_DEBUG=1 node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js
+echo "Exit: $?"
+AFTER=$(cat "$DIAG" | wc -l | tr -d ' ')
+echo "diagnostic lines: $BEFORE -> $AFTER"
+tail -n 1 "$DIAG"
+```
+
+Observed on 2026-09-26:
+
+```text
+{}
+Exit: 0
+diagnostic lines: 229 -> 230
+{"timestamp":"2026-09-26T20:03:34.144Z","runtime":"claude","status":"skipped","freshness":"unavailable","durationMs":1,"cacheHit":false}
 ```
 
 ### Expected Signals
@@ -73,7 +89,7 @@ printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_
 - Native `advisor_recommend` returns `recommendations: []`, `freshness: "unavailable"` and `ADVISOR_DISABLED`.
 - Python shim returns `[]` or prompt-safe disabled output without native scoring.
 - OpenCode plugin returns disabled/skipped output without invoking the advisor (covered by the plugin test's env opt-out case).
-- Hook adapter returns `{}` with skipped diagnostic.
+- Hook adapter prints `{}` and exits `0`. The diagnostics JSONL gains one line, and that newest record has `status: "skipped"` and `freshness: "unavailable"`. If the file had passed 300 lines, the append trims it to the newest 200, so read the last line instead of the count.
 
 ### Failure Modes
 
@@ -90,6 +106,7 @@ printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_
 - `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
 - `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
 - `.skilled/plugins/system-skill-advisor.js`
+- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`
 
 ---
 

@@ -7,6 +7,7 @@ trigger_phrases:
   - "5 dimension scoring rubric"
   - "cli dispatch matrix stress test"
   - "search query intelligence playbook"
+  - "release and program cleanup search scenario design changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

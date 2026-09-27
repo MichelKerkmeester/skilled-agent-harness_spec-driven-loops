@@ -2,9 +2,7 @@
 title: "Changelog: Runtime Enablement [012-runtime-enablement]"
 description: "Append gateway and legacy projection, pilot and fleet authority flips, legacy-writer retirement, effect producer and read cache, mode projection contracts, whole-system gate, closeout documentation, full finalize, and over-engineering deletion across eleven phase children."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "runtime enablement changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

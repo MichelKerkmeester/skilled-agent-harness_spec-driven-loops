@@ -7,6 +7,7 @@ trigger_phrases:
   - "inbound enhances detection"
   - "skill graph edge auto-propagation"
   - "007-cross-skill-enhancement-edge-propagation"
+  - "spec kit internals cross skill enhancement edge propagation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

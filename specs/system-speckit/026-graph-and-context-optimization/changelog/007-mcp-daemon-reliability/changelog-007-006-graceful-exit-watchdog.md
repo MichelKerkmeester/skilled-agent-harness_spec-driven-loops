@@ -7,6 +7,7 @@ trigger_phrases:
   - "crash loop guard launcher"
   - "childPid lease field"
   - "process tree rss sidecar"
+  - "mcp daemon reliability graceful exit watchdog changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

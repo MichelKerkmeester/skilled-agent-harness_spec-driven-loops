@@ -7,6 +7,7 @@ trigger_phrases:
   - "sweep-rrf.sh sweep-rrf.py"
   - "COCOINDEX_HYBRID_VECTOR_WEIGHT locked default"
   - "016/004/017 empirical recalibration"
+  - "memory and causal runtime hybrid fusion empirical recalibration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

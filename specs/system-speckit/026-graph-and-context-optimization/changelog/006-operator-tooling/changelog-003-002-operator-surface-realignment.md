@@ -7,6 +7,7 @@ trigger_phrases:
   - "doctor command realignment post-cocoindex"
   - "route-validate f2 gate fix"
   - "doctor mirror .opencode .claude"
+  - "operator tooling operator surface realignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "MCP child wedge recovery launcher kill"
   - "embedding cache hit bulk rebuild rescan"
   - "cocoindex stale MiniLM DB removed"
+  - "memory and causal runtime vec store rebuild changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "checkpointAllWal"
   - "active_vec wal checkpoint"
   - "dual-schema WAL TRUNCATE"
+  - "mcp daemon reliability at rest wal durability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

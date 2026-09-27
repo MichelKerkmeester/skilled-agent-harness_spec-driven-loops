@@ -5,6 +5,7 @@ trigger_phrases:
   - "008-rerank-sidecar-arc rollup"
   - "008-rerank-sidecar-arc phase parent"
   - "008-rerank-sidecar-arc changelog index"
+  - "memory and causal runtime rerank sidecar arc changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

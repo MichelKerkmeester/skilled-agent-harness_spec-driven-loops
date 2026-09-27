@@ -7,6 +7,7 @@ trigger_phrases:
   - "claude gemini codex devin hook adapter results"
   - "opencode plugin bridge native route finding"
   - "prompt-time advisor brief adapters"
+  - "spec kit internals cli hooks and plugin changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -136,10 +136,9 @@ No Release   Full Release
 
 ### Phase 2: DOCUMENT (Full Release Only)
 
-1. **Draft release notes** using template in Section 7
-2. **Create version changelog** — Write `changelog/vX.X.X.X.md` using release notes template (Section 7)
-3. **Update Skill CHANGELOGs** (`Public/.skilled/skills/*/CHANGELOG.md`) if applicable
-4. **Determine version number** using Section 8
+1. **Determine the version number** using Section 8
+2. **Write the release entry** with `/create:changelog skilled`, which writes `.skilled/changelog/skilled/vX.X.X.X.md` from the template in Section 7
+3. **Write a component changelog** for each skill the release changed, with `/create:changelog <skill>`. Each lands in that skill's own `changelog/` folder, versioned by the skill
 
 ### Phase 3: REVIEW
 
@@ -162,6 +161,8 @@ git push origin main
 
 ### Phase 5: PUBLISH (Full Release Only)
 
+The release step of `/create:changelog skilled --release` runs all three steps below: it tags the version written in Phase 2, pushes the tag and publishes the GitHub release with the entry as its body. To publish by hand instead:
+
 ```bash
 cd ~/your-project/
 
@@ -171,29 +172,11 @@ git tag -a vX.X.X.X -m "vX.X.X.X: Release description"
 # 2. Push tag
 git push origin vX.X.X.X
 
-# 3. Create GitHub release (MANDATORY — tags alone do NOT appear as releases)
+# 3. Create the GitHub release (MANDATORY: tags alone do NOT appear as releases)
+#    notes.md is the release entry with its YAML frontmatter and H1 title removed
 gh release create vX.X.X.X \
-  --title "vX.X.X.X — Release Title" \
-  --notes "$(cat <<'EOF'
-Plain-English summary — see Section 7 for format.
-
-## What Changed
-
-### [Category name]
-- **[Fix/Feature name]** -- What was broken. What we did. Why it matters.
-
-## Files Changed
-
-| File | What changed |
-|------|-------------|
-| `path/to/file` | Brief description |
-
-## Upgrade
-No action required. / Steps if needed.
-
-Full changelog: [changelog/<component>/vX.X.X.X.md](link)
-EOF
-)"
+  --title "vX.X.X.X — Editorial Title" \
+  --notes-file notes.md
 ```
 
 > **CRITICAL**: `git push origin vX.X.X.X` only pushes the tag — it does NOT create a GitHub Release. You MUST run `gh release create` to make the release visible on the GitHub Releases page with formatted notes and downloadable assets.
@@ -204,17 +187,17 @@ EOF
 
 | Field              | Value                                                                                                     |
 | ------------------ | --------------------------------------------------------------------------------------------------------- |
-| **Version**        | v3.6.0.0                                                                                                  |
-| **Release Date**   | 2026-06-18                                                                                                |
+| **Version**        | v4.0.0.1                                                                                                  |
+| **Release Date**   | 2026-09-25                                                                                                |
 | **GitHub**         | https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops                       |
 | **Latest Release** | https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/tag/v3.6.0.0 |
+| **Release Notes**  | https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/tag/v4.0.0.1 |
 
 ### Release Notes
 
-Release notes for each version are stored as individual files in `.opencode/changelog/00--opencode-environment/vX.X.X.X.md`, formatted per the template in Section 7. Changelog files start directly with the summary paragraph - no version header or boilerplate to strip for GitHub publishing.
+Release notes for each version are stored as individual files in `.skilled/changelog/skilled/vX.X.X.X.md`, one per release, formatted per the template in Section 7. Older entries are grouped by generation in `v1+/`, `v2+/` and `v3+/`. The GitHub release body is the entry with its YAML frontmatter and H1 title removed.
 
-**Latest**: See `.opencode/changelog/system-spec-kit/v3.6.0.0.md`
+**Latest**: See `.skilled/changelog/skilled/v4.0.0.1.md`
 
 ---
 
@@ -255,100 +238,19 @@ echo ".opencode-local/" >> .gitignore
 
 ## 7. RELEASE NOTES TEMPLATE
 
-Release notes should read like a brief written for a smart person who is not necessarily a developer. Lead with why the release matters, explain each change in plain English, and keep technical details in the Files Changed table.
+Release entries follow the sk-create-changelog template, the same one every component changelog uses.
 
-**Canonical template file:** `.opencode/commands/create/assets/changelog-template.md`
-**Automated workflow:** `/create:changelog --release :auto` (creates changelog + git tag + GitHub release)
+- **Template:** `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`
+- **House style:** `.skilled/changelog/skilled/v4.0.0.0.md`, the canonical exemplar
+- **Workflow:** `/create:changelog skilled` writes the entry, and `--release` also tags it and publishes the GitHub release
 
-### 7.1 Format
-
-```markdown
-One or two sentences explaining what this release does and why it matters, in plain English.
-
-> Spec folder: `path/to/spec` (if applicable)
-
----
-
-## What Changed
-
-### [Category name]
-
-- **[Fix/Feature name]** -- [Problem in plain English]. [What we did to fix it]. [Why it matters].
-
-## Files Changed
-
-| File           | What changed      |
-| -------------- | ----------------- |
-| `path/to/file` | Brief description |
-
-## Upgrade
-
-No action required. / Steps if needed.
-```
-
-### 7.2 Rules
-
-**Writing style:**
-
-- Write like you are explaining to a smart person who is not a developer
-- Lead with WHY this release matters, not technical stats
-- Every fix explained as: what was broken, what we did, why it matters
-- No jargon without explanation (first use: "BM25 (exact word matching)")
-- No metrics soup -- do not pack 10 numbers into one sentence
-- Short bullet points (1-3 sentences each)
-- Technical details (file paths, line numbers, function names) go in "Files Changed" table, NOT in the description text
-- Analogies welcome when they help understanding
-
-**Structure:**
-
-- 1-2 sentence plain-English summary at the top
-- Optional spec folder reference as a blockquote
-- `## What Changed` as main H2 section
-- `### [Category name]` for H3 category headers (plain names -- see vocabulary below)
-- For expanded releases, keep per-item sub-headings short: ideally 2-5 words and easy to scan
-- Bullet points with **bold label** -- description (using em dash or double hyphen)
-- `## Files Changed` table with File and What changed columns
-- `## Upgrade` section (always last)
-
-**GitHub release body hygiene:**
-
-- Changelog files start directly with the summary paragraph - no wrapper lines to strip
-- Use the changelog file content as-is for the GitHub release body
-
-**Category vocabulary for H3 headers (use plain names):**
-
-- `Search` -- search behavior, ranking, matching
-- `Saving Memories` -- memory save, context preservation
-- `Security` -- access control, input validation, secrets
-- `Documentation` -- templates, guides, READMEs
-- `Testing` -- test suites, validation
-- `Commands` -- CLI workflows, user-facing commands
-- `New Features` -- newly added capabilities
-- `Bug Fixes` -- repairs, patches, corrections
-- `Architecture` -- structural changes, refactoring
-- `Breaking Changes` -- compatibility impacts, migration required
-
-### 7.3 Checklist
-
-Before publishing:
-
-- [ ] Opens with 1-2 plain-English sentences explaining why this release matters
-- [ ] Changelog file starts with summary paragraph (no header boilerplate)
-- [ ] `## What Changed` H2 section present
-- [ ] Category headers use plain names (see vocabulary above)
-- [ ] Each bullet explains: what was broken, what we did, why it matters
-- [ ] No unexplained jargon (first use includes parenthetical definition)
-- [ ] Technical details (paths, line numbers, function names) are in Files Changed table, not in descriptions
-- [ ] `## Files Changed` table present with File and What changed columns
-- [ ] `## Upgrade` section last
-- [ ] Bullet points are short (1-3 sentences each)
-- [ ] For 10+ changes: expanded format with short scan-friendly sub-headings and Problem/Fix paragraphs (see `.opencode/commands/create/assets/changelog-template.md`)
+In short, open with why the release matters in plain English, group the changes into topical sections named for what they change, and end with the upgrade notes. Use the compact format for fewer than 10 changes, and the expanded format for 10 or more changes, a major version or a breaking change. The template carries the voice rules, the section order and the checklist.
 
 ---
 
 ## 8. VERSIONING SCHEME
 
-Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
+Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`. The version is also the release's git tag, `vX.X.X.X`.
 
 | Part       | Meaning                                    | Example   |
 | ---------- | ------------------------------------------ | --------- |
@@ -356,6 +258,8 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | **MINOR**  | New features (backward compatible)         | `1.1.0.0` |
 | **SERIES** | Thematic grouping (e.g., Narsil migration) | `1.0.1.0` |
 | **PATCH**  | Bug fixes within a series                  | `1.0.1.2` |
+
+`/create:changelog skilled --bump <level>` increments the same four positions under different names: `major` bumps MAJOR, `minor` bumps MINOR, `patch` bumps SERIES and `build` bumps PATCH. Pass `--bump` explicitly for a release entry, because the auto-detected bump follows the workflow's own meaning for each name.
 
 ### Series History
 

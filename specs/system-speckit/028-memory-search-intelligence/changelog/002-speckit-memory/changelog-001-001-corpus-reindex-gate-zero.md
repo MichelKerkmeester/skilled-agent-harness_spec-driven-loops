@@ -2,9 +2,7 @@
 title: "Changelog: Corpus Reindex - Gate-Zero for Recall Benchmarking [001-speckit-memory/001-corpus-reindex-gate-zero]"
 description: "Chronological changelog for the Corpus Reindex - Gate-Zero for Recall Benchmarking phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory corpus reindex gate zero changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

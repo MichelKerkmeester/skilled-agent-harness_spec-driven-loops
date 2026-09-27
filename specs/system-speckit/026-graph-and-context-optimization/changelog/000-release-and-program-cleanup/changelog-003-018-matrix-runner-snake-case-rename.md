@@ -7,6 +7,7 @@ trigger_phrases:
   - "mcp_server folder convention"
   - "matrix runner runtime directory rename"
   - "018-matrix-runner-snake-case-rename"
+  - "release and program cleanup matrix runner snake case rename changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

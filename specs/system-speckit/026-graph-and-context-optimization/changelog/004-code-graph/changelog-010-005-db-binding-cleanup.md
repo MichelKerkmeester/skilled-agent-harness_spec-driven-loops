@@ -7,6 +7,7 @@ trigger_phrases:
   - "code-graph stale sqlite removed"
   - "db misbinding false positive"
   - "029 phase 005"
+  - "code graph db binding cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

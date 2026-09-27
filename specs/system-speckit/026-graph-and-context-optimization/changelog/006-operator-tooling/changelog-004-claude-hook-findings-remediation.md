@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor freshness stale"
   - "sourceSignature null"
   - "settings.local.json schema"
+  - "operator tooling claude hook findings remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

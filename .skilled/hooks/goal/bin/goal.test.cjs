@@ -31,16 +31,25 @@ afterEach(() => {
   rmSync(stateDir, { recursive: true, force: true });
 });
 
+// A failed action exits 1 and still prints its envelope, so read stdout either way.
+function runCliWithStatus(args) {
+  try {
+    const stdout = execFileSync('node', [CLI_PATH, ...args], {
+      env: {
+        ...process.env,
+        OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
+        OPENCODE_GOAL_STATE_DIR: stateDir,
+      },
+      encoding: 'utf8',
+    });
+    return { stdout, status: 0 };
+  } catch (error) {
+    return { stdout: error.stdout || '', status: error.status };
+  }
+}
+
 function runCli(args) {
-  const stdout = execFileSync('node', [CLI_PATH, ...args], {
-    env: {
-      ...process.env,
-      OPENCODE_GOAL_PLUGIN_DISABLED: undefined,
-      OPENCODE_GOAL_STATE_DIR: stateDir,
-    },
-    encoding: 'utf8',
-  });
-  return stdout;
+  return runCliWithStatus(args).stdout;
 }
 
 async function runCliAsync(args) {
@@ -61,8 +70,9 @@ function field(stdout, key) {
 }
 
 test('mutating without explicit runtime and session identity writes nothing', () => {
-  const stdout = runCli(['set', 'Must not persist']);
+  const { stdout, status } = runCliWithStatus(['set', 'Must not persist']);
   assert.match(stdout, /^STATUS=FAIL ACTION=set/m);
+  assert.equal(status, 1);
   assert.equal(field(stdout, 'code'), 'MISSING_SESSION_ID');
   assert.deepEqual(readdirSync(stateDir), []);
 });
@@ -154,4 +164,18 @@ test('same-scope concurrent writers leave one valid record and no temp files', a
   const entries = readdirSync(stateDir);
   assert.equal(entries.filter((name) => /^[a-f0-9]{64}\.json$/.test(name)).length, 1);
   assert.equal(entries.some((name) => name.endsWith('.tmp')), false);
+});
+
+test('an unknown leading flag fails instead of becoming an objective', () => {
+  const binding = ['--runtime', 'pi', '--session', 'session-help'];
+  const { stdout, status } = runCliWithStatus([...binding, '--help']);
+  assert.match(stdout, /^STATUS=FAIL ACTION=unknown/m);
+  assert.equal(field(stdout, 'code'), 'UNKNOWN_ACTION');
+  assert.equal(status, 1);
+  assert.equal(field(runCli([...binding, 'show']), 'goal_present'), 'false');
+
+  const budgeted = runCliWithStatus([...binding, '--budget', '5', 'Ship', 'it']);
+  assert.match(budgeted.stdout, /^STATUS=OK ACTION=set/m);
+  assert.equal(budgeted.status, 0);
+  assert.equal(field(runCli([...binding, 'show']), 'objective'), '"Ship it"');
 });

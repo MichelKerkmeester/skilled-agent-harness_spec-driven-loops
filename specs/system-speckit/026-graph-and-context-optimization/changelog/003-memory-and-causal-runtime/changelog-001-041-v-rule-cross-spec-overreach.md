@@ -7,6 +7,7 @@ trigger_phrases:
   - "ADR numeric prefix false positive"
   - "metric suffix denylist validator"
   - "cross-spec contamination overreach"
+  - "memory and causal runtime v rule cross spec overreach changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

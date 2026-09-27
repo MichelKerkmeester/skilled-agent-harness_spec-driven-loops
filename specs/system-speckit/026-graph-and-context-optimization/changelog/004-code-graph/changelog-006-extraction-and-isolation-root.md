@@ -5,6 +5,7 @@ trigger_phrases:
   - "006-extraction-and-isolation rollup"
   - "006-extraction-and-isolation phase parent"
   - "006-extraction-and-isolation changelog index"
+  - "code graph extraction and isolation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

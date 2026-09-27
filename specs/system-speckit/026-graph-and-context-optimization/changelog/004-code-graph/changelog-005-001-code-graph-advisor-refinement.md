@@ -7,6 +7,7 @@ trigger_phrases:
   - "015 deep-research loop and phase 5"
   - "advisor trust-state vocabulary unification"
   - "F35 confidence calibration bench"
+  - "code graph advisor refinement changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

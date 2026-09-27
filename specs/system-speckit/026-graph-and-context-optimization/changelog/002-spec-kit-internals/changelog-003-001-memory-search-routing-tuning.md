@@ -6,7 +6,7 @@ trigger_phrases:
   - "search fusion reranker tuning"
   - "content routing accuracy"
   - "graph metadata validation"
-  - "phase changelog"
+  - "spec kit internals memory search routing tuning changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

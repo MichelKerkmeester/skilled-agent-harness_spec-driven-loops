@@ -619,7 +619,7 @@ await call_tool_chain({
 - `references/plugins/iconic/troubleshooting.md` — Iconic failure and recovery recipes
 - `references/plugins/installed-plugins.md` — Roster of all 24 enabled vault plugins in three classes: the two documented file-layer plugins, the thirteen file-layer plugins whose dedicated docs were removed, and the nine UI/automatic plugins that never had any
 
-Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
+Install guide (front door): [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-obsidian/INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
 
 **Scripts:**
 - `scripts/install.sh` — Installs `notesmd-cli` and prints the MCP config snippet

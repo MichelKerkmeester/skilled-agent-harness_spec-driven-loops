@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/001 007 continuity save changelog"
   - "continuity save concurrency disposition"
   - "remediation lane 007"
+  - "verification and remediation continuity and save concurrency changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

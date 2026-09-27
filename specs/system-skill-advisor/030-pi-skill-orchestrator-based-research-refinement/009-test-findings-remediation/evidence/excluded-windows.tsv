@@ -1,0 +1,5 @@
+superseded-by-F19	codex-CL-005	2026-09-26T21:55:04Z	2026-09-26T21:56:42Z	0	98	FAIL on the pinned 40-test count; rerun after the scenario passed on a green suite
+superseded-codex-timeout	codex-CL-005	2026-09-26T22:42:03Z	2026-09-26T22:43:57Z	0	114	BLOCKED: Codex returned the step 4 opencode run after 30.2 s with no exit code; rerun with a 180 s command timeout
+superseded-by-F22	codex-CL-005	2026-09-26T22:46:07Z	2026-09-26T22:48:14Z	0	127	FAIL on the route label no step shows; rerun after the scenario named the brief freshness
+superseded-by-F21	pi-433	2026-09-26T22:24:45Z	2026-09-26T22:25:51Z	0	66	PASS on the old scenario, whose cold start displaced the live advisor daemon; rerun on the sandboxed scenario
+superseded-by-F21	opencode-433	2026-09-26T22:25:51Z	2026-09-26T22:47:29Z	0	1298	PASS on the old scenario; its tester reported the live daemon gone after the run; rerun on the sandboxed scenario

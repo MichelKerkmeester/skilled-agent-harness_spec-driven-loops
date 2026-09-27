@@ -6,6 +6,7 @@ trigger_phrases:
   - "vestigial embedding gate deleted"
   - "memory-search readiness timeout fix"
   - "waitForEmbeddingModel gate cleanup"
+  - "release and program cleanup vestigial embedding readiness gate removal changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

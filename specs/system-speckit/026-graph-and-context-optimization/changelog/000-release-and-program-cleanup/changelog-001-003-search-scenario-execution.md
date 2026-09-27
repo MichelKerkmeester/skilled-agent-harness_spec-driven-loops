@@ -2,9 +2,7 @@
 title: "Changelog: Scenario Execution Sub-Phase [001-search-intelligence-stress-playbook/003-search-scenario-execution]"
 description: "Chronological changelog for the Scenario Execution Sub-Phase phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release and program cleanup search scenario execution changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

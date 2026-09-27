@@ -9,6 +9,7 @@ trigger_phrases:
   - "launcher supervision"
   - "nomic embed text"
   - "local embedding provider"
+  - "memory and causal runtime embedding consolidation hf local server changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

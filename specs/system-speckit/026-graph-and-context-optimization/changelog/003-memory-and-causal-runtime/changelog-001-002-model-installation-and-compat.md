@@ -7,6 +7,7 @@ trigger_phrases:
   - "onnx-community embeddinggemma ONNX"
   - "transformers.js gemma compatibility"
   - "huggingface local cache symlink"
+  - "memory and causal runtime model installation and compat changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

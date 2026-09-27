@@ -7,6 +7,7 @@ trigger_phrases:
   - "p2 reconciliation tally"
   - "deferred p2 embedder findings"
   - "reindex structured error message"
+  - "memory and identify and close 3 remaining deferred p2 changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

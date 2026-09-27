@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill advisor playbook validation"
   - "plugin bridge test fixture cleanup"
   - "advisor P0 P1 pass rate"
+  - "spec kit internals manual testing playbook validation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

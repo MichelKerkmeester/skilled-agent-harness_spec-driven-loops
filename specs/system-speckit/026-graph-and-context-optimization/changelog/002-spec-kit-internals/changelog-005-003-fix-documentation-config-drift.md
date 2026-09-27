@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill-advisor doc drift"
   - "advisor tool count 8 vs 9"
   - "opencode.json registration comment stale"
+  - "spec kit internals fix documentation config drift changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

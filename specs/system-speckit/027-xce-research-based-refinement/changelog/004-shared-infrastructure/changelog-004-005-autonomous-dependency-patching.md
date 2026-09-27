@@ -6,6 +6,7 @@ trigger_phrases:
   - "npm audit lockfile remediation"
   - "skill package security audit"
   - "027 004/005 shipped"
+  - "shared infrastructure autonomous dependency patching changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

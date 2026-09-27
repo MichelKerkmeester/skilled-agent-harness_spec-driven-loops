@@ -7,6 +7,7 @@ trigger_phrases:
   - "agent-config-deep-research-iter"
   - "SWE-1.6 iter contract cli-devin"
   - "deep-research executor enum"
+  - "memory and causal runtime cli devin deep loop alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

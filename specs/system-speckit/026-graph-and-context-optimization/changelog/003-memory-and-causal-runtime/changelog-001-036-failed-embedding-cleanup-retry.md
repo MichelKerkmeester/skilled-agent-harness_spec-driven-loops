@@ -6,6 +6,7 @@ trigger_phrases:
   - "repair failed embeddings zero rows"
   - "llama-cpp embedding status cleanup"
   - "memory_index failed row verification"
+  - "memory and causal runtime failed embedding cleanup retry changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

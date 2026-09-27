@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup",
+  "description": "Phase 9 handed two things to the operator or to later work",
+  "keywords": [
+    "phase",
+    "handed",
+    "two",
+    "things",
+    "operator",
+    "later",
+    "work"
+  ],
+  "lastUpdated": "2026-09-27T10:24:52.997Z",
+  "specId": "010",
+  "folderSlug": "review-advisories-and-codex-cleanup",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

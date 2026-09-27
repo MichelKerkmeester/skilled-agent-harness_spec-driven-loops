@@ -1,6 +1,6 @@
 ---
-title: "Warm-only CLI hook fallbacks and plugin bridges"
-description: "Runtime integrations for the 028 CLI program: prompt-time hooks in Claude and OpenCode adapters gain a warm-only CLI fallback (socket probe first, fast fail-open, no prompt-time cold spawn), and the OpenCode plugins route over CLI/IPC with zero in-process DB imports."
+title: "CLI hook fallbacks and plugin bridges"
+description: "Runtime integrations for the 028 CLI program: the Claude prompt hook gates casual prompts first, the CLI it calls owns daemon startup with a bounded cold start and a degraded local answer and the hook fails open without blocking the prompt, and the OpenCode plugins route over CLI/IPC with zero in-process DB imports."
 trigger_phrases:
   - "warm-only hook fallback"
   - "cli fallback hooks"
@@ -9,13 +9,13 @@ trigger_phrases:
 version: 3.6.0.1
 ---
 
-# Warm-only CLI hook fallbacks and plugin bridges
+# CLI hook fallbacks and plugin bridges
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
-A CLI nobody's runtime calls does not close the transport-down incident class, so every 028 CLI workstream shipped paired runtime integrations. Prompt-time hooks for Claude Code and OpenCode gained a shared warm-only CLI fallback helper per system: the hook probes the daemon socket first, uses the CLI when the daemon is warm, and fails open in about a millisecond when no socket exists. Cold spawn stays confined to SessionStart, explicit prewarm, cron, or non-prompt maintenance contexts.
+A CLI nobody's runtime calls does not close the transport-down incident class, so every 028 CLI workstream shipped paired runtime integrations. Prompt-time hooks for Claude Code and OpenCode gained a shared CLI fallback helper per system: the hook runs the casual-prompt gate first and passes the rest to a CLI that owns daemon startup. On a cold socket the CLI starts the launcher and waits for the daemon within a bounded cold-start window of at most 5 seconds, then falls back to the local Python scorer with a degraded answer when the daemon does not respond in that window. The hook fails open rather than blocking the prompt when its own budget ends first or the CLI fails.
 
 OpenCode gained a plugin route with a CLI fallback in `system-skill-advisor` that leaves the primary bridge path untouched. The bridge uses CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier revert cannot return.
 
@@ -25,13 +25,13 @@ The `spec-memory` and `code-index` halves of this integration were removed with 
 
 ## 2. HOW IT WORKS
 
-### Warm-only helpers per system
+### CLI fallback helpers per system
 
-`skill-advisor-cli-fallback.ts` (system-skill-advisor hooks) wraps the CLI with a socket probe and `--warm-only --timeout-ms` invocation. No socket means a fast fail-open return (measured around 1 ms; warm calls measured 117-198 ms), and the hook result simply omits the CLI-backed extras rather than blocking the prompt.
+`skill-advisor-cli-fallback.ts` (system-skill-advisor hooks) runs the CLI with `--no-warm-only --timeout-ms` (warm calls measured 117-198 ms) because the CLI is the only component that starts the daemon. On a cold socket the CLI starts the launcher and waits for the daemon within a bounded cold-start window of at most 5 seconds. If the daemon does not answer in that window `advisor_recommend` answers from the local Python scorer, marked degraded, and the hook shows `Advisor: stale`.
 
 ### Hook wiring
 
-The Claude and OpenCode `user-prompt-submit.ts` advisor hooks use the skill-advisor helper. The one-shot native bridge (measured 824.8 ms) stays banned from the prompt path.
+The Claude `user-prompt-submit.ts` advisor hook uses the skill-advisor helper and runs the casual-prompt gate first. `/help`, short acknowledgements such as `hello` and prompts below the length threshold return `skipped` with the status line `Advisor: prompt skipped.` and never reach the CLI. If the hook's own budget ends first or the CLI fails the hook fails open: it exits 0 and emits `Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json` above the directives block. It never blocks the prompt. The one-shot native bridge (measured 824.8 ms) stays banned from the prompt path.
 
 ### Allowlists and guidance
 
@@ -45,7 +45,7 @@ The Claude and OpenCode `user-prompt-submit.ts` advisor hooks use the skill-advi
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared warm-only skill-advisor CLI fallback |
+| `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper | Shared skill-advisor CLI fallback |
 | `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Hook adapter | Claude advisor hook with CLI fallback |
 | `.skilled/plugins/system-skill-advisor.js` | OpenCode plugin | Advisor plugin with CLI fallback routing |
 | `.opencode/settings.json` | Runtime config | OpenCode allowlist for CLI use |

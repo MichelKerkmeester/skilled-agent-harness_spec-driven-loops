@@ -129,10 +129,12 @@ function fakePi() {
   const registered = {};
   const commands = {};
   const notifications = [];
+  const sent = [];
   return {
     registered,
     commands,
     notifications,
+    sent,
     on(event, handler) {
       registered[event] = handler;
     },
@@ -157,8 +159,9 @@ function fakePi() {
         };
       }
     },
-    sendMessage() {
-      // Message delivery is asserted only through scoped state in these tests.
+    sendMessage(message, options) {
+      // Recorded so a test can check how a message would be delivered.
+      sent.push({ message, options });
     },
   };
 }
@@ -274,6 +277,33 @@ test('turn_end in one Pi session leaves the other session byte-equivalent', asyn
 
   assert.equal(core.showGoal(opts('session-a')).turnsUsed, 1);
   assert.equal(readFileSync(sessionBPath, 'utf8'), before);
+});
+
+test('turn_end sends its verify nudge without continuing the running turn', async () => {
+  const core = (await import(pathToFileURL(CORE_PATH).href)).default;
+  core.setGoal({ objective: 'Nudge delivery canary' }, opts('nudge-session'));
+
+  const mod = await import(pathToFileURL(REAL_EXTENSION_PATH).href);
+  const pi = fakePi();
+  mod.default(pi);
+  await pi.registered.turn_end(
+    {
+      type: 'turn_end',
+      turnIndex: 0,
+      message: { role: 'assistant', content: [{ type: 'text', text: 'Work continues.' }] },
+      toolResults: [],
+    },
+    fakeContext('nudge-session'),
+  );
+
+  const nudges = pi.sent.filter(({ message }) => message.customType === 'goal-verify-nudge');
+  assert.equal(nudges.length, 1, 'an unmet goal still surfaces one nudge');
+  // turn_end fires while Pi is still streaming. Default options steer the
+  // nudge into that run and continue it. triggerTurn false appends it after
+  // the final answer, which leaves print mode with nothing to print. Only a
+  // next-turn delivery does neither.
+  const { options } = nudges[0];
+  assert.equal(options?.deliverAs, 'nextTurn', `nudge options ${JSON.stringify(options)} would steer the run or bury its answer`);
 });
 
 test('missing Pi identity fails open without selecting or writing a goal', async () => {

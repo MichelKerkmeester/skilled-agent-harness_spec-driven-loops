@@ -7,6 +7,7 @@ trigger_phrases:
   - "supersedes burst cap"
   - "deltaByRelation dominantRelation"
   - "enforceRelationWindowCap"
+  - "release and program cleanup causal graph relation window metrics changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

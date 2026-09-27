@@ -5,6 +5,7 @@ trigger_phrases:
   - "001-release-readiness rollup"
   - "001-release-readiness phase parent"
   - "001-release-readiness changelog index"
+  - "release and program cleanup release readiness changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

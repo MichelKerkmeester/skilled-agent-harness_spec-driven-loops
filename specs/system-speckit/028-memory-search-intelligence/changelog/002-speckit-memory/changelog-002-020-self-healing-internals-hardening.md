@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Self-Healing Inter
 trigger_phrases:
   - "self-healing-internals-hardening changelog"
   - "former 014-self-healing-internals-hardening"
-  - "nested changelog"
+  - "speckit memory self healing internals hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "zero system-code-graph imports"
   - "shared code-graph contracts"
   - "readiness marker"
+  - "spec kit internals spec kit codegraph decoupling changelog"
 importance_tier: "critical"
 contextType: "implementation"
 ---

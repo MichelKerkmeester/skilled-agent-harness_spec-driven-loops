@@ -7954,7 +7954,8 @@ export const editLinesSchema = {
       type: 'integer',
       description: 'Total number of lines the file had when it was read. An edit is refused ' +
         'if the file no longer has this many lines, because inserted or removed lines shift ' +
-        'every line number below them.',
+        'every line number below them. A file ending in a newline has a final empty numbered ' +
+        'line; count it, as Pi does in its "of N" read notices.',
     },
     edits: {
       type: 'array',
@@ -7982,7 +7983,8 @@ export const editLinesSchema = {
             type: 'array',
             items: { type: 'string' },
             description: 'Optional hashes for every line from..to, in order, so an edit whose ' +
-              'interior drifted is refused rather than overwritten.',
+              'interior drifted is refused rather than overwritten. A non-empty list ' +
+              'must hold exactly one hash per line in the range.',
           },
         },
         required: ['from', 'from_hash', 'to', 'to_hash', 'new_text'],
@@ -8159,6 +8161,14 @@ export function validateEdits(
     );
   }
   if (claimedLineCount !== lines.length) {
+    if (claimedLineCount === lines.length - 1 && lines[lines.length - 1] === '') {
+      return (
+        `edit_lines: the final empty line at line ${lines.length} follows the file's final newline, ` +
+        'and the read numbers it too. ' +
+        `Retry with the file's count (${lines.length}) only if the read's last numbered line was ` +
+        `${lines.length}; otherwise use 'read' again to get fresh content with current hashes.`
+      );
+    }
     return (
       `edit_lines: the file has ${lines.length} lines but the read saw ${claimedLineCount}. ` +
       'Lines were inserted or removed since then, so every line number below the change has ' +
@@ -8178,6 +8188,17 @@ export function validateEdits(
         `(file has ${lines.length} lines).`;
     }
 
+    // A short list would leave its missing interior lines unchecked while the
+    // caller believes the whole range was verified, so a list must cover it all.
+    const span = toIdx - fromIdx + 1;
+    if (edit.line_hashes !== undefined && edit.line_hashes.length > 0 && edit.line_hashes.length !== span) {
+      return (
+        `edit_lines: line_hashes holds ${edit.line_hashes.length} hashes but lines ` +
+        `${edit.from}..${edit.to} span ${span}. Pass one hash per line in the range, ` +
+        'in order, or omit line_hashes.'
+      );
+    }
+
     // The range check above guarantees that the indexed line exists.
     const actualFromHash = lineHash(lines[fromIdx]!);
     if (actualFromHash !== edit.from_hash) {
@@ -8189,8 +8210,8 @@ export function validateEdits(
       );
     }
 
-    // Every line in the range is verified, not just the endpoints: a replacement
-    // whose interior drifted would otherwise be written over silently.
+    // Interior lines are verified only when the caller supplies line_hashes;
+    // otherwise the endpoint hashes and the file's line_count guard the range.
     for (let i = fromIdx + 1; i < toIdx; i++) {
       const interior = lineHash(lines[i]!);
       const claimed = edit.line_hashes?.[i - fromIdx];
@@ -8427,6 +8448,8 @@ export function registerHashVerifiedEdits(pi: ExtensionAPI): HashVerifiedEditSta
       "Prefer edit_lines for edits to files you've recently read with 'read'. The read output " +
       'includes per-line hashes (format: N:HHHHHHHH→content). Use these hashes with edit_lines ' +
       'to avoid character-perfect old_string reproduction.',
+      'A file ending in a newline has a final empty numbered line; count it, as Pi does in its ' +
+      '"of N" read notices.',
       "Use 'edit' only when you don't have a fresh read with hash annotations, or when you need " +
       'to match a specific string without line numbers.',
       'edit_lines and edit are different tools with different parameter shapes. edit_lines takes ' +

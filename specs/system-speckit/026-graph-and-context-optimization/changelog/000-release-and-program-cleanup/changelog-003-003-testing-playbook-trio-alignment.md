@@ -7,6 +7,7 @@ trigger_phrases:
   - "retention sweep playbook"
   - "advisor status rebuild playbook"
   - "code_graph read-path playbook"
+  - "release and program cleanup testing playbook trio alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

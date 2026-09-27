@@ -2,9 +2,7 @@
 title: "Changelog: Deep Review Migration [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review]"
 description: "Changelog for the deep review migration group: migrating the deep review loop onto the typed event-ledger substrate through seven concern children."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "deep review changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

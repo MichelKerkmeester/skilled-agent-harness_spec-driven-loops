@@ -357,6 +357,7 @@ describe('spec-doc-structure contract', () => {
     const result = runSpecDocStructureRule({ folder, level: '1', rule: 'SPEC_DOC_SUFFICIENCY' });
     expect(result.status).toBe('fail');
     expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_005' && d.severity === 'error')).toBe(true);
+    expect(result.details.some((d) => d.includes("section 3 of sk-create-goal's references/budget-and-handoff.md"))).toBe(true);
   });
 
   it('passes a phase parent goal at every size up to the one 4000-character limit', () => {
@@ -387,7 +388,7 @@ describe('spec-doc-structure contract', () => {
     writeGoalDoc(folder, { level: 'phase', sliceChars: 800, bindingRows: ['| 002-missing | `002-missing/goal.md` |'] });
     const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
     expect(result.status).toBe('fail');
-    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-missing/goal.md' which does not exist inside the packet");
+    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-missing/goal.md' which does not exist inside the packet. Author the child goal and its row with /create:goal <parent> phase-add, or child when the folder already exists.");
   });
 
   it('fails a missing binding target written as a markdown link, not only as a code span', () => {
@@ -399,7 +400,7 @@ describe('spec-doc-structure contract', () => {
     });
     const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
     expect(result.status).toBe('fail');
-    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-missing/goal.md' which does not exist inside the packet");
+    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-missing/goal.md' which does not exist inside the packet. Author the child goal and its row with /create:goal <parent> phase-add, or child when the folder already exists.");
   });
 
   it('accepts a binding target written as a markdown link when the child exists', () => {
@@ -423,7 +424,7 @@ describe('spec-doc-structure contract', () => {
     writeGoalDoc(folder, { level: 'phase', sliceChars: 800, bindingRows: ['| 002-escape | `002-escape/goal.md` |'] });
     const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
     expect(result.status).toBe('fail');
-    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-escape/goal.md' which does not exist inside the packet");
+    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-escape/goal.md' which does not exist inside the packet. Author the child goal and its row with /create:goal <parent> phase-add, or child when the folder already exists.");
   });
 
   it('accepts a non-canonical doc that omits the _memory block (continuity is single-source in implementation-summary.md)', () => {

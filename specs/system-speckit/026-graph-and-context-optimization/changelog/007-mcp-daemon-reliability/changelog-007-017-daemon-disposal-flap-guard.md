@@ -2,9 +2,7 @@
 title: "Changelog: Daemon disposal relaunch-flap guard [007-mcp-daemon-reliability/017-daemon-disposal-flap-guard]"
 description: "Chronological changelog for the Daemon disposal relaunch-flap guard phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability daemon disposal flap guard changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

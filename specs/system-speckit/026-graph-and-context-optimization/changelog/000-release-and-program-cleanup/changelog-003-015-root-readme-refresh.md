@@ -7,6 +7,7 @@ trigger_phrases:
   - "evergreen readme cleanup"
   - "readme tool count correction"
   - "015-root-readme-refresh changelog"
+  - "release and program cleanup root readme refresh changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

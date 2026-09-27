@@ -7,6 +7,7 @@ trigger_phrases:
   - "deep-review resource map"
   - "deep-research resource map"
   - "extract-from-evidence cjs"
+  - "spec kit internals resource map deep loop integration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

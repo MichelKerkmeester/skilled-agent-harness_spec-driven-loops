@@ -7,6 +7,7 @@ trigger_phrases:
   - "task-intent backend-routing schema"
   - "intent classifier stability corpus"
   - "emitIntentTelemetry paraphraseGroup"
+  - "release and program cleanup intent classifier stability telemetry changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

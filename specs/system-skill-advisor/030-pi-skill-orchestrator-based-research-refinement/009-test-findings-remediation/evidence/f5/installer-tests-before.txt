@@ -1,0 +1,35 @@
+▶ install-codex-hooks treats .skilled and .opencode adapter paths as one owned hook
+  ✔ today: installed under .opencode, source under .opencode (1982.576125ms)
+  ✔ today: installed under .opencode, source under .skilled (245.235833ms)
+  ✔ today: installed under .skilled, source under .opencode (441.196209ms)
+  ✔ today: installed under .skilled, source under .skilled (240.901792ms)
+  ✔ skilled-only: installed under .opencode, source under .opencode (239.51175ms)
+  ✔ skilled-only: installed under .opencode, source under .skilled (243.654292ms)
+  ✔ skilled-only: installed under .skilled, source under .opencode (246.765542ms)
+  ✔ skilled-only: installed under .skilled, source under .skilled (258.230333ms)
+  ✔ whole-link: installed under .opencode, source under .opencode (309.427125ms)
+  ✔ whole-link: installed under .opencode, source under .skilled (244.936042ms)
+  ✔ whole-link: installed under .skilled, source under .opencode (234.527958ms)
+  ✔ whole-link: installed under .skilled, source under .skilled (248.071167ms)
+✔ install-codex-hooks treats .skilled and .opencode adapter paths as one owned hook (4936.300917ms)
+▶ install-codex-hooks removes an orphaned hook spelled under either source-root name
+  ✔ today: orphan installed under .opencode (165.730459ms)
+  ✔ today: orphan installed under .skilled (238.303792ms)
+  ✔ skilled-only: orphan installed under .opencode (239.694125ms)
+  ✔ skilled-only: orphan installed under .skilled (169.918417ms)
+  ✔ whole-link: orphan installed under .opencode (175.773917ms)
+  ✔ whole-link: orphan installed under .skilled (178.065583ms)
+✔ install-codex-hooks removes an orphaned hook spelled under either source-root name (1167.928209ms)
+▶ install-codex-hooks writes commands under the source root the checkout holds
+  ✔ today: source spelled .skilled installs under .opencode (234.810791ms)
+  ✔ skilled-only: source spelled .opencode installs under .skilled (240.457ms)
+  ✔ whole-link: source spelled .opencode installs under .skilled (234.898375ms)
+✔ install-codex-hooks writes commands under the source root the checkout holds (710.30775ms)
+ℹ tests 21
+ℹ suites 3
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6857.539

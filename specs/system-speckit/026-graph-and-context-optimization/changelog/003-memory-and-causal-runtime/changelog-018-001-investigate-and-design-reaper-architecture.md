@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar accumulation root cause"
   - "owner-liveness gc design"
   - "rerank sidecar lifecycle map"
+  - "memory and causal runtime investigate and design reaper architecture changelog"
 importance_tier: "important"
 contextType: "research"
 ---

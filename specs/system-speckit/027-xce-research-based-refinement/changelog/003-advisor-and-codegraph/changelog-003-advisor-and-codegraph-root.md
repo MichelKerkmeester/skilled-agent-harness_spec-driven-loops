@@ -1,6 +1,10 @@
 ---
 title: "Changelog Rollup — Track 003: Advisor and Code Graph"
-trigger_phrases: []
+description: "Top rollup for the 003-advisor-and-codegraph/ themed track. Each row links to a phase changelog (or that phase's own rollup)."
+trigger_phrases:
+  - "advisor and codegraph changelog"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 # Changelog Rollup — Track 003: Advisor and Code Graph
 

@@ -44,7 +44,7 @@ Practical rule:
 
 - if the changelog is for users of a component, write global
 - if the changelog is for a spec packet's internal completion trail, write packet-local
-- the real folders under `.skilled/changelog/` are plain component names. The older `00--` umbrella-folder convention is stale
+- the real folders under `.skilled/changelog/` are plain component names. One is not a skill: `skilled` is the framework release line, and the workflow writes there only when the operator names it
 
 For multi-component tie-breaks (dominant component over 60 percent of changed files, roughly-equal components resolved by highest file count with secondaries noted, or no match at all so you pause and ask) follow the component selection rules in `../SKILL.md` §6 rather than guessing a folder.
 
@@ -64,7 +64,7 @@ The shared template and the YAML command surface are reconciled on the v4 narrat
 
 ## 6. OPTIONAL GITHUB RELEASE FLOW
 
-The command surface supports a `--release` flag and a `publish_release` setup field.
+The command surface supports a `--release` flag and a `publish_release` setup field. Only the `skilled` release line publishes.
 
 Known behavior from sources:
 
@@ -76,9 +76,10 @@ Known behavior from sources:
 Defined by `step_7_publish_release` in both command YAMLs:
 
 - the tag name is `v{next_version}`, the same version the changelog file was written under
-- the commands are `git tag -a {release_tag}`, `git push origin {release_tag}` and `gh release create {release_tag} --title "{release_tag} -- {primary_component}" --notes-file {notes_file}`
+- the commands are `git tag -a {release_tag}`, `git push origin {release_tag}` and `gh release create {release_tag} --title "{release_title}" --notes-file {notes_file}`, where `release_title` is the tag followed by the entry's editorial title
 - the release publishes immediately, with no draft stage
 - packet-local changelogs never publish a release, because they have no repo-wide version to tag
+- any component other than `skilled` skips the release, because a component version never becomes a repository tag
 
 Use `--release` only after the changelog file path, component, and version are resolved. `:confirm` shows the exact commands and runs them only after approval. `:auto` runs them when `publish_release` is true and warns when the changelog file is not yet committed, because the tag points at the current HEAD.
 

@@ -7,6 +7,7 @@ trigger_phrases:
   - "speckit_cross_encoder mps hold"
   - "rerank-sidecar mps bench verdict"
   - "008-rerank-sidecar 007 mps"
+  - "memory and causal runtime spec memory mps rerank promotion changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

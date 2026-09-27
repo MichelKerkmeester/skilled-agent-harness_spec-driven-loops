@@ -7,6 +7,7 @@ trigger_phrases:
   - "tool resource routing evidence"
   - "derived generated affordance scoring"
   - "graph causal affordance edges"
+  - "graph impact and affordance skill advisor affordance evidence changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

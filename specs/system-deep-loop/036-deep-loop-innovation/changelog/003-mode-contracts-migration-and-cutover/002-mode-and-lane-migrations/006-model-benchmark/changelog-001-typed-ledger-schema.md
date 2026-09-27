@@ -2,9 +2,7 @@
 title: "Changelog: Model Benchmark Typed Ledger Schema [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema]"
 description: "Changelog for the model benchmark typed ledger schema phase: the typed append-only event vocabulary for the model-benchmark variant."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "model benchmark typed ledger schema changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

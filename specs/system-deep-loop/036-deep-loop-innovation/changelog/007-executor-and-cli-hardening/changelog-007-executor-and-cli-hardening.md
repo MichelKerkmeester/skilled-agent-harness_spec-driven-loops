@@ -2,9 +2,7 @@
 title: "Changelog: Executor and CLI Hardening [007-executor-and-cli-hardening]"
 description: "CLI adapter stress and playbooks, executor wiring and parity, write-containment hardening, deep-alignment integrity, trustworthy state records, residual finding closeouts, and cli-devin executor repair."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "executor and cli hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

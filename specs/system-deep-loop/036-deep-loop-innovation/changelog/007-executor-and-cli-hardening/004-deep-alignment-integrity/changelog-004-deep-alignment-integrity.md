@@ -2,9 +2,7 @@
 title: "Changelog: Deep-Alignment Integrity [007-executor-and-cli-hardening/004-deep-alignment-integrity]"
 description: "Group the deep-alignment loop integrity fixes: a trustworthy findings-registry seal state and a contained multi-executor path."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "deep alignment integrity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

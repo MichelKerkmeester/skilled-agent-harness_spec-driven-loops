@@ -2,9 +2,7 @@
 title: "Changelog: Versioned Event Envelope [002-substrate-and-orchestration/002-transition-authorized-ledger-core/001-versioned-event-envelope]"
 description: "Changelog for the versioned event envelope phase: canonical wire envelope, type/version registry, required-field contracts, and deterministic upcaster entry points for the dark ledger substrate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "transition authorized ledger core versioned event envelope changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

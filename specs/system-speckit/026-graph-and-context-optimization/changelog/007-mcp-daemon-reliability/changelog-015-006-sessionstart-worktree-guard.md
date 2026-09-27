@@ -7,6 +7,7 @@ trigger_phrases:
   - "sessionstart worktree guard"
   - "worktree-guard hook wiring"
   - "035 backstop sessionstart"
+  - "mcp daemon reliability sessionstart worktree guard changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "jina encode path fix"
   - "OllamaProvider shared factory"
   - "016/002/006 changelog"
+  - "memory and causal runtime ollama encode path wiring changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

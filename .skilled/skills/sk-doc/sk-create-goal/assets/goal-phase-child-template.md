@@ -7,7 +7,7 @@ trigger_phrases:
   - "nested phase goal"
   - "phase-add child goal"
 importance_tier: important
-contextType: reference
+contextType: general
 version: 1.1.0.0
 ---
 
@@ -22,7 +22,7 @@ Use this blank for a direct phase child of a phase parent. It is the system-spec
 - **Use it for** the `child` operation, the new child goal in a `phase-add` and a `retrofit` of a child.
 - **Scaffolded children.** `create.sh --phase --with-goal` already writes this structure into each child. Fill that file with the guidance here instead of pasting a second copy.
 - **Parent first.** Parent decisions bind this phase and are not restated. A change that alters a parent decision or criterion is a parent amendment: make it in the parent first, then resend the parent.
-- **Budget.** A child goal is exempt from the 4,000-character limit, but keep it short. The parent's binding row is what points a session here.
+- **Budget.** A child goal that is not itself a phase parent is exempt from the 4,000-character limit, but keep it short. A child with phase children of its own is a phase parent and carries the cap, as section 2 of [`../references/budget-and-handoff.md`](../references/budget-and-handoff.md) says. The parent's binding row is what points a session here.
 - **Parents** use [`goal-phase-parent-template.md`](goal-phase-parent-template.md).
 - **How to fill it.** Copy the block between the markers to `<packet>/goal.md`. Replace every bracketed placeholder with text from the packet's own `spec.md` and acceptance criteria, following [`../references/authoring-standards.md`](../references/authoring-standards.md). Remove unused placeholder rows.
 - **Where it comes from.** The block is a checked copy of system-spec-kit's [`goal.md.tmpl`](../../../system-spec-kit/templates/addons/goal.md.tmpl). Only the placeholder wording differs. `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` fails when the fixed text of the two drifts apart. When `goal.md.tmpl` changes, re-render it and carry the new fixed text into all three templates.
@@ -64,16 +64,7 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
-
-> Everything between the frontmatter and the log is the DURABLE SLICE: it is
-> what an operator sets as the session objective, and it must stay true for the
-> life of the packet. The frontmatter above it is bookkeeping and never leaves
-> this file: it is not sent in chat, not injected, not stored in an objective.
-> Keep the slice short. A phase parent or top-level packet has one limit, 4000
-> characters, measured from the frontmatter's closing fence to the log anchor.
-> Up to 4000 passes and past it fails; the runtime goal surfaces cap what they
-> hold, and a truncated objective loses its tail, which is where the criteria
-> live.
+<!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
 ---
 
@@ -90,28 +81,12 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | [A choice local to this phase. Parent decisions already bind it and are not restated here] |
 
-### Operator copy
-
-The operator holds this directive as the session objective, and that copy is
-what judges completion, not this file. Whenever anything above the log changes
-(objective, a decision, the binding table, a criterion), resend this file's
-chat slice so the operator can update their copy. The chat slice is the
-durable slice without its frontmatter, HTML comments, anchor markers, `---`
-dividers or heading section numbers, and `goal.cjs packet` prints it as
-`chat_slice`. Never send more than 4000 characters: cut this file first. Keep
-reminding while the copy stays unset, and never stop work for it. A child goal
-change that alters a parent decision or criterion is an amendment to the
-parent: apply it there first, then resend the parent.
 <!-- /ANCHOR:directive -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
-
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
 
 - [ ] [A check on this phase's own output, answered by an exit code, a count or a named artifact]
 - [ ] [Another check that needs no other file to answer]
@@ -152,7 +127,7 @@ and findings belong here.
 | `SPECKIT_TEMPLATE_SOURCE: goal \| v2.2` | Validators recognize a goal file by this marker |
 | Anchors | `goal.cjs` cuts the durable slice and the log at the anchors, so every anchor stays where it is |
 | Headings | Same text and numbers as `goal.md.tmpl`, including the section numbering. A child goal has no binding section, so the numbers run 1, 3, 4 |
-| Fixed prose | The blockquote, the operator-copy paragraph and the criteria and log introductions are system-spec-kit wording and stay word for word |
+| Fixed prose | The decisions line and the log introduction are system-spec-kit wording and stay word for word. Nothing above the log addresses the author, so add no instructions there |
 | No binding section | The parent holds the only binding table |
 ---
 

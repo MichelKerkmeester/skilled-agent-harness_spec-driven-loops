@@ -7,6 +7,7 @@ trigger_phrases:
   - "018 dfidf follow-on"
   - "DFIDF cache reuse"
   - "corpus mtime invalidation"
+  - "spec kit internals dfidf cold start cache changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

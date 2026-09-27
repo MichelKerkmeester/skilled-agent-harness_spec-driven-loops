@@ -2,9 +2,7 @@
 title: "Changelog: Phase 8: deep-loop-runtime Frontmatter Alignment [009-skill-frontmatter-alignment/008-deep-loop-runtime]"
 description: "Chronological changelog for the Phase 8: deep-loop-runtime Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup deep loop runtime changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

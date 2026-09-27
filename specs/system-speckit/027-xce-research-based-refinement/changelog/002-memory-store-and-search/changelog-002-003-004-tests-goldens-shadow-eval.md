@@ -7,6 +7,7 @@ trigger_phrases:
   - "shadow eval promotion gate"
   - "union promotion blocked"
   - "semantic trigger closeout"
+  - "memory store and search tests goldens shadow eval changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

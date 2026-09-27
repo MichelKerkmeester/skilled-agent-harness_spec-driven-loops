@@ -7,6 +7,7 @@ trigger_phrases:
   - "local owner artifact rollback"
   - "deep loop packet migration"
   - "review-research-paths rollback"
+  - "spec kit internals reverse parent research review folders changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Shadow-Parity Harness [002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness]"
 description: "Changelog for the shadow-parity harness phase: fail-closed harness that proves legacy and dark paths produce identical results on sealed inputs."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "compatibility shadow and rollback bridge shadow parity harness changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

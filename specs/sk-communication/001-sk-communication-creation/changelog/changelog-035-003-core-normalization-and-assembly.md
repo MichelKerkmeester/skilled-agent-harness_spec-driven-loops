@@ -2,9 +2,7 @@
 title: "Changelog: Phase 003 Core Normalization and Assembly [035-improved-communication/003-core-normalization-and-assembly]"
 description: "Chronological changelog for the Phase 003 Core Normalization and Assembly phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "sk communication creation core normalization and assembly changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

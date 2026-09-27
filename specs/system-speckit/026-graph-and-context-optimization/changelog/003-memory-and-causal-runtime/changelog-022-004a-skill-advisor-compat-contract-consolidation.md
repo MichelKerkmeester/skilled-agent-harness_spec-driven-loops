@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill-advisor threshold single source"
   - "SKILL_ADVISOR_COMPAT_CONTRACT defaults"
   - "confidence uncertainty threshold dedup"
+  - "memory and causal runtime skill advisor compat contract consolidation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

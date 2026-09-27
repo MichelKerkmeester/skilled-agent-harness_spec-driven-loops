@@ -7,6 +7,7 @@ trigger_phrases:
   - "_routes.yaml manifest"
   - "route-validate.sh"
   - "argv-positional doctor routing"
+  - "operator tooling consolidate doctor router implementations changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

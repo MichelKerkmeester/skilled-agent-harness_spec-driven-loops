@@ -8,6 +8,7 @@ trigger_phrases:
   - "advisor ipc socket hardening"
   - "scan lease heartbeat fix"
   - "verify-first batch fix shipped"
+  - "release and program cleanup scouted bugfix batch 1 changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

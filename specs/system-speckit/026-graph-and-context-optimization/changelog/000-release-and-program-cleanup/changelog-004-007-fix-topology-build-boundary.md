@@ -7,6 +7,7 @@ trigger_phrases:
   - "dist alignment checker orphan"
   - "F-019-D4-03 phase parent health"
   - "F-020-D5-01 cache signature snake case"
+  - "release and program cleanup fix topology build boundary changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

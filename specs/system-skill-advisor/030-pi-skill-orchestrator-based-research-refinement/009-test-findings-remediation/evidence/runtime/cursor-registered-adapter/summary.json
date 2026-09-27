@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "runtimes": {
+    "claude": {
+      "passed": true,
+      "checks": {
+        "firstFull": true,
+        "repeatRouteOnly": true,
+        "shrinkFull": true,
+        "killSwitchFull": true,
+        "unknownNeverRouteOnly": true
+      },
+      "hostDeliveryStatus": "adapter-driven-only"
+    },
+    "codex": {
+      "passed": true,
+      "checks": {
+        "firstFull": true,
+        "repeatRouteOnly": true,
+        "shrinkFull": true,
+        "killSwitchFull": true,
+        "unknownNeverRouteOnly": true
+      },
+      "hostDeliveryStatus": "adapter-driven-only"
+    },
+    "cursor": {
+      "passed": true,
+      "checks": {
+        "firstFull": true,
+        "repeatRouteOnly": true,
+        "shrinkFull": true,
+        "killSwitchFull": true,
+        "unknownNeverRouteOnly": true
+      },
+      "hostDeliveryStatus": "adapter-pass-host-dormant-unconfirmed"
+    },
+    "devin": {
+      "passed": true,
+      "checks": {
+        "firstFull": true,
+        "repeatRouteOnly": true,
+        "shrinkFull": true,
+        "killSwitchFull": true,
+        "unknownNeverRouteOnly": true
+      },
+      "hostDeliveryStatus": "historical-host-live-current-adapter-driven"
+    }
+  }
+}

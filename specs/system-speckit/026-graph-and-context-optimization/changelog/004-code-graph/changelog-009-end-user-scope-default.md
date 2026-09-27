@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 009 changelog"
   - "default scope changelog"
   - "end-user scope code-graph"
+  - "code graph end user scope default changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

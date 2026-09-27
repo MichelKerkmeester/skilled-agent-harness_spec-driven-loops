@@ -7,6 +7,7 @@ trigger_phrases:
   - "cross-cutting path catalog template"
   - "resource-map.md template wiring"
   - "level-agnostic template"
+  - "spec kit internals resource map template creation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

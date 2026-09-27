@@ -7,6 +7,7 @@ trigger_phrases:
   - "rerank sidecar env allowlist"
   - "config hash input validation"
   - "sidecar env allowlist alignment"
+  - "memory fix deferred p2s for env and config behavior changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

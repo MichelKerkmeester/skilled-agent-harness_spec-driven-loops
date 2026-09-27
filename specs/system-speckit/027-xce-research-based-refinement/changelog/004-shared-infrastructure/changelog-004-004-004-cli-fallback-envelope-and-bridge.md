@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/004 004 fallback envelope changelog"
   - "warm CLI fallback envelope"
   - "spec memory bridge allowlist"
+  - "shared infrastructure cli fallback envelope and bridge changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

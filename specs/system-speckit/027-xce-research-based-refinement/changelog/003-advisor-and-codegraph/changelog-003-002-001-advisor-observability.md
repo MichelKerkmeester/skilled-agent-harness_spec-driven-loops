@@ -5,6 +5,7 @@ trigger_phrases:
   - "003/002 001 advisor observability changelog"
   - "advisor why recommended"
   - "semantic lane health"
+  - "advisor and codegraph advisor observability changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

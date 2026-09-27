@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor refinement deep review"
   - "phase 5 implementation review"
   - "B6 fix batch review"
+  - "code review 015 code graph advisor refinement pt 01 changelog"
 importance_tier: "normal"
 contextType: "review"
 ---

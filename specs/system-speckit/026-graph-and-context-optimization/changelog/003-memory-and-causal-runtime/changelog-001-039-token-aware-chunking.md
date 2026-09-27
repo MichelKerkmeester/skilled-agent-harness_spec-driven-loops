@@ -7,6 +7,7 @@ trigger_phrases:
   - "llama-cpp token budget truncation"
   - "039 token-aware chunking"
   - "trainContextSize embedding guard"
+  - "memory and causal runtime token aware chunking changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

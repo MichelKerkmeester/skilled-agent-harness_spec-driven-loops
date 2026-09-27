@@ -1,0 +1,96 @@
+HEAD plugin copy: git show HEAD:.hermes/plugins/repo-guards/__init__.py > head_repo_guards.py
+Runner (loads the copy with __file__ set to the real plugin path, so REPO_ROOT and core paths match):
+  | """Run the repo-guards tests with the plugin loaded from HEAD's copy instead of the working tree."""
+  | import importlib.util
+  | import sys
+  | import types
+  | import unittest
+  | from pathlib import Path
+  | 
+  | REPO = Path(sys.argv[1])
+  | HEAD_COPY = Path(sys.argv[2])
+  | NAMES = sys.argv[3:]
+  | sys.path.insert(0, str(REPO / ".hermes/plugins/repo-guards/tests"))
+  | import test_repo_guards as suite  # noqa: E402
+  | 
+  | 
+  | def load_head_plugin():
+  |     module = types.ModuleType("repo_guards")
+  |     # The copy resolves REPO_ROOT and every core path from __file__, so it runs as if in place.
+  |     module.__file__ = str(suite.PLUGIN_DIR / "__init__.py")
+  |     exec(compile(HEAD_COPY.read_text(encoding="utf-8"), str(HEAD_COPY), "exec"), module.__dict__)
+  |     return module
+  | 
+  | 
+  | suite._load_plugin = load_head_plugin
+  | loader = unittest.TestLoader()
+  | tests = unittest.TestSuite(loader.loadTestsFromName(f"RepoGuardsTests.{name}", suite) for name in NAMES)
+  | result = unittest.TextTestRunner(verbosity=2).run(tests)
+  | sys.exit(0 if result.wasSuccessful() else 1)
+
+$ python3 run_against_head.py <repo> head_repo_guards.py <three new tests>
+test_goal_section_binds_the_environment_packet_before_its_first_render (test_repo_guards.RepoGuardsTests) ... FAIL
+test_goal_section_injects_the_rendered_brief_and_never_the_raw_report (test_repo_guards.RepoGuardsTests) ... FAIL
+test_goal_fallback_leaks_no_frontmatter_behind_a_bom_or_leading_comments (test_repo_guards.RepoGuardsTests) ... FAIL
+
+======================================================================
+FAIL: test_goal_section_binds_the_environment_packet_before_its_first_render (test_repo_guards.RepoGuardsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.hermes/plugins/repo-guards/tests/test_repo_guards.py", line 594, in test_goal_section_binds_the_environment_packet_before_its_first_render
+    self.assertTrue(text.startswith("[active_goal:"), text[:200])
+AssertionError: False is not true : Bound packet: specs/demo/001-demo
+
+# Goal: demo
+
+**Objective:** Ship the demo.
+
+<!-- ANCHOR:completion -->
+## DONE WHEN
+
+- [ ] The demo ships
+<!-- /ANCHOR:completion -->
+
+======================================================================
+FAIL: test_goal_section_injects_the_rendered_brief_and_never_the_raw_report (test_repo_guards.RepoGuardsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.hermes/plugins/repo-guards/tests/test_repo_guards.py", line 611, in test_goal_section_injects_the_rendered_brief_and_never_the_raw_report
+    self.assertNotIn(report_field, text)
+AssertionError: 'STATUS=OK' unexpectedly found in 'STATUS=OK ACTION=show\ngoal_present=true\ngoal_id=goal-685e8a31-6a4b-4982-8620-688f5b227897\nstatus=active\nobjective="Execute specs/demo/001-demo/goal.md. DONE WHEN: - The demo ships"\ngoal_prompt="Role: Focused hermes execution agent operating under the active session goal.\\nObjective: Execute specs/demo/001-demo/goal.md.\\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\\nMethod:\\n- Restate the concrete completion condition from available evidence before acting.\\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\\nSuccess Criteria:\\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\\n- Required verification has run, or any inability to run it is reported with the exact blocker.\\n- Status output distinguishes confirmed evidence from inference.\\nStop Conditions:\\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\\n- If blocked, preserve state and name the next safe action."\ntoken_budget=none\nturns_used=0\ntokens_used=0\nusage_source=turn-count-estimate\ncreated_at_ms=1790454119759\nupdated_at_ms=1790454119759\nruntime=hermes\nlast_check=not_evaluated\nverifier_reason=""\ninjection_preview="[active_goal:goal-685e8a31-6a4b-4982-8620-688f5b227897]\\nstatus: active\\nobjective: Execute specs/demo/001-demo/goal.md.\\ncriteria:\\n- The demo ships\\ngoal_prompt:\\nRole: Focused hermes execution agent operating under the active session goal.\\nObjective: Execute specs/demo/001-demo/goal.md.\\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\\nMethod:\\n- Restate the concrete completion condition from available evidence before acting.\\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\\nSuccess Criteria:\\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\\n- Required verification has run, or any inability to run it is reported with the exact blocker.\\n- Status output distinguishes confirmed evidence from inference.\\nStop Conditions:\\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\\n- If blocked, preserve state and name the next safe action.\\nlast_check: not_evaluated ; reason: none\\nusage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)\\ndirective: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.\\n[/active_goal]"\npacket_path="specs/demo/001-demo"\npacket_state=bound\npacket_bound=true'
+
+======================================================================
+FAIL: test_goal_fallback_leaks_no_frontmatter_behind_a_bom_or_leading_comments (test_repo_guards.RepoGuardsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.hermes/plugins/repo-guards/tests/test_repo_guards.py", line 621, in test_goal_fallback_leaks_no_frontmatter_behind_a_bom_or_leading_comments
+    self.assertNotIn(FRONTMATTER_MARKER, text, repr(lead))
+AssertionError: 'frontmatter-only-marker' unexpectedly found in 'Bound packet: specs/demo/001-demo\n\n\ufeff---\ntitle: "Goal: demo"\nleak_check: "frontmatter-only-marker"\n---\n# Goal: demo\n\n**Objective:** Ship the demo.\n\n<!-- ANCHOR:completion -->\n## DONE WHEN\n\n- [ ] The demo ships\n<!-- /ANCHOR:completion -->' : '\ufeff'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.201s
+
+FAILED (failures=3)
+EXIT=1
+
+===== Mutation: current plugin with only _session_id reverted to isinstance(session_info, dict) =====
+$ python3 run_against_head.py <repo> mutant_dict_only.py test_goal_section_binds_the_environment_packet_before_its_first_render
+test_goal_section_binds_the_environment_packet_before_its_first_render (test_repo_guards.RepoGuardsTests) ... FAIL
+
+======================================================================
+FAIL: test_goal_section_binds_the_environment_packet_before_its_first_render (test_repo_guards.RepoGuardsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.hermes/plugins/repo-guards/tests/test_repo_guards.py", line 594, in test_goal_section_binds_the_environment_packet_before_its_first_render
+    self.assertTrue(text.startswith("[active_goal:"), text[:200])
+AssertionError: False is not true : Bound packet: specs/demo/001-demo
+
+Execute specs/demo/001-demo/goal.md.
+DONE WHEN:
+- The demo ships
+
+----------------------------------------------------------------------
+Ran 1 test in 0.061s
+
+FAILED (failures=1)
+EXIT=1

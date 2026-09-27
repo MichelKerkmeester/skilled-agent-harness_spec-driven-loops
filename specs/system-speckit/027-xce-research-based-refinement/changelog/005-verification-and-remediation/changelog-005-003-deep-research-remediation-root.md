@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/003 deep research remediation changelog"
   - "005/003 remediation lanes progress"
   - "single writer lock remediation"
+  - "verification and remediation deep research remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

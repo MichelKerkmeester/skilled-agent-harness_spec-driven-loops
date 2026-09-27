@@ -2,9 +2,7 @@
 title: "Changelog: Mode-Contracts Value Layer [012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer]"
 description: "F2 removal of the mode-contracts conformance engine with byte-identical relocation of matchesPreparedAuthorizationDecision and retention of mode-contract-types.ts plus substrate-ports.ts."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "delete overengineering mode contracts value layer changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

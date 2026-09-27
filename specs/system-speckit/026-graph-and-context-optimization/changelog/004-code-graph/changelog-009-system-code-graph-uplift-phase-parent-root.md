@@ -5,6 +5,7 @@ trigger_phrases:
   - "009-system-code-graph-uplift-phase-parent rollup"
   - "009-system-code-graph-uplift-phase-parent phase parent"
   - "009-system-code-graph-uplift-phase-parent changelog index"
+  - "code graph system code graph uplift phase parent changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

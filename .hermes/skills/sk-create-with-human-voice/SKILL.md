@@ -19,7 +19,7 @@ It takes prose you are writing or have written and brings it up to the Human Voi
 or reports how far off it is without touching a byte.
 
 **The standard lives here and exists exactly once**, at
-[`references/hvr-rules.md`](references/hvr-rules.md). This packet owns both halves: the
+[`references/hvr-rules.md`](../../../.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md). This packet owns both halves: the
 standard itself, and the workflow that applies it, meaning what may be touched, in what
 order, with what arithmetic, and how the result is proved. Nothing in this packet restates
 a rule the standard already carries, and no consumer holds a second copy.
@@ -246,9 +246,9 @@ is what changes, never the checks.
 
 ## 7. REFERENCES
 
-Routed by [`references/README.md`](references/README.md). Load
+Routed by [`references/README.md`](../../../.skilled/skills/sk-doc/sk-create-with-human-voice/references/README.md). Load
 `references/scope-and-exemptions.md` first on every path. The standard itself is
-[`references/hvr-rules.md`](references/hvr-rules.md), read rather than copied.
+[`references/hvr-rules.md`](../../../.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md), read rather than copied.
 
 ---
 
@@ -256,8 +256,8 @@ Routed by [`references/README.md`](references/README.md). Load
 
 | Resource | Purpose |
 |---|---|
-| [`references/hvr-rules.md`](references/hvr-rules.md) | The base. Voice directives, punctuation bans, structural patterns, term lists |
-| [`references/hvr-publish-supplement.md`](references/hvr-publish-supplement.md) | The supplement. Scoring, precedence, the pre-publish checklist and related resources |
-| [`README.md`](README.md) | What the mode does, why the scanner over-reports, and how to verify it |
-| [`scripts/hvr_scan.py`](scripts/hvr_scan.py) | The mechanical pass, parsed from the standard at run time |
-| [`../sk-create-quality-control/SKILL.md`](../sk-create-quality-control/SKILL.md) | The file-level audit whose HVR step this mode performs |
+| [`references/hvr-rules.md`](../../../.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md) | The base. Voice directives, punctuation bans, structural patterns, term lists |
+| [`references/hvr-publish-supplement.md`](../../../.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md) | The supplement. Scoring, precedence, the pre-publish checklist and related resources |
+| [`README.md`](../../../.skilled/skills/sk-doc/sk-create-with-human-voice/README.md) | What the mode does, why the scanner over-reports, and how to verify it |
+| [`scripts/hvr_scan.py`](../../../.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py) | The mechanical pass, parsed from the standard at run time |
+| [`../sk-create-quality-control/SKILL.md`](../../../.skilled/skills/sk-doc/sk-create-quality-control/SKILL.md) | The file-level audit whose HVR step this mode performs |

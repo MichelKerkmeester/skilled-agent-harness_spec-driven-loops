@@ -9,6 +9,7 @@ trigger_phrases:
   - "vector index logical key unique"
   - "hf-local persisted dim contract"
   - "13 fixes 22 files"
+  - "release and program cleanup scouted bugfix batch 2 changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

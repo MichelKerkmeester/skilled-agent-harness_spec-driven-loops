@@ -7,6 +7,7 @@ trigger_phrases:
   - "SearchDecisionEnvelope harness"
   - "telemetryExportPath harness option"
   - "stress test harness JSONL export"
+  - "release and program cleanup harness telemetry export mode changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

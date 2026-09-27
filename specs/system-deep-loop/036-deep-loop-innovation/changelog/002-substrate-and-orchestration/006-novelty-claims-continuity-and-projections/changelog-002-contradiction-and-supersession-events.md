@@ -2,9 +2,7 @@
 title: "Changelog: Contradiction & Supersession Events [002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events]"
 description: "Changelog for the contradiction and supersession events phase: first-class claim relationship ledger events with deterministic status projection."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "novelty claims continuity and projections contradiction and supersession events changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

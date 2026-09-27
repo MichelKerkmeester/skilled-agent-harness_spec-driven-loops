@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisory pre-commit hook speckit"
   - "copy-skill-advisor-dist-data"
   - "Z_SCORE_THRESHOLD comment update"
+  - "memory and causal runtime deferred closeout changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

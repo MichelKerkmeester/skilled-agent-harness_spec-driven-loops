@@ -7,6 +7,7 @@ trigger_phrases:
   - "sk-doc compliance sweep"
   - "19-skill alignment"
   - "skill library documentation sweep"
+  - "memory and causal runtime all skills alignment sweep changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

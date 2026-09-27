@@ -1,0 +1,19 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+Files:
+- `.skilled/bin/install-codex-hooks.mjs`
+- `.skilled/bin/tests/install-codex-hooks-source-root.test.cjs`
+
+Command:
+```bash
+node --check .skilled/bin/install-codex-hooks.mjs; echo "syntax_exit=$?"
+node --test .skilled/bin/tests/install-codex-hooks-source-root.test.cjs 2>&1 | tail -10; echo "test_exit=${PIPESTATUS[0]}"
+```
+
+Exit Code: syntax_exit=0, test_exit=0
+
+First Failing Assertion: N/A
+
+Summary: The installer is removal-only. `reconcileHooks` (`.skilled/bin/install-codex-hooks.mjs:138`) drops entries the project file owns and orphans under `.skilled/` or `.opencode/`, and deletes an event left with no groups (`:170`). It never appends. `analyzeDrift` (`:202`) treats a remaining owned entry as `duplicate` and a nameless change as `structure`. `main` (`:332`, `:344`) no longer reports `added`. The required `grep` printed nothing. Tests: `ℹ tests 19`, `ℹ pass 19`, `ℹ fail 0`.
+
+Out Of Scope: The usage comment still names `.opencode/bin/install-codex-hooks.mjs` (`install-codex-hooks.mjs:9`). Docs for the old outbound contract were left for the other brief. These edits are uncommitted; the orchestrator commits.

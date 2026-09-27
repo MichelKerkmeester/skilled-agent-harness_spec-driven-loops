@@ -7,6 +7,7 @@ trigger_phrases:
   - "forceZeroNodeReset"
   - "parse diagnostics code graph"
   - "code graph scan promotion guard"
+  - "code graph fix zero node and parser issues changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

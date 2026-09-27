@@ -7,6 +7,7 @@ trigger_phrases:
   - "context-index.sqlite canonical db"
   - "per-profile vector shard split"
   - "db-shard-migration"
+  - "memory and causal runtime canonical vector shard split changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

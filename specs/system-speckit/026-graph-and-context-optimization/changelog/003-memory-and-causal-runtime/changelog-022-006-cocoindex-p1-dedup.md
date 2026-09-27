@@ -7,6 +7,7 @@ trigger_phrases:
   - "COCOINDEX_RERANK_VIA_SIDECAR default"
   - "022/006 shipped"
   - "cocoindex hardcoded default remediation"
+  - "memory and causal runtime cocoindex p1 dedup changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

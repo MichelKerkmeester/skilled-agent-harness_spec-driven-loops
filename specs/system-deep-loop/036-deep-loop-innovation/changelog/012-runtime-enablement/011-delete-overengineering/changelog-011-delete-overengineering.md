@@ -2,9 +2,7 @@
 title: "Changelog: Delete Over-Engineering [012-runtime-enablement/011-delete-overengineering]"
 description: "Five dependency-ordered deletion waves removing second-order migration, rollback, and over-built runtime residue after all eight deep-loop modes finalized to new_authoritative_final — leaf removals, legacy-compat converters, mode-contracts value layer, rollout tooling, and authority-registry CAS reduction."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "delete overengineering changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

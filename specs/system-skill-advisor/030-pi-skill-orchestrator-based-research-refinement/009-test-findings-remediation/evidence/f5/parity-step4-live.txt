@@ -1,0 +1,75 @@
+# codex exec -C <checkout> --dangerously-bypass-hook-trust -s read-only, run 2026-09-27 from the primary checkout (parity step 4)
+# lines matching: session id | hook: (SessionStart|UserPromptSubmit|Stop)
+session id: 01a0e136-7cdc-73b1-8fa3-a135db3c5bbd
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart Failed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: Stop
+hook: Stop
+hook: Stop
+hook: Stop
+hook: Stop
+hook: Stop
+hook: Stop
+hook: Stop
+hook: Stop
+hook: Stop Completed
+hook: Stop Completed
+hook: Stop Completed
+hook: Stop Completed
+hook: Stop Completed
+hook: Stop Completed
+hook: Stop Completed
+hook: Stop Completed
+hook: Stop Completed
+# counts
+SessionStart started=16 completed=15 failed=1
+UserPromptSubmit started=7 completed=7 failed=0
+Stop started=9 completed=9 failed=0
+# gate state file written after the marker
+.skilled/skills/.state/spec-gate/30316130653133362d376364632d373362312d386661332d613133356462336335626264.json
+{"status":"open","askedAtMs":1790484842804}
+# hex name decodes to: 01a0e136-7cdc-73b1-8fa3-a135db3c5bbd

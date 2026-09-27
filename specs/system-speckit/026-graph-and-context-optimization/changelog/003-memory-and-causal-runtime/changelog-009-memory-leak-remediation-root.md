@@ -5,6 +5,7 @@ trigger_phrases:
   - "009-memory-leak-remediation rollup"
   - "009-memory-leak-remediation phase parent"
   - "009-memory-leak-remediation changelog index"
+  - "memory and causal runtime memory leak remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

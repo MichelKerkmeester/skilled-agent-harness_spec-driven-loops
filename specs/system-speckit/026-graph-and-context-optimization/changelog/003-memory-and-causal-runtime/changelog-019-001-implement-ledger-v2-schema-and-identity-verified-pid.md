@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar ledger owner identity"
   - "reaper ledger v2 foundation"
   - "reaper ledger cases fixture matrix"
+  - "memory implement ledger v2 schema and identity verified pid changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

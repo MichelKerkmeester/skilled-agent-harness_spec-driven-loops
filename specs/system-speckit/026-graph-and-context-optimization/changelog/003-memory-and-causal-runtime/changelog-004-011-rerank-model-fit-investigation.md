@@ -7,6 +7,7 @@ trigger_phrases:
   - "cross-encoder lexical density failure"
   - "path-class boost reranker research"
   - "mxbai jina reranker bench verdict"
+  - "memory and causal runtime rerank model fit investigation changelog"
 importance_tier: "important"
 contextType: "research"
 ---

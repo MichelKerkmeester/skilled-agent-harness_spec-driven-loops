@@ -7,6 +7,7 @@ trigger_phrases:
   - "canonical fingerprint chunk identity"
   - "memo dag dependency edges"
   - "027 002/002 001 changelog"
+  - "memory store and search incremental index foundation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

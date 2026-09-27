@@ -5,6 +5,7 @@ trigger_phrases:
   - "000 009 frontmatter changelog"
   - "skill frontmatter alignment campaign"
   - "355 docs frontmatter contract"
+  - "release cleanup skill frontmatter alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

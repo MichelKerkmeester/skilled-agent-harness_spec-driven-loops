@@ -7,6 +7,7 @@ trigger_phrases:
   - "svelte vue include patterns"
   - "sentence-transformers pin"
   - "upstream cocoindex delta classification"
+  - "memory and causal runtime upstream rebase spike changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

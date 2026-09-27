@@ -281,7 +281,8 @@ while [[ $i -le $# ]]; do
             echo "  --with-lazy-addons  Add before-after.md, timeline.md, roadmap.md, and decision-record.md"
             echo "                      (off by default; all are valid at every level)"
             echo "  --with-goal         Add goal.md, the durable directive an operator sets as the session objective"
-            echo "                      (off by default; valid at every level and on phase parents)"
+            echo "                      (off by default; valid at every level. With --phase it writes child goals only,"
+            echo "                      and --level phase-parent writes a parent goal. Author or amend goals with /create:goal)"
             echo "  --subfolder <path>  Create versioned sub-folder in existing spec folder"
             echo "                      Auto-increments version (001, 002, etc.)"
             echo "  --topic <name>      Topic name for sub-folder (used with --subfolder)"
@@ -292,6 +293,7 @@ while [[ $i -le $# ]]; do
             echo "  --phase-names <list>  Comma-separated names for child phases"
             echo "  --parent <path>     Add phases to existing parent spec folder (with --phase)"
             echo "  --phase-parent <path>  Alias for --parent in phase mode (supports nested specs/ paths)"
+            echo "                      Bind a new phase's goal with /create:goal <parent> phase-add"
             echo "                      Example: --phase-names \"foundation,implementation,integration\""
             echo "  --short-name <name> Provide a custom short name (2-4 words) for the branch"
             echo "  --number N          Specify branch number manually (overrides auto-detection)"
@@ -1482,11 +1484,14 @@ EOF
         _child_folder="${CHILD_FOLDERS[$((_i - 1))]}"
         _child_path="$FEATURE_DIR/$_child_folder"
         _child_created_files=()
+        # An appended child follows the parent's existing phases, so the text that
+        # names it carries its phase number, not its position in this invocation.
+        _phase_number=$((PHASE_START_INDEX + _i - 1))
 
         # Create child directory structure
         mkdir -p "$_child_path" "$_child_path/scratch"
         touch "$_child_path/scratch/.gitkeep"
-        create_graph_metadata_file "$_child_path" "Phase ${_i}: ${_child_folder#*-}" "planned"
+        create_graph_metadata_file "$_child_path" "Phase ${_phase_number}: ${_child_folder#*-}" "planned"
         _child_paths+=("$_child_path")
 
         # Copy Level 1 templates to child folder
@@ -1508,19 +1513,19 @@ EOF
           _phase_name="${_child_folder#*-}"  # strip numeric prefix
           # Use parent of FEATURE_DIR as base so parentChain includes the parent folder
           if node "$_DESC_SCRIPT" "$_child_path" "$(dirname "$FEATURE_DIR")" \
-            --description "Phase ${_i}: ${_phase_name}" --level "$CHILD_DOC_LEVEL" >&2; then
+            --description "Phase ${_phase_number}: ${_phase_name}" --level "$CHILD_DOC_LEVEL" >&2; then
             _child_created_files+=("description.json")
           else
-            echo "  Warning: description.json generation skipped for phase ${_i}" >&2
+            echo "  Warning: description.json generation skipped for phase ${_phase_number}" >&2
           fi
         else
-          report_missing_generator "description.json" "$_DESC_SCRIPT" "$BUILD_REMEDY" "phase ${_i}"
+          report_missing_generator "description.json" "$_DESC_SCRIPT" "$BUILD_REMEDY" "phase ${_phase_number}"
         fi
 
         # Inject parent back-reference into child spec.md
         _child_spec="$_child_path/spec.md"
         if [[ -f "$_child_spec" ]]; then
-            finalize_scaffold_templates "$_child_path" "$_child_folder" "Phase ${_i}: ${_child_folder#*-}"
+            finalize_scaffold_templates "$_child_path" "$_child_folder" "Phase ${_phase_number}: ${_child_folder#*-}"
 
             # Determine predecessor and successor
             if [[ $_i -eq 1 ]]; then
@@ -1649,7 +1654,8 @@ This is **Phase ${_phase_number}** of the ${FEATURE_DESCRIPTION} specification.
         echo "  Next steps:"
         echo "    1. Define phase scopes in parent spec.md Phase Documentation Map"
         echo "    2. Fill out each child spec.md with phase-specific requirements"
-        echo "    3. Use /spec_kit:plan on each phase folder for detailed planning"
+        echo "    3. Use /speckit:plan on each phase folder for detailed planning"
+        echo "    4. Author the parent goal and bind each phase goal with /create:goal <parent> phase-parent"
         echo ""
         echo "───────────────────────────────────────────────────────────────────"
     fi
@@ -1881,8 +1887,10 @@ else
     else
         echo "    5. Add on-demand docs with --with-lazy-addons when needed"
     fi
-    if ! $WITH_GOAL; then
-        echo "    6. Add goal.md with --with-goal when an operator will set this packet as a session objective"
+    if $WITH_GOAL; then
+        echo "    6. Fill goal.md with /create:goal"
+    else
+        echo "    6. Add goal.md with --with-goal or /create:goal when an operator will set this packet as a session objective"
     fi
     echo ""
     echo "───────────────────────────────────────────────────────────────────"

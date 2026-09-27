@@ -5,6 +5,7 @@ trigger_phrases:
   - "skill-advisor hardening changelog"
   - "skill-advisor phase 2 changelog"
   - "tri-daemon drill changelog"
+  - "shared infrastructure skill advisor hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "savemode refactor memory save"
   - "trigger phrase sanitizer memory"
   - "post save review guardrails"
+  - "memory and causal runtime fix memory quality changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

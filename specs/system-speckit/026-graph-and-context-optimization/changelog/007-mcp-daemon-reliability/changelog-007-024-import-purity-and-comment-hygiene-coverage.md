@@ -2,9 +2,7 @@
 title: "Changelog: Import purity and comment-hygiene checker coverage [007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage]"
 description: "Chronological changelog for the Import purity and comment-hygiene checker coverage phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability import purity and comment hygiene coverage changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

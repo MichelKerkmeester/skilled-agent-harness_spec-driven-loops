@@ -2,9 +2,7 @@
 title: "Changelog: Applied Source & Doc Fixes [011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes]"
 description: "Chronological changelog for the Applied Source & Doc Fixes phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph applied source and doc fixes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

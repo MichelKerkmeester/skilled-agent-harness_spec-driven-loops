@@ -8,6 +8,7 @@ trigger_phrases:
   - "reviewer read-budget discipline"
   - "anti-verdict-softening"
   - "SPECKIT_COMPLETION_FRESHNESS"
+  - "research and doctrine peck verification discipline changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

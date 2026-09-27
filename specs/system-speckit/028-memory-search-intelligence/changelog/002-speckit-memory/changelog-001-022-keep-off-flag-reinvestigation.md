@@ -2,9 +2,7 @@
 title: "Changelog: Keep-Off Flag Resolution and Deep-Review Validation [001-speckit-memory/022-keep-off-flag-reinvestigation]"
 description: "Chronological changelog for the keep-off flag resolution reckoning: keep 5 default-on, delete 10 and their code, plus the deep-review validation arc."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory keep off flag reinvestigation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

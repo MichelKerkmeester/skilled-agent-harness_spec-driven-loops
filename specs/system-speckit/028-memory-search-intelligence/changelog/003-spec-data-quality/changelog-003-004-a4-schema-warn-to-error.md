@@ -2,9 +2,7 @@
 title: "Changelog: A4 Schema Warn to Error [003-spec-data-quality/001-on-write-quality/004-schema-warn-to-error]"
 description: "Chronological changelog for the A4 Schema Warn to Error phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a4 schema warn to error changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

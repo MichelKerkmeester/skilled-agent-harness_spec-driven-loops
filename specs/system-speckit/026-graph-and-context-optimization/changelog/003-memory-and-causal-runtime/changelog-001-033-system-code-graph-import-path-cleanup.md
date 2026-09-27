@@ -7,6 +7,7 @@ trigger_phrases:
   - "finalize-dist mjs postbuild"
   - "tsconfig rootDir shared import fix"
   - "033 import path cleanup"
+  - "memory and causal system code graph import path cleanup changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

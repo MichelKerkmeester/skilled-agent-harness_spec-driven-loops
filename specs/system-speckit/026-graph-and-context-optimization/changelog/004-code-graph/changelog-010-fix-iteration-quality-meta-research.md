@@ -8,6 +8,7 @@ trigger_phrases:
   - "LEAF agent fix narrowness"
   - "cross-cutting consumer detection"
   - "fix completeness checklist"
+  - "code graph fix iteration quality meta research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Deep Alignment - Sealed Reference Artifacts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts]"
 description: "Changelog for the deep alignment sealed reference artifacts phase: content-addressed, immutable reference artifacts for the deep alignment mode."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep alignment sealed artifacts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

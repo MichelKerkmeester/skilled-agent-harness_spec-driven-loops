@@ -6,6 +6,7 @@ trigger_phrases:
   - "codex hooks rewiring shipped"
   - "bridge fix reverted"
   - "026 008 shipped"
+  - "runtime defect fixes changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

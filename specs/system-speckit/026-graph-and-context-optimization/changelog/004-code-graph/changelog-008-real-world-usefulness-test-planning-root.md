@@ -5,6 +5,7 @@ trigger_phrases:
   - "008-real-world-usefulness-test-planning rollup"
   - "008-real-world-usefulness-test-planning phase parent"
   - "008-real-world-usefulness-test-planning changelog index"
+  - "code graph real world usefulness test planning changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

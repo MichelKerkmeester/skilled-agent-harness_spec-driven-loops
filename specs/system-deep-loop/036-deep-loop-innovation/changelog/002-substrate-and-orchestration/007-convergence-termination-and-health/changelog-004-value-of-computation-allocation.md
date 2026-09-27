@@ -2,9 +2,7 @@
 title: "Changelog: Value-of-Computation Allocation [002-substrate-and-orchestration/007-convergence-termination-and-health/004-value-of-computation-allocation]"
 description: "Changelog for the value-of-computation allocation phase: replay-stable scoring and adaptive allocation over typed budget pressure."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "convergence termination and health value of computation allocation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

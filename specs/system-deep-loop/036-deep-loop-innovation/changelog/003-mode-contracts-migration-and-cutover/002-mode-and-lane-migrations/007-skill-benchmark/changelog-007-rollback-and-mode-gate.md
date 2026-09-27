@@ -2,9 +2,7 @@
 title: "Changelog: Skill Benchmark - Rollback & Mode Gate [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate]"
 description: "Changelog for the skill benchmark rollback and mode gate phase: the fail-closed rollback switch and independent mode gate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "skill benchmark rollback and mode gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 006 changelog"
   - "deferred remediation telemetry"
   - "smart router measurement report"
+  - "spec kit internals deferred remediation and telemetry run changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

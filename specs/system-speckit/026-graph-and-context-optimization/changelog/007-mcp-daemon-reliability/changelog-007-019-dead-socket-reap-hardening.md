@@ -2,9 +2,7 @@
 title: "Changelog: Dead-socket reap hardening [007-mcp-daemon-reliability/019-dead-socket-reap-hardening]"
 description: "Chronological changelog for the Dead-socket reap hardening phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability dead socket reap hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

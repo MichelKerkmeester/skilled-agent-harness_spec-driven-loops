@@ -2,9 +2,7 @@
 title: "Changelog: Launcher Concurrency Spawn & Bridge Investigation (deep-research) [003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation]"
 description: "Chronological changelog for the Launcher Concurrency Spawn & Bridge Investigation (deep-research) phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "memory and causal launcher concurrency spawn and bridge investigation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

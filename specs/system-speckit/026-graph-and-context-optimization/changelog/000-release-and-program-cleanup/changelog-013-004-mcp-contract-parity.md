@@ -6,6 +6,7 @@ trigger_phrases:
   - "tool schema drift fixed"
   - "governed ingest threading"
   - "embedding reconcile coverage parity"
+  - "release and program cleanup mcp contract parity changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

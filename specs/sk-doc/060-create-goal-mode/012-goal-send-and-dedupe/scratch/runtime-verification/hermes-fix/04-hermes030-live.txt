@@ -1,0 +1,121 @@
+HERMES-030 live runs, 2026-09-26, scenario: .skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/goal-hook/goal-core-binding-by-session-id.md
+Command: the scenario's section 3 command as now written (prompt updated for the brief's objective line), run from the repo root.
+Deviations from the playbook command: OPENCODE_GOAL_STATE_DIR points at a temp dir so the bind never touches .skilled/skills/.state/goal, and SPECKIT_HERMES_READ_ONLY=1 so the plugin refuses write tools. Model, toolsets, turns and budget as written (glm-5.3-flash, -t file,todo, --max-turns 1, --run-budget 90).
+
+================ RUN A (fixes a-d applied, before the session-id mapping fix) ================
+START_UTC=2026-09-26T20:18:48Z
+EXIT=0
+ELAPSED_SECONDS=19
+--- stdout
+specs/cli-external-orchestration/071-cli-hermes-creation
+Execute specs/cli-external-orchestration/071-cli-hermes-creation/goal.md.
+--- stderr
+
+session_id: 20260926_221850_f6df26
+--- agent log
+2026-09-26 22:18:56,102 INFO [20260926_221850_f6df26] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-goal plugin=repo-guards position=after_memory chars=1094
+2026-09-26 22:18:57,031 INFO [20260926_221850_f6df26] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-session-advisories plugin=repo-guards position=after_memory chars=447
+2026-09-26 22:18:57,234 INFO [20260926_221850_f6df26] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-session-context plugin=repo-guards position=after_memory chars=384
+bind record created_at_ms=1790453937322 = 22:18:57.322 local, AFTER the goal section rendered at 22:18:56.102
+--- frozen repo-guards-goal section (from ~/.hermes/state.db system_prompts, read-only):
+## Plugin Context: repo-guards-goal
+<!-- hermes-plugin-section-chars:1094 -->
+
+Bound packet: specs/cli-external-orchestration/071-cli-hermes-creation
+
+Execute specs/cli-external-orchestration/071-cli-hermes-creation/goal.md.
+BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.
+DONE WHEN:
+- `cli-hermes` is a hub mode and executor kind, proven by checkers and tests
+- A Hermes session here reaches the shared agents, commands, skills and MCP servers
+- Phases 002 to 010 Complete, every acceptance row Met
+- Phases 013 to 016 Complete, all 21 acceptance rows Met, none waived
+- Every documented headless dispatch resolves to its own runtime's rules
+- Cursor and OpenCode refuse a violating dispatch before it runs
+- Each closed hole has a test that fails when that fix alone is reverted
+- Phase 016 guard green on the tree and red under each of four hand mutations
+- Parent passes recursive strict validation across all 17 folders
+- The preflight's quoted-payload false positive is fixed and regression-tested
+- No live finding is open
+
+VERDICT A: stdout lines matched, but the section was the FALLBACK. The render never reached the core.
+
+---- Root-cause probe (temporary debug write in _goal_section, removed afterwards; grep -c TEMP-DEBUG on the plugin now returns 0) ----
+session_info={'session_id': '20260926_222035_598285', 'model': 'glm-5.3-flash', 'provider': 'custom', 'platform': 'cli', 'profile_name': 'default', 'cwd': '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public'}
+show=None
+rc=1 stdout='STATUS=FAIL ACTION=show ERROR="session value is required"\ncode=MISSING_SESSION_ID\n' stderr=''
+report=None
+Cause: Hermes calls every renderer with types.MappingProxyType(dict(session_info)) (hermes_cli/plugins_dispatch.py render_system_prompt_sections).
+_session_id accepted only a dict, so it returned an empty id, and _goal_cli refused to call the core. The printed dict(session_info) masked the proxy type.
+The probe's direct call with that empty id shows the core's answer: STATUS=FAIL ... code=MISSING_SESSION_ID. Fix: _session_id accepts any collections.abc.Mapping.
+
+================ RUN B (all fixes applied) ================
+START_UTC=2026-09-26T20:22:16Z
+EXIT=0
+ELAPSED_SECONDS=18
+SID=20260926_222218_712c46
+SHOW_EXIT=0
+--- stdout
+specs/cli-external-orchestration/071-cli-hermes-creation
+Execute specs/cli-external-orchestration/071-cli-hermes-creation/goal.md.
+--- stderr
+
+session_id: 20260926_222218_712c46
+--- $ node .skilled/hooks/goal/bin/goal.cjs show --runtime hermes --session "$SID" | head -4
+STATUS=OK ACTION=show
+goal_present=true
+goal_id=goal-1ea7de78-8ea2-4e7b-9c5e-06a166556936
+status=active
+created_at_ms=1790454141127
+packet_path="specs/cli-external-orchestration/071-cli-hermes-creation"
+packet_state=bound
+packet_bound=true
+--- agent log lines for this session
+2026-09-26 22:22:21,139 INFO [20260926_222218_712c46] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-goal plugin=repo-guards position=after_memory chars=2347
+2026-09-26 22:22:21,776 INFO [20260926_222218_712c46] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-session-advisories plugin=repo-guards position=after_memory chars=447
+2026-09-26 22:22:21,949 INFO [20260926_222218_712c46] hermes_cli.plugins: Session plugin prompt section: id=repo-guards-session-context plugin=repo-guards position=after_memory chars=384
+2026-09-26 22:22:33,982 INFO [20260926_222218_712c46] agent.conversation_loop: Turn ended: reason=text_response(finish_reason=stop) model=glm-5.3-flash api_calls=1/1 budget=1/1 tool_turns=0 last_msg_role=assistant response_len=130
+bind record created_at_ms=1790454141127 = 22:22:21.127 local, BEFORE the goal section log line at 22:22:21.139: the render bound the session itself.
+--- section analysis (frozen section extracted from ~/.hermes/state.db system_prompts by the session's system_prompt_hash, read-only)
+declared section chars (Hermes frame): 2347
+extracted section chars: 2347
+section starts with [active_goal: True
+section ends with [/active_goal]: True
+contains 'Bound packet:' (fallback marker): False
+contains STATUS=OK or goal_prompt= (raw report): False
+equals goal.cjs show injection_preview (time field masked): True
+----- section content -----
+[active_goal:goal-1ea7de78-8ea2-4e7b-9c5e-06a166556936]
+status: active
+objective: Execute specs/cli-external-orchestration/071-cli-hermes-creation/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.
+criteria:
+- `cli-hermes` is a hub mode and executor kind, proven by checkers and tests
+- A Hermes session here reaches the shared agents, commands, skills and MCP servers
+- Phases 002 to 010 Complete, every acceptance row Met
+- Phases 013 to 016 Complete, all 21 acceptance rows Met, none waived
+- (7 more in the goal file)
+goal_prompt:
+Role: Focused hermes execution agent operating under the active session goal.
+Objective: Execute specs/cli-external-orchestration/071-cli-hermes-creation/goal.md. BINDING: read each phase's goal.md before working that phase; its criteria bind as if written here. PRECEDENCE: parent decisions outrank child detail; child detail outranks any summary of it.
+Context: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.
+Method:
+- Restate the concrete completion condition from available evidence before acting.
+- Find the root cause before changing code; verify the fix against the failing symptom.
+- Run the relevant verification commands and report exact pass/fail evidence.
+- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.
+Success Criteria:
+- The requested outcome is materially complete, not merely analyzed or partially prepared.
+- Required verification has run, or any inability to run it is reported with the exact blocker.
+- Status output distinguishes confirmed evidence from inference.
+Stop Conditions:
+- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.
+- If blocked, preserve state and name the next safe action.
+last_check: not_evaluated ; reason: none
+usage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)
+directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.
+[/active_goal]
+--- parity with the other runtimes' injectors (renderGoalBrief with workspace, as Cursor and Devin call it)
+equals Cursor render (Role label normalized): true
+equals Devin render (Role label normalized): true
+
+VERDICT B: PASS. Exit 0, line 1 is the bound packet path, line 2 the objective sentence, goal.cjs show reports STATUS=OK and goal_present=true for the session, repo-guards-goal is 2347 chars (under 4000), and the section holds the core's brief rather than the fallback.

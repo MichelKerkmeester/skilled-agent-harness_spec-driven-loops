@@ -2,9 +2,7 @@
 title: "Changelog: Deep Alignment Multi-Executor [007-executor-and-cli-hardening/004-deep-alignment-integrity/002-deep-alignment-multi-executor]"
 description: "Extend the autonomous deep-alignment command with a contained cli-opencode leaf and an option that disables early convergence."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep alignment integrity deep alignment multi executor changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

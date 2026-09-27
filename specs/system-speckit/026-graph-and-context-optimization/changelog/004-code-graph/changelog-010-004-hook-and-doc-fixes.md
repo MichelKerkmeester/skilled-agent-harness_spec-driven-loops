@@ -6,6 +6,7 @@ trigger_phrases:
   - "playbook doc sync fixes"
   - "hooks.v1.json session start path"
   - "code graph playbook remediation 004"
+  - "code graph hook and doc fixes changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

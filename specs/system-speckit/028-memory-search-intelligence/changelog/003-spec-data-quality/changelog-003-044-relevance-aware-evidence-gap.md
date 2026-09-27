@@ -2,9 +2,7 @@
 title: "Changelog: Relevance-Aware Evidence Gap [003-spec-data-quality/006-generated-metadata-build/044-relevance-aware-evidence-gap]"
 description: "Chronological changelog for the relevance-aware evidence-gap phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality relevance aware evidence gap changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

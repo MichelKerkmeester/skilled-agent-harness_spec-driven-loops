@@ -160,9 +160,9 @@ describe("advisor-debug (opt-in cli-pi diagnostic)", () => {
     expect(isPiAdvisorDebugEnabled()).toBe(true);
   });
 
-  it("classifies the directives-only fallback as unavailable", () => {
+  it("classifies the directives-only fallback as headless", () => {
     const line = formatPiAdvisorDebug(FALLBACK, false, 2503);
-    expect(line).toContain("brief=fallback(unavailable)");
+    expect(line).toContain("brief=fallback(headless)");
     expect(line).toContain("durationMs=2503");
   });
 

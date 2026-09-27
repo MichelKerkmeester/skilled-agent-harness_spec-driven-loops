@@ -2,9 +2,7 @@
 title: "Changelog: Daemon-reliability follow-ups [007-mcp-daemon-reliability/026-daemon-reliability-followups]"
 description: "Chronological changelog for the Daemon-reliability follow-ups phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability followups changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

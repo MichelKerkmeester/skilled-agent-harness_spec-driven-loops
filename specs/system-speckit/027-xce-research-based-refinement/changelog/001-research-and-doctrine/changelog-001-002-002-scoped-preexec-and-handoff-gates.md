@@ -6,6 +6,7 @@ trigger_phrases:
   - "scoped preexec gates changelog"
   - "debug handoff gates changelog"
   - "pre-mortem predicate changelog"
+  - "research and doctrine scoped preexec and handoff gates changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

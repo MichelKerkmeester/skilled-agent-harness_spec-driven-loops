@@ -2,9 +2,7 @@
 title: "Changelog: Search Intelligence Stress-Test Playbook Foundation [001-search-intelligence-stress-playbook/001-stress-playbook-foundation]"
 description: "Chronological changelog for the Search Intelligence Stress-Test Playbook Foundation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release and program cleanup stress playbook foundation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

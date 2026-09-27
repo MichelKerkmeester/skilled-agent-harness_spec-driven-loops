@@ -5,6 +5,7 @@ trigger_phrases:
   - "005-finding-remediation rollup"
   - "005-finding-remediation phase parent"
   - "005-finding-remediation changelog index"
+  - "spec kit internals finding remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

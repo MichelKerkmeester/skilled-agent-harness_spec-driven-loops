@@ -7,6 +7,7 @@ trigger_phrases:
   - "phase parent validator branch"
   - "lean trio policy shipped"
   - "phase parent documentation sync"
+  - "release and program cleanup phase parent validator docs changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

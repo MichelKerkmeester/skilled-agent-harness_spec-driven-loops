@@ -1,0 +1,50 @@
+Goal re-verification of packet 030, 2026-09-27
+
+Why
+Phases 10 and 11 changed advisor code after phase 9's 45 scenario reruns, so the parent goal's six
+criteria were proved again from the final state.
+
+Layout
+- suite-*.txt: criterion 2, the four suites before the matrix at bf2067c7eb
+- opencode-plugin-live-load.txt: criterion 1 before the matrix
+- sandbox-daemon-live-state.txt: criterion 3, a sandboxed cold start run by the orchestrator
+- install-codex-hooks-check.txt: criterion 6 before the matrix
+- final-state/: the same checks rerun after the matrix at 5b4a7ffcf0, the live advisor state and the
+  temporary folders removed from /tmp
+- ledger.tsv: one row per dispatch (cli, scenario, start, end, exit, seconds), the five probes first
+- reports/<cli>-<scenario>.md: each final run's last message, reports/superseded/ keeps the two runs
+  a rerun replaced
+- excluded-windows.tsv: why each superseded run was replaced
+- runtime/<cli>-registered-adapter/: scenario 457's adapter cadence output, one folder per CLI
+- briefs/: the prompt parts, the runner and the queues
+
+Harness
+- run-test.sh sends one scenario to one CLI with SYSTEM_SPEC_GATE_ENFORCE=0, AI_SESSION_CHILD=1 and
+  SKILL_ADVISOR_DEBUG=1 set, stdin closed and a 2,400-second alarm. It checks the binary first and
+  keeps raw output in the session scratch folder.
+- pool.sh ran queue.txt with two workers, the limit the operator set in phase 8. A worker never
+  started a CLI that was already running, and scenario 457 ran one at a time.
+- Models: MiMo v2.6 Pro high through cli-pi and cli-opencode, SWE-2 high through cli-devin, Grok 4.7
+  high through cli-cursor and GPT-6 Luna high fast through cli-codex, as in phases 8 and 9.
+- A probe of each CLI with the prompt "thanks" reached its model before the matrix began.
+
+Brief changes during the run
+- 13:48:53Z: header.txt gained the line "This session is not in plan mode..." after the OpenCode
+  CP-004 tester reported a plan-mode reminder. Eighteen final runs used the new header: all five 457
+  runs, 433 and NC-004 in every CLI but Pi, OpenCode's CL-006, CP-003 and NC-001 and both reruns.
+- CL-005.task: the step 4 bullet now says to run the block as written and names the missing timeout
+  binary. All five CL-005 runs had finished, so only the Codex rerun used it.
+
+Observations
+- Near 13:19Z two advisor hook calls answered "Advisor: outage (fail_open)", one on the orchestrating
+  Claude session and one on the Devin CP-004 prompt, while the load average was near 10. The live
+  daemon answered a status call in 1.6 seconds at 13:19:51Z, so the 2.2-second hook budget ran out
+  under load. Fail-open is the designed result.
+- The live generation file changed from generation 528 to 532 during the matrix. The live daemon wrote
+  each change on its file watcher after another session's working-tree edits, as final-state/live-state.txt
+  records.
+- CP-003's first block deletes its sandbox while the cold-started sandbox daemon still runs. That
+  daemon later writes a SIGTERM record into the deleted folder and recreates it. Ten such folders
+  from this session's runs were removed from /tmp.
+- The CP-004 scenario file still records a July run as BLOCKED in its evidence and verdict sections.
+  Its current steps pass in all five CLIs.

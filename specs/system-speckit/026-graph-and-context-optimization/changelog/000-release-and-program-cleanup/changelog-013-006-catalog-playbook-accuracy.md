@@ -6,6 +6,7 @@ trigger_phrases:
   - "catalog playbook changelog"
   - "feature catalog accuracy fixes"
   - "manual testing playbook accuracy fixes"
+  - "release and program cleanup catalog playbook accuracy changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

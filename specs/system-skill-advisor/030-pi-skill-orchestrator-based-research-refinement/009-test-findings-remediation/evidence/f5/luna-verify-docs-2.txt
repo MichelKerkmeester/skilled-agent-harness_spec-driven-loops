@@ -1,0 +1,29 @@
+RETURN: BLOCKED | escalation=LOW_CONFIDENCE | confidence=MEDIUM
+
+## Diff check
+
+The three target lines match the claims: [hook-install/README.md:41](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/hook-install/README.md:41), [hook-install/README.md:122](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/hook-install/README.md:122) and [codex-hook-parity.md:96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md:96).
+
+The diff against `44dcdc2f82` includes other edits too: 16 additions and 17 deletions in the README, and 16 additions and 15 deletions in the parity playbook. Without a snapshot from the earlier review, I can’t determine whether those edits predate it. So I can’t certify that only the three claimed fixes changed since that run.
+
+## Truth check
+
+The installer defines `SOURCE_ROOT_NAMES = ['.skilled', '.opencode']`. `sourceRootRelative` recognizes either namespace, and `isRepoOrphan` returns true for a recognized identity whose path does not exist on disk ([install-codex-hooks.mjs:88](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:88), [install-codex-hooks.mjs:90](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:90), [install-codex-hooks.mjs:124](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:124)). Both README sentences match that behavior.
+
+The local `find(1)` manual defines `-print` as printing the current pathname and `-exec` as running the specified utility. In the playbook’s expression, `-print` precedes `-exec cat`, so the path is printed before the file contents.
+
+## Evidence check
+
+[F5.verify.err](/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.verify.err) has one line starting `session id:` at line 11. It has 16 exact `hook: SessionStart` lines, from line 75 through line 90.
+
+The current configs count 6 project entries, 6 repo entries in the user-global file and 4 other entries. [run-verify.sh:10](/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/run-verify.sh:10) runs `codex exec` without `--dangerously-bypass-hook-trust`. The evidence statement is supported as a count of starts. The log also records 15 completed and 1 failed, so it does not show 16 successful hooks.
+
+## Gate output
+
+All 11 document validators reported `Total issues: 0`. The stale-pattern grep returned `stale_grep_exit=1`. The supplied old-wording grep had unescaped backticks inside double quotes, so Bash stopped before running it. I reran the equivalent search with safe quoting; it returned `old_orphan_wording_exit=1`.
+
+## Out Of Scope observations
+
+Parity step 4 still includes `--dangerously-bypass-hook-trust` at line 94. That is the playbook command; the cited F5 run is a separate run using `run-verify.sh`, which has no bypass flag.
+
+I made no edits. The two scoped documents remain modified in the working tree, uncommitted and unpushed. To resolve the block, provide the earlier-review snapshot or diff so the intervening edits can be dated.

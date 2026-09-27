@@ -2,9 +2,7 @@
 title: "Changelog: Residual Finding Closeouts (022 / 025 / 028) [007-executor-and-cli-hardening/006-residual-finding-closeouts]"
 description: "A single planned home to plan, execute, and record evidence for three small deferred residuals that live in already-landed sibling phases."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "executor and cli hardening residual finding closeouts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "hash-aware staleness predicate"
   - "edge drift detection code graph"
   - "gold battery verifier code graph"
+  - "code graph backend resilience implementation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

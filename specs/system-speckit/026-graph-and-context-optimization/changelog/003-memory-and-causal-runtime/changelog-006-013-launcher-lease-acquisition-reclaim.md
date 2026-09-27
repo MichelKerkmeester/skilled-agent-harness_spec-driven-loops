@@ -6,6 +6,7 @@ trigger_phrases:
   - "stale skill graph daemon lease"
   - "skill_graph_daemon_lease CAS"
   - "two launcher stale lease race"
+  - "memory and causal runtime launcher lease acquisition reclaim changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

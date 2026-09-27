@@ -34,7 +34,7 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, dire
 
 | File | Purpose |
 |------|---------|
-| `shared.ts` | Reads and validates a bounded Devin hook payload, spawns the matching `../claude/*.js` adapter, and emits Devin's `hookSpecificOutput` response envelope. |
+| `shared.ts` | Reads and validates a bounded Devin hook payload, spawns the matching `../claude/*.js` adapter, and emits Devin's `hookSpecificOutput` response envelope. Sets `SPECKIT_RUNTIME=devin` for the adapter it spawns. |
 | `session-start.ts` | `SessionStart` adapter. Delegates to `session-prime.js` and emits the returned context. |
 | `user-prompt-submit.ts` | `UserPromptSubmit` adapter. Delegates to `user-prompt-submit.js` and normalizes its JSON response into the Devin envelope. |
 | `session-stop.ts` | `Stop` adapter. Delegates to the compiled `../claude/session-stop.js` via the same `shared.ts` pattern above -- no core change needed, `DevinHookEvent` already included `'Stop'`. |

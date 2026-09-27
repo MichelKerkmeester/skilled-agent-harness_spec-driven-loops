@@ -7,6 +7,7 @@ trigger_phrases:
   - "30-cell post-fix sweep"
   - "per-packet verdict"
   - "SC-003 I2 opencode recovery"
+  - "release and program stress test close loop measurement rerun changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

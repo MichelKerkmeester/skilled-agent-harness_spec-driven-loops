@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Validation Advisor
 trigger_phrases:
   - "validation-enforce-graduation changelog"
   - "former 019-validation-enforce-graduation"
-  - "nested changelog"
+  - "spec data quality validation enforce graduation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -8,6 +8,7 @@ trigger_phrases:
   - "staleness model"
   - "recovery playbook"
   - "exclude-rule confidence"
+  - "code graph resilience research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "COCOINDEX_RERANK_VIA_SIDECAR"
   - "arc 008 phase 006 changelog"
   - "cocoindex rerank via sidecar promote"
+  - "memory and causal runtime cocoindex dedup from shared sidecar changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

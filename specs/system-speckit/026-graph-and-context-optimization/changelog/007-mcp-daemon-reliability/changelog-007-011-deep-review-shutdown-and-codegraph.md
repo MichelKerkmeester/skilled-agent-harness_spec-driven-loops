@@ -7,6 +7,7 @@ trigger_phrases:
   - "daemon shutdown review conditional verdict"
   - "WAL checkpoint code-graph self-heal P1 findings"
   - "026 007 011 review report"
+  - "mcp daemon reliability deep review shutdown and codegraph changelog"
 importance_tier: "important"
 contextType: "review"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/002 007 presentation asset changelog"
   - "presentation md to txt"
   - "command asset format"
+  - "shared infrastructure presentation asset format changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

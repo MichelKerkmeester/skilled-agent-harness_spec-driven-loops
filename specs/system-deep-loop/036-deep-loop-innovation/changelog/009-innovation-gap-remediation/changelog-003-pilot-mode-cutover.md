@@ -2,9 +2,7 @@
 title: "Changelog: Pilot Mode Cutover [009-innovation-gap-remediation/003-pilot-mode-cutover]"
 description: "Planned deep-research pilot that wires the authority-flip coordinator into its production composition root behind a rollback window, requiring shadow parity and five proven production boundaries before cutover."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "innovation gap remediation pilot mode cutover changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

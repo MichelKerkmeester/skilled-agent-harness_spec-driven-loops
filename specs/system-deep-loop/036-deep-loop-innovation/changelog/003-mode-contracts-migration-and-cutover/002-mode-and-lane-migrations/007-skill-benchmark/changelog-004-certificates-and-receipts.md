@@ -2,9 +2,7 @@
 title: "Changelog: Skill Benchmark Certificates and Receipts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts]"
 description: "Changelog for the skill benchmark certificates and receipts phase: attestations for paired skill scenarios and scoring over the typed event-ledger substrate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "skill benchmark certificates and receipts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

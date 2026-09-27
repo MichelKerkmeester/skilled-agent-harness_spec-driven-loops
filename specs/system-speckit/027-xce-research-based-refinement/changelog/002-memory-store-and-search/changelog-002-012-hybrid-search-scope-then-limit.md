@@ -6,6 +6,7 @@ trigger_phrases:
   - "scoped search under-returning fix"
   - "over-fetch filter then truncate"
   - "027 002/012 shipped"
+  - "memory store and search hybrid search scope then limit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

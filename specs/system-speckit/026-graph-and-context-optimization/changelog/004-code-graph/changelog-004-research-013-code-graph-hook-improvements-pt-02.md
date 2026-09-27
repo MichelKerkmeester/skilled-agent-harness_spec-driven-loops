@@ -7,6 +7,7 @@ trigger_phrases:
   - "contract leakage"
   - "read-path soft continuation"
   - "CocoIndex bridge ranking"
+  - "code research 013 code graph hook improvements pt 02 changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

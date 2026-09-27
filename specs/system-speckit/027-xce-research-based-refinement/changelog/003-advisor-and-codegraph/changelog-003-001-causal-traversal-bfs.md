@@ -6,6 +6,7 @@ trigger_phrases:
   - "recursive cte replaced bfs"
   - "graph traversal index regression"
   - "027 003/001 shipped"
+  - "advisor and codegraph causal traversal bfs changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

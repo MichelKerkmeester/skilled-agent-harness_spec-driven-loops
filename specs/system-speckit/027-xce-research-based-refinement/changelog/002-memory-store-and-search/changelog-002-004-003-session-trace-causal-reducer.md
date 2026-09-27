@@ -5,6 +5,7 @@ trigger_phrases:
   - "002/004 causal reducer changelog"
   - "session-trace causal reducer"
   - "SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE"
+  - "memory store and search session trace causal reducer changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

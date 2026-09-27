@@ -2,9 +2,7 @@
 title: "Changelog: Mode Contracts, Migration and Cutover [003-mode-contracts-migration-and-cutover]"
 description: "Changelog for the mode contracts, migration and cutover group of the 036 deep-loop innovation packet: shared mode contracts and fixtures, mode and lane migrations, staged state migration and authority cutover, and legacy-writer retirement."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "mode contracts migration and cutover changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

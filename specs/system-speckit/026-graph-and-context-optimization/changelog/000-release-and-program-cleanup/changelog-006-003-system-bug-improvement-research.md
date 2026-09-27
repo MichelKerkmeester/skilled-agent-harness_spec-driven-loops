@@ -7,6 +7,7 @@ trigger_phrases:
   - "82 findings deep research"
   - "daemon concurrency research"
   - "spec-kit production bug audit"
+  - "release and program cleanup system bug improvement research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

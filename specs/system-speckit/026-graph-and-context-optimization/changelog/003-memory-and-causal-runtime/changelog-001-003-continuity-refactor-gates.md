@@ -7,6 +7,7 @@ trigger_phrases:
   - "continuity refactor gate packet"
   - "phase 6 gates completion"
   - "026 continuity gate coordination"
+  - "memory and causal runtime continuity refactor gates changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

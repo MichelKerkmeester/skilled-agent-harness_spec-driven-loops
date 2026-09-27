@@ -6,6 +6,7 @@ trigger_phrases:
   - "why_ranked opt-in shipped"
   - "retrieval diagnostics additive"
   - "027 002/006 shipped"
+  - "memory store and search openltm retrieval observability changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

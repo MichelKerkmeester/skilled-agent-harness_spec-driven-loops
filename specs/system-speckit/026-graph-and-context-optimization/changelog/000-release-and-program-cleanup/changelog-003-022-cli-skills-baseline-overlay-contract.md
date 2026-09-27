@@ -6,6 +6,7 @@ trigger_phrases:
   - "codebase-agnostic standards contract"
   - "cli skill.md code standards loading"
   - "sk-code overlay hardcoded replacement"
+  - "release and program cleanup cli skills baseline overlay contract changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

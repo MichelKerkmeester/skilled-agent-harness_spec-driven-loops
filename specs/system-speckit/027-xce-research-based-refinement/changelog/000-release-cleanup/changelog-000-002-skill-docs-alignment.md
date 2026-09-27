@@ -5,6 +5,7 @@ trigger_phrases:
   - "000 002 skill docs changelog"
   - "schema v37 docs alignment"
   - "release cleanup skill docs"
+  - "release cleanup skill docs alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

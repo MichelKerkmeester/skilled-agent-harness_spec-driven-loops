@@ -7,6 +7,7 @@ trigger_phrases:
   - "nine angle commit review"
   - "adversarial verification refuted p0"
   - "conditional verdict commit review"
+  - "release and program cleanup last 50 commits deep review changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

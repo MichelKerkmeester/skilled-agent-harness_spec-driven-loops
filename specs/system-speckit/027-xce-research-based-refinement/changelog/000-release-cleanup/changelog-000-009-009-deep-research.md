@@ -2,9 +2,7 @@
 title: "Changelog: Phase 9: deep-research Frontmatter Alignment [009-skill-frontmatter-alignment/009-deep-research]"
 description: "Chronological changelog for the Phase 9: deep-research Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup deep research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "quality auto fix default on"
   - "reconsolidation opt in after review"
   - "017 enrichment reconsolidation default on"
+  - "memory and causal runtime enrichment reconsolidation default on changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

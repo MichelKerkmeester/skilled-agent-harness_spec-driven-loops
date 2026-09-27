@@ -57,7 +57,7 @@ This enforcement is gated by the `SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER` env
 
 Daemon attempts lease acquisition on startup. The lease database lives next to the canonical skill graph database directory as `skill-graph-daemon-lease.sqlite`. Canonical means lexical `path.resolve()` followed by `fs.realpathSync.native()` when the path exists; if the directory did not exist yet, the daemon creates it and canonicalizes again before deriving the `workspace_key`.
 
-With the default configuration that directory is `.skilled/skills/system-skill-advisor/runtime/database/`. With `SYSTEM_SKILL_ADVISOR_DB_DIR` set, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
+With the default configuration that directory is `.skilled/skills/system-skill-advisor/runtime/database/`. With `SYSTEM_SKILL_ADVISOR_DB_DIR` set, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. The launcher's `.system-skill-advisor-launcher.json` state file and its `.system-skill-advisor-launcher.lockdir` bootstrap lock move with them, so a launcher pointed at its own database never overwrites the workspace launcher's state or contends for its bootstrap lock. On success the lease row records:
 
 - holder PID
 - holder owner ID
@@ -133,6 +133,8 @@ This keeps "same SQLite file" and "same lease owner" aligned:
 
 - Two launchers in different workspaces pointing at the same shared DB directory contend on the same lease; the second launcher bridges to the live owner when the IPC socket is usable and otherwise falls back to `LEASE_HELD_BY:<pid>` or the guarded respawn path.
 - Two launchers in one workspace pointing at different DB directories use different lease files and can run independently because they write different databases.
+
+A launcher pointed at its own DB directory is isolated beyond the lease. Its state file and bootstrap lock sit in that directory, and so do its daemon's generation file and quarantine store. When no `HF_EMBED_SERVER_URL` is given, it also runs its own model server on `hf-embed.sock` in the database-scoped IPC socket directory, so its shutdown never signals the workspace model server. [`db-path-policy.md`](../config/db-path-policy.md) lists each file the override moves.
 
 Recommended operator practice: keep strict single-writer mode enabled unless the intent is an isolated test run against separate DB directories.
 

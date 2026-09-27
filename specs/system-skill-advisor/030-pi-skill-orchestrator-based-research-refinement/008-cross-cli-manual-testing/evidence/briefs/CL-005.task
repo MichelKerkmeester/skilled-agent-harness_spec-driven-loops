@@ -1,0 +1,6 @@
+
+=== TASK: run scenario CL-005 ===
+Scenario file: .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md
+Read the whole file first. Then run its test execution steps in order and judge them against its expected signals and pass/fail rules.
+- The orchestrator confirmed both runtime builds are current before this run, so skip every build and install step and list each one under DEVIATIONS as 'skipped: prebuilt by orchestrator'.
+- If you are running inside OpenCode, also call the spec_kit_skill_advisor_status tool once and record its lastBridgeStatus in NOTES.

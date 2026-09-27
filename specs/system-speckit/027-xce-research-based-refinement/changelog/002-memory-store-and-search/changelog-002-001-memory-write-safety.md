@@ -7,6 +7,7 @@ trigger_phrases:
   - "auto-provenance cap changelog"
   - "manual-edge overwrite guard shipped"
   - "secret scrubber shipped"
+  - "memory store and search memory write safety changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

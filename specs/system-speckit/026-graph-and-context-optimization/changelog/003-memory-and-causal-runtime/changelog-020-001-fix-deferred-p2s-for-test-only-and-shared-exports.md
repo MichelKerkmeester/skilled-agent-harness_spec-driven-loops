@@ -7,6 +7,7 @@ trigger_phrases:
   - "listSupportedDimensions EmbedderManifest barrel"
   - "020-001 deferred P2 closure"
   - "embedder barrel export removal"
+  - "fix deferred p2s for test only and shared exports changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

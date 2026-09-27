@@ -1,0 +1,80 @@
+Removal of the jcode SessionStart entry from ~/.codex/hooks.json, 2026-09-27
+Operator request: "Delete that jcode thing we dont use jcode"
+Scope: the one jcode group. The 18 repository copies stay for the operator installer run.
+
+== Backup, then the diff from the backup to the current file
+19422 Sep 27 07:48 /Users/michelkerkmeester/.codex/hooks.json
+19694 Sep 23 08:58 /Users/michelkerkmeester/.codex/hooks.json.bak-jcode-2026-09-27T05-48-23Z
+173,182d172
+<       {
+<         "matcher": "startup|resume",
+<         "hooks": [
+<           {
+<             "command": "'/Users/michelkerkmeester/.local/bin/jcode' setup-hotkey --notify-cli-launch codex",
+<             "timeout": 5,
+<             "type": "command"
+<           }
+<         ]
+<       },
+diff_exit=1
+
+== The binary the entry called
+ls: /Users/michelkerkmeester/.local/bin/jcode: No such file or directory
+
+== Installer against the current file, read-only
+install-codex-hooks: DRIFT /Users/michelkerkmeester/.codex/hooks.json (duplicate=18)
+  duplicate: PostToolUse:.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs, PostToolUse:.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs, PreCompact:.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/compact-inject.js, PreToolUse:.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs, PreToolUse:.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs, PreToolUse:.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs, PreToolUse:.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs, SessionStart:.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js, SessionStart:.skilled/bin/worktree-guard.sh, SessionStart:.skilled/bin/check-git-hooks.sh, SessionStart:.skilled/bin/git-primary-reconcile.sh, SessionStart:.skilled/bin/git-live-follow.sh, SessionStart:.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh, Stop:.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-stop.js, Stop:.skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs, Stop:.skilled/scripts/session-cleanup.sh, UserPromptSubmit:.skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js, UserPromptSubmit:.skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs
+check_exit=1
+dry-run: changed=true removed=18 orphaned=0 kept=25
+
+== Hook status lines, plain codex exec from the checkout (no hook-trust bypass flag)
+-- before the removal: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.verify.err
+  16 hook: SessionStart
+  15 hook: SessionStart Completed
+   1 hook: SessionStart Failed
+   9 hook: Stop
+   9 hook: Stop Completed
+   7 hook: UserPromptSubmit
+   7 hook: UserPromptSubmit Completed
+-- after the removal: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/jcode-after.raw
+workdir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+sandbox: read-only
+session id: 01a0e168-93b8-7a03-a284-35e7c052d6b5
+   6 hook: SessionStart
+   6 hook: SessionStart Completed
+   9 hook: Stop
+   9 hook: Stop Completed
+   7 hook: UserPromptSubmit
+   7 hook: UserPromptSubmit Completed
+bypass_lines_after=0
+
+== Hooks per event: global file and project file
+~/.codex/hooks.json: SessionStart=9 UserPromptSubmit=5 Stop=6
+.codex/hooks.json: SessionStart=6 UserPromptSubmit=2 Stop=3
+
+== Global SessionStart layout now (group:hook, first 70 characters)
+0:0  if [ -x '/Users/michelkerkmeester/.nodeterm/agent-hooks/codex.sh' ]; t
+0:1  "/Users/michelkerkmeester/Library/Application Support/GitKrakenCLI/gk"
+1:0  if [ -f '/Users/michelkerkmeester/.orca/agent-hooks/codex-hook.sh' ] &
+2:0  bash -c 'cd "/Users/michelkerkmeester/MEGA/Development/Code_Environmen
+2:1  bash -c 'cd "/Users/michelkerkmeester/MEGA/Development/Code_Environmen
+2:2  bash -c 'cd "/Users/michelkerkmeester/MEGA/Development/Code_Environmen
+2:3  bash -c 'cd "/Users/michelkerkmeester/MEGA/Development/Code_Environmen
+2:4  bash -c 'cd "/Users/michelkerkmeester/MEGA/Development/Code_Environmen
+3:0  bash -c 'cd "/Users/michelkerkmeester/MEGA/Development/Code_Environmen
+
+== Trust records for the global SessionStart in ~/.codex/config.toml (keys only)
+session_start:0:0 session_start:1:0 session_start:1:1 session_start:1:2 session_start:2:0 session_start:2:1 session_start:2:2 session_start:2:3 session_start:2:4 session_start:3:0 session_start:3:1 session_start:3:2 session_start:3:3 session_start:3:4 session_start:4:0 
+
+== Installer simulated on a temp copy: do the 25 kept hooks keep their positions?
+kept hooks: 25, keep their position: 25, move: 0
+
+== Codex 0.157.1 re-trust surfaces (strings in the binary)
+Continue without trusting (hooks won't run)
+Hooks can run outside the sandbox after you trust them.
+Hooks need review
+Modified since last trusted - review required
+New hook - review required
+Review hooks
+Trust all and continue
+Use **/hooks** to view and manage lifecycle hooks.

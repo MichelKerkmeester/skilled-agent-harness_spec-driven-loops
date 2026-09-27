@@ -5,6 +5,7 @@ trigger_phrases:
   - "006-mcp-launcher-concurrency rollup"
   - "006-mcp-launcher-concurrency phase parent"
   - "006-mcp-launcher-concurrency changelog index"
+  - "memory and causal runtime mcp launcher concurrency changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

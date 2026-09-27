@@ -29,7 +29,7 @@ Run from any working directory, the script resolves its own paths:
 bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
 ```
 
-Expected: `run-all-drift-guards: all 3 guards PASSED` and exit code 0.
+Expected: `run-all-drift-guards: all 2 guards PASSED` and exit code 0.
 
 ---
 

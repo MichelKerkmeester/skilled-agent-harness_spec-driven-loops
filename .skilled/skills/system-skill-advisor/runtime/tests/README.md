@@ -109,6 +109,7 @@ tests/
 +-- lifecycle-derived-metadata.vitest.ts
 +-- manual-testing-playbook.vitest.ts
 +-- migration-lineage-identity.vitest.ts
++-- prompt-policy-gold-replay.vitest.ts
 +-- system-skill-advisor-plugin.vitest.ts
 +-- rename-invariants.vitest.ts
 +-- routing-fixtures.affordance.test.ts
@@ -121,6 +122,7 @@ tests/
 +-- skill-advisor-cli-job-semantics.vitest.ts
 +-- skill-advisor-cli-manifest-parity.vitest.ts
 +-- skill-advisor-cli-parity.vitest.ts
++-- skill-advisor-cli-stale-daemon-retry.vitest.ts
 +-- skill-advisor-cli-trusted-prompt-time.vitest.ts
 +-- skill-advisor-launcher-orphan-reaping.vitest.ts
 +-- skill-doc-harvest.vitest.ts
@@ -148,6 +150,8 @@ tests/
 | `shadow-sink.vitest.ts` | Covers shadow telemetry sink behavior. |
 | `skill-graph-db.vitest.ts` | Checks skill-graph database behavior used by advisor tests. |
 | `manual-testing-playbook.vitest.ts` | Verifies manual testing playbook routing fixtures. |
+| `skill-advisor-cli-stale-daemon-retry.vitest.ts` | Verifies the stale-daemon retry in the CLI entrypoint. |
+| `prompt-policy-gold-replay.vitest.ts` | Replays the prompt gate over the labeled and golden corpora. |
 | `embedders/` | Covers embedder schema, registry and shared-factory parity. |
 | `skill-graph/` | Covers focused skill-graph refresh round trips. |
 

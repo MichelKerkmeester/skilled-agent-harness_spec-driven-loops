@@ -7,6 +7,7 @@ trigger_phrases:
   - "hardcoded embedder default removal"
   - "registry-derived embedder fallback"
   - "ollama jina bug fix circuit breaker"
+  - "memory and causal runtime embedder default drift fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor seeded resweep"
   - "graph-metadata trigger phrases update"
   - "skill embedding cache invalidation"
+  - "spec kit internals metadata fixes and seeded sweep rerun changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

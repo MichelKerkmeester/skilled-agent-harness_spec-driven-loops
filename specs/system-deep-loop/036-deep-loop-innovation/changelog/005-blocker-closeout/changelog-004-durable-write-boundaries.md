@@ -2,9 +2,7 @@
 title: "Changelog: Enforce Fencing at the Append Boundary Through a Gateway-Only Mutation Surface [005-blocker-closeout/004-durable-write-boundaries]"
 description: "Enforces fencing at the append boundary so every mutation routes through the transition-authorization gateway."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "blocker closeout durable write boundaries changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

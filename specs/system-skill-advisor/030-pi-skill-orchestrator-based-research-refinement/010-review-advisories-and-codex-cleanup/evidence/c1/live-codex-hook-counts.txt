@@ -1,0 +1,11 @@
+# One codex exec from the checkout root WITHOUT --dangerously-bypass-hook-trust, 2026-09-27T07:16Z
+# command: AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 SKILL_ADVISOR_DEBUG=1 codex exec -s read-only -c model_reasoning_effort=low "Reply with the single word OK." </dev/null
+codex-exit=0 stdout=OK
+session id lines: 1
+SessionStart started=9 completed=9 failed=0
+UserPromptSubmit started=5 completed=5 failed=0
+Stop started=6 completed=6 failed=0
+# before the installer (009 evidence/f5/codex-trusted-checkout-hook-counts.txt): SessionStart started=16 completed=15 failed=1, UserPromptSubmit started=7
+# 9 = 6 project .codex/hooks.json entries + 3 third-party (nodeterm, GitKraken gk, orca); 5 = 2 project + 3 third-party; 6 = 3 project + 3 third-party
+advisor diagnostics JSONL (/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//speckit-skill-advisor-metrics/a9f078f65abeed95-diagnostics.jsonl): before=232 after=233 new=1 for one prompt
+new record: {"timestamp":"2026-09-27T07:16:40.486Z","runtime":"codex","status":"skipped","freshness":"live","durationMs":1255,"cacheHit":false,"errorDetails":"CLI_ADVISOR_NO_MATCH","emittedBytes":244,"directivesSuppressed":false}

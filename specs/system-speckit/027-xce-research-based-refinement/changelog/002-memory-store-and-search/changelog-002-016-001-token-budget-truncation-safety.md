@@ -6,6 +6,7 @@ trigger_phrases:
   - "skip dont break floor of three"
   - "progressive remainder token budget"
   - "five results rendered as one fix"
+  - "memory store and search token budget truncation safety changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

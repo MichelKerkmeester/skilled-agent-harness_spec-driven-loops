@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill-advisor sk-doc alignment"
   - "004 1:1 alignment phase"
   - "sk-doc template alignment skill-advisor"
+  - "spec kit internals sk doc type validation alignment changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

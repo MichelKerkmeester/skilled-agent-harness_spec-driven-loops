@@ -16,8 +16,9 @@ trigger_phrases:
 
 Current state:
 
-- Each fixture is a phase parent. Its children, `001-contract`, `002-result` and `003-handoff` unless a case says otherwise, each get a `spec.md` and a stub `goal.md`.
-- The positive packet passes all four checks. Each negative packet changes one thing, so it fails exactly one named check.
+- Each fixture is a phase parent except `overBudgetPhaseChild`. Its children, `001-contract`, `002-result` and `003-handoff` unless a case says otherwise, each get a `spec.md` and a stub `goal.md`.
+- `over-budget-nested-phase-parent` and `overBudgetPhaseChild` sit inside a host folder with its own `spec.md`, which makes each one a phase child of that host.
+- The positive packet passes all five checks. Each negative packet changes one thing, so it fails exactly one named check.
 
 ---
 
@@ -25,7 +26,7 @@ Current state:
 
 | File | Responsibility |
 |---|---|
-| `goal-fixtures.cjs` | Exports `createGoalFixtures(fixtureRoot)`, which returns `{ positive, directiveCriteria, negatives }` as packet paths. |
+| `goal-fixtures.cjs` | Exports `createGoalFixtures(fixtureRoot)`, which returns `{ positive, directiveCriteria, overBudgetPhaseChild, negatives }` as packet paths. |
 
 ---
 
@@ -41,6 +42,9 @@ Current state:
 | `criterion-placeholder` | Leaves a template criterion | `placeholder` |
 | `criteria-count-out-of-range` | Lists fewer than three criteria | `criteria-count` |
 | `over-budget-parent` | Pads the objective to 4,200 characters | `parent-budget` |
+| `over-budget-nested-phase-parent` | Pads the objective of a phase parent that sits inside another packet | `parent-budget` |
+| `frontmatter-inner-fence` | Puts a `---` line inside the frontmatter, so it closes early | `frontmatter-fence` |
+| `overBudgetPhaseChild` | Pads the objective of a phase child with no children of its own | None, because the cap does not apply to it |
 
 ---
 

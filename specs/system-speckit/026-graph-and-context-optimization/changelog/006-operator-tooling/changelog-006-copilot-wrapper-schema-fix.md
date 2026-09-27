@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 009/006 changelog"
   - "copilot wrapper schema fix"
   - "copilot neither bash nor powershell"
+  - "operator tooling copilot wrapper schema fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

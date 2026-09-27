@@ -1,0 +1,28 @@
+{
+  "harness": {
+    "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/run-registered-adapter-cadence.mjs",
+    "sha256": "838d564d983898681aa8b35e2f73038f20ecc40c93b31fb902625c37c8fbbfe2"
+  },
+  "target": {
+    "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/deterministic-advisor-target.mjs",
+    "sha256": "82cc8d5de5a08958cfca937ddc337fedc17f43113734e1a0603ca5c268ccdeca"
+  },
+  "adapters": {
+    "claude": {
+      "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+      "sha256": "ab11d9bd804fb4ead5bf2d633a3489d7caff9b6a3a1603ee3c26a7d586b07582"
+    },
+    "codex": {
+      "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js",
+      "sha256": "dcd306329d15aefb3c82e4d4fc792c2a74c666d4a6ddd7f378e53ef93c756d18"
+    },
+    "cursor": {
+      "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/cursor/user-prompt-submit.js",
+      "sha256": "0ec32f6a7a6b15fabee9c37b75ae0d273c499a8ebcfa09adb313bb219de3436d"
+    },
+    "devin": {
+      "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/devin/user-prompt-submit.js",
+      "sha256": "2be6d4f2a894b502b9b70b2f5b99e46052419b1b81a1a2947372efd649635388"
+    }
+  }
+}

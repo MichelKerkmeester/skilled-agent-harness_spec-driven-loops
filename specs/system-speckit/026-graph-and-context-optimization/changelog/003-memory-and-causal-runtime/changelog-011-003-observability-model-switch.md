@@ -7,6 +7,7 @@ trigger_phrases:
   - "cold-start timeout embeddings"
   - "doctor embeddings route"
   - "dimension drift warning"
+  - "memory and causal runtime observability model switch changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

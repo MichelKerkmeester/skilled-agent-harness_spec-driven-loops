@@ -2,9 +2,7 @@
 title: "Changelog: 027 Spec-Tree Six-Track Consolidation [000-release-cleanup/000-spec-tree-consolidation]"
 description: "Chronological changelog for the 027 Spec-Tree Six-Track Consolidation phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup spec tree consolidation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

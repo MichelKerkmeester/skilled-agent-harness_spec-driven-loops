@@ -6,6 +6,7 @@ trigger_phrases:
   - "sk-doc sk-code drift findings"
   - "comment hygiene governance audit"
   - "constitutional rule enforcement audit"
+  - "release and program cleanup governance skdoc skcode changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

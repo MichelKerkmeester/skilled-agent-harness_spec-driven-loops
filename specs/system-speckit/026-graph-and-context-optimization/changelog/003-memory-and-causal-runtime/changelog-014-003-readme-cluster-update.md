@@ -5,6 +5,7 @@ trigger_phrases:
   - "README cluster SPECKIT_BACKEND_ONLY"
   - "014 003 README changelog"
   - "schema v30 front proxy error codes README"
+  - "memory and causal runtime readme cluster update changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

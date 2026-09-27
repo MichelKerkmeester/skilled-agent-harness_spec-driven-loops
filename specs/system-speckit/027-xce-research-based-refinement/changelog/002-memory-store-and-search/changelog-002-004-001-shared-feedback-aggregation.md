@@ -5,6 +5,7 @@ trigger_phrases:
   - "002/004 aggregator changelog"
   - "shared feedback aggregation"
   - "aggregateEvents reducer extension"
+  - "memory store and search shared feedback aggregation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk-spec-memory disconnect investigation"
   - "daemon durable fix roadmap"
   - "invalidateProviderSingleton dispose missing"
+  - "mcp daemon reliability research changelog"
 importance_tier: "important"
 contextType: "research"
 ---

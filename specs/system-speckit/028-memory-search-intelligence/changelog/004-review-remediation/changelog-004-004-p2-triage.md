@@ -2,9 +2,7 @@
 title: "Changelog: P2 Triage [004-review-remediation/004-p2-triage]"
 description: "Chronological changelog for the p2 triage phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review remediation p2 triage changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

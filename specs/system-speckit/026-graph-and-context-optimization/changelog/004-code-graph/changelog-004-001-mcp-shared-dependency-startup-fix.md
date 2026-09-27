@@ -7,6 +7,7 @@ trigger_phrases:
   - "mk_skill_advisor startup crash"
   - "mk_code_index startup crash"
   - "mcp server module resolution fix"
+  - "code graph mcp shared dependency startup fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

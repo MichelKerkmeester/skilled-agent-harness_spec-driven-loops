@@ -2,9 +2,7 @@
 title: "Changelog: Model Benchmark - Resume Adapter [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter]"
 description: "Changelog for the model benchmark resume adapter phase: rebuilding multi-model run and scoring-matrix state from the sealed typed event ledger."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "model benchmark resume adapter changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -96,7 +96,7 @@ Route to the right family before authoring. The **OWNS** column is what this pac
 | MCP promotion (`shared`) | Retrieval / quality / runtime / throughput from a shipped MCP stack | `<skill>/mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/` | `benchmark-report.md` + `source.md` templates and the report contract | Owned here | §3-8 |
 | Behavior (`behavior_benchmark`) | Executor-model behavior at a deep-loop mode's invocation surface | `<mode>/behavior-benchmark/` | Index, scenario, and baseline templates + the authoring guide | Measurement contract → `system-deep-loop/shared/behavior-benchmark/framework.md` | §9 |
 | Model-benchmark (`model_benchmark`, Lane B) | What a model or prompt framework produces against a held-out oracle | `system-deep-loop/deep-improvement/assets/model-benchmark/` | Code-task, pattern/capability, and reviewer fixture templates + the profile template + the fixture guide | Evaluator / scorer / reviewer-verdict contract → deep-improvement lane | §10 |
-| Agent-improvement (`agent_improvement`, Lane A) | An agent's quality across five dimensions | deep-improvement lane (in-lane) | Authoring guide ([guide](references/agent-improvement/agent-improvement-authoring-guide.md)) | Code-owned rubric/config; run by `/deep:agent-improvement` | §12 |
+| Agent-improvement (`agent_improvement`, Lane A) | An agent's quality across five dimensions | deep-improvement lane (in-lane) | Authoring guide ([guide](../../../.skilled/skills/sk-doc/sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md)) | Code-owned rubric/config; run by `/deep:agent-improvement` | §12 |
 
 ### Routing Decision
 
@@ -105,7 +105,7 @@ Route by the table. Never change lane-local scoring.
 ### Smart Router Pseudocode
 
 Benchmark families are runtime keys. Use canonical `discover_markdown_resources()` and
-`_guard_in_skill()` ([skill-smart-router.md](../sk-create-skill/assets/skill/skill-smart-router.md));
+`_guard_in_skill()` ([skill-smart-router.md](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md));
 only family keys and tiered fallback vary:
 
 ```python
@@ -427,10 +427,10 @@ ask one consolidated setup question when under-specified, respect invariants, an
 finish relative to a Claude reference leg.
 
 The authoring path, matrix rules, and naming live in
-[`references/behavior-benchmark/behavior-benchmark-guide.md`](references/behavior-benchmark/behavior-benchmark-guide.md).
+[`references/behavior-benchmark/behavior-benchmark-guide.md`](../../../.skilled/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md).
 The normative five-dimension rubric, terminal buckets, budget formula, entry-surface
 and clarity enums, and ID prefixes live only in
-[`../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../system-deep-loop/shared/behavior-benchmark/framework.md).
+[`../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../.skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md).
 Instantiate that framework; do not redefine it.
 
 ### Package Shape
@@ -451,7 +451,7 @@ The executing packet provisions fixtures and holds proof; this package is the co
 
 ### Templates, Workflow, and Naming
 
-Load the [behavior-benchmark guide](references/behavior-benchmark/behavior-benchmark-guide.md)
+Load the [behavior-benchmark guide](../../../.skilled/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md)
 and shared framework before authoring. The guide owns templates, sequence, matrix,
 and naming; execution and evidence stay in the executing packet.
 
@@ -476,7 +476,7 @@ and naming; execution and evidence stay in the executing packet.
 
 ## 10. MODEL-BENCHMARK FIXTURES AND PROFILES
 
-Lane B `/deep:model-benchmark` scores model or prompt-framework output against a held-out oracle. This packet owns data-only fixtures and run profiles, never evaluator, scorers, or reviewer-verdict contract. The taxonomy, profile shape, and boundary live in [`references/model-benchmark/model-benchmark-fixture-guide.md`](references/model-benchmark/model-benchmark-fixture-guide.md).
+Lane B `/deep:model-benchmark` scores model or prompt-framework output against a held-out oracle. This packet owns data-only fixtures and run profiles, never evaluator, scorers, or reviewer-verdict contract. The taxonomy, profile shape, and boundary live in [`references/model-benchmark/model-benchmark-fixture-guide.md`](../../../.skilled/skills/sk-doc/sk-create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md).
 
 ### Artifact Shape
 
@@ -502,9 +502,9 @@ Detect fixtures by shape, not filename; each family feeds a different scorer:
 
 | Output file | Template |
 | --- | --- |
-| Code-task oracle fixture `<slug>.json` | [`assets/model-benchmark/model-benchmark-code-task-fixture-template.md`](assets/model-benchmark/model-benchmark-code-task-fixture-template.md) |
-| Pattern / capability or reviewer-prompt fixture `<slug>.json` | [`assets/model-benchmark/model-benchmark-pattern-fixture-template.md`](assets/model-benchmark/model-benchmark-pattern-fixture-template.md) |
-| Run profile `<profile>.json` | [`assets/model-benchmark/model-benchmark-profile-template.md`](assets/model-benchmark/model-benchmark-profile-template.md) |
+| Code-task oracle fixture `<slug>.json` | [`assets/model-benchmark/model-benchmark-code-task-fixture-template.md`](../../../.skilled/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-code-task-fixture-template.md) |
+| Pattern / capability or reviewer-prompt fixture `<slug>.json` | [`assets/model-benchmark/model-benchmark-pattern-fixture-template.md`](../../../.skilled/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-pattern-fixture-template.md) |
+| Run profile `<profile>.json` | [`assets/model-benchmark/model-benchmark-profile-template.md`](../../../.skilled/skills/sk-doc/sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md) |
 
 Copy only each template's fenced JSON into shipped `.json`; include no frontmatter or comments.
 
@@ -548,14 +548,14 @@ Filesystem outputs, template directories, and filenames use lowercase kebab-case
 
 **Within this packet** — family guides and the overflow route-map; the fillable templates are mapped in each family section above:
 
-- [`references/shared/README.md`](references/shared/README.md) — overflow route-map (case studies, worked example, pitfalls).
-- [`references/behavior-benchmark/behavior-benchmark-guide.md`](references/behavior-benchmark/behavior-benchmark-guide.md) — behavior package authoring path (§9).
-- [`references/model-benchmark/model-benchmark-fixture-guide.md`](references/model-benchmark/model-benchmark-fixture-guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§10).
-- [`agent-improvement-authoring-guide.md`](references/agent-improvement/agent-improvement-authoring-guide.md) — Lane A input authoring (§12).
+- [`references/shared/README.md`](../../../.skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md) — overflow route-map (case studies, worked example, pitfalls).
+- [`references/behavior-benchmark/behavior-benchmark-guide.md`](../../../.skilled/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md) — behavior package authoring path (§9).
+- [`references/model-benchmark/model-benchmark-fixture-guide.md`](../../../.skilled/skills/sk-doc/sk-create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md) — model-benchmark fixture taxonomy, profile shape, lane boundary (§10).
+- [`agent-improvement-authoring-guide.md`](../../../.skilled/skills/sk-doc/sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md) — Lane A input authoring (§12).
 
 **Lane-owned contracts** — cross-link, never restate:
 
-- [`behavior-benchmark/framework.md`](../../system-deep-loop/shared/behavior-benchmark/framework.md) — behavior rubric, buckets, budget formula, runner.
-- [`evaluator-contract.md`](../../system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md) + [`reviewer-schema.md`](../../system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md) — Lane B evaluator rubric and reviewer-prompt schema.
+- [`behavior-benchmark/framework.md`](../../../.skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md) — behavior rubric, buckets, budget formula, runner.
+- [`evaluator-contract.md`](../../../.skilled/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md) + [`reviewer-schema.md`](../../../.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md) — Lane B evaluator rubric and reviewer-prompt schema.
 
-**Shared sk-doc backbone**: [`../shared/scripts/validate_document.py`](../shared/scripts/validate_document.py) — every authored `.md` must pass with 0 issues; [`../shared/references/`](../shared/references/) — cross-document standards.
+**Shared sk-doc backbone**: [`../shared/scripts/validate_document.py`](../../../.skilled/skills/sk-doc/shared/scripts/validate_document.py) — every authored `.md` must pass with 0 issues; [`../shared/references/`](../../../.skilled/skills/sk-doc/shared/references) — cross-document standards.

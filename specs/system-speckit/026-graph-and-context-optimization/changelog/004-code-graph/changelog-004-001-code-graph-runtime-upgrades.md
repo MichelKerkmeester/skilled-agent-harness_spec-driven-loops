@@ -7,6 +7,7 @@ trigger_phrases:
   - "blast radius depth fix"
   - "hot file breadcrumbs"
   - "graph edge evidence enrichment"
+  - "code graph runtime upgrades changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,8 @@
 title: "Changelog: Phase 17 Runtime-Wiring Feasibility and Contract [035-improved-communication/017-runtime-wiring-feasibility-and-contract]"
 description: "Chronological changelog for the Phase 17 Runtime-Wiring Feasibility and Contract phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation runtime wiring feasibility and contract changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

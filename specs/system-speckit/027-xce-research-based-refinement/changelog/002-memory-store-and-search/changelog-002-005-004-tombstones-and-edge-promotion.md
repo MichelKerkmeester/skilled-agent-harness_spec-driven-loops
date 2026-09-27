@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_SOFT_DELETE_TOMBSTONES default off changelog"
   - "schema v37 tombstone partition"
   - "skip-manual causal edge promotion shipped"
+  - "memory store and search tombstones and edge promotion changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -137,12 +137,12 @@ cli-jev/
 
 ## 5. REFERENCES
 
-- Registry: [`mode-registry.json`](./mode-registry.json).
-- Router: [`hub-router.json`](./hub-router.json).
-- Root router: [`ROUTER.md`](./ROUTER.md).
-- Transport packet: [`cli-usage/SKILL.md`](./cli-usage/SKILL.md), [`cli-usage/references/cli-reference.md`](./cli-usage/references/cli-reference.md), [`cli-usage/references/providers-and-models.md`](./cli-usage/references/providers-and-models.md), [`cli-usage/references/integration-patterns.md`](./cli-usage/references/integration-patterns.md), [`cli-usage/references/mcp-server.md`](./cli-usage/references/mcp-server.md).
-- Hub metadata: [`description.json`](./description.json), [`graph-metadata.json`](./graph-metadata.json), [`leaf-manifest.json`](./leaf-manifest.json).
-- Hub changelog: [`changelog/v0.2.0.0.md`](./changelog/v0.2.0.0.md).
+- Registry: [`mode-registry.json`](../../../.skilled/skills/cli-jev/mode-registry.json).
+- Router: [`hub-router.json`](../../../.skilled/skills/cli-jev/hub-router.json).
+- Root router: [`ROUTER.md`](../../../.skilled/skills/cli-jev/ROUTER.md).
+- Transport packet: [`cli-usage/SKILL.md`](../../../.skilled/skills/cli-jev/cli-usage/SKILL.md), [`cli-usage/references/cli-reference.md`](../../../.skilled/skills/cli-jev/cli-usage/references/cli-reference.md), [`cli-usage/references/providers-and-models.md`](../../../.skilled/skills/cli-jev/cli-usage/references/providers-and-models.md), [`cli-usage/references/integration-patterns.md`](../../../.skilled/skills/cli-jev/cli-usage/references/integration-patterns.md), [`cli-usage/references/mcp-server.md`](../../../.skilled/skills/cli-jev/cli-usage/references/mcp-server.md).
+- Hub metadata: [`description.json`](../../../.skilled/skills/cli-jev/description.json), [`graph-metadata.json`](../../../.skilled/skills/cli-jev/graph-metadata.json), [`leaf-manifest.json`](../../../.skilled/skills/cli-jev/leaf-manifest.json).
+- Hub changelog: [`changelog/v0.2.0.0.md`](../../../.skilled/skills/cli-jev/changelog/v0.2.0.0.md).
 
 ---
 

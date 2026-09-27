@@ -275,17 +275,17 @@ skill-name/
         └── <YYYY-MM-DD>--<subject>--<variant>/
 ```
 
-`SKILL.md` is the root marker. Root JSON requirements are class-specific; the complete authored/generated matrix is [skill-root-metadata-contract.md](references/shared/skill-root-metadata-contract.md). `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
+`SKILL.md` is the root marker. Root JSON requirements are class-specific; the complete authored/generated matrix is [skill-root-metadata-contract.md](../../../.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md). `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
 
-A standalone skill is class **S** under the root-metadata contract, so beyond `graph-metadata.json` it authors exactly one more metadata file — `leaf-manifest.config.json`, naming its single workflow mode and leaf roots — and generates the rest. Required, forbidden, and generated-versus-authored rules for every root JSON live in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md); do not infer them from a sibling skill.
+A standalone skill is class **S** under the root-metadata contract, so beyond `graph-metadata.json` it authors exactly one more metadata file — `leaf-manifest.config.json`, naming its single workflow mode and leaf roots — and generates the rest. Required, forbidden, and generated-versus-authored rules for every root JSON live in [`references/shared/skill-root-metadata-contract.md`](../../../.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md); do not infer them from a sibling skill.
 
 The last two directories are a pair: `manual-testing-playbook/` holds the corpus a run reads, and
 `benchmark/` holds what the run wrote. Keeping them apart is what lets a run be re-executed against
 the same scenarios later and compared, so neither one is optional once a skill is benchmarked.
 
 The scaffolder creates both. Their interiors are owned elsewhere and are not restated here:
-[`create-benchmark`](../sk-create-benchmark/SKILL.md) owns the run-folder grammar, the report file set
-and the index shape; [`create-manual-testing-playbook`](../sk-create-manual-testing-playbook/SKILL.md)
+[`create-benchmark`](../../../.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md) owns the run-folder grammar, the report file set
+and the index shape; [`create-manual-testing-playbook`](../../../.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md)
 owns the corpus layout and the results-storage contract. Consult those rather than inferring the rules
 from an example.
 
@@ -329,7 +329,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 24. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
 25. Treat `legacy (no manifest)` as complete only when no canonical manifest was emitted. For `ready`, the initializer calls `compiled-route-manifest.cjs mint` after the final router inputs exist and then calls `freshness` against the same hub root.
 26. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
-27. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
+27. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](../../../.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md).
 28. Replace every slug-only routing default: `graph-metadata.json` `domains` and `intent_signals`, `description.json` keywords, and per-mode registry aliases are the fields the advisor's scorers read — fill them with phrases a user would genuinely type.
 29. Confirm advisor discovery. A warm advisor daemon ingests a new hub automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next start ingests it. Manual refresh: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test with `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
 
@@ -366,7 +366,7 @@ parent-hub/
     └── changelog/
 ```
 
-Class-H root metadata follows the [skill-root-metadata-contract.md](references/shared/skill-root-metadata-contract.md) matrix, including authored versus generated files.
+Class-H root metadata follows the [skill-root-metadata-contract.md](../../../.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md) matrix, including authored versus generated files.
 
 A packet may carry its own `benchmark/` in the same shape when it is measured separately from its
 hub. The corpus/output pairing and the owning-skill references described under the standalone shape

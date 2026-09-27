@@ -5,6 +5,7 @@ trigger_phrases:
   - "003/002 008 codegraph why included changelog"
   - "blast radius breadcrumbs"
   - "code_graph_context includeTrace"
+  - "advisor and codegraph why included changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

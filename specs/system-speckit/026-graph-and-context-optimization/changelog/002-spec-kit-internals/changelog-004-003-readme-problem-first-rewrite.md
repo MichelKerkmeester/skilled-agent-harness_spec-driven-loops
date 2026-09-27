@@ -5,6 +5,7 @@ trigger_phrases:
   - "skill-advisor readme rewrite"
   - "003 marketing readme phase"
   - "system-skill-advisor marketing readme"
+  - "spec kit internals readme problem first rewrite changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---
