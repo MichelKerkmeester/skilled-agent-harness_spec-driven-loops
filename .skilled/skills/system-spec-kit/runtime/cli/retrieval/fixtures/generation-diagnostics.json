@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7681,
-    "ok": 11603,
+    "missing-frontmatter": 7699,
+    "ok": 11613,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 22975,
+  "documentsScanned": 23003,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f1fb4149d36f9813129bfa34dac6bb488829a368c114af69077c393417643d46",
+  "manifestHash": "9f7140bf5a222f3d652391494bc99af33a18bc1a66456e6503dd287e2aff223c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 28127,
+      "ok": 28152,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -8244,6 +8244,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.1.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -9448,6 +9454,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/changelog/v1.8.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-tooling/changelog/v1.8.0.1.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -29572,6 +29584,24 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal--review-remediation/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal--review-remediation/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal--review-remediation/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/README.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -30821,6 +30851,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.2.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -45226,6 +45262,78 @@
       "line": 1,
       "path": "specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/research/unresolved-signal-decisions.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -73958,6 +74066,10 @@
     },
     {
       "path": "specs/sk-doc/060-create-goal-mode/011-cross-surface-references/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch",
       "reason": "excluded directory"
     },
     {

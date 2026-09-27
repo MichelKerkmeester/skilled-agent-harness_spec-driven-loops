@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f1fb4149d36f9813129bfa34dac6bb488829a368c114af69077c393417643d46",
+  "manifestHash": "9f7140bf5a222f3d652391494bc99af33a18bc1a66456e6503dd287e2aff223c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13791,6 +13791,9 @@
     "canonical criteria read": [
       "canonical criteria read"
     ],
+    "canonical cut order": [
+      "canonical cut order"
+    ],
     "canonical cycle signatures": [
       "canonical cycle signatures"
     ],
@@ -23248,6 +23251,9 @@
     ],
     "create goal references tasks": [
       "create-goal references tasks"
+    ],
+    "create goal review findings": [
+      "create-goal review findings"
     ],
     "create goal routing republish": [
       "create-goal routing republish"
@@ -38612,6 +38618,9 @@
     "goal capability probes": [
       "goal capability probes"
     ],
+    "goal chat send rule": [
+      "goal chat send rule"
+    ],
     "goal chat slice": [
       "goal chat slice"
     ],
@@ -39023,6 +39032,18 @@
     "goal mode release link": [
       "goal mode release link"
     ],
+    "goal nesting dedupe": [
+      "goal nesting dedupe"
+    ],
+    "goal nesting pointer acceptance": [
+      "goal nesting pointer acceptance"
+    ],
+    "goal nesting pointer tasks": [
+      "goal nesting pointer tasks"
+    ],
+    "goal nesting pointers": [
+      "goal nesting pointers"
+    ],
     "goal non utf8 refusal": [
       "goal non-utf8 refusal"
     ],
@@ -39185,6 +39206,18 @@
     "goal scope resolver": [
       "goal scope resolver"
     ],
+    "goal send rule acceptance": [
+      "goal send rule acceptance"
+    ],
+    "goal send rule goal": [
+      "goal send rule goal"
+    ],
+    "goal send rule plan": [
+      "goal send rule plan"
+    ],
+    "goal send rule tasks": [
+      "goal send rule tasks"
+    ],
     "goal session isolation": [
       "goal session isolation"
     ],
@@ -39242,11 +39275,26 @@
     "goal template": [
       "goal template"
     ],
+    "goal template bloat": [
+      "goal template bloat"
+    ],
+    "goal template cut": [
+      "goal template cut"
+    ],
+    "goal template cut acceptance": [
+      "goal template cut acceptance"
+    ],
+    "goal template cut tasks": [
+      "goal template cut tasks"
+    ],
     "goal template edit": [
       "goal template edit"
     ],
     "goal template frontmatter strip": [
       "goal template frontmatter strip"
+    ],
+    "goal template instruction removal": [
+      "goal template instruction removal"
     ],
     "goal template parity test": [
       "goal template parity test"
@@ -55657,6 +55705,9 @@
     "parent goal chat send cap": [
       "parent goal chat send cap"
     ],
+    "parent goal chat slice": [
+      "parent goal chat slice"
+    ],
     "parent goal child phases": [
       "parent goal child phases"
     ],
@@ -56932,11 +56983,17 @@
     "phase 012 closure fixtures": [
       "phase 012 closure fixtures"
     ],
+    "phase 012 closure gate": [
+      "phase 012 closure gate"
+    ],
     "phase 012 closure implementation": [
       "phase 012 closure implementation"
     ],
     "phase 012 closure modules": [
       "phase 012 closure modules"
+    ],
+    "phase 012 goal": [
+      "phase 012 goal"
     ],
     "phase 012 interface fixture tasks": [
       "phase 012 interface fixture tasks"
@@ -56946,6 +57003,9 @@
     ],
     "phase 012 typed interface plan": [
       "phase 012 typed interface plan"
+    ],
+    "phase 012 verification checklist": [
+      "phase 012 verification checklist"
     ],
     "phase 013 closure handoff": [
       "phase 013 closure handoff"
@@ -72135,6 +72195,12 @@
     "sk create goal closeout tasks": [
       "sk-create-goal closeout tasks"
     ],
+    "sk create goal deep review report": [
+      "sk-create-goal deep review report"
+    ],
+    "sk create goal deep review strategy": [
+      "sk-create-goal deep review strategy"
+    ],
     "sk create goal hub routing": [
       "sk-create-goal hub routing"
     ],
@@ -72399,6 +72465,9 @@
     "sk doc conformance sweep": [
       "sk-doc conformance sweep"
     ],
+    "sk doc create goal mode": [
+      "sk-doc create-goal mode"
+    ],
     "sk doc discriminator": [
       "sk-doc discriminator"
     ],
@@ -72533,6 +72602,9 @@
     ],
     "sk doc v2 1 0 0": [
       "sk-doc v2.1.0.0"
+    ],
+    "sk doc v2 2 0 0": [
+      "sk-doc v2.2.0.0"
     ],
     "sk doc validator findings obsidian surface": [
       "sk-doc validator findings obsidian surface"
@@ -78590,6 +78662,9 @@
     ],
     "surface packet tasks": [
       "surface packet tasks"
+    ],
+    "surface packet validation": [
+      "surface packet validation"
     ],
     "surface packet workflow packet": [
       "surface packet workflow packet"

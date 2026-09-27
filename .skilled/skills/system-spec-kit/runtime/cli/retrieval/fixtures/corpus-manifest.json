@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e93444b52b1ae4096118aaaeb7b8a4baac8b60c8a7ee6e25cf1b78e06f6dcd9c",
+  "corpusHash": "f781035a80037c571b176deccb70d5bfca6ec8e1d64854a99ef5b2c55bf797dd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22975,
+  "includedPathCount": 23003,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -1504,6 +1504,7 @@
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.1.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.10.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.1.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
@@ -1773,6 +1774,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.6.1.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.7.0.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.8.0.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.8.0.1.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -5875,6 +5877,9 @@
     ".skilled/skills/sk-doc/ROUTER.md",
     ".skilled/skills/sk-doc/SKILL.md",
     ".skilled/skills/sk-doc/benchmark/README.md",
+    ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal--review-remediation/README.md",
+    ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal--review-remediation/failed-runs.md",
+    ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal--review-remediation/source.md",
     ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/README.md",
     ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/source.md",
     ".skilled/skills/sk-doc/benchmark/reports/README.md",
@@ -5919,6 +5924,7 @@
     ".skilled/skills/sk-doc/changelog/v2.0.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.0.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.1.0.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.2.0.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
@@ -6172,6 +6178,7 @@
     ".skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md",
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/add-goal-to-packet-without-goal.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/cut-over-budget-parent.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/detect-unbound-phase.md",
@@ -11475,9 +11482,30 @@
     "specs/sk-doc/060-create-goal-mode/011-cross-surface-references/plan.md",
     "specs/sk-doc/060-create-goal-mode/011-cross-surface-references/spec.md",
     "specs/sk-doc/060-create-goal-mode/011-cross-surface-references/tasks.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/acceptance-criteria.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/goal.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/implementation-summary.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/plan.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/deep-review-dashboard.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/deep-review-strategy.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-001.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-002.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-003.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-004.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-005.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-1.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-2.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-3.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-4.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-5.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/resource-map.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/review/review-report.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/spec.md",
+    "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/tasks.md",
     "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-009-verification-and-closeout.md",
     "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-010-asset-templates-and-folder-readmes.md",
     "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-011-cross-surface-references.md",
+    "specs/sk-doc/060-create-goal-mode/changelog/changelog-060-012-goal-send-and-dedupe.md",
     "specs/sk-doc/060-create-goal-mode/goal.md",
     "specs/sk-doc/060-create-goal-mode/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
@@ -22997,7 +23025,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f1fb4149d36f9813129bfa34dac6bb488829a368c114af69077c393417643d46",
+  "manifestHash": "9f7140bf5a222f3d652391494bc99af33a18bc1a66456e6503dd287e2aff223c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25000,6 +25028,10 @@
     },
     {
       "path": "specs/sk-doc/060-create-goal-mode/011-cross-surface-references/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch",
       "reason": "excluded directory"
     },
     {
