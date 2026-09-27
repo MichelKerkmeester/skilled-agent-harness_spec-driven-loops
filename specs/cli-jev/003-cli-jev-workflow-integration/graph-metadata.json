@@ -180,18 +180,24 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-27T12:08:27.039Z",
+    "last_save_at": "2026-09-27T12:27:45.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:7055dababbac7edd14e3456488b29c2f003cd452248b90c598eaddffafd4b3ca",
+    "source_fingerprint": "sha256:e355084bdd4475d234646ab6a3de09a108778312f6ce471b9344123a9358c69e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9854d094850915f711dc8ea5444a02aea961e6174a939eb656f1fe4b78d5fadf"
