@@ -1,5 +1,5 @@
 {
-  "corpusHash": "78b75e6614e82d7c6a8e10aaa78d38924b679149715b093c4b44ee93147547f9",
+  "corpusHash": "10b90a695ace8dee36c0577a17a90406d6fe8fdad2dad84bc2378212cf93c065",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23008,
+  "includedPathCount": 23012,
   "includedPaths": [
     ".skilled/hooks/README.md",
     ".skilled/hooks/codex-watchdog/README.md",
@@ -13949,6 +13949,10 @@
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/plan.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/spec.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/tasks.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/implementation-summary.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/plan.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/spec.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/tasks.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/bug_report.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/feature_request.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/pull_request_template.md",
@@ -23030,7 +23034,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "87799a4a07087860ca38fee9035d75aa48fabad539e6b96835efaaa6d2fe7ad8",
+  "manifestHash": "0e63c689ffd37ea9968a613287a758762e67875d84cd8db4073daa3e661b3d13",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25789,6 +25793,10 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7699,
-    "ok": 11618,
+    "ok": 11622,
     "valid-empty-list": 3637
   },
-  "documentsScanned": 23008,
+  "documentsScanned": 23012,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "87799a4a07087860ca38fee9035d75aa48fabad539e6b96835efaaa6d2fe7ad8",
+  "manifestHash": "0e63c689ffd37ea9968a613287a758762e67875d84cd8db4073daa3e661b3d13",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 28163,
+      "ok": 28175,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -74822,6 +74822,10 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/scratch",
       "reason": "excluded directory"
     },
     {

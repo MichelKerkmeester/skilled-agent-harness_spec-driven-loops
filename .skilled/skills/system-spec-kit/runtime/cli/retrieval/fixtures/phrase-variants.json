@@ -1,5 +1,5 @@
 {
-  "manifestHash": "87799a4a07087860ca38fee9035d75aa48fabad539e6b96835efaaa6d2fe7ad8",
+  "manifestHash": "0e63c689ffd37ea9968a613287a758762e67875d84cd8db4073daa3e661b3d13",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10342,6 +10342,15 @@
     ],
     "appendauthorized internal only": [
       "appendAuthorized internal only"
+    ],
+    "appended phase numbering": [
+      "appended phase numbering"
+    ],
+    "appended phase numbering fix": [
+      "appended phase numbering fix"
+    ],
+    "appended phase numbering tasks": [
+      "appended phase numbering tasks"
     ],
     "apple health chart vault": [
       "apple health chart vault"
@@ -31307,6 +31316,15 @@
     ],
     "drift guard acceptance criteria": [
       "drift guard acceptance criteria"
+    ],
+    "drift guard count": [
+      "drift guard count"
+    ],
+    "drift guard count fix": [
+      "drift guard count fix"
+    ],
+    "drift guard docs plan": [
+      "drift guard docs plan"
     ],
     "drift guard errors": [
       "drift guard errors"
@@ -57127,6 +57145,18 @@
     "phase 053 tasks": [
       "phase 053 tasks"
     ],
+    "phase 10 observations": [
+      "phase 10 observations"
+    ],
+    "phase 10 observations plan": [
+      "phase 10 observations plan"
+    ],
+    "phase 10 observations summary": [
+      "phase 10 observations summary"
+    ],
+    "phase 10 observations tasks": [
+      "phase 10 observations tasks"
+    ],
     "phase 126 implementation summary": [
       "phase 126 implementation summary"
     ],
@@ -58567,6 +58597,9 @@
     ],
     "placeholder pattern detection": [
       "placeholder pattern detection"
+    ],
+    "placeholder phase description": [
+      "placeholder phase description"
     ],
     "placeholder rule closure gate": [
       "placeholder rule closure gate"
@@ -85382,6 +85415,9 @@
     ],
     "writevectorstoshard patch": [
       "writeVectorsToShard patch"
+    ],
+    "wrong phase label": [
+      "wrong phase label"
     ],
     "wt nnnn name numbered worktree": [
       "wt/{NNNN}-{name} numbered worktree"
