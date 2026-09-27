@@ -2,7 +2,7 @@
 name: cli-cursor
 description: "Cursor CLI executor for cursor-agent-backed coding, plan/ask read-only modes, native git worktree isolation, and a cloud worker — a shared-editor-config CLI dispatch."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.2.0
+version: 1.5.0.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -40,10 +40,10 @@ Orchestrate Cursor's terminal coding agent (`cursor-agent`) for tasks that benef
 ### Activation Triggers
 
 - **Cross-AI Validation** — code review second perspective, bug detection, an independent implementation attempt.
-- **Composer Dispatch** — tasks that specifically want Cursor's own native model (`composer-2.5`/`composer-2.5-fast`), or the Grok (4.5/4.6) / GLM 5.2 tiers already on the enforced allowlist (see §3 Model Selection).
+- **Composer Dispatch** — tasks that specifically want Cursor's own native model (`composer-2.5`/`composer-2.5-fast`), or the Grok (4.5/4.6/4.7) / GLM 5.2 tiers already on the enforced allowlist (see §3 Model Selection).
 - **Read-Only Exploration** — `--mode plan` (read-only planning) or `--mode ask` (read-only Q&A) when a task wants Cursor's analysis without any file writes.
 - **Isolated Experimentation** — Cursor's native git worktree isolation (`-w`/`--worktree`) for a change the operator wants tried in a disposable checkout, documented in `references/cursor-tools.md` as an opt-in escape hatch, not this packet's default dispatch shape.
-- **Specialized Generation** — explicit Cursor requests naming Grok (4.5 or 4.6) or GLM 5.2 specifically (the only non-Composer models on the enforced allowlist).
+- **Specialized Generation** — explicit Cursor requests naming Grok (4.5, 4.6 or 4.7) or GLM 5.2 specifically (the only non-Composer models on the enforced allowlist).
 
 ### When NOT to Use
 
@@ -111,7 +111,7 @@ if detect_self_invocation():
 
 ### Smart Router
 
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md)):
 
 ```python
 INTENT_SIGNALS = {
@@ -165,7 +165,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
 6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
 
-The `route_cursor_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `cursor`.
+The `route_cursor_resources(task)` function body lives in [`shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `cursor`.
 
 ---
 
@@ -173,11 +173,11 @@ The `route_cursor_resources(task)` function body lives in [`shared-smart-router.
 
 ### Prerequisites
 
-Install with `curl https://cursor.com/install -fsS | bash` (Windows: `irm 'https://cursor.com/install?win32=true' | iex`). cli-cursor authenticates through **Cursor account OAuth** — run `cursor-agent login` and complete the browser flow (`NO_OPEN_BROWSER` disables browser opening for headless hosts). Headless/CI auth uses `CURSOR_API_KEY` or `--api-key`. Full install, auth, flag, hook, and unique-surface tables live in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
+Install with `curl https://cursor.com/install -fsS | bash` (Windows: `irm 'https://cursor.com/install?win32=true' | iex`). cli-cursor authenticates through **Cursor account OAuth** — run `cursor-agent login` and complete the browser flow (`NO_OPEN_BROWSER` disables browser opening for headless hosts). Headless/CI auth uses `CURSOR_API_KEY` or `--api-key`. Full install, auth, flag, hook, and unique-surface tables live in the ALWAYS-loaded [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
 
 ### Execution Ownership
 
-This packet owns user-facing routing, the `command -v cursor-agent` availability probe, prompt construction, and the self-invocation guard. Research and review lineages delegate process construction and execution to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-cursor`. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
+This packet owns user-facing routing, the `command -v cursor-agent` availability probe, prompt construction, and the self-invocation guard. Research and review lineages delegate process construction and execution to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-cursor`. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md) §5.
 
 The runtime is the single Cursor execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `cursor-agent -p` snippets below are operator reference and manual-testing examples; research and review lineages use the shared runtime, and a one-shot dispatch uses the child envelope.
 
@@ -231,6 +231,7 @@ cursor-agent -p "<prompt>" \
 | "Use Composer fast" | `--model composer-2.5-fast --auto-review --sandbox enabled` |
 | "Use Composer max" / "Composer Max Mode" | Composer has no `-max` (1M "Max Mode") tier — only `composer-2.5`/`composer-2.5-fast`. Tell the user; do not substitute another model's `-max`. |
 | "Use Grok" / "Grok high" | `--model cursor-grok-4.6-high --auto-review --sandbox enabled` |
+| "Use Grok 4.7" / "Grok 4.7 high" | `--model grok-4.7-high --auto-review --sandbox enabled` |
 | "Use GLM" / "GLM max" | `--model glm-5.2-max --auto-review --sandbox enabled` |
 | "Just plan it, don't write anything" | `--model composer-2.5 --mode plan` (read-only; approval flags do not apply in plan mode) |
 | "Full auto, run everything" | `--model composer-2.5 --force --sandbox disabled` |
@@ -240,19 +241,19 @@ Honor whichever dimensions the user names (approval level, mode). Model stays on
 
 ### Model Selection — Enforced Allowlist
 
-**cli-cursor dispatch is scoped to exactly 21 ids — never dispatch a model outside the allowlist (including `auto`), and never substitute the closest-sounding allowed model without telling the user.** Default `composer-2.5`; pick a Gemini 3.7 Flash High / GLM 5.2 / GPT-5.6 Luna Max / Grok (4.5 or 4.6) tier only when the task or user explicitly names that family. Cursor has no `--reasoning-effort` flag and rejects parameterized model brackets outright — effort tiers must be selected through exact enumerated ids.
+**cli-cursor dispatch is scoped to exactly 29 ids — never dispatch a model outside the allowlist (including `auto`), and never substitute the closest-sounding allowed model without telling the user.** Default `composer-2.5`; pick a Gemini 3.8 Flash High / GLM 5.2 / GPT-5.6 Luna Max / Grok (4.5, 4.6 or 4.7) tier only when the task or user explicitly names that family. Cursor has no `--reasoning-effort` flag and rejects parameterized model brackets outright — effort tiers must be selected through exact enumerated ids.
 
-The enforced allowlist (21 ids) and the per-task rationale table live inline in [references/cli-reference.md](./references/cli-reference.md) §5 and [references/providers-and-models.md](./references/providers-and-models.md) §2. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`, checked by `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed) and at this skill layer. If a task seems to need a model outside the allowlist, escalate to the user rather than fabricating a substitute or falling back to `auto`.
+The enforced allowlist (29 ids) and the per-task rationale table live inline in [references/cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md) §5 and [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md) §2. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`, checked by `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed) and at this skill layer. If a task seems to need a model outside the allowlist, escalate to the user rather than fabricating a substitute or falling back to `auto`.
 
 ### Cursor Agent Delegation
 
-The calling AI is the conductor; Cursor's own skill system at `~/.cursor/skills-cursor/` (observed live: `automate`, `babysit`, `canvas`, `create-hook`, `create-rule`, `create-skill`, `create-subagent`, `loop`, `migrate-to-skills`, `sdk`, `shell`, `split-to-prs`, `statusline`, `update-cli-config`, `update-cursor-settings`) confirms Cursor supports subagents natively, but these are Cursor-editor-side conventions, not a `-p <profile>` flag like Codex's. Full delegation contract and the `--mode plan`/`--mode ask`/default-agent execution-mode roster: [agent-delegation.md](./references/agent-delegation.md).
+The calling AI is the conductor; Cursor's own skill system at `~/.cursor/skills-cursor/` (observed live: `automate`, `babysit`, `canvas`, `create-hook`, `create-rule`, `create-skill`, `create-subagent`, `loop`, `migrate-to-skills`, `sdk`, `shell`, `split-to-prs`, `statusline`, `update-cli-config`, `update-cursor-settings`) confirms Cursor supports subagents natively, but these are Cursor-editor-side conventions, not a `-p <profile>` flag like Codex's. Full delegation contract and the `--mode plan`/`--mode ask`/default-agent execution-mode roster: [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/agent-delegation.md).
 
 ### Repository Rules, Hook Delivery, and Parity Boundaries
 
 Cursor CLI reads project `.cursor/rules/*.md`, root `AGENTS.md`, root `CLAUDE.md`, and legacy `.cursorrules` automatically. This repo now uses `.cursor/rules/skill-routing.md` as a compact, always-on pointer to the relevant top-level `.skilled/skills/*/SKILL.md` packets. It is static session context, not a replacement for dynamic per-turn classification.
 
-The `beforeSubmitPrompt` adapter is designed to deliver a dynamic skill-advisor-equivalent brief, but delivery is confirmed dormant under the installed Cursor CLI build. Its source marks the status as registered but unconfirmed and records the shared-advisor delegation in [`user-prompt-submit.ts`](../../system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts#L5-L14) and [`user-prompt-submit.ts`](../../system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts#L45-L51). A live marker re-probe against `cursor-agent 2026.07.23-e383d2b` confirmed that `beforeSubmitPrompt` did not fire. The static rules file therefore complements a missing dynamic brief; it does not claim to provide per-turn advisor output. The hook registration and adapter remain unchanged.
+The `beforeSubmitPrompt` adapter is designed to deliver a dynamic skill-advisor-equivalent brief, but delivery is confirmed dormant under the installed Cursor CLI build. Its source marks the status as registered but unconfirmed and records the shared-advisor delegation in [`user-prompt-submit.ts`](../../../.skilled/skills/system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts#L5-L14) and [`user-prompt-submit.ts`](../../../.skilled/skills/system-spec-kit/runtime/hooks/cursor/user-prompt-submit.ts#L45-L51). A live marker re-probe against `cursor-agent 2026.07.23-e383d2b` confirmed that `beforeSubmitPrompt` did not fire. The static rules file therefore complements a missing dynamic brief; it does not claim to provide per-turn advisor output. The hook registration and adapter remain unchanged.
 
 #### Custom Subagents (CORRECTION -- earlier claim was wrong)
 
@@ -282,11 +283,11 @@ Note: `~/.cursor/agents/` (user-level) is documented by Cursor but a live probe 
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary, hook contract, shared-config surface, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Gotchas that silently break a dispatch and must be honored at routing time:
+The full flag glossary, hook contract, shared-config surface, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md). Gotchas that silently break a dispatch and must be honored at routing time:
 
 - **The exit code is never an availability signal.** `cursor-agent -p` without auth exits `0` and prints an error to stdout/stderr instead. Every guard and pre-flight in this packet checks output text, never exit code.
 - **The canonical binary is `cursor-agent`, never the bare `agent` alias.** `agent` is a symlink to the same binary; using it in a process-ancestry match risks colliding with an unrelated `agent` command.
-- **Cursor shares its entire config surface with the Cursor editor** (`.cursor/`/`~/.cursor/`: `mcp.json`, `hooks.json`, `rules/`, `cli-config.json`). A dispatched `cursor-agent` silently inherits the operator's shared hooks/MCP/rules unless a workspace/config-isolation flag is used — see [shared-editor-config.md](./references/shared-editor-config.md).
+- **Cursor shares its entire config surface with the Cursor editor** (`.cursor/`/`~/.cursor/`: `mcp.json`, `hooks.json`, `rules/`, `cli-config.json`). A dispatched `cursor-agent` silently inherits the operator's shared hooks/MCP/rules unless a workspace/config-isolation flag is used — see [shared-editor-config.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/shared-editor-config.md).
 - **No `model[effort=...]` bracket support.** Unlike some sibling CLIs' parameterized model syntax, `cursor-agent --model 'cursor-grok-4.6[effort=high]'` is rejected outright ("Cannot use this model") — effort tiers must be selected via an exact enumerated id (`cursor-grok-4.6-high`), never a bracket.
 - **`--auto-review`/`--force` are the write-capable escalation, not `--sandbox`.** `--sandbox enabled|disabled` toggles the OS-level sandbox; the approval decision (whether unattended actions run without a human) is `--auto-review` (Smart Auto) or `--force`/`--yolo` (Run Everything) — omitting both leaves Cursor's own prompt-and-block default in place, which cannot proceed unattended.
 - **Project-scoped MCP servers show `not loaded (needs approval)`** until trusted. For a non-interactive dispatch that needs MCP tools, add `--approve-mcps` to the `cursor-agent -p` command (auto-approves configured MCP servers for that run); for a persistent operator grant use `cursor-agent mcp enable <server>` (a trust mutation the automation itself must never run).
@@ -298,12 +299,12 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 ### ✅ ALWAYS
 
 1. Verify Cursor CLI is installed before first invocation (`command -v cursor-agent`).
-2. Delegate research and review lineages to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-cursor`. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5. Never build a second adapter in this packet.
+2. Delegate research and review lineages to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-cursor`. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md) §5. Never build a second adapter in this packet.
 3. Use `--mode plan` or `--mode ask` for read-only exploration/analysis/research; use the default agent mode with `--auto-review` or `--force` for code generation/file modification.
 4. Validate Cursor-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so errors surface; check output TEXT for auth/availability failures, never the exit code (always `0`).
 6. **Redirect cursor-agent stdin from `/dev/null` on EVERY non-interactive dispatch** — not only inside a `while read` loop, which is the condition this rule used to name and the reason it was skipped, mirroring the family-wide convention: `cursor-agent -p "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Live-verified: a real `cursor-agent -p ... </dev/null` dispatch completes normally with no hang.
-7. **Specify model and approval mode explicitly** — never rely on caller environment. Default: `--model composer-2.5 --auto-review --sandbox enabled`. Honor user overrides verbatim, but ONLY within the enforced allowlist (§3 Model Selection) — never `auto`, never a model outside the 21 allowed ids.
+7. **Specify model and approval mode explicitly** — never rely on caller environment. Default: `--model composer-2.5 --auto-review --sandbox enabled`. Honor user overrides verbatim, but ONLY within the enforced allowlist (§3 Model Selection) — never `auto`, never a model outside the 29 allowed ids.
 8. Route to `--mode plan`/`--mode ask`/default agent per the task type (see Section 3 routing table).
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in `--force`/non-interactive mode.
 10. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 2-tier rule canonical in `../../sk-prompt/assets/cli-prompt-quality-card.md`:
@@ -314,7 +315,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 13. **Design Standards Loading (measured-reference contract)** — When dispatching for design or UI work, instruct the dispatched session to: (1) load `sk-design-md-generator`; (2) extract a measured Style Reference DESIGN.md (named color tokens, type scale, components, Quick-Start CSS/Tailwind) from the live source before building UI; (3) build against those measured tokens and run the extraction's validate step to confirm hex/section fidelity. Fallback: if there is no live source to measure, ask for the reference URL or the exact tokens to build against. NEVER treat `mcp-figma` or `sk-design-md-generator` as a taste, visual-direction, or critique authority — the extraction measures real CSS, it does not judge design.
 14. **Pass the design reference manifest to the dispatched session** — when dispatching design or UI work, inline a `DESIGN_DISPATCH_MANIFEST v1` block in the prompt (the child cannot resolve skill paths, so the manifest travels in the payload, not by reference): `styleReferenceExtracted` true, the live `source` that was measured, the measured design tokens / type scale / components the child must build against, `loadedFiles`, and `proofDemandBack`. If the manifest cannot be assembled — no Style Reference extracted, or no live source to measure — ASK before launching the child rather than starting a silent design dispatch. The child returns the demanded proof; the parent reconciles it on the return path.
 15. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family. Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL only the dispatch THIS skill started: capture its PID at launch (`cursor-agent -p ... & CURSOR_PID=$!`) and kill that captured PID directly plus its own orphan children (`kill -9 "$CURSOR_PID" 2>/dev/null; pkill -9 -P "$CURSOR_PID" 2>/dev/null`). **Never use a blanket `pkill -9 -f "cursor-agent"` pattern** — that matches and kills EVERY running `cursor-agent` process on the machine, including the operator's unrelated Cursor sessions (and the operator's own Cursor editor, since the CLI shares the binary family). Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each by its own captured PID as its work returns.
-16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt. when sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `cursor-agent -p` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own (distinct from Cursor's own native `-w` worktree flag, which this packet's default dispatch never passes). Pattern: `AI_SESSION_CHILD=1 cursor-agent -p ... </dev/null`. Harmless when the wrapper is not in use. See `.skilled/bin/README.md` → "Worktree session isolation".
+16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../../../.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt. when sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `cursor-agent -p` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own (distinct from Cursor's own native `-w` worktree flag, which this packet's default dispatch never passes). Pattern: `AI_SESSION_CHILD=1 cursor-agent -p ... </dev/null`. Harmless when the wrapper is not in use. See `.skilled/bin/README.md` → "Worktree session isolation".
 
 17. **Agent-persona injection (attach identity, not just the task).** Every dispatch composes `{resolved agent persona + task prompt}` — never a bare task. Resolve the persona from the ACTIVE runtime's agent directory per AGENTS.md §9 (`.cursor/agents/<name>.md`, `.claude/agents/<name>.md`, `.skilled/agents/<name>.md`, etc. — never hardcode one runtime), and map each subtask to the RIGHT agent (`code`→code, `review`→review, `design`→design, research→`deep-research`, docs→`markdown`), not one default. **Cursor has a native file-convention subagent surface:** `.cursor/agents/*.md` + `.claude/agents/*.md` mirror all 13 canonical agents — dispatch by naming the resolved subagent, which satisfies the rule. On a bare `cursor-agent -p` that names no subagent, **INLINE** the persona block into the payload using the same in-payload pattern as the `DESIGN_DISPATCH_MANIFEST` (Rule 14) — the child cannot resolve agent paths by reference. A persona-less dispatch runs the leaf as a generic assistant, silently dropping the agent's tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection"; native precedent: `orchestrate.md` "Agent Loading Protocol". Rare exceptions (native surface used, focused summary for a small-context model, pure-mechanical command) are declared at the dispatch site.
 
@@ -326,7 +327,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 4. Assume Cursor output is correct without verification — cross-reference codebase and project standards.
 5. Build or maintain a packet-local Cursor execution adapter; the deep-loop runtime is the execution authority.
 6. Treat a `0` exit code as proof of a successful, authenticated dispatch — always inspect output text.
-7. Dispatch a `--model` value outside the enforced 21-id allowlist (§3 Model Selection) — including `auto` — or silently substitute the closest-sounding allowed model instead of asking the user. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS`/`isCursorModelAllowed` in `executor-config.ts`; a hard-rejecting check in `fanout-run.cjs`'s `buildCursorLineageCommand` and `dispatch-model.cjs`'s cli-cursor case) — this rule states the same constraint for any advisory/manual dispatch the runtime layer cannot see.
+7. Dispatch a `--model` value outside the enforced 29-id allowlist (§3 Model Selection) — including `auto` — or silently substitute the closest-sounding allowed model instead of asking the user. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS`/`isCursorModelAllowed` in `executor-config.ts`; a hard-rejecting check in `fanout-run.cjs`'s `buildCursorLineageCommand` and `dispatch-model.cjs`'s cli-cursor case) — this rule states the same constraint for any advisory/manual dispatch the runtime layer cannot see.
 
 ### ⚠️ ESCALATE IF
 
@@ -337,7 +338,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 
 ### Memory Handback Protocol
 
-When the calling AI needs to preserve session context from a Cursor CLI delegation, run the canonical procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file). The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md). Cursor-specific Memory Epilogue template: [assets/prompt-templates.md](./assets/prompt-templates.md).
+When the calling AI needs to preserve session context from a Cursor CLI delegation, run the canonical procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file). The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../../.skilled/skills/system-spec-kit/references/cli/memory-handback.md). Cursor-specific Memory Epilogue template: [assets/prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md).
 
 ```bash
 printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin [spec-folder]
@@ -349,26 +350,26 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Core References
 
-- [cli-reference.md](./references/cli-reference.md) - Complete CLI subcommands, flags, auth, and troubleshooting reference
-- [integration-patterns.md](./references/integration-patterns.md) - Cross-AI orchestration patterns and workflows
-- [cursor-tools.md](./references/cursor-tools.md) - Cursor-unique surfaces: native worktree (`-w`), cloud `worker`, plugin marketplace, MCP
-- [hook-contract.md](./references/hook-contract.md) - Cursor's shared hooks.json contract (events, schema, discovery, envelope)
-- [shared-editor-config.md](./references/shared-editor-config.md) - The shared `.cursor/`/`~/.cursor/` editor-config surface and dispatch-isolation implications
-- [agent-delegation.md](./references/agent-delegation.md) - Cursor execution-mode roster (default/plan/ask) and delegation patterns
+- [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md) - Complete CLI subcommands, flags, auth, and troubleshooting reference
+- [integration-patterns.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/integration-patterns.md) - Cross-AI orchestration patterns and workflows
+- [cursor-tools.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md) - Cursor-unique surfaces: native worktree (`-w`), cloud `worker`, plugin marketplace, MCP
+- [hook-contract.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md) - Cursor's shared hooks.json contract (events, schema, discovery, envelope)
+- [shared-editor-config.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/shared-editor-config.md) - The shared `.cursor/`/`~/.cursor/` editor-config surface and dispatch-isolation implications
+- [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/references/agent-delegation.md) - Cursor execution-mode roster (default/plan/ask) and delegation patterns
 
 ### Templates and Assets
 
-- [prompt-templates.md](./assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
-- [prompt-quality-card.md](./assets/prompt-quality-card.md) - Fast-path prompt framework + CLEAR check (ALWAYS loaded)
+- [prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
+- [prompt-quality-card.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md) - Fast-path prompt framework + CLEAR check (ALWAYS loaded)
 
 ### Manual Testing
 
-- [manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md) - 19 CU-NNN scenarios across 9 categories; the canonical no-mocking PASS/FAIL/SKIP validation gate for this skill
+- [manual-testing-playbook.md](../../../.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md) - 19 CU-NNN scenarios across 9 categories; the canonical no-mocking PASS/FAIL/SKIP validation gate for this skill
 
 ### Shared (cli-* family)
 
-- [shared-smart-router.md](../../system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
-- [memory-handback.md](../../system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
+- [shared-smart-router.md](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
+- [memory-handback.md](../../../.skilled/skills/system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
 
 ### External
 
@@ -404,7 +405,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in [AGENTS.md](../../../../AGENTS.md).
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`

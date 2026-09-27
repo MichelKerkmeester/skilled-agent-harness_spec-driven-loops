@@ -100,7 +100,7 @@ Resource domains:
 
 ### Smart router pseudocode
 
-This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector: it scores the request against `INTENT_SIGNALS`, keeps the intents within the ambiguity delta of the top score (at most two), and resolves each to its exact `RESOURCE_MAP` leaf path — no directory prefixes, filename stems, or globs. Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` via `leaf-aliases.json`; package indexes and fallback defaults ride their own channels and never become typed leaves. The live advisor scorer, not this router, remains authoritative for runtime skill scoring — see [`references/scoring/advisor-scorer.md`](./references/scoring/advisor-scorer.md).
+This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector: it scores the request against `INTENT_SIGNALS`, keeps the intents within the ambiguity delta of the top score (at most two), and resolves each to its exact `RESOURCE_MAP` leaf path — no directory prefixes, filename stems, or globs. Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` via `leaf-aliases.json`; package indexes and fallback defaults ride their own channels and never become typed leaves. The live advisor scorer, not this router, remains authoritative for runtime skill scoring — see [`references/scoring/advisor-scorer.md`](../../../.skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md).
 
 ```python
 from pathlib import Path
@@ -299,7 +299,7 @@ return {
 - **Low confidence:** load default runtime references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing intent/path/tool signal.
 - **Ambiguous intent scores:** load the top two intents' exact leaves and disclose the ambiguity instead of picking one silently.
 - **Known intent with no mapped leaf:** return a "no knowledge base found" notice naming the missing intent; never invent a typed pair for a path outside `leaf-manifest.json`.
-- **Advisor daemon unavailable:** run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`. The CLI starts the daemon when the socket is cold; when the daemon stays unreachable it answers from the local Python scorer and marks the result degraded, so the brief renders `Advisor: stale` instead of claiming live. A degraded answer is stale, a missing answer is a fail-open: prompt-time adapters cap the call with their own timeout and never block the prompt. Operator checks, doctor routes and scripts use the same CLI with `--timeout-ms N`; direct callers that need the Python JSON-array shape use `runtime/scripts/skill_advisor.py`. The full command contract, output envelope, exit taxonomy and stale-build recovery live in [`references/runtime/cli-front-door-contract.md`](./references/runtime/cli-front-door-contract.md).
+- **Advisor daemon unavailable:** run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`. The CLI starts the daemon when the socket is cold; when the daemon stays unreachable it answers from the local Python scorer and marks the result degraded, so the brief renders `Advisor: stale` instead of claiming live. A degraded answer is stale, a missing answer is a fail-open: prompt-time adapters cap the call with their own timeout and never block the prompt. Operator checks, doctor routes and scripts use the same CLI with `--timeout-ms N`; direct callers that need the Python JSON-array shape use `runtime/scripts/skill_advisor.py`. The full command contract, output envelope, exit taxonomy and stale-build recovery live in [`references/runtime/cli-front-door-contract.md`](../../../.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md).
 
 ### Gate 2 caller guidance
 
@@ -438,7 +438,7 @@ Expected consumers:
 Related skills:
 
 - `system-spec-kit` owns spec folders, memory, validation and packet governance.
-- `sk-doc` owns skill documentation, feature catalogs and playbooks. Its `create-skill` packet also owns the [skill-root metadata contract](../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md) and the [graph-metadata template](../sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json) plus [leaf-manifest config template](../sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json) used by this root.
+- `sk-doc` owns skill documentation, feature catalogs and playbooks. Its `create-skill` packet also owns the [skill-root metadata contract](../../../.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md) and the [graph-metadata template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json) plus [leaf-manifest config template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json) used by this root.
 - `sk-code` owns implementation once routing selects a code surface.
 - `mcp-code-mode` owns external MCP orchestration workflows.
 

@@ -110,7 +110,7 @@ if detect_self_invocation():
 
 ### Smart Router
 
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md)):
 
 ```python
 INTENT_SIGNALS = {
@@ -162,7 +162,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
 6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
 
-The `route_claude_code_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `claude_code`.
+The `route_claude_code_resources(task)` function body lives in [`shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `claude_code`.
 
 ---
 
@@ -237,11 +237,11 @@ claude -p "<prompt>" \
 
 ### Model Selection
 
-`claude-sonnet-4-6` is the skill default. Reach for `claude-opus-5-5` (deep reasoning / complex architecture — pair with `--effort high`) or `claude-haiku-4-5-20251001` (fast, lightweight; only when explicitly requested); the current-generation `claude-sonnet-5` / `claude-fable-5-1` IDs are also selectable by name where the environment supports them. Full roster with tiers, cost, defaults, and the `--effort` mapping → [references/providers-and-models.md](references/providers-and-models.md).
+`claude-sonnet-4-6` is the skill default. Reach for `claude-opus-5-5` (deep reasoning / complex architecture — pair with `--effort high`) or `claude-haiku-4-5-20251001` (fast, lightweight; only when explicitly requested); the current-generation `claude-sonnet-5` / `claude-fable-5-1` IDs are also selectable by name where the environment supports them. Full roster with tiers, cost, defaults, and the `--effort` mapping → [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-claude-code/references/providers-and-models.md).
 
 ### Claude Code Agent Delegation
 
-Route to a specialized `.claude/agents/*.md` agent with `--agent <name>` when the task matches a specialization. Full roster and invocation patterns: [agent-delegation.md](./references/agent-delegation.md).
+Route to a specialized `.claude/agents/*.md` agent with `--agent <name>` when the task matches a specialization. Full roster and invocation patterns: [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md).
 
 | Task Type | Agent |
 |-----------|-------|
@@ -257,7 +257,7 @@ Route to a specialized `.claude/agents/*.md` agent with `--agent <name>` when th
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`, extended thinking, session `--continue`/`--resume`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) (§4–§13). Four gotchas that must be honored at routing time:
+The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`, extended thinking, session `--continue`/`--resume`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md) (§4–§13). Four gotchas that must be honored at routing time:
 
 - **Non-interactive requires `-p` (print) mode** — `claude -p "prompt" --output-format text 2>&1`. `--output-format` defaults to `text`; use `json` (adds role/content/cost metadata) or `stream-json` only when a pipeline needs it. Capture stderr with `2>&1`.
 - **`--permission-mode plan` is read-only** — use it for review/analysis/exploration (no file writes). `bypassPermissions` auto-approves all writes and **requires explicit user approval**; the default mode already allows writes.
@@ -286,7 +286,7 @@ The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`
 10. **Design Standards Loading (measured-reference contract)** — When dispatching for design or UI work, instruct the dispatched session to: (1) load `sk-design-md-generator`; (2) extract a measured Style Reference DESIGN.md (named color tokens, type scale, components, Quick-Start CSS/Tailwind) from the live source before building UI; (3) build against those measured tokens and run the extraction's validate step to confirm hex/section fidelity. Fallback: if there is no live source to measure, ask for the reference URL or the exact tokens to build against. NEVER treat `mcp-figma` or `sk-design-md-generator` as a taste, visual-direction, or critique authority — the extraction measures real CSS, it does not judge design.
 11. **Pass the design reference manifest to the dispatched session** — when dispatching design or UI work, inline a `DESIGN_DISPATCH_MANIFEST v1` block in the prompt (the child cannot resolve skill paths, so the manifest travels in the payload, not by reference): `styleReferenceExtracted` true, the live `source` that was measured, the measured design tokens / type scale / components the child must build against, `loadedFiles`, and `proofDemandBack`. If the manifest cannot be assembled — no Style Reference extracted, or no live source to measure — ASK before launching the child rather than starting a silent design dispatch. The child returns the demanded proof; the parent reconciles it on the return path.
 12. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-opencode, cli-claude-code). Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL the dispatcher process + any orphan children (`pkill -9 -f "claude -p"` for this skill, plus `gtimeout` / `positional_scoring_fallback:app` cleanup). Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration operator confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each as its work returns.
-13. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt. when sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `claude -p` run is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 claude -p ...`. Harmless when the wrapper is not in use. See `.skilled/bin/README.md` → "Worktree session isolation". Prepend `SYSTEM_SPEC_GATE_ENFORCE=0` next to it so a dispatched child never inherits an enforced spec-gate from the parent shell (belt-and-suspenders alongside the wrapper's own neutralization and the core's complete `AI_SESSION_CHILD` classify/enforce no-op): `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 claude -p ...`.
+13. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../../../.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt. when sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `claude -p` run is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 claude -p ...`. Harmless when the wrapper is not in use. See `.skilled/bin/README.md` → "Worktree session isolation". Prepend `SYSTEM_SPEC_GATE_ENFORCE=0` next to it so a dispatched child never inherits an enforced spec-gate from the parent shell (belt-and-suspenders alongside the wrapper's own neutralization and the core's complete `AI_SESSION_CHILD` classify/enforce no-op): `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 claude -p ...`.
 
 14. **Agent-persona injection (attach identity, not just the task).** Every dispatch composes `{resolved agent persona + task prompt}` — never a bare task. Resolve the persona from the ACTIVE runtime's agent directory per AGENTS.md §9 (`.claude/agents/<name>.md`, `.skilled/agents/<name>.md`, etc. — never hardcode one runtime), and map each subtask to the RIGHT agent (`code`→code, `review`→review, `design`→design, research→`deep-research`, docs→`markdown`), not one default. **Claude Code has a native persona flag:** pass `claude -p --agent <name>` — the CLI resolves `.claude/agents/<name>.md` on the print path, which satisfies the rule. On a bare `claude -p` that omits `--agent`, **INLINE** the persona block into the payload using the same in-payload pattern as the `DESIGN_DISPATCH_MANIFEST` (Rule 11) — the child cannot resolve agent paths by reference. A persona-less dispatch runs the leaf as a generic assistant, silently dropping the agent's tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection"; native precedent: `orchestrate.md` "Agent Loading Protocol". Rare exceptions (native surface used, focused summary for a small-context model, pure-mechanical command) are declared at the dispatch site.
 
@@ -306,9 +306,9 @@ The full flag glossary, unique capabilities (`--json-schema`, `--max-budget-usd`
 
 ### Memory Handback Protocol
 
-When the calling AI needs to preserve session context from a Claude Code CLI delegation, run the canonical procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file). The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md).
+When the calling AI needs to preserve session context from a Claude Code CLI delegation, run the canonical procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file). The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../../.skilled/skills/system-spec-kit/references/cli/memory-handback.md).
 
-Claude-Code-specific Memory Epilogue template: see [assets/prompt-templates.md](./assets/prompt-templates.md) §11.
+Claude-Code-specific Memory Epilogue template: see [assets/prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md) §11.
 
 Example invocation:
 ```bash
@@ -321,18 +321,18 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Core References
 
-- [cli-reference.md](./references/cli-reference.md) - Complete CLI flags, commands, models, authentication, and configuration
-- [integration-patterns.md](./references/integration-patterns.md) - Cross-AI orchestration patterns (reversed: external AI conducts, Claude Code executes)
-- [claude-tools.md](./references/claude-tools.md) - Unique capabilities and comparison with OpenCode
-- [agent-delegation.md](./references/agent-delegation.md) - 9 agent roster, routing table, and invocation patterns
+- [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md) - Complete CLI flags, commands, models, authentication, and configuration
+- [integration-patterns.md](../../../.skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md) - Cross-AI orchestration patterns (reversed: external AI conducts, Claude Code executes)
+- [claude-tools.md](../../../.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md) - Unique capabilities and comparison with OpenCode
+- [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md) - 9 agent roster, routing table, and invocation patterns
 
 ### Templates and Assets
 
-- [prompt-templates.md](./assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
+- [prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
 
 ### Shared (cli-* family)
-- [shared-smart-router.md](../../system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
-- [memory-handback.md](../../system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
+- [shared-smart-router.md](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
+- [memory-handback.md](../../../.skilled/skills/system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
 
 ### External
 - [Claude Code GitHub](https://github.com/anthropics/claude-code) - Official repository
@@ -370,7 +370,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in [AGENTS.md](../../../../AGENTS.md).
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`

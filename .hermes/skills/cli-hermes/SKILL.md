@@ -59,8 +59,8 @@ Orchestrate Hermes Agent (Nous Research's open-source, Python-based agent CLI) f
 coding dispatch, cross-AI validation, and model routing through the operator's LLM Gateway
 provider. The evidence base is the phase 001 research synthesis and, once recorded, the live
 contract pin:
-[research synthesis](../../../specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/research.md),
-[contract pin](../../../specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/implementation-summary.md).
+[research synthesis](../../../.skilled/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/research.md),
+[contract pin](../../../.skilled/specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/implementation-summary.md).
 Claims marked **source-read, unconfirmed** come from the installed Hermes source (v0.21.1) and
 await the pin.
 
@@ -136,7 +136,7 @@ if detect_self_invocation():
 
 ### Smart Router
 
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md)):
 
 ```python
 INTENT_SIGNALS = {
@@ -188,7 +188,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with the checklist when the max score is 0.
 6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches.
 
-The `route_hermes_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `hermes`.
+The `route_hermes_resources(task)` function body lives in [`shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `hermes`.
 
 ---
 
@@ -198,7 +198,7 @@ The `route_hermes_resources(task)` function body lives in [`shared-smart-router.
 
 This packet owns provider-specific routing, the availability probe, and prompt construction. For research and review lineages, the shared deep-loop runtime owns process construction and execution: `cli-hermes` is an `ExecutorKind`, and `buildHermesLineageCommand` in `fanout-run.cjs` emits the dispatch shape below. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch runs the same shape directly, in the child environment that ALWAYS rule 11 sets. Do not add a packet-local wrapper, spawn path, or command builder.
 
-**One provider is reachable from the fan-out: `llmgateway`** (DevPass, the operator's LLM Gateway plan), declared as a Hermes custom provider block of that exact name in `~/.hermes/config.yaml` with `key_env: LLMGATEWAY_API_KEY`. That block is an operator step; the repo cannot carry it. Setup and the credential contract are in [providers-and-models.md](./references/providers-and-models.md).
+**One provider is reachable from the fan-out: `llmgateway`** (DevPass, the operator's LLM Gateway plan), declared as a Hermes custom provider block of that exact name in `~/.hermes/config.yaml` with `key_env: LLMGATEWAY_API_KEY`. That block is an operator step; the repo cannot carry it. Setup and the credential contract are in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md).
 
 **Closed roster, non-roster models are FORBIDDEN.** Dispatch ONLY the seven the gateway serves for Hermes: `deepseek-v4.1-flash`, `glm-5.3-flash`, `gpt-6-luna`, `gpt-6-sol`, `minimax-m3`, `mimo-v2.6-pro` and `qwen3.8-max`. These are the bare literals of Pi's roster. `mimo-v2.6-pro-ultraspeed` answers HTTP 400 "not supported" on this route and is on neither roster. Every id except the two GPT-6 ids was probed live; `gpt-6-luna` and `gpt-6-sol` replaced the probed GPT-5.6 Luna and Sol on 2026-09-23, when the gateway's `/v1/models` catalog listed both. `gpt-6-luna` passed its first live probe the same day; `gpt-6-sol`'s is still pending. The deep-loop fan-out hard-rejects any other id (`isHermesModelAllowed` over `HERMES_SUPPORTED_MODELS`), and even a direct `hermes chat --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet plus `HERMES_SUPPORTED_MODELS`) first.
 
@@ -220,7 +220,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 
 1. Verify the binary with `command -v hermes` and the provider with `hermes config get providers.llmgateway.base_url`.
 2. Classify the request as write, read-only review, or generation; pick the toolset accordingly.
-3. Compose the prompt using [prompt-quality-card.md](./assets/prompt-quality-card.md), persona inlined.
+3. Compose the prompt using [prompt-quality-card.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md), persona inlined.
 4. Pass a research or review lineage to the shared deep-loop runtime; run a single build or doc dispatch with the dispatch shape above.
 5. Capture stdout (the response) and stderr (`session_id:`, `Error:`) separately.
 6. Validate the output, changed files, and required tests before handback.
@@ -234,7 +234,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 - **The stock toolset roster enables `delegation` and `memory`.** A leaf must pass an explicit `-t` list without them.
 - **Hermes gates writes into any `.hermes/` directory.** Its file tools treat a write whose immediate parent is `.hermes` as a protected-instruction write needing approval (source-read: `tools/file_tools_write_guards.py`); author repo `.hermes/` files from outside Hermes.
 - **`hermes pause` does not stop a CLI dispatch.** It scopes to cron, kanban and gateway turns. The runner's kill is the emergency stop.
-- **Project skills load only after `hermes skills trust`**, and the repo mirrors every skill as a generated markdown-only copy under `.hermes/skills/<name>/SKILL.md` (`sync-skills-hermes.cjs`), never as a symlink: Hermes's static scanner walks a linked directory in full (ten minutes for the tree, every hub quarantined; one linked skill quarantined on its references and scripts, observed 2026-09-14). Preload with `-s <name>`; `hermes skills list` shows the loadable copies as `local` rows, and a copy the scanner quarantines is absent from both the listing and `-s`. See [hermes-tools.md](./references/hermes-tools.md).
+- **Project skills load only after `hermes skills trust`**, and the repo mirrors every skill as a generated markdown-only copy under `.hermes/skills/<name>/SKILL.md` (`sync-skills-hermes.cjs`), never as a symlink: Hermes's static scanner walks a linked directory in full (ten minutes for the tree, every hub quarantined; one linked skill quarantined on its references and scripts, observed 2026-09-14). Preload with `-s <name>`; `hermes skills list` shows the loadable copies as `local` rows, and a copy the scanner quarantines is absent from both the listing and `-s`. See [hermes-tools.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md).
 - **`-Q` stdout can carry the model's reasoning before the answer** (observed with `deepseek-v4.1-flash` through the gateway). Read the tail for the answer; the fan-out validates artifacts, not stdout.
 - **A research iteration is slow.** One live fan-out iteration with `deepseek-v4.1-flash` at `max` made thirteen gateway calls on a 65k to 90k token context and finished at 1042 seconds; the `--run-budget` wrap-up notice at 537 seconds was advisory and the runner's ceiling (twice `iterations × timeoutSeconds`) is what binds. Give a `cli-hermes` research lineage `timeoutSeconds` 900 or more.
 - **`--run-budget` does not bound a stalled provider stream.** Hermes's stale-stream watchdog fires at 600 seconds and retries; the caller's own timeout is the real bound.
@@ -256,7 +256,7 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 8. Keep the current runtime as conductor and Hermes as delegated executor.
 9. Treat source-read claims as confirmed only when the contract pin records the live run.
 10. Compose every dispatch as `{resolved agent persona + task prompt}`, never a bare task. Resolve the persona from the CALLING runtime's agent directory (AGENTS.md §9), because Hermes carries no agent directory of its own, and INLINE it: Hermes profiles are whole-home islands and `delegate_task` children cannot read agent files, so no native persona surface exists. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
-11. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt, copying the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
+11. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt, copying the preamble from [`shared/references/child-dispatch-preamble.md`](../../../.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
 
 ### ⛔ NEVER
 
@@ -283,22 +283,22 @@ hermes chat -Q --oneshot --query-file <prompt.md> --provider llmgateway --model 
 
 ### Core References
 
-- [cli-reference.md](./references/cli-reference.md) - Flags, headless forms, exit codes, isolation flags, environment
-- [providers-and-models.md](./references/providers-and-models.md) - The llmgateway provider contract, the seven-id roster, reasoning levels
-- [hermes-tools.md](./references/hermes-tools.md) - Toolsets, project skills and plugins, the write guard, subsystems that stay off
-- [integration-patterns.md](./references/integration-patterns.md) - Conductor and executor patterns, cross-validation, anti-patterns
-- [agent-delegation.md](./references/agent-delegation.md) - Persona inlining, persona skills, `delegate_task`, prompt templates for commands
-- [hook-contract.md](./references/hook-contract.md) - Shell hooks versus the project plugin, the hook map for the repo's guard cores
-- [mcp-policy.md](./references/mcp-policy.md) - Operator steps for MCP, deny-by-default per tool
+- [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md) - Flags, headless forms, exit codes, isolation flags, environment
+- [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md) - The llmgateway provider contract, the seven-id roster, reasoning levels
+- [hermes-tools.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md) - Toolsets, project skills and plugins, the write guard, subsystems that stay off
+- [integration-patterns.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md) - Conductor and executor patterns, cross-validation, anti-patterns
+- [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md) - Persona inlining, persona skills, `delegate_task`, prompt templates for commands
+- [hook-contract.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md) - Shell hooks versus the project plugin, the hook map for the repo's guard cores
+- [mcp-policy.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md) - Operator steps for MCP, deny-by-default per tool
 
 ### Templates and Assets
 
-- [prompt-quality-card.md](./assets/prompt-quality-card.md) - Thin delegator to the canonical prompt-models card
-- [prompt-templates.md](./assets/prompt-templates.md) - Write, read-only review, generation, and fan-out scaffolds
+- [prompt-quality-card.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md) - Thin delegator to the canonical prompt-models card
+- [prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md) - Write, read-only review, generation, and fan-out scaffolds
 
 ### External Sources
 
-- [Research synthesis](../../../specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/research.md) - Two-lineage forced-depth research with verified citations
+- [Research synthesis](../../../.skilled/specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/research.md) - Two-lineage forced-depth research with verified citations
 - [Hermes Agent repository](https://github.com/NousResearch/hermes-agent) - Upstream source and documentation
 
 ---
@@ -346,6 +346,6 @@ The shared runtime is the sole process adapter. `cli-hermes` is not self-presenc
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers markdown resources dynamically. Start with the CLI reference and prompt-quality card, then load only the references matching the task. Use [prompt-templates.md](./assets/prompt-templates.md) for repeatable prompt construction.
+The router discovers markdown resources dynamically. Start with the CLI reference and prompt-quality card, then load only the references matching the task. Use [prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md) for repeatable prompt construction.
 
 Related skills: cli-opencode, cli-claude-code, cli-codex, cli-cursor, cli-devin, and cli-pi for sibling CLI dispatch; sk-code for code standards; system-deep-loop for execution; system-spec-kit for packet handback.

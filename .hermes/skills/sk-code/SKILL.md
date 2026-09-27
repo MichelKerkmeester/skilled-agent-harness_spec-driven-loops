@@ -56,7 +56,7 @@ The **implement → debug → verify** phases are not standalone modes. Their su
 
 ## 2. SMART ROUTING
 
-Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any code query to the single identity `sk-code`; the hub then picks the mode. Stage two lives in root [`ROUTER.md`](./ROUTER.md): it maps surface intent to packet leaves plus explicitly declared hub-shared control resources without becoming a typed leaf or advisor identity.
+Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any code query to the single identity `sk-code`; the hub then picks the mode. Stage two lives in root [`ROUTER.md`](../../../.skilled/skills/sk-code/ROUTER.md): it maps surface intent to packet leaves plus explicitly declared hub-shared control resources without becoming a typed leaf or advisor identity.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash

@@ -240,7 +240,7 @@ await myservice.sites_list({});        // Error: Tool not found
 await clickup.create_task({...});    // Error: Tool not found
 ```
 
-**See [references/naming-convention.md](references/naming-convention.md) for complete guide with troubleshooting.**
+**See [references/naming-convention.md](../../../.skilled/skills/mcp-code-mode/references/naming-convention.md) for complete guide with troubleshooting.**
 
 ### Context Parameter
 
@@ -265,7 +265,7 @@ This helps with usage tracking and debugging.
 3. Execute `call_tool_chain()` with `{manual_name}.{manual_name}_{tool_name}` calls.
 4. Return structured state from the TypeScript block.
 
-Full multi-tool examples live in [references/workflows.md](references/workflows.md).
+Full multi-tool examples live in [references/workflows.md](../../../.skilled/skills/mcp-code-mode/references/workflows.md).
 
 ---
 
@@ -331,7 +331,7 @@ const info = await tool_info({
 
 ### Configuration Structure
 
-Use `.utcp_config.json` with `manual_call_templates[]`; each entry defines the manual name, MCP server command/args/env, and disabled state. See [references/configuration.md](references/configuration.md) and [assets/config-template.md](assets/config-template.md).
+Use `.utcp_config.json` with `manual_call_templates[]`; each entry defines the manual name, MCP server command/args/env, and disabled state. See [references/configuration.md](../../../.skilled/skills/mcp-code-mode/references/configuration.md) and [assets/config-template.md](../../../.skilled/skills/mcp-code-mode/assets/config-template.md).
 
 ### Critical: Prefixed Environment Variables
 
@@ -350,7 +350,7 @@ Use `.utcp_config.json` with `manual_call_templates[]`; each entry defines the m
 | `figma` | `${FIGMA_API_KEY}` | `figma_FIGMA_API_KEY` |
 | `notion` | `${NOTION_TOKEN}` | `notion_NOTION_TOKEN` |
 
-See [env-template.md](assets/env-template.md) for complete examples.
+See [env-template.md](../../../.skilled/skills/mcp-code-mode/assets/env-template.md) for complete examples.
 
 ### How to Check Active Code Mode Servers
 
@@ -365,7 +365,7 @@ Run `list_tools()` through Code Mode and group returned names by the prefix befo
 ### ✅ ALWAYS
 
 - **Use Code Mode for ALL MCP tool calls** - Mandatory for ClickUp, Notion, Figma, MyService, Chrome DevTools, etc.
-- **Follow naming pattern**: `{manual_name}.{manual_name}_{tool_name}` (see [naming-convention.md](references/naming-convention.md))
+- **Follow naming pattern**: `{manual_name}.{manual_name}_{tool_name}` (see [naming-convention.md](../../../.skilled/skills/mcp-code-mode/references/naming-convention.md))
 - **Use progressive discovery**: `search_tools()` before calling unknown tools
 - **Use try/catch** for error handling in multi-step workflows
 - **Set appropriate timeouts**: 30s (simple), 60s (complex), 120s+ (very complex)
@@ -384,13 +384,13 @@ Run `list_tools()` through Code Mode and group returned names by the prefix befo
 
 ### ⚠️ ESCALATE IF
 
-- **Tool naming errors persist** after consulting [naming-convention.md](references/naming-convention.md)
-- **Configuration fails to load** - Check [configuration.md](references/configuration.md)
+- **Tool naming errors persist** after consulting [naming-convention.md](../../../.skilled/skills/mcp-code-mode/references/naming-convention.md)
+- **Configuration fails to load** - Check [configuration.md](../../../.skilled/skills/mcp-code-mode/references/configuration.md)
 - **Environment variables not found** - Verify .env file exists and syntax is correct
 - **MCP server fails to start** - Check command/args in .utcp_config.json
 - **Tools not discovered** - Verify manual name matches configuration
 - **Execution timeout** - Increase timeout or break into smaller operations
-- **Need to add new MCP server** - Follow guide in [configuration.md](references/configuration.md)
+- **Need to add new MCP server** - Follow guide in [configuration.md](../../../.skilled/skills/mcp-code-mode/references/configuration.md)
 
 ---
 
@@ -450,7 +450,7 @@ Key integrations:
 
 ## 8. QUICK REFERENCE
 
-Use `search_tools()`, `tool_info()`, `list_tools()`, and `call_tool_chain()` as the core command set. For parallel execution, use `Promise.all()` when all calls must succeed and `Promise.allSettled()` when partial success is acceptable. Full examples live in [references/workflows.md](references/workflows.md).
+Use `search_tools()`, `tool_info()`, `list_tools()`, and `call_tool_chain()` as the core command set. For parallel execution, use `Promise.all()` when all calls must succeed and `Promise.allSettled()` when partial success is acceptable. Full examples live in [references/workflows.md](../../../.skilled/skills/mcp-code-mode/references/workflows.md).
 
 ### Critical Naming Pattern
 
@@ -474,4 +474,4 @@ Scripts: `scripts/install.sh`, `scripts/update.sh`, `scripts/validate_config.py`
 
 Related skills: `mcp-chrome-devtools` for browser debugging routes that can fall back to Code Mode.
 
-Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
+Install guide: [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md).

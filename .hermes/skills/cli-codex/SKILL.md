@@ -106,7 +106,7 @@ if detect_self_invocation():
 
 ### Smart Router
 
-Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md)):
+Provider-specific dictionaries (used by the shared helper functions in [`system-spec-kit/references/cli/shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md)):
 
 ```python
 INTENT_SIGNALS = {
@@ -158,7 +158,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 5. ALWAYS-load `LOADING_LEVELS["ALWAYS"]`, then return `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST` when max score is 0.
 6. CONDITIONAL-load `RESOURCE_MAP[intent]`, ON_DEMAND-load keyword matches, and return a notice when no provider-specific knowledge base is available beyond always-load resources.
 
-The `route_codex_resources(task)` function body lives in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `codex`.
+The `route_codex_resources(task)` function body lives in [`shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) — substitute `<PROVIDER>` = `codex`.
 
 ---
 
@@ -166,11 +166,11 @@ The `route_codex_resources(task)` function body lives in [`shared-smart-router.m
 
 ### Prerequisites
 
-Install with `npm i -g @openai/codex` (or `brew install --cask codex`). cli-codex authenticates through **ChatGPT OAuth only** — run `codex login` and complete the browser flow (requires a ChatGPT Plus/Pro/Business/Edu/Enterprise account). It does not use an OpenAI API key. Full install, auth, flag, sandbox, session, and troubleshooting tables live in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
+Install with `npm i -g @openai/codex` (or `brew install --cask codex`). cli-codex authenticates through **ChatGPT OAuth only** — run `codex login` and complete the browser flow (requires a ChatGPT Plus/Pro/Business/Edu/Enterprise account). It does not use an OpenAI API key. Full install, auth, flag, sandbox, session, and troubleshooting tables live in the ALWAYS-loaded [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
 
 ### Execution Ownership
 
-This packet owns user-facing routing, the `command -v codex` availability probe, prompt construction, and the self-invocation guard. Research and review lineages delegate process construction and execution to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-codex`. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5.
+This packet owns user-facing routing, the `command -v codex` availability probe, prompt construction, and the self-invocation guard. Research and review lineages delegate process construction and execution to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-codex`. That runner accepts only the `research` and `review` loop types, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md) §5.
 
 The runtime is the single Codex execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `codex exec` snippets below are operator reference and manual-testing examples; research and review lineages use the shared runtime, and a one-shot dispatch uses the child envelope.
 
@@ -231,17 +231,17 @@ The trailing `</dev/null` is not optional in a non-interactive dispatch; Rule 6 
 | "Use gpt 5.6 terra high" | `--model gpt-5.6-terra -c model_reasoning_effort="high" -c service_tier="fast"` |
 | "Use gpt 6 sol ultra" | `--model gpt-6-sol -c model_reasoning_effort="ultra" -c service_tier="fast"` |
 
-Honor whichever dimensions the user names. Model stays on `gpt-5.5` and service tier stays on `fast` unless the user explicitly names a different model or tier; keep the reasoning effort within the chosen model's ceiling (see Model Selection below and the roster in [references/providers-and-models.md](references/providers-and-models.md)).
+Honor whichever dimensions the user names. Model stays on `gpt-5.5` and service tier stays on `fast` unless the user explicitly names a different model or tier; keep the reasoning effort within the chosen model's ceiling (see Model Selection below and the roster in [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md)).
 
 ### Model Selection
 
-`gpt-5.5` at `medium` on the `fast` service tier (`-c service_tier="fast"`) is the skill default for cross-AI delegation. Alternates: `gpt-6-luna` (≤ `max`), `gpt-5.6-terra` / `gpt-6-sol` (≤ `ultra`) — full roster, per-model effort ceilings, and the 8-level effort ladder in [references/providers-and-models.md](references/providers-and-models.md). Set effort with `-c model_reasoning_effort="<level>"` (there is **no `--reasoning-effort` flag**).
+`gpt-5.5` at `medium` on the `fast` service tier (`-c service_tier="fast"`) is the skill default for cross-AI delegation. Alternates: `gpt-6-luna` (≤ `max`), `gpt-5.6-terra` / `gpt-6-sol` (≤ `ultra`) — full roster, per-model effort ceilings, and the 8-level effort ladder in [references/providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md). Set effort with `-c model_reasoning_effort="<level>"` (there is **no `--reasoning-effort` flag**).
 
-**Selection Strategy**: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh`; drop to `low` / `minimal` for trivial lookups. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh`; drop to `low` / `minimal` for trivial lookups. Per-task rationale table: [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md) §5.
 
 ### Codex Agent Delegation
 
-The calling AI is the conductor; Codex profiles in `$CODEX_HOME/<name>.config.toml` shape HOW Codex processes the task (sandbox, reasoning). Route with `-p <name>` when the task matches a specialization. Full roster and invocation patterns: [agent-delegation.md](./references/agent-delegation.md).
+The calling AI is the conductor; Codex profiles in `$CODEX_HOME/<name>.config.toml` shape HOW Codex processes the task (sandbox, reasoning). Route with `-p <name>` when the task matches a specialization. Full roster and invocation patterns: [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md).
 
 | Task Type | Profile |
 |-----------|---------|
@@ -256,7 +256,7 @@ Git diff review uses the built-in subcommand (no `-p`): `codex exec review "..."
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Five gotchas that break a dispatch, or make a child misreport its result, and must be honored at routing time:
+The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md). Five gotchas that break a dispatch, or make a child misreport its result, and must be honored at routing time:
 
 - **`codex exec` defaults to `--sandbox read-only`** — file-modification tasks silently no-op (the agent plans changes but cannot write them). Pass `--sandbox workspace-write`; for headless no-prompt execution use top-level `-a never` before `exec` or `-c approval_policy=never`.
 - **`--search` is a top-level flag, not an `exec` flag** — enable live web search as `codex --search exec …` (it precedes the subcommand). On codex ≥ 0.144 `codex exec --search` hard-fails with `unexpected argument '--search'` (older 0.125 builds accepted it), so treat any `exec … --search` example as stale. Without it, `codex exec` has no web access and answers from training data only — every dispatch needing live data (latest versions, repo facts, advisories) MUST use `codex --search exec …`.
@@ -271,7 +271,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 ### ✅ ALWAYS
 
 1. Verify Codex CLI is installed before first invocation (`command -v codex`).
-2. Delegate research and review lineages to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-codex`. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](./references/providers-and-models.md) §5. Never build a second adapter in this packet.
+2. Delegate research and review lineages to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-codex`. It rejects every other loop type, so a single build or doc dispatch uses the child dispatch envelope in [providers-and-models.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md) §5. Never build a second adapter in this packet.
 3. Use `--sandbox read-only` for review/analysis/research; `--sandbox workspace-write` for code generation/file modification — `codex exec` defaults to `read-only`, so omitting it causes silent no-op on edit tasks. For unattended approval, put top-level `-a never` before `exec` or set `-c approval_policy=never`.
 4. Validate Codex-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
@@ -287,7 +287,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 13. **Design Standards Loading (measured-reference contract)** — When dispatching for design or UI work, instruct the dispatched session to: (1) load `sk-design-md-generator`; (2) extract a measured Style Reference DESIGN.md (named color tokens, type scale, components, Quick-Start CSS/Tailwind) from the live source before building UI; (3) build against those measured tokens and run the extraction's validate step to confirm hex/section fidelity. Fallback: if there is no live source to measure, ask for the reference URL or the exact tokens to build against. NEVER treat `mcp-figma` or `sk-design-md-generator` as a taste, visual-direction, or critique authority — the extraction measures real CSS, it does not judge design.
 14. **Pass the design reference manifest to the dispatched session** — when dispatching design or UI work, inline a `DESIGN_DISPATCH_MANIFEST v1` block in the prompt (the child cannot resolve skill paths, so the manifest travels in the payload, not by reference): `styleReferenceExtracted` true, the live `source` that was measured, the measured design tokens / type scale / components the child must build against, `loadedFiles`, and `proofDemandBack`. If the manifest cannot be assembled — no Style Reference extracted, or no live source to measure — ASK before launching the child rather than starting a silent design dispatch. The child returns the demanded proof; the parent reconciles it on the return path.
 15. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-codex, cli-opencode, cli-claude-code). Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL only the dispatch THIS skill started: capture its PID at launch (`codex exec ... & CODEX_PID=$!`) and kill that captured PID directly plus its own orphan children (`kill -9 "$CODEX_PID" 2>/dev/null; pkill -9 -P "$CODEX_PID" 2>/dev/null`), then apply the same PID-scoped `gtimeout` cleanup. **Never use a blanket `pkill -9 -f "codex exec --model"` pattern** — that matches and kills EVERY running `codex exec` process on the machine, including the operator's unrelated codex sessions. Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each by its own captured PID as its work returns.
-16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt. when sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `codex exec` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 codex exec ... </dev/null`. Harmless when the wrapper is not in use. See `.skilled/bin/README.md` → "Worktree session isolation".
+16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt.** The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../../../.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt. when sessions may be launched through the per-session worktree wrapper (`.skilled/bin/worktree-session.sh`). A dispatched `codex exec` is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 codex exec ... </dev/null`. Harmless when the wrapper is not in use. See `.skilled/bin/README.md` → "Worktree session isolation".
 
 17. **Agent-persona injection (attach identity, not just the task).** Every dispatch composes `{resolved agent persona + task prompt}` — never a bare task. Resolve the persona from the ACTIVE runtime's agent directory per AGENTS.md §9 (`.skilled/agents/<name>.md`, `.claude/agents/<name>.md`, etc. — never hardcode one runtime), and map each subtask to the RIGHT agent (`code`→code, `review`→review, `design`→design, research→`deep-research`, docs→`markdown`), not one default. **Codex has no native persona surface** — `.codex/agents/*.toml` is TUI-only, and `codex exec` / `-p <profile>` load sandbox/effort config, not a persona. So **INLINE** the persona block into the prompt payload on every dispatch, using the same in-payload pattern as the `DESIGN_DISPATCH_MANIFEST` (Rule 14) — the child cannot resolve agent paths by reference. A persona-less dispatch runs the leaf as a generic assistant, silently dropping the agent's tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection"; native precedent: `orchestrate.md` "Agent Loading Protocol". Rare exceptions (focused summary for a small-context model, pure-mechanical command) are declared at the dispatch site.
 
@@ -310,7 +310,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 
 ### Memory Handback Protocol
 
-When the calling AI needs to preserve session context from a Codex CLI delegation, run the canonical procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file). The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md). Codex-specific Memory Epilogue template: [assets/prompt-templates.md](./assets/prompt-templates.md) §13.
+When the calling AI needs to preserve session context from a Codex CLI delegation, run the canonical procedure (extract `MEMORY_HANDBACK` section → build structured JSON → scrub secrets → invoke `generate-context.js` via `--stdin`/`--json`/temp-file). The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../../.skilled/skills/system-spec-kit/references/cli/memory-handback.md). Codex-specific Memory Epilogue template: [assets/prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md) §13.
 
 ```bash
 printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin [spec-folder]
@@ -322,21 +322,21 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Core References
 
-- [cli-reference.md](./references/cli-reference.md) - Complete CLI subcommands, flags, sandbox modes, and config reference
-- [integration-patterns.md](./references/integration-patterns.md) - Cross-AI orchestration patterns and workflows
-- [codex-tools.md](./references/codex-tools.md) - Built-in capabilities documentation (/review, --search, MCP, session management)
-- [hook-contract.md](./references/hook-contract.md) - Native hook contract and Spec Kit startup/advisor wiring
-- [agent-delegation.md](./references/agent-delegation.md) - Codex agent roster, routing table, and invocation patterns
+- [cli-reference.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md) - Complete CLI subcommands, flags, sandbox modes, and config reference
+- [integration-patterns.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md) - Cross-AI orchestration patterns and workflows
+- [codex-tools.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md) - Built-in capabilities documentation (/review, --search, MCP, session management)
+- [hook-contract.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md) - Native hook contract and Spec Kit startup/advisor wiring
+- [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md) - Codex agent roster, routing table, and invocation patterns
 
 ### Templates and Assets
 
-- [prompt-templates.md](./assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
-- [prompt-quality-card.md](./assets/prompt-quality-card.md) - Fast-path prompt framework + CLEAR check (ALWAYS loaded)
+- [prompt-templates.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md) - Copy-paste ready prompt templates for common tasks
+- [prompt-quality-card.md](../../../.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md) - Fast-path prompt framework + CLEAR check (ALWAYS loaded)
 
 ### Shared (cli-* family)
 
-- [shared-smart-router.md](../../system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
-- [memory-handback.md](../../system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
+- [shared-smart-router.md](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) - Helper-function bodies for the smart router.
+- [memory-handback.md](../../../.skilled/skills/system-spec-kit/references/cli/memory-handback.md) - Canonical 7-step Memory Handback procedure.
 
 ### External
 
@@ -372,7 +372,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in [AGENTS.md](../../../../AGENTS.md).
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`

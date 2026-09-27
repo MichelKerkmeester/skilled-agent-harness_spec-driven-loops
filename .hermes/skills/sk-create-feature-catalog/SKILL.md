@@ -203,7 +203,7 @@ Use these packet resources while authoring:
 - `assets/feature-catalog-snippet-template.md` for each per-feature file.
 - `../shared/references/quick-reference.md` and `../shared/references/validation.md` before delivery.
 - `../sk-create-frontmatter/references/frontmatter-versioning.md` when checking frontmatter version fields.
-- `references/README.md` to route the reference overflow — [`examples.md`](references/examples.md) (worked live-catalog walkthrough) and [`common-pitfalls.md`](references/common-pitfalls.md) (deep-dive pitfalls, template-versus-reference split) — only for depth beyond this inline workflow.
+- `references/README.md` to route the reference overflow — [`examples.md`](../../../.skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md) (worked live-catalog walkthrough) and [`common-pitfalls.md`](../../../.skilled/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md) (deep-dive pitfalls, template-versus-reference split) — only for depth beyond this inline workflow.
 
 The source assets keep the filenames `feature-catalog-template.md` and `feature-catalog-snippet-template.md` until their separate source-file migration. Those filenames are authoring inputs, not emitted package names.
 

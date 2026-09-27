@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync, existsSync, lstatSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
@@ -85,6 +85,37 @@ test('--check passes when in sync, fails on drift, and write mode prunes stale f
     assert.ok(!existsSync(join(env.output, 'stale')));
     assert.ok(!lstatSync(join(env.output, 'plain')).isSymbolicLink());
     assert.match(run(env, ['--check']), /PASS: 4/);
+  } finally {
+    rmSync(env.root, { recursive: true, force: true });
+  }
+});
+
+test('rewrites relative links to reach the canonical files and leaves URLs, anchors and code alone', () => {
+  const env = fixture();
+  try {
+    mkdirSync(join(env.source, 'hub', 'linked', 'references'), { recursive: true });
+    writeFileSync(join(env.source, 'hub', 'linked', 'references', 'guide.md'), '# Guide\n');
+    const untouched = [
+      'Web [site](https://example.com/references/guide.md), jump [here](#linked).',
+      '[fenced](references/guide.md)',
+      'Inline `[span](references/guide.md)` stays.',
+    ];
+    writeFileSync(join(env.source, 'hub', 'linked', 'SKILL.md'), [
+      '---', 'name: linked', 'description: "Linked"', '---', '', '# Linked', '',
+      'Read [guide](references/guide.md#setup) and [hub](../SKILL.md).',
+      untouched[0], '', '```md', untouched[1], '```', '', untouched[2], '',
+    ].join('\n'));
+    run(env);
+    const copyDir = join(env.output, 'linked');
+    const copy = readFileSync(join(copyDir, 'SKILL.md'), 'utf8');
+    const guide = copy.match(/\[guide\]\(([^)]+)\)/)[1];
+    assert.ok(guide.endsWith('#setup'), guide);
+    const guidePath = resolve(copyDir, guide.slice(0, -'#setup'.length));
+    assert.equal(guidePath, join(env.source, 'hub', 'linked', 'references', 'guide.md'));
+    assert.ok(existsSync(guidePath), guidePath);
+    const hubPath = resolve(copyDir, copy.match(/\[hub\]\(([^)]+)\)/)[1]);
+    assert.equal(hubPath, join(env.source, 'hub', 'SKILL.md'));
+    for (const line of untouched) assert.ok(copy.split('\n').includes(line), line);
   } finally {
     rmSync(env.root, { recursive: true, force: true });
   }

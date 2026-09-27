@@ -16,7 +16,7 @@ user-invocable: true
 
 # Figma (mcp-figma)
 
-Drive **Figma Desktop from the terminal** through the silships **figma-cli** (published as `figma-ds-cli`) so a coding agent can read, author, modify, and export designs, tokens, and components, and **optionally** pull design context out of Figma through a Figma **MCP via Code Mode**. The CLI is the primary surface. The MCP is opt-in. Deep operational detail lives in [`references/figma-cli-reference.md`](references/figma-cli-reference.md).
+Drive **Figma Desktop from the terminal** through the silships **figma-cli** (published as `figma-ds-cli`) so a coding agent can read, author, modify, and export designs, tokens, and components, and **optionally** pull design context out of Figma through a Figma **MCP via Code Mode**. The CLI is the primary surface. The MCP is opt-in. Deep operational detail lives in [`references/figma-cli-reference.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md).
 
 > **Naming trap (read first).** The silships tool publishes to npm as **`figma-ds-cli`** (the unambiguous binary). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`), so **never `npm i -g figma-cli`**. The `figma-cli` command only exists when installed from the silships repo (`main`, exposes both `figma-ds-cli` and `figma-cli`). This skill uses **`figma-ds-cli`** as the canonical command throughout.
 >
@@ -117,7 +117,7 @@ assets/env-template.md              # the prefixed figma_FIGMA_API_KEY .env line
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
+> Resilience pattern: see [sk-doc smart-router template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
 
 ```python
 from pathlib import Path
@@ -254,7 +254,7 @@ Figma Desktop must be **open with a file**, since figma-cli drives the live Desk
 
 ### Command classes (gating)
 
-The full per-command taxonomy lives in [`references/tool-surface.md`](references/tool-surface.md). Summary:
+The full per-command taxonomy lives in [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/references/tool-surface.md). Summary:
 - **READ-ONLY** (safe default): `status`, `var list/find`, `get`, `find`, `inspect`, `node tree`, `extract`, `export*`, `export-jsx`, `export-storybook`, `analyze*`, `a11y*`, `files`, `--dry-run` variants. (Local exports still write files, so require an explicit output path, never silently overwrite.)
 - **MUTATING** (gate): all `create*`/`render*`/`tokens *`/`var create|bind|set|rename|visualize`, `bind *`, `set *`, layout verbs, `duplicate`, `use/theme`, `node to-component`, `slot/sizes/variants/combos`, `shadcn add`, `import`, `lint --fix`, `screenshot-url`, `recreate-url`, `gradient mesh`. App-level: `connect`, `unpatch`, `daemon start/stop/restart`, `config set`, `init-agent`. Design-affecting MUTATING verbs (authoring, tokens, binding, variants — everything except the app-level connection/daemon/config verbs) additionally carry the `sk-design-md-generator` pairing precondition: a measured Style Reference (extracted design tokens) grounds them first, then they are executed here.
 - **DESTRUCTIVE** (confirm + explicit target + rollback): `var delete-all`, `var delete-batch`, `delete/remove`, `node delete`, `undo`, `unwrap`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear`, `annotate clear`.
@@ -262,7 +262,7 @@ The full per-command taxonomy lives in [`references/tool-surface.md`](references
 
 ### Optional Figma MCP via Code Mode (opt-in)
 
-The skill works **fully with the CLI alone**. When the agent must pull design context FROM Figma, use the **Framelink `figma` manual already registered in Code Mode** (`figma-developer-mcp`, stdio, needs a Figma personal token). Calls go through `call_tool_chain()` with naming `figma.figma_<tool>`. The token must be in `.env` as `figma_FIGMA_API_KEY` (Code Mode prefixes the manual name). Always discover first with `search_tools()` / `tool_info()` before invoking. Full detail + the snippet: [`references/mcp-wiring.md`](references/mcp-wiring.md).
+The skill works **fully with the CLI alone**. When the agent must pull design context FROM Figma, use the **Framelink `figma` manual already registered in Code Mode** (`figma-developer-mcp`, stdio, needs a Figma personal token). Calls go through `call_tool_chain()` with naming `figma.figma_<tool>`. The token must be in `.env` as `figma_FIGMA_API_KEY` (Code Mode prefixes the manual name). Always discover first with `search_tools()` / `tool_info()` before invoking. Full detail + the snippet: [`references/mcp-wiring.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md).
 
 ---
 
@@ -302,15 +302,15 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ### Core References
 
-- [figma-cli-reference.md](references/figma-cli-reference.md) - Binary identity + verification, Node/macOS baseline, Figma Desktop requirement, connect modes, daemon model, and command examples.
-- [tool-surface.md](references/tool-surface.md) - The read-only / mutating / destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule.
-- [mcp-wiring.md](references/mcp-wiring.md) - The optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example.
-- [troubleshooting.md](references/troubleshooting.md) - Failure modes and fixes (binary collision, Desktop not running, daemon Unauthorized, port conflicts, Code Mode env-var prefix).
+- [figma-cli-reference.md](../../../.skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md) - Binary identity + verification, Node/macOS baseline, Figma Desktop requirement, connect modes, daemon model, and command examples.
+- [tool-surface.md](../../../.skilled/skills/mcp-tooling/mcp-figma/references/tool-surface.md) - The read-only / mutating / destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule.
+- [mcp-wiring.md](../../../.skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md) - The optional Figma MCP (Framelink `figma`) via Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example.
+- [troubleshooting.md](../../../.skilled/skills/mcp-tooling/mcp-figma/references/troubleshooting.md) - Failure modes and fixes (binary collision, Desktop not running, daemon Unauthorized, port conflicts, Code Mode env-var prefix).
 
 ### Templates and Assets
 
-- [utcp-figma-manual.md](assets/utcp-figma-manual.md) - Paste-ready Framelink `figma` `.utcp_config.json` manual entry, the `.env` note, and a `call_tool_chain` example for the optional Code Mode path.
-- [env-template.md](assets/env-template.md) - The single prefixed `figma_FIGMA_API_KEY` `.env` line for the optional Figma MCP token.
+- [utcp-figma-manual.md](../../../.skilled/skills/mcp-tooling/mcp-figma/assets/utcp-figma-manual.md) - Paste-ready Framelink `figma` `.utcp_config.json` manual entry, the `.env` note, and a `call_tool_chain` example for the optional Code Mode path.
+- [env-template.md](../../../.skilled/skills/mcp-tooling/mcp-figma/assets/env-template.md) - The single prefixed `figma_FIGMA_API_KEY` `.env` line for the optional Figma MCP token.
 
 ### Reference Loading Notes
 
@@ -355,7 +355,7 @@ The skill works **fully with the CLI alone**. When the agent must pull design co
 
 ### External Tools
 
-- **figma-ds-cli** (silships, MIT): install from npm (`figma-ds-cli`) or the silships repo, and see [INSTALL-GUIDE.md](INSTALL-GUIDE.md). Requires **Figma Desktop** open. Not vendored into this repo.
+- **figma-ds-cli** (silships, MIT): install from npm (`figma-ds-cli`) or the silships repo, and see [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md). Requires **Figma Desktop** open. Not vendored into this repo.
 - **Figma MCP (optional)**: the Framelink `figma-developer-mcp` manual already in this project's Code Mode `.utcp_config.json`, which needs `figma_FIGMA_API_KEY` in `.env`.
 
 ### Knowledge Base Dependencies
@@ -372,10 +372,10 @@ Assets: `assets/utcp-figma-manual.md` (paste-ready Framelink `figma` `.utcp_conf
 
 Scripts: `scripts/install.sh` (install + verify), `scripts/doctor.sh` (report-only diagnostics), `scripts/connect-safe.sh`, `scripts/connect-yolo.sh`, `scripts/daemon.sh`, `scripts/unpatch.sh`, `scripts/print-utcp-snippets.sh`.
 
-Examples: [`examples/README.md`](examples/README.md) - safe worked walkthroughs mirroring the playbook scenarios (safe connect + daemon health, read-only inspect/export, optional MCP context pull). They live outside the `references/`/`assets/` discovery roots, so they are linked here rather than auto-loaded by the router.
+Examples: [`examples/README.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/examples/README.md) - safe worked walkthroughs mirroring the playbook scenarios (safe connect + daemon health, read-only inspect/export, optional MCP context pull). They live outside the `references/`/`assets/` discovery roots, so they are linked here rather than auto-loaded by the router.
 
 Related skills: `sk-design-md-generator` (a measured Style Reference of extracted design tokens, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies.
 
-Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
+Install guide: [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md).
 
 Upstream: figma-cli is [silships/figma-cli](https://github.com/silships/figma-cli) (npm `figma-ds-cli`, MIT). The optional MCP is the community Framelink `figma-developer-mcp`. This skill documents driving the installed tool from the terminal, and it does not vendor or redistribute it.

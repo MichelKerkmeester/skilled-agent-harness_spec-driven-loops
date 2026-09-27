@@ -426,15 +426,15 @@ Downstream automation parses this final line via exact string match — do not v
 
 ### Core References
 
-- [review-core.md](./references/review-core.md) - Shared review doctrine: severity model, evidence rules, precedence, and finding schema.
-- [review-ux-single-pass.md](./references/review-ux-single-pass.md) - Interactive single-pass review flow, presentation modes, and PR/pre-commit behavior.
-- [quick-reference.md](./references/quick-reference.md) - Lightweight index for routing between shared doctrine and single-pass UX guidance.
-- [pr-state-dedup.md](./references/pr-state-dedup.md) - Content-hash deduplication for unchanged pull-request reviews.
-- [security-checklist.md](./assets/security-checklist.md) - Mandatory security and reliability checks.
-- [code-quality-checklist.md](./assets/code-quality-checklist.md) - Correctness, performance, KISS, and DRY checks.
-- [solid-checklist.md](./assets/solid-checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
-- [removal-plan.md](./assets/removal-plan.md) - Safe-now vs deferred removal planning template.
-- [test-quality-checklist.md](./assets/test-quality-checklist.md) - Test quality, coverage, and anti-pattern detection.
+- [review-core.md](../../../.skilled/skills/sk-code/sk-code-review/references/review-core.md) - Shared review doctrine: severity model, evidence rules, precedence, and finding schema.
+- [review-ux-single-pass.md](../../../.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md) - Interactive single-pass review flow, presentation modes, and PR/pre-commit behavior.
+- [quick-reference.md](../../../.skilled/skills/sk-code/sk-code-review/references/quick-reference.md) - Lightweight index for routing between shared doctrine and single-pass UX guidance.
+- [pr-state-dedup.md](../../../.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md) - Content-hash deduplication for unchanged pull-request reviews.
+- [security-checklist.md](../../../.skilled/skills/sk-code/sk-code-review/assets/security-checklist.md) - Mandatory security and reliability checks.
+- [code-quality-checklist.md](../../../.skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md) - Correctness, performance, KISS, and DRY checks.
+- [solid-checklist.md](../../../.skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
+- [removal-plan.md](../../../.skilled/skills/sk-code/sk-code-review/assets/removal-plan.md) - Safe-now vs deferred removal planning template.
+- [test-quality-checklist.md](../../../.skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md) - Test quality, coverage, and anti-pattern detection.
 
 ### Reference Loading Notes
 
