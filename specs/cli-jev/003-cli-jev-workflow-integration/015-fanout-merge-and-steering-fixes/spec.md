@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -45,7 +45,7 @@ This is **Phase 15** of the cli-jev workflow integration specification. It is on
 
 **Dependencies**:
 - The lineage files of all three rounds stay committed under `001-deep-research/research/`, `004-deep-research-expansion/research/` and `007-classifier-deep-research/research/`. The diagnosis and the regression fixture are built from them
-- `fanout-run.cjs` differs between this branch and `main` by 11 lines (`git diff --stat HEAD main`, 2026-09-27): `main` carries `ac156a7112` and this branch `9fe8526284`, two separate Grok 4.7 roster commits. The build starts from a tree that holds both
+- The build starts from a tree that holds both Grok 4.7 roster commits, `ac156a7112` and `9fe8526284`. The 11-line `fanout-run.cjs` difference from `main` recorded at planning is gone: at the build base `6f47c32dce` both are ancestors and `git diff --stat main 6f47c32dce -- fanout-run.cjs` is empty
 
 **Deliverables**:
 - A diagnosis table in `implementation-summary.md`, one row per lineage per round, taken before any code change
@@ -53,7 +53,7 @@ This is **Phase 15** of the cli-jev workflow integration specification. It is on
 - One steering instruction in `buildLoopPrompt` with a test in `fanout-run.vitest.ts`
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- None to refresh. `../changelog/` does not exist in this packet, and the owner's changelog is out of scope (section 3).
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -79,7 +79,7 @@ Two more gaps sit behind the gate:
 - The evidence reconstruction reads is narrow. It matches a count against `## Findings` items shaped `### N.` or `N.` (`:187-214`) or against `FINDING` graph events (`:1053-1063`). Round 3's deepseek writes findings as bold `**F1 ...**` paragraphs, and swe and round 1 mimo have no `## Findings` heading. Each lineage's `deltas/iter-NNN.jsonl` holds `type: "finding"` records, which the iteration prompt pack asks for (`deep-research/assets/prompt-pack-iteration.md.tmpl`, output contract item 3), and the merge never reads them.
 - One iteration whose count matches no evidence throws (`:1048`, `:1069-1073`). The catch at `:1216-1227` then drops the whole lineage's reconstruction, and `:1230` sets `reconstructionGaps` to 0 even when some findings went unrebuilt.
 
-Round 3 had a second defect. Each lineage had a lead that appended a review of every iteration to `research/lineages/<label>/steer.md`, and the round's decision D6 assumed each iteration reads it first. It did not. `007-classifier-deep-research/goal.md` records under Steering reach that lineages "checked the file only sometimes, several writing 'no `steer.md`' while it existed". The grok lead confirmed one read, at iteration 7 (`lineages/grok/steer.md:105`). The cause is structural. A CLI lineage is one subprocess that runs every iteration inline (`fanout-run.cjs:1431-1443`), and its only instruction is the prompt `buildLoopPrompt` builds once per attempt (`:3260`). That prompt (`:1406-1524`) never names a steering file.
+Round 3 had a second defect. Each lineage had a lead that appended a review of every iteration to `research/lineages/<label>/steer.md`, and the round's decision D6 assumed each iteration reads it first. It did not. `007-classifier-deep-research/goal.md` records under Steering reach that lineages "checked the file only sometimes, several writing 'no `steer.md`' while it existed". The grok lead confirmed one read, at iteration 7 (`lineages/grok/steer.md:105`). The cause is structural. A CLI lineage is one subprocess that runs every iteration inline (`fanout-run.cjs:1431-1443`), and its only instruction is the prompt `buildLoopPrompt` builds once per attempt (`:3267` at `6f47c32dce`). That prompt (`:1406-1524`) never names a steering file.
 
 ### Purpose
 
@@ -101,7 +101,7 @@ The merge rebuilds every count-only finding the lineage's own files can account 
 
 ### Out of Scope
 - Widening the markdown findings parser to `### F1.` or `**F1 ...**` shapes. The delta source covers these rounds without new regex, and the diagnosis table decides whether any round needs more
-- The convergence check in `.skilled/commands/deep/assets/deep-research-auto.yaml:2215-2216` and `deep-research-confirm.yaml:1683-1684`. It detected the loss correctly and stays as it is
+- The convergence check that raises `count_only_state_findings_not_reconstructed`, at `.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs:347-359`. It detected the loss correctly and stays as it is. After the fix, rounds 2 and 3 still raise `state_finding_reconstruction_gap`, and their `sourceFindings` (105 and 168) stay below the recorded `countOnlyFindingCount` (118 and 173) that the count-only check compares. That is expected, because the gap is named, not closed
 - Native lineages. They receive `buildNativeCommandInput` (`fanout-run.cjs:1527`) instead of the loop prompt. They run the command's per-iteration prompt pack. Steering there needs a new prompt-pack token, which is a separate design
 - A live fan-out run to measure steering reach. The parent goal allows no model call in this phase, so reach is measured on the next real research run
 - Re-running synthesis for rounds 1 to 3. Each synthesis read every iteration file directly, so its ranking stands
@@ -161,7 +161,7 @@ The merge rebuilds every count-only finding the lineage's own files can account 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | The committed lineage files of rounds 1 to 3 | Without them the diagnosis and the fixture have no source | They are tracked (`git ls-files` counts 108, 100 and 223 files under the three `lineages/`). The fixture copies the records it needs into the test, so a later archive of this packet cannot break it |
-| Dependency | `fanout-run.cjs` differs between this branch and `main` | A build on one side conflicts on merge | Start from a tree that holds both roster commits, and keep the steering edit inside `buildLoopPrompt` |
+| Dependency | Both Grok roster commits in the build tree | A build without one conflicts on merge | Resolved: both are ancestors of the build base `6f47c32dce`, and `fanout-run.cjs` matches `main` there. The steering edit stays inside `buildLoopPrompt` |
 | Risk | Rebuilt findings replace a lineage's hand-written summary findings | The merged registry loses those summaries | They restate iteration findings. Replacement happens only when the rebuild yields more findings, and questions and ruled-out directions still come from the registry (`mergeReconstructedResearchRegistry`, `:1131-1144`) |
 | Risk | Same-id rebuilt findings from different lineages, such as `iteration-1-finding-1` | Two lineages collide on an id | The merge already keeps both sides of a same-id content conflict (`fanout-merge.vitest.ts:194` and `:1206`). The regression test asserts no rebuilt finding is lost |
 | Risk | A lineage ignores the steering line mid-run | Steering still reaches iterations only sometimes | The line is one sentence, and the iteration's sources show whether it read the file. If the next real run shows misses, the prompt-pack token for native and CLI paths is the follow-up design |

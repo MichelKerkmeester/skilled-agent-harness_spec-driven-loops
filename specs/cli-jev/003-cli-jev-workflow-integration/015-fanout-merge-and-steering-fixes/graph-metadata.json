@@ -39,7 +39,7 @@
       "buildloopprompt"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,9 +48,10 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/result-envelopes/legacy-shadow.ts",
       "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/implementation-summary.md",
       "runtime/package.json"
     ],
@@ -98,21 +99,27 @@
         "source": "derived"
       },
       {
-        "name": "fanout-merge.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
+        "name": "fanout-merge.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "fanout-run.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-shadow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/result-envelopes/legacy-shadow.ts",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "In all three research rounds of this packet, `stepconvergencereport` recorded `synthesisincomplete` with the single invariant `countonlystatefindingsnotreconstructed`",
     "created_at": "2026-09-27T11:50:21Z",
-    "last_save_at": "2026-09-27T12:05:46.318Z",
+    "last_save_at": "2026-09-27T18:47:23.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:906fa05cf02403b6a0db607b21dbdc804d96241933a592903233614ba670fdf6",
+    "source_fingerprint": "sha256:22d9fc515e4789c292bad5c888c1cd4cd5f2d70315e6e7cc0b3f1ac627b394b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f081883a00de49961272a1d40e62e99d19fc16f87380b5f661c16362a33e219f",
-      "plan.md": "71789cf5a95dbb58db11f21a3d1ae58145d1d976921f523e80959aca1fa43a77",
-      "tasks.md": "4847bc2e6577728db04c4f967f7400bc62499d924fb8d23469b73da46948dcff",
-      "implementation-summary.md": "1ef11a1c84a9ceb58d0f392ccc5cdc17aee5a8c0dcc18b7071516e779636632a"
+      "spec.md": "c55576d2134d5b334cee42ac62f6f695339c4e3ced64dc73a9d44420664bdaed",
+      "plan.md": "811aaad9fa265246aef7e40e54354e2d06c9371701404d0a5cc6d356b516fec6",
+      "tasks.md": "9919f939af8661490bcb386bbd247c82a2f91d44b8b2db76cb4902863c922376",
+      "implementation-summary.md": "e4c76205a3e9fccddb753d9d9c0b14b3df551c277789f836d1f6b27563089661"
     },
     "last_active_at": null
   }
