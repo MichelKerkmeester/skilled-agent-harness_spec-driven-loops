@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Rule 6 at `.skilled/skills/sk-design/SKILL.md:202-203` says \"Never quote a compiled routing decision for this hub",
     "created_at": "2026-09-27T11:50:20Z",
-    "last_save_at": "2026-09-27T16:04:30.752Z",
+    "last_save_at": "2026-09-27T17:25:22.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7cdc5291585884ece003a6296cf1819db9ca2999ef43452892d383ea3cb425fe",
+    "source_fingerprint": "sha256:a8632744d31a9e13e6e1760721053cc01f46d9130078e1c337be6e067fe18f64",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b47bc75015016c67131cf509e93a93ba3df4c40155c04ceca55142c5ba11884a",
+      "spec.md": "3e317ca7807df998d95cc90dab4c4efeb87f907e8dcf3f2430bf337532b49535",
       "plan.md": "922b12c6223937d3ca05690635ab2233a9a0be90332b8680d1249d4b07d2f549",
       "tasks.md": "a574a509564e043b649d66d591ed5cfd2cfffc6cc5c8b9ec735a2f4c91fa1fa3",
       "implementation-summary.md": "cc57361f1a7a6e24afb1fd1d6f19f3e3a26f996b16b2ef60d1fabf3d3d9b9ee7"
