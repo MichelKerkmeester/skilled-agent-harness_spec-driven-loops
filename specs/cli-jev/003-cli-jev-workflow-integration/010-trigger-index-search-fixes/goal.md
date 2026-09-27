@@ -24,9 +24,9 @@ _memory:
       session_id: "spec-cli-jev-003-workflow-integration"
       parent_session_id: null
     completion_pct: 0
-    open_questions:
-      - "Which score-0 miss shape does the system-spec-kit owner want (spec.md section 10)"
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "Score-0 miss shape: option C with the AGENTS.md edit (operator, 2026-09-27)"
 ---
 # Goal: Fix Phase: Trigger Index Rebuild, Freshness and Build Isolation
 
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Make `system-spec-kit`'s trigger-index rebuild publish again past this packet's two vendored model cards, rebuild the stale committed index, extend the save-time staleness check to the whole index and keep builds aimed elsewhere off every tracked file, while the score-0 miss shape waits on its owner.
+**Objective:** Make `system-spec-kit`'s trigger-index rebuild publish again past this packet's two vendored model cards, rebuild the stale committed index, extend the save-time staleness check to the whole index, keep builds aimed elsewhere off every tracked file and give Gate 1 a clean no-hit through the opt-in lookup flag the owner chose.
 
 ### Decisions
 
@@ -59,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 | D1 | Exempt only `MODEL_CARD_08B.md` and `MODEL_CARD_9B.md`, by exact path in `IGNORED_PATHS`. No directory rule, no reader change and no edit to the vendored cards |
 | D2 | When `--out` names a path other than the default index, unset sidecar paths default beside `--out`. The no-flag rebuild keeps its tracked paths |
 | D3 | Staleness has one definition, the per-document comparison `checkTriggerIndexFreshness` already runs at save time, moved into a shared helper that the save and `--check` both call. The lookup warns per call only if the measured cold-lookup p95 plus the path-only corpus-walk p95 is at most 200 ms. Otherwise `--check` runs as a report-only CI step. A per-lookup verdict stops the build until `spec.md` is amended |
-| D4 | The lookup's score-0 rows and its exit status stay as they are until the `system-spec-kit` owner says yes to a change |
+| D4 | The owner chose option C on 2026-09-27. The lookup's default output and exit status stay as they are. An opt-in `--scoring-only` flag drops score-0 rows and exits 1 when no row scores, and the Gate 1 line in the root `AGENTS.md` passes it. Nothing else in `AGENTS.md` changes |
 | D5 | The index is rebuilt from a `git archive` of HEAD in its own commit after the code commit. A merge conflict on the index or its three fixtures is resolved by regenerating, never by hand |
 
 ### Operator copy
@@ -90,7 +90,7 @@ here are invisible to whatever judges completion.
 - [ ] `generate-trigger-index.mjs --check --repo-root` over a `git archive` of the final HEAD exits 0, and `generate-trigger-index.mjs --check --bogus` exits 2
 - [ ] After `generate-trigger-index.mjs --out` a scratch path with no other output flag, `git status --short .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures .skilled/skills/system-spec-kit/runtime/data` prints nothing and the scratch directory holds `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json`
 - [ ] `implementation-summary.md` records the cold-lookup p95, the path-only walk p95 and the placement verdict that follows from the 200 ms rule
-- [ ] `lookup-trigger-index.mjs --json -- "cli-classifier hub"` still returns 20 rows at score 0 with exit 0, unless this goal's log records the owner's yes to a change
+- [ ] `lookup-trigger-index.mjs --json -- "cli-classifier hub"` still returns 20 rows at score 0 with exit 0, the same lookup with `--scoring-only` returns no rows and exits 1, the root `AGENTS.md` Gate 1 line passes `--scoring-only` and `sync-gate1-pointers.cjs --check` exits 0
 - [ ] `trigger-index.vitest.ts` runs at least 53 tests with 0 failing, `workflow-trigger-index-freshness.vitest.ts` passes 7 of 7 with the save calling the shared helper, and `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
@@ -112,7 +112,8 @@ and findings belong here.
 | Staleness counted | Done | Scratch build with `--allow-malformed`: 124 paths missing from the committed index (99 in this packet, 17 in `system-skill-advisor/030`, 7 in `sk-doc/060`, 1 in `.skilled/skills/cli-jev`), 0 obsolete |
 | Lookups reproduced | Done | "deem local server": committed index only score-0 `partial` rows, scratch index `1.000  exact` on `deem-local.md`. "cli-classifier hub": 20 rows, all `partial` at 0, `truncated: true`, exit 0 |
 | Suite baseline | Done | `trigger-index.vitest.ts`: 49 passed, exit 0. `workflow-trigger-index-freshness.vitest.ts`: 7 passed, exit 0 |
-| Build | Pending | Nothing is built |
+| Build | In progress | Stage A code for the exemptions, sidecar defaults, shared helper, `--check` and the CI step written, 2026-09-27. Evidence in `tasks.md` and `implementation-summary.md` |
+| Miss shape decided | Done | The operator answered 2026-09-27, relayed by the coordinator to the build leaf: "C with the AGENTS.md edit". Amended as REQ-006, PD-8, T022 to T025 and AC-006, with D4 and criterion 6 above rewritten to match |
 
 ### Deviations and findings
 

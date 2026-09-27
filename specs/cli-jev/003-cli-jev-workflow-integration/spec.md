@@ -85,7 +85,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 
 ### Out of Scope
 
-- Building any recommendation. Each build phase is its own later decision.
+- Building any phase the operator has not released. On 2026-09-27 the operator released 018, then 010. Each other build phase is its own later decision.
 - Changing the `cli-jev` hub or its `cli-usage` transport contract, except the move under `cli-classifier` that phase 009 plans for D2 of `goal.md`.
 - Editing the vendored repositories under `context/`. They are reference material.
 - Storing any key or secret in Jev state, in a digest or in a research artifact.

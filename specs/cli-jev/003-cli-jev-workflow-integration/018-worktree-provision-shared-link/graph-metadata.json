@@ -39,7 +39,7 @@
       "cannot"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,8 +48,8 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-git/scripts/worktree-naming.sh",
-      ".skilled/skills/sk-doc/package.json",
       ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/skills/sk-doc/package.json",
       ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
       "shared/dist/frontmatter/parse-frontmatter.js",
       ".skilled/skills/sk-git/SKILL.md"
@@ -98,15 +98,15 @@
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/package.json",
-        "source": "derived"
-      },
-      {
         "name": "worktree-naming.test.sh",
         "kind": "script",
         "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/package.json",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "In this worktree, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` exits 1 with `FAIL: 12-lib: failed to load the root-router contract library: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'` (rerun 2026-09-27)",
     "created_at": "2026-09-27T12:06:40Z",
-    "last_save_at": "2026-09-27T12:17:21.631Z",
+    "last_save_at": "2026-09-27T12:49:59.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8cc116e4ad7a3bbd3b8e4157fdb61036cc31c58c24abef7a48c7fe5aa0c0ab87",
+    "source_fingerprint": "sha256:de85e47dad492855da33716fbdfbdb5b35bdc5fdebe16e46fff5d5e86a36c54b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d63b3b0a11563ed27145ad734c9d7a4088bb7f7988f6207cc18c486cd5ef2430",
+      "spec.md": "f6cf8c47a48b622cc763e66a4f0a0c62cdf3dfa09282886d1a60fa20cd27417d",
       "plan.md": "0cc9a7bbf71a1942268432b2256ebf5dade02c1d0e9a6a462bd4795f72c90e78",
-      "tasks.md": "0ae3b0d801ae3004980d7eb2ab1b10bbb853012c0550c8867e585a38c86f61fd",
-      "implementation-summary.md": "243890458f11cca461e89843689d40a18e61ddea4bb41f9e711f665ab68014a7"
+      "tasks.md": "bacd3ec9aab1be5571abf7b08153fc2fc1b36e850c65df12837bc6efe504731b",
+      "implementation-summary.md": "ec2b1a585a103ddb1c567f8d0d6ef948e62bfce9a9f6ae2ba9866e110e7bab15"
     },
     "last_active_at": null
   }

@@ -39,7 +39,7 @@
       "freshness"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "runtime/data/trigger-index.json",
-      "runtime/cli/tests/trigger-index.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
       ".github/workflows/advisory-checks.yml",
-      ".github/workflows/README.md"
+      ".github/workflows/README.md",
+      ".codex/AGENTS.md",
+      ".cursor/rules/skill-routing.md",
+      "runtime/data/trigger-index.json",
+      "runtime/cli/tests/trigger-index.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts"
     ],
     "entities": [
       {
@@ -100,21 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": "runtime/data/trigger-index.json",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.vitest.ts",
-        "kind": "test",
-        "path": "runtime/cli/tests/trigger-index.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "corpus.mjs",
         "kind": "file",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "freshness.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs",
         "source": "derived"
       },
       {
@@ -130,9 +124,15 @@
         "source": "derived"
       },
       {
-        "name": "workflow-trigger-index-freshness.vitest.ts",
+        "name": "lookup-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.vitest.ts",
         "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
         "source": "derived"
       },
       {
@@ -142,27 +142,33 @@
         "source": "derived"
       },
       {
-        "name": "corpus-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "generation-diagnostics.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
-        "source": "derived"
-      },
-      {
-        "name": "phrase-variants.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
-        "source": "derived"
-      },
-      {
         "name": "advisory-checks.yml",
         "kind": "config",
         "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-trigger-index-freshness.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts",
         "source": "derived"
       },
       {
@@ -184,6 +190,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` exits 1 with `refused: 2 document(s) carry an untrusted trigger declaration` (reproduced 2026-09-27, 22,968 documents scanned)",
     "created_at": "2026-09-27T11:50:16Z",
-    "last_save_at": "2026-09-27T12:23:45.313Z",
+    "last_save_at": "2026-09-27T13:04:48.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74f97336cdba5a625673dc294299a26992214d3d6244a03c2e15902ae2895970",
+    "source_fingerprint": "sha256:6e5814b02f269bc53dfe1f5e4e5ba1b81e6020bf0bb863784f619ff175690902",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d8f4297c1c57c8aba537dc35c482abf6568ef965a90fa0c9297ca7fe42a9b37",
-      "plan.md": "058b79913eec50f6c4f93b5a53e7f69fc9f08a5d2ab874629e20cf4fb3185ba0",
-      "tasks.md": "9effb76f4b5c85683c148d4a9b924fd029a4fe1aa29958aa9a97c03121a254ce",
-      "implementation-summary.md": "2b458fde566f5bd02badb9610c6fb206b64fdd69ecfdae1d71e871056341a1bb"
+      "spec.md": "402d30634f35045b06a9518e546e10569f61ef3ea3799fb4c044d9d52787cf4f",
+      "plan.md": "1e89772d16b54d19fa8ee03d4fdbce1466f7f18c08e00c7d66c4317c34abe6cd",
+      "tasks.md": "f3bc65c991644479646967e043b3c442f280122e9568a87729469af96ae38db1",
+      "implementation-summary.md": "8ebf3161ee35cf91324c27feed0b9f3c16d0de0a015ae6c257e1c3024fd125ac"
     },
     "last_active_at": null
   }
