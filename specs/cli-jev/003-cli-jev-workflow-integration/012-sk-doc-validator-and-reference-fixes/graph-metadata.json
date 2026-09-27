@@ -39,7 +39,7 @@
       "sk-doc"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,19 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
-      ".skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/repo-rules/communication.md",
-      ".skilled/commands/deep/research.md",
-      "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
-      ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
       ".skilled/skills/sk-doc/scripts/tests/test_structure_validation.py",
+      ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
       ".skilled/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
       ".skilled/skills/sk-doc/README.md",
       ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md",
       ".skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/session-capturing-pipeline-quality-coverage.md",
-      ".skilled/commands/deep/assets/deep-research-presentation.txt"
+      ".skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/deep/research.md",
+      "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      "scratch/briefs/00-index.md"
     ],
     "entities": [
       {
@@ -99,39 +100,27 @@
         "source": "derived"
       },
       {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "communication.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/communication.md",
         "source": "derived"
       },
       {
-        "name": "memory-pipeline-regressions.vitest.ts",
-        "kind": "test",
-        "path": "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "quick_validate.py",
+        "name": "validate_document.py",
         "kind": "file",
-        "path": ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
         "source": "derived"
       },
       {
         "name": "test_structure_validation.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/scripts/tests/test_structure_validation.py",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
         "source": "derived"
       },
       {
@@ -165,9 +154,27 @@
         "source": "derived"
       },
       {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-pipeline-regressions.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/memory-pipeline-regressions.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "00-index.md",
+        "kind": "doc",
+        "path": "scratch/briefs/00-index.md",
         "source": "derived"
       },
       {
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "`detectdocumenttype` in `.skilled/skills/sk-doc/shared/scripts/validatedocument.py` ends with `# Default to readme for general markdown` and `return 'readme'` (`:255-256`)",
+    "causal_summary": "`detectdocumenttype` in `.skilled/skills/sk-doc/shared/scripts/validatedocument.py` ended with `# Default to readme for general markdown` and `return 'readme'` (`:266-267` at the build-start HEAD `6f47c32dce`)",
     "created_at": "2026-09-27T11:50:18Z",
-    "last_save_at": "2026-09-27T12:15:10.591Z",
+    "last_save_at": "2026-09-27T17:38:10.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d59b6321c84e19dafc87d6c6efdca8cffba6a2b98e905f47abbd1dae7c7da507",
+    "source_fingerprint": "sha256:a51ae32ae756dbdde66a3e941decd91745202b25ce6cd8753a68cd42392322da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c5ba8171d7fde2e189e7d539c04b8ab5090280d630d5278492e5547129985acc",
-      "plan.md": "16fab3f34d860b37585544bb825355f8da459b4325d598a44c9b7c87d0c6cc6a",
-      "tasks.md": "19bc503125cf797a4f1fdd38d0030412339320fc9891e8d2c5bff5b5bc7cf173",
-      "implementation-summary.md": "703865b1d15e45aa22f6a9ae489cb5f78babfa8dfe7712fac7c022d0d739c697"
+      "spec.md": "96ef204183388f2f467534bf987d21eabe74e496b8ffa36ad43609b52ae82fef",
+      "plan.md": "f469fb449880a5b44970005dc6ce1d84a001279e7a762856682d132069be3651",
+      "tasks.md": "04ce4dac64a18daa2e7a10490f5310d451ef7b0f6be36e0ca8a5c78e3386007e",
+      "implementation-summary.md": "d95a0baab402e7298edcc794262d822b43f1d8a8e50a0e5803b02447bacde6dd"
     },
     "last_active_at": null
   }

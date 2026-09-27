@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Owner** | `sk-doc` for the two validators, their tests and the hub `README.md`. `system-deep-loop` for the two deep-research playbook files. `system-spec-kit` for the session-capturing playbook file |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
@@ -30,7 +30,7 @@ contextType: "implementation"
 | **Phase** | 12 of 18 |
 | **Predecessor** | 011-spec-validator-fixes |
 | **Successor** | 013-sk-prompt-framework-docs |
-| **Handoff Criteria** | An auto-detected fallback prints a `document_type_fallback` warning with the exit code unchanged, `quick_validate.py` exits 1 for a skill with a non-qualified MCP token, the four dead citations are gone, the owner suite fails no file beyond its four failing on 2026-09-27 and `validate.sh --strict` passes on this phase |
+| **Handoff Criteria** | An auto-detected fallback prints a `document_type_fallback` warning with the exit code unchanged, `quick_validate.py` exits 1 for a skill with a non-qualified MCP token, the four dead citations are gone, the owner suite fails no file beyond its baseline failing set (four files at planning, two at the build baseline, both on 2026-09-27) and `validate.sh --strict` passes on this phase |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,7 +53,7 @@ This is **Phase 12** of the cli-jev workflow integration specification. It plans
 - Two spec-kit playbook rows removed from a recorded capture, with the capture's note saying why
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name. At close, `specs/cli-jev/003-cli-jev-workflow-integration/changelog/` did not exist, so there was nothing to refresh (see `implementation-summary.md` Deviations).
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -62,7 +62,7 @@ This is **Phase 12** of the cli-jev workflow integration specification. It plans
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`detect_document_type` in `.skilled/skills/sk-doc/shared/scripts/validate_document.py` ends with `# Default to readme for general markdown` and `return 'readme'` (`:255-256`). A document no rule matches is checked against README rules, and the output only says `Document type: readme`. Two real cases, run on 2026-09-27: `.skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md` exits 0 as `readme`, and `.skilled/repo-rules/communication.md` exits 1 as `readme` with `Missing required section: overview`. The reader cannot tell a README verdict from a guess. Separately, `quick_validate.py` returns invalid for a non-qualified MCP tool token when the target is a command, but appends a warning and stays valid for a skill (`:248-251`), although its own comment says "Either surface must fully-qualify any MCP tool token" (`:239-240`). Finally, three playbook files cite lines past the end of their target: `.skilled/commands/deep/research.md` has 160 lines and is cited at `:307-317` and `:176-185`, and `runtime/cli/tests/memory-pipeline-regressions.vitest.ts` has 63 lines and is cited at `:67` and `:109`.
+`detect_document_type` in `.skilled/skills/sk-doc/shared/scripts/validate_document.py` ended with `# Default to readme for general markdown` and `return 'readme'` (`:266-267` at the build-start HEAD `6f47c32dce`). A document no rule matches is checked against README rules, and the output only says `Document type: readme`. Two real cases, run on 2026-09-27: `.skilled/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md` exits 0 as `readme`, and `.skilled/repo-rules/communication.md` exits 1 as `readme` with `Missing required section: overview`. The reader cannot tell a README verdict from a guess. Separately, `quick_validate.py` returns invalid for a non-qualified MCP tool token when the target is a command, but appends a warning and stayed valid for a skill (`:248-251` before the build), although its own comment says "Either surface must fully-qualify any MCP tool token" (`:240-241` after the build). Finally, three playbook files cite lines past the end of their target: `.skilled/commands/deep/research.md` has 159 lines and is cited at `:307-317` and `:176-185`, and `runtime/cli/tests/memory-pipeline-regressions.vitest.ts` has 62 lines and is cited at `:67` and `:109`.
 
 ### Purpose
 A fallback verdict says it is a fallback, one MCP-token rule holds for every package kind and the four dead citations either point at the text they describe or are gone.
@@ -84,9 +84,9 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 ### Out of Scope
 - Changing any detection rule, so that a playbook root index or a repo-rule document gets its own type. That is a new rule set the owner has not asked for
 - Failing the run on a fallback. Callers such as `create-manual-testing-playbook-auto.yaml:176` and `create-feature-catalog-confirm.yaml:205` validate root index files without `--type` and would start failing
-- The `Unknown document type` path at `validate_document.py:1498-1503`, which returns without a `document_type` key. It is reachable only through an explicit `--type` whose rules are missing and was not named by the research
+- The `Unknown document type` path inside `validate_document()` in `validate_document.py`, which returns without a `document_type` key. It is reachable only through an explicit `--type` whose rules are missing and was not named by the research
 - A citation-drift scanner (R24 in the research). This phase fixes the four counted dead citations by hand
-- Other citations in the same playbook tables. Several have drifted inside their file, and one (`iteration-citation-jsonl.md:102`, `research.md:157-179`) ends past line 160. The research did not count them as dead, so they are recorded as an open question
+- Other citations in the same playbook tables. Several have drifted inside their file, and one (`iteration-citation-jsonl.md:102`, `research.md:157-179`) ends past line 159. The research did not count them as dead, so they are recorded as an open question
 - Any Jev or Deem call
 
 ### Files to Change
@@ -112,8 +112,8 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | Make the README fallback visible. When `validate_document()` runs with no `doc_type` and detection reaches the final default, the result's `warnings` carries one entry of type `document_type_fallback` that names the file, says README rules were applied because no type rule matched and gives the fix hint to pass `--type`. The entry has severity `warning`, so `valid` and `exit_code` do not change. `detect_document_type()` keeps its signature and return value, so the five test files that call it are untouched. An explicit `--type`, a detected type and a skipped path produce no such entry. The owner's contract picks a notice over a failure: `validation-and-enforcement.md` makes exit 1 the delivery block for a document defect, and a missing type rule is not one |
-| REQ-002 | Give a non-qualified MCP tool token one severity. `quick_validate.py` returns invalid for such a token in a skill exactly as it does for a command, with the message that tells the author to use `mcp__<server>__<tool>`. The standard is the owner's own: the comment at `quick_validate.py:239-240`, `sk-create-command/SKILL.md:220` and the MCP example at `sk-create-frontmatter/assets/frontmatter-templates.md:329-330`. Blocking breaks no current file: 0 of 226 tracked markdown files with `allowed-tools` outside `specs/` carry a non-qualified token (counted 2026-09-27) |
+| REQ-001 | Make the README fallback visible. When `validate_document()` runs with no `doc_type` and detection reaches the final default, the result's `warnings` carries one entry of type `document_type_fallback` that names the file, says README rules were applied because no type rule matched and gives the fix hint to pass `--type`. The entry has severity `warning`, so `valid` and `exit_code` do not change. `detect_document_type()` keeps its signature and return value, so the three test files that import it (`test_changelog_validator.py`, `test_category_classification_denumbered.py` and `test_root_name_consumer_matrix.py`) are untouched. An explicit `--type`, a detected type and a skipped path produce no such entry. The owner's contract picks a notice over a failure: `validation-and-enforcement.md` makes exit 1 the delivery block for a document defect, and a missing type rule is not one |
+| REQ-002 | Give a non-qualified MCP tool token one severity. `quick_validate.py` returns invalid for such a token in a skill exactly as it does for a command, with the message that tells the author to use `mcp__<server>__<tool>`. The standard is the owner's own: the comment at `quick_validate.py:240-241`, `sk-create-command/SKILL.md:220` and the MCP example at `sk-create-frontmatter/assets/frontmatter-templates.md:329-330`. Blocking breaks no current file: 0 of 226 tracked markdown files with `allowed-tools` outside `specs/` carry a non-qualified token (counted 2026-09-27) |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -121,8 +121,8 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 |----|-------------|
 | REQ-003 | Repoint the `exhausted-approach-respect.md` source row. Its anchor, "command differences include externalized state and negative knowledge", now lives in the Key Differences block of `.skilled/commands/deep/assets/deep-research-presentation.txt` (`:379` heading, `:383` externalized state, `:386` negative knowledge, `:388` last bullet). The row cites `:379-388` |
 | REQ-004 | Repoint the `pause-sentinel-halt.md` source row. Its anchor, "command output contract names research packet state", now lives in the Contract block of the same presentation file (`:233` heading, `:236` the `**Outputs:**` line naming the `{artifact_dir}` research packet and its state files). The row cites `:233-236` |
-| REQ-005 | Remove the two dead rows in the spec-kit playbook. The content is gone: `memory-pipeline-regressions.vitest.ts` has 63 lines and no import from `../../shared/embeddings` (its one mention is a `vi.doUnmock` string at `:28`). The rows sit inside a recorded `npm run check` capture, so the build removes rows `:117-118` and extends the capture's own note at `:100` to say they were removed and why, rather than rewriting the capture's `17 violation(s)` count |
-| REQ-006 | Add no failure to the owner suite. `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` already fails before this phase: on 2026-09-27 it exited 1 with `4 failing: test_create_skill_contract.py test_readme_manifest.py test_rename_tooling_fixture_harness.py test_root_name_consumer_matrix.py`, one of them on a missing `@spec-kit/shared/frontmatter/parse-frontmatter.js` module. After the change the failing set is the same four files or a subset, `test_structure_validation.py` and `test_quick_validate_086.py` print `PASS`, and `validate_document.py` still reports each of the three edited playbook files `VALID` as `playbook_feature`. The four existing failures are not this phase's to fix |
+| REQ-005 | Remove the two dead rows in the spec-kit playbook. The content is gone: `memory-pipeline-regressions.vitest.ts` has 62 lines and no import from `../../shared/embeddings` (its one mention is a `vi.doUnmock` string at `:28`). The rows sit inside a recorded `npm run check` capture, so the build removes rows `:117-118` and extends the capture's own note at `:100` to say they were removed and why, rather than rewriting the capture's `17 violation(s)` count |
+| REQ-006 | Add no failure to the owner suite. `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` already fails before this phase: on 2026-09-27 it exited 1 with `4 failing: test_create_skill_contract.py test_readme_manifest.py test_rename_tooling_fixture_harness.py test_root_name_consumer_matrix.py`, one of them on a missing `@spec-kit/shared/frontmatter/parse-frontmatter.js` module. After the change the failing set is the same four files or a subset, `test_structure_validation.py` and `test_quick_validate_086.py` print `PASS`, and `validate_document.py` still reports each of the three edited playbook files `VALID` as `playbook_feature`. The four existing failures are not this phase's to fix. At the build baseline on 2026-09-27 only two of them failed (`test_readme_manifest.py` and `test_rename_tooling_fixture_harness.py`), so the build compared against that set by name |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -145,7 +145,7 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | The owners' recent history. `validate_document.py` last changed in `aa07fae5fa` (2026-09-18), `quick_validate.py` in `db8af052ca` (2026-09-17), the two deep-research playbook files in `e14d5b196b` and the spec-kit playbook file in `56772cb93c` (both 2026-09-17), the presentation file in `38f6fa4521` (2026-09-23). `git status` showed no uncommitted change on any of these paths on 2026-09-27 | A newer owner change lands first and moves the cited lines | T001 reruns the history and the line pins before any edit |
+| Dependency | The owners' recent history. `validate_document.py` last changed in `666abc1a22e` and `e33f1a6ff3e` (both 2026-09-27, after planning, which moved its pins by 11 lines; `aa07fae5fa` of 2026-09-18 was the last change at planning), `quick_validate.py` in `db8af052ca` (2026-09-17), the two deep-research playbook files in `e14d5b196b` and the spec-kit playbook file in `56772cb93c` (both 2026-09-17), the presentation file in `38f6fa4521` (2026-09-23). `git status` showed no uncommitted change on any of these paths on 2026-09-27 | A newer owner change lands first and moves the cited lines | T001 reruns the history and the line pins before any edit |
 | Dependency | 011 edits `check-goal.cjs` and `check-ac-coverage.sh`, 013 edits sk-prompt files | None share a file with this phase | Files to Change tables compared at handoff |
 | Risk | A caller treats any warning as failure | Low. No CI or hook calls either validator (`rg` over `.github` and `.skilled/hooks` found none), and `test_validator.py` compares exit codes and blocking errors only | REQ-006 reruns the whole owner suite |
 | Risk | The owner suite is already red, so a new failure could hide among the old ones | Med | REQ-006 compares the failing file set by name before and after, not the exit code |
@@ -171,7 +171,7 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 - **NFR-S02**: Blocking a non-qualified MCP token narrows what a skill may declare. It never widens it.
 
 ### Reliability
-- **NFR-R01**: `validate_document.py` keeps exits 0, 1 and 2 as documented in its docstring (`:18-21`) and in `shared/scripts/README.md`. `quick_validate.py` keeps `sys.exit(0 if valid else 1)` (`:327`).
+- **NFR-R01**: `validate_document.py` keeps exits 0, 1 and 2 as documented in its docstring (`:18-21`) and in `shared/scripts/README.md`. `quick_validate.py` keeps `sys.exit(0 if valid else 1)` (`:326` after the build).
 - **NFR-R02**: The JSON output keeps every existing key. The notice arrives through the existing `warnings` list.
 <!-- /ANCHOR:nfr -->
 
@@ -183,7 +183,7 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 ### Data Boundaries
 - Empty input: an empty markdown file with no `--type` still reaches the default and gets the notice.
 - Maximum length: not applicable.
-- Invalid format: a server-only token (`mcp__code_mode`) and a bare `mcp_` token are non-qualified. A wildcard tool (`mcp__code_mode__*`) and any token outside the `mcp_` namespace stay valid, as `_MCP_FULLY_QUALIFIED_RE` (`quick_validate.py:118-121`) already defines.
+- Invalid format: a server-only token (`mcp__code_mode`) and a bare `mcp_` token are non-qualified. A wildcard tool (`mcp__code_mode__*`) and any token outside the `mcp_` namespace stay valid, as `_MCP_FULLY_QUALIFIED_RE` (`quick_validate.py:119-122`) already defines.
 
 ### Error Scenarios
 - External service failure: none. Both validators are local.
@@ -193,7 +193,7 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 ### State Transitions
 - Partial completion: each of the three fixes lands alone. A reverted validator change leaves the citation fixes intact.
 - Session expiry: not applicable.
-- `--fix` run: the re-validation after fixes (`validate_document.py:1608`) passes the same `--type`, so the notice appears again only when it applied the first time.
+- `--fix` run: the re-validation after fixes (in `validate_document.py`'s `main()`) passes the same `--type`, so the notice appears again only when it applied the first time.
 - `--blocking-only`: warnings are hidden, the notice with them. That flag asks for blocking output only.
 <!-- /ANCHOR:edge-cases -->
 
@@ -214,7 +214,7 @@ A fallback verdict says it is a fallback, one MCP-token rule holds for every pac
 
 ## 10. OPEN QUESTIONS
 
-- **Other drifted playbook citations (for `system-deep-loop`).** The same deep-research playbook tables hold citations that are in range but no longer point at their anchor, such as `spec-fence-writeback.md:102` citing `research.md:35-38` for a lock note that now sits at `:51-54`. `iteration-citation-jsonl.md:102` cites `research.md:157-179`, which ends past line 160. The research counted only start lines past the end as dead. Should the owner fix these by hand now, or wait for a drift scanner?
+- **Other drifted playbook citations (for `system-deep-loop`).** The same deep-research playbook tables hold citations that are in range but no longer point at their anchor, such as `spec-fence-writeback.md:102` citing `research.md:35-38` for a lock note that now sits at `:51-54`. `iteration-citation-jsonl.md:102` cites `research.md:157-179`, which ends past line 159. The research counted only start lines past the end as dead. Should the owner fix these by hand now, or wait for a drift scanner?
 - **A type rule for index files (for `sk-doc`).** After this phase a playbook root index and a feature-catalog root index still validate as `readme`, now with a notice. Should they get their own types?
 <!-- /ANCHOR:questions -->
 

@@ -56,9 +56,9 @@ Three small owner fixes with no model call. `validate_document.py` records wheth
 In-place fixes inside each owner's existing module. No new module, flag or file.
 
 ### Key Components
-- **`detect_document_type()`** (`validate_document.py:210-256`): keeps its signature and its `'readme'` return. The build separates the final default from the path rules with the smallest change that lets `validate_document()` know the default was hit, for example a private helper that returns the type with its source, as `extract_structure.py:622-660` already does with `('generic', 'default')`. `detect_document_type()` stays a thin wrapper, so the five test files that import it see no change.
-- **`validate_document()`** (`:1435-1538`): when `doc_type` was `None` on entry and detection came from the default, it appends one entry of severity `warning` and type `document_type_fallback`, with a message and a `fix_hint` naming `--type`.
-- **`validate_skill()`** in `quick_validate.py` (`:143-273`): the token loop at `:247-251` returns invalid for any kind.
+- **`detect_document_type()`** (`validate_document.py`, `:221-267` at the build-start HEAD): keeps its signature and its `'readme'` return. The build separates the final default from the path rules with the smallest change that lets `validate_document()` know the default was hit, for example a private helper that returns the type with its source, as `extract_structure.py:622-660` already does with `('generic', 'default')`. `detect_document_type()` stays a thin wrapper, so the three test files that import it see no change.
+- **`validate_document()`** (`:1574-1678` at the build-start HEAD): when `doc_type` was `None` on entry and detection came from the default, it appends one entry of severity `warning` and type `document_type_fallback`, with a message and a `fix_hint` naming `--type`.
+- **`validate_skill()`** in `quick_validate.py`: the token loop in its `allowed-tools` check returns invalid for any kind.
 
 ### Data Flow
 File path in, detected type and its source out, rules for that type applied, warnings list extended by the notice, exit code computed from blocking errors only, exactly as today.
@@ -76,7 +76,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `validate_document.py` `detect_document_type` | Producer of the type | Update: expose the default as its source, return value unchanged | `test_changelog_validator.py`, `test_category_classification_denumbered.py` and `test_root_name_consumer_matrix.py` call it and keep their results |
 | `validate_document.py` `validate_document` and `main` | Producer of the result and exit code | Update: one warning when the default was hit with no type given | New pytest cases, exit code read in T011 |
 | `quick_validate.py` token loop | Producer of the MCP-token verdict | Update: one blocking branch | New cases in `test_quick_validate_086.py` |
-| `validate_document.py` `validate_command_frontmatter` (`:1405-1417`) | Imports `is_non_fq_mcp_token` and already blocks for commands | Unchanged | `rg -n '_is_non_fq_mcp_token' validate_document.py` shows the import and the one blocking use |
+| `validate_document.py` `validate_command_frontmatter` (its MCP-token block) | Imports `is_non_fq_mcp_token` and already blocks for commands | Unchanged | `rg -n '_is_non_fq_mcp_token' validate_document.py` shows the import and the one blocking use |
 | `/create:*` workflow YAMLs that run `validate_document.py` without `--type` | Consumers of the exit code | Unchanged: exit code does not move | `create-manual-testing-playbook-auto.yaml:176`, `create-feature-catalog-confirm.yaml:205` |
 | `audit_descriptions.py`, `package_skill.py` | `audit_descriptions.py` imports only constants from `quick_validate`. `package_skill.py` has its own `validate_skill` | Not a consumer of the changed branch | `rg -n 'from quick_validate' .skilled --glob '*.py'` |
 | Three playbook files | Consumers of the moved command text | Update their citations | `rg` in T013, line counts in T014 |
