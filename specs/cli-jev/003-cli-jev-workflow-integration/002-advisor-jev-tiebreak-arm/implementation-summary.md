@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Offline Advisor Jev Tie-Break Arm (Planned)"
-description: "Nothing is built yet. This phase is Planned: its spec, plan, tasks and goal describe one read-only script that measures a Jev choice against the advisor's near-tie order, and no result exists."
+description: "Nothing is built yet. This phase is Planned: its spec, plan, tasks and goal, amended on 2026-09-27 from the final synthesis, describe one read-only script and its vitest file that measure a Jev choice against the advisor's near-tie order, and no result exists."
 trigger_phrases:
   - "advisor jev tie-break summary"
   - "score-jev-tiebreak status"
@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm"
-    last_updated_at: "2026-09-26T20:40:00Z"
-    last_updated_by: "orchestrator-session"
-    recent_action: "Authored the planning documents"
-    next_safe_action: "Build the advisor dist, then write the zero-call census and baseline column"
+    last_updated_at: "2026-09-27T04:46:15Z"
+    last_updated_by: "amendment-leaf"
+    recent_action: "Amended the planning documents from the final synthesis, section 13"
+    next_safe_action: "Build the advisor dist, then write the zero-call census, comparators and power line"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/spec.md"
@@ -25,7 +25,8 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "How many held-out rows are movable"
+      - "How many rows are movable, and how many gold-first rows can a pick demote"
+      - "Should the Gate 3 calibration also run at no headroom"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -56,13 +57,13 @@ Nothing yet. This phase is Planned, and no code, report or measurement exists fo
 
 ### Phase 2: advisor-jev-tiebreak-arm
 
-The plan is one read-only script, `score-jev-tiebreak.mjs`, beside the advisor's routing-accuracy evals. By default it counts how many held-out rows have the gold skill inside the advisor's near-tie cluster but not first, and scores the scorer's own order, with zero Jev calls. Behind `--jev`, and only when `jev 0.6.2` is on PATH and `jev auth status` exits 0, it asks a Jev `choice` inside each cluster and scores both orders on the same rows. See `spec.md` for the requirements and `plan.md` for the order of work.
+The plan is one read-only script, `score-jev-tiebreak.mjs`, beside the advisor's routing-accuracy evals, and one vitest file under the advisor's `tests/parity/`. By default the script reads the near-tie cluster for every skill-firing row of the labeled and holdout files and counts the rows whose gold skill is in the cluster but not first. It scores the scorer's order against three zero-call comparators and prints a power line that says whether a `keep` is reachable, all with zero Jev calls. Behind `--jev`, and only when `jev 0.6.2` is on PATH and `jev auth status --provider P` exits 0 for the provider the judgments use, it asks a Jev `choice` inside each cluster three times and returns one pre-registered verdict. When the census finds only 1 to 4 movable rows, the same switch runs a Gate 3 calibration instead. See `spec.md` for the requirements and `plan.md` for the order of work.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md`, `goal.md` | Authored | Planning documents for this phase. No code file has changed |
+| `spec.md`, `plan.md`, `tasks.md`, `goal.md` | Authored, then amended on 2026-09-27 | Planning documents for this phase. No code file has changed |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -70,7 +71,7 @@ The plan is one read-only script, `score-jev-tiebreak.mjs`, beside the advisor's
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The planning documents were written from recommendation R1 and proposed phase 002 in `../001-deep-research/research/research.md`, with the key gate from the parent goal's decision D5.
+Not delivered. The planning documents were first written from recommendation R1 and proposed phase 002 in `../001-deep-research/research/research.md`. On 2026-09-27 they were amended from the final synthesis, `../004-deep-research-expansion/research/research.md` section 13, with the key gate from the parent goal's amended decision D5. `spec.md` section 4 traces each changed requirement, and the goal log lists them one per line.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -80,9 +81,12 @@ Not delivered. The planning documents were written from recommendation R1 and pr
 
 | Decision | Why |
 |----------|-----|
-| A new script instead of extending `score-outcome-rerank.mjs` | That script promises a read-only eval of outcome weights and its flip rule decides that flag, so a network arm inside it would change what it means. A separate file deletes cleanly |
-| The default run makes zero calls | The census can end the work at zero movable rows before anything is billed, and a keyless machine sees no new behavior |
-| Every gate failure exits 0 with census and baseline intact | Dormant is the normal state without a key, so the report says which gate stopped the arm instead of failing the run |
+| A new script instead of extending `score-outcome-rerank.mjs` | That script promises a read-only eval of outcome weights, runs on import and its flip rule decides that flag, so a network arm inside it would change what it means. A separate file deletes cleanly |
+| The default run makes zero calls and prints the power line first | The census can end the work at zero movable rows before anything is billed, and the power line tells the operator whether a `keep` is reachable at all |
+| Gold-first rows count as decided rows | A movable-only deck cannot lose, so a pick that demotes correct rows could still earn `keep` |
+| An aggregate flip rate replaces a per-row one | With 3 reruns a row's rate is 0, 1/3 or 2/3, so a per-row limit of 0.10 is a unanimity test |
+| One `--provider` on the gate, `auth test` and every judgment | `auth status` defaults to `official` while judgments follow `JEV_PROVIDER`, so an unscoped check can pass or fail for the wrong key |
+| Every gate failure exits 0 with the census intact | Dormant is the normal state without a key, so the report says which check stopped the arm instead of failing the run |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -93,7 +97,7 @@ Not delivered. The planning documents were written from recommendation R1 and pr
 | Check | Result |
 |-------|--------|
 | Build and measurement | Not run. Nothing is built |
-| Planning documents | `validate.sh --strict` and `check-goal.cjs` run on this folder at authoring time. Their output is reported by the authoring session, not recorded here as a build result |
+| Planning documents | `validate.sh --strict` and `check-goal.cjs` run on this folder after each authoring pass. Their output is reported by the authoring session, not recorded here as a build result |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -101,8 +105,9 @@ Not delivered. The planning documents were written from recommendation R1 and pr
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No numbers exist yet.** Movable rows, both columns, stability and per-call latency are all UNKNOWN until the census and one keyed run.
-2. **The arm needs an operator step.** A Jev key must be set before `--jev` does anything. Without one the arm prints `jev arm skipped: no credential`.
+1. **No numbers exist yet.** Movable and decided rows, the comparator metrics, the verdict and per-call latency are all UNKNOWN until the census and one keyed run.
+2. **A keep may be out of reach.** At most 55 rows can move. Between 5 and 20 decided rows a `keep` needs a true win rate of 0.80 to 0.96, which the power line will state before any call.
+3. **The arm needs an operator step.** A Jev key for the provider the judgments use must be set before `--jev` does anything. Without one the arm prints `jev arm skipped: no credential`.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,18 +1,16 @@
 {
   "level": "1",
   "specFolder": "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
-  "description": "In OpenCode autonomous mode the goal plugin decides \"is this goal done\" after each idle",
+  "description": "Two runtimes judge \"is this goal done\" with a heuristic",
   "keywords": [
-    "opencode",
-    "autonomous",
-    "mode",
+    "two",
+    "runtimes",
+    "judge",
     "goal",
-    "plugin",
-    "decides",
     "done",
-    "idle"
+    "heuristic"
   ],
-  "lastUpdated": "2026-09-26T18:35:33.576Z",
+  "lastUpdated": "2026-09-27T04:48:24.068Z",
   "specId": "003",
   "folderSlug": "goal-verifier-jev-shadow",
   "parentChain": [
