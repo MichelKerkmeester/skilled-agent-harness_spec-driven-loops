@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Rounds 1 and 2 asked where Jev, a hosted and keyed typed-judgment model, earns a place here",
     "created_at": "2026-09-27T05:35:24Z",
-    "last_save_at": "2026-09-27T06:24:15.196Z",
+    "last_save_at": "2026-09-27T06:27:17.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b56231c79e0103c6e3935e3238fe55c2bdabf5faa1f3228b6b12f2537e2629c",
+    "source_fingerprint": "sha256:98c8f13a2b159161e3d2d90abdcd43c7686a2ea74d701ef74f5474481fbdbaea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f034fd735ddf1fa853088b872f681d952df3db124828d64d533c45391cf53c41",
+      "spec.md": "313352581c3e2052b2ddc6557808768f2badcee55c648a147eb7defc7ad759e7",
       "plan.md": "441e739bf4fb0ffa77b4badd4e97e172acc08c3e574bbc0252549471a69a05d9",
       "tasks.md": "3936ebe2dbd7a45ee113d17d5fbaf954c4b32a0b86ab73a38324b4ff39555fdc",
       "implementation-summary.md": "5c9a3bb6ae7bfa5e0eab5c8b97c1506d721857dba1535be6a56fa6619a894639"

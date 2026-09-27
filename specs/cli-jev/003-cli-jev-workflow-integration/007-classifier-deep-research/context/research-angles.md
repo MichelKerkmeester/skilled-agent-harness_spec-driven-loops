@@ -34,7 +34,7 @@ Path prefixes used below:
 - **The served model** is `LibertAIDAI/deem-0.8-v1` at Hugging Face commit `8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21`, in bf16, on Deem's Python server with `DEEM_DEVICE=mps`, at `http://127.0.0.1:8300` with model id `deem-0.8-v1` (`LOCAL:20-26`). Setting `mps` by hand worked without a code change (`LOCAL:24`).
 - **Its measurements** (`LOCAL:34-44`), on synthetic inputs with one question per request: p50 about 60 ms for `choice`, `score` and `noul`, p95 from 62.8 to 78.5 ms, a physical footprint of 3,368 MB with MPS memory included, 814 MB resident and about 10 s from start to healthy.
 - **It is uncalibrated.** No calibration file is loaded, so every answer reports temperature 1.0 (`LOCAL:27`), and its quality on this repository is unmeasured (`LOCAL:52`).
-- **Its install** lives under `~/.local/share/deem/`, outside every repository, with its own venv, model, Hugging Face home, log and pid file (`LOCAL:28`). Stop and removal commands are at `LOCAL:55-61`.
+- **Its install** lives under `~/.local/share/deem/`, outside every repository, with its own venv, model, Hugging Face home, log and pid file (`LOCAL:28`). Its control script, health rule, update schedule and stop and removal commands are at `LOCAL:55-70`.
 - **Releases** appear as new commits on the Hugging Face model repository. Deem publishes no GitHub releases or tags. The operator wants the local model to update when a new commit lands.
 - **The 9B** is `LibertAIDAI/deem-9b-v1`: one 17.9 GB `model.safetensors`, not gated, architecture `Qwen3_5ForCausalLM`. It is a documented option compared from its published numbers only.
 - The Rust server has x86 SIMD kernels and a non-x86 fallback (`DEEM/rust/deem-runtime/src/kernels.rs:145`), and it is not what serves here.
@@ -76,7 +76,7 @@ Lineages run concurrently, so a sibling's newest file may be older than your own
 Every iteration follows this contract, in addition to the workflow's own iteration shape.
 
 1. **Find your angle.** Your label is the last path segment of `config.fanout_lineage_artifact_dir` (`grok`, `deepseek`, `mimo`, `swe` or `glm`). Iteration N takes angle `<label>-NN`, two digits: iteration 3 of the SWE lineage takes `swe-03`, and iteration 10 of the Grok lineage takes `grok-10`. Set Focus Area to that angle's id and title.
-2. **Read first.** Read `STEER` if it exists, then `LOCAL`. `STEER` is your lead's review of your earlier iterations. It names gaps and drifted citations and never supplies conclusions. If a steer conflicts with your angle, follow the angle and say so in one line.
+2. **Read first.** Read `STEER` if it exists, then `LOCAL`. `STEER` is your lead's review of your earlier iterations. It names gaps and drifted citations and never supplies conclusions. Then read section 7 for your angle id and for `ALL`: a section 7 line refines your angle and overrides its text where they conflict. If a steer conflicts with your angle, follow the angle and say so in one line.
 3. **One bounded angle.** Stay on it. If its questions are answered early, go deeper on them, not wider.
 4. **Budget.** About 15 tool calls. Spend them on opening code and counting, not on rereading the baselines.
 5. **Cite.** Every claim carries a repo-relative `file:line` that you opened in this iteration. A claim you take from BASE1, BASE2, `STEER` or `LOCAL` without reopening its source is quoted as theirs: "BASE2 says", not "the code says".
@@ -853,3 +853,49 @@ Read all your own iterations and the newest iteration of each other lineage firs
 - **The wire question has three independent readers.** grok-02 and swe-01 read it in W1, and deepseek-06 contests both from the failure side in W2.
 - **The two-backend gate has one owner and three users.** deepseek-01 defines the Deem check, swe-08 turns it into a probe contract and deepseek-10 writes it into 002, 003, 005 and 006.
 - **Every lineage ends on cost, order and kill criteria.** Each has W4 angles, and glm-05 closes the contrarian drop list.
+
+---
+
+## 7. Pre-launch refinements from the lineage leads
+
+Each lead reviewed its lineage's real prompt and angles before launch. The orchestrator adopted the lines below. They bind as part of the angle they name.
+
+### ALL: every lineage
+
+| ID | Refinement |
+|----|------------|
+| ALL-1 | Read Deem's code and `~/.local/share/deem/bin/deem-ctl` (the tested start, status, update and rollback script) but never execute either: `status` and `update --check` call the server or the network. `deem-ctl` is the one citation allowed outside the repository, by its path and line |
+| ALL-2 | Any `LOCAL:55-61` in an angle means `LOCAL:55-70`, where the control script, health rule, update schedule and stop and removal commands now sit |
+| ALL-3 | Deem's server sends `Access-Control-Allow-Origin: *` with no authentication (`DEEM/serve/deem_server.py:809`, `:837`), confirmed live by the orchestrator: any web page open in the operator's browser can call it. A design that keeps Deem running names this |
+| ALL-4 | A Deem health check that reads `status` alone passes the stub backend, which serves uniform answers with no model loaded (`DEEM/serve/deem_server.py:137-154`, `:772-777`). A real check parses the `backend` field and refuses `stub`, as `deem-ctl` does |
+| ALL-5 | Vendor figures carry their runtime, precision and device. The 0.8B card's 362 ms and 0.9 GB come from the Rust CPU runtime on its int8 path on x86 (`DEEM/docs/MODEL_CARD_08B.md:18-27`), not from the Python server on MPS that serves here |
+| ALL-6 | Validators, tests and repository modules are never run. A validator baseline comes from counting with `rg` over outputs already on record, or it is UNKNOWN with the method that would measure it |
+| ALL-7 | Transcript counts dedupe usage by `message.id`, because usage repeats on every content block of an assistant message. Report main-session and subagent files apart, use the cut-off `2026-09-27T06:22Z` and print numbers only |
+| ALL-8 | The Python `jev-cli` always sends a bearer key and exits 3 without one (`JEVSRC:274-280`, `:90-108`), while Deem does no authentication. A design that points the `custom` provider at Deem squares any placeholder key with "Jev gets no secret" |
+
+### Per angle
+
+| Angle | Refinement |
+|-------|------------|
+| grok-01 | Add a runtime, precision and device column to the claim table (ALL-5) |
+| grok-03 | Count the bytes of `DEEM/serve/deem_mcp.py`'s tool schemas that the main AI would load, against zero for a hook. BASE2 rows 44, 47 and 49 already cover the MCP question |
+| grok-05 | The lead reports that `sk-prompt/SKILL.md:3` and `:38` claim 7 frameworks while `framework-registry.json` holds 5. Verify it and make the label-set count the first finding |
+| grok-06 | No hub-level sk-design routing run is archived (`sk-design/benchmark/README.md`). Use the per-mode baselines and a playbook scenario count; never invent a routing number |
+| deepseek-01 | ALL-4 is the orchestrator's finding. Go past it: pin the model id (`DEEM/serve/deem_server.py:107` defaults to `deem-1.5`, the served id is `deem-0.8-v1`), weigh a parsed field against a string match, and fit the probe timeout into a hook budget |
+| deepseek-02 | Audit `deem-ctl` and the launchd agent `com.skilled.deem-update` as built rather than redesigning them, and treat ALL-3 as the question of which callers can reach the server |
+| deepseek-04 | Reopen the hook timeouts from `.claude/settings.json` and the hook source, and keep spawn and connect cost apart from the warm p95 of 78.5 ms |
+| deepseek-06 | Settle the field gap from code on both sides, marked inferred: `jev-cli` sends `criteria` (`JEVSRC:364-369`) while Deem requires `options` and `levels` (`DEEM/serve/deem_server.py:535-543`), and `jev-cli` reads the answer under its type name (`JEVSRC:389-393`) while Deem returns `value` and `level` (`:604-619`) |
+| mimo-01 | Apply ALL-7, and save the counting script inside `mimo/`, printing numbers only, cited by `script:line` as the harness so the synthesis can rerun it |
+| mimo-02 | Bound the review corpus with a stated `rg` pattern or sample, and go beyond row 50's phrase walk |
+| mimo-03 | Add `ambiguity-prompts.jsonl` (24 rows) to the candidate sets. Gate 3 already sits at F1 0.9843, which leaves little room to separate two backends |
+| mimo-05 | Start from rows 63 and 52. New ground is invocations per week and the context cost per run |
+| swe-01 | Read `deem-ctl` (ALL-1) before designing the lifecycle. The design is a wrap-or-vendor decision about that script, not a redesign |
+| swe-02 | Anchors: `calculate_dqi` at `extract_structure.py:947`, the rule functions at `validate_document.py:431-1435`, `validate_agent_frontmatter` at `:1216` and `validate_command_frontmatter` at `:1302` |
+| swe-03 | The six active `ROUTER.md` files are the ones this file lists at line 239. `cli-jev/ROUTER.md` is `stage1-only`. Never open mimo's iterations in wave 1 |
+| swe-05 | Anchors: `sk-prompt/SKILL.md:155` and `:194`, `sk-design-fundamentals/SKILL.md:175` and `:211`, `hub-router.json:6`. Name each scenario file counted, and whether it is gold or a manual playbook, before counting ties |
+| swe-08 | `deem-ctl` holds a second Deem health check. Weigh a shared check against a duplicated one (row 27) |
+| glm-01 | Attack the update mechanism as built (`deem-ctl update` plus the 6-hourly launchd agent, `LOCAL:55-70`), not a sibling proposal. D2 and D3 are the parent goal's, and a verdict against either is written as a proposed amendment, not a drop |
+| glm-03, glm-04 | When a named sibling angle has not landed yet, critique the newest sibling file on that question plus BASE2 and Planned phases 002, 003, 005 and 006, and record which targets were missing |
+| glm (all) | State the Deem reading of the digest's Q7, Q9, Q10 and Q12: egress passes trivially, while a 2.1 GB venv and a launchd agent bite on dependency and reversibility |
+| glm-05 | Emit drops in the synthesis table format `\| # \| Idea \| Reason \| Checklist question or red flag \| Evidence \| Lineage(s) \|`, numbered from 73 |
+
