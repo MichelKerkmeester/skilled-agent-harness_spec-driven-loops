@@ -127,14 +127,14 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |------|------|--------------|-----------|------------------|
 | S0 | Confirm the release and phase 001's commit | Read-only git | None | `git status --porcelain -- <each released path>` prints nothing, and `git log` shows phase 001's commit |
 | S1 | Retake every baseline | Me | Scratch only | Exit status and summary line saved for each command in section 5 |
-| S2 | Replace the three template defaults with `"{{TRIGGER_PHRASE}}"` in both nested templates | My script, dry run first | `templates/changelog/phase.md`, `root.md` | Diff shows one member for three in each file, and a scratch index build reads both as ok |
+| S2 | Replace the three template defaults with `"{{CHANGELOG_IDENTITY_PHRASE}}"` in both nested templates | My script, dry run first | `templates/changelog/phase.md`, `root.md` | Diff shows one member for three in each file, and a scratch index build reads both as ok |
 | S3 | Derive and render the identity phrase in the generator | DeepSeek edit lane E1, exact rule from section 3 | `nested-changelog.ts` | `npm run typecheck` in `runtime/cli` exits 0 |
 | S4 | Add the generator tests | Lane E2 | `nested-changelog.vitest.ts` | The suite passes with 3 old and 3 new cases |
 | S5 | Rebuild `dist/` | Me, `npm run build` in `runtime/cli` | Gitignored `dist/` only | A render of this folder without `--write` prints `skilled release changelog findability changelog`, and git status is unchanged |
 | S6 | Document the identity phrase | Lane E3, literal text | `references/workflows/nested-changelog.md` | `hvr_scan.py` reports no hard blocker |
 | S7 | Write the frontmatter contract into sk-create-changelog | Lanes E4 to E8, one file each, literal text | `SKILL.md`, `changelog-template.md`, `worked-examples.md`, both command YAMLs | Each diff stays inside its named section, both YAMLs load with PyYAML, `hvr_scan.py` is clean |
 | S8 | Add CHG-011 and CHG-012 | Lane E9 | `manual-testing-playbook/search-metadata/**`, the playbook index | `validate-playbook-package.cjs --package sk-doc/sk-create-changelog` passes with 12 scenarios in 5 categories |
-| S9 | Topic phrases and residue descriptions | Judgment lanes J1 to J17, read-only | Scratch only | Every record passes the checker below, and git status is unchanged after each lane |
+| S9 | Topic phrases and residue descriptions | Judgment lanes T01 to T17, D01, R01 and D02, read-only | Scratch only | Every record passes the checker below, and git status is unchanged after each lane |
 | S10 | Retrofit dry run | My script | Scratch plan and diff sample | 0 errors, every file passes the preimage guard, and 20 sampled diffs across the kinds read correctly |
 | S11 | Retrofit apply, packet then skill then release entries | My script with `--apply` | The 1,959 entries, minus dirty skips | Every hunk lies inside the leading block, a rescan finds no missing key, and a second run changes nothing |
 | S12 | Remove the five template defaults, if the operator approves | My script, `--strip-defaults` | The 468 carriers | Carrier count falls to 0, and bodies are unchanged |
@@ -146,9 +146,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 - Every brief opens with the child-dispatch preamble from `.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md`, names this folder as the pre-approved spec folder and inlines the right persona: `markdown` for prose, `code` for TypeScript and Python.
 - Every brief uses the RCAF skeleton, carries one change and names its forbidden tools: no git write, no `generate-context.js`, no `validate.sh` and no sync, repair, route or index script.
 - Judgment lanes run `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 devin -p --model deepseek-v4-1-flash-max --permission-mode auto --prompt-file <brief> </dev/null`. They write nothing and return JSON lines on stdout.
-- Edit lanes run on cli-devin with `--permission-mode dangerous` only after the operator approves it. Otherwise they run `pi -p --offline --model opencode-go/deepseek-v4.1-flash --thinking max --tools read,edit,write </dev/null` with `PI_BLACKHOLE_PASSIVE=true`.
+- Edit lanes run `pi -p --offline --model opencode-go/deepseek-v4.1-flash --thinking max --tools read,edit,write </dev/null` with `PI_BLACKHOLE_PASSIVE=true`. The operator did not approve `--permission-mode dangerous`, so no lane used it.
 - `command -v devin` or `command -v pi` runs before each dispatch, and `devin auth status` runs once. Each lane's PID is captured and only that PID is ever killed.
-- Parallel lanes run only with disjoint write sets and only up to the count the operator authorizes. Three failed fixes for one symptom stop the lane and go into the report.
+- Up to three judgment lanes run at once, the count the operator authorized, each writing only its own scratch output. Edit lanes run alone and never overlap a judgment round. Three failed fixes for one symptom stop the lane and go into the report.
 
 ### Judgment Checker
 A record is admitted only when it passes all of these:
@@ -157,6 +157,16 @@ A record is admitted only when it passes all of these:
 3. Each phrase shares at least one token of three letters or more with the entry body, and none sits on the stoplist of generic changelog phrases such as "bug fixes" or "documentation updates".
 4. In a scratch index built with the candidates, no phrase names more than three documents.
 5. A description runs 40 to 250 characters in one or two sentences, has no em dash and no semicolon, and `hvr_scan.py` finds no hard blocker in it.
+
+### Stage 2 Execution Notes
+Stage 2 followed the step table with these recorded deviations:
+- **Order.** Lanes E1 and E2 ran before S2, and the build ran right after S2, so the gitignored `dist/` that every session shares was stale for the shortest possible window.
+- **Placeholder.** The templates carry `{{CHANGELOG_IDENTITY_PHRASE}}`, not `{{TRIGGER_PHRASE}}`. The templates are in the index corpus, and the planned name would have normalized to "trigger phrase" and made them its exact owner.
+- **Lane ids.** T01 to T17 proposed topic phrases for 24 entries each. D01 wrote the 15 residue descriptions. R01 retried the 13 entries whose only phrase was already owned by more than three documents. D02 wrote the one description the corrected sentence rule exposed.
+- **Sentence rule.** The S10 sample review caught a fragment description, and the cause was a rule that ended a sentence at every stop. The corrected rule keeps a stop inside a word and requires the description to begin where the paragraph begins. ADR-002 records the amendment.
+- **Rollups.** Five hand-written rollup changelogs had no generator title to rebuild a description from, so they use their own opening sentence.
+- **Dirty guard.** The strip pass first skipped all 468 carriers, because the apply pass had made them dirty. A file now counts as this retrofit's own only when completing its committed text reproduces the working file byte for byte, and any other edit still skips it.
+- **Shared tree.** Another session committed its packet and rebuilt the committed index during the work. Neither commit touched a file this phase changed.
 <!-- /ANCHOR:phases -->
 
 ---
