@@ -63,7 +63,7 @@ Load the file that matches the current task:
 - `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` - packet-local generator
 
 ### Real entries to model
-- `.skilled/changelog/system-spec-kit/v4.0.0.0.md` - the canonical exemplar for the v4 narrative style
+- `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar for the v4 narrative style
 
 ---
 

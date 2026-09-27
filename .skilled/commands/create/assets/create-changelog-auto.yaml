@@ -125,6 +125,7 @@ user_inputs:
     FROM UNIFIED SETUP PHASE (--release flag or PRE-BOUND SETUP marker).
     Defaults to false. Only becomes true via an explicit flag or marker --
     never a silent default. See step_7_publish_release.
+    Only the skilled component publishes; step 7 skips the release for any other component.
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -191,12 +192,15 @@ component_mapping:
   #
   # RESOLUTION STRATEGY (most specific first):
   #   1. Use the folder name as the component name
-  #   2. Match changed file paths against component names:
-  #      - .skilled/skills/{name}/**  → folder containing {name}
-  #      - .skilled/commands/**       → folder containing "commands"
-  #      - .skilled/agents/**         → folder containing "agents"
-  #   3. Match component_hint keyword against folder names
-  #   4. No match: STOP and ask which component the changelog belongs to
+  #   2. Match changed file paths against component names by whole path
+  #      segment, never by substring:
+  #      - .skilled/skills/{name}/**  → the folder named exactly {name}
+  #      - .skilled/commands/**       → the folder that owns those commands
+  #      - .skilled/agents/**         → the folder that owns those agents
+  #   3. Match component_hint against folder names exactly
+  #   4. The folder named skilled is the framework release line: resolve to
+  #      it only when component_hint names it, never from a changed path
+  #   5. No match: STOP and ask which component the changelog belongs to
   #
   # The agent MUST run the discovery scan in Step 2 of the workflow
   # and build the mapping dynamically from the actual folder contents.
@@ -210,9 +214,9 @@ component_mapping:
 
   resolution_rules:
     - source: "file_path"
-      strategy: "Match changed file paths against discovered folder names using substring/keyword matching"
+      strategy: "Match changed file paths against discovered folder names by whole path segment, never by substring. A path never resolves to skilled"
     - source: "component_hint"
-      strategy: "Match user-provided hint against discovered folder names"
+      strategy: "Match the user-provided hint against discovered folder names exactly. This is the only way to resolve to skilled, the framework release line"
     - source: "spec_folder"
       strategy: "Extract spec path segments and match against discovered folder names"
     - source: "fallback"
@@ -290,11 +294,11 @@ changelog_template:
   #   - At-a-glance bullets open with a bold lead-in sentence
   #   - No Oxford commas, em dashes, or semicolons
   #
-  # Canonical exemplar: .skilled/changelog/system-spec-kit/v4.0.0.0.md
+  # Canonical exemplar: .skilled/changelog/skilled/v4.0.0.0.md
   # Read the template file at Step 4 before generating content.
   # ─────────────────────────────────────────────────────────────────
   template_file: ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
-  style_reference: ".skilled/changelog/system-spec-kit/v4.0.0.0.md"
+  style_reference: ".skilled/changelog/skilled/v4.0.0.0.md"
 
 # ─────────────────────────────────────────────────────────────────
 # SECTION NAMING
@@ -428,7 +432,8 @@ workflow:
       - |
         IF changelog_mode = global:
         FOR EACH file in files_changed:
-          Match file path segments against discovered component names
+          Match file path segments against discovered component names (whole segments, never substrings)
+          Never record skilled from a path: that folder is chosen only by an explicit component_hint
           Record matched component folder
       - |
         Count matches per component:
@@ -441,7 +446,7 @@ workflow:
           Use as tiebreaker when file analysis is ambiguous
       - |
         IF source_type = component:
-          Match component_hint against discovered folder names (substring match)
+          Match component_hint against discovered folder names (exact name match)
           Direct resolution without file analysis
       - "Verify target folder exists: ls .skilled/changelog/{resolved_folder}/"
       - |
@@ -465,9 +470,9 @@ workflow:
       - |
         IF changelog_mode = nested:
           Skip version calculation. Nested packet changelogs use deterministic packet-local filenames.
-      - "List existing changelog files in target folder:"
-      - "  Run: ls .skilled/changelog/{primary_component}/ | sort -V"
-      - "Parse the latest version file: extract MAJOR.MINOR.PATCH.BUILD"
+      - "List every version entry of the target component: the v*.md files at its top level and in its generation folders (v1+/, v2+/ and so on), never in a mode folder:"
+      - "  Run: { find -L .skilled/changelog/{primary_component} -maxdepth 1 -name 'v*.md'; find -L .skilled/changelog/{primary_component} -mindepth 2 -maxdepth 2 -path '*+/v*.md'; } | sed 's#.*/##' | sort -V"
+      - "Parse the latest version file, the last line of that list: extract MAJOR.MINOR.PATCH.BUILD"
       - |
         Determine bump type:
           IF version_bump != "auto" -> use user-specified bump type
@@ -614,7 +619,15 @@ workflow:
           Set release_published = false
           Set release_published_display = "No -- nested changelog_mode has no repo-wide version to tag"
           Continue to step_8_save_context
+      - |
+        IF publish_release == true AND primary_component != skilled:
+          PAUSE - release tags name Skilled framework releases, so a component version never becomes a repository tag
+          Report: "Publish Release requested for {primary_component}, but release tags belong to the skilled release line. Skipping release; the changelog file is already written."
+          Set release_published = false
+          Set release_published_display = "No -- only the skilled release line publishes"
+          Continue to step_8_save_context
       - "Derive release_tag: \"v{next_version}\" -- the same version already written to {output_path}"
+      - "Derive release_title: \"{release_tag} — {editorial_title}\", where editorial_title is the entry's H1 without its leading version and the comma after it. The H1 `# v4.0.0.1, The Foundation Hardened: Old Specs Forward and Quieter Sessions` gives `v4.0.0.1 — The Foundation Hardened: Old Specs Forward and Quieter Sessions`"
       - "Check for tag collision: run `git tag --list {release_tag}`. IF the tag already exists -> PAUSE, report the conflict, do not overwrite it, set release_published = false, set release_published_display = \"No -- tag {release_tag} already exists\""
       - "Verify `gh` CLI is available and authenticated: run `gh auth status`. IF unavailable/unauthenticated -> PAUSE, report, set release_published = false, set release_published_display = \"No -- gh CLI unavailable or unauthenticated\""
       - "Check working tree state: run `git status --porcelain -- {output_path}`. IF uncommitted, log a warning that the tag was created on a HEAD that may not include the just-written changelog file (autonomous mode never auto-commits)"
@@ -630,7 +643,7 @@ workflow:
             Use {output_path} directly as the notes file
       - "Run: git tag -a {release_tag} -m \"{release_tag}: {summary_first_sentence}\""
       - "Run: git push origin {release_tag}"
-      - "Run: gh release create {release_tag} --title \"{release_tag} -- {primary_component}\" --notes-file {notes_file_path}"
+      - "Run: gh release create {release_tag} --title \"{release_title}\" --notes-file {notes_file_path}"
       - "Capture the release URL returned by gh release create"
       - |
         ON success:
