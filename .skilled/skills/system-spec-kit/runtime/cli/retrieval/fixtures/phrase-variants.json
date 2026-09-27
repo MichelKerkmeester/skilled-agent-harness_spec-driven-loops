@@ -1,5 +1,5 @@
 {
-  "manifestHash": "59850e46a027201be040f8ec8f2962ad52b6bc7adb07e082584d7c23c6cec9da",
+  "manifestHash": "e87385098ab35a25468cde754bbe867d8d5553353276c8b20025a2d0c8c02dd4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12918,6 +12918,9 @@
     "bootstrap precedence chain embedder": [
       "bootstrap precedence chain embedder"
     ],
+    "born findable changelog entries": [
+      "born findable changelog entries"
+    ],
     "botpoison spam patterns": [
       "botpoison spam patterns"
     ],
@@ -14671,17 +14674,63 @@
     "changelog evidence stack": [
       "changelog evidence stack"
     ],
+    "changelog findability": [
+      "changelog findability",
+      "changelog-findability"
+    ],
+    "changelog findability acceptance criteria": [
+      "changelog findability acceptance criteria"
+    ],
+    "changelog findability decisions": [
+      "changelog findability decisions"
+    ],
+    "changelog findability evidence": [
+      "changelog findability evidence"
+    ],
+    "changelog findability plan": [
+      "changelog findability plan"
+    ],
+    "changelog findability stage 1": [
+      "changelog findability stage 1"
+    ],
+    "changelog findability summary": [
+      "changelog findability summary"
+    ],
+    "changelog findability tasks": [
+      "changelog findability tasks"
+    ],
     "changelog format migration": [
       "changelog format migration"
     ],
     "changelog format templates": [
       "changelog format templates"
     ],
+    "changelog frontmatter retrofit": [
+      "changelog frontmatter retrofit"
+    ],
     "changelog gap 026": [
       "changelog gap 026"
     ],
     "changelog generator modes": [
       "changelog generator modes"
+    ],
+    "changelog identity phrase decision": [
+      "changelog identity phrase decision"
+    ],
+    "changelog identity phrase rule": [
+      "changelog identity phrase rule"
+    ],
+    "changelog identity phrases": [
+      "changelog identity phrases"
+    ],
+    "changelog judgment lanes": [
+      "changelog judgment lanes"
+    ],
+    "changelog metadata closure gate": [
+      "changelog metadata closure gate"
+    ],
+    "changelog metadata verification": [
+      "changelog metadata verification"
     ],
     "changelog narrative format": [
       "changelog narrative format"
@@ -14700,6 +14749,12 @@
     ],
     "changelog readme conformance": [
       "changelog readme conformance"
+    ],
+    "changelog retrofit checklist": [
+      "changelog retrofit checklist"
+    ],
+    "changelog retrofit lanes": [
+      "changelog retrofit lanes"
     ],
     "changelog retrofit plan": [
       "changelog retrofit plan"
@@ -14731,6 +14786,9 @@
     "changelog rewrite tasks": [
       "changelog rewrite tasks"
     ],
+    "changelog search metadata": [
+      "changelog search metadata"
+    ],
     "changelog shape checker": [
       "changelog shape checker"
     ],
@@ -14746,8 +14804,14 @@
     "changelog swarm plan": [
       "changelog swarm plan"
     ],
+    "changelog template default phrases": [
+      "changelog template default phrases"
+    ],
     "changelog topology edge cases": [
       "changelog topology edge cases"
+    ],
+    "changelog trial index results": [
+      "changelog trial index results"
     ],
     "changelog v4 style": [
       "changelog v4 style"
@@ -23033,6 +23097,9 @@
     "create changelog v1 1 0 0": [
       "create-changelog v1.1.0.0"
     ],
+    "create changelog v1 2 0 0": [
+      "create-changelog v1.2.0.0"
+    ],
     "create chart": [
       "create chart"
     ],
@@ -23245,6 +23312,9 @@
     ],
     "create goal command plan": [
       "create-goal command plan"
+    ],
+    "create goal command release": [
+      "create goal command release"
     ],
     "create goal mode": [
       "create goal mode"
@@ -37104,6 +37174,12 @@
     "framework readme refresh": [
       "framework readme refresh"
     ],
+    "framework release line": [
+      "framework release line"
+    ],
+    "framework release notes folder": [
+      "framework release notes folder"
+    ],
     "framework selection matrix": [
       "framework selection matrix"
     ],
@@ -44810,6 +44886,9 @@
     ],
     "lean trio shipped": [
       "lean trio shipped"
+    ],
+    "leaner goals": [
+      "leaner goals"
     ],
     "learned feedback expiry cap": [
       "learned feedback expiry cap"
@@ -53501,6 +53580,9 @@
     "old path residue scan": [
       "old path residue scan"
     ],
+    "old specs upgrade without a model": [
+      "old specs upgrade without a model"
+    ],
     "older generation skips": [
       "older generation skips"
     ],
@@ -53651,6 +53733,9 @@
     "one behavioral contract five schemas": [
       "one behavioral contract five schemas"
     ],
+    "one goal limit and one command": [
+      "one goal limit and one command"
+    ],
     "one home for the standard": [
       "one home for the standard"
     ],
@@ -53662,6 +53747,12 @@
     ],
     "one owning document": [
       "one owning document"
+    ],
+    "one parent goal limit": [
+      "one parent goal limit"
+    ],
+    "one question at the first save": [
+      "one question at the first save"
     ],
     "one score one scale one name similarity": [
       "one score one scale one name similarity"
@@ -63412,6 +63503,21 @@
     "release history": [
       "release history"
     ],
+    "release line split": [
+      "release-line-split"
+    ],
+    "release line split checklist": [
+      "release line split checklist"
+    ],
+    "release line split plan": [
+      "release-line-split plan"
+    ],
+    "release line split summary": [
+      "release-line-split summary"
+    ],
+    "release line split tasks": [
+      "release-line-split tasks"
+    ],
     "release notes": [
       "release notes"
     ],
@@ -63420,6 +63526,9 @@
     ],
     "release notes evidence": [
       "release notes evidence"
+    ],
+    "release notes split lanes": [
+      "release notes split lanes"
     ],
     "release notes template": [
       "release notes template"
@@ -64233,6 +64342,9 @@
     ],
     "report validator": [
       "report validator"
+    ],
+    "reported changelog descriptions": [
+      "reported changelog descriptions"
     ],
     "repository root resolution": [
       "repository root resolution"
@@ -69400,6 +69512,9 @@
     ],
     "search trigger lane disposition": [
       "search trigger lane disposition"
+    ],
+    "searchable changelogs": [
+      "searchable changelogs"
     ],
     "searchable commit messages": [
       "searchable commit messages"
@@ -74867,6 +74982,9 @@
     "skilled canary smoke plan": [
       "skilled canary smoke plan"
     ],
+    "skilled changelog": [
+      "skilled changelog"
+    ],
     "skilled contract components goal": [
       "skilled contract components goal"
     ],
@@ -75013,6 +75131,24 @@
     ],
     "skilled regeneration runbook": [
       "skilled regeneration runbook"
+    ],
+    "skilled release changelog": [
+      "skilled release changelog"
+    ],
+    "skilled release line": [
+      "skilled release line"
+    ],
+    "skilled release line changelog": [
+      "skilled release line changelog"
+    ],
+    "skilled release line plan": [
+      "skilled release line plan"
+    ],
+    "skilled release line shipped": [
+      "skilled release line shipped"
+    ],
+    "skilled release notes": [
+      "skilled release notes"
     ],
     "skilled rename rehearsal": [
       "skilled rename rehearsal"
@@ -75987,6 +76123,9 @@
     "spec kit memory commands review": [
       "spec_kit memory commands review"
     ],
+    "spec kit memory database retired": [
+      "spec kit memory database retired"
+    ],
     "spec kit memory mcp rename": [
       "spec kit memory mcp rename"
     ],
@@ -76858,6 +76997,9 @@
     ],
     "specs folder research": [
       "specs folder research"
+    ],
+    "specs move to the top level": [
+      "specs move to the top level"
     ],
     "specs root atomic flip": [
       "specs root atomic flip"
@@ -79332,6 +79474,9 @@
     "system spec kit memory leak sweep": [
       "system-spec-kit memory leak sweep"
     ],
+    "system spec kit own changelog": [
+      "system-spec-kit own changelog"
+    ],
     "system spec kit playbook": [
       "system-spec-kit playbook"
     ],
@@ -79379,6 +79524,15 @@
     ],
     "system spec kit stale reference cleanup": [
       "system-spec-kit stale reference cleanup"
+    ],
+    "system spec kit v4 0 0 0": [
+      "system-spec-kit v4.0.0.0"
+    ],
+    "system spec kit v4 1 0 0": [
+      "system-spec-kit v4.1.0.0"
+    ],
+    "system spec kit v4 1 1 0": [
+      "system-spec-kit v4.1.1.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -82712,6 +82866,12 @@
     ],
     "v4 0 0 1 release notes": [
       "v4.0.0.1 release notes"
+    ],
+    "v4 0 0 2 goal changes": [
+      "v4.0.0.2 goal changes"
+    ],
+    "v4 0 0 2 release notes": [
+      "v4.0.0.2 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"
