@@ -71,11 +71,19 @@ export default function completionEvidence(pi: ExtensionAPI): void {
       });
       if (result.decision === "advise" && result.detail) {
         core.appendAdvisoryLog(ctx.cwd, result.detail);
-        pi.sendMessage({
-          customType: "completion-evidence-advisory",
-          content: `[completion-evidence] ${result.detail}`,
-          display: false,
-        });
+        // turn_end fires while Pi is still streaming. Default options steer
+        // the advisory into the run and restart it after its final answer.
+        // triggerTurn false appends it after that answer, and print mode then
+        // prints nothing. A next-turn delivery rides the next user prompt and
+        // starts no turn, which keeps this check advisory-only.
+        pi.sendMessage(
+          {
+            customType: "completion-evidence-advisory",
+            content: `[completion-evidence] ${result.detail}`,
+            display: false,
+          },
+          { deliverAs: "nextTurn" },
+        );
       }
     } catch {
       // Fail open because completion evidence must never block or alter a turn.
