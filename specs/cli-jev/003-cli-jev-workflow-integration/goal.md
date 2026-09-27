@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Find which Jev typed judgments earn a measured, opt-in place in `.skilled` through two forced-depth research rounds, an AI Council review and fresh Opus syntheses, then reconcile the Planned build phases with the final synthesis.
+**Objective:** Find where a classifier model, Jev (hosted) or Deem (open weights, local), cuts the main AI's context and manual review work: research first, then reconcile the Planned build phases with a fresh synthesis.
 
 ### Decisions
 
@@ -46,13 +46,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Round 1: 10 iterations each of `deepseek-v4.1-flash` max and `mimo-v2.6-pro` high (cli-pi) and `grok-4.7-xhigh-fast` (cli-cursor; no MAX tier) |
-| D2 | Round 2: 5 iterations each of `grok-4.7-xhigh-fast`, `mimo-v2.6-pro` high, `swe-2-max` (cli-devin) and `deepseek-v4.1-flash` max, over the repo and `context/` |
-| D3 | Both rounds: stop policy max-iterations, convergence off, all lineages concurrent |
-| D4 | Opus 5.5: a fresh xhigh re-synthesizes round 1 from the council review, a fresh max synthesizes each round, high prepares angles and authors phases |
-| D5 | Every feature is opt-in and dormant unless `jev auth status --provider <the provider its judgments use>` exits 0; keyless it behaves exactly as today; Jev gets no secret |
-| D6 | Autonomous; stop only for a missing credential, an irreversible step or a push. Worktree branch, path-scoped commits, no push or merge |
-| D7 | Build phases stay Planned: amending or adding one is allowed, building one is not |
+| D1 | Two backends: every feature runs on Jev or Deem, dormant unless one is available (Jev: `jev auth status --provider <p>` exits 0; Deem: the local server passes a health check). With neither, behavior is exactly today's. Jev gets no secret |
+| D2 | New hub `cli-classifier` holds `cli-jev` (moved) and `cli-deem` (new). Check online for a Deem CLI first, else derive `cli-deem` from `cli-jev`. The research decides its shape |
+| D3 | Deem 0.8B bf16 is served on this Mac after my yes to a plan naming its rollback, and kept current with Deem's releases. Nothing else is built |
+| D4 | Round 3 in `007`: one fan-out run, max-iterations, convergence off, lineages isolated, none calls Jev: `grok-4.7-xhigh-fast` (cli-cursor), `deepseek-v4.1-flash` max, `mimo-v2.6-pro` high (cli-pi) and `swe-2-max` (cli-devin) 10 each; `glm-5.3-flash` max (cli-pi) 5 |
+| D5 | One Opus 5.5 high lead per lineage reviews and steers each iteration; a fresh Opus 5.5 max synthesizes; Opus 5.5 high amends and authors phases |
+| D6 | Autonomous; stop only for the Deem install yes, a missing credential or a push. Worktree 069, path-scoped commits, no push or merge, no key in any file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -71,6 +70,7 @@ phase and binds as if written here.
 | 004 | `004-deep-research-expansion/goal.md` |
 | 005 | `005-compaction-recall-harness/goal.md` |
 | 006 | `006-goal-criteria-lint/goal.md` |
+| 007 | `007-classifier-deep-research/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -84,12 +84,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `001-deep-research` is Complete: four digests, 30 angles, `grok-4.7-xhigh-fast` in both cli-cursor allowlists with a live `OK`, and three lineages of 10 iterations ending `maxIterationsReached`
-- [x] `001-deep-research/research/research.md` is re-synthesized by a fresh Opus 5.5 xhigh leaf from `001-deep-research/ai-council/council-report.md` and lists its changes
-- [x] `004-deep-research-expansion` lineages `grok`, `mimo`, `swe` and `deepseek` each hold `iteration-001.md` to `iteration-005.md` and a state log ending `maxIterationsReached`
-- [x] `004-deep-research-expansion/research/research.md`, by a fresh Opus 5.5 max leaf, ranks each recommendation build-now, next, later or drop with a seam `file:line`, metric, key gate and smallest slice
-- [x] Each build phase the final synthesis proposes is a Planned child with `spec.md`, `plan.md`, `tasks.md`, `goal.md`, binding and phase-map rows and a `jev auth status` key gate
-- [x] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
+- [ ] I got a Deem install plan with its rollback before any install, and `007-classifier-deep-research/context/deem-local.md` records the 0.8B bf16 passing a health check with latency and memory, or why it does not serve
+- [ ] In `007-classifier-deep-research`, lineages `grok`, `deepseek`, `mimo` and `swe` each hold 10 iteration files and `glm` holds 5, and every state log ends `maxIterationsReached`
+- [ ] `007-classifier-deep-research/research/research.md`, by a fresh Opus 5.5 max leaf, covers Deem on this Mac, drops that flip under Deem, context reduction, validators, sk-prompt, sk-design, open discovery and build order, ranking each idea with a seam `file:line`, metric, backend gate and smallest slice
+- [ ] 002, 003, 005 and 006 carry the two-backend gate, and each phase the synthesis proposes, `cli-classifier` and `cli-deem` included, is a Planned child with spec, plan, tasks, goal, binding and phase-map rows
+- [ ] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -114,6 +113,7 @@ and findings belong here.
 | Build phases | Done | `002-advisor-jev-tiebreak-arm` and `003-goal-verifier-jev-shadow` authored as Planned by one Opus 5.5 high leaf each; the host reran strict validate (`RESULT: PASSED`) and `check-goal` (4/4) on both |
 | Close | Done | All six criteria met: context and angles present; allowlists, vitest 257/257 and probe `OK` (`9fe8526284`); three lineages of 10 ending `maxIterationsReached`; `research.md` ranked; 002 and 003 Planned with binding, phase-map rows and the key gate; recursive strict validate 4 x `RESULT: PASSED`, `check-goal` 4/4 on all four folders. Committed `021437ceda` on the worktree branch; not pushed or merged |
 | Round 2 | Done | Round 1 re-synthesized from the council review; `grok`, `mimo`, `swe` and `deepseek` ran 5 iterations each to `maxIterationsReached`; a fresh Opus 5.5 max leaf wrote the final synthesis (build-now R1 and R19, next R2, R20 and R21). 002 and 003 amended and 005 and 006 authored as Planned, with binding, phase-map and handoff rows |
+| Round 3 directive | Set | 2026-09-27: the operator approved the round-3 prompt (Jev and a local Deem as classifier models, a `cli-classifier` hub, context reduction and validators). Objective, decisions and criteria replaced; the prior six criteria were all met at `17bc67ad2b`. Detail binds through `007-classifier-deep-research/goal.md` |
 
 ### Deviations and findings
 
@@ -128,5 +128,6 @@ and findings belong here.
 | Plugin paths | `.skilled/plugins` is a git symlink to `../.opencode/plugins`, so the OpenCode goal plugin is one file (one inode); a promoted 003 mode edits `.opencode/plugins/opencode-goal.js` once. |
 | 002 level | `recommend-level.sh --loc 200 --files 2` scores Level 0; 002 stays Level 1 because the build-phase criterion requires `plan.md` and `tasks.md`. |
 | D5 provider amendment (2026-09-27) | The round-2 synthesis (C8) found that `jev auth status` checks the `official` key while judgments use `JEV_PROVIDER` (`jev_cli/__init__.py:307`, `:339`). Host-confirmed live with a dummy OpenRouter key: plain `auth status` exit 3, `--provider openrouter` exit 0. D5 now names the provider, which keeps the operator's rule (active only when a key is present) true for every provider |
+| D3 amendment (2026-09-27) | The operator chose Deem 0.8B in bf16 over the 9B after comparing RAM (about 1.6 GB against 18 to 20 GB), and asked that it auto-update whenever Deem releases a new version. D3 and criterion 1 amended to match; the 9B stays a documented option in the research |
 | Close report | `step_convergence_report` ran and recorded `synthesis_incomplete`: the merge rebuilt 85 of 112 count-only findings (deepseek 8 of 57; mimo and grok whole). The synthesis read all 30 iteration files directly, so its ranking stands. The merge parser gap is recorded in `research.md` section 17, not fixed here (out of scope). |
 <!-- /ANCHOR:log -->

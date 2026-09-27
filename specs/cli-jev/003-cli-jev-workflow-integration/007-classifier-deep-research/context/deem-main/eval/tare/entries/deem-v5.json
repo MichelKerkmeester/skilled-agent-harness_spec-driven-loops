@@ -1,0 +1,28 @@
+{
+  "model": "deem-v5",
+  "backbone": "Qwen3-1.7B-Base",
+  "date": "2026-09-21",
+  "notes": [
+    "Exact-laws mix + per-dataset calibration; best checkpoint on every consistency probe.",
+    "ECE (post) uses per-dataset temperature scaling; macro gate 0.0612 vs <= 0.06 near-miss.",
+    "mmlu flip rate 0.347 is an honest-uncertainty outlier (near-uniform targets); the other four probes are <= 0.02."
+  ],
+  "adapters": {
+    "eval": {
+      "artifact": "scripts/sft/results_v5.json",
+      "key": "v5"
+    },
+    "temperature": {
+      "artifact": "scripts/sft/temperature_v5.json",
+      "key": "v5"
+    },
+    "consistency": {
+      "artifact": "scripts/sft/consistency_v5.json",
+      "key": "v5"
+    },
+    "exact_laws": {
+      "artifact": "scripts/sft/exact_eval_v5.json",
+      "key": "v5"
+    }
+  }
+}

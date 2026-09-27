@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jev research round 3",
+      "deem local classifier research",
+      "classifier context reduction research",
+      "five lineage classifier fan-out",
+      "cli-classifier hub research",
+      "jev research round 3 plan",
+      "five lineage fan-out plan",
+      "lineage lead steering protocol",
+      "deem classifier research plan",
+      "jev research round 3 tasks",
+      "five lineage fan-out tasks",
+      "lineage lead review tasks"
+    ],
+    "key_topics": [
+      "jev",
+      "research",
+      "round",
+      "deem",
+      "local",
+      "classifier",
+      "context",
+      "reduction",
+      "five",
+      "lineage",
+      "fan-out",
+      "cli-classifier"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "context/deem-local.md",
+      "context/research-angles.md",
+      "scratch/research-topic-draft.txt",
+      "scratch/synthesis-brief.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "scratch/research-topic.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deem-local.md",
+        "kind": "doc",
+        "path": "context/deem-local.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-angles.md",
+        "kind": "doc",
+        "path": "context/research-angles.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic-draft.txt",
+        "kind": "file",
+        "path": "scratch/research-topic-draft.txt",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-brief.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-brief.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic.txt",
+        "kind": "file",
+        "path": "scratch/research-topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Classifier Models",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Local Deem",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Round",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rounds 1 and 2 asked where Jev, a hosted and keyed typed-judgment model, earns a place here",
+    "created_at": "2026-09-27T05:35:24Z",
+    "last_save_at": "2026-09-27T06:24:15.196Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0b56231c79e0103c6e3935e3238fe55c2bdabf5faa1f3228b6b12f2537e2629c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f034fd735ddf1fa853088b872f681d952df3db124828d64d533c45391cf53c41",
+      "plan.md": "441e739bf4fb0ffa77b4badd4e97e172acc08c3e574bbc0252549471a69a05d9",
+      "tasks.md": "3936ebe2dbd7a45ee113d17d5fbaf954c4b32a0b86ab73a38324b4ff39555fdc",
+      "implementation-summary.md": "5c9a3bb6ae7bfa5e0eab5c8b97c1506d721857dba1535be6a56fa6619a894639"
+    },
+    "last_active_at": null
+  }
+}
