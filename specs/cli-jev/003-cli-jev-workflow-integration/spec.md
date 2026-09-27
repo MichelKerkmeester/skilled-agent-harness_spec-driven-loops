@@ -80,6 +80,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 - Adding the Grok 4.7 model id to the cli-cursor allowlist, its tests and its docs, because the research needs a Grok 4.7 lane.
 - Scaffolding the build phases the synthesis proposes as Planned children, with filled documents and no implementation.
 - A second research round: an AI Council review of round 1, a council-based re-synthesis, 20 forced iterations over four model families, a final synthesis, and Planned build phases reconciled with it.
+- A third research round on classifier models, Jev and a local Deem, with a Deem 9B install on the operator's yes, and the Planned build phases reconciled for both backends.
 
 ### Out of Scope
 
@@ -118,6 +119,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 4 | 004-deep-research-expansion/ | Re-synthesize round 1 from the AI Council review, run 20 forced iterations over Grok 4.7, MiMo V2.6 Pro, SWE-2 Max and DeepSeek V4.1 Flash, write the final synthesis and reconcile the Planned build phases | In Progress |
 | 5 | 005-compaction-recall-harness/ | A zero-call census of host compactions over transcripts the operator names: what the stock summary and the recorded brief keep, and a printed stop line that decides whether an offline Jev deletion arm is worth building. Dormant without a Jev key | Planned |
 | 6 | 006-goal-criteria-lint/ | A lexical lint of goal criteria against rules 4 and 5 of `sk-create-goal`, under a rubric the operator adopts before labeling. A Jev arm only past the stop rule. Dormant without a Jev key | Planned |
+| 7 | 007-classifier-deep-research/ | Research round 3 on classifier models, Jev and a local Deem 9B: context reduction, validator judgment calls, sk-prompt, sk-design and a `cli-classifier` hub, over 45 forced iterations on five model families with one Opus 5.5 high lead per lineage, a fresh Opus 5.5 max synthesis and the Planned phases reconciled for both backends | In Progress |
 
 ### Phase Transition Rules
 
@@ -136,6 +138,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 001-deep-research | 004-deep-research-expansion | `ai-council/council-report.md` and `proposed-resynthesis.md` exist | `validate.sh --strict` passes on 001 |
 | 004-deep-research-expansion | 002, 003, 005 and 006 | `research/research.md` ranks R1 and R19 build-now and R2 and R20 next, each with its seam, metric, key gate and first slice. Build order: 002's census first, with 005's census and 003's Pi census beside it, since none makes a call | `validate.sh --strict` passes on 004 |
 | 005-compaction-recall-harness | 006-goal-criteria-lint | Not a hard gate: 006's lexical lint waits only on the operator's adopted rubric and labels | 006's `spec.md` records the adopted rubric before any labeling |
+| 004-deep-research-expansion | 007-classifier-deep-research | The operator approved the round-3 prompt, and `004`'s synthesis is the baseline the new round re-ranks under Deem | `validate.sh --strict` passes on 004 |
 <!-- /ANCHOR:phase-map -->
 
 ---

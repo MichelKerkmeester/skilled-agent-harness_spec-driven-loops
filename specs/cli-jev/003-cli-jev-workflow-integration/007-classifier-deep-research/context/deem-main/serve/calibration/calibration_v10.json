@@ -1,0 +1,156 @@
+{
+  "v10": {
+    "protocol": "v6 per-class calibration protocol refit for the v10 checkpoint (4B LoRA), fit on the dev half of the v5 held-out rows",
+    "arm": "c",
+    "checkpoint": "scripts/sft/checkpoints/v5_17b",
+    "per_dataset": {
+      "ag_news": {
+        "temperature": 0.7434281598295196,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            1.5629429215858184,
+            2.2320871981978585,
+            1.124993156232748,
+            1.06991818364204
+          ],
+          "shift": [
+            -1.4525266467512725,
+            -16.5804742252986,
+            8.548981520887802,
+            9.484019351162052
+          ]
+        }
+      },
+      "amazon_reviews_multi_en": {
+        "temperature": 1.2293828905537387,
+        "primitive": "score",
+        "calibrator": {
+          "kind": "cumulative",
+          "alpha": [
+            -2.8398296510598833,
+            -1.2047761526164318,
+            -0.8277327921369196,
+            -0.9610905300484218
+          ],
+          "beta": [
+            1.3976756059350877,
+            1.058987592280812,
+            1.3831729124377086,
+            1.3470334623754991
+          ]
+        }
+      },
+      "boolq": {
+        "temperature": 1.7038709340948603,
+        "primitive": "noul",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            8.088607785817935e-09,
+            0.9695834308254379
+          ],
+          "shift": [
+            11.179807343429687,
+            -11.17980734342964
+          ]
+        }
+      },
+      "civil_comments": {
+        "temperature": 2.4324197958280362,
+        "primitive": "noul",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            0.4067034874505335,
+            0.40885255953292554
+          ],
+          "shift": [
+            0.2607125066898721,
+            -0.26071250668993734
+          ]
+        }
+      },
+      "fever": {
+        "temperature": 0.7690589782966233,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            1.6621716766628338,
+            1.062704183709569,
+            1.275355484000055
+          ],
+          "shift": [
+            -8.006022733051678,
+            6.356088512506058,
+            1.6499342205457066
+          ]
+        }
+      },
+      "go_emotions": {
+        "temperature": 1.6753571848443007,
+        "primitive": "noul",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            0.4267036250740598,
+            0.7508400378263553
+          ],
+          "shift": [
+            3.7426336417972217,
+            -3.7426336417972097
+          ]
+        }
+      },
+      "mmlu": {
+        "temperature": 0.6102094943573044,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            1.392828373472163,
+            1.663289470101927,
+            1.6620785607599269,
+            2.307807733885971
+          ],
+          "shift": [
+            7.840579801497153,
+            2.2200903720056266,
+            1.711005512780212,
+            -11.771675686283036
+          ]
+        }
+      },
+      "snli": {
+        "temperature": 0.6343586372590547,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            1.2716061075367684,
+            1.810270204449664,
+            2.022263638826452
+          ],
+          "shift": [
+            9.580748957361203,
+            -3.0780056351170373,
+            -6.502743322244401
+          ]
+        }
+      }
+    },
+    "per_primitive": {
+      "choice": {
+        "temperature": 1.0
+      },
+      "score": {
+        "temperature": 1.0
+      },
+      "noul": {
+        "temperature": 1.0
+      }
+    }
+  }
+}

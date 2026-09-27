@@ -1,0 +1,158 @@
+{
+  "v6": {
+    "protocol": "v6 per-class calibrator, fit on the dev half of the v5 held-out rows (sha256(prompt) parity); gate metrics reported on the untouched eval half",
+    "arm": "b_affine",
+    "checkpoint": "scripts/sft/checkpoints/v5_17b",
+    "per_dataset": {
+      "ag_news": {
+        "temperature": 0.6867204059982761,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            1.4635798596831946,
+            2.607407956732831,
+            1.3621783530827922,
+            1.1203058217808608
+          ],
+          "shift": [
+            4.154272216078693,
+            -23.026075844101754,
+            6.836609068105782,
+            12.035194559917018
+          ]
+        }
+      },
+      "amazon_reviews_multi_en": {
+        "temperature": 1.435088077353019,
+        "primitive": "score",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            1.528188458327292,
+            1.7367986936409605,
+            1.1434728651261463,
+            1.5948018085572926,
+            1.401123328523053
+          ],
+          "shift": [
+            -4.424947192345511,
+            -5.156847257292406,
+            8.350161285867737,
+            -1.4977174903614363,
+            2.729350654131797
+          ]
+        }
+      },
+      "boolq": {
+        "temperature": 1.4995343790552143,
+        "primitive": "noul",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            0.21513485395480014,
+            1.127121937957437
+          ],
+          "shift": [
+            10.803029666565534,
+            -10.80302966656544
+          ]
+        }
+      },
+      "civil_comments": {
+        "temperature": 2.4475683952394824,
+        "primitive": "noul",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            0.4410741900645932,
+            0.3539929896808002
+          ],
+          "shift": [
+            -0.9885084625865431,
+            0.9885084625865397
+          ]
+        }
+      },
+      "fever": {
+        "temperature": 0.7031891029282918,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            1.5011103122484117,
+            1.5102204761332008,
+            1.352774623551511
+          ],
+          "shift": [
+            -1.399595546234338,
+            -1.0613508716668891,
+            2.4609464179013463
+          ]
+        }
+      },
+      "go_emotions": {
+        "temperature": 1.620785165059362,
+        "primitive": "noul",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            0.36598592454439055,
+            0.9033756380090148
+          ],
+          "shift": [
+            6.324651644721522,
+            -6.324651644721591
+          ]
+        }
+      },
+      "mmlu": {
+        "temperature": 0.5586378585092916,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            1.3870396282025304,
+            1.8237167311993816,
+            1.875560735113678,
+            2.543524088070974
+          ],
+          "shift": [
+            11.934999041143435,
+            1.8051764318356986,
+            0.5385597374116435,
+            -14.278735210390865
+          ]
+        }
+      },
+      "snli": {
+        "temperature": 0.5650020662691256,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_affine",
+          "scale": [
+            1.4016517984656323,
+            1.8549465383065782,
+            2.8782951732108333
+          ],
+          "shift": [
+            14.788318001928502,
+            3.8338615589070275,
+            -18.62217956083538
+          ]
+        }
+      }
+    },
+    "per_primitive": {
+      "choice": {
+        "temperature": 1.0
+      },
+      "score": {
+        "temperature": 1.0
+      },
+      "noul": {
+        "temperature": 1.0
+      }
+    }
+  }
+}
