@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7219,
-    "ok": 12181,
+    "missing-frontmatter": 7220,
+    "ok": 12191,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23086,
+  "documentsScanned": 23097,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "3729d3505b2abce5df64cc6747adb5c81ab560138c1bda717a2b2e7e63e6c3d8",
+  "manifestHash": "82b3a9fdd42decb6620e07a197c043897abcfbe22231a281acaad017ab7a188d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 31592,
+      "ok": 31619,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -34897,6 +34897,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/nested-changelog-generator.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -71163,6 +71169,10 @@
     },
     {
       "path": "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/scratch",
       "reason": "excluded directory"
     },
     {
