@@ -1,7 +1,7 @@
 ---
 title: "create-changelog: Manual Testing Playbook"
 description: "Operator playbook for the create-changelog workflow across global component entries, packet-local nested entries, version bumps, format selection and release-note preparation."
-version: 1.0.0.3
+version: 1.3.0.6
 ---
 
 # create-changelog: Manual Testing Playbook
@@ -15,7 +15,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 The package covers topology, version and format behavior, release boundaries, the Skilled release line and the search metadata every entry carries. Scenarios use the shipped `SKILL.md`, README, template and references as sources. There is no feature catalog for this mode. Each scenario carries the full execution contract in one category file.
 
-The negative checks matter because a changelog can look polished while landing in the wrong place or using the wrong version. A correct run also refuses to invent release mechanics that belong to `sk-git`.
+The negative checks matter because a changelog can look polished while landing in the wrong place or using the wrong version. A correct run also publishes only on an explicit request for the `skilled` release line.
 
 ---
 
@@ -72,7 +72,7 @@ Run source and topology scenarios first. Run version and format scenarios after 
 
 ### CHG-001 | Route a global component changelog
 
-Verify that a component or git-history source routes to an existing global component folder with a unique four-part version.
+Verify that a component or git-history source routes to an existing global component folder or a hub's link with a unique four-part version.
 
 > **Scenario:** [CHG-001](topology/route-global-component.md)
 
@@ -108,9 +108,9 @@ Verify compact versus expanded selection and the shared template's category voca
 
 ## 9. RELEASE AND SOURCE BOUNDARIES (`CHG-006..CHG-007`)
 
-### CHG-006 | Prepare release notes without inventing release mechanics
+### CHG-006 | Prepare release notes without publishing
 
-Verify that the workflow prepares a changelog body and full-changelog line while `sk-git` owns the actual release operation.
+Verify that a run without `--release` prepares the changelog body and full-changelog line and runs no tag, push or release command.
 
 > **Scenario:** [CHG-006](release-and-boundaries/prepare-release-notes.md)
 
@@ -171,4 +171,4 @@ Verify that the nested generator names a packet-local entry by the phrase it der
 | `validate_document.py` entry frontmatter check | Entry block, canonical keys, trigger phrases and the version phrase | Direct on CHG-011 |
 | `nested-changelog.vitest.ts` | Identity phrase for phase and root renders, and the trim rule | Direct on CHG-012 |
 
-This playbook records changelog authoring behavior. It does not own Git branch, tag, commit, pull request or release mechanics.
+This playbook records changelog authoring behavior and the release step's gates. Branch, commit and pull request work stays with `sk-git`.

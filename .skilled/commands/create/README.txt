@@ -46,7 +46,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 |---------|------------|-------------|
 | **agent** | `/create:agent <agent_name> [agent_description] [:auto\|:confirm]` | Create a new OpenCode agent with frontmatter, tool permissions, and behavioral rules |
 | **benchmark** | `/create:benchmark <skill-or-mode> <spec-packet> [create\|update] --family=<family> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto\|:confirm]` | Author or update family-keyed benchmark packages |
-| **changelog** | `/create:changelog <spec-folder-or-component> [--nested] [--bump <major\|minor\|patch\|build>] [--release] [:auto\|:confirm]` | Create a global or packet-local changelog entry; topology-aware, with an optional GitHub release |
+| **changelog** | `/create:changelog <spec-folder-or-component> [--nested] [--bump <major\|minor\|patch\|build>] [--release] [:auto\|:confirm]` | Create a global or packet-local changelog entry that search can find, with a GitHub release for the `skilled` line when asked |
 | **chart** | `/design:chart <target-chart.html> <what the reader compares> [--form <catalog-id>] [--system neutral\|ordered\|categorical] [:auto\|:confirm]` | Author a standalone HTML chart from a catalog of 21 forms, one per reader question |
 | **command** | `/create:command <command_invocation> [command_request] [:auto\|:confirm]` | Create or update an OpenCode slash command set with router and `:auto`/`:confirm` workflow assets |
 | **diagram** | `/design:diagram <target.html\|target.md> [description\|--import <src>] [--output-format html-svg\|ascii-markdown] [--type <t>] [--format <f>] [:auto\|:confirm]` | Create an HTML/SVG diagram across 27 types, an ASCII/markdown flowchart, or a redraw of a draw.io/Mermaid source |
@@ -153,7 +153,7 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 /create:skill my-skill reference-only debugging :confirm
 
 # Create a changelog from a completed spec folder
-/create:changelog specs/01--system-spec-kit/042-memory-upgrade :auto
+/create:changelog specs/my-track/042-memory-upgrade :auto
 
 # Create a changelog for a specific component
 /create:changelog sk-doc --bump minor :confirm
@@ -191,7 +191,7 @@ A: The `--chained` flag signals that the command was dispatched from a parent wo
 
 **Q: How does `/create:changelog` determine which version to assign?**
 
-A: The command reads the most recent changelog entry in the target component folder and auto-increments the BUILD segment. Supply `--bump major`, `--bump minor`, or `--bump patch` to override and bump a higher segment. In `:confirm` mode you can also select the version manually during execution.
+A: The command reads the newest version in the target folder, including its generation folders such as `v3+/`, and picks the bump from the change. A breaking change, rewrite or migration is major. A new feature is minor. A hotfix or typo is build, and anything else is patch. Supply `--bump major`, `--bump minor`, `--bump patch` or `--bump build` to choose it yourself. If a file already exists at the new version, the BUILD segment increments until the name is free. In `:confirm` mode you can also select the version manually during execution.
 
 ---
 
@@ -205,7 +205,7 @@ A: The command reads the most recent changelog entry in the target component fol
 | Catalog or playbook update target missing | `update` used before the package exists | Re-run with `create` or point to the correct skill root |
 | Playbook scaffolds forbidden sidecar files | Using an outdated package shape | Use `/create:manual-testing-playbook`, which keeps review/orchestration guidance in `manual-testing-playbook.md` |
 | `--chained` has no effect | Only meaningful for chained skill doc-only operations | Remove flag when running standalone |
-| `changelog` wrong component | File path mapping mismatch | Use `--component` override or select manually in `:confirm` mode |
+| `changelog` wrong component | File path mapping mismatch | Pass the component as the first argument, such as `sk-git` or `sk-create-changelog`, or select it in `:confirm` mode |
 | `changelog` version conflict | File already exists | Command auto-increments BUILD segment. Specify `--bump` to override |
 
 ---

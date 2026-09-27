@@ -4,7 +4,7 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.1.0.12
+version: 1.3.0.14
 ---
 
 # create-changelog
@@ -20,7 +20,7 @@ version: 1.1.0.12
 | **Use it for** | Writing a global component release or a packet-local nested changelog entry |
 | **Invoke with** | `/create:changelog`, "create changelog" or a direct read of `SKILL.md` |
 | **Works on** | A spec folder, a component hint or recent git history |
-| **Produces** | A validated changelog file, plus an optional GitHub release-note body |
+| **Produces** | A validated changelog file with the search metadata a spec document carries, plus a GitHub release for the `skilled` line when asked |
 
 ---
 
@@ -39,9 +39,10 @@ create-changelog is the `sk-doc` workflow behind `/create:changelog`. It resolve
 | Capability | What the skill knows how to operate |
 |---|---|
 | **Source resolution** | turn a spec folder, a component hint or recent git history into a work summary with the files it touched |
-| **Topology detection** | route a source to a global `.skilled/changelog/<component>/` release file or a packet-local nested entry without a manual choice |
+| **Topology detection** | route a source to a global `.skilled/changelog/<component>/` release file or a packet-local nested entry without a manual choice, resolving a hub such as `sk-doc` to one of its links |
 | **Version calculation** | compute the next four-part `major.minor.patch.build` when global rules apply and refuse to overwrite an existing file |
 | **Format selection** | choose compact under 10 changes and expanded at 10 or more, a major release or a breaking change |
+| **Search metadata** | open every global entry with the five keys a spec document carries, led by phrases that name its component and version, so Gate 1 and `/speckit:search` find it |
 | **Validation** | gate the draft on the Human Voice scan and the structural checks before writing, then check the written file with `validate_document.py --type changelog` |
 
 ---
@@ -65,7 +66,7 @@ python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .s
 python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/changelog/<component>/v<version>.md --type changelog
 ```
 
-The scan must report zero hard blockers, meaning no banned punctuation and no banned words. The validator prints `✅ VALID` when the file's structure is sound. It checks structure only, so the narrative rules in the template still need the SKILL.md checks.
+The scan must report zero hard blockers, meaning no banned punctuation and no banned words. The validator prints `✅ VALID` when the file's structure and its search metadata block are sound. It checks structure and metadata only, so the narrative rules in the template still need the SKILL.md checks.
 
 ---
 
@@ -102,6 +103,7 @@ Reach for create-changelog when a shipped change needs a global component releas
 | What you see | Why | Fix |
 |---|---|---|
 | No component folder matches | `component_hint` doesn't resemble any real folder under `.skilled/changelog/` | Run `ls -d .skilled/changelog/*/` first, then match by exact name or whole path segment. Never invent a folder |
+| No version found for `sk-doc` or `sk-code` | The folder is a hub of links with no entry of its own | Resolve it to `<hub>/parent` for the hub itself or to `<hub>/<link>` for one mode. `ls -l .skilled/changelog/<hub>/` shows the links |
 | Version calculation looks off | Auto-detection defaulted to patch without a clear signal and the target file already exists | Pass an explicit `--bump` or let the build segment auto-increment on collision |
 | Entry looks like it belongs to the packet, not the whole project | The spec folder is a phase child or already has `changelog/` | Nested mode is likely correct here. Use `--nested` or let auto-detection route it |
 | File uses `Added`/`Changed`/`Fixed` headings | The caller asked for a different external format | Rewrite the content as topical sections named for the domain they change, unless the user explicitly needs that other format |

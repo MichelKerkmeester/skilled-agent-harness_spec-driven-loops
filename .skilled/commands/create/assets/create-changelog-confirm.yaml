@@ -194,9 +194,16 @@ component_mapping:
   #      - .skilled/commands/**       → the folder that owns those commands
   #      - .skilled/agents/**         → the folder that owns those agents
   #   3. Match component_hint against folder names exactly
-  #   4. The folder named skilled is the framework release line: resolve to
+  #   4. A real folder other than skilled is a hub. It holds one link per
+  #      member packet plus parent, the hub's own changelog, so resolve it
+  #      to one of its links and never to the hub folder itself:
+  #      - .skilled/skills/{hub}/{packet}/** → {hub}/{link}, the link whose
+  #        target is {packet}/changelog
+  #      - any other path under the hub, or a hint naming the hub → {hub}/parent
+  #      - a hint naming a member by link, packet or {hub}/{link} → that link
+  #   5. The folder named skilled is the framework release line: resolve to
   #      it only when component_hint names it, never from a changed path
-  #   5. No match: STOP and ask which component the changelog belongs to
+  #   6. No match: STOP and ask which component the changelog belongs to
   #
   # The agent MUST run the discovery scan in Step 2 of the workflow
   # and build the mapping dynamically from the actual folder contents.
@@ -204,13 +211,17 @@ component_mapping:
 
   discovery:
     scan_command: "ls -d .skilled/changelog/*/ 2>/dev/null | sort"
+    hub_scan_command: "find .skilled/changelog -mindepth 1 -maxdepth 1 -type d ! -name skilled | sort"
+    hub_member_command: "ls -l .skilled/changelog/{hub}/"
     folder_pattern: "(.*)"
     fallback_prefix: null
-    note: "Folder names are plain component names. Never default an unmatched path to a guessed folder; pause and ask instead."
+    note: "Folder names are plain component names. A real folder other than skilled is a hub of links, resolved to {hub}/parent or {hub}/{link}. Never default an unmatched path to a guessed folder; pause and ask instead."
 
   resolution_rules:
     - source: "file_path"
       strategy: "Match changed file paths against discovered folder names by whole path segment, never by substring. A path never resolves to skilled"
+    - source: "hub_folder"
+      strategy: "A real folder other than skilled holds one link per member packet plus parent. Resolve to {hub}/{link}, the link whose target is the changed packet's changelog folder, or to {hub}/parent for the hub's own files and a hint that names the hub. Never write into the hub folder itself"
     - source: "component_hint"
       strategy: "Match the user-provided hint against discovered folder names exactly. This is the only way to resolve to skilled, the framework release line"
     - source: "spec_folder"
@@ -423,7 +434,11 @@ workflow:
         FOR EACH file in files_changed:
           Match file path segments against discovered component names (whole segments, never substrings)
           Never record skilled from a path: that folder is chosen only by an explicit component_hint
-          Record matched component folder
+          IF the matched folder is a hub (component_mapping.discovery.hub_scan_command lists it):
+            List its links and their targets: ls -l .skilled/changelog/{hub}/
+            IF the path sits under .skilled/skills/{hub}/{packet}/ and a link targets {packet}/changelog -> record {hub}/{link}
+            ELSE -> record {hub}/parent, the hub's own changelog
+          ELSE -> record the matched component folder
       - |
         Count matches per component:
           IF single component dominates (>60% of files) -> primary_component = that component
@@ -436,10 +451,12 @@ workflow:
       - |
         IF source_type = component:
           Match component_hint against discovered folder names (exact name match)
+          IF the hint names a hub -> resolve to {hub}/parent
+          IF the hint names a hub member by its link name, its packet folder name or {hub}/{link} -> resolve to {hub}/{link}
           Direct resolution without file analysis
       - "Verify target folder exists: ls .skilled/changelog/{resolved_folder}/"
     outputs:
-      - primary_component: "Resolved changelog subfolder name"
+      - primary_component: "Resolved changelog target: a folder name, or {hub}/{link} for a hub"
       - secondary_components: "Other affected components (if cross-component)"
       - resolution_confidence: "Percentage confidence in mapping"
       - nested_output_path: "Packet-local output path when changelog_mode = nested"
@@ -493,7 +510,7 @@ workflow:
         SELECT FORMAT based on change count and release type:
           IF change_count < 10 AND change_type != major AND no breaking change -> COMPACT format
           IF change_count >= 10 OR change_type == major OR any breaking change -> EXPANDED format
-      - "Generate FRONTMATTER in global mode, per the Frontmatter Contract in SKILL.md section 5: title, a description of one or two sentences, the identity phrases for the target path ({component} {next_version} and {component} {next_version without its leading v}, or {next_version} release notes and skilled {next_version} for a Skilled release), one or two topic phrases from the entry's own words, importance_tier normal and contextType general"
+      - "Generate FRONTMATTER in global mode, per the Frontmatter Contract in SKILL.md section 5: title, a description of one or two sentences, the identity phrases for the target path ({component} {next_version} and {component} {next_version without its leading v}, or {next_version} release notes and skilled {next_version} for a Skilled release, where {component} is the name: in the SKILL.md of the folder that holds the resolved changelog folder, the link target's parent for {hub}/{link}, and deep-loop-runtime for the deep-loop runtime), one or two topic phrases from the entry's own words, importance_tier normal and contextType general"
       - "Generate SUMMARY (lead with WHY, not technical stats)"
       - |
         Generate BODY using selected format:
