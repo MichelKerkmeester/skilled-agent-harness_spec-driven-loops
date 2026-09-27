@@ -1,20 +1,14 @@
 ---
 id: SD-007
-title: 'Ambiguous prompt scores CHART and FLOWCHART within delta'
-description: "This scenario validates ambiguous CHART and FLOWCHART routing for SD-007."
+title: 'Doc-quality prompt asking for flowcharts routes to DIAGRAM'
+description: "This scenario validates that a doc-quality prompt asking for flowcharts routes to the diagram mode for SD-007."
 stage: routing
-expected_intent: sk-design-chart+sk-design-diagram
+expected_intent: sk-design-diagram
 expected_resources:
-  - sk-design-chart/references/catalog.md
-  - sk-design-chart/references/template-contract.md
   - sk-design-diagram/assets/ascii-patterns/simple-workflow.md
   - sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
-expected_workflow_mode: sk-design-chart+sk-design-diagram
+expected_workflow_mode: sk-design-diagram
 expected_leaf_resources:
-  - workflow_mode: sk-design-chart
-    leaf_resource_id: references/catalog.md
-  - workflow_mode: sk-design-chart
-    leaf_resource_id: references/template-contract.md
   - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/simple-workflow.md
   - workflow_mode: sk-design-diagram
