@@ -26,7 +26,7 @@ Use this checklist to validate every generated design system document before del
 
 **Named, deterministic, and honest.** Colours are NAMED evocatively (Obsidian Ink, Voltage) with clean `--color-<slug>` tokens; components are NAMED by function (Primary CTA, Card, Badge), never "Variant-N" or "div". Because the value tables are pre-rendered, value-fidelity failures mean the block was edited after pasting — restore it. The Quick Start is checked by `checkQuickStartFidelity` (every hex traces to a token; `--page-max-width` matches `tokens.maxContentWidth`). Elevation is never omitted — when 0 shadows it is rendered FLAT and the prose states how depth is achieved (border contrast, whitespace), never "gradient-as-depth".
 
-**Data-driven, not fabrication-driven.** Conditional sections (e.g. Imagery) are gated on token presence. When a section has no backing token data, stamp it ABSENT (`_No <X> data was extracted._`) — never invent content, a minimum count, comparative framing, or a named principle to fill it. "All sections present and non-empty" is a data-driven expectation, not a mandate to fabricate. Every interpretive claim must cite a token or be labelled `[INFERRED]`. `validate.ts` enforces this with prose-discipline and section-coverage checks (both WARNING-tier) and reports a dual score — `valuesScore` (hex/section/format fidelity) and `claimsScore` (prose provenance) — and `isPass` requires `score >= 80` AND `claimsScore >= 80`.
+**Data-driven, not fabrication-driven.** Conditional sections (e.g. Imagery) are gated on token presence. When a section has no backing token data, stamp it ABSENT (`_No <X> data was extracted._`) — never invent content, a minimum count, comparative framing, or a named principle to fill it. "All sections present and non-empty" is a data-driven expectation, not a mandate to fabricate. Every interpretive claim must cite a token or be labelled `[INFERRED]`. `validate.ts` enforces this with prose-discipline and section-coverage checks (both WARNING-tier) and reports a dual score — `valuesScore` (hex/section/format fidelity) and `claimsScore` (prose provenance) — and `isValidationPass` passes only with zero hard failures in the `target`, `schema` and `provenance` categories. The dual score is printed for information and does not decide the verdict.
 
 ---
 
@@ -473,7 +473,7 @@ Use this checklist to validate every generated design system document before del
   - Fail reason: A Quick Start hex with no token row (phantom), or a `--page-max-width` that disagrees with the tokens (the "100rem where tokens say 100%" class)
   - Fix: Because the Quick Start is pre-rendered by `formatters-v3.ts`, a failure means it was edited after pasting — restore the pre-rendered block unchanged. Every `--color-*` slug must match a §3 row; every `--text-*`/`--spacing-*` must match §4/§5.
 
-- [ ] **[VS-05]** Pass gate: `isPass` requires score >= 80 AND claimsScore >= 80
-  - Check: `isPass` returns true only when `score >= 80` AND `claimsScore >= 80` AND there is no critical failure (e.g. a phantom hex)
-  - Fail reason: A doc with a passing `valuesScore` but `claimsScore < 80` still FAILS — fabricated prose cannot be bought back with hex fidelity
-  - Fix: Drive `claimsScore` to >= 80 by removing every unbacked interpretive claim and every filled-but-empty section before reporting completion.
+- [ ] **[VS-05]** Pass gate: `isValidationPass` requires zero hard failures
+  - Check: `isValidationPass` returns true only when `failures` is empty. Every issue in the `target`, `schema` and `provenance` categories is a hard failure (a phantom hex is `target`), and the CLI exits 0 only on a pass
+  - Fail reason: Any hard failure fails the doc, whatever its scores, even when every hex is verbatim — fabricated prose cannot be bought back with hex fidelity
+  - Fix: Clear every hard failure. For `provenance`, remove every unbacked interpretive claim and every filled-but-empty section before reporting completion.
