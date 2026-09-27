@@ -31,8 +31,7 @@ Drift is not possible for the linked entries: a symlink has no content of its ow
 | `bin` | relative symlink | `../.skilled/bin` | Git hooks, scripts, skill metadata and docs still name programs through this path; it stays until they name `.skilled/bin` |
 | `scripts` | relative symlink | `../.skilled/scripts` | Hook installers and shell entrypoints addressed by this name |
 | `hooks` | relative symlink | `../.skilled/hooks` | Hook implementations shared across runtimes |
-| `specs` | relative symlink | `../.skilled/specs` | The spec alias other runtimes also resolve through this name |
-| `changelog` | relative symlink | `../.skilled/changelog` | Addressed by this name from documentation |
+| `repo-rules` | relative symlink | `../.skilled/repo-rules` | The repo-rule corpus, linked beside every runtime tree so each reads the rules by its own relative path |
 | `manual-testing-playbook` | relative symlink | `../.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook` | This runtime's own playbook, named the way every other runtime names its own |
 | `package.json`, `package-lock.json` | tracked | hand-maintained, merged by OpenCode | Declare the module type the ES-module plugins need, and pin the SDK they are written against |
 | `.gitignore` | runtime-written, untracked | OpenCode | Written when OpenCode installs the SDK |
