@@ -8,7 +8,7 @@
 
 &nbsp;
 
-## 1. SUMMARY
+## 1. 📝 SUMMARY
 An assistant framework that gives your AI coding agent a memory, a paper trail and a team of specialists.
 
 All of it lives inside your own repository, as files you can read and diff.
@@ -17,18 +17,12 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 
 **What's inside**
 
-- 📋 **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
-- 🧠 **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
-- 🎯 **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
-- 🔄 **Autonomous Deep Loops** - research, review and improvement loops that run unattended and stop only when their own evidence says done
-- 🤖 **12 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- 🧰 **15 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
-
-**Why it earns a place**
-
-- **Continuity that survives context resets:** decisions, architecture and history persist across sessions, crashes and compactions
-- **Verification, not vibes:** nothing counts as "done" without fresh evidence, and code-review findings are re-challenged before they stick
-- **Works the same in OpenCode and Claude Code**, with cross-CLI dispatch to five more model providers on top
+- **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
+- **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
+- **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
+- **Autonomous Deep Loops** - research, review and improvement loops that run unattended and stop only when their own evidence says done
+- **12 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
+- **15 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
 ---
 
