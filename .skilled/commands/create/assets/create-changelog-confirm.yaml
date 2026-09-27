@@ -493,6 +493,7 @@ workflow:
         SELECT FORMAT based on change count and release type:
           IF change_count < 10 AND change_type != major AND no breaking change -> COMPACT format
           IF change_count >= 10 OR change_type == major OR any breaking change -> EXPANDED format
+      - "Generate FRONTMATTER in global mode, per the Frontmatter Contract in SKILL.md section 5: title, a description of one or two sentences, the identity phrases for the target path ({component} {next_version} and {component} {next_version without its leading v}, or {next_version} release notes and skilled {next_version} for a Skilled release), one or two topic phrases from the entry's own words, importance_tier normal and contextType general"
       - "Generate SUMMARY (lead with WHY, not technical stats)"
       - |
         Generate BODY using selected format:
@@ -506,7 +507,7 @@ workflow:
           - Make it easy to scan at a glance
           - Avoid packet IDs, numbering, and sentence-length headings unless truly required
       - "Generate UPGRADE section (Upgrade Notes with Adopt/Repoint/Drop lead-ins when there is migration work)"
-      - "Assemble full content per template format"
+      - "Assemble full content per template format, opening with the frontmatter block"
     outputs:
       - changelog_content: "Complete formatted changelog markdown"
       - section_count: "Number of narrative sections generated"
@@ -522,7 +523,7 @@ workflow:
   step_5_quality_validation:
     purpose: Verify the generated changelog meets format and quality standards
     activities:
-      - "Run FORMAT CHECKS (narrative summary opening after any frontmatter and editorial title, spec-folder blockquote when the source is a spec folder, at-a-glance bullets with bold lead-ins, expanded: Why This Release + topical H2/H4 sections + Upgrade Notes, no Files Changed/Test Impact/Schema default sections, --- only between H2 sections)"
+      - "Run FORMAT CHECKS (frontmatter block with the five contract keys in order, both identity phrases and at least one topic phrase, narrative summary opening after the frontmatter and any editorial title, spec-folder blockquote when the source is a spec folder, at-a-glance bullets with bold lead-ins, expanded: Why This Release + topical H2/H4 sections + Upgrade Notes, no Files Changed/Test Impact/Schema default sections, --- only between H2 sections)"
       - "Run VERSION CHECKS (sequential, 4-segment, no duplicates)"
       - "Run CONTENT CHECKS (compact summary within 3 sentences or expanded opening within 5 paragraphs, bold lead-in bullets, H4 headings 10 words at most, H4 items 7 paragraphs at most, omission rules applied)"
       - "Auto-fix minor issues if possible"
