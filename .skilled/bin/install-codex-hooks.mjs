@@ -2,7 +2,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: Codex Hook Installer                                         ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Reconcile versioned hooks into Codex's user-global hook file.   ║
+// ║ PURPOSE: Remove repo-owned hooks from Codex's user-global hook file.     ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 //
 // Usage:
@@ -24,8 +24,6 @@ import { execFileSync } from 'node:child_process';
 import { isDeepStrictEqual } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-
-import { findSourceRoot } from '../skills/system-spec-kit/shared/workspace/repo-root.mjs';
 
 const __req = createRequire(import.meta.url);
 const { isHookEnabled } = __req('../hooks/shared/hook-flags.cjs');
@@ -86,7 +84,7 @@ function validateHooksDocument(document, label) {
 
 // The source tree sits under .skilled or .opencode, and a checkout may link one name to
 // the other, so an adapter path spelled under either name is the same hook. An installed
-// entry written under the old name must be replaced, never kept beside the new one.
+// entry spelled under either name is the project's own and is removed.
 const SOURCE_ROOT_NAMES = ['.skilled', '.opencode'];
 
 function sourceRootRelative(identity) {
@@ -128,45 +126,17 @@ function isRepoOrphan(identity, repoAbs) {
   return !fs.existsSync(path.join(repoAbs, identity));
 }
 
-// Rewrite only the portable anchor; the source remains authoritative for command shape.
-function substituteRepo(command, repoAbs) {
-  return String(command).replaceAll('${CODEX_PROJECT_DIR:-$PWD}', repoAbs);
-}
-
-// A source command names the tree under one spelling, but the checkout may carry only
-// the other, and an installed command naming the absent one never runs. Each command is
-// respelled under the root the checkout actually holds. Without a recognisable root the
-// source spelling stands.
-function respellSourceRoot(command, sourceRootName) {
-  if (!sourceRootName) return String(command);
-  return String(command).replace(/(^|[\s"'=])\.(?:skilled|opencode)\//g, `$1${sourceRootName}/`);
-}
-
-function canonicalSourceGroups(source, repoAbs) {
-  const selectedRoot = findSourceRoot(repoAbs);
-  const sourceRootName = selectedRoot ? path.basename(selectedRoot) : null;
-  const result = {};
-  for (const [event, groups] of Object.entries(source.hooks || {})) {
-    result[event] = groups.map((group) => ({
-      ...group,
-      hooks: (group.hooks || []).map((hook) => ({
-        ...hook,
-        command: typeof hook.command === 'string'
-          ? substituteRepo(respellSourceRoot(hook.command, sourceRootName), repoAbs)
-          : hook.command,
-      })),
-    }));
-  }
-  return result;
-}
-
 function hookLabel(event, hook) {
   return `${event}:${typeof hook.command === 'string' ? hookIdentity(hook.command) : '<no-command>'}`;
 }
 
+// Codex loads the project's own .codex/hooks.json, so a copy of those entries in
+// the user-global file registers each hook a second time and every event runs it
+// twice. The installer therefore only removes: entries the project file owns, and
+// orphans whose adapter under .skilled or .opencode no longer exists. Every other
+// entry stays untouched, and an event left with no groups is dropped.
 function reconcileHooks(target, source, repoAbs) {
   const ownedIdentities = collectSourceIdentities(source);
-  const canonicalGroups = canonicalSourceGroups(source, repoAbs);
   const reconciled = { ...target, hooks: { ...(target.hooks || {}) } };
   const removed = [];
   const orphaned = [];
@@ -197,25 +167,18 @@ function reconcileHooks(target, source, repoAbs) {
         filteredHooks.length === group.hooks.length ? group : { ...group, hooks: filteredHooks },
       );
     }
-    reconciled.hooks[event] = filteredGroups;
-  }
-
-  const added = [];
-  for (const [event, groups] of Object.entries(canonicalGroups)) {
-    if (!Array.isArray(reconciled.hooks[event])) reconciled.hooks[event] = [];
-    reconciled.hooks[event].push(...groups);
-    for (const group of groups) {
-      for (const hook of group.hooks || []) added.push(hookLabel(event, hook));
+    if (filteredGroups.length === 0 && groups.length > 0) {
+      delete reconciled.hooks[event];
+    } else {
+      reconciled.hooks[event] = filteredGroups;
     }
   }
 
   const changed = !isDeepStrictEqual(target, reconciled);
   return {
-    added: changed ? added : [],
     changed,
     kept: changed ? keptNonOwned : listHookLabels(target.hooks || {}),
     orphaned: changed ? orphaned : [],
-    ownedIdentities,
     reconciled,
     removed: changed ? removed : [],
   };
@@ -231,57 +194,17 @@ function listHookLabels(hooksByEvent) {
   return labels;
 }
 
-function collectOwnedOccurrences(hooksByEvent, ownedIdentities) {
-  const occurrences = new Map();
-  for (const [event, groups] of Object.entries(hooksByEvent)) {
-    for (const group of groups) {
-      for (const hook of group.hooks || []) {
-        if (typeof hook.command !== 'string') continue;
-        const key = ownershipKey(hookIdentity(hook.command));
-        if (!ownedIdentities.has(key)) continue;
-        if (!occurrences.has(key)) occurrences.set(key, []);
-        occurrences.get(key).push({ command: hook.command, event });
-      }
-    }
-  }
-  return occurrences;
-}
+const DRIFT_KEYS = ['duplicate', 'orphaned'];
 
-function analyzeDrift(target, source, repoAbs, reconciliation) {
-  const canonicalGroups = canonicalSourceGroups(source, repoAbs);
-  const targetOccurrences = collectOwnedOccurrences(
-    target.hooks || {},
-    reconciliation.ownedIdentities,
-  );
-  const canonicalOccurrences = collectOwnedOccurrences(
-    canonicalGroups,
-    reconciliation.ownedIdentities,
-  );
+// Every owned entry still in the user-global file duplicates the project
+// registration Codex already runs. A change that names no entry, such as an
+// empty group being dropped, is structural drift.
+function analyzeDrift(reconciliation) {
   const drift = {
-    command: [],
-    duplicate: [],
-    missing: [],
+    duplicate: [...reconciliation.removed],
     orphaned: [...reconciliation.orphaned],
-    placement: [],
-    structure: false,
   };
-
-  for (const [key, identity] of reconciliation.ownedIdentities) {
-    const actual = targetOccurrences.get(key) || [];
-    const expected = canonicalOccurrences.get(key)?.[0];
-    if (actual.length === 0) drift.missing.push(identity);
-    if (actual.length > 1) drift.duplicate.push(`${identity} (${actual.length})`);
-    if (expected && actual.some((entry) => entry.command !== expected.command)) {
-      drift.command.push(identity);
-    }
-    if (expected && actual.some((entry) => entry.event !== expected.event)) {
-      drift.placement.push(identity);
-    }
-  }
-
-  const hasIdentityDrift = ['command', 'duplicate', 'missing', 'orphaned', 'placement']
-    .some((key) => drift[key].length > 0);
-  drift.structure = reconciliation.changed && !hasIdentityDrift;
+  drift.structure = reconciliation.changed && DRIFT_KEYS.every((key) => drift[key].length === 0);
   return drift;
 }
 
@@ -295,13 +218,12 @@ function buildPerEvent(labels) {
 }
 
 function printCheckDrift(targetPath, drift) {
-  const parts = [];
-  for (const key of ['missing', 'duplicate', 'command', 'orphaned', 'placement']) {
-    if (drift[key].length > 0) parts.push(`${key}=${drift[key].length}`);
-  }
+  const parts = DRIFT_KEYS
+    .filter((key) => drift[key].length > 0)
+    .map((key) => `${key}=${drift[key].length}`);
   if (drift.structure) parts.push('structure=1');
   console.error(`install-codex-hooks: DRIFT ${targetPath} (${parts.join(', ')})`);
-  for (const key of ['missing', 'duplicate', 'command', 'orphaned', 'placement']) {
+  for (const key of DRIFT_KEYS) {
     if (drift[key].length > 0) console.error(`  ${key}: ${drift[key].join(', ')}`);
   }
 }
@@ -407,7 +329,7 @@ function main() {
   const targetExisted = fs.existsSync(targetPath);
   const target = targetExisted ? readHooksFile(targetPath, 'Target') : { hooks: {} };
   const reconciliation = reconcileHooks(target, source, repoAbs);
-  const drift = analyzeDrift(target, source, repoAbs, reconciliation);
+  const drift = analyzeDrift(reconciliation);
 
   if (args.check) {
     if (reconciliation.changed) {
@@ -425,12 +347,10 @@ function main() {
     target: targetPath,
     targetExisted,
     changed: reconciliation.changed,
-    added: reconciliation.added,
     removed: reconciliation.removed,
     orphaned: reconciliation.orphaned,
     kept: reconciliation.kept,
     perEvent: {
-      added: buildPerEvent(reconciliation.added),
       removed: buildPerEvent(reconciliation.removed),
       orphaned: buildPerEvent(reconciliation.orphaned),
       kept: buildPerEvent(reconciliation.kept),

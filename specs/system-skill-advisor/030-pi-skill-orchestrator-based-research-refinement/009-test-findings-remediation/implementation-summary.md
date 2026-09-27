@@ -11,12 +11,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation"
-    last_updated_at: "2026-09-27T00:00:00Z"
+    last_updated_at: "2026-09-27T05:05:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Recorded the fixes, the rerun matrix and the operator hand-off"
-    next_safe_action: "Operator picks option A or B for the duplicate Codex hook entries"
+    recent_action: "Made the Codex hook installer removal-only"
+    next_safe_action: "Operator runs install-codex-hooks.mjs once"
     blockers: []
     key_files:
+      - ".skilled/bin/install-codex-hooks.mjs"
       - ".opencode/plugins/system-skill-advisor.js"
       - ".opencode/plugins/lib/skill-advisor-render.js"
       - ".skilled/bin/system-skill-advisor-launcher.cjs"
@@ -71,7 +72,7 @@ An OpenCode session now gets the advisor brief and the status tool, which it nev
 
 **cli-cursor (F6, F8).** Commit `ac156a7112` names `gemini-3.8-flash-high` and documents that a `--sandbox enabled` dispatch cannot reach the advisor daemon and gets a degraded `local-scorer` answer.
 
-**The duplicate Codex hook entries (F5).** The writer is `.skilled/bin/install-codex-hooks.mjs` in write mode, which copies all 18 project entries into `~/.codex/hooks.json`. Codex also loads `.codex/hooks.json` for this trusted checkout, so every hook runs twice. Making the installer removal-only reverses a documented contract, so that change waits for the operator. The exact entries and a removal script are under Known Limitations.
+**The installer removes the duplicate Codex hook entries (F5).** The writer was `.skilled/bin/install-codex-hooks.mjs` in write mode, which copied all 18 project entries into `~/.codex/hooks.json`. Codex also loads `.codex/hooks.json` for this trusted checkout, so every hook ran twice. A live Codex run from the checkout started 16 SessionStart hooks: the project file's 6, the global copy's 6 and 4 third-party ones. The global copy's commands also `cd` into this checkout, so they ran this repository's hooks in Codex sessions started anywhere. The operator chose a removal-only installer on 2026-09-27. It now removes repo-owned entries and orphans from the global file, keeps every third-party entry, never adds, and backs up before any write. `--check` reports `duplicate=N` while a copy remains. Eleven docs that described the old copy contract, or told a tester to look for the repo hooks in the global file, now say Codex reads the checkout's `.codex/hooks.json`. The one write to `~/.codex/hooks.json` is the operator's, under Known Limitations.
 
 ### Files Changed
 
@@ -92,7 +93,9 @@ An OpenCode session now gets the advisor brief and the status tool, which it nev
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.md` | Modified | Regenerated from the current sources |
 | Six advisor scenarios (CL-001, CL-005, CL-006, CP-003, CP-004, NC-004), spec-kit `directive-lifecycle-dedup.md` and `cli-hook-transport-down-fail-open.md` (433) | Modified | Observable commands and signals, and a fully sandboxed 433 |
 | `.skilled/skills/.state/advisor/README.md`, advisor `db-path-policy.md`, `daemon-lease-contract.md`, `runtime/README.md`, `runtime/database/README.md` | Modified | State file locations and the sandbox override |
-| cli-external-orchestration `codex-hook-parity.md` | Modified | Current Codex hook loading, adapter count and packet path |
+| cli-external-orchestration `codex-hook-parity.md` | Modified | Current Codex hook loading, adapter count and packet path; step 4 runs from the checkout and step 5 checks removal |
+| `.skilled/bin/install-codex-hooks.mjs`, `.skilled/bin/tests/install-codex-hooks-source-root.test.cjs` | Modified | Removal-only installer, with its tests rewritten to the new contract |
+| `.codex/SYNC.md`, `.codex/hooks/README.md`, `.skilled/bin/README.md`, `.skilled/hooks/README.md`, `hook-install/README.md`, `codex-watchdog/README.md`, cli-codex `README.md`, `references/hook-contract.md`, scenario CX-016 and its index row | Modified | Codex reads the trusted checkout's `.codex/hooks.json`, and the installer removes copies of it from the global file |
 | `evidence/` | Created | Rerun reports, the dispatch ledger, the briefs and the native hook records |
 
 `runtime/` means `.skilled/skills/system-skill-advisor/runtime/`.
@@ -104,6 +107,8 @@ An OpenCode session now gets the advisor brief and the status tool, which it nev
 ## How It Was Delivered
 
 The orchestrator verified each phase 8 finding against the code or a rerun before writing a brief. Each code finding got an implementer brief and a verifier brief with disjoint file sets and base commit `fa4f76d881`. Grok 4.7 xhigh fast through cli-cursor implemented, and GPT-6 Luna max fast through cli-codex verified, including a reverse check that the new test fails against the base code. Opus agents wrote the scenario and doc fixes. The orchestrator treated every verifier verdict as a claim and reran the gate itself when a verifier could not, since the Codex workspace sandbox refuses socket `listen` with EPERM and has no network for `npx`.
+
+F5's installer change followed the same pattern on base `44dcdc2f82`. Grok implemented it, Luna verified it, and an Opus agent rewrote the docs. The orchestrator ran the read-only checks against the real global file itself.
 
 The rerun dispatched each of the nine scenarios in cli-pi (MiMo v2.6 Pro high), cli-opencode (MiMo v2.6 Pro high), cli-devin (SWE 2 high), cli-cursor (Grok 4.7 high) and cli-codex (GPT-6 Luna high), with `SKILL_ADVISOR_DEBUG=1` so each runtime's native advisor calls land in the diagnostics JSONL.
 
@@ -144,7 +149,9 @@ Native delivery during the reruns, from the diagnostics JSONL and each tester's 
 | Keep an explicit empty quarantine path winning over the override (`override != null`) | The base code used `??`, so an explicit empty string was a caller's choice. The verifier showed a truthiness check dropped it |
 | Leave the spec-kit shim silent and read the diagnostic from the JSONL | The shim has not forwarded its child's stderr since before July 2026, and the JSONL is the observable channel |
 | Record `rr-iter3-093` in the divergence ledger instead of changing a scorer | Neither scorer changed. The Python side drifted with the live skill graph and native stayed on the gold skill, which the ratchet's own contract says to record |
-| Hand the Codex double registration to the operator | The source fix reverses what `.codex/SYNC.md`, the cli-codex hook contract, `.skilled/bin/README.md` and the hook-install README tell operators to do, so it needs the operator's approval |
+| Make the installer removal-only, and leave its one run against the real file to the operator | The operator chose this on 2026-09-27 over removing the copy by hand, which a later write-mode run would have undone. Codex never needs a global copy while it loads the project file. The session never writes `~/.codex/hooks.json`, so it proved the change with read-only `--check` and `--dry-run` runs |
+| Keep a `structure` drift flag | A change that names no entry, such as an empty group being dropped, would otherwise print `DRIFT` with an empty list |
+| Run the parity scenario's live Codex step from the checkout, under a perl alarm | Once the global copy is gone, a fresh temp project has no repo hooks, and `timeout` is not installed on macOS. The perl form is what the dispatch harness already uses |
 | Add no daemon-side deduplication of identical requests | Removing the duplicate registration removes the race |
 | Drop the parent-pid orphan rule instead of teaching the launcher that it was started detached | The documented lease contract never had the rule. A dead pid and a stale heartbeat already cover a launcher that stopped serving, and a lingering launcher that still heartbeats is still a valid owner |
 | Stop the queued 433 reruns once F21 was confirmed | Each run would have shut the live advisor down again for every other session. They reran after the fix |
@@ -168,6 +175,10 @@ Native delivery during the reruns, from the diagnostics JSONL and each tester's 
 | Isolated two-launcher reproduction | Before F21 the incumbent died by t+25 s. After it, the incumbent kept its lease through t+60 s |
 | Live advisor state during every gate | The live generation and launcher state files were byte-identical before and after each run |
 | OpenCode loads the plugin | PASS in all five CLIs: CL-005 step 4 exits 0, prints no load failure and lists `spec_kit_skill_advisor_status` |
+| Removal-only installer tests (`node --test`) | PASS, 19 of 19. Against the pre-change installer the new tests fail 13 and pass 6. Luna's verify passed with confidence HIGH |
+| Installer against the real `~/.codex/hooks.json`, read-only | `--check` prints `DRIFT (duplicate=18)` and exits 1. `--dry-run` removes 18, finds 0 orphans and keeps 26 third-party entries. The file was byte-identical before and after |
+| Codex loads the checkout's `.codex/hooks.json` | A live `codex exec -C <checkout>` started 16 SessionStart hooks: the project file's 6, the global copy's 6 and 4 third-party ones. Its gate state file decodes to the run's session id. A plain `codex exec` from the checkout, without the hook-trust bypass flag, started the same 16 |
+| The eleven F5 docs | `validate_document.py` 0 issues on each. A list of 24 stale phrases matches the old text in every file at HEAD and nothing now. Luna's first verify failed on two true points, both fixed. Its re-check confirmed the fixes |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -175,11 +186,17 @@ Native delivery during the reruns, from the diagnostics JSONL and each tester's 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Codex runs every repository hook twice until the operator acts (F5).** Two options:
-   - **A. Removal-only installer.** The installer stops adding entries, removes repository-owned copies and orphans, keeps third-party entries and backs up first. Codex then runs project hooks only for a trusted checkout, so a new worktree or clone runs none until it is trusted.
-   - **B. Keep the contract and remove the copy by hand.** This fixes the double run now, and any later write-mode installer run puts the entries back. Afterwards the installer's `--check` reports `missing=18` until option A lands.
+1. **Codex runs every repository hook twice until the operator runs the installer once (F5).** The session never writes `~/.codex/hooks.json`. From the checkout root:
 
-   The 18 entries to remove from `~/.codex/hooks.json` each start with `bash -c 'cd "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public" && ` and run:
+   ```bash
+   node .skilled/bin/install-codex-hooks.mjs --dry-run   # expect 18 entries under "removed", "orphaned": [] and only third-party entries under "kept"
+   node .skilled/bin/install-codex-hooks.mjs             # backs up to ~/.codex/hooks.json.bak-<timestamp>, then writes
+   node .skilled/bin/install-codex-hooks.mjs --check     # expect: install-codex-hooks: OK ~/.codex/hooks.json
+   ```
+
+   Rollback: copy the backup the run names back over `~/.codex/hooks.json`. Until that run, every session-start `--check` (Claude, Cursor, Devin, Pi and the OpenCode watchdog) reports drift, which is the prompt to run it. Afterwards Codex runs the repository's hooks only in a trusted checkout, so a new worktree or clone runs none until `~/.codex/config.toml` trusts it.
+
+   The 18 entries it removes each start with `bash -c 'cd "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public" && ` and run:
 
    | Event | Matcher | Timeout | Adapter |
    |---|---|---|---|
@@ -202,39 +219,7 @@ Native delivery during the reruns, from the diagnostics JSONL and each tester's 
    | Stop | none | 10 | `node .skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` |
    | Stop | none | 10 | `bash .skilled/scripts/session-cleanup.sh` |
 
-   Keep every other entry: the nodeterm `codex.sh` hooks, the GitKraken `gk ai hook run --host codex` hooks, the orca `codex-hook.sh` hooks and the jcode `setup-hotkey` SessionStart hook. This script backs up first and removes only commands that carry the repository anchor. It should print `removed 18`:
-
-   ```bash
-   cp ~/.codex/hooks.json ~/.codex/hooks.json.bak-manual-$(date +%Y%m%dT%H%M%S)
-   python3 - <<'EOF'
-   import json, os
-   path = os.path.expanduser('~/.codex/hooks.json')
-   anchor = 'cd "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public" && '
-   doc = json.load(open(path))
-   removed = 0
-   for event in list(doc.get('hooks', {})):
-       groups = []
-       for group in doc['hooks'][event]:
-           hooks = group.get('hooks')
-           if not isinstance(hooks, list):
-               groups.append(group)
-               continue
-           kept = [hook for hook in hooks if anchor not in hook.get('command', '')]
-           removed += len(hooks) - len(kept)
-           if kept:
-               groups.append({**group, 'hooks': kept})
-       if groups:
-           doc['hooks'][event] = groups
-       else:
-           del doc['hooks'][event]
-   with open(path, 'w') as handle:
-       json.dump(doc, handle, indent=2)
-       handle.write('\n')
-   print('removed', removed)
-   EOF
-   ```
-
-   Rollback: copy the `.bak-manual-<timestamp>` file back over `~/.codex/hooks.json`.
+   It keeps every other entry: the nodeterm `codex.sh` hooks, the GitKraken `gk ai hook run --host codex` hooks, the orca `codex-hook.sh` hooks and the jcode `setup-hotkey` SessionStart hook. The live Codex run logged one failed SessionStart hook without naming it. The likely one is the jcode entry, because `~/.local/bin/jcode` no longer exists. It is third-party, so the installer leaves it for the operator.
 2. **Cursor delivers no native advisor line under `cursor-agent -p`.** A probe on Cursor `2026.09.26-dd393fe`, with its own workspace and hook file, logged `sessionStart` and `sessionEnd` but never `beforeSubmitPrompt` or `stop`. The repository registers the advisor hook under `beforeSubmitPrompt` and the 457 harness passes the Cursor adapter, so this is a host limit, as cli-cursor scenario CU-014 records. The Cursor scenario runs pass on the CLI and test paths.
 3. **A Cursor `--sandbox enabled` dispatch gets a degraded advisor answer.** The sandbox cannot reach the daemon socket under `/tmp/system-skill-advisor/`, so the CLI answers from its local scorer. cli-cursor documents this, and a dispatch that needs the live answer runs with the sandbox disabled.
 4. **The Codex workspace-write sandbox cannot run the socket tests.** `listen` returns EPERM there, so the launcher tests ran outside it.

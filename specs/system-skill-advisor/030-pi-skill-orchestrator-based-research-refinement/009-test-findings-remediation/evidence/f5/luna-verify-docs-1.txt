@@ -1,0 +1,47 @@
+RETURN: FAIL | escalation=VERIFY_FAIL | confidence=HIGH
+
+## Scope
+
+- All eleven specified files show as modified. The diffs contain the contract updates and the two authorized adjustments: the Perl timeout wrapper in parity step 4 and the `cleanup / check` kill-switch label. I found no other changed content.
+- The tree comment in [`.skilled/bin/README.md`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/README.md:79) keeps its `#` at column 35.
+
+## Truth check
+
+- **No entries are added.** The source identities are collected at [installer lines 101–116](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:101). Reconciliation loops over `target.hooks` at [line 145](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:145) and assigns only `filteredGroups` at [line 173](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:173). The dry-run report fields at [lines 344–361](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:344) contain no `added` key.
+- **Owned entries and orphans are removed.** The source roots are `['.skilled', '.opencode']` at [line 88](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:88). The ownership check is at [lines 156–157](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:156), and [lines 124–126](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:124) identify missing adapters under either root as orphans.
+- **Third party entries are kept; changed files are backed up before writing.** The keep branch is at [lines 160–163](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:160). Writes are guarded by `reconciliation.changed` at [line 366](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:366); the backup copy at [line 372](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:372) precedes the atomic write at [line 375](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:375).
+- **Check and worktree behavior match the claims.** `DRIFT_KEYS` lists `duplicate` and `orphaned`, and `structure` is computed at [lines 197–208](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:197). `--check` sets exit code 1 when reconciliation changes the file at [lines 334–340](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:334). A linked worktree throws unless `allowWorktree` is true at [lines 269–273](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.skilled/bin/install-codex-hooks.mjs:269).
+- **Documentation mismatch:** [the hook-install README](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/hook-install/README.md:122) says “Only `.skilled/`-namespaced orphans are removed.” The installer also removes `.opencode/` orphans. This unsupported sentence makes the result fail.
+
+The evidence count is **16 = 6 project SessionStart entries + 6 global copies + 4 global third-party entries**. That supports Codex loading the project file in this run. The run used `--dangerously-bypass-hook-trust`, so it does not independently verify the ordinary trusted-checkout path.
+
+## Scenario checks
+
+- Parity step 4 uses `-C "$PWD"`, its grep includes `session id`, and the state-file search uses `-newer "$MARK"` at [lines 94–96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md:94). **Its Expected line overstates what the command prints:** `find -exec cat {}` prints file contents but not the path, so it cannot show which filename hex matches the printed session ID.
+- Step 5 contains no `added` mention. The supplied [dry-run report](</private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.real-dryrun.json>) has no `added` key, lists 18 removals and 26 kept entries, and reports 6 removed and 4 kept SessionStart entries.
+- CX-016’s two prompts, step 1 command, signals, pass/fail criteria, source table, and the playbook index link all point to the project `.codex/hooks.json`.
+- The supplied [live output](</private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/dispatch/x/F5.parity-step4.raw>) contains the session ID and 16 SessionStart starts. It also contains 15 completions, one `SessionStart Failed`, and a hook argument parse error.
+
+## Style checks
+
+- No newly introduced em dash or spec, packet, phase, task, or finding ID was found; the em dashes on changed lines were retained from existing text.
+- Every changed table row has the same unescaped pipe count as its neighboring rows.
+- The tree comment’s `#` column remains 35.
+
+## Gate output
+
+- The requested validation command exited 0. All eleven documents reported `Total issues: 0`.
+- The stale-pattern grep printed no matches and reported `stale_grep_exit=1`. All eleven `HEAD_hits` were at least 1.
+- The residual `rg` search returned no qualifying sentence outside the eleven files.
+
+## Residual list
+
+No outside-scope residual sentence remains. The `added: 14` text at parity line 213 is a dated 2026-07-13 run record, which the request excludes as history.
+
+## Out Of Scope observations
+
+- The supplied real dry-run’s kept entries do not include `notify.sh`; it demonstrates third-party preservation generally, but not a Superset `notify.sh` entry in that particular global file.
+- Skill routing: the `sk-doc` compiled route returned `action=defer` with exit 0.
+- I made no edits, ran no Codex command, and did not run the installer. The eleven files remain modified and uncommitted.
+
+Next action: correct the `.opencode/` orphan statement and make step 4 print the matched state-file path, then rerun this verification.

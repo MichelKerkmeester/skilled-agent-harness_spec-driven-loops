@@ -84,22 +84,24 @@ function installedCommands(targetPath) {
 // 3. RECONCILIATION ACROSS SPELLINGS AND LAYOUTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Rows that spell both sides alike are controls. The mixed rows are the ones an exact-path
-// ownership check fails, by keeping the old entry beside the new one.
-describe('install-codex-hooks treats .skilled and .opencode adapter paths as one owned hook', () => {
+// An installed entry is the project's own hook under either spelling. Rows that spell
+// both sides alike are controls; the mixed rows are the ones an exact-path ownership
+// check misses, leaving the second registration in place.
+describe('install-codex-hooks removes an owned hook spelled under either source-root name', () => {
   for (const layout of LAYOUTS) {
     for (const installedName of SOURCE_ROOT_NAMES) {
       for (const sourceName of SOURCE_ROOT_NAMES) {
         test(`${layout.name}: installed under ${installedName}, source under ${sourceName}`, () => {
           const fixture = buildFixture(layout, installedName, sourceName);
           try {
+            const before = runInstaller(fixture, ['--check']);
+            assert.equal(before.status, 1, before.stdout);
+            assert.match(before.stderr, /install-codex-hooks: DRIFT .*\(duplicate=1\)/);
+
             const install = runInstaller(fixture, []);
             assert.equal(install.status, 0, install.stderr);
-
-            const commands = installedCommands(fixture.targetPath);
-            const owned = commands.filter((command) => /\.(?:opencode|skilled)\/hooks\/probe-hook\.js/.test(command));
-            assert.deepEqual(owned, [hookCommand(sourceName).replaceAll(PROJECT_ANCHOR, fixture.repo)]);
-            assert.equal(commands.filter((command) => command === THIRD_PARTY_COMMAND).length, 1);
+            assert.deepEqual(JSON.parse(install.stdout).removed, [`SessionStart:${installedName}/hooks/probe-hook.js`]);
+            assert.deepEqual(installedCommands(fixture.targetPath), [THIRD_PARTY_COMMAND]);
 
             const check = runInstaller(fixture, ['--check']);
             assert.equal(check.status, 0, check.stderr);
@@ -146,38 +148,32 @@ describe('install-codex-hooks removes an orphaned hook spelled under either sour
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. COMMANDS RESPELLED UNDER THE ROOT THE CHECKOUT HOLDS
+// 5. A USER-GLOBAL FILE WITHOUT REPO-OWNED ENTRIES
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Once the checkout carries the spec-kit sentinel, the installed command must name the
-// root that holds it, whatever spelling the source used. A command naming the absent
-// root would fall into the hook's drift fallback and never run.
-describe('install-codex-hooks writes commands under the source root the checkout holds', () => {
-  const ROWS = [
-    { layout: LAYOUTS[0], sourceName: '.skilled', expected: '.opencode' },
-    { layout: LAYOUTS[1], sourceName: '.opencode', expected: '.skilled' },
-    { layout: LAYOUTS[2], sourceName: '.opencode', expected: '.skilled' },
-  ];
-  for (const { layout, sourceName, expected } of ROWS) {
-    test(`${layout.name}: source spelled ${sourceName} installs under ${expected}`, () => {
-      const fixture = buildFixture(layout, layout.realRoot, sourceName);
-      try {
-        const sentinel = path.join(fixture.repo, layout.realRoot, 'skills', 'system-spec-kit', 'SKILL.md');
-        fs.mkdirSync(path.dirname(sentinel), { recursive: true });
-        fs.writeFileSync(sentinel, '# sentinel\n');
+// The project file is the registration Codex runs, so a user-global file holding only
+// other tools' hooks is in sync and must never be rewritten or backed up.
+describe('install-codex-hooks leaves a user-global file without repo-owned entries alone', () => {
+  test('third-party entries only: the check passes and an install writes nothing', () => {
+    const fixture = buildFixture(LAYOUTS[1], '.skilled', '.skilled');
+    try {
+      writeHooks(fixture.targetPath, [{ hooks: [{ type: 'command', command: THIRD_PARTY_COMMAND, timeout: 3 }] }]);
+      const before = fs.readFileSync(fixture.targetPath, 'utf8');
 
-        const install = runInstaller(fixture, []);
-        assert.equal(install.status, 0, install.stderr);
+      const check = runInstaller(fixture, ['--check']);
+      assert.equal(check.status, 0, check.stderr);
+      assert.match(check.stdout, /install-codex-hooks: OK/);
 
-        const owned = installedCommands(fixture.targetPath).filter((command) => /probe-hook\.js/.test(command));
-        assert.deepEqual(owned, [hookCommand(expected).replaceAll(PROJECT_ANCHOR, fixture.repo)]);
-        assert.equal(fs.existsSync(path.join(fixture.repo, expected, 'hooks', 'probe-hook.js')), true);
-
-        const check = runInstaller(fixture, ['--check']);
-        assert.equal(check.status, 0, check.stderr);
-      } finally {
-        fs.rmSync(fixture.root, { recursive: true, force: true });
-      }
-    });
-  }
+      const install = runInstaller(fixture, []);
+      assert.equal(install.status, 0, install.stderr);
+      assert.equal(JSON.parse(install.stdout).changed, false);
+      assert.equal(fs.readFileSync(fixture.targetPath, 'utf8'), before);
+      assert.deepEqual(
+        fs.readdirSync(path.dirname(fixture.targetPath)).filter((name) => name.includes('.bak-')),
+        [],
+      );
+    } finally {
+      fs.rmSync(fixture.root, { recursive: true, force: true });
+    }
+  });
 });

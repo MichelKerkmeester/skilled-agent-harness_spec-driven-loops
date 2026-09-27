@@ -38,16 +38,16 @@ The seven adapters under test:
 | `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` | Stop | `completion-evidence-sentinel.cjs` · `evaluateCompletionEvidence` | advisory |
 | `hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | PreToolUse(`mcp__.*`) | `mcp-route-guard.cjs` · `evaluateNativeMcpCall` | advisory (dormant) |
 
-This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (allow / advise / deny / fail-open); a live `codex exec` run confirming the SessionStart, UserPromptSubmit, and Stop chains fire and that the Gate-3 notice reaches the model at its first write; and the idempotent installer merging the repo hook set into `~/.codex/hooks.json` while preserving pre-existing (Superset `notify.sh`) entries.
+This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (allow / advise / deny / fail-open); a live `codex exec` run confirming the SessionStart, UserPromptSubmit, and Stop chains fire and that the Gate-3 notice reaches the model at its first write; and the idempotent installer removing copies of the repo hook set from `~/.codex/hooks.json` while preserving third-party (Superset `notify.sh`) entries.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Preconditions: the seven adapter files exist on disk; the neutral cores are byte-unchanged; `codex` (0.144.x or later, checked on 0.157.1) is on `PATH`; the repo `.codex/hooks.json` registers every adapter; `install-codex-hooks.mjs` has merged the set into `~/.codex/hooks.json`. A trusted checkout already loads the project `.codex/hooks.json`, so the global copy runs each hook twice. Node is on `PATH`. For the spec-gate adapters, the compiled `system-spec-kit/shared/dist/gate-3-classifier.js` must be present (a normal built checkout has it).
+- Preconditions: the seven adapter files exist on disk; the neutral cores are byte-unchanged; `codex` (0.144.x or later, checked on 0.157.1) is on `PATH`; the repo `.codex/hooks.json` registers every adapter, and `~/.codex/config.toml` marks the checkout `trust_level = "trusted"` so Codex loads it. Node is on `PATH`. For the spec-gate adapters, the compiled `system-spec-kit/shared/dist/gate-3-classifier.js` must be present (a normal built checkout has it).
 - Real user-facing trigger: any Codex CLI session. SessionStart + UserPromptSubmit hooks fire on every turn; the tool-level guards fire when the model makes an `exec`/`apply_patch`/`edit` tool call; the Stop chain fires at turn end.
 - Expected signals: the fixture matrix reports every adapter exits 0 on empty/malformed stdin, `spec-gate-enforce` emits a `permissionDecision:"deny"` envelope when the gate is open + enforce is set, `spec-gate-classify` writes the session's gate state and emits nothing, and `dispatch-audit` writes one `runtime:"codex"` JSONL line for a `codex exec -p` shape; a live `codex exec` run shows `hook: SessionStart/UserPromptSubmit … Completed`, writes a session-scoped `.state/spec-gate/<hex(session_id)>.json` with `status:"open"`, and carries the A–D notice on its first in-gate write.
-- Pass/fail: PASS if every adapter fails open, the deny/advise/audit envelopes are produced for their trigger inputs, the live run fires SessionStart+UserPromptSubmit to completion and the Gate-3 notice reaches the model at its first write, and the installer preserves pre-existing entries idempotently. FAIL if any adapter throws instead of failing open, a deny/advise envelope is malformed or absent for its trigger, a neutral core is modified, or the installer overwrites a pre-existing hook entry.
+- Pass/fail: PASS if every adapter fails open, the deny/advise/audit envelopes are produced for their trigger inputs, the live run fires SessionStart+UserPromptSubmit to completion and the Gate-3 notice reaches the model at its first write, and the installer removes every repo copy from the user-global file while preserving third-party entries, idempotently. FAIL if any adapter throws instead of failing open, a deny/advise envelope is malformed or absent for its trigger, a neutral core is modified, or the installer removes or rewrites a third-party hook entry.
 
 ---
 
@@ -87,21 +87,22 @@ printf '%s' "{\"tool_name\":\"exec\",\"tool_input\":{\"command\":\"codex exec -p
 tail -1 "$PROJ/.skilled/logs/cli-dispatch-audit.log"
 ```
 
-4. Live `codex exec` — fires the real SessionStart/UserPromptSubmit/Stop chains; a mutation-intent prompt makes `spec-gate-classify` open a session-scoped gate whose filename encodes the Codex session id:
+4. Live `codex exec` — fires the real SessionStart/UserPromptSubmit/Stop chains; a mutation-intent prompt makes `spec-gate-classify` open a session-scoped gate whose filename encodes the Codex session id. Run it from the checkout root: Codex loads the project `.codex/hooks.json` only for a trusted checkout, and the user-global file carries no copy of it:
 
 ```bash
-PROJ="$HOME/.codex-live-test/proj"; rm -rf "$HOME/.codex-live-test"; mkdir -p "$PROJ"
-timeout 90 codex exec -C "$PROJ" --skip-git-repo-check --dangerously-bypass-hook-trust -s read-only \
-  "add a new function to parser.ts and fix the failing test" 2>&1 | grep -E 'hook: (SessionStart|UserPromptSubmit|Stop)'
-find "$PROJ/.skilled/skills/.state/spec-gate" -name '*.json' -exec cat {} \;
+MARK=$(mktemp)
+perl -e 'alarm shift; exec @ARGV' 90 codex exec -C "$PWD" --dangerously-bypass-hook-trust -s read-only \
+  "add a new function to parser.ts and fix the failing test" 2>&1 | grep -E 'session id|hook: (SessionStart|UserPromptSubmit|Stop)'
+find .skilled/skills/.state/spec-gate -name '*.json' -newer "$MARK" -print -exec cat {} \;; rm -f "$MARK"
 ```
 
-5. Installer idempotency + preservation (dry-run then real, then re-run). A trusted checkout already loads the project `.codex/hooks.json`, so this global copy doubles each hook:
+5. Installer cleanup, idempotency and preservation (dry-run, real run, re-run, check). A trusted checkout already loads the project `.codex/hooks.json`, so the installer removes any copy of its entries from the user-global file and keeps every third-party entry:
 
 ```bash
-node .skilled/bin/install-codex-hooks.mjs --repo "$PWD" --dry-run   # inspect added/skipped
-node .skilled/bin/install-codex-hooks.mjs --repo "$PWD"             # backs up ~/.codex/hooks.json.bak-<ts>
-node .skilled/bin/install-codex-hooks.mjs --repo "$PWD"             # re-run → added: 0 (idempotent)
+node .skilled/bin/install-codex-hooks.mjs --repo "$PWD" --dry-run   # inspect removed/kept
+node .skilled/bin/install-codex-hooks.mjs --repo "$PWD"             # backs up ~/.codex/hooks.json.bak-<ts> when it changes the file
+node .skilled/bin/install-codex-hooks.mjs --repo "$PWD"             # re-run → changed: false (idempotent)
+node .skilled/bin/install-codex-hooks.mjs --repo "$PWD" --check     # install-codex-hooks: OK
 grep -c 'notify.sh' "$HOME/.codex/hooks.json"                        # Superset entries preserved
 ```
 
@@ -110,8 +111,8 @@ grep -c 'notify.sh' "$HOME/.codex/hooks.json"                        # Superset 
 - Step 1: deny run prints `{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny",…}}` and `exit=0`; empty/malformed both `exit=0` with no output.
 - Step 2: prints nothing, `exit=0`, and writes the session's gate state file (`.state/spec-gate/<hex(session_id)>.json`, `{"status":"open",…}`); classify never puts the question on the turn.
 - Step 3: appends one JSONL line with `"runtime":"codex"`, `"skill":"cli-codex"`.
-- Step 4: `hook: SessionStart … Completed` and `hook: UserPromptSubmit … Completed` lines; a `.state/spec-gate/<hex>.json` file with `{"status":"open",…}` whose hex decodes to the run's session id. This run proves the chains and the state write only: it is read-only, so it never attempts the write that carries the notice. The notice itself is proven at the adapter level by step 1's advise envelope (the `additionalContext` containing `SPEC FOLDER QUESTION`) and by the live deny block in §4, whose prompt reached a real `apply_patch`.
-- Step 5: dry-run reports 14 added / 2 skipped; real run creates a `.bak-<ts>` backup; re-run reports `added: 0`; `notify.sh` count unchanged (3).
+- Step 4: `hook: SessionStart … Completed` and `hook: UserPromptSubmit … Completed` lines; a `.state/spec-gate/<hex>.json` file with `{"status":"open",…}` whose hex decodes to the session id the run prints. This run proves the chains and the state write only: it is read-only, so it never attempts the write that carries the notice. The notice itself is proven at the adapter level by step 1's advise envelope (the `additionalContext` containing `SPEC FOLDER QUESTION`) and by the live deny block in §4, whose prompt reached a real `apply_patch`.
+- Step 5: the dry run lists every repo-owned entry under `removed` and every third-party entry under `kept`; the real run creates a `.bak-<ts>` backup only when it changes the file; the re-run reports `changed: false` and writes no backup; `--check` prints `install-codex-hooks: OK`; the `notify.sh` count is the same as before step 5.
 
 ---
 
@@ -230,7 +231,7 @@ Stop chain (resolved): an earlier run showed one `Stop Failed` while the other t
   - `.skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs`
   - `.skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs`
 - Repo hook registration (versioned source of truth, 18 entries across six events): `.codex/hooks.json`
-- Installer (merge into user-global `~/.codex/hooks.json`): `.skilled/bin/install-codex-hooks.mjs`. A trusted checkout already loads the project file, so the global copy registers each hook a second time.
+- Installer (removes repo copies from user-global `~/.codex/hooks.json`): `.skilled/bin/install-codex-hooks.mjs`. A trusted checkout already loads the project file, so a global copy would register each hook a second time.
 - Spec packet: `specs/cli-external-orchestration/z_archive/027-cli-codex-revival/007-codex-hook-parity/`
 
 ---

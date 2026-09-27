@@ -1,0 +1,39 @@
+RETURN: PASS | escalation=NONE | confidence=HIGH
+
+## Scope
+
+- Scoped status lists the installer and target test, plus the named manifest and `.skilled/bin/README.md`. Only the target test changed under `tests/`.
+- The README was ignored as a concurrent markdown edit; the manifest was not judged. Branch is `main`; changes remain uncommitted.
+- Both supplied base files match commit `44dcdc2f82`.
+
+## Installer diff checks
+
+- No entry-addition patterns matched. `hookIdentity`, `sourceRootRelative`, `ownershipKey`, `collectSourceIdentities`, and `isRepoOrphan` are byte-identical to base.
+- The event condition deletes an event when all its existing groups were filtered (`filteredGroups.length === 0 && groups.length > 0`). An already-empty event has `groups.length === 0`, so it stays `[]` and does not create a change.
+- The `--dry-run`, backup, and atomic-write block is unchanged. Added comments contain no spec paths, phase/finding labels, or em dashes. Base and current line 5 are both 83 characters.
+
+## Behavior probe output
+
+- Empty group: `--check` exited 1 with `structure=1`.
+- Repo-owned `PreCompact` copy: `--check` exited 1 with `duplicate=1`.
+- Install exited 0; report had no `added` key. `PreCompact` was removed, `Stop` remained `[]`, the third-party hook stayed, and exactly one backup was created.
+- Follow-up `--check` exited 0 and printed `install-codex-hooks: OK`.
+
+## Test diff checks
+
+- Section 3 checks for `duplicate=1` before install, removal of the owned entry, preservation of the third-party entry, and a clean check afterward.
+- Section 4 is byte-identical to base. Section 5 contains one third-party-only test checking `--check`, unchanged contents, and no backup. No other assertion was loosened.
+
+## Gate output
+
+- Final-state `node --check .skilled/bin/install-codex-hooks.mjs`: `syntax_exit=0`.
+- Final-state focused test: `tests 19`, `pass 19`, `fail 0`, `test_exit=0`.
+
+## Reverse check output
+
+- Against the base installer: `tests 19`, `pass 6`, `fail 13`, `reverse_exit=1`, as expected.
+- `RESTORED` printed and `cmp` returned 0. The temporary directory was removed.
+
+## Out Of Scope observations
+
+- Every installer run used a temporary `--target`; the real user-global hooks file was not targeted. I did not stage, commit, or push. The orchestrator owns the commit.

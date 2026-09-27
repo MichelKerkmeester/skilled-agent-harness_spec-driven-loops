@@ -1,0 +1,208 @@
+APPROVED: the operator chose this design (a removal-only installer) on 2026-09-27. It reverses the documented "outbound" Codex hook contract; the docs are updated by a separate brief.
+
+ROLE
+You are the @code implementer for one change: the Codex hook installer must stop copying the project's hooks into the user-global `~/.codex/hooks.json`, and instead remove any copy it finds there.
+
+CONTEXT
+- Codex 0.157.1 loads the project's own `.codex/hooks.json` for a trusted checkout (this checkout is `trust_level = "trusted"` in `~/.codex/config.toml`). During cross-CLI testing every Codex prompt ran the advisor hook twice, once from `.codex/hooks.json` and once from the user-global copy; on cold prompts both calls raced the daemon and both failed open at about 2.2 s.
+- The user-global copy was written by `.skilled/bin/install-codex-hooks.mjs`: `reconcileHooks` (lines 167-222) removes owned entries and then appends every group from `canonicalSourceGroups` (lines 145-161, which rewrite the `${CODEX_PROJECT_DIR:-$PWD}` anchor to the absolute repo path). `~/.codex/hooks.json` holds all 18 project entries in exactly that form.
+- A global copy is never needed while Codex loads the project file, and it also runs this repository's hooks in Codex sessions started anywhere else on the machine. The fix keeps the installer as the one tool that owns the global file, but makes it removal-only: it drops entries the project file owns and orphans under `.skilled/` or `.opencode/`, and never adds.
+- `--check` keeps its exit contract (0 in sync, 1 drift). In sync now means the global file holds no repo-owned entry and no orphan. Every automatic caller runs `--check` and reads only its exit code.
+- Test: `.skilled/bin/tests/install-codex-hooks-source-root.test.cjs` (21 tests today: 12 in section 3, 6 in section 4, 3 in section 5). Section 3 asserts the old add-back behavior and section 5 asserts respelled additions, so both change; section 4 (orphans) keeps passing unchanged.
+- Line numbers below were checked against the current files on 2026-09-27. Confirm the quoted text before each replacement anyway.
+
+ACTION
+Read the whole installer and the whole test file first.
+
+1. `.skilled/bin/install-codex-hooks.mjs`
+   a. Line 5, replace the PURPOSE line with exactly (the closing `║` stays in the same column as line 4's `╗`):
+      ```
+      // ║ PURPOSE: Remove repo-owned hooks from Codex's user-global hook file.     ║
+      ```
+   b. Delete line 28 (`import { findSourceRoot } from '../skills/system-spec-kit/shared/workspace/repo-root.mjs';`) and the blank line after it, so exactly one blank line separates the builtin imports from `const __req = ...`.
+   c. Line 89 currently reads `// entry written under the old name must be replaced, never kept beside the new one.` Replace that one line with:
+      ```
+      // entry spelled under either name is the project's own and is removed.
+      ```
+      Lines 87-88 stay as they are.
+   d. Delete `substituteRepo` with its comment (lines 131-134), `respellSourceRoot` with its comment (lines 136-143) and `canonicalSourceGroups` (lines 145-161).
+   e. Replace `reconcileHooks` (lines 167-222) with:
+      ```js
+      // Codex loads the project's own .codex/hooks.json, so a copy of those entries in
+      // the user-global file registers each hook a second time and every event runs it
+      // twice. The installer therefore only removes: entries the project file owns, and
+      // orphans whose adapter under .skilled or .opencode no longer exists. Every other
+      // entry stays untouched, and an event left with no groups is dropped.
+      function reconcileHooks(target, source, repoAbs) {
+        const ownedIdentities = collectSourceIdentities(source);
+        const reconciled = { ...target, hooks: { ...(target.hooks || {}) } };
+        const removed = [];
+        const orphaned = [];
+        const keptNonOwned = [];
+
+        for (const [event, groups] of Object.entries(target.hooks || {})) {
+          const filteredGroups = [];
+          for (const group of groups) {
+            if (!Array.isArray(group?.hooks)) {
+              filteredGroups.push(group);
+              continue;
+            }
+
+            const filteredHooks = [];
+            for (const hook of group.hooks) {
+              const identity = typeof hook.command === 'string' ? hookIdentity(hook.command) : null;
+              if (identity && ownedIdentities.has(ownershipKey(identity))) {
+                removed.push(hookLabel(event, hook));
+              } else if (identity && isRepoOrphan(identity, repoAbs)) {
+                orphaned.push(hookLabel(event, hook));
+              } else {
+                keptNonOwned.push(hookLabel(event, hook));
+                filteredHooks.push(hook);
+              }
+            }
+            if (filteredHooks.length === 0) continue;
+            filteredGroups.push(
+              filteredHooks.length === group.hooks.length ? group : { ...group, hooks: filteredHooks },
+            );
+          }
+          if (filteredGroups.length === 0 && groups.length > 0) {
+            delete reconciled.hooks[event];
+          } else {
+            reconciled.hooks[event] = filteredGroups;
+          }
+        }
+
+        const changed = !isDeepStrictEqual(target, reconciled);
+        return {
+          changed,
+          kept: changed ? keptNonOwned : listHookLabels(target.hooks || {}),
+          orphaned: changed ? orphaned : [],
+          reconciled,
+          removed: changed ? removed : [],
+        };
+      }
+      ```
+   f. Delete `collectOwnedOccurrences` (lines 234-248).
+   g. Replace `analyzeDrift` (lines 250-286) with the block below, keeping `buildPerEvent` (lines 288-295) after it unchanged:
+      ```js
+      const DRIFT_KEYS = ['duplicate', 'orphaned'];
+
+      // Every owned entry still in the user-global file duplicates the project
+      // registration Codex already runs. A change that names no entry, such as an
+      // empty group being dropped, is structural drift.
+      function analyzeDrift(reconciliation) {
+        const drift = {
+          duplicate: [...reconciliation.removed],
+          orphaned: [...reconciliation.orphaned],
+        };
+        drift.structure = reconciliation.changed && DRIFT_KEYS.every((key) => drift[key].length === 0);
+        return drift;
+      }
+      ```
+   h. Replace `printCheckDrift` (lines 297-307) with:
+      ```js
+      function printCheckDrift(targetPath, drift) {
+        const parts = DRIFT_KEYS
+          .filter((key) => drift[key].length > 0)
+          .map((key) => `${key}=${drift[key].length}`);
+        if (drift.structure) parts.push('structure=1');
+        console.error(`install-codex-hooks: DRIFT ${targetPath} (${parts.join(', ')})`);
+        for (const key of DRIFT_KEYS) {
+          if (drift[key].length > 0) console.error(`  ${key}: ${drift[key].join(', ')}`);
+        }
+      }
+      ```
+   i. In `main()`: change `const drift = analyzeDrift(target, source, repoAbs, reconciliation);` to `const drift = analyzeDrift(reconciliation);`. In the `report` object delete the `added: reconciliation.added,` line and the `added: buildPerEvent(reconciliation.added),` line inside `perEvent`. Change nothing else in `main()`: the source file is still required (it defines ownership), and `--check`, `--dry-run`, the backup and the atomic write stay as they are.
+   j. Leave `assertSafeRepoAnchor`, `hookIdentity`, `ownershipKey`, `sourceRootRelative`, `isRepoOrphan`, `collectSourceIdentities`, `hookLabel`, `listHookLabels`, `buildPerEvent` and the file operations unchanged.
+
+2. `.skilled/bin/tests/install-codex-hooks-source-root.test.cjs`
+   a. Replace section 3's comment block (lines 87-88) and its `describe(...)` (lines 89-114) with:
+      ```js
+      // An installed entry is the project's own hook under either spelling. Rows that spell
+      // both sides alike are controls; the mixed rows are the ones an exact-path ownership
+      // check misses, leaving the second registration in place.
+      describe('install-codex-hooks removes an owned hook spelled under either source-root name', () => {
+        for (const layout of LAYOUTS) {
+          for (const installedName of SOURCE_ROOT_NAMES) {
+            for (const sourceName of SOURCE_ROOT_NAMES) {
+              test(`${layout.name}: installed under ${installedName}, source under ${sourceName}`, () => {
+                const fixture = buildFixture(layout, installedName, sourceName);
+                try {
+                  const before = runInstaller(fixture, ['--check']);
+                  assert.equal(before.status, 1, before.stdout);
+                  assert.match(before.stderr, /install-codex-hooks: DRIFT .*\(duplicate=1\)/);
+
+                  const install = runInstaller(fixture, []);
+                  assert.equal(install.status, 0, install.stderr);
+                  assert.deepEqual(JSON.parse(install.stdout).removed, [`SessionStart:${installedName}/hooks/probe-hook.js`]);
+                  assert.deepEqual(installedCommands(fixture.targetPath), [THIRD_PARTY_COMMAND]);
+
+                  const check = runInstaller(fixture, ['--check']);
+                  assert.equal(check.status, 0, check.stderr);
+                  assert.match(check.stdout, /install-codex-hooks: OK/);
+                } finally {
+                  fs.rmSync(fixture.root, { recursive: true, force: true });
+                }
+              });
+            }
+          }
+        }
+      });
+      ```
+   b. Leave section 4 (lines 116-146) unchanged.
+   c. Replace section 5 (from its divider comment at line 148 to the end of the file) with:
+      ```js
+      // ─────────────────────────────────────────────────────────────────────────────
+      // 5. A USER-GLOBAL FILE WITHOUT REPO-OWNED ENTRIES
+      // ─────────────────────────────────────────────────────────────────────────────
+
+      // The project file is the registration Codex runs, so a user-global file holding only
+      // other tools' hooks is in sync and must never be rewritten or backed up.
+      describe('install-codex-hooks leaves a user-global file without repo-owned entries alone', () => {
+        test('third-party entries only: the check passes and an install writes nothing', () => {
+          const fixture = buildFixture(LAYOUTS[1], '.skilled', '.skilled');
+          try {
+            writeHooks(fixture.targetPath, [{ hooks: [{ type: 'command', command: THIRD_PARTY_COMMAND, timeout: 3 }] }]);
+            const before = fs.readFileSync(fixture.targetPath, 'utf8');
+
+            const check = runInstaller(fixture, ['--check']);
+            assert.equal(check.status, 0, check.stderr);
+            assert.match(check.stdout, /install-codex-hooks: OK/);
+
+            const install = runInstaller(fixture, []);
+            assert.equal(install.status, 0, install.stderr);
+            assert.equal(JSON.parse(install.stdout).changed, false);
+            assert.equal(fs.readFileSync(fixture.targetPath, 'utf8'), before);
+            assert.deepEqual(
+              fs.readdirSync(path.dirname(fixture.targetPath)).filter((name) => name.includes('.bak-')),
+              [],
+            );
+          } finally {
+            fs.rmSync(fixture.root, { recursive: true, force: true });
+          }
+        });
+      });
+      ```
+   d. Leave the header, imports and fixtures (lines 1-82) unchanged. The file's existing header line contains a long dash; do not touch it.
+
+3. Re-read both files. No em dash in any line you wrote; no spec path, phase number or finding id in any comment. This must print nothing:
+   `grep -n "findSourceRoot\|canonicalSourceGroups\|substituteRepo\|respellSourceRoot\|collectOwnedOccurrences\|reconciliation.added\|replaced, never kept" .skilled/bin/install-codex-hooks.mjs`
+
+ALLOWED FILES
+- `.skilled/bin/install-codex-hooks.mjs`
+- `.skilled/bin/tests/install-codex-hooks-source-root.test.cjs`
+Touch nothing else. Never run the installer without `--target` pointing into a temp directory: a bare run, or `--check` or `--dry-run` without `--target`, reads or edits the operator's real `~/.codex/hooks.json`, which is forbidden. The test suite already isolates `HOME` and `--target`.
+
+VERIFY
+From the repository root `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`:
+
+```bash
+node --check .skilled/bin/install-codex-hooks.mjs; echo "syntax_exit=$?"
+node --test .skilled/bin/tests/install-codex-hooks-source-root.test.cjs 2>&1 | tail -10; echo "test_exit=${PIPESTATUS[0]}"
+```
+
+Expected: `syntax_exit=0`; `ℹ tests 19`, `ℹ pass 19`, `ℹ fail 0` (21 today: section 5's three respelling tests become one); `test_exit=0`.
+
+FORMAT
+First line exactly: `RETURN: <PASS|FAIL|BLOCKED> | escalation=<NONE|SCOPE_CONFLICT|LOW_CONFIDENCE|LOGIC_SYNC|VERIFY_FAIL> | confidence=<HIGH|MEDIUM|LOW>`
+Then: Files, Command, Exit Code (both), First Failing Assertion (or N/A), Summary with file:line citations, Out Of Scope.

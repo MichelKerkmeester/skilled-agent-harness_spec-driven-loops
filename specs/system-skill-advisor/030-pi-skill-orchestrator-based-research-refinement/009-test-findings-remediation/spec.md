@@ -126,12 +126,13 @@ Scenario and doc defects:
 | `runtime/handlers/advisor-recommend.ts`, `runtime/tests/handlers/advisor-recommend.vitest.ts` | Modify | Disabled reason names the flag that is set |
 | `.skilled/bin/system-skill-advisor-launcher.cjs`, `runtime/tests/launcher-reap-pid-reuse.vitest.ts` | Modify | A live, heartbeating owner is never reclaimed for its parent pid |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md` | Modify | Scenario 433 sandboxes its database and stops its own launcher |
-| `.skilled/bin/install-codex-hooks.mjs`, its source-root test and the five docs that state its contract | Unchanged, operator-owned | A removal-only installer reverses a documented contract, so it waits for the operator. `implementation-summary.md` hands over the 18 entries and a removal script |
+| `.skilled/bin/install-codex-hooks.mjs`, `.skilled/bin/tests/install-codex-hooks-source-root.test.cjs` | Modify | Removal-only, as the operator chose on 2026-09-27: the installer removes repo-owned copies and orphans from `~/.codex/hooks.json`, keeps third-party entries and never adds. Running it against the real file stays the operator's |
+| `.codex/SYNC.md`, `.codex/hooks/README.md`, `.skilled/bin/README.md`, `.skilled/hooks/README.md`, `.skilled/hooks/hook-install/README.md`, `.skilled/hooks/codex-watchdog/README.md`, cli-codex `README.md`, `references/hook-contract.md`, scenario CX-016 and its playbook index row | Modify | Codex reads the trusted checkout's `.codex/hooks.json`, and the installer removes copies of it from the global file |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.md` | Modify | Regenerated from the phase 7 sources |
 | Scenario files CL-001, CP-003, CL-006, CP-004, NC-004 and CL-005 | Modify | Commands and expected signals that can be observed. The catalog leaf `scorer-fusion/ambiguity.md` already states the either-margin rule and stays unchanged |
 | `.skilled/skills/.state/advisor/README.md` and the advisor docs that state where its state files live | Modify | Current locations, and the sandbox override for each state file |
 | `runtime/tests/parity/fixtures/local-native-approved-divergences.json` | Modify | One ledger entry for the new divergence, with its reason |
-| cli-external-orchestration `manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md` | Modify | Current Codex hook loading, adapter count and packet path |
+| cli-external-orchestration `manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md` | Modify | Current Codex hook loading, adapter count and packet path; the live step runs from the checkout and the installer step checks removal |
 | cli-cursor `SKILL.md`, `references/integration-patterns.md`, `references/cli-reference.md` | Modify | Gemini id and the sandbox limit |
 | `evidence/` | Create | Rerun reports per CLI |
 

@@ -1,0 +1,152 @@
+APPROVED: the operator chose a removal-only Codex hook installer on 2026-09-27. The code change is being made in parallel by another worker; write every sentence to the behavior stated under CONTEXT, which is exactly what the approved code does.
+
+ROLE
+You are the documentation implementer for one sweep: eleven docs still describe the Codex hook installer as copying the repository's hooks into `~/.codex/hooks.json`, or tell a tester to look for the repo hooks there. After the installer change it only removes such copies. Rewrite the sentences that state the old contract, and nothing else.
+
+GATE AND GIT
+- Gate 3 is answered for this session: spec folder `specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation`. Do not ask the documentation question.
+- Do not run git add, commit, stash, checkout or restore. Do not edit spec docs. The orchestrator commits.
+- Never run `.skilled/bin/install-codex-hooks.mjs` without `--target` pointing into a temp directory. You do not need to run it at all.
+
+CONTEXT (the behavior every new sentence must match)
+- Codex (checked on 0.157.1) reads the user-global `~/.codex/hooks.json` and, for a checkout that `~/.codex/config.toml` marks `trust_level = "trusted"`, also the checkout's own `.codex/hooks.json`. A copy of the project entries in the global file registers each hook twice, so Codex runs it twice per event. The global copy's commands `cd` into this checkout, so it also runs this repository's hooks in Codex sessions started anywhere else.
+- `.skilled/bin/install-codex-hooks.mjs` after the change:
+  - reads the project `.codex/hooks.json` only to learn which adapter identities the repo owns;
+  - removes from the user-global file every entry whose identity the project file owns, and every orphan (an entry naming an adapter under `.skilled/` or `.opencode/` that no longer exists on disk);
+  - keeps every other (third-party) entry untouched, and drops an event left with no groups;
+  - never adds an entry;
+  - backs up to `<target>.bak-<timestamp>` and writes atomically only when the file changes, and never rewrites a clean file;
+  - `--check` exits 0 (`install-codex-hooks: OK <path>`) when the global file holds no repo-owned or orphaned entry, and exits 1 with `install-codex-hooks: DRIFT <path> (duplicate=N, orphaned=N)` on stderr otherwise, plus `structure=1` when the file would change without naming an entry (for example an empty group being dropped);
+  - `--dry-run` prints the JSON report (`changed`, `removed`, `orphaned`, `kept`, `perEvent`, `drift`) and writes nothing; the report has no `added` key any more;
+  - still refuses to run from a linked worktree unless `--allow-worktree` is passed.
+- Several lines below contain a long dash in text you keep. Where a line has one, keep that part exactly as it is.
+
+ACTION
+Read `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md` once. Read each file fully before editing it. Line numbers are from the current files; confirm the quoted text before each replacement and stop with BLOCKED if it does not match.
+
+1. `.codex/SYNC.md`
+   - Line 3 (frontmatter `description`): replace `the outbound hooks installer,` with `the installer that keeps the user-global hook file free of repo copies,`.
+   - Line 18: replace the whole line with:
+     `Second, Codex reads this repo's `.codex/hooks.json` itself once the checkout is trusted, so the user-global `~/.codex/hooks.json` must not carry copies of those entries: a copy registers each hook twice and Codex runs it twice per event. `install-codex-hooks.mjs` keeps the global file clean by removing repo-owned entries and orphans while preserving any third-party entries it finds there.`
+   - Line 31 (the `hooks.json` row): replace only the last cell, `n/a locally; installed outbound to `~/.codex/hooks.json``, with `read by Codex from this checkout; never copied to `~/.codex/hooks.json``.
+   - Line 53: replace the whole line with:
+     `- `.codex/hooks.json` changes → nothing to install, because Codex reads the file from the checkout. Run `install-codex-hooks.mjs --check` to confirm the user-global file holds no stale copy.`
+   - Line 68: replace `# 3. Push repo hook config to the user-global file Codex actually reads` with `# 3. Remove stale copies of repo hooks from the user-global Codex hook file`. Keep line 69.
+   - Line 114: replace the first cell `Outbound hook install` with `User-global hook hygiene`; keep the rest of the row.
+   - Leave line 117 (the orphaned-entries paragraph) unchanged.
+
+2. `.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md`
+   - Lines 45-46: replace
+     ```
+     Codex reads hook entries from `~/.codex/hooks.json` using the Claude-style
+     outer array plus nested `hooks` array shape:
+     ```
+     with
+     ```
+     Codex reads hook entries from the user-global `~/.codex/hooks.json` and, for a
+     trusted checkout, from the checkout's own `.codex/hooks.json`. Both use the
+     Claude-style outer array plus nested `hooks` array shape:
+     ```
+   - Lines 103-105 (the paragraph beginning `Install/refresh the full repo hook set`): replace the whole paragraph with
+     ```
+     Codex loads the full repo hook set (lifecycle and guards) from `.codex/hooks.json`.
+     The user-global `~/.codex/hooks.json` must hold no copy of it, or every hook runs
+     twice. `.skilled/bin/install-codex-hooks.mjs` removes such copies, backs up first,
+     and keeps Superset and other third-party entries.
+     ```
+
+3. `.skilled/bin/README.md`
+   - Line 27: replace the closing clause `and `install-codex-hooks.mjs` merges the versioned Codex hook set into the user-global config.` with `and `install-codex-hooks.mjs` removes copies of the repo's Codex hooks from the user-global config.`
+   - Line 79: replace `# Merges the versioned Codex hook set into the user-global config` with `# Removes repo-owned Codex hooks from the user-global config`. The `#` keeps its column.
+   - Line 167: replace the whole row with:
+     `| `node .skilled/bin/install-codex-hooks.mjs` | CLI | Remove copies of the repo's Codex hooks, and orphaned repo entries, from user-global `~/.codex/hooks.json`; Codex already runs the project's own `.codex/hooks.json`, so a copy would run each hook twice. Backs up to `.bak-<ts>` first, preserves Superset and other third-party entries, and never rewrites a clean file. `--check` exits 1 while a copy or orphan remains. |`
+
+4. `.skilled/hooks/hook-install/README.md`
+   - Line 3 (frontmatter `description`): replace the value with `"Keeps Codex's user-global hook file free of copies of the repository's hooks, which Codex already loads from the project. Deployed from Claude, Cursor, and Devin. Codex is the cleanup target, not an installer host."`
+   - Line 18: replace the whole line with:
+     `` `hook-install/` is the index for the installer that keeps Codex's user-global hook file free of this repository's hooks. Codex loads the repository's `.codex/hooks.json` itself for a trusted checkout, so a copy of those entries in `~/.codex/hooks.json` makes every hook run twice per event, and an entry whose adapter was renamed runs a file that no longer exists. The installer removes both kinds and leaves every other entry alone. ``
+   - Line 20: replace the opening `It is tooling that *installs* hooks rather than a runtime event hook. It is explicitly invoked as a reconcile step, not run on every turn,` with `It is repository tooling rather than a runtime event hook. It is explicitly invoked as a cleanup step, not run on every turn,`. Keep the rest of the line.
+   - Line 22: replace `Codex itself carries no copy: it is the install target, not an installer host.` with `Codex itself carries no copy: it is the cleanup target, not an installer host.`
+   - Line 40: replace with `- **Removes** hooks whose identity matches a source hook: Codex already runs that hook from the project file, so the global entry is a second registration.`
+   - Line 43: delete the `- **Appends** the canonical source groups, ...` bullet.
+   - Line 47: replace with ``analyzeDrift` classifies drift into `duplicate` (a repo-owned entry still in the global file), `orphaned` (a repo entry whose adapter no longer exists on disk) and `structure` (the file would change without naming an entry, such as an empty group being dropped). The `--check` report names each category and count.`
+   - Line 51: replace `refuses to anchor hooks at a linked worktree (it compares `git-common-dir` to the primary `.git`), because a worktree's anchor would point at scripts that vanish when the worktree is removed.` with `refuses to run from a linked worktree (it compares `git-common-dir` to the primary `.git`), so ownership and orphan checks always read the primary checkout's hook set and adapters.` Keep the rest of the line.
+   - Line 59 (Claude row): replace only the last cell `Writes/verifies `~/.codex/hooks.json`; JSON report on stdout, drift on stderr` with `Removes repo copies from, or verifies, `~/.codex/hooks.json`; JSON report on stdout, drift on stderr`.
+   - Line 62 (Codex row): replace only the last cell with `Not applicable. Codex reads the project's `.codex/hooks.json` and is the cleanup *target* (`~/.codex/hooks.json`), not an installer host; it carries no copy of the installer.`
+   - Line 86: in the installer row, replace `(remove owned, remove repo orphans, keep third-party, append canonical)` with `(remove owned, remove repo orphans, keep third-party)`.
+   - Line 87: replace the whole row with `| `.codex/hooks.json` | The versioned project hook set Codex loads for a trusted checkout. The installer reads it to learn which entries are the repo's own. Not in this folder. |`
+   - Line 88: replace `The user-global target the installer reconciles into.` with `The user-global file the installer cleans.`
+   - Line 121: replace `Runs as a reconcile step, not on every turn.` with `Runs as a cleanup step, not on every turn.`
+   - Line 122: replace the whole row with `| Project-owned | The repo's `.codex/hooks.json` defines which entries are the repo's own; the installer removes those from the user-global file and never adds any. |`
+   - Leave every other line, including lines 32, 41 and 123, unchanged. Report any other sentence you find that still says the installer adds, merges or appends entries under Out Of Scope.
+
+5. `.skilled/hooks/codex-watchdog/README.md`
+   - Line 17: replace the whole line with:
+     `Codex loads the repo's `.codex/hooks.json` for a trusted checkout, but the user-global `~/.codex/hooks.json` can still carry a copy of those hooks, which makes each one run twice, or an entry whose adapter was renamed. Claude and OpenCode hooks are repo-local and cannot drift. The watchdog surfaces that drift: on each OpenCode session start it runs the Codex hook installer's non-mutating `--check` and records drift for the operator.`
+   - Line 29: replace only the closing clause `it exits 0 when the user-global Codex hooks match the repo, non-zero on drift.` with `it exits 0 when the user-global Codex hook file holds no repo-owned or orphaned entry, non-zero on drift.`
+
+6. `.skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md`
+   - Line 41: replace `and the idempotent installer merging the repo hook set into `~/.codex/hooks.json` while preserving pre-existing (Superset `notify.sh`) entries.` with `and the idempotent installer removing copies of the repo hook set from `~/.codex/hooks.json` while preserving third-party (Superset `notify.sh`) entries.`
+   - Line 47: replace `the repo `.codex/hooks.json` registers every adapter; `install-codex-hooks.mjs` has merged the set into `~/.codex/hooks.json`. A trusted checkout already loads the project `.codex/hooks.json`, so the global copy runs each hook twice.` with `the repo `.codex/hooks.json` registers every adapter, and `~/.codex/config.toml` marks the checkout `trust_level = "trusted"` so Codex loads it.` Keep the rest of the line.
+   - Line 50: replace `and the installer preserves pre-existing entries idempotently.` with `and the installer removes every repo copy from the user-global file while preserving third-party entries, idempotently.`, and replace `or the installer overwrites a pre-existing hook entry.` with `or the installer removes or rewrites a third-party hook entry.`
+   - Step 4 (line 90 and the bash block at lines 92-97): keep the text of line 90 up to and including `whose filename encodes the Codex session id`, then replace the trailing `:` with `. Run it from the checkout root: Codex loads the project `.codex/hooks.json` only for a trusted checkout, and the user-global file carries no copy of it:`. Replace the three command lines inside the block with exactly:
+     ```
+     MARK=$(mktemp)
+     timeout 90 codex exec -C "$PWD" --dangerously-bypass-hook-trust -s read-only \
+       "add a new function to parser.ts and fix the failing test" 2>&1 | grep -E 'session id|hook: (SessionStart|UserPromptSubmit|Stop)'
+     find .skilled/skills/.state/spec-gate -name '*.json' -newer "$MARK" -exec cat {} \;; rm -f "$MARK"
+     ```
+   - Step 5 (line 99 and the bash block at lines 101-106): replace line 99 with `5. Installer cleanup, idempotency and preservation (dry-run, real run, re-run, check). A trusted checkout already loads the project `.codex/hooks.json`, so the installer removes any copy of its entries from the user-global file and keeps every third-party entry:`. Replace the four command lines inside the block with exactly:
+     ```
+     node .skilled/bin/install-codex-hooks.mjs --repo "$PWD" --dry-run   # inspect removed/kept
+     node .skilled/bin/install-codex-hooks.mjs --repo "$PWD"             # backs up ~/.codex/hooks.json.bak-<ts> when it changes the file
+     node .skilled/bin/install-codex-hooks.mjs --repo "$PWD"             # re-run → changed: false (idempotent)
+     node .skilled/bin/install-codex-hooks.mjs --repo "$PWD" --check     # install-codex-hooks: OK
+     grep -c 'notify.sh' "$HOME/.codex/hooks.json"                        # Superset entries preserved
+     ```
+   - Line 113 (Expected, step 4): replace `whose hex decodes to the run's session id.` with `whose hex decodes to the session id the run prints.` Keep the rest of the line.
+   - Line 114 (Expected, step 5): replace the whole line with `- Step 5: the dry run lists every repo-owned entry under `removed` and every third-party entry under `kept`; the real run creates a `.bak-<ts>` backup only when it changes the file; the re-run reports `changed: false` and writes no backup; `--check` prints `install-codex-hooks: OK`; the `notify.sh` count is the same as before step 5.`
+   - Line 233: replace the whole line with `- Installer (removes repo copies from user-global `~/.codex/hooks.json`): `.skilled/bin/install-codex-hooks.mjs`. A trusted checkout already loads the project file, so a global copy would register each hook a second time.`
+   - Leave line 25 and the whole Evidence section (section 4, a dated record of an earlier run) unchanged.
+
+7. `.skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/full-auto-hooks.md` (scenario CX-016)
+   - Lines 29 and 49 (the prompt, which appears in both): replace `FIRST verify ~/.codex/hooks.json contains entries for SessionStart and UserPromptSubmit` with `FIRST verify the checkout's .codex/hooks.json contains entries for SessionStart and UserPromptSubmit`.
+   - Line 30: replace `Operator inspects `~/.codex/hooks.json` and reconciles it separately if needed` with `Operator inspects the checkout's `.codex/hooks.json` and confirms `~/.codex/config.toml` marks the checkout trusted`.
+   - Line 31: replace `` `~/.codex/hooks.json` lists both hooks at the documented paths.`` with `` `.codex/hooks.json` lists both hooks at the documented paths.``
+   - Line 33: replace `PASS if the operator-side hooks.json lists both entries` with `PASS if the project `.codex/hooks.json` lists both entries`.
+   - Line 41: replace `1. Inspect `~/.codex/hooks.json` and confirm both hook entries are present.` with `1. Inspect the checkout's `.codex/hooks.json` and confirm both hook entries are present.`
+   - Line 49 (table row), command step 1: replace `` `bash: cat ~/.codex/hooks.json \| jq '.hooks.SessionStart, .hooks.UserPromptSubmit' > /tmp/cli-codex-cx016-hooks.json` `` with `` `bash: jq '.hooks.SessionStart, .hooks.UserPromptSubmit' .codex/hooks.json > /tmp/cli-codex-cx016-hooks.json` ``. In the same row's Failure Triage cell, replace `(4) inspect smoke-check stderr for missing-script errors` with `(4) inspect smoke-check stderr for missing-script errors; (5) confirm `~/.codex/config.toml` marks this checkout `trust_level = "trusted"``. Keep the row's column count.
+   - Line 74: replace the row `| `~/.codex/hooks.json` | Operator-side hook registration |` with `| `.codex/hooks.json` | Project hook registration Codex loads for a trusted checkout |`.
+
+8. `.skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md`
+   - Line 511: replace `FIRST verify ~/.codex/hooks.json contains entries for SessionStart and UserPromptSubmit` with `FIRST verify the checkout's .codex/hooks.json contains entries for SessionStart and UserPromptSubmit`.
+   - Line 513: replace `` Expected signals: `~/.codex/hooks.json` lists both hooks`` with `` Expected signals: `.codex/hooks.json` lists both hooks``.
+
+9. `.skilled/skills/cli-external-orchestration/cli-codex/README.md`
+   - Line 241: replace the last cell `Set `[features].codex_hooks = true` and verify `~/.codex/hooks.json`` with `Set `[features].codex_hooks = true`, trust the checkout in `~/.codex/config.toml`, and verify `.codex/hooks.json``.
+
+10. `.codex/hooks/README.md`
+   - Line 51: replace `Expected result: the managed Codex hook installation reports no drift.` with `Expected result: `install-codex-hooks: OK <path>`, meaning the user-global Codex hook file holds no copy of these entries.`
+
+11. `.skilled/hooks/README.md`
+   - Line 256: replace `(Codex is the install target)` with `(Codex's user-global file is the cleanup target)`.
+
+Rules for all new text: plain declarative sentences, no em dash, no spec, packet, phase, task or finding id, and match each file's existing table shape and terms. Do not bump any `version` field.
+
+ALLOWED FILES
+The eleven files named above. Touch nothing else.
+
+VERIFY
+From the repository root `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`:
+
+```bash
+FILES=".codex/SYNC.md .skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md .skilled/bin/README.md .skilled/hooks/hook-install/README.md .skilled/hooks/codex-watchdog/README.md .skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/full-auto-hooks.md .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md .skilled/skills/cli-external-orchestration/cli-codex/README.md .codex/hooks/README.md .skilled/hooks/README.md"
+for f in $FILES; do printf '%s: ' "$f"; python3 .skilled/skills/sk-doc/scripts/validate_document.py "$f" | tail -1; done
+grep -n "outbound\|push it to\|Push repo hook\|Merges the versioned\|merges the versioned\|Merge the repo's\|Appends\*\*\|reads hooks only from\|installed outbound\|append canonical\|reconciles into\|install target\|verify ~/.codex/hooks.json\|cat ~/.codex/hooks.json\|added/skipped\|added: 0\|merging the repo hook set\|has merged the set\|merge into user-global\|Operator-side hook registration" $FILES; echo "stale_grep_exit=$?"
+```
+
+Expected: every file reports the same `Total issues` count it reported before your edit (run the validator once on each file before editing to record the baseline); the stale-contract grep prints nothing and `stale_grep_exit=1`.
+
+FORMAT
+First line exactly: `RETURN: <PASS|FAIL|BLOCKED> | escalation=<NONE|SCOPE_CONFLICT|LOW_CONFIDENCE|LOGIC_SYNC|VERIFY_FAIL> | confidence=<HIGH|MEDIUM|LOW>`
+Then: Files, Command, Exit Code, Validator baseline and final counts per file, First Failing Assertion (or N/A), Summary (each changed line), Out Of Scope.
