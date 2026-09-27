@@ -1,0 +1,13 @@
+<!-- dispatch: cursor CP-004; ledger: 2026-09-27T13:24:40Z 2026-09-27T13:26:44Z 0 124 -->
+
+RESULT: PASS | scenario=CP-004 | runtime=cursor
+NATIVE: none visible
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+| 1 | SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 skill_advisor.py "help me commit my changes" | 0 | "Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer." then "Skill graph: loaded from SQLite" and a JSON array with skill sk-git, confidence 0.95, source "local" | Forced-local shim returns a JSON array from the Python scorer | yes |
+| 2 | mktemp -d /tmp/cp004.XXXXXX; export sandbox socket/db dirs; GEN_BEFORE=$(shasum skill-graph-generation.json) | 0 | SANDBOX=/tmp/cp004.ui86tH; SPECKIT_IPC_SOCKET_DIR and SYSTEM_SKILL_ADVISOR_DB_DIR set under it; GEN_BEFORE=1622c51daadb089c25a3ee2de78a17c36b637d10 | Sandbox under /tmp with its own socket and database dirs; live generation checksum recorded | yes |
+| 3 | node skill-advisor.cjs advisor_recommend --warm-only --timeout-ms 3000 | 75 | {"status":"error","error":"backend unavailable: connect ENOENT /tmp/cp004.ui86tH/sock/daemon-ipc.sock","exitCode":75}; printed "warm-only exit=75"; $SANDBOX/db absent (only sock/) | warm-only exit=75 after that ENOENT error envelope and exitCode 75; nothing spawned; $SANDBOX/db never created | yes |
+| 4 | node skill-advisor.cjs advisor_recommend --timeout-ms 30000 | 0 | {"status":"ok", data.freshness:"live", trustState.state:"live", recommendations:[{skillId:"sk-git",...}]}; printed "cold-start exit=0" | cold-start exit=0 after a status "ok" envelope from the sandbox daemon with freshness "live" | yes |
+| 5 | stop sandbox launcher only if lease socket is inside the sandbox; compare shasum; rm -rf sandbox | 0 | lease socket=/tmp/cp004.ui86tH/sock/daemon-ipc.sock; "sandbox launcher 43884 stopped"; "live generation file unchanged"; sandbox removed | "sandbox launcher <pid> stopped" and "live generation file unchanged" | yes |
+DEVIATIONS: none
+NOTES: sha256 before step 1 and after teardown are identical. skill-graph-generation.json f778b8c86a39947c8355c87b5a3cb5c6334770739397cd2f107cb0b2846f2645; .system-skill-advisor-launcher.json fe9807205037e21515500c2ee6276b50218a771b7d2ca2cb48190d1e862f74df. Read-only probes (db listing after step 3, lease pid/socket echo) were added around the scenario commands and did not change them. Steps 2–5 ran outside the tool sandbox so the /tmp socket and sandbox launcher could start; only that launcher (pid 43884, socket inside /tmp/cp004.ui86tH) was stopped.

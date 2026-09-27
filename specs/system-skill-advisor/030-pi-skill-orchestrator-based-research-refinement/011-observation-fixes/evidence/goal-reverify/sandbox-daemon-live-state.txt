@@ -1,0 +1,20 @@
+# Sandboxed advisor daemon vs live state (criterion 3), HEAD bf2067c7eb
+# Recipe: CP-004 steps 2, 4 and 5 run by the orchestrator, with sha256 of the live lease and the live daemon's generation added
+## before, 2026-09-27T13:02:06Z
+generation file: f778b8c86a39947c8355c87b5a3cb5c6334770739397cd2f107cb0b2846f2645  .skilled/skills/.state/advisor/skill-graph-generation.json
+live lease:      fe9807205037e21515500c2ee6276b50218a771b7d2ca2cb48190d1e862f74df  .skilled/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json
+live daemon:     status=ok freshness=live generation=528 lastGenerationBump=2026-09-27T12:24:36.076Z
+## sandbox /tmp/cp004.2rLSrL (SYSTEM_SKILL_ADVISOR_DB_DIR=/tmp/cp004.2rLSrL/db)
+## step 4 cold start
+cold-start exit=0
+status=ok freshness=live trustState=live top=sk-git degraded=false source=-
+sandbox db files: skill-graph-daemon-lease.sqlite skill-graph-daemon-lease.sqlite-shm skill-graph-daemon-lease.sqlite-wal skill-graph-generation.json skill-graph.sqlite skill-graph.sqlite-shm skill-graph.sqlite-wal 
+## step 5 teardown
+sandbox lease socket: /tmp/cp004.2rLSrL/sock/daemon-ipc.sock
+sandbox launcher 17902 stopped
+live generation file unchanged
+sandbox removed
+## after, 2026-09-27T13:02:09Z
+generation file: f778b8c86a39947c8355c87b5a3cb5c6334770739397cd2f107cb0b2846f2645  .skilled/skills/.state/advisor/skill-graph-generation.json
+live lease:      fe9807205037e21515500c2ee6276b50218a771b7d2ca2cb48190d1e862f74df  .skilled/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json
+live daemon:     status=ok freshness=live generation=528 lastGenerationBump=2026-09-27T12:24:36.076Z

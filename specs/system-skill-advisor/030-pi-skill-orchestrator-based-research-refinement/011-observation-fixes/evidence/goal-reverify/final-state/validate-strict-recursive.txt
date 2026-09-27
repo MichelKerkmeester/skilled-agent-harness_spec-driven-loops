@@ -1,0 +1,37 @@
+# validate.sh specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement --strict --recursive, 2026-09-27T14:43:00Z
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: ~/MEGA/Development/Code_Environment/Public/specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED

@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes"
-    last_updated_at: "2026-09-27T12:20:00Z"
+    last_updated_at: "2026-09-27T14:45:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed all seven observations with verified evidence"
+    recent_action: "Proved the parent goal's six criteria again from the final state"
     next_safe_action: "None. The phase is complete"
     blockers: []
     key_files:
@@ -85,7 +85,7 @@ The labels the bug had already written were rebuilt too. Phases 5 and 7 to 11 of
 | `description.json` in phases 005, 007, 008, 009, 010 and 011 | Modified | Built from each `spec.md` |
 | `description.json` in the 18 folders listed below | Modified | Built from each `spec.md`, or numbered where it was never written |
 | `../spec.md`, `../graph-metadata.json` and `../goal.md` | Modified | The phase 11 row, the child list and the log |
-| `evidence/` | Created | Validation, log-mode and Dependabot records |
+| `evidence/` | Created | Validation, log-mode and Dependabot records, plus the parent goal's proof under `goal-reverify/` |
 
 Paths in the first eight rows sit under `.skilled/skills/` unless they start with `.hermes/`.
 
@@ -111,6 +111,8 @@ The orchestrator confirmed each observation in code or data at `eaa02a56f5` and 
 That departed from the parent's frozen D1, which gives code fixes to Grok 4.7 through cli-cursor and their verification to GPT-6 Luna through cli-codex. The plan named the choice, but the operator was not asked before the edits. To keep D1's verification half, one GPT-6 Luna max fast run through cli-codex checked the five code files after they were written. It returned PASS with high confidence. Its reverse check put the committed `create.sh` back, saw the new test fail with `Phase 1: third-step` and restored the fix byte for byte. The close-out report proposed a D1 amendment for edits this small, and the operator adopted it the same day. This phase's goal was written then, because the amendment workflow requires the parent to bind every phase.
 
 The operator answered two questions in one prompt: dismiss the six Dependabot alerts and rebuild the thirteen placeholder labels in other packets. Five more labels from the same bug turned up in the final-state check. They went into `spec.md` under this phase's scope rule before they were touched, and the close-out report names them for the operator.
+
+After the amendment the operator set the parent goal again, so the orchestrator proved its six criteria once more from the final state. Phases 10 and 11 had changed advisor code after phase 9's 45 scenario reruns. Each of the nine scenarios ran again in all five CLIs, two dispatches at a time as in phase 9. Two runs came back BLOCKED for reasons inside the tester and passed when rerun. The Codex tester wrapped a step in a `timeout` binary this machine lacks and never read the log it had captured. The OpenCode tester reported a plan-mode reminder that OpenCode's own log shows it never received. `evidence/goal-reverify/harness-notes.txt` records the layout, the two brief changes and four observations.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -153,6 +155,12 @@ The operator answered two questions in one prompt: dismiss the six Dependabot al
 | Strict validation of the five found at final state | Matches the baseline: 016 PASSED, and the four quarantine folders FAILED before and after with one warning fewer each (`evidence/validate-five-more-folders.txt`) |
 | Metrics log modes | PASS. All 53 logs were at 0600 after the change, and a log written since was created at 0600 |
 | Dependabot open alerts | PASS, 0 open after the six dismissals |
+| Parent goal: OpenCode plugin live load, before and after the matrix | PASS. `opencode run --print-logs` exits 0 with no `failed to load plugin` line, and the session lists `spec_kit_skill_advisor_status` |
+| Parent goal: the four suites, before and after the matrix | PASS each time. Advisor 129 files with 971 passed and 6 skipped. Spec-kit hook files 237 passed and 7 skipped, with the Copilot file skipping itself because this checkout ships no Copilot hook. Pi dispatch 50 of 50. Plugin 35 of 35 |
+| Parent goal: sandboxed daemon (`evidence/goal-reverify/sandbox-daemon-live-state.txt`) | PASS. A sandbox cold start answered live, and the live generation file, the live lease and the live generation were unchanged across it |
+| Parent goal: 45 scenario runs (`evidence/goal-reverify/ledger.tsv`) | PASS, 45 of 45 after two reruns. Codex CL-005 and OpenCode CP-004 first came back BLOCKED for tester reasons (`excluded-windows.tsv`). The native `Advisor:` line was live in every Codex, OpenCode and Pi run and in 8 of 9 Devin runs. The ninth failed open under load, and Cursor showed none, its known host limit |
+| Parent goal: `install-codex-hooks.mjs --check`, before and after the matrix | PASS, `install-codex-hooks: OK ~/.codex/hooks.json` |
+| Repository writes by the testers | None outside the evidence folder. The only other working-tree changes during the matrix were another session's 1,965 changelog files |
 | `validate.sh --strict --recursive` on packet 030 | PASS, `RESULT: PASSED` for all 12 folders |
 <!-- /ANCHOR:verification -->
 

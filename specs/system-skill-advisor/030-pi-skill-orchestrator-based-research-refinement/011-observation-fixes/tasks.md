@@ -67,6 +67,7 @@ contextType: "implementation"
 - [x] T019 Add the five more wrong labels the final-state check found to `spec.md`, rebuild them and match their own baseline: 016 PASSED and the four quarantine folders FAILED before and after, one warning fewer each (`evidence/validate-five-more-folders.txt`)
 - [x] T020 GPT-6 Luna max fast through cli-codex verifies the five code files with a reverse check. It returns PASS with high confidence, and the base `create.sh` fails the new test with `Phase 1: third-step`
 - [x] T021 Adopt the operator's D1 amendment in the parent goal, write this phase's goal from `spec.md` and bind it in the parent. The parent packet command reports `packet_budget=ok`
+- [x] T022 Prove the parent goal's six criteria again from the final state, since phases 10 and 11 changed advisor code after phase 9's scenario reruns. The four suites, the live plugin load, a sandboxed daemon, 45 scenario runs across the five CLIs and the installer check all pass (`evidence/goal-reverify/`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
