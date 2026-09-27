@@ -38,15 +38,15 @@ Three independent fixes, all owned by `sk-design`. Rule 6 is rewritten from a li
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] The owner's gate choice is recorded in `spec.md` section 10 before step 3 starts
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] The owner's gate choice is recorded in `spec.md` section 10 before step 3 starts
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -137,10 +137,10 @@ The kill-switch edge case is read only: `SPECKIT_COMPILED_ROUTING=0 node .skille
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Owner's gate choice | Internal | Red: not made | Step 3 waits. Steps 1, 2 and 4 to 6 proceed |
+| Owner's gate choice | Internal | Green: made, option A, 2026-09-27 (`spec.md` section 10, commit `6f47c32dce`) | Step 3 waits. Steps 1, 2 and 4 to 6 proceed |
 | Compiled front door | Internal | Green: routed sk-design on 2026-09-27 | Rule 6 stays and the replay reports legacy for every scenario |
 | Backend dev dependencies | External | Absent in this worktree | Option B only. Needs the operator's yes and the rollback in section 7 |
-| Owner's yes on the SD-007 fix | Internal | Red: diagnosis not run | Step 8 waits. The rest of the phase proceeds |
+| Owner's yes on the SD-007 fix | Internal | Green: option (b), 2026-09-27 (`spec.md` section 10, commit `c114d00d97`) | Step 8 waits. The rest of the phase proceeds |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -149,7 +149,7 @@ The kill-switch edge case is read only: `SPECKIT_COMPILED_ROUTING=0 node .skille
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A rewritten line misstates the gate or the route, the backend suite fails under option B or the report's numbers do not match its raw captures.
-- **Procedure**: The build lands as one path-scoped commit under `.skilled/skills/sk-design/`. `git revert <that commit>` restores every doc, the rule, the report, the SD-007 change and a re-minted activation manifest. After a revert, `compiled-route-status.cjs --hub sk-design` must report `compiled-serving` again. An option B install is undone by deleting `.skilled/skills/sk-design/sk-design-md-generator/backend/node_modules`.
+- **Procedure**: The build landed as three commits, `fb04862cee`, `def91d168d` and `31768cc51e`. Reverting those three restores every doc, the rule, the report, the SD-007 change and a re-minted activation manifest. After a revert, `compiled-route-status.cjs --hub sk-design` must report `compiled-serving` again. An option B install is undone by deleting `.skilled/skills/sk-design/sk-design-md-generator/backend/node_modules`.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -200,7 +200,7 @@ Owner choice ──► Gate option ────────┘
 - [ ] Monitoring alerts set: not needed
 
 ### Rollback Procedure
-1. Revert the phase commit with `git revert <sha>`.
+1. Revert the three build commits with `git revert 31768cc51e def91d168d fb04862cee`.
 2. Under option B, delete `backend/node_modules` if it was installed for this phase.
 3. Rerun `grep -c "not in the compiled closure" .skilled/skills/sk-design/SKILL.md` and the same-class `rg` to confirm the old text is back.
 4. Tell the operator which commit was reverted and why.
