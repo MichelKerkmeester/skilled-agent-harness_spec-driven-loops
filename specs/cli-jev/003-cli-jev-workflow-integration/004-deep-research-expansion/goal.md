@@ -85,6 +85,9 @@ and findings belong here.
 | Executor pings | Done | `deepseek-v4.1-flash` max, `mimo-v2.6-pro` high, `grok-4.7-xhigh-fast` and `swe-2-max` each replied `OK`, exit 0 |
 | Round-2 preparation | Done | Opus 5.5 high leaf wrote `context/research-angles.md` (20 angles, three waves, coverage table) and `scratch/synthesis-brief.md`; prompt-improver on Sonnet tightened the topic; host restored the label list and saved it as one 900-character line; `buildLoopPrompt` previews resolve each lineage directory and `maxIterations: 5` |
 | Fan-out | Done | Runner exit 0: 4 of 4 succeeded on attempt 1, 0 containment advisories; each lineage 5 iteration files and 5 iteration records ending `maxIterationsReached` (grok 13 min, deepseek 16, mimo 38, swe 48). Merge: 74 key findings (mimo 26, deepseek 21, swe 20, grok 7); resource map from 20 deltas |
+| Final synthesis | Done | Fresh Opus 5.5 max leaf: 2 build-now (R1, R19), 3 next (R2, R20, R21), 15 later, 1 drop (R14); 149 citations checked, 142 resolved, 5 drifted, 2 failed; phases 002 and 003 amended, 005-compaction-recall-harness and 006-goal-criteria-lint new |
+| Host recheck | Done | Reopened `jev_cli/__init__.py:307` (judgments use `JEV_PROVIDER`) and `:339` (auth defaults to `official`), and confirmed the gap live with a dummy OpenRouter key: `auth status` exit 3, with `--provider openrouter` exit 0. Pi nudges: 1,616 `goal-verify-nudge` messages in 37 of this repo's session files against the synthesis's 1,457 in 28, so the magnitude holds and the exact count drifts by counting method. Compactions: 210 boundaries in this project against the synthesis's 222 |
+| Close report | Done | `synthesis_incomplete`: the merge rebuilt 74 of 118 count-only findings (grok 7 of 21, swe 20 of 30, deepseek 21 of 41, mimo whole); the synthesis read every iteration file directly |
 
 ### Deviations and findings
 

@@ -46,10 +46,21 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "research/research.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       "context/research-angles.md",
       "scratch/research-topic.txt",
-      "scratch/synthesis-brief.md"
+      "scratch/synthesis-brief.md",
+      "research/observability-events.jsonl",
+      "research/deep-research-config.json",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+      ".skilled/commands/create/goal.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/hooks/goal/goal-plugin.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+      ".skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts",
+      ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+      ".claude/settings.json"
     ],
     "entities": [
       {
@@ -83,6 +94,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -104,6 +121,60 @@
         "name": "synthesis-brief.md",
         "kind": "doc",
         "path": "scratch/synthesis-brief.md",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.jsonl",
+        "kind": "file",
+        "path": "research/observability-events.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "secret-scrubber.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
@@ -135,71 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Re",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The AI Council found that round 1 dropped the right ideas but measured too loosely and built in the wrong places",
     "created_at": "2026-09-26T20:24:40Z",
-    "last_save_at": "2026-09-26T22:15:07.337Z",
+    "last_save_at": "2026-09-27T04:39:07.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +218,17 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:2cf05412142c3e4357e7b47c683e016345151a9b87b456c2ebf0152eb6295a10",
+    "source_fingerprint": "sha256:fb3f816a209bc5d6ecbada29534cdc720257d095bea82a4a27dd016d7a208665",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "951cd9eed94fef5ffe72ba7571a6482b8b6946a1382a8a01f403a11a3c1c4e36",
       "plan.md": "c1a5787204db3167751c429153c55b06fa3133dc230f0696046ec81cf08c142b",
-      "tasks.md": "5365d3047b1069d689ac44434873683f2d1fd319ed200e90842255610c2a9cfa",
-      "implementation-summary.md": "84f379e096ec8c5bfa938cb46293430430d31b88c7f0f534640b8c04589dc31d"
+      "tasks.md": "8146b020a0334e2bc34c8da68426d15d0904df28224ace5122607e2fb1f43280",
+      "implementation-summary.md": "84f379e096ec8c5bfa938cb46293430430d31b88c7f0f534640b8c04589dc31d",
+      "research/research.md": "f2e2360c570db560e993b4fdaf91a62ff09ae21607f6d019013a4492bba97129"
     },
     "last_active_at": null
   }
