@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Trigger Index Rebuild, Freshness and Build Isolation"
-description: "In progress. The code half is built: two exact-path exemptions, sidecars that follow --out, one shared staleness helper behind the save check and a new --check mode, a report-only CI step, and the opt-in --scoring-only lookup flag the Gate 1 line now passes. The index regeneration follows the code commit."
+description: "Complete. The code half is built: two exact-path exemptions, sidecars that follow --out, one shared staleness helper behind the save check and a new --check mode, a report-only CI step, and the opt-in --scoring-only lookup flag the Gate 1 line now passes. The committed index is rebuilt and every acceptance criterion is met."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -42,8 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-trigger-index-search-fixes |
-| **Status** | In Progress |
-| **Completed** | Not completed. The code half is built and verified. The code commit and the index regeneration commit are still to come |
+| **Status** | Complete |
+| **Completed** | Built and committed on 2026-09-27: code `a0368b4a58`, docs `2136a432ae`, index `92eda999e6`. All six acceptance criteria are met |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The trigger-index rebuild publishes again. The two vendored Deem model cards are exempt by exact path, so a plain build exits 0 with `ignored malformed : 2` where it exited 1 with `refused: 2 document(s)`. A build aimed at a scratch path now leaves every tracked fixture alone. Staleness has one definition, used by the save check and by a new `--check` mode that compares a whole index with the corpus and writes nothing. The owner chose option C for the score-0 miss shape, so the lookup gained an opt-in `--scoring-only` flag and the Gate 1 line passes it. The committed index itself is not rebuilt yet: that is its own commit, after the code commit.
+The trigger-index rebuild publishes again. The two vendored Deem model cards are exempt by exact path, so a plain build exits 0 with `ignored malformed : 2` where it exited 1 with `refused: 2 document(s)`. A build aimed at a scratch path now leaves every tracked fixture alone. Staleness has one definition, used by the save check and by a new `--check` mode that compares a whole index with the corpus and writes nothing. The owner chose option C for the score-0 miss shape, so the lookup gained an opt-in `--scoring-only` flag and the Gate 1 line passes it. The committed index was rebuilt from a `git archive` of the code commit, in its own commit, and now matches the corpus.
 
 ### Trigger Index Rebuild, Freshness and Build Isolation
 
@@ -78,6 +78,7 @@ The trigger-index rebuild publishes again. The two vendored Deem model cards are
 | `.github/workflows/README.md` | Modified | Names the new step |
 | `AGENTS.md` | Modified | Gate 1 line passes `--scoring-only` |
 | `.codex/AGENTS.md`, `.cursor/rules/skill-routing.md` | Modified, generated | Pointer blocks follow the Gate 1 line |
+| `runtime/data/trigger-index.json` and the three `retrieval/fixtures/*.json` sidecars | Regenerated | Rebuilt from committed content, 11,731 indexed paths |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -85,7 +86,7 @@ The trigger-index rebuild publishes again. The two vendored Deem model cards are
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Every build, `--check` and measurement wrote to a scratch directory outside the repository, and `git status --short` on the fixtures and `runtime/data` printed nothing after each. The refusal was reproduced first with the same scratch build that later proved the exemption. `dist` was rebuilt with the package's own `npm run build` after the `workflow.ts` change. Nothing is committed yet: the orchestrator makes the code commit, then stage B regenerates the index from a `git archive` of that commit.
+Every build, `--check` and measurement wrote to a scratch directory outside the repository, and `git status --short` on the fixtures and `runtime/data` printed nothing after each. The refusal was reproduced first with the same scratch build that later proved the exemption. `dist` was rebuilt with the package's own `npm run build` after the `workflow.ts` change. The orchestrator committed the code (`a0368b4a58`) and the docs (`2136a432ae`). The index was then regenerated with `node $G --repo-root <archive of 2136a432ae>`, which printed exit 0, 11,731 indexed paths and `ignored malformed : 2`, and was committed alone as `92eda999e6`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -114,10 +115,14 @@ Every build, `--check` and measurement wrote to a scratch directory outside the 
 | `--out` alone | Exit 0, three sidecars beside `idx.json`, tracked fixture sha256 unchanged |
 | `--check` | Committed index exit 1 with 130 stale (all missing) and 0 obsolete, matching the independent path-table count. Fresh scratch index exit 0. `--check --bogus` exit 2 |
 | Suites | `trigger-index.vitest.ts` 49 before, 57 after. `workflow-trigger-index-freshness.vitest.ts` 7 and 7. `gate1-pointer-sync.vitest.ts` 4 and 4. Nine retrieval suites together 245 passed. `tsc --noEmit` rc 0 |
-| `--scoring-only` live | "cli-classifier hub": default 20 rows at score 0, `truncated: true`, exit 0. With the flag, 0 rows, exit 1 |
+| `--scoring-only` live, before the rebuild | "cli-classifier hub" on the stale index: default 20 rows at score 0, `truncated: true`, exit 0. With the flag, 0 rows, exit 1 |
 | Pointer sync | Write mode `Wrote 2 of 2`, `--check` PASS, exit 0 |
 | Comment hygiene | `check-comment-hygiene.sh` exit 0 on each changed `.mjs` and `.ts` file. A scratch control with a task id exited 1 |
-| Not yet run | The regeneration, `--check` against a `git archive` of the final HEAD, and the "deem local server" lookup against the rebuilt index |
+| Regeneration | Exit 0, `trigger index published`, 22,974 documents, 11,731 indexed paths (11,601 before), `ignored malformed : 2` |
+| Final `--check` | Over a fresh archive of `92eda999e6`: exit 0, `stale documents : 0 (0 missing from the index)`, `obsolete paths : 0`, `untrusted docs : 0`. The orchestrator's own run matched |
+| "deem local server" | Against the committed index: `1.000  exact` on `deem-local.md`, exit 0, with and without `--scoring-only` |
+| Miss probe | "classifier marmalade hub" on `92eda999e6`: the default returns 20 rows, 0 scoring, exit 0, and `--scoring-only` returns 0 rows with exit 1. It replaced "cli-classifier hub", which became a hit (10 scoring rows) once the rebuild indexed phase 008. The operator approved the swap |
+| Hostile working directory | A relative `--out` run from a cwd outside the repository wrote all four files under that cwd, with the tracked fixtures untouched |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -125,8 +130,13 @@ Every build, `--check` and measurement wrote to a scratch directory outside the 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Index not rebuilt yet.** The committed index still lacks 130 documents until the regeneration commit lands.
-2. **Agent copies of the lookup command.** Several agent definitions under `.skilled/agents/`, `.claude/agents/`, `.codex/agents/`, `.pi/agents/` and `.hermes/skills/` quote the lookup without `--scoring-only`. They still work, because the default is unchanged, but they print score-0 rows on a miss. They were outside this phase's write scope.
-3. **Dead exemption.** The older `deepseek.extracted.md` entry in `IGNORED_PATHS` names a folder that no longer exists and shows in `ignoredPathsUnmatched`. It was outside this phase's scope.
-4. **Symlinked `--out`.** An `--out` that reaches the committed index through a symlink compares as elsewhere, so its sidecars would land in `runtime/data/`. `path.resolve` covers relative and `..` spellings only.
+1. **Symlinked `--out`.** An `--out` that reaches the committed index through a symlink compares as elsewhere, so its sidecars would land in `runtime/data/`. `path.resolve` covers relative and `..` spellings only.
+
+### Out-of-scope findings
+
+Noted during the build and left alone, because none is in this phase's write scope:
+
+- **Agent copies of the lookup command.** Agent definitions quote the lookup without `--scoring-only`: `.skilled/agents/` (review, debug, deep-research, deep-review, deep-improvement), their mirrors under `.claude/agents/`, `.codex/agents/` and `.pi/agents/`, the `agent-*` skills and `system-spec-kit/SKILL.md` under `.hermes/skills/`, and `.skilled/commands/speckit/README.txt`. They still work, because the default is unchanged, but they print score-0 rows on a miss.
+- **Dead exemption.** The older `deepseek.extracted.md` entry in `IGNORED_PATHS` names a folder, `specs/sk-doc/016-create-diff-mode`, that no longer exists. It shows in `ignoredPathsUnmatched`.
+- **`lib/README.md`.** Its file table and consumer table do not list the new `freshness.mjs`.
 <!-- /ANCHOR:limitations -->

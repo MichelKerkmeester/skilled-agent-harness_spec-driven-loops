@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Owner** | `system-spec-kit`: `runtime/cli/retrieval/` and `runtime/data/trigger-index.json` |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
