@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "worktree provision spec-kit link",
+      "sk-doc spec-kit shared link missing",
+      "wn deps satisfied spec-kit filter",
+      "parent-skill-check cannot find spec-kit shared",
+      "worktree provisioning skips sk-doc",
+      "worktree provision spec-kit fallback plan",
+      "wn deps satisfied fix plan",
+      "sk-doc link repair rollback",
+      "worktree naming test fixture plan",
+      "worktree provision spec-kit link tasks",
+      "wn deps satisfied fix tasks",
+      "sk-doc link repair tasks"
+    ],
+    "key_topics": [
+      "worktree",
+      "provision",
+      "spec-kit",
+      "link",
+      "sk-doc",
+      "shared",
+      "missing",
+      "deps",
+      "satisfied",
+      "filter",
+      "parent-skill-check",
+      "cannot"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/skills/sk-doc/package.json",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+      "shared/dist/frontmatter/parse-frontmatter.js",
+      ".skilled/skills/sk-git/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-provision-paths.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+        "source": "derived"
+      },
+      {
+        "name": "parse-frontmatter.js",
+        "kind": "code",
+        "path": "shared/dist/frontmatter/parse-frontmatter.js",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In this worktree, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` exits 1 with `FAIL: 12-lib: failed to load the root-router contract library: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'` (rerun 2026-09-27)",
+    "created_at": "2026-09-27T12:06:40Z",
+    "last_save_at": "2026-09-27T12:17:21.631Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8cc116e4ad7a3bbd3b8e4157fdb61036cc31c58c24abef7a48c7fe5aa0c0ab87",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d63b3b0a11563ed27145ad734c9d7a4088bb7f7988f6207cc18c486cd5ef2430",
+      "plan.md": "0cc9a7bbf71a1942268432b2256ebf5dade02c1d0e9a6a462bd4795f72c90e78",
+      "tasks.md": "0ae3b0d801ae3004980d7eb2ab1b10bbb853012c0550c8867e585a38c86f61fd",
+      "implementation-summary.md": "243890458f11cca461e89843689d40a18e61ddea4bb41f9e711f665ab68014a7"
+    },
+    "last_active_at": null
+  }
+}

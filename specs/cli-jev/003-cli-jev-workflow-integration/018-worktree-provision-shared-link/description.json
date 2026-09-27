@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link",
+  "description": "Phase 18: worktree-provision-shared-link",
+  "keywords": [
+    "phase",
+    "worktree-provision-shared-link"
+  ],
+  "lastUpdated": "2026-09-27T12:06:41.531Z",
+  "specId": "018",
+  "folderSlug": "worktree-provision-shared-link",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

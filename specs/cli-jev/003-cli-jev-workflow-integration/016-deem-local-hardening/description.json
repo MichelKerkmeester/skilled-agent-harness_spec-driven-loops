@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening",
+  "description": "Phase 16: deem-local-hardening",
+  "keywords": [
+    "phase",
+    "deem-local-hardening"
+  ],
+  "lastUpdated": "2026-09-27T11:50:22.914Z",
+  "specId": "016",
+  "folderSlug": "deem-local-hardening",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

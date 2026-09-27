@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
-    last_updated_at: "2026-09-26T16:00:00Z"
-    last_updated_by: "orchestrator-session"
-    recent_action: "Scaffolded the phase parent and the deep-research child"
-    next_safe_action: "Gather context for 001-deep-research, then run the three-lineage fan-out"
+    last_updated_at: "2026-09-27T11:56:00Z"
+    last_updated_by: "parent-leaf"
+    recent_action: "Filled the phase-map, handoff and scope rows for phases 010 to 018"
+    next_safe_action: "Validate each of phases 010 to 018, then the packet recursively"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/spec.md"
@@ -81,6 +81,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 - Scaffolding the build phases the synthesis proposes as Planned children, with filled documents and no implementation.
 - A second research round: an AI Council review of round 1, a council-based re-synthesis, 20 forced iterations over four model families, a final synthesis, and Planned build phases reconciled with it.
 - A third research round on classifier models, Jev and a local Deem, with Deem 0.8B served on this Mac on the operator's yes and kept current with Deem's releases, the Planned build phases amended for both backends, and the `cli-classifier` hub phases the synthesis proposes.
+- Planned owner fixes and follow-ups the research and its runs found: the trigger index, the spec and sk-doc validators, sk-prompt, sk-design, the fan-out merge and steering, the local Deem install, an offline Deem search-narrowing arm and worktree provisioning (phases 010 to 018). Each fix changes files another skill owns, so its build follows that owner's `SKILL.md`, templates and tests. Only phase 017 uses a classifier.
 
 ### Out of Scope
 
@@ -89,6 +90,8 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 - Editing the vendored repositories under `context/`. They are reference material.
 - Storing any key or secret in Jev state, in a digest or in a research artifact.
 - Any feature that calls a classifier or changes behavior while its backend's check fails. Jev: `command -v jev && jev auth status --provider <the provider its judgments use>`, which only reads, never prints the key and spends no quota (`cli-usage/SKILL.md:98-102`). Deem: the local server passes a health check that refuses the stub backend (`007-classifier-deep-research/context/deem-local.md`). Each feature also keeps its own opt-in switch per backend, and with neither backend it runs exactly as it does today.
+- Patching Deem's own code, or any install, before the operator's yes to a plan that names its rollback. Phases 016 and 018 plan these as decisions.
+- Changing a default another skill owns without that owner's yes, such as the score-0 rows the trigger-index lookup keeps. Phase 010 records it as an open decision.
 - Pushing or merging the worktree branch. Both are the operator's call.
 
 ### Files to Change
@@ -105,6 +108,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | `007-classifier-deep-research/{context,scratch,research}/**` | Create | 007 | The Deem install record and measurements, 45 angles, briefs, five lineages and the round-3 synthesis |
 | `002-*`, `003-*`, `005-*`, `006-*` phase docs | Modify | 007 | The two-backend amendments from the round-3 synthesis |
 | `008-cli-classifier-hub/*`, `009-cli-jev-hub-move/*` | Create | 007 | The two new Planned phases from the round-3 synthesis |
+| `010-*` to `018-*` phase docs | Create | 010 to 018 | The Planned owner-fix and follow-up phases. Each build changes the owner files its own `spec.md` names |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,6 +129,15 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 7 | 007-classifier-deep-research/ | Research round 3 on classifier models, Jev and a local Deem 0.8B: context reduction, validator judgment calls, sk-prompt, sk-design and a `cli-classifier` hub, over 45 forced iterations on five model families with one Opus 5.5 high lead per lineage, a fresh Opus 5.5 max synthesis and the Planned phases reconciled for both backends | Complete |
 | 8 | 008-cli-classifier-hub/ | Mint the `cli-classifier` hub with `cli-deem` as its first mode, a Node standard-library client for the local Deem server, tested against a fake server first. `cli-jev` stays where it is | Planned |
 | 9 | 009-cli-jev-hub-move/ | Move `cli-jev` into `cli-classifier` as mode `cli-jev` over its unchanged `cli-usage` packet, with a route-replay baseline before and after | Planned |
+| 10 | 010-trigger-index-search-fixes/ | Unblock the trigger-index rebuild that this packet's vendored model cards refuse, regenerate the stale committed index and keep a build aimed elsewhere off every tracked file. A staleness check is measured before it is placed, and the score-0 miss shape stays the owner's open decision. Owner `system-spec-kit`, no classifier | Planned |
+| 11 | 011-spec-validator-fixes/ | Make `AC_COVERAGE` report a cited `file:line` that does not resolve, with the enforce switch's floor, cutoff and advisory default unchanged. Let `check-goal.cjs` accept a path ending in `goal.md`, exit contract frozen. Owners `system-spec-kit` and `sk-create-goal`, no classifier | Planned |
+| 12 | 012-sk-doc-validator-and-reference-fixes/ | Replace `validate_document.py`'s silent README fallback with a visible notice or failure and give `quick_validate.py` one severity for a non-qualified MCP tool token. Repoint or remove three dead `file:line` references in the deep-research and spec-kit playbooks. Owners `sk-doc`, `system-deep-loop` and `system-spec-kit`, no classifier | Planned |
+| 13 | 013-sk-prompt-framework-docs/ | Reconcile sk-prompt's promise of 7 frameworks with the 5 its registry holds, from the owner's own sources, and make a run read only the chosen framework's section, checked by a before-and-after byte count. Owner `sk-prompt`, no classifier | Planned |
+| 14 | 014-sk-design-doc-and-routing-check/ | Rewrite sk-design's stale rule 6 after a live compiled-route rerun and put the md-generator's 80-point gate to the owner as two options with a recommendation. Record the hub's first routing accuracy by replaying its playbook scenarios. Owner `sk-design`, no classifier | Planned |
+| 15 | 015-fanout-merge-and-steering-fixes/ | Diagnose from the three rounds' committed lineage files why `fanout-merge.cjs` rebuilds fewer count-only findings than the lineages recorded, then fix it with a regression test built from those files. Give each iteration its lineage's `steer.md` when one exists. Owner `system-deep-loop`, no classifier | Planned |
+| 16 | 016-deem-local-hardening/ | Operator decisions on the local Deem install: the open CORS exposure (patch, proxy or accept, each with its rollback), a local access log through `deem-ctl`, `DEEM_N_ORDERS` held at 1 until 002's accuracy result and a versioned home for `deem-ctl`. No install or patch before the operator's yes, no classifier | Planned |
+| 17 | 017-deem-search-narrowing-arm/ | An offline arm where one Deem `choice` picks the spec track a question is about and ripgrep searches inside it, kept only if it beats a zero-call ripgrep and trigger-index baseline by a margin fixed before the build. Needs 008 and 010. Dormant without a Jev key or a healthy local Deem | Planned |
+| 18 | 018-worktree-provision-shared-link/ | Stop worktree provisioning from skipping a package whose only dependencies are `@spec-kit/*` `file:` links, with a fixture test, and plan this worktree's one-time sk-doc repair as an install that waits for the operator's yes. Owner `sk-git`, no classifier | Planned |
 
 ### Phase Transition Rules
 
@@ -147,6 +160,15 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 007-classifier-deep-research | 002, 003, 005 and 006 | `research/research.md` section 14 lists each phase's two-backend amendment line by line, and the build order is unchanged: 002's census first | `validate.sh --strict` passes on 007 and on each amended phase |
 | 007-classifier-deep-research | 008-cli-classifier-hub | `research/research.md` ranks R23, the `cli-deem` client, next, with its wire verdict settled from code and a live check | `validate.sh --strict` passes on 007 |
 | 008-cli-classifier-hub | 009-cli-jev-hub-move | The hub exists with `cli-deem` routed, and the operator keeps a Deem arm result (research open question 49) | `parent-skill-check` passes on the hub, and a route replay sends a Deem prompt to `cli-deem` |
+| 009-cli-jev-hub-move | 010-trigger-index-search-fixes | Not a hard gate: 010 needs nothing from 009 and can start any time. Its first step reproduces the refused index rebuild | `generate-trigger-index.mjs` exits 1 with `refused: 2 document(s)` before the fix and exits 0 after it, and `validate.sh --strict` passes on 010 |
+| 010-trigger-index-search-fixes | 011-spec-validator-fixes | Not a hard gate: 011 changes two validators that 010 does not touch | 010's and 011's Files to Change tables name no common file, and `validate.sh --strict` passes on both |
+| 011-spec-validator-fixes | 012-sk-doc-validator-and-reference-fixes | Not a hard gate: 012 changes sk-doc validators and three playbook files that 011 does not touch | 011's and 012's Files to Change tables name no common file, and `validate.sh --strict` passes on both |
+| 012-sk-doc-validator-and-reference-fixes | 013-sk-prompt-framework-docs | Not a hard gate: 013 changes only sk-prompt files | 012's and 013's Files to Change tables name no common file, and `validate.sh --strict` passes on both |
+| 013-sk-prompt-framework-docs | 014-sk-design-doc-and-routing-check | Not a hard gate: 014 changes only sk-design files, and its gate change waits on the owner's choice | 014's `spec.md` records the owner's choice between the two gate options before any gate edit, and `validate.sh --strict` passes on 014 |
+| 014-sk-design-doc-and-routing-check | 015-fanout-merge-and-steering-fixes | Not a hard gate: 015 changes only `system-deep-loop` fan-out files, and its diagnosis runs before its fix | 015's diagnosis names the dropped findings by lineage and round before any fix, and `validate.sh --strict` passes on 015 |
+| 015-fanout-merge-and-steering-fixes | 016-deem-local-hardening | Not a hard gate: 016 plans operator decisions and changes nothing before the operator's yes | 016's `spec.md` records each option with its rollback and the operator's answer, and `validate.sh --strict` passes on 016 |
+| 016-deem-local-hardening | 017-deem-search-narrowing-arm | 017 waits on 010's regenerated index and 008's `cli-deem` client, not on 016. Its Deem arm also needs a healthy local Deem (D1 of `goal.md`) | `lookup-trigger-index.mjs` returns `deem-local.md` with a nonzero score for "deem local server", `validate.sh --strict` passes on 008 and 010, and `deem-ctl status` passes its health check, which refuses the stub backend |
+| 017-deem-search-narrowing-arm | 018-worktree-provision-shared-link | Not a hard gate on 017: 018 changes only `sk-git` provisioning files. The dependency runs the other way: 008's and 009's `parent-skill-check.cjs` checks cannot exit 0 in a freshly provisioned worktree until 018's fix lands, because `sk-doc/node_modules/@spec-kit/shared` is never linked | In a freshly provisioned worktree `parent-skill-check.cjs .skilled/skills/sk-doc` prints `OK` and exits 0, 018's fixture test passes, and `validate.sh --strict` passes on 018 |
 <!-- /ANCHOR:phase-map -->
 
 ---

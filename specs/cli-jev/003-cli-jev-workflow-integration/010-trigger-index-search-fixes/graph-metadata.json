@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger index rebuild refused",
+      "vendored model card exemption",
+      "trigger index staleness check",
+      "whole index freshness check",
+      "generator tracked fixture write",
+      "score-0 partial miss shape",
+      "trigger index fix plan",
+      "ignored paths exemption plan",
+      "generator check mode",
+      "staleness check measurement",
+      "trigger index fix tasks",
+      "ignored paths exemption task"
+    ],
+    "key_topics": [
+      "trigger",
+      "index",
+      "rebuild",
+      "refused",
+      "vendored",
+      "model",
+      "card",
+      "exemption",
+      "staleness",
+      "check",
+      "whole",
+      "freshness"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/data/trigger-index.json",
+      "runtime/cli/tests/trigger-index.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+      ".github/workflows/advisory-checks.yml",
+      ".github/workflows/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-trigger-index-freshness.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "generation-diagnostics.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-variants.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-checks.yml",
+        "kind": "config",
+        "path": ".github/workflows/advisory-checks.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Index Rebuild",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Build Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` exits 1 with `refused: 2 document(s) carry an untrusted trigger declaration` (reproduced 2026-09-27, 22,968 documents scanned)",
+    "created_at": "2026-09-27T11:50:16Z",
+    "last_save_at": "2026-09-27T12:23:45.313Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:74f97336cdba5a625673dc294299a26992214d3d6244a03c2e15902ae2895970",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2d8f4297c1c57c8aba537dc35c482abf6568ef965a90fa0c9297ca7fe42a9b37",
+      "plan.md": "058b79913eec50f6c4f93b5a53e7f69fc9f08a5d2ab874629e20cf4fb3185ba0",
+      "tasks.md": "9effb76f4b5c85683c148d4a9b924fd029a4fe1aa29958aa9a97c03121a254ce",
+      "implementation-summary.md": "2b458fde566f5bd02badb9610c6fb206b64fdd69ecfdae1d71e871056341a1bb"
+    },
+    "last_active_at": null
+  }
+}
