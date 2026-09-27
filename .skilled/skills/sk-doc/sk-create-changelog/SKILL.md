@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global or packet-local changelogs in the v4 narrative style, with topology detection, versions, voice enforcement, omission rules, and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
@@ -241,13 +241,29 @@ Read `assets/changelog-template.md` before generating global changelog content. 
 
 The shared template states:
 
-1. Global changelog files open with the summary narrative. YAML frontmatter and the editorial title (the exemplar's shape) may precede it. No version header, no backlink, no version-date line.
+1. Global changelog files open with the frontmatter block the Frontmatter Contract below defines, then the editorial title when the release has one (the exemplar's shape), then the summary narrative. No version header, no backlink, no version-date line.
 2. The summary leads with why the release matters, not technical stats.
 3. When the release has a spec folder, the spec folder line is a blockquote: `> Spec folder: `{path}` (Level {N})`.
 4. Compact format is a lean narrative: summary, at-a-glance bullets, Upgrade. Add a short Why This Release section when the motivation is not obvious.
 5. Expanded format is the full v4 narrative: opening narrative, Why This Release, What's New at a Glance, topical H2 sections with benefit-led H4 story items, and Upgrade Notes.
 6. Files Changed tables, test-metric tables and schema tables are not default sections. A table appears only when the numbers themselves are the story (the omission rules in the template govern this).
 7. Use compact format under 10 changes when the release is not major and has no breaking change. Use expanded format for 10 or more changes, a major bump, or any breaking change.
+
+### Frontmatter Contract
+
+A global entry must be as findable as a spec document, so its frontmatter block carries these five keys, in this order:
+
+| Key | Value |
+| --- | --- |
+| `title` | `<component> v<version>, <editorial title>`, or `<component> v<version>` when the entry has no editorial title. A Skilled release entry uses its H1, or `Skilled v<version>` |
+| `description` | One or two plain sentences, 250 characters at most, saying what the release changed |
+| `trigger_phrases` | The identity phrases first, then one or two topic phrases |
+| `importance_tier` | `"normal"` |
+| `contextType` | `"general"` |
+
+Identity phrases name the entry the way a reader asks for it. A skill entry declares `<component> v<version>` and `<component> <version>`, where `<component>` is the `name:` in the owning folder's `SKILL.md`. A Skilled release entry declares `v<version> release notes` and `skilled v<version>`. A topic phrase is 2 to 6 words from the entry's own text that name what changed. It carries no version number, and it never fits any release the way "bug fixes" or "documentation updates" would. A component entry may keep a `version:` key after the five.
+
+Packet-local entries take their block from the spec-kit nested templates, and the nested generator derives their identity phrase from the output path.
 
 ### Compact Format
 
@@ -382,7 +398,7 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
 1. **Analyze context.** Determine source type from the request or setup output. For a spec folder, read implementation summary, tasks, and spec files, then extract work summary, files changed, change type, level, and output mode. For a component hint, gather recent commits and affected files for that component. For git history, inspect recent commits and diff stats. Compile `work_context` with summary, files, change type, and source.
 2. **Resolve output target.** If nested mode, run the nested changelog generator with `--json`, read the root or phase nested template, extract the output path, and skip global component mapping. If global mode, discover `.skilled/changelog/*/`, parse component folders, match changed files and hints, choose the primary component, list secondary components, and verify `.skilled/changelog/{resolved_folder}/` exists.
 3. **Determine version.** If nested mode, skip version calculation. If global mode, list the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on), parse the latest `vX.Y.Z.B` version, choose bump type from explicit `--bump` or auto-detection, calculate the next version, and increment the build segment if the file already exists.
-4. **Generate content.** Read `assets/changelog-template.md` for global mode or the spec-kit nested template for nested mode. Set date when needed. Select compact format for fewer than 10 non-breaking, non-major changes and expanded format for 10 or more changes, a major bump, or any breaking change. Write the narrative opening that leads with why the release matters. Apply the omission decision-aid: drop file inventories, test metrics, schema churn and mid-cycle internal experiments by default, and compress reverted work to one story sentence. Add tables only when the numbers themselves are the story. Generate the topical sections, at-a-glance bullets, and upgrade notes with bold lead-ins.
+4. **Generate content.** Read `assets/changelog-template.md` for global mode or the spec-kit nested template for nested mode. Set date when needed. In global mode, write the frontmatter block first, per the Frontmatter Contract in section 5: the title, a description of one or two sentences, the identity phrases the target path gives, one or two topic phrases from the entry's own words, `importance_tier` and `contextType`. Select compact format for fewer than 10 non-breaking, non-major changes and expanded format for 10 or more changes, a major bump, or any breaking change. Write the narrative opening that leads with why the release matters. Apply the omission decision-aid: drop file inventories, test metrics, schema churn and mid-cycle internal experiments by default, and compress reverted work to one story sentence. Add tables only when the numbers themselves are the story. Generate the topical sections, at-a-glance bullets, and upgrade notes with bold lead-ins.
 5. **Validate quality.** Check format, version, and content before writing. Confirm required sections are present, version is strictly greater than the latest global version, no target file exists, summary is non-empty, every path the changelog names exists, and upgrade guidance is present. Auto-fix small missing sections when safe, then revalidate.
 6. **Write the file.** If nested mode, run `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write` and verify the output path. If global mode, write `.skilled/changelog/{primary_component}/v{next_version}.md` and read back the first lines to verify creation. If secondary components exist, note them as additional changelog candidates rather than writing extra files silently.
 7. **Report and preserve context.** Report status, path, component, version, bump type, summary, section count, and files tracked. If a spec folder was the source, note that context can be preserved through the normal memory save workflow. Do not claim completion until the written file has been verified.
@@ -470,6 +486,7 @@ Global changelog checks:
 12. Omission rules applied: no file-by-file inventories, no test-metric tables, no schema tables, no mid-cycle experiment detail beyond a one-line story sentence, and no counts of review passes, validation rounds or line-count deltas.
 13. Conciseness caps respected: summary within 3 sentences, Why This Release within 3 short paragraphs or 4 sentences, at-a-glance within 12 bullets, no H4 item beyond 7 paragraphs, compact files within 40 prose lines.
 14. H4 headings are benefit-led and 10 words at most, with most at 2-7. No numbered headings, no sentence-length headings, no H3 inside topical sections.
+15. The frontmatter block carries `title`, `description`, `trigger_phrases`, `importance_tier` and `contextType` in contract order, and `trigger_phrases` holds both identity phrases for the target path plus at least one topic phrase. `validate_document.py` blocks an entry whose block, keys, phrases or version phrase are missing.
 
 Voice and structural enforcement, run on the draft before writing:
 
@@ -488,6 +505,7 @@ Nested changelog checks:
 3. Phase child output uses `../changelog/changelog-<packet>-<phase-folder>.md`.
 4. The spec-kit nested generator is the write path.
 5. Global version rules are not applied.
+6. The rendered block names the entry by the identity phrase the generator derives from the output path, and carries no phrase that every packet's changelog would share.
 
 Suggested shared markdown checks after writing authored markdown:
 

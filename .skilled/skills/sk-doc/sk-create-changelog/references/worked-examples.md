@@ -27,9 +27,20 @@ These examples apply the shared format in [../assets/changelog-template.md](../a
 
 ## 2. COMPACT GLOBAL ENTRY
 
-Compact format for a release under 10 changes with no breaking change. The example is the v1.1.0.0 release of this very packet, written in the format it teaches. The exemplar adds YAML frontmatter and an editorial title H1 above the narrative. Both shapes are valid: the narrative always opens the prose.
+Compact format for a release under 10 changes with no breaking change. The example is the v1.1.0.0 release of this very packet, written in the format it teaches. Every entry opens with its frontmatter block, the search metadata the Frontmatter Contract in SKILL.md section 5 defines. The exemplar also puts an editorial title H1 between the block and the narrative. Both shapes are valid: the narrative always opens the prose.
 
 ```markdown
+---
+title: "sk-create-changelog v1.1.0.0"
+description: "The changelog template now teaches the narrative shape the v4 release notes established, and validation enforces its voice and omission rules."
+trigger_phrases:
+  - "sk-create-changelog v1.1.0.0"
+  - "sk-create-changelog 1.1.0.0"
+  - "changelog narrative template"
+importance_tier: "normal"
+contextType: "general"
+---
+
 The changelog template now teaches the narrative shape the v4 release notes established. Generated changelogs open with why the release matters, name their sections for the domain they change, and drop the machine-era tables that no reader asked for. Voice, omission and conciseness rules are enforced at validation time by the Human Voice scanner and a structural check pass.
 
 > Spec folder: `specs/sk-doc/057-sk-create-changelog-v4-style` (Level 1)
@@ -48,6 +59,7 @@ No migration required. Existing changelog files stay as written, and new changel
 
 **Annotations**:
 
+- The frontmatter block comes first. Its identity phrases name the component and version the way a reader asks for them, and its topic phrase names what changed in the entry's own words.
 - The opening paragraph states what the release does and why it matters in three sentences. No file paths, no file counts, no test numbers.
 - The spec-folder blockquote keeps the packet record without a table.
 - Every at-a-glance bullet opens with a bold lead-in sentence, matching the exemplar's bullets, then adds one plain sentence on the same list line. Four bullets for four themes, not one bullet per file.

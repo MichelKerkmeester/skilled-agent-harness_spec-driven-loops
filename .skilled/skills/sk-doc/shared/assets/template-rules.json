@@ -434,7 +434,7 @@
       "h2UppercaseRequired": true
     },
     "changelog": {
-      "description": "Component changelog files at .skilled/changelog/{component}/v{VERSION}.md or .skilled/skills/<skill>/changelog/v{VERSION}.md. Files start directly with a summary paragraph; no TOC, no Overview section, no version header. Authoritative format reference: .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      "description": "Component changelog files at .skilled/changelog/{component}/v{VERSION}.md or .skilled/skills/<skill>/changelog/v{VERSION}.md. Entry files open with a frontmatter block of search metadata, then the summary paragraph, with no TOC, no Overview section and no version header. Authoritative format reference: .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
       "requiredSections": [],
       "recommendedSections": [
         "upgrade"
@@ -473,7 +473,16 @@
       "h2EmojiRequired": false,
       "h2UppercaseRequired": false,
       "firstSectionName": null,
-      "lastSectionPattern": null
+      "lastSectionPattern": null,
+      "frontmatterFields": {
+        "required": [
+          "title",
+          "description",
+          "trigger_phrases",
+          "importance_tier",
+          "contextType"
+        ]
+      }
     },
     "playbook": {
       "description": "Manual testing playbook files for skill validation, including a root directory page and required per-feature snippet tree",

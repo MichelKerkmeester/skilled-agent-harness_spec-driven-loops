@@ -13,7 +13,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The package covers topology, version and format behavior, release boundaries and the Skilled release line. Scenarios use the shipped `SKILL.md`, README, template and references as sources. There is no feature catalog for this mode. Each scenario carries the full execution contract in one category file.
+The package covers topology, version and format behavior, release boundaries, the Skilled release line and the search metadata every entry carries. Scenarios use the shipped `SKILL.md`, README, template and references as sources. There is no feature catalog for this mode. Each scenario carries the full execution contract in one category file.
 
 The negative checks matter because a changelog can look polished while landing in the wrong place or using the wrong version. A correct run also refuses to invent release mechanics that belong to `sk-git`.
 
@@ -64,7 +64,7 @@ The package is releasable when all mapped scenarios pass, global and nested outp
 
 ## 6. ORCHESTRATION AND WAVE PLANNING
 
-Run source and topology scenarios first. Run version and format scenarios after the output mode is known. Run the release boundary and release-line scenarios last. Keep global version checks separate from nested checks because nested files do not use global four-part versioning. Record the source, output mode, target path and evidence for each wave.
+Run source and topology scenarios first. Run version and format scenarios after the output mode is known. Run the release boundary and release-line scenarios after those, and the search-metadata scenarios last. Keep global version checks separate from nested checks because nested files do not use global four-part versioning. Record the source, output mode, target path and evidence for each wave.
 
 ---
 
@@ -144,7 +144,23 @@ Verify that `--release` on another component keeps the changelog and creates no 
 
 ---
 
-## 11. AUTOMATED TEST CROSS-REFERENCE
+## 11. SEARCH METADATA (`CHG-011..CHG-012`)
+
+### CHG-011 | Write search metadata into a global entry
+
+Verify that a global entry opens with the five-key frontmatter block, both identity phrases for its path and a topic phrase from its own words.
+
+> **Scenario:** [CHG-011](search-metadata/write-global-entry-metadata.md)
+
+### CHG-012 | Render the identity phrase into a nested entry
+
+Verify that the nested generator names a packet-local entry by the phrase it derives from the output path and renders no phrase that every packet shares.
+
+> **Scenario:** [CHG-012](search-metadata/render-nested-identity-phrase.md)
+
+---
+
+## 12. AUTOMATED TEST CROSS-REFERENCE
 
 | Check | Coverage | Playbook overlap |
 |---|---|---|
@@ -152,5 +168,7 @@ Verify that `--release` on another component keeps the changelog and creates no 
 | `check_authored_name_kebab.py` | Component and phase slug shape | Direct on CHG-001 and CHG-002 |
 | `nested-changelog.js` | Packet-local output path and template | Direct on CHG-002 |
 | Existing global changelog folders | Version sequencing and collision review | Direct on CHG-001, CHG-004 and CHG-008 |
+| `validate_document.py` entry frontmatter check | Entry block, canonical keys, trigger phrases and the version phrase | Direct on CHG-011 |
+| `nested-changelog.vitest.ts` | Identity phrase for phase and root renders, and the trim rule | Direct on CHG-012 |
 
 This playbook records changelog authoring behavior. It does not own Git branch, tag, commit, pull request or release mechanics.

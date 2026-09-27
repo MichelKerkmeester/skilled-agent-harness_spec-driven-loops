@@ -504,6 +504,17 @@ workflow:
           IF change_count >= 10 OR change_type == major OR any breaking change -> EXPANDED format
           See template file Section 5 (Format Selection Guide) for full rules
       - |
+        Generate FRONTMATTER (global mode only, nested mode takes its block from the spec-kit template):
+          title: "{component} {next_version}, {editorial title}", or "{component} {next_version}" with no editorial title
+          description: one or two plain sentences, 250 characters at most, on what the release changed
+          trigger_phrases, identity phrases first:
+            skill entry: "{component} {next_version}" and "{component} {next_version without its leading v}"
+            Skilled release entry: "{next_version} release notes" and "skilled {next_version}"
+          then one or two topic phrases: 2-6 words from the entry's own text, no version number, never a phrase that fits any release such as "bug fixes"
+          importance_tier: "normal"
+          contextType: "general"
+          {component} is the name: in the owning folder's SKILL.md. The contract is SKILL.md section 5, Frontmatter Contract.
+      - |
         Generate SUMMARY (both formats):
           IF source_type = spec_folder:
             Use spec.md title + implementation-summary.md first paragraph
@@ -545,7 +556,7 @@ workflow:
           IF breaking changes -> Upgrade Notes with Adopt/Repoint/Drop bold lead-ins
           IF no migration needed -> "No migration required."
           Compact format uses "## Upgrade"; expanded format uses "## Upgrade Notes".
-      - "Assemble full content per template format (compact or expanded)"
+      - "Assemble full content per template format (compact or expanded), opening with the frontmatter block"
     outputs:
       - changelog_content: "Complete formatted changelog markdown"
       - section_count: "Number of narrative sections generated"
@@ -556,7 +567,9 @@ workflow:
     activities:
       - |
         FORMAT CHECKS:
-          [ ] Prose starts with the summary narrative (frontmatter and an editorial title H1 may precede it, a bare version header may not)
+          [ ] Frontmatter block carries title, description, trigger_phrases, importance_tier and contextType in contract order
+          [ ] trigger_phrases holds both identity phrases for the target path and at least one topic phrase
+          [ ] Prose starts with the summary narrative after the frontmatter block and any editorial title H1 (a bare version header may not precede it)
           [ ] Spec folder blockquote present when source is a spec folder
           [ ] Summary narrative present (non-empty, leads with why)
           [ ] At-a-glance section present with bold lead-in bullets

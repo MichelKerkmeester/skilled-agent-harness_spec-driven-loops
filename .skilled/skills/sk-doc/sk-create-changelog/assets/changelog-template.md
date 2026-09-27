@@ -34,13 +34,24 @@ Nested packet-local changelogs are a different output mode and use the spec-kit 
 
 **Key points**:
 
-- The prose starts with the summary narrative. YAML frontmatter and the editorial title H1 (the exemplar's opening) may precede it. The retired machine header (a bare version-title line, a backlink, a version-date line) stays gone.
+- Every entry opens with a frontmatter block of search metadata, per the Frontmatter Contract in SKILL.md section 5. The editorial title H1 (the exemplar's opening) may follow the block, and then the prose starts with the summary narrative. The retired machine header (a bare version-title line, a backlink, a version-date line) stays gone.
 - Lead with **why** the release matters, never with technical stats.
 - Structure tells a story: what the release does, why it exists, what is new at a glance, then the detail, then what you must do.
 
 ### Compact Format (under 10 changes, non-breaking)
 
 ```markdown
+---
+title: "{component} v{VERSION}"
+description: "{What the release changed, in one or two plain sentences of 250 characters at most.}"
+trigger_phrases:
+  - "{component} v{VERSION}"
+  - "{component} {VERSION}"
+  - "{Topic phrase: 2-6 words from this entry that name what changed}"
+importance_tier: "normal"
+contextType: "general"
+---
+
 {Summary paragraph: 1-3 sentences. What this release does, and why it matters to the person using it. No file paths, no counts of files or tests.}
 
 > Spec folder: `{path}` (Level {N})
@@ -56,9 +67,22 @@ Nested packet-local changelogs are a different output mode and use the spec-kit 
 
 Include the spec-folder line only when the release has a spec folder. Add a short `## Why This Release` section (2-4 sentences) between the summary and the at-a-glance list when the motivation is not obvious from the summary alone.
 
+The frontmatter's `{component}` is the `name:` in the owning folder's `SKILL.md`. With an editorial title H1, `title` becomes `{component} v{VERSION}, {editorial title}`. A Skilled release entry declares `v{VERSION} release notes` and `skilled v{VERSION}` as its identity phrases, and titles itself by its H1 or `Skilled v{VERSION}`.
+
 ### Expanded Format (10+ changes, major, or breaking)
 
 ```markdown
+---
+title: "{component} v{VERSION}"
+description: "{What the release changed, in one or two plain sentences of 250 characters at most.}"
+trigger_phrases:
+  - "{component} v{VERSION}"
+  - "{component} {VERSION}"
+  - "{Topic phrase: 2-6 words from this entry that name what changed}"
+importance_tier: "normal"
+contextType: "general"
+---
+
 {Opening narrative: 1-5 paragraphs telling the story of the release in plain prose. What the release does, in one breath per theme. No headers interrupt this opening.}
 
 > Spec folder: `{path}` (Level {N})
