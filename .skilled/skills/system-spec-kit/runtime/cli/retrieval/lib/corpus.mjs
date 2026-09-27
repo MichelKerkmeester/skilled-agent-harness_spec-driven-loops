@@ -20,13 +20,14 @@ import { compareCodeUnits } from './normalize.mjs';
 /**
  * Walk roots, in the order they are visited. `.skilled/hooks`
  * carries the goal contract documents, which an operator asks for by name and
- * which no skill document restates in full. Root `README.md`
+ * which no skill document restates in full. `.skilled/changelog/skilled` carries
+ * the framework release notes, which an operator asks for by version. Root `README.md`
  * and the five runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`,
  * `.pi`) are deliberately excluded from both lanes; see
  * `references/retrieval/retrieval-conventions.md` for the full coverage table
  * and the reason for every root decision.
  */
-export const CORPUS_ROOTS = Object.freeze(['specs', '.skilled/skills', '.skilled/hooks']);
+export const CORPUS_ROOTS = Object.freeze(['specs', '.skilled/skills', '.skilled/hooks', '.skilled/changelog/skilled']);
 
 /**
  * The corpus roots for one repository, spelled under the source root it carries.
