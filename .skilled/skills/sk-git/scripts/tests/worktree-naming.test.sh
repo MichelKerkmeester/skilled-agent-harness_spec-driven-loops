@@ -219,15 +219,21 @@ expect_rc "empty TMP guard aborts before cd" 1 _regression_empty_tmp_guard
 PROV="$TMP/prov"
 TREE="$PROV/tree"
 mkdir -p "$PROV/scripts" "$PROV/bin" "$TREE/needs-install" \
-  "$TREE/needs-build" "$TREE/already-built/dist"
+  "$TREE/needs-build" "$TREE/already-built/dist" "$TREE/spec-kit-only" \
+  "$TREE/spec-kit-and-real/node_modules/@spec-kit/shared"
 TREE="$(cd "$TREE" && pwd -P)"
 cp "$NAMING" "$PROV/scripts/worktree-naming.sh"
 cat > "$PROV/scripts/worktree-provision-paths.txt" <<'EOF'
 needs-install
 needs-build  dist/index.js
 already-built  dist/index.js
+spec-kit-only
+spec-kit-and-real
 EOF
 printf '{"dependencies":{"left-pad":"1.0.0"}}\n' > "$TREE/needs-install/package.json"
+printf '{"dependencies":{"@spec-kit/shared":"file:../shared"}}\n' > "$TREE/spec-kit-only/package.json"
+printf '{"dependencies":{"@spec-kit/shared":"file:../shared","left-pad":"1.0.0"}}\n' \
+  > "$TREE/spec-kit-and-real/package.json"
 printf '{}\n' > "$TREE/needs-build/package.json"
 printf '{}\n' > "$TREE/already-built/package.json"
 : > "$TREE/already-built/dist/index.js"
@@ -236,7 +242,7 @@ cat > "$PROV/bin/npm" <<'EOF'
 printf '%s %s\n' "$(basename "$PWD")" "$*" >> "$NPM_LOG"
 case "${1:-}" in
   ci|install)
-    mkdir -p node_modules/left-pad
+    mkdir -p node_modules/left-pad node_modules/@spec-kit/shared
     ;;
   run)
     [ "${2:-}" = build ] || exit 0
@@ -277,6 +283,15 @@ run_second_fixture_provision() {
   [ "$build_lines_after" -eq "$BUILD_LINES_BEFORE" ] && [ "$build_lines_after" -eq 1 ]
 }
 expect_rc "second run exits 0 and adds no build line" 0 run_second_fixture_provision
+
+# A @spec-kit/* link alone must trigger an install, yet beside a real
+# dependency it must not stand in for that dependency.
+install_lines_for() {
+  awk -v pkg="$1" '$1 == pkg && ($2 == "install" || $2 == "ci") { count++ } END { print count + 0 }' "$NPM_LOG"
+}
+expect_eq "spec-kit-only installs once across both runs" "1" "$(install_lines_for spec-kit-only)"
+expect_eq "spec-kit-and-real installs although its link was present" "1" "$(install_lines_for spec-kit-and-real)"
+expect_eq "needs-build declares nothing and is never installed" "0" "$(install_lines_for needs-build)"
 
 NOOP_TREE="$PROV/noop-tree"
 mkdir -p "$NOOP_TREE/needs-build"
