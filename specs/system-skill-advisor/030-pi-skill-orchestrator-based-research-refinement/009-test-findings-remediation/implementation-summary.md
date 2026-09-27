@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation"
-    last_updated_at: "2026-09-27T05:05:00Z"
+    last_updated_at: "2026-09-27T06:00:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Made the Codex hook installer removal-only"
-    next_safe_action: "Operator runs install-codex-hooks.mjs once"
+    recent_action: "Deleted the stale jcode Codex hook entry"
+    next_safe_action: "Operator runs the installer, then re-trusts"
     blockers: []
     key_files:
       - ".skilled/bin/install-codex-hooks.mjs"
@@ -72,7 +72,7 @@ An OpenCode session now gets the advisor brief and the status tool, which it nev
 
 **cli-cursor (F6, F8).** Commit `ac156a7112` names `gemini-3.8-flash-high` and documents that a `--sandbox enabled` dispatch cannot reach the advisor daemon and gets a degraded `local-scorer` answer.
 
-**The installer removes the duplicate Codex hook entries (F5).** The writer was `.skilled/bin/install-codex-hooks.mjs` in write mode, which copied all 18 project entries into `~/.codex/hooks.json`. Codex also loads `.codex/hooks.json` for this trusted checkout, so every hook ran twice. A live Codex run from the checkout started 16 SessionStart hooks: the project file's 6, the global copy's 6 and 4 third-party ones. The global copy's commands also `cd` into this checkout, so they ran this repository's hooks in Codex sessions started anywhere. The operator chose a removal-only installer on 2026-09-27. It now removes repo-owned entries and orphans from the global file, keeps every third-party entry, never adds, and backs up before any write. `--check` reports `duplicate=N` while a copy remains. Eleven docs that described the old copy contract, or told a tester to look for the repo hooks in the global file, now say Codex reads the checkout's `.codex/hooks.json`. The one write to `~/.codex/hooks.json` is the operator's, under Known Limitations.
+**The installer removes the duplicate Codex hook entries (F5).** The writer was `.skilled/bin/install-codex-hooks.mjs` in write mode, which copied all 18 project entries into `~/.codex/hooks.json`. Codex also loads `.codex/hooks.json` for this trusted checkout, so every hook ran twice. A live Codex run from the checkout started 16 SessionStart hooks: the project file's 6, the global copy's 6 and 4 third-party ones. The global copy's commands also `cd` into this checkout, so they ran this repository's hooks in Codex sessions started anywhere. The operator chose a removal-only installer on 2026-09-27. It now removes repo-owned entries and orphans from the global file, keeps every third-party entry, never adds, and backs up before any write. `--check` reports `duplicate=N` while a copy remains. Eleven docs that described the old copy contract, or told a tester to look for the repo hooks in the global file, now say Codex reads the checkout's `.codex/hooks.json`. The installer's one write to `~/.codex/hooks.json` is the operator's, under Known Limitations. At the operator's request the session deleted one stale third-party entry there, the jcode SessionStart hook.
 
 ### Files Changed
 
@@ -96,6 +96,7 @@ An OpenCode session now gets the advisor brief and the status tool, which it nev
 | cli-external-orchestration `codex-hook-parity.md` | Modified | Current Codex hook loading, adapter count and packet path; step 4 runs from the checkout and step 5 checks removal |
 | `.skilled/bin/install-codex-hooks.mjs`, `.skilled/bin/tests/install-codex-hooks-source-root.test.cjs` | Modified | Removal-only installer, with its tests rewritten to the new contract |
 | `.codex/SYNC.md`, `.codex/hooks/README.md`, `.skilled/bin/README.md`, `.skilled/hooks/README.md`, `hook-install/README.md`, `codex-watchdog/README.md`, cli-codex `README.md`, `references/hook-contract.md`, scenario CX-016 and its index row | Modified | Codex reads the trusted checkout's `.codex/hooks.json`, and the installer removes copies of it from the global file |
+| `~/.codex/hooks.json`, the operator's global file outside the repository | Modified | The stale jcode SessionStart entry removed at the operator's request, after a backup to `~/.codex/hooks.json.bak-jcode-2026-09-27T05-48-23Z` |
 | `evidence/` | Created | Rerun reports, the dispatch ledger, the briefs and the native hook records |
 
 `runtime/` means `.skilled/skills/system-skill-advisor/runtime/`.
@@ -108,7 +109,7 @@ An OpenCode session now gets the advisor brief and the status tool, which it nev
 
 The orchestrator verified each phase 8 finding against the code or a rerun before writing a brief. Each code finding got an implementer brief and a verifier brief with disjoint file sets and base commit `fa4f76d881`. Grok 4.7 xhigh fast through cli-cursor implemented, and GPT-6 Luna max fast through cli-codex verified, including a reverse check that the new test fails against the base code. Opus agents wrote the scenario and doc fixes. The orchestrator treated every verifier verdict as a claim and reran the gate itself when a verifier could not, since the Codex workspace sandbox refuses socket `listen` with EPERM and has no network for `npx`.
 
-F5's installer change followed the same pattern on base `44dcdc2f82`. Grok implemented it, Luna verified it, and an Opus agent rewrote the docs. The orchestrator ran the read-only checks against the real global file itself.
+F5's installer change followed the same pattern on base `44dcdc2f82`. Grok implemented it, Luna verified it, and an Opus agent rewrote the docs. The orchestrator ran the read-only checks against the real global file itself. When the operator then asked for the stale jcode entry to go, the orchestrator backed the file up, deleted that one group, and reran the read-only checks and a live Codex run.
 
 The rerun dispatched each of the nine scenarios in cli-pi (MiMo v2.6 Pro high), cli-opencode (MiMo v2.6 Pro high), cli-devin (SWE 2 high), cli-cursor (Grok 4.7 high) and cli-codex (GPT-6 Luna high), with `SKILL_ADVISOR_DEBUG=1` so each runtime's native advisor calls land in the diagnostics JSONL.
 
@@ -150,6 +151,7 @@ Native delivery during the reruns, from the diagnostics JSONL and each tester's 
 | Leave the spec-kit shim silent and read the diagnostic from the JSONL | The shim has not forwarded its child's stderr since before July 2026, and the JSONL is the observable channel |
 | Record `rr-iter3-093` in the divergence ledger instead of changing a scorer | Neither scorer changed. The Python side drifted with the live skill graph and native stayed on the gold skill, which the ratchet's own contract says to record |
 | Make the installer removal-only, and leave its one run against the real file to the operator | The operator chose this on 2026-09-27 over removing the copy by hand, which a later write-mode run would have undone. Codex never needs a global copy while it loads the project file. The session never writes `~/.codex/hooks.json`, so it proved the change with read-only `--check` and `--dry-run` runs |
+| Delete the jcode entry from `~/.codex/hooks.json`, and nothing else there | The operator asked for it on 2026-09-27. Its binary is gone and it failed at every Codex session start. The request named that one entry, so the 18 repository copies stay with the installer run |
 | Keep a `structure` drift flag | A change that names no entry, such as an empty group being dropped, would otherwise print `DRIFT` with an empty list |
 | Run the parity scenario's live Codex step from the checkout, under a perl alarm | Once the global copy is gone, a fresh temp project has no repo hooks, and `timeout` is not installed on macOS. The perl form is what the dispatch harness already uses |
 | Add no daemon-side deduplication of identical requests | Removing the duplicate registration removes the race |
@@ -179,6 +181,7 @@ Native delivery during the reruns, from the diagnostics JSONL and each tester's 
 | Installer against the real `~/.codex/hooks.json`, read-only | `--check` prints `DRIFT (duplicate=18)` and exits 1. `--dry-run` removes 18, finds 0 orphans and keeps 26 third-party entries. The file was byte-identical before and after |
 | Codex loads the checkout's `.codex/hooks.json` | A live `codex exec -C <checkout>` started 16 SessionStart hooks: the project file's 6, the global copy's 6 and 4 third-party ones. Its gate state file decodes to the run's session id. A plain `codex exec` from the checkout, without the hook-trust bypass flag, started the same 16 |
 | The eleven F5 docs | `validate_document.py` 0 issues on each. A list of 24 stale phrases matches the old text in every file at HEAD and nothing now. Luna's first verify failed on two true points, both fixed. Its re-check confirmed the fixes |
+| jcode entry removal (`evidence/f5/jcode-removal.txt`) | The diff from the backup removes only the jcode group. `--check` still prints `DRIFT (duplicate=18)`, and `--dry-run` removes 18, finds 0 orphans and keeps 25. A plain `codex exec` from the checkout then ran UserPromptSubmit 7 of 7 and Stop 9 of 9, as before, and SessionStart 6 of 6, where the run before the removal started 16 and one failed. Six is the project file's own count. The installer, run on a temp copy, moves none of the 25 hooks it keeps |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -219,7 +222,9 @@ Native delivery during the reruns, from the diagnostics JSONL and each tester's 
    | Stop | none | 10 | `node .skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` |
    | Stop | none | 10 | `bash .skilled/scripts/session-cleanup.sh` |
 
-   It keeps every other entry: the nodeterm `codex.sh` hooks, the GitKraken `gk ai hook run --host codex` hooks, the orca `codex-hook.sh` hooks and the jcode `setup-hotkey` SessionStart hook. The live Codex run logged one failed SessionStart hook without naming it. The likely one is the jcode entry, because `~/.local/bin/jcode` no longer exists. It is third-party, so the installer leaves it for the operator.
+   It keeps every other entry, each at the position it holds now: the nodeterm `codex.sh` hooks, the GitKraken `gk ai hook run --host codex` hooks and the orca `codex-hook.sh` hooks. The stale jcode `setup-hotkey` SessionStart entry failed at every Codex session start, because `~/.local/bin/jcode` no longer exists. The operator had the session delete it on 2026-09-27, after a backup to `~/.codex/hooks.json.bak-jcode-2026-09-27T05-48-23Z`.
+
+   Codex keys hook trust by position: `~/.codex/config.toml` holds a `trusted_hash` for each `<file>:<event>:<group>:<hook>`. Deleting the first SessionStart group moved every later one up a place, so Codex now treats the global SessionStart hooks as new or changed and skips them. A plain `codex exec` from the checkout started 6 SessionStart hooks, the project file's count, where 16 ran before. The installer moves none of the hooks it keeps. Run it first, then start `codex` once in a terminal and trust the hooks its startup review lists, or trust them later with `/hooks`. Expect three: nodeterm, GitKraken and orca. Trusting before the installer run would also re-trust the six SessionStart copies, and every session would run them twice again until the installer removes them. To undo the jcode deletion instead, copy the backup back over `~/.codex/hooks.json`.
 2. **Cursor delivers no native advisor line under `cursor-agent -p`.** A probe on Cursor `2026.09.26-dd393fe`, with its own workspace and hook file, logged `sessionStart` and `sessionEnd` but never `beforeSubmitPrompt` or `stop`. The repository registers the advisor hook under `beforeSubmitPrompt` and the 457 harness passes the Cursor adapter, so this is a host limit, as cli-cursor scenario CU-014 records. The Cursor scenario runs pass on the CLI and test paths.
 3. **A Cursor `--sandbox enabled` dispatch gets a degraded advisor answer.** The sandbox cannot reach the daemon socket under `/tmp/system-skill-advisor/`, so the CLI answers from its local scorer. cli-cursor documents this, and a dispatch that needs the live answer runs with the sandbox disabled.
 4. **The Codex workspace-write sandbox cannot run the socket tests.** `listen` returns EPERM there, so the launcher tests ran outside it.
