@@ -2,9 +2,7 @@
 title: "{{TITLE}}"
 description: "{{DESCRIPTION}}"
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "{{CHANGELOG_IDENTITY_PHRASE}}"
 importance_tier: "normal"
 contextType: "implementation"
 ---

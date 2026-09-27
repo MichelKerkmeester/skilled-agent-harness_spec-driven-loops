@@ -57,6 +57,7 @@ interface NestedChangelogData {
   level: string;
   title: string;
   description: string;
+  identityPhrase: string;
   summary: string;
   includedPhases: PhaseRollupEntry[];
   added: string[];
@@ -90,6 +91,10 @@ Examples:
   node nested-changelog.js .opencode/specs/system-spec-kit/024-compact-code-graph/029-review-remediation --write
   node nested-changelog.js 024-compact-code-graph --mode root --json
 `;
+
+// A search phrase past ten tokens stops reading like something a person types,
+// so an identity phrase keeps at most nine words before its closing "changelog".
+const MAX_IDENTITY_WORDS = 9;
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -639,6 +644,62 @@ function buildOutputPath(rootSpecFolder: string, specFolder: string, mode: Neste
   return path.join(changelogDir, `changelog-${packetPrefix}-${path.basename(specFolder)}.md`);
 }
 
+function stripNumberGroups(value: string): string {
+  let stripped = value;
+  for (let count = 0; count < 3 && /^\d{3}[a-z]?-/.test(stripped); count += 1) {
+    stripped = stripped.replace(/^\d{3}[a-z]?-/, '');
+  }
+  return stripped;
+}
+
+function slugWords(value: string): string[] {
+  return stripNumberGroups(value).split('-').filter(Boolean);
+}
+
+/**
+ * Derive the phrase a reader types to find a packet changelog: the owning
+ * folder's words, then the entry's own words, then "changelog". Folder numbers
+ * repeat across tracks and mean nothing in a search, so they are dropped.
+ * Where the owner's last words repeat the entry's first words they are written
+ * once, and past the word limit the owner gives way from its end, so a query
+ * for the entry's own name still matches.
+ */
+function buildIdentityPhrase(outputPath: string): string {
+  const normalized = normalizeSlashes(outputPath);
+  const stem = path.basename(normalized, '.md').replace(/^changelog-/, '');
+  const entryWords = slugWords(stripNumberGroups(stem).replace(/(^|-)root$/, ''));
+  const directory = path.dirname(normalized);
+  const ownerFolder = path.basename(directory) === 'changelog'
+    ? path.basename(path.dirname(directory))
+    : path.basename(directory);
+  let ownerWords = slugWords(ownerFolder);
+
+  const joinWords = (): string[] => {
+    let overlap = Math.min(ownerWords.length, entryWords.length);
+    while (
+      overlap > 0
+      && !ownerWords.slice(ownerWords.length - overlap).every((word, index) => word === entryWords[index])
+    ) {
+      overlap -= 1;
+    }
+    const words = [...ownerWords, ...entryWords.slice(overlap)];
+    return words[words.length - 1] === 'changelog' ? words.slice(0, -1) : words;
+  };
+
+  let words = joinWords();
+  while (words.length > MAX_IDENTITY_WORDS && ownerWords.length > 0 && entryWords.length > 0) {
+    ownerWords = ownerWords.slice(0, -1);
+    words = joinWords();
+  }
+  if (words.length > MAX_IDENTITY_WORDS) {
+    words = words.slice(0, MAX_IDENTITY_WORDS);
+  }
+  if (words.length === 0) {
+    throw new Error(`Cannot derive a changelog identity phrase from ${outputPath}`);
+  }
+  return [...words, 'changelog'].join(' ');
+}
+
 /** Build a packet-local changelog payload for a spec root or child phase folder. */
 function buildNestedChangelogData(specFolderPath: string, options: Pick<CliOptions, 'mode' | 'outputPath'>): NestedChangelogData {
   const specFolder = resolveSpecFolder(specFolderPath);
@@ -669,12 +730,13 @@ function buildNestedChangelogData(specFolderPath: string, options: Pick<CliOptio
   const includedPhases = mode === 'root' ? buildIncludedPhases(rootSpecFolder) : [];
   const relativeSpecFolder = normalizeSlashes(path.relative(CONFIG.PROJECT_ROOT, specFolder));
   const relativeRootSpecFolder = normalizeSlashes(path.relative(CONFIG.PROJECT_ROOT, rootSpecFolder));
+  const relativeOutputPath = normalizeSlashes(path.relative(CONFIG.PROJECT_ROOT, outputPath));
 
   return {
     mode,
     specFolder: relativeSpecFolder,
     rootSpecFolder: relativeRootSpecFolder,
-    outputPath: normalizeSlashes(path.relative(CONFIG.PROJECT_ROOT, outputPath)),
+    outputPath: relativeOutputPath,
     date: new Date().toISOString().slice(0, 10),
     level,
     title: mode === 'root'
@@ -683,6 +745,7 @@ function buildNestedChangelogData(specFolderPath: string, options: Pick<CliOptio
     description: mode === 'root'
       ? `Chronological changelog for the ${humanTitle} spec root.`
       : `Chronological changelog for the ${humanTitle} phase.`,
+    identityPhrase: buildIdentityPhrase(relativeOutputPath),
     summary,
     includedPhases,
     added: changeBullets.added.length > 0 ? changeBullets.added : ['No new additions recorded.'],
@@ -705,6 +768,7 @@ function generateNestedChangelogMarkdown(data: NestedChangelogData): string {
   return renderTemplate(templatePath, {
     TITLE: data.title,
     DESCRIPTION: data.description,
+    CHANGELOG_IDENTITY_PHRASE: data.identityPhrase,
     DATE: data.date,
     SPEC_FOLDER: data.specFolder,
     ROOT_SPEC_FOLDER: data.rootSpecFolder,

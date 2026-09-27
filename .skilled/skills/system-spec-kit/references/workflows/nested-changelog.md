@@ -44,6 +44,18 @@ node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changel
 | `root` | The target folder is a spec root | `<spec-folder>/changelog/changelog-<packet>-root.md` |
 | `phase` | The target folder is a direct phase child | `<parent-spec>/changelog/changelog-<packet>-<phase-folder>.md` |
 
+### Search Metadata
+
+Each rendered changelog carries one identity phrase in `trigger_phrases`, so a lookup by packet and phase name finds it. The generator derives the phrase from the output path:
+
+1. Take the filename stem, drop `changelog-` and up to three leading number groups, then drop a trailing `root`.
+2. Take the owner: the folder that holds `changelog/`, or the parent folder when the file sits deeper inside a changelog tree. Drop its number groups too.
+3. Write the owner's words, then the entry's words. Where the owner's last words repeat the entry's first words, write them once.
+4. Past nine words, trim the owner from its end. The entry's own words always survive whole.
+5. End with `changelog` unless the words already end with it.
+
+A packet folder `042-search-overhaul` gets `search overhaul changelog` for its root changelog and `search overhaul ranking fix changelog` for its `003-ranking-fix` phase. Both templates carry the phrase as the `{{CHANGELOG_IDENTITY_PHRASE}}` placeholder rather than a fixed phrase, because a fixed phrase in a template names every packet's changelog at once.
+
 ---
 
 ## 4. EVIDENCE STACK

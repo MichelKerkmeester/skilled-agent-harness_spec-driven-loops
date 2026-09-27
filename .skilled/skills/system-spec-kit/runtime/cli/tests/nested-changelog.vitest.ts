@@ -199,4 +199,51 @@ The review remediation phase aligned the bootstrap contract, tightened checklist
     expect(markdown).toContain('Ship schema fix');
     expect(markdown).toContain('Save extra review notes');
   });
+
+  it('names a phase changelog by its packet and phase words', () => {
+    makeTempProjectRoot();
+    const rootSpec = path.join(CONFIG.PROJECT_ROOT, 'specs', 'sk-doc', '061-skilled-release-changelog');
+    const phaseSpec = path.join(rootSpec, '002-changelog-findability');
+    writeFile(path.join(rootSpec, 'spec.md'), '# Feature Specification: Skilled Release Changelog');
+    writeFile(path.join(phaseSpec, 'spec.md'), '# Feature Specification: Changelog Findability');
+
+    const data = buildNestedChangelogData(phaseSpec, { mode: 'auto', outputPath: null });
+    const markdown = generateNestedChangelogMarkdown(data);
+
+    expect(data.mode).toBe('phase');
+    expect(data.identityPhrase).toBe('skilled release changelog findability changelog');
+    expect(markdown).toContain('  - "skilled release changelog findability changelog"');
+    for (const phrase of ['phase changelog', 'nested changelog', 'phase completion']) {
+      expect(markdown).not.toContain(`"${phrase}"`);
+    }
+  });
+
+  it('names a root changelog by its packet words alone', () => {
+    makeTempProjectRoot();
+    const rootSpec = path.join(CONFIG.PROJECT_ROOT, 'specs', 'sk-doc', '061-skilled-release-changelog');
+    writeFile(path.join(rootSpec, 'spec.md'), '# Feature Specification: Skilled Release Changelog');
+
+    const data = buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: null });
+    const markdown = generateNestedChangelogMarkdown(data);
+
+    expect(data.mode).toBe('root');
+    expect(data.identityPhrase).toBe('skilled release changelog');
+    expect(markdown).toContain('  - "skilled release changelog"');
+    for (const phrase of ['root changelog', 'packet changelog', 'nested changelog']) {
+      expect(markdown).not.toContain(`"${phrase}"`);
+    }
+  });
+
+  it('trims a long packet name and keeps the phase words whole', () => {
+    makeTempProjectRoot();
+    const rootSpec = path.join(CONFIG.PROJECT_ROOT, 'specs', 'sk-doc', '140-alpha-beta-gamma-delta-epsilon-zeta-eta-theta');
+    const phaseSpec = path.join(rootSpec, '004-review-remediation-pass');
+    writeFile(path.join(rootSpec, 'spec.md'), '# Feature Specification: Long Packet Name');
+    writeFile(path.join(phaseSpec, 'spec.md'), '# Feature Specification: Review Remediation Pass');
+
+    const data = buildNestedChangelogData(phaseSpec, { mode: 'auto', outputPath: null });
+
+    expect(data.identityPhrase).toBe('alpha beta gamma delta epsilon zeta review remediation pass changelog');
+    expect(data.identityPhrase.split(' ')).toHaveLength(10);
+  });
 });
