@@ -1328,6 +1328,211 @@ describe('fanout-merge.cjs — script', () => {
     ]);
   });
 
+  it('keeps a short registry and counts the gap when no iteration matches', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-no-match-');
+    const lineageDir = join(baseDir, 'lineages', 'grok');
+    mkdirSync(join(lineageDir, 'deltas'), { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'findings-registry.json'),
+      `${JSON.stringify({
+        keyFindings: [
+          'No new classifier phase ships. D3 already covers the 0.8B server.',
+          'Deem transport is its own client (route c), later, and does not threshold.',
+          'Do not threshold raw temperature 1.0. Health does not show the calibration file. deem-ctl has no pin.',
+        ],
+      })}\n`,
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      [
+        JSON.stringify({ type: 'iteration', iteration: 1, findingsCount: 5, newInfoRatio: 0.9 }),
+        JSON.stringify({ type: 'iteration', iteration: 2, findingsCount: 6, newInfoRatio: 0.95 }),
+        JSON.stringify({ type: 'iteration', iteration: 3, findingsCount: 4, newInfoRatio: 0.85 }),
+      ].join('\n') + '\n',
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deltas', 'iter-001.jsonl'),
+      [
+        '{"type":"finding","id":"N-grok-01-1","label":"Do not serve deem-9b-v1; no shared published judgment with the served 0.8B","verdict":"drop","question":"A"}',
+        '{"type":"finding","id":"N-grok-01-2","label":"Do not threshold raw temperature-1.0 probabilities from deem-0.8-v1","verdict":"later","question":"A"}',
+      ].join('\n') + '\n',
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deltas', 'iter-002.jsonl'),
+      [
+        '{"type":"finding","id":"N-grok-02-1","label":"Translator in Python jev-cli for criteria to options/levels and value/level back to noul/score","verdict":"next","question":"A"}',
+        '{"type":"finding","id":"N-grok-02-2","label":"Do not treat jevctl TYPESAFE_BASE_URL as cli-deem","verdict":"drop","question":"G"}',
+      ].join('\n') + '\n',
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deltas', 'iter-003.jsonl'),
+      [
+        '{"type":"finding","id":"N-grok-03-1","label":"Do not use Deem MCP tools for context reduction","verdict":"drop","question":"C"}',
+        '{"type":"finding","id":"N-grok-03-2","label":"Compaction-boundary two-noul keep/drop that throws on a missing answer","verdict":"later","question":"C"}',
+      ].join('\n') + '\n',
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
+    expect(payload).not.toHaveProperty('reconstruction_warnings');
+    const merged = JSON.parse(readFileSync(join(baseDir, 'findings-registry.json'), 'utf8')) as {
+      metrics: { sourceFindings: number; reconstructionGaps: number };
+    };
+    expect(merged.metrics).toMatchObject({ sourceFindings: 3, reconstructionGaps: 12 });
+  });
+
+  it('counts the gap on a kept registry when reconstruction throws', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-throw-gap-');
+    const lineageDir = join(baseDir, 'lineages', 'alpha');
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'findings-registry.json'),
+      `${JSON.stringify({
+        keyFindings: [
+          { id: 'r1', title: 'registry finding one' },
+          { id: 'r2', title: 'registry finding two' },
+        ],
+      })}\n`,
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      [
+        JSON.stringify({ type: 'iteration', run: 1, iteration: 1, findingsCount: 5, findings: ['only structured finding'] }),
+        JSON.stringify({ type: 'iteration', run: 2, iteration: 2, findingsCount: 3 }),
+      ].join('\n') + '\n',
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
+    expect(payload.reconstruction_warnings).toEqual([
+      expect.objectContaining({ lineage: 'alpha', type: 'lineage_reconstruction_failed' }),
+    ]);
+    const merged = JSON.parse(readFileSync(join(baseDir, 'findings-registry.json'), 'utf8')) as {
+      keyFindings: Array<{ title: string }>;
+      metrics: { reconstructionGaps: number };
+    };
+    expect(merged.keyFindings.map((f) => f.title).sort()).toEqual([
+      'registry finding one',
+      'registry finding two',
+    ]);
+    expect(merged.metrics.reconstructionGaps).toBe(1);
+  });
+
+  it('rebuilds a short registry from delta finding records', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-short-registry-');
+    const lineageDir = join(baseDir, 'lineages', 'deepseek');
+    mkdirSync(join(lineageDir, 'deltas'), { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'findings-registry.json'),
+      `${JSON.stringify({
+        keyFindings: [
+          { id: 'f-budget-2200', title: 'Advisor child effective budget is 2200 ms then SIGKILL to {}' },
+          { id: 'f-precompact-1800', title: 'PreCompact merge warns above 1500 ms against an 1800 ms cap' },
+          { id: 'f-stop-corroboration', title: 'Stop path already corroborates the self-report against graph novelty' },
+          { id: 'f-h14-binding', title: 'Blinded adjudication ships a deep-review severity adapter' },
+          { id: 'f-verifier-switch', title: 'OpenCode goal plugin already selects heuristic or llm verifiers by env' },
+          { id: 'f-version-probe', title: 'Exact jev 0.6.2 version probe closes the package collision' },
+          { id: 'f-no-cache-risk', title: 'No surviving idea touches a provider-cached prompt' },
+          { id: 'f-census-first', title: "The routing arm's first output is a no-key census" },
+        ],
+      })}\n`,
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      [
+        JSON.stringify({ type: 'iteration', run: 1, iteration: 1, findingsCount: 6, newInfoRatio: 0.85 }),
+        JSON.stringify({ type: 'iteration', run: 6, iteration: 6, findingsCount: 5, newInfoRatio: 0.68 }),
+      ].join('\n') + '\n',
+      'utf8',
+    );
+    const iter001FindingLines = [
+      '{"type":"finding","id":"f-iter001-grader-shape","label":"D4 grader contract is {score, confidence, parse_status, dim_id, rationale, evidence}; only grader.score is consumed","iteration":1,"source":".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:198-226"}',
+      '{"type":"finding","id":"f-iter001-parse-status","label":"Harness parse_status vocabulary is ok/dim_mismatch/fallback_*/failed; failures already return score 0 with parse_status failed","iteration":1,"source":".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs:222-284"}',
+      '{"type":"finding","id":"f-iter001-refusal-pattern","label":"run-benchmark refuses an unavailable grader at startup with stderr plus exit 2 (family-collision precedent)","iteration":1,"source":".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:610-623"}',
+      '{"type":"finding","id":"f-iter001-exit-map","label":"Exit-code mapping for a Jev grader: 0 judgment, 3 operator step, 4 retryable never a judgment, 2 usage no quota, 1 inspect","iteration":1,"source":".skilled/skills/cli-jev/cli-usage/SKILL.md:167-174"}',
+      '{"type":"finding","id":"f-iter001-sentinel-budget","label":"Completion sentinel internal check timeout is 1200 ms; live Jev call cannot be shown to fit the live path","iteration":1,"source":".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs:90-94"}',
+      '{"type":"finding","id":"f-iter001-score-normalization","label":"Jev score returns zero-based position possibly fractional; D4 needs caller-owned normalization to [0,1]","iteration":1,"source":".skilled/skills/cli-jev/cli-usage/SKILL.md:162-164"}',
+    ];
+    const iter006FindingLines = [
+      '{"type":"finding","id":"f-iter006-front-door","label":"Compiled-routing front door stdout carries a single legal JSON shape and fails to a legacy sentinel; synchronous on every dispatch","iteration":6,"source":".skilled/bin/compiled-route.cjs:25-47"}',
+      '{"type":"finding","id":"f-iter006-clarify-set","label":"Clarify decision is formed by modes within ambiguityDelta; contract requires two to four alternatives","iteration":6,"source":".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs:199-218"}',
+      '{"type":"finding","id":"f-iter006-thirteen-rows","label":"Only 13 clarify/defer gold rows across all hubs; too few to prove a Jev win","iteration":6,"source":"context/measurement-digest.md H7 (digest claim)"}',
+      '{"type":"finding","id":"f-iter006-offline-permissive","label":"Offline CLI seams (alignment below 50, level flags, post-save review) permit an advisory line; they lack gold and frequency, not permission","iteration":6,"source":".skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts:503-521"}',
+      '{"type":"finding","id":"f-iter006-shortlist","label":"Wave-2 shortlist by wiring cost: advisor arm, stop replay, severity replay, goal mode, alignment suggestion, level flags","iteration":6,"source":"synthesis of iterations 2-6"}',
+    ];
+    writeFileSync(join(lineageDir, 'deltas', 'iter-001.jsonl'), `${iter001FindingLines.join('\n')}\n`, 'utf8');
+    writeFileSync(join(lineageDir, 'deltas', 'iter-006.jsonl'), `${iter006FindingLines.join('\n')}\n`, 'utf8');
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
+    expect(payload).not.toHaveProperty('reconstruction_warnings');
+    const merged = JSON.parse(readFileSync(join(baseDir, 'findings-registry.json'), 'utf8')) as {
+      keyFindings: Array<{ title: string }>;
+      metrics: { sourceFindings: number; reconstructionGaps: number };
+    };
+    const copiedLabels = [...iter001FindingLines, ...iter006FindingLines].map(
+      (line) => (JSON.parse(line) as { label: string }).label,
+    );
+    expect(merged.keyFindings.map((finding) => finding.title).sort()).toEqual([...copiedLabels].sort());
+    expect(merged.metrics).toMatchObject({ sourceFindings: 11, reconstructionGaps: 0 });
+  });
+
+  it('fails closed on a symlinked delta file', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-linked-delta-');
+    const outsideDir = makeTempDir('fanout-merge-research-delta-target-');
+    const lineageDir = join(baseDir, 'lineages', 'alpha');
+    mkdirSync(join(lineageDir, 'deltas'), { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'findings-registry.json'),
+      `${JSON.stringify({ keyFindings: [{ id: 'r1', title: 'registry finding' }] })}\n`,
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, iteration: 1, findingsCount: 2 })}\n`,
+      'utf8',
+    );
+    const targetPath = join(outsideDir, 'iter-001.jsonl');
+    writeFileSync(
+      targetPath,
+      '{"type":"finding","label":"outside finding","iteration":1}\n{"type":"finding","label":"second outside finding","iteration":1}\n',
+      'utf8',
+    );
+    symlinkSync(targetPath, join(lineageDir, 'deltas', 'iter-001.jsonl'));
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain('delta source must be a real file');
+    expect(existsSync(join(baseDir, 'findings-registry.json'))).toBe(false);
+  });
+
   it('fails closed on malformed lineage state instead of merging the valid prefix', async () => {
     const baseDir = makeTempDir('fanout-merge-research-malformed-');
     const lineageDir = join(baseDir, 'lineages', 'alpha');
