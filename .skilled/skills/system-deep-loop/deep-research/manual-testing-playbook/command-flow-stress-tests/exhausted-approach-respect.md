@@ -116,7 +116,7 @@ diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.skilled/commands/deep/research.md:307-317` | command differences include externalized state and negative knowledge |
+| `.skilled/commands/deep/assets/deep-research-presentation.txt:379-388` | command differences include externalized state and negative knowledge |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:197-217` | resume classification and event |
 | `.skilled/agents/deep-research.md:77-97` | read state and hard-block missing state |
 | `.skilled/agents/deep-research.md:113-130` | focus selection and exhausted approach handling |

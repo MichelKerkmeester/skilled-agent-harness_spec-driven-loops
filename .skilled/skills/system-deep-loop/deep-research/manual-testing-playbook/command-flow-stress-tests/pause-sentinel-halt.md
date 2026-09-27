@@ -102,7 +102,7 @@ diff /tmp/cp-049-pre.txt /tmp/cp-049-post.txt > /tmp/cp-049-tripwire.diff; echo 
 
 | File | Anchor |
 |---|---|
-| `.skilled/commands/deep/research.md:176-185` | command output contract names research packet state |
+| `.skilled/commands/deep/assets/deep-research-presentation.txt:233-236` | command output contract names research packet state |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:400-408` | pause sentinel check |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:513-521` | stop reason normalization |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml:179-195` | lock cleanup applies to halt paths |
