@@ -288,6 +288,20 @@ printf '%s\n' '# Tasks' '<!-- ANCHOR:protocol -->' '| AC-ID | Class | Evidence |
     '| AC-001 | tested | a.sh:2 |' '<!-- /ANCHOR:summary -->' > "$d/tasks.md"
 expect_detail "a resolving legacy citation adds no detail" "none" "$d"
 
+d="$TMP/joined"; mkpacket "$d"; printf 'one\n' > "$d/a.sh"; printf 'one\n' > "$d/b.sh"
+ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | \`a.sh:1,b.sh:1\` | Met | - |
+| AC-002 | REQ-002 | Given x, When y, Then z | \`a.sh:1;missing.sh:1\` | Met | - |"
+expect_detail "citations joined by a comma or semicolon split cleanly" "Unresolved evidence citation(s): AC-002 (missing.sh:1)" "$d"
+
+d="$TMP/longline"; mkdir -p "$d"; printf 'one\n' > "$d/a.sh"
+expect_unresolved "a line number too long to be real does not resolve" "AC-001 (a.sh:18446744073709551617)" "$d" "" "AC-001 (a.sh:18446744073709551617)"
+
+d="$TMP/legacy-ids"; mkpacket "$d"; printf 'one\n' > "$d/a.sh"
+printf '%s\n' '# Tasks' '<!-- ANCHOR:protocol -->' '| AC-ID | Class | Evidence |' '|-------|-------|----------|' \
+    '| AC-001, AC-002 | tested | a.sh:1 |' '| AC-003 | tested | gone.sh:4 |' '<!-- /ANCHOR:summary -->' > "$d/tasks.md"
+expect_detail "a legacy row naming two ids reports only real misses" "Unresolved evidence citation(s): AC-003 (gone.sh:4)" "$d"
+
 echo
 printf '  %d passed, %d failed\n' "$PASS" "$FAIL"
 [[ "$FAIL" -eq 0 ]]
