@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "description": "Machine-readable registry of prompt-engineering frameworks. Each entry is a data-only scaffold (id/name/template/required_slots/output_contract_default) that a slot renderer interpolates against a fixture. Replaces per-rig render() closures so adding a framework is a manifest entry, not new code. Shared slots: {{task}} the work statement; {{signature}} the target function signature; {{constraints}} the framework-neutral guardrail line; {{output_contract}} the framework-neutral return contract.",
+  "description": "Code-task benchmark scaffolds for five of the sk-prompt skill's seven frameworks: RCAF, RACE, CIDI, TIDD-EC and COSTAR. CRISPE and CRAFT have no scaffold, because they fit strategy and planning work rather than a code task. references/patterns-evaluation.md defines all seven and is the source of the framework set. Each entry is a data-only scaffold (id/name/template/required_slots/output_contract_default) that a slot renderer interpolates against a fixture. Replaces per-rig render() closures so adding a framework is a manifest entry, not new code. Shared slots: {{task}} the work statement; {{signature}} the target function signature; {{constraints}} the framework-neutral guardrail line; {{output_contract}} the framework-neutral return contract.",
   "frameworks": [
     {
       "id": "rcaf",
