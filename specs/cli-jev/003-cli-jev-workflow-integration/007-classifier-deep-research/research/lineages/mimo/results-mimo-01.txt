@@ -1,0 +1,70 @@
+== corpus
+files_total=93
+files_main_session=93
+files_subagent=0
+records_in_scope=856226
+records_excluded_after_cutoff=1678
+date_range_min=2026-08-18T13:01:39.508Z
+date_range_max=2026-09-27T06:21:59.585Z
+record_types=agent-name:31872,ai-title:35883,artifact-autoreact-ledger:32,artifact-comment-monitor:10,assistant:154292,atis-latch:34741,attachment:293428,bridge-session:32807,cost-state:52,custom-title:29278,file-history-delta:2034,file-history-snapshot:2250,frame-link:1555,history-suppression:10095,last-prompt:35991,mode:35763,permission-mode:35761,pr-link:20124,queue-operation:14545,system:11534,user:74179
+== usage dedupe
+assistant_records_seen=154292
+unique_message_ids=66498
+== per-assistant-turn token usage (deduped by message.id)
+input_tokens: n=66498 p50=2 p95=32 max=23245 sum=714814
+cache_read_input_tokens: n=66498 p50=384219 p95=887519 max=966814 sum=28770448889
+cache_creation_input_tokens: n=66498 p50=1391 p95=6391 max=966369 sum=327701973
+output_tokens: n=66498 p50=712 p95=3553 max=47030 sum=75678071
+== tool calls
+tool_use_Bash=12172
+tool_use_Edit=826
+tool_use_Read=342
+tool_use_Write=248
+tool_use_Monitor=135
+tool_use_Agent=102
+tool_use_TaskStop=40
+tool_use_ToolSearch=29
+tool_use_SendMessage=29
+tool_use_TaskOutput=16
+tool_use_WebFetch=12
+tool_use_ScheduleWakeup=12
+tool_use_AskUserQuestion=11
+tool_use_ExitPlanMode=7
+tool_use_PushNotification=6
+tool_use_Skill=5
+tool_use_Artifact=4
+tool_use_WebSearch=3
+tool_use_SendUserFile=2
+tool_use_CronCreate=1
+tool_use_CronDelete=1
+tool_use_mcp__system_skill_advisor__advisor_recommend=1
+tool_use_mcp__code_mode__search_tools=1
+tool_use_mcp__code_mode__call_tool_chain=1
+tool_use_mcp__system-spec-memory__memory_match_triggers=1
+== tool calls per human prompt (Read/Grep/Glob/Bash until next human prompt)
+human_prompts=6677
+per_human_turn: n=6677 p50=0 p95=9 max=90 sum=12514
+== Read targets by class
+read_total=342
+read_class_other-file=196
+read_class_other-md=103
+read_class_SKILL.md=33
+read_class_references=10
+== re-reads within one session file
+reread_of_path_already_read=29
+== system records by subtype
+system_subtype_stop_hook_summary=5137
+system_subtype_turn_duration=4575
+system_subtype_away_summary=1100
+system_subtype_local_command=262
+system_subtype_compact_boundary=217
+system_subtype_informational=176
+system_subtype_bridge_status=42
+system_subtype_scheduled_task_fire=25
+== context byte shares by surface (serialized payload lengths)
+attachment-payloads: bytes=462996901 share_pct=71.3
+tool-outputs: bytes=185728321 share_pct=28.6
+system-record-content: bytes=739225 share_pct=0.1
+hook-injected-context: bytes=0 share_pct=0.0
+total_measured_bytes=649464447
+hook_context_events=0

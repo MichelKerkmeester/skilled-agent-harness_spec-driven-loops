@@ -46,12 +46,21 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "research/research.md",
       "context/deem-local.md",
       "context/research-angles.md",
-      "scratch/research-topic-draft.txt",
+      "scratch/research-topic.txt",
       "scratch/synthesis-brief.md",
+      "scratch/phase-brief.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "scratch/research-topic.txt"
+      "scratch/research-topic-draft.txt",
+      "research/orchestration-summary.json",
+      "research/resource-map.md",
+      "research/deep-research-state.jsonl",
+      "research/observability-events.jsonl",
+      "research/deep-research-config.json",
+      "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py",
+      "research/findings-registry.json"
     ],
     "entities": [
       {
@@ -85,6 +94,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "deem-local.md",
         "kind": "doc",
         "path": "context/deem-local.md",
@@ -97,9 +112,9 @@
         "source": "derived"
       },
       {
-        "name": "research-topic-draft.txt",
+        "name": "research-topic.txt",
         "kind": "file",
-        "path": "scratch/research-topic-draft.txt",
+        "path": "scratch/research-topic.txt",
         "source": "derived"
       },
       {
@@ -109,15 +124,57 @@
         "source": "derived"
       },
       {
+        "name": "phase-brief.md",
+        "kind": "doc",
+        "path": "scratch/phase-brief.md",
+        "source": "derived"
+      },
+      {
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
-        "name": "research-topic.txt",
+        "name": "research-topic-draft.txt",
         "kind": "file",
-        "path": "scratch/research-topic.txt",
+        "path": "scratch/research-topic-draft.txt",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.jsonl",
+        "kind": "file",
+        "path": "research/observability-events.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "__init__.py",
+        "kind": "file",
+        "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
         "source": "derived"
       },
       {
@@ -129,17 +186,11 @@
       {
         "name": "Classifier Models",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
         "name": "Local Deem",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -155,69 +206,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Round",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Rounds 1 and 2 asked where Jev, a hosted and keyed typed-judgment model, earns a place here",
     "created_at": "2026-09-27T05:35:24Z",
-    "last_save_at": "2026-09-27T06:27:17.974Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-27T09:37:40.603Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:98c8f13a2b159161e3d2d90abdcd43c7686a2ea74d701ef74f5474481fbdbaea",
+    "source_fingerprint": "sha256:c7c827a01aa7f27594e14d44d9b54c0fc3cf299527241a0dff56e1ab999eba1a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "313352581c3e2052b2ddc6557808768f2badcee55c648a147eb7defc7ad759e7",
+      "spec.md": "4e8b69574e1f1371a4f82d33420f4efbacb7ed315a07332b26bfdc34f1f3db3c",
       "plan.md": "441e739bf4fb0ffa77b4badd4e97e172acc08c3e574bbc0252549471a69a05d9",
-      "tasks.md": "3936ebe2dbd7a45ee113d17d5fbaf954c4b32a0b86ab73a38324b4ff39555fdc",
-      "implementation-summary.md": "5c9a3bb6ae7bfa5e0eab5c8b97c1506d721857dba1535be6a56fa6619a894639"
+      "tasks.md": "dc3ca4f5695463c7ac89186b137440178ad4ae7008b8883c516fd5c4d0aeed38",
+      "implementation-summary.md": "cbed77a85602b30268e7bca3bd25f19bcadd4257eea7a1525b56283e66abefb7",
+      "research/research.md": "7aa0fae1270ef986a417e1be1af727780d63859de0af6c6c92c488c3586a73e7"
     },
     "last_active_at": null
   }

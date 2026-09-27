@@ -870,7 +870,7 @@ Each lead reviewed its lineage's real prompt and angles before launch. The orche
 | ALL-4 | A Deem health check that reads `status` alone passes the stub backend, which serves uniform answers with no model loaded (`DEEM/serve/deem_server.py:137-154`, `:772-777`). A real check parses the `backend` field and refuses `stub`, as `deem-ctl` does |
 | ALL-5 | Vendor figures carry their runtime, precision and device. The 0.8B card's 362 ms and 0.9 GB come from the Rust CPU runtime on its int8 path on x86 (`DEEM/docs/MODEL_CARD_08B.md:18-27`), not from the Python server on MPS that serves here |
 | ALL-6 | Validators, tests and repository modules are never run. A validator baseline comes from counting with `rg` over outputs already on record, or it is UNKNOWN with the method that would measure it |
-| ALL-7 | Transcript counts dedupe usage by `message.id`, because usage repeats on every content block of an assistant message. Report main-session and subagent files apart, use the cut-off `2026-09-27T06:22Z` and print numbers only |
+| ALL-7 | Transcript counts dedupe usage by `message.id`, because usage repeats on every content block of an assistant message. Report main-session and subagent files apart, use the cut-off `2026-09-27T06:22Z` and print numbers only. Clarified on 2026-09-27 during the run: count content blocks such as `tool_use` across every record, because one message's blocks span several records, and dedupe only usage |
 | ALL-8 | The Python `jev-cli` always sends a bearer key and exits 3 without one (`JEVSRC:274-280`, `:90-108`), while Deem does no authentication. A design that points the `custom` provider at Deem squares any placeholder key with "Jev gets no secret" |
 
 ### Per angle

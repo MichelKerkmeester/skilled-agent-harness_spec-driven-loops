@@ -1,0 +1,14 @@
+{
+  "type": "iteration",
+  "iteration": 6,
+  "status": "complete",
+  "focus": "mimo-06: sk-design measured: routing accuracy, rubric labor and usage",
+  "findingsCount": 4,
+  "newInfoRatio": 0.75,
+  "noveltyJustification": "First measurement ground for question F: empty benchmark tree confirmed, 53-scenario harness counted, usage bounds and a zero-call replay slice.",
+  "keyQuestions": ["F"],
+  "answeredQuestions": ["F-part-routing-baseline", "F-part-usage"],
+  "ruledOut": ["inventing a hub routing accuracy", "rubric-scoring classifier before labor is counted"],
+  "timestamp": "2026-09-27T09:00:00Z",
+  "sessionId": "fanout-mimo-1790490452777-942a1f"
+}

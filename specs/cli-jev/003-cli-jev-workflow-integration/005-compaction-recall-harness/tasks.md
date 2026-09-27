@@ -37,7 +37,7 @@ contextType: "implementation"
 - [ ] T001 Operator task: name 10 to 20 Claude Code session files for the census, as a directory or a list of paths outside the repository. The agent never chooses them
 - [ ] T002 [P] Build the spec-kit runtime `dist` for the `--replay` import (`.skilled/skills/system-spec-kit/runtime/`, `npm run build`)
 - [ ] T003 [P] Reopen the seams before porting: `state.ts:31-41` and `:198-306`, `compact.ts:22-26`, `compact-inject.ts:181-190` and `:284`, `session-prime.ts:98` (vendored npm `jevctl` 0.2.3 and `runtime/hooks/claude/`)
-- [ ] T004 [P] Write a stub `jev` in a temporary directory outside the repository that appends its arguments to a log
+- [ ] T004 [P] Write stub `jev` and `cli-deem` (proposed, phase 008) binaries in a temporary directory outside the repository, each appending its arguments to its own log
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -66,7 +66,7 @@ contextType: "implementation"
 
 - [ ] T017 Run `npm test -- --run tests/compaction-recall.vitest.ts` from `.skilled/skills/system-spec-kit/runtime` and read 10 passed and exit 0
 - [ ] T018 Run the no-transcripts and report-inside-transcripts cases and read `no transcripts named` and `refused: report path inside transcript directory`, each with exit 2
-- [ ] T019 Run the census over the operator's named sessions with the stub first on PATH, read the `method:`, `scope:` and `stop:` lines and confirm the stub log is empty
+- [ ] T019 Run the census over the operator's named sessions with both stubs first on PATH, read the `method:`, `scope:` and `stop:` lines and confirm both stub logs are empty
 - [ ] T020 Compare the `scope:` boundary total with an independent parsed count over the same files and read an exact match
 - [ ] T021 Run the key-name grep on the script and the test and read no match
 - [ ] T022 Run `git status --porcelain` and confirm only this phase's files changed and nothing under the named transcripts

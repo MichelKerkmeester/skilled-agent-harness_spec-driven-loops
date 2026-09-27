@@ -1,0 +1,190 @@
+== corpus main-session top-level files
+files=93
+records_in_scope=856579
+records_excluded_after_cutoff=2339
+date_min=2026-08-18T13:01:39.508Z
+date_max=2026-09-27T06:21:59.585Z
+unique_message_ids=66498
+== per-assistant-turn usage (deduped by message.id)
+input_tokens: n=66498 p50=2 p95=32 max=23245 sum=714814
+cache_read_input_tokens: n=66498 p50=384219 p95=887519 max=966814 sum=28770448889
+cache_creation_input_tokens: n=66498 p50=1391 p95=6391 max=966369 sum=327701973
+output_tokens: n=66498 p50=712 p95=3553 max=47030 sum=75678071
+== tool_use blocks (deduped by tool_use id, all records)
+tool_use_Bash=58109
+tool_use_Edit=3301
+tool_use_Read=1984
+tool_use_Write=1503
+tool_use_Agent=956
+tool_use_AskUserQuestion=519
+tool_use_Monitor=282
+tool_use_ToolSearch=241
+tool_use_SendMessage=110
+tool_use_WebFetch=108
+tool_use_Skill=88
+tool_use_TaskStop=86
+tool_use_TaskOutput=45
+tool_use_Grep=33
+tool_use_WebSearch=27
+tool_use_ScheduleWakeup=24
+tool_use_SendUserFile=13
+tool_use_ListAgents=12
+tool_use_ExitPlanMode=10
+tool_use_mcp__code_mode__call_tool_chain=9
+tool_use_Artifact=8
+tool_use_PushNotification=7
+tool_use_Glob=4
+tool_use_SendFeedback=4
+tool_use_mcp__system_skill_advisor__advisor_recommend=4
+tool_use_mcp__claude_ai_Claude_Docs__batch=2
+tool_use_ReadNotifications=2
+tool_use_mcp__code_mode__list_tools=2
+tool_use_mcp__code_mode__register_manual=2
+tool_use_mcp__code_mode__search_tools=2
+tool_use_mcp__system-spec-memory__memory_match_triggers=2
+tool_use_mcp__claude_ai_Claude_Docs__guide=1
+tool_use_CronCreate=1
+tool_use_CronDelete=1
+tool_use_Workflow=1
+tool_use_mcp__system_skill_advisor__advisor_status=1
+tool_use_mcp__system_skill_advisor__skill_graph_scan=1
+tool_use_mcp__system_skill_advisor__advisor_rebuild=1
+== tool calls per human prompt
+human_prompts=6677
+per_human_turn: n=6677 p50=2 p95=40 max=292 sum=60130
+== Read targets by class
+read_total=1984
+read_class_other-file=889
+read_class_other-md=882
+read_class_SKILL.md=141
+read_class_references=71
+read_class_ROUTER.md=1
+== re-reads within one session file
+reread_of_path_already_read=598
+== attachment bytes by type
+attachment_hook_success: count=178497 bytes=355624735
+attachment_prompt_snapshot: count=347 bytes=22957955
+attachment_queued_command: count=2730 bytes=15509844
+attachment_instructions: count=234 bytes=13083095
+attachment_hook_additional_context: count=19588 bytes=12152899
+attachment_total_tokens_reminder: count=63211 bytes=5941366
+attachment_invoked_skills: count=128 bytes=5466630
+attachment_file: count=749 bytes=4749883
+attachment_edited_text_file: count=818 bytes=4311143
+attachment_deferred_tools_delta: count=447 bytes=3210094
+attachment_goal_status: count=763 bytes=3205424
+attachment_async_hook_response: count=5172 bytes=2937904
+attachment_nested_memory: count=106 bytes=2586785
+attachment_deferred_tools_record: count=2636 bytes=2247643
+attachment_skill_listing: count=575 bytes=1811822
+attachment_environment: count=2634 bytes=1639199
+attachment_agent_listing_delta: count=308 bytes=1537354
+attachment_batching_reminder_sent: count=5092 bytes=1023492
+attachment_mcp_instructions_delta: count=302 bytes=764838
+attachment_plan_file_reference: count=47 bytes=520119
+attachment_session_context: count=178 bytes=441760
+attachment_bash_output_audience_note: count=4883 bytes=410172
+attachment_silent_turn_reminder: count=1998 bytes=289710
+attachment_hook_cancelled: count=222 bytes=120071
+attachment_remote_session_change: count=255 bytes=97472
+attachment_task_status: count=159 bytes=94543
+attachment_compact_file_reference: count=288 bytes=87807
+attachment_model: count=185 bytes=49280
+attachment_thinking_drop: count=78 bytes=48255
+attachment_auto_mode: count=215 bytes=27291
+attachment_command_permissions: count=97 bytes=10113
+attachment_date: count=205 bytes=8317
+attachment_hook_non_blocking_error: count=13 bytes=7085
+attachment_date_change: count=142 bytes=6816
+attachment_credential_org: count=57 bytes=4902
+attachment_inlined_image_paths: count=16 bytes=3472
+attachment_plan_mode: count=16 bytes=2936
+attachment_plan_mode_exit: count=16 bytes=2280
+attachment_dynamic_skill: count=1 bytes=816
+attachment_thinking_stripped: count=11 bytes=495
+attachment_read_truncation_notice: count=1 bytes=478
+attachment_auto_mode_exit: count=6 bytes=384
+attachment_plan_mode_reentry: count=2 bytes=222
+== Bash path-class mentions and loads (mentions != proven reads)
+SKILL.md: bash_mentions=3175 bash_loadcmds=2451
+ROUTER.md: bash_mentions=369 bash_loadcmds=237
+references: bash_mentions=2557 bash_loadcmds=2017
+== corpus subagent files under <session>/subagents/
+files=1003
+records_in_scope=300174
+records_excluded_after_cutoff=1725
+date_min=2026-08-18T18:09:07.279Z
+date_max=2026-09-27T06:21:45.387Z
+unique_message_ids=52849
+== per-assistant-turn usage (deduped by message.id)
+input_tokens: n=52849 p50=2 p95=2 max=32 sum=108238
+cache_read_input_tokens: n=52849 p50=175834 p95=460331 max=961742 sum=10829011792
+cache_creation_input_tokens: n=52849 p50=1588 p95=11852 max=629437 sum=196557369
+output_tokens: n=52849 p50=4 p95=200 max=71663 sum=5088155
+== tool_use blocks (deduped by tool_use id, all records)
+tool_use_Bash=47729
+tool_use_Edit=7280
+tool_use_Read=6937
+tool_use_Write=1366
+tool_use_Grep=169
+tool_use_WebFetch=111
+tool_use_Glob=97
+tool_use_Agent=70
+tool_use_ToolSearch=53
+tool_use_Monitor=22
+tool_use_TaskStop=11
+tool_use_WebSearch=7
+tool_use_Skill=6
+tool_use_SendMessage=6
+tool_use_ListAgents=2
+== tool calls per human prompt
+human_prompts=1156
+per_human_turn: n=1156 p50=32 p95=142 max=766 sum=54932
+== Read targets by class
+read_total=6937
+read_class_other-md=3328
+read_class_other-file=3045
+read_class_references=356
+read_class_SKILL.md=197
+read_class_none=6
+read_class_ROUTER.md=5
+== re-reads within one session file
+reread_of_path_already_read=1168
+== attachment bytes by type
+attachment_hook_success: count=82212 bytes=190581498
+attachment_prompt_snapshot: count=774 bytes=23608768
+attachment_instructions: count=355 bytes=22686813
+attachment_skill_listing: count=583 bytes=9402012
+attachment_deferred_tools_delta: count=703 bytes=5563495
+attachment_total_tokens_reminder: count=28065 bytes=2638110
+attachment_hook_additional_context: count=709 bytes=2290457
+attachment_edited_text_file: count=355 bytes=1780517
+attachment_mcp_instructions_delta: count=601 bytes=1729569
+attachment_agent_listing_delta: count=245 bytes=1271182
+attachment_session_context: count=387 bytes=656449
+attachment_deferred_tools_record: count=1312 bytes=334148
+attachment_remote_session_change: count=629 bytes=263746
+attachment_queued_command: count=194 bytes=214545
+attachment_environment: count=393 bytes=185000
+attachment_file: count=20 bytes=178515
+attachment_nested_memory: count=5 bytes=171118
+attachment_model: count=388 bytes=101436
+attachment_auto_mode: count=362 bytes=44861
+attachment_batching_reminder_sent: count=83 bytes=16683
+attachment_read_truncation_notice: count=30 bytes=15012
+attachment_date: count=388 bytes=14761
+attachment_compact_file_reference: count=37 bytes=13242
+attachment_credential_org: count=122 bytes=10492
+attachment_thinking_drop: count=15 bytes=9882
+attachment_bash_output_audience_note: count=104 bytes=8736
+attachment_hook_cancelled: count=19 bytes=6708
+attachment_date_change: count=119 bytes=5712
+attachment_plan_mode: count=26 bytes=5457
+attachment_hook_non_blocking_error: count=7 bytes=5055
+attachment_task_status: count=11 bytes=4326
+attachment_command_permissions: count=4 bytes=400
+== Bash path-class mentions and loads (mentions != proven reads)
+SKILL.md: bash_mentions=2211 bash_loadcmds=1433
+ROUTER.md: bash_mentions=326 bash_loadcmds=212
+references: bash_mentions=1855 bash_loadcmds=1292
+nested_non_subagent_jsonl=-1003

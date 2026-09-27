@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":3,"status":"complete","focus":"grok-03: Outside patterns for context reduction with a local classifier","findingsCount":4,"newInfoRatio":0.85,"noveltyJustification":"Schema source is 2225 bytes versus zero for a hook, and compact.ts:285 fail-opens a missing answer to keep.","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"deep-research","timestamp":"2026-09-27T07:25:00Z"}
+{"type":"finding","id":"N-grok-03-1","label":"Do not use Deem MCP tools for context reduction","verdict":"drop","question":"C"}
+{"type":"finding","id":"N-grok-03-2","label":"Compaction-boundary two-noul keep/drop that throws on a missing answer","verdict":"later","question":"C"}

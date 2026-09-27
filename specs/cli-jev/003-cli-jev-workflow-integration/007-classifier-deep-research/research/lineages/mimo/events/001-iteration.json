@@ -1,0 +1,13 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "status": "complete",
+  "focus": "mimo-01: The main AI's context spend: a counted baseline",
+  "findingsCount": 6,
+  "newInfoRatio": 1.0,
+  "noveltyJustification": "First pass of the lineage; the counted per-turn context baseline is new to all packets.",
+  "keyQuestions": ["C", "H"],
+  "answeredQuestions": ["C-part-baseline", "H-part-baseline"],
+  "timestamp": "2026-09-27T06:50:00Z",
+  "sessionId": "fanout-mimo-1790490452777-942a1f"
+}

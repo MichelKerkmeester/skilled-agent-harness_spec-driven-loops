@@ -56,7 +56,7 @@ Nothing yet. This phase is Planned, and no script, label or measurement exists f
 
 ### Phase 6: goal-criteria-lint
 
-The plan is an advisory lint, `lint-goal-criteria.cjs`, beside `check-goal.cjs` in `sk-create-goal`. It flags criteria that break rule 4 (self-contained) or rule 5 (checkable without opening another file), makes zero Jev calls and always exits 0. A scorer, `score-goal-lint.cjs`, then measures the lint against about 100 criterion lines the operator labels under a rubric they adopt first. `check-goal.cjs` stays unchanged. A Jev arm is built only if the labeled violation rate is at least 0.05. See `spec.md` for the requirements and the rubric candidates, and `plan.md` for the order of work.
+The plan is an advisory lint, `lint-goal-criteria.cjs`, beside `check-goal.cjs` in `sk-create-goal`. It flags criteria that break rule 4 (self-contained) or rule 5 (checkable without opening another file), makes zero model calls and always exits 0. A scorer, `score-goal-lint.cjs`, then measures the lint against about 100 criterion lines the operator labels under a rubric they adopt first. `check-goal.cjs` stays unchanged. A later model arm on Deem or Jev, Deem preferred, is built only if the labeled violation rate is at least 0.05. The lint itself takes no classifier. See `spec.md` for the requirements and the rubric candidates, and `plan.md` for the order of work.
 
 ### Files Changed
 
@@ -70,7 +70,7 @@ The plan is an advisory lint, `lint-goal-criteria.cjs`, beside `check-goal.cjs` 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The planning documents were written from recommendation R20 and proposed phase 006 in `../004-deep-research-expansion/research/research.md`, with the key gate from the parent goal's decision D5.
+Not delivered. The planning documents were written from recommendation R20 and proposed phase 006 in `../004-deep-research-expansion/research/research.md`, with the key gate from the parent goal's decision D5. Research round 3 then amended the later arm for two backends (`../007-classifier-deep-research/research/research.md` section 14, R20 and condition C12), and the parent goal's current D1 holds the gate for each backend.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -82,7 +82,7 @@ Not delivered. The planning documents were written from recommendation R20 and p
 |----------|-----|
 | A separate lint instead of a new `check-goal.cjs` check | `check-goal.cjs` is a completion gate with frozen exit codes. An advisory lint inside it would move `RESULT: PASSED` for every goal |
 | The rubric before any label, chosen by the operator | The recorded base rates run from 1.5% to 79.5% because they measure different failure definitions. A label means nothing until one definition is written down |
-| Zero calls in the first slice | The lexical lint is the build-nothing competitor. A Jev arm has to beat it by a measured F1 gain, and no arm is built below the 5% stop line |
+| Zero calls in the first slice | The lexical lint is the build-nothing competitor. A model arm on either backend has to beat it by a measured F1 gain, and no arm is built below the 5% stop line |
 <!-- /ANCHOR:decisions -->
 
 ---

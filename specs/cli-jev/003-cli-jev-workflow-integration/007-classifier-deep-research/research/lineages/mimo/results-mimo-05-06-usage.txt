@@ -1,0 +1,18 @@
+== main (files=93)
+tool_use_total=67506
+prompt-improve-cmd: skill_tool=0 bash_cmd=14 user_mentions=56 user_records=42
+prompt-family-cmd: skill_tool=0 bash_cmd=14 user_mentions=58 user_records=42
+prompt-improver-name: skill_tool=0 bash_cmd=73 user_mentions=757 user_records=350
+sk-prompt-name: skill_tool=2 bash_cmd=559 user_mentions=5378 user_records=1494
+design-cmd: skill_tool=0 bash_cmd=297 user_mentions=1256 user_records=453
+sk-design-name: skill_tool=1 bash_cmd=3018 user_mentions=17187 user_records=3068
+TEXT-ENHANCE-name: skill_tool=0 bash_cmd=0 user_mentions=30 user_records=6
+== subagent (files=1004)
+tool_use_total=63972
+prompt-improve-cmd: skill_tool=0 bash_cmd=5 user_mentions=144 user_records=86
+prompt-family-cmd: skill_tool=0 bash_cmd=5 user_mentions=147 user_records=88
+prompt-improver-name: skill_tool=0 bash_cmd=56 user_mentions=685 user_records=313
+sk-prompt-name: skill_tool=0 bash_cmd=219 user_mentions=5197 user_records=1070
+design-cmd: skill_tool=0 bash_cmd=128 user_mentions=1755 user_records=678
+sk-design-name: skill_tool=1 bash_cmd=2039 user_mentions=17375 user_records=2721
+TEXT-ENHANCE-name: skill_tool=0 bash_cmd=0 user_mentions=110 user_records=17

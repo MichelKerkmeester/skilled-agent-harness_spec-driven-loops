@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-jev hub move",
+      "cli-jev into cli-classifier",
+      "mode cli-jev over cli-usage",
+      "cli-jev canary replay baseline",
+      "cli-jev git mv whole hub",
+      "cli-classifier two modes",
+      "cli-jev hub move plan",
+      "cli-jev git mv plan",
+      "cli-classifier merge hub files",
+      "cli-jev route replay plan",
+      "cli-jev hub move tasks",
+      "cli-jev replay baseline tasks"
+    ],
+    "key_topics": [
+      "cli-jev",
+      "hub",
+      "move",
+      "cli-classifier",
+      "mode",
+      "cli-usage",
+      "canary",
+      "replay",
+      "baseline",
+      "git",
+      "whole",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-jev/mode-registry.json",
+      ".skilled/skills/cli-jev/SKILL.md",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".hermes/skills/cli-jev/SKILL.md",
+      ".hermes/skills/cli-usage/SKILL.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/README.txt",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-jev/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "serving-closure.manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Build Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Not To Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Decision D2 of the parent goal puts both classifier transports under one hub, but `cli-jev` is its own hub today with one mode",
+    "created_at": "2026-09-27T09:21:55Z",
+    "last_save_at": "2026-09-27T09:30:41.451Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5899818f6a15e96ba39e92340d19b7991b1377b52e8eb4fc421f401195341649",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ae9182ba6682e6a21ea4f395cec3412881786e121238567fa35988ccbb25df23",
+      "plan.md": "42b94a320a0a217b6ffe9a2b4ce9645cbc169eadd5f1b45253f646058437a0a5",
+      "tasks.md": "3a07e57831c5b23bf61299b90718f5eb4ae3354dcdbee479ef3ea1bb3bb5031b",
+      "implementation-summary.md": "e49b50f61a54b2c2f370552333e493d3c0c01973757e960a2b2540e341408f76"
+    },
+    "last_active_at": null
+  }
+}

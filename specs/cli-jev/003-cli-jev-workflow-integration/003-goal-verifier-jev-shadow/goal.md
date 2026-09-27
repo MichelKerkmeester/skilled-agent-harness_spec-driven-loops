@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow"
-    last_updated_at: "2026-09-27T09:00:00Z"
+    last_updated_at: "2026-09-27T12:00:00Z"
     last_updated_by: "phase-amender"
-    recent_action: "Amended the directive to the final synthesis, section 13"
+    recent_action: "Amended the directive for two backends, Deem preferred, per round 3 section 14"
     next_safe_action: "Execute against the completion criteria, Pi census first"
     blockers: []
     key_files: []
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Count the goal verifier's recorded use in Pi, give its heuristic first measured error rates from three zero-call arms and test the free clamp fix, then build a key-gated Jev `choice` arm and a shadow `OPENCODE_GOAL_VERIFIER=jev` mode, inert without a key, only past a gate fixed before the build.
+**Objective:** Count the goal verifier's recorded use in Pi, give its heuristic first measured error rates from three zero-call arms and test the free clamp fix, then build a gated `choice` arm on Deem or Jev, Deem preferred, and a shadow `OPENCODE_GOAL_VERIFIER=deem` or `=jev` mode (proposed), inert without its backend, only past a gate fixed before the build.
 
 ### Decisions
 
@@ -53,14 +53,15 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The heuristic's verdict is the only one that acts in every mode this phase adds. A Jev answer is logged beside it and never applied |
-| D2 | Each slice keeps its own switch. The census and the zero-call arms have none and never spawn `jev`. The offline arm uses `--jev`, and the plugin mode uses `OPENCODE_GOAL_VERIFIER=jev`. Behind either switch, the parent's key gate runs with one `--provider`, `JEV_PROVIDER` or `official`, for every check and call, after one identity line |
-| D3 | The plugin checks the gate once per OpenCode session. Without a key, `jev` mode writes one line at enablement and then acts exactly as `heuristic`. An exit 3 on a live call disables the shadow for the session with one line. Exit 4, a timeout or a malformed answer skip that one record. Every shadow error is caught inside the shadow call, so none reaches the error-to-`blocked` path |
-| D4 | Wrapper rule: a row or verification that the heuristic stops at its length or blocking-language check is never sent to Jev |
-| D5 | The keep threshold in the fifth criterion is fixed now. The Jev arm is built only when the tail-window arm leaves a false `not_met` it cannot fix, the redaction cases pass in three modules and 002 has recorded a per-call latency. The plugin mode is built only on keep |
-| D6 | The operator labels every row and strips secrets before any call. State reaches `jev` on stdin, no key appears on a command line, and no row or message text appears in any record or census output. The plugin mode announces egress at enablement |
+| D1 | The heuristic's verdict is the only one that acts in every mode this phase adds. A Jev or Deem answer is logged beside it and never applied |
+| D2 | Each slice and backend keeps its own switch. The census and the zero-call arms have none and never spawn `jev` or `cli-deem` (proposed). The offline arm uses `--deem` (proposed) or `--jev`, and the plugin mode uses `OPENCODE_GOAL_VERIFIER=deem` or `=jev`. Jev runs behind the parent's key gate with one `--provider`, `JEV_PROVIDER` or `official`, for every check and call, after one identity line. Deem runs behind its health check, which refuses the stub backend and never starts the server. A failed gate never falls over to the other backend |
+| D3 | The plugin checks its backend's gate once per OpenCode session, Deem within 500 ms. With the gate failing, the mode writes one line at enablement and then acts exactly as `heuristic`. A changed Deem commit pair or a Jev exit 3 on a live call disables the shadow for the session with one line. A Jev exit 4, a timeout, a malformed answer or any other Deem failure skip that one record. Every shadow error is caught inside the shadow call, so none reaches the error-to-`blocked` path |
+| D4 | Wrapper rule: a row or verification that the heuristic stops at its length or blocking-language check is never sent to either backend |
+| D5 | The keep threshold in the fifth criterion is fixed now. A model arm is built only when the tail-window arm leaves a false `not_met` it cannot fix. A Jev arm also needs the redaction cases to pass in three modules and 002 to have recorded a per-call latency. The plugin mode is built only on keep, for the backend that kept |
+| D6 | The operator labels every row and strips secrets before any Jev call. State reaches `jev` on stdin, no key appears on a command line, and no row or message text appears in any record or census output. `jev` mode announces egress at enablement, and `deem` mode announces that nothing leaves the machine |
 | D7 | goal-core's `not-met` normalizes to the plugin's `not_met`. Its `unclear` keeps its own report row and folds into `not_met` only inside the two-class table |
 | D8 | The census and the zero-call arms come first. The clamp fix and the redaction fixes go to their owners as findings, and this phase edits neither the clamp nor any redaction rule |
+| D9 | Deem is the preferred backend for the model arm and the shadow mode, because the payload is the operator's conversation and Deem keeps it on the machine. A Deem keep holds only for the commit pair it was measured on |
 
 ### Operator copy
 
@@ -86,11 +87,11 @@ verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
 - [ ] `count-pi-goal-nudges.mjs`, run on a Pi session directory the operator names, first prints its counting method (one `goal-verify-nudge` custom-message record as the unit, the files scanned and the date window), then per-session nudge counts by verdict and reason category with first and last dates. It prints no message text and exits non-zero with a named error on an unknown record type
-- [ ] `score-verifier-labeled-set.cjs` with no flag reads 30 to 50 labeled rows, or prints `stop: fewer than 30 rows`. It runs three zero-call arms on identical rows: the plugin heuristic on the as-ingested text, a tail-window arm on the raw last 1,200 characters and goal-core parity. It prints a confusion table per arm with `unclear` on its own row, errors attributed to the five heuristic checks and a clamp-defect count, and a stub `jev` first on `PATH` logs no call
-- [ ] When the better of the heuristic and tail-window arms has no false `met` and a false `not_met` rate at or below 0.10, the report prints `stop: no headroom`, names the clamp fix for the plugin and goal-core owners and no Jev arm code exists
-- [ ] The Jev arm exists only after a false `not_met` row survives both the tail-window arm and the wrapper rule, redaction cases for `TYPESAFE_API_KEY=` and `SERVICE_TOKEN=` values under 48 characters pass in `opencode-goal.js`, `secret-scrubber.ts` and `goal-core.cjs`, and 002 has recorded a per-call latency. With `--jev` and `jev` missing, a version other than `jev 0.6.2` or `jev auth status --provider <provider>` exiting non-zero, it prints one `jev arm skipped:` line, the zero-call output unchanged and exits 0
-- [ ] The Jev report ends `keep` only if, on each of 3 reruns, the arm's false `not_met` count is at most 0.70 times that of both the heuristic and the tail-window arm, it adds no false `met`, it answers every asked `blocked` row `blocked` and its aggregate flip rate over all measured calls is at most 0.10. Otherwise it ends `drop`
-- [ ] On keep, `OPENCODE_GOAL_VERIFIER=jev` applies the heuristic's verdict, catches every shadow error inside the shadow call and, with the key gate failing, writes one enablement line and the same verdicts as `heuristic`. On a stop or a drop, `.opencode/plugins/opencode-goal.js` is unchanged
+- [ ] `score-verifier-labeled-set.cjs` with no flag reads 30 to 50 labeled rows, or prints `stop: fewer than 30 rows`. It runs three zero-call arms on identical rows: the plugin heuristic on the as-ingested text, a tail-window arm on the raw last 1,200 characters and goal-core parity. It prints a confusion table per arm with `unclear` on its own row, errors attributed to the five heuristic checks and a clamp-defect count, and stub `jev` and `cli-deem` binaries first on `PATH` log no call
+- [ ] When the better of the heuristic and tail-window arms has no false `met` and a false `not_met` rate at or below 0.10, the report prints `stop: no headroom`, names the clamp fix for the plugin and goal-core owners and no model arm code exists
+- [ ] A model arm exists only after a false `not_met` row survives both the tail-window arm and the wrapper rule. A Jev arm also needs redaction cases for `TYPESAFE_API_KEY=` and `SERVICE_TOKEN=` values under 48 characters to pass in `opencode-goal.js`, `secret-scrubber.ts` and `goal-core.cjs`, and 002 to have recorded a per-call latency. With `--jev` and `jev` missing, a version other than `jev 0.6.2` or `jev auth status --provider <provider>` exiting non-zero, it prints one `jev arm skipped:` line. With `--deem` and the Deem health check failing, it prints one `deem arm skipped:` line. Either way the zero-call output is unchanged and it exits 0
+- [ ] A model arm's report ends `keep` only if, on each of 3 Jev reruns or 3 Deem option orders, the arm's false `not_met` count is at most 0.70 times that of both the heuristic and the tail-window arm, it adds no false `met`, it answers every asked `blocked` row `blocked` and its flip rate over all measured calls, across reruns or option orders, is at most 0.10. Otherwise it ends `drop`
+- [ ] On keep, `OPENCODE_GOAL_VERIFIER=deem` or `=jev`, for the backend that kept, applies the heuristic's verdict, catches every shadow error inside the shadow call and, with its backend's gate failing, writes one enablement line and the same verdicts as `heuristic`. On a stop or a drop, `.opencode/plugins/opencode-goal.js` is unchanged
 - [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`, and `git status` shows no change outside the census, fixture builder, fixture, scorer, their tests, this phase folder and, only on keep, the plugin, its supervisor test, `goal-plugin.md` and `ENV-REFERENCE.md`
 <!-- /ANCHOR:completion -->
 
@@ -109,6 +110,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase planned | Done | `spec.md`, `plan.md`, `tasks.md` and this goal authored from research R2 on 2026-09-26 |
 | Phase amended | Done | Amended on 2026-09-27 to the final synthesis, `../004-deep-research-expansion/research/research.md` section 13, with R2 and R4 from section 11. Status stays Planned |
+| Two-backend amendment | Done | Amended on 2026-09-27 for two backends per `../007-classifier-deep-research/research/research.md` section 14 "003-goal-verifier-jev-shadow", R2, the shared gate contract in section 12 and the parent goal's D1, D5 and fourth criterion. Status stays Planned |
 | Pi census | Pending | T024 to T026, the first slice |
 | Labeled set | Pending | The operator's task, T001, after the builder (T027) |
 | Scorer and keep decision | Pending | Nothing built |
@@ -137,6 +139,31 @@ Source: the final synthesis, section 13 "003-goal-verifier-jev-shadow", with R2 
 | Decisions | D2, D3, D5, D6 and D7 rewritten and D8 added. D2 no longer restates the parent's gate |
 | Criteria | Seven criteria replace six: the census criterion and the stop criterion are new, and the others follow the requirement changes above |
 
+### Amendment 2026-09-27, two backends
+
+Source: `../007-classifier-deep-research/research/research.md` section 14 "003-goal-verifier-jev-shadow", R2 in section 12, the shared two-backend gate contract in section 12 and conditions C2, C3, C4, C8, C10 and C14. Approval: section 14 says each amendment waits for the operator. The parent goal settles that: its D1 binds every phase to two backends, its D5 assigns the amendment to an Opus 5.5 high leaf and its fourth criterion requires 003 to carry the two-backend gate. The zero-call slices do not change, and no requirement id was added. One line per change:
+
+| Item | Change |
+|------|--------|
+| `spec.md:3` description | A gated `choice` arm on Deem or Jev and a shadow mode that names its backend |
+| Scope boundary `:48` | The model arm is behind `--deem` or `--jev` and its backend's check. Slice 2 is a `deem` or `jev` value (proposed) |
+| Dependencies `:53`, `:54` | A Deem arm waits on no latency record, since a warm call measured 60 to 80 ms against the 30 s budget. `cli-deem` from phase 008 and a server passing the Deem check join, for the Deem arm only |
+| In Scope `:97`, `:98` | The arm runs Jev over 3 reruns or Deem over 3 option orders. The shadow value names the backend its keep was measured on |
+| Files `:124-129` | The scorer adds `--deem` through `cli-deem` and a fake server in its tests. The plugin's mode set and branch, `goal-plugin.md:70` and `ENV-REFERENCE.md:337` list both values |
+| REQ-003 | The Jev gate is kept. The Deem half is added from the shared text: `cli-deem health` within 2,000 ms, four skip lines, no server start, no key, no fallback |
+| REQ-004 | Blocking language stays away from either backend (carried from the `:97` change) |
+| REQ-006 | For Deem, (a) to (c) hold on each of 3 option orders and (d) is the order-flip rate at most 0.10 (C4). A Deem keep holds per commit pair and requalifies on a new one (C3) |
+| REQ-007 | The redaction cases and egress line apply to the Jev arm. A Deem arm prints "nothing leaves the machine", planned calls and an estimated wall time (C14) |
+| REQ-009 | Deem lines carry the backend, the model id, the commit pair and the option order (C2). The cascade bands are fixed before the first model call, not the first billed call |
+| REQ-010 | The shadow spawns `cli-deem` or `jev` per the mode value, after the heuristic verdict is applied |
+| REQ-011 | For Deem: the check runs once per session within 500 ms and never starts the server. A failed check writes one enablement line, a passing one names Deem and says nothing leaves the machine and a changed commit pair disables the shadow with one line |
+| REQ-014 | For a Deem arm only the tail-window condition remains. The redaction cases and 002's latency record gate the Jev arm. The plugin mode is built for the backend that kept (C10) |
+| Edge cases | Deem check failures, Deem exits after the gate with the `deem arm stopped:` lines (C8), an update mid-session and a busy server |
+| Proof plan, SC-002, SC-003, risks, questions | Carried through to both backends. Two open questions added: the Deem option-order scheme and Deem's accuracy on this judgment |
+| Decisions | D1 to D6 name both backends. D9 is new: Deem is preferred, and a Deem keep holds per commit pair |
+| Criteria | Still seven. Criteria 2 to 6 now name both backends |
+| `plan.md`, `tasks.md`, `implementation-summary.md` | Carried through. T032 and T033 are new for the Deem gate and the Deem arm |
+
 ### Deviations and findings
 
 | Item | Note |
@@ -150,5 +177,8 @@ Source: the final synthesis, section 13 "003-goal-verifier-jev-shadow", with R2 
 | Census count method | The final synthesis counts 1,457 nudges in 28 sessions, dated 2026-07-29 to 2026-08-10. A raw string count of `"customType":"goal-verify-nudge"` on 2026-09-27 found 1,616 in 37 session files of the same Pi directory. The magnitude agrees, so the census must print its unit, files and window and reconcile both figures (T026) |
 | The clamp defect | `DEFAULT_MAX_EVIDENCE_CHARS = 1200` (`opencode-goal.js:42`), the clamp appends `...` (`:386-389`), `:2209` reads a trailing `...` as truncation and `:2308-2311` returns `not_met`. The tail-window arm measures what that costs |
 | Provider split | Judgments take `JEV_PROVIDER` (`jev_cli/__init__.py:307`) while `auth status` and `auth test` default to `official` (`:339`). The parent's D5, amended on 2026-09-27, already names `--provider`, so this phase needed no parent amendment |
+| Title kept | The title still says "Opt-In Jev Shadow Mode", like the folder name, which section 14 keeps. The body names both backends |
+| Deem exits placed in edge cases | 003 keeps its Jev exit handling in the edge cases rather than in a requirement, so the shared contract's Deem exits sit there too. They follow `cli-deem`'s exit codes, which phase 008 proposes |
+| Option-order scheme left open | REQ-006 requires the scheme fixed before the Deem arm runs. Section 14 names none for 003, so it is an open question (T030) |
 | `--value` dropped | The earlier plan's `jev choice ... --value` prints only the pick. REQ-009 needs the pick probability, so the arm parses the default JSON output |
 <!-- /ANCHOR:log -->

@@ -27,7 +27,7 @@ contextType: "research"
 | **Created** | 2026-09-26 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 6 |
+| **Phase** | 4 of 9 |
 | **Predecessor** | 003-goal-verifier-jev-shadow |
 | **Successor** | 005-compaction-recall-harness |
 | **Handoff Criteria** | Round 1 is re-synthesized, all four lineages reach iteration 5, and `research/research.md` ranks every recommendation with its seam, metric, key gate and smallest slice, with every cited `file:line` reopened |

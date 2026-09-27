@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Nobody has measured what a host compaction in this project keeps, so there is no baseline a Jev deletion pass could be judged against",
+    "causal_summary": "Nobody has measured what a host compaction in this project keeps, so there is no baseline a deletion pass on either backend could be judged against",
     "created_at": "2026-09-27T04:39:31Z",
-    "last_save_at": "2026-09-27T04:50:20.931Z",
+    "last_save_at": "2026-09-27T09:35:28.865Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddd3c3c23e33e9afb3dc89a2c956a4a4124b42f11f1e55ee6353396f32396445",
+    "source_fingerprint": "sha256:75d6b75e5a99060fe93c9f6c0de7552c1dae1b03755e654d36b2b0d27078c155",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f9038c73f4ad823bbc31bd9f539b984b38e770e233bcda67a60c8bf06a84b11",
-      "plan.md": "98ff647fb36900c50926682d816d1fc6f3453d6a66bea93283091da5de43e4af",
-      "tasks.md": "156f373a3ad5a56993909f540f91abf2726cd77f172923cd0b903d1d60869300",
-      "implementation-summary.md": "95eedffce5ffd3df6901114e0ef44691597a92743397d5407c9a56eb11756f57"
+      "spec.md": "26774d54d18f9bab0d1d1b7069d6941b9d4d3c15511ae06eb35ab0481789c39a",
+      "plan.md": "a6e54c05a154b729b460eeb2b735f532b355d95d14b4d6c4bd852561937c7216",
+      "tasks.md": "951a2a44b2af93e6a2ceae2e02c1e355cb4b257e7fc171323e4b61fafc442ea6",
+      "implementation-summary.md": "279be0a5832fd9cd93ac849698febadd04657285667088ce100660429cf34f0f"
     },
     "last_active_at": null
   }

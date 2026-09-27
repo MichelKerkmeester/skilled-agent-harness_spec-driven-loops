@@ -1,0 +1,114 @@
+{
+  "lineage": "swe",
+  "sessionId": "fanout-swe-1790490452777-942a1f",
+  "loop": "research",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 10,
+  "stopReason": "maxIterationsReached",
+  "anglesAnswered": 10,
+  "resolvedQuestions": [
+    {
+      "id": "q-cli-deem-slice",
+      "text": "What is the smallest cli-deem slice — wrapper, translator or client?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "answer": "A thin stdlib client to POST /v1/systemone on the run path with an envelope translator to the Jev-shaped result (~180 LOC + fixtures). Wrapper rejected (custom-provider fails request build for choice/score and auth status lies); transparent provider rejected (field names asymmetric). Model id must be pinned to deem-0.8-v1."
+    },
+    {
+      "id": "q-validator-residue",
+      "text": "Which sk-doc validator residue is worth a classifier?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "answer": "Mechanical checks stay deterministic; silent detect_document_type fallback, agent frontmatter content (not shape), non-FQ-MCP severity asymmetry and DQI hollowness are the residues. All classifier forms are advisory sibling scripts; validator exit codes never change."
+    },
+    {
+      "id": "q-routing-seam",
+      "text": "Can a classifier cut work in the resource-routing layer?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "answer": "Bounded only: compiled routing is authoritative behind flag+manifest+policy-hash gates and cli-jev's ROUTER.md is stage1-only. The slice is an offline leaf-route replay runner over existing canary corpora, plus a bounded tie-break arm — never a replacement."
+    },
+    {
+      "id": "q-reduction-seam",
+      "text": "What is the top counted context-reduction seam?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "answer": "The 005 offline compaction census (226 boundaries, ~104 s p50 each). Census first, stop line printed, deletion arm as amendment only if it clears; a live PreCompact classifier is refused (1.8 s budget, deadline-driven)."
+    },
+    {
+      "id": "q-prompt-design-routers",
+      "text": "Where do sk-prompt and sk-design routers admit a classifier?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "answer": "Their INTENT_MODEL scorers are embedded pseudocode executed by the main model; a deterministic port precedes any classifier. The only live-shaped arm is on the zero-score fallback class, behind per-feature switches and an ambiguity corpus."
+    },
+    {
+      "id": "q-best-residue",
+      "text": "Which validator residue builds first as a slice?",
+      "status": "resolved",
+      "resolvedAtIteration": 6,
+      "answer": "Citation drift: 456 file:line citations, each a binary 'does line N support the claim' check in a sibling advisory. Deem preferred (local prose), label ~30 pairs, never a gate."
+    },
+    {
+      "id": "q-hub-shape",
+      "text": "What does cli-classifier look like as files?",
+      "status": "resolved",
+      "resolvedAtIteration": 7,
+      "answer": "A normal parent hub: SKILL.md/README.md/ROUTER.md/description.json/graph-metadata.json/mode-registry.json/hub-router.json/leaf-manifest.json + cli-usage and cli-deem modes. No third tier, no global switch. Move = 53 files / 39 refs / 12 generated surfaces, atomic."
+    },
+    {
+      "id": "q-probe-shared",
+      "text": "Two-backend probe: shared or duplicated?",
+      "status": "resolved",
+      "resolvedAtIteration": 8,
+      "answer": "Contract now, file at the third BUILT caller (row 27 applied: 0 built, 2 designed-certain, 3 gated). Home: .skilled/bin/backend-probe.cjs. Per-process memo only — cross-run cache is wrong because deem-ctl updates swap weights."
+    },
+    {
+      "id": "q-build-order",
+      "text": "What is the backend-neutral build order?",
+      "status": "resolved",
+      "resolvedAtIteration": 9,
+      "answer": "Step 0 spec text; step 1 six parallel zero-call artifacts (~1,500 LOC); step 2 cli-deem standalone leaf (~440); step 3 six gated arms in gate-cheapness order; step 4 extraction wave. Total ~2,600-3,100 LOC + 120 doc lines."
+    },
+    {
+      "id": "q-first-pr",
+      "text": "What is the first PR-sized slice?",
+      "status": "resolved",
+      "resolvedAtIteration": 10,
+      "answer": "score-jev-tiebreak.mjs census slice only: ~180 LOC + ~120 vitest + ~20 spec lines; --jev answered by printed refusal; three pre-registered exits; rollback = git revert (REQ-006 read-only)."
+    }
+  ],
+  "openQuestions": [
+    "Whether any 005 deletion arm is ever built — the census stop line decides; UNMEASURED by design until it runs.",
+    "Deem accuracy on this repository's judgment classes is unmeasured (LOCAL); every arm is a measurement arm first.",
+    "Which caller is third-built for the probe extraction (005 arm vs lineage slices vs 006 arm) — decided by gate outcomes, not schedule.",
+    "Citation-drift classifier precision on real pairs — needs the ~30-pair label set from step 1.",
+    "Hub-move ordering relative to the later phase arms — organizational, non-blocking."
+  ],
+  "keyFindings": [
+    {"id": "f-swe-001-wire", "text": "Deem and Jev wire shapes are asymmetric; the thin client + envelope translator is the smallest honest path; model pin required (deem-0.8-v1).", "addedAtIteration": 1, "sources": ["deem_server.py handlers", "jev_cli/__init__.py", "deem-ctl", "cli-usage SKILL.md"]},
+    {"id": "f-swe-002-validators", "text": "16 checks across six validator tools + five naming scripts; residues are silent fallback, frontmatter content, severity asymmetry, DQI hollowness, citation drift.", "addedAtIteration": 2, "sources": ["sk-doc validator tools", "naming scripts"]},
+    {"id": "f-swe-003-compiled-routing", "text": "Compiled serving is gated by flag + servingAuthority + exact policyHash/generation; cli-jev ROUTER.md is stage1-only; RESOURCE_MAP selects resources after mode selection.", "addedAtIteration": 3, "sources": ["resolve.cjs", "compiled-route.cjs", "ROUTER.md files"]},
+    {"id": "f-swe-004-census-first", "text": "005's census prints the stop line before any arm; live PreCompact classifier refused on the 1.8 s budget; vendored compact.ts supplies the two-noul-per-call arm blueprint.", "addedAtIteration": 4, "sources": ["005 spec.md", "vendored compact.ts", "PreCompact hook"]},
+    {"id": "f-swe-005-routers", "text": "sk-prompt/sk-design routers are embedded INTENT_MODEL pseudocode scored by the main model; deterministic port first; zero-score fallback is the only live-shaped arm.", "addedAtIteration": 5, "sources": ["sk-prompt/sk-design SKILL.md", "scenario corpora"]},
+    {"id": "f-swe-006-citedrift", "text": "456 file:line citations, binary per-pair judgment, advisory sibling script, Deem-preferred, byte-identical fallback with neither backend.", "addedAtIteration": 6, "sources": ["rg count over .skilled", "validator surface"]},
+    {"id": "f-swe-007-hub", "text": "cli-classifier is a normal two-mode parent hub; the move is a counted 53-file atomic job; hub root cannot host helpers (OVERLAY_FILES={}).", "addedAtIteration": 7, "sources": ["cli-jev tree", "skill-root-metadata-contract.cjs", "leaf-manifest"]},
+    {"id": "f-swe-008-probe", "text": "Probe contract: independent parallel probes (Deem allowlist+pin; Jev REQ-002), 2 s/500 ms budgets, per-process memo, aligned skip lines; extraction at third built caller into .skilled/bin/.", "addedAtIteration": 8, "sources": ["deepseek-01", "002 REQ-002", "006 REQ-012", "BASE1 row 27"]},
+    {"id": "f-swe-009-order", "text": "Five-step dependency order; cli-deem leaf precedes the hub (contests deepseek-10); 'deem arm stopped: server gone' added; ~2,600-3,100 LOC total.", "addedAtIteration": 9, "sources": ["BASE2 §9/§13", "sibling iterations 9-10", "own 1-8"]},
+    {"id": "f-swe-010-firstpr", "text": "First PR = census slice only; stub-silence test is the cross-backend audit template; movable prices both backends; revert-clean.", "addedAtIteration": 10, "sources": ["002 REQ-001/004/005/006", "routing-accuracy dir"]}
+  ],
+  "newIdeas": [
+    {"id": "N-swe-01-1", "text": "cli-deem thin stdlib client to /v1/systemone run path + envelope translator.", "verdict": "build-now (as PR #2)", "addedAtIteration": 1},
+    {"id": "N-swe-01-2", "text": "Wrapper shape via custom provider.", "verdict": "rejected as only slice; documented fallback", "addedAtIteration": 1},
+    {"id": "N-swe-01-3", "text": "Transparent provider translator.", "verdict": "rejected", "addedAtIteration": 1},
+    {"id": "N-swe-03-1", "text": "Leaf-intent choice arm for sk-doc/sk-code resource maps.", "verdict": "conditional on replay corpus", "addedAtIteration": 3},
+    {"id": "N-swe-03-2", "text": "Offline leaf-route replay runner (always-first slice).", "verdict": "build-now candidate", "addedAtIteration": 3},
+    {"id": "N-swe-04-1", "text": "005 deletion arm amendment: two noul per tool call, keepThreshold, --arm-backend, probeBackend.", "verdict": "gated on census stop line", "addedAtIteration": 4},
+    {"id": "N-swe-05-1", "text": "Deterministic port of embedded INTENT_MODEL routers.", "verdict": "build-now (the actual slice)", "addedAtIteration": 5},
+    {"id": "N-swe-05-2", "text": "Classifier arm on zero-score fallback class only.", "verdict": "conditional on ambiguity corpus", "addedAtIteration": 5},
+    {"id": "N-swe-06-1", "text": "Citation-drift advisory scan (--cite-backend, 456 pairs).", "verdict": "build-now candidate after labels", "addedAtIteration": 6},
+    {"id": "N-swe-07-1", "text": "cli-classifier hub mint with cli-usage + cli-deem modes.", "verdict": "build-now architecture; execution gated on second transport packet", "addedAtIteration": 7},
+    {"id": "N-swe-08-1", "text": "Aligned probe contract + skip-line vocabulary now; .skilled/bin/backend-probe.cjs at third built caller.", "verdict": "build-now as contract text", "addedAtIteration": 8},
+    {"id": "N-swe-10-1", "text": "First PR: score-jev-tiebreak.mjs census slice only, printed --jev refusal, three pre-registered exits.", "verdict": "build-now", "addedAtIteration": 10}
+  ]
+}

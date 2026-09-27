@@ -62,7 +62,8 @@ Latency is wall time from a local Python `urllib` client, request to parsed resp
 | Stop | `deem-ctl stop` |
 | Status | `deem-ctl status` (health plus the model and source commits) |
 | Check for a release | `deem-ctl update --check` |
-| Update | `deem-ctl update`: downloads the new model beside the live one, switches `models/current`, restarts a running server, requires one real `choice` decision to pass, restores the previous version on failure (exit 3), and keeps only the live and previous model |
+| Update | `deem-ctl update`: downloads the new model beside the live one, switches `models/current`, and requires one real `choice` decision to pass, starting the server just for that check if it was stopped. On failure it restores the previous version (exit 3), or exits 4 if the restored version does not start. It keeps only the live and previous model |
+| Roll back | `deem-ctl rollback`: returns to the version before the last update and holds the rejected release, so the schedule skips it until a newer one is published. One step only (exit 2 with no previous version) |
 | Remove everything | `rm -rf ~/.local/share/deem` |
 
 Both update paths were tested on 2026-09-27: a staged broken release rolled back to the working version with exit 3 and the server healthy, and a real download switched over, restarted and passed the decision check. `shellcheck` reports nothing.
@@ -70,3 +71,39 @@ Both update paths were tested on 2026-09-27: a staged broken release rolled back
 On the operator's yes, the launchd schedule `com.skilled.deem-update` (every 6 hours and at login) was loaded on 2026-09-27 from `~/Library/LaunchAgents/com.skilled.deem-update.plist`. Its first run exited 0 and logged `current: model 8cbabbb, source 6755b30`. The health check parses the `backend` field and refuses `stub`, because Deem's stub backend also answers `ok` with no model loaded; a stub on a spare port was confirmed to fail it.
 
 **Exposure.** The server sends `Access-Control-Allow-Origin: *` with no authentication (`serve/deem_server.py:809`, `:837`), confirmed live with an `Origin` header on 2026-09-27. It listens on localhost only, but any web page open in the operator's browser can send it requests and read the answers. That exposes compute, not data: the server sees only what is sent to it. Closing it needs a patch to Deem's code or a proxy, which is the operator's call. To stop the schedule: `launchctl bootout gui/$(id -u)/com.skilled.deem-update`, then delete the plist.
+
+## Measured after the run
+
+Measured by the orchestrator on 2026-09-27 after the round-3 fan-out ended, still on model `8cbabbb` and source `6755b30`, since no release landed during the run. Synthetic inputs only, one server, nothing else calling it.
+
+| Measurement | p50 | p95 | Note |
+|-------------|-----|-----|------|
+| `GET /health` and parse, inside a running process | 0.4 ms | 0.9 ms | 50 calls |
+| Fresh `node` process, spawn only | 26.0 ms | 30.8 ms | The cost every hook already pays |
+| Fresh `node` process, spawn plus `fetch` of `/health` | 46.0 ms | 47.4 ms | So a health check adds about 20 ms to a hook that makes it on every prompt |
+| `curl` plus Python parse, as `deem-ctl` checks | 28.3 ms | 30.7 ms | 20 calls |
+| `choice`, 1 client | 65.6 ms | 80.0 ms | 14.9 requests per second |
+| `choice`, 2 concurrent clients | 119.9 ms | 144.2 ms | 16.1 requests per second |
+| `choice`, 4 concurrent clients | 245.5 ms | 281.3 ms | 15.8 requests per second |
+
+- **One request at a time.** Throughput stays flat as clients are added, because the server holds one lock around inference (`serve/deem_server.py:201`, `:236`). Two callers at once each wait for the other.
+- **Deterministic.** The same request returned the same answer in 40 of 40 repeats at every setting below. A flip test has to change the input, the option order or the model commit, because rerunning one input changes nothing.
+- **Option-order averaging.** The server can read each `choice` question under several option orders and average them, set by `DEEM_N_ORDERS` (`serve/deem_server.py:985`, default 1). `deem-ctl` leaves it at 1. On a temporary second instance, stopped afterwards:
+
+| `DEEM_N_ORDERS` | 2 options, p50 | 4 options, p50 |
+|-----------------|----------------|----------------|
+| 1 (served) | 60.2 ms | 62.4 ms |
+| 2 | 94.3 ms | 100.4 ms |
+| 4 | 166.5 ms | 168.1 ms |
+
+The top answer did not change on these two synthetic questions. Whether averaging improves answers on this repository's judgments is unmeasured, so serving stays at 1 unless the operator chooses otherwise.
+
+## Lifecycle changes after the run
+
+The research leads found three gaps in `deem-ctl`, fixed on 2026-09-27. Lineage citations of `deem-ctl` line numbers refer to the version before these changes.
+
+- An update now always proves the new version with one real decision. Before, an update run while the server was stopped switched versions unchecked.
+- A restore that fails to start now says the server is down and exits 4. Before, it still claimed the old version was restored.
+- `deem-ctl rollback` is new, for a release that passes the decision check but answers worse. It holds the rejected release so the six-hourly schedule does not reinstall it.
+
+Each path was tested with staged fake releases, removed afterwards: a good and a broken release with the server stopped and with it running, a rollback both ways, the hold skipping the rejected release, a newer release clearing the hold, a second rollback refused, and a failed restore reported as exit 4. `shellcheck` reports nothing. `update.log` marks the test entries between `TEST BEGIN` and `TEST END` lines.

@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint"
-    last_updated_at: "2026-09-27T05:30:00Z"
-    last_updated_by: "orchestrator-session"
-    recent_action: "Authored the durable directive"
+    last_updated_at: "2026-09-27T12:00:00Z"
+    last_updated_by: "opus-5.5-high-leaf"
+    recent_action: "Amended the later arm for two backends per 007 research section 14"
     next_safe_action: "Operator adopts the rubric, then write the lint"
     blockers: []
     key_files:
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Give `sk-create-goal` rules 4 and 5 their first machine check, a zero-call lexical lint of goal criteria beside `check-goal.cjs` that is scored against about 100 operator labels under a rubric the operator adopts first, with a Jev arm built only past the stop rule.
+**Objective:** Give `sk-create-goal` rules 4 and 5 their first machine check, a zero-call lexical lint of goal criteria beside `check-goal.cjs` that is scored against about 100 operator labels under a rubric the operator adopts first, with a model arm on Deem or Jev built only past the stop rule.
 
 ### Decisions
 
@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | The lint is a separate advisory script, `lint-goal-criteria.cjs`, that always exits 0. `check-goal.cjs` is never edited, its `CHECKS` list keeps four names and its exit codes 0, 1 and 2 are unchanged |
 | D2 | The operator adopts the rubric before any label is written. Every label row carries that rubric's id, and the scorer refuses a labels file with mixed rubrics. Until the operator chooses, `mimo-02-strict-v1` is the working default, not a decision |
-| D3 | The first slice makes zero Jev calls and needs no key. A Jev arm exists only when the labeled violation rate is at least 0.05, the lint's F1 leaves room for a 0.2 gain and 002 has a latency record. It then runs behind `--jev` with parent D5's gate and one `--provider` for every check and call |
+| D3 | The first slice makes zero model calls and needs no key or server, and the lint takes no classifier. A model arm, Deem preferred, exists only when the labeled violation rate is at least 0.05 and the lint's F1 leaves room for a 0.2 gain. A Jev arm also needs 002's latency record. Each backend runs behind its own switch and parent D1 check: `--deem` (proposed) through `cli-deem health` (proposed), never starting the server, and `--jev` with one `--provider` for every check and call. Below 0.05 the scorer prints `r20 model arm not built: labeled_violation_rate<0.05` (proposed) for both backends |
 | D4 | The population skips `z_archive` and every `scratch` path, and the scratch count prints apart |
 | D5 | Label rows store `id` and `text_sha12`, never criterion text |
 | D6 | `create-goal-auto.yaml` gains its one advisory line only with per-rule precision of at least 0.8 and sk-doc's approval |
@@ -85,11 +85,11 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs --all` prints violation counts for rule 4 and rule 5 and a `scratch_excluded=` count, and exits 0, while a stub `jev` first on PATH logs zero invocations
+- [ ] `node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs --all` prints violation counts for rule 4 and rule 5 and a `scratch_excluded=` count, and exits 0, while stub `jev` and `cli-deem` binaries first on PATH log zero invocations
 - [ ] `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` passes, including seven `lint-goal-criteria.test.cjs` cases: rule 4 fail, rule 4 pass, rule 5 fail, rule 5 pass, both failing, a goal with no criteria and a scratch path excluded
 - [ ] `git diff --quiet -- .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` exits 0
 - [ ] `.skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl` holds 100 or more rows, each with `id`, `text_sha12`, `rubric`, `rule4_ok`, `rule5_ok` and `labeler`, and every row has the same `rubric` value
-- [ ] `node .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs --labels .skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl` prints precision, recall and F1 for rule 4 and rule 5, a labeled violation rate with a Wilson 95% interval and a `stale=` count, and prints `r20 jev arm not built: labeled_violation_rate<0.05` if that rate is below 0.05
+- [ ] `node .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs --labels .skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl` prints precision, recall and F1 for rule 4 and rule 5, a labeled violation rate with a Wilson 95% interval and a `stale=` count, and prints `r20 model arm not built: labeled_violation_rate<0.05` if that rate is below 0.05
 - [ ] `grep -n API_KEY` on `lint-goal-criteria.cjs` and `score-goal-lint.cjs` returns no match
 - [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
@@ -110,6 +110,7 @@ and findings belong here.
 | Planning documents | Done | `spec.md`, `plan.md`, `tasks.md` and this goal authored from `004-deep-research-expansion/research/research.md` R20 and its proposed phase 006 |
 | Rubric | Pending | Open question 34 is the operator's. Candidates A to D and the working default are in `spec.md` section 4 |
 | Build | Pending | Nothing is built. The phase is Planned |
+| Two-backend amendment | Done | 2026-09-27: amended for two backends per 007 `research.md` section 14 (`### 006-goal-criteria-lint (Planned, amended)`), R20 and condition C12, and parent goal D1 and D5. The parent's D5 and its fourth criterion direct these amendments, so the operator approval section 14 asks for is already given. The phase stays Planned and keeps its folder name |
 
 ### Deviations and findings
 
@@ -120,4 +121,9 @@ and findings belong here.
 | Test file location | The research places the test beside `check-goal.cjs`. It goes in `scripts/tests/`, where the existing `node --test` command already looks |
 | Scorer input | swe-04's design passes the lint's JSON with `--lint`. That flag stays optional, and without it the scorer runs the lint in process over the active tree, so the criterion above needs only `--labels` |
 | Level 1 has no `acceptance-criteria.md` | The criteria above come from `spec.md` REQ-001 to REQ-010 and its proof plan |
+| Objective and D3 amended | The later arm now runs on Deem or Jev, Deem preferred, and the lint takes no classifier (007 `research.md` section 12 R20, C12). The switch `--deem` and the client `cli-deem` do not exist yet and are marked proposed. Source: 007 `research.md` section 14 and parent goal D1 and D5 |
+| Stop line renamed | `r20 jev arm not built` became `r20 model arm not built` (proposed) in D3, criterion 5 and the trigger phrases of `spec.md`, because the stop is the same for both backends (007 `research.md` section 14, rows `:9`, `:149`, `:191`) |
+| Criterion 1 amended | The zero-call proof now covers stub `jev` and `cli-deem` binaries (007 `research.md` section 14, REQ-006 and SC-002 rows) |
+| Parent decision id | The key gate this phase cited as parent D5 is now parent D1, since the round-3 parent goal renumbered its decisions. `spec.md`, `plan.md`, `tasks.md` and D3 above now cite D1 |
+| Deem arm contract by reference | `spec.md` REQ-012 gains the Deem gate half from section 14's shared text. REQ-013 carries the per-backend call counts and keep rule, and points at the shared gate contract in 007 `research.md` section 12 for Deem exit handling, records, requalification and the payload notice. No requirement id was added |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,44 @@
+{
+  "topic": "Find where a classifier model, Jev hosted or local Deem 0.8B, cuts the main AI's context and manual review work in this repository. Brief, questions A-H and answer shape: specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/spec.md.",
+  "researchTopic": "Find where a classifier model, Jev hosted or local Deem 0.8B, cuts the main AI's context and manual review work in this repository. Brief, questions A-H and answer shape: specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/spec.md. Your label is the last path segment of config.fanout_lineage_artifact_dir. Iteration N takes angle label-NN, two digits (e.g. swe-03, grok-10), from specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/research-angles.md, whose contract governs. Read steer.md in your lineage directory first if it exists, then context/deem-local.md. Write only inside your lineage directory. Never call jev or the Deem server. Cite file:line for every claim.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "divergent": {}
+  },
+  "status": "complete",
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-1790490452777-942a1f",
+    "parentSessionId": "2026-09-27-cli-jev-003-007-fanout",
+    "lineageMode": "new",
+    "generation": 1
+  },
+  "fanout_lineage_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages/glm",
+  "fanout": {
+    "label": "glm",
+    "executor": {
+      "kind": "cli-pi",
+      "model": "glm-5.3-flash",
+      "reasoningEffort": "max"
+    },
+    "iterations": 5,
+    "count": 1,
+    "index": 4
+  },
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "reasoningEffort": "max",
+    "execution": "inline-detached: this process is the executor for every iteration; the workflow's per-iteration executor-dispatch steps are satisfied inline per the launching prompt"
+  },
+  "createdAt": "2026-09-27T06:39:30Z",
+  "completedAt": "2026-09-27T07:13:02Z"
+}

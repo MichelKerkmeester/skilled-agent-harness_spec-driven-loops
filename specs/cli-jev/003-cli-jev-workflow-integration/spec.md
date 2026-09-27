@@ -80,15 +80,15 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 - Adding the Grok 4.7 model id to the cli-cursor allowlist, its tests and its docs, because the research needs a Grok 4.7 lane.
 - Scaffolding the build phases the synthesis proposes as Planned children, with filled documents and no implementation.
 - A second research round: an AI Council review of round 1, a council-based re-synthesis, 20 forced iterations over four model families, a final synthesis, and Planned build phases reconciled with it.
-- A third research round on classifier models, Jev and a local Deem, with a Deem 9B install on the operator's yes, and the Planned build phases reconciled for both backends.
+- A third research round on classifier models, Jev and a local Deem, with Deem 0.8B served on this Mac on the operator's yes and kept current with Deem's releases, the Planned build phases amended for both backends, and the `cli-classifier` hub phases the synthesis proposes.
 
 ### Out of Scope
 
 - Building any recommendation. Each build phase is its own later decision.
-- Changing the `cli-jev` hub or its `cli-usage` transport contract.
+- Changing the `cli-jev` hub or its `cli-usage` transport contract, except the move under `cli-classifier` that phase 009 plans for D2 of `goal.md`.
 - Editing the vendored repositories under `context/`. They are reference material.
 - Storing any key or secret in Jev state, in a digest or in a research artifact.
-- Any feature that calls Jev or changes behavior while `command -v jev && jev auth status --provider <the provider its judgments use>` fails. The check only reads, never prints the key and spends no quota (`cli-usage/SKILL.md:98-102`). Each feature also keeps its own opt-in switch, and with no key it runs exactly as it does today.
+- Any feature that calls a classifier or changes behavior while its backend's check fails. Jev: `command -v jev && jev auth status --provider <the provider its judgments use>`, which only reads, never prints the key and spends no quota (`cli-usage/SKILL.md:98-102`). Deem: the local server passes a health check that refuses the stub backend (`007-classifier-deep-research/context/deem-local.md`). Each feature also keeps its own opt-in switch per backend, and with neither backend it runs exactly as it does today.
 - Pushing or merging the worktree branch. Both are the operator's call.
 
 ### Files to Change
@@ -102,6 +102,9 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts`, `fanout-run.vitest.ts` | Modify | 001 | Cover the new id |
 | `.skilled/skills/cli-external-orchestration/cli-cursor/**` | Modify | 001 | Document the new id and add a changelog entry |
 | `NNN-*/{spec,plan,tasks,goal}.md` for each proposed phase | Create | 002 onward | Planned build phases from the synthesis |
+| `007-classifier-deep-research/{context,scratch,research}/**` | Create | 007 | The Deem install record and measurements, 45 angles, briefs, five lineages and the round-3 synthesis |
+| `002-*`, `003-*`, `005-*`, `006-*` phase docs | Modify | 007 | The two-backend amendments from the round-3 synthesis |
+| `008-cli-classifier-hub/*`, `009-cli-jev-hub-move/*` | Create | 007 | The two new Planned phases from the round-3 synthesis |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -114,12 +117,14 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Context digests and research angles, the Grok 4.7 roster entry, a 30-iteration fan-out over DeepSeek, MiMo and Grok, and a fresh Opus synthesis | Complete |
-| 2 | 002-advisor-jev-tiebreak-arm/ | A zero-call census of the advisor's near-tie rows with three comparators and a power line first, then, offline and by hand, whether a Jev `choice` beats the scorer under a keep rule that can fail. Dormant without a Jev key | Planned |
-| 3 | 003-goal-verifier-jev-shadow/ | A zero-call Pi census of goal-verify nudges, then the verifier's first error rates from three zero-call arms on an operator-labeled set. A Jev arm and an opt-in shadow mode in the OpenCode goal plugin follow only past a gate fixed before the build. Dormant without a Jev key | Planned |
-| 4 | 004-deep-research-expansion/ | Re-synthesize round 1 from the AI Council review, run 20 forced iterations over Grok 4.7, MiMo V2.6 Pro, SWE-2 Max and DeepSeek V4.1 Flash, write the final synthesis and reconcile the Planned build phases | In Progress |
-| 5 | 005-compaction-recall-harness/ | A zero-call census of host compactions over transcripts the operator names: what the stock summary and the recorded brief keep, and a printed stop line that decides whether an offline Jev deletion arm is worth building. Dormant without a Jev key | Planned |
-| 6 | 006-goal-criteria-lint/ | A lexical lint of goal criteria against rules 4 and 5 of `sk-create-goal`, under a rubric the operator adopts before labeling. A Jev arm only past the stop rule. Dormant without a Jev key | Planned |
-| 7 | 007-classifier-deep-research/ | Research round 3 on classifier models, Jev and a local Deem 9B: context reduction, validator judgment calls, sk-prompt, sk-design and a `cli-classifier` hub, over 45 forced iterations on five model families with one Opus 5.5 high lead per lineage, a fresh Opus 5.5 max synthesis and the Planned phases reconciled for both backends | In Progress |
+| 2 | 002-advisor-jev-tiebreak-arm/ | A zero-call census of the advisor's near-tie rows with three comparators and a power line first, then, offline and by hand, whether a Jev or Deem `choice` beats the scorer under a keep rule that can fail, each backend in its own column. Dormant without a Jev key or a healthy local Deem | Planned |
+| 3 | 003-goal-verifier-jev-shadow/ | A zero-call Pi census of goal-verify nudges, then the verifier's first error rates from three zero-call arms on an operator-labeled set. A model arm and an opt-in shadow mode in the OpenCode goal plugin, preferring Deem, follow only past a gate fixed before the build. Dormant without a Jev key or a healthy local Deem | Planned |
+| 4 | 004-deep-research-expansion/ | Re-synthesize round 1 from the AI Council review, run 20 forced iterations over Grok 4.7, MiMo V2.6 Pro, SWE-2 Max and DeepSeek V4.1 Flash, write the final synthesis and reconcile the Planned build phases | Complete |
+| 5 | 005-compaction-recall-harness/ | A zero-call census of host compactions over transcripts the operator names: what the stock summary and the recorded brief keep, and a printed stop line that decides whether an offline deletion arm on either backend is worth building. Dormant without a Jev key or a healthy local Deem | Planned |
+| 6 | 006-goal-criteria-lint/ | A lexical lint of goal criteria against rules 4 and 5 of `sk-create-goal`, under a rubric the operator adopts before labeling. A model arm on either backend only past the stop rule. Dormant without a Jev key or a healthy local Deem | Planned |
+| 7 | 007-classifier-deep-research/ | Research round 3 on classifier models, Jev and a local Deem 0.8B: context reduction, validator judgment calls, sk-prompt, sk-design and a `cli-classifier` hub, over 45 forced iterations on five model families with one Opus 5.5 high lead per lineage, a fresh Opus 5.5 max synthesis and the Planned phases reconciled for both backends | Complete |
+| 8 | 008-cli-classifier-hub/ | Mint the `cli-classifier` hub with `cli-deem` as its first mode, a Node standard-library client for the local Deem server, tested against a fake server first. `cli-jev` stays where it is | Planned |
+| 9 | 009-cli-jev-hub-move/ | Move `cli-jev` into `cli-classifier` as mode `cli-jev` over its unchanged `cli-usage` packet, with a route-replay baseline before and after | Planned |
 
 ### Phase Transition Rules
 
@@ -139,6 +144,9 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 004-deep-research-expansion | 002, 003, 005 and 006 | `research/research.md` ranks R1 and R19 build-now and R2 and R20 next, each with its seam, metric, key gate and first slice. Build order: 002's census first, with 005's census and 003's Pi census beside it, since none makes a call | `validate.sh --strict` passes on 004 |
 | 005-compaction-recall-harness | 006-goal-criteria-lint | Not a hard gate: 006's lexical lint waits only on the operator's adopted rubric and labels | 006's `spec.md` records the adopted rubric before any labeling |
 | 004-deep-research-expansion | 007-classifier-deep-research | The operator approved the round-3 prompt, and `004`'s synthesis is the baseline the new round re-ranks under Deem | `validate.sh --strict` passes on 004 |
+| 007-classifier-deep-research | 002, 003, 005 and 006 | `research/research.md` section 14 lists each phase's two-backend amendment line by line, and the build order is unchanged: 002's census first | `validate.sh --strict` passes on 007 and on each amended phase |
+| 007-classifier-deep-research | 008-cli-classifier-hub | `research/research.md` ranks R23, the `cli-deem` client, next, with its wire verdict settled from code and a live check | `validate.sh --strict` passes on 007 |
+| 008-cli-classifier-hub | 009-cli-jev-hub-move | The hub exists with `cli-deem` routed, and the operator keeps a Deem arm result (research open question 49) | `parent-skill-check` passes on the hub, and a route replay sends a Deem prompt to `cli-deem` |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,13 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "status": "complete",
+  "focus": "mimo-07: The operator's view of two backends, and one measured workflow",
+  "findingsCount": 4,
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "First operator-facing two-backend contract with printed status design, one measured workflow chosen with metric/baseline/harness, and the labor contrast zero-call vs labeling.",
+  "keyQuestions": ["G", "A"],
+  "answeredQuestions": ["G-part-operator-contract", "A-part-lifecycle-ux"],
+  "timestamp": "2026-09-27T09:30:00Z",
+  "sessionId": "fanout-mimo-1790490452777-942a1f"
+}

@@ -1,0 +1,30 @@
+{
+  "topic": "Find where a classifier model, Jev hosted or local Deem 0.8B, cuts the main AI's context and manual review work in this repository. Mimo lineage lens: UX and measurement (context tokens, AI passes and minutes, with counted baselines).",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "artifactDir": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages/mimo",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "off",
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "loopType": "research",
+  "createdAt": "2026-09-27T06:33:55Z",
+  "status": "running",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "mimo-v2.6-pro",
+    "reasoningEffort": "high"
+  },
+  "lineage": {
+    "label": "mimo",
+    "sessionId": "fanout-mimo-1790490452777-942a1f",
+    "lineageMode": "new",
+    "generation": 1
+  },
+  "angles": "context/research-angles.md angles mimo-01 to mimo-10, waves W1 to W4, per-iteration contract section 4 governs",
+  "resource_map": {
+    "emit": true,
+    "resource_map_present": false
+  }
+}
