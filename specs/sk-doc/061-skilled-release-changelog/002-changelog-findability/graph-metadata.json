@@ -39,7 +39,7 @@
       "findability"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/nested-changelog.vitest.ts",
+      ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
+      ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
       ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
       ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
       ".skilled/commands/create/assets/create-changelog-auto.yaml",
-      ".skilled/commands/create/assets/create-changelog-confirm.yaml",
-      ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/nested-changelog.vitest.ts",
-      ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
       ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
       ".skilled/skills/sk-doc/shared/assets/template-rules.json",
       ".skilled/skills/sk-doc/scripts/tests/test_changelog_validator.py",
-      "templates/changelog/phase.md",
-      "references/workflows/nested-changelog.md"
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/mode-registry.json"
     ],
     "entities": [
       {
@@ -100,6 +100,30 @@
         "source": "derived"
       },
       {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/nested-changelog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "phase.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
@@ -124,36 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "create-changelog-confirm.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/create/assets/create-changelog-confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "phase.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/templates/changelog/phase.md",
-        "source": "derived"
-      },
-      {
-        "name": "nested-changelog.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
-        "source": "derived"
-      },
-      {
-        "name": "nested-changelog.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/nested-changelog.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "nested-changelog.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
-        "source": "derived"
-      },
-      {
         "name": "validate_document.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
@@ -169,6 +163,12 @@
         "name": "test_changelog_validator.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/scripts/tests/test_changelog_validator.py",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/mode-registry.json",
         "source": "derived"
       },
       {
@@ -210,8 +210,8 @@
     ],
     "causal_summary": "A spec document is findable because its frontmatter names it: a title, a description and trigger phrases the Gate 1 index turns into lookups",
     "created_at": "2026-09-27T12:01:38Z",
-    "last_save_at": "2026-09-27T13:04:40.326Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-27T15:15:32.076Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f5b6ea76c940985b94ea456fde44c083ae915e5ccdf90995ee3d02592b3d229",
+    "source_fingerprint": "sha256:45ceb8ffc62334d92b3edf6329e5fe16592a7c55fa5ba31edac9f9893a9c2c29",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d6e9a78d1ca9936178e2371fc488226a1682ff80010a52f8f9f28be841e0d3cc",
-      "plan.md": "a1bc4bfb7d228ac055367c0f7d4381b6fbeadba3a7494109507e6da7cfb68971",
-      "tasks.md": "7ad99ffb1a49770ba3420487c715fa415b52146d9e60a93ceb90b4a14570c154",
-      "decision-record.md": "b1da0161cc774c6a59e024e38ce2b9ace62897064e468b7fa704a2d3d0da85f1",
-      "implementation-summary.md": "dd54eccb4c7511b40ff9f32354fedef4e3dc987f504f348bff8a7d19b277bf78"
+      "spec.md": "2e4c94329b18681fd28f7b33956a8a95d5c5c6c57e3517f0469b74d551d0ddec",
+      "plan.md": "3180d9bdadceb9e64f42d5c4c98ea7d1f8673151f920cf92f5f60bdaeb08b871",
+      "tasks.md": "09c1457bdf7d9f2e04ef88fe6ebc4eebe5427f11e4a0191cfcb0adfc13c9b3c5",
+      "decision-record.md": "4fa540a1f69fa13b85ce158d0805df9993f3d3a08d28a0e6d77919a8beb0ccd9",
+      "implementation-summary.md": "6fc2eb9c10e5e444e66e2034bcdef2e5df7873e8b614bb77ae96df4ce67ad691"
     },
     "last_active_at": null
   }

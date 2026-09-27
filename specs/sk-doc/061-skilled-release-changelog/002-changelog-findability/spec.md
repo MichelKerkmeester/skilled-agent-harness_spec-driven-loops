@@ -22,7 +22,7 @@ contextType: "implementation"
 
 Gate 1 can see 1,959 changelog entries, and only 55 of the 587 release and skill entries declare a trigger phrase at all. The 1,372 packet-local entries all declare phrases, but 424 of them carry only the nested template's defaults, so a lookup for "nested changelog" returns 461 exact hits before the workflow reference that explains it. This phase gives every entry the five search keys a spec document carries, derives each entry's identity phrase from its path and teaches sk-create-changelog and the nested generator to write the same metadata into every new entry.
 
-**Key Decisions**: identity phrases are derived from the path by one rule per kind, descriptions are reported from each entry's own opening sentence, and a model writes only the topic phrases and the 15 descriptions that rule cannot report (decision-record.md ADR-001 to ADR-004).
+**Key Decisions**: identity phrases are derived from the path by one rule per kind, descriptions are reported from each entry's own opening sentence, and a model writes only the topic phrases and the 12 descriptions that rule cannot report (decision-record.md ADR-001 to ADR-005).
 
 **Critical Dependencies**: phase 001's edits to sk-create-changelog, the release line and system-spec-kit's changelog must be committed, and the parent must release those paths, before Stage 2 writes them.
 
@@ -34,7 +34,7 @@ Gate 1 can see 1,959 changelog entries, and only 55 of the 587 release and skill
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -90,7 +90,7 @@ A reader who types a changelog's name, version or topic finds that entry first, 
 - sk-create-changelog generating and checking that metadata for every global entry it writes, with its template, both command YAMLs, its playbook and its own changelog entry
 - The nested generator writing a derived identity phrase in place of the template defaults
 - A frontmatter check for changelog entries in `validate_document.py`, with tests
-- A deterministic retrofit of all 1,959 existing entries, with model lanes for topic phrases and the 15 residue descriptions
+- A deterministic retrofit of all 1,959 existing entries, with model lanes for topic phrases and the 12 residue descriptions
 - Proof on a scratch index, since the committed index is the parent's to rebuild
 
 ### Out of Scope
@@ -109,9 +109,12 @@ A reader who types a changelog's name, version or topic finds that entry first, 
 | `.skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md` | Modify | The exemplar note and the examples show the block |
 | `.skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/**` | Create, Modify | A search-metadata category with CHG-011 and CHG-012, and the index section |
 | `.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.0.0.md` | Create | The mode's own entry, written by the mode with the new block |
+| `.skilled/skills/system-spec-kit/changelog/v4.1.2.0.md` | Create | system-spec-kit's entry for the generator change, part of Skilled v4.0.0.2 |
+| `.skilled/skills/sk-doc/changelog/v2.2.1.0.md` | Create | The sk-doc hub's entry for the validator check |
+| `.skilled/skills/sk-doc/sk-create-changelog/SKILL.md`, `.skilled/skills/system-spec-kit/SKILL.md`, `.skilled/skills/sk-doc/SKILL.md` | Modify | Each `version:` line names its component's newest entry |
 | `.skilled/commands/create/assets/create-changelog-auto.yaml` | Modify | Step 4 generates the block, step 5 checks it |
 | `.skilled/commands/create/assets/create-changelog-confirm.yaml` | Modify | The same two steps in the confirm flow |
-| `.skilled/skills/system-spec-kit/templates/changelog/phase.md`, `root.md` | Modify | One `{{TRIGGER_PHRASE}}` member replaces the three template defaults |
+| `.skilled/skills/system-spec-kit/templates/changelog/phase.md`, `root.md` | Modify | One `{{CHANGELOG_IDENTITY_PHRASE}}` member replaces the three template defaults |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` | Modify | Derives the identity phrase and renders it |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/nested-changelog.vitest.ts` | Modify | Happy path plus the root and ten-token edges |
 | `.skilled/skills/system-spec-kit/references/workflows/nested-changelog.md` | Modify | Documents the identity phrase |
@@ -272,10 +275,12 @@ A reader who types a changelog's name, version or topic finds that entry first, 
 
 ## 12. OPEN QUESTIONS
 
-- **Generic phrase removal (operator).** Removing the five template defaults from the 468 packet-local entries that carry them edits existing frontmatter values, which the brief's add-or-complete rule does not cover. Recommendation: remove them, since "nested changelog" alone has 459 entry owners. ADR-005 records both outcomes.
-- **Edit-lane transport (operator).** cli-devin's NEVER rule 1 forbids `--permission-mode dangerous` without explicit user approval. Recommendation: approve it for the one-change edit lanes, or accept cli-pi with `--tools read,edit,write` for those lanes. Judgment lanes need neither, because they write nothing.
-- **Parallel lanes (operator).** cli-devin rule 15 allows parallel dispatches only when the operator authorizes a number. Recommendation: three parallel judgment batches, and edit lanes one at a time.
-- **Component entries (parent).** The nested generator change is a system-spec-kit behavior change and the validator change touches sk-doc. Whether each gets its own changelog entry, and at which version, is the parent's call, since system-spec-kit's changelog is locked.
+All four questions were answered in the Stage 2 release, and none is open.
+
+- **Generic phrase removal (operator).** Approved. The strip pass removed the five template defaults from all 468 carriers, and ADR-005 records the decision as accepted by the parent under the operator's request that every changelog be as findable as a spec document.
+- **Edit-lane transport (operator).** cli-pi. `--permission-mode dangerous` was not approved, so every edit lane ran on cli-pi through opencode-go with `--tools read,edit,write`, `--offline` and `PI_BLACKHOLE_PASSIVE=true`. Judgment lanes ran on cli-devin with `--permission-mode auto`.
+- **Parallel lanes (operator).** Three, for read-only judgment batches only. Edit lanes ran one at a time and never overlapped a judgment round.
+- **Component entries (parent).** Yes. system-spec-kit gets 4.1.2.0 for the generator change, the sk-doc hub gets 2.2.1.0 for the validator check, and sk-create-changelog gets 1.3.0.0. Each `SKILL.md` names its newest entry.
 <!-- /ANCHOR:questions -->
 
 ---

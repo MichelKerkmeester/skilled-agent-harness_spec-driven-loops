@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/061-skilled-release-changelog/002-changelog-findability"
-    last_updated_at: "2026-09-27T12:51:52Z"
+    last_updated_at: "2026-09-27T14:56:00Z"
     last_updated_by: "phase-002-orchestrator"
-    recent_action: "Recorded ADR-001 to ADR-005 from the Stage 1 measurements"
-    next_safe_action: "Parent reviews the ADRs and relays the operator's answers for ADR-004 and ADR-005"
+    recent_action: "Accepted ADR-001 to ADR-005 and recorded the Stage 2 amendments"
+    next_safe_action: "Parent commits the phase"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -23,10 +23,10 @@ _memory:
       fingerprint: "sha256:118e8d206b7446d8ac6cfdc57a912a2b3091f7b85857217bec043e43a35b4f2e"
       session_id: "75aab0e6-dcc7-401b-9d10-f48248374023"
       parent_session_id: null
-    completion_pct: 15
-    open_questions:
-      - "Does the operator approve removing the five template defaults from existing packet-local entries?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Does the operator approve removing the five template defaults from existing packet-local entries? Yes, and all 468 carriers lost them."
 ---
 # Decision Record: Phase 2: changelog-findability
 
@@ -42,9 +42,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-27 |
-| **Deciders** | Phase 002 orchestrator, pending the parent's review |
+| **Deciders** | Phase 002 orchestrator. The parent accepted it in the Stage 2 release |
 
 ---
 
@@ -125,7 +125,7 @@ A reader asks for a changelog by component and version, or by packet and phase, 
 ### Implementation
 
 **What changes**:
-- `nested-changelog.ts` derives the packet phrase and renders it through the templates' `{{TRIGGER_PHRASE}}` member.
+- `nested-changelog.ts` derives the packet phrase and renders it through the templates' `{{CHANGELOG_IDENTITY_PHRASE}}` member. The placeholder is not `{{TRIGGER_PHRASE}}`, because the templates are in the index corpus and that name would have made them the exact owner of "trigger phrase".
 - The retrofit script applies all three rules to the existing entries.
 
 **How to roll back**: revert the phase commit. The dry-run plan lists every file the retrofit wrote.
@@ -141,9 +141,9 @@ A reader asks for a changelog by component and version, or by packet and phase, 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-27 |
-| **Deciders** | Phase 002 orchestrator, pending the parent's review |
+| **Deciders** | Phase 002 orchestrator. The parent accepted it in the Stage 2 release |
 
 ---
 
@@ -165,7 +165,9 @@ A reader asks for a changelog by component and version, or by packet and phase, 
 
 **We chose**: the first sentence of the entry's first prose paragraph, with inline markdown markers stripped, joined by the next sentence when it runs under 60 characters.
 
-**How it works**: a result of 40 to 250 characters with no em dash and no semicolon becomes the description as it stands. 514 of the 529 entries qualify. The other 15, four too short, eight too long and three with a dash, go to a judgment lane.
+**How it works**: a result of 40 to 250 characters with no em dash and no semicolon becomes the description as it stands. Stage 1 measured 514 of the 529 entries as qualifying and 15 as residue.
+
+**Stage 2 amendment**: the retrofit's sample review found that the Stage 1 sentence rule ended a sentence at every stop, so an opening that named `v1.3` or `SKILL.md` lost its start and 123 descriptions read as fragments. A stop inside a word now stays inside the sentence, and the description must begin where the paragraph begins. Under the corrected rule 517 entries qualify and 12 go to a judgment lane: 11 of the first batch's 15, plus one opening that the corrected rule found too long. Five hand-written rollup changelogs, which have no generator title to rebuild a sentence from, use their opening sentence under the same rule.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -189,7 +191,7 @@ A reader asks for a changelog by component and version, or by packet and phase, 
 ### Consequences
 
 **What improves**:
-- 514 descriptions need no model and no faithfulness review.
+- 517 descriptions need no model and no faithfulness review.
 - The ripgrep lane ranks a description hit above a body hit, so a phrase from the summary finds the entry faster.
 
 **What it costs**:
@@ -224,8 +226,8 @@ A reader asks for a changelog by component and version, or by packet and phase, 
 ### Implementation
 
 **What changes**:
-- The retrofit script writes the reported description for 514 entries.
-- A judgment lane writes the 15 residue descriptions, and the checker admits them.
+- The retrofit script writes the reported description for 517 entries.
+- Judgment lanes write the 12 residue descriptions, and the checker admits them.
 
 **How to roll back**: revert the phase commit.
 <!-- /ANCHOR:adr-002-impl -->
@@ -240,9 +242,9 @@ A reader asks for a changelog by component and version, or by packet and phase, 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-27 |
-| **Deciders** | Phase 002 orchestrator, pending the parent's review |
+| **Deciders** | Phase 002 orchestrator. The parent accepted it in the Stage 2 release |
 
 ---
 
@@ -338,9 +340,9 @@ A reader asks for a changelog by component and version, or by packet and phase, 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-27 |
-| **Deciders** | Phase 002 orchestrator, pending the parent's review, which may veto it |
+| **Deciders** | Phase 002 orchestrator. The parent accepted it in the Stage 2 release |
 
 ---
 
@@ -435,9 +437,9 @@ A reader asks for a changelog by component and version, or by packet and phase, 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-27 |
-| **Deciders** | The operator decides the removal. The template change is this phase's |
+| **Deciders** | The parent accepted it in the Stage 2 release, under the operator's request that every changelog be as findable as a spec document |
 
 ---
 
@@ -459,6 +461,8 @@ The nested templates hardcode "phase changelog", "nested changelog" and "phase c
 **We chose**: the templates stop writing the defaults in every case, and existing entries lose them only if the operator approves.
 
 **How it works**: with approval, the retrofit's `--strip-defaults` pass removes the five phrases from entries that have gained their identity phrase. Without approval, REQ-012 is waived by this ADR, and the defaults stay beside the new phrase.
+
+**Outcome**: the operator approved. The strip pass removed 1,337 phrase members from all 468 carriers after each had gained its identity phrase, so AC-014 is live and met.
 <!-- /ANCHOR:adr-005-decision -->
 
 ---
@@ -516,7 +520,7 @@ The nested templates hardcode "phase changelog", "nested changelog" and "phase c
 ### Implementation
 
 **What changes**:
-- `templates/changelog/phase.md` and `root.md` carry one `{{TRIGGER_PHRASE}}` member.
+- `templates/changelog/phase.md` and `root.md` carry one `{{CHANGELOG_IDENTITY_PHRASE}}` member.
 - With approval, the retrofit strips the defaults from the 468 carriers.
 
 **How to roll back**: revert the phase commit.

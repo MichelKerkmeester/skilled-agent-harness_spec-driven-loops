@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/061-skilled-release-changelog"
-    last_updated_at: "2026-09-27T13:13:53Z"
+    last_updated_at: "2026-09-27T15:13:12Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Phase 1 committed and pushed; phase 2 planned and validated"
-    next_safe_action: "Build phase 2, then commit it once its acceptance criteria are met"
+    recent_action: "Both phases built and verified, phase 1 pushed and phase 2 being committed"
+    next_safe_action: "None once phase 2's commits and the index rebuild are pushed"
     blockers: []
     key_files:
       - "specs/sk-doc/061-skilled-release-changelog/001-release-line-split/implementation-summary.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "75aab0e6-dcc7-401b-9d10-f48248374023"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Branch** | `main` |
 | **Parent Spec** | None - this is a top-level phase parent |
@@ -115,7 +115,7 @@ Give the Skilled framework one release line of its own, restore system-spec-kit'
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-release-line-split/ | Give the Skilled release notes their own line under `.skilled/changelog/skilled/`, restore system-spec-kit's component changelog, teach sk-create-changelog the release line and keep Gate 1 finding the notes | Complete |
-| 2 | 002-changelog-findability/ | Make every changelog as findable and searchable as a spec document: search metadata in what sk-create-changelog writes, the same metadata on every existing changelog, and retrieval coverage to match | Draft |
+| 2 | 002-changelog-findability/ | Make every changelog as findable and searchable as a spec document: search metadata in what sk-create-changelog writes, the same metadata on every existing changelog, and retrieval coverage to match | Complete |
 
 ### Phase Transition Rules
 
