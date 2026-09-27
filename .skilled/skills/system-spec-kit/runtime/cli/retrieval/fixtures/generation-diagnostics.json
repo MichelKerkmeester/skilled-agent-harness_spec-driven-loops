@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7749,
-    "ok": 11641,
-    "valid-empty-list": 3637
+    "missing-frontmatter": 7219,
+    "ok": 12181,
+    "valid-empty-list": 3632
   },
-  "documentsScanned": 23081,
+  "documentsScanned": 23086,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7b6cac1b3fca04e861a39d145fdfd7b47e8bda3dfc04c5508f9d23715eb9e335",
+  "manifestHash": "3729d3505b2abce5df64cc6747adb5c81ab560138c1bda717a2b2e7e63e6c3d8",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,265 +32,13 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 28228,
+      "ok": 31592,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
     }
   },
   "rows": [
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.0.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.0.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.2.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.2.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.2.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.2.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v1+/v1.2.5.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v2+/v2.1.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v2+/v2.1.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v2+/v2.1.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v2+/v2.1.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v2+/v2.2.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v2+/v2.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.0.0.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.0.0.2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.0.0.3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.0.0.4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.0.1.3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.1.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.1.2.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.1.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.1.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.2.0.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.2.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.2.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.3.0.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.4.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.5.0.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.5.0.2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.5.0.3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.5.0.4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/changelog/skilled/v3+/v3.6.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
     {
       "category": "missing-frontmatter",
       "line": 2,
@@ -401,84 +149,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.4.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.4.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.4.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.4.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.4.5.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.6.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/changelog/v1.7.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -542,126 +212,6 @@
       "line": 1,
       "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/reports/2026-08-08--manual-testing-playbook--claude/source.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.10.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.11.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.12.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.13.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.5.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.6.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.8.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.1.9.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -2279,174 +1829,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.3.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.3.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.3.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.10.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.5.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.6.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.8.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.4.9.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.6.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.6.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.7.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.7.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.8.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/agent-routing/context-profile.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -3701,54 +3083,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.4.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-cursor/changelog/v1.5.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/agents-skills-rules/agent-mirror-integrity.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -4901,60 +4235,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/availability-probe.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -5270,36 +4550,6 @@
       "line": 1,
       "path": ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-15-phase-008-third-pass/source.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.3.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.4.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -7025,204 +6275,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.10.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.11.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.12.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.13.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.14.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.15.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.15.2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.15.3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.5.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.6.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.8.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.3.9.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.10.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.11.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.12.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.5.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.6.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.8.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.9.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -8435,120 +7487,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.4.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.10.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.11.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.4.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.5.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.6.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.7.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.8.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.9.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/agent-bridge/project-agent-override.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -8929,39 +7867,9 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-jev/changelog/v0.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-jev/changelog/v0.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-jev/cli-usage/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -9145,12 +8053,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-orca/changelog/v0.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-orca/manual-testing-playbook/handoffs/hub-deferral-receipt.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -9214,60 +8116,6 @@
       "line": 2,
       "path": ".skilled/skills/mcp-code-mode/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.0.31.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.5.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-code-mode/changelog/v1.0.8.0.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -9644,78 +8492,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.4.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.5.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.6.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.6.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.7.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.8.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/changelog/v1.8.0.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -9826,12 +8602,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.0.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10025,48 +8795,6 @@
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.10.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.11.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.8.0.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -10276,18 +9004,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-click-up/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.0.1.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10587,24 +9303,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.0.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/daemon-health/daemon-status-diagnose.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10724,18 +9422,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-magicpath/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-magicpath/changelog/v1.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/mcp-tooling/mcp-mobbin/INSTALL-GUIDE.md",
       "reason": "no opening frontmatter delimiter"
@@ -10744,18 +9430,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-mobbin/changelog/v1.1.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10907,12 +9581,6 @@
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-notion/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/mcp-tooling/mcp-notion/changelog/v0.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -11139,18 +9807,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-obsidian/changelog/v0.2.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/headless-notes/create-and-read.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -11284,12 +9940,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-refero/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/mcp-tooling/mcp-refero/changelog/v1.0.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11841,96 +10491,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v3.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v3.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v3.2.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v3.3.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v3.5.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v4.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v4.0.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v4.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v4.2.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v4.2.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v4.2.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/changelog/v4.2.3.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -12136,12 +10696,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -12381,18 +10935,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.0.5.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -12525,18 +11067,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-quality/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -12630,48 +11160,6 @@
       "line": 1,
       "path": ".skilled/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router/source.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.2.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.3.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.4.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.5.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-review/changelog/v1.6.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -12934,18 +11422,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/deployment-forms-video/deployment-routing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -13043,30 +11519,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/sk-communication/benchmark/reply-harness/release-gate.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-communication/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-communication/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-communication/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-communication/changelog/v1.3.0.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -13373,138 +11825,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-design/sk-design-chart/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.10.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.11.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.12.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.13.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.14.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.15.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.16.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.17.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.18.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.19.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.2.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.20.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.21.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.22.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.3.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.4.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.5.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.6.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.7.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.8.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.9.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -13966,24 +12286,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-diagram/changelog/v1.2.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/capture-review/capture-review.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -14135,12 +12437,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-md-generator/changelog/v1.0.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -30069,36 +28365,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-doc/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-doc/changelog/v1.6.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-doc/changelog/v1.7.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-doc/changelog/v1.8.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-doc/changelog/v1.8.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-claude-code.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -30538,24 +28804,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.1.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/leaf-denies-delegation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -30604,42 +28852,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.2.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.3.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.4.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.5.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/benchmark-families/author-behavior-package.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -30682,30 +28894,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.0.0.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -30737,6 +28925,18 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/skip-release-for-component.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/search-metadata/render-nested-identity-phrase.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/search-metadata/write-global-entry-metadata.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -30774,24 +28974,6 @@
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-doc/sk-create-command/changelog/v1.0.1.1.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -30839,30 +29021,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-diff/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-diff/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-diff/changelog/v1.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-diff/changelog/v1.1.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-diff/changelog/v1.1.2.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -30952,30 +29110,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.1.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/changelog/v1.0.1.2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/catalog-structure/create-root-catalog-package.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31025,12 +29159,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-frontmatter/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -31114,24 +29242,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.2.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/add-goal-to-packet-without-goal.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31192,24 +29302,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.1.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31265,30 +29357,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-quality-control/changelog/v1.0.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/audit-and-validation/assess-batch-snapshot.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31337,12 +29405,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/self-explanatory-folder-stays-unchanged.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31380,18 +29442,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/changelog/v1.1.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -31487,30 +29537,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.1.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.3.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31554,18 +29580,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.1.0.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -31692,132 +29706,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/sk-git/benchmark/reports/2026-07-10--live--kimi-2-7/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.0.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.0.2.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.0.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.0.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.0.8.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.0.9.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.1.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.1.2.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.1.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.3.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.3.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.4.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.5.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.5.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-git/changelog/v1.6.0.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -32178,96 +30066,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v1.3.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v2.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v2.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v2.1.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v2.1.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v2.1.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v2.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v2.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-prompt/changelog/v2.3.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v3.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-prompt/changelog/v3.0.1.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -32753,18 +30551,6 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".skilled/skills/sk-vision/changelog/v0.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/sk-vision/changelog/v0.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
       "path": ".skilled/skills/sk-vision/hooks/README.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -33071,30 +30857,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/changelog/v1.0.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/changelog/v2.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/changelog/v3.0.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -33127,78 +30889,6 @@
       "line": 1,
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-005-orchestrate-handoff.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v2.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v2.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v2.1.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v2.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v2.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v2.4.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v2.4.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v2.4.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -33522,156 +31212,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/source.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.10.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.11.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.11.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.12.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.13.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.14.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.15.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.16.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.17.0.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.17.0.1.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.17.1.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.17.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.2.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.2.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.6.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.7.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.8.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.9.0.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -34288,126 +31828,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.10.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.11.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.12.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.13.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.14.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.2.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.6.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.6.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.6.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.6.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.7.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.8.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-research/changelog/v1.9.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -34855,108 +32275,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-008-absorption-probe.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.10.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.10.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.36.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.3.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.6.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.7.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.8.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.9.0.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -35437,48 +32755,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/write-containment/shared-checkout-run.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.3.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.4.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.5.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.5.0.1.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -36344,66 +33620,6 @@
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.10.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.5.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.6.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.8.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/changelog/v0.9.0.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "duplicate-phrase",
@@ -37416,402 +34632,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v1+/v1.2.6.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.0.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.1.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.1.10.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.1.5.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.1.6.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.1.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.1.8.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.1.9.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.10.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.11.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.12.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.13.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.14.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.15.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.16.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.17.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.18.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.19.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.20.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.21.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.22.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.22.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.23.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.24.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.24.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.25.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.26.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.28.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.29.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.3.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.30.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.31.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.4.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.5.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.6.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.7.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.8.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.2.9.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.10.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.11.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.12.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.13.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.14.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.15.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.5.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.6.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.7.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.8.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.0.9.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.3.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v2+/v2.4.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v3+/v3.1.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v3+/v3.3.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v3+/v3.4.2.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v3+/v3.5.0.5.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v3+/v3.7.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v3+/v3.7.1.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v3+/v3.8.0.0.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-spec-kit/changelog/v3+/v3.9.0.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -65170,41 +61990,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/synthesis.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/changelog/001-research-and-doctrine/changelog-001-research-and-doctrine-root.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/changelog/003-advisor-and-codegraph/changelog-003-advisor-and-codegraph-root.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/changelog/004-shared-infrastructure/changelog-004-shared-infrastructure-root.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/system-speckit/027-xce-research-based-refinement/changelog/005-verification-and-remediation/changelog-005-verification-and-remediation-root.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
