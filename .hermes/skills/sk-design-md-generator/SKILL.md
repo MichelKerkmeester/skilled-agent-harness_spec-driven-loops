@@ -311,7 +311,7 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 2. **ALWAYS copy every numeric CSS value verbatim from `tokens.json`.** Hex colors, pixel sizes, font weights, box shadows, border radii, spacing values — every number must match `tokens.json` exactly. This is the cardinal fidelity rule.
 3. **ALWAYS use 6-digit lowercase hex** for every color in DESIGN.md (e.g., `#1a1a2e`, never `#1A1A2E`, `#333`, `rgb()`, or `hsl()`).
 4. **ALWAYS apply stability gates:** L1 and L2 colours in the main token table; L3 colours in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens excluded entirely.
-5. **ALWAYS run `validate.ts` before claiming completion** of any extraction or DESIGN.md edit. Validation checks hex accuracy against `tokens.json`, v3 Style Reference section completeness, Quick-Start fidelity (every Quick Start hex traces to a token, `--page-max-width` matches `tokens.json`), and prose provenance — `isPass()` requires `claimsScore >= 80`.
+5. **ALWAYS run `validate.ts` before claiming completion** of any extraction or DESIGN.md edit. Validation checks hex accuracy against `tokens.json`, v3 Style Reference section completeness, Quick-Start fidelity (every Quick Start hex traces to a token, `--page-max-width` matches `tokens.json`), and prose provenance — the gate passes only with zero hard failures in the `target`, `schema` and `provenance` categories, and `valuesScore` and `claimsScore` print as information.
 6. **ALWAYS include a dark-mode section ONLY when `tokens.json` contains a detected dark-mode palette.** Never infer, derive, or fabricate a dark palette from the light tokens.
 7. **ALWAYS include an accessibility section** drawn from the `tokens.json` a11y data (contrast ratios, focus ring styles, minimum touch-target sizes). If the extractor captured no a11y data, note the absence rather than inventing values.
 8. **ALWAYS confirm tool readiness** before any extract/validate/report invocation: `cd backend && npm install && npx playwright install chromium`. The embedded tool requires Node.js and a Playwright Chromium binary.
@@ -397,7 +397,7 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 - [x] L1 + L2 colours populate the main token table; L3 colours appear in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens are absent.
 - [x] Elevation renders FLAT when there are 0 shadow tokens (states how depth is achieved instead); no false systems asserted.
 - [x] The Quick Start CSS + Tailwind blocks are present and every value traces to a token.
-- [x] `validate.ts` passes with zero hex mismatches, zero missing required sections, Quick-Start fidelity intact, and `claimsScore >= 80`.
+- [x] `validate.ts` passes with zero hex mismatches, zero missing required sections, Quick-Start fidelity intact and zero hard failures in the `target`, `schema` and `provenance` categories.
 - [x] The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
 - [x] The mutating backend entrypoint and validation evidence are named; procedure support does not replace the extract-write-validate boundary.
 

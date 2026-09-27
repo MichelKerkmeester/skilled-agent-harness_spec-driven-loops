@@ -48,7 +48,7 @@ Read top to bottom against the draft Style Reference. The value-bearing sections
 □ No false SYSTEM asserted: no "focus is consistent" when focusIndicator.consistent is false
 □ DO name confidently and infer Similar Brands (grounded inference); NEVER invent a fact or audience
 □ Any necessary inference is labeled [INFERRED] and cites a token
-□ validate.ts passes: score >= 80 AND claimsScore >= 80, zero hex mismatches, no missing sections
+□ validate.ts passes: zero hard failures (target, schema, provenance), zero hex mismatches, no missing sections
 ```
 
 ---
