@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Testing** | Vitest: `runtime/cli/tests/trigger-index.vitest.ts` (49 tests) and `runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts` (7 tests), all passing on 2026-09-27 |
 
 ### Overview
-Five items, in the order the build runs them. First, two exact-path exemptions let the refused rebuild publish. Second, the generator's sidecar paths follow `--out`, so no scratch build writes a tracked file again. Third, the per-document comparison the save path already runs moves into a shared helper, a `--check` mode runs it over the whole corpus and a measurement decides whether the lookup warns too. Fourth, the committed index is rebuilt from a `git archive` of HEAD as the last commit. The fifth item, the score-0 miss shape, is recorded for the owner and not built.
+Five items, in the order the build runs them. First, two exact-path exemptions let the refused rebuild publish. Second, the generator's sidecar paths follow `--out`, so no scratch build writes a tracked file again. Third, the per-document comparison the save path already runs moves into a shared helper, a `--check` mode runs it over the whole corpus and a measurement decides whether the lookup warns too. Fourth, the committed index is rebuilt from a `git archive` of HEAD as the last commit. The fifth item, the score-0 miss shape, went to the owner, who chose option C on 2026-09-27: an opt-in `--scoring-only` lookup flag, passed by the Gate 1 line in the root `AGENTS.md`, with the default output unchanged.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -76,6 +76,7 @@ Corpus markdown under `specs`, `.skilled/skills` and `.skilled/hooks` goes to `w
 | PD-7 | Move the comparison out of `workflow.ts` into `lib/freshness.mjs` and load it through the existing `loadTriggerIndexRetrievalLibrary`. The save's result shape and messages stay as they are | A second copy of the comparison would let the save check and `--check` disagree. The loader already imports two `lib/` modules, so a third follows its pattern |
 | PD-4 | Placement rule: the lookup warns about staleness per call only if the measured cold-lookup p95 plus the measured p95 of a path-only `walkCorpus` stays at or under 200 ms. Otherwise `--check` runs in CI as a report-only step | A per-lookup check must at least list the corpus to see an added document. The rule is fixed now so the measurement cannot be read to fit a preferred answer. Indicative: three path-only walks took 1,853, 2,376 and 1,575 ms on 2026-09-27 |
 | PD-5 | If PD-4 selects a per-lookup check, stop and amend this spec before building | That choice changes `lookup-trigger-index.mjs` and its latency budget, which this spec does not list |
+| PD-8 | The owner's option C is an opt-in `--scoring-only` flag that filters score-0 rows inside `lookup()` before the limit. The exit code needs no new branch: `main()` already exits 1 when no row is left | Filtering before the limit keeps `truncated` and `--limit` about scoring rows. Filtering in `main()` instead would let score-0 rows take limit slots and then vanish. The default path never enters the filter, so the partial-row tests and the recorded parity stay |
 | PD-6 | The CI step is report-only (`continue-on-error: true`) in `advisory-checks.yml` | That workflow is the home for checks that "must not block" and keeps each step green with `continue-on-error` (`advisory-checks.yml:8`, `:14`). Making it a gate is the owner's call |
 <!-- /ANCHOR:architecture -->
 
@@ -94,7 +95,9 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `runtime/data/trigger-index.json` and three fixtures | Committed artifacts every lookup and `/doctor` reads | Regenerate | `--check` exits 0 against a `git archive` of HEAD |
 | `lib/freshness.mjs` (new) | Producer of the one staleness definition | Create | Called by both the save path and `--check`. The `--check` vitest cases exercise it |
 | `checkTriggerIndexFreshness` in `core/workflow.ts` | Existing save-time consumer of the comparison | Update: call the helper | `workflow-trigger-index-freshness.vitest.ts` stays 7 of 7 |
-| `lookup-trigger-index.mjs` | Consumer of the index | Unchanged | Existing lookup tests stay green |
+| `lookup-trigger-index.mjs` | Consumer of the index | Update: opt-in `--scoring-only`, default unchanged | Existing lookup tests stay green untouched. New CLI cases: a scoring match exits 0 with only scoring rows, a miss exits 1 with no rows, and no flag keeps the score-0 row and exit 0 |
+| Root `AGENTS.md` Gate 1 line | Source of the Gate 1 instruction every runtime reads | Update: the command passes `--scoring-only` | `sync-gate1-pointers.cjs --check` exits 0 after write mode, and `gate1-pointer-sync.vitest.ts` passes |
+| `.codex/AGENTS.md`, `.cursor/rules/skill-routing.md` | Generated pointer blocks | Regenerate with `sync-gate1-pointers.cjs` | The same `--check` |
 | `doctor-speckit-retrieval.yaml`, `doctor-update.yaml` | Consumers of the committed pair and of the no-flag generator | Unchanged | PD-2 keeps the no-flag paths |
 | `measure-cold-lookup.mjs` | Latency harness, writes a tracked report by default | Unchanged, always run with `--out` | `git status --short` on `fixtures/latency-report.json` stays empty |
 | `retrieval/README.md` | Documents the fixtures and the generator | Update | `rg -n -- '--check' README.md` finds the new text |
@@ -124,6 +127,7 @@ Observable check per step:
 | Shared helper | `workflow-trigger-index-freshness.vitest.ts` passes 7 of 7 with the save path calling `lib/freshness.mjs` |
 | `--check` | Exit 0 on a fresh tree, 1 after adding one phrase-bearing doc to a temp corpus, 2 on an unknown flag |
 | Measure and place | Two numbers recorded in `implementation-summary.md` and the PD-4 verdict stated |
+| Scoring-only flag | The three new CLI cases pass, the existing lookup tests pass untouched, and the pointer sync `--check` exits 0 |
 | Regenerate | `--check` against a `git archive` of HEAD exits 0, and the "deem local server" lookup prints `1.000  exact` on `deem-local.md` |
 <!-- /ANCHOR:phases -->
 
@@ -136,7 +140,8 @@ Observable check per step:
 |-----------|-------|-------|
 | Unit | Save-time freshness: the existing 7 cases in `workflow-trigger-index-freshness.vitest.ts` pass unchanged after the move. Sidecar defaults: happy path (`--out` alone puts all three sidecars beside it and leaves the tracked fixtures' sha256 unchanged) and one edge (a refused corpus with `--out` alone writes diagnostics beside it). `--check`: happy path (fresh returns exit 0) and one edge (an added phrase-bearing doc returns exit 1) | Vitest, `trigger-index.vitest.ts` |
 | Integration | The real generator over the worktree, with every output in a scratch directory, before and after the exemption | `node generate-trigger-index.mjs` with all four paths set |
-| Manual | Lookup of "deem local server" and of "cli-classifier hub" against the committed index after the rebuild | `node lookup-trigger-index.mjs` |
+| Unit | `--scoring-only`: happy path (a scoring match exits 0 and returns only scoring rows) and one edge (a miss exits 1 with no rows), plus the unchanged default beside it | Vitest, `trigger-index.vitest.ts`, spawning the lookup CLI |
+| Manual | Lookup of "deem local server" and of "cli-classifier hub" against the committed index after the rebuild, with and without `--scoring-only` | `node lookup-trigger-index.mjs` |
 
 The exemption needs no new test: `trigger-index.vitest.ts:462`, `:493`, `:509` and `:523` already cover a listed path, an unlisted one, a dead entry and a reason on every entry.
 <!-- /ANCHOR:testing -->

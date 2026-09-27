@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
-    last_updated_at: "2026-09-27T11:57:12Z"
+    last_updated_at: "2026-09-27T12:41:55Z"
     last_updated_by: "parent-leaf"
-    recent_action: "Bound phases 010 to 017 and cut the slice to budget"
-    next_safe_action: "Validate phases 010 to 017, then close criteria 4 and 5"
+    recent_action: "Amended D3 and D5 for the operator-released builds of 018 and 010"
+    next_safe_action: "Build 018, then 010, and close the sixth criterion"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/spec.md"
@@ -48,10 +48,10 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Two backends: every feature runs on Jev or Deem, dormant unless one is available (Jev: `jev auth status --provider <p>` exits 0; Deem: the local server passes a health check). With neither, behavior is exactly today's. Jev gets no secret |
 | D2 | New hub `cli-classifier` holds `cli-jev` (moved) and `cli-deem` (new) |
-| D3 | Deem 0.8B bf16 is served on this Mac, kept current with Deem's releases. Nothing else is built |
-| D4 | Round 3 is one fan-out run in `007`, none calling Jev |
-| D5 | Opus 5.5 high leaves author and amend phases, one per phase |
-| D6 | Autonomous; stop only for the Deem install yes, a missing credential or a push. Worktree 069, path-scoped commits, no push or merge, no key in any file, no `.env` opened |
+| D3 | Deem 0.8B bf16 is served on this Mac, kept current with Deem's releases. Only operator-released phases are built: 018, then 010 |
+| D4 | Round 3 ran in `007`, none calling Jev |
+| D5 | Opus 5.5 high leaves author, amend and build phases, one each. The orchestrator verifies |
+| D6 | Autonomous. Stop only for an install yes or a missing credential. Worktree 069, path-scoped commits, no push or merge, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -95,11 +95,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] I got a Deem install plan with its rollback before any install, and `007-classifier-deep-research/context/deem-local.md` records the 0.8B bf16 passing a health check with latency and memory, or why it does not serve
+- [x] I got a Deem install plan with its rollback before any install, and `007-classifier-deep-research/context/deem-local.md` records the 0.8B bf16's health check, latency and memory
 - [x] In `007-classifier-deep-research`, lineages `grok`, `deepseek`, `mimo` and `swe` each hold 10 iteration files and `glm` holds 5, and every state log ends `maxIterationsReached`
-- [x] `007-classifier-deep-research/research/research.md`, by a fresh Opus 5.5 max leaf, covers Deem on this Mac, drops that flip under Deem, context reduction, validators, sk-prompt, sk-design, open discovery and build order, ranking each idea with a seam `file:line`, metric, backend gate and smallest slice
-- [x] 002, 003, 005 and 006 carry the two-backend gate, and each phase the synthesis proposes (`cli-classifier` and `cli-deem` included) and each owner-fix phase 010 to 018 is a Planned child with spec, plan, tasks, goal, binding and phase-map rows
+- [x] `007-classifier-deep-research/research/research.md`, by a fresh Opus 5.5 max leaf, covers Deem on this Mac, flipped drops, context reduction, validators, sk-prompt, sk-design, discovery and build order, ranking each idea by seam `file:line`, metric, backend gate and slice
+- [x] 002, 003, 005 and 006 carry the two-backend gate, and 002, 003, 005, 006 and 008 to 018 are children with spec, plan, tasks, goal, binding and phase-map rows
 - [x] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
+- [ ] 018 and 010 are Complete: each child goal's criteria are ticked with evidence and `validate.sh --strict` passes on each
 <!-- /ANCHOR:completion -->
 
 ---
@@ -152,4 +153,5 @@ and findings belong here.
 | Close report | `step_convergence_report` ran and recorded `synthesis_incomplete`: the merge rebuilt 85 of 112 count-only findings (deepseek 8 of 57; mimo and grok whole). The synthesis read all 30 iteration files directly, so its ranking stands. The merge parser gap is recorded in `research.md` section 17, not fixed here (out of scope). |
 | Parent amendment for 010 to 017 (2026-09-27) | Eight binding rows took the durable slice from 3,905 to 4,126 characters. Cuts followed the budget reference's order. D4 lost the lineage roster and D5 the leads and synthesis wording, both restated by `007-classifier-deep-research/goal.md` D2, D6 and D7. D2 lost the online-check and derive clause, which `007` D1 and D3 settled. The objective dropped two words and names the owner fixes. Criterion 4 names phases 010 to 017, and no criterion was dropped. Result: 3,986 characters, `packet_budget=ok` |
 | Phase 018 added (2026-09-27) | The coordinator added `018-worktree-provision-shared-link`. One binding row and criterion 4's range (010 to 018) took the slice to 4,041 characters. D3 lost "after my yes to a plan naming its rollback", which `007-classifier-deep-research/goal.md` D1 states in full and criterion 1 still checks. No criterion was dropped. The spec's handoff row records that 008's and 009's `parent-skill-check.cjs` checks depend on 018 in a freshly provisioned worktree |
+| Build release amendment (2026-09-27) | Source: the operator's answer "Amend D3, build 018 then 010". D3 now builds only operator-released phases, 018 then 010. D5 adds building, with the orchestrator verifying. A sixth criterion, unchecked, requires 018 and 010 Complete. The slice rose to 4,196 characters. Cuts in budget order, every decision ID kept because children cite D1 and D5: D4 and D5 shortened, and D6 now stops for any install yes, which covers 018's one-time worktree repair. Criterion 1 lost its "or why it does not serve" branch, since Deem serves. Criterion 3 was reworded shorter. Criterion 4 now lists its phases and drops "Planned", which stops being true once 018 and 010 are built. All six criteria stay checkable. Result: 3,997 characters, `packet_budget=ok`. `spec.md`'s out-of-scope build line now names the release. The phase map stays Planned |
 <!-- /ANCHOR:log -->

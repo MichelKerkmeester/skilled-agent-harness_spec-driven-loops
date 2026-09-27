@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link"
-    last_updated_at: "2026-09-27T12:06:41Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-09-27T13:30:00Z"
+    last_updated_by: "build-018"
+    recent_action: "Recorded the approved sk-doc repair; every completion criterion is met"
+    next_safe_action: "None. The phase is closed; the orchestrator commits"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "owner-fix-018-planning"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -81,13 +81,13 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` exits 0 and prints `FAIL=0` with a `PASS` count three higher than its pre-edit baseline, which was `PASS=80` on 2026-09-27
-- [ ] With only the dependency-name change reverted, the same harness prints a `FAIL:` line for the `spec-kit-only` assertion and exits 1
-- [ ] Before the repair, sourcing `.skilled/skills/sk-git/scripts/worktree-naming.sh` and calling `_wn_deps_satisfied` returns 1 for `.skilled/skills/sk-doc` and 0 for each of the other eight listed packages that have a `package.json`
-- [ ] `rg -n -e 'specs/' -e 'REQ-[0-9]' -e 'AC-[0-9]' -e 'cli-jev' .skilled/skills/sk-git/scripts/worktree-naming.sh` returns no match
-- [ ] `git diff --name-only -- .skilled` lists only `.skilled/skills/sk-git/scripts/worktree-naming.sh` and `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh`
-- [ ] After the operator's yes and the repair, `readlink .skilled/skills/sk-doc/node_modules/@spec-kit/shared` prints `../../../system-spec-kit/shared` and `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` prints `OK: parent-skill-check` and exits 0
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link --strict` prints `RESULT: PASSED`
+- [x] `bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` exits 0 and prints `FAIL=0` with a `PASS` count three higher than its pre-edit baseline, which was `PASS=80` on 2026-09-27
+- [x] With only the dependency-name change reverted, the same harness prints a `FAIL:` line for the `spec-kit-only` assertion and exits 1
+- [x] Before the repair, sourcing `.skilled/skills/sk-git/scripts/worktree-naming.sh` and calling `_wn_deps_satisfied` returns 1 for `.skilled/skills/sk-doc` and 0 for each of the other eight listed packages that have a `package.json`
+- [x] `rg -n -e 'specs/' -e 'REQ-[0-9]' -e 'AC-[0-9]' -e 'cli-jev' .skilled/skills/sk-git/scripts/worktree-naming.sh` returns no match
+- [x] `git diff --name-only -- .skilled` lists only `.skilled/skills/sk-git/scripts/worktree-naming.sh` and `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh`
+- [x] After the operator's yes and the repair, `readlink .skilled/skills/sk-doc/node_modules/@spec-kit/shared` prints `../../../system-spec-kit/shared` and `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` prints `OK: parent-skill-check` and exits 0
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -106,8 +106,8 @@ and findings belong here.
 | Planning documents | Done | 2026-09-27: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, this goal and `implementation-summary.md` authored from the orchestrator's phase brief and a reread of `worktree-naming.sh:471-499`, `worktree-provision-paths.txt:37-40` and `tests/worktree-naming.test.sh:218-289` |
 | Symptom | Confirmed | 2026-09-27: `parent-skill-check.cjs .skilled/skills/sk-doc` exited 1 with the `12-lib` `Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'` failure. `.skilled/skills/sk-doc/node_modules` is absent here, and the main checkout's link reads `shared -> ../../../system-spec-kit/shared` |
 | Cause | Confirmed | A read-only loop over the path list with the sourced `_wn_deps_satisfied` reported all nine packages with a manifest as satisfied, `sk-doc` included |
-| Build | Pending | Nothing is built. The phase is Planned |
-| Repair | Pending | Waits for the operator's yes |
+| Build | Done | 2026-09-27: `worktree-naming.sh:488-490` falls back to the first declared name when none is outside `@spec-kit/`, and `:478-480` states the rule. The harness gained two fixtures, one stub line and three assertions. Harness `PASS=80 FAIL=0` before, `PASS=83 FAIL=0` after, exit 0. Reverting only the name choice printed `FAIL: spec-kit-only installs once across both runs` and exit 1. The survey now reports only `.skilled/skills/sk-doc` unsatisfied. `git status --porcelain -- .skilled` lists only the two `sk-git` files |
+| Repair | Done | 2026-09-27: the operator said yes and the orchestrator ran `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision` after the operator's yes on 2026-09-27. It printed `provisioning .skilled/skills/sk-doc (ci)` and `provisioned: 1 installed, 0 built, 8 already present, 0 failed`, exit 0. A second run printed `provisioned: 0 installed, 0 built, 9 already present, 0 failed`. The link resolves inside this worktree. `parent-skill-check.cjs` prints `OK: parent-skill-check` for `sk-doc`, `sk-design`, `cli-jev` and `system-deep-loop`, which each failed `12-lib` before (orchestrator-run; the `sk-doc` check and the link were rerun by this build). No tracked file changed. Rollback: `rm -rf .skilled/skills/sk-doc/node_modules` |
 
 ### Deviations and findings
 
@@ -120,4 +120,7 @@ and findings belong here.
 | Owner collision check | `git log -5` on the `sk-git` scripts lists `b946bc9e95` (2026-09-24) as the newest. No uncommitted change under `.skilled/skills/sk-git` at authoring time |
 | Findings for the owner | 3 of the 4 checkouts in `git worktree list` lack the `sk-doc` link. The `.` line in the path list names a root `package.json` that git does not track, so provisioning skips it. Whether a new worktree gets `system-spec-kit/shared/dist` is UNKNOWN |
 | Phase label | `create.sh` labeled this folder "Phase 1". Titles and `description.json` now say Phase 18 |
+| Build collision check | `17c4729ab4` (2026-09-25) is newer than `b946bc9e95` under `sk-git/scripts/`, but it changes `remote-branch-allowlist.txt` only. The three provisioning files still end at `b946bc9e954` |
+| shellcheck exits 1 | Both files already fail `shellcheck` at `HEAD`: 2 findings in the script (SC2088, SC2254) and 11 in the harness (SC2164, SC2030, SC2031, SC1091), all on lines this build did not touch. The finding sets are identical before and after the edit. Fixing them is outside this phase's scope |
+| Two extra negative controls | Beyond the required revert test, removing only the filter failed the `spec-kit-and-real` assertion and making a package that declares nothing unsatisfied failed the `needs-build` assertion, so each new assertion fails for its own behavior |
 <!-- /ANCHOR:log -->

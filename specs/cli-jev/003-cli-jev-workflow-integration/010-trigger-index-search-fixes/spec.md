@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-09-27 |
 | **Owner** | `system-spec-kit`: `runtime/cli/retrieval/` and `runtime/data/trigger-index.json` |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
@@ -42,7 +42,7 @@ contextType: "implementation"
 
 This is **Phase 10** of the cli-jev workflow integration specification. It plans five owner fixes in the trigger-index lane that the classifier research and its runs exposed. Every file it changes belongs to `system-spec-kit` or to the repository's CI, so the build follows `system-spec-kit`'s `SKILL.md`, the retrieval `README.md` and the suite in `runtime/cli/tests/trigger-index.vitest.ts`. No step calls Jev or Deem, so parent decision D1 has nothing to gate here.
 
-**Scope Boundary**: The trigger-index generator, its corpus exemption list, the committed index and its three generated fixtures, the save-time freshness comparison moved into a shared helper and extended to the whole index, and the lookup's miss shape as a recorded decision. The frontmatter reader's YAML heuristic, the lookup's scoring and every other retrieval script stay as they are.
+**Scope Boundary**: The trigger-index generator, its corpus exemption list, the committed index and its three generated fixtures, the save-time freshness comparison moved into a shared helper and extended to the whole index, and the lookup's miss shape: the owner chose an opt-in flag (option C), which the Gate 1 line in the root `AGENTS.md` passes. The frontmatter reader's YAML heuristic, the lookup's scoring and default output, and every other retrieval script stay as they are.
 
 **Dependencies**:
 - None from 008 or 009. The phase can start any time. Its first step reproduces the refused rebuild
@@ -53,7 +53,7 @@ This is **Phase 10** of the cli-jev workflow integration specification. It plans
 - A committed index rebuilt from committed content, with no document missing
 - A whole-index `--check` mode built on the save-time freshness comparison, so staleness has one definition, and a measured choice of whether the lookup warns too
 - A generator that writes no tracked file when `--out` points elsewhere
-- The score-0 miss shape recorded as an open owner decision with options and costs
+- The score-0 miss shape recorded as an owner decision with options and costs, and the chosen option C built as an opt-in `--scoring-only` lookup flag that the Gate 1 line passes
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -82,7 +82,9 @@ The trigger index rebuilds again, matches the corpus it was built from, can say 
 - The save-time per-document comparison moved into one retrieval helper that the save path and a new generator `--check` mode both call. `--check` runs it over the whole corpus and writes nothing
 - A measurement of lookup latency and corpus-walk cost that decides, by a rule written before the measurement, whether the lookup also warns or `--check` runs as a report-only CI step
 - Sidecar defaults that follow `--out`, so a build aimed elsewhere writes no tracked file
-- The score-0 miss shape recorded as an open decision for the owner, with options and their cost
+- The score-0 miss shape recorded as an owner decision with options and their cost. The owner chose option C on 2026-09-27
+- An opt-in lookup flag, `--scoring-only`, that drops score-0 rows and exits 1 when no row scores, with the default output and exit status unchanged
+- The Gate 1 lookup command in the root `AGENTS.md` passing that flag, and the two pointer blocks `sync-gate1-pointers.cjs` generates from that line
 
 ### Out of Scope
 - Widening the YAML heuristic in `lib/frontmatter.mjs` to accept column-0 list items. That fixes the root cause for every document but changes how the reader classifies the whole corpus and needs a `PARSER_VERSION` bump. It is recorded as an open question for the owner
@@ -100,7 +102,7 @@ The trigger index rebuilds again, matches the corpus it was built from, can say 
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs` | Create | The per-document phrase comparison now inside `checkTriggerIndexFreshness`: declared phrases against the phrases the index attributes to that path, returning added and removed |
 | `.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts` | Modify | `checkTriggerIndexFreshness` calls the shared helper through its existing retrieval loader. Its result shape and save messages stay the same |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` | Modify | Sidecar paths default next to `--out` when `--out` is not the default index. Add `--check`. Update the usage header. Exit codes stay 0, 1 and 2 |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts` | Modify | Tests for the sidecar defaults and for `--check` |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts` | Modify | Tests for the sidecar defaults, for `--check` and for the lookup's `--scoring-only` |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/workflow-trigger-index-freshness.vitest.ts` | Unchanged | Its 7 tests must still pass after the save path calls the shared helper |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modify | Document the sidecar rule and `--check` next to the fixture paragraph at `:78` |
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Modify | Regenerated |
@@ -109,6 +111,10 @@ The trigger index rebuilds again, matches the corpus it was built from, can say 
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json` | Modify | Regenerated with the index |
 | `.github/workflows/advisory-checks.yml` | Modify, only if the measurement selects a CI check | One report-only step that runs the generator's `--check` |
 | `.github/workflows/README.md` | Modify, only with the step above | Name the new step in the `advisory-checks.yml` row |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Modify | Add the opt-in `--scoring-only` flag. Default output and exit status unchanged |
+| `AGENTS.md` | Modify, the Gate 1 line only | The lookup command passes `--scoring-only`, and exit 1 with no rows reads as a clean no-hit |
+| `.codex/AGENTS.md` | Modify, generated | Gate 1 pointer block rewritten by `runtime-mirrors/sync-gate1-pointers.cjs` |
+| `.cursor/rules/skill-routing.md` | Modify, generated | Gate 1 pointer block rewritten by `runtime-mirrors/sync-gate1-pointers.cjs` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -129,7 +135,8 @@ The trigger index rebuilds again, matches the corpus it was built from, can say 
 |----|-------------|
 | REQ-003 | Extend the save-time check to the whole index instead of adding a second definition. Move the per-document comparison in `checkTriggerIndexFreshness` (`workflow.ts:346-391`) into one retrieval helper, and have the save path call it with its result shape and messages unchanged. Add a generator `--check` mode that runs the same helper over every walked document, also counts index paths no longer in the corpus, writes no file and exits 0 when nothing differs, 1 when any document is stale or the corpus is untrusted and 2 on a bad invocation. Measure first: record the cold-lookup baseline and the cost of a path-only corpus walk, then apply the rule fixed in `plan.md` to decide whether the lookup warns too or `--check` runs as a report-only CI step |
 | REQ-004 | A build aimed elsewhere touches no tracked file. When `--out` names a path other than the default index, every sidecar path not given explicitly (manifest, diagnostics, variants) defaults to a sibling of `--out`. That includes the diagnostics a refused build writes. Without `--out`, the defaults stay the tracked paths, so the routine rebuild is unchanged |
-| REQ-005 | Record the score-0 miss shape as an open decision for the owner, with each option and its cost, and plan no change to the lookup's default output or exit status without the owner's yes |
+| REQ-005 | Record the score-0 miss shape as a decision for the owner, with each option and its cost, and plan no change to the lookup's default output or exit status without the owner's yes. Decided 2026-09-27: option C, with the `AGENTS.md` edit (REQ-006) |
+| REQ-006 | Add an opt-in lookup flag, `--scoring-only`, that drops score-0 rows before the limit and exits 1 when no row scores. Without the flag the output and exit status stay exactly as they are, so the partial-row tests pass untouched. The Gate 1 line in the root `AGENTS.md` passes the flag and says that exit 1 with no rows is a clean no-hit. Nothing else in `AGENTS.md` changes. `sync-gate1-pointers.cjs` regenerates its pointer blocks from that line and `--check` then exits 0 |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -220,7 +227,7 @@ The trigger index rebuilds again, matches the corpus it was built from, can say 
 
 ## 10. OPEN QUESTIONS
 
-- **Score-0 miss shape (owner decision, REQ-005).** The lookup keeps score-0 candidates on purpose (`lookup-trigger-index.mjs:53`, `:173`) so its output matches the retired lane's recorded results (`:5-7`), and `fixtures/semantic-probes.json:4-5` separates `returnedHit` from `scoringHit` for that reason. `AGENTS.md:202` says "A miss is a clean no-hit". Option A, keep today's shape: parity holds, but a miss prints up to 20 rows and exits 0, so every caller filters `score > 0` itself. Option B, drop score-0 rows by default and exit 1 when none score: the miss becomes clean, but parity with the recorded results breaks, the probe counts shift and any caller relying on exit 0 changes. Option C, keep the default and add an opt-in flag that drops score-0 rows and exits 1 on no scoring row: no caller changes, but Gate 1's instruction must pass the flag to get a clean miss. Option D, keep the code and have the operator reword `AGENTS.md` to say score-0 rows are not hits: no code change, but the noisy output stays. No option is built without the owner's yes.
+- **Score-0 miss shape (owner decision, REQ-005). Decided 2026-09-27: option C, with the `AGENTS.md` edit, built as REQ-006.** The lookup keeps score-0 candidates on purpose (`lookup-trigger-index.mjs:53`, `:173`) so its output matches the retired lane's recorded results (`:5-7`), and `fixtures/semantic-probes.json:4-5` separates `returnedHit` from `scoringHit` for that reason. `AGENTS.md:202` says "A miss is a clean no-hit". Option A, keep today's shape: parity holds, but a miss prints up to 20 rows and exits 0, so every caller filters `score > 0` itself. Option B, drop score-0 rows by default and exit 1 when none score: the miss becomes clean, but parity with the recorded results breaks, the probe counts shift and any caller relying on exit 0 changes. Option C, keep the default and add an opt-in flag that drops score-0 rows and exits 1 on no scoring row: no caller changes, but Gate 1's instruction must pass the flag to get a clean miss. Option D, keep the code and have the operator reword `AGENTS.md` to say score-0 rows are not hits: no code change, but the noisy output stays. No option is built without the owner's yes. The owner said yes to C and to the `AGENTS.md` edit it needs.
 - **Column-0 YAML lists (owner decision).** Should the reader accept `- item` at column 0 after a top-level key, as YAML allows? Today `lib/frontmatter.mjs:161` rejects it, and `trigger-index.vitest.ts:250` pins only the one-space form. Accepting it would let the two exemptions go, at the cost of a `PARSER_VERSION` bump and a reclassification pass over the corpus.
 <!-- /ANCHOR:questions -->
 
