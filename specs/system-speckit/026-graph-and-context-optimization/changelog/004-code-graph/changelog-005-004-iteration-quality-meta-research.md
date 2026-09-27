@@ -7,6 +7,7 @@ trigger_phrases:
   - "inert-data boundary plan workflow"
   - "deep-review-strategy restore"
   - "cross-cutting consumer detection fix"
+  - "code graph iteration quality meta research changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

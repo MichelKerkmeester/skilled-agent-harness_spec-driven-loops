@@ -2,9 +2,7 @@
 title: "Changelog: Mixed-Version Fixtures [003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures]"
 description: "Changelog for the mixed-version fixtures phase: a sealed fixture corpus mixing old and new event and state versions within one deep-loop run."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared mode contracts and fixtures mixed version fixtures changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

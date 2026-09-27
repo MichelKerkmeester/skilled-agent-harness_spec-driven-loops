@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 003 changelog"
   - "advisor phrase booster"
   - "phrase intent booster migration"
+  - "spec kit internals advisor phrase booster tailoring changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

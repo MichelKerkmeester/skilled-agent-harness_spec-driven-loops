@@ -2,9 +2,7 @@
 title: "Changelog: deep-alignment registry seal-state [007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing]"
 description: "Mark the deep-alignment findings registry as sealed only at terminal synthesis so a run that halts mid-loop no longer strands its fail-closed seed as an authoritative verdict."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep alignment integrity alignment registry sealing changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

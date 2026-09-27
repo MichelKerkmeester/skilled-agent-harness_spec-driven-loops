@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/002 008 router consistency changelog"
   - "allowed-tools mcp names"
   - "command template router variants"
+  - "shared infrastructure router consistency hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

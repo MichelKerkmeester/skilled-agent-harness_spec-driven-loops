@@ -6,6 +6,7 @@ trigger_phrases:
   - "021/002 root readme"
   - "embedder defaults readme"
   - "jina-v3 readme update"
+  - "memory and causal runtime root readme update changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

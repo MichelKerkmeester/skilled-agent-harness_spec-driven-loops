@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill advisor recall improvement"
   - "cross skill phrase duplication report"
   - "advisor lane metadata scoring"
+  - "spec kit internals skill metadata embedding quality audit changelog"
 importance_tier: "important"
 contextType: "research"
 ---

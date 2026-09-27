@@ -2,9 +2,7 @@
 title: "Changelog: Next-Focus Semantics [002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/004-next-focus-semantics]"
 description: "Changelog for the next-focus semantics phase: typed deterministic selection of the next region to explore from coverage and novelty signals."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "novelty claims continuity and projections next focus semantics changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

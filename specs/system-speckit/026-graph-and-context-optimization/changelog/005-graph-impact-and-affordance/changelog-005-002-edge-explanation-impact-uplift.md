@@ -7,6 +7,7 @@ trigger_phrases:
   - "code graph reason step metadata"
   - "ambiguity candidates blast radius"
   - "012/003 edge explanation"
+  - "graph impact and affordance edge explanation impact uplift changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

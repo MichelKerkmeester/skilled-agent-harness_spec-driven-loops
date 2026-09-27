@@ -7,6 +7,7 @@ trigger_phrases:
   - "explicit lexical over-fire fix"
   - "advisor recall lift damping"
   - "damping sweep results"
+  - "spec kit internals routing confidence calibration changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

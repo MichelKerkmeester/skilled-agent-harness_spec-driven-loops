@@ -2,9 +2,7 @@
 title: "Changelog: AGENTS.md and Runtime Routing Cleanup"
 description: "Chronological changelog for the AGENTS.md and runtime-routing cleanup phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup agents md changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "sk-code no ephemeral pointers"
   - "comment sweep compliance"
   - "pointer cleanup phase"
+  - "memory and causal runtime comment ephemeral pointer cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

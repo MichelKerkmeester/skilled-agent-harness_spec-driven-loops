@@ -7,6 +7,7 @@ trigger_phrases:
   - "stale ground truth scenarios"
   - "orphan row dependency check"
   - "aspirational threshold audit"
+  - "memory and causal runtime fairness audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

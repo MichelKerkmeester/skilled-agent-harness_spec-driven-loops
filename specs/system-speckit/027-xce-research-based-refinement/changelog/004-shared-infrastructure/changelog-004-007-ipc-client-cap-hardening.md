@@ -6,6 +6,7 @@ trigger_phrases:
   - "max secondary clients 64"
   - "bridge skipped banner silenced"
   - "027 004/007 shipped"
+  - "shared infrastructure ipc client cap hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

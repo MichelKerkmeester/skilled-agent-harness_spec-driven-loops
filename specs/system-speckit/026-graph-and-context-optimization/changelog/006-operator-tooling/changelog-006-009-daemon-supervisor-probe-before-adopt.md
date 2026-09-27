@@ -2,9 +2,7 @@
 title: "Changelog: Probe before adopt so the daemon supervisor reaps a live-but-wedged daemon instead of bridging clients into it [006-operator-tooling/009-daemon-supervisor-probe-before-adopt]"
 description: "Chronological changelog for the Probe before adopt so the daemon supervisor reaps a live-but-wedged daemon instead of bridging clients into it phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "operator tooling daemon supervisor probe before adopt changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

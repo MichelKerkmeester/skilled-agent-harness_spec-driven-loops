@@ -9,6 +9,7 @@ trigger_phrases:
   - "skill advisor routing"
   - "advisor scoring optimization"
   - "005-advisor-setup-command"
+  - "spec kit internals advisor setup command changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

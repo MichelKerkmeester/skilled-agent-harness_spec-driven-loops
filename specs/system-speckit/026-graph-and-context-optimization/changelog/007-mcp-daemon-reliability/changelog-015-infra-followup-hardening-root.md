@@ -5,6 +5,7 @@ trigger_phrases:
   - "015-infra-followup-hardening rollup"
   - "015-infra-followup-hardening phase parent"
   - "015-infra-followup-hardening changelog index"
+  - "mcp daemon reliability infra followup hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

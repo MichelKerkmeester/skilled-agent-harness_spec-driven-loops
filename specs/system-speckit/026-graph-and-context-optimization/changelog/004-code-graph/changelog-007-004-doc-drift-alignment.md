@@ -6,6 +6,7 @@ trigger_phrases:
   - "mk-code-index tool count drift"
   - "graph-metadata topology standalone"
   - "skill doc version bump 1.0.3.1"
+  - "code graph doc drift alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

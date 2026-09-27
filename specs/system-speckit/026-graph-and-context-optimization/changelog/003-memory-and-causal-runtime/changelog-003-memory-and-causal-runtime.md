@@ -9,6 +9,7 @@ trigger_phrases:
   - "causal graph channel routing"
   - "embedder testing architecture"
   - "embedding backlog drain investigation"
+  - "memory and causal runtime changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

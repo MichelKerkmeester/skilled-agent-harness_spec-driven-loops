@@ -5,6 +5,7 @@ trigger_phrases:
   - "embedding coverage changelog"
   - "vector shard consistency"
   - "embedding model provenance backfill"
+  - "fix deep dive embedding coverage and vector shard consistency changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

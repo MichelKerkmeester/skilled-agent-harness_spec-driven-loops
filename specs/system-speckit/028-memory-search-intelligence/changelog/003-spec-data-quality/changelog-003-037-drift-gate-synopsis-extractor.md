@@ -2,9 +2,7 @@
 title: "Changelog: Drift Gate and Synopsis Extractor [003-spec-data-quality/006-generated-metadata-build/037-drift-gate-synopsis-extractor]"
 description: "Chronological changelog for the drift gate and synopsis extractor phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality drift gate synopsis extractor changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

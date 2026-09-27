@@ -7,6 +7,7 @@ trigger_phrases:
   - "wal fallback widening"
   - "mcp launcher p1 remediation"
   - "012-005 changelog"
+  - "memory and causal runtime lease correctness and arc traceability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

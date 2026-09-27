@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Orphan Sweep Time 
 trigger_phrases:
   - "orphan-sweep-scoped-scan-safety changelog"
   - "former 012-orphan-sweep-scoped-scan-safety"
-  - "nested changelog"
+  - "speckit memory orphan sweep scoped scan safety changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

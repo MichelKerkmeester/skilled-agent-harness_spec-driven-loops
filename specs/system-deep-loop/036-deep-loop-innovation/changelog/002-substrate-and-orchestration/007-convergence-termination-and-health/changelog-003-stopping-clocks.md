@@ -2,9 +2,7 @@
 title: "Changelog: Stopping Clocks [002-substrate-and-orchestration/007-convergence-termination-and-health/003-stopping-clocks]"
 description: "Changelog for the stopping clocks phase: independent budget, novelty-decay, coverage, and wall-time clocks with deterministic earliest-fire termination."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "convergence termination and health stopping clocks changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

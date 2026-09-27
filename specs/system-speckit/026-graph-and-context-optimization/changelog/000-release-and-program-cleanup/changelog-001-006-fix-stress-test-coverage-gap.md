@@ -7,6 +7,7 @@ trigger_phrases:
   - "close 36 coverage gaps"
   - "stress suite p1 p2 closure"
   - "006-fix-stress-test-coverage-gap"
+  - "release and program cleanup fix stress test coverage gap changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

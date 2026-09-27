@@ -7,6 +7,7 @@ trigger_phrases:
   - "conservative defaults pass"
   - "MCP argument validation tightening"
   - "memory health consistency reporting"
+  - "release and program cleanup fix remaining priority findings changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

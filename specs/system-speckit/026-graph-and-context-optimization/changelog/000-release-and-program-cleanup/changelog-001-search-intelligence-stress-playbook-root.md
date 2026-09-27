@@ -5,6 +5,7 @@ trigger_phrases:
   - "001-search-intelligence-stress-playbook rollup"
   - "001-search-intelligence-stress-playbook phase parent"
   - "001-search-intelligence-stress-playbook changelog index"
+  - "release and program cleanup search intelligence stress playbook changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "post-scan embedding queue reaped by contending launcher fix"
   - "shared reference-counted maintenance marker module"
   - "027 002/019 shipped"
+  - "memory store and search maintenance grace background embedding changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

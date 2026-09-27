@@ -9,6 +9,7 @@ trigger_phrases:
   - "remaining cli-* worktree rule"
   - "nested session worktree isolation"
   - "cli-* family propagation complete"
+  - "mcp daemon reliability cli child marker propagation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

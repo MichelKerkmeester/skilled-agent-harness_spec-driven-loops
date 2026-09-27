@@ -5,6 +5,7 @@ trigger_phrases:
   - "003/002 004 advisor BFS changelog"
   - "advisor skill graph BFS"
   - "transitive path subgraph helper"
+  - "advisor and codegraph advisor bfs consolidation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

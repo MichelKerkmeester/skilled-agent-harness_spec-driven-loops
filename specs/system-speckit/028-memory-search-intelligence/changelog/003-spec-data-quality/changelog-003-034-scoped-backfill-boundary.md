@@ -2,9 +2,7 @@
 title: "Changelog: Scoped Backfill Boundary [003-spec-data-quality/006-generated-metadata-build/034-scoped-backfill-boundary]"
 description: "Chronological changelog for the scoped backfill boundary phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality scoped backfill boundary changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

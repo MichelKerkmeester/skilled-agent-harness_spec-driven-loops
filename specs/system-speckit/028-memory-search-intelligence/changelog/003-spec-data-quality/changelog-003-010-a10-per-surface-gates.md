@@ -2,9 +2,7 @@
 title: "Changelog: A10 Per-Surface Gates [003-spec-data-quality/001-on-write-quality/010-per-surface-gates]"
 description: "Chronological changelog for the A10 Per-Surface Gates phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a10 per surface gates changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

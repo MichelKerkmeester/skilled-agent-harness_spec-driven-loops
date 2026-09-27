@@ -7,6 +7,7 @@ trigger_phrases:
   - "hf-local nomic default alignment"
   - "ollama tier 1 embedder"
   - "embedder cascade reorder 015"
+  - "memory and cascade reorder and nomic hf local default changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

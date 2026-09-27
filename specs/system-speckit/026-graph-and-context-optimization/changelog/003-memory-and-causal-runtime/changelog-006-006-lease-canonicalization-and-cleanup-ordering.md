@@ -7,6 +7,7 @@ trigger_phrases:
   - "legacy lease probe launcher"
   - "realpath lease canonicalization"
   - "cleanup before signal mirror"
+  - "memory and causal runtime lease canonicalization and cleanup ordering changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

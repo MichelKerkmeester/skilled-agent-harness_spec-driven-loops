@@ -2,9 +2,7 @@
 title: "Changelog: C2 Prod-Mode Recall Gate [003-spec-data-quality/003-retrieval-gated-tuning/015-prodmode-recall-gate]"
 description: "Chronological changelog for the C2 Prod-Mode Recall Gate phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality c2 prodmode recall gate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

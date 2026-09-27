@@ -4,6 +4,7 @@ description: "Single-pass deep review of the 007 hook surface. Verdict CONDITION
 trigger_phrases:
   - "review 007 tier2 pt-01 changelog"
   - "hook surface review tier2"
+  - "review 007 skill advisor hook surface tier2 pt 01 changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "COCOINDEX_CODE_MCP_REQUEST_TIMEOUT_MS"
   - "cocoindex reqId stage timings"
   - "cocoindex client disconnect counting"
+  - "memory and causal runtime cocoindex ipc observability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

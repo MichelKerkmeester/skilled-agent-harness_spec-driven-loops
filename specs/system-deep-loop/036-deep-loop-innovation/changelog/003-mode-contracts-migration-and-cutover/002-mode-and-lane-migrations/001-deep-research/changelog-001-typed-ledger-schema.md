@@ -2,9 +2,7 @@
 title: "Changelog: Deep Research - Typed Ledger Schema [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema]"
 description: "Changelog for the deep research typed ledger schema phase: the typed append-only event vocabulary for the deep research mode."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep research typed ledger schema changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

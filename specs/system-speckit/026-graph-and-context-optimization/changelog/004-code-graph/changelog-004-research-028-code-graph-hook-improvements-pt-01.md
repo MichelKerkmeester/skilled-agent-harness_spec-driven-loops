@@ -7,6 +7,7 @@ trigger_phrases:
   - "readiness cache stale"
   - "context deadline contract"
   - "startup payload dropped"
+  - "code research 028 code graph hook improvements pt 01 changelog"
 importance_tier: "important"
 contextType: "research"
 ---

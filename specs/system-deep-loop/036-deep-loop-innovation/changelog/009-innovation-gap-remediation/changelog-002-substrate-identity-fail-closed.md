@@ -2,9 +2,7 @@
 title: "Changelog: Substrate Identity Fail-Closed [009-innovation-gap-remediation/002-substrate-identity-fail-closed]"
 description: "Shared-gateway fail-closed identity resolution and rollback-certificate identity verification hardened before any pilot mode cutover."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "innovation gap remediation substrate identity fail closed changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

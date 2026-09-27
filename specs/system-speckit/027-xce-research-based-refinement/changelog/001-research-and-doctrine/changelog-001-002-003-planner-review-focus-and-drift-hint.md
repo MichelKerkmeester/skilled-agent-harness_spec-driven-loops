@@ -6,6 +6,7 @@ trigger_phrases:
   - "reviewer focus drift hint changelog"
   - "spec drift advisory changelog"
   - "update_recommended changelog"
+  - "research and doctrine planner review focus and drift hint changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

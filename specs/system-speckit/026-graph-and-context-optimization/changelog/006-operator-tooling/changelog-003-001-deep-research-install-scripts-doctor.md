@@ -7,6 +7,7 @@ trigger_phrases:
   - "116 rename install doctor impact"
   - "doctor realignment research findings"
   - "install guide drift 45 findings"
+  - "operator tooling deep research install scripts doctor changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

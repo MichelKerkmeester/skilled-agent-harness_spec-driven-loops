@@ -2,9 +2,7 @@
 title: "Changelog: Model Benchmark - Shadow Parity [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity]"
 description: "Changelog for the model benchmark shadow parity phase: comparing multi-model benchmark projections event-for-event against the legacy emitter."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "model benchmark shadow parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

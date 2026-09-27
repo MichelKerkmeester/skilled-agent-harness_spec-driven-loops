@@ -7,6 +7,7 @@ trigger_phrases:
   - "factory voyage drift warning"
   - "463MB sqlite reclaim"
   - "VOYAGE_API_KEY runtime guard"
+  - "memory and causal runtime voyage cleanup and egress monitoring changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

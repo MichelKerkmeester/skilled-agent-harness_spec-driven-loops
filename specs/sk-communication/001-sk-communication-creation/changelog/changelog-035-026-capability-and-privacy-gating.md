@@ -2,9 +2,8 @@
 title: "Changelog: Phase 026 Capability and Privacy Gating [035-improved-communication/026-capability-and-privacy-gating]"
 description: "Chronological changelog for the Phase 026 Capability and Privacy Gating phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation capability and privacy gating changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "Codex timeout stale marker"
   - "advisor rebuild command"
   - "feature flags reference table"
+  - "release and program cleanup half auto upgrade doc alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

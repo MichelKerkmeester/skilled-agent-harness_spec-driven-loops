@@ -2,9 +2,7 @@
 title: "Changelog: Naming-Guard Classifier and validate.sh SEMANTIC_NAMING Rule [006-operator-tooling/008-naming-guard-classifier-and-validate-rule]"
 description: "Chronological changelog for the Naming-Guard Classifier and validate.sh SEMANTIC_NAMING Rule phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "operator tooling naming guard classifier and validate rule changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

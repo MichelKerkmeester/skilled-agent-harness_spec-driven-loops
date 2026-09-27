@@ -7,6 +7,7 @@ trigger_phrases:
   - "RRF hybrid retrieval eval"
   - "EmbeddingGemma bge-m3 comparison"
   - "006 local embeddings eval packet"
+  - "memory and causal runtime bge m3 hybrid evaluation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

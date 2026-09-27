@@ -7,6 +7,7 @@ trigger_phrases:
   - "explicit-any ledger closure"
   - "sk-code any-type follow-on"
   - "packet 026 false positive review"
+  - "spec kit internals any type justification sweep changelog"
 importance_tier: "normal"
 contextType: "review"
 ---

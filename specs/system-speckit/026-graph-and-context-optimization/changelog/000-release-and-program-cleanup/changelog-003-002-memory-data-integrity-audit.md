@@ -7,6 +7,7 @@ trigger_phrases:
   - "retention sweep correctness"
   - "embedding cache invalidation audit"
   - "DB consistency audit memory"
+  - "release and program cleanup memory data integrity audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

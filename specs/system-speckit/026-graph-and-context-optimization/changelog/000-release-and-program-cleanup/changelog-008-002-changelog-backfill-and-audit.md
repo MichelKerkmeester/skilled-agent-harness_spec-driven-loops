@@ -7,6 +7,7 @@ trigger_phrases:
   - "696 changelog files"
   - "phase changelog coverage"
   - "changelog verification gate"
+  - "release and program cleanup changelog backfill and audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

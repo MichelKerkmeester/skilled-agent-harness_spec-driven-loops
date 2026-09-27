@@ -5,6 +5,7 @@ trigger_phrases:
   - "007-ollama-and-bge-promotion rollup"
   - "007-ollama-and-bge-promotion phase parent"
   - "007-ollama-and-bge-promotion changelog index"
+  - "memory and causal runtime ollama and bge promotion changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

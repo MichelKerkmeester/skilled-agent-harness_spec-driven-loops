@@ -2,9 +2,7 @@
 title: "Changelog: 005 Post-Benchmark Improvement Research [003-spec-data-quality/005-shared-engine-and-research/030-vague-query-improvement-research]"
 description: "Chronological changelog for the 005 post-benchmark improvement research phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality improvement research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

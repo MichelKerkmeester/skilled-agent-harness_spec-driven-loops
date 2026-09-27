@@ -2,9 +2,7 @@
 title: "Changelog: cli-pi Fan-out Lineage Wiring [007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/002-cli-pi-fanout-wiring]"
 description: "Implement the real cli-pi fan-out lineage builder and let the runtime forward reasoning, so cli-pi is a first-class fan-out executor for every model in its allowlist."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "cli executor fanout parity cli pi fanout wiring changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

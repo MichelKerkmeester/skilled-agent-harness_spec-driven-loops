@@ -2,9 +2,7 @@
 title: "Changelog: Deep-Loop Effectiveness & Fan-out Automation (targeted follow-on) [001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout]"
 description: "A 20-iteration targeted, non-converging follow-on that deepens 001's recommendations into mechanisms and proves automated multi-model + live-search fanout with a scratch prototype."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "research inputs and architecture deep loop effectiveness and fanout changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

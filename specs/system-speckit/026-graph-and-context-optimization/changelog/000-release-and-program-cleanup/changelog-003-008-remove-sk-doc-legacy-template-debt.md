@@ -6,6 +6,7 @@ trigger_phrases:
   - "tier 4 sk-doc remediation"
   - "misalign-high remediation 026"
   - "memory continuity batch backfill"
+  - "release and program remove sk doc legacy template debt changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "hf-local fallback migration"
   - "llama-cpp 1k retrieval probe"
   - "embeddings provider auto cascade"
+  - "memory and causal runtime llama cpp default flip changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -9,6 +9,7 @@ trigger_phrases:
   - "deep research convergence"
   - "partial consolidation recommendation"
   - "template system"
+  - "spec kit internals template level consolidation research changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

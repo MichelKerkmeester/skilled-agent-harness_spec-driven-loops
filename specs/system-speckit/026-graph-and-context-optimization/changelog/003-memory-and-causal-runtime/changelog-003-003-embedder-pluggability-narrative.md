@@ -7,6 +7,7 @@ trigger_phrases:
   - "out-of-box embedder support matrix"
   - "mk-spec-memory embedder swap"
   - "cocoindex embedder narrative"
+  - "memory and causal runtime embedder pluggability narrative changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

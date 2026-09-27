@@ -2,9 +2,7 @@
 title: "Changelog: devin fan-out allowlist parity with the curated catalog [007-executor-and-cli-hardening/002-executor-wiring-and-parity/004-devin-fanout-allowlist-parity]"
 description: "Bring the deep-loop runtime's enforced cli-devin allowlist and default model into parity with the curated catalog."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "executor wiring and parity devin fanout allowlist parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

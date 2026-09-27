@@ -7,8 +7,7 @@ trigger_phrases:
   - "p1 routing tuning"
   - "skill advisor p1 failures"
   - "scorer routing abstention tuning"
-  - "phase changelog"
-  - "nested changelog"
+  - "spec kit internals p1 routing tuning changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

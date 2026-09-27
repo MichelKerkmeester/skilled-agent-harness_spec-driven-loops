@@ -7,6 +7,7 @@ trigger_phrases:
   - "daemon-detect.ts liveness probe"
   - "generate-context SQLite second writer"
   - "memory_index_scan standalone save routing"
+  - "mcp daemon reliability standalone save second writer guard changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

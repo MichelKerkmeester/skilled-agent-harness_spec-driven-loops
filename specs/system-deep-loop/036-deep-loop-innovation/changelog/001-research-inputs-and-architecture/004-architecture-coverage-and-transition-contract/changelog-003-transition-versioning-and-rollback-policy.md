@@ -2,9 +2,7 @@
 title: "Changelog: Transition, Versioning & Rollback Policy [001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy]"
 description: "Freezes the event-envelope versioning and upcaster contract, deny-by-default transition authorization, per-mode authority cutover, and rollback-window policy before any typed event writer exists."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "architecture coverage and transition versioning and rollback policy changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

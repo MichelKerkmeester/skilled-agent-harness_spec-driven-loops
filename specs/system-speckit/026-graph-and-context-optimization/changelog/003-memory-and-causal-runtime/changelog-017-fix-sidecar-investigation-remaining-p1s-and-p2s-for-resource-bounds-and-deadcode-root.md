@@ -5,6 +5,7 @@ trigger_phrases:
   - "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode rollup"
   - "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode phase parent"
   - "017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode changelog index"
+  - "fix sidecar investigation remaining p1s and p2s for resource changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

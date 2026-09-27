@@ -6,6 +6,7 @@ trigger_phrases:
   - "proposed qualifier removal deep-ai-council"
   - "codex agents mirror fill"
   - "stale audit P0 closure"
+  - "memory and causal runtime codex agents mirror fill changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

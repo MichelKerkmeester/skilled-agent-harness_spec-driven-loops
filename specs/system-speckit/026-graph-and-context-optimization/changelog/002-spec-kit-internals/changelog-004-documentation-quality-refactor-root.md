@@ -5,6 +5,7 @@ trigger_phrases:
   - "004-documentation-quality-refactor rollup"
   - "004-documentation-quality-refactor phase parent"
   - "004-documentation-quality-refactor changelog index"
+  - "spec kit internals documentation quality refactor changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

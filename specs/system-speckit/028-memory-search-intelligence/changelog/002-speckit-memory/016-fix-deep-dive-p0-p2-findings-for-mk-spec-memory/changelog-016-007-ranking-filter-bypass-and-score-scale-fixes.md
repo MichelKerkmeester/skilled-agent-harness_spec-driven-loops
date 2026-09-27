@@ -5,6 +5,7 @@ trigger_phrases:
   - "ranking filter bypass changelog"
   - "score scale unification"
   - "db-state circular import crash fix"
+  - "fix deep ranking filter bypass and score scale fixes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

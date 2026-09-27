@@ -2,9 +2,8 @@
 title: "Changelog: Phase 020 CLI-Output Wrapper Framework [035-improved-communication/020-cli-output-wrapper-framework]"
 description: "Chronological changelog for the Phase 020 CLI-Output Wrapper Framework phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
   - "phase planning"
+  - "sk communication creation cli output wrapper framework changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

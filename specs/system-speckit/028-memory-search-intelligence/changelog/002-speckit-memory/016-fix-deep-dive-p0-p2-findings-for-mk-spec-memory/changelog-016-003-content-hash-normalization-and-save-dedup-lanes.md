@@ -5,6 +5,7 @@ trigger_phrases:
   - "content hash normalization changelog"
   - "save dedup lanes repair"
   - "unchanged re-save churn fix"
+  - "fix deep content hash normalization and save dedup lanes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill advisor scoring engine test"
   - "lane weight sweep harder set"
   - "cosine lane saturation hypothesis"
+  - "spec kit internals hard intent corpus resweep changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

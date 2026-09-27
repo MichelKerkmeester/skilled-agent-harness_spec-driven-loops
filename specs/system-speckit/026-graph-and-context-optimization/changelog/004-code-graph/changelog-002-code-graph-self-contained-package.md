@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph self-contained package"
   - "code graph migration"
   - "code graph package"
+  - "code graph self contained package changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

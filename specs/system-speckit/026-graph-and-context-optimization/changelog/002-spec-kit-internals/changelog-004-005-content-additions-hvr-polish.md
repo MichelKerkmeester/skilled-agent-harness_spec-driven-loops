@@ -4,9 +4,7 @@
 title: "Changelog: 005-content-additions-hvr-polish [004-documentation-quality-refactor/005-content-additions-hvr-polish]"
 description: "Chronological changelog for the 005-content-additions-hvr-polish phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec kit internals content additions hvr polish changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

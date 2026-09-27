@@ -7,6 +7,7 @@ trigger_phrases:
   - "includeSkills code graph"
   - "scope fingerprint migration"
   - "SPECKIT_CODE_GRAPH_INDEX_SKILLS"
+  - "code graph end user scope default and opt in changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

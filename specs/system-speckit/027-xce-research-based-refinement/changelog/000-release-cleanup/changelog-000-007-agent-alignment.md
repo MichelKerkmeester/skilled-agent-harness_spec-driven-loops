@@ -5,6 +5,7 @@ trigger_phrases:
   - "000 007 agent alignment changelog"
   - "agent mirror alignment"
   - "agent io verification doctrine"
+  - "release cleanup agent alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

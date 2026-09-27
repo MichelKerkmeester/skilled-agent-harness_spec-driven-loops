@@ -2,9 +2,7 @@
 title: "Changelog: Enrichment Observability Read-Side Gauges [001-speckit-memory/013-enrichment-observability]"
 description: "Chronological changelog for the enrichment observability read-side gauges phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory enrichment observability changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

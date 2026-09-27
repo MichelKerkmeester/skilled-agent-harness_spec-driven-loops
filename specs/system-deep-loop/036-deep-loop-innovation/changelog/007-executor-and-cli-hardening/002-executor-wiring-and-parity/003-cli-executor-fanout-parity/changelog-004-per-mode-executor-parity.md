@@ -2,9 +2,7 @@
 title: "Changelog: Per-Mode Executor Parity [007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity]"
 description: "Give model-benchmark, skill-benchmark, and ai-council cli-cursor/cli-devin/cli-pi parity by delegating command construction to the shared buildLineageCommand."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "cli executor fanout parity per mode executor parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

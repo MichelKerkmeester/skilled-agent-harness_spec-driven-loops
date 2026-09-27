@@ -7,6 +7,7 @@ trigger_phrases:
   - "droppedAllResultsReason impossible_budget"
   - "token budget telemetry contract"
   - "payload count invariant memory_context"
+  - "release and program cleanup memory context truncation telemetry contract changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

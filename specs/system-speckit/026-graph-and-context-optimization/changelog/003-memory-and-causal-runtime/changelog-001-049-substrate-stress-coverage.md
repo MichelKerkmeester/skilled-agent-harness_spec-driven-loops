@@ -7,6 +7,7 @@ trigger_phrases:
   - "query expansion bound stress"
   - "v-rule save flood stress"
   - "stress substrate canonical gate"
+  - "memory and causal runtime substrate stress coverage changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

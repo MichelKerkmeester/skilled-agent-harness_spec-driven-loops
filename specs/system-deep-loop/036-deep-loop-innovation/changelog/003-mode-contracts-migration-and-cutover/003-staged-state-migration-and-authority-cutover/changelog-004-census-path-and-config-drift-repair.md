@@ -2,9 +2,7 @@
 title: "Changelog: Census Path and Config Drift Repair [003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair]"
 description: "Changelog for the census path and config drift repair phase: stale state-census path restoration and fan-out config schema hardening that rejects a smuggled stopPolicy key."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "staged state migration census path and config drift repair changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

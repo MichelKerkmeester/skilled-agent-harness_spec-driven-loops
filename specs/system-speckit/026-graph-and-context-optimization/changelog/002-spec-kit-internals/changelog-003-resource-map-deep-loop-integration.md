@@ -7,6 +7,7 @@ trigger_phrases:
   - "convergence time resource map emission"
   - "extract-from-evidence extractor"
   - "deep loop resource map autorelease"
+  - "spec kit internals resource map deep loop integration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

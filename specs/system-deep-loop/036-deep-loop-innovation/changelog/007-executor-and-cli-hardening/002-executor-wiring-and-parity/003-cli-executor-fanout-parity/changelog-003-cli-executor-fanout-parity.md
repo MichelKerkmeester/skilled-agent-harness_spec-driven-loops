@@ -2,9 +2,7 @@
 title: "Changelog: CLI-Executor Fan-out Parity [007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity]"
 description: "Phase parent for a six-phase program that audits the full executor/provider/model matrix, wires the gaps, and proves every combination dispatches through the fan-out."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "cli executor fanout parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

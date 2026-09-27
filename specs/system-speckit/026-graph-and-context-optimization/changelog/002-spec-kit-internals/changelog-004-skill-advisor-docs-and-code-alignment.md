@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 004 changelog"
   - "skill advisor docs alignment"
   - "phase 020 code audit"
+  - "spec kit internals skill advisor docs and code alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

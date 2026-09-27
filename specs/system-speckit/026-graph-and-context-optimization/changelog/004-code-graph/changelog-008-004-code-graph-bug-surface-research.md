@@ -2,9 +2,7 @@
 title: "Changelog: Deep Research Issues [008-real-world-usefulness-test-planning/004-code-graph-bug-surface-research]"
 description: "Chronological changelog for the Deep Research Issues phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph bug surface research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

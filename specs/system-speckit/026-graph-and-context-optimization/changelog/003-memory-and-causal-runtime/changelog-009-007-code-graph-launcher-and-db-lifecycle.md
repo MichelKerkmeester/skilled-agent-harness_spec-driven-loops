@@ -7,6 +7,7 @@ trigger_phrases:
   - "canonical db dir resolver"
   - "owner-lease single owner"
   - "memory leak remediation phase 007"
+  - "memory and causal code graph launcher and db lifecycle changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

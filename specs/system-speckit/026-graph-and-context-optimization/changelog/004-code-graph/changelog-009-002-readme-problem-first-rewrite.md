@@ -7,6 +7,7 @@ trigger_phrases:
   - "problem-first readme"
   - "code graph readme 002"
   - "readme key statistics table"
+  - "code graph readme problem first rewrite changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

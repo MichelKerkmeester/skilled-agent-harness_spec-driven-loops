@@ -7,6 +7,7 @@ trigger_phrases:
   - "trust badges SQL fix"
   - "affordance sanitization hardening"
   - "blast radius overflow fix"
+  - "graph impact and affordance deep review findings changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

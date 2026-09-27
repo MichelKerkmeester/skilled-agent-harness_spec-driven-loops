@@ -5,6 +5,7 @@ trigger_phrases:
   - "021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2 rollup"
   - "021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2 phase parent"
   - "021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2 changelog index"
+  - "fix sk doc sk code alignment and 3 remaining changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

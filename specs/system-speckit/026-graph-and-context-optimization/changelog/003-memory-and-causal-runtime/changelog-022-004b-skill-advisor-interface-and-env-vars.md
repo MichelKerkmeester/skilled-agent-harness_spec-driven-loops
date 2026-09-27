@@ -6,6 +6,7 @@ trigger_phrases:
   - "resolvedConfidenceThreshold helper"
   - "prompt-policy.default.json externalization"
   - "RoutingCalibration typed slots"
+  - "memory and causal skill advisor interface and env vars changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

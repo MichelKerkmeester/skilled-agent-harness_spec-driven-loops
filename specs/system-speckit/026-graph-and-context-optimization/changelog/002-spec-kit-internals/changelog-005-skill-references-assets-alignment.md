@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill references assets alignment"
   - "SKILL.md audit"
   - "stale reference sweep"
+  - "spec kit internals skill references assets alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Review Remediation Phase Parent [004-review-remediation/root]"
 description: "Chronological changelog for the Review Remediation Phase Parent spec root."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "review remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "cocoindex mcp wiring 046"
   - "single daemon scenario runner"
   - "045 shared daemon implementation"
+  - "memory and causal runtime shared daemon suite runner changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

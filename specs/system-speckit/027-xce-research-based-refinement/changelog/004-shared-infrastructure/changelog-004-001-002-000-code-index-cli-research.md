@@ -5,6 +5,7 @@ trigger_phrases:
   - "code index cli research changelog"
   - "code graph cli feasibility changelog"
   - "mk_code_index cli verdict changelog"
+  - "shared infrastructure code index cli research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Claim Continuity [002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/003-claim-continuity]"
 description: "Changelog for the claim continuity phase: one durable claim identity across iterations with lifecycle fold and replay frontier."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "novelty claims continuity and projections claim continuity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

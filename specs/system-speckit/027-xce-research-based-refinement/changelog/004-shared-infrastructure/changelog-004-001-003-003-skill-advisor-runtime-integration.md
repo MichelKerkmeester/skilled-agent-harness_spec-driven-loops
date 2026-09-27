@@ -5,6 +5,7 @@ trigger_phrases:
   - "skill-advisor runtime integration changelog"
   - "skill-advisor phase 3 changelog"
   - "skill-advisor hook fallback changelog"
+  - "shared infrastructure skill advisor runtime integration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

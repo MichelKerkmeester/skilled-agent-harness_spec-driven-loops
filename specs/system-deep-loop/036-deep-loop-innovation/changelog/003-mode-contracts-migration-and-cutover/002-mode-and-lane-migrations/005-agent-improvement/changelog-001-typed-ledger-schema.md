@@ -2,9 +2,7 @@
 title: "Changelog: Agent Improvement — Typed Ledger Schema [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema]"
 description: "Changelog for the agent improvement typed ledger schema phase: the typed append-only event vocabulary for the agent improvement variant."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "agent improvement typed ledger schema changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

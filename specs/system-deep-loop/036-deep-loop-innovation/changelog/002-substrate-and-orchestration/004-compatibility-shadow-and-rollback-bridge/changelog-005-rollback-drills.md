@@ -2,9 +2,7 @@
 title: "Changelog: Rollback Drills [002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/005-rollback-drills]"
 description: "Changelog for the rollback drills phase: executable mode-scoped drills proving a cutover can be reversed within the rollback window."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "compatibility shadow and rollback bridge rollback drills changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

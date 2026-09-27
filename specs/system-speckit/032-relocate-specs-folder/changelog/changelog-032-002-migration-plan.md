@@ -2,8 +2,8 @@
 title: "Changelog: Migration Plan [032/002]"
 description: "Chronological changelog for the specs-root relocation migration design phase — two ADRs."
 trigger_phrases:
-  - "phase changelog"
   - "migration plan adrs"
+  - "relocate specs folder migration plan changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-skill-advisor-routing-engine rollup"
   - "003-skill-advisor-routing-engine phase parent"
   - "003-skill-advisor-routing-engine changelog index"
+  - "spec kit internals skill advisor routing engine changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

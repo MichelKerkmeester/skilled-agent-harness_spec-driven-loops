@@ -2,9 +2,7 @@
 title: "Changelog: Graduation Follow-Ups, Opus Deep Review and Fixes [005-dark-flag-graduation/008-followup-deep-review]"
 description: "Chronological changelog for the graduation follow-ups deep review and fixes phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation followup deep review changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

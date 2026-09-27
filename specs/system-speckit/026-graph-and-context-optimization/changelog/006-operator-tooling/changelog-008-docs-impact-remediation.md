@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 009/008 changelog"
   - "docs impact remediation"
   - "hook daemon docs alignment"
+  - "operator tooling docs impact remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

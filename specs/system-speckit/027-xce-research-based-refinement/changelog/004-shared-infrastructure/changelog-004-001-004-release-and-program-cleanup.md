@@ -5,6 +5,7 @@ trigger_phrases:
   - "028 release cleanup changelog"
   - "004 release and program cleanup changelog"
   - "cli transition doc cleanup changelog"
+  - "shared infrastructure release and program cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

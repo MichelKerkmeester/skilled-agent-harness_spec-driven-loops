@@ -7,6 +7,7 @@ trigger_phrases:
   - "checkpoint restore crash window"
   - "front proxy utf8 frame corruption"
   - "reconcileMoves spec_folder omission"
+  - "memory and causal runtime opus review runtime remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

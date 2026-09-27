@@ -2,9 +2,7 @@
 title: "Changelog: Skill References, Assets and SKILL.md Cleanup"
 description: "Chronological changelog for the skill references, assets and SKILL.md cleanup phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup skill references assets and skillmd changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Phase 14: sk-code Frontmatter Alignment [009-skill-frontmatter-alignment/014-sk-code]"
 description: "Chronological changelog for the Phase 14: sk-code Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup sk code changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

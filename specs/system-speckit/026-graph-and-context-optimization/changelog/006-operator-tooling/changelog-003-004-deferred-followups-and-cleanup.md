@@ -7,6 +7,7 @@ trigger_phrases:
   - "deep skill graph-metadata path fix"
   - "contract-parity un-skip"
   - "install guide cocoindex deletion"
+  - "operator tooling deferred followups and cleanup changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

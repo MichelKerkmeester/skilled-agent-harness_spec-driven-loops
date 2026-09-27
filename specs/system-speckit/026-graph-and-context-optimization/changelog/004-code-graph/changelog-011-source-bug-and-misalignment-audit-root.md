@@ -5,6 +5,7 @@ trigger_phrases:
   - "011-source-bug-and-misalignment-audit rollup"
   - "011-source-bug-and-misalignment-audit phase parent"
   - "011-source-bug-and-misalignment-audit changelog index"
+  - "code graph source bug and misalignment audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

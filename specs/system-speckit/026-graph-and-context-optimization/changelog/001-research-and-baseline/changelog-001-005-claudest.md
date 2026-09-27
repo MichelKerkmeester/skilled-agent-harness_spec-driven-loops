@@ -7,6 +7,7 @@ trigger_phrases:
   - "005-claudest changelog"
   - "claudest research findings"
   - "fts capability cascade brief"
+  - "research and baseline claudest changelog"
 importance_tier: "important"
 contextType: "research"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "source_kind schema v35 migration changelog"
   - "write-ingress overwrite guard shipped"
   - "mutation ledger deduped audit"
+  - "memory store and search provenance and audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

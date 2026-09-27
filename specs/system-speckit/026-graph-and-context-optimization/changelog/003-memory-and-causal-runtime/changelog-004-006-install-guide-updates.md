@@ -6,6 +6,7 @@ trigger_phrases:
   - "CocoIndex embedder onboarding"
   - "Choosing an embedder section"
   - "COCOINDEX_CODE_DEVICE cpu"
+  - "memory and causal runtime install guide updates changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

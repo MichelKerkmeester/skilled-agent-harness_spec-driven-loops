@@ -2,9 +2,7 @@
 title: "Changelog: Combo Test Matrix + Ambient-Config Isolation [007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix]"
 description: "Prove the deep-loop fan-out works for every cli/provider/model/mode combination end-to-end, logging every credentials-gated skip, and close the ambient-config isolation boundary."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "cli executor fanout parity combo test matrix changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "command md yaml alignment"
   - "spec_kit command audit"
   - "workflow yaml alignment"
+  - "spec kit internals command md yaml alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "off deficient verdict"
   - "rerank decision arc phase 1"
   - "spec memory baseline measurement"
+  - "memory and causal runtime off baseline audit changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

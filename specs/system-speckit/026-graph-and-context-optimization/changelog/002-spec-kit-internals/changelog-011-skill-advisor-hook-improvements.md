@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 011 changelog"
   - "skill advisor hook improvements"
   - "threshold parity"
+  - "spec kit internals skill advisor hook improvements changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

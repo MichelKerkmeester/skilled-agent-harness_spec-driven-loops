@@ -2,9 +2,7 @@
 title: "Changelog: Transactional Projections & Gauges [002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges]"
 description: "Changelog for the transactional projections and gauges phase: deterministic transactional projections that apply each verified ledger event atomically."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "novelty claims continuity and projections transactional projections and gauges changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Automatic Drift Se
 trigger_phrases:
   - "automatic-drift-self-healing changelog"
   - "former 011-automatic-drift-self-healing"
-  - "nested changelog"
+  - "speckit memory automatic drift self healing changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "MemoryTrustBadges"
   - "causal edge freshness display"
   - "trustBadges result envelope"
+  - "graph impact and affordance memory causal trust display changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

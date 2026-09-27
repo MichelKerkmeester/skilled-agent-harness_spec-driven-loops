@@ -2,9 +2,7 @@
 title: "Changelog: Repo-wide comment-hygiene scrub [007-mcp-daemon-reliability/025-repo-wide-comment-hygiene-scrub]"
 description: "Chronological changelog for the Repo-wide comment-hygiene scrub phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability repo wide comment hygiene scrub changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

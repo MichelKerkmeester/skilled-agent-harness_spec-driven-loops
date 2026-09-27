@@ -7,6 +7,7 @@ trigger_phrases:
   - "028 phase 001 changelog"
   - "MCP server build verification"
   - "playbook run environment setup"
+  - "spec kit internals preconditions and build changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

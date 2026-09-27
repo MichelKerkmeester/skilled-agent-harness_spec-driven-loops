@@ -5,6 +5,7 @@ trigger_phrases:
   - "032-substrate-repair-followups rollup"
   - "032-substrate-repair-followups phase parent"
   - "032-substrate-repair-followups changelog index"
+  - "memory and causal runtime substrate repair followups changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/002 003 create commands changelog"
   - "create command presentation split"
   - "create router reference check"
+  - "shared infrastructure create commands changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

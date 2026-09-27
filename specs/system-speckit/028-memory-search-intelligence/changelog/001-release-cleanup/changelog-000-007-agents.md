@@ -2,9 +2,7 @@
 title: "Changelog: Agent Definition Cleanup"
 description: "Chronological changelog for the agent definition cleanup phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup agents changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

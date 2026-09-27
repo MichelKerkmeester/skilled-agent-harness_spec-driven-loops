@@ -2,9 +2,7 @@
 title: "Changelog: Real-World Usefulness Test [008-real-world-usefulness-test-planning/001-usefulness-test-methodology]"
 description: "Chronological changelog for the Real-World Usefulness Test phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph usefulness test methodology changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

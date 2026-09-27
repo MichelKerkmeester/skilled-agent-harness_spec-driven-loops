@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 009/002 changelog"
   - "copilot hook parity"
   - "copilot custom instructions"
+  - "operator tooling copilot hook parity remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

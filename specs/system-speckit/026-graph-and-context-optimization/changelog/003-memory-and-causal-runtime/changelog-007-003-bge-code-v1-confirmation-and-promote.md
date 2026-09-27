@@ -7,6 +7,7 @@ trigger_phrases:
   - "bge-code-v1 rebaseline closed"
   - "pre-confirmation margin analysis decision"
   - "nomic coderankembed supersedes bge-code-v1"
+  - "memory and causal bge code v1 confirmation and promote changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -8,6 +8,7 @@ trigger_phrases:
   - "constitutional tier pollution"
   - "index scope exclusion"
   - "cleanup CLI"
+  - "memory and causal runtime memory indexer invariants changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

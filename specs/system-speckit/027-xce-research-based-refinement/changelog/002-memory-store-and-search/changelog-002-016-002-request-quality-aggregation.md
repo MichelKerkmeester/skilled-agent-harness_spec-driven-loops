@@ -6,6 +6,7 @@ trigger_phrases:
   - "top-dominant margin-aware good verdict"
   - "strong top hit earns citable"
   - "recall expansion no longer depresses quality"
+  - "memory store and search request quality aggregation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

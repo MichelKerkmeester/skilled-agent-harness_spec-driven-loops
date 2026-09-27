@@ -7,6 +7,7 @@ trigger_phrases:
   - "dependency security audit 2026"
   - "compromise confirmed devin jwt"
   - "25 iteration security research"
+  - "release and program cleanup dependency security supply chain audit changelog"
 importance_tier: "important"
 contextType: "research"
 ---

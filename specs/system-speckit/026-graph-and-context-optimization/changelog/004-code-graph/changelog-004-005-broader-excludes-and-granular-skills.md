@@ -7,6 +7,7 @@ trigger_phrases:
   - "fingerprint v2 scope"
   - "readiness fix 009 v3"
   - "cross-file calls resolution"
+  - "code graph broader excludes and granular skills changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

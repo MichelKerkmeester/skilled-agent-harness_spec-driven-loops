@@ -7,6 +7,7 @@ trigger_phrases:
   - "cocoindex over-fetch canonical identity"
   - "REQ-018 REQ-019 remediation"
   - "path class reranking cocoindex"
+  - "release and program cleanup cocoindex overfetch dedup rerank changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

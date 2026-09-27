@@ -1,6 +1,10 @@
 ---
 title: "Changelog Rollup — Track 002: Memory Store and Search"
-trigger_phrases: []
+description: "Top rollup for the 002-memory-store-and-search/ themed track."
+trigger_phrases:
+  - "memory store and search changelog"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 # Changelog Rollup — Track 002: Memory Store and Search
 

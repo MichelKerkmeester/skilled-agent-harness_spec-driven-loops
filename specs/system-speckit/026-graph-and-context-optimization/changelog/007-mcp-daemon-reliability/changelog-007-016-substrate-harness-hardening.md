@@ -7,6 +7,7 @@ trigger_phrases:
   - "run-substrate-stress-harness maintainer mode"
   - "liveOwnerForService start time"
   - "harness EPERM sidecar"
+  - "mcp daemon reliability substrate harness hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

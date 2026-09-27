@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-install-scripts-doctor-realignment rollup"
   - "003-install-scripts-doctor-realignment phase parent"
   - "003-install-scripts-doctor-realignment changelog index"
+  - "operator tooling install scripts doctor realignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

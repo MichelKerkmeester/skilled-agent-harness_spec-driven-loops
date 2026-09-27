@@ -6,6 +6,7 @@ trigger_phrases:
   - "003-semantic-trigger-fallback phase parent"
   - "semantic trigger fallback changelog index"
   - "schema v34 semantic trigger rollup"
+  - "memory store and search semantic trigger fallback changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

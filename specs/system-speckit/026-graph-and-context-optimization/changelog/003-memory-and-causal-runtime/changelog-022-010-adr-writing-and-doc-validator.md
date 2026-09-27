@@ -7,6 +7,7 @@ trigger_phrases:
   - "ADR-D doc cross-checking"
   - "022 arc closure"
   - "doc drift validator"
+  - "memory and causal runtime adr writing and doc validator changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

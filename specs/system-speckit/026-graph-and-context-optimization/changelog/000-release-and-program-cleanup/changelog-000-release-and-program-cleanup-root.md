@@ -5,6 +5,7 @@ trigger_phrases:
   - "000-release-and-program-cleanup rollup"
   - "000-release-and-program-cleanup phase parent"
   - "000-release-and-program-cleanup changelog index"
+  - "release and program cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

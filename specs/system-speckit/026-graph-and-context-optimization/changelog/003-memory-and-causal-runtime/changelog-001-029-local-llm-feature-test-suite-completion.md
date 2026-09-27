@@ -7,6 +7,7 @@ trigger_phrases:
   - "local embedding runtime tests"
   - "029 test suite"
   - "cascade resolution vitest"
+  - "memory and causal local llm feature test suite completion changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

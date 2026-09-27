@@ -6,6 +6,7 @@ description: "Review-only phase. Tier-2 review of OpenCode plugin loader remedia
 trigger_phrases:
   - "phase 009/005 review pt-01 changelog"
   - "opencode plugin loader review"
+  - "operator tooling opencode plugin loader remediation review pt 01 changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

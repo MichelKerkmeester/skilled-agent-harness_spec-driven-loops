@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-memory-and-causal-runtime rollup"
   - "003-memory-and-causal-runtime phase parent"
   - "003-memory-and-causal-runtime changelog index"
+  - "memory and causal runtime changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

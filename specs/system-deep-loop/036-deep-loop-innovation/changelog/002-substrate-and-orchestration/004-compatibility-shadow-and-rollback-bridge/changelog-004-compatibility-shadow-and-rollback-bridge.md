@@ -2,9 +2,7 @@
 title: "Changelog: Compatibility, Shadow & Rollback Bridge [002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge]"
 description: "Changelog for the compatibility, shadow and rollback bridge phase: upcasters, legacy projections, shadow-parity harness, in-flight state classification, and rollback drills."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "compatibility shadow and rollback bridge changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

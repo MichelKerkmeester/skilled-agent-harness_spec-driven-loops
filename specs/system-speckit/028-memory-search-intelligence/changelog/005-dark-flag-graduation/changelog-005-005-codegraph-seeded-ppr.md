@@ -2,9 +2,7 @@
 title: "Changelog: Code-Graph Seeded-PPR Impact Ranking Benchmark [005-dark-flag-graduation/005-codegraph-seeded-ppr]"
 description: "Chronological changelog for the Code-Graph Seeded-PPR Impact Ranking Benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation codegraph seeded ppr changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

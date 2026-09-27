@@ -7,6 +7,7 @@ trigger_phrases:
   - "ndcg mrr metrics harness"
   - "rerank gate floor weak-margin"
   - "cross-encoder maxDocuments cap"
+  - "release and program cleanup fix search quality tuning changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

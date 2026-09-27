@@ -7,6 +7,7 @@ trigger_phrases:
   - "comment ephemeral pointer cleanup"
   - "sk-code §4 enforcement"
   - "ephemeral artifact pointer detection"
+  - "memory and causal runtime ephemeral pointer guard and sweep changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

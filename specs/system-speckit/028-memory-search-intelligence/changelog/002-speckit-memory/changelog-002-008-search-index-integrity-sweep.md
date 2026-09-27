@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Search-Index Integ
 trigger_phrases:
   - "search-index-integrity-sweep changelog"
   - "former 007-search-index-integrity-sweep"
-  - "nested changelog"
+  - "speckit memory search index integrity sweep changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

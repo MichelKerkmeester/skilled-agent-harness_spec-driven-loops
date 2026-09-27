@@ -2,9 +2,7 @@
 title: "Changelog: Create Commands - Author Presentation Markdown [003-create-commands/002-author-presentation-md]"
 description: "Chronological changelog for the Create Commands - Author Presentation Markdown phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared infrastructure author presentation md changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

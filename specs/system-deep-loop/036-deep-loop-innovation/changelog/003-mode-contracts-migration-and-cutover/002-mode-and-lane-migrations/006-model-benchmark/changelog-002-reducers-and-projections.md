@@ -2,9 +2,7 @@
 title: "Changelog: Model Benchmark — Reducers & Projections [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections]"
 description: "Changelog for the model benchmark reducers and projections phase: deterministic reducers for multi-model runs and the scoring matrix."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "model benchmark reducers and projections changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

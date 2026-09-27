@@ -2,9 +2,7 @@
 title: "Changelog: Scoring Hardening [001-speckit-memory/028-scoring-hardening]"
 description: "Chronological changelog for the scoring hardening phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory scoring hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

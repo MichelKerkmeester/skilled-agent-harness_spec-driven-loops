@@ -2,9 +2,7 @@
 title: "Changelog: Effect Enablement [012-runtime-enablement/007-effect-enablement]"
 description: "Fail-closed effect producer at the live fan-out launcher seam, bracketing executor dispatch with durable intent before spawn and confirmation after into the per-lineage effect ledger."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement effect enablement changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

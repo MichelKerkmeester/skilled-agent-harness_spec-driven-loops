@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill_advisor snake case rename completion"
   - "manual playbook scenario count fix"
   - "corpus parity test remediation"
+  - "release and program cleanup fix baseline test failures changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

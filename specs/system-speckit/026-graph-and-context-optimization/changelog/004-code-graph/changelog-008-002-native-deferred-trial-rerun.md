@@ -7,6 +7,7 @@ trigger_phrases:
   - "native trial log 13 rows"
   - "scope drift zero node parser crash"
   - "advisor probes 3 of 3 correct"
+  - "code graph native deferred trial rerun changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

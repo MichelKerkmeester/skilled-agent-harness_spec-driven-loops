@@ -8,6 +8,7 @@ trigger_phrases:
   - "skill advisor in-flight dedup"
   - "skill advisor size caps"
   - "skill advisor lru"
+  - "spec kit internals advisor plugin hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

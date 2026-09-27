@@ -5,6 +5,7 @@ trigger_phrases:
   - "004/002 001 memory commands changelog"
   - "memory command presentation split"
   - "memory search open ended startup"
+  - "shared infrastructure memory commands changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

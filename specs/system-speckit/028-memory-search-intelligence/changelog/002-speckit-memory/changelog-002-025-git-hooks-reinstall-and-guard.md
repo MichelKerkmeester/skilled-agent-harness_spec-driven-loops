@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Git Hooks Reinstal
 trigger_phrases:
   - "git-hooks-reinstall-and-guard changelog"
   - "former 018-git-hooks-reinstall-and-guard"
-  - "nested changelog"
+  - "speckit memory git hooks reinstall and guard changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

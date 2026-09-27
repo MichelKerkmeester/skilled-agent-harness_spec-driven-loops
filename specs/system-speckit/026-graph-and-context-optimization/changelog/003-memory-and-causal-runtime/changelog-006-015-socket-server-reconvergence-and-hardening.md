@@ -7,6 +7,7 @@ trigger_phrases:
   - "shared ipc socket server"
   - "ipc socket drift check"
   - "toctou bridge bind test"
+  - "memory and causal runtime socket server reconvergence and hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Phase 12: mcp-click-up Frontmatter Alignment [009-skill-frontmatter-alignment/012-mcp-click-up]"
 description: "Chronological changelog for the Phase 12: mcp-click-up Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup mcp click up changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

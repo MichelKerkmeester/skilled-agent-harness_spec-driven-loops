@@ -2,9 +2,7 @@
 title: "Changelog: Deep-Loop Finding Dedup Benchmark [005-dark-flag-graduation/008-deeploop-finding-dedup]"
 description: "Chronological changelog for the deep-loop finding dedup benchmark phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "dark flag graduation deeploop finding dedup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

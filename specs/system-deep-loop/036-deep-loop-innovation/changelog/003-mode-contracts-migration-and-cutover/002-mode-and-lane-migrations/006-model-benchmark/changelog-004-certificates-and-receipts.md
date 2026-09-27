@@ -2,9 +2,7 @@
 title: "Changelog: Model Benchmark - Certificates and Receipts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts]"
 description: "Changelog for the model benchmark certificates and receipts phase: per-run attestations and per-transition receipts over the typed event-ledger substrate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "model benchmark certificates and receipts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

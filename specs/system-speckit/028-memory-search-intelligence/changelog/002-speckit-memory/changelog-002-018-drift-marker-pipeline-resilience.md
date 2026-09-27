@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Drift-Marker Produ
 trigger_phrases:
   - "drift-marker-pipeline-resilience changelog"
   - "former 013-drift-marker-pipeline-resilience"
-  - "nested changelog"
+  - "speckit memory drift marker pipeline resilience changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

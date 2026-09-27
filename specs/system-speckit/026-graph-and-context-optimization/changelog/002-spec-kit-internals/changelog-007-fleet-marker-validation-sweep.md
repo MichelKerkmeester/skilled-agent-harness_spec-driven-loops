@@ -6,6 +6,7 @@ trigger_phrases:
   - "fleet marker validation"
   - "SPECKIT_LEVEL marker sweep"
   - "SPECKIT_TEMPLATE_SOURCE sweep"
+  - "spec kit internals fleet marker validation sweep changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: devin allowlist prune, DeepSeek gap, and mirror parity [007-executor-and-cli-hardening/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek]"
 description: "Prune curated-out cli-devin aliases, add the missing DeepSeek ids, and convert the CJS allowlist mirror drift into a test failure."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "executor wiring and parity devin allowlist prune and deepseek changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

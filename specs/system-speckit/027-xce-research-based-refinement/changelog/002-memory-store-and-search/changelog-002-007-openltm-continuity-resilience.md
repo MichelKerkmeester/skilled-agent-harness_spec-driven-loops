@@ -7,6 +7,7 @@ trigger_phrases:
   - "bounded startup restore panel changelog"
   - "precompact authored continuity snapshot shipped"
   - "goal decision progress gotcha facets changelog"
+  - "memory store and search openltm continuity resilience changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

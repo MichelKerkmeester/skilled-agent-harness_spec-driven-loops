@@ -7,6 +7,7 @@ trigger_phrases:
   - "code_graph_status DB unavailable snapshot"
   - "F-001 F-003 remediation"
   - "rg fallback handler parity"
+  - "release and program cleanup degraded readiness envelope parity changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

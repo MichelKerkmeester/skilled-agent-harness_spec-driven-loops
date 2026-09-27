@@ -7,6 +7,7 @@ trigger_phrases:
   - "deep-loop-workflows merge test fallout"
   - "fable-5 governor brief tests"
   - "027 003/004 shipped"
+  - "advisor and codegraph skill advisor suite repair changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

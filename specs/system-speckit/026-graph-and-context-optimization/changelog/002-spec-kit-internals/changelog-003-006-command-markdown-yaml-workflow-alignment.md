@@ -9,6 +9,7 @@ trigger_phrases:
   - "workflow yaml audit"
   - "template levels packet 006"
   - "spec kit command surface"
+  - "spec kit internals command markdown yaml workflow alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

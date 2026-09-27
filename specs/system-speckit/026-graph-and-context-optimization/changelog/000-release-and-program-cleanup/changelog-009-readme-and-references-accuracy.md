@@ -9,6 +9,7 @@ trigger_phrases:
   - "tool api drift remediation"
   - "144 confirmed findings 142 fixes"
   - "references drift remediation shipped"
+  - "release and program cleanup readme and references accuracy changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "WEIGHT_RERANKER conditional penalty"
   - "rerank decision arc closure"
   - "isRerankerExpected helper"
+  - "memory and causal runtime opt in only closure changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

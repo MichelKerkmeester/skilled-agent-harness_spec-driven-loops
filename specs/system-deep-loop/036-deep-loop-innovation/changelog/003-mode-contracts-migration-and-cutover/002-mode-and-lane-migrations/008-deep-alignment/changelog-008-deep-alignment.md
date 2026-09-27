@@ -2,9 +2,7 @@
 title: "Changelog: Deep Alignment Migration [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment]"
 description: "Changelog for the deep alignment migration group: migrating the deep alignment verify-first conformance loop onto the typed event-ledger substrate."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "deep alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

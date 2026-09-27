@@ -7,6 +7,7 @@ trigger_phrases:
   - "system-code-graph dependency repair"
   - "post-extraction sdk dependency"
   - "mcp_server npm run build fix"
+  - "memory and causal runtime mcp server build fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

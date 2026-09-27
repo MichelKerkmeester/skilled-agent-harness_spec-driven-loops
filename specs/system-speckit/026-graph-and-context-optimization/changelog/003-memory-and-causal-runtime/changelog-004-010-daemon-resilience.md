@@ -9,6 +9,7 @@ trigger_phrases:
   - "BrokenPipeError send_bytes"
   - "daemon.log rotation 60mb"
   - "operator recovery daemon"
+  - "memory and causal runtime daemon resilience changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory leak remediation phase 005"
   - "sweep eligibility gate daemon classifier"
   - "dry-run process sweep sc-001"
+  - "memory and causal expected daemon classifier and process sweep changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

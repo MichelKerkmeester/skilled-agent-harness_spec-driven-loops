@@ -7,6 +7,7 @@ trigger_phrases:
   - "async deferred enrichment readme"
   - "SPECKIT_POST_INSERT_ENRICHMENT_SYNC"
   - "022-readme-doc-sync"
+  - "memory and causal runtime readme doc sync changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

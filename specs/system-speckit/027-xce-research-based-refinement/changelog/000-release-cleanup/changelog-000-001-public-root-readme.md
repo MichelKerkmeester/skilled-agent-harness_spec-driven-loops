@@ -5,6 +5,7 @@ trigger_phrases:
   - "000 001 public root readme changelog"
   - "release cleanup readme changelog"
   - "root README current framework state"
+  - "release cleanup public root readme changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "BAAI hf-local active bug fix"
   - "getCanonicalFallback profile.ts"
   - "embeddings.ts dead code jina removal"
+  - "memory and causal runtime profile ts fallback fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

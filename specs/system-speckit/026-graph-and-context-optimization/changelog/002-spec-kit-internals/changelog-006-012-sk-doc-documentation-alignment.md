@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill advisor documentation alignment"
   - "sk-doc template traces advisor"
   - "advisor stale wording fix"
+  - "spec kit internals sk doc documentation alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

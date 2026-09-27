@@ -7,6 +7,7 @@ trigger_phrases:
   - "code graph usefulness test execution"
   - "trial log jsonl 74 rows"
   - "usefulness synthesis report"
+  - "code graph sandbox usefulness trials changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

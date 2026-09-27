@@ -7,6 +7,7 @@ trigger_phrases:
   - "dist vs source path fixture bias"
   - "universal ceiling probe audit"
   - "016 004 012 fixture audit"
+  - "memory and causal runtime fixture audit 10 probes changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "004-followup-post-program rollup"
   - "004-followup-post-program phase parent"
   - "004-followup-post-program changelog index"
+  - "release and program cleanup followup post program changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

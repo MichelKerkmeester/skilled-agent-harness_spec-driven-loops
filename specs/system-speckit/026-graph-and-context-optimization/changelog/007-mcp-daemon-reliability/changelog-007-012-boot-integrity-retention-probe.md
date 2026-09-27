@@ -7,6 +7,7 @@ trigger_phrases:
   - "retention sweep durability"
   - "deepProbe reap fix"
   - "launcher-ipc-bridge probe timeout"
+  - "mcp daemon reliability boot integrity retention probe changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

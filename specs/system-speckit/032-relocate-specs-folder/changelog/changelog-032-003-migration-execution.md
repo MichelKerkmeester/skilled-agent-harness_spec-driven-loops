@@ -2,9 +2,9 @@
 title: "Changelog: Migration Execution [032/003]"
 description: "Chronological changelog for the specs-root relocation runbook execution — the atomic flip itself."
 trigger_phrases:
-  - "phase changelog"
   - "migration execution runbook"
   - "specs root atomic flip"
+  - "relocate specs folder migration execution changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

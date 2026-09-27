@@ -7,6 +7,7 @@ trigger_phrases:
   - "028 audit findings"
   - "boxed js esm headers"
   - "declaration module header alignment"
+  - "spec kit internals generated js declaration alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

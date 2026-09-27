@@ -2,9 +2,7 @@
 title: "Changelog: Deep AI Council - Typed Ledger Schema [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema]"
 description: "Changelog for the deep ai council typed ledger schema phase: the typed append-only event vocabulary for the deep ai council mode."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep ai council typed ledger schema changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

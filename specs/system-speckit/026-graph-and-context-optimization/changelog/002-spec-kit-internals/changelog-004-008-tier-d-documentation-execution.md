@@ -7,6 +7,7 @@ trigger_phrases:
   - "old hook deprecation banners"
   - "playbook cross-reference table"
   - "008 tier d changelog"
+  - "spec kit internals tier d documentation execution changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

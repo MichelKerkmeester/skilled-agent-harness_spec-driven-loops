@@ -6,6 +6,7 @@ trigger_phrases:
   - "feature catalog playbook findings"
   - "catalog code traceability audit"
   - "manual testing playbook coverage audit"
+  - "release and program cleanup feature catalog playbook changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

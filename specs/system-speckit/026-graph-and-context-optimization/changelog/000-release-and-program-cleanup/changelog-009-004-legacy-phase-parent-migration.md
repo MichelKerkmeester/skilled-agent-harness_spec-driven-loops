@@ -7,6 +7,7 @@ trigger_phrases:
   - "legacy phase parent backfill"
   - "phase parent lean trio migration"
   - "004-legacy-phase-parent-migration"
+  - "release and program cleanup legacy phase parent migration changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

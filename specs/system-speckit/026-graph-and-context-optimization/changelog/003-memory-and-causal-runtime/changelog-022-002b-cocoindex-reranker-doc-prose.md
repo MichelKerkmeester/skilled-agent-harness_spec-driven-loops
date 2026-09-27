@@ -6,6 +6,7 @@ trigger_phrases:
   - "cocoindex Qwen3 reranker docs"
   - "daemon-log silent-success correction"
   - "reranker doc drift remediation"
+  - "memory and causal runtime cocoindex reranker doc prose changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

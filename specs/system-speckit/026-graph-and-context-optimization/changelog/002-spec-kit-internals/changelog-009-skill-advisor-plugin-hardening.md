@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 009 changelog"
   - "skill advisor plugin hardening"
   - "in-flight dedup"
+  - "spec kit internals skill advisor plugin hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "memory_index_scan coalescing async drain"
   - "active-row uniqueness v28 partial index"
   - "move reconciliation packet_id identity"
+  - "memory and causal runtime self maintaining index changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

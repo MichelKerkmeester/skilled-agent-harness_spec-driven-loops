@@ -2,9 +2,7 @@
 title: "Changelog: Write-Containment Hardening [007-executor-and-cli-hardening/003-write-containment-hardening]"
 description: "Group the deep-loop fan-out write-containment guard fixes so a dispatched leaf can never leave, delete, or misattribute out-of-scope writes."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "write containment hardening changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

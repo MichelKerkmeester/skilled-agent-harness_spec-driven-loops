@@ -7,6 +7,7 @@ trigger_phrases:
   - "memory index self-healing orphan reconciliation"
   - "012 deep research synthesis"
   - "memory index coalescing caller contract"
+  - "memory and causal runtime memory index scan ux hardening changelog"
 importance_tier: "important"
 contextType: "research"
 ---

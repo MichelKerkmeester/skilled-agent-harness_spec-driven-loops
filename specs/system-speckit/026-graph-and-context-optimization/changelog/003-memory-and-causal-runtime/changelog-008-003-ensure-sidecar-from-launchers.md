@@ -7,6 +7,7 @@ trigger_phrases:
   - "008-003 sidecar launcher wiring"
   - "mk-spec-memory rerank startup"
   - "cocoindex sidecar ensure helper"
+  - "memory and causal runtime ensure sidecar from launchers changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

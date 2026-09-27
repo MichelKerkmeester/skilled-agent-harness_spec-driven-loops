@@ -5,6 +5,7 @@ trigger_phrases:
   - "001-research-and-baseline rollup"
   - "001-research-and-baseline phase parent"
   - "001-research-and-baseline changelog index"
+  - "research and baseline changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

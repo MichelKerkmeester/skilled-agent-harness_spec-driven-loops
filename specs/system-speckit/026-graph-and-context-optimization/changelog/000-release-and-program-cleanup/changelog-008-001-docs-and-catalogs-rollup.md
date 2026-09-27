@@ -6,6 +6,7 @@ trigger_phrases:
   - "umbrella docs capability sync"
   - "026 readme feature catalog rollup"
   - "memory_embedding_reconcile docs"
+  - "release and program cleanup docs and catalogs rollup changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

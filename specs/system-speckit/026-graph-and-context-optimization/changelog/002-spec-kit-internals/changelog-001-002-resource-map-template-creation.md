@@ -7,6 +7,7 @@ trigger_phrases:
   - "resource-map.md template wiring"
   - "level-agnostic file path ledger"
   - "spec-doc-paths resource-map"
+  - "spec kit internals resource map template creation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

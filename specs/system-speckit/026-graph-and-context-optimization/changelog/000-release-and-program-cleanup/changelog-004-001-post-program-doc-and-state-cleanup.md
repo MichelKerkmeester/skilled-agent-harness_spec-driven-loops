@@ -7,6 +7,7 @@ trigger_phrases:
   - "026 stale metadata refresh"
   - "011 validator bug phase_dir"
   - "005 strict validator CHK-T15"
+  - "release and program post program doc and state cleanup changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

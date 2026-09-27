@@ -2,9 +2,7 @@
 title: "Changelog: Phase 13: mcp-code-mode Frontmatter Alignment [009-skill-frontmatter-alignment/013-mcp-code-mode]"
 description: "Chronological changelog for the Phase 13: mcp-code-mode Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup mcp code mode changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

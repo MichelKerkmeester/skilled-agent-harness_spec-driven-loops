@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 010 changelog"
   - "skill advisor standards alignment"
   - "opencode plugin exemption tier"
+  - "spec kit internals skill advisor standards alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

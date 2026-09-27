@@ -7,6 +7,7 @@ trigger_phrases:
   - "layer-definitions vitest failing"
   - "L6 analysis causal unlink"
   - "025-tool-layer-map-unlink"
+  - "memory and causal runtime tool layer map unlink changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

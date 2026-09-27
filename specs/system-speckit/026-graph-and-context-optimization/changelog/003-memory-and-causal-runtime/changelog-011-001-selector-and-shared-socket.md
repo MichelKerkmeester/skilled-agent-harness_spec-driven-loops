@@ -7,6 +7,7 @@ trigger_phrases:
   - "ECONNRESET EPIPE readiness retry"
   - "embedder auto-select health probe"
   - "cross-launcher shared embedding socket"
+  - "memory and causal runtime selector and shared socket changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

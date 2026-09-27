@@ -7,6 +7,7 @@ trigger_phrases:
   - "F30 F33 cleanup"
   - "skill-advisor doc quality phase 6"
   - "deferred documentation closure"
+  - "spec kit internals clean deferred documentation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

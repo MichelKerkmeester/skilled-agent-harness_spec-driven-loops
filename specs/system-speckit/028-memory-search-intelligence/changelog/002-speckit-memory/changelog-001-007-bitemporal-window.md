@@ -2,9 +2,7 @@
 title: "Changelog: Bi-temporal Window for Spec-Kit Memory Causal and Lineage [001-speckit-memory/007-bitemporal-window]"
 description: "Chronological changelog for the bi-temporal window for Spec-Kit Memory causal and lineage phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory bitemporal window changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

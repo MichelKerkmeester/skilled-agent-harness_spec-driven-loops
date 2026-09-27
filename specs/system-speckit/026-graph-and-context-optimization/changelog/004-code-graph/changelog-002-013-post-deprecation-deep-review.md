@@ -7,6 +7,7 @@ trigger_phrases:
   - "cli-devin swe-1.6 coco review"
   - "coco rerank deprecation verdict fail"
   - "gemini.md routing deleted mcp"
+  - "code graph post deprecation deep review changelog"
 importance_tier: "important"
 contextType: "review"
 ---

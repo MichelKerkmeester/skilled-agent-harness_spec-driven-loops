@@ -2,9 +2,7 @@
 title: "Changelog: Mem0 Ranking and Extraction Bundle [001-speckit-memory/014-mem0-ranking-tweaks]"
 description: "Chronological changelog for the Mem0 ranking and extraction bundle phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory mem0 ranking tweaks changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

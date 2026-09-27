@@ -7,6 +7,7 @@ trigger_phrases:
   - "EPERM lease fix"
   - "launcher error surface hardening"
   - "mcp launcher concurrency review remediation"
+  - "memory and causal launcher race and error surface hardening changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

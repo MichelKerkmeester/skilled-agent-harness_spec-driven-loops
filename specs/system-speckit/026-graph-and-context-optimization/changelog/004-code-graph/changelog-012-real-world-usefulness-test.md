@@ -6,6 +6,7 @@ trigger_phrases:
   - "code graph usefulness test"
   - "hook usefulness validation"
   - "026/007/012 rollup"
+  - "code graph real world usefulness test changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

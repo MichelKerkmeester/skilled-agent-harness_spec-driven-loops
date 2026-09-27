@@ -2,9 +2,7 @@
 title: "Changelog: Deep Research - Sealed Reference Artifacts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts]"
 description: "Changelog for the deep research sealed reference artifacts phase: content-addressed, immutable reference artifacts for the deep research mode."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep research sealed artifacts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

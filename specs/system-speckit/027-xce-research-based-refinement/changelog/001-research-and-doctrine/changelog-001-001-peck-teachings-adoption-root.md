@@ -6,6 +6,7 @@ trigger_phrases:
   - "001-peck-teachings-adoption phase parent"
   - "peck teachings adoption changelog index"
   - "peck T1 T2 T3 T4 adoption"
+  - "research and doctrine peck teachings adoption changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

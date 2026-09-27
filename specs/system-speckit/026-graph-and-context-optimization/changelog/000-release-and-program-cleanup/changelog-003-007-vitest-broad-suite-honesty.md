@@ -7,6 +7,7 @@ trigger_phrases:
   - "broad suite timeout hang"
   - "026 vitest claim correction"
   - "vitest progressive investigation"
+  - "release and program cleanup vitest broad suite honesty changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

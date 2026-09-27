@@ -7,6 +7,7 @@ trigger_phrases:
   - "sk-code-opencode esm exemption"
   - "skill advisor jsdoc"
   - "skill advisor box header"
+  - "spec kit internals advisor standards alignment changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

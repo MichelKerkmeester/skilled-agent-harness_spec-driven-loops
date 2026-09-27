@@ -5,6 +5,7 @@ trigger_phrases:
   - "000 004 manual playbook changelog"
   - "release hardening playbook scenarios"
   - "409 scenario count guard"
+  - "release cleanup skill manual playbook changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

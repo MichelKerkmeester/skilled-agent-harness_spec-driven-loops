@@ -2,9 +2,7 @@
 title: "Changelog: Mode Projection Contracts [012-runtime-enablement/009-mode-projection-contracts]"
 description: "Projection-composition foundation, six ledger-fold projection surface contracts, and three honest retain-legacy-input reclassifications reaching zero mode-owned coverage gaps."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime enablement mode projection contracts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

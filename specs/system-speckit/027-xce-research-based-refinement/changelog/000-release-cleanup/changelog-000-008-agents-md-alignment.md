@@ -5,6 +5,7 @@ trigger_phrases:
   - "000 008 AGENTS.md changelog"
   - "root governance alignment"
   - "Four Laws unchanged"
+  - "release cleanup agents md alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

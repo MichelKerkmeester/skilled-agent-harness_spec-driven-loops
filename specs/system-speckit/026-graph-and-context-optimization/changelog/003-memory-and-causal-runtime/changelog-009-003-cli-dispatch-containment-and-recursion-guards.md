@@ -7,6 +7,7 @@ trigger_phrases:
   - "SPECKIT_CLI_DISPATCH_STACK"
   - "runAuditedExecutorCommandAsync"
   - "memory leak phase 003"
+  - "memory and causal cli dispatch containment and recursion guards changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

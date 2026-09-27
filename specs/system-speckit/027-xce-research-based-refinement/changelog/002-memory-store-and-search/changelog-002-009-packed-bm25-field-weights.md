@@ -6,6 +6,7 @@ trigger_phrases:
   - "packed in-memory bm25 engine"
   - "bm25f field weighting restored"
   - "027 002/009 shipped"
+  - "memory store and search packed bm25 field weights changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

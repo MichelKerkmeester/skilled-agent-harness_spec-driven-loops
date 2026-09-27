@@ -2,9 +2,7 @@
 title: "Changelog: Reconcile Migration-Program Completion Claims Against the Current Suites [005-blocker-closeout/001-completion-evidence-reconcile]"
 description: "Reopens every unreproducible completion-evidence claim in the migration program and repairs the acceptance boundary so the drift cannot recur."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "blocker closeout completion evidence reconcile changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

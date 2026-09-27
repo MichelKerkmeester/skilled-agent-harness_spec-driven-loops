@@ -5,6 +5,7 @@ trigger_phrases:
   - "manual testing playbook EX-037 EX-042"
   - "checkpoint enrichment front proxy sk-git scenarios"
   - "014 001 playbook update changelog"
+  - "memory and causal runtime manual testing playbook update changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

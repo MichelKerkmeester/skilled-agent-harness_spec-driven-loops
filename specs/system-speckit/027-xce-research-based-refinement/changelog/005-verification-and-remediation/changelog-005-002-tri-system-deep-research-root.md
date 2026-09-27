@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/002 tri system deep research changelog"
   - "50 research angles changelog"
   - "tri system findings registry"
+  - "verification and remediation tri system deep research changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

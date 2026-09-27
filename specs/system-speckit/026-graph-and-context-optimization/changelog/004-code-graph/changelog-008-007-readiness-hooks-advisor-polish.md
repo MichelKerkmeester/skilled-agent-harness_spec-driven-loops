@@ -2,9 +2,7 @@
 title: "Changelog: Code Graph + Advisor + Hooks Polish [008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish]"
 description: "Chronological changelog for the Code Graph + Advisor + Hooks Polish phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph readiness hooks advisor polish changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

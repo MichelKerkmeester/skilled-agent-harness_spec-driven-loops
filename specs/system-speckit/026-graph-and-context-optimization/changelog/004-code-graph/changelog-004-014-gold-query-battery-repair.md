@@ -2,9 +2,7 @@
 title: "Changelog: Code Graph Gold-Query Battery Repair [004-code-graph/014-gold-query-battery-repair]"
 description: "Chronological changelog for the Code Graph Gold-Query Battery Repair phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "code graph gold query battery repair changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

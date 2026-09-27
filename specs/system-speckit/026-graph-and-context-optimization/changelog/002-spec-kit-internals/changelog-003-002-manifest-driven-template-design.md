@@ -9,6 +9,7 @@ trigger_phrases:
   - "capability flags template system"
   - "lazy addon lifecycle"
   - "spec-kit template backend"
+  - "spec kit internals manifest driven template design changelog"
 importance_tier: "important"
 contextType: "research"
 ---

@@ -8,6 +8,7 @@ trigger_phrases:
   - "destructive scope violation"
   - "deepseek deleted files"
   - "deep-review safety"
+  - "spec kit internals harden deep review iteration prompts changelog"
 importance_tier: "normal"
 contextType: "research"
 ---

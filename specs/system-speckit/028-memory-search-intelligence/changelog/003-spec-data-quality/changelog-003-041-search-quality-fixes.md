@@ -2,9 +2,7 @@
 title: "Changelog: Search-Quality Fixes [003-spec-data-quality/006-generated-metadata-build/041-search-quality-fixes]"
 description: "Chronological changelog for the search-quality fixes phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality search quality fixes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

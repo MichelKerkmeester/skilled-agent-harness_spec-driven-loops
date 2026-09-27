@@ -7,6 +7,7 @@ trigger_phrases:
   - "Node prerequisite drift release readiness"
   - "legacy strict validation backwards compatibility"
   - "UPGRADE-SAFETY findings"
+  - "release and program cleanup upgrade safety operability audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

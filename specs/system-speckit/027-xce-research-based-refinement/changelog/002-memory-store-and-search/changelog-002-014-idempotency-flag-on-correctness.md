@@ -6,6 +6,7 @@ trigger_phrases:
   - "verbatim replay immutable receipt"
   - "concurrent first-write loser replays winner"
   - "027 002/014 shipped"
+  - "memory store and search idempotency flag on correctness changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

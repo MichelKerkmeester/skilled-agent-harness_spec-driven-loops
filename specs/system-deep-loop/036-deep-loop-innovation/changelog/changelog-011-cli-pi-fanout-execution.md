@@ -2,9 +2,7 @@
 title: "Changelog: cli-pi Fan-out Execution [011-cli-pi-fanout-execution]"
 description: "Artifact-progress liveness in the deep-loop fan-out runner so non-streaming cli-pi lineages are not falsely stalled, lag-aborted, or orphaned; diagnosis overturned the requeue-loop premise and hardened all three liveness guards."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep loop innovation cli pi fanout execution changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

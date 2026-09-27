@@ -7,6 +7,7 @@ trigger_phrases:
   - "P1-C-001 invalidateEntityDensityCache commit hooks"
   - "012 P1 P2 findings closed"
   - "query-router env-flag tightening ADV-001"
+  - "fix deep review findings for causal graph channel routing changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

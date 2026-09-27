@@ -7,6 +7,7 @@ trigger_phrases:
   - "deep-review findings remediation"
   - "mk_code_index config alignment"
   - "system_code_graph rename cleanup"
+  - "memory runtime config mk code index parity plus findings changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

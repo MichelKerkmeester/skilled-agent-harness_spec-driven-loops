@@ -2,9 +2,7 @@
 title: "Changelog: Review Record Packet Type [004-review-remediation/006-review-record-packet-type]"
 description: "Chronological changelog for the review record packet type phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review remediation review record packet type changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

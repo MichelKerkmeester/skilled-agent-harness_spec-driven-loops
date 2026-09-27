@@ -7,6 +7,7 @@ trigger_phrases:
   - "claude session cleanup hook"
   - "mcp server idle self-exit"
   - "launcher idle timeout"
+  - "memory and causal runtime orphan mcp leak prevention changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

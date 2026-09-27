@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/001 001 write safety changelog"
   - "write safety lane disposition"
   - "remediation lane 001"
+  - "verification and remediation write safety and guards changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "health payload body cap"
   - "embed input array cap sidecar"
   - "arc 010 002 002 P1 remediation"
+  - "fix investigation p1s for resource bounds and input validation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

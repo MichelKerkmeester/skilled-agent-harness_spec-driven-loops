@@ -2,9 +2,7 @@
 title: "Changelog: Deep Alignment Shadow Parity [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity]"
 description: "Changelog for the deep alignment shadow parity phase: comparing canonical alignment events and projections event-for-event against the legacy emitter."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "deep alignment shadow parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

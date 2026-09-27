@@ -5,6 +5,7 @@ trigger_phrases:
   - "phase 012/006 changelog"
   - "cluster A to E remediation"
   - "F-008 F-011 F-018 F-019"
+  - "code graph cluster a to e changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

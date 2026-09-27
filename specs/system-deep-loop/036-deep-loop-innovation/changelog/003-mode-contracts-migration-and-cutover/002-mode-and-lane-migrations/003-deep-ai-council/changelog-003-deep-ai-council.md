@@ -2,9 +2,7 @@
 title: "Changelog: Deep AI Council Migration [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council]"
 description: "Changelog for the deep ai council migration group: migrating the multi-seat council deliberation onto the typed event-ledger substrate through seven concern children."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "deep ai council changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

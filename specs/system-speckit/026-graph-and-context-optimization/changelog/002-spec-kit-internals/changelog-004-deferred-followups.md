@@ -8,6 +8,7 @@ trigger_phrases:
   - "manifest template versions"
   - "save advisory lock"
   - "exit code taxonomy"
+  - "spec kit internals deferred followups changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

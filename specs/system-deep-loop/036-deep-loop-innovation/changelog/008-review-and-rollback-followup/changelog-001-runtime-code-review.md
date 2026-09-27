@@ -2,9 +2,7 @@
 title: "Changelog: Runtime Code Review [008-review-and-rollback-followup/001-runtime-code-review]"
 description: "Changelog for the runtime code review phase: a code-targeted deep-review of the system-deep-loop runtime that found 2 P0 and 18 P1 code-level defects with a FAIL release-blocking verdict."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review and rollback followup runtime code review changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

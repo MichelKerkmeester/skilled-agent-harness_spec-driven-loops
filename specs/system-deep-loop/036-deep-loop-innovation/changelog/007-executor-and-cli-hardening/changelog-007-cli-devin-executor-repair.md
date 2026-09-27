@@ -2,9 +2,7 @@
 title: "Changelog: cli-devin Executor Repair [007-executor-and-cli-hardening/007-cli-devin-executor-repair]"
 description: "Repair the cli-devin deep-loop executor adapter so cli-devin lineages run again on the current installed devin CLI."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "executor and cli hardening cli devin executor repair changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

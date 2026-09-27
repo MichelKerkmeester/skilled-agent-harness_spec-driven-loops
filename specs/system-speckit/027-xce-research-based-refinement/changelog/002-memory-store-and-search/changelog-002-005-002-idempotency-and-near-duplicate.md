@@ -6,6 +6,7 @@ trigger_phrases:
   - "SPECKIT_MEMORY_IDEMPOTENCY schema v36 changelog"
   - "idempotency receipt replay shipped"
   - "near_duplicate_of advisory hint"
+  - "memory store and search idempotency and near duplicate changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

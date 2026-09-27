@@ -7,6 +7,7 @@ trigger_phrases:
   - "loadNativeAdvisorModules direct compat"
   - "route native Advisor brief"
   - "launcher lease stale socket"
+  - "spec kit internals opencode bridge native route changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

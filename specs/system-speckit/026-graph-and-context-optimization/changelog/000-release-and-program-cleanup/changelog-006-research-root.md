@@ -5,6 +5,7 @@ trigger_phrases:
   - "006-research rollup"
   - "006-research phase parent"
   - "006-research changelog index"
+  - "release and program cleanup research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

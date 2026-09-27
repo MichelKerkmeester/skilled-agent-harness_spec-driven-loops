@@ -7,6 +7,7 @@ trigger_phrases:
   - "vitest suite triage 009 phase 011"
   - "tree-sitter isReady doc fix"
   - "blast-radius maxDepth zero fix"
+  - "memory and causal runtime system code graph suite triage changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

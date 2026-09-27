@@ -2,9 +2,7 @@
 title: "Changelog: Memory MCP Graceful Embedder Degrade to Lexical [001-speckit-memory/004-graceful-degradation]"
 description: "Chronological changelog for the Memory MCP graceful embedder-degrade to lexical phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory graceful degradation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

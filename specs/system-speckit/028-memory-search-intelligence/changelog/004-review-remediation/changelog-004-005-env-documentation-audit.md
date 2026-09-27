@@ -2,9 +2,7 @@
 title: "Changelog: ENV Documentation Audit [004-review-remediation/005-env-documentation-audit]"
 description: "Chronological changelog for the env documentation audit phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "review remediation env documentation audit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

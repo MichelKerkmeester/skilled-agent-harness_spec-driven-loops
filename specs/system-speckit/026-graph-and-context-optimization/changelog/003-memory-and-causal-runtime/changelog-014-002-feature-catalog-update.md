@@ -5,6 +5,7 @@ trigger_phrases:
   - "feature catalog checkpoint front proxy schema"
   - "014 002 feature catalog changelog"
   - "error code enrichment sk-git catalog update"
+  - "memory and causal runtime feature catalog update changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/001 002 causal memo changelog"
   - "causal and memo lane disposition"
   - "remediation lane 002"
+  - "verification and remediation causal and memo changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -2,9 +2,7 @@
 title: "Changelog: Memory Retention, Forgetting and Recall-Diversity Result Shaping [001-speckit-memory/011-retention-forgetting]"
 description: "Chronological changelog for the Memory retention, forgetting and recall-diversity result-shaping phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "speckit memory retention forgetting changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

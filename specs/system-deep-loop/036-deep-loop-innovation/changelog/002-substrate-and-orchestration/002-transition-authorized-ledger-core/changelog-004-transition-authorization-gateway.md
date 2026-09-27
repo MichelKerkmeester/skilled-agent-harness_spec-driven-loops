@@ -2,9 +2,7 @@
 title: "Changelog: Transition-Authorization Gateway [002-substrate-and-orchestration/002-transition-authorized-ledger-core/004-transition-authorization-gateway]"
 description: "Changelog for the transition-authorization gateway phase: fail-closed default-deny gateway that authorizes every typed state transition before ledger append."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "transition authorized ledger core transition authorization gateway changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "013 remediation rollup"
   - "audit findings remediation"
   - "fanout scope metadata governance rollup"
+  - "release and program cleanup comprehensive audit remediation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

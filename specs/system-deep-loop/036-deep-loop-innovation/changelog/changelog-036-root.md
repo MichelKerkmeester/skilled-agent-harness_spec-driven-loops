@@ -2,9 +2,8 @@
 title: "Changelog: system-deep-loop Recommendations Implementation [036-deep-loop-innovation/root]"
 description: "Narrative release notes for the 036 deep-loop-innovation program: a typed event-ledger substrate landed dark under all eight deep-loop modes, a hermetic CLI-adapter stress program, and a clean whole-system gate — additive-dark through phase 011, then phase 012 executed the operator-ratified cutover: all eight modes on new_authoritative_final, the legacy shadow writer dropped, and the whole-system gate green."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
   - "036 changelog"
+  - "deep loop innovation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

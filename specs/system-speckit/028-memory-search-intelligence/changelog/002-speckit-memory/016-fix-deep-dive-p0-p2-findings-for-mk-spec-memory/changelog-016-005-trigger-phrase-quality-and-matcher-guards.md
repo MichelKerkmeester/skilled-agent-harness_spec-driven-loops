@@ -5,6 +5,7 @@ trigger_phrases:
   - "trigger phrase quality changelog"
   - "matcher stopword idf guard"
   - "constitutional row dedup"
+  - "fix deep dive trigger phrase quality and matcher guards changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

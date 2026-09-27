@@ -4,11 +4,9 @@
 title: "Changelog: Literal spec folder and phase naming guidance [002-spec-kit-internals/004-literal-spec-folder-names]"
 description: "AI-chosen spec-folder and phase slugs now must include a specific subject token, generic placeholders like remediation and phase-N are explicitly rejected across four workflow surfaces."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
   - "literal spec folder names"
   - "spec kit internals"
+  - "spec kit internals literal spec folder names changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

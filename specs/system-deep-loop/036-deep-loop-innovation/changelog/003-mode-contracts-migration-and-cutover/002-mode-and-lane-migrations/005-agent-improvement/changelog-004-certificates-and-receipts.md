@@ -2,9 +2,7 @@
 title: "Changelog: Agent Improvement Certificates & Receipts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts]"
 description: "Changelog for the agent improvement certificates and receipts phase: per-run certificates and per-transition receipts over the typed event-ledger substrate."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "agent improvement certificates and receipts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

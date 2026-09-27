@@ -2,9 +2,7 @@
 title: "Changelog: Mode & Lane Migrations [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations]"
 description: "Changelog for the mode and lane migrations group: eight deep-loop modes each migrate their full run behavior onto the shared typed event-ledger substrate as an independent fractal parent."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "mode and lane migrations changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

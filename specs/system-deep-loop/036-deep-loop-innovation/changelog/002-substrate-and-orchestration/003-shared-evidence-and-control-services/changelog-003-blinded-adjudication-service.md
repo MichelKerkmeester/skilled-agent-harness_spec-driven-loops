@@ -2,9 +2,7 @@
 title: "Changelog: Blinded Adjudication Service [002-substrate-and-orchestration/003-shared-evidence-and-control-services/003-blinded-adjudication-service]"
 description: "Changelog for the blinded adjudication service phase: shared blinded and counterfactual adjudication that controls identity and position bias."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared evidence and control services blinded adjudication service changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

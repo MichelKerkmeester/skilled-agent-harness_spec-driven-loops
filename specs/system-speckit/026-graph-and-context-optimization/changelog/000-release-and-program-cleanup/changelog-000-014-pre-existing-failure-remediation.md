@@ -7,6 +7,7 @@ trigger_phrases:
   - "feature flag reference docs renumber"
   - "deferred suite clean skip"
   - "macos einval security hardening"
+  - "release and program cleanup pre existing failure remediation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

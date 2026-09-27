@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor gemma embeddings"
   - "semantic routing lane strategy"
   - "skill advisor scoring engine optimization"
+  - "spec kit internals semantic routing lane changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

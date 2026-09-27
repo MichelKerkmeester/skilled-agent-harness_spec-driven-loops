@@ -7,6 +7,7 @@ trigger_phrases:
   - "system_skill_advisor to mk_skill_advisor"
   - "mk-skill-advisor-launcher"
   - "advisor server rename"
+  - "spec kit internals mcp server mk skill advisor rename changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

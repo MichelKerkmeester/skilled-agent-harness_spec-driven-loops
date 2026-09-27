@@ -2,9 +2,7 @@
 title: "Changelog: Command Documentation Cleanup"
 description: "Chronological changelog for the command documentation cleanup phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup commands changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

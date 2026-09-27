@@ -5,6 +5,7 @@ trigger_phrases:
   - "003-embedder-testing-and-architecture rollup"
   - "003-embedder-testing-and-architecture phase parent"
   - "003-embedder-testing-and-architecture changelog index"
+  - "memory and causal runtime embedder testing and architecture changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -6,6 +6,7 @@ trigger_phrases:
   - "peck T3 teaching"
   - "manifest template self-check"
   - "failure modes spec template"
+  - "research and doctrine self check templates changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

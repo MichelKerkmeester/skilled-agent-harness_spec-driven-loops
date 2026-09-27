@@ -5,6 +5,7 @@ trigger_phrases:
   - "spec-memory cli research changelog"
   - "028 go verdict changelog"
   - "memory cli feasibility changelog"
+  - "shared infrastructure spec memory cli research changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

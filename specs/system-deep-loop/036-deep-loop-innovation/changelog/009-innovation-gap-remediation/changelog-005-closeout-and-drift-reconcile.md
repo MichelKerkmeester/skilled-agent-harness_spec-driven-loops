@@ -2,9 +2,7 @@
 title: "Changelog: Closeout and Drift Reconcile [009-innovation-gap-remediation/005-closeout-and-drift-reconcile]"
 description: "Planned final documentation and evidence reconciliation that separates library, shadow, and authority status, joins measured composition into the 178-row recommendation ledger, removes stale claims and paths, and aligns epic completion."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "innovation gap remediation closeout and drift reconcile changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

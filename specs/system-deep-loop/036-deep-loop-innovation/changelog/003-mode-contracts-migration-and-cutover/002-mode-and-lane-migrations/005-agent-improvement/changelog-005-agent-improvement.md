@@ -2,9 +2,7 @@
 title: "Changelog: Agent Improvement Migration [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement]"
 description: "Changelog for the agent improvement migration group: migrating the agent-improvement variant of the deep-improvement evaluator loop onto the typed event-ledger substrate."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "agent improvement changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

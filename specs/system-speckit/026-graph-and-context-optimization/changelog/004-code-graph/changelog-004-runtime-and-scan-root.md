@@ -5,6 +5,7 @@ trigger_phrases:
   - "004-runtime-and-scan rollup"
   - "004-runtime-and-scan phase parent"
   - "004-runtime-and-scan changelog index"
+  - "code graph runtime and scan changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

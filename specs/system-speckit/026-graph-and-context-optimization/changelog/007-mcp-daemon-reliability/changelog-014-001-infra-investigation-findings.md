@@ -2,9 +2,7 @@
 title: "Changelog: Infra investigations — memory-DB corruption + graph-metadata churn [014-infra-memory-db-and-graph-churn/001-infra-investigation-findings]"
 description: "Chronological changelog for the Infra investigations — memory-DB corruption + graph-metadata churn phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability infra investigation findings changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

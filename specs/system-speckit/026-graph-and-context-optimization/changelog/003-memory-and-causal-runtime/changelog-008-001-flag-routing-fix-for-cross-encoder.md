@@ -7,6 +7,7 @@ trigger_phrases:
   - "stage3-rerank flag gate"
   - "reranker local shim shadow"
   - "008 001 flag routing"
+  - "memory and causal flag routing fix for cross encoder changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

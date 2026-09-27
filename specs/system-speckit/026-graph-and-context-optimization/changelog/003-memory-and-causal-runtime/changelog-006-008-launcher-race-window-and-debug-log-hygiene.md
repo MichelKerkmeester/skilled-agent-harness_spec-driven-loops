@@ -7,6 +7,7 @@ trigger_phrases:
   - "skill-advisor launcher P2 closeout"
   - "PID guard bootstrap lock"
   - "debug log gating launcher"
+  - "memory and launcher race window and debug log hygiene changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -4,9 +4,7 @@
 title: "Changelog: MCP-Native Scenarios (Playbook Run Phase 002) [006-playbook-run-and-remediation/002-mcp-native-scenarios]"
 description: "Chronological changelog for the MCP-Native Scenarios (Playbook Run Phase 002) phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec kit internals mcp native scenarios changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

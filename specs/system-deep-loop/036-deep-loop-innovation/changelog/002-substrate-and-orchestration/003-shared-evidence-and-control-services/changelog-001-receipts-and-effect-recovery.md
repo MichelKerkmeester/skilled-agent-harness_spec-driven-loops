@@ -2,9 +2,7 @@
 title: "Changelog: Receipts & Effect Recovery [002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery]"
 description: "Changelog for the receipts and effect recovery phase: durable boundary receipts and a replay-safe external-effect recovery gateway."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared evidence and control services receipts and effect recovery changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

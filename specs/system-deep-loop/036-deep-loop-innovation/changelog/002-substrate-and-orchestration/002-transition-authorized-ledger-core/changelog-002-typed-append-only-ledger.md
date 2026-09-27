@@ -2,9 +2,7 @@
 title: "Changelog: Typed Append-Only Ledger [002-substrate-and-orchestration/002-transition-authorized-ledger-core/002-typed-append-only-ledger]"
 description: "Changelog for the typed append-only ledger phase: immutable typed ledger writer and reader over versioned envelope events with ordering, integrity, and deterministic reduction."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "transition authorized ledger core typed append only ledger changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

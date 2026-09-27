@@ -2,9 +2,7 @@
 title: "Changelog: Full-Repo JSON Migration [003-spec-data-quality/006-generated-metadata-build/039-full-repo-json-migration]"
 description: "Chronological changelog for the full-repo json migration phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "spec data quality full repo json migration changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

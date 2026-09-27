@@ -7,6 +7,7 @@ trigger_phrases:
   - "codesight blast radius depth cap bug"
   - "codesight token savings heuristic"
   - "002-codesight deep research"
+  - "research and baseline codesight changelog"
 importance_tier: "important"
 contextType: "research"
 ---

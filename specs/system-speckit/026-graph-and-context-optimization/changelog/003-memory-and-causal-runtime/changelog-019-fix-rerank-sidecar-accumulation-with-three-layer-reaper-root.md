@@ -5,6 +5,7 @@ trigger_phrases:
   - "019-fix-rerank-sidecar-accumulation-with-three-layer-reaper rollup"
   - "019-fix-rerank-sidecar-accumulation-with-three-layer-reaper phase parent"
   - "019-fix-rerank-sidecar-accumulation-with-three-layer-reaper changelog index"
+  - "memory fix rerank sidecar accumulation with three layer reaper changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

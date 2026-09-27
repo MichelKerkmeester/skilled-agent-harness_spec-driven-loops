@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Validation-Hardeni
 trigger_phrases:
   - "validation-hardening-fixes changelog"
   - "former 015-validation-hardening-fixes"
-  - "nested changelog"
+  - "spec data quality validation hardening fixes changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

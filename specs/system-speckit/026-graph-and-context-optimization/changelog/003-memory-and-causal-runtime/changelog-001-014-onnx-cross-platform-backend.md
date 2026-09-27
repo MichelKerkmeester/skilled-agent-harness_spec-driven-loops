@@ -7,6 +7,7 @@ trigger_phrases:
   - "coreml execution provider gemma"
   - "onnx vs sbert benchmark cocoindex"
   - "cocoindex backend state force reindex"
+  - "memory and causal runtime onnx cross platform backend changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

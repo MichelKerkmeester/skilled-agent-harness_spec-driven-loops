@@ -2,9 +2,7 @@
 title: "Changelog: Make Runtime-Mirror and Routing Parity Gates Compare What Actually Differs [006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity]"
 description: "Changelog for the runtime-mirror and routing parity phase: making the parity and routing gates compare order-sensitive instruction sequences, comparable tool surfaces, and resolved identities."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "runtime docs and integrity runtime mirror and routing parity changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

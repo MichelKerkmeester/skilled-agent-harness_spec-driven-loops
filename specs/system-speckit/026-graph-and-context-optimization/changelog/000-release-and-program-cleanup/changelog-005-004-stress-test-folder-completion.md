@@ -7,6 +7,7 @@ trigger_phrases:
   - "content-based stress migration"
   - "vitest stress config"
   - "stress test subsystem layout"
+  - "release and program cleanup stress test folder completion changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -5,6 +5,7 @@ trigger_phrases:
   - "006-operator-tooling rollup"
   - "006-operator-tooling phase parent"
   - "006-operator-tooling changelog index"
+  - "operator tooling changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

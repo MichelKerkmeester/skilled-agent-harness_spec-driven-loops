@@ -7,6 +7,7 @@ trigger_phrases:
   - "daemon env override fix"
   - "provider singleton invalidation"
   - "E_LINEAGE stale key fix"
+  - "memory and causal runtime embedding backlog drain investigation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

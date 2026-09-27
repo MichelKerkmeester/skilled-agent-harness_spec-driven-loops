@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph-metadata.json skill advisor"
   - "skill advisor graph boosts"
   - "skill-graph.json compiled"
+  - "spec kit internals skill graph metadata routing boosts changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

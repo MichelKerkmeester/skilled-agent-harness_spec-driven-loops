@@ -7,6 +7,7 @@ trigger_phrases:
   - "codex pretooluse denylist"
   - "runtime hook parity fix"
   - "session bootstrap codex startup"
+  - "operator tooling fix runtime hook parity findings changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

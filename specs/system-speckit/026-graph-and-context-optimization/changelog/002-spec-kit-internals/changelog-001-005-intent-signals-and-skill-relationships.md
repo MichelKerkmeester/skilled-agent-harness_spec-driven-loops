@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph causal lane skill side"
   - "depends_on related_to metadata"
   - "skill graph metadata signals"
+  - "spec kit internals intent signals and skill relationships changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

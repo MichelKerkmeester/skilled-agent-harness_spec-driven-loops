@@ -7,6 +7,7 @@ trigger_phrases:
   - "deep review correctness edges"
   - "retention toctou adapter-cache provider-precedence fixes"
   - "C2 isolated correctness fixes re-validation"
+  - "memory and causal runtime deep review correctness edges changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

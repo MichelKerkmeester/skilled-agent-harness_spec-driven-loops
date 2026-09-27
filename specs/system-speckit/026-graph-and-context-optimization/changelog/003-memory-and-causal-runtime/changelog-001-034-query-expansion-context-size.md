@@ -7,6 +7,7 @@ trigger_phrases:
   - "embedding expansion synonym cap"
   - "bounded combined query helper"
   - "llama-cpp query overflow fix"
+  - "memory and causal runtime query expansion context size changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

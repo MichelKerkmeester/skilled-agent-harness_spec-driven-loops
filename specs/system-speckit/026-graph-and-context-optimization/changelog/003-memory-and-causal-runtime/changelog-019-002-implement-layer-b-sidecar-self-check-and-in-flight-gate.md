@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar idle backstop reaper"
   - "rerank sidecar telemetry jsonl"
   - "sidecar owner death self check"
+  - "implement layer b sidecar self check and in flight changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

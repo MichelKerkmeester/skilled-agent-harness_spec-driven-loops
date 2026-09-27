@@ -2,9 +2,7 @@
 title: "Changelog: Memory Search Intelligence Phase Parent [028-memory-search-intelligence/root]"
 description: "Chronological changelog for the Memory Search Intelligence Phase Parent spec root."
 trigger_phrases:
-  - "root changelog"
-  - "packet changelog"
-  - "nested changelog"
+  - "memory search intelligence changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "stress test manual playbook"
   - "findings-rubric template"
   - "14 stress-testing feature catalog"
+  - "release and program cleanup stress test pattern documentation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

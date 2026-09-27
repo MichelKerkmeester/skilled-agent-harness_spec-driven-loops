@@ -6,6 +6,7 @@ trigger_phrases:
   - "rerank sidecar parity fixtures"
   - "ensure-rerank-sidecar layer d"
   - "launcher pre-flight cleanup"
+  - "implement layer d launcher pre flight reap and parity changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

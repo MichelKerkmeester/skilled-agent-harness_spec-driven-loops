@@ -6,6 +6,7 @@ trigger_phrases:
   - "reelection default on launcher code"
   - "mcp config 1:1 aligned"
   - "027 004/008 shipped"
+  - "shared infrastructure mcp config alignment reelection default changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

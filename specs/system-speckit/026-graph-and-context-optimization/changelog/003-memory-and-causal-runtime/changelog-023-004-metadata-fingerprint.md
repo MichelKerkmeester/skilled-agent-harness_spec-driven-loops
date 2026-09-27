@@ -7,6 +7,7 @@ trigger_phrases:
   - "prompt policy invariant"
   - "embedder hard refusal"
   - "daemon project metadata isolation"
+  - "memory and causal runtime metadata fingerprint changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

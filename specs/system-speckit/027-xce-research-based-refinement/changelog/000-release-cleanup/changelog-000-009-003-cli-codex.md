@@ -2,9 +2,7 @@
 title: "Changelog: Phase 3: cli-codex Frontmatter Alignment [009-skill-frontmatter-alignment/003-cli-codex]"
 description: "Chronological changelog for the Phase 3: cli-codex Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup cli codex changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

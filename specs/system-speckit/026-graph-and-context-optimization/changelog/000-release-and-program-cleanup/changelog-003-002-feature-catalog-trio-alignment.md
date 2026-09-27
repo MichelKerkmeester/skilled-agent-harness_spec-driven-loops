@@ -7,6 +7,7 @@ trigger_phrases:
   - "system-spec-kit catalog tool count 54"
   - "advisor rebuild catalog entry"
   - "memory retention sweep catalog"
+  - "release and program cleanup feature catalog trio alignment changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

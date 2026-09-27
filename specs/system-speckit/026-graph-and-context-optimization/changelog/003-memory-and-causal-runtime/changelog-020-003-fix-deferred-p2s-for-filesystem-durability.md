@@ -7,6 +7,7 @@ trigger_phrases:
   - "F72 directory fsync rename"
   - "F104 crypto random temp suffix"
   - "F89 state dir validation"
+  - "memory and causal fix deferred p2s for filesystem durability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

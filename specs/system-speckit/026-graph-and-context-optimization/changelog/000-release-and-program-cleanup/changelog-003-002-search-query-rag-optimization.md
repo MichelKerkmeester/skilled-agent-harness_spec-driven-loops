@@ -7,6 +7,7 @@ trigger_phrases:
   - "query plan telemetry"
   - "rag optimization measurement layer"
   - "002-search-query-rag-optimization"
+  - "release and program cleanup search query rag optimization changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

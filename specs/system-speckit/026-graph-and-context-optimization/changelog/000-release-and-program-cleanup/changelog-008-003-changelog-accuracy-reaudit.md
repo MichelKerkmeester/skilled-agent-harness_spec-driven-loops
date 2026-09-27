@@ -2,9 +2,7 @@
 title: "Changelog: Spec: 026 Changelog Accuracy Re-Audit [008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit]"
 description: "Chronological changelog for the Spec: 026 Changelog Accuracy Re-Audit phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release and program cleanup changelog accuracy reaudit changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

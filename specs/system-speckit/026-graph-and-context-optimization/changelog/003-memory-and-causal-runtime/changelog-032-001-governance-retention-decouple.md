@@ -7,6 +7,7 @@ trigger_phrases:
   - "DEFAULT_EPHEMERAL_TTL_MS"
   - "scope-governance ephemeral fix"
   - "ephemeral TTL decouple"
+  - "memory and causal runtime governance retention decouple changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

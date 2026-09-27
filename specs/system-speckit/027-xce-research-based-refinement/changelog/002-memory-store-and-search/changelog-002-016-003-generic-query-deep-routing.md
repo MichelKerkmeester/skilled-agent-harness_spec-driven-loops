@@ -6,6 +6,7 @@ trigger_phrases:
   - "short low-signal query escalation"
   - "query expander synonyms semantic retrieval agent"
   - "recovery suggested queries from expansion"
+  - "memory store and search generic query deep routing changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

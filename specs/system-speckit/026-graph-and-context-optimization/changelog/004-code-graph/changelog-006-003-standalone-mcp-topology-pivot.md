@@ -7,6 +7,7 @@ trigger_phrases:
   - "system code graph standalone mcp"
   - "code graph tool schema migration"
   - "mcp topology pivot 006-003"
+  - "code graph standalone mcp topology pivot changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

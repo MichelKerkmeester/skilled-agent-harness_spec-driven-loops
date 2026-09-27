@@ -4,7 +4,7 @@ description: "Migration-safe packet-local changelog index for Flag Vocabulary Co
 trigger_phrases:
   - "flag-vocabulary-consolidation changelog"
   - "former 017-flag-vocabulary-consolidation"
-  - "nested changelog"
+  - "dark flag graduation flag vocabulary consolidation changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

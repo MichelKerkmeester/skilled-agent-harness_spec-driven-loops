@@ -5,6 +5,7 @@ trigger_phrases:
   - "005/005/001 memory write-path remediation changelog"
   - "fresh regression memory store fixes"
   - "save mutex liveness causal generation bump"
+  - "verification and remediation memory storage and search changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

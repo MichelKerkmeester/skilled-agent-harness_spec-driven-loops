@@ -6,6 +6,7 @@ trigger_phrases:
   - "spec-memory reranker fine-tune"
   - "cross-encoder fine-tune scaffold"
   - "rerank sidecar final candidate"
+  - "memory and causal runtime domain tuned reranker finetune changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

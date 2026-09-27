@@ -7,6 +7,7 @@ trigger_phrases:
   - "embedding backlog drain"
   - "vector present status stale fix"
   - "embedding reconcile mcp"
+  - "memory and causal runtime memory embedding reconcile tool changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

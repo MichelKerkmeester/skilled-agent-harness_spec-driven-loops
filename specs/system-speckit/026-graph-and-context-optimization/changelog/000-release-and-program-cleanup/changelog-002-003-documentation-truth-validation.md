@@ -7,6 +7,7 @@ trigger_phrases:
   - "automation trigger columns"
   - "hook contract remediation"
   - "copilot codex hook docs fix"
+  - "release and program cleanup documentation truth validation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

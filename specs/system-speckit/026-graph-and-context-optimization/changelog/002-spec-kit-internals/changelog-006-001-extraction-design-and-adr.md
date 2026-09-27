@@ -7,6 +7,7 @@ trigger_phrases:
   - "advisor extraction design phase"
   - "ADR-001 legacy tool bridge"
   - "system-skill-advisor architectural shape"
+  - "spec kit internals extraction design and adr changelog"
 importance_tier: "important"
 contextType: "research"
 ---

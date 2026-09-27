@@ -7,6 +7,7 @@ trigger_phrases:
   - "reapLeaseChildBeforeRespawn test"
   - "launcher reap coverage"
   - "clean-close reap barrier test"
+  - "mcp daemon reliability live two launcher test changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

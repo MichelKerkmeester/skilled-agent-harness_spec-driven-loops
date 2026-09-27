@@ -7,6 +7,7 @@ trigger_phrases:
   - "graceful unknown model dimensions"
   - "embeddinggemma docs cleanup"
   - "nomic embed text model default"
+  - "memory and causal runtime nomic only consolidation changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

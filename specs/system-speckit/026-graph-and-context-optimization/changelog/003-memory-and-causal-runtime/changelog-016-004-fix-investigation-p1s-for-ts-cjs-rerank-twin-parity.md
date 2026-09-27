@@ -7,6 +7,7 @@ trigger_phrases:
   - "sidecar contract alignment p1"
   - "toBackendKind canonical location"
   - "js ledger locking parity"
+  - "fix investigation p1s for ts cjs rerank twin parity changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

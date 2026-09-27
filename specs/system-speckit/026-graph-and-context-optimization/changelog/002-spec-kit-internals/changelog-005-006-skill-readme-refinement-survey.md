@@ -7,6 +7,7 @@ trigger_phrases:
   - "zero section 1 tables"
   - "em dash purge skill readmes"
   - "packet-005 refinement lens"
+  - "spec kit internals skill readme refinement survey changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "index fingerprint mismatch"
   - "023C retrieval observability"
   - "mcp-coco-index diagnostics"
+  - "memory and causal runtime retrieval observability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

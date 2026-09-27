@@ -2,9 +2,7 @@
 title: "Changelog: A6 HVR Style Auto-Fix Linter [003-spec-data-quality/001-on-write-quality/006-hvr-style-autofix]"
 description: "Chronological changelog for the A6 HVR Style Auto-Fix Linter phase."
 trigger_phrases:
- - "phase changelog"
- - "nested changelog"
- - "phase completion"
+ - "spec data quality a6 hvr style autofix changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

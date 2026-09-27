@@ -7,6 +7,7 @@ trigger_phrases:
   - "launcher reap grace deadline"
   - "vectorIndex closeDb drain ordering"
   - "daemon WAL checkpoint before SIGKILL"
+  - "mcp daemon reliability shutdown durability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

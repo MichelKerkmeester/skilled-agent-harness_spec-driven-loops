@@ -7,6 +7,7 @@ trigger_phrases:
   - "packet 005 PROVEN verdict"
   - "code-graph-degraded-sweep vitest"
   - "live DB byte-equality guard"
+  - "release and program cleanup code graph degraded stress cell changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

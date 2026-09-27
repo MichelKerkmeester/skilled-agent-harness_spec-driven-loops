@@ -2,9 +2,7 @@
 title: "Changelog: Bound the background-enrichment scheduler so a save or startup-scan burst cannot starve the daemon event loop [006-operator-tooling/010-background-enrichment-concurrency-cap]"
 description: "Chronological changelog for the Bound the background-enrichment scheduler so a save or startup-scan burst cannot starve the daemon event loop phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "operator tooling background enrichment concurrency cap changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

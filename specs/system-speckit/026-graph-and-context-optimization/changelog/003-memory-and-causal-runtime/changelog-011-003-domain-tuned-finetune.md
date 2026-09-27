@@ -7,6 +7,7 @@ trigger_phrases:
   - "template stripping strip templates"
   - "ms-marco-MiniLM finetune setup"
   - "rerank sidecar finetune scripts"
+  - "memory and causal runtime domain tuned finetune changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

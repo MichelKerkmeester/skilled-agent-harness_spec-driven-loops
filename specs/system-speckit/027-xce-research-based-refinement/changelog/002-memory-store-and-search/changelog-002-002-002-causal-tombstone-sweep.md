@@ -6,6 +6,7 @@ trigger_phrases:
   - "schema v32 tombstone migration"
   - "tombstone sweep causal delete"
   - "027 002/002 002 changelog"
+  - "memory store and search causal tombstone sweep changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

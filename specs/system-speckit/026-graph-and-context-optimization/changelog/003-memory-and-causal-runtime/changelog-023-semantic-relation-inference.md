@@ -7,6 +7,7 @@ trigger_phrases:
   - "contradicts supersession causal edges"
   - "related_memories backfill collector"
   - "023-semantic-relation-inference"
+  - "memory and causal runtime semantic relation inference changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

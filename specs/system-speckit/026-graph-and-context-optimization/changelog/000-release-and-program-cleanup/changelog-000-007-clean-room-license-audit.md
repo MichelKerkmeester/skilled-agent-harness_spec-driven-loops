@@ -7,6 +7,7 @@ trigger_phrases:
   - "polyform noncommercial audit findings"
   - "license contamination P0 finding"
   - "clean room review blocked verdict"
+  - "release and program cleanup clean room license audit changelog"
 importance_tier: "important"
 contextType: "review"
 ---

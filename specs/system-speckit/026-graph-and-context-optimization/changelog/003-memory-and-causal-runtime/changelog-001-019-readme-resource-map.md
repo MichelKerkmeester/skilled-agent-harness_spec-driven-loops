@@ -7,6 +7,7 @@ trigger_phrases:
   - "readme staleness audit local embeddings"
   - "barter symlinks readme"
   - "readme factory cascade alignment"
+  - "memory and causal runtime readme resource map changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

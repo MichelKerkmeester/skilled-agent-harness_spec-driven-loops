@@ -2,9 +2,7 @@
 title: "Changelog: Create Commands - Router Rewire [003-create-commands/003-router-rewire]"
 description: "Chronological changelog for the Create Commands - Router Rewire phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "shared infrastructure router rewire changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

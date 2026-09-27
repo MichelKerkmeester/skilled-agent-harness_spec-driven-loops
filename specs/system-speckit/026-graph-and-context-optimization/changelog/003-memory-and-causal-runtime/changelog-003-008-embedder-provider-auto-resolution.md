@@ -7,6 +7,7 @@ trigger_phrases:
   - "querySqliteScalar PATH dependency factory.ts"
   - "embeddings provider auto cascade failure"
   - "ollama detection null startup fix"
+  - "memory and causal runtime embedder provider auto resolution changelog"
 importance_tier: "important"
 contextType: "research"
 ---

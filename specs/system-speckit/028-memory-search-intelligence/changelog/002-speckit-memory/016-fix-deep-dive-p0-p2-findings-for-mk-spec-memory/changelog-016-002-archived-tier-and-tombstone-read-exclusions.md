@@ -5,6 +5,7 @@ trigger_phrases:
   - "archived tier changelog"
   - "shared active-row predicate"
   - "tombstone read exclusion"
+  - "fix deep dive archived tier and tombstone read exclusions changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

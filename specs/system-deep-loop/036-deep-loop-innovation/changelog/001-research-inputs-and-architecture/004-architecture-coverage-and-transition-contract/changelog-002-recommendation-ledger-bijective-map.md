@@ -2,9 +2,7 @@
 title: "Changelog: Recommendation Ledger — Bijective Classified Map [001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map]"
 description: "Freezes the 178 deep-loop recommendations into one immutable classified ledger with stable IDs, normalized taxonomy targets, exactly one disposition per source recommendation, and machine-verifiable corpus and phase coverage."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "architecture coverage and transition contract recommendation ledger bijective map changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

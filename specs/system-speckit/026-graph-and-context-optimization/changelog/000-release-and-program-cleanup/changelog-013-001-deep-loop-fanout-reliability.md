@@ -6,6 +6,7 @@ trigger_phrases:
   - "fanout reliability changelog"
   - "deep loop fanout outcome"
   - "fanout-run failure propagation"
+  - "release and program cleanup deep loop fanout reliability changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

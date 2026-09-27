@@ -5,6 +5,7 @@ trigger_phrases:
   - "learning feedback loop changelog"
   - "ledger sweep bounds"
   - "memory learned maintenance tools"
+  - "fix deep dive p0 p2 learning feedback loop repair changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

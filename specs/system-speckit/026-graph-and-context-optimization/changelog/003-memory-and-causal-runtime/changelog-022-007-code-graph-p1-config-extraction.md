@@ -7,6 +7,7 @@ trigger_phrases:
   - "config-defaults.ts code-graph"
   - "SPECKIT_CODE_GRAPH_TTL_MS"
   - "hardcoded default remediation code-graph"
+  - "memory and causal runtime code graph p1 config extraction changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

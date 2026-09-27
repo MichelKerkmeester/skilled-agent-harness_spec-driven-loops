@@ -2,10 +2,8 @@
 title: "Changelog: 002-search-scenario-execution"
 description: "Run harness for the Search Intelligence Stress-Test Playbook. 30 of 30 cells dispatched and scored, findings.md synthesized with per-CLI averages and one new defect class."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
   - "002-search-scenario-execution changelog"
+  - "release and program cleanup scenario execution changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

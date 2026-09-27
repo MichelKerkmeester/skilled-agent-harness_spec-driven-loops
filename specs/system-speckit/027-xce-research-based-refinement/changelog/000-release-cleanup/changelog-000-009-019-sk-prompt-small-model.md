@@ -2,9 +2,7 @@
 title: "Changelog: Phase 19: sk-prompt-models Frontmatter Alignment [009-skill-frontmatter-alignment/019-sk-prompt-models]"
 description: "Chronological changelog for the Phase 19: sk-prompt-models Frontmatter Alignment phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "release cleanup sk prompt small model changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

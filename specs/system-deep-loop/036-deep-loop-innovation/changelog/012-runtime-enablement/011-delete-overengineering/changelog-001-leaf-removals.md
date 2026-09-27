@@ -2,9 +2,7 @@
 title: "Changelog: Leaf Removals [012-runtime-enablement/011-delete-overengineering/001-leaf-removals]"
 description: "F5 hierarchical-budgets shadow-adapters, F6 receipts legacy-recovery manifest, and F8 dead AUTHORITY_FLIP_COMMON constants removed with barrel and test references severed first."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "delete overengineering leaf removals changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

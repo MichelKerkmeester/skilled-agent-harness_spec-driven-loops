@@ -7,6 +7,7 @@ trigger_phrases:
   - "graph-churn"
   - "mcp-daemon-reliability"
   - "spec-memory subsystem"
+  - "mcp daemon reliability infra memory db and graph churn changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

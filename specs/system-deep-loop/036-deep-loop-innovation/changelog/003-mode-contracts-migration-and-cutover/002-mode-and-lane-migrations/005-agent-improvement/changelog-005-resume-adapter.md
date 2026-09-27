@@ -2,9 +2,7 @@
 title: "Changelog: Agent Improvement - Resume Adapter [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter]"
 description: "Changelog for the agent improvement resume adapter phase: rebuilding agent-loop proposal and scoring state from the sealed typed event ledger."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "agent improvement resume adapter changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

@@ -7,6 +7,7 @@ trigger_phrases:
   - "handover freshness timestamp field"
   - "updatePhaseParentPointer bypasses zod"
   - "verify-first round-3 tail"
+  - "release and program cleanup scouted bugfix batch 5 changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

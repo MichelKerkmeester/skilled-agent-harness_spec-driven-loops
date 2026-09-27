@@ -6,6 +6,7 @@ trigger_phrases:
   - "stale advisor references sweep"
   - "013 remove spec-kit references"
   - "advisor doc cleanup post-extraction"
+  - "spec kit internals remove spec kit references changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

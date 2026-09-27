@@ -2,9 +2,7 @@
 title: "Changelog: Model Benchmark - Sealed Reference Artifacts [003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/003-sealed-artifacts]"
 description: "Changelog for the model benchmark sealed reference artifacts phase: content-addressed, immutable artifacts for the model-benchmark variant."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "model benchmark sealed artifacts changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

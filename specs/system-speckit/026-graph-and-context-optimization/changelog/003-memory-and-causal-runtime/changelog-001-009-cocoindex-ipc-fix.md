@@ -7,6 +7,7 @@ trigger_phrases:
   - "cocoindex daemon search path patch"
   - "SearchOnlyContext bypass cocoindex"
   - "cocoindex IPC fix 009"
+  - "memory and causal runtime cocoindex ipc fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

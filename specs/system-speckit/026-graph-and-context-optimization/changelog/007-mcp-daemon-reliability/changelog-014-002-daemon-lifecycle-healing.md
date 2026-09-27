@@ -2,9 +2,7 @@
 title: "Changelog: Daemon-lifecycle healing (FTS auto-heal + clean-close barrier + substrate test) [014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing]"
 description: "Chronological changelog for the Daemon-lifecycle healing (FTS auto-heal + clean-close barrier + substrate test) phase."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "mcp daemon reliability daemon lifecycle healing changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

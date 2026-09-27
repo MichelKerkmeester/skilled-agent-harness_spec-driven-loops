@@ -6,6 +6,7 @@ trigger_phrases:
   - "typed agent io contract changelog"
   - "agent-io-contract wave 1"
   - "dispatch header envelope changelog"
+  - "research and doctrine typed agent io adapter changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---

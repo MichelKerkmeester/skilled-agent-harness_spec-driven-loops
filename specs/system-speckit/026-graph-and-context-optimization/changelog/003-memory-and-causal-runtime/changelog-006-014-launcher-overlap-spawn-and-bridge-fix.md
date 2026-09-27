@@ -7,6 +7,7 @@ trigger_phrases:
   - "race safe canUnlinkExistingSocket"
   - "bridge socket ENOENT reclaim"
   - "code-index advisor secondary wedge"
+  - "memory and causal launcher overlap spawn and bridge fix changelog"
 importance_tier: "important"
 contextType: "implementation"
 ---

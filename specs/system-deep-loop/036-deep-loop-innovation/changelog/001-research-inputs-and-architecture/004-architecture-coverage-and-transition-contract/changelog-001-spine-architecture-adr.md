@@ -2,9 +2,7 @@
 title: "Changelog: Spine Architecture ADR [001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr]"
 description: "Ratifies the single six-primitive cross-mode architecture spine that governs the later 006 implementation phases."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
+  - "architecture coverage and transition contract spine architecture adr changelog"
 importance_tier: "normal"
 contextType: "implementation"
 ---
