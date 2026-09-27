@@ -16,7 +16,7 @@ user-invocable: true
 
 # Mobbin (mcp-mobbin)
 
-Search **Mobbin's library of real app UI screenshots** ("the world's largest library of real app UI screenshots" per the official repo) from an agent through the **Mobbin MCP via Code Mode**: one documented tool, `search_screens`, answering app, screen, flow, and element research as query intents. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every call goes against the external hosted Mobbin service, never this repo, and it **produces no design tokens or Style Reference of its own**. When a measured Style Reference of real, extracted design tokens is also wanted, pair with `sk-design-md-generator`. Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md) and [`references/mcp-wiring.md`](references/mcp-wiring.md).
+Search **Mobbin's library of real app UI screenshots** ("the world's largest library of real app UI screenshots" per the official repo) from an agent through the **Mobbin MCP via Code Mode**: one documented tool, `search_screens`, answering app, screen, flow, and element research as query intents. This packet is a read-only TRANSPORT (`packetKind: transport`, `mutatesWorkspace: false`): every call goes against the external hosted Mobbin service, never this repo, and it **produces no design tokens or Style Reference of its own**. When a measured Style Reference of real, extracted design tokens is also wanted, pair with `sk-design-md-generator`. Deep operational detail lives in [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md) and [`references/mcp-wiring.md`](../../../.skilled/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md).
 
 > **Discovery status (read first).** The `mobbin` Code Mode manual **IS REGISTERED** in this repo's `.utcp_config.json` (registered 2026-07-16 by an operator; this packet never edits the config), and **live discovery RAN 2026-07-16, pre-auth** (fixture: `references/discovery-fixture-2026-07-16.json`): `list_tools` returned **THREE** read tools — registry names `mobbin.mobbin.{search_screens,search_flows,search_sections}` (dot-separated), TS callables `mobbin.mobbin_search_screens(...)` etc. per the fixture's `Access as:` lines — superseding the research's one-public-tool baseline. Operator browser OAuth is still pending for CALLS. Per-session `tool_info` re-confirmation stays MANDATORY before relying on any name: confirm, then call, and fail closed on drift.
 >
@@ -110,7 +110,7 @@ assets/utcp-mobbin-manual.md    # Registered manual's reference shape + post-reg
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
+> Resilience pattern: see [sk-doc smart-router template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
 
 ```python
 from pathlib import Path
@@ -242,7 +242,7 @@ Both the dotted discovery names and the callable form are **CONFIRMED by live di
 
 ### The live three-tool surface (supersedes the one-tool baseline, 2026-07-16)
 
-The research's **one publicly documented tool** baseline is superseded: live pre-auth discovery on 2026-07-16 listed **three** read-only search tools. All three passed the mutation-refusal check (no mutation-capable tool in the listing). Full fixture schemas and the completeness boundary: [`references/tool-surface.md`](references/tool-surface.md).
+The research's **one publicly documented tool** baseline is superseded: live pre-auth discovery on 2026-07-16 listed **three** read-only search tools. All three passed the mutation-refusal check (no mutation-capable tool in the listing). Full fixture schemas and the completeness boundary: [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md).
 
 | Tool | Posture | Required inputs (fixture schema) | Optional inputs (fixture schema) |
 |---|---|---|---|
@@ -308,7 +308,7 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 ### ⛔ NEVER
 
 1. **NEVER use Write, Edit, or Task through this packet.** It is a TRANSPORT: it retrieves external evidence and changes nothing in this workspace. Hand file changes to the owning workflow skill.
-2. **NEVER edit, re-draft, or re-add the `mobbin` manual in `.utcp_config.json`.** The registered entry is operator-owned. The reference shape in [`assets/utcp-mobbin-manual.md`](assets/utcp-mobbin-manual.md) exists for verification and escalation, not for this packet to apply or repair.
+2. **NEVER edit, re-draft, or re-add the `mobbin` manual in `.utcp_config.json`.** The registered entry is operator-owned. The reference shape in [`assets/utcp-mobbin-manual.md`](../../../.skilled/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md) exists for verification and escalation, not for this packet to apply or repair.
 3. **NEVER invent an API key or auth env var.** No `MOBBIN_API_KEY` or any MCP auth env var exists — the manual's `env` stays empty, and the auth env-var question is answered in the negative, not open. Never accept credentials in prompts or tool arguments; never print Authorization headers, OAuth codes, token responses, adapter debug logs, or auth-cache contents.
 4. **NEVER claim OAuth works end-to-end.** It is **Inferred** pending an operator-completed authorization; report it as such. Never inspect, clear, or repair `~/.mcp-auth` / `MCP_REMOTE_CONFIG_DIR` — reauthorization is an explicit operator action.
 5. **NEVER invent tool schemas or tool families beyond the discovered inventory.** The live pre-auth listing (2026-07-16) contains exactly `search_screens`, `search_flows`, and `search_sections`. No `search_apps`, `search_elements`, detail, image-download, or mutation tools exist to call. The `deep` question is resolved — `mode: "deep" | "standard" | "fast"` is a real client input on `search_screens` — but do not assume undeclared parameters on any tool.
@@ -329,13 +329,13 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 
 ### Core References
 
-- [tool-surface.md](references/tool-surface.md) - The live three-tool contract (fixture schemas for `search_screens`, `search_flows`, `search_sections`), the resolved `deep` mode, the query-intent workflows, plan gating, the completeness boundary, and the open questions.
-- [mcp-wiring.md](references/mcp-wiring.md) - The registered `mobbin` manual, the mcp-remote bridge (remote Streamable HTTP vs local stdio adapter), OAuth/DCR/PKCE, the confirmed naming (2026-07-16 fixture), and the discovery-first contract, with CONFIRMED/INFERRED/UNKNOWN tagging.
-- [troubleshooting.md](references/troubleshooting.md) - Failure modes and fixes (pre-auth 401, no tools resolving, 429, Free-account denial, drift).
+- [tool-surface.md](../../../.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md) - The live three-tool contract (fixture schemas for `search_screens`, `search_flows`, `search_sections`), the resolved `deep` mode, the query-intent workflows, plan gating, the completeness boundary, and the open questions.
+- [mcp-wiring.md](../../../.skilled/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md) - The registered `mobbin` manual, the mcp-remote bridge (remote Streamable HTTP vs local stdio adapter), OAuth/DCR/PKCE, the confirmed naming (2026-07-16 fixture), and the discovery-first contract, with CONFIRMED/INFERRED/UNKNOWN tagging.
+- [troubleshooting.md](../../../.skilled/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md) - Failure modes and fixes (pre-auth 401, no tools resolving, 429, Free-account denial, drift).
 
 ### Templates and Assets
 
-- [utcp-mobbin-manual.md](assets/utcp-mobbin-manual.md) - The registered manual's reference shape exactly as researched (registered 2026-07-16, byte-identical to the live config), plus the post-registration checklist (doc-side items executed; live items pending).
+- [utcp-mobbin-manual.md](../../../.skilled/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md) - The registered manual's reference shape exactly as researched (registered 2026-07-16, byte-identical to the live config), plus the post-registration checklist (doc-side items executed; live items pending).
 
 ### Reference Loading Notes
 
@@ -416,6 +416,6 @@ Examples: `examples/README.md` plus worked Code Mode walkthroughs (smoke search,
 
 Related skills: `sk-design-md-generator` (the measured-extraction companion), `mcp-code-mode` (the substrate), `mcp-refero` (the closest sibling transport), `mcp-figma` (the hub's Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
-Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
+Install guide: [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-mobbin/INSTALL-GUIDE.md).
 
 Upstream: the Mobbin MCP is the hosted paid service at `api.mobbin.com/mcp` (docs at docs.mobbin.com/mcp; the official `mobbin/mobbin-mcp-server` repository is registration metadata only). The official [mobbin/skills](https://github.com/mobbin/skills) repository (MIT) holds the single `mobbin-search` skill; this packet references it and deliberately does not vendor it.

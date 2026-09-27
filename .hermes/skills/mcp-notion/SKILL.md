@@ -443,7 +443,7 @@ await call_tool_chain({
 - `references/troubleshooting.md` — auth, rate-limit, API-version, deprecation-migration
 - `references/migration-inventory.md` — Notion→Obsidian migration read-side inventory method: the 7-step inventory procedure, the 5 API-gap reads it uses, and the read-limit constraints that shape it
 
-Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — token setup, Code Mode registration, dual-backend config.
+Install guide (front door): [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-notion/INSTALL-GUIDE.md) — token setup, Code Mode registration, dual-backend config.
 
 **Scripts:**
 - `scripts/install.sh` — prints the Code Mode manual + `notion_NOTION_TOKEN` env key (read-only)

@@ -272,8 +272,8 @@ The systems below are surface-agnostic. What differs is which of the extras appl
 | **Document layouts** | All four | Reading order is the hierarchy. Long-form type scale runs tighter than UI, and white space carries the structure | Interaction craft, motion |
 | **Chart and diagram canvases** | Colour and type scale only | Those canvases have their own layout rules | Everything else; the canvas modes own it |
 
-Two references are screen-only: [`interaction-craft.md`](references/interaction-craft.md) and
-[`motion-principles.md`](references/motion-principles.md). A deck may borrow the motion timings for
+Two references are screen-only: [`interaction-craft.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md) and
+[`motion-principles.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md). A deck may borrow the motion timings for
 transitions; a printed page has no use for either. Everything else in `references/` applies whatever
 the surface.
 
@@ -328,7 +328,7 @@ Name them `100` (lightest) through `900` (darkest), base `500`.
 
 **Never generate shades at runtime** with `lighten()` or `darken()`. That is how a project ends up with 35 slightly different blues.
 
-Full construction method — base selection, saturation at the ends, hue rotation, dark mode, contrast escape hatches — is in [`references/color-system.md`](references/color-system.md).
+Full construction method — base selection, saturation at the ends, hue rotation, dark mode, contrast escape hatches — is in [`references/color-system.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md).
 
 #### Shadows, five elevations
 
@@ -342,7 +342,7 @@ Full construction method — base selection, saturation at the ends, hue rotatio
 
 Choose by asking *where on the z-axis does this sit?*, not *what shadow looks nice?*. Closer to the user means more attention. Shrinking a button's shadow on `:active` makes it feel pressed. Growing a list item's shadow when it is picked up for drag-to-reorder does the reverse — it reads as "now above its siblings" and doubles as the drag affordance.
 
-Every shadow in a project shares one offset direction, because there is one light source. [`references/depth-and-detail.md`](references/depth-and-detail.md) carries two refined alternatives — a **two-part** cast-plus-contact scale and a **layered** three-part set — plus the rule for tinting shadow color on non-white surfaces and the full six-layer button anatomy. The three systems are parallel and not compatible: pick one per project and never mix them, or elevation stops being readable.
+Every shadow in a project shares one offset direction, because there is one light source. [`references/depth-and-detail.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md) carries two refined alternatives — a **two-part** cast-plus-contact scale and a **layered** three-part set — plus the rule for tinting shadow color on non-white surfaces and the full six-layer button anatomy. The three systems are parallel and not compatible: pick one per project and never mix them, or elevation stops being readable.
 
 #### Line-height and line length
 
@@ -369,13 +369,13 @@ Timing is a scale like the others, and consistency across it outranks the perfec
 up to 500ms layout transition: modal, drawer, accordion
 ```
 
-300ms is the ceiling for anything the user initiated. Similar elements use identical values. The full model — easing curves, springs, staging, and when not to animate at all — is in [`references/motion-principles.md`](references/motion-principles.md).
+300ms is the ceiling for anything the user initiated. Similar elements use identical values. The full model — easing curves, springs, staging, and when not to animate at all — is in [`references/motion-principles.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md).
 
 ### The Procedure
 
 Seven steps govern the order of work on something new: start from a feature rather than a layout, work in **grayscale first**, treat low-fidelity artifacts as disposable, build the smallest useful version, **choose each value by elimination** against its two neighbours on the scale, start with too much white space and trim, and design at about 400px before relaxing to a large screen.
 
-Full steps with their reasoning: [`references/build-procedure.md`](references/build-procedure.md). Load it when starting something new; a value question does not need it.
+Full steps with their reasoning: [`references/build-procedure.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md). Load it when starting something new; a value question does not need it.
 
 ### Hierarchy, The Technique That Does The Most Work
 
@@ -388,7 +388,7 @@ Four rules carry most of it:
 3. **Emphasize by de-emphasizing.** When the important element will not stand out and there is nothing left to add to it, soften what competes with it instead.
 4. **Style actions by hierarchy, not by semantics.** Primary is solid and high contrast, usually exactly one per page; secondary is an outline; tertiary is styled like a link. Destructive is not automatically primary.
 
-The full method — action and destructive treatment, label suppression, the weight-versus-contrast trade, and why visual hierarchy may disagree with document hierarchy — is [`references/hierarchy.md`](references/hierarchy.md).
+The full method — action and destructive treatment, label suppression, the weight-versus-contrast trade, and why visual hierarchy may disagree with document hierarchy — is [`references/hierarchy.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md).
 
 ### Beyond The Visual System
 
@@ -396,12 +396,12 @@ Correct values do not make a screen behave correctly. Three references carry the
 
 | Reference | Always-true core |
 | --- | --- |
-| [`build-procedure.md`](references/build-procedure.md) | Feature before layout, grayscale before color, mobile before desktop, and every value chosen against its two neighbours. |
-| [`hierarchy.md`](references/hierarchy.md) | Rank every element before styling any of them. Soften the competition rather than amplifying the primary. |
-| [`interaction-craft.md`](references/interaction-craft.md) | Focus rings are `box-shadow`, not `outline`. Guard hover with `@media (hover: hover)`. Inputs are 16px minimum or iOS zooms. No dead space between adjacent targets. |
-| [`motion-principles.md`](references/motion-principles.md) | Entrances `ease-out`, exits `ease-in`, gestures use springs, linear is only for progress. One focal point at a time. Some things should not animate at all. |
-| [`ux-laws.md`](references/ux-laws.md) | Respond within 400ms or fake it honestly. Chunk into groups of five to nine. Expand hit areas with padding, not a bigger box. One element may be the exception. |
-| [`review-checklist.md`](references/review-checklist.md) | Accessibility findings first, every finding with a file, a line and a fix. |
+| [`build-procedure.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md) | Feature before layout, grayscale before color, mobile before desktop, and every value chosen against its two neighbours. |
+| [`hierarchy.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md) | Rank every element before styling any of them. Soften the competition rather than amplifying the primary. |
+| [`interaction-craft.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md) | Focus rings are `box-shadow`, not `outline`. Guard hover with `@media (hover: hover)`. Inputs are 16px minimum or iOS zooms. No dead space between adjacent targets. |
+| [`motion-principles.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md) | Entrances `ease-out`, exits `ease-in`, gestures use springs, linear is only for progress. One focal point at a time. Some things should not animate at all. |
+| [`ux-laws.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md) | Respond within 400ms or fake it honestly. Chunk into groups of five to nine. Expand hit areas with padding, not a bigger box. One element may be the exception. |
+| [`review-checklist.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md) | Accessibility findings first, every finding with a file, a line and a fix. |
 
 ---
 
@@ -442,20 +442,20 @@ Correct values do not make a screen behave correctly. Three references carry the
 
 ### Core References
 
-- [build-procedure.md](references/build-procedure.md) — the seven-step order of work for something new, and why each step is in that position.
-- [color-system.md](references/color-system.md) — building a palette from scratch: choosing the base, saturation at the light and dark ends, hue rotation, warm and cool greys, dark mode, and the two escape hatches for hitting contrast ratios without ugly color.
-- [diagnosis-table.md](references/diagnosis-table.md) — symptom to fix table. Load first whenever the task is improving existing UI.
-- [hierarchy.md](references/hierarchy.md) — the full hierarchy method: action and destructive treatment, label suppression, the weight-versus-contrast trade, and visual versus document hierarchy.
-- [depth-and-detail.md](references/depth-and-detail.md) — light simulation, the three shadow systems and how to pick one, shadow color and button anatomy, typography detail, concentric radius, grids, component shape, and images.
-- [interaction-craft.md](references/interaction-craft.md) — inputs, touch, hit areas, focus, keyboard, screen readers, performance and feedback.
-- [motion-principles.md](references/motion-principles.md) — the twelve animation principles adapted to interfaces, plus the enforceable timing, easing, physics and staging rules.
-- [ux-laws.md](references/ux-laws.md) — the cognitive and perceptual constraints that decide what is on the screen at all, how it groups, and how long it may take to respond.
-- [review-checklist.md](references/review-checklist.md) — the severity-tiered audit pass over UI code, WCAG-cited.
+- [build-procedure.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md) — the seven-step order of work for something new, and why each step is in that position.
+- [color-system.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md) — building a palette from scratch: choosing the base, saturation at the light and dark ends, hue rotation, warm and cool greys, dark mode, and the two escape hatches for hitting contrast ratios without ugly color.
+- [diagnosis-table.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/diagnosis-table.md) — symptom to fix table. Load first whenever the task is improving existing UI.
+- [hierarchy.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md) — the full hierarchy method: action and destructive treatment, label suppression, the weight-versus-contrast trade, and visual versus document hierarchy.
+- [depth-and-detail.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md) — light simulation, the three shadow systems and how to pick one, shadow color and button anatomy, typography detail, concentric radius, grids, component shape, and images.
+- [interaction-craft.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md) — inputs, touch, hit areas, focus, keyboard, screen readers, performance and feedback.
+- [motion-principles.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md) — the twelve animation principles adapted to interfaces, plus the enforceable timing, easing, physics and staging rules.
+- [ux-laws.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md) — the cognitive and perceptual constraints that decide what is on the screen at all, how it groups, and how long it may take to respond.
+- [review-checklist.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md) — the severity-tiered audit pass over UI code, WCAG-cited.
 
 ### Templates and Assets
 
-- [tokens.css](assets/tokens.css) — a complete, contrast-verified starting set of every scale above as CSS custom properties, including a semantic role layer and a dark-mode block.
-- [token-starter-set.md](assets/token-starter-set.md) — what is in `tokens.css`, how to retune it, and the rule that components reference roles rather than raw ramps.
+- [tokens.css](../../../.skilled/skills/sk-design/sk-design-fundamentals/assets/tokens.css) — a complete, contrast-verified starting set of every scale above as CSS custom properties, including a semantic role layer and a dark-mode block.
+- [token-starter-set.md](../../../.skilled/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md) — what is in `tokens.css`, how to retune it, and the rule that components reference roles rather than raw ramps.
 
 ### Reference Loading Notes
 
@@ -512,7 +512,7 @@ Correct values do not make a screen behave correctly. Three references carry the
 
 `sk-design-md-generator/references/design-knowledge/numeric-design-laws.md` records type ratios, a short spacing scale and motion bands as targets for *reading* a measured surface. This skill decides those values for a surface that does not exist yet, and on three of them the two would appear to disagree if direction were ignored.
 
-They do not. That document reports; this one decides; a measurement outranks a default for the surface it covers. Both sides now state the reconciliation — its Section 1, and [`references/motion-principles.md`](references/motion-principles.md) Section 5 here.
+They do not. That document reports; this one decides; a measurement outranks a default for the surface it covers. Both sides now state the reconciliation — its Section 1, and [`references/motion-principles.md`](../../../.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md) Section 5 here.
 
 ---
 

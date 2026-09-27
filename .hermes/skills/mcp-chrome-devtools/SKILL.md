@@ -315,7 +315,7 @@ Quality targets are fast session startup, quick screenshot/console capture, and 
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in [AGENTS.md](../../../../AGENTS.md).
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
@@ -338,16 +338,16 @@ Use `bdg cdp --list`, `bdg cdp --describe <domain>`, `bdg cdp --search <term>`, 
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill currently routes over the flat reference set: `references/cdp-patterns.md`, `references/session-management.md`, and `references/troubleshooting.md`. Assets: [`assets/utcp-chrome-devtools-manuals.md`](assets/utcp-chrome-devtools-manuals.md) — the registered-state snapshot of the `chrome_devtools_1` / `chrome_devtools_2` Code Mode manuals (verify, don't re-add).
+The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill currently routes over the flat reference set: `references/cdp-patterns.md`, `references/session-management.md`, and `references/troubleshooting.md`. Assets: [`assets/utcp-chrome-devtools-manuals.md`](../../../.skilled/skills/mcp-tooling/mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md) — the registered-state snapshot of the `chrome_devtools_1` / `chrome_devtools_2` Code Mode manuals (verify, don't re-add).
 
 Scripts: `scripts/install.sh`.
 
-Examples: [`examples/README.md`](examples/README.md) — automation example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
+Examples: [`examples/README.md`](../../../.skilled/skills/mcp-tooling/mcp-chrome-devtools/examples/README.md) — automation example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
-Feature catalog: [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md) — the full CLI + MCP capability inventory (29 features across 7 domains), with per-feature files per domain.
+Feature catalog: [`feature-catalog/feature-catalog.md`](../../../.skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md) — the full CLI + MCP capability inventory (29 features across 7 domains), with per-feature files per domain.
 
-Server pointers: [`mcp-servers/bdg-cli/README.md`](mcp-servers/bdg-cli/README.md) (CLI install pointer) and [`mcp-servers/chrome-devtools-mcp/README.md`](mcp-servers/chrome-devtools-mcp/README.md) (the Code Mode server behind the manuals) — nothing vendored.
+Server pointers: [`mcp-servers/bdg-cli/README.md`](../../../.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/bdg-cli/README.md) (CLI install pointer) and [`mcp-servers/chrome-devtools-mcp/README.md`](../../../.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/chrome-devtools-mcp/README.md) (the Code Mode server behind the manuals) — nothing vendored.
 
 Related skills: `mcp-code-mode` for MCP fallback and `sk-code` for browser verification in application-code workflows.
 
-Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
+Install guide: [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md).

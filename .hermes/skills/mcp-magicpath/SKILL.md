@@ -16,9 +16,9 @@ user-invocable: true
 
 # MagicPath (mcp-magicpath)
 
-Look up **MagicPath** components, projects, teams, design systems, and the live web canvas through the **`magicpath-ai` Node CLI** from an agent, via Code Mode's UTCP `cli` transport. MagicPath ships **no MCP server**; the bridge is the CLI, registered as the manual named `magicpath` in this repo's `.utcp_config.json`. The registered surface is **read-only on purpose**: fourteen tools that only read. The CLI can also write `.tsx` files into the calling project, install npm packages, and create remote projects and component revisions (`add`, `code`, `image`, `create-project`, `clone`), but those are deliberately **not registered**, so an agent cannot reach them through a tool call. Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md), [`references/credential-setup.md`](references/credential-setup.md), [`references/mutation-boundary.md`](references/mutation-boundary.md), and [`references/design-authority.md`](references/design-authority.md).
+Look up **MagicPath** components, projects, teams, design systems, and the live web canvas through the **`magicpath-ai` Node CLI** from an agent, via Code Mode's UTCP `cli` transport. MagicPath ships **no MCP server**; the bridge is the CLI, registered as the manual named `magicpath` in this repo's `.utcp_config.json`. The registered surface is **read-only on purpose**: fourteen tools that only read. The CLI can also write `.tsx` files into the calling project, install npm packages, and create remote projects and component revisions (`add`, `code`, `image`, `create-project`, `clone`), but those are deliberately **not registered**, so an agent cannot reach them through a tool call. Deep operational detail lives in [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/tool-surface.md), [`references/credential-setup.md`](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/credential-setup.md), [`references/mutation-boundary.md`](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/mutation-boundary.md), and [`references/design-authority.md`](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/design-authority.md).
 
-> **Design authority (read before any work).** Every MagicPath surface is a design surface: components, themes, CSS variables, fonts, canvas state. This packet therefore loads **`sk-design` unconditionally** and operates under the **design agent persona** resolved from the active runtime's agent directory. The transport retrieves; `sk-design` decides. Neither the persona nor the pairing widens this packet's authority — the transport's own tool surface stays narrower than the persona's and wins on every conflict. Full contract: [`references/design-authority.md`](references/design-authority.md).
+> **Design authority (read before any work).** Every MagicPath surface is a design surface: components, themes, CSS variables, fonts, canvas state. This packet therefore loads **`sk-design` unconditionally** and operates under the **design agent persona** resolved from the active runtime's agent directory. The transport retrieves; `sk-design` decides. Neither the persona nor the pairing widens this packet's authority — the transport's own tool surface stays narrower than the persona's and wins on every conflict. Full contract: [`references/design-authority.md`](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/design-authority.md).
 
 > **Transport shape (read first).** This is a `cli` transport manual, not an `mcp` one. The manual command (`node .skilled/bin/magicpath-utcp-manual.cjs`) emits the UTCP manual that lists the fourteen tools; each tool then runs through `node .skilled/bin/magicpath-utcp-exec.cjs`, which shells out to the `magicpath-ai` binary. Code Mode's naming convention is `{manual}.{tool}`, so the callable form is `magicpath.<tool>(...)` (for example `magicpath.search_components`), and discovery names appear dotted as `magicpath.<tool>`. The tool names have no `magicpath_` prefix of their own, so the prefix is applied once, not doubled. Confirm the exact callable with `tool_info` per session and fail closed on drift.
 
@@ -117,7 +117,7 @@ assets/utcp-magicpath-manual.md  # verified manual snapshot (already registered)
 
 ### Smart Router Pseudocode
 
-> Resilience pattern: see [sk-doc smart-router template](../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
+> Resilience pattern: see [sk-doc smart-router template](../../../.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). Guard paths, discover at runtime, score intents, and fall back when unsure. Because this skill has no keyed resource subdirectories, intent selects from the flat resource inventory below.
 
 ```python
 from pathlib import Path
@@ -246,7 +246,7 @@ The callable form `magicpath.<tool>` follows Code Mode's `{manual}.{tool}` conve
 
 ### The 14-tool surface (six themes)
 
-The expected contract (authoritative baseline from the registered manual; `tool_info` is the final live schema). Full args, bounds, and result shapes: [`references/tool-surface.md`](references/tool-surface.md).
+The expected contract (authoritative baseline from the registered manual; `tool_info` is the final live schema). Full args, bounds, and result shapes: [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/tool-surface.md).
 
 | Theme | Tool | Required args | Notes |
 |---|---|---|---|
@@ -299,7 +299,7 @@ Inspect every returned value. A failing command does not throw; it returns the e
 
 ### Auth, credential, and limits
 
-- **Credential**: `magicpath-ai login` (browser) or the `MAGICPATH_TOKEN` environment variable. Under Code Mode the env var is wired as `magicpath_MAGICPATH_TOKEN` in `.env`, which the manual maps to the CLI's `MAGICPATH_TOKEN`. See [`references/credential-setup.md`](references/credential-setup.md).
+- **Credential**: `magicpath-ai login` (browser) or the `MAGICPATH_TOKEN` environment variable. Under Code Mode the env var is wired as `magicpath_MAGICPATH_TOKEN` in `.env`, which the manual maps to the CLI's `MAGICPATH_TOKEN`. See [`references/credential-setup.md`](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/credential-setup.md).
 - **Unauthenticated failure**: without a credential, a call returns structured JSON: `{"error":"Not authenticated. Set MAGICPATH_TOKEN or run \`magicpath-ai login\`.","code":"NOT_AUTHENTICATED","suggestion":"..."}`. `info` is the exception and answers without credentials.
 - **Stale surface warning**: `magicpath-ai info -o json` reports a `cli.commands` list that is **stale and under-reports** the real surface. `magicpath-ai --help` is authoritative. The registered manual is the source of truth for what an agent can call; do not infer the tool set from `info`'s `cli.commands`.
 - **Unknown limits**: no per-second, burst, concurrency, page-size, or retry contract is published for the CLI. Never invent a QPS number or backoff guarantee; on a failure, preserve the CLI's own message.
@@ -333,7 +333,7 @@ Inspect every returned value. A failing command does not throw; it returns the e
 ### ESCALATE IF
 
 1. **ESCALATE IF authentication is required** (`NOT_AUTHENTICATED`, a login prompt, or a token need). Completing `magicpath-ai login` or wiring `MAGICPATH_TOKEN` is **operator-only**; surface the step and wait.
-2. **ESCALATE IF discovery shows catalog drift**: a documented tool missing or renamed, unexpected new tools, or schemas that contradict [`references/tool-surface.md`](references/tool-surface.md). A provider-surface change requires a reviewed packet update.
+2. **ESCALATE IF discovery shows catalog drift**: a documented tool missing or renamed, unexpected new tools, or schemas that contradict [`references/tool-surface.md`](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/tool-surface.md). A provider-surface change requires a reviewed packet update.
 3. **ESCALATE IF the request needs the write surface** (generating, installing, adding, coding, imaging, creating projects, or cloning). This packet cannot perform those; hand the request to the operator or a workflow that runs the CLI outside a tool call.
 4. **ESCALATE IF `call_tool_chain` drops the connection** (`-32000 Connection closed`), which locally indicates a Node 25 runtime; the Node 24 pin is an operator-side fix.
 5. **ESCALATE IF retrieved MagicPath evidence conflicts with an `sk-design` decision** (a theme variable that fails a contrast floor, a component whose interaction contradicts the interaction guidelines), asking which source prevails before either is written into an answer.
@@ -345,13 +345,13 @@ Inspect every returned value. A failing command does not throw; it returns the e
 
 ### Core References
 
-- [tool-surface.md](references/tool-surface.md) - The 14-tool contract: arguments, bounds, result shapes, the read funnel, and the stale-`cli.commands` warning.
-- [credential-setup.md](references/credential-setup.md) - The credential, the `.env` wiring (`magicpath_MAGICPATH_TOKEN`), and the unauthenticated failure shape.
-- [mutation-boundary.md](references/mutation-boundary.md) - What is registered (read-only) versus what the CLI can do but is deliberately unregistered.
+- [tool-surface.md](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/tool-surface.md) - The 14-tool contract: arguments, bounds, result shapes, the read funnel, and the stale-`cli.commands` warning.
+- [credential-setup.md](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/credential-setup.md) - The credential, the `.env` wiring (`magicpath_MAGICPATH_TOKEN`), and the unauthenticated failure shape.
+- [mutation-boundary.md](../../../.skilled/skills/mcp-tooling/mcp-magicpath/references/mutation-boundary.md) - What is registered (read-only) versus what the CLI can do but is deliberately unregistered.
 
 ### Templates and Assets
 
-- [utcp-magicpath-manual.md](assets/utcp-magicpath-manual.md) - The verified `.utcp_config.json` manual snapshot (already registered: verify, do not re-add) plus the env-var wiring.
+- [utcp-magicpath-manual.md](../../../.skilled/skills/mcp-tooling/mcp-magicpath/assets/utcp-magicpath-manual.md) - The verified `.utcp_config.json` manual snapshot (already registered: verify, do not re-add) plus the env-var wiring.
 
 ### Reference Loading Notes
 

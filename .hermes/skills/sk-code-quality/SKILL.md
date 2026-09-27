@@ -290,39 +290,39 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 ### Parent And Shared Router
 
-- [`../SKILL.md`](../SKILL.md) - Routing-only parent hub.
-- [`../mode-registry.json`](../mode-registry.json) - Source of truth for mode tool surfaces and packet identity.
-- [`../shared/references/stack-detection.md`](../shared/references/stack-detection.md) - Shared surface detection consumed by every mode.
-- [`../ROUTER.md`](../ROUTER.md) - Root stage-two intent and resource routing.
-- [`../shared/references/phase-detection.md`](../shared/references/phase-detection.md) - Lifecycle transitions around the quality gate.
+- [`../SKILL.md`](../../../.skilled/skills/sk-code/SKILL.md) - Routing-only parent hub.
+- [`../mode-registry.json`](../../../.skilled/skills/sk-code/mode-registry.json) - Source of truth for mode tool surfaces and packet identity.
+- [`../shared/references/stack-detection.md`](../../../.skilled/skills/sk-code/shared/references/stack-detection.md) - Shared surface detection consumed by every mode.
+- [`../ROUTER.md`](../../../.skilled/skills/sk-code/ROUTER.md) - Root stage-two intent and resource routing.
+- [`../shared/references/phase-detection.md`](../../../.skilled/skills/sk-code/shared/references/phase-detection.md) - Lifecycle transitions around the quality gate.
 
 ### Quality References And Assets
 
-- [`assets/code-quality-checklist/overview-header-and-comments.md`](assets/code-quality-checklist/overview-header-and-comments.md) - Required quality checklist before implementation completion claims.
-- [`assets/checklists/universal-checklist.md`](../sk-code-opencode/assets/checklists/universal-checklist.md) - Universal OpenCode quality baseline.
-- [`assets/checklists/skill-authoring.md`](../sk-code-opencode/assets/checklists/skill-authoring.md) - Skill authoring checklist.
-- [`assets/checklists/agent-authoring.md`](../sk-code-opencode/assets/checklists/agent-authoring.md) - Agent authoring checklist.
-- [`assets/checklists/command-authoring.md`](../sk-code-opencode/assets/checklists/command-authoring.md) - Command authoring checklist.
-- [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) - Spec folder authoring checklist (owned by system-spec-kit).
-- [`assets/checklists/mcp-server-authoring.md`](../sk-code-opencode/assets/checklists/mcp-server-authoring.md) - MCP server authoring checklist.
-- [`assets/checklists/javascript-checklist.md`](../sk-code-opencode/assets/checklists/javascript-checklist.md) - JavaScript checklist.
-- [`assets/checklists/typescript-checklist.md`](../sk-code-opencode/assets/checklists/typescript-checklist.md) - TypeScript checklist.
-- [`assets/checklists/python-checklist.md`](../sk-code-opencode/assets/checklists/python-checklist.md) - Python checklist.
-- [`assets/checklists/shell-checklist.md`](../sk-code-opencode/assets/checklists/shell-checklist.md) - Shell checklist.
-- [`assets/checklists/rust-checklist/overview-and-p0-parity.md`](../sk-code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md) - Rust checklist overview and P0 parity.
-- [`assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`](../sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md) - Rust P0 safety and boundary discipline.
-- [`assets/checklists/rust-checklist/p1-required.md`](../sk-code-opencode/assets/checklists/rust-checklist/p1-required.md) - Rust required P1 checks.
-- [`assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`](../sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md) - Rust P2 evidence, validation, and resources.
-- [`assets/checklists/config-checklist.md`](../sk-code-opencode/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
+- [`assets/code-quality-checklist/overview-header-and-comments.md`](../../../.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md) - Required quality checklist before implementation completion claims.
+- [`assets/checklists/universal-checklist.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md) - Universal OpenCode quality baseline.
+- [`assets/checklists/skill-authoring.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/skill-authoring.md) - Skill authoring checklist.
+- [`assets/checklists/agent-authoring.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/agent-authoring.md) - Agent authoring checklist.
+- [`assets/checklists/command-authoring.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md) - Command authoring checklist.
+- [`spec-folder-authoring-checklist.md`](../../../.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) - Spec folder authoring checklist (owned by system-spec-kit).
+- [`assets/checklists/mcp-server-authoring.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md) - MCP server authoring checklist.
+- [`assets/checklists/javascript-checklist.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md) - JavaScript checklist.
+- [`assets/checklists/typescript-checklist.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/typescript-checklist.md) - TypeScript checklist.
+- [`assets/checklists/python-checklist.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/python-checklist.md) - Python checklist.
+- [`assets/checklists/shell-checklist.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/shell-checklist.md) - Shell checklist.
+- [`assets/checklists/rust-checklist/overview-and-p0-parity.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md) - Rust checklist overview and P0 parity.
+- [`assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md) - Rust P0 safety and boundary discipline.
+- [`assets/checklists/rust-checklist/p1-required.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/rust-checklist/p1-required.md) - Rust required P1 checks.
+- [`assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md) - Rust P2 evidence, validation, and resources.
+- [`assets/checklists/config-checklist.md`](../../../.skilled/skills/sk-code/sk-code-opencode/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
 
 ### Scripts
 
-- [`scripts/check-comment-hygiene.sh`](scripts/check-comment-hygiene.sh) - Per-file comment-hygiene checker.
-- [`scripts/check-comment-hygiene.test.sh`](scripts/check-comment-hygiene.test.sh) - Comment-hygiene checker tests.
-- [`scripts/check-dist-staleness.sh`](scripts/check-dist-staleness.sh) - Distribution drift checker.
-- [`scripts/hooks/claude-posttooluse.sh`](scripts/hooks/claude-posttooluse.sh) - Write-time comment-hygiene warning hook.
+- [`scripts/check-comment-hygiene.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh) - Per-file comment-hygiene checker.
+- [`scripts/check-comment-hygiene.test.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh) - Comment-hygiene checker tests.
+- [`scripts/check-dist-staleness.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh) - Distribution drift checker.
+- [`scripts/hooks/claude-posttooluse.sh`](../../../.skilled/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh) - Write-time comment-hygiene warning hook.
 
 ### Universal Standards
 
-- [`../shared/references/universal/code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) - Shared code quality standards.
-- [`../shared/references/universal/code-style-guide.md`](../shared/references/universal/code-style-guide.md) - Shared code style and comment hygiene guidance.
+- [`../shared/references/universal/code-quality-standards.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md) - Shared code quality standards.
+- [`../shared/references/universal/code-style-guide.md`](../../../.skilled/skills/sk-code/shared/references/universal/code-style-guide.md) - Shared code style and comment hygiene guidance.

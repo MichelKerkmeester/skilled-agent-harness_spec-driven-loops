@@ -312,7 +312,7 @@ Quality targets are a passing preflight before first use, runtime tool discovery
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in [AGENTS.md](../../../../AGENTS.md).
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
@@ -329,7 +329,7 @@ Use Bash for `aside`, Read for references, Grep for logs/output, and Glob for sc
 
 ### Chrome DevTools Parity (via the repl Playwright `page` API)
 
-Aside mirrors the Chrome DevTools capability surface through one lane — the Playwright `page` API inside `aside repl` (fixture-confirmed). Full patterns and playbook scenarios live in the DevTools-parity feature family ([`feature-catalog/devtools-parity/`](feature-catalog/devtools-parity/), scenarios ASD-016..021). Confidence: `confirmed` = fixture + online research; `skip-valid` = documented pattern, live run needs a bound authorized session; `gap` = no Aside equivalent.
+Aside mirrors the Chrome DevTools capability surface through one lane — the Playwright `page` API inside `aside repl` (fixture-confirmed). Full patterns and playbook scenarios live in the DevTools-parity feature family ([`feature-catalog/devtools-parity/`](../../../.skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity), scenarios ASD-016..021). Confidence: `confirmed` = fixture + online research; `skip-valid` = documented pattern, live run needs a bound authorized session; `gap` = no Aside equivalent.
 
 | DevTools capability | Aside repl pattern | Status |
 |---|---|---|
@@ -359,16 +359,16 @@ Use `aside "<task>"`, `aside --session <id> "<task>"`, `aside exec`, `aside acco
 
 The router discovers markdown resources dynamically from `references/` and `assets/` when those directories exist. This skill routes over the flat reference set: `references/aside-cli-reference.md`, `references/mcp-wiring.md`, `references/session-management.md`, and `references/troubleshooting.md`. The dated online-research refresh `references/aside-online-research-2026-07-17.md` (CLI/MCP/REPL corroboration, the verbatim `mcp.json` wiring, and the permission model) is discovered dynamically but is not mapped to a specific intent — read it directly when verifying the current developer surface.
 
-Assets: [`assets/utcp-aside-manual.md`](assets/utcp-aside-manual.md) — the registered `aside` UTCP manual snapshot (registered 2026-07-16; verify with jq, do not re-add), loaded for MCP intent.
+Assets: [`assets/utcp-aside-manual.md`](../../../.skilled/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md) — the registered `aside` UTCP manual snapshot (registered 2026-07-16; verify with jq, do not re-add), loaded for MCP intent.
 
-Feature catalog: [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md) — the capability inventory across the five intent domains. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
+Feature catalog: [`feature-catalog/feature-catalog.md`](../../../.skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md) — the capability inventory across the five intent domains. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
 Scripts: `scripts/install.sh`, `scripts/doctor.sh`.
 
-Examples: [`examples/README.md`](examples/README.md) — workflow example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
+Examples: [`examples/README.md`](../../../.skilled/skills/mcp-tooling/mcp-aside-devtools/examples/README.md) — workflow example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
-Server packages: [`mcp-servers/aside-cli/README.md`](mcp-servers/aside-cli/README.md) and [`mcp-servers/aside-mcp/README.md`](mcp-servers/aside-mcp/README.md) — install pointers for the CLI and the MCP registration (the `aside` UTCP manual is registered; see `assets/utcp-aside-manual.md`).
+Server packages: [`mcp-servers/aside-cli/README.md`](../../../.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md) and [`mcp-servers/aside-mcp/README.md`](../../../.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md) — install pointers for the CLI and the MCP registration (the `aside` UTCP manual is registered; see `assets/utcp-aside-manual.md`).
 
 Related skills: `mcp-code-mode` for the MCP transport, `mcp-chrome-devtools` for CDP-level browser debugging, and `sk-code` for the application code being verified.
 
-Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
+Install guide: [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-aside-devtools/INSTALL-GUIDE.md).

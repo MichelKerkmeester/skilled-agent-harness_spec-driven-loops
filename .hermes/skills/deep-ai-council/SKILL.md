@@ -16,7 +16,7 @@ version: 2.4.2.0
 
 Planning-only council deliberation with diverse seats, convergence checks, and packet-local `ai-council/**` artifact persistence.
 
-> Convergence threshold semantics: see [`references/convergence/convergence-signals.md`](references/convergence/convergence-signals.md). Deep Mode (iterative multi-topic): see [`references/convergence/depth-dispatch.md`](references/convergence/depth-dispatch.md).
+> Convergence threshold semantics: see [`references/convergence/convergence-signals.md`](../../../.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md). Deep Mode (iterative multi-topic): see [`references/convergence/depth-dispatch.md`](../../../.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md).
 
 ---
 

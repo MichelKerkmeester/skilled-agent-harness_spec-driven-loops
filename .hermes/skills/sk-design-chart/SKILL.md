@@ -200,8 +200,8 @@ The corpus shares a measured visual register for card anatomy, type scale, bare 
 
 ## 8. RELATED RESOURCES
 
-- [`README.md`](./README.md) - what this packet is and how to navigate it.
-- [`references/README.md`](./references/README.md) - the reference index for the catalog, the colour systems and the template contract.
-- [`scripts/README.md`](./scripts/README.md) - what the corpus validator checks.
-- [`../sk-design-diagram/SKILL.md`](../sk-design-diagram/SKILL.md) - the structural-visual packet on the other side of this boundary.
-- [`../SKILL.md`](../SKILL.md) - the hub that routes here.
+- [`README.md`](../../../.skilled/skills/sk-design/sk-design-chart/README.md) - what this packet is and how to navigate it.
+- [`references/README.md`](../../../.skilled/skills/sk-design/sk-design-chart/references/README.md) - the reference index for the catalog, the colour systems and the template contract.
+- [`scripts/README.md`](../../../.skilled/skills/sk-design/sk-design-chart/scripts/README.md) - what the corpus validator checks.
+- [`../sk-design-diagram/SKILL.md`](../../../.skilled/skills/sk-design/sk-design-diagram/SKILL.md) - the structural-visual packet on the other side of this boundary.
+- [`../SKILL.md`](../../../.skilled/skills/sk-design/SKILL.md) - the hub that routes here.
