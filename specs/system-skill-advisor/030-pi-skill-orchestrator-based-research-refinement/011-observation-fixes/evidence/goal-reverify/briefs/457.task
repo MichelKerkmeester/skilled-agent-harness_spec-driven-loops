@@ -1,0 +1,9 @@
+
+=== TASK: run scenario 457 ===
+Scenario file: .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md
+Read the whole file first. Then run its test execution steps in order and judge them against its expected signals and pass/fail rules.
+- The orchestrator confirmed both runtime builds are current before this run, so skip every build and install step and list each one under DEVIATIONS as 'skipped: prebuilt by orchestrator'.
+- Run the three vitest groups exactly as written, each from the repository root with the `cd` its block shows (advisor runtime, spec-kit runtime, and the Pi suite from `.skilled`).
+- For the registered-adapter cadence script, use this output directory, which is the active packet's evidence root: specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/runtime/__CLI__-registered-adapter . It is the only repository path you may write. Report the summary.json passed value per runtime.
+- Step 6 asks for a report recorded by hand under the benchmark reports folder. Do not write it: the orchestrator records this run's verdict. List step 6 under DEVIATIONS as 'hand-recorded report owned by the orchestrator'.
+- Native-host evidence: STEP 0 is your runtime's own model-visible context for this prompt. Classify it as native-host-delivered if an Advisor line is visible, otherwise SKIP with the reason, and report it in NOTES as a separate evidence class from the adapter tests.

@@ -1,0 +1,13 @@
+<!-- dispatch: devin CL-001; ledger: 2026-09-27T13:26:44Z 2026-09-27T13:28:00Z 0 76 -->
+
+STEP 0 — captured the Advisor line from context. Now reading the scenario file.Checking the scenario contract preconditions first: hook script exists and `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset.Preconditions met. Running step 2 (shim invocation with debug diagnostics):Step 2 matches all expected signals. Now step 3 — inner hook stderr capture:Step 3 matches. Now the task's additional step — casual prompt through the same compiled shim hook:All steps pass. Cleaning up the temp evidence directory, then reporting.RESULT: PASS | scenario=CL-001 | runtime=devin
+NATIVE: Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-code 0.88/0.16 pass.
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+|---|---|---|---|---|---|
+| 1 | `npm --prefix .skilled/skills/system-spec-kit/runtime run build` | — | skipped | build current | skipped (see DEVIATIONS) |
+| 2 | shim `user-prompt-submit.js` with `SKILL_ADVISOR_DEBUG=1`, payload `help me commit my changes` | 0 | stdout JSON: `hookSpecificOutput.additionalContext` = `"Advisor: live; use sk-git 0.95/0.12 pass.\nDirectives:…"`; shim stderr 0 bytes; DIAG 248 → 249 lines; last record `{"runtime":"claude","status":"ok","freshness":"live","skillLabel":"sk-git","emittedBytes":259,"directivesSuppressed":false}`; `grep -c` prompt literal in JSONL = 0 | exit 0; `hookSpecificOutput.additionalContext` starting `Advisor:` + freshness word; shim stderr empty; JSONL gains one line with `runtime:"claude"`, `emittedBytes`, `directivesSuppressed`; prompt literal absent | YES |
+| 3 | inner hook `system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js`, same payload | 0 | stderr: one JSONL record `{"runtime":"claude","status":"ok","freshness":"live","skillLabel":"sk-git","emittedBytes":259,"directivesSuppressed":false}`; `grep -c` prompt literal = 0 | inner hook stderr carries same record shape; prompt literal absent | YES |
+| 4 | shim hook, payload `"thanks"` | 0 | additionalContext first line: `Advisor: prompt skipped.` | `Advisor: prompt skipped.` | YES |
+DEVIATIONS: step 1 build — skipped: prebuilt by orchestrator. Temp captures written to `/tmp/skill-advisor-playbook/` (the path the scenario itself names) and deleted after the run.
+NOTES: precondition check confirmed `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` unset and both hook scripts + `metrics.js` present in `dist/`. DIAG resolved to `$TMPDIR/speckit-skill-advisor-metrics/a9f078f65abeed95-diagnostics.jsonl`. The live advisor daemon was used (freshness `live`, cacheHit true); no sandbox needed since the daemon was present and no step touched it.

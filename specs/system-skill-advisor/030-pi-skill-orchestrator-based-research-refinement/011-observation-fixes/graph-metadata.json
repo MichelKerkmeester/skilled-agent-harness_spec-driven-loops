@@ -50,17 +50,17 @@
       "evidence/dependabot-dismissals.txt",
       "scripts/README.md",
       ".hermes/skills/sk-code-opencode/SKILL.md",
+      "evidence/goal-reverify/harness-notes.txt",
       ".github/dependabot.yml",
       "evidence/validate-other-folders.txt",
       "evidence/validate-five-more-folders.txt",
+      "evidence/goal-reverify/sandbox-daemon-live-state.txt",
+      "evidence/goal-reverify/ledger.tsv",
       "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json",
       "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/Gemfile.lock",
       ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
       ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
-      ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+      ".skilled/skills/sk-code/sk-code-opencode/README.md"
     ],
     "entities": [
       {
@@ -118,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "harness-notes.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/harness-notes.txt",
+        "source": "derived"
+      },
+      {
         "name": "dependabot.yml",
         "kind": "config",
         "path": ".github/dependabot.yml",
@@ -136,6 +142,18 @@
         "source": "derived"
       },
       {
+        "name": "sandbox-daemon-live-state.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/sandbox-daemon-live-state.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ledger.tsv",
+        "kind": "file",
+        "path": "evidence/goal-reverify/ledger.tsv",
+        "source": "derived"
+      },
+      {
         "name": "package-lock.json",
         "kind": "config",
         "path": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json",
@@ -151,24 +169,6 @@
         "name": "run-all-drift-guards.sh",
         "kind": "script",
         "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-        "source": "derived"
-      },
-      {
-        "name": "verification-alignment.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
-        "source": "derived"
-      },
-      {
-        "name": "alignment-verification-automation.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-cli-fallback.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 10's close-out listed seven small problems it had seen outside its own scope",
     "created_at": "2026-09-27T11:43:49Z",
-    "last_save_at": "2026-09-27T12:41:24.084Z",
+    "last_save_at": "2026-09-27T14:42:24.562Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:202c84ad8e21c5d993f9c52a00ecda96d4f6b2227034be254fdaa47f70768567",
+    "source_fingerprint": "sha256:b288b75e4f1e28762f0d60b0fa5a951b62a5125c92fad9c23967ccefb3776a83",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ecbe5be385efe48b6b3c94cf079d6f96c077bd92471080bde1c53d05f6341135",
       "plan.md": "248802ed512c22445a657751ce96e7935b74352a20f43095d7c578f7397b9adc",
-      "tasks.md": "fa8f9ae3de15149ce523684b6d140ae399d98ba91739a8e26e99bc92d895c6af",
-      "implementation-summary.md": "07b039eb4eab15be79cbc96898a50bab04d3f81959cebe96d76d79db55ff0c87"
+      "tasks.md": "96a6dc15c19089de6a861591970a14c1b4c02e6944486a1d9f11ff38c2a10780",
+      "implementation-summary.md": "12bfa14df2edc566266060ec11670a013cb4352d7d030ca3d0816cf4c13b534d"
     },
     "last_active_at": null
   }

@@ -1,0 +1,13 @@
+# tester leftovers removed from /tmp, 2026-09-27T14:31:37Z
+/tmp/cp003.6W5NLL 2026-09-27T15:36 1 files
+/tmp/cp003.CeT86W 2026-09-27T00:19 1 files
+/tmp/cp003.FVD3BP 2026-09-27T00:20 1 files
+/tmp/cp003.IAasgx 2026-09-27T15:38 1 files
+/tmp/cp003.ILjoGv 2026-09-27T15:37 1 files
+/tmp/cp003.IVS2IW 2026-09-27T15:39 1 files
+/tmp/cp003.iXzThC 2026-09-27T00:20 1 files
+/tmp/cp003.ltULur 2026-09-27T15:54 1 files
+/tmp/cp003.LY80Hc 2026-09-27T15:34 1 files
+/tmp/cp003.thIEtC 2026-09-27T00:17 1 files
+/tmp/cl005.L0jyL5 2026-09-27T15:18 1 files
+/tmp/skill-advisor-playbook 2026-09-27T16:16 3 files

@@ -1,0 +1,8 @@
+
+=== TASK: run scenario CL-005 ===
+Scenario file: .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md
+Read the whole file first. Then run its test execution steps in order and judge them against its expected signals and pass/fail rules.
+- The orchestrator confirmed both runtime builds are current before this run, so skip every build and install step and list each one under DEVIATIONS as 'skipped: prebuilt by orchestrator'.
+- Step 4 starts `opencode run` once, as the scenario's own loader check. That single call is allowed. Start no other AI CLI.
+- If you are running inside OpenCode, also call the spec_kit_skill_advisor_status tool once and record its lastBridgeStatus in NOTES.
+- Step 4 starts a live OpenCode session that takes 60 to 120 seconds. Run its block exactly as written, with the redirects to its two files, then run its two greps on those files. `timeout` and `gtimeout` are not installed, so do not wrap the command in either. If your shell tool has its own time limit, set it to at least 180 seconds. Read the exit code and both grep results before judging it.
