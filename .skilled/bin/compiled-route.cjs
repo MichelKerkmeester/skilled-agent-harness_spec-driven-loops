@@ -13,6 +13,7 @@
 // into a routing path — any failure resolves to the legacy sentinel.
 
 const path = require('path');
+const fs = require('fs');
 
 const { resolverPathFor } = require('./lib/compiled-route-layout.cjs');
 
@@ -26,16 +27,19 @@ function main() {
   const args = process.argv.slice(2);
   const hub = args[args.indexOf('--hub') + 1];
   const promptIdx = args.indexOf('--prompt');
+  // A caller routing a user's prompt passes --prompt-stdin and sends the prompt on
+  // stdin, which keeps it out of argv where any local user can read it.
+  const promptFromStdin = args.includes('--prompt-stdin');
   const prompt = promptIdx >= 0 ? args[promptIdx + 1] : '';
   if (!hub) {
-    process.stderr.write('usage: compiled-route.cjs --hub <hubId> --prompt <text>\n');
+    process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-stdin)\n');
     process.exit(2);
   }
   let route = null;
   try {
     if (!RESOLVER) throw new Error('no coherent compiled-routing layout');
     const { resolveRoute } = require(RESOLVER);
-    route = resolveRoute(hub, prompt);
+    route = resolveRoute(hub, promptFromStdin ? fs.readFileSync(0, 'utf8') : prompt);
   } catch (err) {
     // Emit-only, stderr, debug-gated: never reaches stdout (the routing channel)
     // or the TUI, and never changes the fallback outcome (still legacy sentinel).

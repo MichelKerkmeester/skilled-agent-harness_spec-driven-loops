@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-26T20:04:10Z"
+    last_updated_at: "2026-09-27T10:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Phase 10 closed the last open items"
+    next_safe_action: "None. All ten phases are complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-26-030-goal-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Grok 4.7 xhigh-fast through cli-cursor implements code fixes, and GPT-6 Luna max fast through cli-codex verifies them. Opus agents lead design and docs. The orchestrator dispatches every CLI run itself. |
-| D2 | The session never edits the operator's global `~/.codex/hooks.json`. The operator removes its duplicate advisor entry. |
+| D2 | The session changes the operator's global Codex files only when the operator directs it, backs each file up first and records the rollback. |
 | D3 | The spec-kit hook shim keeps not forwarding its child's stderr. Scenarios read advisor diagnostics from the diagnostics JSONL. |
 | D4 | danger-full-access for cli-codex applies to scenario test runs only. |
 
@@ -70,6 +70,7 @@ phase and binds as if written here.
 | 007-docs-and-standards-alignment | `007-docs-and-standards-alignment/goal.md` |
 | 008-cross-cli-manual-testing | `008-cross-cli-manual-testing/goal.md` |
 | 009-test-findings-remediation | `009-test-findings-remediation/goal.md` |
+| 010-review-advisories-and-codex-cleanup | `010-review-advisories-and-codex-cleanup/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -88,7 +89,7 @@ string, not these files.
 - [ ] A sandboxed advisor daemon started with `SYSTEM_SKILL_ADVISOR_DB_DIR` set leaves `.skilled/skills/.state/advisor/skill-graph-generation.json` unchanged.
 - [ ] Scenarios CL-001, CL-005, CL-006, CP-003, CP-004, NC-001, NC-004, 433 and 457 each report PASS when rerun in cli-pi, cli-opencode, cli-devin, cli-cursor and cli-codex, or a FAIL the orchestrator traces to a named environment limit.
 - [ ] `validate.sh` on packet 030 with `--strict --recursive` prints `RESULT: PASSED` for every folder.
-- [ ] The fixes are committed and pushed to origin/main, and the operator has the exact duplicate Codex hook entry to remove.
+- [ ] The fixes are committed and pushed to origin/main, `install-codex-hooks.mjs --check` prints `OK` for `~/.codex/hooks.json`, and each phase 6 review advisory has a verified fix recorded in the phase 10 implementation summary.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -113,6 +114,7 @@ and findings belong here.
 | 007-docs-and-standards-alignment | Done | Phase Documentation Map in `spec.md` reads Complete |
 | 008-cross-cli-manual-testing | Done | Phase Documentation Map in `spec.md` reads Complete, committed `c4aa97df7b` and pushed |
 | 009-test-findings-remediation | Done | Phase Documentation Map in `spec.md` reads Complete. F1 to F22 fixed or handed to the operator (F5), and 45 of 45 scenario reruns pass |
+| 010-review-advisories-and-codex-cleanup | Done | Phase Documentation Map in `spec.md` reads Complete. The Codex cleanup ran with evidence in `010-review-advisories-and-codex-cleanup/evidence/`, and the twelve advisories and seven siblings each have a verified fix |
 
 ### Deviations and findings
 
@@ -123,4 +125,5 @@ and findings belong here.
 | Cursor native delivery | Re-probed on Cursor `2026.09.26-dd393fe`: `sessionStart` and `sessionEnd` fire under `cursor-agent -p`, `beforeSubmitPrompt` and `stop` do not. The advisor hook is registered correctly, so Cursor's missing native line is a host limit (cli-cursor CU-014) |
 | Codex double registration (F5) | On 2026-09-27 the operator chose a removal-only installer. Phase 9 changed the installer, its tests and eleven docs. Under D2 the session proved the change against `~/.codex/hooks.json` with read-only `--check` and `--dry-run` runs only (18 duplicates, 0 orphans, 26 third-party entries kept), and the one write stays the operator's |
 | D2 exception, operator-directed | On 2026-09-27 the operator asked the session to delete the stale jcode SessionStart entry from `~/.codex/hooks.json`, whose binary is gone. The session backed the file up and deleted that one group. Codex keys hook trust by position, so the three global SessionStart hooks after it need re-trust in Codex once the installer has run. D2 still leaves the 18 repository copies to the operator (`009-test-findings-remediation/evidence/f5/jcode-removal.txt`) |
+| D2 and criterion 6 amended, operator-directed | On 2026-09-27 the operator said nothing may stay open or deferred and handed the session the Codex cleanup and the twelve phase 6 advisories. D2 changed from "never edits the global file" to "edits the global Codex files only on the operator's direction, with a backup and a rollback". Criterion 6 changed from "the operator has the exact entry to remove" to the installer's `--check` passing and every advisory fixed. Phase 10 does that work |
 <!-- /ANCHOR:log -->

@@ -2,12 +2,15 @@
 // MODULE: Advisor Recommend Compiled-Route Option Tests
 // ───────────────────────────────────────────────────────────────
 
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mockedChild = vi.hoisted(() => ({ execFileSync: vi.fn() }));
 vi.mock('node:child_process', () => ({ execFileSync: mockedChild.execFileSync }));
 
-import { handleAdvisorRecommend } from '../../handlers/advisor-recommend.js';
+import { frontDoorReadsPromptFromStdin, handleAdvisorRecommend } from '../../handlers/advisor-recommend.js';
 
 const COMPILED_ROUTING_FLAG = 'SPECKIT_COMPILED_ROUTING';
 const prompt = 'Implement a TypeScript feature with focused tests.';
@@ -82,5 +85,31 @@ describe('advisor_recommend compiled-route option', () => {
     expect(responseData(cachedWithoutCompiledRoute).data?.recommendations?.[0]?.skillId).toBe('sk-code');
     expect(responseData(cachedWithoutCompiledRoute).data?.cache?.hit).toBe(true);
     expect(callsCompiledRoute()).toBe(false);
+  });
+
+  it('sends the prompt to the compiled-route front door on stdin, never in argv', async () => {
+    await handleAdvisorRecommend({ prompt, options: { includeAttribution: true } });
+    const call = mockedChild.execFileSync.mock.calls.find(([, args]) => (
+      Array.isArray(args) && args.some((argument) => typeof argument === 'string' && argument.endsWith('compiled-route.cjs'))
+    ));
+    expect(call).toBeDefined();
+    if (!call) return;
+    const [, args, options] = call as [string, string[], { input?: string }];
+    expect(args).toContain('--prompt-stdin');
+    expect(args).not.toContain(prompt);
+    expect(options.input).toBe(prompt);
+  });
+
+  it('recognizes only a front door that reads the prompt from stdin', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'front-door-'));
+    try {
+      writeFileSync(join(dir, 'current.cjs'), "const promptFromStdin = args.includes('--prompt-stdin');\n");
+      writeFileSync(join(dir, 'older.cjs'), "const promptIdx = args.indexOf('--prompt');\n");
+      expect(frontDoorReadsPromptFromStdin(join(dir, 'current.cjs'))).toBe(true);
+      expect(frontDoorReadsPromptFromStdin(join(dir, 'older.cjs'))).toBe(false);
+      expect(frontDoorReadsPromptFromStdin(join(dir, 'missing.cjs'))).toBe(false);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });

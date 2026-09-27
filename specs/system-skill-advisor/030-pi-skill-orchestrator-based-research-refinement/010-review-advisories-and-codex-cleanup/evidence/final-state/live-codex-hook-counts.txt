@@ -1,0 +1,9 @@
+# One codex exec from the checkout root at the final state, 2026-09-27T09:25Z, after every fix was in the working tree
+# command: AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 SKILL_ADVISOR_DEBUG=1 codex exec -s read-only -c model_reasoning_effort=low "Reply with the single word OK." </dev/null
+codex-exit=0 stdout=OK
+SessionStart started=9 completed=9
+UserPromptSubmit started=5 completed=5
+Stop started=6 completed=6
+advisor diagnostics JSONL: before=233 after=234 new=1 for one prompt
+new record: {"timestamp":"2026-09-27T09:25:17.333Z","runtime":"codex","status":"skipped","freshness":"stale","durationMs":1957,"cacheHit":false,"errorDetails":"CLI_ADVISOR_NO_MATCH","emittedBytes":244,"directivesSuppressed":false}
+install-codex-hooks --check at the final state, 2026-09-27T09:26Z: install-codex-hooks: OK ~/.codex/hooks.json, exit 0

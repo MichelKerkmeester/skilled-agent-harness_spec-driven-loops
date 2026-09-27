@@ -12,7 +12,8 @@
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing",
-    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation"
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -46,7 +47,7 @@
       "durable"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -167,25 +168,25 @@
         "source": "derived"
       },
       {
-        "name": "each",
-        "kind": "key_phrase",
+        "name": "The Codex",
+        "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor routes by push",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-09-27T06:00:30.013Z",
+    "last_save_at": "2026-09-27T10:23:00.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c71edb94505537d45d4e97f9b7c11f3a97eec4417af949851009abfb88c2c21f",
+    "source_fingerprint": "sha256:b9817f670d6dc2e70ff1e4ff4f7b98900d0d4559a57e8740e6adcbc2ff14d9d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d74da800c6d17304a22bd3d768bef3cdc6aa5b2b8fb0629491b95be12ff4a84b"
+      "spec.md": "26b393105b62865a8009158b6325b8669d52a519db2e8a543d6d82f22f9e1336"
     },
     "last_active_child_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
     "last_active_at": "2026-09-26T16:54:28.360Z"

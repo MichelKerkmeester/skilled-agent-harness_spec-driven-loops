@@ -9,9 +9,11 @@ import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
+import { ADVISOR_RUNTIME_VALUES } from '../../lib/advisor-runtime-values.js';
 import { advisorHookOutcomesPath } from '../../lib/metrics.js';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 import { AdvisorValidateInputSchema, AdvisorValidateOutputSchema } from '../../schemas/advisor-tool-schemas.js';
+import { advisorValidateTool } from '../../tools/advisor-validate.js';
 import { CorpusRowSchema, handleAdvisorValidate } from '../../handlers/advisor-validate.js';
 
 const REPO_ROOT = findAdvisorWorkspaceRoot(dirname(fileURLToPath(import.meta.url)));
@@ -233,5 +235,18 @@ describe('advisor_validate handler', () => {
       skillSlug: null,
       prompt: 'not allowed',
     })).toThrow(/Unrecognized key/);
+  });
+
+  it('accepts an outcome event from every advisor runtime', () => {
+    for (const runtime of ADVISOR_RUNTIME_VALUES) {
+      expect(() => AdvisorValidateInputSchema.parse({
+        confirmHeavyRun: true,
+        outcomeEvents: [{ runtime, outcome: 'accepted', skillId: 'sk-code' }],
+      })).not.toThrow();
+    }
+    const outcomeEvents = advisorValidateTool.inputSchema.properties as Record<string, {
+      items: { properties: { runtime: { enum: string[] } } };
+    }>;
+    expect(outcomeEvents.outcomeEvents.items.properties.runtime.enum).toEqual([...ADVISOR_RUNTIME_VALUES]);
   });
 });

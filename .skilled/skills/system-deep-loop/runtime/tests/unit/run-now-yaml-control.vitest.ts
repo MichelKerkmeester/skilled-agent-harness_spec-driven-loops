@@ -465,4 +465,39 @@ describe('deep workflow synthesis-completion invariant YAML control', () => {
       }
     }
   });
+
+  it('folds review lineage logs so a lineage finding missing from the registry is caught', () => {
+    const fixture = createSynthesisFixture('review', 'synthesis-review-lineage-fold', 1);
+    try {
+      for (const [label, id] of [['alpha', 'R1'], ['beta', 'R2']] as const) {
+        const lineageDir = join(fixture.artifactDir, 'lineages', label);
+        mkdirSync(lineageDir, { recursive: true });
+        writeFileSync(
+          join(lineageDir, 'deep-review-state.jsonl'),
+          `${JSON.stringify({ type: 'iteration', run: 1, findingsCount: 1, findingDetails: [{ id, title: `finding ${id}` }] })}\n`,
+          'utf8',
+        );
+      }
+      writeFileSync(
+        fixture.registryPath,
+        JSON.stringify({ openFindings: [{ findingId: 'R1', title: 'finding R1', status: 'active' }], resolvedFindings: [] }),
+        'utf8',
+      );
+      writeFileSync(fixture.outputPath, 'review synthesis\n', 'utf8');
+
+      runRenderedCommand(renderSynthesisCommand('review', fixture), fixture.env);
+
+      const records = readRecords(fixture.stateLogPath);
+      expect(records.at(-1)).toMatchObject({
+        type: 'event',
+        event: 'synthesis_incomplete',
+        mode: 'review',
+        totalIterations: 2,
+        identifiableFindingCount: 2,
+        missingStructuredFindingCount: 1,
+      });
+    } finally {
+      fixture.env.cleanup();
+    }
+  });
 });

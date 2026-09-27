@@ -7983,7 +7983,8 @@ export const editLinesSchema = {
             type: 'array',
             items: { type: 'string' },
             description: 'Optional hashes for every line from..to, in order, so an edit whose ' +
-              'interior drifted is refused rather than overwritten.',
+              'interior drifted is refused rather than overwritten. A non-empty list ' +
+              'must hold exactly one hash per line in the range.',
           },
         },
         required: ['from', 'from_hash', 'to', 'to_hash', 'new_text'],
@@ -8187,6 +8188,17 @@ export function validateEdits(
         `(file has ${lines.length} lines).`;
     }
 
+    // A short list would leave its missing interior lines unchecked while the
+    // caller believes the whole range was verified, so a list must cover it all.
+    const span = toIdx - fromIdx + 1;
+    if (edit.line_hashes !== undefined && edit.line_hashes.length > 0 && edit.line_hashes.length !== span) {
+      return (
+        `edit_lines: line_hashes holds ${edit.line_hashes.length} hashes but lines ` +
+        `${edit.from}..${edit.to} span ${span}. Pass one hash per line in the range, ` +
+        'in order, or omit line_hashes.'
+      );
+    }
+
     // The range check above guarantees that the indexed line exists.
     const actualFromHash = lineHash(lines[fromIdx]!);
     if (actualFromHash !== edit.from_hash) {
@@ -8198,8 +8210,8 @@ export function validateEdits(
       );
     }
 
-    // Every line in the range is verified, not just the endpoints: a replacement
-    // whose interior drifted would otherwise be written over silently.
+    // Interior lines are verified only when the caller supplies line_hashes;
+    // otherwise the endpoint hashes and the file's line_count guard the range.
     for (let i = fromIdx + 1; i < toIdx; i++) {
       const interior = lineHash(lines[i]!);
       const claimed = edit.line_hashes?.[i - fromIdx];

@@ -152,9 +152,9 @@ function fakeChild(options = {}) {
       emitResult();
     },
   };
-  // A reused fake models a fresh process on each spawn: the CLI takes the
-  // prompt as argv and never writes stdin, so the spawn itself must produce
-  // output once. Manual children stay silent until the test drives them.
+  // A reused fake models a fresh process on each spawn: the spawn itself
+  // produces output once, whether or not the plugin has written stdin yet.
+  // Manual children stay silent until the test drives them.
   child.start = () => {
     emitted = false;
     emitResult();
@@ -388,9 +388,57 @@ test('no-brief turns render the no-match head and hygiene context', async () => 
 
   assert.equal(output.system.length, 1);
   assert.equal(output.system[0], NO_MATCH_FALLBACK_CONTEXT);
-  assert.equal(child.stdinPayload, null);
-  assert.equal(calls[0].args[calls[0].args.indexOf('--prompt') + 1], 'implement the plugin fix');
-  assert.deepEqual(calls[0].options.stdio, ['ignore', 'pipe', 'ignore']);
+  assert.equal(JSON.parse(child.stdinPayload).prompt, 'implement the plugin fix');
+  assert.deepEqual(calls[0].args.slice(1), ['advisor_recommend', '--json', '-', '--format', 'json']);
+  assert.equal(calls[0].args.some((argument) => argument.includes('implement the plugin fix')), false);
+  assert.deepEqual(calls[0].options.stdio, ['pipe', 'pipe', 'ignore']);
+});
+
+test('the stdin request stays inside the byte budget when the prompt needs escaping', async () => {
+  const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
+  const hooks = await makePlugin({ maxPromptBytes: 600, spawnOverride: spawnSequence([child]) });
+  const prompt = 'fix "this"\n\u0001'.repeat(200);
+
+  await runPrompt(hooks, { prompt });
+
+  assert.ok(Buffer.byteLength(child.stdinPayload, 'utf8') <= 600);
+  const sent = JSON.parse(child.stdinPayload).prompt;
+  assert.ok(sent.length > 0);
+  assert.ok(prompt.startsWith(sent));
+});
+
+test('a prompt over 10,000 characters is sent as its first 10,000', async () => {
+  const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
+  const hooks = await makePlugin({ spawnOverride: spawnSequence([child]) });
+  const prompt = 'implement the plugin fix '.repeat(1000);
+
+  await runPrompt(hooks, { prompt });
+
+  assert.equal(JSON.parse(child.stdinPayload).prompt, prompt.slice(0, 10_000));
+});
+
+test('a byte budget too small for any prompt fails open without spawning', async () => {
+  const calls = [];
+  const hooks = await makePlugin({ maxPromptBytes: 64, spawnOverride: spawnSequence([fakeChild()], calls) });
+  const output = { system: [] };
+
+  await runPrompt(hooks, {}, output);
+
+  assert.equal(calls.length, 0);
+  assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  assert.match(await status(hooks), /last_error_code=PROMPT_BUDGET/);
+});
+
+// The request is written before the spawn is known to have succeeded. A missing
+// binary reports ENOENT afterwards, and the call must still settle.
+test('a missing advisor binary fails open as a spawn error', async () => {
+  const hooks = await makePlugin({ nodeBinaryOverride: '/nonexistent/advisor-node' });
+  const output = { system: [] };
+
+  await assert.doesNotReject(() => runPrompt(hooks, {}, output));
+
+  assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+  assert.match(await status(hooks), /last_error_code=SPAWN_ERROR/);
 });
 
 // The plugin spawns its CLI through a path relative to its own directory, so a

@@ -12,10 +12,10 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-26T18:00:00Z"
+    last_updated_at: "2026-09-27T10:30:00Z"
     last_updated_by: "orchestrate"
-    recent_action: "Completed 006-fanout-deep-review and 007-docs-and-standards-alignment"
-    next_safe_action: "Operator picks which phase 6 review workstreams to fix"
+    recent_action: "Completed 010-review-advisories-and-codex-cleanup"
+    next_safe_action: "None. All ten phases are complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete. Phases 1 to 9 are complete: phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found and reran the scenarios until all 45 passed |
+| **Status** | Complete. Phases 1 to 10 are complete. Phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found until all 45 scenario reruns passed. Phase 10 closed the Codex hook cleanup and every phase 6 review advisory |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -131,6 +131,7 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | 7 | 007-docs-and-standards-alignment/ | sk-code audit of the phase 2 to 5 code, and the advisor feature catalog, playbooks, READMEs and root README brought up to date, written by MiMo v2.6 Pro high | Complete |
 | 8 | 008-cross-cli-manual-testing/ | The nine related playbook scenarios run inside cli-pi, cli-opencode, cli-devin, cli-cursor and cli-codex with native hook evidence per runtime, after Grok 4.7 joins the Cursor allowlist | Complete |
 | 9 | 009-test-findings-remediation/ | Fix every phase 8 finding and rerun the nine scenarios in all five CLIs until each passes or fails only on a named environment limit | Complete |
+| 10 | 010-review-advisories-and-codex-cleanup/ | Run the removal-only Codex installer and restore hook trust, then fix the twelve phase 6 review advisories and the seven siblings found while verifying them | Complete |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 
@@ -153,6 +154,7 @@ R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Ea
 | 006-fanout-deep-review | 007-docs-and-standards-alignment | The review has closed, so the files it read can change | `review/review-report.md` exists and the close recorded `synthesis_complete` |
 | 007-docs-and-standards-alignment | 008-cross-cli-manual-testing | The scenarios describe the current hook path | Phase 7's playbook validators report 0 violations |
 | 008-cross-cli-manual-testing | 009-test-findings-remediation | Every FAIL and BLOCKED is traced to code, scenario text or the environment, and each finding is recorded in the phase 9 spec | Phase 8 `implementation-summary.md` classifies each result, and the phase 9 spec lists F1 to F18 |
+| 009-test-findings-remediation | 010-review-advisories-and-codex-cleanup | The removal-only installer and its `--check` exist, and the phase 6 advisories are still open | `install-codex-hooks.mjs --check` runs against a temp copy, and the phase 6 report lists the twelve P2 findings |
 <!-- /ANCHOR:phase-map -->
 
 ---

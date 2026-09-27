@@ -46,9 +46,9 @@ const MODES = Object.freeze([
 ]);
 
 // The measured producer surface for both deep modes: the four variant
-// workflows, the append gateway, both reducers, the verifier, and the fan-out
-// runner. A file renamed out of this list fails as a missing surface rather
-// than passing unexamined.
+// workflows, the append gateway, the synthesis close-out, both reducers, the
+// verifier, and the fan-out runner. A file renamed out of this list fails as
+// a missing surface rather than passing unexamined.
 const PRODUCER_SURFACE = Object.freeze([
   '.skilled/commands/deep/assets/deep-review-auto.yaml',
   '.skilled/commands/deep/assets/deep-review-confirm.yaml',
@@ -58,6 +58,7 @@ const PRODUCER_SURFACE = Object.freeze([
   '.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs',
   '.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs',
   '.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs',
+  '.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs',
   '.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs',
 ]);
 

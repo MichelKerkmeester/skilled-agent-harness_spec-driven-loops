@@ -48,6 +48,9 @@ const DEFAULT_BRIDGE_TIMEOUT_MS = 2500;
 const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 const DEFAULT_NODE_BINARY = 'node';
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
+// advisor_recommend refuses a longer prompt, so a longer one is sent as its head
+// rather than refused and reported as an outage.
+const ADVISOR_PROMPT_MAX_CHARS = 10_000;
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
 const DEFAULT_MAX_CACHE_ENTRIES = 1000;
 const MAX_BRIDGE_STDOUT_BYTES = 256 * 1024;
@@ -631,31 +634,6 @@ async function parseCliResponse(stdout, options) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Clamp prompt text to the requested UTF-8 byte budget.
- *
- * @param {string} prompt - Prompt text to clamp
- * @param {number} maxBytes - Maximum UTF-8 byte count to retain
- * @returns {string} Original prompt or byte-safe prefix within the budget
- */
-function clampPrompt(prompt, maxBytes) {
-  if (typeof prompt !== 'string' || Buffer.byteLength(prompt, 'utf8') <= maxBytes) {
-    return prompt;
-  }
-
-  let low = 0;
-  let high = prompt.length;
-  while (low < high) {
-    const mid = Math.ceil((low + high) / 2);
-    if (Buffer.byteLength(prompt.slice(0, mid), 'utf8') <= maxBytes) {
-      low = mid;
-      continue;
-    }
-    high = mid - 1;
-  }
-  return prompt.slice(0, low);
-}
-
-/**
  * Clamp advisor brief text by JavaScript character count.
  *
  * @param {string} brief - Advisor brief text to clamp
@@ -686,10 +664,18 @@ function insertWithEviction(cache, key, value, maxEntries) {
   }
 }
 
-// Build the advisor CLI argument vector. The prompt is clamped so the whole
-// invocation stays inside the configured prompt-byte budget.
-function advisorCliArgs({ prompt, options }) {
-  const requestOptions = JSON.stringify({
+// The advisor CLI reads its request from stdin (`--json -`), so the prompt never
+// appears in argv, which any local user can read from the process table.
+function advisorCliArgs() {
+  return [ADVISOR_CLI_PATH, 'advisor_recommend', '--json', '-', '--format', 'json'];
+}
+
+// Build the stdin request, or null when the byte budget cannot hold even one prompt
+// character beside the request's fixed part. The prompt keeps at most
+// ADVISOR_PROMPT_MAX_CHARS characters and is clamped by its escaped size, because JSON
+// writes a quote or newline as two bytes and a control character as six.
+function advisorCliRequest({ prompt, options }) {
+  const requestOptions = {
     // Three recommendations keep the two-target ambiguity line available without
     // asking the advisor for a longer list than the brief can use.
     topK: 3,
@@ -697,19 +683,16 @@ function advisorCliArgs({ prompt, options }) {
     includeAbstainReasons: true,
     confidenceThreshold: options.thresholdConfidence,
     uncertaintyThreshold: DEFAULT_THRESHOLD_UNCERTAINTY,
-  });
-  const args = (clampedPrompt) => [
-    ADVISOR_CLI_PATH,
-    'advisor_recommend',
-    '--prompt',
-    clampedPrompt,
-    '--options',
-    requestOptions,
-    '--format',
-    'json',
-  ];
-  const fixedBytes = args('').reduce((total, arg) => total + Buffer.byteLength(arg, 'utf8') + 1, 0);
-  return args(clampPrompt(prompt, Math.max(0, options.maxPromptBytes - fixedBytes)));
+  };
+  const request = (text) => JSON.stringify({ prompt: text, options: requestOptions });
+  let remaining = options.maxPromptBytes - Buffer.byteLength(request(''), 'utf8');
+  let end = 0;
+  for (const char of prompt.slice(0, ADVISOR_PROMPT_MAX_CHARS)) {
+    remaining -= Buffer.byteLength(JSON.stringify(char), 'utf8') - 2;
+    if (remaining < 0) break;
+    end += char.length;
+  }
+  return end > 0 ? request(prompt.slice(0, end)) : null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -901,7 +884,7 @@ function deliverTransformContribution(decision, deliver) {
  * @param {number} [rawOptions.maxTokens] - Maximum advisor brief tokens requested from the advisor CLI
  * @param {string} [rawOptions.nodeBinaryOverride] - Node binary used for the advisor CLI subprocess
  * @param {number} [rawOptions.bridgeTimeoutMs] - Advisor CLI subprocess timeout in milliseconds
- * @param {number} [rawOptions.maxPromptBytes] - Maximum prompt bytes carried by the advisor CLI invocation
+ * @param {number} [rawOptions.maxPromptBytes] - Maximum UTF-8 bytes of the stdin request sent to the advisor CLI, prompt included
  * @param {number} [rawOptions.maxBriefChars] - Maximum injected advisor brief characters
  * @param {number} [rawOptions.maxCacheEntries] - Maximum advisor cache entries
  * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Bound long compiled-route target lists
@@ -945,7 +928,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
 
   /**
    * Run the advisor CLI and render its JSON response.
-   * The CLI receives the prompt as argv from `advisorCliArgs`, returns stdout
+   * The CLI receives the request on stdin from `advisorCliRequest`, returns stdout
    * JSON parsed by `parseCliResponse`, gets SIGTERM shortly before the deadline,
    * and gets SIGKILL at the deadline if the process has not settled.
    *
@@ -983,16 +966,28 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         resolve(response);
       };
 
+      const request = advisorCliRequest({ prompt, options });
+      if (request === null) {
+        finish({ brief: null, status: 'fail_open', error: 'PROMPT_BUDGET', metadata: {} });
+        return;
+      }
+
       try {
-        child = options.spawnAdvisor(options.nodeBinary, advisorCliArgs({ prompt, options }), {
+        child = options.spawnAdvisor(options.nodeBinary, advisorCliArgs(), {
           cwd: projectDir,
           env: process.env,
-          stdio: ['ignore', 'pipe', 'ignore'],
+          stdio: ['pipe', 'pipe', 'ignore'],
         });
       } catch {
         finish({ brief: null, status: 'fail_open', error: 'SPAWN_ERROR', metadata: {} });
         return;
       }
+
+      // A child that exits before reading stdin raises EPIPE here, and a child that
+      // failed to start discards the request. The error and close handlers below
+      // settle the call either way.
+      child.stdin?.on?.('error', () => undefined);
+      child.stdin?.end(request);
 
       const graceMs = Math.min(BRIDGE_TERMINATION_GRACE_MS, options.bridgeTimeoutMs);
       termTimer = setTimeout(() => {

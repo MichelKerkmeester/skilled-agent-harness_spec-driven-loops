@@ -15,6 +15,7 @@ import type {
   SkillAdvisorBriefOptions,
 } from '../../runtime/lib/skill-advisor-brief.js';
 import type { AdvisorRecommendation } from '../../runtime/lib/subprocess.js';
+import { ADVISOR_PROMPT_MAX_CHARS } from '../../runtime/schemas/advisor-tool-schemas.js';
 
 interface CliFallbackPaths {
   readonly repoRoot: string;
@@ -157,16 +158,6 @@ export function resolveSkillAdvisorCliFallbackTimeoutMs(
   return Math.max(1, Math.floor(hookBudgetMs));
 }
 
-export function shouldTrySkillAdvisorCliFallback(result: AdvisorHookResult): boolean {
-  if (result.brief !== null) {
-    return false;
-  }
-  if (result.status === 'fail_open') {
-    return true;
-  }
-  return result.status === 'degraded' && result.freshness === 'unavailable';
-}
-
 function findCliFallbackPaths(workspaceRoot: string, env: NodeJS.ProcessEnv): CliFallbackPaths | null {
   let current = resolve(workspaceRoot || process.cwd());
   for (let depth = 0; depth < 14; depth += 1) {
@@ -220,7 +211,8 @@ function runCliRecommend(args: {
   readonly timeoutMs: number;
 }): Promise<CliProcessResult> {
   const payload = {
-    prompt: args.prompt,
+    // The CLI refuses a longer prompt, so a longer one is sent as its head.
+    prompt: args.prompt.slice(0, ADVISOR_PROMPT_MAX_CHARS),
     options: {
       topK: 3,
       includeAttribution: false,
@@ -243,7 +235,7 @@ function runCliRecommend(args: {
       args.paths.cliPath,
       'advisor_recommend',
       '--json',
-      JSON.stringify(payload),
+      '-',
       '--format',
       'json',
       '--timeout-ms',
@@ -256,9 +248,13 @@ function runCliRecommend(args: {
     ], {
       cwd: args.paths.repoRoot,
       env: childEnvForCli(args.env),
-      stdio: ['ignore', 'pipe', 'ignore'],
+      stdio: ['pipe', 'pipe', 'ignore'],
       detached: true,
     });
+    // The payload carries the user's prompt, so it goes on stdin rather than
+    // in argv, which any local user can read from the process table.
+    child.stdin?.on('error', () => undefined);
+    child.stdin?.end(JSON.stringify(payload));
     const killProcessGroup = (): void => {
       const pid = child.pid;
       if (typeof pid !== 'number') return;

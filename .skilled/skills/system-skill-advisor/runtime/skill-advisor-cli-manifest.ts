@@ -2,6 +2,7 @@
 // MODULE: Skill Advisor CLI Manifest
 // ---------------------------------------------------------------
 
+import { ADVISOR_RUNTIME_VALUES } from './lib/advisor-runtime-values.js';
 import type { ToolDefinition } from './tools/types.js';
 
 export interface SkillAdvisorCliToolDefinition extends ToolDefinition {
@@ -86,7 +87,7 @@ const SKILL_ADVISOR_TOOL_DEFINITIONS: readonly ToolDefinition[] = [
             type: 'object',
             additionalProperties: false,
             properties: {
-              runtime: { type: 'string', enum: ['claude', 'copilot', 'opencode'] },
+              runtime: { type: 'string', enum: [...ADVISOR_RUNTIME_VALUES] },
               outcome: { type: 'string', enum: ['accepted', 'corrected', 'ignored'] },
               skillId: { type: 'string', minLength: 1 },
               correctedSkillId: { type: 'string', minLength: 1 },

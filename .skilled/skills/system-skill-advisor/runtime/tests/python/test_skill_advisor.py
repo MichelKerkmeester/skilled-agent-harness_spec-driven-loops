@@ -931,6 +931,33 @@ description: Fixture helper for routing tests
     except Exception as exc:
         fail_test("T243-SA-021: native-unavailable stdin fallback warns and stays JSON", str(exc))
 
+    # A prompt longer than advisor_recommend accepts reaches the native bridge as its head.
+    try:
+        original_bridge = advisor._run_native_bridge
+        sent = []
+        try:
+            def fake_bridge(payload, timeout=advisor.NATIVE_TIMEOUT_SECONDS):
+                sent.append(payload["prompt"])
+                return {"status": "ok", "data": {"recommendations": []}}
+
+            advisor._run_native_bridge = fake_bridge
+            long_prompt = "implement the cli fix " * 800
+            advisor.recommend_with_native_advisor(long_prompt)
+            advisor.recommend_with_native_advisor("\U0001F600" * 6000)
+            advisor.recommend_with_native_advisor("short prompt")
+            expected = [long_prompt[:10000], "\U0001F600" * 5000, "short prompt"]
+            if sent == expected:
+                ok("native bridge receives at most the advisor prompt limit")
+            else:
+                fail_test(
+                    "native bridge receives at most the advisor prompt limit",
+                    f"lengths={[len(item) for item in sent]}",
+                )
+        finally:
+            advisor._run_native_bridge = original_bridge
+    except Exception as exc:
+        fail_test("native bridge receives at most the advisor prompt limit", str(exc))
+
 
 # ───────────────────────────────────────────────────────────────
 # 3. BENCH HARNESS TESTS

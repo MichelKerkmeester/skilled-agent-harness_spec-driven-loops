@@ -33,6 +33,10 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 
 A resident daemon started from an older build rejects the `includeCompiledRoute` request option with JSON-RPC error -32602. The protocol handshake cannot tell the two builds apart. When the error message names `includeCompiledRoute` and the request carried that key, the CLI retries the call exactly once without it (`runtime/skill-advisor-cli.ts:1420-1440`). Every other error path is unchanged. The retry keeps the answer but costs one extra round trip per call until the old daemon stops. After an upgrade the operator should stop the old daemon once and let the next CLI call start a current one.
 
+### JSON payload on stdin
+
+`--json -` reads the command's JSON object from stdin instead of from argv (`runtime/skill-advisor-cli.ts`). The prompt hook and the OpenCode plugin use it, because any local user can read another process's argv from the process table. `parseCliArgs` only marks the payload. `runSkillAdvisorCli` reads stdin once, after the arguments parse, so a bad flag is refused without waiting on stdin. `--json '<object>'` and the per-parameter flags keep working.
+
 ### Scan job semantics
 
 `skill_graph_scan` runs as a job: the CLI captures `advisor_status` before and after the scan so the operator sees the generation move, with rebuild/scan wall-time locked by the job-semantics suite.
@@ -62,6 +66,7 @@ A resident daemon started from an older build rejects the `includeCompiledRoute`
 | `runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts` | Automated test | Real-launcher orphan reaping (killed parent, removed worktree, warm adoption) |
 | `runtime/tests/handlers/advisor-trust-gate.vitest.ts` | Automated test | Daemon-side trust-gate enforcement including the env grant |
 | `runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts` | Automated test | One retry without the rejected key and no retry for other errors |
+| `runtime/tests/skill-advisor-cli-json-stdin.vitest.ts` | Automated test | `--json -` parsing, the per-parameter refusal and stdin validation |
 
 ---
 

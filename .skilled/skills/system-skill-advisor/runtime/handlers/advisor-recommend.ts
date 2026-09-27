@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { execFileSync } from 'node:child_process';
-import { realpathSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { advisorPromptCache } from '../lib/prompt-cache.js';
@@ -333,23 +333,40 @@ function publicRecommendation(
   };
 }
 
+// The front door runs from the request's workspaceRoot, and a caller may name
+// another checkout there, such as a worktree under the repository root. Its copy
+// can predate --prompt-stdin and would resolve an empty prompt, so such a copy
+// gets no compiled route rather than the prompt in argv.
+export function frontDoorReadsPromptFromStdin(frontDoorPath: string): boolean {
+  try {
+    return readFileSync(frontDoorPath, 'utf8').includes('--prompt-stdin');
+  } catch {
+    return false;
+  }
+}
+
 function compiledRouteForRecommendation(
   skillId: string,
   prompt: string,
   workspaceRoot: string,
 ): Record<string, unknown> | undefined {
   if (!COMPILED_ROUTING_HUBS.has(skillId)) return undefined;
+  const frontDoor = resolve(workspaceRoot, '.skilled', 'bin', 'compiled-route.cjs');
+  if (!frontDoorReadsPromptFromStdin(frontDoor)) {
+    emitCompiledRoutingBreadcrumb(`compiled-route front door cannot read the prompt from stdin; skipping hub=${skillId}`);
+    return undefined;
+  }
   try {
     const output = execFileSync(process.execPath, [
-      resolve(workspaceRoot, '.skilled', 'bin', 'compiled-route.cjs'),
+      frontDoor,
       '--hub',
       skillId,
-      '--prompt',
-      prompt,
+      '--prompt-stdin',
     ], {
       cwd: workspaceRoot,
       encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
+      input: prompt,
+      stdio: ['pipe', 'pipe', 'pipe'],
       timeout: 5_000,
       maxBuffer: 1_048_576,
     });

@@ -61,6 +61,7 @@ interface ParsedCommand {
   readonly toolListMode: ToolListMode;
   readonly completionShell?: CompletionShell;
   readonly args: Record<string, unknown>;
+  readonly jsonFromStdin?: boolean;
   readonly help: boolean;
   readonly version: boolean;
   readonly trusted: boolean;
@@ -70,6 +71,7 @@ interface ParsedCommand {
 interface CliIo {
   readonly stdout: Pick<NodeJS.WriteStream, 'write'>;
   readonly stderr: Pick<NodeJS.WriteStream, 'write'>;
+  readonly readStdin?: () => Promise<string>;
 }
 
 interface RepoPaths {
@@ -371,6 +373,15 @@ function parseJsonObject(raw: string): Record<string, unknown> {
   return parsed as Record<string, unknown>;
 }
 
+// `--json -` reads the payload here, so a caller can keep a prompt out of
+// argv, which any local user can read from the process table.
+async function readProcessStdin(): Promise<string> {
+  process.stdin.setEncoding('utf8');
+  let text = '';
+  for await (const chunk of process.stdin) text += String(chunk);
+  return text;
+}
+
 function envTrustedDefault(): boolean {
   return process.env.SYSTEM_SKILL_ADVISOR_CLI_TRUSTED === '1'
     || process.env.SPECKIT_SKILL_ADVISOR_CLI_TRUSTED === '1';
@@ -419,6 +430,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
   let toolListMode: ToolListMode = 'full';
   let completionShell: CompletionShell | undefined;
   let jsonPayload: Record<string, unknown> | null = null;
+  let jsonFromStdin = false;
   let trusted = trustedDefault;
   let promptTime = promptTimeDefault;
   const tool = getToolDefinition(command);
@@ -462,7 +474,11 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     }
     if (rawFlag === 'json') {
       const read = readOptionValue(tokens, index, option);
-      jsonPayload = parseJsonObject(read.value);
+      if (read.value === '-') {
+        jsonFromStdin = true;
+      } else {
+        jsonPayload = parseJsonObject(read.value);
+      }
       index = read.nextIndex;
       continue;
     }
@@ -532,7 +548,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     index += 2;
   }
 
-  if (jsonPayload && Object.keys(parsedArgs).length > 0) {
+  if ((jsonPayload || jsonFromStdin) && Object.keys(parsedArgs).length > 0) {
     throw new CliUsageError('--json cannot be combined with per-parameter flags');
   }
 
@@ -545,6 +561,7 @@ export function parseCliArgs(argv: string[]): ParsedCommand {
     toolListMode,
     completionShell,
     args: jsonPayload ?? parsedArgs,
+    ...(jsonFromStdin ? { jsonFromStdin: true } : {}),
     help: false,
     version: false,
     trusted,
@@ -775,7 +792,7 @@ ${JSON.stringify(tool.inputSchema, null, 2)}`;
 Usage:
   skill-advisor list-tools [--format json|text|jsonl] [--compact|--names-only]
   skill-advisor completion bash|zsh
-  skill-advisor <tool_name> [--json '{...}'] [--format json|text|jsonl] [--timeout-ms N] [--trusted] [--warm-only]
+  skill-advisor <tool_name> [--json '{...}' | --json -] [--format json|text|jsonl] [--timeout-ms N] [--trusted] [--warm-only]
   skill-advisor <tool_name> --param value [--another-param value]
 
 Commands:
@@ -787,6 +804,7 @@ Examples:
   skill-advisor completion zsh
   skill-advisor advisor_status --workspace-root "$PWD" --format text
   skill-advisor advisor_recommend --prompt "implement cli core"
+  printf '%s' '{"prompt":"implement cli core"}' | skill-advisor advisor_recommend --json -
   skill-advisor advisor_rebuild --trusted --force true
   skill-advisor skill_graph_scan --trusted --format text
 
@@ -1489,7 +1507,10 @@ export async function runSkillAdvisorCli(argv: string[], io: CliIo = { stdout: p
       return EXIT_SUCCESS;
     }
 
-    const validated = validateCommand(parsed);
+    const command = parsed.jsonFromStdin
+      ? { ...parsed, args: parseJsonObject(await (io.readStdin ?? readProcessStdin)()) }
+      : parsed;
+    const validated = validateCommand(command);
     if (!validated) {
       throw new CliUsageError(`Unknown command: ${parsed.command}`);
     }

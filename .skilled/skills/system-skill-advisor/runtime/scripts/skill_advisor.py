@@ -46,6 +46,10 @@ REPO_ROOT = os.path.dirname(os.path.dirname(SKILLS_DIR))
 DISABLE_ADVISOR_ENV = "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED"
 FORCE_LOCAL_ENV = "SPECKIT_SKILL_ADVISOR_FORCE_LOCAL"
 NATIVE_TIMEOUT_SECONDS = 2.5
+# advisor_recommend routes on at most this many prompt characters, counted in the UTF-16
+# code units JavaScript measures. A longer prompt is sent as its head, so it is routed
+# rather than refused.
+ADVISOR_PROMPT_MAX_CHARS = 10_000
 NATIVE_ADVISOR_STATUS = os.path.join(
     REPO_ROOT,
     ".skilled",
@@ -838,6 +842,20 @@ def _legacy_recommendations_from_native(output: Dict[str, Any]) -> List[Dict[str
     return legacy
 
 
+def _advisor_prompt_head(prompt: str) -> str:
+    """Return the longest prefix of the prompt that advisor_recommend accepts.
+
+    JavaScript counts a character outside the Basic Multilingual Plane as two code units,
+    so the cut counts the same way and never splits a character.
+    """
+    units = 0
+    for index, char in enumerate(prompt):
+        units += 2 if ord(char) > 0xFFFF else 1
+        if units > ADVISOR_PROMPT_MAX_CHARS:
+            return prompt[:index]
+    return prompt
+
+
 def recommend_with_native_advisor(
     prompt: str,
     confidence_threshold: float = 0.8,
@@ -848,7 +866,7 @@ def recommend_with_native_advisor(
     response = _run_native_bridge({
         "mode": "recommend",
         "workspaceRoot": REPO_ROOT,
-        "prompt": prompt,
+        "prompt": _advisor_prompt_head(prompt),
         "topK": 10,
         "confidenceThreshold": confidence_threshold,
         "uncertaintyThreshold": 1.0 if confidence_only else uncertainty_threshold,

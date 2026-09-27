@@ -1,0 +1,66 @@
+// Talks to `codex app-server` over stdio JSON-RPC.
+//   node codex-hooks.mjs list <cwd>            prints every hook Codex sees for <cwd>: key, trust status, hash, command
+//   node codex-hooks.mjs trust <cwd> <key>...  writes hooks.state."<key>".trusted_hash = the hash Codex reports now,
+//                                              the same config write Codex's own /hooks review makes
+import { spawn } from 'node:child_process';
+import readline from 'node:readline';
+
+const [mode, cwd, ...keys] = process.argv.slice(2);
+if (!['list', 'trust'].includes(mode) || !cwd) {
+  console.error('usage: codex-hooks.mjs list <cwd> | trust <cwd> <key>...');
+  process.exit(2);
+}
+
+const child = spawn('codex', ['app-server'], { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
+let stderr = '';
+child.stderr.on('data', (d) => { stderr += d; });
+const pending = new Map();
+let nextId = 1;
+readline.createInterface({ input: child.stdout }).on('line', (line) => {
+  let msg;
+  try { msg = JSON.parse(line); } catch { return; }
+  if (msg.id != null && pending.has(msg.id)) {
+    const { resolve, reject } = pending.get(msg.id);
+    pending.delete(msg.id);
+    if (msg.error) reject(new Error(JSON.stringify(msg.error))); else resolve(msg.result);
+  }
+});
+const request = (method, params) => new Promise((resolve, reject) => {
+  const id = nextId++;
+  pending.set(id, { resolve, reject });
+  child.stdin.write(JSON.stringify({ jsonrpc: '2.0', id, method, params }) + '\n');
+});
+const notify = (method, params) => child.stdin.write(JSON.stringify({ jsonrpc: '2.0', method, ...(params ? { params } : {}) }) + '\n');
+
+const timer = setTimeout(() => { console.error('timeout; app-server stderr:\n' + stderr.slice(-2000)); child.kill(); process.exit(3); }, 45000);
+
+try {
+  await request('initialize', { clientInfo: { name: 'claude-orchestrator', title: 'Claude orchestrator', version: '1.0.0' } });
+  notify('initialized');
+  const listed = await request('hooks/list', { cwds: [cwd] });
+  const hooks = (listed.data || []).flatMap((entry) => entry.hooks.map((h) => ({ ...h, entryErrors: entry.errors })));
+  if (mode === 'list') {
+    for (const h of hooks) {
+      const command = h.command ?? h.metadata?.command ?? '';
+      console.log([h.trustStatus.padEnd(9), h.source.padEnd(7), h.key, h.currentHash, String(command).replace(/\s+/g, ' ').slice(0, 90)].join('  '));
+    }
+    const errors = (listed.data || []).flatMap((e) => e.errors);
+    if (errors.length) console.log('errors: ' + JSON.stringify(errors));
+  } else {
+    const byKey = new Map(hooks.map((h) => [h.key, h]));
+    const edits = keys.map((key) => {
+      const h = byKey.get(key);
+      if (!h) throw new Error('no hook with key ' + key);
+      return { keyPath: `hooks.state."${key}".trusted_hash`, mergeStrategy: 'upsert', value: h.currentHash };
+    });
+    const result = await request('config/batchWrite', { edits, reloadUserConfig: false });
+    console.log('batchWrite result: ' + JSON.stringify(result));
+  }
+  clearTimeout(timer);
+  child.kill();
+} catch (error) {
+  clearTimeout(timer);
+  console.error('error: ' + error.message + '\napp-server stderr tail:\n' + stderr.slice(-1500));
+  child.kill();
+  process.exit(1);
+}
