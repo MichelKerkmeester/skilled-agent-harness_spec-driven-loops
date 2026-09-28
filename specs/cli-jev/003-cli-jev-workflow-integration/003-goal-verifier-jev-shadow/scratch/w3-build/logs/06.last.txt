@@ -1,0 +1,73 @@
+I'll start by reading the required skill contract and the two target files.
+
+Now let me examine the supporting files: goal-core and the OpenCode goal plugin's test helpers.
+
+
+
+Now let me look at the verifier internals and goal-core functions the arms depend on.
+
+
+
+
+
+The plugin is ESM (`export default`). Let me check the symlink layout, package type resolution, and the plugin's imports.
+
+
+
+Let me read the goal-core helpers the scorer and tests rely on: redactEvidence, sanitizeInlineText, the verifier patterns, and objectiveKeywords.
+
+
+
+Let me verify a few remaining details: hook-flags presence, verifier modes, goal id pattern, and the readGoal redaction path.
+
+Before writing, let me confirm the plugin package's `./tool` export and the stopword sets, so the expected arm verdicts hold.
+
+
+
+All mechanics verified (plugin ESM via `.skilled/plugins` link, `@opencode-ai/plugin` resolvable from `.skilled/node_modules`, verifier reason strings matching the category map). Now I'll make the scorer edits.
+
+
+
+
+
+
+
+Scorer done. Now the test file: requires first, then the appended CLI coverage.
+
+
+
+
+
+Both files are edited. Let me re-read the full scorer to review coherence, then check for stray em dashes.
+
+No em/en dashes. Now running the three listed checks exactly.
+
+All three checks pass. Final review: inspect the scoped diff and confirm only the two named files changed.
+
+The files are untracked in this worktree (orchestrator handles git), so I'll confirm sizes directly.
+
+Both files are complete and the three listed checks pass. Summary of what landed:
+
+- Scorer: imports (fs/os/path/pathToFileURL, goal-core), the three constants, a new `5. ARMS` section with `runArms` (plugin heuristic arm, tail-window arm, core parity arm), a new `7. MAIN` CLI (`--set`/`--out`, exit codes 0/1/2, PLUGIN_LOAD handling), renumbered REPORT/EXPORTS dividers, exports extended, main guard line added.
+- Tests: new requires, then appended CLI coverage (spawn helper, `makeRow`, set writer, GOOD/BLOCKING/CLAMP/SET30 fixtures, three tests with temp dirs removed in `finally`).
+
+Two notes for the orchestrator: (1) the empty-section placeholder line in IMPORTS was replaced by the new requires (it stated "None", which the named edit makes false); (2) two pre-existing header-box lines were kept verbatim per "keep existing lines" and now read stale ("no I/O, no CLI and no plugin import" in the scorer box, "nothing is read from disk" in the test box). The plugin import path was verified by reading: `.skilled/plugins -> ../.opencode/plugins`, `.skilled/package.json` is `type: module`, and `@opencode-ai/plugin` 1.18.32 with a `./tool` export sits in `.skilled/node_modules`; the suite run itself remains yours per the brief.
+
+STATUS: DONE
+FILES CHANGED: .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs (+150/-1); .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs (+123/-0)
+EDITS:
+- score-verifier-labeled-set.cjs:12-21 IMPORTS: placeholder comment replaced with fs, os, path, pathToFileURL and core requires
+- score-verifier-labeled-set.cjs:27-38 CONSTANTS: PLUGIN_PATH, TAIL_WINDOW_CHARS (1200), MIN_ROWS (30) added
+- score-verifier-labeled-set.cjs:190-250 ARMS section added after LOADER: armAnswer, runArms (plugin arms via __test, temp stateDir removed in finally, PLUGIN_LOAD wrap, core parity)
+- score-verifier-labeled-set.cjs:251-253 REPORT divider renumbered to 6
+- score-verifier-labeled-set.cjs:346-413 MAIN section added before EXPORTS: flag parsing, set load, error pass-through, arm run, stdout print, --out report
+- score-verifier-labeled-set.cjs:415-421 EXPORTS divider renumbered to 8, runArms and main added to module.exports, require.main guard appended
+- score-verifier-labeled-set.test.cjs:14-20 requires added: spawnSync, fs, os, path, core
+- score-verifier-labeled-set.test.cjs:143-259 CLI coverage appended: run (spawnSync with --preserve-symlinks), makeRow, writeSet, GOOD/BLOCKING/CLAMP (asserted 1300)/SET30, tests A (34-row stop line), B (--jev/--deem exit 2), C (arms output lines, parity ordering, zero-call stubs, report file equals stdout)
+
+CHECKS:
+- `node --check .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs` -> no output, syntax OK (exit 0)
+- `node --check .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs` -> no output, syntax OK (exit 0)
+- `grep -c "PLUGIN_LOAD" .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs` -> 3 (exit 0)
+
+BLOCKED REASON: none

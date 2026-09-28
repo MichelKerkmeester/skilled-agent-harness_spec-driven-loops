@@ -1,0 +1,16 @@
+All checks pass; line counts unchanged from before the edit (475/312 newlines), no em dashes in either file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.skilled/hooks/goal/lib/score-verifier-labeled-set.cjs (+7/-7)
+.skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs (+4/-4)
+EDITS:
+.skilled/hooks/goal/lib/score-verifier-labeled-set.cjs:2 header COMPONENT/PURPOSE box rewritten to offline zero-call description
+.skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs:5 header PURPOSE continuation rewritten to CLI/temp-dir/stub-binary coverage description
+CHECKS:
+node --check .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs -> no output (exit 0)
+node --check .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs -> no output (exit 0)
+grep -c "It spawns no model binary" .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs -> 1 (exit 0)
+grep -c "No test reads a real session" .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs -> 1 (exit 0)
+BLOCKED REASON: none

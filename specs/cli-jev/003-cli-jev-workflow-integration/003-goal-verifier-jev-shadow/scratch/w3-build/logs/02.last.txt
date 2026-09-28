@@ -1,0 +1,17 @@
+Gate 5 fires: I'm about to add files and tests. Loading the routed rule files, and inspecting the core module's exports plus the sibling Pi-session tool for conventions.Now reading the verifier heuristic and the referenced goal-core test structure plus the sk-code router (Gate 2 artifact trigger).Reading reference layout widths and running the skill router (Gate 2) before writing.Compiled router defers to a pure surface bundle (bare implement request), so the OpenCode surface packet is the route. Loading it and getting exact border counts.The route resolves to the JavaScript trio plus shared tier. Checking sizes before loading.Two more routed references (quality standards, security/testing) before I write.One precision check on the box line structure before writing.Context is loaded. Now writing the two files. First the builder:Both files written. Now running the layout verification plus the three required checks.All three required checks pass and the layout verification is clean (all box lines 79 chars, dividers 80, no em dashes). Re-reading both files to confirm content before handback.Both files match the brief on read-back. One faithfulness fix: a bare `--limit` with no value currently falls back to the default instead of the specified "not a positive integer" error. Correcting that:Re-running all checks from the final state (required three plus layout):Final state verified. One read-only confirmation of the scoped working-tree state:All checks pass from the final state; only the two named files exist as new, untracked files.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/hooks/goal/lib/build-verifier-fixture.cjs (+350/-0)
+- .skilled/hooks/goal/lib/build-verifier-fixture.test.cjs (+138/-0)
+EDITS:
+- .skilled/hooks/goal/lib/build-verifier-fixture.cjs:1 created builder: box header, numbered sections 1-9 (imports, constants, record helpers, Pi collection, row selection, row building, CLI, exports, entry guard); exports collectPiCandidates, selectRows, buildRows, main, each with JSDoc; row keys in the specified order; sha256 12-hex id; wx write at mode 0o600; require.main guard
+- .skilled/hooks/goal/lib/build-verifier-fixture.cjs:262 limitText sentinel is undefined so an absent flag defaults to 50 while a valueless --limit validates
+- .skilled/hooks/goal/lib/build-verifier-fixture.cjs:303 --limit present without a value now returns 2 with the positive-integer error
+- .skilled/hooks/goal/lib/build-verifier-fixture.test.cjs:1 created node:test suite: proj/s1.jsonl fixture (session header, goal-bearing user message, assistant turn, toolResult, two nudges) plus the three specified tests, fixtures in mkdtempSync dirs removed in finally
+CHECKS:
+- node --check .skilled/hooks/goal/lib/build-verifier-fixture.cjs -> no output (exit 0)
+- node --check .skilled/hooks/goal/lib/build-verifier-fixture.test.cjs -> no output (exit 0)
+- grep -c "OUT_EXISTS" .skilled/hooks/goal/lib/build-verifier-fixture.cjs -> 2 (exit 0)
+- extra read-only layout scan (node -e): both files box-bad [] divider-bad [] em-dash-lines [] (exit 0)
+BLOCKED REASON: none

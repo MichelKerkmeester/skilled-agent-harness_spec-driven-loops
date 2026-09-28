@@ -1,0 +1,14 @@
+All checks pass and the re-read confirms the added content matches the brief exactly, with plain hyphens only (no em dash in any added line; the divider comments use the file's existing box-drawing character).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs (+57/-3)
+FILES CHANGED: .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs (+54/-1)
+EDITS: .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs:345 decisionLines added in the REPORT section after reportLines, with JSDoc
+EDITS: .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs:452-454 main keeps runArms result in `results`, pushes ...reportLines(labeled, results) then ...decisionLines(labeled, results)
+EDITS: .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs:473 decisionLines added to module.exports
+EDITS: .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs:261-312 appended tenRows and arms helpers plus the three decisionLines tests
+CHECKS: node --check .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs -> no output, syntax OK (exit 0)
+CHECKS: node --check .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs -> no output, syntax OK (exit 0)
+CHECKS: grep -c "no headroom" .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs -> 1 (exit 0)
+BLOCKED REASON: none
