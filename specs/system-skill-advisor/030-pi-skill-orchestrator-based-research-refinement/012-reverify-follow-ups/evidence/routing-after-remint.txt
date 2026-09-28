@@ -1,0 +1,33 @@
+# Routing after the cli-devin edit and the re-mint, 2026-09-27T15:36:08Z
+
+## compiled-route-guard.cjs
+  cli-external-orchestration  fresh
+  cli-jev                     fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0
+
+## stage 2: compiled-route.cjs --hub cli-external-orchestration --prompt "use devin swe max to implement the fix in the launcher"
+{"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-devin","packetKind":"workflow","skillId":"cli-external-orchestration","workflowMode":"cli-devin"}],"effectivePolicyHash":"13d5747d42d014463ab606d70247fd2b5bd4e638f2937bbb4923b60a77e3fa44","generation":5}
+exit=0
+
+## stage 1: advisor_recommend topK 2, same prompt
+  cli-external-orchestration 0.95
+  sk-code 0.82
+
+## manifests
+.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"13d5747d42d014463ab606d70247fd2b5bd4e638f2937bbb4923b60a77e3fa44","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json
+{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"13d5747d42d014463ab606d70247fd2b5bd4e638f2937bbb4923b60a77e3fa44","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+
+
+## sync-skills-hermes.cjs --check
+PASS: 71 Hermes skill copies in sync
+exit=0

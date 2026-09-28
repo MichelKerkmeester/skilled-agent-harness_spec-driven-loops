@@ -1,5 +1,5 @@
 {
-  "manifestHash": "24367e8d83e0e5600d404326931f5e55235bc37534e21615177d1f885d3d7bed",
+  "manifestHash": "d2e88e7e3493c769b710a3829b6f1084695fdf12bdf58b24072f7ffd962312b3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7562,29 +7562,11 @@
     "ac coverage evidence source": [
       "ac coverage evidence source"
     ],
-    "ac coverage file line existence check": [
-      "ac coverage file line existence check"
-    ],
     "ac coverage not deleted": [
       "ac coverage not deleted"
     ],
-    "ac coverage resolution rule plan": [
-      "ac coverage resolution rule plan"
-    ],
     "ac coverage rule": [
       "AC_COVERAGE rule"
-    ],
-    "ac coverage unresolved citation": [
-      "ac coverage unresolved citation"
-    ],
-    "ac coverage unresolved citation criteria": [
-      "ac coverage unresolved citation criteria"
-    ],
-    "ac coverage unresolved citation status": [
-      "ac coverage unresolved citation status"
-    ],
-    "ac coverage unresolved citation tasks": [
-      "ac coverage unresolved citation tasks"
     ],
     "ac discharge map": [
       "ac discharge map"
@@ -8057,6 +8039,21 @@
     "adherence research tasks": [
       "adherence research tasks"
     ],
+    "adjacent alignment": [
+      "adjacent-alignment"
+    ],
+    "adjacent alignment acceptance criteria": [
+      "adjacent-alignment acceptance criteria"
+    ],
+    "adjacent alignment plan": [
+      "adjacent-alignment plan"
+    ],
+    "adjacent alignment summary": [
+      "adjacent-alignment summary"
+    ],
+    "adjacent alignment tasks": [
+      "adjacent-alignment tasks"
+    ],
     "adjacent span coalescing": [
       "adjacent-span-coalescing"
     ],
@@ -8288,9 +8285,6 @@
     ],
     "advisor adjacent 116 realignment": [
       "advisor adjacent 116 realignment"
-    ],
-    "advisor ambiguity cluster jev": [
-      "advisor ambiguity cluster jev"
     ],
     "advisor analytical fusion": [
       "advisor analytical fusion"
@@ -8673,21 +8667,6 @@
     ],
     "advisor isolation waiver adr": [
       "advisor isolation waiver adr"
-    ],
-    "advisor jev tie break arm": [
-      "advisor jev tie-break arm"
-    ],
-    "advisor jev tie break goal": [
-      "advisor jev tie-break goal"
-    ],
-    "advisor jev tie break plan": [
-      "advisor jev tie-break plan"
-    ],
-    "advisor jev tie break summary": [
-      "advisor jev tie-break summary"
-    ],
-    "advisor jev tie break tasks": [
-      "advisor jev tie-break tasks"
     ],
     "advisor lane metadata scoring": [
       "advisor lane metadata scoring"
@@ -13626,9 +13605,6 @@
     "buildlineagecommand reuse benchmark council": [
       "buildLineageCommand reuse benchmark council"
     ],
-    "buildloopprompt steering": [
-      "buildLoopPrompt steering"
-    ],
     "buildpilineagecommand done": [
       "buildPiLineageCommand done"
     ],
@@ -15058,6 +15034,9 @@
     "changelog enrichment steps": [
       "changelog enrichment steps"
     ],
+    "changelog entry frontmatter check": [
+      "changelog entry frontmatter check"
+    ],
     "changelog evidence stack": [
       "changelog evidence stack"
     ],
@@ -15103,6 +15082,9 @@
     ],
     "changelog generator modes": [
       "changelog generator modes"
+    ],
+    "changelog hub component resolution": [
+      "changelog hub component resolution"
     ],
     "changelog identity phrase": [
       "{{CHANGELOG_IDENTITY_PHRASE}}"
@@ -15185,6 +15167,9 @@
     "changelog search metadata": [
       "changelog search metadata"
     ],
+    "changelog search metadata validation": [
+      "changelog search metadata validation"
+    ],
     "changelog shape checker": [
       "changelog shape checker"
     ],
@@ -15197,6 +15182,18 @@
     "changelog structural edits": [
       "changelog structural edits"
     ],
+    "changelog surface closure gate": [
+      "changelog surface closure gate"
+    ],
+    "changelog surface fix tasks": [
+      "changelog surface fix tasks"
+    ],
+    "changelog surface fixes": [
+      "changelog surface fixes"
+    ],
+    "changelog surface fixes results": [
+      "changelog surface fixes results"
+    ],
     "changelog swarm plan": [
       "changelog swarm plan"
     ],
@@ -15205,6 +15202,12 @@
     ],
     "changelog topology edge cases": [
       "changelog topology edge cases"
+    ],
+    "changelog trigger phrases required": [
+      "changelog trigger phrases required"
+    ],
+    "changelog type detection": [
+      "changelog type detection"
     ],
     "changelog v4 style": [
       "changelog v4 style"
@@ -15947,21 +15950,6 @@
     "check goal fixtures": [
       "check-goal fixtures"
     ],
-    "check goal goal md path": [
-      "check-goal goal.md path"
-    ],
-    "check goal goal md path criteria": [
-      "check-goal goal.md path criteria"
-    ],
-    "check goal goal md path plan": [
-      "check-goal goal.md path plan"
-    ],
-    "check goal goal md path status": [
-      "check-goal goal.md path status"
-    ],
-    "check goal goal md path tasks": [
-      "check-goal goal.md path tasks"
-    ],
     "check goal script": [
       "check-goal script"
     ],
@@ -16698,23 +16686,8 @@
     "classifier build order": [
       "classifier build order"
     ],
-    "classifier context reduction research": [
-      "classifier context reduction research"
-    ],
-    "classifier hub first mode": [
-      "classifier hub first mode"
-    ],
     "classifier intended approach": [
       "classifier intended approach"
-    ],
-    "classifier research round 3 goal": [
-      "classifier research round 3 goal"
-    ],
-    "classifier research round 3 status": [
-      "classifier research round 3 status"
-    ],
-    "classifier round 3 synthesis": [
-      "classifier round 3 synthesis"
     ],
     "classifier rpc summary": [
       "classifier RPC summary"
@@ -17099,39 +17072,6 @@
     ],
     "cli chrome skin": [
       "cli chrome skin"
-    ],
-    "cli classifier hub": [
-      "cli-classifier hub"
-    ],
-    "cli classifier hub goal": [
-      "cli-classifier hub goal"
-    ],
-    "cli classifier hub move verification": [
-      "cli-classifier hub move verification"
-    ],
-    "cli classifier hub phases": [
-      "cli-classifier hub phases"
-    ],
-    "cli classifier hub plan": [
-      "cli-classifier hub plan"
-    ],
-    "cli classifier hub research": [
-      "cli-classifier hub research"
-    ],
-    "cli classifier hub research outcome": [
-      "cli-classifier hub research outcome"
-    ],
-    "cli classifier hub summary": [
-      "cli-classifier hub summary"
-    ],
-    "cli classifier hub tasks": [
-      "cli-classifier hub tasks"
-    ],
-    "cli classifier merge hub files": [
-      "cli-classifier merge hub files"
-    ],
-    "cli classifier two modes": [
-      "cli-classifier two modes"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -17667,39 +17607,6 @@
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
     ],
-    "cli deem client": [
-      "cli-deem client"
-    ],
-    "cli deem client plan": [
-      "cli-deem client plan"
-    ],
-    "cli deem client shape": [
-      "cli-deem client shape"
-    ],
-    "cli deem client tasks": [
-      "cli-deem client tasks"
-    ],
-    "cli deem completion criteria": [
-      "cli-deem completion criteria"
-    ],
-    "cli deem fake server tests": [
-      "cli-deem fake server tests"
-    ],
-    "cli deem health": [
-      "cli-deem health"
-    ],
-    "cli deem health smoke": [
-      "cli-deem health smoke"
-    ],
-    "cli deem planned": [
-      "cli-deem planned"
-    ],
-    "cli deem status": [
-      "cli-deem status"
-    ],
-    "cli deem verification tasks": [
-      "cli-deem verification tasks"
-    ],
     "cli devin": [
       "cli-devin"
     ],
@@ -17729,6 +17636,9 @@
     ],
     "cli devin 1 4 4 0": [
       "cli-devin 1.4.4.0"
+    ],
+    "cli devin 1 4 5 0": [
+      "cli-devin 1.4.5.0"
     ],
     "cli devin 17 skill audit": [
       "cli-devin 17-skill audit"
@@ -17802,6 +17712,9 @@
     "cli devin readme template": [
       "cli-devin readme template"
     ],
+    "cli devin rule rewording plan": [
+      "cli-devin rule rewording plan"
+    ],
     "cli devin swe 1 6 audit": [
       "cli-devin SWE 1.6 audit"
     ],
@@ -17837,6 +17750,9 @@
     ],
     "cli devin v1 4 4 0": [
       "cli-devin v1.4.4.0"
+    ],
+    "cli devin v1 4 5 0": [
+      "cli-devin v1.4.5.0"
     ],
     "cli devin wiring plan": [
       "cli-devin wiring plan"
@@ -18231,9 +18147,6 @@
     "cli jev authenticated verification": [
       "cli-jev authenticated verification"
     ],
-    "cli jev canary replay baseline": [
-      "cli-jev canary replay baseline"
-    ],
     "cli jev changelog entry": [
       "cli-jev changelog entry"
     ],
@@ -18264,17 +18177,8 @@
     "cli jev decoupling": [
       "cli-jev decoupling"
     ],
-    "cli jev disposition table": [
-      "cli-jev disposition table"
-    ],
     "cli jev feature catalog": [
       "cli-jev feature catalog"
-    ],
-    "cli jev git mv plan": [
-      "cli-jev git mv plan"
-    ],
-    "cli jev git mv whole hub": [
-      "cli-jev git mv whole hub"
     ],
     "cli jev hub": [
       "cli-jev hub"
@@ -18285,44 +18189,14 @@
     "cli jev hub migration": [
       "cli-jev hub migration"
     ],
-    "cli jev hub move": [
-      "cli-jev hub move"
-    ],
-    "cli jev hub move goal": [
-      "cli-jev hub move goal"
-    ],
-    "cli jev hub move plan": [
-      "cli-jev hub move plan"
-    ],
-    "cli jev hub move status": [
-      "cli-jev hub move status"
-    ],
-    "cli jev hub move summary": [
-      "cli-jev hub move summary"
-    ],
-    "cli jev hub move tasks": [
-      "cli-jev hub move tasks"
-    ],
     "cli jev hub routing baseline": [
       "cli-jev hub routing baseline"
     ],
     "cli jev hub routing phrasings": [
       "cli-jev hub routing phrasings"
     ],
-    "cli jev into cli classifier": [
-      "cli-jev into cli-classifier"
-    ],
-    "cli jev into cli classifier criteria": [
-      "cli-jev into cli-classifier criteria"
-    ],
     "cli jev joins the compiled serving closure": [
       "cli-jev Joins the Compiled Serving Closure"
-    ],
-    "cli jev move kill criterion": [
-      "cli-jev move kill criterion"
-    ],
-    "cli jev move planned": [
-      "cli-jev move planned"
     ],
     "cli jev parent hub": [
       "cli-jev parent hub"
@@ -18342,20 +18216,8 @@
     "cli jev post migration re verification": [
       "cli-jev post-migration re-verification"
     ],
-    "cli jev replay baseline goal": [
-      "cli-jev replay baseline goal"
-    ],
-    "cli jev replay baseline tasks": [
-      "cli-jev replay baseline tasks"
-    ],
-    "cli jev replay results": [
-      "cli-jev replay results"
-    ],
     "cli jev root router": [
       "cli-jev root router"
-    ],
-    "cli jev route replay plan": [
-      "cli-jev route replay plan"
     ],
     "cli jev run keyword": [
       "cli-jev run keyword"
@@ -18368,12 +18230,6 @@
     ],
     "cli jev v0 2 0 0": [
       "cli-jev v0.2.0.0"
-    ],
-    "cli jev workflow integration": [
-      "cli-jev workflow integration"
-    ],
-    "cli jev workflow integration goal": [
-      "cli-jev workflow integration goal"
     ],
     "cli lineage nesting": [
       "cli lineage nesting"
@@ -22348,6 +22204,12 @@
     "commit trailer paragraph": [
       "commit trailer paragraph"
     ],
+    "commit trap acceptance": [
+      "commit trap acceptance"
+    ],
+    "commit trap regression": [
+      "commit trap regression"
+    ],
     "commit type selection": [
       "commit type selection"
     ],
@@ -22489,9 +22351,6 @@
     "community theme": [
       "community theme"
     ],
-    "compact boundary census": [
-      "compact_boundary census"
-    ],
     "compact changelog format": [
       "compact changelog format"
     ],
@@ -22536,39 +22395,6 @@
     ],
     "compactdirectresult minimalresults parity": [
       "compactdirectresult minimalresults parity"
-    ],
-    "compaction brief recall": [
-      "compaction brief recall"
-    ],
-    "compaction census planned": [
-      "compaction census planned"
-    ],
-    "compaction census results": [
-      "compaction census results"
-    ],
-    "compaction census stop line": [
-      "compaction census stop line"
-    ],
-    "compaction census verification": [
-      "compaction census verification"
-    ],
-    "compaction fixtures canary": [
-      "compaction fixtures canary"
-    ],
-    "compaction recall census": [
-      "compaction recall census"
-    ],
-    "compaction recall census goal": [
-      "compaction recall census goal"
-    ],
-    "compaction recall census plan": [
-      "compaction recall census plan"
-    ],
-    "compaction recall census summary": [
-      "compaction recall census summary"
-    ],
-    "compaction recall census tasks": [
-      "compaction recall census tasks"
     ],
     "companion tables setup": [
       "companion tables setup"
@@ -22680,9 +22506,6 @@
     ],
     "compiled route admission build": [
       "compiled route admission build"
-    ],
-    "compiled route admission sk design": [
-      "compiled-route-admission sk-design"
     ],
     "compiled route cap implementation": [
       "compiled route cap implementation"
@@ -24873,9 +24696,6 @@
     "council yaml workflow": [
       "council yaml workflow"
     ],
-    "count only findings not reconstructed": [
-      "count-only findings not reconstructed"
-    ],
     "counterfactual adjudication": [
       "counterfactual adjudication"
     ],
@@ -25031,6 +24851,15 @@
     ],
     "cp 003": [
       "cp-003"
+    ],
+    "cp 003 negative control": [
+      "cp-003 negative control"
+    ],
+    "cp 003 sandbox teardown": [
+      "cp-003 sandbox teardown"
+    ],
+    "cp 003 teardown tasks": [
+      "cp-003 teardown tasks"
     ],
     "cp 004": [
       "cp-004"
@@ -25523,18 +25352,6 @@
     ],
     "create sh parent packet corruption review": [
       "create.sh parent packet corruption review"
-    ],
-    "create sh phase label criteria": [
-      "create.sh phase label criteria"
-    ],
-    "create sh phase label folder number": [
-      "create.sh phase label folder number"
-    ],
-    "create sh phase label plan": [
-      "create.sh phase label plan"
-    ],
-    "create sh phase label tasks": [
-      "create.sh phase label tasks"
     ],
     "create sh root numbering": [
       "create.sh root numbering"
@@ -27007,6 +26824,9 @@
     "damping sweep results": [
       "damping sweep results"
     ],
+    "dangerous mode approval per task": [
+      "dangerous mode approval per task"
+    ],
     "dangerously skip permissions risk": [
       "dangerously skip permissions risk"
     ],
@@ -27295,9 +27115,6 @@
     "dead checklist links": [
       "dead checklist links"
     ],
-    "dead citation repoint plan": [
-      "dead citation repoint plan"
-    ],
     "dead code audit": [
       "dead code audit"
     ],
@@ -27333,9 +27150,6 @@
     ],
     "dead file census tasks": [
       "dead file census tasks"
-    ],
-    "dead file line playbook citation": [
-      "dead file:line playbook citation"
     ],
     "dead flag removal plan": [
       "dead flag removal plan"
@@ -27639,114 +27453,6 @@
     ],
     "dedup bypass": [
       "dedup bypass"
-    ],
-    "deem 0 8b latency memory": [
-      "deem 0.8b latency memory"
-    ],
-    "deem access log": [
-      "deem access log"
-    ],
-    "deem access log plan": [
-      "deem access log plan"
-    ],
-    "deem access log tasks": [
-      "deem access log tasks"
-    ],
-    "deem check health plan": [
-      "deem check health plan"
-    ],
-    "deem check stub backend": [
-      "deem check stub backend"
-    ],
-    "deem choice near tie cluster": [
-      "deem choice near-tie cluster"
-    ],
-    "deem classifier research plan": [
-      "deem classifier research plan"
-    ],
-    "deem client goal binding": [
-      "deem client goal binding"
-    ],
-    "deem client results": [
-      "deem client results"
-    ],
-    "deem cors decision tasks": [
-      "deem cors decision tasks"
-    ],
-    "deem cors exposure": [
-      "deem cors exposure"
-    ],
-    "deem cors options rollback": [
-      "deem cors options rollback"
-    ],
-    "deem ctl backup rollback": [
-      "deem-ctl backup rollback"
-    ],
-    "deem ctl backup tasks": [
-      "deem-ctl backup tasks"
-    ],
-    "deem ctl versioning": [
-      "deem-ctl versioning"
-    ],
-    "deem hardening plan": [
-      "deem hardening plan"
-    ],
-    "deem hardening status": [
-      "deem hardening status"
-    ],
-    "deem hardening summary": [
-      "deem hardening summary"
-    ],
-    "deem hardening tasks": [
-      "deem hardening tasks"
-    ],
-    "deem hub route replay": [
-      "deem hub route replay"
-    ],
-    "deem local backend verdict": [
-      "deem local backend verdict"
-    ],
-    "deem local classifier research": [
-      "deem local classifier research"
-    ],
-    "deem local hardening": [
-      "deem local hardening"
-    ],
-    "deem local measurements": [
-      "deem local measurements"
-    ],
-    "deem local server": [
-      "deem local server"
-    ],
-    "deem n orders decision": [
-      "deem n orders decision"
-    ],
-    "deem narrowing keep rule": [
-      "deem narrowing keep rule"
-    ],
-    "deem narrowing verification": [
-      "deem narrowing verification"
-    ],
-    "deem node client": [
-      "deem node client"
-    ],
-    "deem phase reconciliation tasks": [
-      "deem phase reconciliation tasks"
-    ],
-    "deem research round 3 results": [
-      "deem research round 3 results"
-    ],
-    "deem search narrowing arm": [
-      "deem search narrowing arm"
-    ],
-    "deem search narrowing goal": [
-      "deem search narrowing goal"
-    ],
-    "deem spec track narrowing": [
-      "deem spec track narrowing"
-    ],
-    "deem spec track pick": [
-      "deem spec track pick"
     ],
     "deep": [
       "deep"
@@ -31738,9 +31444,6 @@
     "delta evidence opt out": [
       "delta evidence opt-out"
     ],
-    "delta finding records merge": [
-      "delta finding records merge"
-    ],
     "delta report task": [
       "delta report task"
     ],
@@ -32526,6 +32229,9 @@
     "devin allowlist prune": [
       "devin allowlist prune"
     ],
+    "devin approval per task": [
+      "devin approval per task"
+    ],
     "devin background execution": [
       "devin background execution"
     ],
@@ -32600,6 +32306,9 @@
     ],
     "devin custom agent": [
       "devin custom agent"
+    ],
+    "devin dangerous mode approval": [
+      "devin dangerous mode approval"
     ],
     "devin deep loop executor": [
       "devin deep loop executor"
@@ -32735,6 +32444,9 @@
     ],
     "devin p templates": [
       "devin -p templates"
+    ],
+    "devin permission approval": [
+      "devin permission approval"
     ],
     "devin permission hook": [
       "devin permission hook"
@@ -33255,6 +32967,9 @@
     "disable github ruleset admin push": [
       "disable github ruleset admin push"
     ],
+    "disable sk doc validators": [
+      "disable sk-doc validators"
+    ],
     "discard failed experiment branch": [
       "discard failed experiment branch"
     ],
@@ -33716,6 +33431,21 @@
     ],
     "doc truth test fidelity disposition": [
       "doc truth test fidelity disposition"
+    ],
+    "doc validation off switch": [
+      "doc validation off switch"
+    ],
+    "doc validation off switch acceptance": [
+      "doc validation off switch acceptance"
+    ],
+    "doc validation off switch plan": [
+      "doc validation off switch plan"
+    ],
+    "doc validation off switch tasks": [
+      "doc validation off switch tasks"
+    ],
+    "doc validation off switches summary": [
+      "doc validation off switches summary"
     ],
     "docs alignment 023 010": [
       "docs alignment 023/010"
@@ -38453,24 +38183,6 @@
     "fanout merge cjs": [
       "fanout-merge.cjs"
     ],
-    "fanout merge fix goal": [
-      "fanout merge fix goal"
-    ],
-    "fanout merge fix plan": [
-      "fanout merge fix plan"
-    ],
-    "fanout merge fix status": [
-      "fanout merge fix status"
-    ],
-    "fanout merge fix tasks": [
-      "fanout merge fix tasks"
-    ],
-    "fanout merge reconstruction gap": [
-      "fanout-merge reconstruction gap"
-    ],
-    "fanout merge under count": [
-      "fanout merge under-count"
-    ],
     "fanout mirror parity test": [
       "fanout mirror parity test"
     ],
@@ -39668,15 +39380,6 @@
     "five lane fusion scorer": [
       "five-lane fusion scorer"
     ],
-    "five lineage classifier fan out": [
-      "five lineage classifier fan-out"
-    ],
-    "five lineage fan out plan": [
-      "five lineage fan-out plan"
-    ],
-    "five lineage fan out tasks": [
-      "five lineage fan-out tasks"
-    ],
     "five mode packets": [
       "five mode packets"
     ],
@@ -40589,21 +40292,6 @@
     "four laws unchanged": [
       "Four Laws unchanged"
     ],
-    "four lineage fan out plan": [
-      "four lineage fan-out plan"
-    ],
-    "four lineage fan out results": [
-      "four lineage fan-out results"
-    ],
-    "four lineage fan out tasks": [
-      "four lineage fan-out tasks"
-    ],
-    "four lineage jev research": [
-      "four lineage jev research"
-    ],
-    "four lineage jev research criteria": [
-      "four lineage jev research criteria"
-    ],
     "four mcp advisor tools": [
       "four mcp advisor tools"
     ],
@@ -40679,15 +40367,6 @@
     ],
     "framework readme refresh": [
       "framework readme refresh"
-    ],
-    "framework registry description fix": [
-      "framework registry description fix"
-    ],
-    "framework registry description task": [
-      "framework registry description task"
-    ],
-    "framework registry subset of seven": [
-      "framework-registry subset of seven"
     ],
     "framework release line": [
       "framework release line"
@@ -41831,12 +41510,6 @@
     "generation tied cache": [
       "generation tied cache"
     ],
-    "generator check mode": [
-      "generator check mode"
-    ],
-    "generator check mode task": [
-      "generator check mode task"
-    ],
     "generator defects": [
       "generator defects"
     ],
@@ -41866,9 +41539,6 @@
     ],
     "generator status field menu": [
       "generator status field menu"
-    ],
-    "generator tracked fixture write": [
-      "generator tracked fixture write"
     ],
     "generators description graph metadata": [
       "generators description graph metadata"
@@ -42485,39 +42155,6 @@
     "goal criteria field plan": [
       "goal criteria field plan"
     ],
-    "goal criteria labels tasks": [
-      "goal criteria labels tasks"
-    ],
-    "goal criteria lint": [
-      "goal criteria lint"
-    ],
-    "goal criteria lint goal": [
-      "goal criteria lint goal"
-    ],
-    "goal criteria lint plan": [
-      "goal criteria lint plan"
-    ],
-    "goal criteria lint planned": [
-      "goal criteria lint planned"
-    ],
-    "goal criteria lint results": [
-      "goal criteria lint results"
-    ],
-    "goal criteria lint rubric": [
-      "goal criteria lint rubric"
-    ],
-    "goal criteria lint summary": [
-      "goal criteria lint summary"
-    ],
-    "goal criteria lint tasks": [
-      "goal criteria lint tasks"
-    ],
-    "goal criteria rubric labels": [
-      "goal criteria rubric labels"
-    ],
-    "goal criteria rubric rules 4 and 5": [
-      "goal criteria rubric rules 4 and 5"
-    ],
     "goal cross runtime docs": [
       "goal cross runtime docs"
     ],
@@ -42911,6 +42548,18 @@
     "goal prompt choice": [
       "goal_prompt_choice"
     ],
+    "goal re verification follow ups": [
+      "goal re-verification follow-ups"
+    ],
+    "goal re verification follow ups plan": [
+      "goal re-verification follow-ups plan"
+    ],
+    "goal re verification follow ups summary": [
+      "goal re-verification follow-ups summary"
+    ],
+    "goal re verification follow ups tasks": [
+      "goal re-verification follow-ups tasks"
+    ],
     "goal reminder cadence": [
       "goal reminder cadence"
     ],
@@ -43138,24 +42787,6 @@
     ],
     "goal validator coverage": [
       "goal validator coverage"
-    ],
-    "goal verifier deem shadow": [
-      "goal verifier deem shadow"
-    ],
-    "goal verifier jev plan": [
-      "goal verifier jev plan"
-    ],
-    "goal verifier jev shadow": [
-      "goal verifier jev shadow"
-    ],
-    "goal verifier jev summary": [
-      "goal verifier jev summary"
-    ],
-    "goal verifier jev tasks": [
-      "goal verifier jev tasks"
-    ],
-    "goal verifier labeled set": [
-      "goal verifier labeled set"
     ],
     "goal warning tier": [
       "goal warning tier"
@@ -43987,23 +43618,8 @@
     "grok 4 7 allowlist": [
       "grok 4.7 allowlist"
     ],
-    "grok 4 7 allowlist plan": [
-      "grok 4.7 allowlist plan"
-    ],
-    "grok 4 7 allowlist tasks": [
-      "grok 4.7 allowlist tasks"
-    ],
     "grok 4 7 cursor allowlist": [
       "grok 4.7 cursor allowlist"
-    ],
-    "grok 4 7 cursor lane": [
-      "grok 4.7 cursor lane"
-    ],
-    "grok 4 7 research lane": [
-      "grok 4.7 research lane"
-    ],
-    "grok 4 7 substitution": [
-      "grok 4.7 substitution"
     ],
     "grok implementer luna verifier": [
       "grok implementer luna verifier"
@@ -45522,6 +45138,9 @@
     "hub card references removed": [
       "hub-card references removed"
     ],
+    "hub component resolution plan": [
+      "hub component resolution plan"
+    ],
     "hub de registration": [
       "hub de-registration"
     ],
@@ -46097,12 +45716,6 @@
     ],
     "ids safe access": [
       "ids safe access"
-    ],
-    "ignored paths exemption plan": [
-      "ignored paths exemption plan"
-    ],
-    "ignored paths exemption task": [
-      "ignored paths exemption task"
     ],
     "ignoredeprecations ts5103": [
       "ignoreDeprecations TS5103"
@@ -47556,38 +47169,14 @@
     "javascript validation patterns": [
       "javascript validation patterns"
     ],
-    "jev advisor census first slice": [
-      "jev advisor census first slice"
-    ],
-    "jev advisor tie break arm": [
-      "jev advisor tie-break arm"
-    ],
     "jev answer shapes": [
       "jev answer shapes"
-    ],
-    "jev arm key gate": [
-      "jev arm key gate"
-    ],
-    "jev arm planned": [
-      "jev arm planned"
-    ],
-    "jev arm skipped no credential": [
-      "jev arm skipped no credential"
-    ],
-    "jev arm verification tasks": [
-      "jev arm verification tasks"
     ],
     "jev audit shape": [
       "jev audit shape"
     ],
     "jev batch questions": [
       "jev batch questions"
-    ],
-    "jev census baseline column": [
-      "jev census baseline column"
-    ],
-    "jev choice near tie cluster": [
-      "jev choice near-tie cluster"
     ],
     "jev cli": [
       "jev cli"
@@ -47598,32 +47187,8 @@
     "jev cli surface": [
       "jev cli surface"
     ],
-    "jev compaction census brief recorded": [
-      "jev compaction census brief recorded"
-    ],
-    "jev compaction recall census": [
-      "jev compaction recall census"
-    ],
-    "jev compaction recall research": [
-      "jev compaction recall research"
-    ],
-    "jev council re synthesis": [
-      "jev council re-synthesis"
-    ],
-    "jev council re synthesis goal": [
-      "jev council re-synthesis goal"
-    ],
     "jev custom provider": [
       "jev custom provider"
-    ],
-    "jev deem context reduction research": [
-      "jev deem context reduction research"
-    ],
-    "jev deep research goal": [
-      "jev deep research goal"
-    ],
-    "jev deletion arm stop line": [
-      "jev deletion arm stop line"
     ],
     "jev dispatch guards": [
       "jev dispatch guards"
@@ -47634,32 +47199,14 @@
     "jev exit codes": [
       "jev exit codes"
     ],
-    "jev final synthesis summary": [
-      "jev final synthesis summary"
-    ],
     "jev flags": [
       "jev flags"
     ],
     "jev gate": [
       "jev gate"
     ],
-    "jev goal binding": [
-      "jev goal binding"
-    ],
-    "jev goal criteria lint": [
-      "jev goal criteria lint"
-    ],
-    "jev goal verifier shadow": [
-      "jev goal verifier shadow"
-    ],
     "jev hard rules": [
       "jev hard rules"
-    ],
-    "jev integration build phases": [
-      "jev integration build phases"
-    ],
-    "jev integration completion criteria": [
-      "jev integration completion criteria"
     ],
     "jev integration pattern": [
       "jev integration pattern"
@@ -47678,9 +47225,6 @@
     ],
     "jev judgment primitives": [
       "jev judgment primitives"
-    ],
-    "jev key gate tasks": [
-      "jev key gate tasks"
     ],
     "jev live judgment run": [
       "jev live judgment run"
@@ -47709,29 +47253,11 @@
     "jev model ids": [
       "jev model ids"
     ],
-    "jev near tie cluster arm": [
-      "jev near-tie cluster arm"
-    ],
     "jev noul choice score run": [
       "jev noul choice score run"
     ],
-    "jev opt in integration": [
-      "jev opt-in integration"
-    ],
-    "jev opt in measured integration": [
-      "jev opt-in measured integration"
-    ],
     "jev packetkind": [
       "jev packetKind"
-    ],
-    "jev phase reconciliation goal": [
-      "jev phase reconciliation goal"
-    ],
-    "jev phase reconciliation summary": [
-      "jev phase reconciliation summary"
-    ],
-    "jev phase reconciliation tasks": [
-      "jev phase reconciliation tasks"
     ],
     "jev prompt card": [
       "jev prompt card"
@@ -47745,98 +47271,11 @@
     "jev question shaping": [
       "jev question shaping"
     ],
-    "jev re synthesis plan": [
-      "jev re-synthesis plan"
-    ],
-    "jev re synthesis tasks": [
-      "jev re-synthesis tasks"
-    ],
-    "jev research angles": [
-      "jev research angles"
-    ],
-    "jev research completion criteria": [
-      "jev research completion criteria"
-    ],
-    "jev research packet goal": [
-      "jev research packet goal"
-    ],
-    "jev research plan": [
-      "jev research plan"
-    ],
-    "jev research progress": [
-      "jev research progress"
-    ],
-    "jev research round 2": [
-      "jev research round 2"
-    ],
-    "jev research round 2 goal": [
-      "jev research round 2 goal"
-    ],
-    "jev research round 2 plan": [
-      "jev research round 2 plan"
-    ],
-    "jev research round 2 summary": [
-      "jev research round 2 summary"
-    ],
-    "jev research round 2 tasks": [
-      "jev research round 2 tasks"
-    ],
-    "jev research round 3": [
-      "jev research round 3"
-    ],
-    "jev research round 3 plan": [
-      "jev research round 3 plan"
-    ],
-    "jev research round 3 summary": [
-      "jev research round 3 summary"
-    ],
-    "jev research round 3 tasks": [
-      "jev research round 3 tasks"
-    ],
-    "jev research summary": [
-      "jev research summary"
-    ],
-    "jev research tasks": [
-      "jev research tasks"
-    ],
-    "jev research verification": [
-      "jev research verification"
-    ],
-    "jev round 2 synthesis": [
-      "jev round 2 synthesis"
-    ],
     "jev routing control": [
       "jev routing control"
     ],
-    "jev shadow mode plan": [
-      "jev shadow mode plan"
-    ],
-    "jev shadow mode status": [
-      "jev shadow mode status"
-    ],
-    "jev shadow mode tasks": [
-      "jev shadow mode tasks"
-    ],
-    "jev shadow verifier mode": [
-      "jev shadow verifier mode"
-    ],
-    "jev skills and workflows research": [
-      "jev skills and workflows research"
-    ],
-    "jev spec track narrowing": [
-      "jev spec track narrowing"
-    ],
     "jev state input": [
       "jev state input"
-    ],
-    "jev synthesis tasks": [
-      "jev synthesis tasks"
-    ],
-    "jev tie break power line": [
-      "jev tie-break power line"
-    ],
-    "jev tie break results": [
-      "jev tie-break results"
     ],
     "jev transport": [
       "jev transport"
@@ -47850,26 +47289,11 @@
     "jev triage": [
       "jev triage"
     ],
-    "jev typed judgment integration": [
-      "jev typed judgment integration"
-    ],
-    "jev typed judgment seams": [
-      "jev typed judgment seams"
-    ],
     "jev validation scenarios": [
       "jev validation scenarios"
     ],
     "jev vercel openrouter": [
       "jev vercel openrouter"
-    ],
-    "jev what not to build": [
-      "jev what not to build"
-    ],
-    "jev workflow integration research": [
-      "jev workflow integration research"
-    ],
-    "jev workflow integration synthesis": [
-      "jev workflow integration synthesis"
     ],
     "jina code activation": [
       "jina-code activation"
@@ -48212,15 +47636,6 @@
     ],
     "labeled set gap threshold harness": [
       "labeled set gap threshold harness"
-    ],
-    "labeled set scorer plan": [
-      "labeled set scorer plan"
-    ],
-    "labeled set scorer status": [
-      "labeled set scorer status"
-    ],
-    "labeled set scorer tasks": [
-      "labeled set scorer tasks"
     ],
     "lag ceiling gauge stall detector": [
       "lag-ceiling gauge stall detector"
@@ -49761,12 +49176,6 @@
     "lineage iteration count": [
       "lineage iteration count"
     ],
-    "lineage lead review tasks": [
-      "lineage lead review tasks"
-    ],
-    "lineage lead steering protocol": [
-      "lineage lead steering protocol"
-    ],
     "lineage metadata repair plan": [
       "lineage metadata repair plan"
     ],
@@ -49793,9 +49202,6 @@
     ],
     "lineage rule verification checklist": [
       "lineage rule verification checklist"
-    ],
-    "lineage steer md per iteration": [
-      "lineage steer.md per iteration"
     ],
     "lineage worktree architecture": [
       "lineage worktree architecture"
@@ -49883,21 +49289,6 @@
     ],
     "lint baseline 115 problems": [
       "lint baseline 115 problems"
-    ],
-    "lint goal criteria": [
-      "lint-goal-criteria"
-    ],
-    "lint goal criteria completion criteria": [
-      "lint-goal-criteria completion criteria"
-    ],
-    "lint goal criteria plan": [
-      "lint-goal-criteria plan"
-    ],
-    "lint goal criteria status": [
-      "lint-goal-criteria status"
-    ],
-    "lint goal criteria tasks": [
-      "lint-goal-criteria tasks"
     ],
     "lint known baseline 115 problems": [
       "lint known baseline 115 problems"
@@ -50752,6 +50143,9 @@
     ],
     "low signal query": [
       "low signal query"
+    ],
+    "lsof self check teardown": [
+      "lsof self-check teardown"
     ],
     "luna 6 llmgateway": [
       "luna 6 llmgateway"
@@ -52812,9 +52206,6 @@
     "mcp to cli transition": [
       "mcp to cli transition"
     ],
-    "mcp token severity plan": [
-      "mcp token severity plan"
-    ],
     "mcp tool bridge": [
       "mcp tool bridge"
     ],
@@ -52979,18 +52370,6 @@
     ],
     "md command files compact": [
       "md command files compact"
-    ],
-    "md generator 80 point gate": [
-      "md-generator 80-point gate"
-    ],
-    "md generator gate option plan": [
-      "md-generator gate option plan"
-    ],
-    "md generator gate status": [
-      "md-generator gate status"
-    ],
-    "md generator ispass docs": [
-      "md-generator isPass docs"
     ],
     "md generator procedure card inventory": [
       "md-generator procedure card inventory"
@@ -55458,9 +54837,6 @@
     "merge back to main locally": [
       "merge back to main locally"
     ],
-    "merge diagnosis tasks": [
-      "merge diagnosis tasks"
-    ],
     "merge fanout lineages": [
       "merge fanout lineages"
     ],
@@ -55478,9 +54854,6 @@
     ],
     "merge point dot": [
       "merge point dot"
-    ],
-    "merge replay criteria": [
-      "merge replay criteria"
     ],
     "merge sk prompt sk prompt models": [
       "merge sk-prompt sk-prompt-models"
@@ -56562,9 +55935,6 @@
     "mode aware promotion path": [
       "mode-aware promotion path"
     ],
-    "mode cli jev over cli usage": [
-      "mode cli-jev over cli-usage"
-    ],
     "mode collapse detection plan": [
       "mode collapse detection plan"
     ],
@@ -57639,9 +57009,6 @@
     "narrative skill readme": [
       "narrative skill readme"
     ],
-    "narrowing not reranking": [
-      "narrowing not reranking"
-    ],
     "native": [
       "native"
     ],
@@ -57846,17 +57213,26 @@
     "nested changelog generate description adopters": [
       "nested-changelog generate-description adopters"
     ],
+    "nested changelog generator": [
+      "nested changelog generator"
+    ],
     "nested changelog helper replace": [
       "nested-changelog helper replace"
     ],
     "nested changelog identity phrase": [
       "nested changelog identity phrase"
     ],
+    "nested changelog js": [
+      "nested-changelog.js"
+    ],
     "nested changelog output override": [
       "nested-changelog output override"
     ],
     "nested changelog templates": [
       "nested changelog templates"
+    ],
+    "nested changelog title escaping": [
+      "nested changelog title escaping"
     ],
     "nested changelog workflow": [
       "nested changelog workflow"
@@ -60045,9 +59421,6 @@
     "opencode goal state migration": [
       "opencode goal state migration"
     ],
-    "opencode goal verifier accuracy": [
-      "opencode goal verifier accuracy"
-    ],
     "opencode hooks browsability mirror": [
       "opencode hooks browsability mirror"
     ],
@@ -61786,6 +61159,9 @@
     "packet canonicalization": [
       "packet canonicalization"
     ],
+    "packet changelog identity phrase": [
+      "packet changelog identity phrase"
+    ],
     "packet changelog templates": [
       "packet changelog templates"
     ],
@@ -62148,9 +61524,6 @@
     ],
     "parent skill 6a check": [
       "parent-skill 6a check"
-    ],
-    "parent skill check cannot find spec kit shared": [
-      "parent-skill-check cannot find spec-kit shared"
     ],
     "parent skill check promotion plan": [
       "parent-skill-check promotion plan"
@@ -62523,15 +61896,6 @@
     ],
     "patterns evaluation deep dives": [
       "patterns-evaluation deep dives"
-    ],
-    "patterns evaluation section read": [
-      "patterns-evaluation section read"
-    ],
-    "patterns evaluation section read plan": [
-      "patterns-evaluation section read plan"
-    ],
-    "patterns evaluation section read task": [
-      "patterns-evaluation section read task"
     ],
     "pause review loop": [
       "pause review loop"
@@ -63484,6 +62848,18 @@
     "phase 10 observations tasks": [
       "phase 10 observations tasks"
     ],
+    "phase 12 review findings": [
+      "phase 12 review findings"
+    ],
+    "phase 12 review findings plan": [
+      "phase 12 review findings plan"
+    ],
+    "phase 12 review findings summary": [
+      "phase 12 review findings summary"
+    ],
+    "phase 12 review findings tasks": [
+      "phase 12 review findings tasks"
+    ],
     "phase 126 implementation summary": [
       "phase 126 implementation summary"
     ],
@@ -63495,9 +62871,6 @@
     ],
     "phase 14 closure gate": [
       "phase 14 closure gate"
-    ],
-    "phase 14 planned": [
-      "phase 14 planned"
     ],
     "phase 14 results": [
       "phase 14 results"
@@ -64516,15 +63889,6 @@
     "pi goal isolation handoff": [
       "pi goal isolation handoff"
     ],
-    "pi goal nudge census plan": [
-      "pi goal nudge census plan"
-    ],
-    "pi goal nudge census status": [
-      "pi goal nudge census status"
-    ],
-    "pi goal nudge census tasks": [
-      "pi goal nudge census tasks"
-    ],
     "pi goal re enable gate": [
       "pi goal re-enable gate"
     ],
@@ -64548,12 +63912,6 @@
     ],
     "pi goal symlink plan": [
       "pi goal symlink plan"
-    ],
-    "pi goal verifier nudge census": [
-      "pi goal verifier nudge census"
-    ],
-    "pi goal verify nudge census": [
-      "pi goal verify nudge census"
     ],
     "pi has no default model": [
       "pi has no default model"
@@ -67855,9 +67213,6 @@
     "quick validate batch": [
       "quick validate batch"
     ],
-    "quick validate mcp token severity": [
-      "quick_validate mcp token severity"
-    ],
     "quick validate skill": [
       "quick validate skill"
     ],
@@ -67944,12 +67299,6 @@
     ],
     "r1 p1 001 resolution evidence": [
       "R1-P1-001 resolution evidence"
-    ],
-    "r20 model arm not built": [
-      "r20 model arm not built"
-    ],
-    "r20 stop line": [
-      "r20 stop line"
     ],
     "race safe canunlinkexistingsocket": [
       "race safe canUnlinkExistingSocket"
@@ -68955,9 +68304,6 @@
     ],
     "reconsolidation quality auto fix default": [
       "reconsolidation quality-auto-fix default"
-    ],
-    "reconstruction gap tasks": [
-      "reconstruction gap tasks"
     ],
     "record": [
       "record"
@@ -76216,6 +75562,15 @@
     "scatter plot layout": [
       "scatter plot layout"
     ],
+    "scenario 433 signal free teardown": [
+      "scenario 433 signal-free teardown"
+    ],
+    "scenario 433 teardown": [
+      "scenario 433 teardown"
+    ],
+    "scenario 457 benchmark record": [
+      "scenario 457 benchmark record"
+    ],
     "scenario 457 evidence repair": [
       "scenario 457 evidence repair"
     ],
@@ -76456,9 +75811,6 @@
     "scoped staging discipline": [
       "scoped staging discipline"
     ],
-    "score 0 partial miss shape": [
-      "score-0 partial miss shape"
-    ],
     "score a document": [
       "score a document"
     ],
@@ -76474,53 +75826,14 @@
     "score candidate test": [
       "score-candidate test"
     ],
-    "score compaction recall": [
-      "score-compaction-recall"
-    ],
-    "score compaction recall completion criteria": [
-      "score-compaction-recall completion criteria"
-    ],
-    "score compaction recall plan": [
-      "score-compaction-recall plan"
-    ],
-    "score compaction recall status": [
-      "score-compaction-recall status"
-    ],
-    "score compaction recall tasks": [
-      "score-compaction-recall tasks"
-    ],
     "score delta benchmark gates": [
       "score-delta benchmark gates"
     ],
     "score executor reliability": [
       "score executor reliability"
     ],
-    "score goal lint": [
-      "score-goal-lint"
-    ],
-    "score goal lint plan": [
-      "score-goal-lint plan"
-    ],
-    "score goal lint tasks": [
-      "score-goal-lint tasks"
-    ],
     "score hypothetical seat output": [
       "score hypothetical seat output"
-    ],
-    "score jev tiebreak": [
-      "score-jev-tiebreak"
-    ],
-    "score jev tiebreak completion criteria": [
-      "score-jev-tiebreak completion criteria"
-    ],
-    "score jev tiebreak plan": [
-      "score-jev-tiebreak plan"
-    ],
-    "score jev tiebreak status": [
-      "score-jev-tiebreak status"
-    ],
-    "score jev tiebreak tasks": [
-      "score-jev-tiebreak tasks"
     ],
     "score judgment": [
       "score judgment"
@@ -76545,18 +75858,6 @@
     ],
     "score this document": [
       "score this document"
-    ],
-    "score track narrowing": [
-      "score-track-narrowing"
-    ],
-    "score track narrowing completion criteria": [
-      "score-track-narrowing completion criteria"
-    ],
-    "score track narrowing plan": [
-      "score-track-narrowing plan"
-    ],
-    "score track narrowing tasks": [
-      "score-track-narrowing tasks"
     ],
     "score verdict delta": [
       "score verdict delta"
@@ -78825,12 +78126,6 @@
     "short low signal query escalation": [
       "short low-signal query escalation"
     ],
-    "short registry reconstruction criteria": [
-      "short registry reconstruction criteria"
-    ],
-    "short registry reconstruction plan": [
-      "short registry reconstruction plan"
-    ],
     "should the determinism flag graduate": [
       "should the determinism flag graduate"
     ],
@@ -79148,6 +78443,9 @@
     ],
     "sign out clickup": [
       "sign out clickup"
+    ],
+    "signal free sandbox teardown": [
+      "signal-free sandbox teardown"
     ],
     "signal ordering contract": [
       "signal ordering contract"
@@ -80514,6 +79812,9 @@
     "sk create changelog 1 3 0 0": [
       "sk-create-changelog 1.3.0.0"
     ],
+    "sk create changelog 1 3 1 0": [
+      "sk-create-changelog 1.3.1.0"
+    ],
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
     ],
@@ -80543,6 +79844,9 @@
     ],
     "sk create changelog v1 3 0 0": [
       "sk-create-changelog v1.3.0.0"
+    ],
+    "sk create changelog v1 3 1 0": [
+      "sk-create-changelog v1.3.1.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -81105,9 +80409,6 @@
     "sk design compiled routing": [
       "sk-design compiled routing"
     ],
-    "sk design compiled routing rule": [
-      "sk-design compiled routing rule"
-    ],
     "sk design compiled task breakdown": [
       "sk-design compiled task breakdown"
     ],
@@ -81177,9 +80478,6 @@
     "sk design playbook": [
       "sk-design playbook"
     ],
-    "sk design playbook routing replay": [
-      "sk-design playbook routing replay"
-    ],
     "sk design rollout": [
       "sk-design rollout"
     ],
@@ -81192,26 +80490,8 @@
     "sk design rollout tasks": [
       "sk-design rollout tasks"
     ],
-    "sk design routing accuracy": [
-      "sk-design routing accuracy"
-    ],
-    "sk design routing accuracy status": [
-      "sk-design routing accuracy status"
-    ],
     "sk design routing benchmark": [
       "sk-design routing benchmark"
-    ],
-    "sk design routing replay plan": [
-      "sk-design routing replay plan"
-    ],
-    "sk design rule 6 rewrite plan": [
-      "sk-design rule 6 rewrite plan"
-    ],
-    "sk design rule 6 stale": [
-      "sk-design rule 6 stale"
-    ],
-    "sk design rule 6 summary": [
-      "sk-design rule 6 summary"
     ],
     "sk design skill benchmark artifacts": [
       "sk-design skill-benchmark artifacts"
@@ -81260,6 +80540,9 @@
     ],
     "sk doc 2 2 1 0": [
       "sk-doc 2.2.1.0"
+    ],
+    "sk doc 2 2 2 0": [
+      "sk-doc 2.2.2.0"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -81381,12 +80664,6 @@
     "sk doc legacy template debt cleanup": [
       "sk-doc legacy template debt cleanup"
     ],
-    "sk doc link repair rollback": [
-      "sk-doc link repair rollback"
-    ],
-    "sk doc link repair tasks": [
-      "sk-doc link repair tasks"
-    ],
     "sk doc mode count": [
       "sk-doc mode count"
     ],
@@ -81453,9 +80730,6 @@
     "sk doc snippet template alignment": [
       "sk-doc snippet template alignment"
     ],
-    "sk doc spec kit shared link missing": [
-      "sk-doc spec-kit shared link missing"
-    ],
     "sk doc surface router": [
       "sk-doc surface router"
     ],
@@ -81504,11 +80778,17 @@
     "sk doc v2 2 1 0": [
       "sk-doc v2.2.1.0"
     ],
+    "sk doc v2 2 2 0": [
+      "sk-doc v2.2.2.0"
+    ],
     "sk doc validator findings obsidian surface": [
       "sk-doc validator findings obsidian surface"
     ],
-    "sk doc validator owner fix": [
-      "sk-doc validator owner fix"
+    "sk doc validator guard": [
+      "sk-doc validator guard"
+    ],
+    "sk doc validator guard tasks": [
+      "sk-doc validator guard tasks"
     ],
     "sk git": [
       "sk-git"
@@ -81756,9 +81036,6 @@
     "sk prompt 3 0 1 0": [
       "sk-prompt 3.0.1.0"
     ],
-    "sk prompt 7 against 5 frameworks": [
-      "sk-prompt 7 against 5 frameworks"
-    ],
     "sk prompt architecture decision summary": [
       "sk-prompt architecture decision summary"
     ],
@@ -81788,12 +81065,6 @@
     ],
     "sk prompt benchmark tasks": [
       "sk-prompt benchmark tasks"
-    ],
-    "sk prompt byte measurement": [
-      "sk-prompt byte measurement"
-    ],
-    "sk prompt byte measurement task": [
-      "sk-prompt byte measurement task"
     ],
     "sk prompt card sync guard rewrite": [
       "sk-prompt card-sync-guard-rewrite"
@@ -81836,21 +81107,6 @@
     ],
     "sk prompt docs and final gate": [
       "sk-prompt docs-and-final-gate"
-    ],
-    "sk prompt framework docs": [
-      "sk-prompt framework docs"
-    ],
-    "sk prompt framework docs plan": [
-      "sk-prompt framework docs plan"
-    ],
-    "sk prompt framework docs status": [
-      "sk-prompt framework docs status"
-    ],
-    "sk prompt framework docs summary": [
-      "sk-prompt framework docs summary"
-    ],
-    "sk prompt framework docs tasks": [
-      "sk-prompt framework docs tasks"
     ],
     "sk prompt frontmatter alignment": [
       "sk-prompt frontmatter alignment"
@@ -81957,9 +81213,6 @@
     "sk prompt prompt writing guidance": [
       "sk-prompt prompt-writing guidance"
     ],
-    "sk prompt read only chosen framework": [
-      "sk-prompt read only chosen framework"
-    ],
     "sk prompt reference frontmatter": [
       "sk-prompt reference frontmatter"
     ],
@@ -81980,9 +81233,6 @@
     ],
     "sk prompt scaffold hub tasks": [
       "sk-prompt scaffold hub tasks"
-    ],
-    "sk prompt section read planned": [
-      "sk-prompt section read planned"
     ],
     "sk prompt skill benchmark artifacts": [
       "sk-prompt skill-benchmark artifacts"
@@ -82637,6 +81887,15 @@
     ],
     "skd036 019 implementation summary": [
       "skd036-019 implementation summary"
+    ],
+    "skdoc skip validation": [
+      "skdoc skip validation"
+    ],
+    "skdoc skip validation criteria": [
+      "skdoc skip validation criteria"
+    ],
+    "skdoc skip validation shipped": [
+      "skdoc skip validation shipped"
     ],
     "sketchy filter": [
       "sketchy filter"
@@ -84449,11 +83708,17 @@
     "skip re embedding unchanged chunks": [
       "skip re-embedding unchanged chunks"
     ],
+    "skip spec validation": [
+      "skip spec validation"
+    ],
     "skipped channels visibility": [
       "skipped channels visibility"
     ],
     "skipped sandbox live cli": [
       "SKIPPED_SANDBOX live CLI"
+    ],
+    "skipped validation report": [
+      "skipped validation report"
     ],
     "sla evaluator": [
       "sla evaluator"
@@ -86325,35 +85590,14 @@
     "spec validation commands": [
       "spec validation commands"
     ],
+    "spec validation commit trap fixed": [
+      "spec validation commit trap fixed"
+    ],
     "spec validation rule engine": [
       "spec validation rule engine"
     ],
     "spec validation scripts": [
       "spec validation scripts"
-    ],
-    "spec validator fixes goal": [
-      "spec validator fixes goal"
-    ],
-    "spec validator fixes planned": [
-      "spec validator fixes planned"
-    ],
-    "spec validator fixes rollback": [
-      "spec validator fixes rollback"
-    ],
-    "spec validator fixes summary": [
-      "spec validator fixes summary"
-    ],
-    "spec validator fixes tasks": [
-      "spec validator fixes tasks"
-    ],
-    "spec validator owner decision": [
-      "spec validator owner decision"
-    ],
-    "spec validator owner fixes": [
-      "spec validator owner fixes"
-    ],
-    "spec validator verification checklist": [
-      "spec validator verification checklist"
     ],
     "specdoc frontmatter 004": [
       "SPECDOC_FRONTMATTER_004"
@@ -87437,9 +86681,6 @@
     "stale writer rejection evidence": [
       "stale writer rejection evidence"
     ],
-    "staleness check measurement": [
-      "staleness check measurement"
-    ],
     "staleness checker repaired": [
       "staleness checker repaired"
     ],
@@ -87871,18 +87112,6 @@
     ],
     "stealth union alpha": [
       "stealth union alpha"
-    ],
-    "steer md prompt goal": [
-      "steer.md prompt goal"
-    ],
-    "steer md prompt line plan": [
-      "steer.md prompt line plan"
-    ],
-    "steer md prompt tasks": [
-      "steer.md prompt tasks"
-    ],
-    "steering line status": [
-      "steering line status"
     ],
     "steering parity root docs": [
       "steering parity root docs"
@@ -88972,12 +88201,6 @@
     "swe 2 effort ids": [
       "swe-2 effort ids"
     ],
-    "swe 2 max cursor pi fan out": [
-      "swe-2 max cursor pi fan-out"
-    ],
-    "swe 2 max jev lineage": [
-      "swe-2 max jev lineage"
-    ],
     "swe 2 research dispatch plan": [
       "swe-2 research dispatch plan"
     ],
@@ -89142,9 +88365,6 @@
     ],
     "synthesis fold in": [
       "synthesis fold-in"
-    ],
-    "synthesis incomplete fan out merge": [
-      "synthesis_incomplete fan-out merge"
     ],
     "synthesis plan": [
       "synthesis plan"
@@ -89761,6 +88981,9 @@
     "system spec kit 4 1 2 0": [
       "system-spec-kit 4.1.2.0"
     ],
+    "system spec kit 4 1 3 0": [
+      "system-spec-kit 4.1.3.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -90106,6 +89329,9 @@
     "system spec kit v4 1 2 0": [
       "system-spec-kit v4.1.2.0"
     ],
+    "system spec kit v4 1 3 0": [
+      "system-spec-kit v4.1.3.0"
+    ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
     ],
@@ -90397,6 +89623,12 @@
     ],
     "team wide task listing": [
       "team-wide task listing"
+    ],
+    "teardown guard checks": [
+      "teardown guard checks"
+    ],
+    "teardown guard tasks": [
+      "teardown guard tasks"
     ],
     "technical approach": [
       "technical approach"
@@ -91299,15 +90531,6 @@
     "three lens prompting review": [
       "three lens prompting review"
     ],
-    "three lineage fan out plan": [
-      "three lineage fan-out plan"
-    ],
-    "three lineage fan out tasks": [
-      "three lineage fan-out tasks"
-    ],
-    "three lineage jev research": [
-      "three lineage jev research"
-    ],
     "three p1 deep review findings": [
       "three P1 deep-review findings"
     ],
@@ -91869,9 +91092,6 @@
     "track b code remediation tasks": [
       "track B code remediation tasks"
     ],
-    "track baseline tasks": [
-      "track baseline tasks"
-    ],
     "track c supersession": [
       "Track C supersession"
     ],
@@ -91886,21 +91106,6 @@
     ],
     "track identity definition": [
       "track identity definition"
-    ],
-    "track level baseline plan": [
-      "track-level baseline plan"
-    ],
-    "track level retrieval baseline": [
-      "track-level retrieval baseline"
-    ],
-    "track narrowing keep rule": [
-      "track narrowing keep rule"
-    ],
-    "track narrowing plan": [
-      "track narrowing plan"
-    ],
-    "track narrowing tasks": [
-      "track narrowing tasks"
     ],
     "track nested packet resolution": [
       "track nested packet resolution"
@@ -92254,12 +91459,6 @@
     "trigger index determinism regenerate": [
       "trigger index determinism regenerate"
     ],
-    "trigger index fix plan": [
-      "trigger index fix plan"
-    ],
-    "trigger index fix tasks": [
-      "trigger index fix tasks"
-    ],
     "trigger index generator": [
       "trigger index generator"
     ],
@@ -92284,17 +91483,11 @@
     "trigger index reader fails closed": [
       "trigger index reader fails closed"
     ],
-    "trigger index rebuild refused": [
-      "trigger index rebuild refused"
-    ],
     "trigger index regenerate committed": [
       "trigger index regenerate committed"
     ],
     "trigger index regenerated lineages": [
       "trigger index regenerated lineages"
-    ],
-    "trigger index regeneration task": [
-      "trigger index regeneration task"
     ],
     "trigger index replacement": [
       "trigger index replacement"
@@ -92325,9 +91518,6 @@
     ],
     "trigger index stale warning": [
       "trigger index stale warning"
-    ],
-    "trigger index staleness check": [
-      "trigger index staleness check"
     ],
     "trigger index tasks": [
       "trigger index tasks"
@@ -92625,9 +91815,6 @@
     ],
     "two axis registry routing": [
       "two-axis registry routing"
-    ],
-    "two backend gate deem jev": [
-      "two-backend gate deem jev"
     ],
     "two by two positioning": [
       "two by two positioning"
@@ -93201,9 +92388,6 @@
     ],
     "unregistered sk doc mode": [
       "unregistered sk-doc mode"
-    ],
-    "unresolved citation detail plan": [
-      "unresolved citation detail plan"
     ],
     "unresolved council disagreements after rounds": [
       "unresolved council disagreements after rounds"
@@ -93998,8 +93182,8 @@
     "validate document per class": [
       "validate_document per class"
     ],
-    "validate document readme fallback notice": [
-      "validate_document readme fallback notice"
+    "validate document py changelog": [
+      "validate_document.py changelog"
     ],
     "validate folder": [
       "validate folder"
@@ -94235,6 +93419,18 @@
     "validation scripts": [
       "validation scripts"
     ],
+    "validation switch closure gate": [
+      "validation switch closure gate"
+    ],
+    "validation switch evidence": [
+      "validation switch evidence"
+    ],
+    "validation switch resolver": [
+      "validation switch resolver"
+    ],
+    "validation switch verification": [
+      "validation switch verification"
+    ],
     "validator and template debt": [
       "validator and template debt"
     ],
@@ -94244,14 +93440,14 @@
     "validator auto fire reality": [
       "validator auto-fire reality"
     ],
+    "validator changelog type detection": [
+      "validator changelog type detection"
+    ],
     "validator driven alignment sweep": [
       "validator-driven alignment sweep"
     ],
     "validator engine selection": [
       "validator engine selection"
-    ],
-    "validator fallback warning plan": [
-      "validator fallback warning plan"
     ],
     "validator first template dedup": [
       "validator-first template dedup"
@@ -94490,17 +93686,11 @@
     "vendor prompting sources": [
       "vendor prompting sources"
     ],
-    "vendored fitstate port": [
-      "vendored fitState port"
-    ],
     "vendored fork drift check": [
       "vendored fork drift check"
     ],
     "vendored fork provenance check": [
       "vendored fork provenance check"
-    ],
-    "vendored model card exemption": [
-      "vendored model card exemption"
     ],
     "vendored reference charting library": [
       "vendored reference charting library"
@@ -94672,15 +93862,6 @@
     ],
     "verified events cache": [
       "verified events cache"
-    ],
-    "verifier keep threshold": [
-      "verifier keep threshold"
-    ],
-    "verifier key gate plan": [
-      "verifier key gate plan"
-    ],
-    "verifier tail window arm": [
-      "verifier tail-window arm"
     ],
     "verify a downloaded image": [
       "verify a downloaded image"
@@ -95307,6 +94488,15 @@
     ],
     "warnings stop blocking tasks": [
       "warnings stop blocking tasks"
+    ],
+    "watched crash test": [
+      "watched crash test"
+    ],
+    "watched crash test plan": [
+      "watched crash test plan"
+    ],
+    "watched crash test result": [
+      "watched crash test result"
     ],
     "watcher mutex": [
       "watcher mutex"
@@ -96014,9 +95204,6 @@
     "whole epic rollup": [
       "whole-epic rollup"
     ],
-    "whole index freshness check": [
-      "whole index freshness check"
-    ],
     "whole system gate": [
       "whole system gate",
       "whole-system gate"
@@ -96120,15 +95307,6 @@
     ],
     "withspecfolderlock": [
       "withSpecFolderLock"
-    ],
-    "wn deps satisfied fix plan": [
-      "wn deps satisfied fix plan"
-    ],
-    "wn deps satisfied fix tasks": [
-      "wn deps satisfied fix tasks"
-    ],
-    "wn deps satisfied spec kit filter": [
-      "wn deps satisfied spec-kit filter"
     ],
     "wobble strokes": [
       "wobble strokes"
@@ -96394,14 +95572,8 @@
     "worktree naming convention": [
       "worktree naming convention"
     ],
-    "worktree naming harness fixture tasks": [
-      "worktree naming harness fixture tasks"
-    ],
     "worktree naming sh": [
       "worktree-naming.sh"
-    ],
-    "worktree naming test fixture plan": [
-      "worktree naming test fixture plan"
     ],
     "worktree naming test harness": [
       "worktree naming test harness"
@@ -96418,23 +95590,11 @@
     "worktree portability verification": [
       "worktree portability verification"
     ],
-    "worktree provision spec kit fallback plan": [
-      "worktree provision spec-kit fallback plan"
-    ],
-    "worktree provision spec kit link": [
-      "worktree provision spec-kit link"
-    ],
-    "worktree provision spec kit link tasks": [
-      "worktree provision spec-kit link tasks"
-    ],
     "worktree provisioning": [
       "worktree provisioning"
     ],
     "worktree provisioning plan": [
       "worktree provisioning plan"
-    ],
-    "worktree provisioning skips sk doc": [
-      "worktree provisioning skips sk-doc"
     ],
     "worktree provisioning tasks": [
       "worktree provisioning tasks"
@@ -96870,9 +96030,6 @@
     ],
     "zero blocked legacy replay": [
       "zero blocked legacy replay"
-    ],
-    "zero call compaction census": [
-      "zero-call compaction census"
     ],
     "zero calls investigation": [
       "zero calls investigation"

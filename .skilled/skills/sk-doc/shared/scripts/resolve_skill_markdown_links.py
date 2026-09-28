@@ -11,6 +11,9 @@ import tempfile
 from pathlib import Path
 from urllib.parse import unquote
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
+
 
 LINK_PATTERN = re.compile(r"(?<!!)\[[^\]]*\]\(\s*(<[^>]+>|[^\s)]+)")
 EXTERNAL_PATTERN = re.compile(r"^(?:[a-z][a-z0-9+.-]*:|//)", re.IGNORECASE)
@@ -166,6 +169,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
     if args.self_test:
         return self_test()
+    exit_if_validation_off("resolve_skill_markdown_links.py", argv)
     root = Path(args.repo_root).resolve()
     try:
         failures, counts, diagnostics = scan(root, args.scope)

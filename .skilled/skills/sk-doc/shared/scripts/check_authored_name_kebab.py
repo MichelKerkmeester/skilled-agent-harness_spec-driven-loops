@@ -28,6 +28,7 @@ from check_no_new_snake_case import (  # type: ignore  # noqa: E402
     _name_stem,
     repository_root,
 )
+from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
 
 
 KEBAB_CASE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -69,6 +70,7 @@ def parse_args(argv: Sequence[str]) -> argparse.Namespace:
 def main(argv: Sequence[str]) -> int:
     """Validate one artifact name and print a stable pass/fail signal."""
     args = parse_args(argv)
+    exit_if_validation_off("check_authored_name_kebab.py", argv)
     artifact = Path(args.artifact)
     try:
         repo_root = repository_root()

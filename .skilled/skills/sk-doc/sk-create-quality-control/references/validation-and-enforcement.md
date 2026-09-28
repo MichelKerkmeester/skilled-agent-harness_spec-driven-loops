@@ -8,7 +8,7 @@ trigger_phrases:
   - "doc quality troubleshooting"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
+version: 1.0.0.12
 ---
 
 # Validation and Enforcement Operations
@@ -83,6 +83,25 @@ SKDOC_ENFORCE_STRUCTURE=0 python3 .skilled/skills/sk-doc/shared/scripts/validate
 ```
 
 Unset or any value other than `0` keeps enforcement on.
+
+### Validation off switch
+
+Someone who does not care whether their docs drift from these formats can switch every sk-doc validator off at once. Set `SKDOC_SKIP_VALIDATION` to `1`, `true`, `yes` or `on` in the environment, or save it in `.skilled/hooks/hook-flags.env`, the gitignored file the hook kill-switches read:
+
+```bash
+SKDOC_SKIP_VALIDATION=1 python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file>
+cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env   # then uncomment SKDOC_SKIP_VALIDATION=1
+```
+
+A switched-off validator prints one line on stderr naming where the switch was set, then exits 0 without checking. A run that asked for JSON also gets `{"skipped": true, "valid": true, ...}` on stdout, so a caller that parses the output still can. The environment wins over the file even when it holds `0` or nothing, so `SKDOC_SKIP_VALIDATION=0` brings validation back for one run.
+
+The switch covers the check path of the document, skill, catalog, playbook, goal, repo-rules and README validators, the naming guards, the frontmatter version `gate` and `verify`, the doc-model reference check, the link resolver and the HVR scanner. It leaves these running, because they write or test rather than judge:
+
+- `validate_document.py --fix`
+- `--self-test` in the two README checkers and the link resolver
+- `frontmatter-version.mjs compute` and `apply`
+
+The create-diff report validator stays on as well. It proves a report is safe to open, not that it matches a format. CI never sets the switch, so this repository's formats stay enforced there. Spec folder validation has its own switch, `SPECKIT_SKIP_VALIDATION`. Unset both before running the test suites, which expect the validators to run.
 
 ### Workflow 1: Add Missing Frontmatter
 

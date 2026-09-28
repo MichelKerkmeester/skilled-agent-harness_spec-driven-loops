@@ -1,0 +1,7 @@
+VERDICT: FAIL
+CHECK 1: PASS - The block reads `pid`, `childPid` and `socketPath` at `global-disable-flag.md:53`; the launcher writes those fields at `system-skill-advisor-launcher.cjs:921-927`.
+CHECK 2: FAIL - A lease with `socketPath="$SANDBOX/../outside/sock"` passes the textual prefix case at `global-disable-flag.md:55`. The block then signals the unvalidated lease PIDs at `:56` and `:58`; an unrelated live PID could be signalled.
+CHECK 3: FAIL - The handler signals the daemon and waits up to five seconds, then may send SIGKILL and exit without waiting for that kill to complete (`system-skill-advisor-launcher.cjs:1391-1398`). The block’s loop waits for the launcher, then may send the daemon SIGTERM without waiting for it before removing the sandbox (`global-disable-flag.md:57-58,66`). The daemon can still write after the loop ends in that timeout path.
+CHECK 4: PASS - `cp003-negative-control.txt:25`: “RESULT committed: /tmp/cp003.578W0F reappeared about 20s after the block ended”; `cp003-negative-control.txt:67`: “RESULT new: /tmp/cp003.Kxl1wG did not reappear within 200s”.
+CHECK 5: PASS - The teardown code matches at `global-disable-flag.md:53-66` and `daemon-absent-fallback.md:81-96`. The only differences are the CP-004 checksum at `:94` and environment unset at `:95`; no other difference.
+NOTES: none

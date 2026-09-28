@@ -1,0 +1,13 @@
+<!-- dispatch: cursor CP-004; ledger: 2026-09-28T05:24:13Z 2026-09-28T05:27:23Z 0 190 -->
+
+RESULT: PASS | scenario=CP-004 | runtime=cursor
+NATIVE: none visible
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+| 1 | SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 skill_advisor.py "help me commit my changes" | 0 | "falling back to local Python scorer"; JSON array with skill sk-git, source local, confidence 0.95 | Forced-local shim returns a JSON array from the Python scorer | yes |
+| 2 | mktemp -d /tmp/cp004.XXXXXX; export socket/db env; shasum GEN | 0 | SANDBOX=/tmp/cp004.aOq5xU; SPECKIT_IPC_SOCKET_DIR and SYSTEM_SKILL_ADVISOR_DB_DIR set; GEN_BEFORE recorded | Sandbox under /tmp/cp004.* with its own socket and database dirs; live generation checksum recorded | yes |
+| 3 | node skill-advisor.cjs advisor_recommend --warm-only --timeout-ms 3000 | 75 | {"status":"error","error":"backend unavailable: connect ENOENT /tmp/cp004.aOq5xU/sock/daemon-ipc.sock","exitCode":75}; warm-only exit=75; $SANDBOX/db absent; only empty sock dir present | warm-only exit=75; status error; ENOENT $SANDBOX/sock/daemon-ipc.sock; exitCode 75; nothing spawned; $SANDBOX/db never created | yes |
+| 4 | SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0.2 node skill-advisor.cjs advisor_recommend --timeout-ms 30000 | 0 | cold-start exit=0; status ok; freshness "live"; trustState.state "live"; recommendations [sk-git]; stderr empty | cold-start exit=0; status ok; freshness "live"; inspect trustState and recommendations | yes |
+| 5 | wait until lease/socket/open files gone and i>25; compare shasum; rm sandbox | 0 | live generation file unchanged; sandbox advisor exited; sandbox removed | live generation file unchanged; sandbox advisor exited; sandbox removed | yes |
+DEVIATIONS: none to scenario commands, arguments, environment, or teardown. Read-only probes after step 3 confirmed the db dir was absent, and step 3/4 output was copied to a /tmp log that was deleted after the run.
+NOTES: sha256 before step 1: skill-graph-generation.json c887ca200cedf3d0004bfa5f56dea9d34d32d04c855e3796ae5184ddd0105623; .system-skill-advisor-launcher.json 1e7b7e019ee07b7646530e20e4a701dc3641ffc4c44f914fc1a1b73af4f8990e. sha256 after teardown: skill-graph-generation.json c887ca200cedf3d0004bfa5f56dea9d34d32d04c855e3796ae5184ddd0105623; .system-skill-advisor-launcher.json 1e7b7e019ee07b7646530e20e4a701dc3641ffc4c44f914fc1a1b73af4f8990e. Both unchanged. Teardown wait broke at iteration 26. Sandbox /tmp/cp004.aOq5xU confirmed absent. Temp log removed. Live daemon and live database were not stopped, moved, or rebuilt.

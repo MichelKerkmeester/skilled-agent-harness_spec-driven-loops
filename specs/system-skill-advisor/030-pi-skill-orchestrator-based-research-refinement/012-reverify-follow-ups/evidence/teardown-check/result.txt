@@ -1,0 +1,48 @@
+# Teardown behaviour test, HEAD d6e0388d3e. The old teardown is CP-004 step 5 at that HEAD, the new one is CP-003 step 1 in the working tree.
+started 15:56:16Z
+old teardown sha 03d891dd713e, new teardown sha fb94b17d8d05
+live generation before: 4d10166901e6a944daa7b9a2999c33c45ada91b6  .skilled/skills/.state/advisor/skill-graph-generation.json
+advisor processes before:
+18680     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.
+18683 18680 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.
+97186     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill
+97187 97186 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-sk
+
+== CASE 1: lease socket climbs out of the sandbox with ..
+old: sandbox launcher 999999 stopped
+new: lease socket /tmp/outside/sock/advisor.sock is outside the sandbox; nothing stopped
+
+== CASE 2: lease pids belong to decoy processes, socket inside the sandbox
+decoys: launcher-slot 63282, daemon-slot 63283
+new: sandbox launcher 63282 still running 
+after new: decoy1 alive, decoy2 alive
+old: sandbox launcher 63282 stopped 
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/d12/teardown-check/test-teardown.sh: line 37: 63282 Terminated: 15          sleep 600
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0da7a8f2-8dab-43fc-965f-5a5c7eb6ec05/scratchpad/d12/teardown-check/test-teardown.sh: line 37: 63283 Terminated: 15          sleep 600
+after old: decoy1 gone, decoy2 gone
+
+== CASE 3 (old): real sandbox launcher killed without its handler, daemon orphaned
+cold start exit=0
+lease: launcher 64370, daemon 64385, socket /tmp/cp003.BM0d9C/sock/daemon-ipc.sock
+after SIGKILL: launcher gone, daemon alive, daemon ppid now 1
+teardown: sandbox launcher 64370 stopped 
+teardown took 0s, daemon alive when it returned
+RESULT old: /tmp/cp003.BM0d9C did not reappear within 60s; daemon gone
+
+== CASE 3 (new): real sandbox launcher killed without its handler, daemon orphaned
+cold start exit=0
+lease: launcher 96255, daemon 96256, socket /tmp/cp003.EMZ1Zf/sock/daemon-ipc.sock
+after SIGKILL: launcher gone, daemon alive, daemon ppid now 1
+teardown: sandbox launcher 96255 stopped 
+teardown took 0s, daemon gone when it returned
+RESULT new: /tmp/cp003.EMZ1Zf did not reappear within 60s; daemon gone
+
+live generation after:  4d10166901e6a944daa7b9a2999c33c45ada91b6  .skilled/skills/.state/advisor/skill-graph-generation.json
+live generation file unchanged
+advisor processes after:
+18680     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.
+18683 18680 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.
+97186     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill
+97187 97186 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-sk
+leftover sandboxes: 
+finished 15:58:37Z

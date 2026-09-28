@@ -1,0 +1,7 @@
+# state 2026-09-28T05:14:34Z, HEAD b76ce2f06c
+advisor processes (this repo, Barter coder, worktree 069):
+  pid=40890 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=40893 ppid=40890 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+sandbox folders: 
+live generation: c887ca200cedf3d0
+live lease:      1e7b7e019ee07b76

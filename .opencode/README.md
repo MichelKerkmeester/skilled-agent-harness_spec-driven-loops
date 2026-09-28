@@ -32,8 +32,8 @@ Every entry in this table except `plugins/` is a symlink to its twin under `.ski
 | `plugins/` | authored here, not a link: only this runtime loads them |
 | `bin/` | executable programs, still named through this path by older callers |
 | `scripts/` | shell entrypoints and hook installers |
-| `changelog/`, `manual-testing-playbook/` | documentation trees |
-| `specs/` | the spec alias other runtimes also resolve through this name |
+| `repo-rules/` | the repo-rule corpus, linked beside every runtime tree |
+| `manual-testing-playbook/` | this runtime's own playbook |
 
 ---
 

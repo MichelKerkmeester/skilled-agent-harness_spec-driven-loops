@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1baff79ea538b01cd41a8154b78d616ca271f077589a7bac8ad1c25f58c6295b",
+  "corpusHash": "488b365be87f4f4eb437f41d233175f1dd193020428867fe7eb721f1db51eb03",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -14,19 +14,11 @@
   ],
   "ignoredPaths": [
     {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md",
-      "reason": "verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md",
-      "reason": "verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML"
-    },
-    {
       "path": "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md",
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23218,
+  "includedPathCount": 23155,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -919,6 +911,7 @@
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.4.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.5.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/availability-probe.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/default-invocation.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/hallucination-fixture-fabricated-flag.md",
@@ -5980,7 +5973,9 @@
     ".skilled/skills/sk-doc/changelog/v2.1.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.1.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
+    ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-claude-code.md",
@@ -6123,6 +6118,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
@@ -7848,6 +7844,8 @@
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks/skill-benchmark-report.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
     ".skilled/skills/system-spec-kit/changelog/v1+/v1.2.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2+/v2.0.0.0.md",
@@ -7919,6 +7917,7 @@
     ".skilled/skills/system-spec-kit/changelog/v4.1.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.2.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v4.1.3.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -7945,6 +7944,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/nested-changelog-generator.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md",
@@ -8016,6 +8016,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/main-agent-review-and-verdict-handoff.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/markdown-link-integrity-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/nested-changelog-generator.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/no-symlinks-in-lib-tree.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-sweep-stop-hook-activation.md",
@@ -8538,136 +8539,6 @@
     "specs/cli-jev/002-cli-jev-hub-migration/goal.md",
     "specs/cli-jev/002-cli-jev-hub-migration/implementation-summary.md",
     "specs/cli-jev/002-cli-jev-hub-migration/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/ai-council-strategy.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/council-report.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/deliberations/round-001.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/proposed-resynthesis.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-001-opus-max.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-002-opus-max.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-003-opus-max.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/jev-material-digest.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/research-angles.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/seam-map.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/fanout-attribution.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/research.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/resource-map.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/context/research-angles.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/fanout-attribution.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/research.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/resource-map.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/README.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/README.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/leaderboard.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/rust/README.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/serve/README.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/research-angles.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/fanout-attribution.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/research.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/resource-map.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/acceptance-criteria.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/acceptance-criteria.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/acceptance-criteria.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/acceptance-criteria.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/acceptance-criteria.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/acceptance-criteria.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/acceptance-criteria.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/acceptance-criteria.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/tasks.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/acceptance-criteria.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/implementation-summary.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/plan.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/spec.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-ask.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-pick.md",
@@ -8854,8 +8725,6 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/context/social posts/Blog - Claude Code Compaction Without a Lossy Summary.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/social posts/Reddit - I think i found the best use case for JEV and PI.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/social posts/Reddit - Integrated the Jev context engine into Hermes.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
-    "specs/cli-jev/003-cli-jev-workflow-integration/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/orca-worktree-terminal.md",
@@ -11673,7 +11542,17 @@
     "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/plan.md",
     "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/spec.md",
     "specs/sk-doc/061-skilled-release-changelog/002-changelog-findability/tasks.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/acceptance-criteria.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/implementation-summary.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/plan.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/spec.md",
+    "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/tasks.md",
     "specs/sk-doc/061-skilled-release-changelog/spec.md",
+    "specs/sk-doc/062-doc-validation-off-switches/acceptance-criteria.md",
+    "specs/sk-doc/062-doc-validation-off-switches/implementation-summary.md",
+    "specs/sk-doc/062-doc-validation-off-switches/plan.md",
+    "specs/sk-doc/062-doc-validation-off-switches/spec.md",
+    "specs/sk-doc/062-doc-validation-off-switches/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -14167,6 +14046,56 @@
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/plan.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/spec.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/tasks.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/codex-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/codex-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/cursor-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/cursor-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/devin-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/devin-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/opencode-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/opencode-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/pi-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/pi-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/codex-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/cursor-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/devin-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/opencode-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/pi-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/cursor-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/cursor-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/devin-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/devin-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/opencode-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/opencode-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/pi-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/pi-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/goal.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/implementation-summary.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/plan.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/spec.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/tasks.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/quiet-reruns/reports/devin-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/quiet-reruns/reports/opencode-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/goal.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/implementation-summary.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/plan.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/spec.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/tasks.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/bug_report.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/feature_request.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/pull_request_template.md",
@@ -23248,7 +23177,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "24367e8d83e0e5600d404326931f5e55235bc37534e21615177d1f885d3d7bed",
+  "manifestHash": "d2e88e7e3493c769b710a3829b6f1084695fdf12bdf58b24072f7ffd962312b3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24128,90 +24057,6 @@
     },
     {
       "path": "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/scratch",
       "reason": "excluded directory"
     },
     {
@@ -25351,6 +25196,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/062-doc-validation-off-switches/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -26104,6 +25957,14 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

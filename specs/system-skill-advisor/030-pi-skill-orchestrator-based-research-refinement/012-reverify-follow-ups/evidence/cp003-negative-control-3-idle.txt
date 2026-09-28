@@ -1,0 +1,91 @@
+# CP-003 step 1 negative control, 2026-09-27T16:23:34Z, HEAD d6e0388d3e
+# SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=1, watch 200s per case
+
+== case: committed, started 16:23:34Z
+-- step 1 block as run
+  | SANDBOX=$(mktemp -d /tmp/cp003.XXXXXX)
+  | SYSTEM_SKILL_ADVISOR_DB_DIR="$SANDBOX/db" SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock" \
+  | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 \
+  |   node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" \
+  |   --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
+  | rm -rf "$SANDBOX"
+-- advisor processes before
+  pid=18680 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=18683 ppid=18680 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=30503 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=30504 ppid=30503 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=34667 ppid=34659 pass.
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+block exit=0 sandbox=/tmp/cp003.aBn765, ended 16:23:37Z
+-- block stdout, last 3 lines
+      ]
+    }
+  }
+-- advisor processes right after the block
+  pid=18680 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=18683 ppid=18680 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=30503 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=30504 ppid=30503 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=34667 ppid=34659 pass.
+  pid=35518 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=35583 ppid=35518 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+RESULT committed: /tmp/cp003.aBn765 reappeared about 30s after the block ended
+  file: /tmp/cp003.aBn765/db/skill-graph-generation.json
+-- advisor processes after the watch
+  pid=18680 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=18683 ppid=18680 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=30503 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=30504 ppid=30503 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=34667 ppid=34659 pass.
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+removed the recreated /tmp/cp003.aBn765
+
+== case: new, started 16:26:57Z
+-- step 1 block as run
+  | SANDBOX=$(mktemp -d /tmp/cp003.XXXXXX)
+  | SYSTEM_SKILL_ADVISOR_DB_DIR="$SANDBOX/db" SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock" \
+  | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0.2 \
+  |   node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" \
+  |   --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
+  | sandbox_advisor_running() { [ -e "$SANDBOX/db/.system-skill-advisor-launcher.json" ] || [ -n "$(ls -A "$SANDBOX/sock" 2>/dev/null)" ]; }
+  | for i in $(seq 1 60); do [ "$i" -gt 25 ] && ! sandbox_advisor_running && break; sleep 1; done
+  | if sandbox_advisor_running; then
+  |   echo "sandbox advisor still running after 60s; sandbox kept at $SANDBOX"
+  | else
+  |   rm -rf "$SANDBOX" && echo "sandbox advisor exited; sandbox removed"
+  | fi
+-- advisor processes before
+  pid=18680 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=18683 ppid=18680 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=30503 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=30504 ppid=30503 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=34667 ppid=34659 pass.
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+block exit=0 sandbox=/tmp/cp003.0FLMxd, ended 16:27:24Z
+-- block stdout, last 3 lines
+    }
+  }
+  sandbox advisor exited; sandbox removed
+-- advisor processes right after the block
+  pid=18680 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=18683 ppid=18680 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=30503 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=30504 ppid=30503 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=34667 ppid=34659 pass.
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+RESULT new: /tmp/cp003.0FLMxd did not reappear within 200s
+-- advisor processes after the watch
+  pid=18680 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=18683 ppid=18680 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/barter/ai-speckit/coder/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=30503 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=30504 ppid=30503 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+
+# finished 2026-09-27T16:30:45Z

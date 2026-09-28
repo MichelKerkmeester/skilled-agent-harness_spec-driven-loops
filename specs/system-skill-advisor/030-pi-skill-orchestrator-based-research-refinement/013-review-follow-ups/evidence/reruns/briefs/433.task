@@ -1,0 +1,7 @@
+
+=== TASK: run scenario 433 ===
+Scenario file: .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md
+Read the whole file first. Then run its test execution steps in order and judge them against its expected signals and pass/fail rules.
+- gtimeout is not installed on this machine. Run each hook call without `gtimeout 20`, and note that under DEVIATIONS. Keep every other part of the block exactly as written, and run the whole block in one shell.
+- The block ends with a teardown that sends no signal and waits for the sandbox launcher and daemon to exit on their own. Report the lines it prints.
+- Change no teardown command. If your tool refuses one, report that step BLOCKED with the exact error text.

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/061-skilled-release-changelog/003-adjacent-alignment",
+  "spec_folder": "sk-doc/061-skilled-release-changelog/003-adjacent-alignment",
+  "parent_id": "sk-doc/061-skilled-release-changelog",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "adjacent-alignment",
+      "changelog hub component resolution",
+      "validator changelog type detection",
+      "nested changelog title escaping",
+      "adjacent-alignment plan",
+      "changelog surface fixes",
+      "hub component resolution plan",
+      "adjacent-alignment tasks",
+      "changelog surface fix tasks",
+      "adjacent-alignment acceptance criteria",
+      "changelog surface closure gate",
+      "adjacent-alignment summary"
+    ],
+    "key_topics": [
+      "adjacent-alignment",
+      "changelog",
+      "hub",
+      "component",
+      "resolution",
+      "validator",
+      "type",
+      "detection",
+      "nested",
+      "title",
+      "escaping",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/create/assets/create-changelog-auto.yaml",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/README.md",
+      ".skilled/commands/create/README.txt",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_changelog_validator.py",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+      "tests/nested-changelog.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md",
+      ".opencode/SYNC.md",
+      ".opencode/README.md",
+      ".skilled/changelog/skilled/v4.0.0.2.md",
+      ".hermes/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_changelog_validator.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_changelog_validator.py",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.vitest.ts",
+        "kind": "test",
+        "path": "tests/nested-changelog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".opencode/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.2.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 1 and 2 changed what a changelog is, and several surfaces next to them still describe or perform the old behavior",
+    "created_at": "2026-09-27T17:18:04Z",
+    "last_save_at": "2026-09-27T18:56:10.122Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:36ac07e106a7596ea1e02cd189e960a9b111017a060073f5034317f7d6a00727",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f14205b5b34d3551ace8a078fdc42fa221d2cf90c224c76af5e7646127f4101a",
+      "plan.md": "a2cbc09d7f1e2d3c33667c52c35279701d05405dd19a2865d25c6e8e24a48de7",
+      "tasks.md": "151b5eb2482ffd2e16b08f634fb05ba15fa89f4e9593b526eba919e34618dd8a",
+      "implementation-summary.md": "91ba5562bc72f6b32e3c1976b5db0350b6b6852a47fa0d939854464f97ff8eee"
+    },
+    "last_active_at": null
+  }
+}

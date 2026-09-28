@@ -9,7 +9,7 @@ trigger_phrases:
   - "five field frontmatter block"
 importance_tier: important
 contextType: general
-version: 1.0.0.36
+version: 1.0.0.40
 ---
 
 # YAML Frontmatter Templates - Document Type Reference
@@ -53,6 +53,7 @@ allowed-tools: Read, Write, Bash
 | **Skill Reference/Asset** | ✅ **Required** | Skill Advisor harvests the 5-field block as routing signal |
 | **Knowledge (outside skills)** | ❌ **Forbidden** | Pure content, no programmatic interface |
 | **Spec** | ✅ **Required**, and governed elsewhere | `system-spec-kit` templates emit the block and its validator fails without it |
+| **Changelog entry** | ✅ **Required**, and governed elsewhere | `sk-create-changelog` defines the five-key block and `validate_document.py` blocks an entry without it |
 | **README** | ✅ **Required** beside a `SKILL.md` | Carries `version` per the versioning standard. Optional for every other README |
 | **Feature Catalog** | ✅ **Required** | The block carries the title and the terms a reader searches the inventory on |
 | **Testing Playbook** | ✅ **Required** | Root index and scenario leaves are both addressed by title and version |
@@ -627,7 +628,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 - `validate_document.py` blocks a `.claude/agents/` file that has no non-empty `tools:`, because Claude Code enforces only `tools:` and an absent list inherits the parent session full, unrestricted tool set. It blocks a `.skilled/agents/` file with no `permission:` and warns on a stray `tools:` there.
 - `mode` is `subagent` on all but two OpenCode agents in the tree. `temperature` sits at 0.1 or 0.2. `mcpServers` is optional and rare.
 - Keep `description` at 130 characters or fewer. Agent descriptions share the Claude Code metadata budget described above.
-- `template-rules.json` lists `name`, `description`, `mode`, `temperature` and `permission` as required for the agent type without splitting by runtime. That list is not read for agents, since `validate_document.py` consults `frontmatterFields.required` only on the command path. The runtime split is what runs.
+- `template-rules.json` lists `name`, `description`, `mode`, `temperature` and `permission` as required for the agent type without splitting by runtime. That list is not read for agents, since `validate_document.py` consults `frontmatterFields.required` only on the command and changelog paths. The runtime split is what runs.
 - The fuller field reference is `sk-create-agent/assets/agent-template.md` Section 2.
 
 ### Knowledge File Outside Skill Folders (No Frontmatter)
@@ -677,6 +678,34 @@ _memory:
 
 **Where to go**: the templates under `system-spec-kit/templates/`, and the scaffold that fills them.
 Never hand-author a spec block from this page, and never strip one you find.
+
+### Changelog Entry (Governed by `sk-create-changelog`)
+
+**Rule**: A changelog entry carries YAML frontmatter, and `sk-create-changelog` defines it.
+
+An entry is a `v{VERSION}.md` file in a skill's or the release line's `changelog/` folder, or a
+`changelog-*.md` file in a spec packet's `changelog/` folder. Its block carries `title`,
+`description`, `trigger_phrases`, `importance_tier` and `contextType` in that order, so Gate 1 and
+`/speckit:search` find the entry the way they find a spec document. The identity phrases come first.
+`validate_document.py` blocks an entry that has no block, lacks a key or declares no trigger phrase.
+It also blocks a version entry whose phrases never name its version. A README in a changelog folder is not an
+entry and keeps the structural rules alone.
+
+```yaml
+---
+title: "<component> v<version>, <editorial title>"
+description: "One or two plain sentences on what the release changed."
+trigger_phrases:
+  - "<component> v<version>"
+  - "<component> <version>"
+  - "<topic phrase from the entry>"
+importance_tier: "normal"
+contextType: "general"
+---
+```
+
+**Where to go**: the Frontmatter Contract in section 5 of `sk-create-changelog/SKILL.md` for skill and
+release entries. Packet entries use the spec-kit nested changelog templates.
 
 ---
 
@@ -766,6 +795,13 @@ validation_rules:
     frontmatter_required: true
     owner: "system-spec-kit"
     enforced_by: "validate.sh --strict fails the run. A missing block trips the frontmatter-basics check (absent _memory.continuity keys), a malformed block trips SPECDOC_FRONTMATTER_001"
+
+  ChangelogEntry:
+    # v{VERSION}.md and changelog-*.md files in a changelog/ folder, owned by sk-create-changelog
+    frontmatter_required: true
+    owner: "sk-create-changelog"
+    required_fields: [title, description, trigger_phrases, importance_tier, contextType]
+    enforced_by: "validate_document.py blocks a missing block, a missing key, an empty trigger_phrases list and a version entry with no phrase naming its version"
 
   README:
     # a README.md sitting beside a SKILL.md. Every other README is optional
@@ -1114,12 +1150,13 @@ Document type?
 | **Skill Reference/Asset** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
 | **Knowledge (outside skills)** | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden |
 | **Spec** | n/a | n/a | n/a | n/a (see `system-spec-kit`) |
+| **Changelog entry** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
 | **Feature Catalog** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
 | **Testing Playbook** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
 | **Agent** | ✅ Required | ✅ Required | ❌ N/A | ❌ N/A (uses `permission:` or `tools:`) |
 
 Skill references/assets additionally require `trigger_phrases` (3-8), `importance_tier`, and `contextType`. See Section 3.
-Feature catalogs additionally require `trigger_phrases` and `version`. Testing playbooks require `title` and `version`. Agents require the authority key their own runtime reads, and carry no `version`. Section 4 has all three.
+Changelog entries also require `trigger_phrases`, `importance_tier` and `contextType`. Feature catalogs additionally require `trigger_phrases` and `version`. Testing playbooks require `title` and `version`. Agents require the authority key their own runtime reads, and carry no `version`. Section 4 has all three.
 
 ### Common Mistakes
 

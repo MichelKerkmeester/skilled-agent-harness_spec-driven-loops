@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-09-03"
-version: 4.0.0.0
+version: 4.1.0.99
 ---
 
 # Spec Kit: Feature Catalog
@@ -244,6 +244,22 @@ It catches breakage from deleted or moved files that survives in an unchanged re
 #### Source Files
 
 See [`tooling-and-scripts/markdown-link-integrity-guard.md`](tooling-and-scripts/markdown-link-integrity-guard.md) for full implementation and test file listings.
+
+---
+
+### Nested changelog generator
+
+#### Description
+
+Renders a packet-local changelog for a spec root or phase from the packet's own documents, with a search phrase that names the packet and frontmatter that stays valid for any title.
+
+#### Current Reality
+
+`.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` writes the entry to the packet's `changelog/` folder and backs `/create:changelog` in nested mode.
+
+#### Source Files
+
+See [`tooling-and-scripts/nested-changelog-generator.md`](tooling-and-scripts/nested-changelog-generator.md) for full implementation and test file listings.
 
 ---
 

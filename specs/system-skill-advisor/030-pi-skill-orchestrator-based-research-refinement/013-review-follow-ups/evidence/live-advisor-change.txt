@@ -1,0 +1,20 @@
+Live advisor change before this phase's first check, 2026-09-28
+
+What was observed
+- 06:46:28Z: the baselines (baselines.txt) recorded launcher 33066 and daemon 33068, running since 06:04:32Z.
+- 06:47:40.853Z: launcher 87524 and daemon 87539 started (lease startedAt, and the owner file's startedAtIso
+  06:47:40.844Z). The live generation file moved to 562 at 06:47:41.322Z with reason advisor-server-startup-scan.
+- The owner file names ppid 87523, which no longer ran at 07:00Z. The launcher ran under the same node binary this
+  session uses, since ~/.local/bin/node links to ~/.hermes/node/bin/node, so the binary does not tell the callers
+  apart.
+- This session's tool calls around that time: create.sh scaffolding this phase from 06:46:57Z to 06:46:59Z, a git diff
+  at 06:47:05Z, two file reads at 06:47:09Z to 06:47:10Z and nothing more until a file write at 06:49:57Z. None of
+  them calls the advisor, and none ran at 06:47:40Z.
+- No check of this phase had run yet. The guard checks started at 07:00:58Z, with 87524 as their baseline.
+
+Cause: unknown
+- 33066 ran 43 minutes. The 30-minute idle exit followed by a cold start from the next caller fits, but no launcher
+  log records why 33066 exited, and several sessions on this machine call this repository's advisor through their
+  hooks.
+- The guard checks, the as-written runs and the watched crash test all kept 87524 and 87539 running, with the same
+  generation file before and after each (guard-checks/, crash-test/).

@@ -1,0 +1,24 @@
+fast samples: 186, from +-0.98s to +18.85s
+sample interval: median 0.110s, max 0.130s
+scans: 109, median length 0.180s
+last sample before the kill (+-0.03s): lease=1 socket=daemon-ipc.sock daemon=alive daemon holds: db/skill-graph-daemon-lease.sqlite,db/skill-graph-daemon-lease.sqlite-shm,db/skill-graph-daemon-lease.sqlite-wal,db/skill-graph.sqlite,db/skill-graph.sqlite-shm,db/skill-graph.sqlite-wal,sock/daemon-ipc.sock
+
+both lease files gone: +0.07s
+socket folder empty: +15.85s
+daemon holds no skill-graph.sqlite: +15.74s
+daemon holds no sandbox path: +15.74s
+daemon gone: +15.85s
+lease-and-socket test says not running: +15.85s
+test with the open-file clause says not running: +15.95s
+first empty open-file scan after the kill: started +15.73s, ended +15.91s
+
+no window: the daemon held no sandbox path 0.11s before the lease and socket were gone
+the scan-based test turned false 0.10s after the lease-and-socket test (scan lag)
+the socket folder emptied after the database closed (+0.11s after it)
+
+what the sandbox daemon held open, each change:
+  +-0.98s  db/skill-graph-daemon-lease.sqlite,db/skill-graph-daemon-lease.sqlite-shm,db/skill-graph-daemon-lease.sqlite-wal,db/skill-graph.sqlite,db/skill-graph.sqlite-shm,db/skill-graph.sqlite-wal,sock/daemon-ipc.sock
+  +15.74s  -
+
+live lease pid across all samples: 87524
+live launcher across all samples: alive; live daemon: alive

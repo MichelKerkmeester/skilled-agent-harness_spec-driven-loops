@@ -16,17 +16,13 @@ set -euo pipefail
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 
-if [[ -n "${SPECKIT_SKIP_VALIDATION:-}" ]]; then
-    echo "Validation skipped (SPECKIT_SKIP_VALIDATION=${SPECKIT_SKIP_VALIDATION})" >&2
-    exit 0
-fi
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly VALIDATOR_REGISTRY_JSON="$SCRIPT_DIR/../lib/validator-registry.json"
 readonly ORCHESTRATOR_JS="$SCRIPT_DIR/../../dist/lib/validation/orchestrator.js"
 readonly ORCHESTRATOR_TS="$SCRIPT_DIR/../../lib/validation/orchestrator.ts"
 readonly TSX_LOADER="$SCRIPT_DIR/../../../node_modules/tsx/dist/loader.mjs"
 readonly DIST_FRESHNESS_CJS="$SCRIPT_DIR/../lib/dist-freshness.cjs"
+readonly HOOK_FLAGS_SH="$SCRIPT_DIR/../../../../../hooks/shared/hook-flags.sh"
 readonly VERSION="3.0.0"
 
 # ───────────────────────────────────────────────────────────────
@@ -76,7 +72,7 @@ OPTIONS:
 
 ENVIRONMENT:
     SPECKIT_RULES              Comma-separated subset of rules to evaluate
-    SPECKIT_SKIP_VALIDATION    Skip validation entirely
+    SPECKIT_SKIP_VALIDATION    1, true, yes or on skips validation (also read from hook-flags.env)
     SPECKIT_STRICT/_VERBOSE/_JSON/_QUIET   Equivalent to the flags above
 
 EXIT CODES: 0=pass, 1=user error, 2=validation error, 3=system error
@@ -112,7 +108,6 @@ parse_args() {
 }
 
 apply_env_overrides() {
-    [[ "${SPECKIT_VALIDATION:-}" == "false" ]] && { echo "Validation disabled"; exit 0; }
     # This used to select a second rule engine that no longer exists. Silently
     # ignoring it would let a caller believe it is still choosing something.
     if [[ -n "${SPECKIT_VALIDATE_LEGACY:-}" ]]; then
@@ -123,6 +118,58 @@ apply_env_overrides() {
     [[ "${SPECKIT_JSON:-}" == "true" ]] && JSON_MODE=true
     [[ "${SPECKIT_QUIET:-}" == "true" ]] && QUIET_MODE=true
     return 0
+}
+
+# The shared resolver reads the environment first, even a variable set to an
+# empty value, and hook-flags.env second, so a saved choice can be undone for
+# one run with SPECKIT_SKIP_VALIDATION=0. Naming the repository root spares the
+# resolver the git lookup it would otherwise make to find that file.
+skip_switch_on() {
+    if [[ ! -r "$HOOK_FLAGS_SH" ]]; then
+        [[ -n "${SPECKIT_SKIP_VALIDATION:-}" ]] \
+            && echo "WARNING: $HOOK_FLAGS_SH is missing, so SPECKIT_SKIP_VALIDATION is ignored." >&2
+        return 1
+    fi
+    __hf_root="$(cd "$SCRIPT_DIR/../../../../../.." && pwd)"
+    # shellcheck source=../../../../../hooks/shared/hook-flags.sh
+    . "$HOOK_FLAGS_SH"
+    hook_flag_on SPECKIT_SKIP_VALIDATION
+}
+
+# The report keeps the orchestrator's shape and holds no failing entry, so a
+# caller that reads rows finds nothing to act on, and `skipped` says outright
+# that no rule ran.
+emit_skipped_report() {
+    # shellcheck disable=SC2016 # the quoted script is JavaScript, so its ${} is not the shell's
+    node -e '
+const [folder, reason] = process.argv.slice(1);
+const entry = { rule: "VALIDATION_SKIPPED", status: "info", message: `Validation skipped: ${reason}`, details: [] };
+const report = { folder, skipped: true, entries: [entry], summary: { errors: 0, warnings: 0, info: 1 }, passed: true };
+process.stdout.write(`${JSON.stringify(report)}\n`);
+' "$(cd "$FOLDER_PATH" && pwd)" "$1"
+}
+
+# Switching validation off must not trap a caller that parses JSON. An empty
+# stdout reads as a broken report, and the pre-commit metadata gate refuses a
+# commit over one, so the check runs after parsing, once JSON mode is known.
+exit_if_switched_off() {
+    local reason=""
+    if [[ "${SPECKIT_VALIDATION:-}" == "false" ]]; then
+        reason="SPECKIT_VALIDATION is false"
+    elif skip_switch_on; then
+        if [[ -n "${SPECKIT_SKIP_VALIDATION+x}" ]]; then
+            reason="SPECKIT_SKIP_VALIDATION is on in the environment"
+        else
+            reason="SPECKIT_SKIP_VALIDATION is on in ${HOOK_FLAGS_CONFIG:-.skilled/hooks/hook-flags.env}"
+        fi
+    else
+        return 0
+    fi
+    echo "Validation skipped: $reason" >&2
+    if $JSON_MODE; then
+        emit_skipped_report "$reason"
+    fi
+    exit 0
 }
 
 # ───────────────────────────────────────────────────────────────
@@ -360,6 +407,7 @@ main() {
     # notice below is suppressed in JSON mode, and reading the flags afterwards
     # let that prose land in front of the JSON and make it unparseable.
     apply_env_overrides
+    exit_if_switched_off
     if ! $RECURSIVE && ! $RECURSIVE_OPT_OUT && has_phase_children "$FOLDER_PATH"; then
         RECURSIVE=true
         ! $JSON_MODE && ! $QUIET_MODE && echo "Auto-enabled recursive validation: phase child folders detected."

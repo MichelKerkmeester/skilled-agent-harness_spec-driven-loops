@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 826,
+  "derived_count": 829,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -22,6 +22,7 @@
     ".skilled/bin",
     ".skilled/bin/lib",
     ".skilled/bin/tests",
+    ".skilled/changelog/skilled",
     ".skilled/commands/create",
     ".skilled/commands/create/assets",
     ".skilled/commands/deep/assets",
@@ -734,6 +735,8 @@
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-5",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/outcomes",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/outcomes",
     ".skilled/skills/system-spec-kit/config",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands",
     ".skilled/skills/system-spec-kit/runtime",

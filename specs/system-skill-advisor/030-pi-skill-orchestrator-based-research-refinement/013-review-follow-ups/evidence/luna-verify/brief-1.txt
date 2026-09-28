@@ -1,0 +1,69 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when every check below has a verdict and the REPORT is printed.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/review.md, focused summary) ===
+Role: @review acting as a LEAF verifier. Never dispatch sub-agents and never start another AI CLI.
+Job: verify one change against the repository and report a verdict with file:line evidence. You verify, you never
+fix: do not edit, create or delete any file.
+=== END AGENT PERSONA (resolved persona: review) ===
+
+ROLE
+You verify the sandbox teardown in three manual test scenarios. You read files and logs. You run no scenario, start
+no advisor process and signal no process.
+
+CONTEXT
+- The three blocks:
+  A. .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md (scenario
+     433, the block under "### Commands")
+  B. .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md (CP-003
+     step 1)
+  C. .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md (CP-004
+     step 5, with steps 2 to 4 before it)
+  See every change with: git diff -- <the three paths>
+- The change: 433 dropped a teardown that signalled lease pids and took the signal-free wait B and C already had, with
+  a 12-second idle timeout exported. All three now check their variables first, check that `lsof -t -p $$` lists the
+  shell's own files, remove with `rm -r` and print "still running after the wait" instead of "after 60s".
+- Local runs: specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/guard-checks/
+  (summary.txt, logs/, as-written/logs/) and .../013-review-follow-ups/evidence/crash-test/ (result.txt, summary.txt).
+- `gtimeout` is not installed on this machine. 433 still names it, and that is out of scope here.
+
+ACTION
+Answer each check with PASS or FAIL and cite file:line for every claim.
+1. Block A has no `kill`, `pkill` or other signal. It exports `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0.2` before its hook
+   calls and unsets it at the end with the sandbox variables.
+2. A, B and C use the same `sandbox_advisor_running` test (lease file, socket folder, `lsof -t +D "$SANDBOX"`), the
+   same 25-second floor and the same 60 checks.
+3. Each block checks its variables before the wait: A and C check SANDBOX, GEN and GEN_BEFORE, B checks SANDBOX. With
+   one missing, the block prints only its rerun message, with no generation line and no removal.
+4. Each block keeps the sandbox when `lsof -t -p $$` prints nothing, and removes it only with `rm -r "$SANDBOX"` after
+   that check passes and the test is false. `sandbox removed` prints only when `rm -r` succeeds. Say whether any shell
+   or runtime could make `lsof -t -p $$` print a pid while `lsof -t +D "$SANDBOX"` cannot see a process holding a file
+   in the sandbox. Put any such case in NOTES.
+5. In each file the step text, contract, expected signals, pass/fail lines and failure rows describe what the block
+   does. Name any mismatch.
+6. Reverse check. Quote: the last two lines of guard-checks/logs/p12-cp003-hidden-bash.log and of
+   guard-checks/logs/new-cp004-hidden-zsh.log, all of guard-checks/logs/empty-new-cp004-bash.log and of
+   guard-checks/logs/empty-p12-cp004-noremove-bash.log, the teardown lines of guard-checks/as-written/logs/433.log and
+   the "socket folder empty", "daemon holds no sandbox path" and "daemon gone" lines of crash-test/summary.txt.
+
+FORMAT
+Print only this REPORT as your final message:
+VERDICT: <PASS|FAIL>
+CHECK 1: <PASS|FAIL> - <evidence with file:line>
+CHECK 2: <PASS|FAIL> - <evidence with file:line>
+CHECK 3: <PASS|FAIL> - <evidence with file:line>
+CHECK 4: <PASS|FAIL> - <evidence with file:line>
+CHECK 5: <PASS|FAIL> - <evidence with file:line>
+CHECK 6: <PASS|FAIL> - <the quoted lines>
+NOTES: <anything a reviewer must know, or none>
+VERDICT is PASS only when all six checks pass.

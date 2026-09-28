@@ -1,18 +1,19 @@
 ---
 title: "sk-doc: Feature Catalog"
-description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets and the default-on compiled-routing fast path that resolves ahead of it."
+description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets, the default-on compiled-routing fast path that resolves ahead of it and the shared validator's changelog entry check."
 trigger_phrases:
   - "sk-doc feature catalog"
   - "sk-doc hub capabilities"
   - "packet-authored registry routing"
   - "sk-doc compiled routing"
-last_updated: "2026-09-19"
-version: 2.1.0.8
+  - "changelog entry frontmatter check"
+last_updated: "2026-09-27"
+version: 2.2.0.12
 ---
 
 # sk-doc: Feature Catalog
 
-This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to. The hub's shared validator also holds every changelog entry to its search metadata.
 
 ---
 
@@ -56,4 +57,22 @@ The directive is on by default for `sk-doc`, one of the seven activated hubs: wi
 
 See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md`](compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md) for resolution order, the tri-state flag, and serving-status anchors.
 
-Note: this catalog documents `sk-doc`'s own hub-level routing. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.
+---
+
+## 4. DOCUMENT VALIDATION
+
+### Changelog Entry Frontmatter Check
+
+#### Description
+
+Blocks a changelog entry that lacks the search metadata a spec document carries, so every entry stays findable by component and version.
+
+#### Current Reality
+
+`validate_document.py` types every document under a `changelog/` folder as a changelog and holds each `v{VERSION}.md` and `changelog-*.md` entry to the five-key block that the sk-create-changelog Frontmatter Contract defines.
+
+#### Source Files
+
+See [`document-validation/changelog-entry-frontmatter-check.md`](document-validation/changelog-entry-frontmatter-check.md) for the checks, the type order and source anchors.
+
+Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.

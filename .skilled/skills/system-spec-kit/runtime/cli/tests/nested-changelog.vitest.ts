@@ -10,6 +10,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
+import yaml from 'js-yaml';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { CONFIG } from '../core';
@@ -245,5 +246,24 @@ The review remediation phase aligned the bootstrap contract, tightened checklist
 
     expect(data.identityPhrase).toBe('alpha beta gamma delta epsilon zeta review remediation pass changelog');
     expect(data.identityPhrase.split(' ')).toHaveLength(10);
+  });
+
+  it('renders frontmatter that parses and pastes every value literally', () => {
+    const rootSpec = makeTempProjectRoot();
+    writeFile(path.join(rootSpec, 'spec.md'), '# Feature Specification: The "Quiet" Session \\ Path');
+    writeFile(path.join(rootSpec, 'implementation-summary.md'), `# Implementation Summary
+
+## What Was Built
+
+The summary quotes $' and $& as a shell would, and {{FOLLOW_UP_LIST}} stays text.
+`);
+
+    const data = buildNestedChangelogData(rootSpec, { mode: 'auto', outputPath: null });
+    const markdown = generateNestedChangelogMarkdown(data);
+    const frontmatter = yaml.load(markdown.split('---')[1]) as Record<string, unknown>;
+
+    expect(frontmatter.title).toBe(data.title);
+    expect(frontmatter.description).toBe(data.description);
+    expect(markdown).toContain("The summary quotes $' and $& as a shell would, and {{FOLLOW_UP_LIST}} stays text.");
   });
 });

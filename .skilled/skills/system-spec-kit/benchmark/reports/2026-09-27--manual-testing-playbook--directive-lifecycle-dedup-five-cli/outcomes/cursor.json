@@ -1,0 +1,28 @@
+{
+  "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+  "runtime": "cursor",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "PASS",
+  "reason": "Steps 2 to 5 exit 0. The advisor lifecycle files pass 129 tests and the spec-kit adapter files pass 30 under shuffle seed 18018. The Pi dispatch suite passes 50 of 50, and the registered-adapter cadence script writes summary.json with passed true for claude, codex, cursor and devin.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "grok-4.7-high",
+  "evidence": [
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/reports/cursor-457.md",
+      "bytes": 2204,
+      "sha256": "bb097ef421534f6f32ffbebab94aea409c64a3d34e46d9e541d9fd2c16c0ec8a"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/runtime/cursor-registered-adapter/summary.json",
+      "bytes": 1201,
+      "sha256": "65a60b0846c72fa188118962bf24d9d5d3b80f842b0a9df6323a6f58e91d624a"
+    }
+  ],
+  "recordedAt": "2026-09-27",
+  "recordedBy": "orchestrator, by hand under MTP-005"
+}

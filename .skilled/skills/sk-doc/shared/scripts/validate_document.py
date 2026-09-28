@@ -142,6 +142,10 @@ FIXTURE_TREE_PATTERNS = [
     'sk-doc/scripts/tests/exclusions/',  # classification fixtures for the README audit
 ]
 
+# A spec packet or phase folder name: three digits, an optional letter, then a
+# dash. Such a name can end in "fixtures" and still be a packet, not a fixture tree.
+SPEC_FOLDER_SEGMENT = re.compile(r'^\d{3}[a-z]?-')
+
 # Runtime instruction files are the operating contract a coding agent loads at
 # startup, so every section in one loads into every session. They keep their
 # runtime's own template rather than a document type's required sections.
@@ -161,6 +165,7 @@ from naming_root_resolver import (  # type: ignore
     CATALOG_ROOT_NAMES as CATALOG_DIR_NAMES,
     assert_supported_root_path,
 )
+from validation_switch import exit_if_validation_off  # type: ignore
 
 
 def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
@@ -185,8 +190,11 @@ def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
     # Check fixture trees: any path segment ending in "fixtures" (mirrors
     # package_skill.py's naming exemption), plus known fixture trees that a test
     # suite names for a different reason than the literal segment "fixtures".
+    # A numbered segment such as `001-shared-mode-contracts-and-fixtures` names a
+    # spec packet or phase, and skipping it would hide that packet's documents.
     normalized = path_str.replace('\\', '/')
-    if any(part.endswith('fixtures') for part in normalized.split('/')):
+    if any(part.endswith('fixtures') and not SPEC_FOLDER_SEGMENT.match(part)
+           for part in normalized.split('/')):
         return True, "Fixture tree: holds the shapes it exercises"
     for pattern in FIXTURE_TREE_PATTERNS:
         if pattern in normalized:
@@ -242,14 +250,16 @@ def _detect_document_type_with_source(file_path: str, content: str, rules: Dict[
             return 'feature_catalog', 'rule'
     if '/command/' in path_lower or '\\command\\' in path_lower or '/commands/' in path_lower or '\\commands\\' in path_lower:
         return 'command', 'rule'
+    # Changelog files: under .skilled/changelog/, .skilled/skills/*/changelog/,
+    # or spec-folder nested changelog/ subdirectories. Files match v{VERSION}.md or changelog-*.md
+    # The folder decides before any word in the name does, so a packet changelog
+    # about install guides is still a changelog.
+    if '/changelog/' in path_lower or '\\changelog\\' in path_lower:
+        return 'changelog', 'rule'
     # An install guide is a document a skill owns next to its own SKILL.md, named
     # INSTALL-GUIDE.md. Classify it by that filename, the only thing that marks it.
     if 'install_guide' in Path(path_lower).stem or 'install-guide' in Path(path_lower).stem:
         return 'install_guide', 'rule'
-    # Changelog files: under .skilled/changelog/, .skilled/skills/*/changelog/,
-    # or spec-folder nested changelog/ subdirectories. Files match v{VERSION}.md or changelog-*.md
-    if '/changelog/' in path_lower or '\\changelog\\' in path_lower:
-        return 'changelog', 'rule'
     if path_lower.endswith('readme.md'):
         return 'readme', 'rule'
     if path_lower.endswith('skill.md'):
@@ -1715,6 +1725,9 @@ def main() -> None:
                         help='Validate even excluded paths (pytest_cache, node_modules, etc.)')
 
     args = parser.parse_args()
+    # --fix rewrites the document rather than judging it, so it keeps running.
+    if not args.fix:
+        exit_if_validation_off('validate_document.py')
 
     # Load rules
     script_dir = Path(__file__).resolve().parent
