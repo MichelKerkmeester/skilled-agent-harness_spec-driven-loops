@@ -1,5 +1,5 @@
 {
-  "corpusHash": "74ff7f0208e8408533b9db174ed9f218ccd0c3b26b7c0a0659ff79d143ab0138",
+  "corpusHash": "b35311e18542df915c2607e687a949bfdf3aed634d299759335000892d72b5b3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23097,
+  "includedPathCount": 23128,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -911,6 +911,7 @@
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.4.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-devin/changelog/v1.4.5.0.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/availability-probe.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/default-invocation.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/hallucination-fixture-fabricated-flag.md",
@@ -7843,6 +7844,8 @@
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks/skill-benchmark-report.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
     ".skilled/skills/system-spec-kit/changelog/v1+/v1.2.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2+/v2.0.0.0.md",
@@ -14038,6 +14041,34 @@
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/plan.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/spec.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/tasks.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/codex-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/codex-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/cursor-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/cursor-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/devin-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/devin-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/opencode-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/opencode-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/pi-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/pi-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/codex-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/cursor-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/devin-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/opencode-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/pi-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/cursor-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/cursor-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/devin-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/devin-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/opencode-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/opencode-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/pi-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/pi-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/goal.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/implementation-summary.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/plan.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/spec.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/tasks.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/bug_report.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/feature_request.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/pull_request_template.md",
@@ -23119,7 +23150,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8c6c7e3921c37bfcaa6e82bf885e80b726dd595c2a437cbff29a97b2bbe1078b",
+  "manifestHash": "d00ccb02f2c037cae6d4308a6cd17286bd0ba798da32cad9f291478c6fe13810",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25895,6 +25926,10 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
