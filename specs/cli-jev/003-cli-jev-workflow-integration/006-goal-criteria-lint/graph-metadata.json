@@ -39,21 +39,28 @@
       "labels"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
       "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl",
       ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-goal/README.md",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md",
+      ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md",
+      ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md",
       ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
-      ".skilled/hooks/goal/lib/goal-slice.cjs",
-      ".skilled/commands/create/assets/create-goal-auto.yaml"
+      ".hermes/skills/sk-create-goal/SKILL.md"
     ],
     "entities": [
       {
@@ -87,15 +94,39 @@
         "source": "derived"
       },
       {
-        "name": "check-goal.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "lint-goal-criteria.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lint-goal-criteria.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-goal-lint.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-goal-lint.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-criteria-labels.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl",
         "source": "derived"
       },
       {
@@ -105,21 +136,33 @@
         "source": "derived"
       },
       {
+        "name": "v1.3.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "lint-goal-criteria.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-criteria-lint.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md",
+        "source": "derived"
+      },
+      {
         "name": "feature-catalog.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "goal-slice.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/goal-slice.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "create-goal-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/create/assets/create-goal-auto.yaml",
         "source": "derived"
       },
       {
@@ -163,47 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "No machine check tests rules 4 and 5 of `sk-create-goal`",
     "created_at": "2026-09-27T04:39:32Z",
-    "last_save_at": "2026-09-28T09:21:42.831Z",
+    "last_save_at": "2026-09-28T23:19:27.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2825a549fee3f3f2a9cc439a0a8f366fcf282b77cf368195d4973e49d10c3c5",
+    "source_fingerprint": "sha256:f9976cb4a79b494145ebaf7c1d44fc67239855df51f17d960b98fdb66f29e4ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be94611d81a0d0936d01ab3cda2bc2d91cfb7f6045cc0ee4f9c2ffc7f92404a6",
-      "plan.md": "aa2f5c9eaebb86c71eb2cd5532d0f3dfa2eade614e4d2b274087dfe05d218a60",
-      "tasks.md": "8a3a38465d1a86794e2b2321cd19697f5794e636a4885b7ea16d1ffba3715f5a",
-      "implementation-summary.md": "5aa1d7d072ca544301eb1a71739c1d701cfd01b461ca1fe9fb2e51a60bce1fe7"
+      "spec.md": "403b5e6827d53edafd175681538602168d032dda2d0215f78e94796992a59228",
+      "plan.md": "ddb516d7e199736922b8558b6bf5328ea31f68286f0afa809935d1ef2e1bc82c",
+      "tasks.md": "1e9d96055ba54b88a1ab40287e670bc89322b12acdd0636ba369527f57834971",
+      "implementation-summary.md": "c40b2fafe8bf16774df59f8519cf2c670725988d002b308de419b4502e120e4b"
     },
     "last_active_at": null
   }

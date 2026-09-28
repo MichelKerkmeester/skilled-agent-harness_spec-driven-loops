@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Storage** | `goal-criteria-labels.jsonl` beside the scripts, with ids and hashes only. Lint JSON goes to a path the operator names |
 | **Testing** | `node --test` on `scripts/tests/`, runs with stub `jev` and `cli-deem` (proposed) binaries for zero calls, `git diff --quiet` and a before-and-after `check-goal.cjs --all` for the unchanged checker |
 | **Code standard** | sk-code's OpenCode route (`sk-code/sk-code-opencode`) for the scripts and tests. sk-doc for every skill doc the phase changes (parent D6) |
-| **Build route** | A fresh Opus 5.5 xhigh build orchestrator writes single-change briefs and runs CLI executors by Bash only: Devin `deepseek-v4-1-flash-max`, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` and Cursor `grok-4.7-xhigh-fast`. The orchestrator session verifies, gets a cross-family review of the code and commits (parent D5) |
+| **Build route** | A fresh Opus 5.5 xhigh build orchestrator writes single-change briefs and runs CLI executors by Bash only. The operator's roster of 2026-09-28 at about 20:30 set them: Devin `deepseek-v4-1-flash-max` and Pi on `llmgateway/mimo-v2.6-pro`, with Cursor retired. Pi on Cline and Cursor, first named here, did not run. The orchestrator session verifies, gets a cross-family review of the code and commits (parent D5) |
 
 ### Overview
 
@@ -47,10 +47,10 @@ The lint walks active `goal.md` files, cuts each durable slice with `goal-slice.
 - [x] The rubric is not a build prerequisite: the build runs under working default A, and the operator adopts one at the label gate (parent D4)
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks), and sk-create-goal's `SKILL.md`, `README.md`, `scripts/README.md`, changelog and playbook plus the hub catalog entry through sk-doc (parent D6)
-- [ ] The phase stops at its label gate: the rubric, the labels, the scored numbers, the stop decision, the arm and the workflow line stay with the operator (parent D4)
+- [x] All acceptance criteria met. Evidence: the goal's seven criteria are ticked, and the review found REQ-012 and REQ-013 not built, as the label gate requires (`goal.md`, session record)
+- [x] Tests passing (if applicable). Evidence: `node --test` on `scripts/tests/`, 40 of 40, exit 0, rerun by the session (`scratch/w3-build/build-evidence.md` section 4, session record)
+- [x] Docs updated (spec/plan/tasks), and sk-create-goal's `SKILL.md`, `README.md`, `scripts/README.md`, changelog and playbook plus the hub catalog entry through sk-doc (parent D6). Evidence: briefs 09 to 17, `validate_document.py` exit 0 on all eight, and the closure pass for this folder's docs
+- [x] The phase stops at its label gate: the rubric, the labels, the scored numbers, the stop decision, the arm and the workflow line stay with the operator (parent D4). Evidence: every label field is null on all 100 rows, the scorer prints no rate, no `--jev` or `--deem` exists and `create-goal-auto.yaml` is unchanged
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -88,7 +88,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ### First Slice, in Order
 
-1. Capture the checker baseline with `SKDOC_SKIP_VALIDATION` unset: the `RESULT` line and exit code of `check-goal.cjs --all`.
+1. Capture the checker baseline with `SKDOC_SKIP_VALIDATION` unset: the stdout, stderr and exit code of `check-goal.cjs --all`, which prints no `RESULT` line in corpus mode.
 2. Write the parser copy, the two rule functions, the walker and the report, then the seven test cases. The rules follow working default A.
 3. Run the lint over the tree and read the counts, the scratch count and the `lexical_unscored` count.
 4. Draw about 100 stratified lines with a recorded seed, and write their ids and hashes to the labels file with every label field null.
@@ -113,8 +113,8 @@ Commands run from the repository root, with `G=.skilled/skills/sk-doc/sk-create-
 
 | Check | Command | Expected output |
 |-------|---------|-----------------|
-| Checker baseline, before the build | `env -u SKDOC_SKIP_VALIDATION node $G/check-goal.cjs --all; echo "exit=$?"` | A `RESULT` line and an exit code, recorded in `implementation-summary.md`. A skip notice instead means the switch is on in `.skilled/hooks/hook-flags.env` and the baseline is void |
-| Checker unchanged, after the build | `git diff --quiet -- $G/check-goal.cjs; echo "exit=$?"`, then the baseline command again | `exit=0`, then the same `RESULT` line and exit code as the baseline |
+| Checker baseline, before the build | `env -u SKDOC_SKIP_VALIDATION node $G/check-goal.cjs --all; echo "exit=$?"` | The stdout, stderr and exit code, recorded in `implementation-summary.md`. Corpus mode prints no `RESULT` line and exits 2 whenever its error list is not empty. A skip notice instead means the switch is on in `.skilled/hooks/hook-flags.env` and the baseline is void |
+| Checker unchanged, after the build | `git diff --quiet -- $G/check-goal.cjs; echo "exit=$?"`, then the baseline command again | `exit=0`, then the same stdout, stderr and exit code as the baseline |
 | Tests | `node --test $G/tests/` | Every test passes, including the seven `lint-goal-criteria.test.cjs` cases, the parser-parity assertion and the `score-goal-lint.test.cjs` cases on synthetic fixture labels |
 | Lint over the tree | `node $G/lint-goal-criteria.cjs --all; echo "exit=$?"` | Per-rule counts, `scratch_excluded=` with a count (30 files on 2026-09-28), the `no_input`, `placeholder` and `lexical_unscored` counts and `exit=0` |
 | Lint on a missing packet | `node $G/lint-goal-criteria.cjs specs/no-such-packet; echo "exit=$?"` | One named error line and `exit=0` |
