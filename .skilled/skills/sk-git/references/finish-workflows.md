@@ -718,7 +718,7 @@ Agent: "I'm using the git-commit skill to commit, then creating the release."
 
 [Commit and Push]
 > git add -A
-> git commit -m "release(v2.1.0.0): add OAuth2 authentication + API rate limiting"
+> git commit -m "release(v2.1.0.0): add OAuth2 authentication + API rate limiting" -m "Cuts the release that ships sign-in and per-client rate limits."
 > git push origin main
 
 [Create Changelog]
@@ -954,7 +954,7 @@ git worktree list | grep locked
 cd <worktree-path> && git stash
 
 # Or commit them
-git add . && git commit -m "Save work before cleanup"
+git add . && git commit -m "Save work before cleanup" -m "Keeps the unfinished changes before the worktree is removed."
 
 # Then remove
 git worktree remove <path>

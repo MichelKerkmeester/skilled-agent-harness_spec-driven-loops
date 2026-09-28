@@ -102,15 +102,12 @@ git add <specific-files>
 # View staged changes
 git diff --cached
 
-# Commit with Conventional Commits
-git commit -m "type(scope): description"
-
-# Commit with body
-git commit -m "Subject" -m "Body explaining why"
+# Commit with Conventional Commits: every authored commit carries a body
+git commit -m "type(scope): description" -m "Body explaining why"
 
 # Commit packet work: the hook stamps Spec: and Commit-Id:
 SPECKIT_COMMIT_SPEC=sk-git/028-crawlable-commit-history/003-contract-and-hook \
-  git commit -m "type(scope): description"
+  git commit -m "type(scope): description" -m "Body explaining why"
 ```
 
 ### Find commits
@@ -141,7 +138,7 @@ git log --format='%(trailers:key=Commit-Id,valueonly)'
 ```
 <type>(<scope>): <description>
 
-[optional body]
+<body: why the change exists, required on every authored commit>
 
 [optional footer]
 ```
@@ -223,7 +220,7 @@ cd .worktrees/<NNN>-fix
 
 # 3. Commit
 git add <files>
-git commit -m "fix(scope): description"
+git commit -m "fix(scope): description" -m "Body explaining why"
 
 # 4. Test
 npm test
@@ -248,7 +245,7 @@ cd .worktrees/<NNN>-name
 
 # 3. Commit
 git add <files>
-git commit -m "feat(scope): description"
+git commit -m "feat(scope): description" -m "Body explaining why"
 
 # 4. Test
 npm test
@@ -274,7 +271,7 @@ cd .worktrees/<NNN>-detached-exp
 # 3a. Keep: Create a new named worktree and branch through the allocator
 bash .skilled/skills/sk-git/scripts/worktree-naming.sh create name HEAD
 cd ../<NNN>-name
-git add . && git commit -m "feat(scope): experimental approach"
+git add . && git commit -m "feat(scope): experimental approach" -m "Body explaining why"
 
 # 3b. Discard: Remove worktree
 cd ../.. && git worktree remove .worktrees/<NNN>-detached-exp
@@ -313,7 +310,7 @@ git worktree prune                     # Clean stale refs
 git status --short                     # Concise status
 git add <files>                        # Stage specific
 git diff --cached                      # View staged
-git commit -m "msg"                    # Commit
+git commit -m "msg" -m "why"           # Commit (body required)
 git reset HEAD <file>                  # Unstage
 ```
 

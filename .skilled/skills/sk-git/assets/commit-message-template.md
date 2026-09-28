@@ -61,7 +61,8 @@ Structural rules are enforced by
 6. Remove packet numbers, phase names, task counts, model names, and review
    claims from the subject.
 7. Add the observable effect when the object remains ambiguous.
-8. Add a body when four or more paths are staged or the reason is non-obvious.
+8. Add a prose body that says why, on every authored commit. Trailers do not
+   count as a body, and a one-path change still needs one.
 9. Run the self-check before invoking `git commit`.
 
 ---
@@ -159,7 +160,7 @@ actually gets committed here, not generic auth/API scaffolding.
 - [ ] Summary says what changed, not how the work was organized.
 - [ ] Summary is not vague or dependent on internal jargon.
 - [ ] Subject is at most 100 characters.
-- [ ] A substantial or non-obvious change has a useful body.
+- [ ] The message has a prose body that says why, whatever the path count.
 - [ ] Verification claims name the command or observed evidence.
 - [ ] Breaking changes include `!` and `BREAKING CHANGE:`.
 - [ ] Message remains understandable without the linked spec or issue.

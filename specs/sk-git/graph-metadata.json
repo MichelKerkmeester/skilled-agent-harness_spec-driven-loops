@@ -13,7 +13,8 @@
     "sk-git/026-worktree-hygiene-and-relocation",
     "sk-git/027-remote-push-approval",
     "sk-git/028-crawlable-commit-history",
-    "sk-git/029-worktree-dependency-provisioning"
+    "sk-git/029-worktree-dependency-provisioning",
+    "sk-git/030-commit-body-always-required"
   ],
   "manual": {
     "depends_on": [],
