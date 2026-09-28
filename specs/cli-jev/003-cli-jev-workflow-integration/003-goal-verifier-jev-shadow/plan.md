@@ -52,10 +52,10 @@ Slice 0 counts what Pi already records. Every Pi turn that is not `met` sends a 
 ### Definition of Done
 
 At the label gate, which closes this phase (parent D4):
-- [ ] The census prints its method line and totals and no message text
-- [ ] The builder has written the unlabeled rows, no model has written a label and the scorer's tests pass on a synthetic fixture
-- [ ] The goal hooks READMEs list the new files (parent D6)
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` passes on this phase
+- [x] The census prints its method line and totals and no message text. Evidence: the run on `~/.pi/agent/sessions` exited 0 with 43 lines in the three fixed shapes and 0 message-text markers (`scratch/w3-build/build-evidence.md` section 3)
+- [x] The builder has written the unlabeled rows, no model has written a label and the scorer's tests pass on a synthetic fixture. Evidence: 50 Pi rows with `label` empty on all 50, and the scorer test 12 of 12 inside the goal hooks suite's 166 of 166 (build record sections 4 and 6, session record)
+- [x] The goal hooks READMEs list the new files (parent D6). Evidence: briefs 08 and 09, `validate_document.py` `VALID` with 0 issues on each
+- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` passes on this phase. Evidence: the closure pass, `implementation-summary.md` Verification
 
 After the operator labels, outside this phase's completion:
 - [ ] The zero-call report prints three arms and a stop line or a gate line. Past the gate, the model arm's report states keep or drop against REQ-006 for its backend
@@ -74,7 +74,7 @@ Count what is recorded, then an offline comparison on identical rows with zero c
 ### Key Components
 
 - **Pi census** (`count-pi-goal-nudges.mjs`): reads the session files in the directory it is given, `~/.pi/agent/sessions` for this phase's run (parent D4), keeps a closed whitelist of record types and exits non-zero with a named error on any other. It counts records whose `customType` is `goal-verify-nudge` and parses the verdict and the reason from the fixed content line. It maps each reason to one of five categories: too short, blocking language, truncated, no completion signal and weak link to the objective. The first output line states the unit, the files scanned and the date window with the timestamp field it reads. Output holds file names, counts, categories and dates, never message text.
-- **Fixture builder** (`build-verifier-fixture.cjs`): writes rows of `{id, source, objective, raw_text, ingested_text, raw_length, heuristic_recorded, label}`. The as-ingested form is clamped as `opencode-goal.js:1107` does. Claude rows pair each native `goal_status` record with the last assistant text before it in the same transcript and carry its `met` as the pre-label. Pi rows carry the recorded nudge verdict as `heuristic_recorded`, with `label` left empty for the operator, and no model fills it (parent D4). It reads Pi sessions in `~/.pi/agent/sessions` and a Claude transcript directory the operator names, and writes to the path it is given. At the label gate the orchestrator runs it once, writes `.skilled/hooks/goal/lib/verifier-labeled-set.jsonl` and leaves that file uncommitted.
+- **Fixture builder** (`build-verifier-fixture.cjs`): writes rows of `{id, source, objective, raw_text, ingested_text, raw_length, heuristic_recorded, recorded_reason, prelabel, label}`. As built, `ingested_text` is goal-core's `redactEvidence` of the raw text, and the heuristic arm's write through the plugin applies the 1,200-character clamp. goal-core's redaction lacks the plugin's AIza, xox, AKIA and 48-character rules, so it is not the plugin's exact as-ingested form (review P2, recorded). Claude rows pair each native `goal_status` record with the last assistant text before it in the same transcript and carry its `met` in `prelabel`, never in `label`. Pi rows carry the recorded nudge verdict as `heuristic_recorded`, with `label` left empty for the operator, and no model fills it (parent D4). It reads Pi sessions in `~/.pi/agent/sessions` and a Claude transcript directory the operator names, and writes to the path it is given. At the label gate the orchestrator runs it once, writes `.skilled/hooks/goal/lib/verifier-labeled-set.jsonl` and leaves that file uncommitted.
 - **Heuristic arm**: per row, `__test.writeGoalAtomic` in a `mkdtemp` state directory, then `__test.maybeVerifyGoal` with `OPENCODE_GOAL_VERIFIER` unset, on the as-ingested form. This is the helper pattern at `opencode-goal-supervisor.test.cjs:34-44`. The verdict and reason come back from the plugin itself, so the arm measures the real heuristic and not a copy, and no export is added.
 - **Tail-window arm**: the same checks on the raw last 1,200 characters with no appended marker. It shows what the heuristic would say if the clamp kept the tail instead of marking a cut.
 - **Parity arm**: goal-core's `verifyGoalHeuristic` on the raw text. Its `not-met` maps to `not_met`, and its `unclear` keeps its own row and folds into `not_met` only in the two-class table. goal-core returns `not-met` only for blocking language (`:603-604`), which gives an independent check on the wrapper rule.
@@ -97,14 +97,14 @@ The census reads Pi session files and prints counts. Separately, the fixture bui
 ### Invocation
 
 ```text
-node .skilled/hooks/goal/lib/count-pi-goal-nudges.mjs --dir ~/.pi/agent/sessions [--from <date> --to <date>]
-node .skilled/hooks/goal/lib/build-verifier-fixture.cjs [--claude <transcript-dir>] --pi ~/.pi/agent/sessions --out .skilled/hooks/goal/lib/verifier-labeled-set.jsonl
-node .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs --set <labeled.jsonl> --out <report-dir>
+node .skilled/hooks/goal/lib/count-pi-goal-nudges.mjs --dir ~/.pi/agent/sessions
+node .skilled/hooks/goal/lib/build-verifier-fixture.cjs [--claude <transcript-dir>] --pi ~/.pi/agent/sessions --out .skilled/hooks/goal/lib/verifier-labeled-set.jsonl [--limit <n>]
+node --preserve-symlinks .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs --set <labeled.jsonl> [--out <report-dir>]
 node .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs --set <labeled.jsonl> --out <report-dir> --jev
 node .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs --set <labeled.jsonl> --out <report-dir> --deem
 ```
 
-The flags and paths are proposed and fixed at build time. The key is read by `jev` from its own store or from the provider's environment variable. It never appears in any command. `cli-deem` takes no key.
+The first three commands are as built. The census has no `--from` or `--to` window and reads every date. The builder's `--limit` defaults to 50. The scorer needs `--preserve-symlinks` where `.opencode/node_modules` is absent, as in this worktree, and without it exits 2 with a named error. The `--jev` and `--deem` lines stay proposed for the work past the label gate, and at the gate both flags exit 2 as unknown. The key is read by `jev` from its own store or from the provider's environment variable. It never appears in any command. `cli-deem` takes no key.
 <!-- /ANCHOR:architecture -->
 
 
@@ -115,7 +115,7 @@ The flags and paths are proposed and fixed at build time. The key is read by `je
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-**Who builds (parent D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief at a time and runs the CLI executors by Bash only: Devin `deepseek-v4-1-flash-max`, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` (probe passed 2026-09-28) and Cursor `grok-4.7-xhigh-fast`. The build orchestrator runs the census and the builder itself, because their output is evidence. The orchestrator session verifies each change, gets a cross-family review of the code and commits path-scoped on the worktree branch, leaving the fixture uncommitted.
+**Who builds (parent D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief at a time and runs the CLI executors by Bash only. The operator's roster amendment of 2026-09-28 20:30 set them before the build: Devin `deepseek-v4-1-flash-max` and Pi on `llmgateway/mimo-v2.6-pro` at `--thinking high`, with Cursor retired. It replaced the roster first written here, Pi on Cline and Cursor `grok-4.7-xhigh-fast`. The build orchestrator runs the census and the builder itself, because their output is evidence. The orchestrator session verifies each change, gets a cross-family review of the code and commits path-scoped on the worktree branch, leaving the fixture uncommitted.
 
 Order by slice:
 
