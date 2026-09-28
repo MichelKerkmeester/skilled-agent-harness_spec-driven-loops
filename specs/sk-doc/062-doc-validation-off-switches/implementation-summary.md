@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/062-doc-validation-off-switches"
-    last_updated_at: "2026-09-28T08:20:00Z"
+    last_updated_at: "2026-09-28T09:10:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Verified both switches, the commit trap fix and the suites"
+    recent_action: "Made the example flags lines work once uncommented"
     next_safe_action: "None, the packet is complete"
     blockers: []
     key_files:
@@ -128,4 +128,5 @@ Every consumer of the `validate.sh` JSON and every caller of the sk-doc validato
 1. **A saved switch also silences validators in local test runs.** The suites expect validators to run. Unset both switches, or point `HOOK_FLAGS_CONFIG` at an empty file, before running them. The notice names where the switch was set.
 2. **A skip is no evidence.** A skipped `validate.sh` exits 0, so it cannot back a completion claim. The env reference says so.
 3. **Dead doc-model bypass mentions remain.** `SPECKIT_SKIP_DOC_MODEL_VALIDATE` is still named in the git hook installer, its README and one test, though nothing reads it. That is a follow-up outside this packet.
+4. **A trailing comment breaks a saved switch.** The flag parsers keep any text after a value, so `SKDOC_SKIP_VALIDATION=1  # note` stays off. The example keeps the two validation comments on their own lines, and a test proves both lines work once uncommented. The hook lines above them still carry trailing comments, so uncommenting one of those disables nothing. Stripping trailing comments in all five parsers would fix that, and it is a follow-up outside this packet.
 <!-- /ANCHOR:limitations -->

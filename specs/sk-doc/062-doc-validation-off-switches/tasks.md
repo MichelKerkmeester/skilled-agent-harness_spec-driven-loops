@@ -64,6 +64,7 @@ contextType: "implementation"
 - [x] T014 Suites: the hooks resolver, the spec-kit cli and root projects, and the sk-doc script runner (evidence: hooks 16 of 16, cli project 156 files and 1561 tests with 19 skipped, root project 107 files and 1281 tests with 13 skipped as in the baseline, sk-doc runner 26 files. The rename fixture test passed in a private full clone of `4f4d25288c` plus this work, since in the shared checkout it trips on other sessions' concurrent writes)
 - [x] T015 Docs pass `validate_document.py` and `hvr_scan.py`, and frontmatter versions are applied (evidence: 9 edited docs are valid, the one warning in `ENV-REFERENCE.md` is also there at HEAD, HVR findings are the same as HEAD's on all 9, and the 5 versioned docs carry the value `frontmatter-version.mjs apply` computed. The enforced `gate` reports ok=2951 with 9 docs skipped for having no frontmatter)
 - [x] T016 Packet passes `validate.sh --strict`, and the scoped diff holds only this packet's paths (evidence: `RESULT: PASSED` with 0 errors and 0 warnings after `repair-derived.cjs --apply` re-derived the graph metadata. Each commit's `git diff --cached --name-status` listed only this work's paths)
+- [x] T017 Keep the example's validation comments on their own lines, so a line uncommented as the docs say turns its switch on (`.skilled/hooks/hook-flags.env.example`, `sk-doc/scripts/tests/test_validation_switch.py`) (evidence: the new test failed on the old example, whose trailing comments left both switches off, and passes now, 8 of 8)
 <!-- /ANCHOR:phase-3 -->
 
 ---
