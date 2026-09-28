@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7293,
+    "missing-frontmatter": 7294,
     "non-yaml-frontmatter": 2,
-    "ok": 12330,
+    "ok": 12332,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23311,
+  "documentsScanned": 23314,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "83e80fa6cb921f349d5ed05dd3485bf1d4eaf0df4bc36fa2bc2862b6ba3335de",
+  "manifestHash": "fdebd12ad1be6133cd344556b5bcdc81ce8736127474d99919f70150342ca67f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32078,
+      "ok": 32084,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -33735,6 +33735,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/skill-graph-validate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

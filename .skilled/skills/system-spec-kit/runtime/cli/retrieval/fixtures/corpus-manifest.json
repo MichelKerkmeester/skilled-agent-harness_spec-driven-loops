@@ -1,5 +1,5 @@
 {
-  "corpusHash": "301679e8b1aef65e6ecce50c97d1236cf87c3cb18965fd4f4b1a4bf94b2b1cfd",
+  "corpusHash": "90403bda50da99c26a14446b8fa38eb73cb9a56ca2507590ab71b079c8c40b5a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23311,
+  "includedPathCount": 23314,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7548,6 +7548,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.10.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.11.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.11.1.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.md",
@@ -7598,6 +7599,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/attribution.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/five-lane-fusion.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/projection.md",
+    ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md",
     ".skilled/skills/system-skill-advisor/hooks/claude/README.md",
     ".skilled/skills/system-skill-advisor/hooks/lib/README.md",
@@ -7652,6 +7654,7 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/five-lane-fusion.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/projection.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md",
     ".skilled/skills/system-skill-advisor/references/config/db-path-policy.md",
     ".skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md",
     ".skilled/skills/system-skill-advisor/references/graph/propagate-enhances.md",
@@ -23341,7 +23344,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "83e80fa6cb921f349d5ed05dd3485bf1d4eaf0df4bc36fa2bc2862b6ba3335de",
+  "manifestHash": "fdebd12ad1be6133cd344556b5bcdc81ce8736127474d99919f70150342ca67f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
