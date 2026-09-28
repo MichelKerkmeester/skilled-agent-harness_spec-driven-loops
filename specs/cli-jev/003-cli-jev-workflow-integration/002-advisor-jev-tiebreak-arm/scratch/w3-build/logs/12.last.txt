@@ -1,0 +1,12 @@
+The packet goal is set. The Deem choice arm now runs after a passing health gate, and the stub tests cover rotation, refusal, a changed commit, and a dead server.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+158/-1)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+104/-0)
+EDITS: score-jev-tiebreak.mjs:26 added DEEM_MAX_KEYS and DEEM_P50_MS
+score-jev-tiebreak.mjs:860 added runDeemArm: cost line, exit-4 health recheck, choice rotations, call records, column and verdict
+score-jev-tiebreak.mjs:1199 main awaits runDeemArm after a passing Deem gate
+score-jev-tiebreak.vitest.ts:670 added the deem-arm tests against a stub cli-deem
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> no output (exit 0)
+BLOCKED REASON: none

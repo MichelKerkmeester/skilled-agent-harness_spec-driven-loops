@@ -1,0 +1,15 @@
+`columnLines` and `verdictLine` now format a `summarizeColumn` summary for stdout, and the keep and four-outcome cases assert those lines.
+
+SKILL ROUTING: sk-code → sk-code-opencode (JavaScript implement). ARTIFACT: sk-code → javascript quality standards.
+REPO RULES: prevent-overengineering.md
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+34/-0)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+14/-0)
+EDITS: score-jev-tiebreak.mjs:571 added columnLines and verdictLine after summarizeColumn
+score-jev-tiebreak.vitest.ts:30 imported columnLines and verdictLine
+score-jev-tiebreak.vitest.ts:470 four-outcome case expects verdictLine(summary, '') starts with underpowered and ends with p_win=0.7500 p_loss=0.7500 flip=0.1667
+score-jev-tiebreak.vitest.ts:493 keep case expects the deem verdict line plus columnLines [0] and [4]
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> exit:0 (exit 0)
+BLOCKED REASON: none

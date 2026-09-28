@@ -29,6 +29,7 @@ Current state:
 ```text
 parity/
 +-- python-ts-parity.vitest.ts  # Python to TypeScript scorer parity gates
++-- score-jev-tiebreak.vitest.ts  # Offline tie-break eval checks with stub binaries and a fake Deem server
 `-- README.md
 ```
 
@@ -39,6 +40,7 @@ parity/
 | File | Responsibility |
 |---|---|
 | `python-ts-parity.vitest.ts` | Runs corpus parity checks, holdout accuracy checks and lexical ablation assertions. |
+| `score-jev-tiebreak.vitest.ts` | Pins the tie-break eval's census, keep rule, gates, exit handling, calibration and report with stub `jev` and `cli-deem` binaries and a fake Deem server. It makes no model call. |
 
 ---
 

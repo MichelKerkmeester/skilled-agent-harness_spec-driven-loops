@@ -1,0 +1,17 @@
+I'll read the target file first, plus the sk-code skill the brief names.The file matches the brief exactly — six `47` literals on lines 45, 50, 51, 53, 54, 55; line 52's 24-scenario guard stays. Before the first write, let me run the gate lookups the root AGENTS.md mandates (trigger index) and the sk-code hub's compiled router.Compiled route resolves to the `sk-code-opencode` surface (evidence-base). Loading that packet's contract before editing.Route resolved to the OPENCODE surface, TypeScript slice. The edit is a six-literal count change with no new code or comments — I'll apply it now as a single exact replacement spanning the affected lines, keeping the line-52 guard untouched.Edit applied — the diff matches the brief exactly. Now running the acceptance greps plus a read-only scoped diff check to confirm only these six lines changed.All acceptance criteria met: `47` count is 0, `48` count is 6, the scoped diff shows exactly the six intended lines (line 52's guard untouched), and only the one named file is modified in my scope.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts (+6/-6)
+EDITS:
+- .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:45 it() title: "live 47-scenario corpus" -> "live 48-scenario corpus"
+- .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:50 toContain '47 deterministic scenario files across 9 categories' -> '48 ...'
+- .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:51 toContain 'all 47 scenario files are `PASS`' -> 'all 48 scenario files are `PASS`'
+- .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:53 expect(rows).toHaveLength(47) -> toHaveLength(48)
+- .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:54 unique-id set size .toBe(47) -> .toBe(48)
+- .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:55 expect(files).toHaveLength(47) -> toHaveLength(48)
+CHECKS:
+- grep -c "47" .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts -> 0 (exit 1, zero matches as expected)
+- grep -c "48" .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts -> 6 (exit 0)
+- git diff -- .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts -> exactly 6 +/- line pairs, line 52 24-scenario guard unchanged (exit 0)
+- git status --porcelain -- .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts -> " M .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts" (exit 0)
+BLOCKED REASON: none

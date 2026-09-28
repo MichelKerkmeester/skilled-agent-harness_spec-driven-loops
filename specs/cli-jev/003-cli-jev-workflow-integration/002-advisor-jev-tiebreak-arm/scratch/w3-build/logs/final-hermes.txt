@@ -1,0 +1,1 @@
+PASS: 73 Hermes skill copies in sync

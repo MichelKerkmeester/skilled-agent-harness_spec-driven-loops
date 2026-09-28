@@ -1,0 +1,30 @@
+TASK: record every spawn and count every wall time. When jev exits 4, runJevArm retries once but writes only the retry to calls.jsonl, and the first attempt's wall time never reaches p50/p95. The Deem arm records both spawns but also drops the first attempt's wall time from latency. Fix both. Tests pin it.
+R = .skilled/skills/system-skill-advisor/runtime. Files: R/scripts/routing-accuracy/score-jev-tiebreak.mjs and R/tests/parity/score-jev-tiebreak.vitest.ts. Read summarizeColumn, runJevArm (call, record, the auth test, the choice loop, the calibration loop) and runDeemArm's deemCall and choice loop first.
+
+In the script:
+1. summarizeColumn. Old: `    for (const record of records) wallTimes.push(record.wallMs);`
+   New:
+    for (const record of records) {
+      wallTimes.push(record.wallMs);
+      if (typeof record.retryWallMs === 'number') wallTimes.push(record.retryWallMs);
+    }
+   Add `retryWallMs?: number|null` to the recordsByRow element type in its JSDoc.
+2. runJevArm: give call a third parameter `fields` ({ kind, row_id, pass }). When the first spawn exits 4, first run `record(result, { ...fields, answer: null, pick_prob: null, none_prob: null, status: 'unmeasured' })`, keep `const firstWallMs = result.wallMs`, wait the backoff, retry, then set `result.retryWallMs = firstWallMs` on the retry's result. Without a retry set `result.retryWallMs = null`. The three callers pass: auth test `{ kind: 'auth_test', row_id: null, pass: null }`; choice `{ kind: 'choice', row_id: row.id, pass }`; noul `{ kind: 'noul', row_id: label.id, pass }`. Each caller still records the final result as now.
+   Choice loop: `records[row.id].push({ answer, wallMs: result.wallMs })` becomes `records[row.id].push({ answer, wallMs: result.wallMs, retryWallMs: result.retryWallMs })`.
+   Calibration loop: after `wallTimes.push(result.wallMs);` add `if (result.retryWallMs !== null) wallTimes.push(result.retryWallMs);`.
+3. runDeemArm deemCall: in the exit-4 branch, before the retry spawn keep `const firstWallMs = r.wallMs;`, and after the retry spawn set `r.retryWallMs = firstWallMs;` (before its persist). The choice loop push becomes `records[row.id].push({ answer: fields.answer, wallMs: outcome.r.wallMs, retryWallMs: outcome.r.retryWallMs ?? null });`.
+
+In the vitest file:
+1. describe('score-jev-tiebreak jev arm'), it('records retries, failures, timeouts, and measured picks'): row r0's prompt makes every spawn exit 4, so its 3 passes now write 6 lines. Old: `    expect(byRow('r0')).toHaveLength(3);` New: `    expect(byRow('r0')).toHaveLength(6);`. Directly after `    expect(choiceLines).toHaveLength(21);` add `    expect(choice).toHaveLength(choiceLines.length);`.
+2. describe('score-jev-tiebreak column and keep rule'), add at its end:
+  it('counts a retried attempt in latency', () => {
+    const rows = [mk('t1', 'b', ['a', 'b'], ['a', 'b'])];
+    const records = { t1: [{ answer: 'b', wallMs: 10, retryWallMs: 1000 }, { answer: 'b', wallMs: 10 }, { answer: 'b', wallMs: 10 }] };
+    const column = summarizeColumn('jev', rows, records, { ...synthCensus(), rows });
+    expect(column.latency.p50).toBe(10);
+    expect(column.latency.p95).toBe(1000);
+  });
+
+VERIFY (repo root): node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs
+Accept when: 2 files changed and nothing else; node --check exits 0.
+

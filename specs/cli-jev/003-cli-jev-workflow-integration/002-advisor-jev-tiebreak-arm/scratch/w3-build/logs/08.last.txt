@@ -1,0 +1,13 @@
+`summarizeColumn` scores one backend column and applies the keep rule. The four cases match the brief: underpowered, keep, inconclusive, and kill.
+
+SKILL ROUTING: sk-code → sk-code-opencode (JavaScript and TypeScript)
+REPO RULES: no extra rule file; the edit stays inside the two named files
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+153/-0)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+103/-0)
+EDITS: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:418 exported summarizeColumn after summarizeCensus
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:29 imported summarizeColumn
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:411 added the column and keep-rule cases
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> no output (exit 0)
+BLOCKED REASON: none

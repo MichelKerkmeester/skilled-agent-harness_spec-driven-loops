@@ -1,0 +1,16 @@
+STATUS: DONE
+
+FILES CHANGED:
+- .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md (+3/-2)
+
+EDITS:
+- feature-catalog.md:22 feature count changed 43 → 44
+- feature-catalog.md:31 scorer-fusion group count 6 → 7, appended "offline tie-break eval" to scope
+- feature-catalog.md:101 added "Offline Jev and Deem tie-break eval" row after Lane weights configuration in section 5
+
+CHECKS:
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md -> ✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md / Total issues: 1 (warning: document_type_fallback) (exit 0)
+- grep -c "tie-break eval" .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md -> 2 (exit 0)
+- git status --porcelain -- <file> -> M .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md (only the named file touched)
+
+BLOCKED REASON: none

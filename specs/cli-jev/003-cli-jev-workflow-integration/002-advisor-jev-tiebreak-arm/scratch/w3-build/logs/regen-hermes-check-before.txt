@@ -1,0 +1,2 @@
+DRIFT system-skill-advisor
+FAIL: 1 drifted, 0 stale; run without --check to regenerate

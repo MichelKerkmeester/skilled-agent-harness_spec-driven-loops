@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-skill-advisor/SKILL.md
+Document type: skill
+Total issues: 0

@@ -1,0 +1,42 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime
+
+Unknown option '--bogus'
+ ❯ tests/parity/score-jev-tiebreak.vitest.ts (38 tests | 1 failed) 43573ms
+     × prints the health line when the pinned torch backend answers 5971ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/parity/score-jev-tiebreak.vitest.ts > score-jev-tiebreak deem gate > prints the health line when the pinned torch backend answers
+AssertionError: expected [ …(8) ] to deeply equal [ Array(1) ]
+
+- Expected
++ Received
+
+  [
+    "deem: health backend=torch model=deem-0.8-v1 model_commit=m1 source_commit=s1",
++   "deem: nothing leaves the machine planned_calls=528 est_wall_s=34.6 unmeasured_over25=0",
++   "column: backend=deem rows=111 measured=0 wins=0 losses=0 ties=0 abstentions=0 unmeasured=111 unstable=0",
++   "column: backend=deem movable_wins=0 gold_demotions=0 none_on_gold_in_cluster=0 p_win=1.0000 p_loss=1.0000 flip=0.0000",
++   "column: backend=deem tau03_inside_wins=0 tau03_inside_losses=0 tau03_outside_wins=0 tau03_outside_losses=0",
++   "column: backend=deem mrr=0.0000 right1=0 right3=0 scorer_mrr=0.0000 confidence_mrr=0.0000 always_second_mrr=0.0000 heldout_mrr=0.0000 rerank_mrr=0.0000",
++   "column: backend=deem latency_p50_ms=10 latency_p95_ms=13",
++   "verdict: underpowered backend=deem decided=0 wins=0 losses=0 p_win=1.0000 p_loss=1.0000 flip=0.0000 model=deem-0.8-v1 model_commit=m1 source_commit=s1",
+  ]
+
+ ❯ tests/parity/score-jev-tiebreak.vitest.ts:405:85
+    403|       const stdout = result.stdout ?? '';
+    404|       expect(stdout.startsWith(prefix)).toBe(true);
+    405|       expect(stdout.slice(prefix.length).split('\n').filter((line) => …
+       |                                                                                     ^
+    406|         'deem: health backend=torch model=deem-0.8-v1 model_commit=m1 …
+    407|       ]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 37 passed (38)
+   Start at  15:03:10
+   Duration  43.92s (transform 467ms, setup 39ms, import 60ms, tests 43.57s, environment 0ms)
+

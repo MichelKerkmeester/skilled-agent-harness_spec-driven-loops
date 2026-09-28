@@ -1,0 +1,13 @@
+TASK: create the skill's new changelog entry, whose full literal text the orchestrator already wrote to sk-doc's changelog template (compact format).
+Source (read only, do not edit): specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/content/changelog-v0.13.0.0.md
+Target (create): .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md
+
+Step: make the target byte-identical to the source, for example with
+  cp specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/content/changelog-v0.13.0.0.md .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md
+Do not reword, reflow or reformat anything. Change no other file.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/content/changelog-v0.13.0.0.md .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md
+Accept when: 1 file created and nothing else changed; cmp prints nothing and exits 0; validate_document exits 0.
+

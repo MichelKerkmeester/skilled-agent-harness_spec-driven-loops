@@ -1,0 +1,10 @@
+SKILL ROUTING: User directed → sk-doc (orchestrator-supplied text applied byte-for-byte per the dispatched brief, per the markdown persona)
+REPO RULES: evidence-and-proof.md, communication.md, communication-handoff.md, uncertainty-and-honesty.md
+
+Both checks pass from the final state; the scoped diff is exactly the two named edits.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md (+2/-1)
+EDITS: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:29 Code files 2 → 3; .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:69-70 inserted score-jev-tiebreak.mjs row between the two existing structure rows (3 lines replaced, 4 added per edit tool)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md -> ✅ VALID: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md / Document type: readme / Total issues: 0 (exit 0); grep -c "score-jev-tiebreak.mjs" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md -> 1 (exit 0); git diff --numstat -- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md -> 2 1 .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md (exit 0)
+BLOCKED REASON: none

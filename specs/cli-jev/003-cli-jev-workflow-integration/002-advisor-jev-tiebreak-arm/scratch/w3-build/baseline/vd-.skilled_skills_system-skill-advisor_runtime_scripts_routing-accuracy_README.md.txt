@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+Document type: readme
+Total issues: 0

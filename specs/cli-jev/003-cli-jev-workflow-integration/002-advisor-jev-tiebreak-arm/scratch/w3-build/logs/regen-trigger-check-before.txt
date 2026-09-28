@@ -1,0 +1,13 @@
+trigger index is STALE or the corpus is untrusted
+  index             : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+  documents scanned : 23316
+  stale documents   : 3 (2 missing from the index)
+  obsolete paths    : 0
+  untrusted docs    : 0
+  duration ms       : 24395.6
+  examples (3 of 3):
+    stale     .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md (added: near tie cluster eval, offline tie break eval, system skill advisor 0 13 0 0, system skill advisor v0 13 0 0; removed: none)
+    stale     .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md (added: near tie cluster eval, offline jev and deem tie break eval, score jev tiebreak, tie break eval; removed: none)
+    stale     specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/implementation-summary.md (added: cli deem build result; removed: cli deem planned)
+  note: manifest hash differs (index 83e80fa6cb921f349d5ed05dd3485bf1d4eaf0df4bc36fa2bc2862b6ba3335de, corpus d3202b318bdcc32c2f1102ef37717132c6357ccb923da40fda4e4d6664bb70f3); no lookup answer depends on it
+  regenerate: node generate-trigger-index.mjs

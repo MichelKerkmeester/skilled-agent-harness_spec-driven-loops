@@ -1,0 +1,20 @@
+The phase goal is already set. The Deem arm now records one noul probability for every labeled prompt after the choice block, including when that block is skipped, and prints the calibration line from those raw probabilities.
+
+SKILL ROUTING: sk-code → sk-code-opencode (JavaScript script and its parity test)
+ARTIFACT: sk-code → sk-code-opencode JavaScript standards
+REPO RULES: evidence-and-proof.md
+
+The syntax check is the listed gate. The orchestrator runs the parity suite and any commit.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+192/-46)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+87/-0)
+EDITS: score-jev-tiebreak.mjs:23 added NOUL_QUESTION and ARCHIVED_F1
+score-jev-tiebreak.mjs:142 added calibrationMetrics (accuracy, F1, Brier, ece5, temperature)
+score-jev-tiebreak.mjs:948 moved stop and deemCall above the headroom block; deemCall takes persist; the choice loop passes it
+score-jev-tiebreak.mjs:1124 noul pass for every label, calibration line, return includes calibration
+score-jev-tiebreak.vitest.ts:20 imported calibrationMetrics
+score-jev-tiebreak.vitest.ts:782 added the deem calibration describe (empty metrics, six-row arm, no headroom)
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> no output (exit 0)
+BLOCKED REASON: none

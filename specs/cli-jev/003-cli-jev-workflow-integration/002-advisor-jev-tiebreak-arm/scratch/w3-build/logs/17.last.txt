@@ -1,0 +1,19 @@
+The packet goal is set. A run with `--jev` or `--deem` and `--out` now writes `report.json` beside the call log: each column keeps its verdict, the printed line, and the four keep conditions, and the per-row ranks stay out of the file.
+
+`node --check` on the script produced no output and exited 0. The two named files are edited on disk and not committed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+55/-4)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+58/-1)
+EDITS: score-jev-tiebreak.mjs:11 added writeFileSync to the sorted node:fs import
+score-jev-tiebreak.mjs:1095 stored the Jev verdict on summary.line, then printed it
+score-jev-tiebreak.mjs:1249 stored the Deem verdict on column.line, then printed it
+score-jev-tiebreak.mjs:722 added buildReport after compareLine
+score-jev-tiebreak.mjs:1540 write report.json when --out is set and a model arm is on
+score-jev-tiebreak.vitest.ts:35 imported buildReport
+score-jev-tiebreak.vitest.ts:572 added the report describe and both equality cases
+score-jev-tiebreak.vitest.ts:927 read report.json inside the Deem calibration run
+score-jev-tiebreak.vitest.ts:966 asserted the Deem verdict line, four conditions, measured calibration, and omitted decidedRr
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> no output (exit 0)
+BLOCKED REASON: none
