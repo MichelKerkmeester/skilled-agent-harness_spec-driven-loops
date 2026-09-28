@@ -11,20 +11,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/062-doc-validation-off-switches"
-    last_updated_at: "2026-09-28T11:08:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Made every reader of hook-flags.env drop a comment after a value"
-    next_safe_action: "None, the packet is complete"
+    last_updated_at: "2026-09-28T18:03:34Z"
+    last_updated_by: "generate-context"
+    recent_action: "Fixed all eight review findings and covered the switches in the changelogs"
+    next_safe_action: "Commit the review fixes in owner-split commits with the Spec trailer"
     blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts"
       - ".skilled/hooks/shared/hook-flags.sh"
-      - ".skilled/hooks/shared/hook-flags.cjs"
-      - ".skilled/skills/sk-doc/shared/scripts/validation_switch.py"
-      - ".skilled/skills/sk-doc/shared/scripts/validation-switch.cjs"
-      - ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh"
+      - ".skilled/changelog/skilled/v4.0.0.2.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c4eeae20949a2f8af44bdedd73a9e9d35d128dfc955d188b81ee13745fc4206b"
       session_id: "75aab0e6-dcc7-401b-9d10-f48248374023"
       parent_session_id: null
     completion_pct: 100
@@ -66,6 +65,12 @@ sk-doc had no off switch. `SKDOC_ENFORCE_STRUCTURE=0` relaxed three structure ru
 
 The docs say to copy `hook-flags.env.example` and uncomment the lines you want. Most of its lines carry a comment after the value, and every reader of the file kept that comment as part of the value. `SYSTEM_SKILL_ADVISOR_DISABLED=1  # why` read as `1  # why`, which is not a truthy value, so an uncommented line disabled nothing. The four readers now end a value at a `#` that follows a space or tab: `hook-flags.cjs`, `hook-flags.sh`, sk-doc's `validation_switch.py` and sk-code's `check-dist-staleness.sh`. A `#` with no space before it stays in the value, so `a#b` reads as `a#b`. One test holds all four readers to the same answers, and another uncomments every switch line of the example as it stands and finds each switch on.
 
+### Review fixes
+
+A two-model deep review on 2026-09-28 returned CONDITIONAL with one P1 and seven P2 findings, and every one is now fixed. The P1 was the progressive wrapper: under `--json` it merged `validate.sh`'s stderr into its stdout, so at level 1 the skip notice came first and the output did not parse. It now captures stdout alone and reports `skipped`. `quality-audit.sh` and the strict-pass freshness sweep counted a switched-off folder as a pass. Both now report it as skipped, and the sweep never lets a skipped baseline row turn a later failure into a known one.
+
+The shell reader of `hook-flags.env` disagreed with the Node and Python readers three ways. It deleted spaces inside a value, so `o n` read as on. It compared the environment against a marker that one exact value could match, and it kept a byte order mark on the first name, as the dist checker did too. All four readers now trim only a value's edges, let any set environment value answer and drop the mark. `.env.example` names both switches, and the hooks README states the comment rule with its tab case. The unreleased v4.0.0.2 entry and three component changelogs now cover the switches.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -82,6 +87,13 @@ The docs say to copy `hook-flags.env.example` and uncomment the lines you want. 
 | 13 Python and 7 Node validators under `.skilled/skills/sk-doc/` | Modified | A guard at each command-line entry, check modes only |
 | `.skilled/skills/sk-doc/scripts/tests/test_validation_switch.py` | Created | The helpers, all 20 validators, two controls, the exemptions, the safety gate and every switch line of the example |
 | Nine docs across spec-kit, sk-doc and the hooks folder, plus `hook-flags.env.example` | Modified | Both switches, how to save them and what stays on |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh` | Modified | Review fix: stdout captured apart from stderr under `--json`, and `skipped` in the report |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh` | Modified | Review fix: a switched-off folder counted as skipped, in JSON and text output |
+| `.skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts` | Modified | Review fix: a `skipped` status, its count, and skipped baseline rows left out of the known set |
+| Three spec-kit cli tests | Modified | The wrapper at level 1 and at the default level, the audit's skipped count and the sweep's skipped rows |
+| `.skilled/hooks/shared/hook-flags.sh`, `check-dist-staleness.sh` and `hook-flags.test.cjs` | Modified | Review fix: edge-only trimming, a presence test and a dropped byte order mark, held by two new cross-reader tests |
+| `.env.example`, `.skilled/hooks/README.md`, `ENV-REFERENCE.md`, the sweep README and the progressive validation catalog entry | Modified | Review fix: the switches named where users look, the tab case and the skipped status |
+| `.skilled/changelog/skilled/v4.0.0.2.md` and three component changelogs | Modified and Created | Review fix: the release entry covers the switches. The three component versions and their Hermes copies move with their entries |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -90,6 +102,8 @@ The docs say to copy `hook-flags.env.example` and uncomment the lines you want. 
 ## How It Was Delivered
 
 Every consumer of the `validate.sh` JSON and every caller of the sk-doc validators was traced before any edit. The trap was reproduced first. Both switches default to off, so nothing changes for anyone who sets neither. The suites ran with the flags file pointed at an absent path, so no local setting could decide a result. The work lands on `main` in owner-split commits: the hooks resolver, spec-kit, sk-doc and this packet. The comment rule came after close, when the operator approved it, in its own commits for the hooks, sk-doc and sk-code. The readers landed before the tests and the example that depend on them, so each commit passes the parser tests on its own.
+
+The review fixes followed the review's own workstreams. Every new test ran against the unfixed code first and failed there: six of the 62 cli tests and two of the 20 reader tests. Then each fix turned its tests green, and every suite this work touches ran again beside the baseline taken before the fixes.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -106,6 +120,9 @@ Every consumer of the `validate.sh` JSON and every caller of the sk-doc validato
 | The create-diff report validator stays on | It proves a generated report is safe to open, with no script and no external reference. That is a safety check, not a format check |
 | Writers and self-tests ignore the switch | `--fix`, `apply` and `--self-test` change files or test the tool, and neither judges a doc |
 | A `#` after a space or tab ends a value, in all four readers | The example's lines carry a comment after the value, and the docs say to uncomment them as they stand. Asking for the space keeps a `#` inside a value such as `a#b`, and one rule everywhere keeps the readers in agreement |
+| The progressive wrapper's auto-fix still runs under the switch | The switch turns off checks, never the tools that write, as REQ-004 already says for sk-doc |
+| A skipped baseline row counts as unseen in the sweep | The row says nothing about the folder, so a failure after it is new, and its message says the baseline only recorded a skipped run |
+| `quality-audit.sh` reads the JSON report in both output modes | Only the report says whether validation was switched off, and the exit code is the same either way |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -127,6 +144,14 @@ Every consumer of the `validate.sh` JSON and every caller of the sk-doc validato
 | Spec-kit cli project | PASS, 156 files and 1561 tests, 19 skipped |
 | Docs | PASS, 9 docs valid with no new finding, and HVR findings the same as HEAD's. The enforced version `gate` reports ok=2951 |
 | Comment hygiene, shellcheck and the sk-code drift guard | PASS on this work's files. The guard's 19 errors all sit in another packet's evidence scripts |
+| Review fixes, red first | PASS. Against the unfixed code, 6 of the 62 tests in the three changed cli test files failed, and 2 of the 20 reader tests. With only the shell reader fixed, the byte order mark test still failed until the dist reader opened the file as `utf-8-sig` |
+| Hooks resolver after the review fixes | PASS, 20 of 20 |
+| Spec-kit cli project after the review fixes | PASS, 156 files and 1566 tests, 19 skipped, against 1561 tests in the baseline taken before the fixes. The 5 extra are the new tests |
+| Spec-kit runtime root suite after the review fixes | PASS, 107 files and 1281 tests, 13 skipped, the same as the baseline |
+| Git hook suites after the review fixes | PASS, all eight. commit-msg runs 19 checks and pre-commit 55, against 17 and 49 in the baseline, because the sibling phase 067 added its bypass checks. The other six match the baseline |
+| sk-doc script tests after the review fixes | 129 passed and 1 failed, against 128 and 2 in the baseline. Both runs fail only the rename fixture test, which fails when the shared checkout changes during its run, and files there changed during both runs. This round changed no sk-doc code, and the private-clone row above is that test's evidence |
+| Docs and changelogs after the review fixes | PASS. The release entry and the three component entries are valid with 0 HVR hard blockers, and every relative link in them and in the edited docs resolves |
+| Comment hygiene, shellcheck and the drift guard after the review fixes | PASS on the 9 changed code files. shellcheck reports HEAD's set on `hook-flags.sh` and `progressive-validate.sh`, and one finding against HEAD's three on `quality-audit.sh`. The guard's 56 errors all sit in another packet's evidence folders |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -138,5 +163,5 @@ Every consumer of the `validate.sh` JSON and every caller of the sk-doc validato
 2. **A skip is no evidence.** A skipped `validate.sh` exits 0, so it cannot back a completion claim. The env reference says so.
 3. **Dead doc-model bypass mentions remain.** `SPECKIT_SKIP_DOC_MODEL_VALIDATE` is still named in the git hook installer, its README and one test, though nothing reads it. That is a follow-up outside this packet.
 4. **A value cannot hold a space or tab followed by `#`.** Every reader ends the value there, even inside quotes, so `NAME="x #y"` reads as `"x`. No switch needs such a value, since each is one word.
-5. **Two readers keep a byte order mark.** `hook-flags.cjs` and `validation_switch.py` drop a byte order mark at the start of the file, while `hook-flags.sh` and `check-dist-staleness.sh` keep it on the first name. A switch saved on the first line of a file written with one therefore counts in two readers only. This predates this packet, and it is a follow-up outside it.
+5. **The legacy upgrade tool still reads a skip as a pass.** `runtime/cli/spec/upgrade-legacy.mjs` trusts `report.passed === true` (lines 493 to 585), so with `SPECKIT_SKIP_VALIDATION` on it would count every packet as passing and repair none. It is the same class as the review's audit finding but belongs to the upgrade tooling, where the right answer, refusing to run or reporting the packets as unmeasured, is that tool's decision. A follow-up outside this packet.
 <!-- /ANCHOR:limitations -->

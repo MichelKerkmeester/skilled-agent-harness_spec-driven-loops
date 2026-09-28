@@ -1,0 +1,23 @@
+{
+  "run_id": "1790598126829-x9gy4v",
+  "loop_type": "review",
+  "spec_folder": "specs/sk-doc/062-doc-validation-off-switches",
+  "base_artifact_dir": "specs/sk-doc/062-doc-validation-off-switches/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

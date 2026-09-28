@@ -70,6 +70,22 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Review Remediation
+
+Added after the deep review of 2026-09-28 (`review/review-report.md`, CONDITIONAL, one P1 and seven P2), at the operator's request to fix every finding. Each new test was run against the unfixed code first and failed.
+
+- [x] T019 WS-A, P1-LUNA-002: capture `validate.sh`'s stdout apart from its stderr under `--json` and carry `skipped` into the wrapper's report (`runtime/cli/spec/progressive-validate.sh`, `cli/tests/progressive-validation.vitest.ts`) (evidence: T-PB2-16a parses level 1's stdout and finds the notice on stderr, and T-PB2-16b reads `skipped: true` with `passed: true` at the default level and `skipped: false` for the control. Against the unfixed wrapper, T-PB2-10b, 16a and 16b fail)
+- [x] T020 WS-B, F001, P2-LUNA-004, P2-LUNA-001 and P2-LUNA-005: the shell reader trims only a value's edges and tests whether the variable is set, and the shell and dist readers drop a byte order mark (`.skilled/hooks/shared/hook-flags.sh`, `sk-code-quality/scripts/check-dist-staleness.sh`, `.skilled/hooks/shared/hook-flags.test.cjs`) (evidence: the two new cross-reader tests failed 18 of 20 before the fix and 19 of 20 with only the shell fixed, the byte order mark case still failing in the dist reader. All four readers now pass 20 of 20)
+- [x] T021 WS-C, P2-LUNA-003: a skipped status in both local audit consumers (`runtime/cli/spec/quality-audit.sh`, `runtime/cli/sweep/strict-pass-freshness.ts`, `cli/tests/quality-audit-script.vitest.ts`, `cli/tests/strict-pass-freshness.vitest.ts`) (evidence: against the unfixed code the three new tests fail. After the fix the audit reports `skipped: 1` with the folder's status `skipped`, and the sweep reports `skipped: 1`, exits 0 and treats a skipped baseline row followed by a failure as a new failure. The three files pass 62 of 62, and the sweep typechecks under `tsc --strict`)
+- [x] T022 WS-D, F002 and F004: both switches in `.env.example` Section 5, and "a space or tab" in the hooks README (`.env.example`, `.skilled/hooks/README.md`)
+- [x] T023 WS-D, F003: a Doc Validation section and upgrade notes in the unreleased v4.0.0.2 entry, plus component entries for system-spec-kit, sk-doc and sk-code-quality with their versions bumped (`.skilled/changelog/skilled/v4.0.0.2.md`, `system-spec-kit/changelog/v4.1.5.0.md`, `sk-doc/changelog/v2.2.3.0.md`, `sk-code-quality/changelog/v1.0.1.0.md`) (evidence: all four pass `validate_document.py` with 0 issues and `hvr_scan.py` with 0 hard blockers. The Hermes copies are in sync, 71 of 71)
+- [x] T024 [P] The docs that describe the changed consumers (`runtime/ENV-REFERENCE.md`, `runtime/cli/sweep/README.md`, `feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md`) (evidence: each shows the same `validate_document.py` result as at HEAD, and the catalog entry carries the version `frontmatter-version.mjs apply` computed)
+- [x] T025 Rerun every suite this work touches beside the baseline, plus shellcheck, comment hygiene and the drift guard (evidence: see the verification rows in `implementation-summary.md`)
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -116,7 +132,7 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Code passes lint/format checks (evidence: 15 Python files parse, 10 Node files pass `node --check`, `hook-flags.sh` passes `bash -n` and `sh -n`, and shellcheck reports the same finding set as HEAD on both shell files. After the comment rule, the same checks pass on its 6 code files and shellcheck still reports HEAD's 5 findings on `hook-flags.sh`)
+- [x] CHK-010 [P0] Code passes lint/format checks (evidence: 15 Python files parse, 10 Node files pass `node --check`, `hook-flags.sh` passes `bash -n` and `sh -n`, and shellcheck reports the same finding set as HEAD on both shell files. After the comment rule, the same checks pass on its 6 code files and shellcheck still reports HEAD's 5 findings on `hook-flags.sh`. After the review fixes, `bash -n` passes on the three changed shell scripts, `sh -n` on `hook-flags.sh`, `py_compile` on the dist checker, `node --check` on the reader test and `tsc --strict` on the sweep. shellcheck reports HEAD's set on `hook-flags.sh` and `progressive-validate.sh`, and one finding against HEAD's three on `quality-audit.sh`)
 - [x] CHK-011 [P0] No console errors or warnings (evidence: with a switch off every validator prints what it printed at HEAD, and with one on the only new output is the one-line notice the spec asks for)
 - [x] CHK-012 [P1] Error handling implemented (evidence: an unreadable or missing flags file yields no values, a missing `hook-flags.sh` warns and validates, and `validate.sh` still exits 3 on a missing folder)
 - [x] CHK-013 [P1] Code follows project patterns (evidence: the sk-code drift guard reports nothing new in this work's files, and the two helpers carry the standard headers)
@@ -127,9 +143,9 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] All acceptance criteria met (evidence: `acceptance-criteria.md`, AC-001 to AC-008 Met)
+- [x] CHK-020 [P0] All acceptance criteria met (evidence: `acceptance-criteria.md`, AC-001 to AC-014 Met)
 - [x] CHK-021 [P0] Manual testing complete (evidence: the pre-commit repair command with the switch on, and the six symlinked shims in `sk-doc/scripts/` probed with the switch on, each exiting 0 with the notice)
-- [x] CHK-022 [P1] Edge cases tested (evidence: environment `0`, empty and `skip` over a file set to `1`, quoted values, a BOM, CRLF endings, a missing file, `--help` and JSON requested three ways. The comment rule adds a comment after a bare value, after quotes and after a tab, `a#b`, `on#x` and a line holding only a comment after `=`)
+- [x] CHK-022 [P1] Edge cases tested (evidence: environment `0`, empty and `skip` over a file set to `1`, quoted values, a BOM, CRLF endings, a missing file, `--help` and JSON requested three ways. The comment rule adds a comment after a bare value, after quotes and after a tab, `a#b`, `on#x` and a line holding only a comment after `=`. The review fixes add `o n` in the file and the environment, spaces and a tab around `on`, the shell reader's old absence marker over a file set to `1`, and a file that opens with a byte order mark)
 - [x] CHK-023 [P1] Error scenarios validated (evidence: a missing folder exits 3 with the switch on, and a switch name built to inject a command is refused before `eval`)
 <!-- /ANCHOR:testing -->
 
@@ -138,13 +154,13 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. (evidence: the commit trap is `cross-consumer`, fixed at the producer, `validate.sh`)
-- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. (evidence: `rg -n 'SPECKIT_SKIP_VALIDATION|SPECKIT_VALIDATION\b' .skilled` found one reader with two exits, both now on one path. Every sk-doc validator that prints JSON gets its skip line from one helper. For the comment rule, `rg -l -L 'HOOK_FLAGS_CONFIG|hook-flags\.env'` over the code and every runtime folder found four readers that parse the file: `hook-flags.cjs`, `hook-flags.sh`, `validation_switch.py` and `check-dist-staleness.sh`. Each runtime's dist checker is a link to the last one)
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. (evidence: the commit trap is `cross-consumer`, fixed at the producer, `validate.sh`. Of the review findings, P1-LUNA-002 and P2-LUNA-003 are `cross-consumer`, fixed in each consumer the report reaches. F001, P2-LUNA-001 and P2-LUNA-005 are `class-of-bug` across the four readers, fixed in every reader that differed. F002, F003 and F004 are `instance-only` doc gaps)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. (evidence: `rg -n 'SPECKIT_SKIP_VALIDATION|SPECKIT_VALIDATION\b' .skilled` found one reader with two exits, both now on one path. Every sk-doc validator that prints JSON gets its skip line from one helper. For the comment rule, `rg -l -L 'HOOK_FLAGS_CONFIG|hook-flags\.env'` over the code and every runtime folder found four readers that parse the file: `hook-flags.cjs`, `hook-flags.sh`, `validation_switch.py` and `check-dist-staleness.sh`. Each runtime's dist checker is a link to the last one. For the skipped report, `rg -l 'validate\.sh'` over the code found the consumers that turn its result into a pass count: `quality-audit.sh`, the freshness sweep and the progressive wrapper, all fixed, plus `upgrade-legacy.mjs`, recorded as a follow-up because it belongs to the upgrade tooling)
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. (evidence: `plan.md` affected surfaces, including `audit_readmes.py`, which reads `valid`)
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. (evidence: the parser parity test covers `NOEQ`, `=novalue`, `D=`, `E=a=b`, an unclosed quote and a repeated key, and the `hook_flag_on` test proves an injected name runs nothing. The cross-reader test in `hook-flags.test.cjs` holds all four readers to one table with comments after bare and quoted values, a tab, `a#b`, `on#x` and an empty value before a comment)
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. (evidence: `plan.md` lists the axes. The rows run are 20 validators with the switch on, 8 source rows for the two controls, 6 for `validate.sh`, 3 exemptions and 1 safety gate)
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. (evidence: each new test scrubs both switches and points `HOOK_FLAGS_CONFIG` at an absent file, and the suites ran the same way, so no local flags file can decide a result)
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (evidence: `4f4d25288c..396d26d4ff` on `main`: `b274f085fb` hooks, `3303e85a43` spec-kit, `396d26d4ff` sk-doc. The comment rule is `079d9cb31e..12c9351b5c`: `f5485b51d1` sk-code, `a0127c7a92` the sk-doc reader, `3ad952e58e` hooks and `12c9351b5c` the sk-doc test. Checked out one by one in a scratch clone, each of the four passes the hooks suite and the two sk-doc parser tests)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (evidence: `4f4d25288c..396d26d4ff` on `main`: `b274f085fb` hooks, `3303e85a43` spec-kit, `396d26d4ff` sk-doc. The comment rule is `079d9cb31e..12c9351b5c`: `f5485b51d1` sk-code, `a0127c7a92` the sk-doc reader, `3ad952e58e` hooks and `12c9351b5c` the sk-doc test. Checked out one by one in a scratch clone, each of the four passes the hooks suite and the two sk-doc parser tests. The review fixes are `762044fae7` sk-code, `5f7eb1812f` hooks, `24243d3e17` spec-kit, `ecfd23483b` the sk-doc entry, `400c97f337` `.env.example` and `20f5477f5e` the release entry. Checked out in a scratch clone, the hooks suite passes 18 of 18 at the first and 20 of 20 at the second)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -163,7 +179,7 @@ contextType: "implementation"
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized (evidence: `spec.md` names the final validator set and the three exclusions)
-- [x] CHK-041 [P1] Code comments adequate (evidence: the comment hygiene checker passes all 29 changed code files, and the 6 code files of the comment rule)
+- [x] CHK-041 [P1] Code comments adequate (evidence: the comment hygiene checker passes all 29 changed code files, and the 6 code files of the comment rule. It passes the 9 code files of the review fixes too)
 - [x] CHK-042 [P2] README updated (if applicable) (evidence: `.skilled/hooks/README.md`, `.skilled/hooks/shared/README.md` and `sk-doc/shared/scripts/README.md`)
 <!-- /ANCHOR:docs -->
 
