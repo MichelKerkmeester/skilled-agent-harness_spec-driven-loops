@@ -185,6 +185,25 @@ grep -l mcp-code-mode-launcher opencode.json .mcp.json .claude/mcp.json .codex/c
 node .skilled/bin/skill-advisor.cjs list-tools --format json
 ```
 
+### Git Hooks
+
+The first AI session you open in the main checkout installs this repository's git hooks. From then on git checks every commit and push you make there.
+
+- **pre-commit** blocks code comments that cite spec packets or task ids, and keeps generated mirrors and metadata in step with the files you stage
+- **commit-msg** blocks a subject that does not read `type(scope): summary` or runs past 100 characters. It also asks for a body once four or more files are staged, and refuses `Co-Authored-By` and `Claude-Session` trailers
+- **pre-push** blocks a push that deletes more than 100 tracked files or carries out-of-date generated metadata. A push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist needs your approval for that push
+
+Every block message names the variable that lets that one command through, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once, from the environment or from `.skilled/hooks/hook-flags.env`.
+
+To stop using the hooks, remove them and switch off the session check that would put them back:
+
+```bash
+bash .skilled/scripts/install-git-hooks.sh --uninstall
+echo 'SYSTEM_GIT_HOOKS_CHECK_DISABLED=1' >> .skilled/hooks/hook-flags.env
+```
+
+[Off Switches](#off-switches) lists the other switches, and the [git hooks README](.skilled/scripts/git-hooks/README.md) covers each gate.
+
 ### First Use
 
 Open OpenCode in your project directory. The framework is active. Try:
@@ -1388,6 +1407,21 @@ The other shipped skills keep working unchanged: `sk-doc` still validates your m
 - **`opencode.json`** - permissions, the `code_mode` MCP binding and one experimental flag. Used by OpenCode
 - **`.utcp_config.json`** - Code Mode external tool registrations. Used by `mcp-code-mode` skill
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only
+
+&nbsp;
+### Off Switches
+
+The AI hooks, the validators and the git hooks all have off switches. A switch set in the environment always works, inline as `SYSTEM_HOOKS_DISABLED=1 <command>` or exported from your shell profile. The hook switches and the two validation switches also read `.skilled/hooks/hook-flags.env`, a personal file git ignores. A value set in the environment still wins over the file, even `0`.
+
+```bash
+cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
+# then uncomment the switches you want on
+```
+
+- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md)
+- **Validation.** `SPECKIT_SKIP_VALIDATION=1` switches spec folder validation off and `SKDOC_SKIP_VALIDATION=1` switches off the sk-doc validators. A skipped run says so and exits 0, so it is no evidence that a document is valid. CI sets neither
+- **Git hooks.** The per-gate bypasses such as `SPECKIT_SKIP_COMMENT_HYGIENE=1` are read from the environment only and cover one command. [Git Hooks](#git-hooks) covers turning the hooks off for good
+- **The full list.** [`.env.example`](.env.example) lists the switches with their defaults. Only Code Mode reads a `.env` file, so a switch written there counts only where your shell or runtime exports it
 
 &nbsp;
 ### Retrieval and Continuity Configuration
