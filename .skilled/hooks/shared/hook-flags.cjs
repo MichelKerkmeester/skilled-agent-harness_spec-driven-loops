@@ -169,6 +169,25 @@ function isHookEnabled(concern, env, config) {
   return true;
 }
 
+// True when one named switch resolves truthy, for a switch that is not a hook
+// concern (a validator's opt-out, say) but is saved in the same file under the
+// same precedence: the environment answers whenever the name is set there, even
+// to an empty value, and the config file answers otherwise. `env` and `config`
+// are injectable exactly as they are for isHookEnabled.
+function isFlagOn(name, env, config) {
+  if (typeof name !== "string" || !name.trim()) return false;
+  const hasEnv = env !== undefined && env !== null;
+  const source = hasEnv ? env : process.env;
+  if (source[name] !== undefined) return isTruthy(source[name]);
+  const cfg =
+    config !== undefined && config !== null
+      ? config
+      : hasEnv
+        ? EMPTY_CONFIG
+        : fileConfig();
+  return isTruthy(cfg[name]);
+}
+
 // The canonical per-concern kill-switch env var for a concern slug. A blank
 // concern has no flag (skipped), so callers never look up "MK__DISABLED".
 function concernFlag(concern) {
@@ -181,6 +200,7 @@ function concernFlag(concern) {
 
 module.exports = {
   isHookEnabled,
+  isFlagOn,
   concernFlag,
   isTruthy,
   loadConfigFile,
