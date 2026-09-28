@@ -290,6 +290,18 @@ MSG
 run_hook; RC=$?
 check "prose mentioning the vendor passes" 0 "$RC"
 
+# ── 17. every block names its bypass, the early ones included ──────────
+# A caller with no one at the keyboard can only escape a block the message
+# explains, so the two checks that run before validation name it too.
+setup_repo
+printf '# only a comment\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "an empty message names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1"
+
+setup_repo
+( cd "$TMP" && bash "$HOOK" "$TMP/no-such-message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
+check "a missing message file names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1"
+
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
 [[ "$FAIL" -eq 0 ]]
