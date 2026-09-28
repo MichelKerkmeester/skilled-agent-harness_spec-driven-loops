@@ -1,5 +1,5 @@
 {
-  "manifestHash": "83e80fa6cb921f349d5ed05dd3485bf1d4eaf0df4bc36fa2bc2862b6ba3335de",
+  "manifestHash": "fdebd12ad1be6133cd344556b5bcdc81ce8736127474d99919f70150342ca67f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17748,6 +17748,9 @@
     "cli deem 1 0 0 0": [
       "cli-deem 1.0.0.0"
     ],
+    "cli deem build result": [
+      "cli-deem build result"
+    ],
     "cli deem capabilities": [
       "cli-deem capabilities"
     ],
@@ -17783,9 +17786,6 @@
     ],
     "cli deem noul": [
       "cli-deem noul"
-    ],
-    "cli deem planned": [
-      "cli-deem planned"
     ],
     "cli deem readme": [
       "cli-deem readme"
@@ -58029,6 +58029,9 @@
     "near duplicate of backfill decision": [
       "near duplicate of backfill decision"
     ],
+    "near tie cluster eval": [
+      "near-tie cluster eval"
+    ],
     "nearest ancestor spec": [
       "nearest ancestor spec"
     ],
@@ -59786,6 +59789,9 @@
     "offline flag for cupt": [
       "offline flag for cupt"
     ],
+    "offline jev and deem tie break eval": [
+      "offline jev and deem tie-break eval"
+    ],
     "offline listing": [
       "offline listing"
     ],
@@ -59809,6 +59815,9 @@
     ],
     "offline task view": [
       "offline task view"
+    ],
+    "offline tie break eval": [
+      "offline tie-break eval"
     ],
     "offline verification of model benchmark receipts": [
       "offline verification of model benchmark receipts"
@@ -89749,6 +89758,9 @@
     "system skill advisor 0 11 1 0": [
       "system-skill-advisor 0.11.1.0"
     ],
+    "system skill advisor 0 13 0 0": [
+      "system-skill-advisor 0.13.0.0"
+    ],
     "system skill advisor 0 2 0": [
       "system-skill-advisor 0.2.0"
     ],
@@ -89868,6 +89880,9 @@
     ],
     "system skill advisor v0 11 1 0": [
       "system-skill-advisor v0.11.1.0"
+    ],
+    "system skill advisor v0 13 0 0": [
+      "system-skill-advisor v0.13.0.0"
     ],
     "system skill advisor v0 2 0": [
       "system-skill-advisor v0.2.0"
@@ -91712,6 +91727,9 @@
     ],
     "threshold parity": [
       "threshold parity"
+    ],
+    "tie break eval": [
+      "tie-break eval"
     ],
     "tier 1 research and remediation": [
       "tier 1 research and remediation"
