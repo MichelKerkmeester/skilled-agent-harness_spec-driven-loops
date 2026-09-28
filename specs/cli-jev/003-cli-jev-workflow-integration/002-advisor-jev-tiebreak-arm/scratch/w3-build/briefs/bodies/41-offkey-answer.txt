@@ -1,0 +1,42 @@
+TASK: test-only. Pin how each model arm treats an answer key it was not offered: the call is recorded `unmeasured`, the row leaves the sign test, and the arm goes on to a verdict with exit 0.
+File: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts only. First read the runJevArm choice loop and runDeemArm's judge in .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (do not edit the script), then describe('score-jev-tiebreak jev arm') and describe('score-jev-tiebreak deem arm') in the test file.
+
+1. In the jev arm describe's stubBody (line 722), replace this text:
+`p=$(cat); case "$p" in *hang*) exec sleep 30;;
+with:
+`p=$(cat); case "$p" in *offkey*) echo '{"model":"stub-model","answers":{"answer":{"choice":"zzz","probabilities":{"zzz":0.9,"none":0.05}}}}'; exit 0;; *hang*) exec sleep 30;;
+2. In the deem arm describe's stubBody (line 858), replace this text:
+`p=$(cat); case "$p" in *exit1*) exit 1;;
+with:
+`p=$(cat); case "$p" in *offkey*) echo '{"model":"deem-0.8-v1","answers":{"answer":{"choice":"zzz","probabilities":{"zzz":0.9,"none":0.05}}}}'; exit 0;; *exit1*) exit 1;;
+3. Add as the last test inside describe('score-jev-tiebreak jev arm'):
+  it('leaves a row out of the sign test when jev answers a key it was not offered', async () => {
+    const result = await drive(['offkey a', 'ok b', 'ok c', 'ok d', 'ok e', 'ok f']);
+    expect(result.code).toBe(0);
+    expect(result.lines.some((line) => line.startsWith('jev arm stopped'))).toBe(false);
+    const choice = result.calls.filter((call) => call.kind === 'choice');
+    const offkey = choice.filter((call) => call.row_id === 'r0');
+    expect(offkey).toHaveLength(3);
+    for (const call of offkey) expect(call).toMatchObject({ exit_code: 0, answer: null, pick_prob: null, status: 'unmeasured' });
+    expect(choice.filter((call) => call.row_id !== 'r0').map((call) => call.status)).toEqual(Array(15).fill('measured'));
+    expect(result.lines).toContain('column: backend=jev rows=6 measured=5 wins=5 losses=0 ties=0 abstentions=0 unmeasured=1 unstable=0');
+    expect(result.lines.find((line) => line.startsWith('verdict: '))).toContain(' decided=5 wins=5 losses=0 ');
+  }, 60_000);
+4. Add as the last test inside describe('score-jev-tiebreak deem arm'):
+  it('leaves a row out of the sign test when deem answers a key it was not offered', async () => {
+    const result = await drive(census(['offkey a', 'ok b', 'ok c', 'ok d', 'ok e', 'ok f']));
+    expect(result.code).toBe(0);
+    expect(result.lines.some((line) => line.startsWith('deem arm stopped'))).toBe(false);
+    const choice = result.calls.filter((call) => call.kind === 'choice');
+    const offkey = choice.filter((call) => call.row_id === 'r0');
+    expect(offkey).toHaveLength(3);
+    for (const call of offkey) expect(call).toMatchObject({ exit_code: 0, answer: null, pick_prob: null, status: 'unmeasured' });
+    expect(choice.filter((call) => call.row_id !== 'r0').map((call) => call.status)).toEqual(Array(15).fill('measured'));
+    expect(result.lines).toContain('column: backend=deem rows=6 measured=5 wins=5 losses=0 ties=0 abstentions=0 unmeasured=1 unstable=0');
+    expect(result.lines.find((line) => line.startsWith('verdict: '))).toContain(' decided=5 wins=5 losses=0 ');
+  }, 60_000);
+Change nothing else in the file. The script must stay byte-identical.
+
+VERIFY (repo root): grep -c "answers a key it was not offered" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts
+Accept when: 1 file changed and nothing else; the grep prints 2. Do not run vitest; the orchestrator runs it.
+

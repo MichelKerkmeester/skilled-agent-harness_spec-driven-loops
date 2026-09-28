@@ -1,0 +1,11 @@
+Goal is set.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+28/-2)
+EDITS: score-jev-tiebreak.vitest.ts:722 jev stub answers `zzz` on `*offkey*` and exits 0
+EDITS: score-jev-tiebreak.vitest.ts:851 jev arm test records that call `unmeasured` and keeps the sign test on the other five rows
+EDITS: score-jev-tiebreak.vitest.ts:871 deem stub answers `zzz` on `*offkey*` and exits 0
+EDITS: score-jev-tiebreak.vitest.ts:979 deem arm test records that call `unmeasured` and keeps the sign test on the other five rows
+CHECKS: grep -c "answers a key it was not offered" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts -> 2 (exit 0)
+BLOCKED REASON: none

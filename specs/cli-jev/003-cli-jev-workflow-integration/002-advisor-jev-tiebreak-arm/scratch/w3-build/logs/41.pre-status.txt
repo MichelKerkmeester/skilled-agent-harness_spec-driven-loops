@@ -1,0 +1,8 @@
+?? .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/briefs/41-offkey-answer.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/briefs/bodies/41-offkey-answer.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/41.pre-status.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/41.pre.mjs
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/41.pre.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/
