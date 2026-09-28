@@ -1,6 +1,6 @@
 ---
 title: "Build Phase: Move cli-jev into the cli-classifier Hub"
-description: "Move the cli-jev hub into the proposed cli-classifier hub as mode cli-jev over its unchanged cli-usage packet, beside cli-deem, with one git mv of every hub file, one commit and a route replay that must match its pre-move baseline. The phase waits on 008 and on a Deem arm result the operator keeps."
+description: "Move the cli-jev hub into the proposed cli-classifier hub as mode cli-jev over its unchanged cli-usage packet, beside cli-deem, with one git mv of every hub file, one commit and a route replay that must match its pre-move baseline. The phase waits on 008 and on a Deem keep: a Deem arm in phase 002 or 017 that prints keep under that phase's keep rule, fixed before the run."
 trigger_phrases:
   - "cli-jev hub move"
   - "cli-jev into cli-classifier"
@@ -46,7 +46,7 @@ This is **Phase 9** of the cli-jev workflow integration specification. It builds
 
 **Dependencies**:
 - 008-cli-classifier-hub is Complete: the hub root exists with `cli-deem` routed and `parent-skill-check.cjs` passes on it
-- The operator keeps a result from a Deem arm, which is research open question 49. R23's keep rule says to retire `cli-deem` and never build 009 when no Deem arm prints a result the operator keeps
+- A Deem keep: a Deem arm in phase 002 or 017 prints `keep` under that phase's keep rule, fixed before the run. D4 of the parent goal counts that as the operator's keep, which answers research open question 49 (`../007-classifier-deep-research/research/research.md:1172`). With no such keep this phase stays Planned, and the deciding verdicts go in the parent goal's log
 
 **Deliverables**:
 - A route-replay baseline of the 7 canary cases and the 3 hub-routing scenarios, recorded before any file moves
@@ -135,7 +135,7 @@ Counts are from `git ls-files` and `git grep -l` on 2026-09-27. Every path under
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The build starts only when 008 is Complete and the operator keeps a Deem arm result (research open question 49) | `008-cli-classifier-hub` shows Complete, `parent-skill-check.cjs` passes on `.skilled/skills/cli-classifier` before the move, and the kept result is named in `implementation-summary.md`. Without a kept result the phase stays Planned and is never built (R23 keep rule) |
+| REQ-001 | The build starts only when 008 is Complete and a Deem arm in phase 002 or 017 prints `keep` under that phase's keep rule, fixed before the run. That keep counts as the operator's keep (D4 of the parent goal, which answers research open question 49) | `008-cli-classifier-hub` shows Complete, `parent-skill-check.cjs` passes on `.skilled/skills/cli-classifier` before the move, and `implementation-summary.md` names the keep: its phase, its verdict line and the commit pair it was measured on. With no such keep the phase stays Planned and is never built, and the deciding verdicts of 002 and 017 go in the parent goal's log |
 | REQ-002 | The route replay baseline is recorded before any file moves | For each of the 7 canary prompts and the 3 hub-routing scenario prompts, `node .skilled/bin/compiled-route.cjs --hub cli-jev --prompt "<prompt>"` output with its exit status is saved in this phase's `scratch/route-baseline.txt`, at a HEAD where `git ls-files .skilled/skills/cli-jev` still prints 81 lines |
 | REQ-003 | The whole hub moves with `git mv`. No partial move is followed by a deletion | A disposition table in `implementation-summary.md` lists all 81 files with their target. `git diff --cached -M --name-status` shows a rename row for every moved file, and its only `D` rows are hub-level files named in the table as merged into a `cli-classifier` counterpart. `git ls-files .skilled/skills/cli-jev` prints 0 lines |
 | REQ-004 | `cli-jev` is a mode of `cli-classifier` over the packet `cli-usage` | `mode-registry.json` in `cli-classifier` lists two modes, and the `cli-jev` entry has `packet` `cli-usage`, `packetKind` `transport` and `routingClass` `metadata`. `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` exits 0 |
@@ -175,7 +175,7 @@ Counts are from `git ls-files` and `git grep -l` on 2026-09-27. Every path under
 
 | Check | Command | Expected output |
 |-------|---------|-----------------|
-| Entry gate | read `../008-cli-classifier-hub/spec.md` status, then `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` | Complete, exit 0 |
+| Entry gate | read `../008-cli-classifier-hub/spec.md` status, run `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier`, then read the Deem verdict lines in the reports of 002 and 017 | Complete, exit 0 and at least one Deem `keep` under that phase's pre-fixed keep rule. With none, stop and log the verdicts in the parent goal |
 | Baseline | `node .skilled/bin/compiled-route.cjs --hub cli-jev --prompt "<prompt>"` for each of the 10 prompts | 10 JSON route lines, each with exit status, saved before the move |
 | Hub count | `git ls-files .skilled/skills/cli-jev \| wc -l` before and after | `81`, then `0` |
 | No blind deletion | `git diff --cached -M --name-status` | Renames for moved files, `D` only for merged hub-level files named in the disposition table |
@@ -193,7 +193,7 @@ Counts are from `git ls-files` and `git grep -l` on 2026-09-27. Every path under
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | 008-cli-classifier-hub | The move has no target hub | REQ-001 blocks the build until 008 is Complete |
-| Dependency | A Deem arm result the operator keeps | Without it, R23 retires `cli-deem` and the move has no reason to run | REQ-001 keeps the phase Planned. Question 49 in `research.md` section 13 asks the operator when 008 lands |
+| Dependency | A Deem `keep` in phase 002 or 017, printed under that phase's keep rule fixed before the run (D4 of the parent goal) | Without it the move has no reason to run | REQ-001 keeps the phase Planned, and the deciding verdicts of 002 and 017 go in the parent goal's log |
 | Risk | A partial move followed by `rm -rf` deletes 22 hub files | High | REQ-003: one `git mv` of every file, a disposition table and a staged-diff check that allows `D` rows only for named merges |
 | Risk | A literal list is missed and the hub serves through legacy or not at all | High | REQ-005 and the replay of REQ-006. The seven files were reopened line by line on 2026-09-27 |
 | Risk | Merging two `graph-metadata.json` or two `mode-registry.json` files drops a field | Med | `parent-skill-check.cjs` checks 5 to 11 on the merged root, and the replay |
@@ -206,7 +206,7 @@ Counts are from `git ls-files` and `git grep -l` on 2026-09-27. Every path under
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Research open question 49: should the move wait on a Deem result the operator keeps? The synthesis recommends yes, and this phase assumes yes until the operator answers when 008 lands.
+- Answered on 2026-09-28, research open question 49 (`../007-classifier-deep-research/research/research.md:1172`): the move waits on a Deem keep. A Deem arm in phase 002 or 017 that prints `keep` under that phase's keep rule, fixed before the run, counts as the operator's keep (D4 of the parent goal). With no such keep this phase stays Planned, and the deciding verdicts go in the parent goal's log.
 - Where do the hub's two changelog files, `v0.1.0.0.md` and `v0.2.0.0.md`, land if 008's `cli-classifier/changelog/` already holds those versions? They move byte-identical, and the path is decided at build so the changelog-shape check still passes.
 - Should the dispatch audit report a `jev` dispatch as skill `cli-classifier` or keep a per-mode label? This phase plans `cli-classifier`, the hub id, as every other hub reports.
 <!-- /ANCHOR:questions -->

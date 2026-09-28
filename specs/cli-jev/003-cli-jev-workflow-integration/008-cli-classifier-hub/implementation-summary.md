@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub"
-    last_updated_at: "2026-09-27T10:00:00Z"
-    last_updated_by: "authoring-leaf"
-    recent_action: "Authored the planning documents from the round-3 synthesis, section 14 and R23"
+    last_updated_at: "2026-09-28T10:00:00Z"
+    last_updated_by: "spec-pass-leaf"
+    recent_action: "Amended the planning documents for parent D5 and D6"
     next_safe_action: "Reopen the Deem seams, then write cli-deem.mjs and its fake-server tests"
     blockers: []
     key_files:
@@ -86,7 +86,10 @@ Not delivered. The planning documents were written on 2026-09-27 from `../007-cl
 | `health` pins the model and refuses the stub | The stub answers `status` `ok` with a `noul` of 0.5 for everything, and a server launched without `DEEM_MODEL_ID` reports `deem-1.5` |
 | The client never touches the lifecycle | `deem-ctl` already proves an update with one real decision and holds a rejected release on rollback. A second copy would drift |
 | The hub has no switch | It is a transport. Each caller keeps its own `--deem` switch (proposed), as the shared gate contract says |
-| `cli-jev` moves in 009, not here | The move touches 81 files under the hub and 48 that name it, and it waits on a Deem result the operator keeps |
+| `cli-jev` moves in 009, not here | The move touches 81 files under the hub and 48 that name it, and it waits on a pre-fixed Deem `keep` in 002 or 017 (D4 of the parent goal) |
+| CLI executors build from single-change briefs | D5 of the parent goal: a fresh Opus 5.5 xhigh build orchestrator briefs Devin, Pi on Cline and Cursor by Bash, and the orchestrator session verifies, gets a cross-family review and commits |
+| Docs through sk-doc, code through `sk-code-opencode` | D6 of the parent goal. The hub gains a feature catalog in `cli-deem/`, where `cli-jev` keeps its transport's catalog |
+| The generated Hermes copies and, after any compiled-route admission, the activation manifests are in scope | The repository's own generators write them for a new hub, so a scope check that left them out would fail on a correct build |
 <!-- /ANCHOR:decisions -->
 
 ---

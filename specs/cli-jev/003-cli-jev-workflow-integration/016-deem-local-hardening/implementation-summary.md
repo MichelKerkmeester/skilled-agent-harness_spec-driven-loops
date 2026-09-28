@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 16: deem-local-hardening"
-description: "Planned stub. Nothing is built yet: the four Deem decisions wait on the operator, and no file under ~/.local/share/deem/ has changed."
+description: "Planned stub. Nothing is built yet. The operator answered the four Deem decisions on 2026-09-28, and no file under ~/.local/share/deem/ has changed."
 trigger_phrases:
   - "deem hardening summary"
   - "deem hardening status"
@@ -9,10 +9,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening"
-    last_updated_at: "2026-09-27T11:50:22Z"
-    last_updated_by: "owner-fix-016-planning"
-    recent_action: "Wrote the Planned stub"
-    next_safe_action: "Ask the operator Q1 to Q4 from spec.md section 10"
+    last_updated_at: "2026-09-28T10:00:00Z"
+    last_updated_by: "spec-pass-leaf"
+    recent_action: "Recorded the operator's four answers in the Planned stub"
+    next_safe_action: "Back up deem-ctl, then follow tasks.md from T004"
     blockers: []
     key_files: []
     session_dedup:
@@ -47,11 +47,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This phase is Planned, and its four decisions wait on the operator.
+Nothing is built yet. This phase is Planned, and the operator answered its four decisions on 2026-09-28.
 
 ### Phase 16: deem-local-hardening
 
-When built, this phase gives you a local Deem server whose log can tell you whether anything called it during a window. You also get a recorded answer on its open CORS exposure, its option-order setting and where `deem-ctl` is kept. The plan is in `spec.md` and `plan.md`.
+When built, this phase gives you a local Deem server whose log can tell you whether anything called it during a window. The open CORS exposure stays accepted until a hook calls Deem live, `DEEM_N_ORDERS` stays at 1 and a reviewed copy of `deem-ctl` sits in git at `../007-classifier-deep-research/context/deem-ctl`. The plan is in `spec.md` and `plan.md`.
 
 ### Files Changed
 
@@ -65,7 +65,7 @@ When built, this phase gives you a local Deem server whose log can tell you whet
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The build asks the operator Q1 to Q4 from `spec.md` section 10 first, then follows `tasks.md`.
+Not delivered. The operator's answers are recorded in `spec.md` section 10, and the build follows `tasks.md` from T004.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -75,7 +75,10 @@ Not delivered. The build asks the operator Q1 to Q4 from `spec.md` section 10 fi
 
 | Decision | Why |
 |----------|-----|
-| No decision is made yet | Each of the four items is the operator's call. `spec.md` section 10 lists the options, their rollbacks and a recommendation for Q1 and Q4 |
+| Q1: accept the CORS exposure, revisit before any hook calls Deem live | The exposure is compute only, and every planned Deem caller is an offline arm run by hand. Operator answer, 2026-09-28 |
+| Q2: switch the access log on through `deem-ctl` | The server already reads `DEEM_ACCESS_LOG`, so no patch to Deem's code is needed. Operator answer, 2026-09-28 |
+| Q3: hold `DEEM_N_ORDERS` at 1 | Only phase 002's `--deem` order-flip rate can show that averaging helps. Operator answer, 2026-09-28 |
+| Q4: a reviewed copy in `007`'s context with a `cmp` check | It records each reviewed version in git and needs no amendment to phase 008. Operator answer, 2026-09-28 |
 <!-- /ANCHOR:decisions -->
 
 ---

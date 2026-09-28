@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Language/Stack** | Node.js ES module (`cli-deem.mjs`, proposed) using only `node:` built-ins (`http`, `fs`, `child_process` for the source commit, `process`). JSON and Markdown for the hub files |
 | **Framework** | The parent-hub canon checked by `.skilled/commands/doctor/scripts/parent-skill-check.cjs`. The local Deem server's HTTP API at `127.0.0.1:8300` |
 | **Storage** | None. The client writes nothing. The commit pair is read from `~/.local/share/deem/` |
-| **Testing** | `node --test` on `cli-deem/scripts/tests/cli-deem.test.mjs` (proposed) against an in-test fake server on an ephemeral port, `parent-skill-check.cjs` on the hub, a two-stage route replay and `git status --porcelain` |
+| **Testing** | `node --test` on `cli-deem/scripts/tests/cli-deem.test.mjs` (proposed) against an in-test fake server on an ephemeral port, `parent-skill-check.cjs` on the hub, a two-stage route replay, `sync-skills-hermes.cjs --check` and `git status --porcelain` |
 
 ### Overview
 
@@ -60,8 +60,10 @@ A parent hub with one nested transport packet, the pattern `parent-skill-check.c
 
 ### Key Components
 
-- **Hub root**: `SKILL.md`, `README.md`, `ROUTER.md`, `mode-registry.json` (one mode `cli-deem`, `packetKind` `transport`, a read-only `toolSurface`), `hub-router.json`, `graph-metadata.json`, `description.json`, a generated `leaf-manifest.json`, `changelog/`, `manual-testing-playbook/` and `benchmark/`. The last two are not in the synthesis's file list, and `parent-skill-check.cjs:1119-1129` fails without them.
+- **Hub root**: `SKILL.md`, `README.md`, `ROUTER.md`, `mode-registry.json` (one mode `cli-deem`, `packetKind` `transport`, a read-only `toolSurface`), `hub-router.json`, `graph-metadata.json`, `description.json`, a generated `leaf-manifest.json`, `changelog/`, `manual-testing-playbook/` and `benchmark/`. The last two are not in the synthesis's file list, and `parent-skill-check.cjs:1119-1129` fails without them. Every doc goes through sk-doc (D6 of the parent goal).
 - **`cli-deem/SKILL.md`**: the transport contract. Subcommands, flags, exit codes and the rule that callers spawn the binary and keep their own switches.
+- **`cli-deem/feature-catalog/`**: the packet's feature catalog through `sk-create-feature-catalog`, one entry per subcommand, where `cli-jev` keeps its transport's catalog.
+- **Generated copies**: `sync-skills-hermes.cjs` writes `.hermes/skills/cli-classifier/SKILL.md` and `.hermes/skills/cli-deem/SKILL.md` from the two new `SKILL.md` files. The route-remint gate writes an activation manifest only for a hub in `compiled-route-guard.cjs`'s `HUBS` list, which `cli-classifier` is not (`spec.md` Files to Change).
 - **`cli-deem/references/`**: three files. The wire: section 3's request and answer fields, the caps (26 options, 64 questions, 8 MiB body), the one-request lock and the no-key rule. The lifecycle: `deem-ctl` install, `start`, `stop`, `status`, `update`, `update --check` and `rollback` with its hold, quoted from `deem-local.md` and never reimplemented. The model pin: `deem-0.8-v1` as a launch label, the commit pair as the only name for the weights (C2) and requalification on a new pair (C3).
 - **`parseArgs()`**: subcommands `health`, `noul`, `choice`, `score` and `run`. Flags `-q`, `-s` (stdin when absent), `-o KEY=DESCRIPTION`, `-l DESCRIPTION` and `--value`. An inherited terminal on stdin exits 2. A usage error exits 2.
 - **`health()`**: `GET /health` with a 2,000 ms budget, or 500 ms for a hook caller. It requires HTTP 200, a JSON object, `status` `ok`, a `backend` of `torch` or `ensemble:` without `stub`, and `model` `deem-0.8-v1`. It reads the model commit as the basename of `readlink ~/.local/share/deem/models/current` and the source commit with `git -C ~/.local/share/deem/src rev-parse HEAD`, then prints backend, model id and pair. It never starts the server.
@@ -82,14 +84,18 @@ A caller spawns `cli-deem <subcommand>` with flags and the state on stdin. The c
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
+### Build Roles
+
+D5 of the parent goal sets who builds. A fresh Opus 5.5 xhigh build orchestrator writes single-change briefs and runs CLI executors by Bash only: Devin `deepseek-v4-1-flash-max`, Cursor `grok-4.7-xhigh-fast` and Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` once a probe passes. The orchestrator session verifies each result, gets a cross-family review of the code and commits. Docs go through sk-doc and code follows `sk-code-opencode` (D6 of the parent goal).
+
 ### First Slice, in Order
 
 1. Reopen the cited Deem seams (`deem_server.py:519-550`, `:594-621`, `:772-777`, `:222-230`, `:656-659`) and `jev-cli`'s answer shape (`__init__.py:389-393`), because the vendored copy may have moved.
 2. Write `cli-deem.mjs` and its tests against an in-test fake server: a stub backend refused, a wrong model id, a refused connection, an HTTP 400, 27 options, 65 questions, the answer round trip and duplicate descriptions. No test reaches port 8300.
-3. Write the packet's `SKILL.md` and three references, then the hub root files, and run `parent-skill-check.cjs` on the hub.
-4. Regenerate the advisor graph and the trigger index, then run the two-stage route replay of a Deem prompt.
+3. Write the packet's `SKILL.md`, three references and feature catalog, then the hub root files, all through sk-doc, and run `parent-skill-check.cjs` on the hub.
+4. Regenerate the advisor graph, the trigger index and the Hermes copies, then run the two-stage route replay of a Deem prompt.
 5. Hand the orchestrator the one live `cli-deem health`, which should print `torch`, `deem-0.8-v1` and the pair `8cbabbb` and `6755b30`.
-6. Run `git status --porcelain` and confirm only the hub and the regenerated indexes changed.
+6. Run `git status --porcelain` and confirm only the hub, this phase folder and the generated files `spec.md` REQ-008 names changed.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -108,7 +114,8 @@ Commands run from the repository root, with `H=.skilled/skills/cli-classifier` a
 | Per-hub check | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs $H` | Exit 0 with one mode, `cli-deem` |
 | Route replay | stage 1 through `node .skilled/bin/skill-advisor.cjs advisor_recommend`, stage 2 through the hub's router | Stage 1 names `cli-classifier`, stage 2 names `cli-deem` |
 | Live smoke (orchestrator only) | `node $C health` | Exit 0 with `torch`, `deem-0.8-v1` and the pair `8cbabbb` and `6755b30`, or the pair `deem-ctl status` prints after a later release |
-| Scope | `git status --porcelain` and `git diff --stat -- .skilled/skills/cli-jev` | Only the hub and the regenerated indexes. The `cli-jev` diff is empty |
+| Hermes copies | `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` | `PASS`, exit 0, with `.hermes/skills/cli-classifier/SKILL.md` and `.hermes/skills/cli-deem/SKILL.md` present |
+| Scope | `git status --porcelain` and `git diff --stat -- .skilled/skills/cli-jev` | Only the hub, this phase folder and the generated files `spec.md` REQ-008 names. The `cli-jev` diff is empty |
 | Phase docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:testing -->
 
@@ -125,7 +132,7 @@ None for the build or the tests. The orchestrator's smoke needs the Deem server 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Kill criterion: the per-hub check fails, or a replayed Deem request routes elsewhere. Revert the hub commit, which removes `.skilled/skills/cli-classifier/`, then regenerate the advisor graph and the trigger index so neither names the hub. `cli-jev` and the served Deem instance are untouched either way, so nothing else needs reverting.
+Kill criterion: the per-hub check fails, or a replayed Deem request routes elsewhere. Revert the hub commit, which removes `.skilled/skills/cli-classifier/`, then regenerate the advisor graph, the trigger index and the Hermes copies so none names the hub. `sync-skills-hermes.cjs` prunes a copy whose source is gone (`sync-skills-hermes.cjs:234`, `:260`). `cli-jev` and the served Deem instance are untouched either way, so nothing else needs reverting.
 <!-- /ANCHOR:rollback -->
 
 ---

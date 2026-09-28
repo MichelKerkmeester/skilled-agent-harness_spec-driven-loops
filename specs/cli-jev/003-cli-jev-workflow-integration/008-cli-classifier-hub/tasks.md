@@ -29,6 +29,8 @@ contextType: "implementation"
 **Task Format**: `T### [P?] Description (file path)`
 
 All file names below are proposed. `H` is `.skilled/skills/cli-classifier` (proposed).
+
+A fresh Opus 5.5 xhigh build orchestrator sends each code task as a single-change brief to a CLI executor by Bash only, and the orchestrator session verifies, gets a cross-family review and commits (D5 of the parent goal). Code tasks follow `sk-code-opencode`, and doc tasks go through sk-doc (D6 of the parent goal).
 <!-- /ANCHOR:notation -->
 
 ---
@@ -52,9 +54,9 @@ All file names below are proposed. `H` is `.skilled/skills/cli-classifier` (prop
 - [ ] T007 Write the answer translator: `value` to `noul`, `level` to `score`, the chosen description to its key, probabilities rekeyed, `--value` for the bare answer, and exit 3 on an answer `model` other than `deem-0.8-v1` (`cli-deem.mjs`)
 - [ ] T008 Write the exit mapping: 0, 1 on HTTP 400 or an unexpected body, 2, 3, 4 on a refused connection, a timeout or a 5xx, and 130 on SIGINT. No bearer and no `--provider` anywhere (`cli-deem.mjs`)
 - [ ] T009 Write the fake-server tests: stub backend, wrong model id, refused connection, HTTP 400, 27 options, 65 questions, the answer round trip and duplicate descriptions, plus the 26 and 64 boundaries. The fake server binds port 0 and logs every body (`H/cli-deem/scripts/tests/cli-deem.test.mjs`)
-- [ ] T010 [P] Write the packet contract and three references: the wire, the lifecycle over `deem-ctl` (install, `start`, `stop`, `status`, `update`, `update --check`, `rollback` with its hold, requalification on a new commit pair) and the model pin (`H/cli-deem/SKILL.md`, `H/cli-deem/references/`)
-- [ ] T011 Write the hub root: `SKILL.md`, `README.md`, `ROUTER.md`, `mode-registry.json` with one `transport` mode `cli-deem`, `hub-router.json`, `graph-metadata.json`, `description.json`, `changelog/`, `manual-testing-playbook/` and `benchmark/`, then generate `leaf-manifest.json` (`H/`)
-- [ ] T012 Regenerate the advisor graph and the trigger index from committed content (`.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`, the `system-spec-kit` trigger index)
+- [ ] T010 [P] Write the packet contract, three references and the feature catalog through sk-doc (`sk-create-skill`, `sk-create-feature-catalog`): the wire, the lifecycle over `deem-ctl` (install, `start`, `stop`, `status`, `update`, `update --check`, `rollback` with its hold, requalification on a new commit pair) and the model pin (`H/cli-deem/SKILL.md`, `H/cli-deem/references/`, `H/cli-deem/feature-catalog/`)
+- [ ] T011 Write the hub root through sk-doc: `SKILL.md` (`sk-create-skill`), `README.md` (`sk-create-readme`), `ROUTER.md`, `mode-registry.json` with one `transport` mode `cli-deem`, `hub-router.json`, `graph-metadata.json`, `description.json`, `changelog/` (`sk-create-changelog`), `manual-testing-playbook/` (`sk-create-manual-testing-playbook`) and `benchmark/`, then generate `leaf-manifest.json` (`H/`)
+- [ ] T012 Regenerate the advisor graph, the trigger index with its three fixtures and the Hermes copies from committed content, then run `sync-skills-hermes.cjs --check` and read `PASS` (`.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`, the `system-spec-kit` trigger index, `.hermes/skills/cli-classifier/SKILL.md`, `.hermes/skills/cli-deem/SKILL.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,7 +69,7 @@ All file names below are proposed. `H` is `.skilled/skills/cli-classifier` (prop
 - [ ] T015 Run `parent-skill-check.cjs` on the hub and read its exit status. A failure is the kill criterion: revert the hub commit
 - [ ] T016 Run the two-stage route replay of a Deem prompt and confirm stage 1 names `cli-classifier` and stage 2 names `cli-deem`. A miss is the kill criterion
 - [ ] T017 Hand the orchestrator the one live `cli-deem health` and record the printed backend, model id and commit pair
-- [ ] T018 Run `git status --porcelain` and `git diff --stat -- .skilled/skills/cli-jev`, and confirm only the hub and the regenerated indexes changed
+- [ ] T018 Run `git status --porcelain` and `git diff --stat -- .skilled/skills/cli-jev`, and confirm only the hub, this phase folder and the generated files `spec.md` REQ-008 names changed. The two activation manifest paths may appear only if the hub was admitted to compiled routing
 - [ ] T019 Run `validate.sh --strict` and `check-goal.cjs` on this phase until both print `RESULT: PASSED`
 - [ ] T020 Fill `implementation-summary.md` with the test count, the hub check result, the replay result and the smoke line
 <!-- /ANCHOR:phase-3 -->

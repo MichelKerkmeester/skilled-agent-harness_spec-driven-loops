@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
-    last_updated_at: "2026-09-27T11:56:00Z"
-    last_updated_by: "parent-leaf"
-    recent_action: "Filled the phase-map, handoff and scope rows for phases 010 to 018"
-    next_safe_action: "Validate each of phases 010 to 018, then the packet recursively"
+    last_updated_at: "2026-09-28T10:00:00Z"
+    last_updated_by: "spec-pass-leaf"
+    recent_action: "Recorded wave 3 answers for 016 and 009"
+    next_safe_action: "Build 008, then 016, per D3 of goal.md"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/spec.md"
@@ -85,7 +85,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 
 ### Out of Scope
 
-- Building any phase the operator has not released. On 2026-09-27 the operator released 018, then 010, then 011 to 015 (014 with gate option A). Each other build phase is its own later decision.
+- Building a phase before the operator releases it. On 2026-09-27 the operator released 018, then 010, then 011 to 015 (014 with gate option A). On 2026-09-28 the operator released every remaining Planned phase, built in the order 008, 016, 002, 017, 003, 005, 006 and 009 (D3 of `goal.md`). 009 still builds only after a Deem `keep` in 002 or 017 (D4 of `goal.md`).
 - Changing the `cli-jev` hub or its `cli-usage` transport contract, except the move under `cli-classifier` that phase 009 plans for D2 of `goal.md`.
 - Editing the vendored repositories under `context/`. They are reference material.
 - Storing any key or secret in Jev state, in a digest or in a research artifact.
@@ -135,7 +135,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 13 | 013-sk-prompt-framework-docs/ | Reconcile sk-prompt's promise of 7 frameworks with the 5 its registry holds, from the owner's own sources, and make a run read only the chosen framework's section, checked by a before-and-after byte count. Owner `sk-prompt`, no classifier | Complete |
 | 14 | 014-sk-design-doc-and-routing-check/ | Rewrite sk-design's stale rule 6 after a live compiled-route rerun and put the md-generator's 80-point gate to the owner as two options with a recommendation. Record the hub's first routing accuracy by replaying its playbook scenarios. Owner `sk-design`, no classifier | Complete |
 | 15 | 015-fanout-merge-and-steering-fixes/ | Diagnose from the three rounds' committed lineage files why `fanout-merge.cjs` rebuilds fewer count-only findings than the lineages recorded, then fix it with a regression test built from those files. Give each iteration its lineage's `steer.md` when one exists. Owner `system-deep-loop`, no classifier | Complete |
-| 16 | 016-deem-local-hardening/ | Operator decisions on the local Deem install: the open CORS exposure (patch, proxy or accept, each with its rollback), a local access log through `deem-ctl`, `DEEM_N_ORDERS` held at 1 until 002's accuracy result and a versioned home for `deem-ctl`. No install or patch before the operator's yes, no classifier | Planned |
+| 16 | 016-deem-local-hardening/ | The operator's four answers on the local Deem install, 2026-09-28: the open CORS exposure accepted with a revisit trigger, a local access log through `deem-ctl`, `DEEM_N_ORDERS` held at 1 until 002's order-flip rate and a reviewed copy of `deem-ctl` in `007`'s context with a `cmp` check. No patch to Deem's code, no classifier | Planned |
 | 17 | 017-deem-search-narrowing-arm/ | An offline arm where one Deem `choice` picks the spec track a question is about and ripgrep searches inside it, kept only if it beats a zero-call ripgrep and trigger-index baseline by a margin fixed before the build. Needs 008 and 010. Dormant without a Jev key or a healthy local Deem | Planned |
 | 18 | 018-worktree-provision-shared-link/ | Stop worktree provisioning from skipping a package whose only dependencies are `@spec-kit/*` `file:` links, with a fixture test, and plan this worktree's one-time sk-doc repair as an install that waits for the operator's yes. Owner `sk-git`, no classifier | Complete |
 
@@ -159,7 +159,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 004-deep-research-expansion | 007-classifier-deep-research | The operator approved the round-3 prompt, and `004`'s synthesis is the baseline the new round re-ranks under Deem | `validate.sh --strict` passes on 004 |
 | 007-classifier-deep-research | 002, 003, 005 and 006 | `research/research.md` section 14 lists each phase's two-backend amendment line by line, and the build order is unchanged: 002's census first | `validate.sh --strict` passes on 007 and on each amended phase |
 | 007-classifier-deep-research | 008-cli-classifier-hub | `research/research.md` ranks R23, the `cli-deem` client, next, with its wire verdict settled from code and a live check | `validate.sh --strict` passes on 007 |
-| 008-cli-classifier-hub | 009-cli-jev-hub-move | The hub exists with `cli-deem` routed, and the operator keeps a Deem arm result (research open question 49) | `parent-skill-check` passes on the hub, and a route replay sends a Deem prompt to `cli-deem` |
+| 008-cli-classifier-hub | 009-cli-jev-hub-move | The hub exists with `cli-deem` routed, and a Deem arm in 002 or 017 prints `keep` under that phase's keep rule, fixed before the run, which counts as the operator's keep (D4 of `goal.md`, answering research open question 49) | `parent-skill-check` passes on the hub, a route replay sends a Deem prompt to `cli-deem` and 009's `implementation-summary.md` names the keep. With no keep, 009 stays Planned and the deciding verdicts go in `goal.md`'s log |
 | 009-cli-jev-hub-move | 010-trigger-index-search-fixes | Not a hard gate: 010 needs nothing from 009 and can start any time. Its first step reproduces the refused index rebuild | `generate-trigger-index.mjs` exits 1 with `refused: 2 document(s)` before the fix and exits 0 after it, and `validate.sh --strict` passes on 010 |
 | 010-trigger-index-search-fixes | 011-spec-validator-fixes | Not a hard gate: 011 changes two validators that 010 does not touch | 010's and 011's Files to Change tables name no common file, and `validate.sh --strict` passes on both |
 | 011-spec-validator-fixes | 012-sk-doc-validator-and-reference-fixes | Not a hard gate: 012 changes sk-doc validators and three playbook files that 011 does not touch | 011's and 012's Files to Change tables name no common file, and `validate.sh --strict` passes on both |

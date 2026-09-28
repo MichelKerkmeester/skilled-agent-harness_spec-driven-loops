@@ -31,7 +31,7 @@ contextType: "implementation"
 | **Phase** | 8 of 9 |
 | **Predecessor** | 007-classifier-deep-research |
 | **Successor** | 009-cli-jev-hub-move |
-| **Handoff Criteria** | `parent-skill-check.cjs` passes on the new `cli-classifier` hub (proposed) with one mode, the client's fake-server tests pass, a two-stage route replay sends a Deem prompt to `cli-deem` (proposed) and the orchestrator's one live `cli-deem health` prints the backend, the model id and the commit pair. 009 also waits on a Deem arm result the operator keeps (question 49) |
+| **Handoff Criteria** | `parent-skill-check.cjs` passes on the new `cli-classifier` hub (proposed) with one mode, the client's fake-server tests pass, a two-stage route replay sends a Deem prompt to `cli-deem` (proposed) and the orchestrator's one live `cli-deem health` prints the backend, the model id and the commit pair. 009 also waits on a Deem `keep` in 002 or 017 under that phase's pre-fixed keep rule (D4 of the parent goal, which answers question 49) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -41,7 +41,7 @@ contextType: "implementation"
 
 This is **Phase 8** of the cli-jev workflow integration specification. It builds the first half of recommendation R23, rank 4 and verdict next: a `cli-deem` Node client (proposed) in a new `cli-classifier` hub (proposed). The source is the round-3 synthesis, `../007-classifier-deep-research/research/research.md`: section 14's record for this phase, section 12's R23 record and shared two-backend gate contract, section 3's wire table, Deem check and lifecycle plus conditions C1 to C3. The parent goal's D2 requires the hub and `cli-deem`. `cli-jev` stays where it is until phase 009.
 
-**Scope Boundary**: One new hub root under `.skilled/skills/cli-classifier/` holding one transport packet, `cli-deem/`, plus the regenerated advisor graph and trigger index. No existing skill, script or hook changes, and nothing calls the real Deem server except the orchestrator's one smoke.
+**Scope Boundary**: One new hub root under `.skilled/skills/cli-classifier/` holding one transport packet, `cli-deem/`, plus the regenerated advisor graph and trigger index and the generated Hermes copies of the two new `SKILL.md` files. No existing skill, script or hook changes, and nothing calls the real Deem server except the orchestrator's one smoke.
 
 **Dependencies**:
 - None for the build. The tests run against an in-test fake server.
@@ -49,8 +49,8 @@ This is **Phase 8** of the cli-jev workflow integration specification. It builds
 
 **Deliverables**:
 - The hub root files, with `mode-registry.json` naming one transport mode, `cli-deem`
-- The `cli-deem/` packet: `SKILL.md`, three references (the wire, the lifecycle over `deem-ctl` and the model pin), `scripts/cli-deem.mjs` and its test file
-- The regenerated advisor graph and trigger index
+- The `cli-deem/` packet: `SKILL.md`, three references (the wire, the lifecycle over `deem-ctl` and the model pin), a feature catalog, `scripts/cli-deem.mjs` and its test file
+- The regenerated advisor graph and trigger index, and the generated Hermes copies
 - One live `cli-deem health` line, recorded by the orchestrator
 
 **Changelog**:
@@ -90,10 +90,12 @@ Give every Deem arm one transport: a dependency-free client that posts Deem's ow
 - Three references in the packet: the wire, the lifecycle over `deem-ctl` and the model pin.
 - A test file against an in-test fake server, then the orchestrator's one live `cli-deem health`.
 - Regenerating the advisor graph and the trigger index so a Deem prompt routes to the hub and then to `cli-deem`.
+- The hub's docs through sk-doc (D6 of the parent goal): `SKILL.md` through `sk-create-skill`, the README through `sk-create-readme`, the changelog through `sk-create-changelog`, the feature catalog through `sk-create-feature-catalog` and the manual testing playbook through `sk-create-manual-testing-playbook`. The client and its tests follow sk-code's OpenCode route, `sk-code-opencode`.
+- The files the repository's own generators write for a new hub: the two Hermes skill copies and, only if the build admits the hub to compiled routing, its activation manifest and that manifest's mirror (Files to Change names each with its source).
 
 ### Out of Scope
 
-- Moving `cli-jev` into the hub. That is phase 009, which waits on this phase and on a Deem arm result the operator keeps (question 49).
+- Moving `cli-jev` into the hub. That is phase 009, which waits on this phase and on a Deem `keep` in 002 or 017 under that phase's pre-fixed keep rule (D4 of the parent goal, which answers question 49).
 - Any caller's `--deem` switch. Each arm in 002, 003, 005 and 006 owns its own switch, as the shared gate contract says. The hub has no switch.
 - Starting, stopping, updating or rolling back the server from the client. `deem-ctl` owns the lifecycle, and the packet only documents it. No feature starts the server.
 - The `jev --provider custom` wrapper as `cli-deem` (What Not To Build row 75) and a translator: a patched wheel, a JSON proxy or a `deem` branch in `provider_request` (row 76).
@@ -107,7 +109,7 @@ Give every Deem arm one transport: a dependency-free client that posts Deem's ow
 
 ### Files to Change
 
-All names are proposed and come from the synthesis (swe-07's list, lineage-reported), except where the Description says otherwise.
+All names are proposed and come from the synthesis (swe-07's list, lineage-reported), except where the Description says otherwise. Docs go through sk-doc and code follows `sk-code-opencode` (D6 of the parent goal). The Regenerate rows are written by the repository's own tools, never by hand.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
@@ -119,10 +121,13 @@ All names are proposed and come from the synthesis (swe-07's list, lineage-repor
 | `.skilled/skills/cli-classifier/manual-testing-playbook/`, `benchmark/` | Create | Not in swe-07's list. `parent-skill-check.cjs:1119-1129` requires both by default, so the observable check needs them |
 | `.skilled/skills/cli-classifier/cli-deem/SKILL.md` | Create | The transport packet's contract |
 | `.skilled/skills/cli-classifier/cli-deem/references/` | Create | Three references: the wire, the lifecycle over `deem-ctl` and the model pin |
+| `.skilled/skills/cli-classifier/cli-deem/feature-catalog/` | Create | Not in swe-07's list. The feature catalog D6 of the parent goal requires, through `sk-create-feature-catalog`. It sits in the packet because `cli-jev` keeps its transport's catalog there (`.skilled/skills/cli-jev/cli-usage/feature-catalog/`) |
 | `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs` | Create | The client, about 170 LOC (swe-01, lineage estimate) |
 | `.skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` | Create | The fake-server tests, about 150 LOC (estimate), run with `node --test`. The test path is this phase's choice |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Regenerate | The advisor graph gains the hub |
-| The trigger index under `system-spec-kit` | Regenerate | Rebuilt from committed content |
+| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and its three fixtures `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json` under `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/` | Regenerate | Rebuilt from committed content. The generator writes all four (`generate-trigger-index.mjs:76-79`) |
+| `.hermes/skills/cli-classifier/SKILL.md`, `.hermes/skills/cli-deem/SKILL.md` | Regenerate | Hermes copies written by `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs`. It walks every `SKILL.md` under `.skilled/skills/` (`sync-skills-hermes.cjs:20-21`, `:51-68`), names each copy by the frontmatter `name` (`:139-143`) and writes `.hermes/skills/<name>/SKILL.md` (`:266-267`). CI fails on a stale or missing copy (`.github/workflows/command-tree-parity.yml:65`). Phases 013 and 014 recorded the same copies (`../013-sk-prompt-framework-docs/implementation-summary.md:70`, `../014-sk-design-doc-and-routing-check/goal.md:137`) |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json` and its mirror `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/manifest.json` | Regenerate, only if the hub is admitted to compiled routing | The pre-commit route-remint gate re-mints and stages both whenever a staged `SKILL.md`, `hub-router.json` or `mode-registry.json` belongs to a hub in `compiled-route-guard.cjs`'s `HUBS` list (`.skilled/scripts/git-hooks/pre-commit:308-313`, `:318-321`, `:345-346`, `:358-369`, `:404-405`, `:421-439`, `.skilled/bin/lib/compiled-route-layout.cjs:33`). `cli-classifier` is not in that list today (`.skilled/bin/compiled-route-guard.cjs:45-53`), so a plain hub add stages neither. Once it is listed, the gate blocks any commit while either file is missing (`pre-commit:409-417`). Phase 014 recorded the sk-design pair (`../014-sk-design-doc-and-routing-check/goal.md:136`) |
 | `.skilled/skills/cli-jev/**` | Unchanged | Stays in place until 009 |
 <!-- /ANCHOR:scope -->
 
@@ -142,7 +147,7 @@ All names are proposed and come from the synthesis (swe-07's list, lineage-repor
 | REQ-005 | Caps are checked before sending | More than 26 options, or more than 64 questions in a `run` request, exits 2 with a message naming the cap, and the fake server logs no request (`deem_server.py:166`, `:222-230`, `:656-659`) |
 | REQ-006 | Exit codes mirror `jev-cli` | 0 success. 1 an unexpected response or HTTP 400. 2 a usage or config error. 3 a refused backend: the stub, or a model id other than `deem-0.8-v1` in the health body or in an answer's `model` field (`deem_server.py:894`). 4 unreachable, a timeout or a 5xx. 130 interrupted. With no server, every subcommand exits 4 and changes nothing |
 | REQ-007 | The client holds no key and no dependency | It sends no bearer and takes no `--provider`. `grep -nE 'Authorization\|Bearer\|API_KEY' cli-deem.mjs` returns no match, and every import is a `node:` built-in |
-| REQ-008 | The phase changes only the hub and the regenerated indexes | `git status --porcelain` lists only paths under `.skilled/skills/cli-classifier/`, the advisor graph and the trigger index. `git diff --stat -- .skilled/skills/cli-jev` is empty |
+| REQ-008 | The phase changes only the hub, this phase folder and the files the repository's generators write for it | `git status --porcelain` lists only paths under `.skilled/skills/cli-classifier/`, this phase folder, `skill-graph.json`, the trigger index and its three fixtures, `.hermes/skills/cli-classifier/SKILL.md` and `.hermes/skills/cli-deem/SKILL.md` and, only if the hub is admitted to compiled routing, `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json` and its `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/` mirror. `git diff --stat -- .skilled/skills/cli-jev` is empty |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -182,7 +187,7 @@ Written before the build, from section 14's first slice and observable check.
 3. `parent-skill-check.cjs` on the hub exits 0. Boundary: a mode without `packetKind` or a second `graph-metadata.json` inside the packet fails it.
 4. A two-stage route replay of a Deem prompt names `cli-classifier`, then `cli-deem`.
 5. The orchestrator's one `cli-deem health` prints `torch`, `deem-0.8-v1` and the commit pair.
-6. `git status --porcelain` lists only the hub and the regenerated indexes, and `cli-jev` is untouched.
+6. `git status --porcelain` lists only the hub, this phase folder and the generated files REQ-008 names, and `cli-jev` is untouched. `sync-skills-hermes.cjs --check` prints `PASS`.
 
 **Kill criterion.** The per-hub check fails, or a replayed Deem request routes elsewhere. Revert the hub commit and regenerate the advisor graph and trigger index. Separately, R23 retires `cli-deem` and never builds 009 if no Deem arm prints a result the operator keeps.
 <!-- /ANCHOR:success-criteria -->
@@ -209,8 +214,8 @@ Written before the build, from section 14's first slice and observable check.
 ## 7. OPEN QUESTIONS
 
 - How does a hook caller select the 500 ms budget in place of 2,000 ms? The synthesis sets both budgets and names no flag. The build fixes the flag name (proposed) and records it in the wire reference.
-- Does a new hub need admission to compiled routing for stage 2, or does its own `hub-router.json` suffice until 009? The synthesis lists the compiled-route literals only for 009. The build reads `compiled-route.cjs:35` and the admission tool before choosing the replay command.
-- Should 009's move wait on a Deem result the operator keeps? The synthesis recommends yes (question 49). The operator decides when 008 lands.
+- Does a new hub need admission to compiled routing for stage 2, or does its own `hub-router.json` suffice until 009? The synthesis lists the compiled-route literals only for 009. The build reads `compiled-route.cjs:35` and the admission tool before choosing the replay command. Admission means adding the hub to hand-kept lists outside the hub, such as `compiled-route-guard.cjs:45-53`, which the scope boundary and D4 of `goal.md` do not allow. So admission comes back to the orchestrator as an amendment before any such edit. Once admitted, the pre-commit gate re-mints the activation manifest and its mirror that Files to Change names.
+- Answered on 2026-09-28: 009's move waits on a Deem `keep`. A Deem arm in 002 or 017 that prints `keep` under that phase's keep rule, fixed before the run, counts as the operator's keep (D4 of the parent goal, question 49).
 <!-- /ANCHOR:questions -->
 
 ---
