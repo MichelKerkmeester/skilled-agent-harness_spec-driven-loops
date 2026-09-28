@@ -74,6 +74,8 @@ The shell reader of `hook-flags.env` disagreed with the Node and Python readers 
 
 Before tagging v4.0.0.2, the operator asked for a review of its entry. It was accurate, but it left out five user-visible changes made since `v4.0.0.1`. One topic phrase also carried a version number, and its smaller items were spread over seven sections. The entry now covers the changelog history rewrite, the validator's `AGENTS.md` fix, the Hermes copy links, Grok 4.7 in Cursor and cli-jev's routing. It keeps its two identity phrases and two topic phrases, and it folds Deep Loops and Editing in Pi into one section with the new items. Packet 067 wrote into the same entry and records the review too. The release went out on 2026-09-28 as `v4.0.0.2`, tagged on `68dd665c5d` once every CI workflow had passed there.
 
+The release step then showed two defects. It never wrote the full-changelog line the mode requires, and it built the tag message from the summary's first sentence. Both workflows now close the notes with that line and build the tag message from the tag and the editorial title. The operator then pointed out that the entry read as a goal release although the skill advisor changes mattered more, and that the searchable-changelog work was unclear. The entry now opens with the advisor, which has its own section, and a new Changelogs section says what each entry declares, how to look one up with and without `--triggers`, what the search reads and how the writers and the validator keep it true. The published release carries the same text and a new title. Its annotated tag message keeps the old title, since changing it means deleting and re-pushing the tag.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -157,6 +159,9 @@ The review fixes followed the review's own workstreams. Every new test ran again
 | Comment hygiene, shellcheck and the drift guard after the review fixes | PASS on the 9 changed code files. shellcheck reports HEAD's set on `hook-flags.sh` and `progressive-validate.sh`, and one finding against HEAD's three on `quality-audit.sh`. The guard's 56 errors all sit in another packet's evidence folders |
 | v4.0.0.2 entry after the release review | PASS. `validate_document.py` reports 0 issues and `hvr_scan.py` 0 hard blockers. Every link resolves, and the entry keeps 12 summary bullets. Its upgrade-note commands and paths exist, and each number traces to a commit message or to packet 060/012's measurements |
 | v4.0.0.2 release | PASS. Ten of ten CI workflows passed on `68dd665c5d` before tagging. The annotated tag peels to that commit on origin, and the release is Latest, neither draft nor pre-release, with a body that matches the prepared notes character for character |
+| Release step fix | PASS. Commit `a71cf79ef2`: applied to v4.0.0.2, the new rules reproduce the published body and tag subject exactly and the old rules do not |
+| v4.0.0.2 entry after the rebalance | PASS. `validate_document.py` reports 0 issues and `hvr_scan.py` 0 hard blockers. The description is 217 characters, the longest subsection title is nine words, and the entry keeps 12 summary bullets and 5 opening paragraphs. The 34 semicolons are all `&nbsp;` spacers, and every inline path resolves or is a fragment of a path that does |
+| Published release after the rebalance | PASS. The live body equals the entry without frontmatter and title plus the full-changelog line, 32,927 characters, and v4.0.0.2 is still Latest. The tag message keeps the old title |
 <!-- /ANCHOR:verification -->
 
 ---

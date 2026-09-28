@@ -70,7 +70,7 @@ The README's Quick Start gained a "Git Hooks" subsection. It says the first AI s
 | `.skilled/scripts/git-hooks/pre-commit` | Modified | Bypass line on the comment hygiene and mirror parity blocks, the whole-chain switch on both agent mirror blocks |
 | `.skilled/scripts/git-hooks/tests/commit-msg.test.sh` | Modified | Case 17 asserts both early blocks name the bypass |
 | `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` | Modified | Bypass checks on the dirty mirror and missing checker cases, and cases 40 to 42 |
-| `.skilled/changelog/skilled/v4.0.0.2.md` | Modified | The Git Hooks and the Root Docs section, then the release review shared with packet 062 |
+| `.skilled/changelog/skilled/v4.0.0.2.md` | Modified | The Git Hooks and the Root Docs section, then the release review and the later rebalance shared with packet 062 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -107,6 +107,7 @@ The test cases came first. Run against the hooks as committed at HEAD, they fail
 | `hvr_scan.py` on the added doc lines | PASS, 0 hard blockers |
 | v4.0.0.2 entry after the release review | PASS, recorded in packet 062's T026: 0 issues, 0 hard blockers and every link resolving |
 | v4.0.0.2 release | PASS, recorded in packet 062's T027: tagged on `68dd665c5d` after ten of ten CI workflows passed, and published as Latest |
+| v4.0.0.2 entry after the rebalance | PASS, recorded in packet 062's T029: the skill advisor now leads the entry, and the git hook and root docs items sit in the Doc Validation and Git Hooks section with their text kept |
 <!-- /ANCHOR:verification -->
 
 ---

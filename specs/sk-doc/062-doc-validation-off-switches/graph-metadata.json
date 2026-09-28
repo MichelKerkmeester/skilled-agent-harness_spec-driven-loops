@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`SPECKITSKIPVALIDATION` exists but traps commits",
     "created_at": "2026-09-28T07:19:12Z",
-    "last_save_at": "2026-09-28T20:03:09.186Z",
+    "last_save_at": "2026-09-28T20:57:52.476Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8268733264bac10c4347f2524b56175a6f19de7a62b7b9260539150a8387249b",
+    "source_fingerprint": "sha256:5d191fc0634448aa01039297fba06798b146f32ba6433f22a1743b86c85648be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5f6c881cab87462c46310d302572e516b681bf06e6ece1e6948ed2c6d9327e8",
       "plan.md": "5618ff9311d4a8b5334533576d37bcef52a010624f07f884e5479005518be624",
-      "tasks.md": "cdfb6bd4762fd35c707eb8723ccbcd7329869128bad294fb5b925649498b7935",
-      "implementation-summary.md": "076f46327a3bef8dff8fd48a1a61d1696240c600d3ea15bba89b9091088e01a1"
+      "tasks.md": "50a04be5a6b989b5a057588c9e22ecac4f8722eaabb42ff3515bb6ca18e8efe9",
+      "implementation-summary.md": "5872b4dcc18fa1181d0304e476f6ee8bfed63435eee308f9f6d6fba5e6fd92d1"
     },
     "last_active_at": null
   }
