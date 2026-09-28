@@ -72,6 +72,29 @@ def test_the_file_parser_matches_the_hooks_resolver(tmp_path):
     assert validation_switch.load_config_file(flags) == json.loads(node.stdout)
 
 
+# The docs say to copy the example and uncomment a line, and the parsers keep any
+# text after a value, so a trailing comment on a switch line would leave it off.
+def test_the_example_switch_lines_work_once_uncommented(tmp_path):
+    names = ("SPECKIT_SKIP_VALIDATION", "SKDOC_SKIP_VALIDATION")
+    example = REPO_ROOT / ".skilled" / "hooks" / "hook-flags.env.example"
+    lines = [
+        line[2:] if line.startswith(tuple(f"# {name}=" for name in names)) else line
+        for line in example.read_text(encoding="utf-8").splitlines()
+    ]
+    assert sum(line.startswith(names) for line in lines) == len(names)
+    flags = tmp_path / "hook-flags.env"
+    flags.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    assert validation_switch.skip_source({"HOOK_FLAGS_CONFIG": str(flags)}) == str(flags)
+    node = subprocess.run(
+        ["node", "-e",
+         "const h = require(process.argv[1]); const c = h.loadConfigFile(process.argv[2]);"
+         " process.stdout.write(JSON.stringify(process.argv.slice(3).map((n) => h.isFlagOn(n, {}, c))))",
+         str(HOOK_FLAGS_CJS), str(flags), *names],
+        capture_output=True, text=True, check=True,
+    )
+    assert json.loads(node.stdout) == [True] * len(names)
+
+
 # ---------------------------------------------------------------------------
 # 2. Every guarded validator skips
 # ---------------------------------------------------------------------------
