@@ -1,0 +1,3 @@
+# install-codex-hooks --check, HEAD 0dc044de8c, 2026-09-28T12:46:26Z
+install-codex-hooks: OK ~/.codex/hooks.json
+check_exit=0

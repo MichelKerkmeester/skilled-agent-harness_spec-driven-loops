@@ -1,0 +1,36 @@
+# Tester sandbox folders left in /tmp after the matrix, found 2026-09-28T14:26:43Z
+# state-before and state-after check the scenario sandbox names (cp003.*, cp004.*, cli-playbook.*).
+# A search of /tmp for entries changed during the matrix, 12:49Z to 14:22Z, found two more.
+## /private/tmp/cl001.jaUMJq
+  /private/tmp/cl001.jaUMJq/db/skill-graph-generation.json 141 bytes
+  db/skill-graph-generation.json:
+    {
+      "generation": 1,
+      "updatedAt": "2026-09-28T13:05:11.896Z",
+      "sourceSignature": null,
+      "reason": "SIGTERM",
+      "state": "unavailable"
+    }
+  open-file holders (lsof +D): 0
+## /private/tmp/cl005.t9Cfty
+  /private/tmp/cl005.t9Cfty/db/skill-graph-generation.json 141 bytes
+  db/skill-graph-generation.json:
+    {
+      "generation": 1,
+      "updatedAt": "2026-09-28T13:17:45.917Z",
+      "sourceSignature": null,
+      "reason": "SIGTERM",
+      "state": "unavailable"
+    }
+  open-file holders (lsof +D): 0
+## origin
+Codex CL-001 (13:03:32Z to 13:05:08Z) and Codex CL-005 (13:14:40Z to 13:17:28Z) each made a mktemp sandbox
+under /tmp, as the brief asks, pointed a cold advisor call at its db folder and removed the sandbox at the end.
+Codex's command guard refused rm -rf in both runs. The CL-001 tester then removed its folder with Node's
+fs.rmSync and printed 'sandbox cleanup exit: 0', and the CL-005 tester used Python's shutil.rmtree and
+printed 'sandbox cleanup: complete'.
+Each generation file reads reason SIGTERM, written 3 and 17 seconds after its run ended, so a sandbox
+daemon from the cold call received SIGTERM after the tester's cleanup and wrote its shutdown record,
+which recreated the folder. That is the same path phase 12 closed for CP-003's own teardown. No sandbox
+daemon is running now (state-after.txt), and the live generation file never changed (generation-trace.txt).
+## removed 2026-09-28T14:27:06Z by the orchestrator with rm -r on both paths, after the record above

@@ -38,7 +38,7 @@ contextType: "general"
 
 This is **Phase 14** of packet 030. Phases 2 to 13 changed the skill advisor and five other components, and none of that reached a changelog except two cli entries.
 
-**Scope Boundary**: changelog entries, the `SKILL.md` versions they move and the artifacts that follow those versions mechanically. No code changes.
+**Scope Boundary**: changelog entries, the `SKILL.md` versions they move and the artifacts that follow those versions mechanically. No code changes. After the push the operator set the parent goal again, so the phase also proves the parent goal's six criteria from the final state.
 
 **Dependencies**:
 - The sk-create-changelog contract (`.skilled/skills/sk-doc/sk-create-changelog/SKILL.md` v1.3.1.0) and its template.
@@ -79,6 +79,7 @@ Every change the skill advisor work shipped is findable in the changelog of the 
 - Set each bumped `SKILL.md` to its new anchor, with the four other cli-external-orchestration hub root artifacts that state the hub version, re-mint each hub route manifest the route guard reports stale and rebuild the affected Hermes copies.
 - Add the skill advisor work to `.skilled/changelog/skilled/v4.0.0.2.md`.
 - Bind this phase in the parent goal, shortening decision prose per cut-order step 5 so the parent stays inside 4,000 characters.
+- Prove the parent goal's six criteria again from the final state, with all nine scenarios rerun in the five CLIs. Another session's `3ad952e58e` changed how both hook-flag resolvers parse a value after phase 13's proof, so no earlier scenario result carries forward. Added when the operator set the parent goal again on 2026-09-28.
 
 ### Out of Scope
 - The 35 entries in other skills whose title reads `<component> changelog v<version>` - fleet-wide drift outside the advisor work, reported instead.
@@ -101,6 +102,7 @@ Every change the skill advisor work shipped is findable in the changelog of the 
 | `.hermes/skills/*/SKILL.md` | Modify | Rebuilt for each bumped `SKILL.md` |
 | `.skilled/changelog/skilled/v4.0.0.2.md` | Modify | The skill advisor section |
 | `../goal.md`, `../spec.md` | Modify | The 014 binding and phase map rows |
+| `evidence/goal-reverify/` | Create | The parent goal's six criteria proved again, with the scripts, the 45 scenario runs and their reports |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -200,7 +202,7 @@ Every change the skill advisor work shipped is findable in the changelog of the 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- None. The operator chose a new phase 014 of packet 030 on 2026-09-28.
+- None. The operator chose a new phase 014 of packet 030 on 2026-09-28 and set the parent goal again after its push, which added the goal proof.
 <!-- /ANCHOR:questions -->
 
 ---

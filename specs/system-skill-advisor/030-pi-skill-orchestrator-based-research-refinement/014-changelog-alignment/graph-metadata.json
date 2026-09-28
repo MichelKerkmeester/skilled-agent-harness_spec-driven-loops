@@ -53,9 +53,14 @@
       ".skilled/changelog/skilled/v4.0.0.2.md",
       "evidence/review/verification.md",
       "evidence/entry-checks.txt",
-      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
-      "evidence/baselines.txt",
-      "evidence/advisor-commit-trace.txt"
+      "evidence/final-gates.txt",
+      "evidence/strict-validate.txt",
+      "evidence/goal-reverify/crit3-sandbox-daemon.txt",
+      "evidence/goal-reverify/verdicts.txt",
+      "evidence/goal-reverify/native-lines.txt",
+      "evidence/goal-reverify/excluded-windows.tsv",
+      "evidence/goal-reverify/leftover-tester-folders.txt",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md"
     ],
     "entities": [
       {
@@ -131,21 +136,51 @@
         "source": "derived"
       },
       {
+        "name": "final-gates.txt",
+        "kind": "file",
+        "path": "evidence/final-gates.txt",
+        "source": "derived"
+      },
+      {
+        "name": "strict-validate.txt",
+        "kind": "file",
+        "path": "evidence/strict-validate.txt",
+        "source": "derived"
+      },
+      {
+        "name": "crit3-sandbox-daemon.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/crit3-sandbox-daemon.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/verdicts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "native-lines.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/native-lines.txt",
+        "source": "derived"
+      },
+      {
+        "name": "excluded-windows.tsv",
+        "kind": "file",
+        "path": "evidence/goal-reverify/excluded-windows.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "leftover-tester-folders.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/leftover-tester-folders.txt",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "baselines.txt",
-        "kind": "file",
-        "path": "evidence/baselines.txt",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-commit-trace.txt",
-        "kind": "file",
-        "path": "evidence/advisor-commit-trace.txt",
         "source": "derived"
       },
       {
@@ -171,41 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor is the only skill whose changelog still uses three-part file names, 10 of its 12 entries, while the contract and the other 539 entries under `.skilled/skills` use four parts",
     "created_at": "2026-09-28T11:14:31Z",
-    "last_save_at": "2026-09-28T12:15:05.802Z",
+    "last_save_at": "2026-09-28T14:28:24.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0398042f1d64826e39f3983cad571e757da34cc11fb3400a21011261357fb20e",
+    "source_fingerprint": "sha256:329cba05adeb600f8c969665a240dbeae2f50e309078d57c3ae24884ef6278d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a7f8926a18017d3dcd6e93ec9716903a8a578e589acc8353dcfdc77f8121b40f",
+      "spec.md": "f4e964fe105a585457a40aa67caa01cf7b2f3c35e64db4d8fa91a3370aedf4a7",
       "plan.md": "9a643770d52eeddec71b757f79885f6564a6fa55a01abdf44c7603dea16445c1",
-      "tasks.md": "caceb288d511b374292eda30e3d4d7351b2c1fb4251d7fd2418bbe6f2ac80798",
-      "implementation-summary.md": "e60b82ee73c280482057b60c200f00623a0667d142d979513cce95d1317ae85d"
+      "tasks.md": "426ffdc5c258c33c0a8157314a07e1ebe591c9b6bef507406e848d461ade9116",
+      "implementation-summary.md": "d4a25db591b565e05c32b27e05170415e4702ad5d17f3b8b5d8089ac699ab5d3"
     },
     "last_active_at": null
   }

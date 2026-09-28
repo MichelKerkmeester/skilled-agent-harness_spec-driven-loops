@@ -1,0 +1,14 @@
+<!-- dispatch: cursor 457; ledger: 2026-09-28T13:58:40Z 2026-09-28T14:03:26Z 0 286 -->
+
+RESULT: PASS | scenario=457 | runtime=cursor
+NATIVE: none visible
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+| 1 | cd advisor runtime && npm run build; cd spec-kit runtime && npm run build | skipped | not run | Build both runtime owners | n/a |
+| 2 | cd advisor runtime && npx vitest run directive-lifecycle, boundary, claude hook, plugin --seed=18018 | 0 | v4.1.11; 4 files, 129 tests passed | Canonical command exits 0 with a nonzero test count | yes |
+| 3 | cd spec-kit runtime && npx vitest run boundary-bridge, adapter-parity, user-prompt-submit-shim --seed=18018 | 0 | v4.1.11; 3 files, 30 tests passed | Registered-adapter command exits 0 with a nonzero test count | yes |
+| 4 | cd .skilled && npx --no-install vitest run --config hooks/vitest.config.ts --dir hooks/dispatch/pi | 0 | v5.0.1; 2 files, 50 tests passed | Pi suite exits 0 with a nonzero test count | yes |
+| 5 | node run-registered-adapter-cadence.mjs …/evidence/goal-reverify/runtime/cursor-registered-adapter | 0 | summary.json passed true; per runtime passed true for claude, codex, cursor, devin. Each JSON is full, then route-only, then full again. Claude/Codex/Devin envelope key hookSpecificOutput; Cursor envelope keys agent_message and permission | summary.json passed true for Claude, Codex, Cursor, and Devin, with native envelope and full/route-only/full cadence | yes |
+| 6 | hand-record one dated outcome folder under benchmark/reports | skipped | not written | Hand-recorded verdict, reason, repo-relative evidence path, byte counts, and SHA-256 | n/a |
+DEVIATIONS: Step 1 advisor runtime `npm run build`: skipped: prebuilt by orchestrator. Step 1 spec-kit runtime `npm run build`: skipped: prebuilt by orchestrator. Step 6: hand-recorded report owned by the orchestrator.
+NOTES: Native-host evidence class is SKIP, separate from the adapter result: this prompt's model-visible context has no `Advisor:` line, so no native-host receipt was observed. summary.json records cursor hostDeliveryStatus `adapter-pass-host-dormant-unconfirmed`. A first step-2 invocation did not enter the advisor runtime directory, fetched vitest 5.0.2, and exited 1 with no test files; the authoritative rerun used the scenario `cd` from the repository root and is the row above. Step 5 ran unsandboxed so the harness could create and delete its own OS temp directories. source-hashes.json SHA-256 values match the harness, target, and four adapter files on disk. OpenCode stays test-seam via the plugin file in step 2; no OpenCode host receipt was captured. Pi cadence is the passing step-4 suite, which printed one `freshness:unavailable` log line and still passed 50/50; the cadence harness has no Pi entry. providerModel was not observed.

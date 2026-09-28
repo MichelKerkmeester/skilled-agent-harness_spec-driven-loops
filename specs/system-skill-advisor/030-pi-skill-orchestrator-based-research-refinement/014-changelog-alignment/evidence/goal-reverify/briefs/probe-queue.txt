@@ -1,0 +1,5 @@
+pi probe
+opencode probe
+devin probe
+cursor probe
+codex probe

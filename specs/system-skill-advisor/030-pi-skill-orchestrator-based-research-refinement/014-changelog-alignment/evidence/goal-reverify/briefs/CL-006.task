@@ -1,0 +1,5 @@
+
+=== TASK: run scenario CL-006 ===
+Scenario file: .skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md
+Read the whole file first. Then run its test execution steps in order and judge them against its expected signals and pass/fail rules.
+- Run the block exactly as written. It already uses a sandbox socket directory.
