@@ -1,0 +1,153 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/fix/pin-check
+
+ ❯ final-on-baseline.vitest.ts (24 tests | 7 failed) 1079ms
+     × a recorded brief is read and not replayed 42ms
+     × a boundary without a recorded brief takes the replay path with replay_version 81ms
+     × the report holds no CANARY- string 39ms
+     × runs main when node starts the script through a symlink 42ms
+     × an --out under a ..cache name inside the transcript directory is refused 45ms
+     × an upper-cased --out inside the transcript directory is refused 43ms
+     × main voids the census and writes no report when a planted string reaches the guard 37ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  final-on-baseline.vitest.ts > score-compaction-recall > a recorded brief is read and not replayed
+AssertionError: expected 2 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 2
+
+ ❯ final-on-baseline.vitest.ts:226:22
+    224|     const run = runCensus(['--transcripts', fixture('recorded-brief'),…
+    225|
+    226|     expect(run.code).toBe(0);
+       |                      ^
+    227|     expect(run.report.rows).toHaveLength(1);
+    228|     expect(run.report.rows[0].summaryPresent).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  final-on-baseline.vitest.ts > score-compaction-recall > a boundary without a recorded brief takes the replay path with replay_version
+AssertionError: expected 2 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 2
+
+ ❯ final-on-baseline.vitest.ts:295:27
+    293|     const replayed = runCensus(['--transcripts', fixture('no-brief'), …
+    294|
+    295|     expect(replayed.code).toBe(0);
+       |                           ^
+    296|     expect(replayed.report.rows[0].briefStatus).toBe('replayed');
+    297|     expect(replayed.report.rows[0].briefWindowStatus).toBe('hook_cance…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  final-on-baseline.vitest.ts > score-compaction-recall > the report holds no CANARY- string
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ final-on-baseline.vitest.ts:311:22
+    309|     const run = runCensus(['--transcripts', FIXTURES, '--replay']);
+    310|
+    311|     expect(run.code).toBe(1);
+       |                      ^
+    312|     expect(run.report.totals.sessions_stopped).toBe(2);
+    313|     expect(run.report.rows).toHaveLength(4);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  final-on-baseline.vitest.ts > score-compaction-recall > runs main when node starts the script through a symlink
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ final-on-baseline.vitest.ts:339:22
+    337|     const run = runScript(link, []);
+    338|
+    339|     expect(run.code).toBe(2);
+       |                      ^
+    340|     expect(run.stdout).toBe('');
+    341|     expect(run.stderr).toBe('no transcripts named\n');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  final-on-baseline.vitest.ts > score-compaction-recall > an --out under a ..cache name inside the transcript directory is refused
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ final-on-baseline.vitest.ts:349:22
+    347|     const run = runScript(SCRIPT, ['--transcripts', dir, '--out', out]…
+    348|
+    349|     expect(run.code).toBe(2);
+       |                      ^
+    350|     expect(run.stderr).toBe('refused: report path inside transcript di…
+    351|     expect(existsSync(out)).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  final-on-baseline.vitest.ts > score-compaction-recall > an upper-cased --out inside the transcript directory is refused
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ final-on-baseline.vitest.ts:369:22
+    367|     const run = runScript(SCRIPT, ['--transcripts', dir, '--out', join…
+    368|
+    369|     expect(run.code).toBe(2);
+       |                      ^
+    370|     expect(run.stderr).toBe('refused: report path inside transcript di…
+    371|     expect(existsSync(join(dir, 'r-upper.json'))).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  final-on-baseline.vitest.ts > score-compaction-recall > main voids the census and writes no report when a planted string reaches the guard
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ final-on-baseline.vitest.ts:407:18
+    405|     });
+    406|
+    407|     expect(code).toBe(1);
+       |                  ^
+    408|     expect(write.mock.calls.map((call) => String(call[0])).join('')).t…
+    409|     expect(existsSync(out)).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 17 passed (24)
+   Start at  01:06:28
+   Duration  1.20s (transform 39ms, setup 0ms, import 33ms, tests 1.08s, environment 0ms)
+

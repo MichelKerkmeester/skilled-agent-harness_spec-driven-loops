@@ -1,0 +1,28 @@
+TASK: add two cases to T for surfaces that have no case yet: an unterminated, unparseable last line counts as a partial
+tail, and the exported stopLine picks `arm may be specified` or `arm not built`. Test-only: the script already does this.
+Never read ~/.claude, ~/.pi or any transcript or session file. Edit only this file (read all of it first):
+T = .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts
+Add these two cases as the last cases, just before the final `});` of T, each after one blank line:
+  it('an unterminated last line that does not parse counts as a partial tail', () => {
+    const dir = tempDir('compaction-recall-tail-');
+    writeFileSync(join(dir, 'tail.jsonl'), `${readFileSync(fixture('clean'), 'utf8')}{"type":"user"`);
+    const out = join(tempDir('compaction-recall-out-'), 'r.json');
+    const run = runScript(SCRIPT, ['--transcripts', dir, '--out', out]);
+    const report = JSON.parse(readFileSync(out, 'utf8'));
+
+    expect(run.code).toBe(0);
+    expect(report.totals.partial_tails).toBe(1);
+    expect(report.totals.sessions_stopped).toBe(0);
+    expect(report.rows).toHaveLength(1);
+  });
+
+  it('stopLine picks arm may be specified or arm not built from the fit, reduction and ratio', async () => {
+    const { stopLine } = await import(pathToFileURL(SCRIPT).href);
+    const totals = { sessions_read: 1, sessions_stopped: 0 };
+    const row = { fitStage: 'full', offlineReduction: 0.5, keptTokensRatio: 1 };
+
+    expect(stopLine([row], totals)).toBe('stop: arm may be specified (fit_throws=0.00, offline_reduction_upper_bound=0.50, kept_tokens_ratio=1.00)');
+    expect(stopLine([{ ...row, keptTokensRatio: 3.5 }], totals)).toBe('stop: arm not built (fit_throws=0.00, offline_reduction_upper_bound=0.50, kept_tokens_ratio=3.50)');
+  });
+VERIFY (repo root): grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (expect 23)
+Accept when: 1 file changed (T), nothing else; T holds 23 cases.

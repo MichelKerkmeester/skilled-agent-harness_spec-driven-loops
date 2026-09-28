@@ -1,0 +1,42 @@
+TASK: decide whether --out is inside a named transcript directory by device and inode instead of path text, which misses
+an upper-cased name on a case-insensitive disk and calls `<dir>/..cache/r.json` outside. Pin it with one case in T.
+Never read ~/.claude, ~/.pi or any transcript or session file. Edit only these two files (read both first):
+S = .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs; T = .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts
+1. S:21, remove `isAbsolute, ` from the node:path import, so the line becomes exactly:
+import { basename, dirname, join, relative, resolve, sep } from 'node:path';
+2. S:1119-1122, replace all 4 lines of function isInsideDirectory (from its first line to its closing `}`) with exactly:
+// Device and inode decide containment, so case folding, a symlink or a name such as `..cache` cannot hide it.
+function isInsideByIdentity(target, candidate) {
+  let current = candidate;
+  while (true) {
+    if (existsSync(current)) {
+      const stats = statSync(current);
+      if (stats.dev === target.dev && stats.ino === target.ino) {
+        return true;
+      }
+    }
+    const parent = dirname(current);
+    if (parent === current) {
+      return false;
+    }
+    current = parent;
+  }
+}
+3. S, in outputInsideTranscripts, replace the 9 lines from `    const directory = stats.isDirectory() ? named : dirname(named);`
+   to the `    }` that closes `for (const dir of dirCandidates) {` with exactly these 4 (keep every other line of the function):
+    const target = statSync(stats.isDirectory() ? named : dirname(named));
+    if (outCandidates.some((candidate) => isInsideByIdentity(target, candidate))) {
+      return true;
+    }
+4. T, add this case as the last case, just before the final `});`, after one blank line:
+  it('an --out under a ..cache name inside the transcript directory is refused', () => {
+    const dir = transcriptDir();
+    const out = join(dir, '..cache', 'r.json');
+    const run = runScript(SCRIPT, ['--transcripts', dir, '--out', out]);
+
+    expect(run.code).toBe(2);
+    expect(run.stderr).toBe('refused: report path inside transcript directory\n');
+    expect(existsSync(out)).toBe(false);
+  });
+VERIFY (repo root, S and T as above): node --check S; grep -c 'isInsideDirectory\|isAbsolute' S (0); grep -cE '^  it[(.]' T (14)
+Accept when: 2 files changed (S and T), nothing else; node --check exits 0; both greps as expected.

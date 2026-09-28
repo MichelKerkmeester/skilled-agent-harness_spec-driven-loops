@@ -1,0 +1,70 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts (18 tests) 81970ms
+     ✓ returns the phase-007 claim ID on retry and concurrent exact mint requests  2391ms
+     ✓ accepts only the earliest equivalent mint decision and explicitly conflicts the other  2295ms
+     ✓ rejects wrong-kind and coordinate-like substitutes for the durable key  1161ms
+     ✓ reuses an exact fingerprint without minting a second claim identity  3385ms
+     ✓ reuses a paraphrase deterministically and mints an explicitly distinct neighbor  7249ms
+     ✓ blocks remint and attachment for multiple, weak, cross-namespace, and disputed matches  9470ms
+     ✓ retains duplicate-source provenance while only independent support changes status  4282ms
+     ✓ enforces the proposed-active-retracted transition table with exact retries  4115ms
+     ✓ keeps lifecycle and epistemic status orthogonal through contradiction, refutation, and retraction  8526ms
+     ✓ uses compensating correction events and retains the voided evidence record  4280ms
+     ✓ rejects a second correction before append and keeps the ledger healthy  7651ms
+     ✓ gives a materially different successor a new identity without rewriting its predecessor  6121ms
+     ✓ recovers claim registration after identity mint succeeds and claim append crashes  2339ms
+     ✓ produces identical incremental and full replay state and projection hashes  6901ms
+     ✓ round-trips resume and handover and rejects a stale claim cursor  4561ms
+     ✓ rejects wrong-kind, missing, and ambiguous active references before new work  4113ms
+     ✓ reports divergence while returning the exact authoritative legacy result  2749ms
+     ✓ denies claim events without the isolated dark write capability  379ms
+ ✓ ../system-deep-loop/runtime/tests/unit/partial-failure-policy.vitest.ts (39 tests) 4782ms
+     ✓ keeps legacy status and exit authority while ledgering a known-defect difference  378ms
+     ✓ replays the same final verdict after restart and excludes a late result  1645ms
+     ✓ collapses duplicate terminal event identity during replay  1155ms
+     ✓ ledgers abort without producing a reduction or degraded transition  1390ms
+ ✓ ../system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts (5 tests) 3615ms
+     ✓ emits a warning ledger event and summary field without changing a successful outcome  2547ms
+     ✓ does not emit a ledger event or summary field when counts are zero  1066ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-improvement-common-sealed-artifacts.vitest.ts (12 tests) 3211ms
+     ✓ seals and reads every common bundle kind through the real phase-007 store  521ms
+     ✓ rejects stale evaluator epochs and stale canary lifecycles  576ms
+     ✓ requires complete, fresh promotion evidence before promotion consumption  545ms
+     ✓ rejects wrong-kind candidate, baseline, and evaluator references in promotion evidence  648ms
+     ✓ cross-checks the evaluator capsule epoch while preserving a matching control  653ms
+ ✓ runtime/tests/embedders/launcher-model-server-live-two-launcher.vitest.ts (5 tests | 2 skipped) 1229ms
+     ✓ spawns and binds the unix socket, answering GET /api/health 200  609ms
+     ✓ leaves the socket file behind after SIGKILL (the stale-socket the launcher reclaims)  460ms
+ ✓ runtime/tests/opencode-plugins-folder-purity.vitest.ts (1 test) 1168ms
+     ✓ contains only importable plugin entrypoints with valid hook objects  1168ms
+ ✓ ../system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts (10 tests) 893ms
+ ✓ runtime/tests/compaction-recall.vitest.ts (12 tests) 589ms
+GREEN: {"rowCount":3,"hasComplete":true}
+RED: {"rowCount":2,"hasComplete":false}
+RESTORE: {"rowCount":3,"hasComplete":true}
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-ai-council-config-state-contract.vitest.ts (3 tests) 505ms
+     ✓ flips the contract toggle GREEN->RED->RESTORE and prints all three states  498ms
+ ✓ runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts (6 tests) 428ms
+WARN [speckit-hook:stdin] Failed to parse hook stdin: Unexpected token 'o', "not valid json{{{" is not valid JSON
+WARN [speckit-hook:timeout] Operation timed out after 50ms
+ ✓ runtime/tests/edge-cases.vitest.ts (13 tests) 223ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-projection-coverage.vitest.ts (8 tests) 274ms
+ ✓ runtime/tests/hook-completion-evidence-stop.vitest.ts (7 tests) 182ms
+ ✓ runtime/tests/local-llm-features/default-model-selection.vitest.ts (4 tests) 151ms
+ ✓ ../system-deep-loop/runtime/tests/council/multi-seat-dispatch.vitest.ts (7 tests) 62ms
+ ✓ runtime/tests/embedders/launcher-model-server-single-writer-cluster.vitest.ts (4 tests) 51ms
+ ✓ ../system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts (6 tests) 33ms
+ ✓ runtime/tests/multi-ai-council-runtime-parity.vitest.ts (2 tests) 25ms
+ ✓ runtime/tests/rrf-fusion.vitest.ts (25 tests) 7ms
+ ✓ ../system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts (1 test) 20ms
+ ✓ runtime/tests/factory-auto-resolution.vitest.ts (1 test) 6ms
+ ✓ runtime/tests/embedders/hf-model-server-perimeter.vitest.ts (20 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/convergence-score-delta.vitest.ts (9 tests) 2ms
+
+ Test Files  23 passed (23)
+      Tests  216 passed | 2 skipped (218)
+   Start at  23:46:05
+   Duration  102.19s (transform 1.77s, setup 74ms, import 1.26s, tests 99.43s, environment 1ms)
+

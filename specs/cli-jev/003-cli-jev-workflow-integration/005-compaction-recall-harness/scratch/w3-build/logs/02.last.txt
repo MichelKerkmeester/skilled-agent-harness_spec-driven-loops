@@ -1,0 +1,31 @@
+Now let me read S and T.Let me look at the fixtures and check the current state of the repo.Let me check the packet scratch area and search for related patterns in the repo.There's a brief `02-selection.md` that likely corresponds to this task. Let me read it and the bodies version.This is the same brief. Let me check the packet's spec.md and tasks.md for the selection contract details.Let me check for similar patterns elsewhere in the repo and look at the build evidence.I have the full picture now. Plan:
+
+1. Pre-edit capture of no-flag output (byte-identity baseline) in /tmp
+2. Edit S: add `listNewestCandidates` + `selectNewestCompacted` to section 7, wire `--newest-compacted` into main
+3. Edit T: add `selectionDir()` helper + two cases
+4. Verify: `node --check`, plus behavioral smoke runs against the same synthetic layout the tests use
+
+First, the pre-edit baseline capture (before any edit, so I can prove byte-identical no-flag output):Baseline captured. Now let me consult the sk-code route the persona names, then edit.Route resolves to the OpenCode surface (`sk-code-opencode`) for these `.mjs`/`.ts` system files; conventions are already pinned by R section 1. Now editing S — first the two new section 7 exports:Now the main restructure — the flag branch and directory refusal:Now the report field and the selection line:S is complete. Now T — imports, helper, and the two cases:Both files edited. Now verification — the listed `node --check`, then the behavioral smoke run:`node --check` passes, but the `it(` count is 7, not 5 — let me see what else matches:The two extra hits are `split('` — real vitest cases are exactly 5 (`^\s*it\(`). Now the behavioral smoke run: byte-identity for the no-flag path against the pre-capture, then the selection paths:No-flag path is byte-identical on stdout, stderr, and report JSON. Now the new flag behavior:All five expected values match the two T cases exactly. Let me also exercise the two parse-error walk rules (error before vs after the first boundary) since those are R section 10's subtle clauses:Both walk rules behave exactly as R section 10 specifies. Now let me re-read the final S to confirm coherence:Main is coherent. Let me try a syntax check on the TS test file (Node type-stripping), then clean up my temp artifacts:TS file parses clean. Now cleanup of my temp artifacts and a final workspace check:Final count check with the anchored pattern for the record:The orchestrator's own pre-edit snapshots exist in the packet logs (`02.pre.mjs`, `02.pre.vitest.ts`). Let me diff my files against them — this both gives exact added/removed counts and proves nothing unintended changed:Let me view the full diff against the snapshot to confirm it contains only my intended changes:The S diff is exactly my five intended hunks. Now the T diff:All verification is complete. Final state: the diff against the orchestrator's own pre-edit snapshots contains exactly the intended changes and nothing else.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs (+115/-26)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+37/-1)
+EDITS: S:330-390 added exported listNewestCandidates (direct *.jsonl, one stat each, mtime desc then name asc) and async selectNewestCompacted (walk per R section 10; stops opening once n selected; oversized skipped unread; error before first boundary takes no place, after takes a place with no rows; parse errors print the full `parse error: <file>:<line>: <message>` here because only this walk holds the message while stopped entries keep the brief's { file, line, code } shape)
+EDITS: S:464-472 main refuses a non-directory named path under --newest-compacted with `--newest-compacted needs a directory` (stderr, exit 2, before reading)
+EDITS: S:483-525 main branches: no flag keeps the recursive discovery verbatim; flag uses selectNewestCompacted, sets sessions_read = read, selection = { newest, read }, merges stopped/skipped, scope counts only selected files
+EDITS: S:537 report.selection wired to the selection variable (null without the flag)
+EDITS: S:546-548 `selection: newest <n> compacted main-session files by modification time, <read> read` printed right after the scope line
+EDITS: T:7 node:fs import gains mkdirSync, utimesSync
+EDITS: T:51-64 selectionDir() helper (a-old/b-new copies of fixture('clean'), c-newest first 4 lines, sess/subagents/d.jsonl; mtimes 1000/2000/3000/4000s)
+EDITS: T:99-118 the two cases, inside the existing describe after the current ones
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs -> no output (exit 0)
+CHECKS: node --experimental-strip-types --check .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> no output (exit 0; extra, not in brief)
+CHECKS: rg -c "^\s*it\(" .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 5 (exit 0)
+CHECKS: git diff --no-index --stat logs/02.pre.mjs S -> 115 insertions(+), 26 deletions(-) (diff exit 1, differences expected; diff contains only the five intended hunks)
+CHECKS: git diff --no-index --stat logs/02.pre.vitest.ts T -> 37 insertions(+), 1 deletion(-) (diff exit 1, differences expected; only the import, helper and two cases)
+CHECKS: no-flag byte-identity smoke, pre-edit vs post-edit over fixture('clean') and over the selection layout -> stdout, stderr and report.json all identical (exit 0)
+CHECKS: smoke `--newest-compacted 1` -> `selection: newest 1 compacted main-session files by modification time, 2 read`, rows ['b-new.jsonl'], selection {newest:1,read:2} (exit 0)
+CHECKS: smoke `--newest-compacted 5` -> `selection: newest 2 compacted main-session files by modification time, 3 read`, rows ['b-new.jsonl','a-old.jsonl'] (exit 0)
+CHECKS: smoke refusal, file named under the flag -> stderr `--newest-compacted needs a directory` (exit 2)
+CHECKS: smoke error-walk, error before vs after first boundary -> no place vs place-with-no-rows, both printed `parse error: ...: not JSON` (exit 1)
+BLOCKED REASON: none

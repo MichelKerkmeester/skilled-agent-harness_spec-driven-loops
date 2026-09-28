@@ -1,0 +1,5 @@
+1595,1598d1594
+<   if (hasFreeText(report, { basenames: listedBasenames, uuids: new Set(rows.map((row) => row.uuid)) })) {
+<     process.stdout.write('stop: census void (free text in report)\n');
+<     return 1;
+<   }

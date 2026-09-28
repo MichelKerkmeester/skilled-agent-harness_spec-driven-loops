@@ -1,0 +1,29 @@
+Gate 1 lookup: clean no-hit (exit 1, no rows). R is read; S and T are named. Now reading S, T, and checking the fixtures.Reading the rest of S (parser onward) and the `recorded-brief` fixture to ground the test expectations.Now let me look at the w3-build briefs directory for sibling context (the "next brief"), and the remaining fixtures.There are sibling briefs — `05-brief.md` (mine) and `06-rules.md` (the "next brief"). Reading both to pin the intended internal-record interface.Brief and next brief are clear. The internal record must persist summary/brief text for the next brief's end-of-file scoring. Let me check the repo state and the code-skill route before editing.Route resolved: this is Node/TypeScript system code → `sk-code-opencode` surface evidence. Loading it plus the replay brief (interface check for the parser changes).All contracts align: 07-replay expects exactly a per-boundary internal record carrying `summaryText`/`briefText` plus the row — matching the design I'm implementing. Making the S edits now.
+
+SKILL ROUTING: sk-code → sk-code-opencode (OPENCODE surface; implement phase, Node `.mjs` + vitest `.ts`)
+ARTIFACT: sk-code → sk-code-opencode evidence + workflow doctrineS edits applied. Now adding the test case in T.Now running the brief's verification checks, plus one direct exercise of the new case's fixture (same script, to confirm the test's expected values before handback).The grep tool's 9 includes `.split(` substring hits — let me see the exact matches to confirm the true case count is 7.Anchored count is exactly 7 (`it(` case declarations); the substring hits are `.split(` lines, which pre-date this change. Let me confirm the counting convention matches the earlier briefs' acceptance so the orchestrator's check passes.There's an orchestrator harness `run-brief.sh` — reading it to confirm exactly how the `it(` count is checked.Confirming the word-boundary count (the only convention consistent with earlier briefs' 5→6→7 progression) and checking for pre-dispatch copies to compute the diffstat.Word-boundary count is 7 ✓. Pre-dispatch copies exist — computing diffstats and running one synthetic overlap-window check (temp file in /tmp only) to verify the subtle window semantics: next boundary consumes a slot, overlapping windows, brief outside an earlier window.The refusal is correct behavior (out path inside the transcript's directory) — my temp setup was wrong, not the code. Re-running with the transcript in a separate temp dir.Overlap semantics verified exactly as specified: the boundary record consumes a window slot (B1 stays absent though a brief sits 31 records later), windows overlap, rows stay in boundary order, totals correct, and no brief text leaks onto rows. Final re-read of the integrated parser region:All checks green and the final state re-read. Handback:
+
+STATUS: DONE
+FILES CHANGED: 
+- `.skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` (+111/-2)
+- `.skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` (+17/-0)
+
+EDITS: 
+- S:69-73 added `WINDOW_RECORDS = 30` and `BRIEF_MARKER` constants
+- S:522-602 added `compactSummaryText`, `openWindow`, `feedWindow`, `closeWindow` (summary/brief search per R §7; texts stay on the internal record, never on the row)
+- S:649-653 `parseTranscript` keeps a per-boundary recall record list, off the row
+- S:678-686 every parsed record feeds all open windows (next boundary counts), closed windows finalize FIFO
+- S:722 boundary opens its recall window; row order unchanged
+- S:726-728 windows still open at file end are finalized
+- S:956-957 row line appends ` summary= brief= brief_window= marker= brief_chars=` after `kept_ratio`
+- S:1070-1073,1094 totals add `briefs_recorded`, `briefs_absent`, `markers` after `fit_throws` (report + totals line)
+- T:183-198 added case `'a recorded brief is read and not replayed'`
+
+CHECKS: 
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` -> no output (exit 0)
+- `node .../score-compaction-recall.mjs --transcripts .../no-brief.jsonl --out /tmp/crc-smoke/report.json | grep -c 'brief=absent brief_window=hook_cancelled marker=n/a brief_chars=n/a'` -> `1` (exit 0)
+- extra: `node .../score-compaction-recall.mjs --transcripts .../recorded-brief.jsonl --replay` -> `summaryPresent=true briefStatus=recorded briefWindowStatus=hook_success briefMarker=true briefChars=66`, replayVersion absent, `totals.briefs_recorded=1`, no `CANARY-` in row values (exit 0)
+- extra: synthetic 2-boundary overlap transcript in /tmp -> line-2 row `absent/none` (brief at 31st record outside its window), line-4 row `recorded/44`, totals recorded=1 absent=1 markers=1 (exit 0)
+- `grep -cE '^  it\(' .../compaction-recall.vitest.ts` -> `7` (word-boundary count also 7; substring `it(` also matches the two pre-existing `.split(` lines)
+
+BLOCKED REASON: none

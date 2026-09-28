@@ -1,0 +1,11 @@
+ M .skilled/skills/system-spec-kit/README.md
+ M .skilled/skills/system-spec-kit/SKILL.md
+ M .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-spec-kit/runtime/scripts/README.md
+?? .skilled/skills/system-spec-kit/changelog/v4.3.0.0.md
+?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md
+?? .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/
+?? .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/
+?? .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/

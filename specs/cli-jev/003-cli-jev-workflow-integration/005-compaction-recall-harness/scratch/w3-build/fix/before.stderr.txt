@@ -1,0 +1,2 @@
+parse error: malformed-line.jsonl:2: not JSON
+parse error: unknown-type.jsonl:3: unknown type brand-new-type

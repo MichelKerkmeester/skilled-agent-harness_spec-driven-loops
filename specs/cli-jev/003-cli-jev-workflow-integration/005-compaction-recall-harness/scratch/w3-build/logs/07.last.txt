@@ -1,0 +1,21 @@
+Now let me read S and T.Now T:Now let me inspect the fixtures (read-only) and confirm the built dist module exists:The fixture confirms: boundary at line 3, two non-empty lines before it, brief absent with `hook_cancelled`. Let me check for other consumers of S's exported functions before editing:Let me check whether other briefs or spec docs describe the replay builder's exact input shape (without touching the forbidden dist/hooks paths):There's a `07-replay.md` brief in the build wave. Let me read it and the spec references:The contract is clear. Now I'll apply the edits to S. First batch — imports, constant, `openWindow`, `closeWindow`, `scoreBoundary`:Second batch — parser, selection, main, and report:Third batch — selection, main, and the report lines:All S edits applied. Now the T case:Both files edited. Now re-reading the edited regions of S to verify consistency:Now run the brief's verification checks plus the acceptance counts:`node --check` passes and `child_process` is 0. But the `it(` count is 12, not 10 — let me see which lines match:The 12 includes two pre-existing `split(` matches (lines 45, 56) — substring `it(`. The actual test-case count is 10. Confirming with word-boundary counts:Both checks pass. Let me do the final-state verification pass — re-run `node --check` from the final state, count lines for the handback, and confirm scope:Final consistency grep — all call sites of the changed functions:All edits are consistent and verified from the final state. Handing back:
+
+STATUS: DONE
+
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs (+54/-0)
+- .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+24/-0)
+
+EDITS:
+- S:1405-1424 main: under `--replay` only, dynamic-imports the built compact-inject module before any transcript is read, refuses with `replay unavailable: build the runtime dist first` and exit 2 on failed import or missing `buildMergedCompactResult`, and sets REPLAY_VERSION from `Math.trunc(statSync(dist).mtimeMs)`; without `--replay` nothing is imported
+- S:958-1090 parseTranscript takes `replay`/`replayVersion` options; with replay it keeps the raw text of the last 50 non-empty lines before each boundary (REPLAY_LINES, S:72-73) on the internal record (openWindow S:745), and async closeWindow (S:795-823) calls `await replay(lines)` only when the brief is absent, setting `replayed` status, unchanged window status, null marker, chars length, and the version; recorded briefs are never replayed; replayed text feeds the rules in scoreBoundary and never enters the row
+- S:1351,907,1497,1518 row field `replayVersion` after violations (null when not replayed), row line appends ` replay_version=<n or n/a>`, totals add `briefs_replayed` after violations; `briefs_absent` unchanged (counts only 'absent' rows)
+- T:244-266 one new case `a boundary without a recorded brief takes the replay path with replay_version` with the exact first-run (absent / hook_cancelled / briefRecall null / replayVersion null) and replayed-run (replayed / hook_cancelled / integer replayVersion > 0 / briefChars > 0 / marker null / briefs_replayed 1 / briefs_absent 0 / row line carries ` replay_version=<n>`) assertions
+
+CHECKS:
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` -> `node --check OK` (exit 0)
+- `grep -c 'child_process' .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` -> `0` (exit 1; grep exits 1 on no match, count is 0 as expected)
+- T case count: `grep -cE "(^|[^A-Za-z0-9_])it\(" .../compaction-recall.vitest.ts` -> `10` (raw `grep -c 'it('` prints 12 because the two pre-existing `split(` helper lines at 45 and 56 contain the substring `it(`; the word-boundary count of test cases is exactly 10)
+- Scope: only S and T edited (git status shows the same untracked wave-3 entries as before; no other file touched, no writes outside the two named files)
+
+BLOCKED REASON: none

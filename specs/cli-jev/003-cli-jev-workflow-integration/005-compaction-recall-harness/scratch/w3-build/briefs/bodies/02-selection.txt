@@ -1,0 +1,30 @@
+TASK: add `--newest-compacted <n>` session selection to S and pin it with two cases in T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/ref/design.md (read only).
+S, T and F are named at the top of R. Read S, T and R section 10 first (sections 2 to 5 if you need the context). Never edit F.
+
+In S, section 7 (SESSION SELECTION):
+1. Export listNewestCandidates(dirs) returning [{ path, name, size, mtimeMs }]: only files named `*.jsonl` directly in each
+   directory (readdirSync with withFileTypes, no recursion), stat'ed once, ordered by mtimeMs descending, then name ascending.
+2. Export async selectNewestCompacted(dirs, n, { maxFileBytes }) that walks those candidates per R section 10 and returns
+   { selected: [{ name, subagent: false, result }], read, stopped: [...], skippedOversized: [...] } where result is the
+   parseTranscript return value (called with byteLimit = the candidate's stat size) and stopped entries are { file, line, code }.
+   It opens no candidate once n are selected.
+3. In main: under `--newest-compacted`, refuse a named path that is not a directory with `--newest-compacted needs a directory`
+   (stderr, exit 2, before reading), use selectNewestCompacted instead of the recursive discovery, print the selection line of
+   R section 10 right after the scope line, set report.selection = { newest, read }, and make the scope line count only the
+   selected files. Parse errors still print `parse error: ...` and count in sessions_stopped; sessions_read = read.
+   Without the flag, behavior and output stay byte-identical to now and report.selection is null.
+
+In T, add two cases inside the existing describe, after the current ones. Helper selectionDir(): mkdtemp dir holding
+a-old.jsonl and b-new.jsonl (both copies of fixture('clean')), c-newest.jsonl (the first 4 lines of fixture('clean'), no boundary)
+and sess/subagents/d.jsonl (a copy of fixture('clean')); set mtimes with utimesSync to 1000, 2000, 3000 and 4000 seconds
+for a, b, c and d. Return the dir.
+ a. '--newest-compacted 1 picks the newer compacted file and skips an uncompacted newer file and a subagent file':
+    runCensus(['--transcripts', dir, '--newest-compacted', '1']): code 0; lines[1] 'scope: 1 main-session files, 0 subagent
+    files, 1 boundaries (1 main, 0 subagent)'; lines[2] 'selection: newest 1 compacted main-session files by modification time,
+    2 read'; report.rows has length 1 and rows[0].file 'b-new.jsonl'; report.selection equals { newest: 1, read: 2 }.
+ b. '--newest-compacted 5 over two compacted files takes both': the same dir with '5': code 0; lines[2] 'selection: newest 2
+    compacted main-session files by modification time, 3 read'; report.rows.map((r) => r.file) equals ['b-new.jsonl', 'a-old.jsonl'].
+
+VERIFY (repo root): node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs
+Accept when: 2 files changed (S and T) and nothing else; node --check exits 0; T holds exactly 5 `it(` cases.

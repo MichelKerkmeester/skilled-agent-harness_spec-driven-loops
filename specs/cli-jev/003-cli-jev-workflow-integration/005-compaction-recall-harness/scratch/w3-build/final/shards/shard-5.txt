@@ -1,0 +1,86 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts (53 tests) 28220ms
+     ✓ rejects an append whose fence has been superseded, before any frame commits  477ms
+     ✓ uses one exact allow once, returns the original receipt on retry, and rejects ID conflict  947ms
+     ✓ rejects one allow when presented for a different event or ledger identity  549ms
+     ✓ defaults missing, unknown, unsupported, stale, exceptional, and timed-out inputs to deny  639ms
+     ✓ returns the same legacy result for allow, deny, and typed-ledger failure  712ms
+     ✓ rejects unsafe ledger identities and uses owner-only immutable frame permissions  302ms
+     ✓ serializes concurrent processes into one contiguous unambiguous head  10049ms
+     ✓ detects mutation before yielding a typed event  1079ms
+     ✓ detects deletion before yielding a typed event  1033ms
+     ✓ detects insertion before yielding a typed event  1060ms
+     ✓ detects reorder before yielding a typed event  1045ms
+     ✓ detects fork before yielding a typed event  1024ms
+     ✓ detects and byte-preserves a torn tail, then resumes at the same next sequence  1344ms
+     ✓ completes an interrupted quarantine when the recovery marker is already durable  1196ms
+     ✓ rejects a recomputed frame carrying an unknown event type or altered authorization link  467ms
+     ✓ rebuilds byte-identical projections from verified events only  1128ms
+     ✓ verifies allow linkage, deny absence, and policy parity across both streams  550ms
+     ✓ keeps a crash-before-domain-commit allow durable and visibly unapplied  457ms
+     ✓ replay parity holds when a policy binds captured authorization state into its digest  440ms
+ ✓ ../system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts (39 tests) 83399ms
+     ✓ exposes an exact merit-only payload with assignment-local labels  1034ms
+     ✓ normalizes presentation-only style and records source/presentation digests  1000ms
+     ✓ rejects producer-equivalent self-scoring before a raw event is appended  328ms
+     ✓ rejects producer-equivalent and eligibility-changing submission profiles  1096ms
+     ✓ exposes no proof-free append path for adjudication evidence  507ms
+     ✓ records mirrored raw evidence, reaches a stable verdict, and replays exactly  8925ms
+     ✓ rejects forged complete-verdict evidence, graph, and authority fields  8889ms
+     ✓ classifies an order-sensitive counterfactual as unstable without a winner  3730ms
+     ✓ fails closed when a required probe or mirrored judgment is missing  2174ms
+     ✓ requires the complete council probe policy at admission and reduction  3846ms
+     ✓ preserves ties and hard vetoes instead of forcing a preference  3648ms
+     ✓ rejects forged assignments and appends no accepted raw score  824ms
+     ✓ rejects forged opaque labels and identity-derived weighting fields  1049ms
+     ✓ keeps all five request adapters typed and preserves verdict status without re-reduction  8525ms
+     ✓ returns the exact legacy result after recording a non-authoritative shadow comparison  9101ms
+     ✓ denies premature deblinding and records the denied audit without identities  649ms
+     ✓ requires external authorization and releases only the audited post-verdict scope  18458ms
+     ✓ appends invalidation without deleting the original verdict or raw evidence  9433ms
+ ✓ ../system-deep-loop/runtime/tests/unit/agent-improvement-ledger-schema.vitest.ts (12 tests) 23890ms
+     ✓ authorizes, appends, and verifies every imported and added event stem  22346ms
+     ✓ rejects foreign common variants before durable append  749ms
+     ✓ denies unauthorized transitions before the append boundary  334ms
+     ✓ preserves prepared event bytes after caller mutation  379ms
+ ✓ ../system-deep-loop/runtime/tests/unit/atomic-state.vitest.ts (18 tests) 5688ms
+     ✓ serializes identical concurrent diff-gated appends so exactly one row lands  316ms
+     ✓ does not reclaim an append lock owned by a live process just because it looks old  5004ms
+ ✓ ../system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts (4 tests) 2564ms
+     ✓ a legacy config row that upcasts appends to the deep-research ledger and exits 0  989ms
+     ✓ a legacy row the upcaster refuses exits 1 carrying the decision reason and writes nothing  336ms
+     ✓ a canonical stem event still appends unchanged with no warnings key  867ms
+     ✓ a non-research mode given a legacy row exits 1 with the original unrecognized-format message  372ms
+ ✓ ../system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts (14 tests) 1860ms
+     ✓ produces an identical completed result via prepare / recordPivotSeatResult / finalize as via runDivergentPivot  382ms
+ ✓ ../system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts (6 tests) 1063ms
+ ✓ runtime/tests/env-reference-drift.vitest.ts (5 tests) 691ms
+     ✓ finds runtime SPECKIT_* env reads to validate  333ms
+ ✓ ../system-deep-loop/runtime/tests/unit/stopping-clocks.vitest.ts (31 tests) 727ms
+     ✓ authorizes one terminal event, accepts exact retry, and rejects a conflict  533ms
+ ✓ runtime/tests/validation-orchestrator-bridge.vitest.ts (11 tests) 292ms
+nested cli-claude-code dispatch refused [recursion-guard-stack]: cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-claude-code again
+nested cli-codex dispatch refused [recursion-guard-env]: CODEX_SESSION_ID is set for cli-codex — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-lineage]: SPECKIT_FANOUT_LINEAGE_ID is set, so this process is already a fan-out CLI lineage — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-ancestry]: cli-codex executor binary appears in process ancestry — run the iteration in-process instead of dispatching cli-codex again
+ ✓ ../system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts (49 tests) 102ms
+ ✓ ../system-deep-loop/runtime/tests/unit/post-dispatch-validate.vitest.ts (30 tests) 49ms
+ ✓ ../system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts (6 tests) 33ms
+ ✓ runtime/tests/upgrade-baseline.vitest.ts (10 tests) 20ms
+ ✓ runtime/tests/model-server-respawn-lock-atomic.vitest.ts (6 tests) 22ms
+ ✓ runtime/tests/api-validation.vitest.ts (7 tests) 14ms
+ ✓ ../system-deep-loop/runtime/tests/unit/permissions-gate.vitest.ts (9 tests) 7ms
+ ✓ ../system-deep-loop/runtime/tests/unit/observability-events.vitest.ts (3 tests) 4ms
+ ✓ ../system-deep-loop/runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts (3 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/evidence-contract.vitest.ts (8 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/receipt-crypto.test.ts (11 tests) 2ms
+ ✓ runtime/tests/budget-allocator.vitest.ts (4 tests) 2ms
+
+ Test Files  22 passed (22)
+      Tests  339 passed (339)
+   Start at  23:58:59
+   Duration  151.56s (transform 810ms, setup 62ms, import 1.48s, tests 148.65s, environment 1ms)
+

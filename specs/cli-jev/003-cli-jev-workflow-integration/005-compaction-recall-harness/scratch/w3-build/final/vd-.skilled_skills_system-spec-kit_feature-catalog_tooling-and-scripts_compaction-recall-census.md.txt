@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md
+Document type: feature_catalog
+Total issues: 0

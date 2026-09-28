@@ -1,0 +1,26 @@
+TASK: read the stock summary and the recorded brief after each boundary in S, and pin them with one case in T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/ref/design.md (read only).
+S, T and F are named at the top of R. Read S, T and R section 7 first. Never edit F.
+
+In S:
+1. parseTranscript: each boundary opens a window of the next 30 parsed records (the next boundary record counts too, and a
+   window may still be open when later boundaries open theirs). While a window is open, find the summary and the brief
+   exactly per R section 7. When the window closes or the file ends, add the row fields summaryPresent, briefStatus,
+   briefWindowStatus, briefMarker, briefChars in that order.
+2. Keep the summary text and the brief text on an internal per-boundary record that the next brief will read; they must never
+   be copied onto the row object, into the JSON report or into any printed line.
+3. Row line: append ` summary=<bool> brief=<briefStatus> brief_window=<briefWindowStatus> marker=<bool or n/a>
+   brief_chars=<n or n/a>` after kept_ratio. Totals: add briefs_recorded, briefs_absent and markers (rows whose briefMarker is
+   true) after fit_throws, in the totals line and report.totals.
+4. Rows still leave the parser in boundary order, and a file with no boundary still gives no rows.
+
+In T, add one case after the current ones: 'a recorded brief is read and not replayed'.
+runCensus(['--transcripts', fixture('recorded-brief'), '--replay']): code 0; report.rows has length 1; rows[0].summaryPresent true;
+rows[0].briefStatus 'recorded'; rows[0].briefWindowStatus 'hook_success'; rows[0].briefMarker true; rows[0].briefChars 66;
+rows[0].replayVersion ?? null is null; report.totals.briefs_recorded 1; report.totals.briefs_replayed ?? 0 is 0;
+no key of rows[0] holds a string containing 'CANARY-' (check Object.values). This fixture has another hook's
+hook_success before the brief, so a position-only reader fails the briefChars check.
+
+VERIFY (repo root): node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs
+and: node .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs --transcripts .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/no-brief.jsonl --out /tmp/crc-smoke/report.json | grep -c 'brief=absent brief_window=hook_cancelled marker=n/a brief_chars=n/a' (expect 1)
+Accept when: 2 files changed (S and T) and nothing else; node --check exits 0; the grep prints 1; T holds exactly 7 `it(` cases.

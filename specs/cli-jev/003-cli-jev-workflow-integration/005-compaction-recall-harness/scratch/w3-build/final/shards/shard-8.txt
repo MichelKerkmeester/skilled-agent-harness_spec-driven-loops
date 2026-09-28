@@ -1,0 +1,526 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts (20 tests) 48702ms
+     ✓ registers and seals every Deep Review lifecycle kind through the shared store  662ms
+     ✓ rejects combinator-joined prose while accepting structured selector controls  331ms
+     ✓ builds byte-identical complete review sets and shared replay inputs  10226ms
+     ✓ rejects missing, reordered, and unknown lifecycle artifacts  18057ms
+     ✓ rejects a binding that does not match its verified creation evidence  8832ms
+     ✓ rejects stale context and post-build corruption during replay  10002ms
+ ✓ ../system-deep-loop/runtime/tests/unit/append-mode-event-cli.vitest.ts (27 tests) 27447ms
+     ✓ appends a plain JSON event record to deep-research ledger and exits 0  862ms
+     ✓ supports sequential appends across multiple CLI invocations  1673ms
+       ✓ deep-research: a spec-folder run directory gets exactly one state file at the declared path  815ms
+       ✓ deep-research: a artifact-directory run directory gets exactly one state file at the declared path  805ms
+       ✓ deep-research: a lineage-directory run directory gets exactly one state file at the declared path  833ms
+       ✓ deep-review: a spec-folder run directory gets exactly one state file at the declared path  835ms
+       ✓ deep-review: a artifact-directory run directory gets exactly one state file at the declared path  825ms
+       ✓ deep-review: a lineage-directory run directory gets exactly one state file at the declared path  826ms
+     ✓ routes deep-improvement-common past the adapter and authority-order gates  320ms
+     ✓ routes every mode in the frozen authority order through the CLI  2459ms
+     ✓ does not treat the run directory as the authority root  865ms
+     ✓ keeps an iteration-error row and a run-now row after a later append  2624ms
+     ✓ keeps review claim-adjudication and iteration-error rows after a later append  4314ms
+     ✓ drops a row written directly to the projection on the next gateway append  1676ms
+     ✓ appends the legacy spec-check-result row and rebuilds it as the last state-log line  844ms
+     ✓ appends the legacy spec-seed-created row and rebuilds it as the last state-log line  853ms
+     ✓ appends the legacy spec-preinit-context-added row and rebuilds it as the last state-log line  792ms
+     ✓ appends the legacy spec-preinit-context-deduped row and rebuilds it as the last state-log line  821ms
+     ✓ appends the legacy spec-mutation row and rebuilds it as the last state-log line  913ms
+     ✓ appends the legacy spec-mutation-conflict-preinit row and rebuilds it as the last state-log line  795ms
+     ✓ appends the legacy spec-mutation-conflict-post-synthesis row and rebuilds it as the last state-log line  822ms
+     ✓ appends the legacy spec-synthesis-deferred row and rebuilds it as the last state-log line  864ms
+     ✓ refuses a spec_mutation row whose generatedFence is missing, before writing  337ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-hermes.vitest.ts (18 tests | 1 skipped) 14418ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  1644ms
+     ✓ retains cli-hermes authentication diagnostics in bounded lineage output  843ms
+     ✓ retains cli-hermes model-or-balance diagnostics in bounded lineage output  987ms
+     ✓ retains cli-hermes rate-limit diagnostics without retry delay  968ms
+     ✓ times out and terminates the captured cli-hermes process  2812ms
+     ✓ closes stdin for the headless cli-hermes process  866ms
+     ✓ passes child gate variables through the full cli-hermes runtime  852ms
+     ✓ reports a signal-killed cli-hermes lineage as failed  920ms
+     ✓ terminates the captured detached cli-hermes process group after timeout  2832ms
+     ✓ blocks recursive cli-hermes fan-out before process spawn  384ms
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+stdout | ../system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts > fanout-run.cjs — complete executor/model/sandbox construction matrix > constructs every matrix combination, proves exact representative argv, and logs live skips
+[combo-matrix] constructed kind=native model=(none) sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=native model=(none) sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=native model=(none) sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=native model=(none) sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=native model=(none) sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=native model=(none) sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=o4-mini sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=o4-mini sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=o4-mini sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=o4-mini sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=o4-mini sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=o4-mini sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=gpt-5.6-codex sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=gpt-5.6-codex sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=gpt-5.6-codex sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=gpt-5.6-codex sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-codex model=gpt-5.6-codex sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-codex model=gpt-5.6-codex sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-opus-4-8 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-opus-4-8 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-opus-4-8 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-opus-4-8 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-opus-4-8 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-opus-4-8 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-sonnet-4-6 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-sonnet-4-6 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-sonnet-4-6 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-sonnet-4-6 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-claude-code model=claude-sonnet-4-6 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-claude-code model=claude-sonnet-4-6 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] rejected kind=cli-opencode model=anthropic/claude-opus-4-8 sandbox=read-only reason=unenforceable-sandbox
+[combo-matrix] rejected kind=cli-opencode model=anthropic/claude-opus-4-8 sandbox=workspace-write reason=unenforceable-sandbox
+[combo-matrix] constructed kind=cli-opencode model=anthropic/claude-opus-4-8 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-opencode model=anthropic/claude-opus-4-8 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] rejected kind=cli-opencode model=opencode-go/glm-5.1 sandbox=read-only reason=unenforceable-sandbox
+[combo-matrix] rejected kind=cli-opencode model=opencode-go/glm-5.1 sandbox=workspace-write reason=unenforceable-sandbox
+[combo-matrix] constructed kind=cli-opencode model=opencode-go/glm-5.1 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-opencode model=opencode-go/glm-5.1 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=composer-2.5-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=composer-2.5-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-high-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-low-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.5-medium-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-high-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-low-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-medium-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=cursor-grok-4.6-xhigh-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gemini-3.8-flash-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gemini-3.8-flash-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gemini-3.8-flash-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gemini-3.8-flash-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gemini-3.8-flash-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gemini-3.8-flash-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=glm-5.2-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=glm-5.2-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=gpt-5.6-luna-max-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-high-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-high-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-low-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-low-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-medium-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-medium-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-cursor model=grok-4.7-xhigh-fast sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-1-flash-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-1-flash-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-flash-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-flash-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-flash-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-flash-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=deepseek-v4-flash-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=deepseek-v4-flash-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gemini-3-8-flash-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gemini-3-8-flash-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gemini-3-8-flash-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gemini-3-8-flash-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gemini-3-8-flash-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gemini-3-8-flash-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-1m sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-1m sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-1m sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-1m sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-1m sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-1m sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max-1m sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max-1m sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max-1m sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max-1m sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-max-1m sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-max-1m sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none-1m sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none-1m sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none-1m sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none-1m sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-2-none-1m sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-2-none-1m sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=glm-5-3-flash-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=glm-5-3-flash-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-5-6-luna-max-priority sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max-priority sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max-priority sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max-priority sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max-priority sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=gpt-6-luna-max-priority sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=gpt-6-luna-max-priority sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-lightning sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-lightning sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-lightning sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-lightning sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-lightning sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-lightning sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-1-7-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-1-7-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-high sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-high sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-high sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-high sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-high sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-high sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-medium sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-medium sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-medium sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-medium sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-devin model=swe-2-medium sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-devin model=swe-2-medium sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek-v4.1-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek-v4.1-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek-v4.1-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek-v4.1-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek-v4.1-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek-v4.1-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=minimax-m3 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=minimax-m3 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=minimax-m3 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=minimax-m3 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=minimax-m3 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=minimax-m3 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-luna sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-luna sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-luna sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-luna sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-luna sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-luna sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-sol sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-sol sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-sol sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-sol sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=gpt-6-sol sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=gpt-6-sol sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=mimo-v2.6-pro sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=mimo-v2.6-pro sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=mimo-v2.6-pro sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=mimo-v2.6-pro sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=mimo-v2.6-pro sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=mimo-v2.6-pro sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=qwen3.8-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=qwen3.8-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=qwen3.8-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=qwen3.8-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=qwen3.8-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=qwen3.8-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=deepseek/deepseek-v4-flash-vision-exp sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=z-ai/glm-5.3-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=z-ai/glm-5.3-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=z-ai/glm-5.3-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=z-ai/glm-5.3-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=z-ai/glm-5.3-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=z-ai/glm-5.3-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=glm-5.3-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=glm-5.3-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=glm-5.3-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=glm-5.3-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-pi model=glm-5.3-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-pi model=glm-5.3-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=deepseek-v4.1-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=deepseek-v4.1-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=deepseek-v4.1-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=deepseek-v4.1-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=deepseek-v4.1-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=deepseek-v4.1-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=minimax-m3 sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=minimax-m3 sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=minimax-m3 sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=minimax-m3 sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=minimax-m3 sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=minimax-m3 sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-luna sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-luna sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-luna sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-luna sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-luna sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-luna sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-sol sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-sol sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-sol sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-sol sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=gpt-6-sol sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=gpt-6-sol sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=mimo-v2.6-pro sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=mimo-v2.6-pro sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=mimo-v2.6-pro sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=mimo-v2.6-pro sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=mimo-v2.6-pro sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=mimo-v2.6-pro sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=qwen3.8-max sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=qwen3.8-max sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=qwen3.8-max sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=qwen3.8-max sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=qwen3.8-max sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=qwen3.8-max sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=glm-5.3-flash sandbox=read-only
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=glm-5.3-flash sandbox=read-only reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=glm-5.3-flash sandbox=workspace-write
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=glm-5.3-flash sandbox=workspace-write reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] constructed kind=cli-hermes model=glm-5.3-flash sandbox=danger-full-access
+[combo-matrix] skipped live credentialed dispatch kind=cli-hermes model=glm-5.3-flash sandbox=danger-full-access reason=construction coverage only; credentials are intentionally not used
+[combo-matrix] SUMMARY constructed=221 rejected=4 liveCredentialedDispatch=SKIPPED outOfScope=true skipped=221 credentialGatedKinds=native,cli-codex,cli-claude-code,cli-opencode,cli-cursor,cli-devin,cli-pi,cli-hermes
+
+ ✓ ../system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts (2 tests) 760ms
+     ✓ constructs every matrix combination, proves exact representative argv, and logs live skips  749ms
+GREEN: {"findingsCount":1,"evidenceCount":1}
+RED: {"findingsCount":0,"evidenceCount":1}
+RESTORE: {"findingsCount":1,"evidenceCount":1}
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-projections-contract.vitest.ts (4 tests) 404ms
+     ✓ flips the contract toggle GREEN->RED->RESTORE and prints all three states  401ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-reducers.vitest.ts (47 tests) 348ms
+ ✓ runtime/tests/graph-metadata-schema.vitest.ts (42 tests) 193ms
+ ✓ ../system-deep-loop/runtime/tests/unit/coverage-graph-query.vitest.ts (13 tests) 92ms
+ ✓ ../system-deep-loop/runtime/tests/unit/path-coverage-termination.vitest.ts (82 tests) 82ms
+ ✓ runtime/tests/workflow-memory-tracking.vitest.ts (5 tests) 53ms
+ ✓ runtime/tests/council-playbook-anchor-integrity.vitest.ts (1 test) 45ms
+ ✓ runtime/tests/deep-loop/review-depth-reducer.vitest.ts (1 test) 8ms
+ ✓ runtime/tests/token-snapshot-store.vitest.ts (3 tests) 8ms
+ ✓ runtime/tests/content-normalizer.vitest.ts (77 tests) 5ms
+ ✓ ../system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts (4 tests) 6ms
+ ✓ ../system-deep-loop/runtime/tests/unit/cutover-binding.vitest.ts (10 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-authority-composition.vitest.ts (3 tests) 3ms
+ ✓ runtime/tests/embedders/hf-local-model-identity.vitest.ts (4 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/pivot-candidates.vitest.ts (4 tests) 2ms
+ ✓ runtime/tests/api-graph-refresh.vitest.ts (2 tests) 2ms
+ ✓ runtime/tests/architecture-seam.vitest.ts (2 tests) 1ms
+ ✓ ../system-deep-loop/runtime/tests/unit/bayesian-scorer.vitest.ts (6 tests) 1ms
+
+ Test Files  22 passed (22)
+      Tests  376 passed | 1 skipped (377)
+   Start at  00:03:43
+   Duration  95.42s (transform 759ms, setup 62ms, import 1.52s, tests 92.58s, environment 1ms)
+

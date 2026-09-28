@@ -1,0 +1,24 @@
+TASK: add the report string guard to S, and pin the privacy and zero-call properties with two cases in T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/ref/design.md (read only).
+S, T and F are named at the top of R. Read S, T and R sections 4, 5 and 11 first. Never edit F.
+
+In S, section 8 (REPORT):
+1. Export hasFreeText(report, { basenames, uuids }) returning true when any string value in report (keys excluded, walked
+   through nested objects and arrays) is not allowed by R section 11. Allowed boundary uuids must also match the uuid pattern
+   of R section 11; basenames is the Set of basenames of every file this run listed (read, stopped or skipped as oversized).
+2. main builds the complete report object first, then calls hasFreeText before printing anything. On true: print only
+   `stop: census void (free text in report)` to stdout, write no report file, return 1. On false: print and write exactly as now.
+
+In T, add two cases after the current ones:
+ a. 'the report holds no CANARY- string': runCensus(['--transcripts', FIXTURES, '--replay']): code 1 (two fixtures stop);
+    report.totals.sessions_stopped 2; report.rows has length 4; the last line starts with 'stop: arm'; none of stdout, stderr
+    and JSON.stringify(report) contains 'CANARY-'. Then `const { hasFreeText } = await import(pathToFileURL(SCRIPT).href)` and expect
+    hasFreeText({ rows: [{ file: 'a.jsonl', trigger: 'auto', note: 'CANARY-leak' }] }, { basenames: new Set(['a.jsonl']), uuids: new Set() })
+    toBe(true) and the same object without `note` toBe(false).
+ b. 'the stub jev and cli-deem logs stay empty': stub = makeStubs(); runCensus(['--transcripts', FIXTURES], stub) and
+    runCensus(['--transcripts', FIXTURES, '--replay'], stub); neither join(stub, 'jev.log') nor join(stub, 'cli-deem.log')
+    exists; readFileSync(SCRIPT, 'utf8') does not match /child_process|spawnSync|spawn\(|execFile|execSync/.
+
+VERIFY (repo root): node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs
+and: grep -niE 'api_key|apikey|secret|bearer' .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts; echo "grep exit=$?" (expect no match, grep exit=1)
+Accept when: 2 files changed (S and T) and nothing else; node --check exits 0; the key grep finds nothing; T holds exactly 12 `it(` cases.
