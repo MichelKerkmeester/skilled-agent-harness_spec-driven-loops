@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fe98b1a8637730acbce7ec2583a6bd2f09277a383bb039db0073743ba3982192",
+  "manifestHash": "26e65b67d73ea86fa1151bbb862bb17edde54c2a80f8630c0ebb9d8ae293ba69",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -44849,6 +44849,9 @@
     ],
     "hook flags shell parity": [
       "hook flags shell parity"
+    ],
+    "hook flags trailing comment": [
+      "hook flags trailing comment"
     ],
     "hook helper skipped fail open": [
       "hook helper skipped fail_open"
