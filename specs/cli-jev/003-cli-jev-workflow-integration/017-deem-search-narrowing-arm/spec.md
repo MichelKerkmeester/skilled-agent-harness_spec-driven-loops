@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 17: deem-search-narrowing-arm"
-description: "Measure offline whether one classifier choice that picks a spec track, before ripgrep or the trigger-index lookup searches inside it, beats both zero-call searches at naming the right track. A zero-call default run prints the baseline first. A Deem arm (preferred) and a Jev arm each run only behind their own switch and checks, and each is kept only if it beats that baseline by a margin fixed here."
+description: "Measure offline whether one classifier choice that picks a spec track, before ripgrep or the trigger-index lookup searches inside it, beats both zero-call searches at naming the right track. A zero-call default run prints the baseline first. A Deem arm (preferred) and a Jev arm each run only behind their own switch and checks, and each is kept only if it beats that baseline by a margin fixed here. Built in f7ae1ff44c, and the live Deem run printed stop (margin), so phase 009 stays Planned."
 trigger_phrases:
   - "deem search narrowing arm"
   - "deem spec track narrowing"
@@ -24,9 +24,9 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
-| **Amended** | 2026-09-27, a Jev arm added beside the Deem arm, per parent goal D1 (two backends). 2026-09-28, wave 3: the keep rule completed for phase 009 (parent D4), the build roles (parent D5) and the skill docs (parent D6) |
+| **Amended** | 2026-09-27, a Jev arm added beside the Deem arm, per parent goal D1 (two backends). 2026-09-28, wave 3: the keep rule completed for phase 009 (parent D4), the build roles (parent D5) and the skill docs (parent D6). 2026-09-28, closure: REQ-008 and NFR-P02 amended to the built call count, and the stale premises corrected |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 17 of 18 |
@@ -46,7 +46,7 @@ This is **Phase 17** of the Owner fixes and follow-ups found during the classifi
 
 **Dependencies**:
 - Phase 010 (`010-trigger-index-search-fixes`): a regenerated trigger index with no missing documents. The lookup baseline is only fair on a fresh index. Phase 010 is Complete (2026-09-27, parent goal log), so this dependency is met. The build still runs plan step 1's freshness check.
-- Phase 008 (`008-cli-classifier-hub`): the proposed `cli-deem` client and its `health` check. The zero-call run and the Jev arm need neither, and the Deem arm is built only after 008 lands. Parent goal D3 builds 008 first, then 016, 002 and this phase.
+- Phase 008 (`008-cli-classifier-hub`): the proposed `cli-deem` client and its `health` check. The zero-call run and the Jev arm need neither, and the Deem arm is built only after 008 lands. Parent goal D3 builds 008 first, then 016, 002 and this phase. Phase 008 is Complete (2026-09-28, `ee3a1b057c`), so this dependency is met.
 - For the Deem arm only: the local Deem server passing the Deem check.
 - For the Jev arm only: the Python `jev-cli` 0.6.2 on `PATH` and a credential that `jev auth status --provider <P>` resolves, where P is `JEV_PROVIDER` when set and `official` otherwise, as phase 002's gate says.
 
@@ -57,7 +57,7 @@ This is **Phase 17** of the Owner fixes and follow-ups found during the classifi
 - The `system-spec-kit` skill docs that parent goal D6 names, updated through sk-doc: `SKILL.md`, the skill `README.md`, one changelog file, one feature-catalog entry and one manual-testing-playbook entry
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- Not done. The parent packet has no `../changelog/` folder, so there was no matching file to refresh at close.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -113,10 +113,10 @@ Owner of every path below: `system-spec-kit`. The code lives in its `runtime/cli
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modify | One script row, one tree line, and a note that the script reads the probe queries of `semantic-probes.json`, which `:78` lists as having no runtime reader |
 | `.skilled/skills/system-spec-kit/SKILL.md` | Modify | One sentence in the retrieval section (`:462-472`) naming the offline narrowing measurement and saying it changes no lookup. Added for parent goal D6: a changed skill updates its `SKILL.md` |
 | `.skilled/skills/system-spec-kit/README.md` | Modify | One line in the retrieval section (`:300-302`) naming the script, its zero-call default and its two switches. Added for parent goal D6: a changed skill updates its README |
-| `.skilled/skills/system-spec-kit/changelog/v<next>.md` | Create | The next version file after the newest at build time (`v4.1.3.0.md` today), written through `sk-create-changelog`. Added for parent goal D6: a changed skill updates its changelog |
+| `.skilled/skills/system-spec-kit/changelog/v<next>.md` | Create | The next version file after the newest at build time (`v4.1.3.0.md` at planning, so the build wrote `v4.2.0.0.md`), written through `sk-create-changelog`. Added for parent goal D6: a changed skill updates its changelog |
 | `.skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md` and `feature-catalog/feature-catalog.md` | Create and Modify | One catalog entry (proposed name) and its index row, written through `sk-create-feature-catalog`. Added for parent goal D6: a changed skill updates its feature catalog |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md` and `manual-testing-playbook/manual-testing-playbook.md` | Create and Modify | One scenario (proposed name) covering the zero-call run and a stub-backend skip, plus its index row, written through `sk-create-manual-testing-playbook`. Added for parent goal D6: a changed skill updates its manual testing playbook |
-| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Read only | The fresh index from phase 010 |
+| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Read only | The committed index. The runs read the one committed at `64968e9b58` (`manifestHash` `fdebd12a...`), which by the build's final check was stale by three docs. The session rebuilt it from committed content as `2d101bd6d8` after the build commit |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json` | Read only | The 20 Latin paraphrase probes and their exact trigger phrases |
 | `specs/*/description.json` and `specs/**/description.json` | Read only | Track option descriptions and packet questions |
 | `<operator-named report dir>/` | Create at run time | `report.json`, and `calls.jsonl` from a run with a model arm |
@@ -145,7 +145,7 @@ Owner of every path below: `system-spec-kit`. The code lives in its `runtime/cli
 | ID | Requirement |
 |----|-------------|
 | REQ-007 | **The call shape is fixed and shared.** Each question goes to `cli-deem choice` or `jev choice --provider P` on stdin, closed after writing, with 17 options: the 16 tracks plus `none`. That is under Deem's cap of 26 (`deem_server.py:166`). Both clients require a `-q` instruction (`jev_cli/__init__.py:350` sets `required=True`, and phase 008 plans the same flag for `cli-deem`), so every call in both arms passes the same one, `-q "Which spec track is this text about?"`, printed verbatim before any call. It is fixed here and changes only by an amendment before the first model run. `jev-cli` sets no option cap of its own (`jev_cli/__init__.py:352`, `:378`), and the service's cap is UNKNOWN, so a rejection surfaces as exit 1 and an `unmeasured` row. Each track option's description is that track's root `description.json` description, verbatim. The `none` option's description is the fixed text `None of these tracks`. The report prints one SHA-256 over the option set. Both arms use the same three option orders: the tracks in name order with `none` last, then that list rotated left by one, then by two. Each order is a fresh call with no answer cache, so for Jev the three orders are also its three reruns. The modal pick over the three is the row's pick. Three different picks make the row `unstable`, and `none` is an abstention. Both count as misses. The flip rate is non-modal picks over all measured calls |
-| REQ-008 | **Every call and exit has one handling, and the operator sees the cost first.** Before its first call the Deem arm prints "nothing leaves the machine", its planned calls (rows times 3) and an estimated wall time at 65.6 ms per call, labeled as the 2-option p50 from `deem-local.md`. Before `jev auth test` the Jev arm prints the payload class (committed packet descriptions, fixture probe text and track descriptions), its planned calls (rows times 3, plus 1) and the estimated input tokens, never a dollar figure. One `calls.jsonl` holds one line per call from either arm with row id, order index, wall time in ms, exit code, backend, the picked key, its probability, the `none` probability and a status of `measured`, `unmeasured` or `unmeasured_timeout`. Deem lines add model id, model commit and source commit. Jev lines add the `jev` version, provider and model, the last two from `jev auth test --provider P`. Deem exits: 1 or HTTP 400 marks the row `unmeasured`, 2 stops the arm, 3 prints `deem arm stopped: backend refused`, 4 rechecks health once (a changed pair prints `deem arm stopped: model commit changed mid-run`, a gone server prints `deem arm stopped: server gone`, a passing recheck retries the row once) and 130 stops the arm as `interrupted`. Jev exits: 1, unparseable stdout or a key outside the submitted set marks the row `unmeasured`, 2 stops the arm, 3 after the gate prints `jev arm stopped: key rejected`, 4 gets one backoff retry then `unmeasured`, a spawn past 90 s is killed and marked `unmeasured_timeout` and 130 stops the arm as `interrupted`. A stopped arm prints finished rows as `partial`. Unmeasured rows leave that column and are counted. The report prints p50 and p95 per column. `--deem` or `--jev` without `--out <dir>` exits 2 before any call |
+| REQ-008 | **Every call and exit has one handling, and the operator sees the cost first.** Before its first call the Deem arm prints "nothing leaves the machine", its planned calls (3 times the rows plus the gold-bearing probes of REQ-010, 810 on the real tree) and an estimated wall time at 65.6 ms per call, labeled as the 2-option p50 from `deem-local.md`. Before `jev auth test` the Jev arm prints the payload class (committed packet descriptions, fixture probe text and track descriptions), its planned calls (3 times the rows plus the gold-bearing probes, plus 1) and the estimated input tokens, never a dollar figure. One `calls.jsonl` holds one line per call from either arm with row id, order index, wall time in ms, exit code, backend, the picked key, its probability, the `none` probability and a status of `measured`, `unmeasured` or `unmeasured_timeout`. Deem lines add model id, model commit and source commit. Jev lines add the `jev` version, provider and model, the last two from `jev auth test --provider P`. Deem exits: 1 or HTTP 400 marks the row `unmeasured`, 2 stops the arm, 3 prints `deem arm stopped: backend refused`, 4 rechecks health once (a changed pair prints `deem arm stopped: model commit changed mid-run`, a gone server prints `deem arm stopped: server gone`, a passing recheck retries the row once) and 130 stops the arm as `interrupted`. Jev exits: 1, unparseable stdout or a key outside the submitted set marks the row `unmeasured`, 2 stops the arm, 3 after the gate prints `jev arm stopped: key rejected`, 4 gets one backoff retry then `unmeasured`, a spawn past 90 s is killed and marked `unmeasured_timeout` and 130 stops the arm as `interrupted`. A stopped arm prints finished rows as `partial`. Unmeasured rows leave that column and are counted. The report prints p50 and p95 per column. `--deem` or `--jev` without `--out <dir>` exits 2 before any call |
 | REQ-009 | **A keep holds only for what it was measured on.** The report records, per column, the Deem commit pair or the Jev `jev` version, provider and model. A later run on a different Deem pair prints `requalify: model commit changed`, and one on a different Jev provider or model prints `requalify: model changed`, before its own verdict |
 | REQ-010 | **The paraphrase probes are reported, never decisive.** For each of the 20 Latin paraphrase rows in `semantic-probes.json`, the gold is the set of tracks holding a scoring `specs/` row for the matching exact query on the fresh index. Probes with an empty gold set are counted and skipped. The line prints hits for the lookup, ripgrep and each model column that ran, where a pick inside the gold set is a hit |
 | REQ-011 | **Tests cover every changed surface.** `score-track-narrowing.vitest.ts` exits 0 with a happy path and one edge case each: the test set builds stratified rows and drops a leaking description, the lookup baseline picks a track and ignores the question's own folder, the ripgrep baseline picks the track of the file matching the most distinct tokens, the default run logs no stub call and prints `no headroom` on a saturated fixture, the Deem gate passes a fake health and a stub backend skips with byte-identical output, the Jev gate passes a stub whose `auth status --provider P` exits 0 and prints `jev arm skipped: no credential` when it exits 3, and the verdict prints `keep` on stub answers and `stop (margin)` on a small gain. Also: a Deem exit 4 whose recheck shows a new pair prints `deem arm stopped: model commit changed mid-run`, a stored pair that differs prints `requalify: model commit changed`, a Jev exit 3 after the gate prints `jev arm stopped: key rejected`, and in a stub run that passes the Jev gate every logged `jev` call carries the same `--provider` value. A last case covers REQ-004's coverage condition: with 2 of 10 kept rows unmeasured and every measured pick right, the verdict prints `stop (coverage)`. That is at least 18 cases |
@@ -180,6 +180,15 @@ Source: the parent goal's wave 3 directive. D4 makes a Deem `keep` here the oper
 | REQ-011 | 17 cases | 18 cases, adding `stop (coverage)` |
 | REQ-013 | Question and options only | Adds the fixed `-q` instruction |
 | REQ-014 | New | The skill docs (parent D6) |
+
+### Amendment Trace (2026-09-28, closure)
+
+Source: the cross-family review's round 1 P2, which rated the code honest and asked for the spec to be amended rather than the code. The script plans 3 × (256 + 14) = 810 Deem calls, because it also asks the 14 gold-bearing probes so the probe line can report model hits (REQ-010). IDs were kept.
+
+| ID | Before | Now |
+|----|--------|-----|
+| REQ-008 | Planned calls "rows times 3" for Deem and "rows times 3, plus 1" for Jev | 3 times the rows plus the gold-bearing probes, and plus 1 for Jev |
+| NFR-P02 | About 777 calls at 65.6 ms, about 51 s | 810 calls at a measured p50 of 703 ms and p95 of 728 ms |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -228,8 +237,8 @@ Source: the parent goal's wave 3 directive. D4 makes a Deem `keep` here the oper
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: The zero-call run finishes in one sitting on this Mac and prints its wall time. The ripgrep baseline caches each token's result across questions, and its total cost is UNKNOWN until the build measures it.
-- **NFR-P02**: Each arm sends one request at a time. For Deem, about 777 calls at 65.6 ms is about 51 s (2-option estimate). Jev latency is UNKNOWN until its arm runs.
+- **NFR-P01**: The zero-call run finishes in one sitting on this Mac and prints its wall time. The ripgrep baseline caches each token's result across questions. The build measured the zero-call run at 1,944 s alone and 2,453 s under load.
+- **NFR-P02**: Each arm sends one request at a time. For Deem, 810 calls, the 256 kept rows and 14 gold-bearing probes in 3 orders, measured a p50 of 703 ms and a p95 of 728 ms, about 9.5 minutes of calls. The printed estimate of 53.1 s uses the 2-option p50 of 65.6 ms and says so. Jev latency is UNKNOWN until its arm runs.
 
 ### Security
 - **NFR-S01**: No key is read, logged or passed (REQ-013). `cli-deem` takes none and `jev` resolves its own.
