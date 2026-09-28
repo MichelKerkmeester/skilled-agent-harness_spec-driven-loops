@@ -10,19 +10,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure"
-    last_updated_at: "2026-09-28T16:46:24Z"
+    last_updated_at: "2026-09-28T20:03:11Z"
     last_updated_by: "generate-context"
-    recent_action: "Shipped git hooks and off switches sections plus seven hook bypass lines"
-    next_safe_action: "Verify strict validation, then commit the phase with its Spec trailer"
+    recent_action: "Reviewed this phase's release section and published the release with packet 062"
+    next_safe_action: "Decide whether the agent mirror gate needs a bypass switch of its own"
     blockers: []
     key_files:
       - "README.md"
       - "CONTRIBUTING.md"
-      - ".env.example"
       - ".skilled/scripts/git-hooks/pre-commit"
-      - ".skilled/scripts/git-hooks/commit-msg"
+      - ".skilled/changelog/skilled/v4.0.0.2.md"
     session_dedup:
-      fingerprint: "sha256:27e3573ed9878bf62cfd936f189bc8dfec44864501e83a9fba2ca9f8438928fc"
+      fingerprint: "sha256:410bbd958310d75547667ee9f4a9aca5cde33e4376fdac5151a1a1abeb74fc90"
       session_id: "scaffold-067-root-docs-and-git-hook-disclosure"
       parent_session_id: null
     completion_pct: 100
@@ -107,6 +106,7 @@ The test cases came first. Run against the hooks as committed at HEAD, they fail
 | `validate_document.py` on `README.md` and `CONTRIBUTING.md` | No new issue. CONTRIBUTING's missing overview section is reported at HEAD too |
 | `hvr_scan.py` on the added doc lines | PASS, 0 hard blockers |
 | v4.0.0.2 entry after the release review | PASS, recorded in packet 062's T026: 0 issues, 0 hard blockers and every link resolving |
+| v4.0.0.2 release | PASS, recorded in packet 062's T027: tagged on `68dd665c5d` after ten of ten CI workflows passed, and published as Latest |
 <!-- /ANCHOR:verification -->
 
 ---
