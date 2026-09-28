@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/hooks/goal/README.md
+Document type: readme
+Total issues: 0

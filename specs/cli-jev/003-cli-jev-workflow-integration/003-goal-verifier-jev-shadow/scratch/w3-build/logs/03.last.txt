@@ -1,0 +1,29 @@
+All verification done. Status summary before the handback:
+
+- **Ran and read (OBSERVED):** the three required checks, all green (receipts in CHECKS below). Both edited regions re-read on disk and match the brief exactly.
+- **Derived:** the quota arithmetic against Tests 4 and 5 yields exactly the asserted row orders (`1 claude` alone; `['claude','pi']` at limit 2; `3 claude + 1 pi` at limit 4).
+- **Not run (by brief):** the test suites; the orchestrator runs them. Files are edited on disk and uncommitted (both are untracked in git, existing files on disk).
+- **Scope:** only the two named files changed; the modified spec files in `git status` belong to other workers.
+
+SKILL ROUTING: persona directed -> sk-code; compiled router deferred (bare implement), surface resolved sk-code-opencode (JavaScript slice); ARTIFACT: sk-code -> sk-code-opencode
+REPO RULES: prevent-overengineering.md, evidence-and-proof.md loaded
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/hooks/goal/lib/build-verifier-fixture.cjs (+170/-73)
+FILES CHANGED: .skilled/hooks/goal/lib/build-verifier-fixture.test.cjs (+71/-4)
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.cjs:4-8 PURPOSE box now names Pi logs and Claude transcripts
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.cjs:164-222 new section 5 CLAUDE TRANSCRIPT COLLECTION with collectClaudeCandidates (JSDoc, turnText carried from assistant records, goal_status -> candidate with prelabel, skip counter), old 5. ROW SELECTION renumbered 6.
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.cjs:267 divider renumbered 7. ROW BUILDING
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.cjs:270-345 buildRows takes claudeDir, collects each source only when given, deals claudeQuota/piQuota as specified, emits Claude rows then Pi rows, stats gains candidatesClaude and skippedClaude
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.cjs:348 divider renumbered 8. CLI
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.cjs:352-359 parseArgs gains --claude <dir>
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.cjs:387-389 usage check: neither --pi nor --claude returns 2 with "error: give --pi <dir>, --claude <dir> or both"
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.cjs:416-424 buildRows call passes claudeDir; stdout line gains pi=/claude=/candidates_claude=/skipped_claude=
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.cjs:430-442 dividers renumbered 9/10, exports gain collectClaudeCandidates at 435
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.test.cjs:140-171 Claude fixture helpers (t1.jsonl three-record fixture, three-file sample dir)
+EDITS: .skilled/hooks/goal/lib/build-verifier-fixture.test.cjs:174-205 appended Test 4 (one Claude row, prelabel met, skippedClaude 1) and Test 5 (sources [claude, pi] at limit 2, three claude then one pi at limit 4); existing tests untouched
+CHECKS: node --check .skilled/hooks/goal/lib/build-verifier-fixture.cjs -> no output (syntax OK) (exit 0)
+CHECKS: node --check .skilled/hooks/goal/lib/build-verifier-fixture.test.cjs -> no output (syntax OK) (exit 0)
+CHECKS: grep -c "goal_status" .skilled/hooks/goal/lib/build-verifier-fixture.cjs -> 3 (exit 0)
+BLOCKED REASON: none

@@ -137,6 +137,9 @@ hooks/
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
     +-- lib/goal-core.cjs, goal-core.test.cjs
     +-- lib/goal-slice.cjs, goal-slice.test.cjs   # packet goal.md projections shared with the OpenCode plugin
+    +-- lib/count-pi-goal-nudges.mjs, count-pi-goal-nudges.test.mjs   # Pi census of recorded goal-verify-nudge records
+    +-- lib/build-verifier-fixture.cjs, build-verifier-fixture.test.cjs   # unlabeled verifier rows for the operator to label
+    +-- lib/score-verifier-labeled-set.cjs, score-verifier-labeled-set.test.cjs   # offline zero-call verifier scorer
     +-- bin/goal.cjs                 # scoped management (bind, resent, log, packet), diagnostics, legacy quarantine
     +-- cursor/   goal-inject.mjs
     +-- devin/    goal-inject.mjs

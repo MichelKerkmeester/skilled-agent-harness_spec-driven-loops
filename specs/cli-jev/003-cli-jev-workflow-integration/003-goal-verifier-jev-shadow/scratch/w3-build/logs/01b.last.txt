@@ -1,0 +1,17 @@
+Both files are untracked (newly created in this worktree, not yet in git), so `git diff` shows nothing — but the content is on disk and verified by the re-read and the checks. One line changed in each file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.skilled/hooks/goal/lib/count-pi-goal-nudges.mjs (+1/-1)
+.skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs (+1/-1)
+EDITS:
+.skilled/hooks/goal/lib/count-pi-goal-nudges.mjs:205 census method line now ends `... from the record timestamp field`
+.skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs:100 assertion changed from `includes('window=2026-08-01..2026-08-06')` to `endsWith('window=2026-08-01..2026-08-06 from the record timestamp field')`
+CHECKS:
+node --check .skilled/hooks/goal/lib/count-pi-goal-nudges.mjs -> no output (syntax OK) (exit 0)
+node --check .skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs -> no output (syntax OK) (exit 0)
+grep -c "from the record timestamp field" ... -> .skilled/hooks/goal/lib/count-pi-goal-nudges.mjs:1, .skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs:1 (exit 0)
+BLOCKED REASON: none
+
+Note for orchestrator: both files are untracked (`??` in git status), so per-file diff stats are not representable in git until staged; the on-disk content contains exactly the two required line changes and nothing else.
