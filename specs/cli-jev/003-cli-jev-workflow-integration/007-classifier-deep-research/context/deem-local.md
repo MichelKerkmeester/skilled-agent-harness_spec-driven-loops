@@ -72,6 +72,8 @@ On the operator's yes, the launchd schedule `com.skilled.deem-update` (every 6 h
 
 **Exposure.** The server sends `Access-Control-Allow-Origin: *` with no authentication (`serve/deem_server.py:809`, `:837`), confirmed live with an `Origin` header on 2026-09-27. It listens on localhost only, but any web page open in the operator's browser can send it requests and read the answers. That exposes compute, not data: the server sees only what is sent to it. Closing it needs a patch to Deem's code or a proxy, which is the operator's call. To stop the schedule: `launchctl bootout gui/$(id -u)/com.skilled.deem-update`, then delete the plist.
 
+**Decisions of 2026-09-28.** The operator accepted this exposure until a hook calls Deem live, turned the server's access log on through `deem-ctl` (one line per request, appended to `server.log` across restarts), held `DEEM_N_ORDERS` at 1 and keeps a reviewed copy of `deem-ctl` beside this file. The options, rollbacks and revisit triggers are in `../../016-deem-local-hardening/spec.md` section 10.
+
 ## Measured after the run
 
 Measured by the orchestrator on 2026-09-27 after the round-3 fan-out ended, still on model `8cbabbb` and source `6755b30`, since no release landed during the run. Synthetic inputs only, one server, nothing else calling it.

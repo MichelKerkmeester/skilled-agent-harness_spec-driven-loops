@@ -1,0 +1,1 @@
+executor=devin brief=specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/scratch/w3-build/briefs/01-deem-ctl-access-log.md exit=0 seconds=149

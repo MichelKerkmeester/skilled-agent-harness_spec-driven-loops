@@ -1,0 +1,86 @@
+Mon Sep 28 13:28:26 CEST 2026
+Mon Sep 28 11:28:26 UTC 2026
+## update.log tail (no scheduled run during the build)
+2026-09-28T00:15:57Z updated: model 8cbabbb, source 7cf293f
+2026-09-28T06:15:58Z current: model 8cbabbb, source 7cf293f
+## P1 pending answers
+0
+exit 1
+## P1 src status
+exit 0
+7cf293f
+## P2 probe count in server.log
+1
+exit 0
+## P2 DEEM_ACCESS_LOG=1 count
+1
+exit 0
+## P3 backups
+/Users/michelkerkmeester/.local/share/deem/bin/deem-ctl.bak-2026-09-28
+exit 0
+## P3 shellcheck
+exit 0
+## P4 Q1 revisit trigger line
+1
+exit 0
+## P4 header
+Access-Control-Allow-Origin: *
+exit 0
+## P5 DEEM_N_ORDERS count
+0
+exit 1
+## P5 Q3 reopen line
+1
+exit 0
+## P6 cmp live vs reviewed copy
+exit 0
+## P6 git diff --stat 008
+ .../008-cli-classifier-hub/goal.md                 |  70 +++++++---
+ .../008-cli-classifier-hub/graph-metadata.json     | 128 ++++++++++---------
+ .../implementation-summary.md                      | 141 +++++++++++++++++----
+ .../008-cli-classifier-hub/plan.md                 |  16 +--
+ .../008-cli-classifier-hub/spec.md                 |  22 ++--
+ .../008-cli-classifier-hub/tasks.md                |  53 ++++----
+ 6 files changed, 286 insertions(+), 144 deletions(-)
+exit 0
+## P7 pointer
+75:**Decisions of 2026-09-28.** The operator accepted this e
+exit 0
+2	0	specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md
+## P9 status
+{"status": "ok", "model": "deem-0.8-v1", "backend": "torch"}
+model 8cbabbb, source 7cf293f
+exit 0
+## P10 bash -n
+exit 0
+## P11 diff backup live
+117a118,119
+>         # The server writes an access line per request only when DEEM_ACCESS_LOG
+>         # is set. Appending keeps those lines across restarts.
+120c122,123
+<             HF_HUB_OFFLINE=1 nohup "$PYTHON" serve/deem_server.py >"$SERVER_LOG" 2>&1 &
+---
+>             HF_HUB_OFFLINE=1 DEEM_ACCESS_LOG=1 \
+>             nohup "$PYTHON" serve/deem_server.py >>"$SERVER_LOG" 2>&1 &
+exit 1
+## hashes
+5ed8e538a64ce64640ebdd977ff36263041812e923b2e069a6807441481299a7  /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl
+f4a6228aef3469d061bc92d5d1985c9e2aa532eaf0240b30eb83f0dcaf0c3a19  /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl.bak-2026-09-28
+5ed8e538a64ce64640ebdd977ff36263041812e923b2e069a6807441481299a7  specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-ctl
+## server pid and env switch in the running process
+43843
+43843 /Users/michelkerkmeester/.local/share/deem/venv/bin/python serve/deem_server.py
+## log size, NUL bytes
+   11251
+       0
+## git status
+ M specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/implementation-summary.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/tasks.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-ctl
+?? specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/scratch/w3-build/
+exit 0
