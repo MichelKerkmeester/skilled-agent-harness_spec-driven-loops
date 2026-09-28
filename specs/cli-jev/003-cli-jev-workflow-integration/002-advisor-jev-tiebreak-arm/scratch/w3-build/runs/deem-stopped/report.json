@@ -1,0 +1,21 @@
+{
+  "headroom": "ok",
+  "census": [
+    "census: file=labeled rows=177 eligible=93 movable=22 gold_first=61 gold_outside=10 gold_top3=164 tau03=18 over25=0",
+    "census: file=holdout rows=64 eligible=18 movable=1 gold_first=15 gold_outside=2 gold_top3=49 tau03=0 over25=0",
+    "census: split=train rows=121 eligible=54 movable=9 gold_first=38 gold_outside=7 gold_top3=106 tau03=7 over25=0",
+    "census: split=test rows=120 eligible=57 movable=14 gold_first=38 gold_outside=5 gold_top3=107 tau03=11 over25=0",
+    "baseline: holdout_top1=53/70",
+    "comparator: name=scorer rows=111 mrr=0.7811 right1=76 right3=99",
+    "comparator: name=confidence rows=111 mrr=0.7766 right1=75 right3=99",
+    "comparator: name=always_second rows=111 mrr=0.5498 right1=25 right3=99",
+    "comparator: name=rerank rows=57 mrr=0.7588 right1=37 right3=51",
+    "power: movable=23 decided_ceiling=99 min_wins=16 win_rate_80=0.749"
+  ],
+  "columns": {},
+  "calibration": {},
+  "stopped": {
+    "deem": "deem arm stopped: usage error"
+  },
+  "compare": null
+}

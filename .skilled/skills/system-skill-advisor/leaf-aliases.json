@@ -206,6 +206,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/scorer-fusion/tie-break-eval.md",
+    "diskPath": "feature-catalog/scorer-fusion/tie-break-eval.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/scorer-fusion/weights-config.md",
     "diskPath": "feature-catalog/scorer-fusion/weights-config.md"
   },
@@ -443,6 +448,11 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/scorer-fusion/projection.md",
     "diskPath": "manual-testing-playbook/scorer-fusion/projection.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/scorer-fusion/tie-break-eval.md",
+    "diskPath": "manual-testing-playbook/scorer-fusion/tie-break-eval.md"
   },
   {
     "workflowMode": "system-skill-advisor",

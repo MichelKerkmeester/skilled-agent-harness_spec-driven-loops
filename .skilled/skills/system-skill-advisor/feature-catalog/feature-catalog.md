@@ -19,7 +19,7 @@ This catalog is the current inventory for the skill advisor. The package source 
 
 ## 1. OVERVIEW
 
-The catalog covers 43 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
+The catalog covers 44 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
 
 > **Numbering note (gap-05).** The directory layout skips slot `05--*` between `scorer-fusion` and `cli-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -28,7 +28,7 @@ The catalog covers 43 features across 7 groups. Group 01 owns daemon correctness
 | [daemon-and-freshness](../feature-catalog/daemon-and-freshness) | 7 | Watcher, lease, lifecycle, generation, trust state, rebuild-from-source, cache invalidation |
 | [auto-indexing](../feature-catalog/auto-indexing) | 7 | Derived extraction, sanitizer, provenance, sync, anti-stuffing, DF/IDF corpus, doc-frontmatter harvest |
 | [lifecycle-routing](../feature-catalog/lifecycle-routing) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
-| [scorer-fusion](../feature-catalog/scorer-fusion) | 6 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config |
+| [scorer-fusion](../feature-catalog/scorer-fusion) | 7 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config, offline tie-break eval |
 | [cli-surface](../feature-catalog/cli-surface) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
 | [hooks-and-plugin](../feature-catalog/hooks-and-plugin) | 5 | Claude and OpenCode hooks, the OpenCode plugin, the `/goal` plugin and the Pi prompt advisor |
 | [python-compat](../feature-catalog/python-compat) | 3 | Python CLI shim, regression suite, bench runner |
@@ -98,6 +98,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Lane contribution attribution | [scorer-fusion/attribution.md](./scorer-fusion/attribution.md) |
 | Lane-by-lane ablation protocol | [scorer-fusion/ablation.md](./scorer-fusion/ablation.md) |
 | Lane weights configuration | [scorer-fusion/weights-config.md](../feature-catalog/scorer-fusion/weights-config.md) |
+| Offline Jev and Deem tie-break eval | [scorer-fusion/tie-break-eval.md](./scorer-fusion/tie-break-eval.md) |
 
 ---
 

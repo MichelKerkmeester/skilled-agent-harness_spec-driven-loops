@@ -1,0 +1,17 @@
+The advisor Jev tie-break goal is set. The `--jev` refusal now runs only after a passing gate that would make billed calls.
+
+SKILL ROUTING: User directed → sk-code. ARTIFACT: sk-code → sk-code-opencode.
+REPO RULES: evidence-and-proof, communication, communication-handoff.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+7/-6)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+30/-36)
+EDITS: score-jev-tiebreak.mjs:1510 JSDoc now says a passing Jev gate that would bill returns 2 without --out, before the first billed call
+score-jev-tiebreak.mjs:1541 removed the pre-census `--jev` needs `--out` refusal
+score-jev-tiebreak.mjs:1553 refuse with exit 2 only when the gate passed, headroom is ok or underpowered, and `--out` is missing or empty
+score-jev-tiebreak.vitest.ts:240 entry-point test now runs a passing gate without `--out` and expects exit 2 after only `--version` and `auth status`
+score-jev-tiebreak.vitest.ts:260 the three jev-gate skip tests run `--jev` with no `--out` and still expect exit 0, the census prefix, the skip lines, and the stub log
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (no output) (exit 0)
+grep -c "jev-tiebreak-gate-out-" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts -> 1 (exit 0)
+BLOCKED REASON: none

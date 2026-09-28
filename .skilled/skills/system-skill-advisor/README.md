@@ -226,6 +226,7 @@ A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across eve
 | TypeScript build | `npm --prefix .skilled/skills/system-skill-advisor/runtime run typecheck && npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0 |
 | Playbook | Run the manual testing playbook scenarios under `manual-testing-playbook/` in a live session |
 | Validation battery | `node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true}' --format json` reports within the dated bounded-delta gate in [`validation-baselines.md`](./references/scoring/validation-baselines.md) |
+| Offline tie-break eval | `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs` prints a zero-call census of the near-tie cluster with holdout top-1 at 53/70. It stays dormant unless `--jev` or `--deem` is passed, and each switch runs its model arm only when that backend's own checks pass |
 
 ---
 

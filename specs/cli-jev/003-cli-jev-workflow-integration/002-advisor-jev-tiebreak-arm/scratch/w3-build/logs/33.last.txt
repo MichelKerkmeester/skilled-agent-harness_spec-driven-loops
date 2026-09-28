@@ -1,0 +1,18 @@
+Goal acknowledged: measure whether a jev or Deem choice beats the scorer under the keep rule.
+
+An exit-4 retry now leaves a call record for both spawns. The first attempt's wall time is kept on the retry and counted in p50 and p95 for both arms.
+
+SKILL ROUTING: User directed → code; ARTIFACT: sk-code → sk-code-opencode
+REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication-handoff.md
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+24/-12)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+10/-1)
+EDITS: score-jev-tiebreak.mjs:535 summarizeColumn pushes retryWallMs into the latency sample
+EDITS: score-jev-tiebreak.mjs:884 runJevArm call records an exit-4 spawn, keeps its wall time on the retry, and the three callers pass kind, row, and pass
+EDITS: score-jev-tiebreak.mjs:1164 runDeemArm keeps the first wall time on the retry and stores it on the choice record
+EDITS: score-jev-tiebreak.vitest.ts:741 an exit-4 row expects 6 call lines, and choice records match spawn lines
+EDITS: score-jev-tiebreak.vitest.ts:556 a retried wall time is included in latency
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (empty) (exit 0)
+BLOCKED REASON: none

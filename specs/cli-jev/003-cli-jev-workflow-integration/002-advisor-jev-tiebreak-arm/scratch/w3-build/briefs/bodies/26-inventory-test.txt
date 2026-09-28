@@ -1,0 +1,40 @@
+TASK: the playbook gained scenario SC-006, so its inventory test must expect 48 scenario files instead of 47. One literal edit, the number 47 to 48, on six lines of one file.
+File: .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts. Read it first.
+
+Line 45. Old:
+  it('keeps the root playbook aligned with the live 47-scenario corpus', () => {
+New:
+  it('keeps the root playbook aligned with the live 48-scenario corpus', () => {
+
+Line 50. Old:
+    expect(markdown).toContain('47 deterministic scenario files across 9 categories');
+New:
+    expect(markdown).toContain('48 deterministic scenario files across 9 categories');
+
+Line 51. Old:
+    expect(markdown).toContain('all 47 scenario files are `PASS`');
+New:
+    expect(markdown).toContain('all 48 scenario files are `PASS`');
+
+Line 53. Old:
+    expect(rows).toHaveLength(47);
+New:
+    expect(rows).toHaveLength(48);
+
+Line 54. Old:
+    expect(new Set(rows.map((row) => row.id)).size).toBe(47);
+New:
+    expect(new Set(rows.map((row) => row.id)).size).toBe(48);
+
+Line 55. Old:
+    expect(files).toHaveLength(47);
+New:
+    expect(files).toHaveLength(48);
+
+Nothing else in the file changes. Line 52 (the 24-scenario guard) stays as it is.
+
+VERIFY (repo root):
+  grep -c "47" .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts
+  grep -c "48" .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts
+Accept when: 1 file changed and nothing else; the first grep prints 0 and the second prints 6.
+

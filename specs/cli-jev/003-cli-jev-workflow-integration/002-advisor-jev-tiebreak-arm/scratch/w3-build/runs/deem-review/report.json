@@ -1,0 +1,118 @@
+{
+  "headroom": "ok",
+  "census": [
+    "census: file=labeled rows=177 eligible=93 movable=22 gold_first=61 gold_outside=10 gold_top3=164 tau03=18 over25=0",
+    "census: file=holdout rows=64 eligible=18 movable=1 gold_first=15 gold_outside=2 gold_top3=49 tau03=0 over25=0",
+    "census: split=train rows=121 eligible=54 movable=9 gold_first=38 gold_outside=7 gold_top3=106 tau03=7 over25=0",
+    "census: split=test rows=120 eligible=57 movable=14 gold_first=38 gold_outside=5 gold_top3=107 tau03=11 over25=0",
+    "baseline: holdout_top1=53/70",
+    "comparator: name=scorer rows=111 mrr=0.7811 right1=76 right3=99",
+    "comparator: name=confidence rows=111 mrr=0.7766 right1=75 right3=99",
+    "comparator: name=always_second rows=111 mrr=0.5498 right1=25 right3=99",
+    "comparator: name=rerank rows=57 mrr=0.7588 right1=37 right3=51",
+    "power: movable=23 decided_ceiling=99 min_wins=16 win_rate_80=0.749"
+  ],
+  "columns": {
+    "deem": {
+      "backend": "deem",
+      "rows": 111,
+      "measured": 111,
+      "unmeasured": 0,
+      "wins": 8,
+      "losses": 30,
+      "ties": 44,
+      "abstentions": 12,
+      "unstable": 17,
+      "decided": 38,
+      "movableWins": 8,
+      "goldDemotions": 24,
+      "noneOnGoldInCluster": 9,
+      "tau03": {
+        "insideWins": 1,
+        "insideLosses": 6,
+        "outsideWins": 7,
+        "outsideLosses": 24
+      },
+      "flip": 0.3123123123123123,
+      "pWin": 0.9999419164960273,
+      "pLoss": 0.0002359933714615181,
+      "latency": {
+        "p50": 241,
+        "p95": 340
+      },
+      "metrics": {
+        "column": {
+          "n": 111,
+          "mrr": 0.7015,
+          "right1": 60,
+          "right3": 97
+        },
+        "scorer": {
+          "n": 111,
+          "mrr": 0.7811,
+          "right1": 76,
+          "right3": 99
+        },
+        "confidence": {
+          "n": 111,
+          "mrr": 0.7766,
+          "right1": 75,
+          "right3": 99
+        },
+        "alwaysSecond": {
+          "n": 111,
+          "mrr": 0.5498,
+          "right1": 25,
+          "right3": 99
+        },
+        "heldColumn": {
+          "n": 57,
+          "mrr": 0.7047,
+          "right1": 31,
+          "right3": 50
+        },
+        "heldRerank": {
+          "n": 57,
+          "mrr": 0.7588,
+          "right1": 37,
+          "right3": 51
+        }
+      },
+      "verdict": {
+        "outcome": "kill",
+        "line": "verdict: kill backend=deem decided=38 wins=8 losses=30 p_win=0.9999 p_loss=0.0002 flip=0.3123 model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=c8a5523c5a7ead9a2132363edfcffd1ec86a6dbc",
+        "conditions": {
+          "sign": {
+            "value": 0.9999419164960273,
+            "held": false
+          },
+          "mrr": {
+            "value": 0.7015,
+            "held": false
+          },
+          "right3": {
+            "value": 97,
+            "held": false
+          },
+          "flip": {
+            "value": 0.3123123123123123,
+            "held": false
+          }
+        }
+      }
+    }
+  },
+  "calibration": {
+    "deem": {
+      "measured": 195,
+      "n": 195,
+      "accuracy": 0.49743589743589745,
+      "f1": 0.4431818181818182,
+      "brier": 0.42167277769186223,
+      "ece5": 0.4136772328380088,
+      "temperature": 10
+    }
+  },
+  "stopped": {},
+  "compare": null
+}

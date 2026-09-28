@@ -1,0 +1,13 @@
+The packet goal is set. The offline tie-break module and its tests are on disk, and the two listed checks match the accept line.
+
+`node --check` printed nothing and exited 0. The import check printed `16 0.680` and exited 0. Both files are untracked. Nothing is committed or pushed. The pre-existing untracked `scratch/w3-build/` directory was left as it was. The orchestrator runs the vitest file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+154/-0)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+68/-0)
+EDITS: score-jev-tiebreak.mjs:1 created the ESM module: ALPHA, POWER, binomTail, minWins, winRate80, reciprocalRank, rankMetrics, reorderSlots, movePickFirst, classifyRow
+EDITS: score-jev-tiebreak.vitest.ts:1 created describe('score-jev-tiebreak pure math') with the seven named cases
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (no stdout) (exit 0)
+CHECKS: node -e "import('./.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs').then((m) => console.log(m.minWins(23), m.winRate80(55).toFixed(3)))" -> 16 0.680 (exit 0)
+BLOCKED REASON: none

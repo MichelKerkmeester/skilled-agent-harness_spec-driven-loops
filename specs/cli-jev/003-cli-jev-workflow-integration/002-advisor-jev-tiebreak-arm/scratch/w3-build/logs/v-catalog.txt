@@ -1,0 +1,4 @@
+
+✅ VALID: specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/content/catalog-tie-break-eval.md
+Document type: feature_catalog
+Total issues: 0

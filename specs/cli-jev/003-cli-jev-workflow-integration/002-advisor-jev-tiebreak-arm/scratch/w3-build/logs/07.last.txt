@@ -1,0 +1,17 @@
+`--deem` now runs one `cli-deem health` check. A failed check prints a skip line, leaves the census text as it was, and the script still exits 0.
+
+SKILL ROUTING: sk-code → OpenCode implement. ARTIFACT: sk-code → runtime script and parity test.
+REPO RULES: prevent-overengineering.md
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+99/-0)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+113/-0)
+EDITS: score-jev-tiebreak.mjs:22 added DEEM_MODEL, HEALTH_TIMEOUT_MS, and REPO_CLI_DEEM
+EDITS: score-jev-tiebreak.mjs:485 deemCommand returns the PATH binary or node plus the repo cli-deem script
+EDITS: score-jev-tiebreak.mjs:498 readDeemHealth runs health and maps reachability, stub, model, and bad responses
+EDITS: score-jev-tiebreak.mjs:561 deemGate prints the health line or a skip line
+EDITS: score-jev-tiebreak.mjs:612 main calls deemGate when --deem is set
+EDITS: score-jev-tiebreak.vitest.ts:297 six deem-gate cases for stub, model, refused model, unreachable, bad JSON, and torch
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (empty) (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,17 @@
+A stopped Deem arm now prints its column and verdict only after the noul calibration pass finishes. The stop-path test pins that a refused noul call leaves no verdict line.
+
+SKILL ROUTING: sk-code → sk-code-opencode (JavaScript `.mjs` and the parity test).
+REPO RULES: evidence-and-proof.md, communication-handoff.md.
+
+The orchestrator runs the vitest suite. Nothing here is committed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+7/-3)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+27/-0)
+EDITS: score-jev-tiebreak.mjs:1257 headroom block now only assigns the deem column
+score-jev-tiebreak.mjs:1325 column lines and verdict print after the noul loop, and only when that column exists
+score-jev-tiebreak.mjs:1107 JSDoc left unchanged; its stop sentence already reports a stop without claiming a verdict
+score-jev-tiebreak.vitest.ts:1013 added the noul-stop test that expects no verdict and no column
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> syntax ok (exit 0)
+BLOCKED REASON: none

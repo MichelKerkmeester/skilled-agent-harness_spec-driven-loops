@@ -1,0 +1,2 @@
+verdict: kill backend=jev decided=38 wins=11 losses=27 p_win=0.9975 p_loss=0.0069 flip=0.0153 provider=official model=jev-1.13.0
+identical to the printed line: true

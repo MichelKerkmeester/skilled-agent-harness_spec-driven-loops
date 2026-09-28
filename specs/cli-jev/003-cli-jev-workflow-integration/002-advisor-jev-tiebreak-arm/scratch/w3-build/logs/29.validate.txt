@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-skill-advisor/README.md
+Document type: readme
+Total issues: 0

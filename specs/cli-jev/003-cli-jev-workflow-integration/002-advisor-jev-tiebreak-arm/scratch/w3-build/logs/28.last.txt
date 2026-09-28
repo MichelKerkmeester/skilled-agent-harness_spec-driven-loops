@@ -1,0 +1,5 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/SKILL.md (+3/-1)
+EDITS: .skilled/skills/system-skill-advisor/SKILL.md:5 version raised 0.11.1.0 → 0.13.0.0; .skilled/skills/system-skill-advisor/SKILL.md:382 inserted `score-jev-tiebreak.mjs` bullet directly after the unchanged validation-baselines bullet
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/SKILL.md -> ✅ VALID: .skilled/skills/system-skill-advisor/SKILL.md / Document type: skill / Total issues: 0 (exit 0); grep -c "score-jev-tiebreak.mjs\|^version: 0.13.0.0" .skilled/skills/system-skill-advisor/SKILL.md -> 2 (exit 0)
+BLOCKED REASON: none
