@@ -1,0 +1,12 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md (+4/-2)
+EDITS:
+- F:56 changed "All five scripts here" to "All six scripts here"
+- F:68 inserted tree line `+-- score-track-narrowing.mjs     # Offline check: ...` after `rg-wrapper.mjs` (`#` aligned at column 35)
+- F:78 replaced the first sentence with the two sentences on five fixtures and the `semantic-probes.json` probe reader, rest of the paragraph untouched
+- F:95 inserted the `score-track-narrowing.mjs` row after the `rg-wrapper.mjs` row in Section 4
+CHECKS:
+- grep -c "score-track-narrowing" .skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md -> 3 (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md -> ✅ VALID: Document type: readme, Total issues: 0 (exit 0)
+- git diff --numstat -- .skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md -> 4 added, 2 removed, one file, diff contains only the four named edits (exit 0)
+BLOCKED REASON: none

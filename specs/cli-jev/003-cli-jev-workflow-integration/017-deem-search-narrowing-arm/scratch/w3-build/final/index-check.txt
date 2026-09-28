@@ -1,0 +1,13 @@
+trigger index is STALE or the corpus is untrusted
+  index             : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+  documents scanned : 23319
+  stale documents   : 3 (2 missing from the index)
+  obsolete paths    : 0
+  untrusted docs    : 0
+  duration ms       : 23694.7
+  examples (3 of 3):
+    stale     .skilled/skills/system-spec-kit/changelog/v4.2.0.0.md (added: system spec kit 4 2 0 0, system spec kit v4 2 0 0, track narrowing measurement; removed: none)
+    stale     .skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md (added: score track narrowing mjs, spec track classifier baseline, track narrowing keep rule, track narrowing measurement; removed: none)
+    stale     specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/implementation-summary.md (added: deem tie break verdict; removed: jev arm planned)
+  note: manifest hash differs (index fdebd12ad1be6133cd344556b5bcdc81ce8736127474d99919f70150342ca67f, corpus bd7e92e9849591df2d32c917cfe04382d56bc1af9b04a8a2fae33f5923c595fc); no lookup answer depends on it
+  regenerate: node generate-trigger-index.mjs

@@ -1,0 +1,46 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md
+Document type: readme
+Total issues: 0
+exit=0
+
+✅ VALID: .skilled/skills/system-spec-kit/SKILL.md
+Document type: skill
+Total issues: 0
+exit=0
+
+✅ VALID: .skilled/skills/system-spec-kit/README.md
+Document type: readme
+Total issues: 0
+exit=0
+
+✅ VALID: .skilled/skills/system-spec-kit/changelog/v4.2.0.0.md
+Document type: changelog
+Total issues: 0
+exit=0
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md
+Document type: feature_catalog
+Total issues: 0
+exit=0
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md, so README rules were applied. Pass --type to choose the rule set.
+exit=0
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md, so README rules were applied. Pass --type to choose the rule set.
+exit=0

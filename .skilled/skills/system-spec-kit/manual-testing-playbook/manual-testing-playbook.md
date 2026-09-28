@@ -311,6 +311,7 @@ Category notes and the retired ID range: [`doctor-commands/README.md`](doctor-co
 |---|---|---|---|
 | 453 | Speckit autopilot lifecycle | [453](lifecycle/speckit-autopilot-lifecycle.md) | [speckit-autopilot-lifecycle](../feature-catalog/lifecycle/speckit-autopilot-lifecycle.md) |
 | 190 | Session recovery via /speckit:resume | [190](retrieval/session-recovery-spec-kit-resume.md) | [session-recovery-spec-kit-resume](../feature-catalog/retrieval/session-recovery-spec-kit-resume.md) |
+| 459 | Track narrowing measurement | [459](retrieval/track-narrowing-measurement.md) | [track-narrowing-measurement](../feature-catalog/retrieval/track-narrowing-measurement.md) |
 | 270 | Resource map template | [270](context-preservation/resource-map-template.md) | [resource-map-template](../feature-catalog/context-preservation/resource-map-template.md) |
 
 ---

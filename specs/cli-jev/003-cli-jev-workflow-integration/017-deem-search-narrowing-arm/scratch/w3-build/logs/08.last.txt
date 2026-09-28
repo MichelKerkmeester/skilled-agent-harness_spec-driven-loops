@@ -1,0 +1,23 @@
+I've read S, T, and R. Now let me verify the resolved repo path for the deem CLI and check for existing usages of the constants I'm about to add.The resolved repo path exists. Let me look at the committed sibling script's deem section for exact style alignment (constants, section layout) and its test file.The sibling script confirms R's provenance. Let me check the canonical brief body for this task — it may carry the exact expected port shape.Now let me check the repo's lint/pre-commit setup and the current git state of the two files I'll edit.The brief body matches my instructions exactly. Let me quickly check the next brief (09) to understand DEEM_P50_MS's intended use, so my JSDoc is accurate.Now I'll make the edits. First, a quick check of the section-header dash runs so new headers match exactly.Now I'll apply the three edits to S in one batch.All three S edits applied. Now run the required check and confirm the new header lines match the existing dash runs.`node --check` passes and headers are byte-identical to the file's convention. Now append the three test cases to T.Both files are edited. Now the final verification pass: re-run the required check, confirm the new T header matches the dash convention, and confirm only these two files were touched.Now a mechanical fidelity check: diff my ported helpers against R's proven code, normalized only for the fs/path prefixes S uses, plus confirm the repo CLI path resolves to a real file.The only diff versus R is `jevGate`, which is out of scope for this port — the four ported helpers are identical after normalization, and the resolved CLI path exists. Let me confirm there are no duplicate declarations and review the final main block.All checks are green. The port is a normalized byte-for-byte match with R's proven helpers (only `jevGate`, out of scope, is absent), both new section headers match the file's 204-byte dash convention, and only the two named files were touched.
+
+Summary of what was done:
+
+- **S** — added the `node:child_process` import; inserted section `7. DEEM ARM` (constants `DEEM_MODEL`/`DEEM_P50_MS`/`HEALTH_TIMEOUT_MS`, `REPO_CLI_DEEM`, and the `which`/`deemCommand`/`readDeemHealth`/`deemGate` port with JSDoc); wired the `--deem` gate and `--out` refusal into `main` after the headroom lines.
+- **T** — appended section `10. DEEM GATE` with `describe('score-track-narrowing deem gate')` and the three specified cases (stub backend byte-identical skip; unreachable/wrong-model/not-json skips with found lines; passing-gate refusal before any call).
+
+One recorded deviation: in `deemCommand`, the ported local `path` was renamed `onPath` so it does not shadow S's `node:path` import — behavior is otherwise identical to R.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+165/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+94/-0)
+EDITS: S:18 added `import { spawnSync } from 'node:child_process';` with the node imports
+EDITS: S:1015-1166 added section `7. DEEM ARM` with DEEM_MODEL/DEEM_P50_MS/HEALTH_TIMEOUT_MS/REPO_CLI_DEEM and which/deemCommand/readDeemHealth/deemGate ported from R (deemCommand local `path` renamed `onPath` to avoid shadowing the node:path import; behavior identical)
+EDITS: S:1261-1271 added the --deem gate in main: no-headroom skip, else deemGate, then --out refusal with err line and return 2
+EDITS: T:717-809 added section `10. DEEM GATE` with describe('score-track-narrowing deem gate') and the three cases
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> no output (exit 0)
+CHECKS: python3 normalized diff of ported helpers vs ref-gates.mjs -> IDENTICAL apart from out-of-scope jevGate (exit 0)
+CHECKS: node -e path.resolve(...) + test -f .skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs -> target exists (exit 0)
+CHECKS: awk header line lengths in S (1015/1017/1168/1170) and T (717/719) -> 204 bytes, matching existing headers (exit 0)
+BLOCKED REASON: none
+```

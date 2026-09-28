@@ -1,0 +1,7 @@
+All checks pass, and the diff is confined to the single named file (+3/−1: version swapped, blank+paragraph inserted above "**Declared loss.**").
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/SKILL.md (+3/-1)
+EDITS: .skilled/skills/system-spec-kit/SKILL.md:5 version: 4.1.3.0 -> 4.2.0.0; .skilled/skills/system-spec-kit/SKILL.md:468 inserted one-line `score-track-narrowing.mjs` paragraph plus trailing blank line directly above "**Declared loss.**" (net +2 lines)
+CHECKS: grep -c "score-track-narrowing" .skilled/skills/system-spec-kit/SKILL.md -> 1 (exit 0); grep -c "^version: 4.2.0.0$" .skilled/skills/system-spec-kit/SKILL.md -> 1 (exit 0); python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/SKILL.md -> ✅ VALID: .skilled/skills/system-spec-kit/SKILL.md, Total issues: 0 (exit 0); git diff --numstat -- .skilled/skills/system-spec-kit/SKILL.md -> 3 1 (exit 0)
+BLOCKED REASON: none

@@ -739,6 +739,22 @@ See [`retrieval/session-recovery-spec-kit-resume.md`](retrieval/session-recovery
 
 ---
 
+### Track narrowing measurement
+
+#### Description
+
+Measures offline whether one classifier choice that names a packet's spec track beats ripgrep and the trigger-index lookup, under a keep rule fixed before any model call.
+
+#### Current Reality
+
+`.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` makes no model call by default. `--deem` and `--jev` each add a model column behind that backend's own check, and the script changes no lookup, index or recipe.
+
+#### Source Files
+
+See [`retrieval/track-narrowing-measurement.md`](retrieval/track-narrowing-measurement.md) for full implementation and test file listings.
+
+---
+
 ## 9. CONTEXT PRESERVATION
 
 ### Resource map template

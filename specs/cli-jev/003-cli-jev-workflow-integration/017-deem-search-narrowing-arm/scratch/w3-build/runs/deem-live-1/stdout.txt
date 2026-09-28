@@ -1,0 +1,33 @@
+index manifestHash: fdebd12ad1be6133cd344556b5bcdc81ce8736127474d99919f70150342ca67f
+test set: tracks=16 kept=256 usable=1727 placeholder=67 leak=185 residual=49
+track: agents kept=16 usable=16 placeholder=4 leak=2 residual=5
+track: cli-external-orchestration kept=14 usable=14 placeholder=5 leak=3 residual=0
+track: cli-jev kept=12 usable=12 placeholder=12 leak=7 residual=4
+track: cli-orca kept=1 usable=1 placeholder=0 leak=1 residual=1
+track: hooks kept=20 usable=103 placeholder=2 leak=2 residual=2
+track: mcp-tooling kept=6 usable=6 placeholder=0 leak=0 residual=0
+track: sk-code kept=20 usable=41 placeholder=0 leak=30 residual=10
+track: sk-communication kept=20 usable=54 placeholder=2 leak=7 residual=3
+track: sk-design kept=20 usable=76 placeholder=3 leak=11 residual=2
+track: sk-doc kept=20 usable=40 placeholder=6 leak=19 residual=0
+track: sk-git kept=15 usable=15 placeholder=0 leak=3 residual=5
+track: sk-prompt kept=12 usable=12 placeholder=0 leak=8 residual=3
+track: sk-vision kept=20 usable=26 placeholder=0 leak=9 residual=2
+track: system-deep-loop kept=20 usable=261 placeholder=0 leak=14 residual=4
+track: system-skill-advisor kept=20 usable=41 placeholder=6 leak=1 residual=7
+track: system-speckit kept=20 usable=1009 placeholder=27 leak=68 residual=1
+baseline lookup: 17/256 right (0.0664)
+baseline ripgrep: 68/256 right (0.2656)
+baseline method: ripgrep 68/256 right
+margin: 0.10
+keep rule: coverage 10*M >= 9*K, margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M
+instruction: -q "Which spec track is this text about?"
+options: 17 sha256=5562c17ce61772689d2ddcbb87a7ebf2513f6aa397ae714e206f746f4727bc7f none="None of these tracks"
+orders: 3, name order with none last, then rotated left by 1 and by 2
+headroom: a 10-point gain fits above 68/256
+planned calls: 810 per arm, 256 rows and 14 probes in 3 orders each
+deem: health backend=torch model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=c8a5523c5a7ead9a2132363edfcffd1ec86a6dbc
+deem: nothing leaves the machine; planned calls: 810; estimated wall time: 53.1 s at 65.6 ms per call, the 2-option p50 from deem-local.md
+column deem: rows=256 measured=256 unmeasured=0 unstable=209 abstained=0 flip_rate=0.6003 latency_p50_ms=703 latency_p95_ms=728
+verdict deem: stop (margin) K=256 M=256 A=10 B=68 W=5 L=63 F=461 p=1.000 model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=c8a5523c5a7ead9a2132363edfcffd1ec86a6dbc
+paraphrase probes: total=20 gold-less=6 lookup=0/14 ripgrep=8/14 deem=0/14

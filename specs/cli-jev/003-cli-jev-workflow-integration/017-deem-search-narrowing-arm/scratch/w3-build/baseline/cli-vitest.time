@@ -1,0 +1,1 @@
+npx vitest run --config ../../vitest.config.ts --project cli >  2>&1  192.87s user 247.78s system 94% cpu 7:47.15 total

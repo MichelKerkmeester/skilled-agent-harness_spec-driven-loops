@@ -1,0 +1,8 @@
+The row was inserted at line 314, directly after the row starting `| 190 |`. The diff shows exactly one line added and no other change; the grep count is 1 and the validator exited 0.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md (+1/-0)
+EDITS: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md:314 inserted `| 459 | Track narrowing measurement | [459](retrieval/track-narrowing-measurement.md) | [track-narrowing-measurement](../feature-catalog/retrieval/track-narrowing-measurement.md) |` directly after the `| 190 | Session recovery via /speckit:resume |` row in the table under `### 7.8 Lifecycle, Retrieval and Context Preservation`
+CHECKS: grep -c "^| 459 | Track narrowing measurement |" .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md -> 1 (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md -> ✅ VALID (exit 0; one pre-existing warning `[document_type_fallback]`)
+BLOCKED REASON: none

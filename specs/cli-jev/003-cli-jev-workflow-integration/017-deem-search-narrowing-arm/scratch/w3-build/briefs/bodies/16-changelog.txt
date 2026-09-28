@@ -1,0 +1,10 @@
+TASK: create system-spec-kit's v4.2.0.0 changelog entry by copying a prepared file byte for byte. One new file.
+C = specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/briefs/content/changelog-v4.2.0.0.md (read only; the orchestrator wrote it to sk-doc's changelog compact format and frontmatter contract).
+F = .skilled/skills/system-spec-kit/changelog/v4.2.0.0.md (does not exist yet; the newest entry today is v4.1.3.0.md).
+
+1. Read C. Create F with exactly C's content: same bytes, same frontmatter, same final newline. Do not edit C and do not change a word.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/briefs/content/changelog-v4.2.0.0.md .skilled/skills/system-spec-kit/changelog/v4.2.0.0.md   (expect no output, exit 0)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/changelog/v4.2.0.0.md   (expect exit 0)
+Accept when: 1 file created and nothing else changed; cmp exits 0; the validator exits 0.

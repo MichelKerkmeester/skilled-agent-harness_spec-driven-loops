@@ -1,0 +1,1 @@
+ripgrep failed on deleted: rg: specs/.repair-fixture-jDjTf6: No such file or directory (os error 2)
