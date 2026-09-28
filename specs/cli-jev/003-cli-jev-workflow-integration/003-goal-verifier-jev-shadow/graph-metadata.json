@@ -39,23 +39,28 @@
       "verify"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+      ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
+      ".skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs",
+      ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
+      ".skilled/hooks/goal/lib/build-verifier-fixture.test.cjs",
+      ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+      ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
+      ".skilled/hooks/goal/README.md",
+      ".skilled/hooks/README.md",
       ".opencode/plugins/opencode-goal.js",
+      "scratch/w3-build/build-evidence.md",
       ".opencode/plugins/tests/opencode-goal-supervisor.test.cjs",
       ".skilled/hooks/goal/goal-plugin.md",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      ".skilled/hooks/goal/README.md",
-      ".skilled/hooks/README.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
-      ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md",
-      ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md"
+      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md"
     ],
     "entities": [
       {
@@ -89,9 +94,63 @@
         "source": "derived"
       },
       {
+        "name": "verifier-labeled-set.jsonl",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "count-pi-goal-nudges.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "count-pi-goal-nudges.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-verifier-fixture.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-verifier-fixture.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/build-verifier-fixture.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verifier-labeled-set.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verifier-labeled-set.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
         "name": "opencode-goal.js",
         "kind": "code",
         "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w3-build/build-evidence.md",
         "source": "derived"
       },
       {
@@ -110,12 +169,6 @@
         "name": "ENV-REFERENCE.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/hooks/goal/README.md",
         "source": "derived"
       },
       {
@@ -153,59 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Slice",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two runtimes judge \"is this goal done\" with a heuristic",
     "created_at": "2026-09-26T18:26:44Z",
-    "last_save_at": "2026-09-28T09:27:37.226Z",
+    "last_save_at": "2026-09-28T21:15:26.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b17936dc16eb5f01976918d1ad53d334c389064ea0f074729a12afac745d8ce",
+    "source_fingerprint": "sha256:b7d9a09b1c275653189ee5cb62ed01786ed0448ad62c858c6787f99008d443ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31f12ec927665b0d6205864e54e59bf15e378b47b9fb6185269df9f917fe8a53",
-      "plan.md": "8c6fb193518bdd94387751c993a09efea57f184d36766296cdfc043410199548",
-      "tasks.md": "01861c102234badb34c0100803b1517940ff8c117df4574266ee2156e1e3b812",
-      "implementation-summary.md": "c438b20462a35013c0f23e39e42d6682a3cb779afd81a329820984a768813a41"
+      "spec.md": "c98c3459f1ed28c4294f91d05d97bbcadba205ed487a94ad905bd357d1534b6f",
+      "plan.md": "2f30e1608e2c1380a74a0640db44d85aaa637d9fbb62af9b11af5a54e0e452b6",
+      "tasks.md": "e27738497aaf74ea61e9b4ac4fd3c5ff3e8d884b1e445e62215e1c0e22c49f8e",
+      "implementation-summary.md": "d2987feb9c5571075f718a2f16f0b1dc91cc59c8257e9def060328b314ecfe3f"
     },
     "last_active_at": null
   }
