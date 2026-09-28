@@ -1,0 +1,16 @@
+The paraphrase probe reader, gold sets, and report line are in the track-narrowing script, with one vitest case. The packet goal is set.
+
+SKILL ROUTING: sk-code → sk-code-opencode (JavaScript). ARTIFACT: sk-code → sk-code-opencode JavaScript style and quality standards.
+REPO RULES: prevent-overengineering.md
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+115/-0)
+.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+66/-0)
+EDITS: score-track-narrowing.mjs:21 imported fileURLToPath
+score-track-narrowing.mjs:31 added SCRIPT_DIR and exported DEFAULT_PROBES_PATH
+score-track-narrowing.mjs:691 added loadProbes, probeGold, probeHits, and probeLine
+score-track-narrowing.vitest.ts:20 imported the new names
+score-track-narrowing.vitest.ts:369 added the paraphrase-probes case
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> (no output) (exit 0)
+BLOCKED REASON: none

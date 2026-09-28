@@ -1,0 +1,49 @@
+I'll start by reading both files as the brief requires.
+
+The file is 2051 lines; I need to read the rest, especially `main` and the Deem/Jev gate sections. Let me read the remaining portions and the test cases.
+
+
+
+
+
+Now let me read the test file sections around the two refusal cases.
+
+Now let me read the top of the test file to understand helpers (`runMain`, `stubDir`, `HEALTHY`), and check the sections around both cases.
+
+Let me find the `HEALTHY` stub and the section context for the Deem gate case.
+
+I have both files read. Before editing, let me verify that no other test case passes `--deem`/`--jev` without `--out` (which would break under the new early refusal).
+
+Confirmed: only the two cases being rewritten lack `--out`; all other invocations pass it. Now I'll make all edits — four in S and two in T.
+
+All six edits applied. Now running the two verification checks, plus confirming no stray references to the old test names remain.
+
+Checks pass: `node --check` exit 0, grep count 2, and the only remaining "refuses a passing" hits are pre-edit scratch snapshots in the spec folder (not source). Let me confirm the diff scope and final on-disk state of the test regions.
+
+Both files are untracked in this worktree (`??`), so `git diff` has no baseline. The scratch logs folder appears to hold pre-edit snapshots — let me check for one of the mjs file so I can compute exact line counts.
+
+Pre-edit snapshots exist (`23.pre.mjs`, `23.pre.vitest.ts`). Let me diff current files against them to confirm my edits are the only changes and get exact line counts.
+
+Let me review the full diff against the pre-edit snapshots to confirm only the intended edits appear.
+
+S diff is exactly the five intended edits. Now the T diff:
+
+Both diffs match the brief exactly — no unintended changes, and line totals are consistent (S: 2049 lines, +6/-8 net; T: 1241 lines, +12/-15 net). All acceptance checks pass.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+9/-11), .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+12/-15)
+EDITS:
+- S:13-15 header exit-codes comment now reads "--deem or --jev without --out, refused before any output or call"
+- S:1880 JSDoc @returns now "bad invocation, unreadable input, or a model switch without --out"
+- S:1910-1915 early refusal added directly after `const { values } = parsed;`, before `const stored`
+- S:1972 removed the late 4-line `--deem` check after `deemGate(...)`; `if (deemCheck.passed)` now follows directly
+- S:1994 removed the late 4-line `--jev` check after `jevGate(...)`; surrounding comment kept
+- T:789-809 deem case renamed "refuses --deem without --out before any output or call"; setup kept, loop over `['--deem']` and `['--deem', '--out', '']` asserts code 2, errs `['--deem needs --out <dir> so every call is recorded']`, lines `[]`, no `cli-deem.log`
+- T:1117-1131 jev case renamed "refuses --jev without --out before any output or call"; stub/env kept, `base` run dropped, `['--jev']` asserts code 2, errs `['--jev needs --out <dir> so every call is recorded']`, lines `[]`, no `jev.log`
+CHECKS:
+- node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> no output (exit 0)
+- grep -c "needs --out <dir> so every call is recorded" .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> 2 (exit 0)
+- git diff --no-index --numstat specs/.../scratch/w3-build/logs/23.pre.mjs <current S> -> 9 11, only the five intended hunks (exit 1, differences present as expected)
+- git diff --no-index --numstat specs/.../scratch/w3-build/logs/23.pre.vitest.ts <current T> -> 12 15, only the two rewritten cases (exit 1, differences present as expected)
+- git status --porcelain -- <both files> -> both `??` untracked; no other file touched by this worker
+BLOCKED REASON: none

@@ -1,0 +1,30 @@
+I'll start by reading the two files named in the brief, plus the skill route the persona requires.Reading the rest of the main file now.Now the test file.Both files are read. Before editing, I'll ground two fixture expectations (lookup and ripgrep behavior on the probe query) by reading the two helper modules the script relies on.Ripgrep is markdown-globbed, which matches my expectation. Now let me confirm the lookup scorer's behavior for the probe query.Let me check the scorer to ground the expected lookup hit value.Both helper modules confirm the brief's expected values (markdown-globbed ripgrep; the lookup's 0.8-coverage floor rejects the paraphrase query). Now I'll make the edits to S, starting with `deemGate` and `runDeemArm`.All six applied. Now the section 9 functions and the `main` wiring.S is fully edited. Now the three vitest cases in T.Both files are edited. Running the required verification plus a read-only diff stat for the handback numbers.`node --check` passes. The empty numstat is suspicious — let me check whether these paths are tracked or ignored in this worktree.The two files are untracked in this worktree, so `git diff` can't produce counts. Let me check whether the parent checkout holds a pristine copy I can diff against (read-only), for exact handback numbers.No pristine copy exists outside the worktree, so I'll compute the handback counts from the edits themselves. First, a final re-read of the two edited regions to self-review, plus line counts.S net +142 lines matches my edit deltas (1712 − 1570). Let me do a final read of the T tail to self-review the new tests.Self-review complete. Both edited regions read back cleanly, the three new tests match the implementation, and the required check passes from the final state.
+
+Summary of what changed:
+
+- `score-track-narrowing.mjs`: `deemGate` now returns the skip line as `reason`; `runDeemArm` takes `ctx.stored` and prints `requalify: model commit changed` between the column line and the verdict when the stored Deem commit pair differs (returned column carries `requalify`); section 9 gained `readStoredReport` and `buildReport`; `main` reads the stored report right after arg parsing, keeps every Deem outcome (skip/stop/column), appends `deem=` hits to the probe line when the arm finished with a column, and writes `report.json` after the probe line and before the wall time.
+- The vitest describe block gained the three cases (report/verdict parity, requalify line, skipped arm with no call log).
+
+`node --check` exits 0; only the two named files were touched (both untracked in this worktree, so the counts below are diff-equivalents computed from the edit deltas).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+153/-11)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+108/-0)
+EDITS: score-track-narrowing.mjs:1152 deemGate @returns JSDoc notes the failing result carries the skip line
+EDITS: score-track-narrowing.mjs:1161 failing gate result returns `reason: skipLine` (printed lines unchanged)
+EDITS: score-track-narrowing.mjs:1265 runDeemArm ctx JSDoc gains `stored: object | null`
+EDITS: score-track-narrowing.mjs:1293 returned column JSDoc gains `requalify: string | null`
+EDITS: score-track-narrowing.mjs:1418 requalify line emitted after `out(columnLine(...))` and before `out(column.line)` when the stored deem commit pair differs
+EDITS: score-track-narrowing.mjs:1448 returned column carries `requalify`
+EDITS: score-track-narrowing.mjs:1458 added exported `readStoredReport(outDir)` and `buildReport(parts)` with JSDoc in section 9
+EDITS: score-track-narrowing.mjs:1601 `stored = readStoredReport(values.out)` right after arg parsing (out non-empty and --deem/--jev set)
+EDITS: score-track-narrowing.mjs:1614 `let jevResult;` declared so the parts object can pass the jev arm entry (no jev arm in this file yet)
+EDITS: score-track-narrowing.mjs:1652 deem outcome kept for skip (no headroom / gate reason), stop, or column; `stored` passed into runDeemArm ctx
+EDITS: score-track-narrowing.mjs:1678 probe line gains `deem=` after lookup/ripgrep when the arm finished with a column; report.json written (mkdir -p, JSON.stringify(..., 2) + '\n') after the probe line and before the wall time
+EDITS: score-track-narrowing.vitest.ts:946 test 'writes report.json whose deem column matches the stdout verdict'
+EDITS: score-track-narrowing.vitest.ts:998 test 'prints requalify before the verdict when the stored commit pair differs'
+EDITS: score-track-narrowing.vitest.ts:1031 test 'records a skipped arm and writes no call log'
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> no output, echoed "node --check exit: 0" (exit 0)
+CHECKS: git status --short -- <both paths> -> `??` for exactly those two files, no other paths touched (exit 0)
+CHECKS: wc -l <both paths> -> 1712 / 1053 (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,14 @@
+The track-narrowing test-set builder is in its own module, with the three cases beside it. `node --check` passed, and a direct run of those three cases matched the expected counts.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+393/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+145/-0)
+EDITS: score-track-narrowing.mjs:1 banner, usage, and exit codes
+EDITS: score-track-narrowing.mjs:18 imports for the hash, filesystem, and trigger-text helpers
+EDITS: score-track-narrowing.mjs:29 row cap, token floor, track cap, and skipped directory names
+EDITS: score-track-narrowing.mjs:159 track list, hub names, leak phrases, classification, test-set build, and summary lines
+EDITS: score-track-narrowing.vitest.ts:2 module banner
+EDITS: score-track-narrowing.vitest.ts:28 temp directory, writers, and cleanup
+EDITS: score-track-narrowing.vitest.ts:63 cap, leak, and placeholder cases
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> (no output) (exit 0)
+BLOCKED REASON: none

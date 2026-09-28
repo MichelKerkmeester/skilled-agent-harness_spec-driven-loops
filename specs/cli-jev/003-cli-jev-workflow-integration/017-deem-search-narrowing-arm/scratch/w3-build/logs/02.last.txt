@@ -1,0 +1,15 @@
+SKILL ROUTING: User directed → code. ARTIFACT: sk-code → OpenCode JavaScript and TypeScript implement. REPO RULES: evidence-and-proof.md. The packet goal is unchanged.
+
+The trigger-index lookup baseline is in the track-narrowing script. `trackOf`, `isInsideFolder`, and `lookupPick` read the lookup in its own order and abstain when no scoring row outside the question's folder qualifies. The two vitest cases cover that pick and the own-folder skip.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+51/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+67/-0)
+EDITS: score-track-narrowing.mjs:23 imported lookup from lookup-trigger-index.mjs
+EDITS: score-track-narrowing.mjs:396 added section 3 BASELINES with trackOf, isInsideFolder, and lookupPick
+EDITS: score-track-narrowing.vitest.ts:16 imported generate, loadIndex, trackOf, isInsideFolder, and lookupPick
+EDITS: score-track-narrowing.vitest.ts:64 added doc and indexFor helpers
+EDITS: score-track-narrowing.vitest.ts:177 added describe score-track-narrowing lookup baseline with the two cases
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> (no output) (exit 0)
+BLOCKED REASON: none

@@ -305,6 +305,11 @@ back through the ladder `/speckit:resume` walks. Semantic paraphrase, ranking fu
 access tracking, session dedup and graph traversal have no successor: a phrase nobody wrote is a
 clean no-hit.
 
+`runtime/cli/retrieval/score-track-narrowing.mjs` measures offline whether a classifier that names
+the spec track would beat those two lanes. Its default run makes no model call and writes no file;
+`--deem` and `--jev` each add a model column behind that backend's own check. It changes no lookup,
+index or recipe.
+
 ---
 
 ## 5. COMMANDS

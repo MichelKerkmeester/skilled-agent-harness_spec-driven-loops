@@ -1,0 +1,14 @@
+The ripgrep baseline is in the track-narrowing script, with the two vitest cases beside the existing lookup baseline. `node --check` passed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+107/-0)
+.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+46/-0)
+EDITS: score-track-narrowing.mjs:23 imported pathOnlyRecipe and runRecipe
+score-track-narrowing.mjs:454 added ripgrepTokens (distinct normalized tokens of length >= 3, first-seen order)
+score-track-narrowing.mjs:471 added ripgrepPath (trim, drop blank, slash-normalize, strip a leading ./)
+score-track-narrowing.mjs:491 added ripgrepPick (cached path-only search, token overlap score, top-score file count, code-unit tie-break, null abstention)
+score-track-narrowing.vitest.ts:23 imported ripgrepPick and ripgrepTokens
+score-track-narrowing.vitest.ts:220 added describe('score-track-narrowing ripgrep baseline') with the two cases
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> (no output) (exit 0)
+BLOCKED REASON: none

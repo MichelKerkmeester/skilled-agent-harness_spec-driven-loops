@@ -1,0 +1,69 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/code.md; focused summary for a one-change brief) ===
+You are @code, a leaf implementer dispatched by an orchestrator (Depth: 1). Never dispatch another agent.
+Scope: edit only the files this brief names. Read each file before editing it and re-read the edited region after.
+Standards: read .skilled/skills/sk-code/SKILL.md and follow the route it resolves for this file type.
+Comment hygiene is a hard block: no spec paths, packet or phase numbers, or REQ/task ids in code comments. Keep the durable why.
+Verification: run only the checks this brief lists. Fail closed: no retry loop, no workaround. Report exact commands, result lines and exit codes.
+Output: end with the HANDBACK block, STATUS DONE or BLOCKED.
+=== END AGENT PERSONA (resolved persona: code) ===
+
+TASK: create the track-narrowing measurement script with its test-set builder, and its vitest file with the first three cases.
+S = .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (new). T = .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (new). First read retrieval/measure-cold-lookup.mjs lines 1-60 and retrieval/lib/normalize.mjs, and copy their banner and numbered-section comment style.
+
+S, in this order:
+1. `#!/usr/bin/env node`, then a MODULE banner "Track Narrowing Measurement". Its comment says: measures offline whether one classifier choice that picks a spec track beats the ripgrep recipe and the trigger-index lookup at naming the right track; the default run makes no model call and writes no file; the script holds and reads no credential. Usage: `node score-track-narrowing.mjs [--deem] [--jev] [--out <dir>]`. Exit codes: 0 = report printed, a skipped or stopped arm included; 2 = bad invocation or unreadable input, or a model switch whose gate passed without --out.
+2. Imports: createHash from 'node:crypto', fs from 'node:fs', path from 'node:path', { compareCodeUnits, normalizeTriggerText } from './lib/normalize.mjs'.
+3. Section `1. CONSTANTS`, each exported: MAX_ROWS_PER_TRACK = 20; MIN_QUESTION_TOKENS = 5; MAX_TRACKS = 25; SKIPPED_TREES = Object.freeze(['z_archive', 'scratch', 'research', 'context']).
+4. Section `2. TEST SET`, exported functions with JSDoc:
+ a. listTracks(repoRoot): immediate subdirectories of <repoRoot>/specs (Dirent.isDirectory(), name not starting with '.', not in SKIPPED_TREES), sorted with compareCodeUnits. Each reads specs/<name>/description.json; its `description` must be a string that is non-empty after trim, else throw new Error(`track ${name} has no description`) (a missing or unparseable file too). More than MAX_TRACKS tracks throws new Error(`${n} tracks exceed the ${MAX_TRACKS}-track option cap`). Returns [{ track, description }], description verbatim.
+ b. listHubNames(repoRoot): sorted names of immediate subdirectories of <repoRoot>/.skilled/skills that hold a SKILL.md file; [] when that directory is missing.
+ c. leakPhrases(trackNames, hubNames): normalizeTriggerText of every name containing '-', deduplicated, sorted with compareCodeUnits ('sk-design' gives 'sk design'; 'agents' gives nothing).
+ d. classifyDescription(description, folderName, phrases) returns 'placeholder' | 'leak' | 'kept'. Placeholder when: not a string; trim() is empty; trim() starts with '['; trim() matches /^Phase \d+:/; normalizeTriggerText(description) equals normalizeTriggerText(folderName) or normalizeTriggerText(folderName.replace(/^\d+-/, '')); or it has fewer than MIN_QUESTION_TOKENS normalized tokens (split on ' ', empty dropped). Else 'leak' when some phrase p gives ` ${norm} `.includes(` ${p} `). Else 'kept'.
+ e. buildTestSet(repoRoot, options = {}): hubNames = options.hubNames ?? listHubNames(repoRoot); tracks = listTracks(repoRoot); phrases = leakPhrases(track names, hubNames). For each track, walk specs/<track> depth-first over subdirectories sorted with compareCodeUnits (Dirent.isDirectory(), so symlinks are not followed), skipping names in SKIPPED_TREES or starting with '.'; the track folder itself is never a packet. A folder holding a description.json file is a packet: folder = posix repo-relative path such as 'specs/<track>/<a>/<b>'; description = its parsed `description`, or null when the file does not parse. classifyDescription(description, basename, phrases) counts placeholder and leak. Kept candidates sort by createHash('sha256').update(folder).digest('hex') ascending; the first MAX_ROWS_PER_TRACK become rows { id: folder, folder, track, question: description.trim() }. residual counts rows whose normalized question tokens include the track's last '-' segment. Returns { tracks, rows (track order, then hash order), counts: { [track]: { kept, usable, placeholder, leak, residual } } }, usable = candidates before the cap.
+ f. testSetLines(testSet): first `test set: tracks=<n> kept=<k> usable=<u> placeholder=<p> leak=<l> residual=<r>` (sums over tracks), then one line per track in order: `track: <name> kept=<k> usable=<u> placeholder=<p> leak=<l> residual=<r>`.
+
+T: MODULE banner "Track Narrowing Measurement Tests"; imports afterEach, describe, expect, it from 'vitest', node:crypto, node:fs, node:os, node:path, and the functions above from '../retrieval/score-track-narrowing.mjs'. Helpers: tempDir(prefix) (fs.mkdtempSync under os.tmpdir(), every dir removed in afterEach), write(root, rel, text) (mkdir -p the parent, then write), track(root, name, description) writes specs/<name>/description.json as JSON.stringify({ description }), packet(root, folder, description) writes <folder>/description.json the same way. describe('score-track-narrowing test set'):
+1. 'keeps at most 20 rows per track, first by SHA-256 of the folder path': tracks 'alpha-track' and 'beta'; 22 packets specs/alpha-track/0NN-p (NN = 01..22) each `quartz lantern sample number ${NN} here`; one packet specs/beta/001-x 'ember harbor lamp stone river'. set = buildTestSet(root, { hubNames: [] }): set.counts['alpha-track'] toEqual { kept: 20, usable: 22, placeholder: 0, leak: 0, residual: 0 }; the alpha row ids equal the 22 folder paths sorted by sha256 hex, first 20; set.rows has length 21; testSetLines(set)[0] is 'test set: tracks=2 kept=21 usable=23 placeholder=0 leak=0 residual=0'.
+2. 'drops a description that names a track or a hub and counts it': tracks 'alpha-track' and 'beta'; packets specs/beta/001-a 'this one fixes the alpha track loader cache', specs/beta/002-b 'moves the demo hub router into place', specs/beta/003-c 'beta lantern quartz ember harbor stone'; buildTestSet(root, { hubNames: ['demo-hub'] }).counts.beta toEqual { kept: 1, usable: 1, placeholder: 0, leak: 2, residual: 1 }.
+3. 'counts placeholders by each rule': classifyDescription gives 'placeholder' for ('', 'x', []), ('[TODO] fill this in later', 'x', []), ('Phase 3: build the thing now', 'x', []), ('Deem search narrowing arm build', '017-deem-search-narrowing-arm-build', []) and ('four tokens only here', 'x', []), and 'kept' for ('five clean tokens are here', 'x', []). Then track 'beta' with packet specs/beta/001-x 'ember harbor lamp stone river' and a clean description.json at specs/beta/001-x/scratch/sub: buildTestSet(root, { hubNames: [] }).counts.beta.usable is 1.
+
+VERIFY (repo root): node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs
+Accept when: 2 files created and nothing else changed; node --check exits 0.
+
+RUN CONTEXT
+- Repo root, a git worktree. Run every command from here:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration
+- Spec folder (pre-approved, Gate 3 answered): specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm
+- Other workers edit other files in this tree at the same time. Touch only the files this brief names.
+- The orchestrator runs the test suites, spec validation and every git commit after you return.
+- Your sandbox may block test runners that open local sockets (tsx, vitest). Run only the checks listed here; the orchestrator runs the rest.
+
+DON'T
+- Edit, create or delete any file this brief does not name.
+- Run a git command that writes (add, commit, stash, checkout, restore, reset, merge, rebase, push).
+- Install anything (npm/pnpm/pip/brew install, npm ci) or touch node_modules.
+- Open any .env file, print environment variables, or write a key or token into any file.
+- Call jev, the local Deem server (127.0.0.1:8300) or any network service.
+- Put spec paths, packet or phase numbers, or REQ/task ids in code comments.
+- Reformat, reorder or "improve" anything outside the named edit.
+- Ask a question. If a step cannot be done exactly as written, stop and report BLOCKED with the reason.
+
+HANDBACK (print exactly this block, filled in, as your last output)
+STATUS: DONE | BLOCKED
+FILES CHANGED: one line per file: <path> (+<added>/-<removed>)
+EDITS: one line per step: <file>:<line> <what changed>
+CHECKS: one line per check: <command> -> <result line> (exit <n>)
+BLOCKED REASON: <one line, or none>

@@ -1,0 +1,16 @@
+TASK: in system-spec-kit's SKILL.md, raise the version to 4.2.0.0 and add one sentence to the retrieval section naming the new track-narrowing script. Two literal edits in one file.
+F = .skilled/skills/system-spec-kit/SKILL.md. Read F first. Change nothing else in it.
+
+1. F:5. Old line:
+version: 4.1.3.0
+New line:
+version: 4.2.0.0
+
+2. F:466 is the paragraph starting "Regenerate the index with". After it and its blank line, insert this one-line paragraph and one blank line, so the new paragraph sits directly above the line starting "**Declared loss.**":
+`score-track-narrowing.mjs` in the same folder measures offline whether a classifier that names a packet's spec track would beat ripgrep and the lookup: its default run makes no model call and writes no file, `--deem` and `--jev` each add a model column behind that backend's own check, and it changes no lookup, index or recipe.
+
+VERIFY (repo root):
+  grep -c "score-track-narrowing" .skilled/skills/system-spec-kit/SKILL.md   (expect 1)
+  grep -c "^version: 4.2.0.0$" .skilled/skills/system-spec-kit/SKILL.md   (expect 1)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/SKILL.md   (expect exit 0)
+Accept when: 1 file changed and nothing else; the greps print 1 and 1; the validator exits 0.
