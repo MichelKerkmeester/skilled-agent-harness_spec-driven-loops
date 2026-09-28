@@ -7,7 +7,7 @@ trigger_phrases:
   - spec document validation
   - auto-fix validation pipeline
   - validate.sh wrapper
-version: 3.6.0.19
+version: 4.1.0.26
 ---
 
 # Progressive validation for spec documents
@@ -32,6 +32,8 @@ The `progressive-validate.sh` wrapper in `runtime/cli/spec/` runs a 4-level pipe
 4. **Report (Level 4)** emits a consolidated human or JSON summary including detect outcome, auto-fixes and suggestions.
 
 Flags include `--level N`, `--dry-run`, `--json`, `--strict`, `--quiet` and `--verbose`. Exit code behavior matches `validate.sh`: **0 = pass, 1 = warnings, 2 = errors** (with `--strict`, warnings are promoted to exit 2).
+
+When `SPECKIT_SKIP_VALIDATION` switches validation off, detect runs no rule and the JSON report says `"skipped": true` beside `"passed": true`, so a reader can tell a switched-off run from a real pass. Auto-fix still runs, because the switch turns off checks, never the tools that write.
 
 **Cross-reference**: The structural contracts validated by `validate.sh` are now codified in `references/validation/template-compliance-contract.md` and embedded as compact anchor-to-H2 mapping tables in all distributed-governance spec-authoring flow definitions. See `18-template-compliance-contract-enforcement.md` for the 3-layer enforcement architecture that ensures agents produce compliant documents at generation time.
 

@@ -56,6 +56,9 @@ SUGGESTION_COUNT=0
 SUGGESTION_LOG=""     # newline-separated suggestion entries
 
 VALIDATE_EXIT=0
+# "true" when validate.sh ran no rule because its off switch was on. Only a
+# JSON run can see it, from the report validate.sh prints.
+DETECT_SKIPPED="false"
 
 # ───────────────────────────────────────────────────────────────
 # 2. COLORS (disabled for non-TTY)
@@ -260,14 +263,18 @@ run_level1_detect() {
 
     VALIDATE_EXIT=0
     if [[ "$JSON_MODE" == "true" ]]; then
-        # In JSON mode, capture validate.sh output
+        # In JSON mode, capture validate.sh's stdout only. Its notices, the skip
+        # notice among them, go to stderr, so stdout stays one parseable report.
         local detect_output=""
         if [[ ${#extra_flags[@]} -gt 0 ]]; then
-            detect_output=$("$validate_script" "$FOLDER_PATH" "${extra_flags[@]}" 2>&1) || VALIDATE_EXIT=$?
+            detect_output=$("$validate_script" "$FOLDER_PATH" "${extra_flags[@]}") || VALIDATE_EXIT=$?
         else
-            detect_output=$("$validate_script" "$FOLDER_PATH" 2>&1) || VALIDATE_EXIT=$?
+            detect_output=$("$validate_script" "$FOLDER_PATH") || VALIDATE_EXIT=$?
         fi
         _DETECT_JSON_OUTPUT="$detect_output"
+        # validate.sh writes its report with JSON.stringify, so the key and value
+        # sit together with no space between them.
+        [[ "$detect_output" == *'"skipped":true'* ]] && DETECT_SKIPPED="true"
         # Print detect output only if Level 1 is the final level
         if [[ $PIPELINE_LEVEL -eq 1 ]]; then
             printf '%s\n' "$detect_output"
@@ -489,9 +496,10 @@ run_level3_suggest() {
         return 0
     fi
 
-    # Run validate.sh in JSON mode to get structured issue data
+    # Run validate.sh in JSON mode to get structured issue data. stderr stays out
+    # of the capture, which must parse as JSON.
     local json_output=""
-    json_output=$("$validate_script" "$FOLDER_PATH" --json 2>&1) || true
+    json_output=$("$validate_script" "$FOLDER_PATH" --json 2>/dev/null) || true
 
     # Extract individual rule failures from JSON output
     if command -v python3 >/dev/null 2>&1 && [[ -n "$json_output" ]]; then
@@ -657,6 +665,7 @@ generate_json_report() {
   "folder": "$folder_escaped",
   "detectExitCode": $VALIDATE_EXIT,
   "passed": $passed,
+  "skipped": $DETECT_SKIPPED,
   "strict": $STRICT_MODE,
   "autoFixes": {
     "count": $AUTOFIX_COUNT,

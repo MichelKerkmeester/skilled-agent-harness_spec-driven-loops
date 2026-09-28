@@ -39,6 +39,8 @@ interface ProgressiveValidateReport {
   folder: string;
   detectExitCode: number;
   passed: boolean;
+  // True when validate.sh ran no rule because its off switch was on.
+  skipped: boolean;
   strict: boolean;
   autoFixes: {
     count: number;
@@ -989,6 +991,7 @@ Test.
         'folder',
         'detectExitCode',
         'passed',
+        'skipped',
         'strict',
         'autoFixes',
         'suggestions',
@@ -1149,6 +1152,41 @@ Test.
           fs.rmSync(tmpDir, { recursive: true, force: true });
         }
       }
+    });
+
+  });
+
+  // With the off switch on, validate.sh prints a notice on stderr and a skipped
+  // report on stdout. A caller that parses --json reads stdout alone, so the
+  // notice must stay out of it and the report must say that no rule ran.
+  describe('T-PB2-16: --json with validation switched off', () => {
+    // A set environment value answers before any saved flags file, so these
+    // runs decide the switch themselves.
+    const SWITCH_ON = { SPECKIT_SKIP_VALIDATION: '1' };
+    const SWITCH_OFF = { SPECKIT_SKIP_VALIDATION: '0' };
+
+    it('T-PB2-16a: level 1 prints only the skipped report on stdout', () => {
+      if (!SCRIPT_EXISTS || !fs.existsSync(VALID_L1_FIXTURE)) return;
+
+      const { stdout, stderr, exitCode } = runProgressiveValidate(VALID_L1_FIXTURE, ['--json', '--level', '1'], SWITCH_ON);
+
+      expect(exitCode).toBe(0);
+      expect(JSON.parse(stdout)).toMatchObject({ skipped: true, passed: true });
+      expect(stderr).toContain('Validation skipped: SPECKIT_SKIP_VALIDATION is on in the environment');
+    });
+
+    it('T-PB2-16b: the full report carries skipped, and a normal run says false', () => {
+      if (!SCRIPT_EXISTS || !fs.existsSync(VALID_L1_FIXTURE)) return;
+
+      const skippedRun = runProgressiveValidate(VALID_L1_FIXTURE, ['--json', '--dry-run'], SWITCH_ON);
+      const skippedReport = JSON.parse(skippedRun.stdout) as ProgressiveValidateReport;
+      expect(skippedRun.exitCode).toBe(0);
+      expect(skippedReport.skipped).toBe(true);
+      expect(skippedReport.passed).toBe(true);
+
+      const normalRun = runProgressiveValidate(VALID_L1_FIXTURE, ['--json', '--dry-run'], SWITCH_OFF);
+      const normalReport = JSON.parse(normalRun.stdout) as ProgressiveValidateReport;
+      expect(normalReport.skipped).toBe(false);
     });
 
   });
