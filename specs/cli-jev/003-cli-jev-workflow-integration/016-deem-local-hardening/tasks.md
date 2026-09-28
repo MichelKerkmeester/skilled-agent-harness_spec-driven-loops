@@ -36,8 +36,8 @@ contextType: "general"
 
 - [ ] T001 Read the tail of `update.log` and run `deem-ctl status`, record the model and source commits and confirm no scheduled update is running (`~/.local/share/deem/update.log`)
 - [ ] T002 Reopen `deem_server.py:794-800`, `:809`, `:837` and `deem-ctl:109-125` at the live commits and correct any moved citation (`spec.md` section 10)
-- [ ] T003 Ask Q1 to Q4 in one message and write each answer in place of `Operator answer: pending` (`spec.md` section 10, `goal.md` log)
-- [ ] T004 [B] Copy `deem-ctl` to `deem-ctl.bak-<date>` with `cp -p`, only once T003 approves any change (`~/.local/share/deem/bin/`)
+- [x] T003 Record the operator's answers to Q1 to Q4 in place of each pending answer line (`spec.md` section 10, `goal.md` log). Evidence: answered 2026-09-28, each the recommended option (D4 of the parent `goal.md`): Q1 C, Q2 on, Q3 hold at 1, Q4 B. Recorded by the spec pass, and nothing under `~/.local/share/deem/` was read or changed
+- [ ] T004 Copy `deem-ctl` to `deem-ctl.bak-<date>` with `cp -p` before the first edit, since Q2 and Q4 approve changes (`~/.local/share/deem/bin/`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -45,10 +45,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 [B] On a yes to Q2, add `DEEM_ACCESS_LOG=1` to `start_server`'s environment and change `>"$SERVER_LOG"` to `>>"$SERVER_LOG"`. Write to a temp file, then `mv` it into place (`~/.local/share/deem/bin/deem-ctl:118-120`)
-- [ ] T006 [B] Q1 option A or B: first run one Node `fetch` against `nc -l 9999` and record whether it sends `Origin`, then write the launcher or the proxy and point `start_server` at it. Option C: record the acceptance and its revisit trigger (`spec.md` section 10)
-- [ ] T007 [P] Q3: record the hold at 1 and confirm `grep -c DEEM_N_ORDERS deem-ctl` prints 0 (`spec.md` section 10)
-- [ ] T008 [B] Q4: place the reviewed copy the operator chose, or record the choice to leave `deem-ctl` unversioned (`../007-classifier-deep-research/context/deem-ctl` under option B)
+- [ ] T005 Q2 is on: add `DEEM_ACCESS_LOG=1` to `start_server`'s environment and change `>"$SERVER_LOG"` to `>>"$SERVER_LOG"`. Write to a temp file, then `mv` it into place (`~/.local/share/deem/bin/deem-ctl:118-120`)
+- [ ] T006 Q1 is C: confirm the acceptance and its revisit trigger stand in section 10, and change nothing under `~/.local/share/deem/src/` (`spec.md` section 10)
+- [ ] T007 [P] Q3 holds at 1: confirm `grep -c DEEM_N_ORDERS deem-ctl` prints 0 after T005 (`~/.local/share/deem/bin/deem-ctl`)
+- [ ] T008 Q4 is B: after T005 and a read-through review, copy the live `deem-ctl` to the packet and run `cmp` on the pair. It is the one new file this phase adds outside its own folder (`../007-classifier-deep-research/context/deem-ctl`)
 - [ ] T009 Add one pointer line after the Exposure paragraph (`../007-classifier-deep-research/context/deem-local.md:73`)
 <!-- /ANCHOR:phase-2 -->
 
@@ -59,9 +59,9 @@ contextType: "general"
 
 - [ ] T010 Run `shellcheck` on the edited `deem-ctl` and read its output and exit status (`~/.local/share/deem/bin/deem-ctl`)
 - [ ] T011 Access log: send one `GET /health` and restart with `deem-ctl stop` then `deem-ctl start`. The first line is still in `server.log` (`~/.local/share/deem/server.log`)
-- [ ] T012 [B] Q1 option A or B: `curl` with no `Origin` gets 200, and `POST` and `OPTIONS` with a foreign `Origin` get 403 with no `Access-Control-Allow-Origin` (`127.0.0.1:8300`)
+- [ ] T012 Q1 is C: `curl -s -D - -o /dev/null http://127.0.0.1:8300/health` still shows `Access-Control-Allow-Origin: *`, and `git -C ~/.local/share/deem/src status --porcelain` prints nothing (`127.0.0.1:8300`)
 - [ ] T013 Time 50 `choice` calls after the change and compare the p50 with 60 to 65 ms. Revert the log if it rose more than 5 ms (`deem-local.md:36`, `:85`)
-- [ ] T014 Rehearse the rollback: restore the backup, restart, `deem-ctl status` prints backend `torch`, then put the new version back (`~/.local/share/deem/bin/`)
+- [ ] T014 Rehearse the rollback: restore the backup, restart, `deem-ctl status` prints backend `torch`, then put the new version back and rerun `cmp` against the copy (`~/.local/share/deem/bin/`)
 - [ ] T015 Run `validate.sh --strict` and `check-goal.cjs` on this folder and read both results (`016-deem-local-hardening/`)
 <!-- /ANCHOR:phase-3 -->
 

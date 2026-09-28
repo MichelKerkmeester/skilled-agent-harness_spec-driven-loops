@@ -11,13 +11,13 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move"
-    last_updated_at: "2026-09-27T09:40:00Z"
-    last_updated_by: "authoring-leaf"
-    recent_action: "Authored the directive from the round-3 synthesis, section 14"
-    next_safe_action: "Record the route replay baseline once 008 and question 49 clear"
+    last_updated_at: "2026-09-28T10:00:00Z"
+    last_updated_by: "spec-pass-leaf"
+    recent_action: "Recorded the operator's answer to research question 49 as the entry gate"
+    next_safe_action: "Record the route replay baseline once 008 is Complete and a Deem keep exists in 002 or 017"
     blockers:
       - "008-cli-classifier-hub is Planned"
-      - "Research open question 49: no Deem arm result kept yet"
+      - "No Deem keep yet from phase 002 or 017 (parent D4)"
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/spec.md"
       - "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/research.md"
@@ -26,9 +26,9 @@ _memory:
       session_id: "spec-cli-jev-003-workflow-integration"
       parent_session_id: null
     completion_pct: 0
-    open_questions:
-      - "Should the move wait on a Deem result the operator keeps (research question 49)"
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "Research question 49: the move waits on a Deem keep, and a pre-fixed Deem keep in 002 or 017 counts as the operator's keep"
 ---
 # Goal: Phase 9: cli-jev-hub-move
 
@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Build only after 008 is Complete and the operator keeps a Deem arm result. With no kept result the phase stays Planned and is never built |
+| D1 | Build only after 008 is Complete and a Deem arm in 002 or 017 prints `keep` under that phase's keep rule, fixed before the run, which counts as the operator's keep. With no such keep the phase stays Planned, and the deciding verdicts go in the parent goal's log |
 | D2 | Record the replay of the 7 canary cases and the 3 hub-routing scenarios through `--hub cli-jev` before any file moves |
 | D3 | Move all 81 hub files with `git mv`. Hub-level files merge into their `cli-classifier` counterparts. Never move part of the hub and then delete the rest |
 | D4 | One commit holds the move, the merges, every literal list and the regenerated artifacts. Changelogs and dated benchmark reports stay as written |
@@ -111,7 +111,7 @@ and findings belong here.
 | Planning documents | Done | `spec.md`, `plan.md`, `tasks.md`, this goal and `implementation-summary.md` authored on 2026-09-27 from `007-classifier-deep-research/research/research.md` section 14 (`### 009-cli-jev-hub-move (new)`), R23 in section 12, What Not To Build row 104 and ledger rows 79 to 94 |
 | Literal lists reopened | Done | 2026-09-27 at the worktree HEAD: `compiled-route.cjs:35`, `compiled-route-sync.cjs:59`, `compiled-route-guard.cjs:47`, `compiled-routing-flag.ts:19` and `:37`, `resolve.cjs:36-44` (`cli-jev` at `:41`), `serving-closure.manifest.json:5-13` (`:10`) and `dispatch-audit.mjs:46`, `:234`, `:237` all hold `cli-jev` as section 14 says |
 | Footprint recount | Done | `git ls-files .skilled/skills/cli-jev` 81, 59 in `cli-usage`, 22 at hub level. `git grep -l cli-jev` outside `specs/` and the hub: 48. Canary fixture: 7 cases |
-| Build | Pending | Blocked on 008 and on research open question 49. Nothing is built |
+| Build | Pending | Blocked on 008 and on a Deem `keep` in 002 or 017. Nothing is built |
 
 ### Deviations and findings
 
@@ -123,4 +123,6 @@ and findings belong here.
 | Hub-level merges | `git mv` cannot land on a file 008 already created, so the 8 hub-root files merge into their counterparts and leave `D` rows. The guard against row 104's `rm -rf` is that `D` rows are limited to files the disposition table names as merged |
 | "About 48 edited" | 48 files name `cli-jev` outside `specs/` and the hub, and 4 of them are changelogs that stay as written, so at most 44 take an edit. Some lines record history and stay too |
 | Level and priority | Level 1 per the orchestrator's assignment. P2, because the phase runs last and only on a kept Deem result |
+| Amendment: the keep rule (2026-09-28) | Source: D4 of the parent `goal.md` ("A pre-fixed Deem `keep` in 002 or 017 unlocks 009") and its log row "New directive, wave 3". Research open question 49 (`../007-classifier-deep-research/research/research.md:1172`) is answered: the move waits on a Deem keep, and a Deem arm in 002 or 017 that prints `keep` under that phase's keep rule, fixed before the run, counts as the operator's keep. With no such keep the phase stays Planned and the deciding verdicts go in the parent goal's log, as the parent's second criterion says. Changed: D1 here. In `spec.md`, REQ-001, the Phase Context dependency, the proof plan's entry gate row, the risks table's dependency row and section 7. In `plan.md`, the Definition of Ready, the first slice and the dependencies. In `tasks.md`, T001 and the notation line. No criterion names the gate, so all six stay as written, and the gate binds through D1 and REQ-001 |
+| Conflict: retiring `cli-deem` | R23's keep rule (`../007-classifier-deep-research/research/research.md:800`) also says to retire `cli-deem` when no Deem arm prints a kept result. Parent D2 keeps `cli-deem` in the hub, and parent D4 and its second criterion only leave 009 Planned. The rewritten gate text here states the parent rule alone. The retire clause still stands in `../008-cli-classifier-hub/spec.md` (kill criterion and risks). Named for the orchestrator, not resolved |
 <!-- /ANCHOR:log -->

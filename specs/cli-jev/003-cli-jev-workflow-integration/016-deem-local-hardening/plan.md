@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 16: deem-local-hardening"
-description: "Ask the operator four decisions about the local Deem install in one message, then carry out only the approved ones: an access log switched on through deem-ctl's environment, the chosen CORS option and a versioned home for deem-ctl. Each change starts from a dated backup and ends with a live check the orchestrator runs."
+description: "Carry out the operator's four answers of 2026-09-28 on the local Deem install: an access log switched on through deem-ctl's environment, the CORS exposure accepted with its revisit trigger, DEEM_N_ORDERS held at 1 and a reviewed copy of deem-ctl kept in git. Each change starts from a dated backup and ends with a live check the orchestrator runs."
 trigger_phrases:
   - "deem hardening plan"
   - "deem access log plan"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Bash (`deem-ctl`), Python 3.12 standard library (Deem's server, any launcher or proxy) |
+| **Language/Stack** | Bash (`deem-ctl`). Deem's server (Python 3.12 standard library) is read, never changed |
 | **Framework** | None. Deem serves through `http.server.ThreadingHTTPServer` (`deem_server.py:65`, `:910`) |
-| **Storage** | `~/.local/share/deem/server.log`, append-only after this phase |
-| **Testing** | `shellcheck`, then live `curl` checks against `127.0.0.1:8300` run by the orchestrator |
+| **Storage** | `~/.local/share/deem/server.log`, append-only after this phase, and the reviewed copy `../007-classifier-deep-research/context/deem-ctl` in git |
+| **Testing** | `shellcheck`, then live `curl` checks against `127.0.0.1:8300` run by the orchestrator, and `cmp` for the copy |
 
 ### Overview
-Every item is an operator decision first. The build asks Q1 to Q4 from `spec.md` section 10 in one message and records the answers. Only then does it touch the install: it backs up `deem-ctl`, adds `DEEM_ACCESS_LOG=1` and an appending redirect to `start_server`, applies the CORS option the operator picked and places `deem-ctl` where Q4 says. Deem's server already reads `DEEM_ACCESS_LOG` (`deem_server.py:794-800`), so the log needs no patch to LibertAI's code.
+Every item was an operator decision first, and the operator answered Q1 to Q4 of `spec.md` section 10 on 2026-09-28. The build backs up `deem-ctl`, adds `DEEM_ACCESS_LOG=1` and an appending redirect to `start_server` (Q2), leaves the CORS header as it is (Q1 option C) and then copies the edited `deem-ctl` to `../007-classifier-deep-research/context/deem-ctl` (Q4 option B). Deem's server already reads `DEEM_ACCESS_LOG` (`deem_server.py:794-800`), so the log needs no patch to LibertAI's code.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,7 +62,7 @@ Other: a local service run by one control script, with a launchd schedule that u
 - **`com.skilled.deem-update`**: runs `deem-ctl update` every 21,600 s and at login. It reaches `start_server`, so it inherits the access-log setting with no change of its own.
 
 ### Data Flow
-A caller posts to `127.0.0.1:8300`. The handler answers and, with the log on, writes `127.0.0.1 - - [time] "<request line>" <status> -` to stderr, which `deem-ctl` appends to `server.log`. Under option A or B of Q1, a request carrying a foreign `Origin` gets 403 before any inference runs.
+A caller posts to `127.0.0.1:8300`. The handler answers and, with the log on, writes `127.0.0.1 - - [time] "<request line>" <status> -` to stderr, which `deem-ctl` appends to `server.log`. Q1's answer is C, so the handler still answers every origin, exactly as today.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -76,16 +76,17 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 |---------|--------------|--------|--------------|
 | `deem-ctl` `start_server` (`:109-125`) | Sets the server's environment and overwrites `server.log` | Update: add `DEEM_ACCESS_LOG=1`, change `>` to `>>` | `grep -n 'DEEM_ACCESS_LOG=1' deem-ctl` returns one line. `shellcheck deem-ctl` exits 0 |
 | `deem_server.py` `log_message` (`:794-800`) | Writes the access line when the variable is set | Unchanged | `git -C ~/.local/share/deem/src status --porcelain` prints nothing |
-| `deem_server.py` CORS headers (`:809`, `:837`) | Allows every origin | Update only under Q1 option A or B, and never by an in-place edit unless the operator picks that form | The foreign-`Origin` `curl` in `acceptance-criteria.md` |
+| `deem_server.py` CORS headers (`:809`, `:837`) | Allows every origin | Unchanged. Q1's answer is C, accept | A `/health` response still carries `Access-Control-Allow-Origin: *`, and `git -C ~/.local/share/deem/src status --porcelain` prints nothing |
 | `deem-ctl` `update` and `rollback` (`:145-225`) | Restart the server through `start_server` | Unchanged. They inherit the setting | A restart keeps the earlier log lines |
 | Phase 008's lifecycle reference (Planned) | Documents `deem-ctl` commands | Not a consumer of the change. No command or exit code changes | `git diff --stat -- ../008-cli-classifier-hub` is empty |
 | `deem-local.md` (`:73`) | States that closing the exposure is the operator's call | Update: one pointer line to section 10 of this phase | `grep -n '016-deem-local-hardening' deem-local.md` returns one line |
+| `../007-classifier-deep-research/context/deem-ctl` | Does not exist | Create: the reviewed copy of the edited `deem-ctl` (Q4 option B) | `cmp` of the live file and the copy exits 0 |
 
 Required inventories:
-- Same-class producers: `rg -n 'Access-Control-Allow-Origin' ~/.local/share/deem/src/serve` finds `deem_server.py:809` and `:837` only. `deem_mcp.py` is a separate MCP server that `deem-ctl` never starts, so it is out of scope.
+- Same-class producers: `rg -n 'Access-Control-Allow-Origin' ~/.local/share/deem/src/serve` finds `deem_server.py:809` and `:837` only. `deem_mcp.py` is a separate MCP server that `deem-ctl` never starts, so it is out of scope. Q1's answer C leaves both lines as they are.
 - Consumers of changed symbols: `rg -n 'SERVER_LOG|server\.log' ~/.local/share/deem/bin/deem-ctl` lists every reader of the log before the redirect changes.
-- Matrix axes: the request's `Origin` header (absent, foreign) by the request method (`GET`, `POST`, `OPTIONS`). Six rows under option A or B. Server restart (none, one) for the log.
-- Algorithm invariant: under option A or B, no request with a foreign `Origin` reaches inference, and every request without `Origin` behaves exactly as today.
+- Matrix axes: server restart (none, one) for the log. The `Origin`-by-method matrix waits for Q1's revisit trigger.
+- Algorithm invariant: every request behaves exactly as today, and the only new effect is one access line per request in `server.log`.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -98,11 +99,11 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Step | Observable check |
 |------|------------------|
-| Ask Q1 to Q4 in one message and record the answers | `grep -c 'Operator answer: pending' spec.md` prints 0 |
+| Confirm the operator's answers of 2026-09-28 are recorded | `grep -c 'Operator answer: pending' spec.md` prints 0 |
 | Back up `deem-ctl` | `cmp ~/.local/share/deem/bin/deem-ctl ~/.local/share/deem/bin/deem-ctl.bak-<date>` exits 0 before the edit |
-| Switch the access log on | After one `/health` request and one restart, the request's line is still in `server.log` |
-| Apply the Q1 option | The foreign-`Origin` and no-`Origin` `curl` pair, or the recorded acceptance |
-| Place `deem-ctl` per Q4 | `cmp` of the live file and the copy exits 0, or the recorded choice to leave it |
+| Switch the access log on (Q2) | After one `/health` request and one restart, the request's line is still in `server.log` |
+| Confirm the Q1 acceptance | Q1's answer line names the revisit trigger, and a `/health` response still carries `Access-Control-Allow-Origin: *` |
+| Copy the edited `deem-ctl` (Q4 option B) | `cmp ~/.local/share/deem/bin/deem-ctl ../007-classifier-deep-research/context/deem-ctl` exits 0 |
 | Point the fact sheet here | `grep -n '016-deem-local-hardening' ../007-classifier-deep-research/context/deem-local.md` returns one line |
 <!-- /ANCHOR:phases -->
 
@@ -117,8 +118,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |-----------|-------|-------|
 | Unit | `deem-ctl` syntax and quoting after the edit | `shellcheck`, `bash -n` |
 | Integration | Access log. Happy path: one `GET /health` writes one line. Edge case: the line survives `deem-ctl stop` then `deem-ctl start` | `curl`, `grep -c` on `server.log` |
-| Integration | Q1 option A or B. Happy path: no `Origin` gets 200. Edge case: a foreign `Origin` on `POST` and on `OPTIONS` gets 403 with no `Access-Control-Allow-Origin` | `curl -s -D -` |
-| Manual | Whether Node's `fetch` sends an `Origin` header, before choosing A or B | `nc -l 9999` and one `node -e` fetch to it |
+| Integration | The reviewed copy. Happy path: `cmp` of the live file and the copy exits 0. Edge case: after the rollback rehearsal puts the new version back, `cmp` still exits 0 | `cmp` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -128,7 +128,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| The operator's answers to Q1 to Q4 | Internal | Yellow | Nothing under `~/.local/share/deem/` changes. REQ-001 can still close |
+| The operator's answers to Q1 to Q4 | Internal | Green | Answered on 2026-09-28 and recorded in `spec.md` section 10 |
 | The served Deem instance at `8cbabbb` and `6755b30` | External | Green | The live checks cannot run. `deem-ctl start` brings it up |
 | `shellcheck` at `/opt/homebrew/bin/shellcheck` | External | Green | The syntax check falls back to `bash -n` |
 | Phase 002's `--deem` order-flip rate | Internal | Yellow | Only the Q3 revisit waits on it. This phase does not |
@@ -140,7 +140,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: `deem-ctl start` exits 4, `deem-ctl status` does not print backend `torch`, `choice` p50 rises more than 5 ms or the operator withdraws an answer.
-- **Procedure**: `cp -p ~/.local/share/deem/bin/deem-ctl.bak-<date> ~/.local/share/deem/bin/deem-ctl`, then `deem-ctl stop` and `deem-ctl start`. For Q1 option A, also delete the launcher, or run `git -C ~/.local/share/deem/src checkout -- serve/deem_server.py` for the in-place form. For option B, also stop the proxy process and delete its script. The appended lines in `server.log` are harmless and stay.
+- **Procedure**: `cp -p ~/.local/share/deem/bin/deem-ctl.bak-<date> ~/.local/share/deem/bin/deem-ctl`, then `deem-ctl stop` and `deem-ctl start`. For Q4, revert the commit that added `../007-classifier-deep-research/context/deem-ctl`. Q1's answer C changed nothing, so it needs no rollback. The appended lines in `server.log` are harmless and stay.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,17 +152,16 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: PHASE DEPENDENCIES
 
 ```
-Setup (answers, backup) ──► Core (log, CORS option, deem-ctl home) ──► Verify (live checks)
+Setup (answers, backup) ──► Core (log, then the reviewed copy) ──► Verify (live checks)
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
+| Setup | None | Core |
+| Core | Setup | Verify |
 | Verify | Core | None |
 
-Config here is the Q1 option choice and the Node `Origin` check. It runs only when Q1 is A or B.
+No Config step runs, because Q1's answer is C and nothing needs an `Origin` check.
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -172,10 +171,10 @@ Config here is the Q1 option choice and the Node `Origin` check. It runs only wh
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | Low | 30 minutes, plus the operator's reply |
-| Core Implementation | Low for C, Med for A or B | 30 minutes for the log alone, 2 hours with a launcher or proxy |
+| Setup | Low | 30 minutes |
+| Core Implementation | Low | 30 minutes for the log and the copy |
 | Verification | Low | 30 minutes |
-| **Total** | | **1.5 to 3 hours** |
+| **Total** | | **1.5 hours** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -192,7 +191,7 @@ The backup is the dated copy of `deem-ctl`. The feature flag is `DEEM_ACCESS_LOG
 
 ### Rollback Procedure
 1. Stop the server: `deem-ctl stop`.
-2. Restore the backup: `cp -p ~/.local/share/deem/bin/deem-ctl.bak-<date> ~/.local/share/deem/bin/deem-ctl`, and remove any launcher or proxy file Q1 added.
+2. Restore the backup: `cp -p ~/.local/share/deem/bin/deem-ctl.bak-<date> ~/.local/share/deem/bin/deem-ctl`. Q1 added no launcher or proxy file.
 3. Verify: `deem-ctl start`, then `deem-ctl status` exits 0 and prints backend `torch`.
 4. Tell the operator which answer was rolled back and why, and set that answer back to pending in `spec.md` section 10.
 

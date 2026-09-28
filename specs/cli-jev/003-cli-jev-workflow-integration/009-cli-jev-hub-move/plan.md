@@ -45,7 +45,7 @@ The source is `../007-classifier-deep-research/research/research.md` section 14 
 - [x] Success criteria measurable
 - [x] Dependencies identified
 - [ ] 008-cli-classifier-hub is Complete and `parent-skill-check.cjs` passes on `.skilled/skills/cli-classifier`
-- [ ] The operator keeps a Deem arm result (research open question 49)
+- [ ] A Deem arm in phase 002 or 017 prints `keep` under that phase's keep rule, fixed before the run, which counts as the operator's keep (D4 of the parent goal, answering research open question 49)
 
 ### Definition of Done
 - [ ] All acceptance criteria met
@@ -87,7 +87,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ### First Slice, in Order
 
-1. Confirm the entry gate: 008 is Complete, `parent-skill-check.cjs` passes on `.skilled/skills/cli-classifier` and the operator has named the kept Deem arm result. Stop here otherwise.
+1. Confirm the entry gate: 008 is Complete, `parent-skill-check.cjs` passes on `.skilled/skills/cli-classifier` and a Deem arm in 002 or 017 printed `keep` under that phase's pre-fixed keep rule. Otherwise stop, leave the phase Planned and put the deciding verdicts in the parent goal's log.
 2. Record the baseline replay of the 10 prompts through `--hub cli-jev` with each exit status, and recount the hub (81) and the naming files (48) at build HEAD.
 3. Write the disposition table for all 81 files.
 4. `git mv` every file per the table, merge the hub-level files, register mode `cli-jev` and update every literal list, mirror, agent and README. Regenerate the derived artifacts.
@@ -120,7 +120,7 @@ Commands run from the repository root.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-008-cli-classifier-hub must be Complete, with the `cli-classifier` root and `cli-deem` routed. The operator must keep a Deem arm result, which answers research open question 49. R23's keep rule retires `cli-deem` and cancels this phase when no Deem arm prints a result the operator keeps. No package is installed, and no Jev or Deem call is made.
+008-cli-classifier-hub must be Complete, with the `cli-classifier` root and `cli-deem` routed. A Deem arm in phase 002 or 017 must print `keep` under that phase's keep rule, fixed before the run. D4 of the parent goal counts that as the operator's keep, which answers research open question 49. With no such keep the phase stays Planned, and the deciding verdicts go in the parent goal's log. No package is installed, and no Jev or Deem call is made.
 <!-- /ANCHOR:dependencies -->
 
 ---

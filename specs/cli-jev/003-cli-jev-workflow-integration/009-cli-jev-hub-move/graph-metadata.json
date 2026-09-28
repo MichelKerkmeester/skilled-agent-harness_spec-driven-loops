@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Decision D2 of the parent goal puts both classifier transports under one hub, but `cli-jev` is its own hub today with one mode",
     "created_at": "2026-09-27T09:21:55Z",
-    "last_save_at": "2026-09-27T09:30:41.451Z",
+    "last_save_at": "2026-09-28T06:59:28.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5899818f6a15e96ba39e92340d19b7991b1377b52e8eb4fc421f401195341649",
+    "source_fingerprint": "sha256:bd469e0a502d29b6f20ad3079e950fb7ed1a36de7648acf9e25a28e7f5bc1835",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae9182ba6682e6a21ea4f395cec3412881786e121238567fa35988ccbb25df23",
-      "plan.md": "42b94a320a0a217b6ffe9a2b4ce9645cbc169eadd5f1b45253f646058437a0a5",
-      "tasks.md": "3a07e57831c5b23bf61299b90718f5eb4ae3354dcdbee479ef3ea1bb3bb5031b",
-      "implementation-summary.md": "e49b50f61a54b2c2f370552333e493d3c0c01973757e960a2b2540e341408f76"
+      "spec.md": "94416b9c03a0770bb1c25cef6f848289d861f888f87cddf31215e18e43b40c43",
+      "plan.md": "6355446effffd7484b2449fc1e671589e93a8b0e543d5fb5583141fb9612f141",
+      "tasks.md": "e52fe40d5bb7683c24681591b79ca1484b0ccea2c95c2779b0d3e9511cc47c68",
+      "implementation-summary.md": "a52a04ff5f7454b1b7d26d80114584ccc91966cdc9f8c521fb6c3668b92915c7"
     },
     "last_active_at": null
   }

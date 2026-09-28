@@ -28,7 +28,7 @@ contextType: "implementation"
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Every task is blocked until 008-cli-classifier-hub is Complete and the operator keeps a Deem arm result. `cli-classifier` and `cli-deem` are proposed names from phase 008.
+Every task is blocked until 008-cli-classifier-hub is Complete and a Deem arm in phase 002 or 017 prints `keep` under that phase's pre-fixed keep rule (D4 of the parent goal). `cli-classifier` and `cli-deem` are proposed names from phase 008.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -36,7 +36,7 @@ Every task is blocked until 008-cli-classifier-hub is Complete and the operator 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Confirm the entry gate: `../008-cli-classifier-hub/spec.md` shows Complete, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` exits 0 and the operator has named the kept Deem arm result (research open question 49). Stop and leave the phase Planned otherwise (`implementation-summary.md`)
+- [ ] T001 [B] Confirm the entry gate: `../008-cli-classifier-hub/spec.md` shows Complete, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` exits 0 and a Deem arm in 002 or 017 printed `keep` under that phase's pre-fixed keep rule. Name the keep's phase, verdict line and commit pair (`implementation-summary.md`). With no such keep, stop, leave the phase Planned and put the deciding verdicts in the parent goal's log (`../goal.md`)
 - [ ] T002 Record the baseline replay before any file moves: each of the 7 canary prompts in `canary-cases.v1.json` and the 3 hub-routing prompts CJ-001, CJ-002 and CJ-003 through `node .skilled/bin/compiled-route.cjs --hub cli-jev --prompt "<prompt>"`, with each exit status (`scratch/route-baseline.txt`)
 - [ ] T003 [P] Reopen each literal list at build HEAD and confirm the lines: `compiled-route.cjs:35`, `compiled-route-sync.cjs:59`, `compiled-route-guard.cjs:47`, `compiled-routing-flag.ts:19` and `:37`, `resolve.cjs:36-44`, `serving-closure.manifest.json:5-13` and `dispatch-audit.mjs:46`, `:234` and `:237`
 - [ ] T004 [P] Recount the footprint at build HEAD: `git ls-files .skilled/skills/cli-jev` (81 on 2026-09-27, 59 in `cli-usage`) and `git grep -l 'cli-jev' -- . ':!specs' ':!.skilled/skills/cli-jev'` (48)

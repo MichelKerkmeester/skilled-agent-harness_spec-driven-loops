@@ -47,6 +47,7 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
@@ -84,6 +85,12 @@
         "name": "skill-graph.json",
         "kind": "config",
         "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
         "source": "derived"
       },
       {
@@ -159,7 +166,7 @@
         "source": "derived"
       },
       {
-        "name": "First Slice",
+        "name": "Build Roles",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four Planned phases want a Deem arm (002, 003, 005 and 006), and the repository has 0 runtime Deem callers",
     "created_at": "2026-09-27T09:21:54Z",
-    "last_save_at": "2026-09-27T09:28:43.164Z",
+    "last_save_at": "2026-09-28T06:59:25.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da8c108ee1c854a5545a93b26a9ded2d1f031b8eb00589b14bc06025a488fd38",
+    "source_fingerprint": "sha256:51122c2cb03b4936ab518cb0bed89235ce861c0f800236e2627c7a031fe8bdc0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1e82fceab499411508ac44dd27de830c950137c1742a7c158978b3718d8ba3a",
-      "plan.md": "023eb4dfb19267b53f6f1f1e99e74f83e22eefa66d44191916737de9d3c8aef1",
-      "tasks.md": "b13bee970696e404eb3683368357894313da7ab082b712b94f98f740b5aedb6b",
-      "implementation-summary.md": "c23129dd4e46378e2b9c990e9242510209a9c2698bbe3f45aa411cf0b47e5a29"
+      "spec.md": "9588fb9e0611a97190ec507f343715a494ac720634b91730debece821c0f0d2c",
+      "plan.md": "e870620a3a2427e31f594148bd8b63fd7d839a382e4d769268016256d00fdd99",
+      "tasks.md": "94db837734f496d0353118279f8813593b298e73096aab15698ecb6d16b268a2",
+      "implementation-summary.md": "c0f5cc473c422c25859621137a0143570709588441a6c6638e8522fbee18c4f4"
     },
     "last_active_at": null
   }
