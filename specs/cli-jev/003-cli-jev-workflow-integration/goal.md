@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
-    last_updated_at: "2026-09-27T16:10:00Z"
+    last_updated_at: "2026-09-28T09:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Merged main into worktree 069 and released 011 to 015 for CLI-executor builds"
-    next_safe_action: "Build 011 to 015 with CLI executors, verify each, and close the sixth criterion"
+    recent_action: "Closed wave 2 and set the wave 3 directive: build every remaining Planned phase"
+    next_safe_action: "Amend the specs for the operator answers, then build 008, 016, 002, 017, 003, 005, 006 and 009"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
       parent_session_id: null
-    completion_pct: 45
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Find where a classifier model, Jev (hosted) or Deem (local), cuts the main AI's context and manual review work: research, then reconcile the Planned phases with a fresh synthesis, and plan and build the owner fixes it found.
+**Objective:** Find where a classifier model, Jev (hosted) or Deem (local), cuts the main AI's context and manual review work, and build every remaining Planned phase with its skill docs true to the code.
 
 ### Decisions
 
@@ -46,12 +46,13 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Two backends: every feature runs on Jev or Deem, dormant unless one is available (Jev: `jev auth status --provider <p>` exits 0; Deem: the local server passes a health check). With neither, behavior is exactly today's. Jev gets no secret |
-| D2 | New hub `cli-classifier` holds `cli-jev` (moved) and `cli-deem` (new) |
-| D3 | Deem 0.8B bf16 is served on this Mac, kept current with Deem's releases. Only operator-released phases are built: 018, 010, then 011 to 015 |
-| D4 | Round 3 ran in `007` |
-| D5 | Opus 5.5 high leaves author and amend phases. CLI executors build them. The orchestrator verifies |
-| D6 | Autonomous. Stop only for an install yes or a missing credential. Worktree 069, path-scoped commits, no push, no merge to main, no key in a file, no `.env` opened |
+| D1 | Features run on Jev or Deem, dormant unless one is available (`jev auth status --provider <p>` exits 0, or Deem's health check passes). With neither, behavior is today's. Jev gets no secret |
+| D2 | Hub `cli-classifier` holds `cli-deem` and, via 009, `cli-jev`. Deem 0.8B bf16 stays served locally and current |
+| D3 | All Planned phases are released, in order 008, 016, 002, 017, 003, 005, 006, 009 |
+| D4 | Operator, 2026-09-28: 003 and 006 stop at their label gate, no model labels. 003 reads `~/.pi/agent/sessions`, 005 this project's 15 newest compacted transcripts. 016 takes its recommendations. A pre-fixed Deem `keep` in 002 or 017 unlocks 009 |
+| D5 | This session orchestrates, verifies and commits. Fresh Opus 5.5 xhigh leaves amend specs and run the build, calling CLIs by Bash only: Devin `deepseek-v4-1-flash-max`, Pi `cline-pass/cline-pass/deepseek-v4.1-flash` xhigh once probed, Cursor `grok-4.7-xhigh-fast`. Code gets cross-family review |
+| D6 | Changed skills update `SKILL.md`, README, changelog, catalog and playbook through sk-doc. Code follows sk-code's OpenCode route |
+| D7 | Stop only for an install yes beyond D4 or a missing credential. Worktree 069, path-scoped commits, no push or merge to main, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -95,12 +96,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] I got a Deem install plan with its rollback before any install, and `007-classifier-deep-research/context/deem-local.md` records the 0.8B bf16's health check, latency and memory
-- [x] In `007-classifier-deep-research`, lineages `grok`, `deepseek`, `mimo` and `swe` each hold 10 iteration files and `glm` holds 5, and every state log ends `maxIterationsReached`
-- [x] `007-classifier-deep-research/research/research.md`, by a fresh Opus 5.5 max leaf, covers Deem on this Mac, flipped drops, context reduction, validators, sk-prompt, sk-design, discovery and build order, ranking each idea by seam `file:line`, metric, backend gate and slice
-- [x] 002, 003, 005 and 006 carry the two-backend gate, and those four and 008 to 018 are children with spec, plan, tasks, goal, binding and phase-map rows
-- [x] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
-- [x] 018, 010 and 011 to 015 are Complete: each child goal's criteria are ticked with evidence and `validate.sh --strict` passes on each
+- [ ] 002, 003, 005, 006, 008, 016 and 017 are Complete: each child goal's criteria are ticked with evidence and `validate.sh --strict` passes on each
+- [ ] 009 is Complete after a Deem `keep` in 002 or 017, or stays Planned with the deciding verdicts in this goal's log
+- [ ] `validate_document.py` exits 0 on every skill doc the build changed
+- [ ] No code change leaves an open P0 or P1 review finding, and each changed runtime's suite fails nothing beyond its recorded baseline
+- [ ] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -158,4 +158,5 @@ and findings belong here.
 | Criterion 6 closed (2026-09-27) | `018-worktree-provision-shared-link/goal.md` and `010-trigger-index-search-fixes/goal.md` each have 7 of 7 criteria ticked and 0 open, both `spec.md` files say Status Complete, and `validate.sh <phase> --strict` prints `RESULT: PASSED` on each. Build commits: `1a971ec7e6` (018 fix), `a0368b4a58` (010 code, with `--scoring-only` and the Gate 1 line in `AGENTS.md`), `2136a432ae` (docs) and `92eda999e6` (index rebuilt from a HEAD archive). Per the orchestrator, the whole-index `--check` against a fresh archive of HEAD printed 0 stale, 0 obsolete and 0 untrusted, exit 0 |
 | Main sync and wave 2 release (2026-09-27) | Source: the operator's "Yes" to three asks (amend D5 so CLI executors build, sync worktree 069 with main first, release 011, 012, 013 and 015 plus 014 with gate option A), then "Take main's roster (Recommended)" after a dry run showed 19 conflicts. D3 now releases 011 to 015. D5: Opus 5.5 high leaves author and amend, CLI executors build, the orchestrator verifies. D6 now forbids a merge to main, since the operator approved merging main into 069. Criterion 6 extends to 011 to 015 and is open again. Cuts in budget order, every criterion kept: D4 lost "none calling Jev", which `007-classifier-deep-research/goal.md` D7 states; the objective's "(open weights, local)" became "(local)"; criterion 4 says "those four" for the four phases it already names. Result: 4,000 characters, `packet_budget=ok` |
 | Criterion 6 closed, wave 2 (2026-09-27) | All seven named phases re-checked from the final state: each `goal.md` has every criterion ticked and 0 open (018 7, 010 7, 011 7, 012 5, 013 6, 014 7, 015 6), each `spec.md` says Status Complete, and `validate.sh <phase> --strict` prints `RESULT: PASSED` with 0 `RESULT: FAILED` on each. Builds, by CLI executors from single-change briefs, verified by the orchestrator: 013 `e3cf07f4f9`; 012 `a9dbac98ef`; 014 `fb04862cee`, `def91d168d`, `31768cc51e`; 011 `e9059c8073`, review fixes `03e567cfe7`, `baf2876802`; 015 `7de30fb16f`. Closures by Opus 5.5 high leaves: `53951dc5cf`, `e918fb71f4`, `397786588e`, `62441a3b7c`, `1a95422c70`. Deviations, each logged in its phase: codex hit its usage limit, so cursor `grok-4.7-xhigh-fast` built the remaining code briefs; 011 was committed before its cross-family review (no P0 or P1; its P2s fixed in follow-up commits); 015's first full suite failed the legacy-shadow parity test, repaired in-scope before its single build commit (final 2713 passed, baseline 2708 + 5); 014's scope row and 011's and 014's wording-only criteria were amended at close with logged reasons the operator can revert |
+| New directive, wave 3 (2026-09-28) | Source: the operator's request to build every remaining phase autonomously, with skill docs, playbooks and catalogs kept current, Opus 5.5 xhigh leaves for specs and build orchestration, and Devin, Pi on Cline and Cursor as executors; then four answers, each the recommended option: 003 and 006 stop at their label gate, default session sources for 003 and 005, 016 takes its recommendations (Q1 accept, Q2 access log on, Q3 `DEEM_N_ORDERS` 1, Q4 `deem-ctl` versioned in git), and a pre-fixed Deem `keep` in 002 or 017 counts as 009's keep. The previous directive's six criteria were all met and re-proved from `ea7c92ef28` on 2026-09-28: the Deem plan and `deem-local.md`; five round-3 lineages ending `maxIterationsReached`; the round-3 `research.md`; the two-backend gate on 002, 003, 005 and 006 with 008 to 018 scaffolded; recursive strict 19 of 19 with `check-goal` on every folder; and 018, 010 and 011 to 015 Complete. Old D4 ("Round 3 ran in `007`") is history and moved here. Executor facts behind D5: Cline has no `max` tier, so its DeepSeek runs at `xhigh`, and its last attempts (2026-09-11) hit the Cline monthly quota; Devin's `deepseek-v4-1-flash-max` is the fallback. Grok 4.7 has no max tier, so `grok-4.7-xhigh-fast` stands in. The `opus-xhigh` agent says "never dispatch another agent"; the operator's request overrides that for the build orchestrator, which runs CLIs by Bash and never uses the Agent tool. Cut to 3,994 characters, `packet_budget=ok`, every criterion kept |
 <!-- /ANCHOR:log -->
