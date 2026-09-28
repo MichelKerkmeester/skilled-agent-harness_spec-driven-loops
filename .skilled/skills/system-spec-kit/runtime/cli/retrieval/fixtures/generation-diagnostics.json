@@ -1,13 +1,22 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7262,
-    "ok": 12207,
+    "missing-frontmatter": 7287,
+    "non-yaml-frontmatter": 2,
+    "ok": 12314,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23155,
-  "ignoredMalformedDocuments": 0,
+  "documentsScanned": 23289,
+  "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md",
+      "reason": "verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md",
+      "reason": "verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML"
+    },
     {
       "path": "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md",
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
@@ -17,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d2e88e7e3493c769b710a3829b6f1084695fdf12bdf58b24072f7ffd962312b3",
+  "manifestHash": "48e81161ef2f816f43630a3cd436321ae0cc0bddebff4cceb277a95049df9e90",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 31667,
+      "ok": 32030,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -35479,6 +35488,170 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/ai-council-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/council-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/deliberations/round-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/proposed-resynthesis.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-001-opus-max.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-002-opus-max.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-003-opus-max.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/jev-material-digest.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/research-angles.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/seam-map.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/context/research-angles.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "non-yaml-frontmatter",
+      "ignored": true,
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md",
+      "reason": "frontmatter block is not YAML key/value content"
+    },
+    {
+      "category": "non-yaml-frontmatter",
+      "ignored": true,
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md",
+      "reason": "frontmatter block is not YAML key/value content"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/leaderboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/rust/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/serve/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/research-angles.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -70285,6 +70458,90 @@
     },
     {
       "path": "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/scratch",
       "reason": "excluded directory"
     },
     {
