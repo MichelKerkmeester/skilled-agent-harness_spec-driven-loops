@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8a48918bedb30dc8c6d50c44f02d15f4f6f58ad82df750ec83f9f559b82aafab",
+  "manifestHash": "d2e88e7e3493c769b710a3829b6f1084695fdf12bdf58b24072f7ffd962312b3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -50144,6 +50144,9 @@
     "low signal query": [
       "low signal query"
     ],
+    "lsof self check teardown": [
+      "lsof self-check teardown"
+    ],
     "luna 6 llmgateway": [
       "luna 6 llmgateway"
     ],
@@ -62844,6 +62847,18 @@
     ],
     "phase 10 observations tasks": [
       "phase 10 observations tasks"
+    ],
+    "phase 12 review findings": [
+      "phase 12 review findings"
+    ],
+    "phase 12 review findings plan": [
+      "phase 12 review findings plan"
+    ],
+    "phase 12 review findings summary": [
+      "phase 12 review findings summary"
+    ],
+    "phase 12 review findings tasks": [
+      "phase 12 review findings tasks"
     ],
     "phase 126 implementation summary": [
       "phase 126 implementation summary"
@@ -75546,6 +75561,12 @@
     ],
     "scatter plot layout": [
       "scatter plot layout"
+    ],
+    "scenario 433 signal free teardown": [
+      "scenario 433 signal-free teardown"
+    ],
+    "scenario 433 teardown": [
+      "scenario 433 teardown"
     ],
     "scenario 457 benchmark record": [
       "scenario 457 benchmark record"
@@ -89603,6 +89624,12 @@
     "team wide task listing": [
       "team-wide task listing"
     ],
+    "teardown guard checks": [
+      "teardown guard checks"
+    ],
+    "teardown guard tasks": [
+      "teardown guard tasks"
+    ],
     "technical approach": [
       "technical approach"
     ],
@@ -94461,6 +94488,15 @@
     ],
     "warnings stop blocking tasks": [
       "warnings stop blocking tasks"
+    ],
+    "watched crash test": [
+      "watched crash test"
+    ],
+    "watched crash test plan": [
+      "watched crash test plan"
+    ],
+    "watched crash test result": [
+      "watched crash test result"
     ],
     "watcher mutex": [
       "watcher mutex"

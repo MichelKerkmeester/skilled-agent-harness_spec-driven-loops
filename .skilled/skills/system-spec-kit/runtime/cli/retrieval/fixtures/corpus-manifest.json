@@ -1,5 +1,5 @@
 {
-  "corpusHash": "524ea09bea697abbee45cf3e66166869ee492c2056f22938482ff17e9ed0b958",
+  "corpusHash": "488b365be87f4f4eb437f41d233175f1dd193020428867fe7eb721f1db51eb03",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23133,
+  "includedPathCount": 23155,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14074,6 +14074,28 @@
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/plan.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/spec.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/tasks.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/quiet-reruns/reports/devin-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/quiet-reruns/reports/opencode-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-433.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-CP-003.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-CP-004.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/goal.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/implementation-summary.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/plan.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/spec.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/tasks.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/bug_report.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/feature_request.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/pull_request_template.md",
@@ -23155,7 +23177,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8a48918bedb30dc8c6d50c44f02d15f4f6f58ad82df750ec83f9f559b82aafab",
+  "manifestHash": "d2e88e7e3493c769b710a3829b6f1084695fdf12bdf58b24072f7ffd962312b3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25939,6 +25961,10 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

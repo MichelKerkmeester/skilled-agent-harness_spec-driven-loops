@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7245,
-    "ok": 12202,
+    "missing-frontmatter": 7262,
+    "ok": 12207,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23133,
+  "documentsScanned": 23155,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8a48918bedb30dc8c6d50c44f02d15f4f6f58ad82df750ec83f9f559b82aafab",
+  "manifestHash": "d2e88e7e3493c769b710a3829b6f1084695fdf12bdf58b24072f7ffd962312b3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 31655,
+      "ok": 31667,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -46794,6 +46794,108 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/quiet-reruns/reports/devin-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/quiet-reruns/reports/opencode-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/bug_report.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -72087,6 +72189,10 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
