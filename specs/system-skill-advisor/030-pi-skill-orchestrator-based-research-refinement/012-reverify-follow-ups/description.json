@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups",
+  "description": "The goal re-verification after phase 11 proved all six criteria but left four things for the operator",
+  "keywords": [
+    "goal",
+    "re-verification",
+    "phase",
+    "proved",
+    "six",
+    "criteria",
+    "left",
+    "four",
+    "things",
+    "operator"
+  ],
+  "lastUpdated": "2026-09-27T16:32:39.603Z",
+  "specId": "012",
+  "folderSlug": "reverify-follow-ups",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

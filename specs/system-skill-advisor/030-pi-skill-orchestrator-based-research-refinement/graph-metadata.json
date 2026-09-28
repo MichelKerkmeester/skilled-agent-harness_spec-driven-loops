@@ -14,7 +14,8 @@
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup",
-    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes"
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes",
+    "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups"
   ],
   "manual": {
     "depends_on": [],
@@ -48,7 +49,7 @@
       "durable"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -177,17 +178,17 @@
     ],
     "causal_summary": "The skill advisor routes by push",
     "created_at": "2026-09-26T06:29:58Z",
-    "last_save_at": "2026-09-27T14:42:24.571Z",
+    "last_save_at": "2026-09-28T05:36:54.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6241cdcd28b1c0b4d70dee51689f689d636095d78a5dc66a18ffd6609abfab7b",
+    "source_fingerprint": "sha256:5e2ad9e3929b329451ddee1aee13ecca8fc80f64b225b30548767c2caaef40d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb3f4ec81013e2fec186e000f87456795b3bbe3441499f218a772940cd4fba63"
+      "spec.md": "9fafad3962a1f1e58570b428ccd4ca1facc459c6367f6aa2e6461feed4f2a9b6"
     },
     "last_active_child_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review",
     "last_active_at": "2026-09-26T16:54:28.360Z"

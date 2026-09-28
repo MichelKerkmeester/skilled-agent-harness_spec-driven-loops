@@ -1,0 +1,53 @@
+# Baselines before any phase 12 edit, 2026-09-27T15:29:52Z, HEAD d6e0388d3e
+
+## compiled-route-guard.cjs
+  cli-external-orchestration  fresh
+  cli-jev                     fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0
+
+## sync-skills-hermes.cjs --check
+PASS: 71 Hermes skill copies in sync
+exit=0
+
+## validate-playbook-package.cjs, advisor package
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+SKIP package=system-skill-advisor tier=FAIL_CLOSED scenarios=47 categories=9 operator=0 routing_gold_excluded=47 violations=0 warnings=1
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+exit=0
+
+## live advisor processes
+79958     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-l
+80305 79958 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-adviso
+
+## live generation file
+77c09751d8dac0697f530f85f00e9f751650e676  .skilled/skills/.state/advisor/skill-graph-generation.json
+{
+  "generation": 536,
+  "updatedAt": "2026-09-27T15:11:26.063Z",
+  "sourceSignature": "8bc8aa92cdad474d2441d1bbeaee5aa281efa9c4715647bbcaad3c94b06eeffe",
+  "reason": "advisor-server-watcher-reindex",
+  "state": "live"
+}
+
+
+## sandbox folders
+none
+
+## validate_document.py on the files this phase edits
+✅ VALID: .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+Total issues: 0
+✅ VALID: .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+Total issues: 0
+✅ VALID: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md
+Total issues: 0
+
+Note: the package validator above SKIPs the advisor package, because all 47 scenarios are routing-gold, so it never opens CP-003 or CP-004.

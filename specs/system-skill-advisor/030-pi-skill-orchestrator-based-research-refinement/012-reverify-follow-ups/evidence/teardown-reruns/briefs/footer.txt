@@ -1,0 +1,9 @@
+
+REPORT (print this and nothing after it; your final message is the evidence record):
+RESULT: <PASS|FAIL|SKIP|BLOCKED> | scenario=<scenario id> | runtime=<your CLI runtime name>
+NATIVE: <the Advisor: line from STEP 0, verbatim, or none visible>
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+DEVIATIONS: <every step you skipped or changed and why, or none>
+NOTES: <anything a reviewer must know, such as a flaky rerun or an environment limit, or none>
+The verdict is PASS only when every step that ran matches the scenario's expected signals. One mismatch is FAIL.

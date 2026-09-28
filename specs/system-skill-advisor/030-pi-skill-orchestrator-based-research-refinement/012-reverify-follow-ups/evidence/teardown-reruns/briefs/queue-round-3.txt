@@ -1,0 +1,10 @@
+pi CP-003
+devin CP-004
+cursor CP-003
+opencode CP-004
+codex CP-003
+pi CP-004
+devin CP-003
+cursor CP-004
+opencode CP-003
+codex CP-004

@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI executor for Cognition-backed coding, cloud handoff, subagent delegation, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.4.0
+version: 1.4.5.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -381,7 +381,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 
 ### ⛔ NEVER
 
-1. Use `--permission-mode dangerous` without explicit user approval (full shell beyond workspace = damage risk). `accept-edits` (workspace edits auto-approve) does not require pre-approval.
+1. Use `--permission-mode dangerous` in a task the user has not approved it for (full shell beyond workspace = damage risk). One explicit approval covers every dispatch in that task, the default invocation included, and a new task needs a new approval. `accept-edits` (workspace edits auto-approve) does not require pre-approval.
 2. Trust Devin output blindly for security-sensitive code, send sensitive data (API keys, passwords, credentials) in prompts, or hammer the API with rapid sequential calls.
 3. Use Devin for tasks where context is already loaded — direct action by the calling AI is faster.
 4. Assume Devin output is correct without verification — cross-reference codebase and project standards.
@@ -392,7 +392,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 1. Devin CLI is not installed and user has not acknowledged (provide `devin setup` or install URL).
 2. Rate limits are persistently exceeded (suggest checking the Devin account's plan and usage limits).
 3. Devin output conflicts with existing code patterns (present both perspectives; user decides).
-4. Task requires `--permission-mode dangerous` (describe risks; get explicit user approval). `accept-edits` does not require escalation.
+4. Task requires `--permission-mode dangerous` and the user has not approved it for this task (describe the risks and ask once for the whole task). `accept-edits` does not require escalation.
 5. Cloud handoff is requested for a task involving sensitive data or production systems (confirm the cloud session's isolation and data handling before handing off).
 
 ### Memory Handback Protocol

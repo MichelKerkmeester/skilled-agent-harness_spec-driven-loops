@@ -1,0 +1,13 @@
+<!-- dispatch: cursor CP-004; ledger: 2026-09-27T16:41:50Z 2026-09-27T16:44:47Z 0 177 -->
+
+RESULT: PASS | scenario=CP-004 | runtime=cursor
+NATIVE: none visible
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+| 1 | SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 skill_advisor.py "help me commit my changes" | 0 | `Native advisor unavailable (FORCE_LOCAL; freshness=unavailable); falling back to local Python scorer.` then a JSON array: `skill=sk-git`, `source=local`, `confidence=0.95` | Forced-local shim returns a JSON array from the Python scorer | yes |
+| 2 | mktemp -d /tmp/cp004.XXXXXX; export sandbox socket/db env; shasum generation file | 0 | `SANDBOX=/tmp/cp004.8zJppa`; socket dir `$SANDBOX/sock`; db dir `$SANDBOX/db`; `GEN_BEFORE=4d10166901e6a944daa7b9a2999c33c45ada91b6  .skilled/skills/.state/advisor/skill-graph-generation.json` | Sandbox under `/tmp` with its own socket and database dirs; live generation checksum recorded | yes |
+| 3 | skill-advisor.cjs advisor_recommend --warm-only --timeout-ms 3000 | 75 | `{"status":"error","error":"backend unavailable: connect ENOENT /tmp/cp004.8zJppa/sock/daemon-ipc.sock","exitCode":75}`; `warm-only exit=75`; `$SANDBOX/db` absent; sock dir empty | `warm-only exit=75` after `"status":"error"`, `"error":"backend unavailable: connect ENOENT $SANDBOX/sock/daemon-ipc.sock"`, `"exitCode":75`; nothing spawned; `$SANDBOX/db` never created | yes |
+| 4 | SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0.2 skill-advisor.cjs advisor_recommend --timeout-ms 30000 | 0 | `{"status":"ok",...}`; `freshness:"live"`; `trustState.state:"live"`; recommendation `skillId=sk-git`; `cold-start exit=0` | `cold-start exit=0` after `"status":"ok"` with `freshness:"live"` | yes |
+| 5 | wait until lease gone and ≥25s; compare generation checksum; rm sandbox | 0 | `live generation file unchanged`; `sandbox advisor exited; sandbox removed` (loop broke at iteration 26) | `live generation file unchanged` and `sandbox advisor exited; sandbox removed` | yes |
+DEVIATIONS: none
+NOTES: sha256 before and after are identical. `.skilled/skills/.state/advisor/skill-graph-generation.json` `a5a8b8a8ce9d217b94da87aeb0d832f80be0728821eed4829fe95a03b5d98fff`. `.skilled/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json` `59b30674d78c1b3172eba59aa1fbc6e9f51ce72ae8e466518b5fc1b856b2d06e`. Steps 2–5 ran in one shell so the sandbox exports survived. Between step 3 and step 4 a directory listing confirmed `$SANDBOX/db` was absent and `$SANDBOX/sock` was empty. The sandbox `/tmp/cp004.8zJppa` was removed by step 5.
