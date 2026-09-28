@@ -1,0 +1,74 @@
+Why scenario 433 printed "live generation file CHANGED" in OpenCode and Devin, traced on 2026-09-28
+
+The mechanism, from the code (paths under .skilled/skills/system-skill-advisor/runtime/)
+- The live daemon held 283 files open for reading (watched-files.txt): 281 skill source files it watches, the
+  skills folder's .DS_Store and its own database. gen-monitor.py leaves out the database, so its header counts 282.
+  When a watched file is written, the watcher waits for the write to settle for 1 second and then debounces for
+  2 seconds (lib/daemon/watcher.ts:103-104, :420-429 and :510-532). If the file's hash changed or the file was
+  removed, it reindexes and publishes a new generation with the reason advisor-server-watcher-reindex
+  (lib/daemon/watcher-orchestrator.ts:86-124, advisor-server.ts:360).
+- The live daemon writes the file on other occasions too, each with its own reason: its startup scan
+  (advisor-server.ts:138-153), its shutdown with the state unavailable (lib/daemon/lifecycle.ts:109-116), a stale
+  lease takeover (lib/daemon/lifecycle.ts:50-68), a skill_graph_scan call (handlers/skill-graph/scan.ts:53-62) and
+  an advisor_rebuild call (handlers/advisor-rebuild.ts:88-96). A start or a stop also changes the live pids. In
+  both FAIL windows below the new generation carried the reindex reason, and the live launcher and daemon were
+  87524 and 87539 from 07:24:53Z (state-before.txt) to 07:50:21Z (../goal-reverify/crit3-sandbox-daemon.txt).
+- A daemon started with SYSTEM_SKILL_ADVISOR_DB_DIR set opens its databases under that folder
+  (lib/skill-graph/skill-graph-db.ts:270-274) and publishes its generation there too
+  (lib/freshness/generation.ts:31-46). Its startup scan (advisor-server.ts:126-162) and its shutdown
+  (lib/daemon/lifecycle.ts:109-116) both publish through that function. The crash test saw the sandbox daemon
+  hold the sandbox's own databases, so it ran with the override.
+
+Each 433 block's window, from the hook diagnostics log (the short-budget call opens each block)
+- pi        07:25:42.3 to about 07:26:12   no live publish inside   unchanged, PASS
+- opencode  07:32:00.4 to 07:32:29.4       live publish 568 at 07:32:03.346   CHANGED, FAIL
+- devin     07:39:16.7 to about 07:39:47   live publish 570 at 07:39:18.152   CHANGED, FAIL
+- cursor    07:41:35.7 to about 07:42:05   no live publish inside   unchanged, PASS
+- codex     07:43:06.1 to about 07:43:36   no live publish inside   unchanged, PASS
+The OpenCode window comes from its tool call's own start and end times. The others end about 30 seconds after the
+short-budget call, which is how long the block's wait took in every run that reported it.
+
+The two live publishes
+- 568 at 07:32:03.346Z, reason advisor-server-watcher-reindex, state live. The live database's WAL was written at
+  07:32:03.342Z, 4 ms earlier. The only watched files written between 07:20Z and 07:37Z were validate.sh
+  (07:28:55.657Z) and validate_document.py (07:32:02.390Z, its last write). git status shows both modified by
+  another session, which is adding validation off switches. A publish comes at least 3 seconds after the write
+  that starts it, so an earlier write of validate_document.py at about 07:32:00.1 started this one (inferred).
+- 570 at 07:39:18.152Z, reason advisor-server-watcher-reindex, state live. path-scoped-rules.md was written at
+  07:39:12.676Z and validation-rules.md at 07:39:14.932Z. Both are watched, and git status shows both modified by
+  the same session. 570 came 3.22 seconds after the second write, which fits the 1-second settle and the 2-second
+  debounce. By the same delays the first write gave 569 just before Devin's block began (inferred).
+
+The quiet reruns (quiet-reruns/)
+- devin     07:45:18.4 to about 07:45:48   no live publish between 570 (07:39:18.152Z) and 571 (07:47:17.215Z)   unchanged, PASS
+- opencode  07:54:16.8 to 07:54:45.9       no live publish between 576 (07:53:06.522Z) and the monitor's stop at 07:58:31Z
+                                           unchanged, PASS
+Both default-budget calls ended on the outage line, which the scenario accepts.
+
+Seen directly afterwards
+- gen-monitor.py, started at 07:39:23Z, recorded generation 571 at 07:47:17.215Z with the reason
+  advisor-server-watcher-reindex, 3.49 seconds after the same session wrote path-scoped-rules.md and
+  validation-rules.md at 07:47:13.724Z (generation-timeline.txt). No 433 or CP-004 block was running then.
+- It also recorded the live advisor restarting twice at 07:51:42Z, with SIGTERM and startup-scan reasons, which
+  ../live-advisor-restart.txt covers. No block was running then either.
+
+What the sandbox did
+- Devin's default-budget call answered "stale" with advisor-server-post-index-assertion-failed. That is the sandbox
+  daemon's own check after its startup scan (advisor-server.ts:145-157). validation-rules.md changed during that
+  scan, so the source signature no longer matched and the daemon marked its own generation stale.
+- Every other sandbox cold start in this phase left the live file unchanged: the three as-written runs at 07:02Z,
+  the crash test at 07:08Z, and the pi, cursor and codex runs of 433 and the CP-004 runs in this pool.
+
+Verdict
+- Both FAILs trace to another session's edits to watched skill files, which made the live daemon publish during the
+  block. Neither shows the sandbox writing the live file. This is F12 in spec.md. Each of the two runs is rerun once
+  while gen-monitor.py records every change to the live file (generation-timeline.txt).
+- Since the file records no writer, a quiet rerun points to the sandbox only when no watched file changes, the live
+  advisor keeps its pids and no scan or rebuild runs during the block.
+
+GPT-6 Luna's first verify of this trace (../luna-verify/report-2.txt) failed three points, all corrected above: a
+removed watched file also publishes, the 283 open files include the database and a .DS_Store, and the live daemon's
+other writers mean a quiet rerun alone does not prove the sandbox wrote the file. Its second verify
+(../luna-verify/report-3.txt) passed this trace and failed the two triage texts and F12 for leaving out the condition
+that no scan or rebuild runs, which all three now carry. Its third verify (../luna-verify/report-4.txt) checked
+only that point and passed all three.

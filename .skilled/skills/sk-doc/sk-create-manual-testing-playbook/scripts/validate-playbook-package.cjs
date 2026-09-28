@@ -3,6 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { exitIfValidationOff } = require('../../shared/scripts/validation-switch.cjs');
 // One shared fence parser for every skill: leading-fence position, closing-fence
 // and CRLF rules stay identical across readers of the same documents. Field
 // parsing below stays line-level over the block it returns.
@@ -828,6 +829,7 @@ if (require.main === module) {
       process.stdout.write(`${usage()}\n`);
       process.exit(EXIT_OK);
     }
+    exitIfValidationOff('validate-playbook-package.cjs');
     const report = runValidation({
       packageFilter: args.packageFilter,
       repoRoot: args.repoRoot,

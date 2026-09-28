@@ -25,9 +25,13 @@ afterEach(() => {
   }
 });
 
-function run(args: string[]): { status: number; stdout: string } {
+function run(args: string[], env?: Record<string, string>): { status: number; stdout: string } {
   try {
-    const stdout = execFileSync('node', [TOOL, ...args], { cwd: REPO, encoding: 'utf8' });
+    const stdout = execFileSync('node', [TOOL, ...args], {
+      cwd: REPO,
+      encoding: 'utf8',
+      env: env ? { ...process.env, ...env } : process.env,
+    });
     return { status: 0, stdout };
   } catch (error) {
     const err = error as { status?: number; stdout?: string };
@@ -232,5 +236,23 @@ describe('repair-derived', () => {
     run(['--folder', dir, '--apply']);
 
     expect(fs.readFileSync(file, 'utf8')).toBe(afterFirst);
+  });
+
+  // The pre-commit gate blocks whenever this tool exits non-zero. A switched-off
+  // validator used to print nothing under --json, which read as an unreadable
+  // packet, so an operator who had turned validation off could not commit.
+  it('passes a packet it would otherwise repair when validation is switched off', () => {
+    const dir = fixture('switchedoff', {
+      'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),
+    });
+    const file = path.join(REPO, dir, 'implementation-summary.md');
+    const before = fs.readFileSync(file, 'utf8');
+
+    const result = run(['--folder', dir, '--apply'], { SPECKIT_SKIP_VALIDATION: '1' });
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain('UNREADABLE');
+    expect(result.stdout).toContain('inspected=1 repaired=0 failed=0');
+    expect(fs.readFileSync(file, 'utf8')).toBe(before);
   });
 });

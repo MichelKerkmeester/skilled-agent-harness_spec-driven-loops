@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude user-prompt-submit"
   - "hookSpecificOutput claude"
   - "claude advisor hook"
-version: 0.8.0.17
+version: 0.11.0.26
 ---
 
 # Claude Code user-prompt-submit Hook
@@ -35,7 +35,7 @@ Directive-lifecycle dedup treats that fallback like a brief. In a known, confirm
 
 ### Timeouts
 
-`SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` bounds the native advisor subprocess and the remaining CLI fallback window. The CLI budget for the hook defaults to 2500 ms. When the variable is unset or blank the Claude shim in system-spec-kit sets it to 2200 ms for the hook it spawns. The shim kills the hook at 2500 ms and the hook needs time to print its fallback. An operator-set value passes through unchanged, so a value above about 2200 ms lets the shim kill the hook first and the turn gets `{}`.
+`SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` bounds the native advisor subprocess and the remaining CLI fallback window. The CLI budget for the hook defaults to 2500 ms. The Claude shim in system-spec-kit sets it for the hook it spawns to the operator's value capped at 2200 ms. A value that is unset or does not parse to a positive integer becomes 2200 ms. The shim kills the hook at 2500 ms, so the cap leaves the hook time to print its fallback before the kill.
 
 ### Diagnostics
 

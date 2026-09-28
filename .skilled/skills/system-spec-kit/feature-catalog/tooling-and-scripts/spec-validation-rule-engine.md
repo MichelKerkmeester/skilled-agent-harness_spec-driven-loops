@@ -7,7 +7,7 @@ trigger_phrases:
   - "run validation rules"
   - "rule scripts"
   - "recursive phase validation"
-version: 3.6.0.8
+version: 4.1.0.30
 ---
 
 # Spec Validation Rule Engine
@@ -28,7 +28,7 @@ The front-end deliberately implements no rules of its own. It used to carry a se
 
 ### Entry Point & Routing
 
-`validate.sh` begins with hard skip controls: `SPECKIT_SKIP_VALIDATION` exits immediately, and `SPECKIT_VALIDATION=false` also disables execution. From there it parses CLI flags for JSON, strict mode, verbose mode, quiet mode, and recursive validation, resolves the folder set, and delegates. A compiled build is preferred; a source-only checkout runs the orchestrator through the TypeScript loader. When neither is available it exits `3` asking for a build rather than answering with a different rule set.
+`validate.sh` first parses its CLI flags for JSON, strict, verbose, quiet and recursive modes, then checks two skip controls: `SPECKIT_SKIP_VALIDATION`, read from the environment or `.skilled/hooks/hook-flags.env`, and `SPECKIT_VALIDATION=false`. A skipped run runs no rule and exits 0. Under `--json` it still prints a report, marked `skipped: true` with one info entry and no errors, so a caller that parses the output is never handed an empty stdout. Otherwise it resolves the folder set and delegates. A compiled build is preferred; a source-only checkout runs the orchestrator through the TypeScript loader. When neither is available it exits `3` asking for a build rather than answering with a different rule set.
 
 Rule inventory lives in `runtime/cli/lib/validator-registry.json`, which carries each rule's id, aliases, script path, severity, and category. The orchestrator implements the most common rules natively and shells out to the registry for the rest, so duplication is bounded to the handful implemented twice rather than all of them.
 

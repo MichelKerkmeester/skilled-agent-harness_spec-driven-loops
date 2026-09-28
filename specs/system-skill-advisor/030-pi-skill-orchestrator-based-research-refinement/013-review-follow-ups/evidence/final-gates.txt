@@ -1,0 +1,30 @@
+# final gates, 2026-09-28T08:22:24Z, HEAD 0e7c046902
+## validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+## validate_document.py .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+✅ VALID: .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+## validate_document.py .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+✅ VALID: .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+## route guard
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0
+## hermes
+PASS: 71 Hermes skill copies in sync
+exit=0
+## frozen README manifest
+MANIFEST derived=829 frozen=829 baseline=501 gaps=26 exclusions=2 reproduced=True
+SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible
+exit=0
+## parent graph status
+    "status": "complete",
+## sandbox folders in /tmp
+0

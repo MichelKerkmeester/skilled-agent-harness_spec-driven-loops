@@ -17,6 +17,7 @@ const {
   splitFrontmatter,
   LOG_ANCHOR
 } = require(path.resolve(__dirname, '../../../../../.skilled/hooks/goal/lib/goal-slice.cjs'));
+const { exitIfValidationOff } = require(path.join(__dirname, '..', '..', 'shared', 'scripts', 'validation-switch.cjs'));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -693,6 +694,7 @@ function scanCorpus(workspaceRoot = getDefaultWorkspaceRoot()) {
 
 function main(argv) {
   const options = parseArguments(argv);
+  exitIfValidationOff('check-goal.cjs', argv);
   const workspaceRoot = options.workspaceRoot || getDefaultWorkspaceRoot();
 
   if (options.scanAll || options.packetArg === null) {

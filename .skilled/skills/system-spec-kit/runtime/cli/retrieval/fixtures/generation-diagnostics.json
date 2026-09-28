@@ -1,22 +1,13 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7244,
-    "non-yaml-frontmatter": 2,
-    "ok": 12286,
+    "missing-frontmatter": 7262,
+    "ok": 12207,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23218,
-  "ignoredMalformedDocuments": 2,
+  "documentsScanned": 23155,
+  "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md",
-      "reason": "verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md",
-      "reason": "verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML"
-    },
     {
       "path": "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md",
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
@@ -26,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "24367e8d83e0e5600d404326931f5e55235bc37534e21615177d1f885d3d7bed",
+  "manifestHash": "d2e88e7e3493c769b710a3829b6f1084695fdf12bdf58b24072f7ffd962312b3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 31948,
+      "ok": 31667,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -34645,6 +34636,18 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/context-preservation/resource-map-template.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -34906,6 +34909,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/nested-changelog-generator.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -35466,170 +35475,6 @@
       "line": 1,
       "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/references/cli.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/ai-council-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/council-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/deliberations/round-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/proposed-resynthesis.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-001-opus-max.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-002-opus-max.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-003-opus-max.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/jev-material-digest.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/research-angles.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/seam-map.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/context/research-angles.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "non-yaml-frontmatter",
-      "ignored": true,
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md",
-      "reason": "frontmatter block is not YAML key/value content"
-    },
-    {
-      "category": "non-yaml-frontmatter",
-      "ignored": true,
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md",
-      "reason": "frontmatter block is not YAML key/value content"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/leaderboard.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/rust/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/serve/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/research-angles.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -46807,6 +46652,246 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/reports/superseded/opencode-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/codex-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/codex-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/cursor-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/cursor-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/devin-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/devin-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/opencode-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/opencode-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/pi-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/reports/pi-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/codex-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/cursor-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/devin-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/opencode-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-1/reports/pi-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/cursor-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/cursor-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/devin-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/devin-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/opencode-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/opencode-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/pi-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-reruns/round-2a/reports/pi-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/quiet-reruns/reports/devin-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/quiet-reruns/reports/opencode-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/codex-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/cursor-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/devin-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/opencode-CP-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-433.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-CP-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/reports/pi-CP-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -70203,90 +70288,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/cli-orca/001-mcp-orca-cli/scratch",
       "reason": "excluded directory"
     },
@@ -71423,6 +71424,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/062-doc-validation-off-switches/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -72176,6 +72185,14 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

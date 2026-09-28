@@ -1,0 +1,26 @@
+started 16:09:34Z
+advisor processes before:
+18680     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+18683 18680 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+97186     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+97187 97186 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+call exit=0 freshness="freshness": "unavailable"
+lease: launcher 94283, daemon 94338, socket /tmp/cp003.H1cHTs/sock/daemon-ipc.sock
+daemon exited at +  8.7s
+lease removed at +  8.8s
+launcher exited at +  8.8s
+socket file removed at +  8.9s
+socket file still present: no
+sandbox files after the lease was removed:
+18:09:35 ./db/skill-graph.sqlite
+18:09:44 ./db/skill-graph-daemon-lease.sqlite
+18:09:44 ./db/skill-graph-generation.json
+no write into the sandbox in the 20s after the processes exited
+sandbox did not reappear within 30s of removal
+advisor processes after:
+18680     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+18683 18680 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+97186     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+97187 97186 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+leftover sandboxes: 
+finished 16:10:35Z

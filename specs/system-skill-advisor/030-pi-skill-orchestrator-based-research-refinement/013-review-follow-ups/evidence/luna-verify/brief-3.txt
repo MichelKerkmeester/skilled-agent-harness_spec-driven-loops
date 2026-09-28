@@ -1,0 +1,64 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when every check below has a verdict and the REPORT is printed.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/review.md, focused summary) ===
+Role: @review acting as a LEAF verifier. Never dispatch sub-agents and never start another AI CLI.
+Job: verify one claim against the repository and report a verdict with file:line evidence. You verify, you never
+fix: do not edit, create or delete any file.
+=== END AGENT PERSONA (resolved persona: review) ===
+
+ROLE
+You re-verify corrections to one root-cause claim. You read files. You run no scenario, start no advisor process and
+signal no process.
+
+WHAT CHANGED
+Your previous verify (specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/luna-verify/report-2.txt)
+failed checks 1, 3 and 4. The trace, both triage texts and the F12 bullet in the phase spec.md were corrected. Judge
+the files as they stand now, with the same four checks.
+
+CLAIM
+Two runs of scenario 433 printed "live generation file CHANGED". The claim is that the live advisor daemon rewrote
+.skilled/skills/.state/advisor/skill-graph-generation.json itself, after another session edited skill files it
+watches, and that the sandbox daemon did not write that file.
+
+FILES
+- The trace: specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/reruns/generation-trace.txt
+- The code it cites, under .skilled/skills/system-skill-advisor/runtime/: lib/daemon/watcher.ts,
+  lib/daemon/watcher-orchestrator.ts, lib/freshness/generation.ts, lib/skill-graph/skill-graph-db.ts,
+  lib/daemon/lifecycle.ts, handlers/skill-graph/scan.ts, handlers/advisor-rebuild.ts and advisor-server.ts
+- The F12 bullet in specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/spec.md
+- The new triage text, seen with git diff: the "Live state changed" row in
+  .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md and the
+  last five sentences under "### Failure Triage" in
+  .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md
+
+ACTION
+Answer each check with PASS or FAIL and cite file:line for every claim.
+1. The trace states correctly when a watched file leads to a new generation with the reason
+   advisor-server-watcher-reindex, including a removed file, and how long after the write it comes.
+2. A daemon started with SYSTEM_SKILL_ADVISOR_DB_DIR set writes its generation file only under that folder, in its
+   startup scan, its watcher reindex and its shutdown. Name any code path that could still write the workspace
+   generation file from such a daemon.
+3. Every line the trace cites says what the trace says it does.
+4. The triage text in both scenario files and the F12 bullet are accurate: the reason string, "about three seconds",
+   the live advisor's other writers, and what a quiet rerun does and does not show.
+
+FORMAT
+Print only this REPORT as your final message:
+VERDICT: <PASS|FAIL>
+CHECK 1: <PASS|FAIL> - <evidence with file:line>
+CHECK 2: <PASS|FAIL> - <evidence with file:line>
+CHECK 3: <PASS|FAIL> - <evidence with file:line>
+CHECK 4: <PASS|FAIL> - <evidence with file:line>
+NOTES: <anything a reviewer must know, or none>
+VERDICT is PASS only when all four checks pass.

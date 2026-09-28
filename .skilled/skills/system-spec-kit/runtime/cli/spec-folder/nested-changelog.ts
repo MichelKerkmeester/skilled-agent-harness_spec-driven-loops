@@ -566,12 +566,19 @@ function renderFilesTable(rows: FileChangeRow[]): string {
   return lines.join('\n');
 }
 
+// One pass with a replacer function, so every value lands byte for byte. A string
+// replacement reads `$&` or `$'` in a value as a pattern, and a key-by-key loop
+// would rewrite a placeholder that an earlier value happened to contain.
 function renderTemplate(templatePath: string, replacements: Record<string, string>): string {
-  let content = fs.readFileSync(templatePath, 'utf8');
-  for (const [key, value] of Object.entries(replacements)) {
-    content = content.replace(new RegExp(`{{${key}}}`, 'g'), value);
-  }
-  return content;
+  const content = fs.readFileSync(templatePath, 'utf8');
+  return content.replace(/{{([A-Z_]+)}}/g, (placeholder: string, key: string) => (
+    Object.prototype.hasOwnProperty.call(replacements, key) ? replacements[key] : placeholder
+  ));
+}
+
+/** Escape a value for the double-quoted YAML scalar a template wraps it in. */
+function escapeYamlDoubleQuoted(value: string): string {
+  return value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -766,9 +773,9 @@ function generateNestedChangelogMarkdown(data: NestedChangelogData): string {
   );
 
   return renderTemplate(templatePath, {
-    TITLE: data.title,
-    DESCRIPTION: data.description,
-    CHANGELOG_IDENTITY_PHRASE: data.identityPhrase,
+    TITLE: escapeYamlDoubleQuoted(data.title),
+    DESCRIPTION: escapeYamlDoubleQuoted(data.description),
+    CHANGELOG_IDENTITY_PHRASE: escapeYamlDoubleQuoted(data.identityPhrase),
     DATE: data.date,
     SPEC_FOLDER: data.specFolder,
     ROOT_SPEC_FOLDER: data.rootSpecFolder,

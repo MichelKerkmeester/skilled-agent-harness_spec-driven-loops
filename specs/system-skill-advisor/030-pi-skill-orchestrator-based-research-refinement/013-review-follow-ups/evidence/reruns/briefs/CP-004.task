@@ -1,0 +1,8 @@
+
+=== TASK: run scenario CP-004 ===
+Scenario file: .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+Read the whole file first. Then run its test execution steps in order and judge them against its expected signals and pass/fail rules.
+- The scenario carries its own sandbox recipe (a `mktemp -d /tmp/cp004.XXXXXX` sandbox with its own socket and database directories). Run it exactly as written, including its step 5 teardown, which sends no signal and waits for the sandbox launcher and daemon to exit on their own. Never touch the live database or daemon.
+- Run steps 2 to 5 in one shell. If your tool starts a new shell for each command, run steps 2 to 5 as one command.
+- Report the lines the step 5 teardown prints. Change no teardown command. If your tool refuses one, report that step BLOCKED with the exact error text.
+- Before step 1 and after the teardown, record the sha256 of .skilled/skills/.state/advisor/skill-graph-generation.json and of .skilled/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json, and report both pairs in NOTES. They must be unchanged by your run.

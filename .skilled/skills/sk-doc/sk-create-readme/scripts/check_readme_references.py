@@ -22,6 +22,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "shared" / "scripts"))
+from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
+
 
 FENCE_PATTERN = re.compile(r"^\s*(`{3,}|~{3,})(.*)$")
 LINK_PATTERN = re.compile(r"\[[^\]]*\]\(\s*(<[^>]+>|[^\s)]+)")
@@ -269,6 +272,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
     if args.self_test:
         return run_self_test()
+    exit_if_validation_off("check_readme_references.py", argv)
     if not args.readmes:
         print("No README paths supplied", file=sys.stderr)
         return 2

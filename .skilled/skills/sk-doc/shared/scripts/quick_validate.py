@@ -56,6 +56,9 @@ except Exception:
     DESCRIPTION_SOFT_TARGET_COMMAND = 110
     DESCRIPTION_HARD_CAP = 1536
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
+
 
 def _detect_target_kind(skill_path: Path) -> str:
     """Detect whether the validated artifact is a skill or a command from its path.
@@ -299,6 +302,7 @@ def main() -> None:
         ),
     )
     args = parser.parse_args()
+    exit_if_validation_off('quick_validate.py')
 
     json_output = args.json_output
     skill_path = args.skill_directory

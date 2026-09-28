@@ -1,0 +1,52 @@
+started 21:13:21Z, HEAD 19bb971bc6
+advisor processes before:
+  pid=37970 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=37972 ppid=37970 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+call exit=0, sandbox /tmp/cp003.ATlYvM, freshness "freshness": "unavailable"
+lease: {  "pid": 80720,  "ownerPid": 80720,  "startedAt": "2026-09-27T21:13:21.398Z",  "socketPath": "/tmp/cp003.ATlYvM/sock/daemon-ipc.sock",  "childPid": 80721}
++ 1s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++ 2s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++ 3s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++ 4s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++ 5s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++ 7s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++ 8s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++ 9s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++10s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++11s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++13s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++14s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++15s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++16s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++18s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open=[node/80720:/sock/hf-embed-respawn.lock node/80721:/db/skill-graph-daemon-lease.sqlite node/80721:/db/skill-graph-daemon-lease.sqlite-shm node/80721:/db/skill-graph-daemon-lease.sqlite-wal node/80721:/db/skill-graph.sqlite node/80721:/db/skill-graph.sqlite-shm node/80721:/db/skill-graph.sqlite-wal node/80721:/sock/daemon-ipc.sock ]
++19s lease=no  sock=[] open=[]
++20s lease=no  sock=[] open=[]
++21s lease=no  sock=[] open=[]
++22s lease=no  sock=[] open=[]
++24s lease=no  sock=[] open=[]
++25s lease=no  sock=[] open=[]
++26s lease=no  sock=[] open=[]
++27s lease=no  sock=[] open=[]
++28s lease=no  sock=[] open=[]
++30s lease=no  sock=[] open=[]
++31s lease=no  sock=[] open=[]
++32s lease=no  sock=[] open=[]
++33s lease=no  sock=[] open=[]
++35s lease=no  sock=[] open=[]
++36s lease=no  sock=[] open=[]
++37s lease=no  sock=[] open=[]
++38s lease=no  sock=[] open=[]
++39s lease=no  sock=[] open=[]
++41s lease=no  sock=[] open=[]
++42s lease=no  sock=[] open=[]
++43s lease=no  sock=[] open=[]
++44s lease=no  sock=[] open=[]
++45s lease=no  sock=[] open=[]
++47s lease=no  sock=[] open=[]
++48s lease=no  sock=[] open=[]
++49s lease=no  sock=[] open=[]
+sandbox removed
+advisor processes after:
+  pid=37970 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=37972 ppid=37970 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+finished 21:14:12Z

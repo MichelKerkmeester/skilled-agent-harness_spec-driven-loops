@@ -1,0 +1,22 @@
+# Phase 13 baselines, 2026-09-28T06:46:28Z, HEAD 4aafbde035
+## live advisor for this repository
+  pid=33066 ppid=1 started Sep 28 08:04:32 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=33068 ppid=33066 started Sep 28 08:04:32 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+## live generation file
+c1be717fde952973d0abb6615f038bc6dd3a6202190b141665b90b219eb3b02f  .skilled/skills/.state/advisor/skill-graph-generation.json
+## live lease
+07a3f5547f86e81b989acb22b6e32eca58bb7f4319d48b2813ee3d25f13896b1  .skilled/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json
+## route guard
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0
+## hermes
+PASS: 71 Hermes skill copies in sync
+## frozen README manifest
+MANIFEST derived=829 frozen=829 baseline=501 gaps=26 exclusions=2 reproduced=True
+SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible
+## parent graph status
+    "status": "in_progress",
+## strict validation, packet 030
+RESULT: PASSED count: 13
+## sandbox folders in /tmp
+0

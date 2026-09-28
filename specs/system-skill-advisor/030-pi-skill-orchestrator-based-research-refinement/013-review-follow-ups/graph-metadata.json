@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups",
+  "parent_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 12 review findings",
+      "scenario 433 teardown",
+      "lsof self-check teardown",
+      "watched crash test",
+      "phase 12 review findings plan",
+      "teardown guard checks",
+      "watched crash test plan",
+      "phase 12 review findings tasks",
+      "teardown guard tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
+    ],
+    "key_topics": [
+      "phase",
+      "review",
+      "findings",
+      "scenario",
+      "teardown",
+      "lsof",
+      "self-check",
+      "watched",
+      "crash",
+      "test",
+      "plan",
+      "guard"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md",
+      "evidence/goal-reverify/changes-since-phase-11.txt",
+      "evidence/guard-checks/summary.txt",
+      "evidence/crash-test/result.txt",
+      "evidence/luna-verify/report-1.txt",
+      "evidence/luna-verify/report-2.txt",
+      "evidence/reruns/generation-trace.txt",
+      "evidence/reruns/state-after.txt",
+      "evidence/final-gates.txt",
+      "evidence/validate-document-baseline.txt",
+      "evidence/strict-validate.txt",
+      "evidence/goal-reverify/opencode-plugin-live-load.txt",
+      "evidence/goal-reverify/crit3-sandbox-daemon.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-hook-transport-down-fail-open.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md",
+        "source": "derived"
+      },
+      {
+        "name": "global-disable-flag.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-absent-fallback.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md",
+        "source": "derived"
+      },
+      {
+        "name": "changes-since-phase-11.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/changes-since-phase-11.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary.txt",
+        "kind": "file",
+        "path": "evidence/guard-checks/summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "result.txt",
+        "kind": "file",
+        "path": "evidence/crash-test/result.txt",
+        "source": "derived"
+      },
+      {
+        "name": "report-1.txt",
+        "kind": "file",
+        "path": "evidence/luna-verify/report-1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "report-2.txt",
+        "kind": "file",
+        "path": "evidence/luna-verify/report-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "generation-trace.txt",
+        "kind": "file",
+        "path": "evidence/reruns/generation-trace.txt",
+        "source": "derived"
+      },
+      {
+        "name": "state-after.txt",
+        "kind": "file",
+        "path": "evidence/reruns/state-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-gates.txt",
+        "kind": "file",
+        "path": "evidence/final-gates.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-document-baseline.txt",
+        "kind": "file",
+        "path": "evidence/validate-document-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "strict-validate.txt",
+        "kind": "file",
+        "path": "evidence/strict-validate.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-live-load.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/opencode-plugin-live-load.txt",
+        "source": "derived"
+      },
+      {
+        "name": "crit3-sandbox-daemon.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/crit3-sandbox-daemon.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Findings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fresh Opus 5.5 review of phase 12 returned REQUESTEDCHANGES with one P1 and nine P2 findings, and the orchestrator confirmed the P1 and eight of the P2s against the files",
+    "created_at": "2026-09-28T06:46:58Z",
+    "last_save_at": "2026-09-28T08:21:58.868Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4226d5f6f534baff26d5ae73a4cfa69db4dedf3ce1c3afbdaf31ddeb321f1678",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6060b0ec47828f974f55a28de699f59affd58b063c26b17800dea56cc88f91ce",
+      "plan.md": "8e5ad3bd6c37648a2f68298b0e6a6c97af77383af8af8270b72832dc133f70ea",
+      "tasks.md": "a70048041581494e840d5b9fe70091166997b5890418ea910509f4fae1856cb4",
+      "implementation-summary.md": "8341902bd5c2b0595586a45301d20f9ca18afdb81599b32f759f7f371d5c757c"
+    },
+    "last_active_at": null
+  }
+}

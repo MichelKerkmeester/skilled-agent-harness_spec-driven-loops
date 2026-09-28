@@ -27,6 +27,7 @@ import process from 'node:process';
 // One shared fence parser for every skill: leading-fence position, closing-fence
 // and CRLF rules stay identical across readers of the same documents.
 import { parseFrontmatter as parseFencedFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
+import { exitIfValidationOff } from './validation-switch.cjs';
 
 const execFileP = promisify(execFile);
 const GIT_CONCURRENCY = 16;
@@ -388,6 +389,8 @@ Standard: .skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-ve
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.mode || args.mode === 'help') { console.log(helpText()); process.exit(0); }
+  // compute and apply write versions rather than judge them, so they keep running.
+  if (args.mode === 'gate' || args.mode === 'verify') exitIfValidationOff('frontmatter-version.mjs');
   const root = repoRoot();
   const skillsRoot = args.skillsRoot ? path.resolve(args.skillsRoot) : path.join(root, '.skilled', 'skills');
 

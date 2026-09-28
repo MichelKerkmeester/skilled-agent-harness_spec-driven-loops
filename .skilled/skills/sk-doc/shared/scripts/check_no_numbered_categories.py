@@ -29,6 +29,7 @@ from naming_root_resolver import (  # type: ignore
     ALL_ROOT_NAMES as CATEGORY_ROOTS,
     find_unsupported_root_dirs,
 )
+from validation_switch import exit_if_validation_off  # type: ignore
 
 
 def find_numbered_category_dirs(root: Path):
@@ -45,6 +46,7 @@ def find_numbered_category_dirs(root: Path):
 
 
 def main(argv) -> int:
+    exit_if_validation_off('check_no_numbered_categories.py', argv)
     args = [a for a in argv if a != '--json']
     as_json = '--json' in argv
     root = Path(args[0]) if args else Path('.skilled/skills')

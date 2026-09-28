@@ -1,0 +1,48 @@
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "score": 0.764655,
+        "confidence": 0.931,
+        "uncertainty": 0.12,
+        "dominantLane": "explicit_author",
+        "status": "active"
+      }
+    ],
+    "ambiguous": false,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 1,
+      "checkedAt": "2026-09-28T07:08:43.665Z",
+      "lastLiveAt": "2026-09-28T07:08:42.360Z"
+    },
+    "generatedAt": "2026-09-28T07:08:43.975Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": [
+        {
+          "skillId": "sk-git",
+          "liveScore": 0.764655,
+          "shadowScore": 0.703879,
+          "delta": -0.060776,
+          "dominantShadowLane": "explicit_author"
+        }
+      ]
+    }
+  }
+}

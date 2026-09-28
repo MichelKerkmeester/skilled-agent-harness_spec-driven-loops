@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "sk-doc/061-skilled-release-changelog/001-release-line-split",
-    "sk-doc/061-skilled-release-changelog/002-changelog-findability"
+    "sk-doc/061-skilled-release-changelog/002-changelog-findability",
+    "sk-doc/061-skilled-release-changelog/003-adjacent-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -42,7 +43,11 @@
       "runtime/cli/spec-folder/nested-changelog.ts",
       "references/workflows/nested-changelog.md",
       ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
-      ".skilled/skills/sk-git/references/finish-workflows.md"
+      ".skilled/skills/sk-git/references/finish-workflows.md",
+      "runtime/cli/retrieval/lib/README.md",
+      ".opencode/SYNC.md",
+      ".opencode/README.md",
+      ".skilled/changelog/skilled/v4.0.0.2.md"
     ],
     "entities": [
       {
@@ -73,6 +78,24 @@
         "name": "finish-workflows.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-git/references/finish-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/retrieval/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".opencode/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.2.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.2.md",
         "source": "derived"
       },
       {
@@ -114,18 +137,18 @@
     ],
     "causal_summary": "The system-spec-kit changelog was serving as the repository's global release notes",
     "created_at": "2026-09-27T12:01:28Z",
-    "last_save_at": "2026-09-27T15:14:02.197Z",
+    "last_save_at": "2026-09-27T18:56:10.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8e4d3c651d760e8cbafae2a697ed97c5e9c07625771255c7c424ad4b48a805f1",
+    "source_fingerprint": "sha256:1d57398dd256e6e8ec4fcc56e27208ed3bb7ca5ed58465effcc0bf908cb3d64c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "707498d17de50843a7303fa05ea1db3b94a7fb0ac2042b3f651adee1c8fcba6a"
+      "spec.md": "e83da965ffff6ac29f6862be288ff95e262f7eb92f6cbeddda76a720fe34f220"
     },
-    "last_active_child_id": "sk-doc/061-skilled-release-changelog/002-changelog-findability",
-    "last_active_at": "2026-09-27T15:13:05.974Z"
+    "last_active_child_id": "sk-doc/061-skilled-release-changelog/003-adjacent-alignment",
+    "last_active_at": "2026-09-27T18:56:10.146Z"
   }
 }

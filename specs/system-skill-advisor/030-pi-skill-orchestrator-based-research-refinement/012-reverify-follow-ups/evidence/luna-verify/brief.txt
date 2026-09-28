@@ -1,0 +1,59 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when every check below has a verdict and the REPORT is printed.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/review.md, focused summary) ===
+Role: @review acting as a LEAF verifier. Never dispatch sub-agents and never start another AI CLI.
+Job: verify one change against the repository and report a verdict with file:line evidence. You verify, you never
+fix: do not edit, create or delete any file.
+=== END AGENT PERSONA (resolved persona: review) ===
+
+ROLE
+You verify a teardown added to a manual test scenario. You read code and logs. You run no scenario, start no advisor
+process and signal no process.
+
+CONTEXT
+- Changed file: .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+  See the change with: git diff -- .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+- Step 1 of that scenario cold-starts a sandbox advisor launcher and daemon under a mktemp folder, then deletes the
+  folder. The new lines stop the sandbox launcher before the delete.
+- Launcher source: .skilled/bin/system-skill-advisor-launcher.cjs
+- The same teardown already ships as step 5 of
+  .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+- Negative control log, run by the orchestrator:
+  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/cp003-negative-control.txt
+  It ran the committed step 1 (from git show HEAD) and the new step 1, each with the daemon idle timeout cut to one
+  minute, and watched /tmp for the deleted sandbox to come back.
+
+ACTION
+Answer each check with PASS or FAIL and cite file:line for every claim.
+1. The fields the block reads from the lease file, pid, childPid and socketPath, are the fields the launcher writes to
+   .system-skill-advisor-launcher.json. Cite the writer.
+2. The block signals a process only when the recorded socket path lies inside $SANDBOX or its /private form. Name any
+   input that could make it signal a process outside the sandbox, or say there is none.
+3. The launcher's SIGTERM handler stops its daemon child and waits for it before the launcher exits. Cite the handler,
+   and say whether the daemon can still write into the sandbox after the block's wait loop ends.
+4. Reverse check: the negative control log shows the committed block leaving a recreated sandbox and the new block
+   leaving none. Quote the two RESULT lines.
+5. The new teardown matches the CP-004 step 5 teardown, apart from the generation checksum and the env unset that
+   CP-003 does not need. Name any other difference.
+
+FORMAT
+Print only this REPORT as your final message:
+VERDICT: <PASS|FAIL>
+CHECK 1: <PASS|FAIL> - <evidence with file:line>
+CHECK 2: <PASS|FAIL> - <evidence with file:line>
+CHECK 3: <PASS|FAIL> - <evidence with file:line>
+CHECK 4: <PASS|FAIL> - <the two RESULT lines>
+CHECK 5: <PASS|FAIL> - <evidence with file:line>
+NOTES: <anything a reviewer must know, or none>
+VERDICT is PASS only when all five checks pass.

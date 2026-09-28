@@ -45,6 +45,7 @@ _SHARED_SCRIPTS = Path(__file__).resolve().parents[2] / 'shared' / 'scripts'
 sys.path.insert(0, str(_SHARED_SCRIPTS))
 from validate_document import load_template_rules, validate_feature_catalog_table  # type: ignore  # noqa: E402
 from naming_root_resolver import CATALOG_ROOT_NAMES  # type: ignore  # noqa: E402
+from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
 
 # ───────────────────────────────────────────────────────────────
 # 1. CONSTANTS
@@ -907,6 +908,7 @@ def main(argv: List[str]) -> int:
     parser.add_argument('--report-only', action='store_true', help='Print findings without failing on promoted violations.')
     parser.add_argument('--json', action='store_true', help='Emit machine-readable JSON instead of text.')
     args = parser.parse_args(argv)
+    exit_if_validation_off('validate_catalog_package.py', argv)
 
     default_repo_root = Path(__file__).resolve().parents[5]
     repo_root = Path(args.repo_root).resolve() if args.repo_root else default_repo_root

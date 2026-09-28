@@ -1,0 +1,77 @@
+# CP-004 steps 2 to 5 as written, HEAD 4f4d25288c, scenario sha 5cc51e941695, steps sha bb87a7fe6eed
+## before, 2026-09-28T07:49:53Z
+generation file: f21ba1e21125a78c
+live lease:      e138f337d5e627f7
+advisor processes:
+  pid=86318 ppid=1 barter/ai-speckit/coder/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=86320 ppid=86318 barter/ai-speckit/coder/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=87524 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=87539 ppid=87524 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+## steps 2 to 5
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/cp004.xRLKTV/sock/daemon-ipc.sock",
+  "exitCode": 75
+}
+warm-only exit=75
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "score": 0.764641,
+        "confidence": 0.931,
+        "uncertainty": 0.12,
+        "dominantLane": "explicit_author",
+        "status": "active"
+      }
+    ],
+    "ambiguous": false,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 1,
+      "checkedAt": "2026-09-28T07:49:56.117Z",
+      "lastLiveAt": "2026-09-28T07:49:54.577Z"
+    },
+    "generatedAt": "2026-09-28T07:49:56.172Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": [
+        {
+          "skillId": "sk-git",
+          "liveScore": 0.764641,
+          "shadowScore": 0.703867,
+          "delta": -0.060774,
+          "dominantShadowLane": "explicit_author"
+        }
+      ]
+    }
+  }
+}
+cold-start exit=0
+live generation file unchanged
+sandbox advisor exited; sandbox removed
+steps took 28s
+## after, 2026-09-28T07:50:21Z
+generation file: f21ba1e21125a78c
+live lease:      e138f337d5e627f7
+advisor processes:
+  pid=86318 ppid=1 barter/ai-speckit/coder/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=86320 ppid=86318 barter/ai-speckit/coder/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=87524 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=87539 ppid=87524 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+sandbox folders left: 0

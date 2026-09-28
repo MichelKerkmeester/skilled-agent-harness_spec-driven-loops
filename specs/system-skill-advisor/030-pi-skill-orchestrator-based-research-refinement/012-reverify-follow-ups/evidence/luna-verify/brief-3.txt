@@ -1,0 +1,64 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when every check below has a verdict and the REPORT is printed.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/review.md, focused summary) ===
+Role: @review acting as a LEAF verifier. Never dispatch sub-agents and never start another AI CLI.
+Job: verify one change against the repository and report a verdict with file:line evidence. You verify, you never
+fix: do not edit, create or delete any file.
+=== END AGENT PERSONA (resolved persona: review) ===
+
+ROLE
+You verify a redesigned sandbox teardown in two manual test scenarios. You read code and logs. You run no scenario,
+start no advisor process and signal no process.
+
+CONTEXT
+- Changed files, the same wait in both:
+  .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md (step 1)
+  .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md (steps 4 and 5)
+  See the change with: git diff -- .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/
+- Your two earlier verifies failed teardowns that signalled lease pids. The new teardown sends no signal. The cold start
+  sets SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0.2, so the sandbox daemon exits on a 12-second idle timeout. The block then
+  waits until the lease file and the socket directory are empty and at least 25 seconds have passed, and removes the
+  sandbox only then. After 60 seconds it keeps the sandbox and says so.
+- Sources: .skilled/bin/system-skill-advisor-launcher.cjs (child exit handler, lease clearing),
+  .skilled/skills/system-skill-advisor/runtime/advisor-server.ts (main, idle shutdown),
+  .skilled/skills/system-skill-advisor/runtime/lib/ipc/launcher-idle-timeout.ts (timeout parsing, check interval).
+- Evidence run by the orchestrator, in
+  specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/teardown-check/:
+  probe-idle-exit.txt times the wind-down on a short timeout, and idle-result.txt runs the new block on a hostile
+  lease, a launcher killed without its handler and the normal path. Their scripts sit beside them.
+
+ACTION
+Answer each check with PASS or FAIL and cite file:line for every claim.
+1. On the idle path the launcher removes its lease only after its daemon child has exited. Cite the daemon's idle
+   shutdown and the launcher's child exit handler.
+2. SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0.2 parses to 12 seconds with a 6-second check, and the idle monitor starts only
+   after the startup scan, so the timeout cannot cut off the call or CP-004's cold-start rebuild. Cite the parser,
+   the interval and the order in main.
+3. The blocks send no signal. Name every path on which a block removes the sandbox while a sandbox process can still
+   write into it. For each, say whether it needs a launcher fault and whether the 25-second floor covers it.
+4. Reverse check: quote the probe's four timing lines and its no-write line, and the result line of each case in
+   idle-result.txt.
+5. In both files the step text, contract bullet, expected signal and failure row describe what the blocks do, and the
+   two blocks share the same wait. Name any mismatch.
+
+FORMAT
+Print only this REPORT as your final message:
+VERDICT: <PASS|FAIL>
+CHECK 1: <PASS|FAIL> - <evidence with file:line>
+CHECK 2: <PASS|FAIL> - <evidence with file:line>
+CHECK 3: <PASS|FAIL> - <evidence with file:line>
+CHECK 4: <PASS|FAIL> - <the quoted lines>
+CHECK 5: <PASS|FAIL> - <evidence with file:line>
+NOTES: <anything a reviewer must know, or none>
+VERDICT is PASS only when all five checks pass.

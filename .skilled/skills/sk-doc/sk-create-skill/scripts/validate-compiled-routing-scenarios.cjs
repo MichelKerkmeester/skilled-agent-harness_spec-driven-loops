@@ -53,6 +53,7 @@
 const fs = require('fs');
 const path = require('path');
 const contract = require('./lib/leaf-resource-contract.cjs');
+const { exitIfValidationOff } = require('../../shared/scripts/validation-switch.cjs');
 // One shared fence parser for every skill: leading-fence position, closing-fence
 // and CRLF rules stay identical across readers of the same documents. Key and
 // typed-gold parsing below stays line-level over the block it returns.
@@ -401,6 +402,7 @@ if (require.main === module) {
     process.stderr.write('usage: validate-compiled-routing-scenarios.cjs --dir <compiled-routing scenario dir> [--strict] [--format json]\n');
     process.exit(2);
   }
+  exitIfValidationOff('validate-compiled-routing-scenarios.cjs');
   const report = runValidation({ dir });
   if (args.format === 'json') process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
   else process.stdout.write(`${formatReport(report)}\n`);

@@ -35,6 +35,7 @@
 const fs = require('fs');
 const path = require('path');
 const contract = require('./lib/leaf-resource-contract.cjs');
+const { exitIfValidationOff } = require('../../shared/scripts/validation-switch.cjs');
 // One shared fence parser for every skill: leading-fence position, closing-fence
 // and CRLF rules stay identical across readers of the same documents. Typed-gold
 // parsing below stays line-level over the block it returns.
@@ -459,6 +460,7 @@ module.exports = {
 
 if (require.main === module) {
   const args = parseArgs(process.argv.slice(2));
+  exitIfValidationOff('validate-playbook-topology.cjs');
   const skillDir = path.resolve(args.skillDir || path.resolve(__dirname, '..', '..'));
 
   try {
