@@ -81,7 +81,7 @@ node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-descr
   --level N
 
 node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js \
-  --root <folder>
+  <folder>
 ```
 
 Verification gate: confirm `description.json` and `graph-metadata.json` exist and describe the same folder.
