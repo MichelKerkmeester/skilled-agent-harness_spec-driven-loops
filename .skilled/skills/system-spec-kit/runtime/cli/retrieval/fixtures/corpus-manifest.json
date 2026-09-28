@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6301cef81cb423051e857a659efe2b7ac2cd2cf49c34f057c114fbaeee1954e8",
+  "corpusHash": "3438966dfc8c5ff39ee3145f59cc695de5ec03c0c9278cdae3a42dabc304636a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23218,
+  "includedPathCount": 23224,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14159,6 +14159,12 @@
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/plan.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/spec.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/tasks.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/evidence/claim-ledger.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/goal.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/implementation-summary.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/plan.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/spec.md",
+    "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/tasks.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/bug_report.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/feature_request.md",
     "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/pull_request_template.md",
@@ -23240,7 +23246,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d76a91b7fbc8b32018c2e5a3bfd3ab82cf31d47b069eafd0944cf22b720dcbd0",
+  "manifestHash": "2677fb2d10c92ea8d652acb95463c07ff571859f03ecfb38262930272b4e24a9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26032,6 +26038,10 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/scratch",
       "reason": "excluded directory"
     },
     {

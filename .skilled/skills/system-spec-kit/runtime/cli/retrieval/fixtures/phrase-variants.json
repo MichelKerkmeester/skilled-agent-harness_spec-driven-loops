@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d76a91b7fbc8b32018c2e5a3bfd3ab82cf31d47b069eafd0944cf22b720dcbd0",
+  "manifestHash": "2677fb2d10c92ea8d652acb95463c07ff571859f03ecfb38262930272b4e24a9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -67747,6 +67747,15 @@
     "readme accuracy tasks": [
       "readme accuracy tasks"
     ],
+    "readme alignment plan": [
+      "readme alignment plan"
+    ],
+    "readme alignment summary": [
+      "readme alignment summary"
+    ],
+    "readme alignment tasks": [
+      "readme alignment tasks"
+    ],
     "readme analogy patterns": [
       "readme analogy patterns"
     ],
@@ -67782,6 +67791,12 @@
     ],
     "readme cascade tasks": [
       "README cascade tasks"
+    ],
+    "readme claim check approach": [
+      "readme claim check approach"
+    ],
+    "readme claim ledger": [
+      "readme claim ledger"
     ],
     "readme cluster speckit backend only": [
       "README cluster SPECKIT_BACKEND_ONLY"
@@ -67854,6 +67869,9 @@
     ],
     "readme drift audit": [
       "readme drift audit"
+    ],
+    "readme drift ledger": [
+      "readme drift ledger"
     ],
     "readme exclusion logic": [
       "readme exclusion logic"
@@ -73831,6 +73849,9 @@
     "root phase changelog": [
       "root phase changelog"
     ],
+    "root readme alignment": [
+      "root readme alignment"
+    ],
     "root readme counts update": [
       "root readme counts update"
     ],
@@ -73839,6 +73860,9 @@
     ],
     "root readme deep research": [
       "root readme deep research"
+    ],
+    "root readme drift fixed": [
+      "root readme drift fixed"
     ],
     "root readme hvr realignment": [
       "root readme hvr realignment"
@@ -82345,6 +82369,12 @@
     ],
     "skill advisor ranking": [
       "skill advisor ranking"
+    ],
+    "skill advisor readme alignment": [
+      "skill advisor readme alignment"
+    ],
+    "skill advisor readme drift fixed": [
+      "skill advisor readme drift fixed"
     ],
     "skill advisor readme embedder configuration": [
       "skill-advisor README embedder configuration"
