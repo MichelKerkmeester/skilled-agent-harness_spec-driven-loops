@@ -38,18 +38,18 @@ contextType: "implementation"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 010's regenerated index is committed and a scratch rebuild finds 0 missing documents (010 is Complete, so this is a check, not a wait)
-- [ ] Phase 008's `cli-deem` has landed, for the Deem arm only
-- [ ] `jev` 0.6.2 is on `PATH` with a credential for provider P, for a `--jev` run only
-- [ ] The leak rule, the baseline definitions, the `-q` instruction and the REQ-004 keep rule in `spec.md` are unchanged since the 2026-09-28 amendment
+- [x] Phase 010's regenerated index is committed and a scratch rebuild finds 0 missing documents (010 is Complete, so this is a check, not a wait). `--check` exit 0 with 0 stale, and the scratch rebuild matched the committed index (`tasks.md` T001)
+- [x] Phase 008's `cli-deem` has landed, for the Deem arm only. 008 is Complete (`ee3a1b057c`)
+- [x] `jev` 0.6.2 is on `PATH` with a credential for provider P, for a `--jev` run only. Not needed: no `--jev` run was made (`tasks.md` T018)
+- [x] The leak rule, the baseline definitions, the `-q` instruction and the REQ-004 keep rule in `spec.md` are unchanged since the 2026-09-28 amendment. The closure amendment touched only REQ-008's call count and NFR-P02, after the runs
 
 ### Definition of Done
-- [ ] Every `acceptance-criteria.md` row is `Met` with observed evidence
-- [ ] The vitest file exits 0
-- [ ] `git status --porcelain` shows only the paths in spec section 3 and the report directory
-- [ ] `validate_document.py` exits 0 on every skill doc the phase changed (parent goal D6)
-- [ ] A cross-family review of the code leaves no open P0 or P1 finding, and the `cli` vitest project fails nothing beyond its baseline recorded before the build (parent goal D5)
-- [ ] The verdict line, or `no headroom`, is in `goal.md`'s log for the parent goal's log (parent goal D4)
+- [x] Every `acceptance-criteria.md` row is `Met` with observed evidence. 14 of 14
+- [x] The vitest file exits 0. 33 passed
+- [x] `git status --porcelain` shows only the paths in spec section 3 and the report directory. At the build's final check, and the build commit `f7ae1ff44c` holds the same paths plus the Hermes copy of `SKILL.md` and the build record (`tasks.md` T015)
+- [x] `validate_document.py` exits 0 on every skill doc the phase changed (parent goal D6). 8 of 8
+- [x] A cross-family review of the code leaves no open P0 or P1 finding, and the `cli` vitest project fails nothing beyond its baseline recorded before the build (parent goal D5). Round 2 PASS, and 1,602 passed with 0 failures against a baseline of 1,569
+- [x] The verdict line, or `no headroom`, is in `goal.md`'s log for the parent goal's log (parent goal D4). `verdict deem: stop (margin)`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -138,10 +138,10 @@ Each step's observable check:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 010 fresh index | Internal | Green, Complete since 2026-09-27 | Step 1 still checks freshness. A stale index would make the lookup baseline unfair |
-| Phase 008 `cli-deem` | Internal | Yellow, Planned, first in parent goal D3's build order | Steps 4 and 6's `--deem` run wait. Steps 1 to 3 do not |
+| Phase 008 `cli-deem` | Internal | Green, Complete since 2026-09-28 (`ee3a1b057c`) | Steps 4 and 6's `--deem` run wait. Steps 1 to 3 do not |
 | sk-doc modes for the skill docs | Internal | Green | Step 7 waits |
 | Local Deem server | External, operator-run | Green, served per `deem-local.md` | The `--deem` run prints its skip line |
-| `jev` 0.6.2 and a credential for provider P | External, operator-held | UNKNOWN until `jev auth status --provider P` runs | The `--jev` run prints its skip line |
+| `jev` 0.6.2 and a credential for provider P | External, operator-held | Not exercised here, because no `--jev` run was made. Phase 002's session check found `jev auth status --provider official` exit 0 | The `--jev` run prints its skip line |
 | `rg` on `PATH` or `SPECKIT_RG_BIN` | External | Green | The ripgrep baseline exits 2 |
 <!-- /ANCHOR:dependencies -->
 

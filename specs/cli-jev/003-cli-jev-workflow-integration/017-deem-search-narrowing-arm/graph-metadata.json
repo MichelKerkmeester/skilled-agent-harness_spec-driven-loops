@@ -39,7 +39,7 @@
       "reranking"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,17 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
-      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/README.md",
-      "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      "runtime/data/trigger-index.json",
-      "retrieval/README.md",
-      "tests/trigger-index.vitest.ts"
+      ".skilled/skills/system-spec-kit/changelog/v4.2.0.0.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-spec-kit/SKILL.md",
+      "tests/score-track-narrowing.vitest.ts",
+      "changelog/v4.2.0.0.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json"
     ],
     "entities": [
       {
@@ -97,15 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "semantic-probes.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        "name": "score-track-narrowing.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
         "source": "derived"
       },
       {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "name": "score-track-narrowing.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
         "source": "derived"
       },
       {
@@ -121,27 +124,33 @@
         "source": "derived"
       },
       {
+        "name": "v4.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v4.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "track-narrowing-measurement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md",
+        "source": "derived"
+      },
+      {
         "name": "feature-catalog.md",
         "kind": "doc",
-        "path": "feature-catalog/feature-catalog.md",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
-        "name": "trigger-index.json",
+        "name": "semantic-probes.json",
         "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.vitest.ts",
-        "kind": "test",
-        "path": "tests/trigger-index.vitest.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
         "source": "derived"
       },
       {
@@ -197,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The committed trigger-index lookup finds exact wording and little else",
     "created_at": "2026-09-27T11:50:23Z",
-    "last_save_at": "2026-09-28T09:26:34.387Z",
+    "last_save_at": "2026-09-28T20:19:21.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e727c92407e0934c9683badca621991af7e144c4c6ff0b7884833cfe6426772",
+    "source_fingerprint": "sha256:1babcaf5751b59a39badb36d3828ac7303ebc666a23c3b2af44da2fbbac8fde6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3df96a83c97827ef6f938c9308824d51b341b32c4b4ba59c6e0635c7d5391acd",
-      "plan.md": "971a9c59c255259e55e41419e127f9f04161b7661c3e8fee8d99d437ca755f67",
-      "tasks.md": "44061488f130fe526ce3e0e5950197eb6085e301784b9753a40f19b214a2217b",
-      "implementation-summary.md": "95584bcbd7a0ebb13c7876528d82061b460515e434d8d631176cfdfa0e7ffa59"
+      "spec.md": "fd2d28a0a305a2407c8d6709498d23be45e1a13598e8b6ae33944ee708bb18a3",
+      "plan.md": "576a1a9d7bfe80b732bf87145619b26c314609a17f27adf70d79c1892444f8a4",
+      "tasks.md": "aaec302b72c5e87568685e706023ebfc80129c35dd062ab4a97412d136440a16",
+      "implementation-summary.md": "d4a34f094ba412e54f3c3e7e8bb01bab8e48a1c51375a5b2b40c54afd382a6a6"
     },
     "last_active_at": null
   }
