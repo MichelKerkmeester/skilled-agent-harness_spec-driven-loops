@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f3e7c97f379c8bab2f5e05c497c230c63b867922798fa8917d929297cc5b6735",
+  "manifestHash": "f53bd7e01a8abf24ca1d2da85c49cb9794786de960ba0d5a4cd1d602c23d0c43",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -25245,9 +25245,6 @@
     "create goal command plan": [
       "create-goal command plan"
     ],
-    "create goal command release": [
-      "create goal command release"
-    ],
     "create goal mode": [
       "create goal mode"
     ],
@@ -33524,6 +33521,9 @@
     ],
     "doc validation off switch tasks": [
       "doc validation off switch tasks"
+    ],
+    "doc validation off switches": [
+      "doc validation off switches"
     ],
     "doc validation off switches summary": [
       "doc validation off switches summary"
@@ -59236,9 +59236,6 @@
     ],
     "one owning document": [
       "one owning document"
-    ],
-    "one parent goal limit": [
-      "one parent goal limit"
     ],
     "one question at the first save": [
       "one question at the first save"
@@ -93222,9 +93219,6 @@
     ],
     "v4 0 0 1 release notes": [
       "v4.0.0.1 release notes"
-    ],
-    "v4 0 0 2 goal changes": [
-      "v4.0.0.2 goal changes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"

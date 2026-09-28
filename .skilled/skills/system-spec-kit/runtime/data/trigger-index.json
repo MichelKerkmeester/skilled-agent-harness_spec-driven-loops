@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f3e7c97f379c8bab2f5e05c497c230c63b867922798fa8917d929297cc5b6735",
+  "manifestHash": "f53bd7e01a8abf24ca1d2da85c49cb9794786de960ba0d5a4cd1d602c23d0c43",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -40485,9 +40485,6 @@
     "create goal command plan": [
       4550
     ],
-    "create goal command release": [
-      45
-    ],
     "create goal mode": [
       4584
     ],
@@ -49121,6 +49118,9 @@
     ],
     "doc validation off switch tasks": [
       4606
+    ],
+    "doc validation off switches": [
+      45
     ],
     "doc validation off switches summary": [
       4603
@@ -78125,9 +78125,6 @@
     ],
     "one owning document": [
       3679
-    ],
-    "one parent goal limit": [
-      45
     ],
     "one question at the first save": [
       2198
@@ -116487,9 +116484,6 @@
     ],
     "v4 0 0 1 release notes": [
       44
-    ],
-    "v4 0 0 2 goal changes": [
-      45
     ],
     "v4 0 0 2 release notes": [
       45
