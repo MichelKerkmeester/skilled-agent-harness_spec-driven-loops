@@ -1,5 +1,5 @@
 {
-  "manifestHash": "15c274e4baa06ba9c625163cc081847c394580554a054c5af97ad220e8d455ff",
+  "manifestHash": "f3e7c97f379c8bab2f5e05c497c230c63b867922798fa8917d929297cc5b6735",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24011,6 +24011,9 @@
     "contrast motion spacing type thresholds": [
       "contrast motion spacing type thresholds"
     ],
+    "contributing clone url": [
+      "contributing clone url"
+    ],
     "control knobs fail closed": [
       "control knobs fail-closed"
     ],
@@ -33237,6 +33240,9 @@
     "dist alignment checker orphan": [
       "dist alignment checker orphan"
     ],
+    "dist checker flags file": [
+      "dist checker flags file"
+    ],
     "dist directory rebuilt": [
       "dist directory rebuilt"
     ],
@@ -41758,6 +41764,18 @@
     ],
     "git history reconciliation": [
       "git history reconciliation"
+    ],
+    "git hook block message bypass": [
+      "git hook block message bypass"
+    ],
+    "git hook bypass line plan": [
+      "git hook bypass line plan"
+    ],
+    "git hook bypass line tasks": [
+      "git hook bypass line tasks"
+    ],
+    "git hook bypass lines shipped": [
+      "git hook bypass lines shipped"
     ],
     "git hook drift": [
       "git hook drift"
@@ -58877,6 +58895,9 @@
     "off deficient verdict": [
       "off deficient verdict"
     ],
+    "off switches section plan": [
+      "off switches section plan"
+    ],
     "off the shelf cross encoder trial": [
       "off-the-shelf cross-encoder trial"
     ],
@@ -67891,6 +67912,9 @@
     "readme freshness tasks": [
       "readme freshness tasks"
     ],
+    "readme git hooks section": [
+      "readme git hooks section"
+    ],
     "readme heading hierarchy": [
       "readme heading hierarchy"
     ],
@@ -67920,6 +67944,12 @@
     ],
     "readme model examples": [
       "readme model examples"
+    ],
+    "readme off switches section": [
+      "readme off switches section"
+    ],
+    "readme off switches shipped": [
+      "readme off switches shipped"
     ],
     "readme plan": [
       "readme plan"
@@ -73831,6 +73861,18 @@
     "root doc staleness": [
       "root doc staleness"
     ],
+    "root docs and git hook disclosure": [
+      "root docs and git hook disclosure"
+    ],
+    "root docs git hook disclosure summary": [
+      "root docs git hook disclosure summary"
+    ],
+    "root docs git hook plan": [
+      "root docs git hook plan"
+    ],
+    "root docs git hook tasks": [
+      "root docs git hook tasks"
+    ],
     "root farm reference inventory": [
       "root farm reference inventory"
     ],
@@ -79419,11 +79461,17 @@
     "sk code quality 1 0 0 2": [
       "sk-code-quality 1.0.0.2"
     ],
+    "sk code quality 1 0 1 0": [
+      "sk-code-quality 1.0.1.0"
+    ],
     "sk code quality v1 0 0 0": [
       "sk-code-quality v1.0.0.0"
     ],
     "sk code quality v1 0 0 2": [
       "sk-code-quality v1.0.0.2"
+    ],
+    "sk code quality v1 0 1 0": [
+      "sk-code-quality v1.0.1.0"
     ],
     "sk code reference file hygiene": [
       "sk-code reference file hygiene"
@@ -80676,6 +80724,9 @@
     "sk doc 2 2 2 0": [
       "sk-doc 2.2.2.0"
     ],
+    "sk doc 2 2 3 0": [
+      "sk-doc 2.2.3.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -80912,6 +80963,12 @@
     ],
     "sk doc v2 2 2 0": [
       "sk-doc v2.2.2.0"
+    ],
+    "sk doc v2 2 3 0": [
+      "sk-doc v2.2.3.0"
+    ],
+    "sk doc validation off switch": [
+      "sk-doc validation off switch"
     ],
     "sk doc validator findings obsidian surface": [
       "sk-doc validator findings obsidian surface"
@@ -85740,6 +85797,9 @@
     "spec validation commit trap fixed": [
       "spec validation commit trap fixed"
     ],
+    "spec validation off switch": [
+      "spec validation off switch"
+    ],
     "spec validation rule engine": [
       "spec validation rule engine"
     ],
@@ -89146,6 +89206,9 @@
     "system spec kit 4 1 4 0": [
       "system-spec-kit 4.1.4.0"
     ],
+    "system spec kit 4 1 5 0": [
+      "system-spec-kit 4.1.5.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -89497,6 +89560,9 @@
     "system spec kit v4 1 4 0": [
       "system-spec-kit v4.1.4.0"
     ],
+    "system spec kit v4 1 5 0": [
+      "system-spec-kit v4.1.5.0"
+    ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
     ],
@@ -89520,6 +89586,9 @@
     ],
     "system speckit v4 pre v4 spec upgrade changelog": [
       "system speckit v4 pre v4 spec upgrade changelog"
+    ],
+    "system speckit v4 root docs and git hook disclosure changelog": [
+      "system speckit v4 root docs and git hook disclosure changelog"
     ],
     "system speckit v4 timeline": [
       "system speckit v4 timeline"

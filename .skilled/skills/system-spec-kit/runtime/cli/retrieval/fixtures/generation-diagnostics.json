@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7310,
-    "ok": 12228,
+    "missing-frontmatter": 7312,
+    "ok": 12236,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23224,
+  "documentsScanned": 23234,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "15c274e4baa06ba9c625163cc081847c394580554a054c5af97ad220e8d455ff",
+  "manifestHash": "f3e7c97f379c8bab2f5e05c497c230c63b867922798fa8917d929297cc5b6735",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 31724,
+      "ok": 31747,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -42194,6 +42194,18 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/sk-doc/062-doc-validation-off-switches/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/062-doc-validation-off-switches/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-git/028-crawlable-commit-history/001-research/research/dispatch-prompt.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -71716,6 +71728,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/062-doc-validation-off-switches/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/062-doc-validation-off-switches/scratch",
       "reason": "excluded directory"
     },
@@ -74549,6 +74565,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/scratch",
       "reason": "excluded directory"
     },
     {
