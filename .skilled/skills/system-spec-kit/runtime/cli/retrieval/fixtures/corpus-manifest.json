@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a2dcd5157fd25dd2de48b33f57ad7a9f6d9888699dd7136fee2780a937b7066d",
+  "corpusHash": "528be78b986a026ea00f597eb8f7171bf053a17524ff3dc9f35357b0845f75de",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23234,
+  "includedPathCount": 23240,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6433,6 +6433,7 @@
     ".skilled/skills/sk-git/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-git/changelog/v1.5.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.6.0.0.md",
+    ".skilled/skills/sk-git/changelog/v1.7.0.0.md",
     ".skilled/skills/sk-git/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/github-mcp-integration.md",
     ".skilled/skills/sk-git/feature-catalog/remote-platform-integration/gitkraken-mcp-integration.md",
@@ -11659,6 +11660,11 @@
     "specs/sk-git/029-worktree-dependency-provisioning/plan.md",
     "specs/sk-git/029-worktree-dependency-provisioning/spec.md",
     "specs/sk-git/029-worktree-dependency-provisioning/tasks.md",
+    "specs/sk-git/030-commit-body-always-required/acceptance-criteria.md",
+    "specs/sk-git/030-commit-body-always-required/implementation-summary.md",
+    "specs/sk-git/030-commit-body-always-required/plan.md",
+    "specs/sk-git/030-commit-body-always-required/spec.md",
+    "specs/sk-git/030-commit-body-always-required/tasks.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -23256,7 +23262,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d3f9292d46fcac965a536d9f0f33e614d3184039a2636c4e06884ffa43f278dc",
+  "manifestHash": "e5b476d0195e173cf8df71d07e2419ca15cc6772aec4e5a8bbb1e923936b38a3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25336,6 +25342,10 @@
     },
     {
       "path": "specs/sk-git/028-crawlable-commit-history/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/030-commit-body-always-required/scratch",
       "reason": "excluded directory"
     },
     {
