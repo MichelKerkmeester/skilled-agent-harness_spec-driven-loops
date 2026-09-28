@@ -1,0 +1,8 @@
+All checks pass. The inserted case sits after one blank line, as the last case before the final `});`. The other dirty paths in `git status` belong to concurrent workers in this shared tree; I touched only T. Test suites are left to the orchestrator per the brief.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+24/-0)
+EDITS: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:457 added the uncheckable-boundary case after one blank line, before the final `});`
+CHECKS: grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 24 (exit 0)
+BLOCKED REASON: none

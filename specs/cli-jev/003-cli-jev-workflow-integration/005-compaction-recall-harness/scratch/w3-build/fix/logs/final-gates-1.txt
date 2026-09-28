@@ -1,0 +1,8 @@
+## after fixture run
+fixture run exit=1
+diff json exit=0
+diff stdout exit=0
+diff stderr exit=0
+## P1-A
+claude path exit=2 stdout=       0B stderr=no transcripts named
+skilled path exit=2 stdout=       0B stderr=no transcripts named

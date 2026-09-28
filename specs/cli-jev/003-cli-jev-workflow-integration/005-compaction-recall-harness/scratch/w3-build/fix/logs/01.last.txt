@@ -1,0 +1,12 @@
+All checks pass. The file is untracked (`??`) in this worktree, so git reports no diff against HEAD — the edit-level delta is +38/−7. All three edit regions verified by re-read (imports at 7/12, harness at 66–89, `afterEach` at 92–96).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+38/-7)
+EDITS:
+.sskilled...→ corrected: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:7 node:fs import replaced, gains copyFileSync + rmSync
+.sskilled...→ corrected: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:12 vitest import replaced, gains afterEach
+.sskilled...→ corrected: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:65 harness block inserted after selectionDir (TEMP_DIRS, tempDir, transcriptDir, runScript → T:66-89)
+.sskilled...→ corrected: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:92 afterEach cleanup inserted as first lines inside describe (T:92-96)
+CHECKS: grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 12 (exit 0) | grep -c 'TEMP_DIRS' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 4 (exit 0) | git status --porcelain <T> -> ?? (untracked in worktree, so git diff/numstat report nothing; exit 0)
+BLOCKED REASON: none

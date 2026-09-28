@@ -1,0 +1,120 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/hierarchical-budgets/hierarchical-budgets.vitest.ts (26 tests) 42454ms
+     ✓ rebuilds the complete program-to-iteration tree from authorized events  1229ms
+     ✓ reserves exact capacity across every ancestor in one ledger transition  1616ms
+     ✓ records one typed exhaustion and leaves every dimension unchanged on failure  1718ms
+     ✓ serializes sibling races so only one request consumes the final remainder  1926ms
+     ✓ returns the original logical outcome for a duplicate request without a second event  1664ms
+     ✓ fails closed when one request identity is reused for another operation  1589ms
+     ✓ charges retries at start and retains failed terminal spend  2652ms
+     ✓ settles under-estimate usage and releases only the proven unused remainder  2424ms
+     ✓ quarantines missing usage, blocks admission, and clears the block after reconciliation  2948ms
+     ✓ records over-estimate actual spend as unreconciled without negative balances  2407ms
+     ✓ releases an unstarted expired lease but refuses early expiry  2260ms
+     ✓ requires no-dispatch evidence before cancellation releases capacity  1962ms
+     ✓ renews and partially releases one reservation idempotently  2425ms
+     ✓ cancels an unstarted reservation when no-dispatch evidence is present  2012ms
+     ✓ resumes from ledger state after authority re-instantiation  2433ms
+     ✓ denies stale pricing and replay mismatch before a reservation exists  1871ms
+     ✓ denies child allocation after parent spend consumes the allocatable remainder  938ms
+     ✓ denies admission after the monotonic scope deadline  1619ms
+     ✓ denies gateway authorization failure without appending a domain event  1523ms
+     ✓ denies a ledger write failure and leaves no domain mutation  1666ms
+     ✓ derives byte-identical replay fingerprints from the authorized budget ledger  1819ms
+     ✓ exposes remaining capacity, reservation age, and settlement lag as read-only data  1677ms
+ ✓ ../system-deep-loop/runtime/tests/unit/write-containment.vitest.ts (79 tests) 25529ms
+     ✓ retries until a two-second lock is released and returns the real dirty snapshot  2213ms
+     ✓ gives up within the retry budget, fails open, and reports the loss exactly once  4123ms
+     ✓ preserves an already-dirty path whose baseline bytes could not be captured  335ms
+     ✓ reports the deletion with the baseline hash under the default preserve remedy  345ms
+     ✓ detects truncation of a pre-existing dirty tracked file by content identity, without rolling it back to HEAD  305ms
+     ✓ keeps a real tracked-source breach fatal, and also fails on an unrelated concurrent untracked write — neither is deleted  352ms
+     ✓ fails the iteration on a write unrelated to the packet, while a concurrent packet-doc write stays a preserved advisory  327ms
+     ✓ restores an already-dirty path from the captured baseline bytes, not from HEAD  351ms
+     ✓ still fails the iteration on the same write when no lock claims the directory  426ms
+     ✓ grants no exemption for a stale lock left behind by a finished run  480ms
+     ✓ keeps a tracked in-HEAD edit fatal and recoverable while the other run is exempt  322ms
+     ✓ never exempts this run's own tree, even though its own lock is live  322ms
+     ✓ still fails a leaf that writes a neighbour sharing the exempted ledger’s prefix  360ms
+     ✓ writes the reverted diff inside the artifact dir and names it on the event  308ms
+     ✓ names the captured diff for the remedy: out-of-scope under preserve, reverted under restore  459ms
+     ✓ restores the erased edit when the saved patch is applied — the recoverability claim  320ms
+     ✓ captures the deletion diff when the reverted path was a deleted tracked file  312ms
+     ✓ still reverts, and records the write failure, when the patch cannot be saved  318ms
+     ✓ fails the iteration on the escaping symlink instead of filing it as a packet advisory  338ms
+     ✓ stores the on-disk bytes and the HEAD patch, and hashes the copy as it hashed the file  313ms
+     ✓ marks a file over the per-file bound content_truncated with no bytes stored, and still records its patch  481ms
+     ✓ keeps the failure on that path entry and never throws, and names no directory, when the quarantine destination is unwritable  372ms
+     ✓ retains a manifest and a patch set per pass, each named on the pass that wrote it  519ms
+     ✓ keys the quarantine directory by attempt when a pass is a retry, so neither retry overwrites the other  439ms
+     ✓ writes nothing through a quarantine pass directory that is a symlink out of the repository  635ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts (12 tests) 10253ms
+     ✓ authorizes and appends every event stem through the real ledger  10010ms
+ ✓ ../system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts (26 tests) 8400ms
+     ✓ persists a verified native receipt before its spawn sentinel  370ms
+     ✓ persists a verified cli-codex receipt before its spawn sentinel  412ms
+     ✓ persists a verified cli-claude-code receipt before its spawn sentinel  374ms
+     ✓ persists a verified cli-opencode receipt before its spawn sentinel  405ms
+     ✓ runs every resolution stage before a verified durable append and only then spawns  387ms
+     ✓ returns the original append receipt on exact retry and rejects changed facts before spawn  533ms
+     ✓ converges concurrent exact retries on one original ledger append receipt  421ms
+     ✓ does not spawn when authorization or durable storage fails  999ms
+     ✓ persists only safe digests even when raw prompt, environment, credential, and key canaries exist  354ms
+     ✓ keeps process-local HMAC advisory but verifies a reconstructable durable provider after restart  824ms
+     ✓ classifies no receipt, receipt-only, caller result evidence, and desired-fingerprint conflict  491ms
+     ✓ leaves a durable unresolved receipt after the post-append crash cut and never auto-spawns on retry  455ms
+     ✓ does not blindly re-execute after a spawn crash or a missing successor result  436ms
+     ✓ rejects hash-invalid evidence  392ms
+     ✓ rejects unauthorized evidence even when the frame hash is internally consistent  395ms
+     ✓ rejects an unknown event version before trusting its payload  377ms
+     ✓ rejects malformed frame bytes without minting a replacement receipt  400ms
+ ✓ ../system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts (10 tests) 2070ms
+     ✓ queries each council query type  485ms
+ ✓ ../system-deep-loop/runtime/tests/unit/next-focus.vitest.ts (18 tests) 2004ms
+     ✓ accepts semantic retries and fails closed on conflicting identity reuse  437ms
+     ✓ accepts a recomputed retry when invalid candidates arrive in a different order  398ms
+     ✓ restores focus from the stored event instead of a changed live ranking  372ms
+     ✓ replays an unavailable event without inventing a direction  398ms
+     ✓ rejects candidate-set fingerprint drift during replay  387ms
+GREEN: {"stateRows":2,"accepted":1,"rejected":1}
+RED: {"stateRows":0,"accepted":0,"rejected":0}
+RESTORE: {"stateRows":2,"accepted":1,"rejected":1}
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-improvement-ledgers-contract.vitest.ts (3 tests) 637ms
+     ✓ flips the contract toggle GREEN->RED->RESTORE and prints all three states  580ms
+ ✓ ../system-deep-loop/runtime/tests/unit/loop-lock.vitest.ts (16 tests) 390ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-pool.vitest.ts (34 tests) 351ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-contract-drift.vitest.ts (10 tests) 160ms
+ ✓ runtime/tests/folder-discovery.vitest.ts (101 tests) 116ms
+ ✓ runtime/tests/esm-entry-symlink.vitest.ts (7 tests) 83ms
+ ✓ runtime/tests/generator-hardening.vitest.ts (16 tests) 49ms
+ ✓ runtime/tests/council-helpers-smoke.vitest.ts (2 tests) 34ms
+ ✓ ../system-deep-loop/runtime/tests/unit/dispatch-failure.vitest.ts (2 tests) 7ms
+ ✓ runtime/tests/p0-d-toctou-cleanup-regression.vitest.ts (1 test) 6ms
+ ✓ runtime/tests/hook-stop-token-tracking.vitest.ts (8 tests) 8ms
+ ✓ ../system-deep-loop/runtime/tests/unit/runtime-capabilities-matrix-conformance.vitest.ts (13 tests) 5ms
+ ✓ runtime/tests/hook-adapter-path-parity.vitest.ts (106 tests) 4ms
+[compact-merger evidence]
+Rendered section headers and token estimates:
+- ## Active Files & Structural Context source=code-graph tokenEstimate=17
+- ## Session State / Next Steps source=session tokenEstimate=14
+- ## Triggered Memories source=memory tokenEstimate=13
+MergedBrief.allocation:
+- codeGraph floor=1200 requested=17 granted=17 dropped=0
+- sessionState floor=0 requested=24 granted=24 dropped=0
+- triggered floor=400 requested=13 granted=13 dropped=0
+MergedBrief.metadata.totalTokenEstimate=44
+MergedBrief.metadata.sourceCount=3
+MergedBrief.metadata.mergedAt=2026-09-28T22:03:43.344Z
+MergedBrief.metadata.mergeDurationMs=1
+MergedBrief.metadata.deduplicatedFiles=1
+ ✓ runtime/tests/compact-merger.vitest.ts (2 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts (6 tests) 3ms
+ ✓ runtime/tests/api-key-validation.vitest.ts (4 tests) 2ms
+
+ Test Files  22 passed (22)
+      Tests  502 passed (502)
+   Start at  00:02:08
+   Duration  95.39s (transform 763ms, setup 61ms, import 1.46s, tests 92.57s, environment 1ms)
+

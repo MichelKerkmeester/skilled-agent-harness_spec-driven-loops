@@ -1,0 +1,16 @@
+TASK: create the census test fixtures by copying six prepared files byte for byte.
+
+SRC = specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/content/fixtures
+DST = .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures
+
+Steps:
+1. Run: mkdir -p .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures
+2. Copy with cp, never by retyping: clean.jsonl contains a raw U+2028 byte sequence that must survive exactly.
+   Run: cp specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/content/fixtures/*.jsonl .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/
+3. Do not open, edit, reformat or rename any copied file.
+
+VERIFY (repo root), and report each exit code:
+for f in clean missing-written-file unknown-type malformed-line no-brief recorded-brief; do cmp specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/content/fixtures/$f.jsonl .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/$f.jsonl && echo "same $f"; done
+ls .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures | wc -l
+
+Accept when: 6 files created in DST and nothing else changed; all six cmp checks print "same"; the count prints 6.

@@ -1,0 +1,77 @@
+I'll start by reading the design reference to identify S and T, then read those files.
+
+Now let me read S and T as instructed.
+
+I've read S lines 1-555 and all of T. Now let me read the rest of S.
+
+I have the full picture of S and T. Now let me read the fixtures (read-only) and check for other dependents on the functions I'll change.
+
+The matches are mostly scratch logs. Let me check the relevant brief for this task and the clean fixture, plus any direct test usage of the changed functions.
+
+The brief matches my task exactly. Now let me check the vendored source for any reference shape of this reduction function, to make sure the loop matches.
+
+Let me look at the vendored compact.ts to understand the reference shapes for `truncatedResultText` and reduction stats.
+
+The vendored source confirms the shapes. Now let me check the test file conventions for `startsWith` usage and any tsconfig strictness, then make the edits.
+
+`.startsWith(...).toBe(true)` is idiomatic here. Let me check the test tsconfig for index-access strictness.
+
+
+
+
+
+All context gathered. Now I'll make the four edits to S.
+
+Edit 1 applied. Now the parseTranscript row fields.
+
+Now the row line and stop line.
+
+
+
+
+
+S is fully edited. Now extending the existing test case in T.
+
+Both files are edited. Now verification: `node --check`, the `it(` count, and the changed-file footprint.
+
+`node --check` exits 0, T holds exactly 6 `it(` cases, and the other dirty files in git status belong to concurrent workers (S and T live in untracked build dirs — I touched nothing else). Let me re-read the edited regions to confirm final state.
+
+
+
+All regions verified against the contract. Let me confirm my diff is exactly the intended change set by comparing S against the stage's pre-state snapshot (read-only inspection).
+
+The S diff is exactly the four intended edits. Let me confirm the same for T against its pre-state snapshot.
+
+Both diffs are exactly the intended changes. Let me get exact line counts for the handback.
+
+Confirmed counts. One final robustness check on the `it(` count using the naive substring the orchestrator might use.
+
+All acceptance criteria are met. Here's the summary and handback.
+
+**What changed**
+
+- S (`score-compaction-recall.mjs`): exported `offlineReductionUpperBound(messages, calls, headChars = TRUNCATE_HEAD_CHARS)` in section 4 — unpinned set from calls, per-message text + tool-input tokens counted once for both passes, each unpinned tool result re-counted through `truncatedResultText`; returns `{ untruncated, truncated, reduction }`, no model call, no message mutation. `parseTranscript` now computes it after the fit (runs on `fit_throw` too) over the same `segmentMessages`/`calls` and sets `untruncatedTokens`, `keptTokens`, `offlineReduction`, `keptTokensRatio`. `formatRow` appends `reduction=`, `kept=`, `kept_ratio=` after `fit_tokens`. `stopLine` now uses the fit-throw *share* against 0.50, with y/z medians over non-throw rows (numbers only, n/a preserved); `totals.fit_throws` stays a count.
+- T (`compaction-recall.vitest.ts`): the existing fit_throw case gained the 7 prescribed assertions; no case added.
+
+Both diffs were verified against the stage pre-state snapshots (`04.pre.mjs` / `04.pre.vitest.ts`): S +49/-5, T +7/-0, nothing else.
+
+```
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs (+49/-5)
+  .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+7/-0)
+EDITS:
+  score-compaction-recall.mjs:442-479 added exported offlineReductionUpperBound (section 4) per design section 6 bullet 5
+  score-compaction-recall.mjs:614-618 parseTranscript sets untruncatedTokens, keptTokens, offlineReduction, keptTokensRatio after the fit, outside the try/catch
+  score-compaction-recall.mjs:851 formatRow appends reduction=<toFixed(4)> kept=<n> kept_ratio=<toFixed(2)|n/a> after fit_tokens
+  score-compaction-recall.mjs:856 JSDoc: "fit throw count" -> "fit throw share"
+  score-compaction-recall.mjs:870-875 stopLine uses throwShare = fit_throw rows / rows.length against 0.50; y/z medians over non-throw rows unchanged
+  compaction-recall.vitest.ts:174-180 added the 7 assertions inside the existing 'an oversized state records fit_throw and continues' case
+CHECKS:
+  node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs -> no output, node-check-exit=0 (exit 0)
+  grep '^\s*it\(' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 6 matches, cases unchanged (exit 0)
+  git diff --no-index --stat <04.pre.mjs> <S> -> 1 file changed, 49 insertions(+), 5 deletions(-), diff matches the 4 briefed edits exactly (exit 1 = files differ)
+  git diff --no-index --stat <04.pre.vitest.ts> <T> -> 1 file changed, 7 insertions(+), diff matches the briefed assertions exactly (exit 1 = files differ)
+  git status --porcelain -> only S and T touched by this worker; other dirty paths belong to concurrent workers (exit 0)
+BLOCKED REASON: none
+```

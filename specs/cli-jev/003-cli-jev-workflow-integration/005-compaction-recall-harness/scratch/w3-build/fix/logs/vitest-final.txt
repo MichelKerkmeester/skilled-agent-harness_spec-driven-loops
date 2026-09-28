@@ -1,0 +1,10 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ runtime/tests/compaction-recall.vitest.ts (24 tests) 1297ms
+
+ Test Files  1 passed (1)
+      Tests  24 passed (24)
+   Start at  01:06:08
+   Duration  1.44s (transform 51ms, setup 20ms, import 26ms, tests 1.30s, environment 0ms)
+

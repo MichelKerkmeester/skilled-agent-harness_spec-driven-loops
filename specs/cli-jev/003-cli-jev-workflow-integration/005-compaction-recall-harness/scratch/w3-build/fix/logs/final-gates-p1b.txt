@@ -1,0 +1,9 @@
+## P1-B (D = X/repro-after/dlower, one copy of F/clean.jsonl)
+upper-cased exit=2 stderr=refused: report path inside transcript directory stdout=       0B
+clean.jsonl <- D contents after upper-cased run
+r-upper.json absent
+exact-case exit=2 stderr=refused: report path inside transcript directory
+..cache exit=2 stderr=refused: report path inside transcript directory
+symlink exit=2 stderr=refused: report path inside transcript directory
+outside exit=0 stderr=       0B report=written last=stop: arm not built (fit_throws=0.00, offline_reduction_upper_bound=0.00, kept_tokens_ratio=0.27)
+. .. clean.jsonl <- D contents at end

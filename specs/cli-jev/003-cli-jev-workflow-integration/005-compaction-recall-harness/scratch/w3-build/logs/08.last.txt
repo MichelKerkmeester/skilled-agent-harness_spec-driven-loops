@@ -1,0 +1,95 @@
+I've read R, S, and T. Now let me look at the fixtures and the scratch build directory for context.
+
+
+
+I have the full picture. The persona requires me to route through `sk-code` before editing. Let me load its contract and the repo rules.
+
+
+
+The compiled router resolved the `sk-code-opencode` surface packet. Loading it before the edit:
+
+
+
+Standards loaded. Now I'll capture the pre-change baseline of the script against the fixtures (evidence before the edit), and confirm the replay dist exists.
+
+
+
+Baseline captured (exit 1, 4 rows, 2 stopped, `stop: arm not built`). Let me pre-check the two accept criteria that must hold before my edits: the forbidden-pattern grep and the `it(` count.
+
+Both pre-checks are clean (no forbidden patterns in S; T holds 10 `it(` now, 12 after). Applying the S edits:
+
+
+
+
+
+
+
+
+
+Now the T edits:
+
+
+
+Both files edited. Re-reading the full edited main flow to verify the guard sits correctly:
+
+Now the required checks:
+
+Required checks pass (exit 0, grep exit 1). Now the focused verification — post-change census run vs the baseline, and the guard's unit behavior:
+
+Pass path is byte-identical to baseline. Now the guard's unit behavior, including the exact test-a calls and boundary cases:
+
+
+
+All 16 unit cases pass. Now the end-to-end negative control for the guard's void path, plus the newest-compacted path:
+
+The out path must be outside the transcript directory. Retrying with separate output dirs:
+
+Guard void path verified exactly (single 40-byte stdout line, no report, exit 1) with a passing control. Now the `--newest-compacted` path, including the oversized-skip branch:
+
+Now the remaining acceptance checks — `it(` count, node's TS syntax check on T, and the scoped git status:
+
+12 `it(` cases, T syntax valid, no tracked files modified. Let me proactively run the repo's comment-hygiene checker on both edited files, since the orchestrator's commit will gate on it:
+
+
+
+
+
+
+
+
+
+Comment hygiene is clean on both files. Final state checks — re-run the accept-criteria commands from the final state, and confirm no other file in the touched directories moved:
+
+One more direct validation — replicate test b's stub-PATH scenario in the shell (jevs/cli-deem stubs first on PATH, two runs, logs must stay empty):
+
+All checks are green. The work is complete — here is the handback.
+
+Implementation summary: `hasFreeText(report, { basenames, uuids })` now lives in S's REPORT section, walking every report string (keys excluded) against the allowed classes — fixed labels, run basenames, run boundary uuids that also match the uuid shape, and section-5 stop-line shapes — and `main` checks the fully built report before printing or writing anything: on free text it prints only the void line to stdout, writes no report file and returns 1. Two notes for the orchestrator: the newest-compacted path collects basenames from the files the run actually processed (selected/stopped/oversized — every basename the report can carry, without re-listing a live directory), and the stop-line class is matched by the exact section-5 formats. The vitest suite was not run here (sandbox note in the brief); the orchestrator owns that run.
+
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` (+76/-0); `.skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` (+27/-1)
+EDITS:
+- `score-compaction-recall.mjs`:1381-1445 section 8: added REPORT_LABELS (labels incl. the eight stages, trigger/entrypoint lists, statuses, codes), UUID_PATTERN, STOP_LINE_PATTERN (the five section-5 stop lines), `isAllowedReportString`, and exported `hasFreeText(report, { basenames, uuids })` (uuid class = in run set AND uuid shape)
+- `score-compaction-recall.mjs`:1494 added `listedBasenames` set
+- `score-compaction-recall.mjs`:1504 collect every listed file's basename in the plain-listing path (read or skipped oversized)
+- `score-compaction-recall.mjs`:1537-1538 collect selected + stopped + oversized basenames in the newest-compacted path (read-but-left-out files never reach the report)
+- `score-compaction-recall.mjs`:1579-1585 after the report object is built: `hasFreeText` guard; on true print only `stop: census void (free text in report)`, write no report file, return 1
+- `compaction-recall.vitest.ts`:10 added `pathToFileURL` to the `node:url` import
+- `compaction-recall.vitest.ts`:268-282 added case 'the report holds no CANARY- string' (fixtures run: code 1, stopped 2, rows 4, last line `stop: arm`, no `CANARY-` in stdout/stderr/report; then the two `hasFreeText` calls via dynamic import)
+- `compaction-recall.vitest.ts`:284-292 added case 'the stub jev and cli-deem logs stay empty' (two runs, both logs absent, SCRIPT text matches none of `child_process|spawnSync|spawn\(|execFile|execSync`)
+CHECKS:
+- `node --check .skilled/.../score-compaction-recall.mjs` -> no output (exit 0)
+- `grep -niE 'api_key|apikey|secret|bearer' <S> <T>` -> no match (exit 1)
+- `grep -cE '\bit\(' <T>` -> 12 (exit 0)
+- fixtures run `--replay` before vs after the change -> stdout and report byte-identical to baseline; exit 1 both (no regression on the pass path)
+- guard unit checks, 16 cases incl. both exact test-a calls, all five stop lines, uuid in/out of run set, deep leaves, keys excluded -> ALL PASS (exit 0)
+- void control: synthetic transcript with boundary uuid `CANARY-leak` -> stdout exactly `stop: census void (free text in report)` (40 bytes), no report file (exit 1)
+- pass control: same transcript with a shape uuid -> report written (exit 0)
+- `--newest-compacted 1` and `--newest-compacted 1 --max-file-bytes 10` over a generated selection dir -> reports written (exit 0)
+- stub `jev`/`cli-deem` first on PATH, two runs -> both logs absent (exit 1 each)
+- `grep -nE 'child_process|spawnSync|spawn\(|execFile|execSync' <S>` -> no match (exit 1)
+- `check-comment-hygiene.sh` on S and T -> exit 0 each
+- `node --experimental-strip-types --check <T>` -> exit 0
+- `git status --porcelain` -> no tracked-file modifications; only S and T modified in the touched directories
+- vitest suite -> not run here (brief: sandbox may block runners; orchestrator runs it)
+BLOCKED REASON: none

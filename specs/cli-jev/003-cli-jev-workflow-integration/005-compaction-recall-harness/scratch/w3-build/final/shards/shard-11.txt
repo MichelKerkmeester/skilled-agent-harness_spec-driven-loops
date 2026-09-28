@@ -1,0 +1,143 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts (38 tests) 48970ms
+     ✓ keeps the fingerprint stable across a hostile-collation child process  1797ms
+     ✓ emits byte-identical descriptors and final digests across repeated derivations  1069ms
+     ✓ returns trusted projection only through the same API for both consumers  1517ms
+     ✓ fails closed on covered-frame mutation  1561ms
+     ✓ fails closed on covered-frame deletion  1458ms
+     ✓ fails closed on covered-frame insertion  1491ms
+     ✓ fails closed on covered-frame reorder  1334ms
+     ✓ surfaces requested range drift without selecting another attestation  1430ms
+     ✓ surfaces envelope registry drift independently of upcasters  1443ms
+     ✓ surfaces upcaster registry drift before the aggregate envelope digest  1401ms
+     ✓ surfaces reducer identity drift  1464ms
+     ✓ surfaces projection schema drift  1506ms
+     ✓ rejects a claimed config digest that differs from the content supplied to reducers  1044ms
+     ✓ surfaces projection byte drift under the same registered identities and inputs  1466ms
+     ✓ surfaces an effective-event digest mismatch from an authorized false claim  1441ms
+     ✓ rejects missing ledger-addressed replay inputs before projection trust  1396ms
+     ✓ rejects a reducer that produces different bytes on repeated reduction  1460ms
+     ✓ surfaces authorization linkage mutation in authorization_linkage  1443ms
+     ✓ surfaces observed versions mutation in observed_event_versions  1518ms
+     ✓ surfaces chain identities mutation in upcaster_chain  1533ms
+     ✓ surfaces replay input mutation in replay_input  1515ms
+     ✓ surfaces canonicalization mutation in canonicalization  1418ms
+     ✓ surfaces final commitment mutation in final_digest  1476ms
+     ✓ reports an accurate descriptor bytes binding mismatch  1074ms
+     ✓ reports an accurate metadata binding mismatch  1093ms
+     ✓ reports an accurate digest binding mismatch  1077ms
+     ✓ fails closed when the required attestation is missing  1082ms
+     ✓ rejects unknown future fingerprint_version without envelope-version inference  1027ms
+     ✓ rejects missing fingerprint_version without envelope-version inference  1045ms
+     ✓ rejects an attestation payload that omits fingerprint_version  1500ms
+     ✓ retains historical verification while current writers emit the latest version  1528ms
+     ✓ appends after the range, excludes itself, and makes exact duplicates idempotent  1557ms
+     ✓ rejects conflicting attestations for one run, range, and version  1685ms
+     ✓ leaves legacy authority unchanged when dark fingerprint verification fails  1586ms
+     ✓ never rewrites or promotes a mismatched actual digest  1530ms
+ ✓ ../system-deep-loop/runtime/tests/unit/result-envelopes.vitest.ts (30 tests) 20619ms
+     ✓ pairs one terminal result to the receipt and returns the original append receipt on repeat  866ms
+     ✓ rejects changed status facts before append  753ms
+     ✓ rejects changed result facts before append  1048ms
+     ✓ rejects changed evidence facts before append  926ms
+     ✓ rejects changed cost facts before append  1012ms
+     ✓ excludes raw output, credentials, and invented unknown cost zeros  512ms
+     ✓ does not accept recorded success when required evidence is missing or stale  815ms
+     ✓ fails closed when required evidence resolves to a different digest  712ms
+     ✓ does not accept unknown cost provenance as complete  787ms
+     ✓ produces byte-identical folds and never re-enables a durably completed leaf  792ms
+     ✓ fails closed when the ledger hash chain cannot be verified  407ms
+     ✓ recovers an injected torn append and reconstructs the committed prefix deterministically  840ms
+     ✓ keeps a dispatched leaf ineligible until effect reconciliation is recorded  357ms
+     ✓ not_applied recovery yields expected retry eligibility  1158ms
+     ✓ applied recovery yields expected retry eligibility  1134ms
+     ✓ in_doubt recovery yields expected retry eligibility  1102ms
+     ✓ conflict recovery yields expected retry eligibility  1174ms
+     ✓ does not retry a not-applied attempt when retry policy rejects it  1150ms
+     ✓ rejects recovery evidence correlated to a different dispatched leaf  1121ms
+     ✓ records complete provenance, deduplicates exact repeats, and conflicts on changed content  946ms
+     ✓ never promotes a failed result to success after recovered salvage  1148ms
+     ✓ rejects reconstructed captured_stdout claiming byte identity with original evidence  391ms
+     ✓ rejects reconstructed future_typed_fragment claiming byte identity with original evidence  381ms
+     ✓ rejects reconstructed iteration_artifact claiming byte identity with original evidence  339ms
+     ✓ rejects reconstructed registry claiming byte identity with original evidence  316ms
+     ✓ rejects reconstructed state_event claiming byte identity with original evidence  342ms
+ ✓ ../system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts (54 tests) 18730ms
+     ✓ records and reads creation evidence through gateway, ledger, and event boundary  427ms
+     ✓ rejects ledger creation evidence from a decoy sharing digests but not the artifact kind  710ms
+     ✓ binds order and verification evidence into replay and parity inputs  861ms
+     ✓ rejects a missing artifact before producing replay fingerprint input  381ms
+     ✓ rejects a fabricated verification field before replay fingerprint input  365ms
+     ✓ rejects a fabricated ledger field before replay fingerprint input  409ms
+     ✓ rejects substituted bytes before producing replay fingerprint input  389ms
+     ✓ changes the phase fingerprint when the verified artifact order changes  1039ms
+     ✓ retains every candidate when root discovery is incomplete  389ms
+     ✓ retains an artifact protected by the live-run root  1335ms
+     ✓ retains an artifact protected by the replay-attestation root  1255ms
+     ✓ retains an artifact protected by the receipt-certificate root  1329ms
+     ✓ retains an artifact protected by the rollback-window root  1254ms
+     ✓ retains an artifact protected by the archival-reader root  1360ms
+     ✓ retains an artifact protected by the explicit-hold root  1356ms
+     ✓ sweeps only an eligible artifact and binds its tombstone to ledger evidence  1388ms
+     ✓ rejects a deletion authorization that does not resolve to a real ledger entry  369ms
+     ✓ restores only byte-identical canonical content under the original digest  1803ms
+     ✓ rejects a restoration authorization that does not resolve to a real ledger entry  1338ms
+ ✓ ../system-deep-loop/runtime/tests/unit/mode-append-gateway.vitest.ts (18 tests) 5921ms
+     ✓ happy path: append and read the event back through the ledger  302ms
+     ✓ concurrency: two racing appends both succeed with total order  650ms
+     ✓ projection not attempted (pre-flight config gap): append succeeds with the reason surfaced  343ms
+     ✓ projection engine failure: an explicit ok:false from the engine fails the outcome closed  465ms
+     ✓ projection success: run directory shaped like a spec folder projects legacy JSONL state file nested under research/  484ms
+       ✓ 'deep-research': run directory shaped like a 'spec-folder' lands the projection at the declared state-log path  521ms
+       ✓ 'deep-review': run directory shaped like a 'spec-folder' lands the projection at the declared state-log path  484ms
+       ✓ 'deep-research': run directory shaped like a 'artifact-directory' lands the projection at the declared state-log path  516ms
+       ✓ 'deep-review': run directory shaped like a 'artifact-directory' lands the projection at the declared state-log path  525ms
+       ✓ 'deep-research': run directory shaped like a 'lineage-directory' lands the projection at the declared state-log path  504ms
+       ✓ 'deep-review': run directory shaped like a 'lineage-directory' lands the projection at the declared state-log path  513ms
+stdout | ../system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts > deep-research post-flip fan-out gateway integration > accepts the gateway watermark, detects a direct perturbation, and accepts restoration
+{"guard":"gateway-output","stdout":"{\"ok\":true,\"status\":\"ok\",\"mode\":\"deep-research\",\"reason\":\"Legacy file bytes match the gateway watermark.\",\"digest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"byteLength\":780,\"expectedDigest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"expectedByteLength\":780}","exitCode":0}
+{"guard":"direct-perturbation","stdout":"{\"ok\":false,\"status\":\"violation\",\"mode\":\"deep-research\",\"reason\":\"Legacy file bytes do not match the gateway watermark; a write bypassed the sanctioned gateway path.\",\"code\":\"DIRECT_APPEND_DETECTED\",\"expectedDigest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"actualDigest\":\"f97a489372986919b1a213358eea5055fe3161b10a9d2283066314aa8e79941e\",\"expectedByteLength\":780,\"actualByteLength\":781,\"refreshedAt\":\"2026-08-22T12:00:00.000Z\",\"watermarkPath\":\"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/deep-research-postflip-fixture-Ct31oV/.legacy-projection-watermarks/research-state.json\",\"legacyFile\":\"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/deep-research-postflip-fixture-Ct31oV/research/deep-research-state.jsonl\"}","exitCode":2}
+{"guard":"restored-output","stdout":"{\"ok\":true,\"status\":\"ok\",\"mode\":\"deep-research\",\"reason\":\"Legacy file bytes match the gateway watermark.\",\"digest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"byteLength\":780,\"expectedDigest\":\"cf7ce7e8e422af33df3c1e5739861af261ac78a2e8edb3126834bf384ec788d5\",\"expectedByteLength\":780}","exitCode":0}
+
+stdout | ../system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts > deep-research post-flip fan-out gateway integration > leaves the same guard inert while the authority root is unflipped
+{"guard":"preflip-inert","stdout":"{\"ok\":true,\"status\":\"not-enforced\",\"mode\":\"deep-research\",\"reason\":\"Authority state is 'legacy_authoritative'; the legacy writer is still the sanctioned one, so a divergence here is expected rather than a violation.\",\"authorityState\":\"legacy_authoritative\",\"epoch\":1,\"selectedWriter\":\"legacy\"}","exitCode":0}
+
+ ✓ ../system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts (4 tests) 3581ms
+ ✓ ../system-deep-loop/runtime/tests/integration/query-script.vitest.ts (7 tests) 737ms
+ ✓ runtime/tests/completion-evidence-sentinel.vitest.ts (24 tests) 289ms
+ ✓ ../system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts (32 tests) 223ms
+ ✓ ../system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts (3 tests) 109ms
+stderr | ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts > deep-research reduce-state recovery gate > keeps registry-owned question text and emits one conflict event for disagreeing inbox input
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+
+stderr | ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts > deep-research reduce-state recovery gate > promotes observed ideas by threshold and suppresses rejected ideas
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+[deep-research] detected 1 legacy-import question(s) in key-questions; append external questions to research/inbox.jsonl instead.
+
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts (18 tests) 109ms
+ ✓ runtime/tests/stdio-logging-safety.vitest.ts (1 test) 111ms
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/e1c5afb197fe/bd7065173b6ba0b1.json.bad
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/e1c5afb197fe/bd7065173b6ba0b1.json.bad
+WARN [speckit-hook:state] {"event":"load_most_recent_state_rejected","reason":"scope_unknown_fail_closed"}
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/e3adef1868c9/poison-pill.json.bad
+WARN [speckit-hook:state] {"event":"clean_stale_states_skipped","file":"blocked.json","path":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/3d2ff8319212/blocked.json","reason":"EPERM: operation not permitted, unlink '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/3d2ff8319212/blocked.json'"}
+ ✓ runtime/tests/hook-state.vitest.ts (18 tests) 19ms
+ ✓ runtime/tests/embedders/model-server-perimeter.vitest.ts (4 tests) 12ms
+ ✓ runtime/tests/hook-precompact.vitest.ts (9 tests) 9ms
+ ✓ runtime/tests/flag-ceiling.vitest.ts (7 tests) 9ms
+ ✓ ../system-deep-loop/runtime/tests/unit/sleep.vitest.ts (5 tests) 4ms
+ ✓ runtime/tests/continue-session.vitest.ts (32 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fallback-router.vitest.ts (10 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/council/cost-guards.vitest.ts (7 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts (2 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/council/adjudicator-verdict-scoring.vitest.ts (3 tests) 2ms
+ ✓ runtime/tests/exhaustiveness.vitest.ts (7 tests) 1ms
+
+ Test Files  22 passed (22)
+      Tests  333 passed (333)
+   Start at  00:08:56
+   Duration  102.23s (transform 654ms, setup 61ms, import 1.40s, tests 99.46s, environment 1ms)
+

@@ -1,0 +1,93 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-ai-council-sealed-artifacts.vitest.ts (13 tests) 45501ms
+     ✓ registers and seals every council input and output kind through the shared store  728ms
+     ✓ builds byte-identical complete council lifecycle sets and replay inputs  11944ms
+     ✓ rejects missing and reordered council lifecycle artifacts before binding  10326ms
+     ✓ rejects bindings that do not match verified creation evidence  10297ms
+     ✓ rejects stale context, unknown fields, and post-build corruption before replay  12005ms
+ ✓ ../system-deep-loop/runtime/tests/unit/conditional-fanin.vitest.ts (29 tests) 38609ms
+     ✓ denies one atomic continuation reservation when a shared ancestor is exhausted  1912ms
+     ✓ checks 'tokens' admission at the 'program' scope in the ancestor path  1971ms
+     ✓ checks 'cost' admission at the 'program' scope in the ancestor path  2099ms
+     ✓ checks 'iterations' admission at the 'program' scope in the ancestor path  2037ms
+     ✓ checks 'wallTime' admission at the 'program' scope in the ancestor path  1971ms
+     ✓ checks 'tokens' admission at the 'mode' scope in the ancestor path  1990ms
+     ✓ checks 'cost' admission at the 'mode' scope in the ancestor path  2045ms
+     ✓ checks 'iterations' admission at the 'mode' scope in the ancestor path  2028ms
+     ✓ checks 'wallTime' admission at the 'mode' scope in the ancestor path  1988ms
+     ✓ checks 'tokens' admission at the 'lineage-b' scope in the ancestor path  2067ms
+     ✓ checks 'cost' admission at the 'lineage-b' scope in the ancestor path  1985ms
+     ✓ checks 'iterations' admission at the 'lineage-b' scope in the ancestor path  2012ms
+     ✓ checks 'wallTime' admission at the 'lineage-b' scope in the ancestor path  2009ms
+     ✓ checks 'tokens' admission at the 'iteration-b' scope in the ancestor path  2012ms
+     ✓ checks 'cost' admission at the 'iteration-b' scope in the ancestor path  1903ms
+     ✓ checks 'iterations' admission at the 'iteration-b' scope in the ancestor path  1969ms
+     ✓ checks 'wallTime' admission at the 'iteration-b' scope in the ancestor path  1967ms
+     ✓ allows a value signal to rank only and never bypass budget denial  1964ms
+     ✓ cancels reserved-not-started capacity only through proof-backed budget authority  1930ms
+     ✓ commits the complete frozen decision against the exact authorized event cut  317ms
+     ✓ rejects a finalized cut when a terminal event wins the cancel-complete race  418ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-pi.vitest.ts (20 tests | 1 skipped) 15689ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  1260ms
+     ✓ retains cli-pi authentication diagnostics in bounded lineage output  867ms
+     ✓ retains cli-pi model-or-balance diagnostics in bounded lineage output  879ms
+     ✓ retains cli-pi rate-limit diagnostics without retry delay  852ms
+     ✓ times out and terminates the captured cli-pi process  2809ms
+     ✓ closes stdin for the headless cli-pi process  889ms
+     ✓ passes child gate variables through the full cli-pi runtime  1104ms
+     ✓ reports a signal-killed cli-pi lineage as failed  901ms
+     ✓ terminates the captured detached cli-pi process group after timeout  2835ms
+     ✓ accepts a non-zero pi exit only when artifacts exist and retains provider output  891ms
+     ✓ rejects a zero-exit pi run when the required artifact is absent  892ms
+ ✓ ../system-deep-loop/runtime/tests/unit/legacy-projections.test.ts (16 tests) 11449ms
+     ✓ renders insertion-ordered JSONL bytes while leaving the legacy file untouched  859ms
+     ✓ renders snapshot indentation, insertion order, newline, and integrity stamp exactly  1020ms
+     ✓ appends incrementally, suppresses unchanged rows, and is restart-idempotent  1743ms
+     ✓ recovers output made durable before a crash without duplicating JSONL rows  662ms
+     ✓ leaves no output or watermark when a crash occurs before output commit  502ms
+     ✓ rebuilds disposable torn shadow output before advancing its watermark  688ms
+     ✓ refuses a replace that would drop keys from an existing config row  642ms
+     ✓ rejects a projection head older than the durable watermark  1141ms
+     ✓ observes byte parity failure without creating shadow output or mutating legacy  487ms
+     ✓ rejects traversal, symlink escape, direct live roots, and hard-link aliases  1443ms
+     ✓ rejects corrupt ledger frames and unknown event versions before publication  932ms
+     ✓ rejects invalid replay identity and nondeterministic reducers or serializers  787ms
+     ✓ keeps observation sinks outside projector control flow  529ms
+ ✓ ../system-deep-loop/runtime/tests/unit/contradiction-supersession.vitest.ts (16 tests) 8326ms
+     ✓ projects one canonical contradiction with typed counterparts and evidence state  362ms
+     ✓ withdraws by prior event identity without deleting assertion or evidence history  797ms
+     ✓ withdraws a directional supersession without reversing or deleting its history  764ms
+     ✓ returns the original receipt on exact retry and rejects changed bytes under the same event id  583ms
+     ✓ folds directional supersession chains without reversing predecessor semantics  731ms
+     ✓ gives supersession precedence without erasing active contradiction evidence  760ms
+     ✓ rejects competing active successors before append  487ms
+     ✓ rejects a supersession cycle before append  844ms
+     ✓ binds successful replay to verified bytes, authorization, reducer, and reference inputs  1057ms
+     ✓ reports the earliest invalid stored cycle and returns no trusted projection  735ms
+     ✓ fails closed on fingerprint mismatch and stored-frame corruption  524ms
+ ✓ ../system-deep-loop/runtime/tests/unit/cli-matrix.vitest.ts (7 tests) 1035ms
+     ✓ records a timeout failure event from a real subprocess timeout  1006ms
+ ✓ ../system-deep-loop/runtime/tests/unit/health-degeneration-harness.vitest.ts (14 tests) 510ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-reducers.vitest.ts (90 tests) 486ms
+ ✓ ../system-deep-loop/runtime/tests/unit/executor-audit-process-group.vitest.ts (1 test) 243ms
+ ✓ ../system-deep-loop/runtime/tests/council/round-state-jsonl.vitest.ts (8 tests) 101ms
+ ✓ runtime/tests/folder-discovery-idempotent.vitest.ts (10 tests) 79ms
+ ✓ ../system-deep-loop/runtime/tests/unit/per-mode-authority-flip.vitest.ts (20 tests) 55ms
+ ✓ runtime/tests/resume-ladder.vitest.ts (15 tests) 41ms
+ ✓ runtime/tests/path-boundary.vitest.ts (7 tests) 24ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts (5 tests) 21ms
+ ✓ runtime/tests/smart-router-telemetry.vitest.ts (17 tests) 16ms
+ ✓ runtime/tests/session-token-resume.vitest.ts (4 tests) 7ms
+ ✓ ../system-deep-loop/runtime/tests/unit/artifact-root.vitest.ts (6 tests) 7ms
+ ✓ runtime/tests/thin-continuity-record.vitest.ts (15 tests) 5ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-state-contract.vitest.ts (2 tests) 5ms
+ ✓ runtime/tests/validation/evidence-marker-audit.vitest.ts (4 tests) 4ms
+ ✓ runtime/tests/hooks-reexport-parity.vitest.ts (2 tests) 1ms
+
+ Test Files  22 passed (22)
+      Tests  320 passed | 1 skipped (321)
+   Start at  00:06:51
+   Duration  125.42s (transform 943ms, setup 60ms, import 1.83s, tests 122.22s, environment 1ms)
+

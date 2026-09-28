@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/fix/mutation
+
+ ❯ mutant.vitest.ts (24 tests | 1 failed | 23 skipped) 43ms
+     × main voids the census and writes no report when a planted string reaches the guard 42ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  mutant.vitest.ts > score-compaction-recall > main voids the census and writes no report when a planted string reaches the guard
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ mutant.vitest.ts:407:18
+    405|     });
+    406|
+    407|     expect(code).toBe(1);
+       |                  ^
+    408|     expect(write.mock.calls.map((call) => String(call[0])).join('')).t…
+    409|     expect(existsSync(out)).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 23 skipped (24)
+   Start at  01:05:16
+   Duration  165ms (transform 42ms, setup 0ms, import 37ms, tests 43ms, environment 0ms)
+

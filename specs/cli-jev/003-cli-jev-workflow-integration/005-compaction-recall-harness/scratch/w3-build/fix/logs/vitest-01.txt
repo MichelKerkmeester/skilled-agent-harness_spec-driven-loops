@@ -1,0 +1,15 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ runtime/tests/compaction-recall.vitest.ts (12 tests) 7127ms
+     ✓ an oversized state records fit_throw and continues  370ms
+     ✓ a recorded brief is read and not replayed  1709ms
+     ✓ a boundary without a recorded brief takes the replay path with replay_version  626ms
+     ✓ the report holds no CANARY- string  2727ms
+     ✓ the stub jev and cli-deem logs stay empty  610ms
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  00:45:12
+   Duration  11.48s (transform 352ms, setup 101ms, import 148ms, tests 7.13s, environment 0ms)
+

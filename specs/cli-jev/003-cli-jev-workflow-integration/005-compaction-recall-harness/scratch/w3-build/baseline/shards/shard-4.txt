@@ -1,0 +1,79 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 2 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":2}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"keyFindings","coercedCount":1}
+{"type":"schema_mismatch","severity":"warn","lineage":"a","findingId":"F1","unknownSeverity":"P3","message":"Finding \"F1\" from lineage \"a\" carries severity \"P3\", which is outside the review severity scale (P0|P1|P2). It is unranked, sorts below every P2, and cannot raise the merged verdict; collapse it to P2 where the finding is rated."}
+{"type":"schema_mismatch","severity":"warn","lineage":"glm","message":"Registry uses non-canonical key \"findings\" instead of \"openFindings\"; coerced 1 entries.","aliasKey":"findings","canonicalKey":"openFindings","coercedCount":1}
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts (61 tests) 7529ms
+     ✓ keeps duplicate iteration basenames distinct and completes against all lineage findings in both workflows  1898ms
+     ✓ reports incomplete synthesis when one lineage finding is missing from the registry in both workflows  1788ms
+     ✓ fails synthesis when any lineage state row is malformed in both workflows  1832ms
+ ✓ ../system-deep-loop/runtime/tests/unit/agent-improvement-reducers.vitest.ts (17 tests) 954ms
+     ✓ matches the fold oracle through a real VerifiedLedgerEvent  348ms
+ ✓ ../system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts (18 tests) 3589ms
+     ✓ aborts the complete unit when any view or precommit boundary fails  532ms
+     ✓ preserves canonical hashes across restart boundaries and JSON key insertion order  446ms
+     ✓ rebuilds a bounded 250-event prefix without weakening sequential cutoffs  714ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-sealed-artifacts.vitest.ts (12 tests) 32228ms
+     ✓ registers and seals every lifecycle kind through the shared store  538ms
+     ✓ builds byte-identical complete lifecycle sets and replay inputs  8269ms
+     ✓ rejects missing and reordered lifecycle artifacts before binding  7430ms
+     ✓ rejects a binding that does not match its verified creation evidence  7522ms
+     ✓ rejects stale context and post-build artifact corruption during replay  8311ms
+GREEN: {"artifactCount":2,"paths":["research/deltas/iter-001.jsonl","research/deltas/iter-002.jsonl"],"iter1RowCount":1}
+RED: {"artifactCount":1,"paths":["research/deltas/iter-001.jsonl"],"iter1RowCount":2}
+RESTORE: {"artifactCount":2,"paths":["research/deltas/iter-001.jsonl","research/deltas/iter-002.jsonl"],"iter1RowCount":1}
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-deltas-contract.vitest.ts (3 tests) 555ms
+     ✓ flips the contract toggle GREEN->RED->RESTORE and prints all three states  548ms
+ ✓ runtime/tests/continuity-freshness.vitest.ts (7 tests) 1219ms
+     ✓ keeps flag-off validate.sh output byte-identical after a stale edit  388ms
+     ✓ keeps the clean-tree precondition scoped to packet paths  379ms
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-salvage.vitest.ts (14 tests) 85ms
+ ✓ ../system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts (5 tests) 14ms
+ ✓ runtime/tests/index-scope.vitest.ts (7 tests) 16ms
+ ✓ runtime/tests/directive-lifecycle-adapter-parity.vitest.ts (16 tests) 11895ms
+     ✓ claude fails open on malformed and timed-out advisor children  2584ms
+     ✓ codex fails open on malformed and timed-out advisor children  2637ms
+     ✓ cursor fails open on malformed and timed-out advisor children  2657ms
+     ✓ devin fails open on malformed and timed-out advisor children  2670ms
+ ✓ ../system-deep-loop/runtime/tests/unit/council-graph-query.vitest.ts (6 tests) 31ms
+ ✓ runtime/tests/shared-payload-advisor.vitest.ts (8 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts (13 tests) 65ms
+ ✓ runtime/tests/launcher-reap-hardening.vitest.ts (6 tests) 2ms
+ ✓ runtime/tests/description/description-merge.vitest.ts (5 tests) 2ms
+ ✓ runtime/tests/multi-ai-council-audit-trail.vitest.ts (2 tests) 5ms
+ ✓ runtime/tests/validation-optional-anchors.vitest.ts (1 test) 2446ms
+     ✓ does not require optional L2 spec and plan anchors for ANCHORS_VALID  2446ms
+ ✓ ../system-deep-loop/runtime/tests/unit/spawn-cjs.vitest.ts (4 tests) 289ms
+ ↓ runtime/tests/remediation-008-docs.vitest.ts (2 tests | 2 skipped)
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-novelty-inertness.vitest.ts (3 tests) 1ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts (18 tests | 1 skipped) 14760ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  2085ms
+     ✓ retains cli-cursor authentication diagnostics in bounded lineage output  892ms
+     ✓ retains cli-cursor model-or-balance diagnostics in bounded lineage output  949ms
+     ✓ retains cli-cursor rate-limit diagnostics without retry delay  915ms
+     ✓ times out and terminates the captured cli-cursor process  2814ms
+     ✓ closes stdin for the headless cli-cursor process  868ms
+     ✓ passes child gate variables through the full cli-cursor runtime  896ms
+     ✓ reports a signal-killed cli-cursor lineage as failed  996ms
+     ✓ terminates the captured detached cli-cursor process group after timeout  2856ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-devin.vitest.ts (19 tests | 1 skipped) 14582ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  999ms
+     ✓ retains cli-devin authentication diagnostics in bounded lineage output  884ms
+     ✓ retains cli-devin model-or-balance diagnostics in bounded lineage output  947ms
+     ✓ retains cli-devin rate-limit diagnostics without retry delay  938ms
+     ✓ times out and terminates the captured cli-devin process  2824ms
+     ✓ closes stdin for the headless cli-devin process  870ms
+     ✓ passes child gate variables through the full cli-devin runtime  840ms
+     ✓ rejects an over-budget cli-devin lineage before process spawn  334ms
+     ✓ reports a signal-killed cli-devin lineage as failed  954ms
+     ✓ terminates the captured detached cli-devin process group after timeout  2828ms
+     ✓ keeps the captured Devin failure diagnostic bounded  912ms
+
+ Test Files  21 passed | 1 skipped (22)
+      Tests  243 passed | 4 skipped (247)
+   Start at  22:15:13
+   Duration  93.24s (transform 868ms, setup 64ms, import 1.60s, tests 90.27s, environment 1ms)
+

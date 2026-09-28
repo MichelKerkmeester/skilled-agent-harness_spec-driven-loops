@@ -1,0 +1,29 @@
+Now let me check the fixtures directory to see what exists (F is read-only for me, but the tests reference fixtures).Now let me look at the surrounding brief context and the spec folder to understand the wave structure and any fixture expectations.I have the full picture of the contract. Let me check the repo's code standards route and formatting config before editing.The route for this file type is `sk-code-opencode` (system-code surface). Now, before the first write, Gate 5 requires the repo rules load.Gate 5: my action (implement + report results) matches several trigger rows. Let me size the rule files and load the ones that fire.Gate 5 load done. Now Gate 2 routing per the sk-code hub's compiled router.Baseline captured (S has no recall code, T has 7 cases). Now implementing S, section 5 first.Section 5 is in. Now the window record, scoring helpers, and parser wiring.Now section 8: the mean helper, the row-line columns, and the totals.S is complete. Now the two cases in T.Both files are edited. Now the verification: syntax check, the `it(` count, and a direct smoke run against the two fixtures.The count is 11, not 9 — let me see what matched; the acceptance criterion counts `it(` cases.9 `it(` cases confirmed (the other two matches are pre-existing `split(` calls). Now the direct smoke run against both fixtures.Both fixtures match the brief exactly. Let me also confirm the untouched fixtures still behave as the existing cases expect (regression evidence on the changed file).All fixtures behave correctly, including the existing cases' assertions. Final-state checks: scoped status and a diff against the orchestrator's pre-wave snapshots if present.The orchestrator keeps a pre-wave snapshot (`06.pre.*`) — perfect for an exact scoped diff.Exact wave diff confirmed: S +375/-5, T +44/-0, confined to my two files. Final integrity checks: fixtures untouched, and a holistic re-read of the changed parser region.Everything checks out. One last Gate 1 lookup for the record, then the handback.All checks are complete. Gate outputs, then the handback.
+
+SKILL ROUTING: sk-code hub → compiled router resolved `sk-code-opencode` (surface, evidence-base) for the `.mjs`/`.vitest.ts` files; loaded its JavaScript style guide and checklist.
+ARTIFACT: sk-code → sk-code-opencode JavaScript slice applied (camelCase, UPPER_SNAKE, single quotes, JSDoc on exports, WHY-only comments).
+REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication.md, communication-handoff.md.
+
+STATUS: DONE
+
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs (+375/-5)
+- .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+44/-0)
+
+EDITS:
+- S:491-683 section 5: exported `identifiers(text)`, `stringLeaves(value)`, `writtenBasenames`, `specPacketItem`, `userInstructionIdentifiers`, `keptCount(items, keeperText, mode)`, plus private pre-unit and assistant-record item helpers.
+- S:735-749 `openWindow` now seeds each boundary with preIdentifiers, writtenBasenames, specItem, instructionItems, preservedSegment and a fresh postIdentifiers Set.
+- S:811-901 added `rule5Status`, `recallShare`, `violationsOf` and `scoreBoundary` (appends r1..violations in R order, then drops every text and Set).
+- S:955-1062 `parseTranscript`: tracks the last instruction across the file, collects every record uuid, feeds the open boundary's post Set from later assistant records, captures the pre-segment items at each boundary, and scores all boundaries at end of file.
+- S:1284-1320 `roundedMean`, `recallColumns`, and the row line now appends ` r1=.. r2=.. r3=.. r4=.. r5=.. summary_recall=.. brief_recall=.. violations=..` after brief_chars.
+- S:1436-1464 totals gain `summary_recall_avg`/`brief_recall_avg` (rounded to 2 places, null when none) plus `uncheckable`/`violations` after markers, printed on the totals line.
+- T:200-221 case "a missing written file gives 1 violation"; T:223-242 case "a clean session with a raw U+2028 in a text field gives 0 violations".
+
+CHECKS:
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` -> no output (exit 0).
+- `it(` case declarations in T -> 9 (two extra raw matches are pre-existing `split(` substrings).
+- census `missing-written-file.jsonl` -> `row ... r1=1/1/1 r2=1/0/0 r3=1/1/1 r4=1/1/1 r5=ok summary_recall=0.75 brief_recall=0.75 violations=1` (exit 0); row line contains ` r2=1/0/0 ` and ` violations=1`.
+- census `clean.jsonl` -> `row ... r1=1/1/1 r2=1/1/1 r3=1/1/1 r4=2/2/2 r5=ok summary_recall=1.00 brief_recall=1.00 violations=0` (exit 0), `sessions_stopped=0`.
+- regression smoke `recorded-brief`/`no-brief`/`unknown-type`/`malformed-line` -> exits 0/0/1/1 with the expected stderr and stop lines; six fixtures `cmp` all "same"; wave diff vs the `06.pre` snapshots is S +375/-5 and T +44/-0, nothing else; files left edited and uncommitted for the orchestrator.
+
+BLOCKED REASON: none

@@ -1,0 +1,12 @@
+TASK: add the compaction recall census scenario row to the root manual-testing playbook, section 7.1.
+FILE = .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md (the only file you may edit). Read lines 190 to 205 first.
+
+Directly after the row that starts `| 089 | Code standards alignment |` (line 201) insert this one row, byte for byte:
+| 460 | Compaction recall census | [460](tooling-and-scripts/compaction-recall-census.md) | [compaction-recall-census](../feature-catalog/tooling-and-scripts/compaction-recall-census.md) |
+
+Do not touch any other line.
+
+VERIFY (repo root), report each result and exit code:
+grep -n '^| 460 | Compaction recall census |' .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md   (expect line 202)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md   (expect exit 0)
+Accept when: 1 file changed (+1/-0) and nothing else; the grep prints line 202; validate_document exits 0.

@@ -1,0 +1,134 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts (54 tests) 50613ms
+     ✓ certifies and deduplicates the 'phase-enter' boundary  820ms
+     ✓ certifies and deduplicates the 'phase-pause' boundary  794ms
+     ✓ certifies and deduplicates the 'phase-resume' boundary  813ms
+     ✓ certifies and deduplicates the 'phase-completion' boundary  921ms
+     ✓ certifies and deduplicates the 'phase-abort' boundary  905ms
+     ✓ certifies and deduplicates the 'phase-handoff' boundary  842ms
+     ✓ certifies and deduplicates the 'mode-enter' boundary  827ms
+     ✓ certifies and deduplicates the 'mode-pause' boundary  847ms
+     ✓ certifies and deduplicates the 'mode-resume' boundary  849ms
+     ✓ certifies and deduplicates the 'mode-completion' boundary  829ms
+     ✓ certifies and deduplicates the 'mode-abort' boundary  831ms
+     ✓ certifies and deduplicates the 'mode-handoff' boundary  813ms
+     ✓ issues one durable receipt after the exact committed result and head  787ms
+     ✓ returns the original receipt on exact retry without another frame  958ms
+     ✓ verifies after provider reconstruction and rejects any fact mutation  734ms
+     ✓ fails closed for unknown providers and advisory process-local profiles  772ms
+     ✓ rejects reused boundary identity with changed result or signer metadata  1277ms
+     ✓ makes intent visible through the verified reader before adapter invocation  841ms
+     ✓ does not return success when target application precedes a missing confirmation  469ms
+     ✓ deduplicates concurrent and later exact calls to one external mutation  800ms
+     ✓ elects one subprocess execution owner across independent gateway processes  735ms
+     ✓ elects one atomic-file execution owner across independent gateway processes  767ms
+     ✓ refuses an adapter-returned success that has no external status proof  435ms
+     ✓ records changed logical-effect facts as conflict without another mutation  1107ms
+     ✓ rejects an orphan confirmation before it can certify any effect  445ms
+     ✓ rejects confirmation reuse when adapter facts do not match the intent  777ms
+     ✓ rejects duplicate confirmations instead of accepting the first match  1175ms
+     ✓ deduplicates response loss after durable confirmation without replay  825ms
+     ✓ recovers an adapter interruption without losing the durable intent  1462ms
+     ✓ recovers post-intent/pre-effect as not_applied and executes once with the same key  1516ms
+     ✓ recovers post-application/pre-confirmation as applied without replay  1411ms
+     ✓ records successful not_applied recovery with confirmed terminal status  1500ms
+     ✓ records successful applied recovery with confirmed terminal status  1470ms
+     ✓ records in_doubt and requires operator action without replay or confirmation  1550ms
+     ✓ reconciles a repeated operator resolution after a post-execution crash  1929ms
+     ✓ records conflicting target evidence and performs no mutation  1080ms
+     ✓ applies the not_applied recovery verdict to logical subprocess evidence  1413ms
+     ✓ applies the applied recovery verdict to logical subprocess evidence  1570ms
+     ✓ applies the in_doubt recovery verdict to logical subprocess evidence  1074ms
+     ✓ applies the conflict recovery verdict to logical subprocess evidence  1067ms
+     ✓ applies the not_applied recovery verdict to atomic file evidence  1504ms
+     ✓ applies the applied recovery verdict to atomic file evidence  1449ms
+     ✓ applies the in_doubt recovery verdict to atomic file evidence  1048ms
+     ✓ applies the conflict recovery verdict to atomic file evidence  1101ms
+     ✓ rejects stale recovery claims and stops after the bounded retry budget  1886ms
+     ✓ publishes files atomically and reconciles by content rather than process state  710ms
+     ✓ uses logical subprocess outcome evidence and refuses missing reconciliation capability  847ms
+     ✓ derives byte-stable replay fingerprints over receipt and effect records  1477ms
+ ✓ ../system-deep-loop/runtime/tests/unit/agent-improvement-sealed-artifacts.vitest.ts (45 tests) 24305ms
+     ✓ seals and reads every agent kind through the real phase-007 store  743ms
+     ✓ rejects stale epochs and executor mismatches before use  602ms
+     ✓ rejects wrong kind and verifies correct kind for 'parentAgentReference' on 'agent-improvement-base-agent-bundle'  570ms
+     ✓ rejects wrong kind and verifies correct kind for 'agentIrReference' on 'agent-improvement-change-contract-bun…'  541ms
+     ✓ rejects wrong kind and verifies correct kind for 'parentLineageReference' on 'agent-improvement-change-contract-bun…'  575ms
+     ✓ rejects wrong kind and verifies correct kind for 'parentCandidateReference' on 'agent-improvement-improver-lane-refer…'  644ms
+     ✓ rejects wrong kind and verifies correct kind for 'failureClusterReference' on 'agent-improvement-causal-analysis-inp…'  535ms
+     ✓ rejects wrong kind and verifies correct kind for 'firstDivergentTraceReference' on 'agent-improvement-causal-analysis-inp…'  546ms
+     ✓ rejects wrong kind and verifies correct kind for 'counterfactualInterventionReference' on 'agent-improvement-causal-analysis-inp…'  558ms
+     ✓ rejects wrong kind and verifies correct kind for 'proposalVisibleEvidenceReference' on 'agent-improvement-causal-analysis-inp…'  537ms
+     ✓ rejects wrong kind and verifies correct kind for 'parentCandidateReference' on 'agent-improvement-causal-analysis-inp…'  557ms
+     ✓ rejects wrong kind and verifies correct kind for 'parentAgentReference' on 'agent-improvement-candidate-proposal'  530ms
+     ✓ rejects wrong kind and verifies correct kind for 'changeContractReference' on 'agent-improvement-candidate-proposal'  590ms
+     ✓ rejects wrong kind and verifies correct kind for 'improverLaneReference' on 'agent-improvement-candidate-proposal'  580ms
+     ✓ rejects wrong kind and verifies correct kind for 'causalAnalysisReference' on 'agent-improvement-candidate-proposal'  546ms
+     ✓ rejects wrong kind and verifies correct kind for 'atomicPatchLineageReference' on 'agent-improvement-candidate-proposal'  681ms
+     ✓ rejects wrong kind and verifies correct kind for 'proposalRationaleReference' on 'agent-improvement-candidate-proposal'  542ms
+     ✓ rejects wrong kind and verifies correct kind for 'parentCandidateReference' on 'agent-improvement-candidate-proposal'  592ms
+     ✓ rejects wrong kind and verifies correct kind for 'candidateProposalReference' on 'agent-improvement-trial-trajectory'  591ms
+     ✓ rejects wrong kind and verifies correct kind for 'baselineAgentReference' on 'agent-improvement-trial-trajectory'  575ms
+     ✓ rejects wrong kind and verifies correct kind for 'evaluatorCapsuleReference' on 'agent-improvement-trial-trajectory'  615ms
+     ✓ rejects wrong kind and verifies correct kind for 'commonRawTrialReference' on 'agent-improvement-trial-trajectory'  607ms
+     ✓ rejects wrong kind and verifies correct kind for 'taskManifestReference' on 'agent-improvement-trial-trajectory'  566ms
+     ✓ rejects wrong kind and verifies correct kind for 'semanticVariantReference' on 'agent-improvement-trial-trajectory'  571ms
+     ✓ rejects wrong kind and verifies correct kind for 'authorityConflictReference' on 'agent-improvement-trial-trajectory'  587ms
+     ✓ rejects wrong kind and verifies correct kind for 'negativeCapabilityReference' on 'agent-improvement-trial-trajectory'  583ms
+     ✓ rejects wrong kind and verifies correct kind for 'executorReference' on 'agent-improvement-trial-trajectory'  617ms
+     ✓ rejects wrong kind and verifies correct kind for 'environmentReference' on 'agent-improvement-trial-trajectory'  590ms
+     ✓ rejects wrong kind and verifies correct kind for 'normalizedTraceReference' on 'agent-improvement-trial-trajectory'  607ms
+     ✓ rejects wrong kind and verifies correct kind for 'sideEffectObservationReference' on 'agent-improvement-trial-trajectory'  605ms
+     ✓ rejects wrong kind and verifies correct kind for 'receiptPredicateReference' on 'agent-improvement-trial-trajectory'  629ms
+     ✓ rejects wrong kind and verifies correct kind for 'integrityObservationReference' on 'agent-improvement-trial-trajectory'  639ms
+     ✓ rejects wrong kind and verifies correct kind for 'rotatingCanaryReference' on 'agent-improvement-behavior-coverage'  559ms
+     ✓ rejects wrong kind and verifies correct kind for 'rings[0].fixtureSetReference' on 'agent-improvement-four-ring-exposure'  561ms
+     ✓ rejects wrong kind and verifies correct kind for 'rings[1].fixtureSetReference' on 'agent-improvement-four-ring-exposure'  632ms
+     ✓ rejects wrong kind and verifies correct kind for 'rings[2].fixtureSetReference' on 'agent-improvement-four-ring-exposure'  655ms
+     ✓ rejects wrong kind and verifies correct kind for 'rings[3].fixtureSetReference' on 'agent-improvement-four-ring-exposure'  554ms
+     ✓ rejects wrong kind and verifies correct kind for 'evaluatorCapsuleReference' on 'agent-improvement-four-ring-exposure'  566ms
+     ✓ rejects wrong kind and verifies correct kind for 'canaryEpochReference' on 'agent-improvement-four-ring-exposure'  555ms
+     ✓ delegates evaluator visibility to the shared common adapter  423ms
+ ✓ ../system-deep-loop/runtime/tests/unit/executor-config.vitest.ts (104 tests) 14ms
+ ✓ ../system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts (37 tests) 2727ms
+     ✓ emits byte-identical output in a hostile-locale child process  717ms
+     ✓ binds a ledger replay to the shipped replay-fingerprint identity  821ms
+     ✓ records durable evidence only through an exact gateway allow  870ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-ai-council-reducers.vitest.ts (19 tests) 243ms
+ ✓ ../system-deep-loop/runtime/tests/unit/model-benchmark-sealed-artifacts.vitest.ts (12 tests) 1193ms
+     ✓ registers and seals every model-benchmark kind through the real shared store  325ms
+ ✓ runtime/tests/embedders/hf-local-client.vitest.ts (31 tests) 48ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts (27 tests | 1 skipped) 3331ms
+     ✓ invokes captured-pid and direct-child cleanup without a blanket process sweep  847ms
+     ✓ dispatches from each isolated worktree cwd without crossing boundaries  306ms
+ ✓ runtime/tests/unit-rrf-fusion.vitest.ts (28 tests) 9ms
+GREEN: {"claimsCount":2,"sourcesCount":1}
+RED: {"claimsCount":0,"sourcesCount":1}
+RESTORE: {"claimsCount":2,"sourcesCount":1}
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-projections-contract.vitest.ts (3 tests) 564ms
+     ✓ flips the contract toggle GREEN->RED->RESTORE and prints all three states  560ms
+ ✓ runtime/tests/description/repair-specimens.vitest.ts (7 tests) 405ms
+     ✓ returns file_missing, parse_error, and schema_error with detail  329ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts (8 tests) 292ms
+ ✓ runtime/tests/trigger-extractor.vitest.ts (14 tests) 17ms
+ ✓ ../system-deep-loop/runtime/tests/unit/ledger-read-cache.vitest.ts (3 tests) 981ms
+     ✓ flag-on reads stay byte-identical to lock-per-read reads after each append  606ms
+ ✓ ../system-deep-loop/runtime/tests/executor-audit-receipts.test.ts (5 tests) 110ms
+ ✓ runtime/tests/orphan-sweeper-ipc-preserve.vitest.ts (7 tests) 589ms
+ ✓ runtime/tests/smart-router-analyze.vitest.ts (7 tests) 10ms
+stdout | runtime/tests/security/adversarial-unicode.vitest.ts > adversarial Unicode round-trip corpus > captures the active runtime fingerprint for regression triage
+[adversarial-unicode-runtime] {"normalizer":"nfkc-hidden-mark-confusable-v1","node":"26.8.2","icu":"78.3","unicode":"17.0"}
+
+ ✓ runtime/tests/security/adversarial-unicode.vitest.ts (6 tests) 5ms
+ ✓ runtime/tests/graph/graph-metadata-lineage.vitest.ts (7 tests) 28ms
+ ✓ ../system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts (7 tests) 96ms
+ ✓ ../system-deep-loop/runtime/tests/unit/host-driven-improvement.vitest.ts (3 tests) 102ms
+ ✓ runtime/tests/hook-adapter-runtime-label.vitest.ts (3 tests) 2ms
+
+ Test Files  22 passed (22)
+      Tests  436 passed | 1 skipped (437)
+   Start at  22:05:35
+   Duration  88.88s (transform 1.09s, setup 70ms, import 1.71s, tests 85.68s, environment 1ms)
+

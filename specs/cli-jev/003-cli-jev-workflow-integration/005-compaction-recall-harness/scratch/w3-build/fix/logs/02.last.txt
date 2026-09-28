@@ -1,0 +1,33 @@
+I'll start by reading both files to understand the current state.
+
+
+
+Both files read. Let me check main's no-args behavior before editing.
+
+Baseline is 12 cases; adding one gives 13. Let me confirm the error path exits 2 with stderr.
+
+Confirmed: no-args path writes `no transcripts named\n` to stderr and returns 2. Checking for name collisions, then applying the edits.
+
+No collisions; `realpathSync` already imported and in use. Applying edits.
+
+Now adding the test case before the final `});`:
+
+All three edits applied. Running the listed verification checks, plus a direct symlink run as behavior proof and a scoped diff to confirm only these two files changed.
+
+Checks pass: `node --check` exit 0, 13 cases, and the symlink run now prints `no transcripts named` with exit 2 (previously it exited 0 silently). The empty `git diff --stat` suggests the files may be untracked; verifying the scoped state:
+
+Both files are untracked in this worktree (expected — the orchestrator commits after handback), and no other file was touched. Per the persona standard, checking the sk-code router for this file type before closing out:
+
+sk-code routes this surface to its OpenCode/system-code evidence packet, but the brief's explicit scope and verification list are the binding contract here — exact literal edits, already applied and verified. Handback:
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs (+13/-3)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+11/-1)
+EDITS: score-compaction-recall.mjs:1602-1614 replaced the argv[1]/import.meta.url equality with `isEntryPoint()` (realpathSync on both sides, try/catch false) and gated the `await main(...)` call on it
+EDITS: compaction-recall.vitest.ts:7 added `symlinkSync` to the node:fs import
+EDITS: compaction-recall.vitest.ts:325-333 added the symlink entry-point case (link named `census.mjs` via `symlinkSync(SCRIPT, link)`, `runScript(link, [])`, expecting code 2, empty stdout, stderr `no transcripts named\n`) as the last case before the final `});`, with one blank line before it
+CHECKS: `node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` -> no output (exit 0)
+CHECKS: `grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` -> `13` (exit 0; baseline before edit was 12)
+CHECKS: direct proof, `node <tmpdir>/census.mjs` where census.mjs symlinks to the script -> stderr `no transcripts named`, script exit 2 (exit 0 for the wrapper; pre-fix this path exited 0 with no output, matching the reported bug)
+CHECKS: `git status --short -- <S> <T>` -> both `??` (untracked in this worktree), no other path touched by me
+BLOCKED REASON: none

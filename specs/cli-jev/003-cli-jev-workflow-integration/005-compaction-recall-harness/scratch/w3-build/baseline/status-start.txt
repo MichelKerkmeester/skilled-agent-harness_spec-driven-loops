@@ -1,0 +1,7 @@
+?? .skilled/hooks/goal/lib/count-pi-goal-nudges.mjs
+?? .skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs
+?? .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs
+?? .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs
+?? specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/scratch/w3-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/
