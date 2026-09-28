@@ -1,0 +1,65 @@
+Advisor commit trace
+Written 2026-09-28 against HEAD 5e164da683, with every row checked against the commit's body or diff
+
+Scope: every commit since 2026-09-12 that touches the advisor, found with
+  git log --since=2026-09-12 -- .skilled/skills/system-skill-advisor .opencode/skills/system-skill-advisor \
+    .opencode/plugins/system-skill-advisor.js .opencode/plugins/lib/skill-advisor-render.js
+48 commits. Release windows come from the tags: v4.0.0.0 was tagged 2026-09-21 20:44,
+v4.0.0.1 on 2026-09-25 14:12, and later commits ship in v4.0.0.2.
+
+Each row names the entry that records the commit's advisor change, or why the advisor
+changelog leaves it out. "p030" marks a packet 030 commit. A change to another component
+is recorded in that component's own entry, named where this phase wrote it.
+A v0.11.2.0 row describes the change between tagged releases. Where a fix landed before the tag
+that would have carried its bug, the entry records the capability and not the bug.
+
+commit      date        release  recorded in, or left out because
+----------  ----------  -------  -----------------------------------------------------------
+8a13dc6b78  2026-09-12  4.0.0.0  v0.11.1.0: a successful empty result is no longer reported as an outage
+bc441a1d44  2026-09-12  4.0.0.0  the v0.11.1.0 entry itself
+1c15766706  2026-09-13  4.0.0.0  left out: dependency updates to the runtime's package.json and lockfile for security alerts, no behavior named
+78e7fa23bd  2026-09-14  4.0.0.0  left out: a maintenance script counts the new Hermes runtime
+468ffab0b9  2026-09-15  4.0.0.0  left out: one test fixture line
+bed9458f13  2026-09-16  4.0.0.0  v0.11.2.0: two-character executor names such as pi reach the scorer's token lanes
+b6f743a0a5  2026-09-17  4.0.0.0  v0.11.2.0: the advisor finds its repository root, launcher and skill graph under either root name
+e7b5c29707  2026-09-17  4.0.0.0  v0.11.2.0: same (the advisor CLI's launcher lookup and the divergence ledger capture)
+5abee9a3a6  2026-09-17  4.0.0.0  v0.11.2.0: same (a capped walk and the schema twin)
+ca1d6be398  2026-09-17  4.0.0.0  v0.11.2.0: same (a .skilled/specs sentinel under the legacy alias)
+ec33385ae5  2026-09-17  4.0.0.0  v0.11.2.0: the skill lives under .skilled
+6f530bfb81  2026-09-17  4.0.0.0  v0.11.2.0: the skill lives under .skilled (graph metadata paths)
+a8be338ea6  2026-09-17  4.0.0.0  v0.11.2.0: the skill lives under .skilled (paths and documents)
+aa07fae5fa  2026-09-18  4.0.0.0  left out: sk-doc retired install-guide authoring, and the advisor's SKILL.md, one scenario and its skill graph data stopped naming it
+740e36a1a5  2026-09-18  4.0.0.0  left out: every OpenCode plugin moved next to its loader and binds the SDK that runtime installs, a repository-wide change with no advisor behavior named
+63ad140f9b  2026-09-18  4.0.0.0  v0.11.2.0: the advisor finds its repository under either root name. Its one-day side effect, a plugin started in a subfolder that never cached, was fixed by 0dde3965d3 before v4.0.0.0 was tagged
+156753e9d1  2026-09-18  4.0.0.0  left out: one link fixed in a reference document
+a099d0c93c  2026-09-18  4.0.0.0  v0.11.2.0: the hooks find their flags under either root name
+043d70af8a  2026-09-19  4.0.0.0  left out: comment wording only
+0dde3965d3  2026-09-19  4.0.0.0  v0.11.2.0: the OpenCode plugin's cache follows skill changes below the checkout root (its parity and fixture renewals are tests)
+173ce63f59  2026-09-19  4.0.0.0  left out: skill graph data regenerated after sk-code retired its mobile-cli surface
+d5c3d08fdd  2026-09-19  4.0.0.0  left out: same, one alias cleared
+099990cf34  2026-09-20  4.0.0.0  v0.11.2.0: cli-jev recommendations carry a compiled route by default
+ad44092f36  2026-09-22  4.0.0.1  v0.11.2.0: Pi's skill brief is back, and a changed suggestion reaches Pi again
+a38b3af471  2026-09-22  4.0.0.1  left out: one comment in the Pi prompt advisor and one README line
+c947fcc19c  2026-09-22  4.0.0.1  merge of a38b3af471, nothing of its own
+f5a89115b1  2026-09-22  4.0.0.1  v0.11.2.0: sk-design recommendations carry a compiled route by default
+89569a7f81  2026-09-23  4.0.0.1  v0.11.2.0: a changed suggestion reaches Pi again (the restored dedup return), and the OpenCode status tool reports compiled routing again. Its env-name half is left out: the commit says behavior is unchanged
+bd269228cb  2026-09-23  4.0.0.1  merge of 89569a7f81, nothing of its own
+2dbaa8fd66  2026-09-23  4.0.0.1  merge, its advisor change is regenerated skill graph data
+2f5fc94ef2  2026-09-23  4.0.0.1  left out: routing baselines re-captured, tests only
+429c95d6c0  2026-09-23  4.0.0.1  left out: a dead test drill deleted and the docs that named it
+d8ff1d3bc4  2026-09-26  4.0.0.2  the advisor changelog itself, rewritten in the current format
+3fce512201  2026-09-26  4.0.0.2  v0.12.0.0: the command inventory lists /create:goal, so its freshness check passes again
+bc111f2af5  2026-09-26  4.0.0.2  p030 v0.12.0.0: a slow advisor no longer empties the turn, and diagnostics name the runtime
+3a33a5ea47  2026-09-26  4.0.0.2  p030 v0.12.0.0: casual prompts skip the advisor, and the hook asks only for what it reads
+e18d6073b8  2026-09-26  4.0.0.2  p030 v0.12.0.0: a turn without a suggestion says why
+e1e4b1227a  2026-09-26  4.0.0.2  p030 v0.12.0.0: repeated transforms stay suppressed
+a6ef03bae7  2026-09-26  4.0.0.2  p030 v0.12.0.0: Pi reads the budget the way the hook does
+6b0a01f72b  2026-09-26  4.0.0.2  p030 v0.12.0.0: docs that match the hook
+fa4f76d881  2026-09-26  4.0.0.2  p030 left out: the leaf manifest lists the new catalog leaf, routing metadata only
+cd0df4a38e  2026-09-27  4.0.0.2  p030 v0.12.0.0: the healthy advisor stays up, a sandboxed advisor stays in its sandbox, OpenCode loads the plugin, a switched-off advisor names its flag and six advisor scenarios check what they can see. Its scenario 433 part is in system-spec-kit v4.1.4.0
+9ccb4dd416  2026-09-27  4.0.0.2  p030 v0.12.0.0: prompts stay out of the process list, long prompts get a route, advisor_validate accepts every runtime and the logs are private. Its Codex, deep-loop and Pi parts are in cli-codex v1.9.5.0, cli-external-orchestration v1.7.1.0, deep-loop-runtime v1.5.1.0, deep-review v1.11.1.0, deep-research v1.15.1.0 and the v4.0.0.2 release notes
+8036425eaa  2026-09-27  4.0.0.2  p030 left out on the advisor side: an unused import dropped and comments and doc passages reworded. Its create.sh and drift-guard parts are in system-spec-kit v4.1.4.0 and sk-code-opencode v1.0.1.0
+094cdb9f8a  2026-09-27  4.0.0.2  the advisor changelog itself, search metadata completed
+5a37ff619b  2026-09-28  4.0.0.2  p030 v0.12.0.0: the sandbox scenarios clean up without a signal. Its Devin part is in cli-devin v1.4.5.0, written with that phase
+4aafbde035  2026-09-28  4.0.0.2  v0.12.0.0: the catalog states the shim's 2,200 ms cap
+06272727c3  2026-09-28  4.0.0.2  p030 v0.12.0.0: the CP-003 and CP-004 teardowns remove the sandbox only once nothing holds a file open there. Its scenario 433 part is in system-spec-kit v4.1.4.0
