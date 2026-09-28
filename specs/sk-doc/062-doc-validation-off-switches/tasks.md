@@ -92,6 +92,7 @@ Added after the deep review of 2026-09-28 (`review/review-report.md`, CONDITIONA
 Added when the operator asked for a review of the v4.0.0.2 entry and a release tag. Packets 062 and 067 both wrote into the entry, so both record the review.
 
 - [x] T026 Review the v4.0.0.2 entry against the changelog contract and the 172 commits since `v4.0.0.1`, then fix what the review found (`.skilled/changelog/skilled/v4.0.0.2.md`) (evidence: the review found five user-visible changes missing, a topic phrase carrying a version number, four topic phrases where the contract asks for one or two and seven topical sections. The entry now covers all five, keeps two topic phrases and has six sections. It passes `validate_document.py` with 0 issues and `hvr_scan.py` with 0 hard blockers, and every link resolves)
+- [x] T027 Tag and publish v4.0.0.2 through the changelog mode's release step, with the operator's approval (evidence: all ten CI workflows passed on `68dd665c5d` first. The annotated tag `v4.0.0.2` peels to `68dd665c5d` on origin, and the release, titled with the tag and the entry's editorial title, is published as Latest, neither draft nor pre-release. Its body matches the entry without frontmatter and title plus the full-changelog line, 25,277 characters)
 <!-- /ANCHOR:phase-5 -->
 
 ---
