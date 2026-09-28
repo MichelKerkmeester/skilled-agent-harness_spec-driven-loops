@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7294,
+    "missing-frontmatter": 7295,
     "non-yaml-frontmatter": 2,
-    "ok": 12332,
+    "ok": 12334,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23314,
+  "documentsScanned": 23317,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "fdebd12ad1be6133cd344556b5bcdc81ce8736127474d99919f70150342ca67f",
+  "manifestHash": "7bc9bd5b237475f1f7d4c97fd6614aa83f170c717a8246ea21d5d55f15128bf2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32084,
+      "ok": 32089,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -34864,6 +34864,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
