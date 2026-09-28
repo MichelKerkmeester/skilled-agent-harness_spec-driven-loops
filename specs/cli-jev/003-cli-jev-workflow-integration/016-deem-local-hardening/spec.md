@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 16: deem-local-hardening"
-description: "The local Deem server answers any web page with Access-Control-Allow-Origin: * and no authentication, its access log is off, DEEM_N_ORDERS has no recorded decision and deem-ctl exists only as one unversioned file. The operator answered all four on 2026-09-28: accept the exposure with a revisit trigger, turn the access log on, hold DEEM_N_ORDERS at 1 and keep a reviewed copy of deem-ctl in git. This phase carries out those answers."
+description: "The local Deem server answers any web page with Access-Control-Allow-Origin: * and no authentication, its access log was off, DEEM_N_ORDERS had no recorded decision and deem-ctl existed only as one unversioned file. The operator answered all four on 2026-09-28: accept the exposure with a revisit trigger, turn the access log on, hold DEEM_N_ORDERS at 1 and keep a reviewed copy of deem-ctl in git. This phase carried out those answers, and the build is in 10697dcceb."
 trigger_phrases:
   - "deem cors exposure"
   - "deem access log"
@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -54,7 +54,7 @@ This is **Phase 16** of the Owner fixes and follow-ups found during the classifi
 - A reviewed copy of `deem-ctl` at `../007-classifier-deep-research/context/deem-ctl`, equal to the live file by `cmp` (Q4 option B).
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- Not done. The parent packet has no `../changelog/` folder and no phase of this packet wrote one, so there was no matching file to refresh at close.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -63,7 +63,7 @@ This is **Phase 16** of the Owner fixes and follow-ups found during the classifi
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The local Deem server sends `Access-Control-Allow-Origin: *` on every answer (`serve/deem_server.py:809`) and on every preflight (`:837`) and checks no credential, so any web page open in the operator's browser can post questions to `127.0.0.1:8300` and read the answers. That exposes compute, not data. Nobody can tell after the fact who called the server, because the access log is off unless `DEEM_ACCESS_LOG` is set (`deem_server.py:794-800`) and `deem-ctl` overwrites `server.log` on every start (`deem-ctl:120`), which is why the research left open question 52 UNKNOWN (`research.md:1175`). `DEEM_N_ORDERS` stays at its default of 1 with no recorded decision, and `deem-ctl` lives only at `~/.local/share/deem/bin/deem-ctl` with no version history.
+The local Deem server sends `Access-Control-Allow-Origin: *` on every answer (`serve/deem_server.py:809`) and on every preflight (`:837`) and checks no credential, so any web page open in the operator's browser can post questions to `127.0.0.1:8300` and read the answers. That exposes compute, not data. Before this phase nobody could tell after the fact who called the server, because the access log is off unless `DEEM_ACCESS_LOG` is set (`deem_server.py:794-800`) and `deem-ctl` overwrote `server.log` on every start (`deem-ctl:120` in the version this phase replaced, now `:123` with `>>`). That is why the research left open question 52 UNKNOWN (`research.md:1175`). `DEEM_N_ORDERS` stayed at its default of 1 with no recorded decision, and `deem-ctl` lived only at `~/.local/share/deem/bin/deem-ctl` with no version history.
 
 ### Purpose
 Each of the four gaps has an operator decision on record with a named rollback, and the server log can answer whether anything called Deem during a given window.
@@ -79,14 +79,14 @@ Each of the four gaps has an operator decision on record with a named rollback, 
 | Surface | Owner | Contract the build follows |
 |---------|-------|----------------------------|
 | `~/.local/share/deem/bin/deem-ctl` | This packet. The orchestrator wrote it on 2026-09-27 | Its own header (`deem-ctl:1-18`): usage, exit codes 0 to 4. `shellcheck` clean, as `deem-local.md:69` records |
-| `~/.local/share/deem/src/` (`serve/deem_server.py` and the rest) | LibertAI, GitHub `Libertai/deem`, checked out at `6755b30` (2026-09-25) | Not edited without the operator's permission. `deem-ctl update` moves this checkout with `git checkout --detach` (`deem-ctl:138`) |
+| `~/.local/share/deem/src/` (`serve/deem_server.py` and the rest) | LibertAI, GitHub `Libertai/deem`, checked out at `7cf293f` since the scheduled update of 2026-09-28T00:15:57Z (it was `6755b30`, 2026-09-25, at planning) | Not edited without the operator's permission. `deem-ctl update` moves this checkout with `git checkout --detach` (`deem-ctl:141`) |
 | `~/Library/LaunchAgents/com.skilled.deem-update.plist` | This packet | Unchanged by this phase |
 | `../007-classifier-deep-research/context/deem-local.md` | This packet | The fact sheet phase 008 cites. One pointer line only |
-| `../007-classifier-deep-research/context/deem-ctl` | This packet | Does not exist yet. A reviewed copy of the live `deem-ctl`, documentation only, kept equal to it by `cmp` (Q4 option B) |
+| `../007-classifier-deep-research/context/deem-ctl` | This packet | Added in `10697dcceb`, mode `100755`. A reviewed copy of the live `deem-ctl`, documentation only, kept equal to it by `cmp` (Q4 option B) |
 
 ### Collision check
 
-`git log -5` on `../007-classifier-deep-research/context/deem-local.md` shows `00480a8d5c`, `506e4e6430` and `525ec8244a`, all 2026-09-27 and all round-3 research commits. `../008-cli-classifier-hub/` shows only `00480a8d5c`. Nothing under `~/.local/share/deem/` is in a repository, so git has no history for it. The in-flight work to avoid is the launchd schedule, which runs `deem-ctl update` every 21,600 s and at login (the plist's `StartInterval`) and can restart the server or move `src/` mid-build. The parent `../spec.md` has uncommitted edits from its own leaf. This phase never touches it.
+At planning, `git log -5` on `../007-classifier-deep-research/context/deem-local.md` showed `00480a8d5c`, `506e4e6430` and `525ec8244a`, all 2026-09-27 and all round-3 research commits. `../008-cli-classifier-hub/` shows only `00480a8d5c`. Nothing under `~/.local/share/deem/` is in a repository, so git has no history for it. The in-flight work to avoid is the launchd schedule, which runs `deem-ctl update` every 21,600 s and at login (the plist's `StartInterval`) and can restart the server or move `src/` mid-build. The parent `../spec.md` had uncommitted edits from its own leaf. This phase never touches it. At build time the collision was a closure leaf editing `../008-cli-classifier-hub/` docs, which the orchestrator session committed as `9aea8cdc56`, and no scheduled update ran during the build (`update.log` still ended at `2026-09-28T06:15:58Z current`).
 
 ### In Scope
 - Record the operator's acceptance of the CORS exposure (Q1 option C) with its revisit trigger. The server stays as it is.
@@ -97,8 +97,8 @@ Each of the four gaps has an operator decision on record with a named rollback, 
 ### Out of Scope
 - Any patch to Deem's code, a launcher or a proxy. Q1's answer is C, so each waits for its revisit trigger and a new operator yes.
 - A copy of `deem-ctl` inside `cli-deem` (Q4 option C, not chosen).
-- Log rotation. The log grows by about 70 bytes per request (an estimate from the line format in section 10), and no live caller exists yet. Section 6 records the growth risk.
-- The `stop` then `start` port race that `research.md:293` infers from `deem-ctl:127-132`. It is a separate defect and not one of the four items.
+- Log rotation. The log grows by about 70 bytes per request (an estimate from the line format in section 10, and the build measured 73 bytes for a `POST /v1/systemone` line), and no live caller exists yet. Section 6 records the growth risk.
+- The `stop` then `start` port race that `research.md:293` infers from `deem-ctl:127-132` (`:130-135` since this phase's edit). It is a separate defect and not one of the four items.
 - Any change to phase 008's frozen scope. `cli-deem` documents `deem-ctl` and never reimplements it (`../008-cli-classifier-hub/spec.md:100`, `:156`).
 - Raising `DEEM_N_ORDERS`. The decision is to hold it.
 
@@ -106,10 +106,10 @@ Each of the four gaps has an operator decision on record with a named rollback, 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `~/.local/share/deem/bin/deem-ctl` | Modify | Add `DEEM_ACCESS_LOG=1` to the server's environment in `start_server` (`:118-120`) and append to `server.log` instead of overwriting it. Approved by the operator (Q2), and only after a backup copy |
-| `~/.local/share/deem/bin/deem-ctl.bak-<date>` | Create | The backup the rollback restores. Removed at close once the operator confirms |
+| `~/.local/share/deem/bin/deem-ctl` | Modify | Add `DEEM_ACCESS_LOG=1` to the server's environment in `start_server` (`:118-120` before the edit, now the comment at `:118-119` and the command at `:120-123`) and append to `server.log` instead of overwriting it. Approved by the operator (Q2), and only after a backup copy |
+| `~/.local/share/deem/bin/deem-ctl.bak-2026-09-28` | Create | The backup the rollback restores. It stays until the operator confirms its removal |
 | `~/.local/share/deem/src/serve/deem_server.py` | Unchanged | Q1's answer is C, accept. No patch, launcher or proxy |
-| `../007-classifier-deep-research/context/deem-local.md` | Modify | One line after the Exposure paragraph (`:73`) that points to this phase's recorded decisions |
+| `../007-classifier-deep-research/context/deem-local.md` | Modify | One line after the Exposure paragraph (`:73`) that points to this phase's recorded decisions. It landed at `:75`, after the blank line |
 | `../007-classifier-deep-research/context/deem-ctl` | Create | The reviewed copy of the live `deem-ctl` after the Q2 edit (Q4 option B). `cmp` of the two exits 0. It is the one new file this phase adds outside its own folder |
 | `spec.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md` in this folder | Modify | Record the answers and the evidence |
 <!-- /ANCHOR:scope -->
@@ -158,9 +158,9 @@ Each of the four gaps has an operator decision on record with a named rollback, 
 | Dependency | The operator's answers | None now. All four were answered on 2026-09-28 | Section 10 records each answer. The access log does not depend on the CORS answer |
 | Dependency | The served instance for live checks | The build's live checks cannot run | The orchestrator starts it with `deem-ctl start`. No feature calls it |
 | Risk | The six-hourly update restarts the server or moves `src/` during the build | Med | Read the tail of `update.log` first. Write the new `deem-ctl` to a temp file and `mv` it into place, so a scheduled run never reads a half-written script |
-| Risk | A later in-place patch to `deem_server.py` meets an upstream change to the same file | None now, because Q1's answer is C. High for option A in place once the revisit trigger fires | `switch_to` sets `models/current` before `git checkout --detach` (`deem-ctl:137-138`). A checkout refused over a local edit would stop `update` under `set -e` with the server already stopped (inferred from `deem-ctl:20`, `:177-178`, not tested). Section 10 prefers a launcher over an in-place edit for that reason |
+| Risk | A later in-place patch to `deem_server.py` meets an upstream change to the same file | None now, because Q1's answer is C. High for option A in place once the revisit trigger fires | `switch_to` sets `models/current` before `git checkout --detach` (`deem-ctl:140-141`). A checkout refused over a local edit would stop `update` under `set -e` with the server already stopped (inferred from `deem-ctl:20`, `:180-181`, not tested). Section 10 prefers a launcher over an in-place edit for that reason |
 | Risk | An `Origin` refusal blocks a legitimate caller | None now, because Q1's answer is C and nothing is refused | `curl`, Python `urllib` and the planned Node client are not browsers. Whether Node's `fetch` sends `Origin` is UNKNOWN, so a later option A or B checks it against a local listener first. Deem's own playground (`src/playground/index.html:910`, `:1075`) runs in a browser and would need its origin allowed if the operator ever serves it |
-| Risk | `server.log` grows without bound | Low | About 70 bytes per request. Revisit when `du -k` passes 10,240 KB or when a live hook starts calling Deem |
+| Risk | `server.log` grows without bound | Low | About 70 bytes per request, 73 measured for a `POST /v1/systemone` line. Revisit when `du -k` passes 10,240 KB or when a live hook starts calling Deem |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -173,7 +173,7 @@ Each of the four gaps has an operator decision on record with a named rollback, 
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: The access log adds no measurable latency to a `choice`. The build compares `choice` p50 over 50 calls before and after against the 60 to 65 ms in `deem-local.md:36`, `:85`, and a rise over 5 ms reverts the log.
+- **NFR-P01**: The access log adds no measurable latency to a `choice`. The build compares `choice` p50 over 50 calls before and after the change in the same session, and a rise over 5 ms reverts the log. The 60 to 65 ms in `deem-local.md:36`, `:87` was stale by the build: the same-session baseline with the log off was 72.9 and 74.8 ms.
 - **NFR-P02**: `deem-ctl start` still reaches a healthy server inside its 120-try wait (`deem-ctl:72-81`).
 
 ### Security
@@ -198,7 +198,7 @@ Each of the four gaps has an operator decision on record with a named rollback, 
 ### Error Scenarios
 - External service failure: if the server fails to start after the `deem-ctl` edit, `deem-ctl start` exits 4 and the rollback restores the backup.
 - Network timeout: not applicable. Every check here targets `127.0.0.1`.
-- Concurrent access: `deem-ctl`'s own health polling and the update smoke decision (`deem-ctl:85-89`) also write log lines. A window count must subtract the `update.log` entries at the same timestamps.
+- Concurrent access: `deem-ctl`'s own health polling and the update smoke decision (`deem-ctl:85-89`) also write log lines, and so does each `deem-ctl status`, one `GET /health` apiece. A window count must subtract the `update.log` entries at the same timestamps and any `deem-ctl` run in the window.
 
 ### State Transitions
 - Partial completion: REQ-001 closes on the recorded answers alone. The two approved changes, Q2's access log and Q4's copy, are independent, but the copy is taken after the log edit so `cmp` compares the final file.
@@ -230,11 +230,11 @@ These are the four operator decisions. The operator answered all four on 2026-09
   - C. Accept. No change. Every planned Deem caller is an offline arm run by hand (002, 017). Revisit trigger: before any hook calls Deem live, because a page holding the single inference lock (`deem_server.py:201`, `:236`) would push a hook past its deadline. Rollback: none needed.
   - Recommendation (judgment): C now, with A's launcher as the plan when the revisit trigger fires. The exposure is compute only, and each fix adds a part the six-hourly update must survive.
   - Operator answer (2026-09-28): C, accept. No patch, launcher or proxy, and the server keeps its header. Revisit trigger: before any hook calls Deem live, when A's launcher becomes the plan and goes back to the operator for a yes.
-- **Q2 Access log.** No patch is needed: the server writes an access line to stderr when `DEEM_ACCESS_LOG` is set (`deem_server.py:794-800`), and `deem-ctl` already sends stderr to `server.log` (`deem-ctl:120`). The change is `DEEM_ACCESS_LOG=1` in `start_server`'s environment plus `>>` in place of `>`. Each line reads `127.0.0.1 - - [time] "POST /v1/systemone HTTP/1.1" 200 -`. Every caller shows as `127.0.0.1`, so the log proves whether and when calls happened, not which process made them. A caller's own record, such as phase 002's `calls.jsonl`, is what attributes a call. Rollback: restore the `deem-ctl` backup and restart.
+- **Q2 Access log.** No patch is needed: the server writes an access line to stderr when `DEEM_ACCESS_LOG` is set (`deem_server.py:794-800`), and `deem-ctl` already sends stderr to `server.log` (`deem-ctl:120` at planning, `:123` after the edit). The change is `DEEM_ACCESS_LOG=1` in `start_server`'s environment plus `>>` in place of `>`. Each line reads `127.0.0.1 - - [time] "POST /v1/systemone HTTP/1.1" 200 -`. Every caller shows as `127.0.0.1`, so the log proves whether and when calls happened, not which process made them. A caller's own record, such as phase 002's `calls.jsonl`, is what attributes a call. Rollback: restore the `deem-ctl` backup and restart.
   - Operator answer (2026-09-28): on. `DEEM_ACCESS_LOG=1` goes into `start_server`'s environment and `>>` replaces `>`.
-- **Q3 `DEEM_N_ORDERS`.** Hold at 1. Measured p50 at 1, 2 and 4 orders: about 60, 94 to 100 and 166 to 168 ms (`deem-local.md:93-97`). The setting is server-wide and permutes `choice` questions only (`deem_server.py:665-671`), so it cannot change R21's accuracy, which phase 002 measures with `noul` calls. The result that reopens it is phase 002's `--deem` order-flip rate over its three caller-side rotations: above the 0.10 that `keep` allows, averaging may help, and a caller can still send its own permuted requests, as research row 102 recommends. Rollback: none needed.
+- **Q3 `DEEM_N_ORDERS`.** Hold at 1. Measured p50 at 1, 2 and 4 orders: about 60, 94 to 100 and 166 to 168 ms (`deem-local.md:95-99`). The setting is server-wide and permutes `choice` questions only (`deem_server.py:665-671`), so it cannot change R21's accuracy, which phase 002 measures with `noul` calls. The result that reopens it is phase 002's `--deem` order-flip rate over its three caller-side rotations: above the 0.10 that `keep` allows, averaging may help, and a caller can still send its own permuted requests, as research row 102 recommends. Rollback: none needed.
   - Operator answer (2026-09-28): hold `DEEM_N_ORDERS` at 1. Only phase 002's `--deem` order-flip rate above 0.10 reopens it.
-- **Q4 Versioned home for `deem-ctl`.** Two versions are confirmed, a 208-line pre-run copy and the 250-line live file (`research.md:164`). The count of three changes on 2026-09-27 is the orchestrator's and is not confirmed here.
+- **Q4 Versioned home for `deem-ctl`.** Two versions were confirmed at planning, a 208-line pre-run copy and the 250-line file that was live until this phase (`research.md:164`). This phase's edit made the live file 253 lines, and that version is the reviewed copy in git. The count of three changes on 2026-09-27 is the orchestrator's and is not confirmed here.
   - A. Leave it unversioned. The dated backups from this phase are the only history.
   - B. A reviewed copy in this packet beside the fact sheet, at `../007-classifier-deep-research/context/deem-ctl`, with a `cmp` check against the live file. It stays documentation, so phase 008's scope is untouched.
   - C. A copy as an asset of `cli-deem`. This amends phase 008's frozen file list, even though a copy does not reimplement `deem-ctl`.

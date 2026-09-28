@@ -38,14 +38,14 @@ Every item was an operator decision first, and the operator answered Q1 to Q4 of
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented. `spec.md` sections 2 and 3
+- [x] Success criteria measurable. SC-001 and SC-002, each checked by a command in `acceptance-criteria.md`
+- [x] Dependencies identified. The operator's four answers were recorded before the build, and the served instance was up at the baseline (`deem-ctl status` exit 0, `torch`)
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met. `acceptance-criteria.md`, 6 of 6 Met
+- [x] Tests passing (if applicable). No test suite covers `deem-ctl`. `shellcheck` and `bash -n` exit 0, and every live check in `tasks.md` Phase 3 passed
+- [x] Docs updated (spec/plan/tasks). The closure pass of 2026-09-28 recorded the build evidence and corrected the stale premises
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -57,7 +57,7 @@ Every item was an operator decision first, and the operator answered Q1 to Q4 of
 Other: a local service run by one control script, with a launchd schedule that updates it.
 
 ### Key Components
-- **`deem-ctl`**: starts, stops, updates and rolls back the server. Its `start_server` (`deem-ctl:109-125`) sets the server's environment and redirects its output, so it is the one place the access log is switched on.
+- **`deem-ctl`**: starts, stops, updates and rolls back the server. Its `start_server` (`deem-ctl:109-128`) sets the server's environment and redirects its output, so it is the one place the access log is switched on.
 - **`serve/deem_server.py`**: LibertAI's server. `DeemHandler.log_message` writes the access line only when `DEEM_ACCESS_LOG` is set (`:794-800`). `_send_json` and `do_OPTIONS` send the wildcard CORS header (`:809`, `:837`).
 - **`com.skilled.deem-update`**: runs `deem-ctl update` every 21,600 s and at login. It reaches `start_server`, so it inherits the access-log setting with no change of its own.
 
@@ -74,10 +74,10 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `deem-ctl` `start_server` (`:109-125`) | Sets the server's environment and overwrites `server.log` | Update: add `DEEM_ACCESS_LOG=1`, change `>` to `>>` | `grep -n 'DEEM_ACCESS_LOG=1' deem-ctl` returns one line. `shellcheck deem-ctl` exits 0 |
+| `deem-ctl` `start_server` (`:109-128`) | Sets the server's environment. It overwrote `server.log` before this phase | Update: add `DEEM_ACCESS_LOG=1`, change `>` to `>>` | `grep -n 'DEEM_ACCESS_LOG=1' deem-ctl` returns one line. `shellcheck deem-ctl` exits 0 |
 | `deem_server.py` `log_message` (`:794-800`) | Writes the access line when the variable is set | Unchanged | `git -C ~/.local/share/deem/src status --porcelain` prints nothing |
 | `deem_server.py` CORS headers (`:809`, `:837`) | Allows every origin | Unchanged. Q1's answer is C, accept | A `/health` response still carries `Access-Control-Allow-Origin: *`, and `git -C ~/.local/share/deem/src status --porcelain` prints nothing |
-| `deem-ctl` `update` and `rollback` (`:145-225`) | Restart the server through `start_server` | Unchanged. They inherit the setting | A restart keeps the earlier log lines |
+| `deem-ctl` `update` and `rollback` (`:148-228`) | Restart the server through `start_server` | Unchanged. They inherit the setting | A restart keeps the earlier log lines |
 | Phase 008's lifecycle reference (Planned) | Documents `deem-ctl` commands | Not a consumer of the change. No command or exit code changes | `git diff --stat -- ../008-cli-classifier-hub` is empty |
 | `deem-local.md` (`:73`) | States that closing the exposure is the operator's call | Update: one pointer line to section 10 of this phase | `grep -n '016-deem-local-hardening' deem-local.md` returns one line |
 | `../007-classifier-deep-research/context/deem-ctl` | Does not exist | Create: the reviewed copy of the edited `deem-ctl` (Q4 option B) | `cmp` of the live file and the copy exits 0 |
@@ -100,7 +100,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Step | Observable check |
 |------|------------------|
 | Confirm the operator's answers of 2026-09-28 are recorded | `grep -c 'Operator answer: pending' spec.md` prints 0 |
-| Back up `deem-ctl` | `cmp ~/.local/share/deem/bin/deem-ctl ~/.local/share/deem/bin/deem-ctl.bak-<date>` exits 0 before the edit |
+| Back up `deem-ctl` | `cmp ~/.local/share/deem/bin/deem-ctl ~/.local/share/deem/bin/deem-ctl.bak-2026-09-28` exits 0 before the edit |
 | Switch the access log on (Q2) | After one `/health` request and one restart, the request's line is still in `server.log` |
 | Confirm the Q1 acceptance | Q1's answer line names the revisit trigger, and a `/health` response still carries `Access-Control-Allow-Origin: *` |
 | Copy the edited `deem-ctl` (Q4 option B) | `cmp ~/.local/share/deem/bin/deem-ctl ../007-classifier-deep-research/context/deem-ctl` exits 0 |
@@ -129,7 +129,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | The operator's answers to Q1 to Q4 | Internal | Green | Answered on 2026-09-28 and recorded in `spec.md` section 10 |
-| The served Deem instance at `8cbabbb` and `6755b30` | External | Green | The live checks cannot run. `deem-ctl start` brings it up |
+| The served Deem instance at `8cbabbb` and `7cf293f` (source `6755b30` at planning, moved by the scheduled update of 2026-09-28T00:15:57Z) | External | Green | The live checks cannot run. `deem-ctl start` brings it up |
 | `shellcheck` at `/opt/homebrew/bin/shellcheck` | External | Green | The syntax check falls back to `bash -n` |
 | Phase 002's `--deem` order-flip rate | Internal | Yellow | Only the Q3 revisit waits on it. This phase does not |
 <!-- /ANCHOR:dependencies -->
@@ -140,7 +140,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: `deem-ctl start` exits 4, `deem-ctl status` does not print backend `torch`, `choice` p50 rises more than 5 ms or the operator withdraws an answer.
-- **Procedure**: `cp -p ~/.local/share/deem/bin/deem-ctl.bak-<date> ~/.local/share/deem/bin/deem-ctl`, then `deem-ctl stop` and `deem-ctl start`. For Q4, revert the commit that added `../007-classifier-deep-research/context/deem-ctl`. Q1's answer C changed nothing, so it needs no rollback. The appended lines in `server.log` are harmless and stay.
+- **Procedure**: `cp -p ~/.local/share/deem/bin/deem-ctl.bak-2026-09-28 ~/.local/share/deem/bin/deem-ctl`, then `deem-ctl stop` and `deem-ctl start`. The rehearsal of 2026-09-28 ran it as stop, restore and start, and it restored through a temp copy and `mv -f` so a scheduled run never reads a half-written script (`spec.md` section 6). For Q4, revert the commit that added `../007-classifier-deep-research/context/deem-ctl`. Q1's answer C changed nothing, so it needs no rollback. The appended lines in `server.log` are harmless and stay.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -183,15 +183,15 @@ No Config step runs, because Q1's answer is C and nothing needs an `Origin` chec
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Backup created (if data changes). `deem-ctl.bak-2026-09-28`, `cmp` exit 0 against the live file before the edit
+- [x] Feature flag configured. `DEEM_ACCESS_LOG=1` in `start_server`, `grep -c` prints 1
+- [ ] Monitoring alerts set. No alert exists. The monitoring below is manual
 
 The backup is the dated copy of `deem-ctl`. The feature flag is `DEEM_ACCESS_LOG` itself. The monitoring is `deem-ctl status` and the tail of `update.log`.
 
 ### Rollback Procedure
 1. Stop the server: `deem-ctl stop`.
-2. Restore the backup: `cp -p ~/.local/share/deem/bin/deem-ctl.bak-<date> ~/.local/share/deem/bin/deem-ctl`. Q1 added no launcher or proxy file.
+2. Restore the backup: `cp -p ~/.local/share/deem/bin/deem-ctl.bak-2026-09-28 ~/.local/share/deem/bin/deem-ctl`. Q1 added no launcher or proxy file.
 3. Verify: `deem-ctl start`, then `deem-ctl status` exits 0 and prints backend `torch`.
 4. Tell the operator which answer was rolled back and why, and set that answer back to pending in `spec.md` section 10.
 
