@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/062-doc-validation-off-switches"
-    last_updated_at: "2026-09-28T08:20:00Z"
+    last_updated_at: "2026-09-28T11:08:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Met all seven criteria with observed evidence"
-    next_safe_action: "Commit the packet with the code it verifies"
+    recent_action: "Met AC-008, the comment rule in all four readers of hook-flags.env"
+    next_safe_action: "None, the packet is complete"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
@@ -63,7 +63,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-004 | REQ-004 | Given `SKDOC_SKIP_VALIDATION` on, When a mode that writes or tests the tool runs, Then it still runs | `test_writers_and_self_tests_ignore_the_switch`: `--fix --dry-run`, `--self-test` and `apply` with an empty path list all run. The engine modules that import `check_no_new_snake_case` pass their own suites | Met | - |
 | AC-005 | REQ-005 | Given a switch on, When the caller asked for JSON, Then stdout holds one parseable line | `validate.sh` prints a report with `skipped: true`, one `VALIDATION_SKIPPED` info entry and no errors. The sk-doc validators print `{"skipped": true, "valid": true, ...}` for `--json`, `--format json` and `--format=json` | Met | - |
 | AC-006 | REQ-006 | Given a CI run, When any workflow validates, Then neither switch can be on | `rg -n 'SKIP_VALIDATION\|HOOK_FLAGS_CONFIG\|SPECKIT_VALIDATION' .github` finds 0 lines, and `.skilled/hooks/hook-flags.env` is untracked and ignored by `.gitignore:352` | Met | - |
-| AC-007 | REQ-007 | Given someone who wants validation off, When they read the docs, Then they find both switches, how to save them and what stays on | `ENV-REFERENCE.md`, `path-scoped-rules.md`, `validation-rules.md`, `spec-validation-rule-engine.md`, `validation-and-enforcement.md`, `core-standards.md`, both hooks READMEs and `hook-flags.env.example`. All 9 edited docs pass `validate_document.py` with no new finding, and their HVR findings match HEAD. `test_the_example_switch_lines_work_once_uncommented` proves the example's two lines turn the switches on once uncommented | Met | - |
+| AC-007 | REQ-007 | Given someone who wants validation off, When they read the docs, Then they find both switches, how to save them and what stays on | `ENV-REFERENCE.md`, `path-scoped-rules.md`, `validation-rules.md`, `spec-validation-rule-engine.md`, `validation-and-enforcement.md`, `core-standards.md`, both hooks READMEs and `hook-flags.env.example`. All 9 edited docs pass `validate_document.py` with no new finding, and their HVR findings match HEAD. `test_every_example_line_works_once_uncommented` proves every switch line of the example, the two validation lines included, turns its switch on once uncommented | Met | - |
+| AC-008 | REQ-008 | Given a line of `hook-flags.env` with a comment after its value, When any of the four readers parses it, Then each one reads the value without the comment, and every switch line of the example reads as on once uncommented | The cross-reader test in `hook-flags.test.cjs` holds `hook-flags.cjs`, `hook-flags.sh`, `validation_switch.py` and `check-dist-staleness.sh` to one table, and reverting the rule in any one of them fails it. An example line uncommented as it stands disables its hook in the Node and shell resolvers. The dist checker made 0 calls to its Node helper with `SYSTEM_DIST_FRESHNESS_DISABLED=1  # note` saved, against 1 for the old parser | Met | - |
 
 ### Status values
 
@@ -90,5 +91,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-AC-001 and AC-003 carried the packet: the commit trap is gone at its producer, and all 20 sk-doc format validators skip from either source. The create-diff report validator was left on because it checks that a report is safe to open, not its format. The CI routing gates and the README auditor were left alone because they already have their own bypass or never block.
+AC-001 and AC-003 carried the packet: the commit trap is gone at its producer, and all 20 sk-doc format validators skip from either source. The create-diff report validator was left on because it checks that a report is safe to open, not its format. The CI routing gates and the README auditor were left alone because they already have their own bypass or never block. AC-008 came after close, at the operator's request: the example's lines carry a comment after the value, so the comment rule had to reach every reader of the file for those lines to work as the docs say.
 <!-- /ANCHOR:closure -->
