@@ -1,5 +1,5 @@
 {
-  "manifestHash": "48e81161ef2f816f43630a3cd436321ae0cc0bddebff4cceb277a95049df9e90",
+  "manifestHash": "83e80fa6cb921f349d5ed05dd3485bf1d4eaf0df4bc36fa2bc2862b6ba3335de",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12363,6 +12363,9 @@
     "batched rescue hydration": [
       "batched rescue hydration"
     ],
+    "batched run": [
+      "batched run"
+    ],
     "bayesian scorer": [
       "bayesian scorer"
     ],
@@ -16395,6 +16398,9 @@
     "choice judgment": [
       "choice judgment"
     ],
+    "choice selection": [
+      "choice selection"
+    ],
     "chokidar dead dependency": [
       "chokidar dead dependency"
     ],
@@ -16760,6 +16766,9 @@
     ],
     "classifier round 3 synthesis": [
       "classifier round 3 synthesis"
+    ],
+    "classifier routing control": [
+      "classifier routing control"
     ],
     "classifier rpc summary": [
       "classifier RPC summary"
@@ -17145,11 +17154,29 @@
     "cli chrome skin": [
       "cli chrome skin"
     ],
+    "cli classifier 1 0 0 0": [
+      "cli-classifier 1.0.0.0"
+    ],
+    "cli classifier benchmark": [
+      "cli-classifier benchmark"
+    ],
+    "cli classifier benchmark artifacts": [
+      "cli-classifier benchmark artifacts"
+    ],
+    "cli classifier benchmark index": [
+      "cli-classifier benchmark index"
+    ],
+    "cli classifier benchmark reports": [
+      "cli-classifier benchmark reports"
+    ],
     "cli classifier hub": [
       "cli-classifier hub"
     ],
     "cli classifier hub goal": [
       "cli-classifier hub goal"
+    ],
+    "cli classifier hub identity": [
+      "cli-classifier hub identity"
     ],
     "cli classifier hub move verification": [
       "cli-classifier hub move verification"
@@ -17175,8 +17202,14 @@
     "cli classifier merge hub files": [
       "cli-classifier merge hub files"
     ],
+    "cli classifier root router": [
+      "cli-classifier root router"
+    ],
     "cli classifier two modes": [
       "cli-classifier two modes"
+    ],
+    "cli classifier v1 0 0 0": [
+      "cli-classifier v1.0.0.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -17712,6 +17745,15 @@
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
     ],
+    "cli deem 1 0 0 0": [
+      "cli-deem 1.0.0.0"
+    ],
+    "cli deem capabilities": [
+      "cli-deem capabilities"
+    ],
+    "cli deem choice": [
+      "cli-deem choice"
+    ],
     "cli deem client": [
       "cli-deem client"
     ],
@@ -17730,17 +17772,35 @@
     "cli deem fake server tests": [
       "cli-deem fake server tests"
     ],
+    "cli deem feature catalog": [
+      "cli-deem feature catalog"
+    ],
     "cli deem health": [
       "cli-deem health"
     ],
     "cli deem health smoke": [
       "cli-deem health smoke"
     ],
+    "cli deem noul": [
+      "cli-deem noul"
+    ],
     "cli deem planned": [
       "cli-deem planned"
     ],
+    "cli deem readme": [
+      "cli-deem readme"
+    ],
+    "cli deem run": [
+      "cli-deem run"
+    ],
+    "cli deem score": [
+      "cli-deem score"
+    ],
     "cli deem status": [
       "cli-deem status"
+    ],
+    "cli deem v1 0 0 0": [
+      "cli-deem v1.0.0.0"
     ],
     "cli deem verification tasks": [
       "cli-deem verification tasks"
@@ -27712,6 +27772,9 @@
     "dedup bypass": [
       "dedup bypass"
     ],
+    "deem 0 8 v1 label": [
+      "deem-0.8-v1 label"
+    ],
     "deem 0 8b latency memory": [
       "deem 0.8b latency memory"
     ],
@@ -27723,6 +27786,15 @@
     ],
     "deem access log tasks": [
       "deem access log tasks"
+    ],
+    "deem answer fields": [
+      "deem answer fields"
+    ],
+    "deem availability": [
+      "deem availability"
+    ],
+    "deem batch request": [
+      "deem batch request"
     ],
     "deem check health plan": [
       "deem check health plan"
@@ -27742,6 +27814,9 @@
     "deem client results": [
       "deem client results"
     ],
+    "deem commit pair": [
+      "deem commit pair"
+    ],
     "deem cors decision tasks": [
       "deem cors decision tasks"
     ],
@@ -27756,6 +27831,9 @@
     ],
     "deem ctl backup tasks": [
       "deem-ctl backup tasks"
+    ],
+    "deem ctl lifecycle": [
+      "deem-ctl lifecycle"
     ],
     "deem ctl versioning": [
       "deem-ctl versioning"
@@ -27772,8 +27850,14 @@
     "deem hardening tasks": [
       "deem hardening tasks"
     ],
+    "deem health check": [
+      "deem health check"
+    ],
     "deem hub route replay": [
       "deem hub route replay"
+    ],
+    "deem judgment subcommands": [
+      "deem judgment subcommands"
     ],
     "deem local backend verdict": [
       "deem local backend verdict"
@@ -27790,6 +27874,9 @@
     "deem local server": [
       "deem local server"
     ],
+    "deem model pin": [
+      "deem model pin"
+    ],
     "deem n orders decision": [
       "deem n orders decision"
     ],
@@ -27802,11 +27889,32 @@
     "deem node client": [
       "deem node client"
     ],
+    "deem option cap": [
+      "deem option cap"
+    ],
+    "deem ordered scale": [
+      "deem ordered scale"
+    ],
     "deem phase reconciliation tasks": [
       "deem phase reconciliation tasks"
     ],
+    "deem pick an option": [
+      "deem pick an option"
+    ],
+    "deem question cap": [
+      "deem question cap"
+    ],
+    "deem requalification": [
+      "deem requalification"
+    ],
+    "deem request fields": [
+      "deem request fields"
+    ],
     "deem research round 3 results": [
       "deem research round 3 results"
+    ],
+    "deem routing control": [
+      "deem routing control"
     ],
     "deem search narrowing arm": [
       "deem search narrowing arm"
@@ -27819,6 +27927,15 @@
     ],
     "deem spec track pick": [
       "deem spec track pick"
+    ],
+    "deem update schedule": [
+      "deem update schedule"
+    ],
+    "deem wire contract": [
+      "deem wire contract"
+    ],
+    "deem yes no probability": [
+      "deem yes no probability"
     ],
     "deep": [
       "deep"
@@ -44555,6 +44672,9 @@
     "health chart block": [
       "health chart block"
     ],
+    "health check": [
+      "health check"
+    ],
     "health content text audit": [
       "health content_text audit"
     ],
@@ -47348,6 +47468,9 @@
     ],
     "irreversible task deletion": [
       "irreversible task deletion"
+    ],
+    "is deem up": [
+      "is deem up"
     ],
     "is hook output visible": [
       "is hook output visible"
@@ -50524,6 +50647,15 @@
     ],
     "local ai note generation": [
       "local ai note generation"
+    ],
+    "local classifier hub": [
+      "local classifier hub"
+    ],
+    "local deem client": [
+      "local deem client"
+    ],
+    "local deem judgment": [
+      "local deem judgment"
     ],
     "local embedder process boundary": [
       "local embedder process boundary"
@@ -74347,6 +74479,9 @@
     "roll back council round": [
       "roll back council round"
     ],
+    "roll back deem": [
+      "roll back deem"
+    ],
     "rollback": [
       "rollback"
     ],
@@ -76674,6 +76809,9 @@
     ],
     "score judgment": [
       "score judgment"
+    ],
+    "score level": [
+      "score level"
     ],
     "score levels": [
       "score levels"
@@ -87800,6 +87938,9 @@
     "start sh reaper allowlist": [
       "start.sh reaper allowlist"
     ],
+    "start the deem server": [
+      "start the deem server"
+    ],
     "start timer": [
       "start timer"
     ],
@@ -93501,6 +93642,9 @@
     ],
     "update checklist item": [
       "update checklist item"
+    ],
+    "update deem": [
+      "update deem"
     ],
     "update document": [
       "update document"
