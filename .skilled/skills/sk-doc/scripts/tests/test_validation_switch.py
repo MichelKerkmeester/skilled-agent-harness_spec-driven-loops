@@ -11,6 +11,7 @@ is what made a run pass, and the exemptions pin the modes that must keep running
 
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -62,7 +63,10 @@ def test_the_environment_answers_first_even_when_empty(tmp_path):
 def test_the_file_parser_matches_the_hooks_resolver(tmp_path):
     flags = tmp_path / "hook-flags.env"
     flags.write_bytes(
-        "﻿# comment\r\n\r\nA=1\r\n  B = \"true\" \nC='yes'\nNOEQ\n=novalue\nD=\nE=a=b\nF=\"open\nA=2\n".encode("utf-8")
+        (
+            "﻿# comment\r\n\r\nA=1\r\n  B = \"true\" \nC='yes'\nNOEQ\n=novalue\nD=\nE=a=b\nF=\"open\n"
+            "G=1   # trailing\nH=\"on\" # quoted, then a comment\nI=a#b\nJ= # only a comment\nK='x y'\t# tab\nA=2\n"
+        ).encode("utf-8")
     )
     node = subprocess.run(
         ["node", "-e", "process.stdout.write(JSON.stringify(require(process.argv[1]).loadConfigFile(process.argv[2])))",
@@ -72,27 +76,30 @@ def test_the_file_parser_matches_the_hooks_resolver(tmp_path):
     assert validation_switch.load_config_file(flags) == json.loads(node.stdout)
 
 
-# The docs say to copy the example and uncomment a line, and the parsers keep any
-# text after a value, so a trailing comment on a switch line would leave it off.
-def test_the_example_switch_lines_work_once_uncommented(tmp_path):
-    names = ("SPECKIT_SKIP_VALIDATION", "SKDOC_SKIP_VALIDATION")
+# The docs say to copy the example and uncomment the lines you want, so every
+# switch line must turn its switch on as written, trailing comment and all.
+def test_every_example_line_works_once_uncommented(tmp_path):
     example = REPO_ROOT / ".skilled" / "hooks" / "hook-flags.env.example"
-    lines = [
-        line[2:] if line.startswith(tuple(f"# {name}=" for name in names)) else line
-        for line in example.read_text(encoding="utf-8").splitlines()
-    ]
-    assert sum(line.startswith(names) for line in lines) == len(names)
+    switch_line = re.compile(r"^# ([A-Z][A-Z0-9_]*)=")
+    names, lines = [], []
+    for line in example.read_text(encoding="utf-8").splitlines():
+        match = switch_line.match(line)
+        if match:
+            names.append(match.group(1))
+            line = line[2:]
+        lines.append(line)
+    assert {"SPECKIT_SKIP_VALIDATION", "SKDOC_SKIP_VALIDATION", "SYSTEM_HOOKS_DISABLED"} <= set(names)
     flags = tmp_path / "hook-flags.env"
     flags.write_text("\n".join(lines) + "\n", encoding="utf-8")
     assert validation_switch.skip_source({"HOOK_FLAGS_CONFIG": str(flags)}) == str(flags)
     node = subprocess.run(
         ["node", "-e",
          "const h = require(process.argv[1]); const c = h.loadConfigFile(process.argv[2]);"
-         " process.stdout.write(JSON.stringify(process.argv.slice(3).map((n) => h.isFlagOn(n, {}, c))))",
+         " process.stdout.write(JSON.stringify(process.argv.slice(3).filter((n) => !h.isFlagOn(n, {}, c))))",
          str(HOOK_FLAGS_CJS), str(flags), *names],
         capture_output=True, text=True, check=True,
     )
-    assert json.loads(node.stdout) == [True] * len(names)
+    assert json.loads(node.stdout) == [], "these example lines stay off once uncommented"
 
 
 # ---------------------------------------------------------------------------
