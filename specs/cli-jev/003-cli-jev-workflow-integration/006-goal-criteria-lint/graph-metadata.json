@@ -48,6 +48,10 @@
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
       "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-goal/README.md",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
+      ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
       ".skilled/hooks/goal/lib/goal-slice.cjs",
       ".skilled/commands/create/assets/create-goal-auto.yaml"
     ],
@@ -92,6 +96,18 @@
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
@@ -183,23 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "No machine check tests rules 4 and 5 of `sk-create-goal`",
     "created_at": "2026-09-27T04:39:32Z",
-    "last_save_at": "2026-09-27T09:35:30.424Z",
+    "last_save_at": "2026-09-28T09:21:42.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15e6c8d157f30ab8161cb9100e77aaa4c629274f9a2bf6dcf8cc07f491d5139e",
+    "source_fingerprint": "sha256:b2825a549fee3f3f2a9cc439a0a8f366fcf282b77cf368195d4973e49d10c3c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "07571d0a8938af3324a95a09ea37cd6095b79beecf960bfda180d657387e21a6",
-      "plan.md": "6065aa478edbbfdbacd5264c494c4a20da1056f65e23c1022d4803f29d63ac8f",
-      "tasks.md": "628157dbae7e030222c52ccab3ddf88103951835fe797ddcc7b1759a0b36e758",
-      "implementation-summary.md": "d12d1fd468626b9d52732ed81c2519bb3753a0247f33748572050201221fba45"
+      "spec.md": "be94611d81a0d0936d01ab3cda2bc2d91cfb7f6045cc0ee4f9c2ffc7f92404a6",
+      "plan.md": "aa2f5c9eaebb86c71eb2cd5532d0f3dfa2eade614e4d2b274087dfe05d218a60",
+      "tasks.md": "8a3a38465d1a86794e2b2321cd19697f5794e636a4885b7ea16d1ffba3715f5a",
+      "implementation-summary.md": "5aa1d7d072ca544301eb1a71739c1d701cfd01b461ca1fe9fb2e51a60bce1fe7"
     },
     "last_active_at": null
   }
