@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fe98b1a8637730acbce7ec2583a6bd2f09277a383bb039db0073743ba3982192",
+  "manifestHash": "26e65b67d73ea86fa1151bbb862bb17edde54c2a80f8630c0ebb9d8ae293ba69",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -61766,6 +61766,9 @@
     ],
     "hook flags shell parity": [
       2987
+    ],
+    "hook flags trailing comment": [
+      4593
     ],
     "hook helper skipped fail open": [
       9968
