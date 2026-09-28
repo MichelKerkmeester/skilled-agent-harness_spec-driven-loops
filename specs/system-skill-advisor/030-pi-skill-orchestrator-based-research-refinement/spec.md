@@ -136,6 +136,7 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | 12 | 012-reverify-follow-ups/ | Close the four follow-ups the goal re-verification after phase 11 left: the operator's Devin approval with the cli-devin rule reworded to match, a signal-free sandbox teardown for CP-003 and CP-004 with five CLI reruns of each, CP-004's July record removed and the scenario 457 benchmark record | Complete |
 | 13 | 013-review-follow-ups/ | Close what a fresh Opus review of phase 12 confirmed: scenario 433 gets the signal-free teardown, all three teardown blocks check their variables and `lsof` and remove with `rm -r`, one watched crash test runs and the phase 12 records are corrected. The reruns also traced a false `CHANGED` to the live advisor's own reindex | Complete |
 | 14 | 014-changelog-alignment/ | Align the advisor changelog with the sk-create-changelog contract, write the entries the skill advisor work never got in the advisor and seven other components and add that work to the v4.0.0.2 release notes | Complete |
+| 15 | 015-readme-alignment/ | Check the root README and the skill advisor README against the repository, confirm every suspected drift at its source and fix the confirmed ones | Complete |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 
@@ -163,6 +164,7 @@ R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Ea
 | 011-observation-fixes | 012-reverify-follow-ups | The goal re-verification after phase 11 names each follow-up it left for the operator | The parent goal log lists the follow-ups, and phase 12 `spec.md` records them as FU1 to FU4 |
 | 012-reverify-follow-ups | 013-review-follow-ups | A fresh review of phase 12 names each finding with its file and line | Phase 13 `spec.md` records them as F1 to F11 |
 | 013-review-follow-ups | 014-changelog-alignment | Phase 13 is pushed, and no changelog records packet 030 beyond cli-cursor v1.5.0.0 and cli-devin v1.4.5.0 | Phase 14 `spec.md` names each entry to write and each advisor entry to align |
+| 014-changelog-alignment | 015-readme-alignment | Phase 14 is pushed and the operator asked whether the two READMEs match the repository | Phase 15 `spec.md` names the two READMEs and the claim ledger that records each drift |
 <!-- /ANCHOR:phase-map -->
 
 ---
