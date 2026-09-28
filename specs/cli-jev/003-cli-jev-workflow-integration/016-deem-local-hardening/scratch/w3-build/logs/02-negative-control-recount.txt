@@ -1,0 +1,15 @@
+Mon Sep 28 13:20:25 CEST 2026
+## /usr/bin/grep probe count (negative control, old deem-ctl)
+0
+exit 1
+## /usr/bin/grep any access line
+0
+exit 1
+## NUL bytes in server.log
+     454
+## holders of server.log
+python3.1 82931
+python3.1 82931
+python3.1 84473
+python3.1 84473
+82931

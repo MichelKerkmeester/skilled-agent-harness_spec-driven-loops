@@ -1,0 +1,11 @@
+
+❌ INVALID: specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md
+Document type: readme
+Total issues: 2
+
+🚫 Blocking errors (1):
+  - [missing_required_section] Missing required section: overview
+    Fix: Add section with name containing "overview"
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md, so README rules were applied. Pass --type to choose the rule set.

@@ -1,0 +1,14 @@
+Mon Sep 28 13:31:18 CEST 2026
+9aea8cdc56 docs(specs): close the classifier hub phase with its build evidence
+cdc790c48b chore(system-spec-kit): rebuild the trigger index from committed content
+## git diff --stat 008
+exit 0
+## cmp
+exit 0
+## files in 9aea8cdc56
+specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/goal.md
+specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/graph-metadata.json
+specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/implementation-summary.md
+specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/plan.md
+specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/spec.md
+specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/tasks.md

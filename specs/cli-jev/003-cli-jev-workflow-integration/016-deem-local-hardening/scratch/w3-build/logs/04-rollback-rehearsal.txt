@@ -1,0 +1,42 @@
+Mon Sep 28 13:25:47 CEST 2026
+## update.log tail
+2026-09-28T06:15:58Z current: model 8cbabbb, source 7cf293f
+## 1. stop new-version server
+exit 0
+pid 37605 and log holders gone after 1s
+## 2. restore backup (temp then mv)
+exit 0
+cmp live vs backup exit 0
+## 3. start old version
+running (pid 40952)
+exit 0
+## 4. status after restore
+{"status": "ok", "model": "deem-0.8-v1", "backend": "torch"}
+model 8cbabbb, source 7cf293f
+exit 0
+## old version facts
+0
+     234
+0
+## 5. stop old-version server
+exit 0
+pid 40952 and log holders gone after 1s
+## 6. put new version back (temp then mv)
+exit 0
+cmp live vs reviewed copy exit 0
+## 7. start new version
+running (pid 42460)
+exit 0
+## 8. status
+{"status": "ok", "model": "deem-0.8-v1", "backend": "torch"}
+model 8cbabbb, source 7cf293f
+exit 0
+## ls bin
+total 48
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Sep 28 13:25 .
+drwxr-xr-x@ 13 michelkerkmeester  staff    416 Sep 28 13:25 ..
+-rwxr-xr-x@  1 michelkerkmeester  staff  11359 Sep 28 13:23 deem-ctl
+-rwxr-xr-x@  1 michelkerkmeester  staff  11182 Sep 27 09:38 deem-ctl.bak-2026-09-28
+## log
+     966
+3

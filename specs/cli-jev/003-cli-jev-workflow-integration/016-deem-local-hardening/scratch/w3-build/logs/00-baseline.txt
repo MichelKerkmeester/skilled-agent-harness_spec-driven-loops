@@ -1,0 +1,70 @@
+## date
+Mon Sep 28 13:18:27 CEST 2026
+Mon Sep 28 11:18:27 UTC 2026
+## deem-ctl status
+{"status": "ok", "model": "deem-0.8-v1", "backend": "torch"}
+model 8cbabbb, source 7cf293f
+exit 0
+## shellcheck
+ShellCheck - shell script analysis tool
+version: 0.11.0
+exit 0
+## bash -n
+exit 0
+## grep -c DEEM_N_ORDERS
+0
+exit 1
+## grep -c DEEM_ACCESS_LOG=1
+0
+exit 1
+## rg SERVER_LOG|server.log consumers
+37:readonly SERVER_LOG="${DEEM_HOME}/server.log"
+120:            HF_HUB_OFFLINE=1 nohup "$PYTHON" serve/deem_server.py >"$SERVER_LOG" 2>&1 &
+186:            fail "update failed its health check, and restored model ${model_local:0:7}, source ${src_local:0:7} did not start; the server is down (see ${SERVER_LOG})" 4
+222:        fail "rolled back to model ${model_prev:0:7}, source ${src_prev:0:7}, but the server did not start (see ${SERVER_LOG})" 4
+234:        start) start_server || fail "server failed to start; see ${SERVER_LOG}" 4 ;;
+exit 0
+## src status
+exit 0
+7cf293f
+## same-class producers
+/Users/michelkerkmeester/.local/share/deem/src/serve/deem_server.py:809:        self.send_header("Access-Control-Allow-Origin", "*")
+/Users/michelkerkmeester/.local/share/deem/src/serve/deem_server.py:837:        self.send_header("Access-Control-Allow-Origin", "*")
+exit 0
+## header
+HTTP/1.1 200 OK
+Server: deem-serve/0.1 Python/3.12.11
+Date: Mon, 28 Sep 2026 11:18:28 GMT
+Content-Type: application/json
+Content-Length: 60
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Access-Control-Allow-Headers: Content-Type, Authorization
+
+exit 0
+## ls bin
+total 24
+drwxr-xr-x@  3 michelkerkmeester  staff     96 Sep 27 08:26 .
+drwxr-xr-x@ 13 michelkerkmeester  staff    416 Sep 28 02:15 ..
+-rwxr-xr-x@  1 michelkerkmeester  staff  11182 Sep 27 09:38 deem-ctl
+(eval):12: no matches found: /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl.bak-*
+exit 1
+## cmp live vs copy
+cmp: specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-ctl: No such file or directory
+exit 2
+## pending answers
+0
+exit 1
+## pointer
+exit 1
+## git status
+?? specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/scratch/w3-build/
+exit 0
+cdc790c48b
+## git diff --stat 008
+exit 0
+## wc deem-ctl
+     250 /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl
+f4a6228aef3469d061bc92d5d1985c9e2aa532eaf0240b30eb83f0dcaf0c3a19  /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl
+## server.log
+     234 /Users/michelkerkmeester/.local/share/deem/server.log
