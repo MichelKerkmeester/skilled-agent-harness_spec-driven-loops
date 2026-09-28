@@ -20,6 +20,7 @@ per-turn while scoping per-edit work to the edited file.
 """
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -39,7 +40,9 @@ def _hook_flags_config():
                     continue
                 key, _, val = line.partition("=")
                 key = key.strip()
-                val = val.strip()
+                # A '#' after a space or tab ends the value, as in the hooks'
+                # own resolver, so a line with a trailing comment still counts.
+                val = re.sub(r"[ \t]#.*$", "", val).strip()
                 if len(val) >= 2 and val[0] == val[-1] and val[0] in ("'", '"'):
                     val = val[1:-1]
                 if key:
