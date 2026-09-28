@@ -57,10 +57,10 @@
       ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-skip-switch.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts",
       ".skilled/skills/sk-doc/scripts/tests/test_validation_switch.py",
-      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
-      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts",
+      ".skilled/hooks/README.md"
     ],
     "entities": [
       {
@@ -160,27 +160,27 @@
         "source": "derived"
       },
       {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "name": "progressive-validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh",
         "source": "derived"
       },
       {
-        "name": "path-scoped-rules.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
+        "name": "quality-audit.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh",
         "source": "derived"
       },
       {
-        "name": "validation-rules.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        "name": "strict-pass-freshness.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts",
         "source": "derived"
       },
       {
-        "name": "spec-validation-rule-engine.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
+        "path": ".skilled/hooks/README.md",
         "source": "derived"
       },
       {
@@ -210,8 +210,8 @@
     ],
     "causal_summary": "`SPECKITSKIPVALIDATION` exists but traps commits",
     "created_at": "2026-09-28T07:19:12Z",
-    "last_save_at": "2026-09-28T11:18:51.971Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-28T18:08:08.544Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:303b0efc915fc27840ebac7294a624ca6e40aac527b80609f535096bc3d905a6",
+    "source_fingerprint": "sha256:33e27e19984c377c8cc39a9dad396c1c1e328766d4b3854386391812abf128a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b850ab4f5fa65a573c4188588806ddaad834c4b1a58938aab70c5aa0c8ec52b9",
-      "plan.md": "f70d9b139c1e205ce3df06ce9d837a3636e86754a541e6ef8807023367d576c0",
-      "tasks.md": "80dcb0481670cf006c64f3fe7e1d5380f642c8b8bd2a2fce94bf6a3ab59f4758",
-      "implementation-summary.md": "1518ee683140e07da07f90ed54a2c19032ec50d91328d6d12c98226cd5928dd6"
+      "spec.md": "b5f6c881cab87462c46310d302572e516b681bf06e6ece1e6948ed2c6d9327e8",
+      "plan.md": "5618ff9311d4a8b5334533576d37bcef52a010624f07f884e5479005518be624",
+      "tasks.md": "3d4f1fc1f2595ecc7e158e61e513806883a7f3d57a2047f9c250dbc8cca23f43",
+      "implementation-summary.md": "060aa68f703eef8c709f284e84277c4891eb879a47506f0f4f52028a860fa178"
     },
     "last_active_at": null
   }

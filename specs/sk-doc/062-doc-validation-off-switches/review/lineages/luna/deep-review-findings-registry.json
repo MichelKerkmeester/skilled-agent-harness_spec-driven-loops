@@ -1,0 +1,165 @@
+{
+  "sessionId": "fanout-luna-1790598126829-x9gy4v",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "P1-LUNA-002",
+      "severity": "P1",
+      "title": "Progressive JSON mode merges the skip notice into stdout",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh:262-274",
+      "evidence": "When JSON mode is on, the wrapper captures validate.sh with 2>&1 and prints that capture unchanged when pipeline level 1 is final. validate.sh writes its skip notice to stderr and its JSON report to stdout, so the wrapper's stdout begins with prose and is not parseable JSON. At higher levels the generated JSON uses only the zero exit code and omits a skipped field. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh:262-274] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh:610-672] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:142-172]",
+      "recommendation": "Keep stderr separate from the JSON payload and propagate an explicit skipped status in every progressive JSON response; add wrapper-level coverage for level 1 and the aggregate levels.",
+      "disposition": "active",
+      "findingClass": "cross-consumer",
+      "scopeProof": "The packet's affected-surface table names progressive-validate.sh and says it passes validate.sh output through; the wrapper's JSON branch instead merges stderr with stdout. REQ-005 promises parseable JSON for a skipped JSON run.",
+      "affectedSurfaceHints": [
+        "validate.sh skipped-report producer",
+        "progressive-validate.sh JSON consumer",
+        "machine-readable validation callers"
+      ],
+      "category": "wrapper-json-contract",
+      "content_hash": "92d27331f822f93a046eab61d27ff30a96a28abb7b3b8e0c4362dfae12c1819b",
+      "status": "active",
+      "lineRange": "262-274",
+      "dimensions": [
+        "traceability"
+      ],
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "claimAdjudication": {
+        "claim": "Progressive JSON output is malformed for a skipped run at pipeline level 1 because the stderr notice is merged into the JSON stdout payload.",
+        "evidenceRefs": [
+          ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh:262-274",
+          ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:142-172"
+        ],
+        "counterevidenceSought": "The plan labels progressive-validate.sh unchanged and describes output as passthrough; inspected the actual JSON capture and producer channel behavior. No channel separation or skipped-state parser exists in this branch.",
+        "alternativeExplanation": "The skip notice is intentional operator feedback, and the packet may intend the JSON promise to apply only to validate.sh itself. That does not preserve the progressive wrapper's own JSON-mode stdout contract.",
+        "finalSeverity": "P1",
+        "confidence": 0.94,
+        "downgradeTrigger": "Downgrade if the progressive CLI explicitly disclaims parseable JSON for skipped output or a consumer is shown to parse a separate JSON channel that carries the skip status."
+      }
+    },
+    {
+      "id": "P2-LUNA-001",
+      "severity": "P2",
+      "title": "An explicit sentinel value falls through to the config file",
+      "file": ".skilled/hooks/shared/hook-flags.sh:38-44",
+      "evidence": "REQ-002 says a set environment value wins even when falsy. The shell resolver substitutes the literal __HF_UNSET__ for absence and compares the resolved value to that sentinel; if the environment value equals it, the resolver reads the config instead. [SOURCE: specs/sk-doc/062-doc-validation-off-switches/spec.md:129-130] [SOURCE: .skilled/hooks/shared/hook-flags.sh:37-44]",
+      "recommendation": "Detect whether the variable is set separately from its value, then use the config only when the variable is genuinely absent; add a regression row for the sentinel literal.",
+      "disposition": "active",
+      "findingClass": "algorithmic",
+      "scopeProof": "REQ-002 defines environment precedence for all set values; hook_flag_on routes the named switch through this resolver after name validation.",
+      "affectedSurfaceHints": [
+        "hook_flag_on shell API",
+        "SPECKIT_SKIP_VALIDATION environment/config precedence"
+      ],
+      "category": "environment-precedence",
+      "content_hash": "b0cbefcc9a607e0b8761f0e342befe1e3c1b7fff4eb429eda5fc32670a5688cb",
+      "status": "active",
+      "lineRange": "38-44",
+      "dimensions": [
+        "correctness"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 5
+    },
+    {
+      "id": "P2-LUNA-003",
+      "severity": "P2",
+      "title": "Local audit consumers report an explicit skip as a pass",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh:125-150",
+      "evidence": "The skip producer returns exit 0 and emits `skipped: true, passed: true`. quality-audit.sh discards stderr, increments pass on exit 0, and writes JSON status `pass`; strict-pass-freshness.ts checks exit code and `passed === false` but ignores `skipped`, then returns status `pass`. The implementation summary says a skip is no evidence. The plan acknowledges these unchanged consumers, making this a disclosed but unresolved status mismatch. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:142-172] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh:125-150] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts:246-272] [SOURCE: specs/sk-doc/062-doc-validation-off-switches/implementation-summary.md:134-141] [SOURCE: specs/sk-doc/062-doc-validation-off-switches/plan.md:78-82]",
+      "recommendation": "Surface skipped as a distinct status (or count) in local audit outputs so an opted-out run cannot be reused as validation evidence; keep the intentional local opt-out behavior documented.",
+      "disposition": "active",
+      "findingClass": "cross-consumer",
+      "scopeProof": "The plan explicitly lists quality-audit.sh and strict-pass-freshness.ts as direct affected consumers and records their current pass behavior; the implementation summary separately states a skip cannot support a completion claim.",
+      "affectedSurfaceHints": [
+        "quality-audit JSON and summary",
+        "strict-pass-freshness sweep status",
+        "completion evidence consumers"
+      ],
+      "category": "skip-status-propagation",
+      "content_hash": "7151a2d0a1394e9bfa1eed4cd067b22be9b632256bd5a5a4cfd110a07a596bc7",
+      "status": "active",
+      "lineRange": "125-150",
+      "dimensions": [
+        "traceability"
+      ],
+      "firstSeen": 3,
+      "lastSeen": 5
+    },
+    {
+      "id": "P2-LUNA-004",
+      "severity": "P2",
+      "title": "Shell truthiness removes internal whitespace",
+      "file": ".skilled/hooks/shared/hook-flags.sh:25-29",
+      "evidence": "The shell implementation deletes all whitespace before matching, so `t r u e` becomes `true`; the Node and Python implementations trim only surrounding whitespace and reject that value. REQ-002 permits only the exact truthy tokens after surrounding trim. A process using the shared config can therefore resolve the same supplied value differently by runtime. [SOURCE: .skilled/hooks/shared/hook-flags.sh:25-29] [SOURCE: .skilled/hooks/shared/hook-flags.cjs:93-96] [SOURCE: .skilled/skills/sk-doc/shared/scripts/validation_switch.py:43-45] [SOURCE: specs/sk-doc/062-doc-validation-off-switches/spec.md:129-130]",
+      "recommendation": "Normalize surrounding whitespace only in the shell resolver, matching Node and Python, and add an internal-whitespace parity case.",
+      "disposition": "active",
+      "findingClass": "algorithmic",
+      "scopeProof": "REQ-002 defines the fixed truthy set; the four-runtime parser contract and cross-reader tests establish common resolver behavior.",
+      "affectedSurfaceHints": [
+        "hook_flag_on shell API",
+        "cross-runtime switch parity"
+      ],
+      "category": "truthy-normalization",
+      "content_hash": "e4cb7c4ae70f921d822bdc95018bc0fa2f33dff8d61a01f78ac0ac858b8b4cd2",
+      "status": "active",
+      "lineRange": "25-29",
+      "dimensions": [
+        "maintainability"
+      ],
+      "firstSeen": 4,
+      "lastSeen": 5
+    },
+    {
+      "id": "P2-LUNA-005",
+      "severity": "P2",
+      "title": "A BOM-prefixed first-line switch is not recognized by two readers",
+      "file": ".skilled/hooks/shared/hook-flags.sh:43-48",
+      "evidence": "The Node parser's `trim()` and the sk-doc parser's `utf-8-sig` decoding remove a leading BOM; the shell grep and the dist reader's UTF-8 decoder keep it as part of the first key, so a first-line switch is absent to those two readers. REQ-008 says the four readers return the same value for every line. The implementation summary acknowledges this limitation, but its cross-reader comment test has no BOM-prefixed first-line switch; the BOM parser test compares only Python with Node. [SOURCE: .skilled/hooks/shared/hook-flags.cjs:107-122] [SOURCE: .skilled/skills/sk-doc/shared/scripts/validation_switch.py:65-80] [SOURCE: .skilled/hooks/shared/hook-flags.sh:43-48] [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:35-50] [SOURCE: .skilled/hooks/shared/hook-flags.test.cjs:193-245] [SOURCE: .skilled/skills/sk-doc/scripts/tests/test_validation_switch.py:63-76] [SOURCE: specs/sk-doc/062-doc-validation-off-switches/spec.md:141] [SOURCE: specs/sk-doc/062-doc-validation-off-switches/implementation-summary.md:141]",
+      "recommendation": "Align BOM handling across all four readers or narrow the stated parity contract and test the agreed behavior across all four readers.",
+      "disposition": "active",
+      "findingClass": "cross-consumer",
+      "scopeProof": "REQ-008 explicitly names all four readers and requires matching values; the summary labels BOM parity as a follow-up outside the packet, leaving a disclosed contract gap.",
+      "affectedSurfaceHints": [
+        "hook-flags.env four-reader contract",
+        "first-line persisted switches",
+        "cross-reader regression tests"
+      ],
+      "category": "cross-runtime-parity",
+      "content_hash": "587f39c4b87046e91be778e06f6780d1a18f1ff7fc6ab8d40f00383e4f6a414b",
+      "status": "active",
+      "lineRange": "43-48",
+      "dimensions": [
+        "maintainability"
+      ],
+      "firstSeen": 4,
+      "lastSeen": 5
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 4
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": false,
+  "stopReason": "maxIterationsReached",
+  "traceabilityChecks": {
+    "spec_code": "partial",
+    "checklist_evidence": "partial"
+  }
+}

@@ -76,6 +76,7 @@ Someone who does not care whether their docs drift from the expected formats tur
 - Tests for the resolvers, `validate.sh`, the commit trap and the sk-doc helpers with representative validators.
 - Docs: the runtime env reference, spec-kit's validation references and feature catalog, sk-doc's core standards, its validation and enforcement reference and its shared scripts README, both hooks READMEs and the example flags file.
 - Added after close at the operator's request: every reader of `hook-flags.env` ends a value at a `#` that follows a space or tab. The docs say to uncomment the example's lines, and those lines carry a comment after the value, so each one, the hook kill switches included, now works as it stands.
+- Added after the deep review of 2026-09-28 (`review/review-report.md`), at the operator's request to fix every finding: `progressive-validate.sh --json` keeps the skip notice off stdout and reports `skipped`, the shell and dist readers agree with the Node and Python readers on trimming, presence and a byte order mark, `quality-audit.sh` and the strict-pass freshness sweep report a skipped folder as skipped, `.env.example` names both switches and the hooks README states the comment rule with its tab case.
 
 ### Out of Scope
 - CI workflows - they keep enforcing. Neither the environment variable nor the gitignored `hook-flags.env` reaches a CI run.
@@ -85,6 +86,7 @@ Someone who does not care whether their docs drift from the expected formats tur
 - The routing and metadata CI gates (`ci-*.cjs`) - pre-push already has `SPECKIT_SKIP_PREPUSH_SKILL_GATE` for them.
 - `audit_readmes.py` - it reports and always exits 0. It reads `validate_document.py --json`, which a skip answers with `valid: true`.
 - The dead `SPECKIT_SKIP_DOC_MODEL_VALIDATE` mentions in the git hook installer, its README and one test - recorded as a follow-up.
+- `upgrade-legacy.mjs`, the legacy spec folder upgrade tool, which reads a skipped report's `passed: true` as a pass - it belongs to the upgrade tooling and is recorded as a follow-up.
 - Barter coder's copy of the framework - a separate repository.
 
 ### Files to Change
@@ -113,6 +115,15 @@ Someone who does not care whether their docs drift from the expected formats tur
 | `.skilled/hooks/README.md` | Modify | The two switches under Setting flags, plus the comment rule |
 | `.skilled/hooks/shared/README.md` | Modify | `isFlagOn` and `hook_flag_on` in the resolver docs, plus the comment rule with its four readers |
 | `.skilled/hooks/hook-flags.env.example` | Modify | A validation section, plus a header line on the comment rule |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh` | Modify | Review fix: capture `validate.sh`'s stdout apart from its stderr under `--json`, and report `skipped` |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh` | Modify | Review fix: count a switched-off folder as skipped, never as a pass |
+| `.skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts` | Modify | Review fix: a `skipped` status, counted apart, that a later baseline never reads as a pass or a known failure |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts` | Modify | The switch at level 1 and at the default level |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/quality-audit-script.vitest.ts` | Modify | A skipped folder in JSON and text output |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/strict-pass-freshness.vitest.ts` | Modify | A skipped folder, and a skipped baseline row followed by a failure |
+| `.skilled/skills/system-spec-kit/runtime/cli/sweep/README.md` | Modify | The full status list, `skipped` included |
+| `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md` | Modify | The `skipped` field in the wrapper's JSON report |
+| `.env.example` | Modify | Review fix: both switches in Section 5 |
 
 The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check_authored_name_kebab.py`, `check_no_hyphenated_catalog_content.py`, `check_no_new_snake_case.py`, `check_no_numbered_categories.py`, `check_no_numbered_snippet_files.py` and `resolve_skill_markdown_links.py` in `shared/scripts/`, plus `validate_catalog_package.py`, `check_derived_readme_counts.py`, `check_readme_references.py`, `validate_skill_package.py` and `hvr_scan.py` in their modes' `scripts/` folders. The 7 Node validators are `frontmatter-version.mjs` (gate and verify), `validate-doc-model-refs.js`, `check-goal.cjs`, `validate-playbook-package.cjs`, `check-repo-rules.cjs`, `validate-compiled-routing-scenarios.cjs` and `validate-playbook-topology.cjs`. `check-frontmatter-versions.sh` runs `frontmatter-version.mjs gate`, so it follows without an edit.
 <!-- /ANCHOR:scope -->
@@ -127,7 +138,7 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | With `SPECKIT_SKIP_VALIDATION` on, a commit that stages a spec doc passes the pre-commit spec re-mint gate, because `validate.sh --json` prints a skipped report that `repair-derived.cjs` reads as nothing to repair |
-| REQ-002 | `SPECKIT_SKIP_VALIDATION` resolves from the environment first and `hook-flags.env` second. A set environment value wins even when it is `0` or empty, and only `1`, `true`, `yes` or `on` turn the switch on |
+| REQ-002 | `SPECKIT_SKIP_VALIDATION` resolves from the environment first and `hook-flags.env` second. Whether the environment variable is set decides, never what it holds, so a set value wins even when it is `0` or empty. Only `1`, `true`, `yes` or `on` turn the switch on, and every reader trims only the value's edges, so `o n` stays off |
 | REQ-003 | `SKDOC_SKIP_VALIDATION`, set either way, makes the check path of every sk-doc format validator print one notice on stderr and exit 0 without checking. The create-diff report validator checks safety rather than format and keeps running |
 | REQ-004 | Modes that write or that test the tool stay live under the switch: `validate_document.py --fix`, the `--self-test` of the two README checkers and the link resolver, and `frontmatter-version.mjs compute` and `apply`. Imports of validator functions by other scripts are unaffected |
 
@@ -135,10 +146,11 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 
 | ID | Requirement |
 |----|-------------|
-| REQ-005 | A skipped run that was asked for JSON still prints valid JSON on stdout. An sk-doc validator prints `{"skipped": true, "valid": true, ...}`, so a caller that reads `valid` counts the skip as no finding |
+| REQ-005 | A skipped run that was asked for JSON still prints valid JSON on stdout. An sk-doc validator prints `{"skipped": true, "valid": true, ...}`, so a caller that reads `valid` counts the skip as no finding. `progressive-validate.sh --json` does the same at level 1 and at the aggregate levels, and its report carries `skipped: true` |
 | REQ-006 | CI keeps enforcing: no workflow sets either switch or points `HOOK_FLAGS_CONFIG` at a file |
 | REQ-007 | The docs name both switches, how to save them and what they leave on |
-| REQ-008 | The four readers of `hook-flags.env` (`hook-flags.cjs`, `hook-flags.sh`, `validation_switch.py` and `check-dist-staleness.sh`) end a value at a `#` that follows a space or tab, return the same value for every line and read every switch line of the example as on once it is uncommented |
+| REQ-008 | The four readers of `hook-flags.env` (`hook-flags.cjs`, `hook-flags.sh`, `validation_switch.py` and `check-dist-staleness.sh`) end a value at a `#` that follows a space or tab, return the same value for every line, a first line behind a UTF-8 byte order mark included, and read every switch line of the example as on once it is uncommented |
+| REQ-009 | A local audit that finds validation switched off reports the folder as skipped, never as passed. `quality-audit.sh` counts it apart, and the strict-pass freshness sweep gives it a `skipped` status that a later baseline never reads as a pass or a known failure |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -164,7 +176,7 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 | Dependency | The `hook-flags.env` parse rules in `hook-flags.cjs` | The Python helper must read the file the same way | The Python helper mirrors `loadConfigFile` and a test pins the shared cases |
 | Risk | `SPECKIT_SKIP_VALIDATION` moves from any non-empty value to the truthy set | Low | Nothing in the repository sets it, `1` and `true` keep working, and the env reference records the change |
 | Risk | A saved switch also silences validators inside local test runs | Med | The notice names where the switch was set, and the docs say to unset it for the suites |
-| Risk | A skipped report carries `passed: true`, as a track root's report does | Low | The report also carries `skipped: true` and an info entry, and the only reader of `passed` is local sweep tooling |
+| Risk | A skipped report carries `passed: true`, as a track root's report does | Low | The report also carries `skipped: true` and an info entry, and the local audit and sweep tools report a skipped folder as skipped |
 | Risk | A saved line with a comment after its value had no effect before and now takes effect | Low | The value was written to turn its switch on, and the example keeps every switch line commented out |
 | Risk | A value can no longer hold a space or tab followed by `#`, even in quotes | Low | Every value in the file is a one-word switch value, and `a#b` keeps its `#` |
 <!-- /ANCHOR:risks -->
@@ -201,6 +213,8 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 - Maximum length: not applicable, the value is one short token.
 - Invalid format: a value outside `1`, `true`, `yes` and `on` leaves validation on, and quoted file values such as `"1"` count as on.
 - Trailing comment: `NAME=1  # why` and `NAME="on" # why` read as on in all four readers, while `NAME=a#b` keeps its `#` and `NAME= # why` reads as empty.
+- Inner whitespace: `o n`, in the file or the environment, reads as off in all four readers, while ` on ` reads as on.
+- Byte order mark: a file saved as UTF-8 with a signature reads its first line the same as a file without one.
 
 ### Error Scenarios
 - External service failure: none, the switches read local state only.
@@ -219,7 +233,7 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 18/25 | About 35 files and 600 lines across three languages and two skills |
+| Scope | 18/25 | About 35 files and 600 lines across three languages and two skills, plus fourteen files in the review fixes |
 | Risk | 8/25 | Local only, default off, CI unchanged, one documented semantics change |
 | Research | 8/20 | Every consumer of the `validate.sh` JSON and of each validator was traced first |
 | **Total** | **34/70** | **Level 2** |
