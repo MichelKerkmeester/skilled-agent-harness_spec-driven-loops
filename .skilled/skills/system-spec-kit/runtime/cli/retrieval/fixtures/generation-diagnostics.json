@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7262,
-    "ok": 12207,
+    "missing-frontmatter": 7265,
+    "ok": 12222,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23155,
+  "documentsScanned": 23173,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "26e65b67d73ea86fa1151bbb862bb17edde54c2a80f8630c0ebb9d8ae293ba69",
+  "manifestHash": "9d9c6df8b97a62a2bdef85df287ed699df57e84ba07c9f8ce9cbf66847ec7c7b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 31668,
+      "ok": 31714,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -46896,6 +46896,24 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/evidence/review/review-a-advisor.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/evidence/review/review-b-components-and-release.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/evidence/review/verification.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/.github/ISSUE_TEMPLATE/bug_report.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -72193,6 +72211,10 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/scratch",
       "reason": "excluded directory"
     },
     {
