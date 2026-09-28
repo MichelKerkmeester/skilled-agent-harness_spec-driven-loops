@@ -11,19 +11,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/062-doc-validation-off-switches"
-    last_updated_at: "2026-09-28T18:03:34Z"
+    last_updated_at: "2026-09-28T20:03:09Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed all eight review findings and covered the switches in the changelogs"
-    next_safe_action: "Commit the review fixes in owner-split commits with the Spec trailer"
+    recent_action: "Fixed the release entry's review findings and published the tagged release"
+    next_safe_action: "Run a deep review of packet 061's changelog work, the review's deferred item"
     blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh"
-      - ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh"
-      - ".skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts"
-      - ".skilled/hooks/shared/hook-flags.sh"
       - ".skilled/changelog/skilled/v4.0.0.2.md"
+      - "specs/sk-doc/062-doc-validation-off-switches/tasks.md"
+      - "specs/sk-doc/062-doc-validation-off-switches/implementation-summary.md"
+      - "specs/sk-doc/062-doc-validation-off-switches/review/review-report.md"
     session_dedup:
-      fingerprint: "sha256:c4eeae20949a2f8af44bdedd73a9e9d35d128dfc955d188b81ee13745fc4206b"
+      fingerprint: "sha256:ba19fdad89fa8d32cf51b72a2717d07cb1c2b5c13984adf5e99db4a2c41c6ff2"
       session_id: "75aab0e6-dcc7-401b-9d10-f48248374023"
       parent_session_id: null
     completion_pct: 100
@@ -73,7 +72,7 @@ The shell reader of `hook-flags.env` disagreed with the Node and Python readers 
 
 ### Release review
 
-Before tagging v4.0.0.2, the operator asked for a review of its entry. It was accurate, but it left out five user-visible changes made since `v4.0.0.1`. One topic phrase also carried a version number, and its smaller items were spread over seven sections. The entry now covers the changelog history rewrite, the validator's `AGENTS.md` fix, the Hermes copy links, Grok 4.7 in Cursor and cli-jev's routing. It keeps its two identity phrases and two topic phrases, and it folds Deep Loops and Editing in Pi into one section with the new items. Packet 067 wrote into the same entry and records the review too.
+Before tagging v4.0.0.2, the operator asked for a review of its entry. It was accurate, but it left out five user-visible changes made since `v4.0.0.1`. One topic phrase also carried a version number, and its smaller items were spread over seven sections. The entry now covers the changelog history rewrite, the validator's `AGENTS.md` fix, the Hermes copy links, Grok 4.7 in Cursor and cli-jev's routing. It keeps its two identity phrases and two topic phrases, and it folds Deep Loops and Editing in Pi into one section with the new items. Packet 067 wrote into the same entry and records the review too. The release went out on 2026-09-28 as `v4.0.0.2`, tagged on `68dd665c5d` once every CI workflow had passed there.
 
 ### Files Changed
 
@@ -157,6 +156,7 @@ The review fixes followed the review's own workstreams. Every new test ran again
 | Docs and changelogs after the review fixes | PASS. The release entry and the three component entries are valid with 0 HVR hard blockers, and every relative link in them and in the edited docs resolves |
 | Comment hygiene, shellcheck and the drift guard after the review fixes | PASS on the 9 changed code files. shellcheck reports HEAD's set on `hook-flags.sh` and `progressive-validate.sh`, and one finding against HEAD's three on `quality-audit.sh`. The guard's 56 errors all sit in another packet's evidence folders |
 | v4.0.0.2 entry after the release review | PASS. `validate_document.py` reports 0 issues and `hvr_scan.py` 0 hard blockers. Every link resolves, and the entry keeps 12 summary bullets. Its upgrade-note commands and paths exist, and each number traces to a commit message or to packet 060/012's measurements |
+| v4.0.0.2 release | PASS. Ten of ten CI workflows passed on `68dd665c5d` before tagging. The annotated tag peels to that commit on origin, and the release is Latest, neither draft nor pre-release, with a body that matches the prepared notes character for character |
 <!-- /ANCHOR:verification -->
 
 ---
