@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5490d2184791cf5033b205f7b76a9700bd213decd60664bbf9168ff6b42a74f9",
+  "corpusHash": "524ea09bea697abbee45cf3e66166869ee492c2056f22938482ff17e9ed0b958",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23128,
+  "includedPathCount": 23133,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11548,6 +11548,11 @@
     "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/spec.md",
     "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/tasks.md",
     "specs/sk-doc/061-skilled-release-changelog/spec.md",
+    "specs/sk-doc/062-doc-validation-off-switches/acceptance-criteria.md",
+    "specs/sk-doc/062-doc-validation-off-switches/implementation-summary.md",
+    "specs/sk-doc/062-doc-validation-off-switches/plan.md",
+    "specs/sk-doc/062-doc-validation-off-switches/spec.md",
+    "specs/sk-doc/062-doc-validation-off-switches/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -23150,7 +23155,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b2f3b97d1406620a4db3d6aa47ca56c0a4c445c31e544a6213de42607e19502d",
+  "manifestHash": "8a48918bedb30dc8c6d50c44f02d15f4f6f58ad82df750ec83f9f559b82aafab",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25170,6 +25175,10 @@
     },
     {
       "path": "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/062-doc-validation-off-switches/scratch",
       "reason": "excluded directory"
     },
     {
