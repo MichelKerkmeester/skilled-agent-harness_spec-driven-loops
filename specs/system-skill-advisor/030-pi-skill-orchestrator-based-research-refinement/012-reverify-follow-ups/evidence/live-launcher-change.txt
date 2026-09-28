@@ -1,0 +1,70 @@
+Live advisor launcher change during the CP-003 negative control, 2026-09-27
+
+What was observed
+- 15:29:52Z baseline and 15:34:26Z to 15:34:28Z negative control snapshots: live launcher pid 79958, daemon pid 80305,
+  running since 12:10:33Z.
+- 15:34:28Z to about 15:34:48Z: the committed CP-003 block left sandbox launcher 92753 and daemon 92756 running, and the
+  deleted sandbox /tmp/cp003.578W0F came back about 20 seconds later.
+- Between 15:34:28Z and 15:35:57Z pid 79958 exited. No launcher log survives: the launcher writes to stderr only.
+- 15:35:57Z: the stage-one routing replay (advisor_recommend) found no live daemon and cold-started launcher 97186 and
+  daemon 97187. The live generation file moved to 538 with reason advisor-server-startup-scan.
+- 15:37:49Z to 15:41:11Z: the new CP-003 block ran, stopped only its own sandbox launcher 2061, and 97186 and 97187 were
+  the same processes before the block, right after it and 200 seconds later.
+
+Suspected cause, not confirmed: the live daemon's own 30-minute idle exit
+- advisor-server.ts shuts the daemon down after SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN minutes (default 30) with no IPC
+  activity, and the launcher exits with its child.
+- The last non-casual prompt any session in this repository sent reached the live daemon at 15:04:20Z. The later prompts
+  at 15:17:05Z and 14:53:07Z were "Yes", which the casual-prompt gate keeps away from the daemon. 15:04:20Z plus
+  30 minutes, plus a check interval of up to 60 seconds, falls between 15:34:20Z and 15:35:20Z.
+- During the phase 11 re-verification, sandbox launchers from CP-003 runs exited throughout 13:34Z to 13:54Z while
+  79958 kept running, so a sandbox launcher's exit had not disturbed the live launcher before.
+- The negative control exported the one-minute idle timeout only to the processes its own blocks started.
+
+What would confirm it
+- A launcher log that records the exit reason, which the launcher does not keep today. No work was done on it here.
+
+Second launcher change, between the round 2a reruns and the goal pre-check, 2026-09-27
+
+What was observed
+- 16:44:47Z: round 2a's last run ended, and the state-after snapshot still showed launcher 97186 and daemon 97187.
+- The newest record in this workspace's advisor diagnostics log is from 16:41:53Z, a Claude prompt the hook skipped.
+  The newest one that reached the daemon is from 16:39:56Z, the cli-pi CP-004 tester's prompt.
+- 17:23:40Z: launcher 9495 and daemon 9506 started (lease startedAt 17:23:40.709Z), and the live generation file moved
+  to 540 at 17:23:41Z with reason advisor-server-startup-scan. The worktree 069 advisor started again eight seconds
+  later as 9893 and 9914, and the Barter coder pair 18680 and 18683 no longer runs.
+- 17:32:56Z snapshot: no /tmp/cp003.* or /tmp/cp004.* folder, and no sandbox launcher running.
+- Between those times this session only edited docs and ran validation. The session's context was compacted and
+  resumed at about 17:23Z.
+
+Suspected cause, not confirmed: the same 30-minute idle exit
+- DEFAULT_IDLE_TIMEOUT_MIN is 30 in launcher-idle-timeout.ts. 16:39:56Z plus 30 minutes and a check interval of up to
+  60 seconds falls at about 17:11Z, before the new start.
+- No command in this phase sends the live advisor a signal. A cold start by the first request that found no live
+  daemon fits the new lease and the startup scan.
+
+Third launcher change, during the open-file behaviour test, 2026-09-28
+
+What was observed
+- 04:58:06Z: the first run of teardown-check/test-open-file-teardown.sh ended with no advisor running for this
+  repository, only the Barter coder pair.
+- 05:00:08Z: the second run started with launcher 92477 and daemon 92488 running for this repository. Nothing this
+  session ran between the two calls this repository's advisor.
+- 05:02:08.431Z: launcher 40890 and daemon 40893 started (lease startedAt), and the live generation file moved to 558
+  at 05:02:08.794Z with reason advisor-server-startup-scan. 92477 exited somewhere between 05:00:08Z and 05:02:08Z,
+  two to four minutes after it started, well inside the default 30-minute idle timeout.
+- The test's last line reads "live generation file CHANGED". The file's reason and timestamp match 40890's startup
+  scan, so the change came from the restart, not from a sandbox write.
+- During that window the test ran case A2 and case B. Case B sent SIGKILL to its own sandbox launcher, whose lease
+  named a socket inside the sandbox and whose pid was not among the live pids captured at the start, then removed that
+  sandbox's two lease files. Its orphaned daemon exited on its own at about 05:02:01Z.
+- No session-cleanup entry was logged after 2026-09-27T20:51Z, so no session end stopped it. The CLI starts launchers
+  detached with their output discarded, so no launcher log records why 92477 went away.
+
+Cause: unknown
+- By the code, an orphaned sandbox daemon writes only under its own database and socket folders, and a new launcher
+  reaps only the owner recorded for its own database (reapOwnerBeforeRespawn). Neither reaches the live advisor.
+- Case B is still the one unusual event in the window, and it has run only once while this repository's advisor was up,
+  so it is not ruled out. Several other AI sessions on this machine call this repository's advisor through their hooks.
+- The scenario blocks never signal a launcher, so this does not bear on them. Case B will not run again without the
+  operator's go-ahead, because rerunning it could restart the live advisor.

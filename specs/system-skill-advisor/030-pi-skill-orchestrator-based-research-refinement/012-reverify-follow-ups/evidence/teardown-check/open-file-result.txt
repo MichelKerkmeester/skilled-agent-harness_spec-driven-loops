@@ -1,0 +1,33 @@
+started 05:00:08Z, HEAD 19bb971bc6, step 1 sha 5f53ec2f1320, wait sha 44ebb8d7e8a7
+live generation before: 4eb8816146890f4e221febb0cf36f7ff75cdc140  .skilled/skills/.state/advisor/skill-graph-generation.json
+advisor processes before (live pids 92477 92488 ):
+  pid=92477 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=92488 ppid=92477 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+
+== CASE A1: the wait before the open-file test, a process holding a file in the sandbox
+holder 12710 has db/skill-graph.sqlite open, no lease, socket folder empty
+A1 block: sandbox advisor exited; sandbox removed (took 26s)
+A1 after the block: holder alive, sandbox removed
+
+== CASE A2: the current wait, the same state
+holder 20046 has db/skill-graph.sqlite open, no lease, socket folder empty
+A2 block: sandbox advisor still running after 60s; sandbox kept at /tmp/cp003.m8nL3g (took 67s)
+A2 after the block: holder alive, sandbox kept
+
+== CASE B: a real sandbox daemon whose launcher crashed and cleared both lease files
+call exit=0
+launcher 38284 gone after SIGKILL, both lease files removed as the crash handler would, daemon 38335 alive
+B block: sandbox advisor exited; sandbox removed 
+B timing: daemon 38335 exited at +16.6s, the block ended at +25.6s, sandbox removed
+
+== CASE C: normal path, CP-003 step 1 run as written
+C block exit=0 took 27s; last line: sandbox advisor exited; sandbox removed
+C result: /tmp/cp003.vyvyFu did not reappear within 60s
+
+live generation after:  256d4520ab0bf6fcfb07d92d41e935ed7240900e  .skilled/skills/.state/advisor/skill-graph-generation.json
+live generation file CHANGED
+advisor processes after:
+  pid=40890 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=40893 ppid=40890 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+leftover sandboxes: 0
+finished 05:03:37Z

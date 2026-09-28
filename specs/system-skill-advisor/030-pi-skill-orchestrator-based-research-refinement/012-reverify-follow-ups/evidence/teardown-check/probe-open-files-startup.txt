@@ -1,0 +1,7 @@
+started 21:15:07Z, HEAD 19bb971bc6, sandbox /tmp/cp003.WDMCqB (real /private/tmp/cp003.WDMCqB)
++ 0.0s lease=yes sock=[hf-embed-respawn.lock hf-embed.sock ] open_via_tmp_pids=[] open_via_real=[node/84224:/sock/hf-embed-respawn.lock ]
++ 0.6s lease=yes sock=[hf-embed-respawn.lock hf-embed.sock ] open_via_tmp_pids=[84224 84235 ] open_via_real=[node/84224:/sock/hf-embed-respawn.lock node/84235:/db/skill-graph.sqlite node/84235:/db/skill-graph.sqlite-shm node/84235:/db/skill-graph.sqlite-wal ]
++ 1.2s lease=yes sock=[daemon-ipc.sock hf-embed-respawn.lock hf-embed.sock ] open_via_tmp_pids=[84224 84235 ] open_via_real=[node/84224:/sock/hf-embed-respawn.lock node/84235:/db/skill-graph-daemon-lease.sqlite node/84235:/db/skill-graph-daemon-lease.sqlite-shm node/84235:/db/skill-graph-daemon-lease.sqlite-wal node/84235:/db/skill-graph.sqlite node/84235:/db/skill-graph.sqlite-shm node/84235:/db/skill-graph.sqlite-wal node/84235:/sock/daemon-ipc.sock ]
+call exit=0 at +1.9s
+sandbox advisor gone after the call; sandbox removed
+finished 21:15:27Z

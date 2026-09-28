@@ -1,0 +1,14 @@
+# Before the CP-003 reruns, 2026-09-27T15:43:11Z
+## advisor processes
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+## sandbox folders
+  none
+## live generation file
+{
+  "generation": 538,
+  "updatedAt": "2026-09-27T15:35:58.585Z",
+  "sourceSignature": "c3f55c1ed93cca190861bccd21d114b8ba67d1ee0de149ba04f9e0d77f9e7f0c",
+  "reason": "advisor-server-startup-scan",
+  "state": "live"
+}

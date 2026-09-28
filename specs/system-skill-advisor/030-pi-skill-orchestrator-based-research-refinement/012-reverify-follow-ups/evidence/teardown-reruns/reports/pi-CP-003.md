@@ -1,0 +1,12 @@
+<!-- dispatch: pi CP-003; ledger: 2026-09-28T05:14:40Z 2026-09-28T05:16:25Z 0 105 -->
+
+RESULT: PASS | scenario=CP-003 | runtime=pi
+NATIVE: Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-code 0.88/0.16 pass.
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+| 1 | sandboxed `skill-advisor.cjs advisor_recommend` with `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` + no-signal teardown wait | 0 | `recommendations: []`, `freshness: "unavailable"`, `trustState.reason: "ADVISOR_DISABLED"`, `warnings: ["ADVISOR_DISABLED"]`, abstainReason "Skill advisor disabled by SPECKIT_SKILL_ADVISOR_HOOK_DISABLED."; teardown printed `sandbox advisor exited; sandbox removed`; `/tmp/cp003.*` check found no leftover folder (ls exit 1) | `recommendations: []`, `freshness: "unavailable"`, `ADVISOR_DISABLED`; teardown prints `sandbox advisor exited; sandbox removed`; no `/tmp/cp003.*` left | yes |
+| 2 | `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .../skill_advisor.py "help me commit my changes"` | 0 | `[]` (no prompt text, no native scoring) | `[]` or prompt-safe disabled output without native scoring | yes |
+| 3 | `npm --prefix .../runtime run test -- tests/system-skill-advisor-plugin.vitest.ts -t "opt-out"` | 0 | `Test Files 1 passed (1)`, `Tests 3 passed \| 63 skipped (66)` | plugin test's env opt-out case passes (disabled/skipped output without invoking the advisor) | yes |
+| 4 | diagnostics path lookup + hook `claude/user-prompt-submit.js` piped stdin with disable flag and `SKILL_ADVISOR_DEBUG=1` | 0 | stdout `{}`, `Exit: 0`; `diagnostic lines: 231 -> 232`; last line `{"timestamp":"2026-09-28T05:15:49.332Z","runtime":"claude","status":"skipped","freshness":"unavailable","durationMs":1,"cacheHit":false}` | prints `{}` and exits `0`; JSONL gains one line whose newest record has `status: "skipped"` and `freshness: "unavailable"` (read last line, not count) | yes |
+DEVIATIONS: none — all four blocks ran as written (Step 1 was executed with shell tracing enabled; its commands were unchanged).
+NOTES: The diagnostics line count (231 -> 232) differs from the scenario's Observed example (229 -> 230) because the file had already accumulated records; the scenario's expected signals explicitly say to judge the last line rather than the count, and that line matches. The failure-mode checks did not fire: no surface returned a non-empty recommendation and no disabled output contained the prompt literal. No temp files were left behind; nothing was written inside the repository.

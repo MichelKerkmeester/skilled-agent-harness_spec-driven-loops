@@ -1,0 +1,37 @@
+started 16:19:41Z, HEAD d6e0388d3e, step 1 sha 32a62dda8a61
+live generation before: 4d10166901e6a944daa7b9a2999c33c45ada91b6  .skilled/skills/.state/advisor/skill-graph-generation.json
+advisor processes before:
+18680     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+18683 18680 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+30503     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+30504 30503 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+97186     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+97187 97186 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+
+== CASE 1: hostile lease naming decoy pids with a socket path that climbs out
+block: sandbox advisor still running after 60s; sandbox kept at /tmp/cp003.N7cA5D (took 61s)
+after the block: decoy1 alive, decoy2 alive, sandbox kept
+
+== CASE 2: sandbox launcher killed without its handler right after the call
+call exit=0
+launcher 34669 gone after SIGKILL, daemon 34670 alive
+block: sandbox advisor still running after 60s; sandbox kept at /tmp/cp003.I6sqPe (took 60s)
+after the block: daemon 34670 gone, lease present, sandbox kept
+cleanup: neither lease pid runs, kept sandbox removed by hand
+
+== CASE 3: normal path, CP-003 step 1 run as written
+block exit=0 took 27s; last line: sandbox advisor exited; sandbox removed
+sandbox was /tmp/cp003.YOSuxi
+RESULT normal: /tmp/cp003.YOSuxi did not reappear within 60s
+
+live generation after:  4d10166901e6a944daa7b9a2999c33c45ada91b6  .skilled/skills/.state/advisor/skill-graph-generation.json
+live generation file unchanged
+advisor processes after:
+18680     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+18683 18680 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+30503     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+30504 30503 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+97186     1 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+97187 97186 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Envi
+leftover sandboxes: 
+finished 16:23:13Z

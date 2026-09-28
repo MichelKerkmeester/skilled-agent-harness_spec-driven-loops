@@ -1,0 +1,72 @@
+# CP-003 step 1 negative control, 2026-09-27T15:34:26Z, HEAD d6e0388d3e
+# SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=1, watch 200s per case
+
+== case: committed, started 15:34:26Z
+-- step 1 block as run
+  | SANDBOX=$(mktemp -d /tmp/cp003.XXXXXX)
+  | SYSTEM_SKILL_ADVISOR_DB_DIR="$SANDBOX/db" SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock" \
+  | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 \
+  |   node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" \
+  |   --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
+  | rm -rf "$SANDBOX"
+-- advisor processes before
+  pid=79958 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=80305 ppid=79958 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+block exit=0 sandbox=/tmp/cp003.578W0F, ended 15:34:28Z
+-- block stdout, last 3 lines
+      ]
+    }
+  }
+-- advisor processes right after the block
+  pid=79958 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=80305 ppid=79958 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=92753 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=92756 ppid=92753 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+RESULT committed: /tmp/cp003.578W0F reappeared about 20s after the block ended
+  file: /tmp/cp003.578W0F/db/skill-graph-generation.json
+  file: /tmp/cp003.578W0F/db/skill-graph-quarantine.sqlite
+-- advisor processes after the watch
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+removed the recreated /tmp/cp003.578W0F
+
+== case: new, started 15:37:49Z
+-- step 1 block as run
+  | SANDBOX=$(mktemp -d /tmp/cp003.XXXXXX)
+  | SYSTEM_SKILL_ADVISOR_DB_DIR="$SANDBOX/db" SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock" \
+  | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 \
+  |   node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" \
+  |   --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
+  | LEASE="$SANDBOX/db/.system-skill-advisor-launcher.json"
+  | if [ -f "$LEASE" ]; then
+  |   read -r LAUNCHER_PID DAEMON_PID LEASE_SOCKET < <(node -e 'const l = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8")); console.log([l.pid, l.childPid ?? "-", l.socketPath ?? "-"].join(" "))' "$LEASE")
+  |   case "$LEASE_SOCKET" in
+  |     "$SANDBOX"/*|/private"$SANDBOX"/*)
+  |       kill -TERM "$LAUNCHER_PID" 2>/dev/null
+  |       for _ in $(seq 1 20); do kill -0 "$LAUNCHER_PID" 2>/dev/null || break; sleep 0.5; done
+  |       if [ "$DAEMON_PID" != "-" ] && kill -0 "$DAEMON_PID" 2>/dev/null; then kill -TERM "$DAEMON_PID"; fi
+  |       kill -0 "$LAUNCHER_PID" 2>/dev/null && echo "sandbox launcher $LAUNCHER_PID still running" || echo "sandbox launcher $LAUNCHER_PID stopped"
+  |       ;;
+  |     *) echo "lease socket $LEASE_SOCKET is outside the sandbox; nothing stopped" ;;
+  |   esac
+  | else
+  |   echo "no sandbox launcher recorded"
+  | fi
+  | rm -rf "$SANDBOX"
+-- advisor processes before
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+block exit=0 sandbox=/tmp/cp003.Kxl1wG, ended 15:37:51Z
+-- block stdout, last 3 lines
+    }
+  }
+  sandbox launcher 2061 stopped
+-- advisor processes right after the block
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+RESULT new: /tmp/cp003.Kxl1wG did not reappear within 200s
+-- advisor processes after the watch
+  pid=97186 ppid=1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=97187 ppid=97186 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+
+# finished 2026-09-27T15:41:11Z

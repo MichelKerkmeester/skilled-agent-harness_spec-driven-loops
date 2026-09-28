@@ -1,0 +1,5 @@
+folder /tmp/lsofcheck.TESvEU, real path /private/tmp/lsofcheck.TESvEU, holder pid 9861
+ls -ld /tmp: /tmp -> private/tmp
+lsof -t +D "$D" (the /tmp path):  [9861 ]
+lsof -t +D "$R" (the real path): [9861 ]
+after the holder exits, the real path: []

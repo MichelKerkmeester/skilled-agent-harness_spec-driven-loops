@@ -24,6 +24,7 @@ Each row below is one immutable run folder. Rows are written by the benchmark ha
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-09-27 | [`2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/`](./2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/) | pi, opencode, devin, cursor, codex directive-lifecycle-dedup | 5 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-09-26 | [`2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/`](./2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/) | pi, opencode, devin, cursor, codex directive-lifecycle-dedup | 5 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-11 | [`2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified/`](./2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified/) | vitest pi-repeat-suppression-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-11 | [`2026-08-11--manual-testing-playbook--pi-adapter-driven-verified/`](./2026-08-11--manual-testing-playbook--pi-adapter-driven-verified/) | vitest pi-adapter-driven-verified | 1 PASS | **PASS** | `manual-testing-playbook` |

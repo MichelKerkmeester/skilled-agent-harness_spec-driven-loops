@@ -1,0 +1,46 @@
+# What changed since the phase 11 goal re-verification, 2026-09-28T05:31:15Z
+The phase 11 scenario matrix ran on the tree committed as 146ab446f2. This lists every later commit and the
+paths the scenarios run through, so the matrix results for scenarios this phase did not edit can be judged.
+
+## commits 146ab446f2..b76ce2f06c
+b76ce2f06c 2026-09-28T07:04+0200 chore(system-spec-kit): rebuild the trigger index from committed content
+ede3e5cbdd 2026-09-28T07:02+0200 docs(system-spec-kit): document the claude hook timeout variable
+19bb971bc6 2026-09-27T20:57+0200 chore(system-spec-kit): rebuild the trigger index from committed content
+a3fca61264 2026-09-27T20:56+0200 docs(specs): record the README manifest refresh in phase 3
+fb662ad9c4 2026-09-27T20:56+0200 test(sk-doc): add the Skilled release line to the frozen README manifest
+dcbce69c6f 2026-09-27T20:39+0200 chore(system-spec-kit): rebuild the trigger index from committed content
+efbc06e7c4 2026-09-27T20:37+0200 docs(specs): record the adjacent-alignment phase of the release changelog
+688ae6db35 2026-09-27T20:37+0200 fix(specs): store parent_id as JSON null in packets 027 and sk-git 023
+ab19d29e77 2026-09-27T20:36+0200 docs(opencode): list only the links that exist in the runtime manifests
+55d251e2b0 2026-09-27T20:36+0200 docs(changelog): add the release line and findable changelogs to v4.0.0.2
+550809b93d 2026-09-27T20:36+0200 fix(system-spec-kit): render packet changelogs safely for any title
+bec26045d0 2026-09-27T20:36+0200 fix(sk-doc): resolve hub changelogs and check every changelog entry
+d6e0388d3e 2026-09-27T17:20+0200 chore(system-spec-kit): rebuild the trigger index from committed content
+d73d5b161d 2026-09-27T17:19+0200 docs(specs): close the Skilled release-line packet
+2fdafd891b 2026-09-27T17:17+0200 docs(specs): give every packet changelog its own search phrase
+094cdb9f8a 2026-09-27T17:16+0200 docs(changelog): complete the search metadata on every release and skill entry
+59d229b2e7 2026-09-27T17:16+0200 feat(system-spec-kit): give each packet changelog its own search phrase
+666abc1a22 2026-09-27T17:16+0200 feat(sk-doc): write and check search metadata in every changelog entry
+2b5e1b2c2d 2026-09-27T16:45+0200 chore(system-spec-kit): rebuild the trigger index from committed content
+
+## advisor runtime, launcher, CLI front door, hooks, plugins and CLI hook configs
+ .skilled/skills/system-skill-advisor/changelog/v0.1.0.md    | 11 +++++++++++
+ .skilled/skills/system-skill-advisor/changelog/v0.10.0.md   | 11 +++++++++++
+ .skilled/skills/system-skill-advisor/changelog/v0.11.0.0.md |  1 +
+ .skilled/skills/system-skill-advisor/changelog/v0.11.1.0.md |  1 +
+ .skilled/skills/system-skill-advisor/changelog/v0.2.0.md    | 10 ++++++++++
+ .skilled/skills/system-skill-advisor/changelog/v0.3.0.md    | 11 +++++++++++
+ .skilled/skills/system-skill-advisor/changelog/v0.4.0.md    | 11 +++++++++++
+ .skilled/skills/system-skill-advisor/changelog/v0.5.0.md    | 10 ++++++++++
+ .skilled/skills/system-skill-advisor/changelog/v0.6.0.md    | 11 +++++++++++
+ .skilled/skills/system-skill-advisor/changelog/v0.7.0.md    | 11 +++++++++++
+ .skilled/skills/system-skill-advisor/changelog/v0.8.0.md    | 11 +++++++++++
+ .skilled/skills/system-skill-advisor/changelog/v0.9.0.md    | 11 +++++++++++
+ 12 files changed, 110 insertions(+)
+
+## of those, anything outside changelog entries
+(none)
+
+## uncommitted changes in the same paths, this phase's and other sessions'
+ M .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+ M .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
