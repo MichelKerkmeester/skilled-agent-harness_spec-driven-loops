@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm"
-    last_updated_at: "2026-09-27T09:31:54Z"
+    last_updated_at: "2026-09-28T10:30:00Z"
     last_updated_by: "amendment-leaf"
-    recent_action: "Amended the directive for two backends from the round-3 synthesis, section 14"
-    next_safe_action: "Build the advisor dist, then write the zero-call census, comparators and power line"
+    recent_action: "Amended for the wave 3 directive: the Keep Rule for 009, build roles and the skill docs"
+    next_safe_action: "Build after 008 and 016: the advisor dist, then the zero-call census, comparators and power line"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/spec.md"
@@ -56,15 +56,16 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Two new files and no other change: `score-jev-tiebreak.mjs` in `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/` and `tests/parity/score-jev-tiebreak.vitest.ts` under `.skilled/skills/system-skill-advisor/runtime/`. Nothing is served and nothing runs in a hook |
+| D1 | Two new code files: `score-jev-tiebreak.mjs` in `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/` and `tests/parity/score-jev-tiebreak.vitest.ts` under `.skilled/skills/system-skill-advisor/runtime/`. The only other changes are the skill docs of D10 and the files generated from them, with `SKILL.md`'s `description` and Keywords line unchanged. Nothing is served and nothing runs in a hook |
 | D2 | The Jev arm needs `--jev`. It prints an identity line with the `jev` path and the provider P, `JEV_PROVIDER` when set and `official` otherwise. Then, in order: `command -v jev`, `jev --version` printing `jev 0.6.2` and `jev auth status --provider P` exiting 0. A failure prints `jev arm skipped: jev not on PATH`, `jev arm skipped: version` with a details line or `jev arm skipped: no credential`, leaves the census byte-identical and exits 0 |
 | D3 | The script never reads, logs or passes a key and holds no key literal or key variable name. The same `--provider P` goes to check 3, `jev auth test` and every judgment |
 | D4 | The census covers the 177 labeled and 64 holdout skill-firing rows under the exact env of `capture-scorer-eval-baseline.mjs:35-46`. Holdout top-1 other than 53/70 voids the run. Zero movable rows prints `no headroom`, 1 to 4 prints `underpowered`, and neither runs the `choice` arm |
-| D5 | `keep` needs an exact one-sided sign test at 0.05 over decided rows, a win over each comparator, no fall in right@3 and an aggregate flip rate of at most 0.10. `kill` means the sign test favors the scorer. Gold demotions are losses. Each backend gets its own column and verdict, and only `kill` on a column closes that backend's served advisor forms |
+| D5 | `keep` needs an exact one-sided sign test at 0.05 over decided rows, a win over each comparator, no fall in right@3 and an aggregate flip rate of at most 0.10. `kill` means the sign test favors the scorer. Gold demotions are losses. Each backend gets its own column and verdict, and only `kill` on a column closes that backend's served advisor forms. The Keep Rule in `spec.md` section 4 fixes the inputs, the order and the verdict line before any run. Only a Deem `keep` unlocks phase 009, for the commit pair on its line. Without one the phase still closes and records every verdict line |
 | D6 | A row is decided only when all 3 reruns return a submitted key, and no path writes a default score or verdict. Exit 3 after the gate stops the arm with `jev arm stopped: key rejected`, and a spawn past 90 s is `unmeasured_timeout` |
 | D7 | R21's Deem half, 195 `noul` calls in one pass printing accuracy, F1, Brier score, a 5-bin ECE and a fitted temperature, runs on every `--deem` run. The Jev half runs only when the census prints `underpowered`, under the same switch and gate, in place of the Jev `choice` arm |
 | D8 | The Deem arm needs `--deem` and a pass from `cli-deem health` (proposed, phase 008): the pinned check within 2,000 ms, no `stub` backend and model `deem-0.8-v1`. A failure prints its `deem arm skipped:` line, leaves the census and the Jev column byte-identical and exits 0. The script never starts the server and passes `cli-deem` no key |
 | D9 | The Deem arm asks at most 25 cluster keys plus `none` in 3 option orders, the scorer's order with `none` last and its two left rotations, with an order-flip rate of at most 0.10 for `keep`. Every call records the commit pair, and a Deem `keep` holds only for that pair. Exit 4 rechecks once, and a gone server or a changed pair stops the arm with finished rows `partial` |
+| D10 | Parent D5 and D6 bind. A fresh Opus 5.5 xhigh build orchestrator writes single-change briefs and runs CLI executors by Bash only: Devin `deepseek-v4-1-flash-max`, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` and Cursor `grok-4.7-xhigh-fast`. The orchestrator session verifies, gets a cross-family review of the code and commits. System-skill-advisor's `SKILL.md`, README, changelog, feature catalog and playbook go through sk-doc, and code follows sk-code's OpenCode route |
 
 ### Operator copy
 
@@ -94,7 +95,7 @@ here are invisible to whatever judges completion.
 - [ ] `grep -nE 'API_KEY|TYPESAFE'` on `score-jev-tiebreak.mjs` returns no match, in a stub run that passes the Jev gate every logged `auth status`, `auth test` and judgment call carries the same `--provider` value, and no logged `cli-deem` call carries a key or `--provider`
 - [ ] `tests/parity/score-jev-tiebreak.vitest.ts` under `.skilled/skills/system-skill-advisor/runtime/` exits 0 with cases where a row missing one of 3 rerun answers stays out of the sign test, a stub exit 3 after the gate prints `jev arm stopped: key rejected`, a stub that hangs past 90 s marks its row `unmeasured_timeout`, a `cli-deem` exit 4 whose recheck shows a new commit pair prints `deem arm stopped: model commit changed mid-run`, and a fake-server `--deem` run prints its own column with its order-flip rate and commit pair
 - [ ] One keyed `--jev` run either prints `no headroom` and makes no call, or writes a `calls.jsonl` in which every line has a wall time, exit code, provider, model and status and prints one of two results: `underpowered` with accuracy, F1, Brier score and flip rate beside 0.9843, or wins, losses, ties, abstentions, unmeasured rows, the exact p, the aggregate flip rate, latency p50 and p95 and one verdict line of `keep`, `kill`, `inconclusive` or `underpowered`. One `--deem` run against the local server prints accuracy, F1, Brier score, a 5-bin ECE and a fitted temperature beside 0.9843 and, unless the census printed `no headroom` or `underpowered`, a Deem column with its order-flip rate, the commit pair and one verdict line
-- [ ] `git status --porcelain` lists no changed path other than `score-jev-tiebreak.mjs` and `score-jev-tiebreak.vitest.ts`
+- [ ] `git status --porcelain` prints the same before and after each script run, and at close lists no changed path other than `score-jev-tiebreak.mjs`, `score-jev-tiebreak.vitest.ts`, this phase folder, system-skill-advisor's `SKILL.md`, README files, changelog, feature catalog, playbook and leaf manifest pair, the Hermes copy of that `SKILL.md` and the trigger index with its fixtures
 - [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
@@ -114,7 +115,8 @@ and findings belong here.
 | Planning documents | Done | `spec.md`, `plan.md`, `tasks.md` and this goal authored from `001-deep-research/research/research.md` R1 and its proposed phase 002 |
 | Amendment | Done | 2026-09-27, from the final synthesis `004-deep-research-expansion/research/research.md` section 13 (`### 002-advisor-jev-tiebreak-arm`), with its R1 and R21 records and What Not To Build rows 47, 52 to 54 and 66 to 68 |
 | Amendment, round 3 | Done | 2026-09-27, for two backends per 007 `research.md` section 14 (`### 002-advisor-jev-tiebreak-arm (Planned, amended)`) and parent goal D1 and D5, with section 12's R1, R21, the shared two-backend gate contract, section 10's kill lines and conditions C2 to C7, C14 and C15 |
-| Build | Pending | Nothing is built. The phase is Planned |
+| Amendment, wave 3 | Done | 2026-09-28, for the wave 3 directive: parent `goal.md` D1, D4, D5 and D6 and its log row "New directive, wave 3". Rows below |
+| Build | Pending | Nothing is built. The phase is Planned and released: parent D3 builds it third, after 008 and 016 |
 
 ### Amendment 2026-09-27
 
@@ -153,6 +155,22 @@ Source for every row: amended for two backends per 007 `research.md` section 14 
 | `spec.md` | Every row of section 14 applied: `:3`, `:35`, `:49`, `:52-53`, `:73`, `:86`, `:87`, `:92`, `:97`, REQ-001 to REQ-004, REQ-007 to REQ-011, REQ-014, the six edge cases, SC-003, proof steps 1, 4 and 5, the kill line and the `:210` and `:216` risk rows. A second trace table records the changes |
 | `plan.md`, `tasks.md` | The Deem gate, arm, exits, records, R21's Deem half and the column comparison. Tasks T027 to T037 added, and T005, T007, T011, T012, T024 and T025 amended in place |
 
+### Amendment 2026-09-28, wave 3
+
+Each row names its source. The round-3 row above says "D5 assigns amendments to an Opus 5.5 high leaf". That was the parent's D5 on 2026-09-27 and stays as history. D10 here states the D5 of 2026-09-28.
+
+| Item | Source | Change |
+|------|--------|--------|
+| Keep Rule | Parent D4 | `spec.md` section 4 gains a Keep Rule fixed before any run. Its inputs are the baseline, the census, the rows, the 3 answers, the comparison rows, the decided rows and the comparators. Its thresholds run in a fixed order: `underpowered` below 5, then `kill`, then `keep` on all four conditions, then `inconclusive`. Its verdict line carries the backend and, for Deem, the commit pair, and `report.json` holds the same. Two gaps were closed, not redesigned: a win over a comparator is a higher MRR on the same rows, and a stopped arm prints no verdict |
+| D5, REQ-007, SC-002, kill criterion, proof step 7 | Parent D4 | Point to the Keep Rule. Only a Deem `keep` unlocks 009, for its commit pair. Without one the phase still closes and records every verdict line |
+| `plan.md` `verdict()`, first slice steps 10 and 11, T023, T025, T019, T042 | Parent D4 | The rule's order and line, three vitest cases for it and the verdict record handed to the orchestrator |
+| D10, `plan.md` Build Roles, `tasks.md` notation | Parent D5 | Names the build orchestrator and the three executors with their models. The orchestrator session verifies, gets a cross-family review and commits, and it alone makes the live runs. No wording contradicted D5: a search of this folder for codex, gpt, `llmgateway`, Opus, builder, reviewer and release found only the history row above |
+| D1, D10, scope, Files to Change, T038, T039, T040, T041 | Parent D6 | System-skill-advisor's `SKILL.md`, README, changelog, feature catalog and playbook join the file list through sk-doc. The changelog, catalog and playbook were missing. The two folder READMEs join because each tables its folder's files. The leaf manifest pair, the Hermes copy and the trigger index follow as generated files. Code follows `sk-code-opencode` |
+| Criterion 6, REQ-006, proof step 6, T017, plan rollback | Parent D6 | Criterion 6 said only the two new files change. Parent D6 makes that untrue, so it now allows this phase folder, the D6 docs and their generated files, and it keeps the read-only proof as "the same before and after each script run". The other six criteria are unchanged |
+| Risk, `SKILL.md` fields | Parent D6 | The projection reads `SKILL.md`'s `description` and Keywords line (`projection.ts:693-703`, `skill-markdown.ts:50`), so D1 and Files to Change keep both unchanged, and T041 rereads 53/70 after the doc commit |
+| D1 check | Parent D1 | Confirmed, no change: D2 and D8 hold each backend's gate, REQ-003 gives Jev no secret and SC-003 keeps today's behavior with neither backend |
+| Stale premises | Reread 2026-09-28 after merge `bbf2a8e4cd` | Every cited line of `ambiguity.ts`, `capture-scorer-eval-baseline.mjs`, `score-outcome-rerank.mjs`, `scorer-eval-baseline.json`, `types.ts`, `projection.ts`, `jev_cli/__init__.py` 0.6.2 and `deem_server.py` holds, and the three corpus hashes match the baseline. One citation was off by one: `deem_server.py:222-230` is now `:223-231`. The Deem source commit on disk moved from `6755b30` to `7cf293f` with `serve/` unchanged, recorded as a risk |
+
 ### Deviations and findings
 
 | Item | Note |
@@ -167,4 +185,8 @@ Source for every row: amended for two backends per 007 `research.md` section 14 
 | Vitest file location | The synthesis puts the test file beside the script. The advisor's `vitest.config.ts` includes only `tests/**/*.vitest.ts`, so a file there would never run. It goes to `tests/parity/`, where `capture-ledger-workspace-root.vitest.ts` already tests a routing-accuracy script |
 | Calibration trigger | The synthesis triggers R21 on `underpowered` only, while its value line promises a latency number even with no headroom. The phase follows the trigger as written and lists the question in `spec.md` section 7 |
 | Criteria count | Six became seven: the vitest criterion carries the missing-answer, key-rejected and hang cases that the old exit criterion lacked |
+| Conflict: corpus privacy stop (2026-09-28) | `spec.md` section 7 has the operator decide whether any corpus prompt is private before the first keyed Jev run. Parent D7 stops the build only for an install yes or a missing credential. Named for the orchestrator, not resolved |
+| Conflict: file scope (2026-09-28) | The old D1 and criterion 6 allowed two new files and nothing else. Parent D6 requires the skill docs, and the parent's precedence rule puts its decisions above child detail, so D1 and criterion 6 were amended with the reason above |
+| Keyed Jev run (2026-09-28) | Whether a Jev key exists for provider P is UNKNOWN: this pass called no `jev`. Without one, the fifth criterion's keyed run cannot happen, and parent D7 makes that a stop for the operator |
+| Packet budget | `goal.cjs packet` prints `packet_budget=unknown` for this folder, before and after this pass. A plain phase child carries no durable-slice budget (`goal-slice.cjs:407-409`), so no edit here can make it print `ok` |
 <!-- /ANCHOR:log -->
