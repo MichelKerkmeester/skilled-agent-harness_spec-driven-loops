@@ -71,6 +71,10 @@ A two-model deep review on 2026-09-28 returned CONDITIONAL with one P1 and seven
 
 The shell reader of `hook-flags.env` disagreed with the Node and Python readers three ways. It deleted spaces inside a value, so `o n` read as on. It compared the environment against a marker that one exact value could match, and it kept a byte order mark on the first name, as the dist checker did too. All four readers now trim only a value's edges, let any set environment value answer and drop the mark. `.env.example` names both switches, and the hooks README states the comment rule with its tab case. The unreleased v4.0.0.2 entry and three component changelogs now cover the switches.
 
+### Release review
+
+Before tagging v4.0.0.2, the operator asked for a review of its entry. It was accurate, but it left out five user-visible changes made since `v4.0.0.1`. One topic phrase also carried a version number, and its smaller items were spread over seven sections. The entry now covers the changelog history rewrite, the validator's `AGENTS.md` fix, the Hermes copy links, Grok 4.7 in Cursor and cli-jev's routing. It keeps its two identity phrases and two topic phrases, and it folds Deep Loops and Editing in Pi into one section with the new items. Packet 067 wrote into the same entry and records the review too.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -152,6 +156,7 @@ The review fixes followed the review's own workstreams. Every new test ran again
 | sk-doc script tests after the review fixes | 129 passed and 1 failed, against 128 and 2 in the baseline. Both runs fail only the rename fixture test, which fails when the shared checkout changes during its run, and files there changed during both runs. This round changed no sk-doc code, and the private-clone row above is that test's evidence |
 | Docs and changelogs after the review fixes | PASS. The release entry and the three component entries are valid with 0 HVR hard blockers, and every relative link in them and in the edited docs resolves |
 | Comment hygiene, shellcheck and the drift guard after the review fixes | PASS on the 9 changed code files. shellcheck reports HEAD's set on `hook-flags.sh` and `progressive-validate.sh`, and one finding against HEAD's three on `quality-audit.sh`. The guard's 56 errors all sit in another packet's evidence folders |
+| v4.0.0.2 entry after the release review | PASS. `validate_document.py` reports 0 issues and `hvr_scan.py` 0 hard blockers. Every link resolves, and the entry keeps 12 summary bullets. Its upgrade-note commands and paths exist, and each number traces to a commit message or to packet 060/012's measurements |
 <!-- /ANCHOR:verification -->
 
 ---
