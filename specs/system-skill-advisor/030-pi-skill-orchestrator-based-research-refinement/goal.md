@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-28T05:36:00Z"
+    last_updated_at: "2026-09-28T08:18:17Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Proved the six criteria again after phase 12"
-    next_safe_action: "None. All twelve phases are complete"
+    recent_action: "Proved the six criteria again after phase 13"
+    next_safe_action: "None. All thirteen phases are complete"
     blockers: []
     key_files: []
     session_dedup:
@@ -74,6 +74,7 @@ phase and binds as if written here.
 | 010-review-advisories-and-codex-cleanup | `010-review-advisories-and-codex-cleanup/goal.md` |
 | 011-observation-fixes | `011-observation-fixes/goal.md` |
 | 012-reverify-follow-ups | `012-reverify-follow-ups/goal.md` |
+| 013-review-follow-ups | `013-review-follow-ups/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -121,7 +122,9 @@ and findings belong here.
 | 011-observation-fixes | Done | Phase Documentation Map in `spec.md` reads Complete. All seven observations are closed, and 24 scaffold labels were rebuilt |
 | Goal proved again after phase 11 | Done | The four suites, the live plugin load, a sandboxed daemon, 45 of 45 scenario runs and the installer check pass from the final state (`011-observation-fixes/evidence/goal-reverify/`) |
 | 012-reverify-follow-ups | Done | Phase Documentation Map in `spec.md` reads Complete. The four follow-ups are closed, and GPT-6 Luna's fourth verify passed the signal-free teardown |
-| Goal proved again after phase 12 | Done | The four suites, the live plugin load, a sandboxed daemon and the installer check pass from the final state. CP-003 and CP-004 passed ten of ten reruns on the new teardown, and the other seven scenarios keep their phase 11 result, since only changelog entries changed in the paths they run through (`012-reverify-follow-ups/evidence/goal-reverify/`) |
+| Goal proved again after phase 12 | Done | The four suites, the live plugin load, a sandboxed daemon and the installer check pass from the final state. CP-003 and CP-004 passed ten of ten reruns on the new teardown, and the other seven scenarios keep their phase 11 result, since no commit changed code in the paths they run through. Route manifests changed as well, but they feed only metadata none of the seven checks (`012-reverify-follow-ups/evidence/goal-reverify/`) |
+| 013-review-follow-ups | Done | Phase Documentation Map in `spec.md` reads Complete. The ten confirmed review findings are closed, and so is F12, which the reruns found. GPT-6 Luna passed the three teardown blocks and the F12 trace |
+| Goal proved again after phase 13 | Done | The four suites, the live plugin load, a sandboxed daemon and the installer check pass from the final state, and the suites, the plugin load and the installer check passed again at `396d26d4ff` after another session's three commits. 433, CP-003 and CP-004 pass in all five CLIs, two 433 runs on a quiet rerun. The other six scenarios keep their phase 11 result, since the one code change in the paths they run through, `b274f085fb`, adds a function to the hook flags and changes no existing one (`013-review-follow-ups/evidence/goal-reverify/`) |
 
 ### Deviations and findings
 
@@ -140,4 +143,6 @@ and findings belong here.
 | Devin permission mode | The Devin scenario runs used `--permission-mode dangerous`, as in phases 8 and 9. The operator's recorded approval covers only Codex's danger-full-access. The cli-devin contract makes `dangerous` its default invocation and also forbids it without explicit approval, so its two rules disagree. Closed in phase 12. The operator approved the mode for scenario runs, which D5 records, and cli-devin 1.4.5.0 now says one approval covers a whole task, the default invocation included |
 | Two tester-side BLOCKED runs | The Codex CL-005 tester never read the step 4 log it had captured. The OpenCode CP-004 tester obeyed a plan-mode reminder that OpenCode's log shows it never received. Both passed when rerun (`011-observation-fixes/evidence/goal-reverify/excluded-windows.tsv`) |
 | Two scenario files out of date | The CP-004 file still records a July run as BLOCKED in its evidence and verdict sections. CP-003's first block deletes its sandbox while the sandbox daemon still runs, and the daemon's SIGTERM record then recreates the folder. Both sit outside this packet's frozen scope, so they wait for the operator. Closed in phase 12. CP-004 lost its July sections, and both scenarios now wait for the sandbox daemon to exit before they remove its folder |
+| A false `CHANGED` in phase 13's reruns | Two 433 runs printed `live generation file CHANGED` because the live daemon reindexed on another session's edits inside the block's window. Phase 13 recorded it as F12, traced it and added triage to 433 and CP-004, and both runs passed on a quiet rerun (`013-review-follow-ups/evidence/reruns/generation-trace.txt`) |
+| Live advisor restart during phase 13 | At 07:51:42Z on 2026-09-28 the live daemon shut down on a SIGTERM twice within two seconds, while no sandbox existed and no command of the phase sent a signal. The launcher's dead-socket respawn is the likely path. It is advisor runtime code outside this packet's scope, so it waits for the operator (`013-review-follow-ups/evidence/live-advisor-restart.txt`) |
 <!-- /ANCHOR:log -->

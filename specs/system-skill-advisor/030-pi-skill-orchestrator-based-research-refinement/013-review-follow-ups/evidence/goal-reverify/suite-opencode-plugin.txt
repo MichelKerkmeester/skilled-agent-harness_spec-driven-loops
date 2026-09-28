@@ -1,0 +1,45 @@
+# OpenCode plugin tests, HEAD 396d26d4ff, 2026-09-28T08:13:14Z
+✔ malformed optional configuration is reported with a prompt-safe code (142.944042ms)
+✔ plugin module exports only its default factory, the shape the OpenCode loader accepts (0.435166ms)
+✔ bounded route rendering caps targets and exposes a complete reveal path (0.374083ms)
+✔ flag-off route rendering and plugin delivery remain byte-identical to the baseline (9.175958ms)
+✔ bounded flag selects the bounded line in the OpenCode transform (2.592209ms)
+✔ target digest is stable for the same membership and changes for a changed omitted set (0.125083ms)
+✔ bounded rendering preserves the cap boundary and handles empty or malformed summaries (0.09225ms)
+✔ no-brief turns render the no-match head and hygiene context (2.650916ms)
+✔ the stdin request stays inside the byte budget when the prompt needs escaping (2.95775ms)
+✔ a prompt over 10,000 characters is sent as its first 10,000 (3.288708ms)
+✔ a byte budget too small for any prompt fails open without spawning (5.614833ms)
+✔ a missing advisor binary fails open as a spawn error (6.925292ms)
+✔ the advisor CLI the plugin spawns exists on disk (2.56925ms)
+✔ missing prompts render the skipped head while disabled mode stays silent (0.21625ms)
+✔ CLI output is bounded and overflow terminates immediately (5.325625ms)
+✔ termination grace stays inside the configured timeout budget (50.093167ms)
+✔ multi-file freshness invalidates cache and ignores WAL-only mtime changes (39.192292ms)
+✔ unavailable freshness bypasses completed cache entries (7.109209ms)
+✔ the signature follows skills held only under the legacy source-root name (14.303708ms)
+✔ a workspace without a source root is never served from cache (5.197541ms)
+✔ session deletion prevents an in-flight completion from repopulating cache (5.220042ms)
+✔ cache TTL starts when CLI work completes (79.675292ms)
+✔ unexpected spawn failures fail open without escaping the transform (4.589084ms)
+✔ hostile output containers cannot make the transform fail closed (2.391583ms)
+✔ Claude source clamps prompts, keeps fallback parity, and flushes fail-open output (0.349375ms)
+✔ status exposes prompt-safe configuration health (2.214083ms)
+✔ same-message advisor contributions are suppressed only after the first delivery (5.179125ms)
+✔ distinct advisor messages with identical text both receive full delivery (4.33425ms)
+✔ flag-off advisor delivery preserves repeated output byte-for-byte (4.432125ms)
+✔ unresolvable advisor identity fails open with full delivery (4.763625ms)
+✔ malformed advisor identity fields resolve to no identity without throwing (0.215375ms)
+✔ identity parts carrying the key separator resolve to no identity (no ambiguous-key collision) (0.097292ms)
+✔ multi-transform receipts record both transform fires and their outcomes (0.131583ms)
+✔ a hostile pre-populated shared dedup state cannot falsely suppress a fresh identity (0.083042ms)
+✔ concurrent transforms reserve delivery before commit so only one may deliver (0.07525ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 457.800708
+node_test_exit=0

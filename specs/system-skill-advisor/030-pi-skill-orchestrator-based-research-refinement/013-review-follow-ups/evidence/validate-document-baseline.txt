@@ -1,0 +1,21 @@
+# validate_document.py on the three scenario files as committed at HEAD 396d26d4ff, 2026-09-28T08:09:15Z
+# T002 recorded no validator baseline, so each file was copied from HEAD with git show into a scratch tree that
+# keeps its repository path, and the working tree's validator ran on the copy. final-gates.txt has the edited files.
+## HEAD:.skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/cli-hook-transport-down-fail-open.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+## HEAD:.skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+Document type: playbook_feature
+Total issues: 0
+exit=0
+## HEAD:.skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+
+✅ VALID: .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
+Document type: playbook_feature
+Total issues: 0
+exit=0

@@ -1,0 +1,43 @@
+The live advisor restarted twice between 07:51:42Z and 07:51:44Z on 2026-09-28, as gen-monitor.py recorded
+
+What was seen (reruns/generation-timeline.txt)
+- 07:51:42.296Z, generation 572, reason SIGTERM, state unavailable: live daemon 87539 shut down on a SIGTERM.
+- 07:51:43.021Z, generation 573, reason advisor-server-startup-scan: a new daemon finished its startup scan.
+- 07:51:43.691Z, generation 574, reason SIGTERM, state unavailable: that daemon shut down on a SIGTERM 0.67 seconds
+  after its scan.
+- 07:51:44.167Z, generation 575, reason advisor-server-startup-scan: daemon 21257 finished its startup scan.
+- Since then the live advisor is launcher 21222, started at 07:51:42Z, and daemon 21257, started at 07:51:43Z. The
+  lease has named them since 07:51:43.751Z (reruns/state-after.txt). Launcher 87524 and daemon 87539 are gone.
+- Barter's advisor, launcher 86318 and daemon 86320, was listed at 07:50:21Z (goal-reverify/crit3-sandbox-daemon.txt)
+  and gone by 07:55:30Z, when a process listing in this session showed only 21222 and 21257. reruns/state-after.txt
+  lists neither at 07:58:17Z.
+
+What was running
+- No command of this phase sent a signal, and no sandbox existed. The criterion 3 proof ended at 07:50:21Z,
+  OpenCode's CP-004 block at 07:46:52Z and Devin's quiet 433 rerun at 07:46:16Z. GPT-6 Luna's read-only verify ended
+  at 07:51:40Z, and OpenCode's CP-004 tester was writing its report until 07:52:37Z.
+- Luna's Codex session ran six Stop hooks as it exited at 07:51:40Z. Luna's next verify ran the same six hooks when
+  it exited at 08:00:22Z, and at 08:00:37Z the live advisor was still 21222 and 21257 with generation 576, so those
+  hooks alone did not restart it.
+- This session's prompt hook ran on the notice of Luna's exit, at about 07:51:41Z, and answered "Advisor: stale".
+  The hook shows that status for a local-scorer answer after the CLI could not reach the daemon (scenario 433's
+  overview).
+
+Where a SIGTERM to a live daemon can come from (paths from the repository root)
+- .skilled/bin/system-skill-advisor-launcher.cjs:736-790, respawnAfterDeadSocket. A launcher started by a CLI call
+  finds the lease held, judges its socket dead after the bridge's probes (.skilled/bin/lib/launcher-ipc-bridge.cjs:69-73
+  and :442-456) and sends SIGTERM to the lease's daemon (launcher.cjs:518-558) before it starts another.
+- launcher.cjs:640-660. A launcher whose owner-lease heartbeat fails sends SIGTERM to its own daemon and exits.
+- launcher.cjs:1383-1400 and .skilled/skills/system-skill-advisor/runtime/advisor-server.ts:387-388. A launcher that
+  is itself signalled passes the signal to its daemon, which publishes the reason SIGTERM.
+
+Reading, inferred and not confirmed
+- Two launchers started at about 07:51:42Z. The first sent SIGTERM to daemon 87539 and started a daemon. The second
+  sent SIGTERM to that daemon 0.67 seconds after its scan and started 21257. One CLI call was this session's prompt
+  hook. The other is not known. No launcher log exists, because the live launcher writes its stderr to /dev/null.
+- Why the first launcher judged 87539's socket dead is not known. A daemon in its startup scan has no socket yet
+  (../../012-reverify-follow-ups/evidence/teardown-check/probe-open-files-startup.txt), which would explain the second
+  SIGTERM.
+
+Nothing was changed for this. The launcher's reap path is advisor runtime code outside this phase, so it is recorded
+for the operator.

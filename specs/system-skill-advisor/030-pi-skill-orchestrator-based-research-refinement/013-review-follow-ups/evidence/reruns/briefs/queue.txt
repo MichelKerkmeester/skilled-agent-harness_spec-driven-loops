@@ -1,0 +1,15 @@
+pi 433
+devin CP-004
+cursor CP-003
+opencode 433
+codex CP-004
+pi CP-003
+devin 433
+cursor CP-004
+opencode CP-003
+codex 433
+pi CP-004
+devin CP-003
+cursor 433
+opencode CP-004
+codex CP-003

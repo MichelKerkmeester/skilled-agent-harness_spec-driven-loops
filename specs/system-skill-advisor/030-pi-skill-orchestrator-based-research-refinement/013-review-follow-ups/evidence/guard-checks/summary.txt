@@ -1,0 +1,43 @@
+Guard checks and as-written runs, 2026-09-28, HEAD 4f4d25288c
+
+The teardown portions under test were cut from the scenario files as they stand now (teardown-new-*.sh) and from
+HEAD, which holds phase 12's form (teardown-p12-*.sh). run-all.sh ran every case at once from 07:00:58Z to 07:01:24Z.
+Each "hidden" case put PATH=/usr/bin:/bin first, which leaves /usr/sbin/lsof out. Each "empty" case ran the teardown
+under env -i. Each case got its own fresh, idle sandbox, so no daemon was involved.
+
+lsof hidden
+- Phase 12 form, CP-003 and CP-004: "sandbox advisor exited; sandbox removed". Both removed their sandbox without the
+  open-file test (p12-cp003-hidden-bash.log, p12-cp004-hidden-bash.log).
+- New form, 433, CP-003 and CP-004, in bash and in zsh: "lsof cannot list open files here; sandbox kept at ...", and
+  the sandbox was still there afterwards (new-*-hidden-*.log). 433 and CP-004 also printed "live generation file
+  unchanged" first, since their generation check runs before the removal decision.
+
+lsof visible, the control
+- New form, all three, bash and zsh: "sandbox advisor exited; sandbox removed" (new-*-normal-*.log).
+
+Empty environment
+- New form, all three, bash and zsh: only the rerun message, "the block's variables are missing; rerun the whole block
+  in one shell", "SANDBOX is unset; run step 1 as one block" or "step 2 variables are missing; rerun steps 2 to 5 in one
+  shell", and neither success line (empty-new-*.log).
+- Phase 12 CP-004 step 5, with its final removal if-block left out because a safety check refuses rm -rf "": it
+  printed "shasum: : No such file or directory" and then "live generation file unchanged", the false success line
+  the review named (empty-p12-cp004-noremove-bash.log).
+
+Cleanup
+- The six sandboxes the new form kept were empty and held by nothing, and were removed by hand with rm -r
+  (logs/cleanup.txt).
+
+As written, with real sandbox daemons (as-written/), 07:02:29Z to 07:03:44Z
+- 433, CP-003 step 1 and CP-004 steps 2 to 5 ran at once, each in its own bash. 433 ran without "gtimeout 20 ",
+  since gtimeout is not installed here, which is the only change from the file.
+- 433: all three hook runs exited 0. short: "Advisor: outage (fail_open); route by hand: ...", default: "Advisor: live;
+  ambiguous: system-skill-advisor 0.82/0.34 vs sk-vision 0.82/0.30 pass.", casual: "Advisor: prompt skipped." The
+  teardown printed "live generation file unchanged" and "sandbox advisor exited; sandbox removed", 29 seconds after
+  the block started.
+- CP-003 step 1: ADVISOR_DISABLED with empty recommendations, then "sandbox advisor exited; sandbox removed".
+- CP-004: warm-only exit 75 with the ENOENT envelope, cold start exit 0 with freshness live, then "live generation
+  file unchanged" and "sandbox advisor exited; sandbox removed".
+- No /tmp/cp003.*, /tmp/cp004.* or /tmp/cli-playbook.* folder existed in 30 samples over the 60 seconds after
+  (as-written/logs/tmp-after.txt).
+- The live advisor was launcher 87524 and daemon 87539 before and after, with the same generation and lease hashes
+  (as-written/logs/state-before.txt, state-after.txt).

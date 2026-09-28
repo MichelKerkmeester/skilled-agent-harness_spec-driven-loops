@@ -68,3 +68,28 @@ Cause: unknown
   so it is not ruled out. Several other AI sessions on this machine call this repository's advisor through their hooks.
 - The scenario blocks never signal a launcher, so this does not bear on them. Case B will not run again without the
   operator's go-ahead, because rerunning it could restart the live advisor.
+
+Corrections and later observations, added by phase 13 on 2026-09-28
+
+What this note left out
+- teardown-check/idle-result.txt case 2, 16:19:41Z to 16:23:13Z on 2026-09-27, sent SIGKILL to sandbox launcher 34669
+  right after its call and left the lease in place. Live launcher 97186 and daemon 97187 were the same processes
+  before and after the test, so a killed sandbox launcher had already run once beside the live advisor without
+  disturbing it.
+- The reap sentence under "Cause: unknown" names only reapOwnerBeforeRespawn. isLeaseHeld in
+  runtime/lib/daemon/lease.ts:260-289 also falls back to the legacy lease database at
+  .skilled/skills/.state/advisor/skill-graph-daemon-lease.sqlite when a caller passes no lease path. That file holds
+  only a quarantined_skill table, so the fallback finds no lease today, and the sentence's conclusion stands.
+
+Fourth launcher change, after phase 12's goal re-proof, 2026-09-28
+- Launcher 33066 and daemon 33068 started at 06:04:32Z. 40890 had exited by the review's check at 06:07Z.
+- It fits the 30-minute idle exit after the re-proof's last advisor call, the OpenCode plugin live load from 05:33:39Z
+  to 05:34:01Z (goal-reverify/opencode-plugin-live-load.txt). Inferred, not confirmed.
+
+Case B run again, watched
+- Phase 13 ran case B's crash once more on the operator's yes: SIGKILL to its own sandbox launcher after the same
+  three checks, then both sandbox lease files removed. It sampled the live lease and the live launcher and daemon every
+  0.1 seconds. Live launcher 87524 and daemon 87539 stayed alive in all 186 samples and afterwards, and the live
+  lease named 87524 throughout (../../013-review-follow-ups/evidence/crash-test/).
+- One run cannot rule case B out as the cause of the third change, but it is now two crashed sandbox launchers
+  beside a live advisor, case 2 above and this one, with the live advisor unchanged both times.

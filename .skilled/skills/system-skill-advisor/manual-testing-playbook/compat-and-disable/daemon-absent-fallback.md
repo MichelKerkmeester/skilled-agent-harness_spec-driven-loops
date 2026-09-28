@@ -73,20 +73,26 @@ SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0.2 node .skilled/bin/skill-advisor.cjs adviso
 echo "cold-start exit=$?"
 ```
 
-5. Teardown. The block sends no signal. It waits until the lease file is gone, the socket folder is empty, no process holds a file open in the sandbox and at least 25 seconds have passed, which outlasts the idle timeout and its six-second check. The open-file test covers a launcher that crashes, because a crashing launcher deletes its lease without waiting for its daemon, and the daemon keeps its database open until it exits. Then confirm the live generation file is unchanged and remove the sandbox:
+5. Teardown. The block sends no signal. It waits until the lease file is gone, the socket folder is empty, no process holds a file open in the sandbox and at least 25 seconds have passed, which outlasts the idle timeout and its six-second check. The open-file test covers a launcher that crashes, because a crashing launcher deletes its lease without waiting for its daemon, and the daemon keeps its database open until it exits. Then the block confirms the live generation file is unchanged and removes the sandbox. It does nothing when step 2's variables are missing, as they are when the steps run in separate shells. It keeps the sandbox when `lsof` cannot list the shell's own open files, since the open-file test then proves nothing. It removes with `rm -r`, so `sandbox removed` prints only when a folder was really removed:
 
 ```bash
-sandbox_advisor_running() {
-  [ -e "$SANDBOX/db/.system-skill-advisor-launcher.json" ] || [ -n "$(ls -A "$SANDBOX/sock" 2>/dev/null)" ] ||
-    [ -n "$(lsof -t +D "$SANDBOX" 2>/dev/null)" ]
-}
-for i in $(seq 1 60); do [ "$i" -gt 25 ] && ! sandbox_advisor_running && break; sleep 1; done
-[ "$(shasum "$GEN")" = "$GEN_BEFORE" ] && echo "live generation file unchanged" || echo "live generation file CHANGED"
-unset SPECKIT_IPC_SOCKET_DIR SYSTEM_SKILL_ADVISOR_DB_DIR SPECKIT_DAEMON_REELECTION SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED
-if sandbox_advisor_running; then
-  echo "sandbox advisor still running after 60s; sandbox kept at $SANDBOX"
+if [ -z "${SANDBOX:-}" ] || [ -z "${GEN:-}" ] || [ -z "${GEN_BEFORE:-}" ]; then
+  echo "step 2 variables are missing; rerun steps 2 to 5 in one shell"
 else
-  rm -rf "$SANDBOX" && echo "sandbox advisor exited; sandbox removed"
+  sandbox_advisor_running() {
+    [ -e "$SANDBOX/db/.system-skill-advisor-launcher.json" ] || [ -n "$(ls -A "$SANDBOX/sock" 2>/dev/null)" ] ||
+      [ -n "$(lsof -t +D "$SANDBOX" 2>/dev/null)" ]
+  }
+  for i in $(seq 1 60); do [ "$i" -gt 25 ] && ! sandbox_advisor_running && break; sleep 1; done
+  [ "$(shasum "$GEN")" = "$GEN_BEFORE" ] && echo "live generation file unchanged" || echo "live generation file CHANGED"
+  unset SPECKIT_IPC_SOCKET_DIR SYSTEM_SKILL_ADVISOR_DB_DIR SPECKIT_DAEMON_REELECTION SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED
+  if [ -z "$(lsof -t -p $$ 2>/dev/null)" ]; then
+    echo "lsof cannot list open files here; sandbox kept at $SANDBOX"
+  elif sandbox_advisor_running; then
+    echo "sandbox advisor still running after the wait; sandbox kept at $SANDBOX"
+  else
+    rm -r "$SANDBOX" && echo "sandbox advisor exited; sandbox removed"
+  fi
 fi
 ```
 
@@ -100,7 +106,7 @@ fi
   `freshness: "live"`. The `freshness: "absent"` envelope with empty recommendations is a handler-level branch that
   the front door does not surface in the shipped configuration. The hook layer is where an unreachable daemon
   becomes an `Advisor:` status line.
-- Step 5 prints `live generation file unchanged` and `sandbox advisor exited; sandbox removed`.
+- Step 5 prints `live generation file unchanged` and `sandbox advisor exited; sandbox removed`. No `/tmp/cp004.*` folder is left behind.
 - The absence path does not throw and does not block prompt handling.
 
 ### Failure Modes
@@ -111,8 +117,10 @@ fi
 | Shim cannot route locally | Forced-local exits nonzero | Check Python scorer imports and skill metadata. |
 | Warm-only run exits `0` | Step 3 answers from a daemon | The sandbox exports are missing, so the call reached the live daemon. Rerun step 2 in the same shell. |
 | Cold start answers from the local scorer | Step 4 shows `degraded: true` and `source: "local-scorer"` with no `freshness` | The sandbox daemon did not answer inside the CLI's 5-second cold-start window. Run step 4 again, then tear down. |
-| Sandbox advisor outlives the wait | Step 5 prints `still running after 60s` and keeps the sandbox | Check the pids in the kept lease, if there is one, and the pids `lsof -t +D "$SANDBOX"` prints, with `ps`. Remove the sandbox by hand once none of them runs. Never stop the live daemon. |
-| Live state changed | Step 5 prints `live generation file CHANGED` | Record it as a FAIL. The sandbox daemon wrote live advisor state. |
+| Sandbox advisor outlives the wait | Step 5 prints `still running after the wait` and keeps the sandbox | Check the pids in the kept lease, if there is one, and the pids `lsof -t +D "$SANDBOX"` prints, with `ps`. Remove the sandbox by hand once none of them runs. Never stop the live daemon. |
+| `lsof` cannot run | Step 5 prints `lsof cannot list open files here` and keeps the sandbox | `lsof` is missing or the runtime's sandbox blocks it, so the block cannot tell whether the sandbox daemon still holds its database. Record the environment limit. Remove the sandbox by hand once `lsof -t +D` in a shell where it works shows nothing holds it. |
+| Step 2's variables are lost | Step 5 prints `step 2 variables are missing` | The steps ran in separate shells, so nothing was checked or removed. Rerun steps 2 to 5 in one shell. |
+| Live state changed | Step 5 prints `live generation file CHANGED` | Record it as a FAIL. The live advisor also rewrites that file when it starts, stops, scans, rebuilds or reindexes, and it reindexes about three seconds after any skill file it watches changes, with the reason `advisor-server-watcher-reindex`. So another session's edit during the run changes it too. Rerun steps 2 to 5 while no skill file is being edited, the live advisor keeps its pids and no one runs a skill-graph scan or an advisor rebuild. A `CHANGED` line on that quiet rerun points to the sandbox daemon writing live advisor state. |
 
 ---
 

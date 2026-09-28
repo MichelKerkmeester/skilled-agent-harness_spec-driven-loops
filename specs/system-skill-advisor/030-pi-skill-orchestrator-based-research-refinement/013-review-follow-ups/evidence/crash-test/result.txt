@@ -1,0 +1,43 @@
+Watched crash test, run once on 2026-09-28 from 07:08:41Z to 07:09:10Z
+
+What ran (crash-test.sh, output in run.txt)
+- A sandbox advisor cold-started with CP-004's environment and a 12-second idle timeout: launcher 26444, daemon 26449,
+  socket /tmp/cp004.pVGD0c/sock/daemon-ipc.sock. The call answered live (cold-start.json).
+- The three checks passed: the lease socket lay inside the sandbox, neither pid was a live advisor pid and 26444 was
+  a launcher. At 07:08:45Z the script sent SIGKILL to 26444 and removed both sandbox lease files, as the launcher's
+  crash handler would. Nothing else was signalled.
+- sampler.py sampled every 0.1 seconds from one second before the kill until three seconds after the daemon exited:
+  186 samples, median interval 0.110 seconds, longest 0.130. Its scan thread ran `lsof -t +D` over the sandbox back to
+  back, 109 scans of about 0.18 seconds each (samples.tsv, scans.tsv).
+- CP-004 step 5, cut from the scenario file as it stands (teardown-cp004-step5.sh), ran against the crashed sandbox
+  from +0.02 to +25.71 seconds.
+
+What the samples show (summary.txt)
+- Both lease files were gone at +0.07 seconds.
+- Until +15.63 seconds the daemon held both sandbox databases, skill-graph.sqlite and skill-graph-daemon-lease.sqlite
+  with their -wal and -shm files, and its listening socket.
+- At +15.74 seconds the daemon was still alive but held no sandbox path, and the socket file was still in the socket
+  folder.
+- At +15.85 seconds the daemon was gone and the socket folder was empty.
+- So the daemon let go of its database and its socket within one sample interval, and the socket file went after
+  that. The lease-and-socket test stayed true until the daemon had closed its database. In this run there was no
+  moment when the socket was gone and the database still open, so the open-file clause covered no extra time.
+- The run's first summary line read "window where only the open-file clause saw the daemon: 0.10s". That figure is
+  scan lag, not a gap. Each fast sample carries the last finished scan, and the scan that first found nothing started
+  at +15.73 and finished at +15.91 seconds. summarize.py was corrected to report it as lag and rerun on the same logs.
+  The crash test itself was not rerun.
+- The daemon exited 15.85 seconds after the kill, inside the teardown's 25-second floor. The teardown printed "live
+  generation file unchanged" and "sandbox advisor exited; sandbox removed", and no sandbox folder was left.
+
+The live advisor
+- Every sample read live launcher 87524 and daemon 87539 as alive, and the live lease named 87524 throughout. The
+  process list and the live generation file matched before and after.
+
+What this settles and what it does not
+- One run of one fault: a launcher killed after its call, with its lease cleared. It does not cover a crash during
+  the daemon's startup scan, when phase 12's probe saw the database open before the socket existed
+  (../../012-reverify-follow-ups/evidence/teardown-check/probe-open-files-startup.txt). The teardown only runs after the
+  cold-start call has answered, so it meets a daemon that is past its scan.
+- The open-file clause stays in the blocks as a guard. The review's point stands on this evidence too. No run with a
+  real sandbox daemon has shown a sandbox that the lease-and-socket test alone would have removed too early. Phase
+  12's case A1 showed it only with a stand-in process holding a file in a sandbox that had no lease and no socket.
