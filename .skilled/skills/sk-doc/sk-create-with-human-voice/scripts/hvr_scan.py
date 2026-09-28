@@ -44,6 +44,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "shared" / "scripts"))
+from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
+
 # ───────────────────────────────────────────────────────────────
 # 1. LOCATING THE STANDARD
 # ───────────────────────────────────────────────────────────────
@@ -585,6 +588,7 @@ def main(argv=None):
         help="scan code blocks and inline code too (off by default)",
     )
     args = parser.parse_args(argv)
+    exit_if_validation_off("hvr_scan.py", argv)
 
     try:
         rules = load_rules(args.rules)

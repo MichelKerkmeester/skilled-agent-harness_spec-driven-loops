@@ -24,6 +24,7 @@ from typing import Iterable, Sequence
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from naming_root_resolver import canonical_root  # type: ignore  # noqa: E402
+from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
 
 
 SNAKE_CASE = re.compile(r"[A-Za-z0-9]+_[A-Za-z0-9_]*[A-Za-z0-9]")
@@ -367,6 +368,7 @@ def parse_args(argv: Sequence[str]) -> argparse.Namespace:
 
 def main(argv: Sequence[str]) -> int:
     args = parse_args(argv)
+    exit_if_validation_off("check_no_new_snake_case.py", argv)
     try:
         repo_root = repository_root()
         if args.scan_all:

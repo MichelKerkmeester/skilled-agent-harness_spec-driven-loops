@@ -12,6 +12,9 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Optional
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'shared' / 'scripts'))
+from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
+
 
 COMPILED_ROUTING_MARKERS = (
     'Compiled routing (default-on',
@@ -201,6 +204,7 @@ def main() -> int:
         help="Emit the aggregate result as JSON",
     )
     args = parser.parse_args()
+    exit_if_validation_off('validate_skill_package.py')
 
     skill_path = Path(args.skill_path)
     script_path = Path(__file__).resolve()

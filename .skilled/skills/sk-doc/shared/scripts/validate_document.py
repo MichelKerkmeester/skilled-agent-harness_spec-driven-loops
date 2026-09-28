@@ -165,6 +165,7 @@ from naming_root_resolver import (  # type: ignore
     CATALOG_ROOT_NAMES as CATALOG_DIR_NAMES,
     assert_supported_root_path,
 )
+from validation_switch import exit_if_validation_off  # type: ignore
 
 
 def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
@@ -1708,6 +1709,9 @@ def main() -> None:
                         help='Validate even excluded paths (pytest_cache, node_modules, etc.)')
 
     args = parser.parse_args()
+    # --fix rewrites the document rather than judging it, so it keeps running.
+    if not args.fix:
+        exit_if_validation_off('validate_document.py')
 
     # Load rules
     script_dir = Path(__file__).resolve().parent

@@ -24,6 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from naming_root_resolver import ALL_ROOT_NAMES, find_unsupported_root_dirs  # type: ignore
+from validation_switch import exit_if_validation_off  # type: ignore
 
 
 def find_underscored_content(root: Path):
@@ -45,6 +46,7 @@ def find_underscored_content(root: Path):
 
 
 def main(argv) -> int:
+    exit_if_validation_off('check_no_hyphenated_catalog_content.py', argv)
     # --enforce-hyphen-target is accepted but inert: enforcing kebab content is now the default.
     flags = {'--json', '--enforce-hyphen-target'}
     args = [argument for argument in argv if argument not in flags]
