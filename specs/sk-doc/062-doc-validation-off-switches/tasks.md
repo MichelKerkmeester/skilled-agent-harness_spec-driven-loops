@@ -86,6 +86,16 @@ Added after the deep review of 2026-09-28 (`review/review-report.md`, CONDITIONA
 
 ---
 
+<!-- ANCHOR:phase-5 -->
+## Phase 5: Release Review
+
+Added when the operator asked for a review of the v4.0.0.2 entry and a release tag. Packets 062 and 067 both wrote into the entry, so both record the review.
+
+- [x] T026 Review the v4.0.0.2 entry against the changelog contract and the 172 commits since `v4.0.0.1`, then fix what the review found (`.skilled/changelog/skilled/v4.0.0.2.md`) (evidence: the review found five user-visible changes missing, a topic phrase carrying a version number, four topic phrases where the contract asks for one or two and seven topical sections. The entry now covers all five, keeps two topic phrases and has six sections. It passes `validate_document.py` with 0 issues and `hvr_scan.py` with 0 hard blockers, and every link resolves)
+<!-- /ANCHOR:phase-5 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
