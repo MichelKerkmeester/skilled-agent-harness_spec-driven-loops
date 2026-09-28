@@ -97,9 +97,13 @@ function isTruthy(value) {
 }
 
 // Parse a KEY=value config file into a plain object. Blank lines and lines
-// beginning with '#' are ignored; surrounding single/double quotes on the value
-// are stripped. Any read/parse failure returns {} so a broken or absent file
-// can never disable a hook the operator did not ask to disable (fail-open).
+// beginning with '#' are ignored; a '#' after a space or tab ends the value, so
+// the example file's lines, which carry a trailing comment, still work once
+// uncommented; surrounding single/double quotes on the value are stripped. The
+// other readers of this file (hook-flags.sh, sk-doc's validation_switch.py and
+// sk-code's check-dist-staleness.sh) parse it the same way. Any read/parse
+// failure returns {} so a broken or absent file can never disable a hook the
+// operator did not ask to disable (fail-open).
 function loadConfigFile(filePath) {
   let raw;
   try {
@@ -115,7 +119,7 @@ function loadConfigFile(filePath) {
     if (eq <= 0) continue;
     const key = trimmed.slice(0, eq).trim();
     if (!key) continue;
-    let val = trimmed.slice(eq + 1).trim();
+    let val = trimmed.slice(eq + 1).replace(/[ \t]#.*$/, "").trim();
     if (
       val.length >= 2 &&
       ((val[0] === '"' && val[val.length - 1] === '"') ||

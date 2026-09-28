@@ -31,7 +31,9 @@ __hook_flags_truthy() {
 
 # Print the effective value for an env-var name: the environment value when the
 # variable is set (even to empty, so env wins), else the config-file value, else
-# nothing. A missing/unreadable file yields nothing (fail-open).
+# nothing. A missing/unreadable file yields nothing (fail-open). In the file a '#'
+# after a space or tab ends the value, as in hook-flags.cjs, so a line carrying a
+# trailing comment still counts.
 __hook_flags_resolve() {
   eval "__hf_r=\${$1-__HF_UNSET__}"
   if [ "$__hf_r" != "__HF_UNSET__" ]; then
@@ -42,7 +44,7 @@ __hook_flags_resolve() {
   __hf_line=$(grep -E "^[[:space:]]*$1[[:space:]]*=" "$__hook_flags_config" 2>/dev/null | grep -v '^[[:space:]]*#' | tail -1)
   [ -n "$__hf_line" ] || return 0
   __hf_v=${__hf_line#*=}
-  __hf_v=$(printf '%s' "$__hf_v" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"\(.*\)"$/\1/' -e "s/^'\(.*\)'\$/\1/")
+  __hf_v=$(printf '%s' "$__hf_v" | sed -e 's/[[:blank:]]#.*$//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"\(.*\)"$/\1/' -e "s/^'\(.*\)'\$/\1/")
   printf '%s' "$__hf_v"
 }
 

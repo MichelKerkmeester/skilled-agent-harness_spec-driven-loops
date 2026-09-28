@@ -189,3 +189,85 @@ test("hook_flag_on reads a named switch from the environment first, then the con
     fs.rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("a '#' after a space or tab ends a value in every reader of the file", () => {
+  const { spawnSync } = require("node:child_process");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hook-flags-comment-"));
+  try {
+    const f = path.join(dir, "hook-flags.env");
+    fs.writeFileSync(
+      f,
+      [
+        "A=1   # trailing comment",
+        'B="yes" # quoted, then a comment',
+        "C=a#b",
+        "D= # only a comment",
+        "E='x y'\t# a tab before the hash",
+        "F=on#not-a-comment",
+        "G=1",
+      ].join("\n") + "\n",
+    );
+    const expected = { A: "1", B: "yes", C: "a#b", D: "", E: "x y", F: "on#not-a-comment", G: "1" };
+    const keys = Object.keys(expected);
+    const env = { ...process.env, HOOK_FLAGS_CONFIG: f };
+    for (const key of keys) delete env[key];
+    const parse = (stdout) => Object.fromEntries(
+      stdout.trim().split("\n").map((line) => [line.slice(0, line.indexOf("=")), line.slice(line.indexOf("=") + 1)]),
+    );
+
+    assert.deepEqual(loadConfigFile(f), expected);
+
+    const shell = spawnSync(
+      "bash",
+      ["-c", '. "$1"; shift; for k in "$@"; do printf "%s=%s\\n" "$k" "$(__hook_flags_resolve "$k")"; done', "probe", path.join(__dirname, "hook-flags.sh"), ...keys],
+      { env, encoding: "utf8" },
+    );
+    assert.deepEqual(parse(shell.stdout), expected);
+
+    // Two skills read the file with their own Python parser. Each is checked
+    // where the checkout carries it, so this suite still runs without them.
+    const skills = path.resolve(__dirname, "..", "..", "skills");
+    const pythonReaders = [
+      [
+        path.join(skills, "sk-doc", "shared", "scripts", "validation_switch.py"),
+        "import json, sys, pathlib; sys.path.insert(0, str(pathlib.Path(sys.argv[1]).parent)); import validation_switch as m; print(json.dumps(m.load_config_file(pathlib.Path(sys.argv[2]))))",
+      ],
+      [
+        path.join(skills, "sk-code", "sk-code-quality", "scripts", "check-dist-staleness.sh"),
+        "import json, sys, importlib.machinery, importlib.util; loader = importlib.machinery.SourceFileLoader('dist_checker', sys.argv[1]); m = importlib.util.module_from_spec(importlib.util.spec_from_loader('dist_checker', loader)); loader.exec_module(m); print(json.dumps(m._hook_flags_config()))",
+      ],
+    ];
+    for (const [reader, script] of pythonReaders) {
+      if (!fs.existsSync(reader)) continue;
+      const result = spawnSync("python3", ["-c", script, reader, f], { env, encoding: "utf8" });
+      assert.equal(result.status, 0, result.stderr);
+      assert.deepEqual(JSON.parse(result.stdout), expected, reader);
+    }
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("an example line uncommented as-is, trailing comment and all, disables its hook", () => {
+  const { spawnSync } = require("node:child_process");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hook-flags-example-"));
+  try {
+    const f = path.join(dir, "hook-flags.env");
+    fs.writeFileSync(
+      f,
+      [
+        "SYSTEM_SKILL_ADVISOR_DISABLED=1         # skill-advisor brief on your prompts",
+        "SYSTEM_SESSION_CLEANUP_DISABLED=1       # stop-hook orphan/session cleanup",
+      ].join("\n") + "\n",
+    );
+    assert.equal(isHookEnabled("skill-advisor", {}, loadConfigFile(f)), false);
+    const env = { ...process.env, HOOK_FLAGS_CONFIG: f };
+    delete env.SYSTEM_SESSION_CLEANUP_DISABLED;
+    delete env.SYSTEM_HOOKS_DISABLED;
+    const script = `. "$1"; hook_enabled session-cleanup && echo on || echo off`;
+    const shell = spawnSync("bash", ["-c", script, "probe", path.join(__dirname, "hook-flags.sh")], { env, encoding: "utf8" });
+    assert.equal(shell.stdout.trim(), "off");
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});

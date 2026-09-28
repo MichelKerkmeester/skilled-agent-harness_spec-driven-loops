@@ -22,7 +22,7 @@ A second, independent ESM sibling (`hook-adapter-shared.mjs`) lives in `system-s
 
 **Kill-switch resolver.** `hook-flags.cjs` exports `isHookEnabled(concern, env?, config?)`: default-on, so adding the guard changes no behavior until a flag is set. A hook goes silent when the master switch (`SYSTEM_HOOKS_DISABLED`, alias `MK_HOOKS_DISABLED`) or one of the concern's kill-switches is truthy (`1`/`true`/`yes`/`on`, case-insensitive). `concernFlag(concern)` derives the canonical env-var name: concerns listed in `CONCERN_CANONICAL` get their hand-set name (e.g. `goal` → `OPENCODE_GOAL_DISABLED`, `dispatch` → `CLI_DISPATCH_AUDIT_DISABLED`); every other concern falls back to the default shape `SYSTEM_<CONCERN>_DISABLED`. `LEGACY_ALIASES` maps each concern to the older `MK_`/`SPECKIT_`/plugin-owned names that also disable it, so operator config written against any generation keeps working. `isFlagOn(name, env?, config?)` answers the same question for one named switch that is not a hook concern, such as the `SPECKIT_SKIP_VALIDATION` and `SKDOC_SKIP_VALIDATION` validation switches: the environment answers whenever the name is set there, even to an empty value, and the config file answers otherwise.
 
-Flags resolve from two sources: the live environment, and an optional operator config file (`hook-flags.env`, sibling of this folder, overridable via `HOOK_FLAGS_CONFIG`). The environment always wins over the file for a given key, so a persisted default can still be overridden per session. The config file is read once per process and cached; tests reset the cache via `_resetConfigCache()`.
+Flags resolve from two sources: the live environment, and an optional operator config file (`hook-flags.env`, sibling of this folder, overridable via `HOOK_FLAGS_CONFIG`). The environment always wins over the file for a given key, so a persisted default can still be overridden per session. The config file is read once per process and cached; tests reset the cache via `_resetConfigCache()`. In the file, a `#` after a space or tab ends a value, so `SYSTEM_SKILL_ADVISOR_DISABLED=1  # why` reads as `1`. Every reader of the file applies that rule: `hook-flags.cjs`, `hook-flags.sh`, sk-doc's `validation_switch.py` and sk-code's `check-dist-staleness.sh`. A test in `hook-flags.test.cjs` holds all four to the same answers.
 
 At load, `hook-flags.cjs` calls `env-aliases.cjs.applyEnvAliases()`, which copies every legacy `MK_*` env value forward onto its new name (only when the new name is unset: a value set explicitly under the new name always wins). This bridges the rename from the opaque `MK_` prefix to self-describing prefixes that name the owning skill or surface.
 
@@ -72,7 +72,7 @@ shared/
 | `hook-flags.sh` | POSIX sh mirror. `hook_enabled <concern>` returns 0 (enabled) unless the master or default-shape per-concern switch is truthy, and `hook_flag_on <name>` returns 0 when one named switch is truthy. Resolves config file at source time. Does not carry canonical-name overrides or legacy aliases. |
 | `env-aliases.cjs` | Back-compat bridge. `applyEnvAliases(env?)` copies every legacy `MK_*` value forward to its new name when the new name is unset. `PREFIX_RULES` maps specific prefixes (`MK_GOAL_` → `OPENCODE_GOAL_`, `MK_CLI_DISPATCH_AUDIT_` → `CLI_DISPATCH_AUDIT_`, etc.); the catch-all `MK_` → `SYSTEM_` rule handles the rest. |
 | `hook-adapter-shared.cjs` | `readStdin()` + `parseJsonFailOpen()`. Byte-identical behavior for every CommonJS consumer. |
-| `hook-flags.test.cjs` | `node --test` suite: default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers. |
+| `hook-flags.test.cjs` | `node --test` suite: default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers, trailing comments in all four readers of the file. |
 
 ---
 
@@ -120,7 +120,7 @@ Each concern also honors a set of legacy aliases (`MK_`/`SPECKIT_`/plugin-owned 
 node --test .skilled/hooks/shared/hook-flags.test.cjs
 ```
 
-Expected result: all tests pass (default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence).
+Expected result: all tests pass (default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence, trailing comments).
 
 `hook-adapter-shared.cjs` is covered by its consumers' own suites:
 
