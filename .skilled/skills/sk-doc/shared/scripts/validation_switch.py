@@ -16,6 +16,7 @@ validation-switch.cjs is the Node twin.
 
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Dict, Mapping, Optional, Sequence
@@ -30,6 +31,9 @@ TRUTHY = frozenset({"1", "true", "yes", "on"})
 # `valid` is the field the document validators report a pass in, so a caller
 # reading their JSON, such as the README auditor, counts a skip as no finding.
 SKIPPED_LINE = {"skipped": True, "valid": True, "reason": f"{SWITCH} is on"}
+# A '#' after a space or tab ends a value, as in hook-flags.cjs, so a line that
+# carries a trailing comment still counts.
+TRAILING_COMMENT = re.compile(r"[ \t]#.*$")
 
 
 # ───────────────────────────────────────────────────────────────
@@ -53,9 +57,10 @@ def config_path(env: Mapping[str, str] = os.environ) -> Path:
 def load_config_file(path: Path) -> Dict[str, str]:
     """Parse KEY=value lines the way hook-flags.cjs does.
 
-    Blank lines, comment lines and lines without a key are skipped, matching
-    quotes around a value are stripped and a later line wins. A file that cannot
-    be read yields no values, so it can never turn a switch on.
+    Blank lines, comment lines and lines without a key are skipped, a trailing
+    comment is dropped, matching quotes around a value are stripped and a later
+    line wins. A file that cannot be read yields no values, so it can never turn
+    a switch on.
     """
     try:
         raw = path.read_text(encoding="utf-8-sig")
@@ -72,7 +77,7 @@ def load_config_file(path: Path) -> Dict[str, str]:
         key = trimmed[:eq].strip()
         if not key:
             continue
-        value = trimmed[eq + 1:].strip()
+        value = TRAILING_COMMENT.sub("", trimmed[eq + 1:]).strip()
         if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
             value = value[1:-1]
         values[key] = value
