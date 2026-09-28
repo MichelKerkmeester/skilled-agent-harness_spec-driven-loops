@@ -719,7 +719,7 @@ describe('score-jev-tiebreak call helpers', () => {
 describe('score-jev-tiebreak jev arm', () => {
   const stubBody = [
     `case "$1" in --version) echo 'jev 0.6.2'; exit 0;; auth) [ "$2" = test ] && echo '{"ok":true,"valid":true,"model":"stub-model"}'; exit 0;; esac`,
-    `p=$(cat); case "$p" in *offkey*) echo '{"model":"stub-model","answers":{"answer":{"choice":"zzz","probabilities":{"zzz":0.9,"none":0.05}}}}'; exit 0;; *sigint*) exit 130;; *hang*) exec sleep 30;; *exit1*) exit 1;; *exit2*) exit 2;; *exit3*) exit 3;; *exit4*) exit 4;; esac`,
+    `p=$(cat); case "$p" in *offkey*) echo '{"model":"stub-model","answers":{"answer":{"choice":"zzz","probabilities":{"zzz":0.9,"none":0.05}}}}'; exit 0;; *hang*) exec sleep 30;; *exit1*) exit 1;; *exit2*) exit 2;; *exit3*) exit 3;; *exit4*) exit 4;; esac`,
     `echo '{"model":"stub-model","answers":{"answer":{"choice":"b","probabilities":{"b":0.7,"none":0.1}}}}'`,
   ].join('\n');
 
@@ -860,18 +860,6 @@ describe('score-jev-tiebreak jev arm', () => {
     expect(result.lines).toContain('column: backend=jev rows=6 measured=5 wins=5 losses=0 ties=0 abstentions=0 unmeasured=1 unstable=0');
     expect(result.lines.find((line) => line.startsWith('verdict: '))).toContain(' decided=5 wins=5 losses=0 ');
   }, 60_000);
-
-  it('stops on an interrupt at the first judgment and scores nothing', async () => {
-    const result = await drive(['sigint a', 'ok b', 'ok c', 'ok d', 'ok e', 'ok f']);
-    expect(result.code).toBe(0);
-    expect(result.lines).toContain('jev arm stopped: interrupted');
-    expect(result.lines).toContain('jev: partial_rows=0');
-    expect(result.lines.some((line) => line.startsWith('column: ') || line.startsWith('verdict: '))).toBe(false);
-    const choice = result.calls.filter((call) => call.kind === 'choice');
-    expect(choice).toHaveLength(1);
-    expect(choice[0]).toMatchObject({ row_id: 'r0', pass: 1, exit_code: 130, answer: null, status: 'unmeasured' });
-    expect(result.logLines.filter((line) => line.startsWith('choice'))).toHaveLength(1);
-  }, 60_000);
 });
 
 describe('score-jev-tiebreak deem arm', () => {
@@ -880,7 +868,7 @@ describe('score-jev-tiebreak deem arm', () => {
     `  if [ -f "$D/gone" ] && [ $n -gt 1 ]; then echo '{"ok":false,"error":"Deem unreachable"}' >&2; exit 4; fi`,
     `  mc=m1; if [ -f "$D/newpair" ] && [ $n -gt 1 ]; then mc=m2; fi`,
     `  echo "{\\"ok\\":true,\\"backend\\":\\"torch\\",\\"model\\":\\"deem-0.8-v1\\",\\"model_commit\\":\\"$mc\\",\\"source_commit\\":\\"s1\\"}"; exit 0; fi`,
-    `p=$(cat); case "$p" in *offkey*) echo '{"model":"deem-0.8-v1","answers":{"answer":{"choice":"zzz","probabilities":{"zzz":0.9,"none":0.05}}}}'; exit 0;; *sigint*) exit 130;; *exit1*) exit 1;; *exit2*) exit 2;; *exit3*) exit 3;; *exit4*) exit 4;; esac`,
+    `p=$(cat); case "$p" in *offkey*) echo '{"model":"deem-0.8-v1","answers":{"answer":{"choice":"zzz","probabilities":{"zzz":0.9,"none":0.05}}}}'; exit 0;; *exit1*) exit 1;; *exit2*) exit 2;; *exit3*) exit 3;; *exit4*) exit 4;; esac`,
     `echo '{"model":"deem-0.8-v1","answers":{"answer":{"choice":"b","probabilities":{"b":0.8,"none":0.05}}}}'`,
   ].join('\n');
 
@@ -999,17 +987,6 @@ describe('score-jev-tiebreak deem arm', () => {
     expect(choice.filter((call) => call.row_id !== 'r0').map((call) => call.status)).toEqual(Array(15).fill('measured'));
     expect(result.lines).toContain('column: backend=deem rows=6 measured=5 wins=5 losses=0 ties=0 abstentions=0 unmeasured=1 unstable=0');
     expect(result.lines.find((line) => line.startsWith('verdict: '))).toContain(' decided=5 wins=5 losses=0 ');
-  }, 60_000);
-
-  it('stops on an interrupt at the first judgment and scores nothing', async () => {
-    const result = await drive(census(['sigint a', 'ok b', 'ok c', 'ok d', 'ok e', 'ok f']));
-    expect(result.code).toBe(0);
-    expect(result.lines).toContain('deem arm stopped: interrupted');
-    expect(result.lines).toContain('deem: partial_rows=0');
-    expect(result.lines.some((line) => /^(column|verdict|calibration): /.test(line))).toBe(false);
-    expect(result.calls).toHaveLength(1);
-    expect(result.calls[0]).toMatchObject({ kind: 'choice', row_id: 'r0', order: 0, exit_code: 130, answer: null, status: 'unmeasured' });
-    expect(result.logLines.filter((line) => line.startsWith('choice'))).toHaveLength(1);
   }, 60_000);
 });
 

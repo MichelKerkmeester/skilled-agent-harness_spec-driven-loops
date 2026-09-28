@@ -70,7 +70,7 @@ Planning probe (`probe-census.mjs`, this folder, read-only, not a build target):
 | 28 | `briefs/28-skill-md.md`: `SKILL.md` version 0.11.1.0 to 0.13.0.0 and one pointer bullet | pi, 18 s, exit 0 | `SKILL.md` | DONE. `git diff`: the version line and one added bullet; `description` and the Keywords comment untouched. `validate_document.py` exit 0, `Total issues: 0`; grep 2 |
 | 29 | `briefs/29-readme.md`: README section 8 row for the offline eval | pi, 16 s, exit 0 | `README.md` | DONE. `git diff`: one added row. `validate_document.py` exit 0, `Total issues: 0`; grep 1 |
 
-No brief was re-dispatched. One corrective brief, 12b, followed brief 12 because brief 12's new arm made an older gate test's expectation stale. Every executor handback read `STATUS: DONE`, with no stray question and no auth error, and every tree diff showed only the files its brief allowed. 40 dispatches by executor (from `logs/*.status`): cursor 23 (01 to 09, 11, 12, 13, 15, 17, 18, 30 to 34 in section 10, 35 in section 11, 36 and 37 in section 13), devin 5 (10, 12b, 14, 16, 26), pi 12 (20 to 25, 27 to 29, 38 in section 13, 39 and 40 in section 14).
+No brief was re-dispatched. One corrective brief, 12b, followed brief 12 because brief 12's new arm made an older gate test's expectation stale. Every executor handback read `STATUS: DONE`, with no stray question and no auth error, and every tree diff showed only the files its brief allowed. 42 dispatches by executor (from `logs/*.status`): cursor 25 (01 to 09, 11, 12, 13, 15, 17, 18, 30 to 34 in section 10, 35 in section 11, 36 and 37 in section 13, 41 and 42 in section 15), devin 5 (10, 12b, 14, 16, 26), pi 12 (20 to 25, 27 to 29, 38 in section 13, 39 and 40 in section 14).
 
 ## 4. Regeneration (the phase's named generated files, run by the orchestrator)
 
@@ -253,3 +253,29 @@ Review round 4 passed with one doc-only P2: the skill README's "Offline tie-brea
 | `briefs/40-changelog-out-line.md` | pi, 15 s | `changelog/v0.13.0.0.md:23`: after "A failed gate prints one skip line and leaves the census unchanged, and the script never reads a key." appended " An arm whose gate passes needs `--out <dir>`, and without it the script exits 2 before any call." on the same line | applying that one substitution to `logs/40.pre.md` reproduces the new file exactly; the porcelain delta against `logs/40.pre-status.txt` is `v0.13.0.0.md` plus this brief's own log files; `validate_document.py` exit 0, `Total issues: 0` (`logs/40.validate.txt`); grep 1; `README.md` revalidated after brief 40, exit 0 |
 
 The advisor suite was not rerun here, because the session is already running it and neither file feeds a test.
+
+## 15. Open test gaps closed after closure (T014, T025)
+
+The phase was closed and committed as `268bc10e7c`, with follow-up `3d3885274d`, but two tasks were still open as test gaps. Each was closed with one test-only brief to cursor, in `score-jev-tiebreak.vitest.ts` only, and the script stayed byte-identical. Before briefing, the script was read at the cited lines:
+- Jev choice handling is at `:1067-1077`: a key outside `row.cluster` and `none` leaves `answer` null and `status` `unmeasured`, and no stop line is set.
+- Deem has the same rule inside `judge`: `keys.includes(choice)` fails, so status stays `unmeasured`. `deemCall` sets no stop line for exit 0, so the Deem case was tested as well.
+- An exit 130 sets `jev arm stopped: interrupted` (`:1083` in the choice loop) or `deem arm stopped: interrupted` (`:1173`). `stop` then prints `<arm>: partial_rows=<finished>`, and `main` returns 0 after either arm stops.
+
+The stub prompt tokens are `offkey` and `sigint`. A token like `exit130` would have matched the existing `*exit1*` pattern first.
+
+| Brief | Executor | Change | Check |
+|-------|----------|--------|-------|
+| `briefs/41-offkey-answer.md` | cursor, 132 s | both arm stubs answer `zzz` on `*offkey*`; new jev and deem tests: row r0's three choice records are `exit_code 0, answer null, pick_prob null, status unmeasured`; the other 15 are `measured`; `column: backend=<arm> rows=6 measured=5 wins=5 losses=0 ties=0 abstentions=0 unmeasured=1 unstable=0`; the verdict line holds ` decided=5 wins=5 losses=0 `; no stop line; exit 0 | the diff against `logs/41.pre.vitest.ts` is exactly the brief's two stub edits and two tests; the script is byte-identical to `logs/41.pre.mjs`; the porcelain delta is the test file plus this brief's own logs; grep 2; vitest `Tests 57 passed (57)`, exit 0 (`logs/41.vitest.txt`) |
+| `briefs/42-interrupt-stop.md` | cursor, 145 s | both arm stubs exit 130 on `*sigint*`; new jev and deem tests with `sigint` on the first row: `<arm> arm stopped: interrupted`, `<arm>: partial_rows=0`, no `column:` or `verdict:` line (and no `calibration:` for deem), exactly one choice record `{row r0, exit_code 130, answer null, status unmeasured}`, one `choice` line in the stub log, and exit 0 | the diff against `logs/42.pre.vitest.ts` is exactly the brief's two stub edits and two tests; the porcelain delta is this brief's own logs; grep 2 |
+
+Final-state checks:
+
+| Check | Command | Result | Exit |
+|-------|---------|--------|------|
+| Script unchanged | `git diff --quiet -- $S`; `git show HEAD:$S \| cmp - $S` | no difference from the committed copy | 0, 0 |
+| Syntax | `node --check $S` | no output | 0 |
+| Eval test file | `vitest run tests/parity/score-jev-tiebreak.vitest.ts` | `Tests 59 passed (59)` (`logs/42.vitest.txt`) | 0 |
+| Advisor suite, full | `vitest run` (`logs/final6-advisor-vitest.*`) | `Test Files 130 passed (130)`, `Tests 1030 passed \| 6 skipped (1036)`, 264 s; `ps` table 178,733 bytes before, 181,446 after. Against 1026 / 6: +4 (the four new tests), 0 failures | 0 |
+| Typecheck | `npm run typecheck` (`logs/final6-typecheck.txt`) | no diagnostics. `tsconfig.build.json` excludes `tests`, so this does not typecheck the changed test file; vitest transpiles that file without type checking | 0 |
+
+Two limits remain. First, the tests would fail if the script accepted an off-set key or kept running after an exit 130, because the asserted `status`, column line and stop line would all change. That is inferred from reading the script, not shown by a mutation run, since the script could not be edited here. Second, T025 exercises only the choice-loop 130 path in each arm. The Jev `auth test` 130 (`:949`) and the Jev calibration `noul` 130 (`:991`) have no dedicated test.

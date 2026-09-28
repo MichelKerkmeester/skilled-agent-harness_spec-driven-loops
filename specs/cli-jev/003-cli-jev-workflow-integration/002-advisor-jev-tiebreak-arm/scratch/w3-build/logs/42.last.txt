@@ -1,0 +1,17 @@
+The phase goal is set. Both arms now stop on an interrupt at the first choice call: the stub exits 130, the arm prints the stop line with `partial_rows=0`, one call is recorded, and `main` still returns 0.
+
+SKILL ROUTING: compiled route → sk-code-opencode (TypeScript test under `.skilled/`). ARTIFACT: sk-code → sk-code-opencode.  
+REPO RULES: prevent-overengineering.md
+
+The scoring script is unchanged. This test file is edited and uncommitted. Nothing was committed or pushed. The orchestrator runs the vitest file next.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+26/-2)
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:722 jev stub exits 130 on sigint before hang
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:883 deem stub exits 130 on sigint before exit1
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:864 jev arm interrupt test, last in the describe
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:1004 deem arm interrupt test, last in the describe
+CHECKS: grep -c "stops on an interrupt at the first judgment" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts -> 2 (exit 0)
+BLOCKED REASON: none
+```
