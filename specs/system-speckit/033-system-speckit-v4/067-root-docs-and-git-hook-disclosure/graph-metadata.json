@@ -47,6 +47,7 @@
       "implementation-summary.md",
       ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
       ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/changelog/skilled/v4.0.0.2.md",
       ".claude/settings.json",
       ".pi/settings.json"
     ],
@@ -85,6 +86,12 @@
         "name": "pre-commit.test.sh",
         "kind": "script",
         "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.2.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.2.md",
         "source": "derived"
       },
       {
@@ -172,7 +179,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Root Docs",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A fresh review of the external user experience on 2026-09-28 found the root docs stale",
     "created_at": "2026-09-28T15:56:26Z",
-    "last_save_at": "2026-09-28T17:13:02.632Z",
+    "last_save_at": "2026-09-28T19:50:31.776Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7809d126eb04eccf58e350de9ada0f7a5fcbf819d7548c2a3d585f9421184841",
+    "source_fingerprint": "sha256:e75d9dcc6cd1f51f464363d83985727c12af76c234d88389697f379ce30be894",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbc2016b93c4e2ecb6e8856b1f3651da6daf23e6c95571f7bf42d5016e8210e8",
       "plan.md": "ece06f8a9ec1c494469e46a57f72d56980af78a89663b0d98af0c51945cd6ce5",
-      "tasks.md": "29dcce125089ac4fb19f5443d3025199e1f7b00b1bef665107b039f3d810412b",
-      "implementation-summary.md": "71f4a2a9b95e430392b2becba7a88f247e2a1ab2e1025f9fa91b0c43c8784e7e"
+      "tasks.md": "4ea3f4ca9f97587cf356a8d7b8b88833987a378667e8b5d58e0e13175c27d77d",
+      "implementation-summary.md": "336af1a21c698e92437902fd740d2cdda00b8fb33e2a0d7ced2343e224eeb595"
     },
     "last_active_at": null
   }

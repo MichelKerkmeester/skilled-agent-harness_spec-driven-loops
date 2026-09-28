@@ -71,6 +71,7 @@ The README's Quick Start gained a "Git Hooks" subsection. It says the first AI s
 | `.skilled/scripts/git-hooks/pre-commit` | Modified | Bypass line on the comment hygiene and mirror parity blocks, the whole-chain switch on both agent mirror blocks |
 | `.skilled/scripts/git-hooks/tests/commit-msg.test.sh` | Modified | Case 17 asserts both early blocks name the bypass |
 | `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` | Modified | Bypass checks on the dirty mirror and missing checker cases, and cases 40 to 42 |
+| `.skilled/changelog/skilled/v4.0.0.2.md` | Modified | The Git Hooks and the Root Docs section, then the release review shared with packet 062 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -105,6 +106,7 @@ The test cases came first. Run against the hooks as committed at HEAD, they fail
 | `bash -n` on both hooks | PASS |
 | `validate_document.py` on `README.md` and `CONTRIBUTING.md` | No new issue. CONTRIBUTING's missing overview section is reported at HEAD too |
 | `hvr_scan.py` on the added doc lines | PASS, 0 hard blockers |
+| v4.0.0.2 entry after the release review | PASS, recorded in packet 062's T026: 0 issues, 0 hard blockers and every link resolving |
 <!-- /ANCHOR:verification -->
 
 ---

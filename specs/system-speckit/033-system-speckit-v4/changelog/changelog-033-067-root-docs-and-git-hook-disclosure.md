@@ -33,9 +33,9 @@ A person who clones this repository now learns from the README that git hooks wi
 - Read each hook's block paths and list the seven that name no way through (.skilled/scripts/git-hooks/commit-msg, .skilled/scripts/git-hooks/pre-commit)
 - Capture the suite baselines: commit-msg 17 of 17, pre-commit 50 of 50
 - Check each README claim against the hook source: the install trigger in every runtime's session start, the 100-file deletion ceiling, the four-file body rule and what --uninstall removes
+- Cover this phase in the v4.0.0.2 release entry, then review the whole entry before release with packet 062 (.skilled/changelog/skilled/v4.0.0.2.md). Evidence: the entry's Git Hooks and the Root Docs section, and the review recorded in 062's T026
 - All tasks marked [x]
 - No [B] blocked tasks remaining
-- Manual verification passed
 
 ### Fixed
 
@@ -49,7 +49,8 @@ A person who clones this repository now learns from the README that git hooks wi
 - bash -n on both hooks - PASS
 - validate_document.py on README.md and CONTRIBUTING.md - No new issue. CONTRIBUTING's missing overview section is reported at HEAD too
 - hvr_scan.py on the added doc lines - PASS, 0 hard blockers
-- Tasks complete - 15 completed task item(s) recorded
+- v4.0.0.2 entry after the release review - PASS, recorded in packet 062's T026: 0 issues, 0 hard blockers and every link resolving
+- Tasks complete - 16 completed task item(s) recorded
 
 ### Files Changed
 
@@ -62,6 +63,7 @@ A person who clones this repository now learns from the README that git hooks wi
 | `.skilled/scripts/git-hooks/pre-commit` | Modified | Bypass line on the comment hygiene and mirror parity blocks, the whole-chain switch on both agent mirror blocks |
 | `.skilled/scripts/git-hooks/tests/commit-msg.test.sh` | Modified | Case 17 asserts both early blocks name the bypass |
 | `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` | Modified | Bypass checks on the dirty mirror and missing checker cases, and cases 40 to 42 |
+| `.skilled/changelog/skilled/v4.0.0.2.md` | Modified | The Git Hooks and the Root Docs section, then the release review shared with packet 062 |
 
 ### Follow-Ups
 
