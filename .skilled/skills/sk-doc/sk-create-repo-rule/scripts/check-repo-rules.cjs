@@ -16,6 +16,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { exitIfValidationOff } = require('../../shared/scripts/validation-switch.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -445,6 +446,7 @@ const CHECKS = [
 ];
 
 function main() {
+  exitIfValidationOff('check-repo-rules.cjs');
   const located = findRepoRoot(__dirname);
   if (located === null) {
     console.error(`${TAG} ERROR: no ${ROUTER_FILE} with a ${RULES_DIR_CANDIDATES.join(' or ')} directory found above ${__dirname}`);

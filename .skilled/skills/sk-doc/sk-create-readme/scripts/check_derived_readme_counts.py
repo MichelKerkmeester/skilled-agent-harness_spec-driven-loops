@@ -19,6 +19,9 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "shared" / "scripts"))
+from validation_switch import exit_if_validation_off  # type: ignore  # noqa: E402
+
 
 NUMBER_WORDS = {
     "zero": 0,
@@ -278,6 +281,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
     if args.self_test:
         return run_self_test()
+    exit_if_validation_off("check_derived_readme_counts.py", argv)
     if not args.readmes:
         print("No README paths supplied", file=sys.stderr)
         return 2

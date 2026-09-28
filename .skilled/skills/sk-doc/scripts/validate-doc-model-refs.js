@@ -9,6 +9,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { exitIfValidationOff } from '../shared/scripts/validation-switch.cjs';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ───────────────────────────────────────────────────────────────
@@ -342,6 +344,7 @@ Scanned paths:
 `);
     process.exit(0);
   }
+  exitIfValidationOff('validate-doc-model-refs.js', args);
 
   try {
     const canonicalModels = loadCanonicalModels();
