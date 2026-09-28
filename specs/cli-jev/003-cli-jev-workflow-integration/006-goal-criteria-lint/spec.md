@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -44,7 +44,7 @@ This is **Phase 6** of the cli-jev workflow integration specification. It builds
 
 **Label gate (parent D4)**: The phase stops where a human labels. The build delivers the lint, the scorer, their tests, the skill docs and a drawn sample whose label fields are empty. No model writes a label. The rubric choice, the labels, the scored numbers, the stop decision, any model arm and the workflow line come after the gate and are not part of this phase's completion.
 
-**Build route (parent D5)**: A fresh Opus 5.5 xhigh build orchestrator writes single-change briefs and runs CLI executors by Bash only: Devin `deepseek-v4-1-flash-max`, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` and Cursor `grok-4.7-xhigh-fast`. The orchestrator session verifies, gets a cross-family review of the code and commits.
+**Build route (parent D5)**: A fresh Opus 5.5 xhigh build orchestrator writes single-change briefs and runs CLI executors by Bash only. The operator's roster of 2026-09-28 at about 20:30 set them before the build: Devin `deepseek-v4-1-flash-max` and Pi on `llmgateway/mimo-v2.6-pro`, with Cursor retired. It replaced the roster first written here, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` and Cursor `grok-4.7-xhigh-fast`, and neither of those ran. The orchestrator session verifies, gets a cross-family review of the code and commits.
 
 **Dependencies**:
 - None for the build up to the label gate. It runs under the working default rubric A. The operator's rubric (open question 34) and about 100 operator labels come after the gate. None on other phases for the lint
@@ -148,7 +148,7 @@ The rubric is question 34 in research section 12, and only the operator adopts i
 |----|-------------|---------------------|
 | REQ-001 | The rubric is adopted and recorded before any label | The "Adopted rubric" line above names one rubric id and its two rule definitions before the first label value is written to `goal-criteria-labels.jsonl`. The drawn rows exist before that with every label field null (parent D4). Every labeled row carries that id in `rubric`. A labels file with more than one `rubric` value makes the scorer print `rubric mismatch: <ids>` and no rate |
 | REQ-002 | The lint is advisory and exits 0 | `lint-goal-criteria.cjs <packet>` and `lint-goal-criteria.cjs --all` exit 0 on every input, including a goal with no criteria, a missing packet and an unreadable file, each of which prints a named line instead of failing |
-| REQ-003 | `check-goal.cjs` is unchanged | `git diff --quiet -- .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` exits 0 after the build. `check-goal.cjs --all` prints the same `RESULT` line and exit code before and after the new files exist. `CHECKS` still lists four names |
+| REQ-003 | `check-goal.cjs` is unchanged | `git diff --quiet -- .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` exits 0 after the build. `check-goal.cjs --all` prints the same stdout, stderr and exit code before and after the new files exist. Corpus mode prints no `RESULT` line (`check-goal.cjs:540-555`), so the whole output is compared. `CHECKS` still lists its five names |
 | REQ-004 | The rules are lexical functions with tested polarity | `rule4DanglingRefs(line)` and `rule5ExternalFile(line)` each return flagged spans for one criterion line. `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` passes seven new cases: rule 4 fail, rule 4 pass, rule 5 fail, rule 5 pass, both failing, a goal with no criteria and a scratch path excluded |
 | REQ-005 | The population excludes fixtures | The walker skips `z_archive` and every path with a `scratch` segment and prints `scratch_excluded=<n>`. The research counted 14 files holding 24 criterion lines. On 2026-09-28 the tree held 30 such `goal.md` files, so the build reports the number it finds |
 | REQ-006 | The lint and the scorer make zero model calls and handle no secret | Zero model calls. Stub `jev` and `cli-deem` binaries first on PATH, each logging every invocation, log nothing when either script runs without `--jev` or `--deem`. `grep -n API_KEY` on both scripts returns no match, and neither holds a key literal or reads a key variable |
@@ -197,7 +197,7 @@ The arm is not part of the first slice, and every step of this rule falls after 
 Written before the build, from R20's record in the research.
 
 1. `lint-goal-criteria.cjs --all` prints per-rule counts and `scratch_excluded=<n>` and exits 0. Boundary: a non-zero exit or a scratch path in the population fails the lint.
-2. `git diff --quiet` on `check-goal.cjs` exits 0, and its `--all` `RESULT` line and exit code match the baseline captured before the build. Boundary: any difference fails the phase.
+2. `git diff --quiet` on `check-goal.cjs` exits 0, and its `--all` stdout, stderr and exit code match the baseline captured before the build. Boundary: any difference fails the phase.
 3. The seven test cases pass. Boundary: a rule that fires on its pass fixture fails REQ-004.
 4. The scorer's tests print per-rule precision, recall and F1, the labeled violation rate and, under 0.05, the stop line from synthetic fixture labels. The scorer run on the drawn file prints `unlabeled=` with the row count and no rate. Boundary: a rate printed from unlabeled rows fails REQ-009. The real rate comes after the label gate (parent D4).
 5. Stub `jev` and `cli-deem` binaries log no call from either script. Boundary: any logged call fails REQ-006.
