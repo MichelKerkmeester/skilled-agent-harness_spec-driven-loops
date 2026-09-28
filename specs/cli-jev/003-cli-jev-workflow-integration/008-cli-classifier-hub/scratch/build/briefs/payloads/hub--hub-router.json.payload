@@ -1,0 +1,53 @@
+{
+  "skill": "cli-classifier",
+  "version": "1.0.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": ["cli-deem"],
+    "outcomes": {
+      "single": "one dominant Deem judgment intent routes to the cli-deem transport",
+      "orderedBundle": "unreachable while the hub registers one mode: a request that pairs a Deem judgment with an edit routes single to cli-deem, and the caller takes the edit to the hub that owns it",
+      "defer": "unclear or contradictory intent asks for disambiguation"
+    },
+    "defaultResource": ["cli-deem/SKILL.md"],
+    "bundleRules": []
+  },
+  "routerSignals": {
+    "cli-deem": {
+      "weight": 4,
+      "classes": ["cli-deem-aliases", "deem-dispatch"],
+      "resources": ["cli-deem/SKILL.md"]
+    }
+  },
+  "vocabularyClasses": {
+    "cli-deem-aliases": {
+      "keywords": [
+        "cli-deem",
+        "cli deem",
+        "deem cli",
+        "deem client",
+        "deem judgment",
+        "local deem",
+        "deem health",
+        "cli-classifier",
+        "cli classifier"
+      ]
+    },
+    "deem-dispatch": {
+      "keywords": [
+        "deem noul",
+        "deem choice",
+        "deem score",
+        "deem run",
+        "ask deem",
+        "use deem",
+        "with deem",
+        "through deem",
+        "deem model",
+        "deem server",
+        "deem classifier"
+      ]
+    }
+  }
+}

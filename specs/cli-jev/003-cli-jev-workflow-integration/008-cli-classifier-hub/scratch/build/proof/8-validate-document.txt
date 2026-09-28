@@ -1,0 +1,30 @@
+0 skill issues=0 .hermes/skills/cli-classifier/SKILL.md
+0 skill issues=0 .hermes/skills/cli-deem/SKILL.md
+0 readme issues=0 .skilled/skills/cli-classifier/benchmark/README.md
+0 readme issues=0 .skilled/skills/cli-classifier/benchmark/reports/README.md
+0 changelog issues=0 .skilled/skills/cli-classifier/changelog/v1.0.0.0.md
+0 changelog issues=0 .skilled/skills/cli-classifier/cli-deem/changelog/v1.0.0.0.md
+0 feature_catalog issues=0 .skilled/skills/cli-classifier/cli-deem/feature-catalog/availability-check/health-check.md
+0 readme issues=1 .skilled/skills/cli-classifier/cli-deem/feature-catalog/feature-catalog.md
+0 feature_catalog issues=0 .skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/batched-run.md
+0 feature_catalog issues=0 .skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/choice-selection.md
+0 feature_catalog issues=0 .skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/noul-probability.md
+0 feature_catalog issues=0 .skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/score-level.md
+0 readme issues=0 .skilled/skills/cli-classifier/cli-deem/README.md
+0 reference issues=0 .skilled/skills/cli-classifier/cli-deem/references/deem-ctl-lifecycle.md
+0 reference issues=0 .skilled/skills/cli-classifier/cli-deem/references/model-pin.md
+0 reference issues=0 .skilled/skills/cli-classifier/cli-deem/references/wire-contract.md
+0 skill issues=0 .skilled/skills/cli-classifier/cli-deem/SKILL.md
+0 playbook_feature issues=0 .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md
+0 playbook_feature issues=0 .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md
+0 playbook_feature issues=0 .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md
+0 readme issues=1 .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md
+0 readme issues=0 .skilled/skills/cli-classifier/README.md
+0 readme issues=1 .skilled/skills/cli-classifier/ROUTER.md
+0 skill issues=0 .skilled/skills/cli-classifier/SKILL.md
+  - [document_type_fallback] No document type rule matched .skilled/skills/cli-classifier/cli-deem/feature-catalog/feature-catalog.md, so README rules were applied. Pass --type to choose the rule set.
+  - [document_type_fallback] No document type rule matched .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md, so README rules were applied. Pass --type to choose the rule set.
+  - [document_type_fallback] No document type rule matched .skilled/skills/cli-classifier/ROUTER.md, so README rules were applied. Pass --type to choose the rule set.
+cli-deem/feature-catalog/feature-catalog.md [readme] exit=0 Document type: readme Total issues: 0 
+manual-testing-playbook/manual-testing-playbook.md [playbook] exit=0 Document type: playbook Total issues: 0 
+ROUTER.md [reference] exit=0 Document type: reference Total issues: 0 

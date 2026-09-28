@@ -1,0 +1,9 @@
+cli-deem/SKILL.md [skill] exit=0 Document type: skill Total issues: 0 
+cli-deem/README.md [readme] exit=0 Document type: readme Total issues: 0 
+cli-deem/changelog/v1.0.0.0.md [changelog] exit=0 Document type: changelog Total issues: 0 
+cli-deem/references/wire-contract.md [reference] exit=0 Document type: reference Total issues: 0 
+cli-deem/feature-catalog/feature-catalog.md [readme] exit=0 Document type: readme Total issues: 0 
+cli-deem/feature-catalog/availability-check/health-check.md [feature_catalog] exit=0 Document type: feature_catalog Total issues: 0 
+cli-deem/feature-catalog/judgment-subcommands/choice-selection.md [feature_catalog] exit=0 Document type: feature_catalog Total issues: 0 
+README.md [readme] exit=0 Document type: readme Total issues: 0 
+cli-deem/SKILL.md [skill] exit=0 Document type: skill Total issues: 0 

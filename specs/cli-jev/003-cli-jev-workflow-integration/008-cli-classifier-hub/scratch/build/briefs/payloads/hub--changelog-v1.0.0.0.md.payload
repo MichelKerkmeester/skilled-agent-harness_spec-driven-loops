@@ -1,0 +1,26 @@
+---
+title: "cli-classifier v1.0.0.0"
+description: "cli-classifier becomes the single public hub identity for classifiers served on this machine, with one transport packet named cli-deem."
+trigger_phrases:
+  - "cli-classifier v1.0.0.0"
+  - "cli-classifier 1.0.0.0"
+  - "cli-classifier hub identity"
+  - "local classifier hub"
+importance_tier: "normal"
+contextType: "general"
+---
+`cli-classifier` becomes the single public hub identity for classifiers served on this machine, with one transport packet named `cli-deem`.
+
+> Spec folder: `specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/` (Level 1)
+
+## What's New at a Glance
+
+- **The hub and the transport resolve separately.** The advisor resolves the hub. `hub-router.json` resolves the transport. `mode-registry.json` is the registry of record.
+- **`cli-deem` is the hub's first mode and its only `packetKind: "transport"`.** It checks the local Deem server and returns typed judgments. The mode writes nothing into the workspace.
+- **The `transport-axis` extension registers `cli-deem`.** The hub declares `extensions["transport-axis"].transports: ["cli-deem"]`. The per-hub gate enforces the contract: `routingClass` `metadata`, `mutatesWorkspace: false`, the forbidden `Write`, `Edit` and `Task` tools and membership in the axis.
+- **The hub ships its companion files.** It includes `SKILL.md`, `README.md`, `ROUTER.md` with `router_state: stage1-only`, `description.json`, `graph-metadata.json`, `leaf-manifest.json`, a hub `changelog/`, a hub `manual-testing-playbook/` and a `benchmark/` folder.
+- **The hub carries an inactive compiled-routing directive.** `SKILL.md` has the directive with its kill-switch. The hub has no activation manifest, so the directive returns the legacy sentinel until the hub is admitted to compiled routing.
+
+## Upgrade
+
+No migration required.
