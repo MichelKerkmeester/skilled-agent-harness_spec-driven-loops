@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 3.6.0.30
+version: 4.1.0.62
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -732,6 +732,7 @@ Cut in the order section 3 of `sk-create-goal`'s [budget-and-handoff.md](../../.
 | Variable             | Default | Description                       |
 | -------------------- | ------- | --------------------------------- |
 | `SPECKIT_VALIDATION` | true    | Set to `false` to skip validation |
+| `SPECKIT_SKIP_VALIDATION` | unset | Set to `1`, `true`, `yes` or `on` to skip validation, in the environment or saved in `.skilled/hooks/hook-flags.env`. The environment wins over the file. A skipped run exits 0 and under `--json` prints a report marked `skipped: true` |
 | `SPECKIT_STRICT`     | false   | Set to `true` to run the strict-only rules |
 | `SPECKIT_JSON`       | false   | Set to `true` for JSON output     |
 | `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output  |
