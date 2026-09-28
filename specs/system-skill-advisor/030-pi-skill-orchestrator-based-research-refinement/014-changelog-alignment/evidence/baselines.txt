@@ -1,0 +1,116 @@
+# Phase 14 baselines, 2026-09-28T11:26:02Z, HEAD 5e164da683
+
+## Working tree before any phase 14 edit to a changelog (other sessions' files included)
+ M .skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts
+ M specs/agents/graph-metadata.json
+ M specs/sk-doc/059-skill-changelog-retrofit/description.json
+?? specs/agents/015-global-claude-md-agents-symlink/
+
+## Newest entry and SKILL.md version per component
+system-skill-advisor         newest=0.11.1.0   SKILL.md=0.11.1.0
+system-spec-kit              newest=4.1.3.0    SKILL.md=4.1.3.0
+deep-loop-runtime            newest=1.5.0.1    SKILL.md=
+deep-review                  newest=1.11.0.36  SKILL.md=1.11.0.36
+deep-research                newest=1.15.0.0   SKILL.md=1.15.0.0
+cli-codex                    newest=1.9.4.0    SKILL.md=1.9.4.0
+cli-cursor                   newest=1.5.0.0    SKILL.md=1.5.0.0
+cli-devin                    newest=1.4.5.0    SKILL.md=1.4.5.0
+cli-external-orchestration   newest=1.7.0.0    SKILL.md=1.7.0.0
+sk-code-opencode             newest=1.0.0.5    SKILL.md=1.0.0.5
+system-spec-kit generation folders: v1+ v2+ v3+ 
+
+## Three-part changelog names under .skilled/skills
+.skilled/skills/system-skill-advisor/changelog/v0.1.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.10.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.2.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.3.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.4.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.5.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.6.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.7.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.8.0.md
+.skilled/skills/system-skill-advisor/changelog/v0.9.0.md
+
+## Advisor changelog listing
+v0.1.0.md
+v0.10.0.md
+v0.11.0.0.md
+v0.11.1.0.md
+v0.2.0.md
+v0.3.0.md
+v0.4.0.md
+v0.5.0.md
+v0.6.0.md
+v0.7.0.md
+v0.8.0.md
+v0.9.0.md
+
+## Links to the old advisor names outside z_archive (all historical records or regenerated fixtures)
+./.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+./.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+./specs/hooks/007-fable-governor-pi-hook/review-archive/20260805T073738Z/deep-review-config.json
+./specs/hooks/007-fable-governor-pi-hook/review-archive/20260805T073738Z/deep-review-strategy.md
+./specs/hooks/007-fable-governor-pi-hook/review-archive/20260805T073738Z/prompts/iteration-1.md
+./specs/hooks/007-fable-governor-pi-hook/review/deep-review-config.json
+./specs/hooks/007-fable-governor-pi-hook/review/prompts/iteration-1.md
+./specs/hooks/007-fable-governor-pi-hook/review/prompts/iteration-2.md
+./specs/sk-doc/059-skill-changelog-retrofit/scratch/lists/system-skill-advisor.txt
+./specs/sk-doc/059-skill-changelog-retrofit/scratch/opus-review.jsonl
+./specs/sk-doc/059-skill-changelog-retrofit/scratch/state.jsonl
+./specs/system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit/research/advisor-audit-research.md
+./specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/research/lineages/deepseek-research/iterations/iteration-004.md
+./specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/goal-reverify/changes-since-phase-11.txt
+./specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/evidence/goal-reverify/changes-since-phase-11.txt
+./specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/evidence/baselines.txt
+./specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/spec.md
+./specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment/tasks.md
+./specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/016-dead-code-and-architecture-audit/research/lineages/sol/logs/fanout-lineage.out
+./specs/system-speckit/028-memory-search-intelligence/research/deep-research-state.jsonl
+./specs/system-speckit/028-memory-search-intelligence/research/deltas/iteration-019.jsonl
+./specs/system-speckit/028-memory-search-intelligence/research/iterations/iteration-019.md
+./specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire/owner-reconciliation.json
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/lineages/deepseek-pi/iterations/iteration-006.md
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/lineages/deepseek-pi/research.md
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/lineages/deepseek-pi/working/map-c-system-skill-advisor-docs.md
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/lineages/deepseek-pi/working/synthesis-map-c.md
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/lineages/swe2/iterations/iteration-007.md
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/lineages/swe2/working/map-c--skill-system-skill-advisor--changelog.md
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/research/maps/map-c-references.tsv
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/scratch/seed-inventory/tracked-refs.tsv
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/scratch/batch-manifests/freeze.tsv
+./specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/scratch/freeze-baseline.tsv
+
+## validate_document.py on each advisor entry
+v0.1.0.md: Total issues: 0
+v0.10.0.md: Total issues: 0
+v0.11.0.0.md: Total issues: 0
+v0.11.1.0.md: Total issues: 0
+v0.2.0.md: Total issues: 0
+v0.3.0.md: Total issues: 0
+v0.4.0.md: Total issues: 0
+v0.5.0.md: Total issues: 0
+v0.6.0.md: Total issues: 0
+v0.7.0.md: Total issues: 0
+v0.8.0.md: Total issues: 0
+v0.9.0.md: Total issues: 0
+
+## compiled-route-guard.cjs
+  cli-external-orchestration  fresh
+  cli-jev                     fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0
+
+## sync-skills-hermes.cjs --check
+PASS: 71 Hermes skill copies in sync
+exit=0
+
+## Validation off switches
+SPECKIT_SKIP_VALIDATION=unset SKDOC_SKIP_VALIDATION=unset
+41:SPECKIT_SKIP_VALIDATION=0
+43:SKDOC_SKIP_VALIDATION=0

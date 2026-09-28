@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment",
+  "parent_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor changelog alignment",
+      "packet 030 changelog entries",
+      "advisor changelog four-part names",
+      "changelog alignment plan",
+      "advisor changelog rename plan",
+      "changelog alignment tasks",
+      "advisor changelog rename tasks",
+      "changelog alignment acceptance criteria",
+      "advisor changelog closure gate",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "changelog",
+      "alignment",
+      "packet",
+      "entries",
+      "four-part",
+      "names",
+      "plan",
+      "rename",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.1.0.0.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.11.0.0.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.11.2.0.md",
+      ".skilled/changelog/skilled/v4.0.0.2.md",
+      "evidence/review/verification.md",
+      "evidence/entry-checks.txt",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      "evidence/baselines.txt",
+      "evidence/advisor-commit-trace.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.11.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.11.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.11.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.11.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.2.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification.md",
+        "kind": "doc",
+        "path": "evidence/review/verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "entry-checks.txt",
+        "kind": "file",
+        "path": "evidence/entry-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "baselines.txt",
+        "kind": "file",
+        "path": "evidence/baselines.txt",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-commit-trace.txt",
+        "kind": "file",
+        "path": "evidence/advisor-commit-trace.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changelog Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Work",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor is the only skill whose changelog still uses three-part file names, 10 of its 12 entries, while the contract and the other 539 entries under `.skilled/skills` use four parts",
+    "created_at": "2026-09-28T11:14:31Z",
+    "last_save_at": "2026-09-28T12:15:05.802Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0398042f1d64826e39f3983cad571e757da34cc11fb3400a21011261357fb20e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a7f8926a18017d3dcd6e93ec9716903a8a578e589acc8353dcfdc77f8121b40f",
+      "plan.md": "9a643770d52eeddec71b757f79885f6564a6fa55a01abdf44c7603dea16445c1",
+      "tasks.md": "caceb288d511b374292eda30e3d4d7351b2c1fb4251d7fd2418bbe6f2ac80798",
+      "implementation-summary.md": "e60b82ee73c280482057b60c200f00623a0667d142d979513cce95d1317ae85d"
+    },
+    "last_active_at": null
+  }
+}

@@ -44,11 +44,11 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Grok 4.7 xhigh-fast through cli-cursor implements code fixes, and GPT-6 Luna max fast through cli-codex verifies them. A fix of a few lines with its own objective check may be made by the orchestrator, and it still gets a Luna verify. Opus agents lead design and docs. The orchestrator dispatches every CLI run itself. |
-| D2 | The session changes the operator's global Codex files only when the operator directs it, backs each file up first and records the rollback. |
-| D3 | The spec-kit hook shim keeps not forwarding its child's stderr. Scenarios read advisor diagnostics from the diagnostics JSONL. |
-| D4 | danger-full-access for cli-codex applies to scenario test runs only. |
-| D5 | `--permission-mode dangerous` for cli-devin applies to scenario test runs only. |
+| D1 | Grok 4.7 xhigh-fast through cli-cursor implements code fixes and GPT-6 Luna max fast through cli-codex verifies them. The orchestrator may make a few-line fix with its own objective check, which Luna still verifies. Opus agents lead design and docs. The orchestrator dispatches every CLI run itself. |
+| D2 | Global Codex files change only on the operator's direction, each backed up first with its rollback recorded. |
+| D3 | The spec-kit hook shim never forwards its child's stderr. Scenarios read advisor diagnostics from the diagnostics JSONL. |
+| D4 | cli-codex danger-full-access is for scenario test runs only. |
+| D5 | cli-devin `--permission-mode dangerous` is for scenario test runs only. |
 
 <!-- /ANCHOR:directive -->
 
@@ -75,6 +75,7 @@ phase and binds as if written here.
 | 011-observation-fixes | `011-observation-fixes/goal.md` |
 | 012-reverify-follow-ups | `012-reverify-follow-ups/goal.md` |
 | 013-review-follow-ups | `013-review-follow-ups/goal.md` |
+| 014-changelog-alignment | `014-changelog-alignment/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -125,6 +126,7 @@ and findings belong here.
 | Goal proved again after phase 12 | Done | The four suites, the live plugin load, a sandboxed daemon and the installer check pass from the final state. CP-003 and CP-004 passed ten of ten reruns on the new teardown, and the other seven scenarios keep their phase 11 result, since no commit changed code in the paths they run through. Route manifests changed as well, but they feed only metadata none of the seven checks (`012-reverify-follow-ups/evidence/goal-reverify/`) |
 | 013-review-follow-ups | Done | Phase Documentation Map in `spec.md` reads Complete. The ten confirmed review findings are closed, and so is F12, which the reruns found. GPT-6 Luna passed the three teardown blocks and the F12 trace |
 | Goal proved again after phase 13 | Done | The four suites, the live plugin load, a sandboxed daemon and the installer check pass from the final state, and the suites, the plugin load and the installer check passed again at `396d26d4ff` after another session's three commits. 433, CP-003 and CP-004 pass in all five CLIs, two 433 runs on a quiet rerun. The other six scenarios keep their phase 11 result, since the one code change in the paths they run through, `b274f085fb`, adds a function to the hook flags and changes no existing one (`013-review-follow-ups/evidence/goal-reverify/`) |
+| 014-changelog-alignment | Done | Phase Documentation Map in `spec.md` reads Complete. The advisor changelog follows the contract, nine new entries in eight changelog folders record the advisor work and v4.0.0.2 carries it. Two fresh reviews found 35 problems, each checked against its source |
 
 ### Deviations and findings
 

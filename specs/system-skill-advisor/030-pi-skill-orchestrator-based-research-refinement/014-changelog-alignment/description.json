@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment",
+  "description": "Phase 14: changelog-alignment",
+  "keywords": [
+    "phase",
+    "changelog-alignment"
+  ],
+  "lastUpdated": "2026-09-28T11:14:33.165Z",
+  "specId": "014",
+  "folderSlug": "changelog-alignment",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

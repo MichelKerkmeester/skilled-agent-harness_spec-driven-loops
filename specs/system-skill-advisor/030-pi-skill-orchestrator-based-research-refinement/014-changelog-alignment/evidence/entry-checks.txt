@@ -1,0 +1,187 @@
+Changelog entry checks
+Written 2026-09-28T12:16:35Z against HEAD 5e164da683
+Each entry: title form, identity phrases first, topic phrases, description length,
+validate_document.py (needs VALID and Total issues: 0) and hvr_scan.py --all (needs hard blockers 0).
+Comma flags in the nine entries this phase wrote and on every line it added to v4.0.0.2 were each read
+by hand: every one joins two clauses or two predicates, and none closes a list. The twelve older advisor
+entries keep their prose by decision D1, so their flags were not re-read.
+One topic phrase carries a number: "v4.0.0.2 goal changes", written before this phase and left as it was.
+
+## .skilled/skills/system-skill-advisor/changelog/v0.1.0.0.md
+  title        ok    system-skill-advisor v0.1.0.0
+  identity     ok    ['system-skill-advisor v0.1.0.0', 'system-skill-advisor 0.1.0.0']
+  topics       2  ['standalone mcp package', 'four mcp advisor tools']
+  description  ok    174 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=8
+
+## .skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md
+  title        ok    system-skill-advisor v0.2.0.0, Production Isolation (Preview Track)
+  identity     ok    ['system-skill-advisor v0.2.0.0', 'system-skill-advisor 0.2.0.0']
+  topics       1  ['Production Isolation (Preview Track)']
+  description  ok    146 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=8
+
+## .skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md
+  title        ok    system-skill-advisor v0.3.0.0
+  identity     ok    ['system-skill-advisor v0.3.0.0', 'system-skill-advisor 0.3.0.0']
+  topics       2  ['awaited asynchronous metrics persistence', 'diagnostic persistence opt-in']
+  description  ok    88 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=3
+
+## .skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md
+  title        ok    system-skill-advisor v0.4.0.0
+  identity     ok    ['system-skill-advisor v0.4.0.0', 'system-skill-advisor 0.4.0.0']
+  topics       2  ['table-header matching', 'canonical prompt-quality tables']
+  description  ok    120 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-1 comma-flags=2
+
+## .skilled/skills/system-skill-advisor/changelog/v0.5.0.0.md
+  title        ok    system-skill-advisor v0.5.0.0, Prompt-Knowledge Drift Guard Extended and Wired into CI
+  identity     ok    ['system-skill-advisor v0.5.0.0', 'system-skill-advisor 0.5.0.0']
+  topics       2  ['prompt-knowledge drift guard', 'drift guard wired into CI']
+  description  ok    175 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=1
+
+## .skilled/skills/system-skill-advisor/changelog/v0.6.0.0.md
+  title        ok    system-skill-advisor v0.6.0.0
+  identity     ok    ['system-skill-advisor v0.6.0.0', 'system-skill-advisor 0.6.0.0']
+  topics       2  ['guard comment canonical card', 'canonical card moved']
+  description  ok    135 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=1
+
+## .skilled/skills/system-skill-advisor/changelog/v0.7.0.0.md
+  title        ok    system-skill-advisor v0.7.0.0
+  identity     ok    ['system-skill-advisor v0.7.0.0', 'system-skill-advisor 0.7.0.0']
+  topics       2  ['daemon cli front door', 'warm-only cli fallbacks']
+  description  ok    93 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=1
+
+## .skilled/skills/system-skill-advisor/changelog/v0.8.0.0.md
+  title        ok    system-skill-advisor v0.8.0.0
+  identity     ok    ['system-skill-advisor v0.8.0.0', 'system-skill-advisor 0.8.0.0']
+  topics       2  ['frontmatter routing signal', 'doc-specific prompts']
+  description  ok    102 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-1 comma-flags=8
+
+## .skilled/skills/system-skill-advisor/changelog/v0.9.0.0.md
+  title        ok    system-skill-advisor v0.9.0.0
+  identity     ok    ['system-skill-advisor v0.9.0.0', 'system-skill-advisor 0.9.0.0']
+  topics       2  ['reciprocal-rank-fusion spine', 'self-recommendation guard cut']
+  description  ok    161 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=1
+
+## .skilled/skills/system-skill-advisor/changelog/v0.10.0.0.md
+  title        ok    system-skill-advisor v0.10.0.0
+  identity     ok    ['system-skill-advisor v0.10.0.0', 'system-skill-advisor 0.10.0.0']
+  topics       2  ['routing match-terms sanitized', 'concurrent metrics writes']
+  description  ok    141 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-1 comma-flags=3
+
+## .skilled/skills/system-skill-advisor/changelog/v0.11.0.0.md
+  title        ok    system-skill-advisor v0.11.0.0, A Purpose-First Skill Advisor README
+  identity     ok    ['system-skill-advisor v0.11.0.0', 'system-skill-advisor 0.11.0.0']
+  topics       1  ['skill advisor readme rewrite']
+  description  ok    177 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=1
+
+## .skilled/skills/system-skill-advisor/changelog/v0.11.1.0.md
+  title        ok    system-skill-advisor v0.11.1.0, Command Alignment and Honest No-Match Diagnostics
+  identity     ok    ['system-skill-advisor v0.11.1.0', 'system-skill-advisor 0.11.1.0']
+  topics       2  ['skill advisor no-match diagnostic', 'command bridge rename']
+  description  ok    130 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=1
+
+## .skilled/skills/system-skill-advisor/changelog/v0.11.2.0.md
+  title        ok    system-skill-advisor v0.11.2.0
+  identity     ok    ['system-skill-advisor v0.11.2.0', 'system-skill-advisor 0.11.2.0']
+  topics       2  ['advisor source root move', 'skill brief is back']
+  description  ok    179 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=3
+
+## .skilled/skills/system-skill-advisor/changelog/v0.12.0.0.md
+  title        ok    system-skill-advisor v0.12.0.0, A Prompt Hook That Holds Up in Five CLIs
+  identity     ok    ['system-skill-advisor v0.12.0.0', 'system-skill-advisor 0.12.0.0']
+  topics       2  ['casual prompts skip the advisor', 'turn without a suggestion']
+  description  ok    172 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-4 comma-flags=19
+
+## .skilled/skills/system-spec-kit/changelog/v4.1.4.0.md
+  title        ok    system-spec-kit v4.1.4.0, Hooks That Leave the Advisor Time to Answer
+  identity     ok    ['system-spec-kit v4.1.4.0', 'system-spec-kit 4.1.4.0']
+  topics       2  ['advisor hook budget cap', 'appended phase numbering']
+  description  ok    196 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=5
+
+## .skilled/skills/system-deep-loop/runtime/changelog/v1.5.1.0.md
+  title        ok    deep-loop-runtime v1.5.1.0
+  identity     ok    ['deep-loop-runtime v1.5.1.0', 'deep-loop-runtime 1.5.1.0']
+  topics       2  ['shared synthesis close-out script', 'cursor grok model allowlist']
+  description  ok    164 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=0
+
+## .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.1.0.md
+  title        ok    deep-review v1.11.1.0
+  identity     ok    ['deep-review v1.11.1.0', 'deep-review 1.11.1.0']
+  topics       2  ['fan-out review closes complete', 'review stop policy honored']
+  description  ok    161 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=2
+
+## .skilled/skills/system-deep-loop/deep-research/changelog/v1.15.1.0.md
+  title        ok    deep-research v1.15.1.0
+  identity     ok    ['deep-research v1.15.1.0', 'deep-research 1.15.1.0']
+  topics       2  ['fan-out research closes complete', 'research confirm quality guards']
+  description  ok    160 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=3
+
+## .skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.5.0.md
+  title        ok    cli-codex v1.9.5.0, Each Repository Hook Runs Once
+  identity     ok    ['cli-codex v1.9.5.0', 'cli-codex 1.9.5.0']
+  topics       2  ['codex hooks run once', 'removal-only codex hook installer']
+  description  ok    150 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=4
+
+## .skilled/skills/cli-external-orchestration/changelog/v1.7.1.0.md
+  title        ok    cli-external-orchestration v1.7.1.0
+  identity     ok    ['cli-external-orchestration v1.7.1.0', 'cli-external-orchestration 1.7.1.0']
+  topics       1  ['codex hook parity scenario']
+  description  ok    168 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=1
+
+## .skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.1.0.md
+  title        ok    sk-code-opencode v1.0.1.0
+  identity     ok    ['sk-code-opencode v1.0.1.0', 'sk-code-opencode 1.0.1.0']
+  topics       1  ['two live drift guards']
+  description  ok    115 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-0 comma-flags=2
+
+## .skilled/changelog/skilled/v4.0.0.2.md
+  title        ok    v4.0.0.2, Leaner Goals: One Limit, One Command and One Send Rule
+  identity     ok    ['v4.0.0.2 release notes', 'skilled v4.0.0.2']
+  topics       4  ['v4.0.0.2 goal changes', 'create goal command release', 'one parent goal limit', 'leaner goals']  VERSIONED: ['v4.0.0.2 goal changes']
+  description  ok    211 chars
+  validate     ok    exit=0 issues=0
+  hvr          ok    hard=0 deductions=-3 comma-flags=38
+
+Three-part advisor file names left: 0 []
+RESULT: 22/22 entries pass every check
