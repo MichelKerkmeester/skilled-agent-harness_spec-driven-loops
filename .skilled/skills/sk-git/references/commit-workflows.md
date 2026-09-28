@@ -175,9 +175,9 @@ Structure is enforced by
 
 Quick summary: `type(scope)[!]: imperative summary`, both type and scope
 required, scope is a stable subsystem name (never a numeric packet id),
-subject target 80 / hard max 100 characters, a body is required whenever
-four or more paths are staged or the reason isn't obvious from the subject
-alone. Every commit ends with one contiguous trailer paragraph separated from
+subject target 80 / hard max 100 characters, and every authored commit
+carries a prose body that says why, however few paths it stages. Trailers do
+not count as a body. Every commit ends with one contiguous trailer paragraph separated from
 the prose by a blank line: `Spec: <track>/<packet>[/<phase>...]` when the work
 belongs to a packet, then `Commit-Id: NNNNNNN`, then `Refs:` for external links
 only. Set `SPECKIT_COMMIT_SPEC` to the packet path before committing and the
@@ -266,7 +266,7 @@ git reset --mixed HEAD~1               # Un-commit, KEEP all changes (staged →
 git status --short                     # Confirm nothing is staged
 git add path/to/your/file1 path/to/your/file2   # Re-stage YOUR pathspecs only
 git diff --cached --name-only | grep -E "$DENY"  # Re-assert: must be empty
-git commit -m "type(scope): description"
+git commit -m "type(scope): description" -m "Body explaining why"
 ```
 `--mixed` (the default for `git reset`) un-commits and unstages while preserving file contents in the working tree, so unrelated WIP returns to its prior uncommitted state rather than being lost.
 
@@ -364,7 +364,7 @@ git diff --cached --name-only                 # confirm only your files remain
 git reset --mixed HEAD~1                       # un-commit, keep changes in tree
 git add path/to/your/file1 path/to/your/file2 # re-stage YOUR pathspecs only
 git diff --cached --name-only | grep -E '(^other-packet/|/install-guide)'  # must be empty
-git commit -m "type(scope): description"
+git commit -m "type(scope): description" -m "Body explaining why"
 ```
 Prevent recurrence with Step 7 (Scoped-Staging Discipline): enumerate your pathspecs and run the pre-commit deny-pattern assertion. After any `git stash pop`, re-check the index — popped entries can return staged.
 

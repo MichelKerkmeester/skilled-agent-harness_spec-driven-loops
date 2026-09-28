@@ -131,7 +131,7 @@ Before dispatching, commit any in-flight working-tree state on `main`. Even with
 ```bash
 git status --short
 git add <relevant-paths>
-git commit -m "chore(wip): snapshot in-flight work before deep-loop dispatch on <target>"
+git commit -m "chore(wip): snapshot in-flight work before deep-loop dispatch on <target>" -m "Recovery baseline taken before the dispatch, so its writes can be told apart."
 ```
 
 The commit hash is the recovery baseline. Surface it to the operator before dispatch.

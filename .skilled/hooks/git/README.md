@@ -113,7 +113,7 @@ bash .skilled/hooks/git/install-hooks.sh
 ls -l .git/hooks/pre-commit
 
 # Negative control: a clean commit should pass silently
-git commit --allow-empty -m "chore(repo): test hook installation"
+git commit --allow-empty -m "chore(repo): test hook installation" -m "Check that the installed hooks run."
 ```
 
 Expected result: the symlink points at `.skilled/hooks/git/pre-commit`; the test commit runs silently (no staged in-scope files → no gates fire).
