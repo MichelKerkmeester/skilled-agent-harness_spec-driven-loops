@@ -1,0 +1,5 @@
+PASS  CC-001  hub-routing/deem-request-routes-to-transport.md  pairs=0  mode=cli-deem
+PASS  CC-002  hub-routing/jev-request-stays-with-cli-jev.md  pairs=0  mode=none
+PASS  CC-003  hub-routing/out-of-domain-resolves-nothing.md  pairs=0  mode=none
+
+verdict=PASS valid=3 blocked=0 unenrolled=0 total=3

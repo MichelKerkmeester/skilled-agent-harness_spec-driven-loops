@@ -1,0 +1,34 @@
+FAIL  CC-001  hub-routing/deem-request-routes-to-transport.md
+        - expected_leaf_resources is empty (a compiled-routing scenario must assert at least one typed leaf)
+        - missing or null evidence field: evidence_compiled_route
+        - missing or null evidence field: evidence_serving_authority
+        - missing or null evidence field: evidence_flag_state
+        - missing or null evidence field: evidence_fallback_cause
+        - missing or null evidence field: evidence_manifest_digest
+        - missing or null evidence field: evidence_model
+        - missing or null evidence field: evidence_reasoning_effort
+        - missing or empty pass/fail criteria (null-criteria scenario)
+FAIL  CC-002  hub-routing/jev-request-stays-with-cli-jev.md
+        - missing or empty expected_resources
+        - expected_leaf_resources is empty (a compiled-routing scenario must assert at least one typed leaf)
+        - missing or null evidence field: evidence_compiled_route
+        - missing or null evidence field: evidence_serving_authority
+        - missing or null evidence field: evidence_flag_state
+        - missing or null evidence field: evidence_fallback_cause
+        - missing or null evidence field: evidence_manifest_digest
+        - missing or null evidence field: evidence_model
+        - missing or null evidence field: evidence_reasoning_effort
+        - missing or empty pass/fail criteria (null-criteria scenario)
+FAIL  CC-003  hub-routing/out-of-domain-resolves-nothing.md
+        - missing or empty expected_resources
+        - expected_leaf_resources is empty (a compiled-routing scenario must assert at least one typed leaf)
+        - missing or null evidence field: evidence_compiled_route
+        - missing or null evidence field: evidence_serving_authority
+        - missing or null evidence field: evidence_flag_state
+        - missing or null evidence field: evidence_fallback_cause
+        - missing or null evidence field: evidence_manifest_digest
+        - missing or null evidence field: evidence_model
+        - missing or null evidence field: evidence_reasoning_effort
+        - missing or empty pass/fail criteria (null-criteria scenario)
+
+pass=0 fail=3 skip=0 total=3

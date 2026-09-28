@@ -1,0 +1,14 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "references/deem-ctl-lifecycle.md",
+        "references/model-pin.md",
+        "references/wire-contract.md"
+      ],
+      "packet": "cli-deem",
+      "workflowMode": "cli-deem"
+    }
+  ],
+  "resourceContractVersion": 1
+}
