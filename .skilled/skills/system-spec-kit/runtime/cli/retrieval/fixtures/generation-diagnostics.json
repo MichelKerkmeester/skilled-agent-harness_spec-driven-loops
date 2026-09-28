@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7295,
+    "missing-frontmatter": 7297,
     "non-yaml-frontmatter": 2,
-    "ok": 12334,
+    "ok": 12338,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23317,
+  "documentsScanned": 23323,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7bc9bd5b237475f1f7d4c97fd6614aa83f170c717a8246ea21d5d55f15128bf2",
+  "manifestHash": "2e5ed8d2658b7a4fafab65e049c2b7326e3299e6cf868085b71688ee3ee679c5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32089,
+      "ok": 32098,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -29305,6 +29305,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/phase-parent-and-nested-child-goals.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -34918,6 +34924,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/code-standards-alignment.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -70258,6 +70270,10 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/advisor-fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures",
       "reason": "excluded directory"
     },
     {

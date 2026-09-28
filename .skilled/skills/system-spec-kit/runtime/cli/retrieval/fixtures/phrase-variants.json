@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7bc9bd5b237475f1f7d4c97fd6614aa83f170c717a8246ea21d5d55f15128bf2",
+  "manifestHash": "2e5ed8d2658b7a4fafab65e049c2b7326e3299e6cf868085b71688ee3ee679c5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -42740,6 +42740,9 @@
     "goal criteria rubric rules 4 and 5": [
       "goal criteria rubric rules 4 and 5"
     ],
+    "goal criteria rules 4 and 5": [
+      "goal criteria rules 4 and 5"
+    ],
     "goal cross runtime docs": [
       "goal cross runtime docs"
     ],
@@ -50126,6 +50129,9 @@
     ],
     "lint goal criteria": [
       "lint-goal-criteria"
+    ],
+    "lint goal criteria cjs": [
+      "lint-goal-criteria.cjs"
     ],
     "lint goal criteria completion criteria": [
       "lint-goal-criteria completion criteria"
@@ -76774,6 +76780,9 @@
     "score compaction recall completion criteria": [
       "score-compaction-recall completion criteria"
     ],
+    "score compaction recall mjs": [
+      "score-compaction-recall.mjs"
+    ],
     "score compaction recall plan": [
       "score-compaction-recall plan"
     ],
@@ -76791,6 +76800,9 @@
     ],
     "score goal lint": [
       "score-goal-lint"
+    ],
+    "score goal lint cjs": [
+      "score-goal-lint.cjs"
     ],
     "score goal lint plan": [
       "score-goal-lint plan"
@@ -77641,6 +77653,9 @@
     ],
     "self check templates": [
       "self-check templates"
+    ],
+    "self contained criteria check": [
+      "self-contained criteria check"
     ],
     "self contained diff report": [
       "self-contained diff report"
@@ -81000,6 +81015,9 @@
     "sk create goal 1 2 0 0": [
       "sk-create-goal 1.2.0.0"
     ],
+    "sk create goal 1 3 0 0": [
+      "sk-create-goal 1.3.0.0"
+    ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
     ],
@@ -81065,6 +81083,9 @@
     ],
     "sk create goal v1 2 0 0": [
       "sk-create-goal v1.2.0.0"
+    ],
+    "sk create goal v1 3 0 0": [
+      "sk-create-goal v1.3.0.0"
     ],
     "sk create manual testing playbook 1 0 0 0": [
       "sk-create-manual-testing-playbook 1.0.0.0"
@@ -90136,6 +90157,9 @@
     "system spec kit 4 2 0 0": [
       "system-spec-kit 4.2.0.0"
     ],
+    "system spec kit 4 3 0 0": [
+      "system-spec-kit 4.3.0.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -90486,6 +90510,9 @@
     ],
     "system spec kit v4 2 0 0": [
       "system-spec-kit v4.2.0.0"
+    ],
+    "system spec kit v4 3 0 0": [
+      "system-spec-kit v4.3.0.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
