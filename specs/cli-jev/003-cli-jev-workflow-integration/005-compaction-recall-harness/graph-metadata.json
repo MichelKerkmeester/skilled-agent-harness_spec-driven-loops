@@ -47,6 +47,10 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
       "dist/hooks/claude/compact-inject.js",
       "runtime/scripts/README.md"
@@ -86,6 +90,24 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -161,7 +183,7 @@
         "source": "derived"
       },
       {
-        "name": "Recovered Context",
+        "name": "Session Source",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -177,29 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "main-session",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nobody has measured what a host compaction in this project keeps, so there is no baseline a deletion pass on either backend could be judged against",
     "created_at": "2026-09-27T04:39:31Z",
-    "last_save_at": "2026-09-27T09:35:28.865Z",
+    "last_save_at": "2026-09-28T09:22:31.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75d6b75e5a99060fe93c9f6c0de7552c1dae1b03755e654d36b2b0d27078c155",
+    "source_fingerprint": "sha256:3d3d62d5e77b31101c7ddb25dab47bbc8ab218018d68d2001a2f6bd0febe0319",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26774d54d18f9bab0d1d1b7069d6941b9d4d3c15511ae06eb35ab0481789c39a",
-      "plan.md": "a6e54c05a154b729b460eeb2b735f532b355d95d14b4d6c4bd852561937c7216",
-      "tasks.md": "951a2a44b2af93e6a2ceae2e02c1e355cb4b257e7fc171323e4b61fafc442ea6",
-      "implementation-summary.md": "279be0a5832fd9cd93ac849698febadd04657285667088ce100660429cf34f0f"
+      "spec.md": "cc07cf3272519d2698ff1157dab778441f70416bc062b9459d78261e506d93a9",
+      "plan.md": "fe77361b4e6e2290b2d03e77a457e06894110a0b2d3ff8248e88270650f16ff5",
+      "tasks.md": "36d49831aae9421ee981e143eabaad4a796838744f55d6380e8ba687d8ba9dc4",
+      "implementation-summary.md": "8ac6b39db65dddbf84f0c9eae9d573c61fd213501d06cd43cd0de6c7b4ec3f8a"
     },
     "last_active_at": null
   }

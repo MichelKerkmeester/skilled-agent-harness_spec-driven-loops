@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness"
-    last_updated_at: "2026-09-27T09:25:00Z"
-    last_updated_by: "phase-amendment-leaf"
-    recent_action: "Amended the later-arm text for two backends, Jev and Deem"
-    next_safe_action: "The operator names 10 to 20 session files, then write the parser and the fit column"
+    last_updated_at: "2026-09-28T10:00:00Z"
+    last_updated_by: "spec-pass-leaf"
+    recent_action: "Applied the wave 3 directive: parent D4 session source, D5 build route and D6 skill docs"
+    next_safe_action: "Build per parent D5: parser, selection and fit column first, as plan.md section 4 orders them"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/spec.md"
@@ -56,13 +56,13 @@ Nothing yet. This phase is Planned, and no code, fixture, report or measurement 
 
 ### Phase 5: compaction-recall-harness
 
-The plan is one read-only census, `score-compaction-recall.mjs`, under system-spec-kit's runtime scripts. It streams the session files the operator names, finds every compaction boundary and prints, per boundary, what the stock summary and the recorded brief keep under five must-survive rules and whether the vendored staged fit can hold the history. One stop line then says whether an offline deletion arm on either backend is worth specifying. It makes zero model calls, spawns neither `jev` nor `cli-deem` (proposed, phase 008), needs no key and prints counts and scores, never transcript text. See `spec.md` for the requirements and the stop line and `plan.md` for the order of work.
+The plan is one read-only census, `score-compaction-recall.mjs`, under system-spec-kit's runtime scripts. It picks this project's 15 newest compacted transcripts (parent D4), streams each one, finds every compaction boundary and prints, per boundary, what the stock summary and the recorded brief keep under five must-survive rules and whether the vendored staged fit can hold the history. One stop line then says whether an offline deletion arm on either backend is worth specifying. It makes zero model calls, spawns neither `jev` nor `cli-deem` (proposed, phase 008), needs no key and prints counts and scores, never transcript text. See `spec.md` for the requirements and the stop line and `plan.md` for the order of work.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md`, `goal.md` | Authored, then amended for two backends | Planning documents for this phase. No code file has changed |
+| `spec.md`, `plan.md`, `tasks.md`, `goal.md` | Authored, amended for two backends, then amended for the wave 3 directive | Planning documents for this phase. No code file has changed |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -70,7 +70,7 @@ The plan is one read-only census, `score-compaction-recall.mjs`, under system-sp
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The planning documents were written from recommendation R19, with R11 folded in, and proposed phase 005 in `../004-deep-research-expansion/research/research.md`, under the parent goal's decision D5. The later-arm text was then amended for two backends per `../007-classifier-deep-research/research/research.md` section 14, R19 and C9, under parent goal D1 and D5. The census and its stop line did not change.
+Not delivered. The planning documents were written from recommendation R19, with R11 folded in, and proposed phase 005 in `../004-deep-research-expansion/research/research.md`, under the parent goal's decision D5. The later-arm text was then amended for two backends per `../007-classifier-deep-research/research/research.md` section 14, R19 and C9, under parent goal D1 and D5. The census and its stop line did not change. On 2026-09-28 the parent's wave 3 directive fixed the session source (D4), the build route (D5) and the skill docs the build updates (D6). The spec pass applied all three and logged each in `goal.md`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -103,7 +103,7 @@ Not delivered. The planning documents were written from recommendation R19, with
 ## Known Limitations
 
 1. **No numbers exist yet.** The fit throws, the reduction bound, the kept-token ratio and both recall columns are UNKNOWN until the census runs.
-2. **The census needs an operator step.** The operator names 10 to 20 session files. The script never picks transcripts on its own.
+2. **The session set moves.** The harness picks the 15 newest compacted transcripts when it runs, and files also leave the directory, so a later run reads a different set. The `selection:` line and each row's basename record which files a run read.
 3. **Recall is rule-derived.** Whether it agrees with a reader's judgment waits on the operator's 3-session read after the census.
 <!-- /ANCHOR:limitations -->
 
