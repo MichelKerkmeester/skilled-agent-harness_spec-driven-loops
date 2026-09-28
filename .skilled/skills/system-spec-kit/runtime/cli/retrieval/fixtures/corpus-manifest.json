@@ -1,5 +1,5 @@
 {
-  "corpusHash": "90403bda50da99c26a14446b8fa38eb73cb9a56ca2507590ab71b079c8c40b5a",
+  "corpusHash": "2655cd010c640ce84bf759c6ff42ec3b88e03f07905018e7b684fdf2afdecf05",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23314,
+  "includedPathCount": 23317,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7953,6 +7953,7 @@
     ".skilled/skills/system-spec-kit/changelog/v4.1.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.3.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v4.2.0.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -7966,6 +7967,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md",
     ".skilled/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md",
     ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md",
@@ -8035,6 +8037,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/architecture-boundary-enforcement.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md",
@@ -23344,7 +23347,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fdebd12ad1be6133cd344556b5bcdc81ce8736127474d99919f70150342ca67f",
+  "manifestHash": "7bc9bd5b237475f1f7d4c97fd6614aa83f170c717a8246ea21d5d55f15128bf2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
