@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2655cd010c640ce84bf759c6ff42ec3b88e03f07905018e7b684fdf2afdecf05",
+  "corpusHash": "b474f2b091e8914a606488e4c93ad635553847810cffdf2d86a056a9c8ab2028",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23317,
+  "includedPathCount": 23323,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6007,6 +6007,7 @@
     ".skilled/skills/sk-doc/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
+    ".skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md",
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
     ".skilled/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-claude-code.md",
@@ -6268,9 +6269,11 @@
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.2.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/add-goal-to-packet-without-goal.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/cut-over-budget-parent.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/detect-unbound-phase.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/phase-parent-and-nested-child-goals.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/resend-parent-after-child-change.md",
@@ -7954,6 +7957,7 @@
     ".skilled/skills/system-spec-kit/changelog/v4.1.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.2.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v4.3.0.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -7972,6 +7976,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/cli-runtime-warm-only-fallbacks.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/code-standards-alignment.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-verdict-freshness-validation.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-verification-workflow.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md",
@@ -8046,6 +8051,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-trusted-gate-refusal.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-warm-only-no-spawn.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/code-standards-alignment.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-verification-workflow.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
@@ -23347,7 +23353,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7bc9bd5b237475f1f7d4c97fd6614aa83f170c717a8246ea21d5d55f15128bf2",
+  "manifestHash": "2e5ed8d2658b7a4fafab65e049c2b7326e3299e6cf868085b71688ee3ee679c5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -23979,6 +23985,10 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/advisor-fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures",
       "reason": "excluded directory"
     },
     {
