@@ -182,22 +182,22 @@
         "source": "derived"
       },
       {
-        "name": "its",
-        "kind": "key_phrase",
+        "name": "Cursor Grok",
+        "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-28T07:00:55.602Z",
+    "last_save_at": "2026-09-28T19:38:23.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:1d8459eb204808b392de3d49de3e57a80d9a969f8ac6f0bea544a79cde2f3b75",
+    "source_fingerprint": "sha256:aaa5eba5962502c300637f7618a217811142ae32ae9f5a44c79f14d31bb5088e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6b1a513bb09f7111d53e09f439b636b807e1e04509c4cdecc221d0346ffabb58"
