@@ -65,6 +65,7 @@ contextType: "implementation"
 - [x] T015 Docs pass `validate_document.py` and `hvr_scan.py`, and frontmatter versions are applied (evidence: 9 edited docs are valid, the one warning in `ENV-REFERENCE.md` is also there at HEAD, HVR findings are the same as HEAD's on all 9, and the 5 versioned docs carry the value `frontmatter-version.mjs apply` computed. The enforced `gate` reports ok=2951 with 9 docs skipped for having no frontmatter)
 - [x] T016 Packet passes `validate.sh --strict`, and the scoped diff holds only this packet's paths (evidence: `RESULT: PASSED` with 0 errors and 0 warnings after `repair-derived.cjs --apply` re-derived the graph metadata. Each commit's `git diff --cached --name-status` listed only this work's paths)
 - [x] T017 Keep the example's validation comments on their own lines, so a line uncommented as the docs say turns its switch on (`.skilled/hooks/hook-flags.env.example`, `sk-doc/scripts/tests/test_validation_switch.py`) (evidence: the new test failed on the old example, whose trailing comments left both switches off, and passes now, 8 of 8)
+- [x] T018 End a value at a `#` after a space or tab in every reader of `hook-flags.env`, so every line of the example works once uncommented, the hook lines included. Restore the example's validation comments beside their values (`hook-flags.cjs`, `hook-flags.sh`, `hook-flags.test.cjs`, `sk-doc/shared/scripts/validation_switch.py`, `sk-doc/scripts/tests/test_validation_switch.py`, `sk-code-quality/scripts/check-dist-staleness.sh`, `hook-flags.env.example`, both hooks READMEs) (evidence: hooks 18 of 18, and reverting the rule in any one of the four readers fails the cross-reader test. sk-doc 8 of 8, and the old Node parser fails the example test. With `SYSTEM_DIST_FRESHNESS_DISABLED=1  # note` saved, the dist checker made 0 calls to its Node helper, against 1 for the control and 1 for the old parser. The sk-doc runner passes 26 files and the git hook suites 8 of 8 with 228 checks. The plugin tests pass 21 of 21)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -115,7 +116,7 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Code passes lint/format checks (evidence: 15 Python files parse, 10 Node files pass `node --check`, `hook-flags.sh` passes `bash -n` and `sh -n`, and shellcheck reports the same finding set as HEAD on both shell files)
+- [x] CHK-010 [P0] Code passes lint/format checks (evidence: 15 Python files parse, 10 Node files pass `node --check`, `hook-flags.sh` passes `bash -n` and `sh -n`, and shellcheck reports the same finding set as HEAD on both shell files. After the comment rule, the same checks pass on its 6 code files and shellcheck still reports HEAD's 5 findings on `hook-flags.sh`)
 - [x] CHK-011 [P0] No console errors or warnings (evidence: with a switch off every validator prints what it printed at HEAD, and with one on the only new output is the one-line notice the spec asks for)
 - [x] CHK-012 [P1] Error handling implemented (evidence: an unreadable or missing flags file yields no values, a missing `hook-flags.sh` warns and validates, and `validate.sh` still exits 3 on a missing folder)
 - [x] CHK-013 [P1] Code follows project patterns (evidence: the sk-code drift guard reports nothing new in this work's files, and the two helpers carry the standard headers)
@@ -126,9 +127,9 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [x] CHK-020 [P0] All acceptance criteria met (evidence: `acceptance-criteria.md`, AC-001 to AC-007 Met)
+- [x] CHK-020 [P0] All acceptance criteria met (evidence: `acceptance-criteria.md`, AC-001 to AC-008 Met)
 - [x] CHK-021 [P0] Manual testing complete (evidence: the pre-commit repair command with the switch on, and the six symlinked shims in `sk-doc/scripts/` probed with the switch on, each exiting 0 with the notice)
-- [x] CHK-022 [P1] Edge cases tested (evidence: environment `0`, empty and `skip` over a file set to `1`, quoted values, a BOM, CRLF endings, a missing file, `--help` and JSON requested three ways)
+- [x] CHK-022 [P1] Edge cases tested (evidence: environment `0`, empty and `skip` over a file set to `1`, quoted values, a BOM, CRLF endings, a missing file, `--help` and JSON requested three ways. The comment rule adds a comment after a bare value, after quotes and after a tab, `a#b`, `on#x` and a line holding only a comment after `=`)
 - [x] CHK-023 [P1] Error scenarios validated (evidence: a missing folder exits 3 with the switch on, and a switch name built to inject a command is refused before `eval`)
 <!-- /ANCHOR:testing -->
 
@@ -138,12 +139,12 @@ contextType: "implementation"
 ## Fix Completeness
 
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. (evidence: the commit trap is `cross-consumer`, fixed at the producer, `validate.sh`)
-- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. (evidence: `rg -n 'SPECKIT_SKIP_VALIDATION|SPECKIT_VALIDATION\b' .skilled` found one reader with two exits, both now on one path. Every sk-doc validator that prints JSON gets its skip line from one helper)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. (evidence: `rg -n 'SPECKIT_SKIP_VALIDATION|SPECKIT_VALIDATION\b' .skilled` found one reader with two exits, both now on one path. Every sk-doc validator that prints JSON gets its skip line from one helper. For the comment rule, `rg -l -L 'HOOK_FLAGS_CONFIG|hook-flags\.env'` over the code and every runtime folder found four readers that parse the file: `hook-flags.cjs`, `hook-flags.sh`, `validation_switch.py` and `check-dist-staleness.sh`. Each runtime's dist checker is a link to the last one)
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. (evidence: `plan.md` affected surfaces, including `audit_readmes.py`, which reads `valid`)
-- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. (evidence: the parser parity test covers `NOEQ`, `=novalue`, `D=`, `E=a=b`, an unclosed quote and a repeated key, and the `hook_flag_on` test proves an injected name runs nothing)
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. (evidence: the parser parity test covers `NOEQ`, `=novalue`, `D=`, `E=a=b`, an unclosed quote and a repeated key, and the `hook_flag_on` test proves an injected name runs nothing. The cross-reader test in `hook-flags.test.cjs` holds all four readers to one table with comments after bare and quoted values, a tab, `a#b`, `on#x` and an empty value before a comment)
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. (evidence: `plan.md` lists the axes. The rows run are 20 validators with the switch on, 8 source rows for the two controls, 6 for `validate.sh`, 3 exemptions and 1 safety gate)
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. (evidence: each new test scrubs both switches and points `HOOK_FLAGS_CONFIG` at an absent file, and the suites ran the same way, so no local flags file can decide a result)
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (evidence: `4f4d25288c..396d26d4ff` on `main`: `b274f085fb` hooks, `3303e85a43` spec-kit, `396d26d4ff` sk-doc)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (evidence: `4f4d25288c..396d26d4ff` on `main`: `b274f085fb` hooks, `3303e85a43` spec-kit, `396d26d4ff` sk-doc. The comment rule is `079d9cb31e..12c9351b5c`: `f5485b51d1` sk-code, `a0127c7a92` the sk-doc reader, `3ad952e58e` hooks and `12c9351b5c` the sk-doc test. Checked out one by one in a scratch clone, each of the four passes the hooks suite and the two sk-doc parser tests)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -162,7 +163,7 @@ contextType: "implementation"
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized (evidence: `spec.md` names the final validator set and the three exclusions)
-- [x] CHK-041 [P1] Code comments adequate (evidence: the comment hygiene checker passes all 29 changed code files)
+- [x] CHK-041 [P1] Code comments adequate (evidence: the comment hygiene checker passes all 29 changed code files, and the 6 code files of the comment rule)
 - [x] CHK-042 [P2] README updated (if applicable) (evidence: `.skilled/hooks/README.md`, `.skilled/hooks/shared/README.md` and `sk-doc/shared/scripts/README.md`)
 <!-- /ANCHOR:docs -->
 

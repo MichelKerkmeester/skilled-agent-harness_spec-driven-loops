@@ -86,12 +86,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | sk-doc validators | Producers of findings | Update, check path only | `test_validation_switch.py` |
 | Scripts that import validator functions | Library readers | Unchanged, the guard sits in `main` | `audit_descriptions.py:49`, `validate_catalog_package.py:46`, and the rename engine and reference checker, which import `check_no_new_snake_case` |
 | `audit_readmes.py` | Reads `valid` from `validate_document.py --json` | Unchanged, a skip line carries `valid: true` | `test_validation_switch.py` compares the line exactly |
+| The four readers of `hook-flags.env` | Parse the file for every hook and both switches | Update after close: a `#` after a space or tab ends a value | The cross-reader test in `hook-flags.test.cjs` and the example test in `test_validation_switch.py` |
 
 Required inventories:
 - Same-class producers: `rg -n 'SPECKIT_SKIP_VALIDATION|SPECKIT_VALIDATION\b' .skilled` found one reader, `validate.sh`, with two skip exits (lines 19 and 115). Both move onto one path.
 - Consumers of changed symbols: `rg -n 'validate\.sh' --glob '!**/tests/**'` over the runtime, scripts, hooks and workflows, and a per-validator `rg -F <name>` over code, workflows and commands.
+- Readers of the flags file, for the comment rule: `rg -l -L 'HOOK_FLAGS_CONFIG|hook-flags\.env'` over the code and every runtime folder. Four readers parse the file: `hook-flags.cjs`, `hook-flags.sh`, `validation_switch.py` and `check-dist-staleness.sh`, and each runtime's dist checker is a link to the last. Every other consumer goes through one of the four.
 - Matrix axes: where the value comes from (environment, file, neither), the environment value (truthy, falsy, empty, unset), the output mode (text, JSON) and the validator mode (check, write, self-test).
-- Algorithm invariant: a switch is on only when its effective value is truthy, and the effective value is the environment value whenever the variable is set, else the last `NAME=` line of the flags file. Adversarial cases: environment `0` over file `1`, empty environment over file `1`, a quoted `'yes'`, a commented line, spaces around `=`, and a missing file.
+- Algorithm invariant: a switch is on only when its effective value is truthy, and the effective value is the environment value whenever the variable is set, else the last `NAME=` line of the flags file. Adversarial cases: environment `0` over file `1`, empty environment over file `1`, a quoted `'yes'`, a commented line, spaces around `=`, and a missing file. The comment rule adds a comment after a bare value, after quotes and after a tab, `a#b`, `on#x` and an empty value before a comment.
 <!-- /ANCHOR:affected-surfaces -->
 
 

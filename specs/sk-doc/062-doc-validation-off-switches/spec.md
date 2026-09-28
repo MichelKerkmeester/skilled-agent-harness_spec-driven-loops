@@ -6,20 +6,22 @@ trigger_phrases:
   - "skip spec validation"
   - "skdoc skip validation"
   - "disable sk-doc validators"
+  - "hook flags trailing comment"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/062-doc-validation-off-switches"
-    last_updated_at: "2026-09-28T08:20:00Z"
+    last_updated_at: "2026-09-28T11:08:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Built and verified both switches and the commit trap fix"
+    recent_action: "Made every reader of hook-flags.env drop a comment after a value"
     next_safe_action: "None, the packet is complete"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
       - ".skilled/skills/sk-doc/shared/scripts/validation_switch.py"
       - ".skilled/skills/sk-doc/shared/scripts/validation-switch.cjs"
+      - ".skilled/hooks/shared/hook-flags.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "75aab0e6-dcc7-401b-9d10-f48248374023"
@@ -30,6 +32,7 @@ _memory:
       - "One switch per family: SPECKIT_SKIP_VALIDATION for spec docs, SKDOC_SKIP_VALIDATION for sk-doc"
       - "Both can be set in the environment or saved in hook-flags.env"
       - "Local only: CI keeps enforcing this repository's formats"
+      - "After close, the operator approved a '#' after a space or tab ending a value in every reader of hook-flags.env"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Doc validation off switches
@@ -72,6 +75,7 @@ Someone who does not care whether their docs drift from the expected formats tur
 - `SKDOC_SKIP_VALIDATION` in the check path of every sk-doc validator, through one Node helper and one Python helper.
 - Tests for the resolvers, `validate.sh`, the commit trap and the sk-doc helpers with representative validators.
 - Docs: the runtime env reference, spec-kit's validation references and feature catalog, sk-doc's core standards, its validation and enforcement reference and its shared scripts README, both hooks READMEs and the example flags file.
+- Added after close at the operator's request: every reader of `hook-flags.env` ends a value at a `#` that follows a space or tab. The docs say to uncomment the example's lines, and those lines carry a comment after the value, so each one, the hook kill switches included, now works as it stands.
 
 ### Out of Scope
 - CI workflows - they keep enforcing. Neither the environment variable nor the gitignored `hook-flags.env` reaches a CI run.
@@ -87,17 +91,18 @@ Someone who does not care whether their docs drift from the expected formats tur
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/hooks/shared/hook-flags.sh` | Modify | Public `hook_flag_on NAME` over the existing resolver |
-| `.skilled/hooks/shared/hook-flags.cjs` | Modify | `isFlagOn(name, env, config)` with the same precedence as `isHookEnabled` |
-| `.skilled/hooks/shared/hook-flags.test.cjs` | Modify | Tests for both new checks |
+| `.skilled/hooks/shared/hook-flags.sh` | Modify | Public `hook_flag_on NAME` over the existing resolver, plus the comment rule: a `#` after a space or tab ends a value |
+| `.skilled/hooks/shared/hook-flags.cjs` | Modify | `isFlagOn(name, env, config)` with the same precedence as `isHookEnabled`, plus the same comment rule |
+| `.skilled/hooks/shared/hook-flags.test.cjs` | Modify | Tests for both new checks, plus one that holds all four readers of the file to the same values |
+| `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Modify | The dist checker's own reader of the file takes the same comment rule |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Modify | Skip after parsing, file persistence, skipped JSON report, help text |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/validate-skip-switch.vitest.ts` | Create | Switch behavior of `validate.sh` |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts` | Modify | The commit trap as a regression test |
 | `.skilled/skills/sk-doc/shared/scripts/validation-switch.cjs` | Create | Node helper over `isFlagOn` |
-| `.skilled/skills/sk-doc/shared/scripts/validation_switch.py` | Create | Python helper that mirrors the resolver |
+| `.skilled/skills/sk-doc/shared/scripts/validation_switch.py` | Create | Python helper that mirrors the resolver, comment rule included |
 | 13 Python validators under `.skilled/skills/sk-doc/` | Modify | Guard in the command-line entry |
 | 7 Node validators under `.skilled/skills/sk-doc/` | Modify | Guard in the command-line entry, check modes only |
-| `.skilled/skills/sk-doc/scripts/tests/test_validation_switch.py` | Create | Helper and validator tests the CI runner picks up |
+| `.skilled/skills/sk-doc/scripts/tests/test_validation_switch.py` | Create | Helper and validator tests the CI runner picks up, including one that uncomments every switch line of the example |
 | `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modify | The `SPECKIT_SKIP_VALIDATION` row |
 | `.skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md` | Modify | The environment table |
 | `.skilled/skills/system-spec-kit/references/validation/validation-rules.md` | Modify | The environment table |
@@ -105,9 +110,9 @@ Someone who does not care whether their docs drift from the expected formats tur
 | `.skilled/skills/sk-doc/shared/references/core-standards.md` | Modify | `SKDOC_SKIP_VALIDATION` beside `SKDOC_ENFORCE_STRUCTURE` |
 | `.skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md` | Modify | A validation off switch subsection |
 | `.skilled/skills/sk-doc/shared/scripts/README.md` | Modify | A contents row for the two helpers |
-| `.skilled/hooks/README.md` | Modify | The two switches under Setting flags |
-| `.skilled/hooks/shared/README.md` | Modify | `isFlagOn` and `hook_flag_on` in the resolver docs |
-| `.skilled/hooks/hook-flags.env.example` | Modify | A validation section |
+| `.skilled/hooks/README.md` | Modify | The two switches under Setting flags, plus the comment rule |
+| `.skilled/hooks/shared/README.md` | Modify | `isFlagOn` and `hook_flag_on` in the resolver docs, plus the comment rule with its four readers |
+| `.skilled/hooks/hook-flags.env.example` | Modify | A validation section, plus a header line on the comment rule |
 
 The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check_authored_name_kebab.py`, `check_no_hyphenated_catalog_content.py`, `check_no_new_snake_case.py`, `check_no_numbered_categories.py`, `check_no_numbered_snippet_files.py` and `resolve_skill_markdown_links.py` in `shared/scripts/`, plus `validate_catalog_package.py`, `check_derived_readme_counts.py`, `check_readme_references.py`, `validate_skill_package.py` and `hvr_scan.py` in their modes' `scripts/` folders. The 7 Node validators are `frontmatter-version.mjs` (gate and verify), `validate-doc-model-refs.js`, `check-goal.cjs`, `validate-playbook-package.cjs`, `check-repo-rules.cjs`, `validate-compiled-routing-scenarios.cjs` and `validate-playbook-topology.cjs`. `check-frontmatter-versions.sh` runs `frontmatter-version.mjs gate`, so it follows without an edit.
 <!-- /ANCHOR:scope -->
@@ -133,6 +138,7 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 | REQ-005 | A skipped run that was asked for JSON still prints valid JSON on stdout. An sk-doc validator prints `{"skipped": true, "valid": true, ...}`, so a caller that reads `valid` counts the skip as no finding |
 | REQ-006 | CI keeps enforcing: no workflow sets either switch or points `HOOK_FLAGS_CONFIG` at a file |
 | REQ-007 | The docs name both switches, how to save them and what they leave on |
+| REQ-008 | The four readers of `hook-flags.env` (`hook-flags.cjs`, `hook-flags.sh`, `validation_switch.py` and `check-dist-staleness.sh`) end a value at a `#` that follows a space or tab, return the same value for every line and read every switch line of the example as on once it is uncommented |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -145,6 +151,7 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 
 - **SC-001**: `SPECKIT_SKIP_VALIDATION=1 node repair-derived.cjs --folder <packet>` exits 0, where it exits 2 before the fix.
 - **SC-002**: With each switch saved only in a `HOOK_FLAGS_CONFIG` file, `validate.sh`, a Python validator and a Node validator all skip, and `=0` in the environment brings validation back.
+- **SC-003**: `SYSTEM_DIST_FRESHNESS_DISABLED=1  # note`, saved as the example writes it, stops the dist checker before it runs its Node helper, where the old parser ran it.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -158,6 +165,8 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 | Risk | `SPECKIT_SKIP_VALIDATION` moves from any non-empty value to the truthy set | Low | Nothing in the repository sets it, `1` and `true` keep working, and the env reference records the change |
 | Risk | A saved switch also silences validators inside local test runs | Med | The notice names where the switch was set, and the docs say to unset it for the suites |
 | Risk | A skipped report carries `passed: true`, as a track root's report does | Low | The report also carries `skipped: true` and an info entry, and the only reader of `passed` is local sweep tooling |
+| Risk | A saved line with a comment after its value had no effect before and now takes effect | Low | The value was written to turn its switch on, and the example keeps every switch line commented out |
+| Risk | A value can no longer hold a space or tab followed by `#`, even in quotes | Low | Every value in the file is a one-word switch value, and `a#b` keeps its `#` |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -191,6 +200,7 @@ The 13 Python validators are `validate_document.py`, `quick_validate.py`, `check
 - Empty input: `SPECKIT_SKIP_VALIDATION=` in the environment wins over the file and leaves validation on.
 - Maximum length: not applicable, the value is one short token.
 - Invalid format: a value outside `1`, `true`, `yes` and `on` leaves validation on, and quoted file values such as `"1"` count as on.
+- Trailing comment: `NAME=1  # why` and `NAME="on" # why` read as on in all four readers, while `NAME=a#b` keeps its `#` and `NAME= # why` reads as empty.
 
 ### Error Scenarios
 - External service failure: none, the switches read local state only.

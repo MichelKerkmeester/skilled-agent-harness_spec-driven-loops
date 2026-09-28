@@ -15,14 +15,14 @@
       "skip spec validation",
       "skdoc skip validation",
       "disable sk-doc validators",
+      "hook flags trailing comment",
       "doc validation off switch plan",
       "validation switch resolver",
       "skipped validation report",
       "sk-doc validator guard",
       "doc validation off switch tasks",
       "validation switch verification",
-      "commit trap regression",
-      "sk-doc validator guard tasks"
+      "commit trap regression"
     ],
     "key_topics": [
       "doc",
@@ -34,9 +34,9 @@
       "disable",
       "sk-doc",
       "validators",
-      "plan",
-      "resolver",
-      "skipped"
+      "hook",
+      "flags",
+      "trailing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -49,18 +49,18 @@
       ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
       ".skilled/skills/sk-doc/shared/scripts/validation_switch.py",
       ".skilled/skills/sk-doc/shared/scripts/validation-switch.cjs",
+      ".skilled/hooks/shared/hook-flags.cjs",
       ".skilled/hooks/hook-flags.env",
       ".skilled/hooks/shared/hook-flags.sh",
-      ".skilled/hooks/shared/hook-flags.cjs",
       ".skilled/hooks/shared/hook-flags.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-skip-switch.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts",
       ".skilled/skills/sk-doc/scripts/tests/test_validation_switch.py",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
       ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
-      ".skilled/skills/sk-doc/shared/references/core-standards.md"
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md"
     ],
     "entities": [
       {
@@ -112,6 +112,12 @@
         "source": "derived"
       },
       {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
         "name": "hook-flags.env",
         "kind": "file",
         "path": ".skilled/hooks/hook-flags.env",
@@ -124,15 +130,15 @@
         "source": "derived"
       },
       {
-        "name": "hook-flags.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/shared/hook-flags.cjs",
-        "source": "derived"
-      },
-      {
         "name": "hook-flags.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/shared/hook-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
         "source": "derived"
       },
       {
@@ -178,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "core-standards.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/shared/references/core-standards.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`SPECKITSKIPVALIDATION` exists but traps commits",
     "created_at": "2026-09-28T07:19:12Z",
-    "last_save_at": "2026-09-28T10:15:55.919Z",
+    "last_save_at": "2026-09-28T11:18:51.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38a035e7d95493de64376b0fc0d600749100ca0d95ad113469bde50b1682b811",
+    "source_fingerprint": "sha256:303b0efc915fc27840ebac7294a624ca6e40aac527b80609f535096bc3d905a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b1cdac338c8f9025acfcff97a4bff886333a0c3f105bb3308f57d6d671b02a9",
-      "plan.md": "c27c929df90583042ce6e29eb532c909837e963ba8abeadfe3202edd8c3acc99",
-      "tasks.md": "09af2147b06e50841b5dd7193ef860d979e1e72f4130faf48ba83dc7a15495d8",
-      "implementation-summary.md": "481599b61da2a21d164b18d82326e91a51a00ba7571b352f1a093a99587c1782"
+      "spec.md": "b850ab4f5fa65a573c4188588806ddaad834c4b1a58938aab70c5aa0c8ec52b9",
+      "plan.md": "f70d9b139c1e205ce3df06ce9d837a3636e86754a541e6ef8807023367d576c0",
+      "tasks.md": "80dcb0481670cf006c64f3fe7e1d5380f642c8b8bd2a2fce94bf6a3ab59f4758",
+      "implementation-summary.md": "1518ee683140e07da07f90ed54a2c19032ec50d91328d6d12c98226cd5928dd6"
     },
     "last_active_at": null
   }
