@@ -1,0 +1,2 @@
+== .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md --type playbook exit=0 :: Total issues: 0
+== .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog exit=0 :: Total issues: 0

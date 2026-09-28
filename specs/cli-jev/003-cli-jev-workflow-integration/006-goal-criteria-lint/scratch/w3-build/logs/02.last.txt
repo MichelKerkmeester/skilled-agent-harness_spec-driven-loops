@@ -1,0 +1,47 @@
+
+
+I'll read the skill route and run the Gate 1 lookup before editing.
+
+Gate 1 surfaced the bound packet (`specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/spec.md`), matching the pre-resolved scope. Now resolving the sk-code route for this file type before the first code write:
+
+Compiled route deferred (no target). Per the hub, the acting mode for implementation + comment hygiene is `sk-code-quality`; let me load its packet contract briefly before the first write.
+
+The hub's legacy route for a bare implement request defers to the detected surface — `.skilled/` Node scripts are the OpenCode surface. Loading that packet's contract once, then proceeding with the pinned edits:
+
+Routing resolved: OpenCode surface, JavaScript language, quality gate owns comment hygiene; the brief's pinned edits and checks are the frozen plan. Proceeding with the lint-file edits now.
+
+All four lint edits applied. Now the exports line and the two test-file edits:
+
+All edits are in. Re-reading the full lint file and running the two pinned checks:
+
+`node --check` passed (exit 0, no output). Now the runtime check:
+
+Both pinned checks pass. Running the final scoped inspection (read-only) — confirming only the two named files changed, and checking for a repo-root `REPO RULES.md` per the Gate 5 trigger:
+
+Gate 5 fires: the repo root holds a `REPO RULES.md`. Loading it now to run its trigger table against my action before I hand back:
+
+Gate 5: the repo routes me to several rule files for my action (code edits + closing out a turn). Loading the ones whose triggers fire — scope, overengineering, evidence, handoff:
+
+Rules loaded and applied to this close-out. One more load whose trigger fires on a substantive reply, then I'll hand back:
+
+SKILL ROUTING: sk-code → sk-code-opencode (JavaScript surface) + sk-code-quality (comment hygiene); compiled route returned defer, hub legacy routing applied
+ARTIFACT: sk-code → sk-code-opencode evidence + quality gate; brief-pinned edits and checks followed as specified
+REPO RULES: prevent-overengineering.md, scope-discipline.md, evidence-and-proof.md, communication-handoff.md, communication.md
+
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs (+79/-1)
+.skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs (+25/-1)
+EDITS:
+.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:2 — box title replaced with the exact flush-width line
+.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:28 — NAMED_TOKEN, DETERMINERS, LOCALITY_NOUNS, MODIFIERS, FUNCTION_WORDS appended after SCRATCH_DIR, each Set with a one-line why comment
+.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:108 — maskNamedText, bareWord, isNamedToken added after getCriterionItems
+.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:192 — rule4DanglingRefs added with JSDoc
+.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:242 — rule4DanglingRefs added to exports
+.skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs:19 — import extended with rule4DanglingRefs
+.skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs:102 — two tests appended (dangling definite description, locally resolving references)
+CHECKS:
+node --check .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs -> no output (syntax OK) (exit 0)
+node -e "const m=require('./.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs');console.log(JSON.stringify(m.rule4DanglingRefs('The report includes the result.')))" -> ["The report","the result"] (exit 0)
+git status --porcelain -- <both named paths> -> both listed as untracked (??), no other file written by this worker (exit 0)
+BLOCKED REASON: none

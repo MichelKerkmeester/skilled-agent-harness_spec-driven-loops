@@ -1,0 +1,17 @@
+TASK: update one existing feature catalog root so it is byte-identical to literal text the orchestrator already wrote to sk-doc's rules for that doc type.
+Source (read only, do not edit): specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/catalog-root.new.md
+Target (replace its content): .skilled/skills/sk-doc/feature-catalog/feature-catalog.md
+
+The source differs from the current target only here (read both first and confirm):
+- frontmatter description, one trigger phrase and last_updated
+- the intro paragraph gains one sentence
+- section 4: a new "### Goal Criteria Lint" block, and the closing Note names the lint
+
+Step: make the target byte-identical to the source, for example with
+  cp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/catalog-root.new.md .skilled/skills/sk-doc/feature-catalog/feature-catalog.md
+Do not reword, reflow or reformat anything. Do not run any command the document lists. Change no other file.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/catalog-root.new.md .skilled/skills/sk-doc/feature-catalog/feature-catalog.md
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md
+Accept when: 1 file changed and nothing else; cmp prints nothing and exits 0; validate_document exits 0.

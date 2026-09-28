@@ -1,0 +1,11 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-goal/SKILL.md (+3/-3)
+EDITS:
+- .skilled/skills/sk-doc/sk-create-goal/SKILL.md:5 version 1.2.0.0 → 1.3.0.0
+- .skilled/skills/sk-doc/sk-create-goal/SKILL.md:109 step 7: two sentences appended naming the advisory lint `lint-goal-criteria.cjs`
+- .skilled/skills/sk-doc/sk-create-goal/SKILL.md:155 scripts/README.md bullet now names the lint and its scorer
+CHECKS:
+- cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/skill-md.new.md .skilled/skills/sk-doc/sk-create-goal/SKILL.md -> no output (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-goal/SKILL.md -> ✅ VALID: … Total issues: 0 (exit 0)
+BLOCKED REASON: none

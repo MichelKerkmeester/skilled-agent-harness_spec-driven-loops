@@ -1,0 +1,2 @@
+rows=100
+rubric mismatch: a,mimo-02-strict-v1

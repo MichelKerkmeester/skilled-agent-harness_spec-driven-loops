@@ -1,0 +1,125 @@
+{
+  "seed": 20260928,
+  "count": 100,
+  "population_scored_distinct": 1357,
+  "lint_summary": {
+    "goals_scanned": 323,
+    "scratch_excluded": 30,
+    "criteria": 1543,
+    "scored": 1485,
+    "rule4_violations": 1017,
+    "rule5_violations": 41,
+    "both_violations": 40,
+    "placeholder": 51,
+    "lexical_unscored": 7,
+    "no_input": 13,
+    "errors": 0
+  },
+  "strata": [
+    {
+      "stratum": "cli-external-orchestration|phase-child",
+      "size": 37,
+      "drawn": 3
+    },
+    {
+      "stratum": "cli-external-orchestration|phase-parent",
+      "size": 11,
+      "drawn": 1
+    },
+    {
+      "stratum": "cli-jev|phase-child",
+      "size": 146,
+      "drawn": 11
+    },
+    {
+      "stratum": "cli-jev|phase-parent",
+      "size": 19,
+      "drawn": 1
+    },
+    {
+      "stratum": "hooks|phase-child",
+      "size": 28,
+      "drawn": 2
+    },
+    {
+      "stratum": "hooks|phase-parent",
+      "size": 6,
+      "drawn": 1
+    },
+    {
+      "stratum": "mcp-tooling|phase-child",
+      "size": 6,
+      "drawn": 0
+    },
+    {
+      "stratum": "mcp-tooling|phase-parent",
+      "size": 5,
+      "drawn": 0
+    },
+    {
+      "stratum": "sk-communication|phase-parent",
+      "size": 9,
+      "drawn": 1
+    },
+    {
+      "stratum": "sk-design|phase-child",
+      "size": 174,
+      "drawn": 13
+    },
+    {
+      "stratum": "sk-design|phase-parent",
+      "size": 18,
+      "drawn": 1
+    },
+    {
+      "stratum": "sk-doc|phase-child",
+      "size": 144,
+      "drawn": 11
+    },
+    {
+      "stratum": "sk-doc|phase-parent",
+      "size": 20,
+      "drawn": 2
+    },
+    {
+      "stratum": "sk-git|phase-child",
+      "size": 33,
+      "drawn": 2
+    },
+    {
+      "stratum": "sk-git|phase-parent",
+      "size": 10,
+      "drawn": 1
+    },
+    {
+      "stratum": "system-deep-loop|phase-child",
+      "size": 100,
+      "drawn": 7
+    },
+    {
+      "stratum": "system-deep-loop|phase-parent",
+      "size": 16,
+      "drawn": 1
+    },
+    {
+      "stratum": "system-skill-advisor|phase-child",
+      "size": 158,
+      "drawn": 12
+    },
+    {
+      "stratum": "system-skill-advisor|phase-parent",
+      "size": 19,
+      "drawn": 1
+    },
+    {
+      "stratum": "system-speckit|phase-child",
+      "size": 358,
+      "drawn": 26
+    },
+    {
+      "stratum": "system-speckit|phase-parent",
+      "size": 40,
+      "drawn": 3
+    }
+  ]
+}

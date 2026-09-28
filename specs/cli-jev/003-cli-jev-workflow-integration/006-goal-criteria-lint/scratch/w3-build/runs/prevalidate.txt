@@ -1,0 +1,13 @@
+changelog-v1.3.0.0.md [changelog] exit=0 Total issues: 0
+playbook-lint-goal-criteria.md [playbook_feature] exit=0 Total issues: 0
+catalog-goal-criteria-lint.md [feature_catalog] exit=0 Total issues: 0
+skill-md.new.md [skill] exit=0 Total issues: 0
+readme.new.md [readme] exit=0 Total issues: 0
+scripts-readme.new.md [code_folder] exit=1 Total issues: 14
+  - [code_folder_flat_inventory] Flat folders require a complete CONTENTS, FILES or KEY FILES table naming every file.
+  - [code_folder_inline_path] Inline-code path does not resolve from the README directory: ../assets/.
+  - [code_folder_inline_path] Inline-code path does not resolve from the README directory: tests/check-goal.test.cjs.
+  - [code_folder_inline_path] Inline-code path does not resolve from the README directory: tests/lint-goal-criteria.test.cjs.
+  - [code_folder_inline_path] Inline-code path does not resolve from the README directory: tests/score-goal-lint.test.cjs.
+playbook-root.new.md [playbook] exit=0 Total issues: 0
+catalog-root.new.md [feature_catalog] exit=0 Total issues: 0

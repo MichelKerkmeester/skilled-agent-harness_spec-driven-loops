@@ -1,0 +1,12 @@
+All checks pass. Only the named target file was written.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md (+1/-1)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md:32 "as described in`, and `exit=0`. Step 6" → "as described in`. It ends with `exit=0`. Step 6" (applied via full-file copy from source; file byte-identical to source)
+CHECKS:
+- `diff <source> <target>` (pre-copy) -> `32c32` single-line difference as described (exit 1)
+- `cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/playbook-lint-goal-criteria.md .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md` -> no output (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md` -> `✅ VALID ... Total issues: 0` (exit 0)
+- `git status --porcelain` -> 28 entries before and after cp, unchanged; only the named target written
+BLOCKED REASON: none

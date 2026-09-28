@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md
+Document type: playbook_feature
+Total issues: 0

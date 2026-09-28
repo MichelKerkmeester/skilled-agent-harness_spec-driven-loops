@@ -1,0 +1,9 @@
+All checks pass. The target exists at the exact path, is byte-identical to the source (`cmp` silent, exit 0), validates clean (exit 0), and no other file was modified.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md (+62/-0)
+EDITS: .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md:1-62 new file created as byte-identical copy of the brief's source via `cp`
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/catalog-goal-criteria-lint.md .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md -> "✅ VALID: ... goal-criteria-lint.md / Document type: feature_catalog / Total issues: 0" (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,12 @@
+TASK: create one new feature catalog entry (sk-create-feature-catalog leaf shape) so it is byte-identical to literal text the orchestrator already wrote to sk-doc's rules for that doc type.
+Source (read only, do not edit): specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/catalog-goal-criteria-lint.md
+Target (create): .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md
+
+Step: make the target byte-identical to the source, for example with
+  cp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/catalog-goal-criteria-lint.md .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md
+Do not reword, reflow or reformat anything. Do not run any command the document lists. Change no other file.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/catalog-goal-criteria-lint.md .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md
+Accept when: 1 file created and nothing else; cmp prints nothing and exits 0; validate_document exits 0.
