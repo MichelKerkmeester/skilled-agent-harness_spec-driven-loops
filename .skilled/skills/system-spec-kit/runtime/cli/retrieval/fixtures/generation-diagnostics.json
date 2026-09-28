@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 7245,
-    "ok": 12197,
+    "ok": 12202,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23128,
+  "documentsScanned": 23133,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -17,7 +17,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "b2f3b97d1406620a4db3d6aa47ca56c0a4c445c31e544a6213de42607e19502d",
+  "manifestHash": "8a48918bedb30dc8c6d50c44f02d15f4f6f58ad82df750ec83f9f559b82aafab",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,7 +32,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 31635,
+      "ok": 31655,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -71323,6 +71323,10 @@
     },
     {
       "path": "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/062-doc-validation-off-switches/scratch",
       "reason": "excluded directory"
     },
     {

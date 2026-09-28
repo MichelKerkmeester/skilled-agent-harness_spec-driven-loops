@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b2f3b97d1406620a4db3d6aa47ca56c0a4c445c31e544a6213de42607e19502d",
+  "manifestHash": "8a48918bedb30dc8c6d50c44f02d15f4f6f58ad82df750ec83f9f559b82aafab",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22204,6 +22204,12 @@
     "commit trailer paragraph": [
       "commit trailer paragraph"
     ],
+    "commit trap acceptance": [
+      "commit trap acceptance"
+    ],
+    "commit trap regression": [
+      "commit trap regression"
+    ],
     "commit type selection": [
       "commit type selection"
     ],
@@ -32961,6 +32967,9 @@
     "disable github ruleset admin push": [
       "disable github ruleset admin push"
     ],
+    "disable sk doc validators": [
+      "disable sk-doc validators"
+    ],
     "discard failed experiment branch": [
       "discard failed experiment branch"
     ],
@@ -33422,6 +33431,21 @@
     ],
     "doc truth test fidelity disposition": [
       "doc truth test fidelity disposition"
+    ],
+    "doc validation off switch": [
+      "doc validation off switch"
+    ],
+    "doc validation off switch acceptance": [
+      "doc validation off switch acceptance"
+    ],
+    "doc validation off switch plan": [
+      "doc validation off switch plan"
+    ],
+    "doc validation off switch tasks": [
+      "doc validation off switch tasks"
+    ],
+    "doc validation off switches summary": [
+      "doc validation off switches summary"
     ],
     "docs alignment 023 010": [
       "docs alignment 023/010"
@@ -80739,6 +80763,12 @@
     "sk doc validator findings obsidian surface": [
       "sk-doc validator findings obsidian surface"
     ],
+    "sk doc validator guard": [
+      "sk-doc validator guard"
+    ],
+    "sk doc validator guard tasks": [
+      "sk-doc validator guard tasks"
+    ],
     "sk git": [
       "sk-git"
     ],
@@ -81836,6 +81866,15 @@
     ],
     "skd036 019 implementation summary": [
       "skd036-019 implementation summary"
+    ],
+    "skdoc skip validation": [
+      "skdoc skip validation"
+    ],
+    "skdoc skip validation criteria": [
+      "skdoc skip validation criteria"
+    ],
+    "skdoc skip validation shipped": [
+      "skdoc skip validation shipped"
     ],
     "sketchy filter": [
       "sketchy filter"
@@ -83648,11 +83687,17 @@
     "skip re embedding unchanged chunks": [
       "skip re-embedding unchanged chunks"
     ],
+    "skip spec validation": [
+      "skip spec validation"
+    ],
     "skipped channels visibility": [
       "skipped channels visibility"
     ],
     "skipped sandbox live cli": [
       "SKIPPED_SANDBOX live CLI"
+    ],
+    "skipped validation report": [
+      "skipped validation report"
     ],
     "sla evaluator": [
       "sla evaluator"
@@ -85523,6 +85568,9 @@
     ],
     "spec validation commands": [
       "spec validation commands"
+    ],
+    "spec validation commit trap fixed": [
+      "spec validation commit trap fixed"
     ],
     "spec validation rule engine": [
       "spec validation rule engine"
@@ -93343,6 +93391,18 @@
     ],
     "validation scripts": [
       "validation scripts"
+    ],
+    "validation switch closure gate": [
+      "validation switch closure gate"
+    ],
+    "validation switch evidence": [
+      "validation switch evidence"
+    ],
+    "validation switch resolver": [
+      "validation switch resolver"
+    ],
+    "validation switch verification": [
+      "validation switch verification"
     ],
     "validator and template debt": [
       "validator and template debt"
