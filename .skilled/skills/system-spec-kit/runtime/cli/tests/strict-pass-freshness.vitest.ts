@@ -117,6 +117,48 @@ describe('strict-pass freshness baseline handling', () => {
     expect(failure.status).toBe('new-failure');
   });
 
+  it('reports a folder whose validation is switched off as skipped, never as a pass', () => {
+    const workspace = makeWorkspace();
+    const specsRoot = path.join(workspace, '.opencode', 'specs');
+    const folder = createCompletionFolder(workspace, 'switched-off');
+    // What validate.sh prints under --json when its off switch is on.
+    const validator = path.join(workspace, 'validate-skipped.sh');
+    writeFile(validator, [
+      '#!/usr/bin/env bash',
+      'printf \'{"skipped":true,"passed":true,"summary":{"errors":0,"warnings":0,"info":1}}\\n\'',
+    ].join('\n'));
+    fs.chmodSync(validator, 0o755);
+    const baselinePath = path.join(workspace, 'baseline.json');
+    writeFile(baselinePath, JSON.stringify({ results: [] }));
+
+    const result = runSweep(specsRoot, baselinePath, validator);
+    const payload = JSON.parse(result.stdout);
+
+    expect(result.status).toBe(0);
+    expect(payload.skipped).toBe(1);
+    expect(payload.results).toEqual([
+      expect.objectContaining({ folder: path.relative(repoRoot, folder), status: 'skipped' }),
+    ]);
+  });
+
+  it('does not let a skipped baseline row pass off a later failure as a known one', () => {
+    const workspace = makeWorkspace();
+    const specsRoot = path.join(workspace, '.opencode', 'specs');
+    const folder = createCompletionFolder(workspace, 'was-skipped');
+    const baselinePath = path.join(workspace, 'baseline.json');
+    writeFile(baselinePath, JSON.stringify({
+      results: [{ folder: path.relative(repoRoot, folder), status: 'skipped' }],
+    }));
+
+    const result = runSweep(specsRoot, baselinePath, createValidator(workspace, 'was-skipped'));
+    const payload = JSON.parse(result.stdout);
+
+    expect(result.status).toBe(1);
+    expect(payload.knownFailures).toBe(0);
+    expect(payload.results[0].status).toBe('new-failure');
+    expect(payload.results[0].message).toContain('only recorded a skipped run');
+  });
+
   it('treats an empty loaded baseline as real baseline content', () => {
     const workspace = makeWorkspace();
     const specsRoot = path.join(workspace, '.opencode', 'specs');

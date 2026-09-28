@@ -101,12 +101,12 @@ main() {
     done < <(discover_spec_folders "$ROOT_PATH")
 
     local total=${#folders[@]}
-    local pass_count=0 warn_count=0 fail_count=0
+    local pass_count=0 warn_count=0 fail_count=0 skip_count=0
     local worst_folders=()
 
     if [[ $total -eq 0 ]]; then
         if $JSON_MODE; then
-            echo '{"total":0,"pass":0,"warn":0,"fail":0,"folders":[]}'
+            echo '{"total":0,"pass":0,"warn":0,"fail":0,"skipped":0,"folders":[]}'
         else
             echo "No spec folders found under $ROOT_PATH"
         fi
@@ -121,33 +121,45 @@ main() {
         folder_name=$(echo "$folder" | sed "s|$ROOT_PATH/||")
         local exit_code=0
         local output
+        local status
 
-        if $JSON_MODE; then
-            output=$(bash "$validate_script" "$folder" --json --quiet 2>/dev/null) || exit_code=$?
+        # JSON in both modes: only the report says whether validation was
+        # switched off, and the exit code is the same either way.
+        output=$(bash "$validate_script" "$folder" --json --quiet 2>/dev/null) || exit_code=$?
+
+        # A switched-off run exits 0 without running a rule, so it is counted
+        # apart from a pass. validate.sh writes the report with JSON.stringify,
+        # which puts no space between the key and its value.
+        if [[ "$output" == *'"skipped":true'* ]]; then
+            status="skipped"
+            ((skip_count++)) || true
+            $VERBOSE && echo "SKIP: $folder_name"
         else
-            output=$(bash "$validate_script" "$folder" --quiet 2>/dev/null) || exit_code=$?
-        fi
-
-        case $exit_code in
-            0) ((pass_count++)) || true ;;
-            1) ((warn_count++)) || true
-               $VERBOSE && echo "WARN: $folder_name" ;;
-            2) ((fail_count++)) || true
-               worst_folders+=("$folder_name")
-               $VERBOSE && echo "FAIL: $folder_name"
-               # --fix: re-run staleness auto-upgrade on failing folders
-               if $FIX_MODE; then
-                   local staleness_script="$SCRIPT_DIR/check-template-staleness.sh"
-                   if [[ -f "$staleness_script" ]]; then
-                       bash "$staleness_script" --auto-upgrade --root "$folder" 2>/dev/null || true
+            case $exit_code in
+                0) status="pass"
+                   ((pass_count++)) || true ;;
+                1) status="warn"
+                   ((warn_count++)) || true
+                   $VERBOSE && echo "WARN: $folder_name" ;;
+                2) status="fail"
+                   ((fail_count++)) || true
+                   worst_folders+=("$folder_name")
+                   $VERBOSE && echo "FAIL: $folder_name"
+                   # --fix: re-run staleness auto-upgrade on failing folders
+                   if $FIX_MODE; then
+                       local staleness_script="$SCRIPT_DIR/check-template-staleness.sh"
+                       if [[ -f "$staleness_script" ]]; then
+                           bash "$staleness_script" --auto-upgrade --root "$folder" 2>/dev/null || true
+                       fi
                    fi
-               fi
-               ;;
-        esac
+                   ;;
+                *) status="fail" ;;
+            esac
+        fi
 
         if $JSON_MODE; then
             $first_json && first_json=false || json_folders+=","
-            json_folders+="{\"folder\":\"$folder_name\",\"status\":$( [[ $exit_code -eq 0 ]] && echo '"pass"' || ( [[ $exit_code -eq 1 ]] && echo '"warn"' || echo '"fail"' ) )}"
+            json_folders+="{\"folder\":\"$folder_name\",\"status\":\"$status\"}"
         fi
     done
 
@@ -163,7 +175,7 @@ main() {
         worst_json+="]"
 
         cat <<EOF
-{"total":$total,"pass":$pass_count,"warn":$warn_count,"fail":$fail_count,"worst":$worst_json,"folders":$json_folders}
+{"total":$total,"pass":$pass_count,"warn":$warn_count,"fail":$fail_count,"skipped":$skip_count,"worst":$worst_json,"folders":$json_folders}
 EOF
     else
         echo ""
@@ -175,6 +187,9 @@ EOF
         echo "  ✓ Pass:  $pass_count"
         echo "  ⚠ Warn:  $warn_count"
         echo "  ✗ Fail:  $fail_count"
+        if [[ $skip_count -gt 0 ]]; then
+            echo "  - Skipped: $skip_count (validation is switched off, so no rule ran)"
+        fi
         echo ""
 
         if [[ ${#worst_folders[@]} -gt 0 ]]; then
