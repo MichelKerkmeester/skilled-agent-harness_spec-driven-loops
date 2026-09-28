@@ -34,8 +34,8 @@ A person who clones this repository now learns from the README that git hooks wi
 - Capture the suite baselines: commit-msg 17 of 17, pre-commit 50 of 50
 - Check each README claim against the hook source: the install trigger in every runtime's session start, the 100-file deletion ceiling, the four-file body rule and what --uninstall removes
 - Cover this phase in the v4.0.0.2 release entry, then review the whole entry before release with packet 062 (.skilled/changelog/skilled/v4.0.0.2.md). Evidence: the entry's Git Hooks and the Root Docs section, and the review recorded in 062's T026
+- Publish v4.0.0.2 with packet 062. Evidence: 062's T027, the annotated tag on 68dd665c5d and the release marked Latest
 - All tasks marked [x]
-- No [B] blocked tasks remaining
 
 ### Fixed
 
@@ -50,7 +50,8 @@ A person who clones this repository now learns from the README that git hooks wi
 - validate_document.py on README.md and CONTRIBUTING.md - No new issue. CONTRIBUTING's missing overview section is reported at HEAD too
 - hvr_scan.py on the added doc lines - PASS, 0 hard blockers
 - v4.0.0.2 entry after the release review - PASS, recorded in packet 062's T026: 0 issues, 0 hard blockers and every link resolving
-- Tasks complete - 16 completed task item(s) recorded
+- v4.0.0.2 release - PASS, recorded in packet 062's T027: tagged on 68dd665c5d after ten of ten CI workflows passed, and published as Latest
+- Tasks complete - 17 completed task item(s) recorded
 
 ### Files Changed
 

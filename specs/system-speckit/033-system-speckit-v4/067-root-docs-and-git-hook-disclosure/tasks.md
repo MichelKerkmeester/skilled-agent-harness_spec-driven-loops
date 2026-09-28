@@ -59,6 +59,7 @@ contextType: "implementation"
 - [x] T011 Check each README claim against the hook source: the install trigger in every runtime's session start, the 100-file deletion ceiling, the four-file body rule and what `--uninstall` removes
 - [x] T012 Run `validate_document.py` on `README.md` and `CONTRIBUTING.md` beside their HEAD versions (no new issue), and `hvr_scan.py` on the added lines (0 hard blockers)
 - [x] T013 Cover this phase in the v4.0.0.2 release entry, then review the whole entry before release with packet 062 (`.skilled/changelog/skilled/v4.0.0.2.md`). Evidence: the entry's Git Hooks and the Root Docs section, and the review recorded in 062's T026
+- [x] T014 Publish v4.0.0.2 with packet 062. Evidence: 062's T027, the annotated tag on `68dd665c5d` and the release marked Latest
 <!-- /ANCHOR:phase-3 -->
 
 ---
