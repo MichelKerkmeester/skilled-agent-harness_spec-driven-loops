@@ -1,0 +1,71 @@
+# Native advisor lines in the 45 scenario runs, 2026-09-28
+
+No scenario needs the native line to pass, since each calls the hook itself in its steps.
+The tally comes from the NATIVE line each tester quoted (`verdicts.txt`, column 6).
+
+| CLI | Live | `outage (fail_open)` | None |
+|-----|------|----------------------|------|
+| OpenCode | 9 | 0 | 0 |
+| Pi | 8 | 1 | 0 |
+| Devin | 7 | 2 | 0 |
+| Codex | 5 | 2 | 2 |
+| Cursor | 0 | 0 | 9 |
+
+## The five `fail_open` lines
+
+Each run's window in the advisor diagnostics file holds one record for its runtime, and each
+reads `fail_open`, freshness `unavailable`, error `NONZERO_EXIT`, after about the hook's
+time budget ($TMPDIR/speckit-skill-advisor-metrics/a9f078f65abeed95-diagnostics.jsonl):
+
+- Pi CP-004, 12:49:37.220Z, 2,507 ms
+- Devin CP-004, 12:51:20.900Z, 2,214 ms
+- Devin CL-001, 12:57:15.712Z, 2,212 ms
+- Codex CL-001, 13:03:40.358Z, 2,213 ms
+- Codex 457, 14:15:35.680Z, 2,210 ms
+
+The shim gives the advisor child 2,200 ms (`system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:22-24,106-112`),
+so the four 2.2-second records ran out that budget. `outage (fail_open)` is the designed line
+for that case. Two scenario runs and other sessions' work shared the machine at the time.
+
+## Cursor
+
+Cursor showed no native line in any run. `beforeSubmitPrompt` does not fire under
+`cursor-agent -p`, the host limit cli-cursor records as CU-014.
+
+## The two Codex runs with no line
+
+CL-005 (13:14:40Z to 13:17:28Z) and CP-003 (13:28:18Z to 13:29:37Z).
+
+Confirmed from files:
+
+- Codex's own stderr for both runs lists five `hook: UserPromptSubmit` starts and five
+  `hook: UserPromptSubmit Completed` lines, with no failure line. The raw stderr stayed in
+  the session scratch, and `grep -c` over it gave these counts.
+- Codex's rollout for each run holds no developer message with an `Advisor:` line. In
+  CL-006 and NC-004 that message is record 11, the injected hook context. CL-005's first
+  `Advisor:` text is record 24, output from its own step, and CP-003 has none
+  (`~/.codex/sessions/2026/09/28/rollout-2026-09-28T15-14-41-*.jsonl`, `T15-28-19-*.jsonl`).
+- The diagnostics file holds no `codex` record in either window. Each of the other seven
+  Codex windows holds one: five `ok` and the two `fail_open` above.
+- The rollouts do not record hook stderr, so the shim's `[speckit-hook:user-prompt-submit]`
+  code, if one was written, is not kept anywhere.
+
+The deadline chain:
+
+- `.codex/hooks.json` gives each UserPromptSubmit hook 3 seconds.
+- The Codex adapter runs the Claude shim with `spawnSync` under a 2,800 ms timeout and
+  SIGKILL, and emits nothing when the shim errors or exits non-zero
+  (`system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts:19`, `hooks/codex/shared.ts:104-115`).
+- The shim runs the advisor child under a 2,500 ms timeout and SIGKILL and returns `{}` on
+  a timeout (`system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:113-126`).
+- The child writes the diagnostics record, which only `SKILL_ADVISOR_DEBUG` turns on.
+
+Inferred, not confirmed: one of the two SIGKILL deadlines fired before the advisor child
+wrote its record, either the shim's 2,500 ms kill of the child or the adapter's 2,800 ms kill
+of the shim. Either path leaves no native line and no record. The seven Codex records that
+were written took 913 to 2,213 ms, five of them over 1,800 ms, so two Node start-ups under
+load leave little room.
+
+What would confirm it: a Codex run that records the adapter's `spawnSync` error code
+(`ETIMEDOUT`) or keeps the shim's stderr code (`CHILD_TIMEOUT`). This phase changes no hook
+code, so the observation is recorded, not fixed.

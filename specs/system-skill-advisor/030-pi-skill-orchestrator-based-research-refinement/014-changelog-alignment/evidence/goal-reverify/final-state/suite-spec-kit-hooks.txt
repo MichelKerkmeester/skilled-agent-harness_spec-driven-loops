@@ -1,0 +1,117 @@
+# spec-kit hook suites, HEAD 0dc044de8c, 2026-09-28T14:24:17Z
+## files: tests/copilot-user-prompt-submit-hook.vitest.ts tests/directive-lifecycle-adapter-parity.vitest.ts tests/directive-lifecycle-boundary-bridge.vitest.ts tests/hook-adapter-path-parity.vitest.ts tests/hook-adapter-runtime-label.vitest.ts tests/hook-completion-evidence-stop.vitest.ts tests/hook-precompact.vitest.ts tests/hook-session-start.vitest.ts tests/hook-session-stop-replay.vitest.ts tests/hook-session-stop.vitest.ts tests/hook-state.vitest.ts tests/hook-stop-token-tracking.vitest.ts tests/hooks-reexport-parity.vitest.ts tests/hooks-shared-provenance.vitest.ts tests/launcher-stop-hook-orphan-sweep.vitest.ts tests/user-prompt-submit-shim.vitest.ts 
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-spec-kit
+
+ ✓ runtime/tests/directive-lifecycle-adapter-parity.vitest.ts (16 tests) 12632ms
+     ✓ codex preserves full, route-only, and boundary-full context  329ms
+     ✓ cursor preserves full, route-only, and boundary-full context  371ms
+     ✓ devin preserves full, route-only, and boundary-full context  371ms
+     ✓ claude fails open on malformed and timed-out advisor children  2621ms
+     ✓ codex fails open on malformed and timed-out advisor children  2693ms
+     ✓ cursor fails open on malformed and timed-out advisor children  2689ms
+     ✓ devin fails open on malformed and timed-out advisor children  2668ms
+ ✓ runtime/tests/user-prompt-submit-shim.vitest.ts (8 tests) 5589ms
+     ✓ lets a slow child finish within the shim timeout  2332ms
+     ✓ clamps an operator budget to the kill deadline  2380ms
+ ✓ runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts (6 tests) 673ms
+ ✓ runtime/tests/launcher-stop-hook-orphan-sweep.vitest.ts (4 tests) 330ms
+ ✓ runtime/tests/hook-completion-evidence-stop.vitest.ts (7 tests) 259ms
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-skipped
+INFO [speckit-hook:session-stop] Session autosave-skipped stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-failed
+INFO [speckit-hook:session-stop] Session summary extracted (20 chars)
+WARN [speckit-hook:session-stop] Context auto-save failed: autosave failed
+INFO [speckit-hook:session-stop] Session autosave-failed stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session retarget-different-packet
+INFO [speckit-hook:session-stop] Retargeted autosave spec folder from specs/system-spec-kit/024-compact-code-graph/029-review-remediation to specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity
+INFO [speckit-hook:session-stop] Session retarget-different-packet stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session ambiguous-retarget
+WARN [speckit-hook:session-stop] Spec folder detection was ambiguous; preserving existing autosave target.
+INFO [speckit-hook:session-stop] Session ambiguous-retarget stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session io-failed-retarget
+WARN [speckit-hook:session-stop] Transcript parsing failed: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-stop-hook-autosave-0Wnwkp/missing-transcript.jsonl'
+WARN [speckit-hook:session-stop] Spec folder detection skipped: transcript I/O failed; preserving existing autosave target.
+INFO [speckit-hook:session-stop] Session io-failed-retarget stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session offset-sentinel-session
+INFO [speckit-hook:session-stop] Token snapshot: 165 total (claude-sonnet), est. $0.001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 120 prompt + 45 completion = 165 total tokens
+INFO [speckit-hook:session-stop] Session offset-sentinel-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-write-session
+INFO [speckit-hook:session-stop] Token snapshot: 75 total (claude-sonnet-4-6), est. $0.0005
+INFO [speckit-hook:session-stop] Parsed 1 messages: 50 prompt + 25 completion = 75 total tokens
+INFO [speckit-hook:session-stop] Retargeted autosave spec folder from specs/system-spec-kit/024-compact-code-graph/029-review-remediation to specs/system-spec-kit/026-graph-and-context-optimization/016-foundational-runtime/001-initial-research
+INFO [speckit-hook:session-stop] Session summary extracted (34 chars)
+INFO [speckit-hook:session-stop] Session atomic-write-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session preparse-stat-session
+INFO [speckit-hook:session-stop] Token snapshot: 15 total (claude-sonnet-4-6), est. $0.0001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 10 prompt + 5 completion = 15 total tokens
+INFO [speckit-hook:session-stop] Session preparse-stat-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session retarget-refresh-session
+INFO [speckit-hook:session-stop] Token snapshot: 8 total (claude-sonnet-4-6), est. $0.0001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 5 prompt + 3 completion = 8 total tokens
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity
+INFO [speckit-hook:session-stop] Session retarget-refresh-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session persist-fail-session
+INFO [speckit-hook:session-stop] Token snapshot: 50 total (claude-sonnet-4-6), est. $0.0004
+INFO [speckit-hook:session-stop] Parsed 1 messages: 30 prompt + 20 completion = 50 total tokens
+INFO [speckit-hook:session-stop] Session summary extracted (34 chars)
+ERROR [speckit-hook:state] Failed to save state: Simulated atomic state write failure
+WARN [speckit-hook:state] State update was not persisted for session persist-fail-session
+INFO [speckit-hook:session-stop] Session persist-fail-session stop processing complete
+ ✓ runtime/tests/hook-session-stop.vitest.ts (16 tests) 98ms
+INFO [speckit-hook:session-stop] Stop hook fired for session producer-metadata-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session producer-metadata-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session double-replay-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session double-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session double-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session double-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-no-summary
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session autosave-enabled-no-summary stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+ERROR [speckit-hook:state] Failed to save state: injected EIO for autosave failure test
+WARN [speckit-hook:state] State update was not persisted for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Session autosave-enabled-state-write-fail stop processing complete
+ ✓ runtime/tests/hook-session-stop-replay.vitest.ts (5 tests) 31ms
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/26d40c4d1362/bd7065173b6ba0b1.json.bad
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/26d40c4d1362/bd7065173b6ba0b1.json.bad
+WARN [speckit-hook:state] {"event":"load_most_recent_state_rejected","reason":"scope_unknown_fail_closed"}
+WARN [speckit-hook:state] Quarantined invalid hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/87189d454e5a/poison-pill.json.bad
+WARN [speckit-hook:state] {"event":"clean_stale_states_skipped","file":"blocked.json","path":"/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/0722a385530f/blocked.json","reason":"EPERM: operation not permitted, unlink '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/0722a385530f/blocked.json'"}
+ ✓ runtime/tests/hook-state.vitest.ts (18 tests) 30ms
+ ✓ runtime/tests/hook-precompact.vitest.ts (9 tests) 12ms
+ ✓ runtime/tests/hook-session-start.vitest.ts (8 tests) 11ms
+ ✓ runtime/tests/hook-stop-token-tracking.vitest.ts (8 tests) 11ms
+ ✓ runtime/tests/hook-adapter-path-parity.vitest.ts (106 tests) 6ms
+ ✓ runtime/tests/hooks-shared-provenance.vitest.ts (21 tests) 6ms
+ ✓ runtime/tests/hook-adapter-runtime-label.vitest.ts (3 tests) 2ms
+ ✓ runtime/tests/hooks-reexport-parity.vitest.ts (2 tests) 2ms
+ ↓ runtime/tests/copilot-user-prompt-submit-hook.vitest.ts (7 tests | 7 skipped)
+
+ Test Files  15 passed | 1 skipped (16)
+      Tests  237 passed | 7 skipped (244)
+   Start at  16:24:19
+   Duration  21.71s (transform 329ms, setup 68ms, import 675ms, tests 19.69s, environment 1ms)
+
+vitest_exit=0

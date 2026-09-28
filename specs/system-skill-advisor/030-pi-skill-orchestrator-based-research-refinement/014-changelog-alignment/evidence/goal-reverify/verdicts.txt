@@ -1,0 +1,46 @@
+433	codex	PASS	0	95	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+433	cursor	PASS	0	110	none visible
+433	devin	PASS	0	103	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+433	opencode	PASS	0	748	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+433	pi	PASS	0	172	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+457	codex	PASS	0	140	Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-ad
+457	cursor	PASS	0	286	none visible
+457	devin	PASS	0	149	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+457	opencode	PASS	0	702	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+457	pi	PASS	0	376	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+CL-001	codex	PASS	0	96	Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-ad
+CL-001	cursor	PASS	0	167	none visible
+CL-001	devin	PASS	0	118	Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-ad
+CL-001	opencode	PASS	0	321	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+CL-001	pi	PASS	0	87	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+CL-005	codex	PASS	0	168	none visible
+CL-005	cursor	PASS	0	230	none visible
+CL-005	devin	PASS	0	104	Advisor: live; ambiguous: sk-code 0.95/0.16 vs sk-doc 0.95/0.16 pass.
+CL-005	opencode	PASS	0	894	Advisor: live; ambiguous: sk-code 0.95/0.16 vs sk-doc 0.95/0.16 pass.
+CL-005	pi	PASS	0	281	Advisor: live; ambiguous: sk-code 0.95/0.16 vs sk-doc 0.95/0.16 pass.
+CL-006	codex	PASS	0	38	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+CL-006	cursor	PASS	0	150	none visible
+CL-006	devin	PASS	0	34	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+CL-006	opencode	PASS	0	429	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+CL-006	pi	PASS	0	245	`Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-
+CP-003	codex	PASS	0	79	none visible
+CP-003	cursor	PASS	0	133	none visible
+CP-003	devin	PASS	0	89	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+CP-003	opencode	PASS	0	309	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+CP-003	pi	PASS	0	182	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+CP-004	codex	PASS	0	96	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+CP-004	cursor	PASS	0	183	none visible
+CP-004	devin	PASS	0	85	Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-ad
+CP-004	opencode	PASS	0	210	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.18 vs sk-c
+CP-004	pi	PASS	0	104	Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-ad
+NC-001	codex	PASS	0	79	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+NC-001	cursor	PASS	0	148	none visible
+NC-001	devin	PASS	0	66	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+NC-001	opencode	PASS	0	473	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+NC-001	pi	PASS	0	298	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+NC-004	codex	PASS	0	45	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+NC-004	cursor	PASS	0	171	none visible
+NC-004	devin	PASS	0	44	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+NC-004	opencode	PASS	0	287	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+NC-004	pi	PASS	0	118	Advisor: live; ambiguous: cli-external-orchestration 0.95/0.20 vs sk-c
+TOTAL 45 {'PASS': 45}

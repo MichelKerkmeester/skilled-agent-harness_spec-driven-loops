@@ -63,6 +63,7 @@ contextType: "general"
 - [x] T015 The route guard, the Hermes check, the frontmatter gate and `parent-skill-check.cjs` on each changed hub (`evidence/final-gates.txt`)
 - [x] T016 `repair-derived` on this phase and the parent, `validate.sh --strict --recursive` on packet 030, `check-goal.cjs` and `goal.cjs packet` at `packet_budget=ok` (`evidence/strict-validate.txt`)
 - [x] T017 Recheck `git status` and stage only this phase's paths with `--pathspec-from-file`, leaving every other session's file unstaged. The commit, the trigger index rebuild and the push follow, and goal criterion 6 covers them
+- [x] T018 Prove the parent goal's six criteria again from the final state, with all 45 scenario runs rerun in the five CLIs (`evidence/goal-reverify/`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -1,0 +1,27 @@
+# advisor runtime suite, HEAD 0dc044de8c, 2026-09-28T14:21:27Z
+## npm run typecheck
+
+> typecheck
+> ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json
+
+typecheck_exit=0
+## npx vitest run
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime
+
+{"timestamp":"2026-09-28T14:23:52.273Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":2,"cacheHit":false}
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] loaded 11 env(s) from .env
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/system-skill-advisor-launcher-1lOmbM/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+[system-skill-advisor-launcher] loaded 11 env(s) from .env
+[system-skill-advisor-launcher] skill-advisor reap skipped; pid 67706 executable 'node' != recorded 'some-unrelated-daemon' (pid reused)
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=561623
+[system-skill-advisor-launcher] loaded 11 env(s) from .env
+
+ Test Files  129 passed (129)
+      Tests  971 passed | 6 skipped (977)
+   Start at  16:21:30
+   Duration  167.41s (transform 1.61s, setup 462ms, import 7.45s, tests 148.61s, environment 6ms)
+
+vitest_exit=0

@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment"
-    last_updated_at: "2026-09-28T12:30:00Z"
+    last_updated_at: "2026-09-28T14:27:43Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Applied the checked review findings and ran the final gates"
+    recent_action: "Proved the parent goal's six criteria again from the final state"
     next_safe_action: "None. The commit and the push close the phase"
     blockers: []
     key_files:
@@ -66,6 +66,8 @@ The skill advisor's changelog now follows the sk-create-changelog contract, and 
 
 **The reviews.** Two fresh Opus reviews found 35 problems, and the orchestrator checked each against its source. 32 held as stated, one held in part and two were judgment calls kept with their reasons. The orchestrator's own trace of all 48 advisor commits added three changes no entry recorded, and dating each fix against the release tags rewrote two bullets that described states no release carried.
 
+**The parent goal proved again.** The operator set the parent goal again after the push, so the phase proved its six criteria from the final state. After phase 13's proof, another session's `3ad952e58e` changed how both hook-flag resolvers parse a value, and the spec-kit hooks and the OpenCode plugins read those flags. No earlier scenario result could carry forward, so all nine scenarios reran in the five CLIs, and all 45 runs passed. The four suites, the OpenCode plugin load and the installer check passed before the matrix and again after it, and the sandboxed daemon left the live generation file unchanged.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -79,7 +81,7 @@ The skill advisor's changelog now follows the sk-create-changelog contract, and 
 | The cli-external-orchestration route manifest and its authored copy under `specs/sk-doc/019-skill-routing-refactor/` | Modified | Re-minted for the new hub version |
 | `.skilled/changelog/skilled/v4.0.0.2.md` | Modified | The skill advisor work |
 | `../goal.md`, `../spec.md`, `../graph-metadata.json` | Modified | The phase 14 binding, the shortened decisions, the phase map row and the refreshed metadata |
-| `evidence/` | Created | Baselines, entry checks, the commit trace, the two reviews with the verification record, the final gates and strict validation |
+| `evidence/` | Created | Baselines, entry checks, the commit trace, the two reviews with the verification record, the final gates, strict validation and the parent goal's proof under `goal-reverify/` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -88,6 +90,8 @@ The skill advisor's changelog now follows the sk-create-changelog contract, and 
 ## How It Was Delivered
 
 Each entry was written from commit bodies and phase summaries, then run through `validate_document.py` and `hvr_scan.py`. Two fresh Opus 5.5 reviewers at high effort checked the new entries and the release-note lines against the commits. Their briefs named the sources and the answer shape and carried no expected conclusion. The orchestrator checked every finding against its source before changing anything, applied the ones that held and recorded a verdict for each in `evidence/review/verification.md`. The final gates and strict validation ran from the final state.
+
+The goal proof ran the four suites, the OpenCode plugin load, CP-004's sandbox steps as written and the installer check first. The 45 scenario runs followed, two at a time from one queue, and no two runs of the same CLI or scenario overlapped. A monitor logged every change to the live generation file while they ran. The suites, the plugin load and the installer check ran again after the matrix.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -120,6 +124,11 @@ Each entry was written from commit bodies and phase summaries, then run through 
 | Parent-skill check | OK for cli-external-orchestration, system-deep-loop and sk-code |
 | Routing replays | Three route as before, and the one that defers predates this work, since the hub inputs changed only their version |
 | Strict validation | `RESULT: PASSED` on packet 030 with `--strict --recursive` (`evidence/strict-validate.txt`) |
+| Parent goal: OpenCode plugin live load | PASS at `0dc044de8c` before and after the matrix. `opencode run --print-logs` exits 0 with no `failed to load plugin` line, and the session lists `spec_kit_skill_advisor_status` (`evidence/goal-reverify/pre-matrix/`, `final-state/`) |
+| Parent goal: the four suites | PASS at `0dc044de8c` before and after the matrix, with the same counts. Advisor 129 files with 971 passed and 6 skipped, after a clean typecheck. Spec-kit hook files 237 passed and 7 skipped. Pi dispatch 50 of 50 and plugin 35 of 35 (`evidence/goal-reverify/pre-matrix/`, `final-state/`) |
+| Parent goal: sandboxed daemon | PASS. CP-004 steps 2 to 5 as written printed `live generation file unchanged` and `sandbox advisor exited; sandbox removed` in 29 seconds. The live generation file, the lease and the advisor pids matched before and after (`evidence/goal-reverify/crit3-sandbox-daemon.txt`) |
+| Parent goal: the nine scenarios | PASS, 45 of 45 in the five CLIs from 12:49Z to 14:20Z. One OpenCode CL-001 run stalled and passed on a rerun. Each 433, CP-003 and CP-004 report quotes `sandbox advisor exited; sandbox removed`, and each 433 and CP-004 report quotes `live generation file unchanged`. The monitor saw no change to the live generation file, and the live advisor's pids, lease and generation matched before and after (`evidence/goal-reverify/verdicts.txt`, `reports/`, `teardown-lines.txt`, `generation-trace.txt`, `state-after.txt`) |
+| Parent goal: `install-codex-hooks.mjs --check` | PASS at `0dc044de8c` before and after the matrix, `install-codex-hooks: OK ~/.codex/hooks.json` (`evidence/goal-reverify/pre-matrix/`, `final-state/`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -132,6 +141,10 @@ Each entry was written from commit bodies and phase summaries, then run through 
 3. **35 entries in other skills title themselves `<component> changelog v<version>`.** That fleet drift is outside the advisor work.
 4. **The pi-cache-optimizer fix has no component changelog.** No component exists for it and the contract forbids creating one, so the release notes carry it alone.
 5. **No third reviewer read the final text.** The fixes were checked against their sources and rerun through the validators.
+6. **Two Codex runs had no native advisor line.** CL-005 and CP-003 passed, and Codex started and completed all five prompt hooks in each, but no advisor line reached the model and the advisor wrote no diagnostics record. One of the two kill deadlines in the Codex hook chain most likely fired first. That is inferred, since Codex keeps no hook stderr. A run that records the adapter's `ETIMEDOUT` would confirm it (`evidence/goal-reverify/native-lines.txt`).
+7. **The brief degrades under load.** Five runs showed `Advisor: outage (fail_open)`, the designed line when the hook runs out of time. Four of their diagnostics records read `fail_open` after 2,210 to 2,214 ms against the child's 2,200 ms budget, and Pi's after 2,507 ms. Cursor showed no native line in any run, the host limit cli-cursor records (`evidence/goal-reverify/native-lines.txt`).
+8. **A tester model can stall.** One OpenCode CL-001 run waited 13 minutes on a model stream that sent nothing. The orchestrator stopped that run by pid and reran it, and the rerun passed (`evidence/goal-reverify/excluded-windows.tsv`).
+9. **Two tester sandboxes came back after cleanup.** The Codex testers of CL-001 and CL-005 each removed their own sandbox, then a sandbox daemon from their cold advisor call wrote its SIGTERM record there and recreated the folder. That is the path phase 12 closed for CP-003's teardown. The test brief asks testers to delete their folder but not to wait for that daemon first. The orchestrator recorded both folders and removed them (`evidence/goal-reverify/leftover-tester-folders.txt`).
 <!-- /ANCHOR:limitations -->
 
 ---

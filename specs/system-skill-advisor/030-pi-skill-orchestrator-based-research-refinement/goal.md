@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-28T08:18:17Z"
+    last_updated_at: "2026-09-28T14:27:43Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Proved the six criteria again after phase 13"
-    next_safe_action: "None. All thirteen phases are complete"
+    recent_action: "Proved the six criteria again after phase 14"
+    next_safe_action: "None. All fourteen phases are complete"
     blockers: []
     key_files: []
     session_dedup:
@@ -127,6 +127,7 @@ and findings belong here.
 | 013-review-follow-ups | Done | Phase Documentation Map in `spec.md` reads Complete. The ten confirmed review findings are closed, and so is F12, which the reruns found. GPT-6 Luna passed the three teardown blocks and the F12 trace |
 | Goal proved again after phase 13 | Done | The four suites, the live plugin load, a sandboxed daemon and the installer check pass from the final state, and the suites, the plugin load and the installer check passed again at `396d26d4ff` after another session's three commits. 433, CP-003 and CP-004 pass in all five CLIs, two 433 runs on a quiet rerun. The other six scenarios keep their phase 11 result, since the one code change in the paths they run through, `b274f085fb`, adds a function to the hook flags and changes no existing one (`013-review-follow-ups/evidence/goal-reverify/`) |
 | 014-changelog-alignment | Done | Phase Documentation Map in `spec.md` reads Complete. The advisor changelog follows the contract, nine new entries in eight changelog folders record the advisor work and v4.0.0.2 carries it. Two fresh reviews found 35 problems, each checked against its source |
+| Goal proved again after phase 14 | Done | The four suites, the live plugin load and the installer check pass at `0dc044de8c` before and after the matrix, and a sandboxed daemon leaves the live generation file unchanged. After phase 13's proof another session's `3ad952e58e` changed how both hook-flag resolvers parse a value, so all nine scenarios reran in the five CLIs, and 45 of 45 runs pass. The live advisor's pids, lease and generation matched before and after (`014-changelog-alignment/evidence/goal-reverify/`) |
 
 ### Deviations and findings
 
@@ -147,4 +148,7 @@ and findings belong here.
 | Two scenario files out of date | The CP-004 file still records a July run as BLOCKED in its evidence and verdict sections. CP-003's first block deletes its sandbox while the sandbox daemon still runs, and the daemon's SIGTERM record then recreates the folder. Both sit outside this packet's frozen scope, so they wait for the operator. Closed in phase 12. CP-004 lost its July sections, and both scenarios now wait for the sandbox daemon to exit before they remove its folder |
 | A false `CHANGED` in phase 13's reruns | Two 433 runs printed `live generation file CHANGED` because the live daemon reindexed on another session's edits inside the block's window. Phase 13 recorded it as F12, traced it and added triage to 433 and CP-004, and both runs passed on a quiet rerun (`013-review-follow-ups/evidence/reruns/generation-trace.txt`) |
 | Live advisor restart during phase 13 | At 07:51:42Z on 2026-09-28 the live daemon shut down on a SIGTERM twice within two seconds, while no sandbox existed and no command of the phase sent a signal. The launcher's dead-socket respawn is the likely path. It is advisor runtime code outside this packet's scope, so it waits for the operator (`013-review-follow-ups/evidence/live-advisor-restart.txt`) |
+| A stalled tester run after phase 14 | One OpenCode CL-001 run waited 13 minutes on a model stream that sent nothing after 13:10:30Z. The orchestrator stopped that run and its two MCP children by pid and reran it, and the rerun passed (`014-changelog-alignment/evidence/goal-reverify/excluded-windows.tsv`) |
+| Two Codex runs with no native line | CL-005 and CP-003 passed in Codex with no native advisor line, although Codex completed all five prompt hooks in each, and the advisor wrote no diagnostics record for either. Codex keeps no hook stderr, so which of the two kill deadlines in its hook chain fired is inferred. The hook code is outside this packet's scope, so it waits for the operator (`014-changelog-alignment/evidence/goal-reverify/native-lines.txt`) |
+| Two tester sandboxes came back | The Codex testers of CL-001 and CL-005 removed their own sandboxes, then a sandbox daemon's SIGTERM record recreated each folder, the path phase 12 closed for CP-003. The orchestrator recorded and removed both. The test brief does not ask testers to wait for that daemon (`014-changelog-alignment/evidence/goal-reverify/leftover-tester-folders.txt`) |
 <!-- /ANCHOR:log -->
