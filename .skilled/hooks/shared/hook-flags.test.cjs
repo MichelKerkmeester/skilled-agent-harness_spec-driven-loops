@@ -7,6 +7,7 @@ const os = require("node:os");
 const path = require("node:path");
 const {
   isHookEnabled,
+  isFlagOn,
   concernFlag,
   isTruthy,
   MASTER_FLAG,
@@ -148,4 +149,43 @@ test("the shell mirror reads the config file of whichever source root the checko
   };
   assert.equal(probe(".skilled"), "off");
   assert.equal(probe(".opencode"), "off");
+});
+
+test("isFlagOn reads a named switch with the kill-switch precedence", () => {
+  const name = "SKDOC_SKIP_VALIDATION";
+  assert.equal(isFlagOn(name, { [name]: "1" }), true);
+  assert.equal(isFlagOn(name, {}, { [name]: "yes" }), true); // saved in the file
+  // a set environment value answers, even when it is falsy or empty
+  assert.equal(isFlagOn(name, { [name]: "0" }, { [name]: "1" }), false);
+  assert.equal(isFlagOn(name, { [name]: "" }, { [name]: "1" }), false);
+  assert.equal(isFlagOn(name, { [name]: "skip" }), false); // outside the truthy set
+  assert.equal(isFlagOn(name, {}), false); // explicit env ignores the on-disk file
+  assert.equal(isFlagOn("", { "": "1" }), false);
+});
+
+test("hook_flag_on reads a named switch from the environment first, then the config file", () => {
+  const { spawnSync } = require("node:child_process");
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hook-flags-named-"));
+  try {
+    const cfg = path.join(dir, "hook-flags.env");
+    fs.writeFileSync(cfg, 'SKDOC_SKIP_VALIDATION="1"\n');
+    const probe = (name, envValue) => {
+      const env = { ...process.env, HOOK_FLAGS_CONFIG: cfg };
+      delete env.SKDOC_SKIP_VALIDATION;
+      if (envValue !== undefined) env.SKDOC_SKIP_VALIDATION = envValue;
+      const script = `. "$1"; hook_flag_on "$2" && echo on || echo off`;
+      return spawnSync("bash", ["-c", script, "probe", path.join(__dirname, "hook-flags.sh"), name], { env, encoding: "utf8" }).stdout.trim();
+    };
+    assert.equal(probe("SKDOC_SKIP_VALIDATION"), "on"); // quoted value in the file
+    assert.equal(probe("SKDOC_SKIP_VALIDATION", "0"), "off"); // environment wins
+    assert.equal(probe("SKDOC_SKIP_VALIDATION", ""), "off"); // even when empty
+    assert.equal(probe("SPECKIT_SKIP_VALIDATION"), "off"); // not in the file
+    // A name that is not a plain variable name never reaches the resolver's
+    // eval. The marker file is the proof: an unguarded resolver creates it.
+    const marker = path.join(dir, "injected");
+    assert.equal(probe(`X}; touch ${marker}; #`), "off");
+    assert.equal(fs.existsSync(marker), false);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 });

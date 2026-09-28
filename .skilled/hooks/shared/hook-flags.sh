@@ -46,6 +46,17 @@ __hook_flags_resolve() {
   printf '%s' "$__hf_v"
 }
 
+# Succeed when one named switch resolves truthy, for a switch that is not a hook
+# concern (a validator's opt-out, say) but is saved in the same file under the
+# same precedence. The name is checked before use because the resolver expands
+# it through eval, so anything but a plain variable name is refused.
+hook_flag_on() {
+  case "${1:-}" in
+    ''|[0-9]*|*[!A-Za-z0-9_]*) return 1 ;;
+  esac
+  __hook_flags_truthy "$(__hook_flags_resolve "$1")"
+}
+
 hook_enabled() {
   __hook_flags_truthy "$(__hook_flags_resolve SYSTEM_HOOKS_DISABLED)" && return 1
   [ -n "${1:-}" ] || return 0

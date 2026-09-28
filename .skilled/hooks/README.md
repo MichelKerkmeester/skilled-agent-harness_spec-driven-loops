@@ -75,6 +75,8 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 # then edit hook-flags.env and uncomment what you want disabled
 ```
 
+The same file holds two switches that are not hook concerns, for people who do not care whether their docs drift from the expected formats. `SPECKIT_SKIP_VALIDATION` switches spec folder validation (`validate.sh`) off, and `SKDOC_SKIP_VALIDATION` switches off every sk-doc validator. Both follow the precedence above and take the same truthy values. `hook_flag_on` in the shell mirror and `isFlagOn` in `hook-flags.cjs` resolve a named switch like these. [ENV-REFERENCE.md](../skills/system-spec-kit/runtime/ENV-REFERENCE.md) and sk-doc's [validation-and-enforcement.md](../skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md) say what each one covers.
+
 ### Why only these four concerns moved their code here
 
 A core only qualifies to keep its **real code** in this tree when it imports nothing but Node builtins (or shells out to an unrelated, unmoved checker script by path) and has no real tie to its owning skill's other content. Verified per core before moving:
