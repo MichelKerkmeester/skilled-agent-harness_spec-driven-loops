@@ -33,7 +33,9 @@ def _hook_flags_config():
             source_root_from_script(), "hooks", "hook-flags.env"
         )
         cfg = {}
-        with open(path, "r", encoding="utf-8") as fh:
+        # utf-8-sig drops a byte order mark, which would otherwise stay on the
+        # first name, as the hooks' own readers drop it.
+        with open(path, "r", encoding="utf-8-sig") as fh:
             for raw in fh:
                 line = raw.strip()
                 if not line or line.startswith("#") or "=" not in line:
