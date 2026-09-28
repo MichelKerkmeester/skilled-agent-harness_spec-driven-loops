@@ -45,7 +45,15 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-skill-advisor/README.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+      ".hermes/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
     ],
     "entities": [
       {
@@ -79,6 +87,42 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
         "name": "Build Phase",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,7 +153,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Keep Rule",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -155,47 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "comparators",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Jev",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Deem",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Not To Build",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nobody has measured whether a Jev `choice` would order the skill advisor's near-tie cluster better than its own fused scores",
     "created_at": "2026-09-26T18:26:43Z",
-    "last_save_at": "2026-09-27T09:35:23.950Z",
+    "last_save_at": "2026-09-28T09:22:12.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f74adb040b55135ab806822cb850fd2f6d4d586c3f4ea72fe78c0ed5a85cdb04",
+    "source_fingerprint": "sha256:cf9974c5799090f6973f3469784b3d5b1cd1924c5b0f2beedbbcb2d9cbb3b4e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d593d63a46c5cc61aee34c12bc35225324257037279525635e30670ef524f4f",
-      "plan.md": "1b7cda92831f39a1530c9acf61687db5b07c4e989f8e166d75b21178664f0909",
-      "tasks.md": "78590c4efb3e2dfa021a3049ce51ead76fd3d7b2c435025a7533878ef610ee53",
-      "implementation-summary.md": "790582aaa0e8d80ad9f67ed30999dfaf94269d5d8a345a217dd7aab2b4844076"
+      "spec.md": "d821d561f9ad1c9d9e75c807ff97f6a627d1aedaeab8f7a8eeae3de24f7d8a99",
+      "plan.md": "81e56eb2b84c57bbdcc18ddf61a6785a134e717a56cb8cde222ba68849b21a92",
+      "tasks.md": "6b49be896fecdcb5eed7080692a7de4d8a942046e4f7ba04eef57985d7fe56b5",
+      "implementation-summary.md": "0550ba5450c96449e4232cd02d57f3a37c8d3c922e211187f6b607552274ae99"
     },
     "last_active_at": null
   }

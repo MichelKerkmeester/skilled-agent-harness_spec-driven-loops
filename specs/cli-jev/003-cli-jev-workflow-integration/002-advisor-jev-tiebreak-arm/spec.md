@@ -27,13 +27,13 @@ contextType: "implementation"
 | **Priority** | P1 |
 | **Status** | Planned |
 | **Created** | 2026-09-26 |
-| **Amended** | 2026-09-27, from the final synthesis `../004-deep-research-expansion/research/research.md` section 13. Amended again on 2026-09-27 for two backends, from the round-3 synthesis `../007-classifier-deep-research/research/research.md` section 14 |
+| **Amended** | 2026-09-27, from the final synthesis `../004-deep-research-expansion/research/research.md` section 13. Amended again on 2026-09-27 for two backends, from the round-3 synthesis `../007-classifier-deep-research/research/research.md` section 14. Amended on 2026-09-28 for the wave 3 directive: the keep rule that unlocks phase 009 (parent D4), who builds (parent D5) and the skill docs (parent D6) |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 9 |
 | **Predecessor** | 001-deep-research |
 | **Successor** | 003-goal-verifier-jev-shadow |
-| **Handoff Criteria** | The census has printed its per-file counts, holdout top-1 at 53/70, the comparator metrics and the power line. Then either it printed `no headroom`, or a run under `--jev` or `--deem` (proposed) produced one verdict line per backend column, R21's Deem calibration or the conditional Jev calibration, with a per-call JSONL that holds a wall time for every call. 003's Jev arm reads the Jev latency record, and a Deem arm there waits on none |
+| **Handoff Criteria** | The census has printed its per-file counts, holdout top-1 at 53/70, the comparator metrics and the power line. Then either it printed `no headroom`, or a run under `--jev` or `--deem` (proposed) produced one verdict line per backend column, R21's Deem calibration or the conditional Jev calibration, with a per-call JSONL that holds a wall time for every call. 003's Jev arm reads the Jev latency record, and a Deem arm there waits on none. Phase 009 reads the Deem verdict line that section 4's Keep Rule defines |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -41,19 +41,22 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the cli-jev workflow integration specification. It builds recommendation R1, rank 1 and build-now, with R21 inside the same script: its Deem half on every `--deem` (proposed) run and its Jev half as a conditional arm. The source is the final synthesis, `../004-deep-research-expansion/research/research.md`: section 11 (`### R1.`, `### R21.` and `### The shared gate contract`) and section 13 (`### 002-advisor-jev-tiebreak-arm`). It amends the round-1 plan drawn from `../001-deep-research/research/research.md`. Round 3 amended it again for two backends, from `../007-classifier-deep-research/research/research.md` section 14 (`### 002-advisor-jev-tiebreak-arm (Planned, amended)`), with section 12's R1 and R21 records, its shared two-backend gate contract, R3's kill line and conditions C2 to C7, C14 and C15. The parent goal's D1 and D5 settle the operator approval that section 14 asks for. Section 4 ends with a trace of every requirement each amendment changed.
+This is **Phase 2** of the cli-jev workflow integration specification. It builds recommendation R1, rank 1 and build-now, with R21 inside the same script: its Deem half on every `--deem` (proposed) run and its Jev half as a conditional arm. The source is the final synthesis, `../004-deep-research-expansion/research/research.md`: section 11 (`### R1.`, `### R21.` and `### The shared gate contract`) and section 13 (`### 002-advisor-jev-tiebreak-arm`). It amends the round-1 plan drawn from `../001-deep-research/research/research.md`. Round 3 amended it again for two backends, from `../007-classifier-deep-research/research/research.md` section 14 (`### 002-advisor-jev-tiebreak-arm (Planned, amended)`), with section 12's R1 and R21 records, its shared two-backend gate contract, R3's kill line and conditions C2 to C7, C14 and C15. The parent goal's D1 and D5 settle the operator approval that section 14 asks for. On 2026-09-28 the wave 3 directive amended it again: parent D4 makes a Deem `keep` here unlock phase 009, so section 4 now fixes the Keep Rule in full before any run. Parent D5 sets who builds (`plan.md`, Build Roles), and parent D6 adds the skill docs to the file list. Section 4 ends with a trace of every requirement each amendment changed.
 
-**Scope Boundary**: One new, read-only measurement script beside the existing routing-accuracy evals, plus its vitest file. It changes no existing file, serves nothing and never runs inside a hook, so every live advisor path behaves as today by construction.
+**Scope Boundary**: One new, read-only measurement script beside the existing routing-accuracy evals, plus its vitest file. It changes no existing code file. The other files it changes are the system-skill-advisor docs that parent D6 requires and the files generated from them. `SKILL.md`'s `description` and its Keywords line stay as they are, because the scorer reads both. The script serves nothing and never runs inside a hook, so every live advisor path behaves as today by construction.
 
 **Dependencies**:
 - The built advisor `dist` under `.skilled/skills/system-skill-advisor/runtime/dist/`, which the script imports after setting the capture's env, as `capture-scorer-eval-baseline.mjs:35-50` does
 - For the Jev arm only: the Python `jev-cli` 0.6.2 on PATH and a credential that `jev auth status --provider <P>` resolves, where P is `JEV_PROVIDER` when set and `official` otherwise. Neither is needed for the default run
 - For the Deem arm only: `cli-deem` (proposed) from phase 008 and a server passing the Deem check. Neither is needed for the default run
+- For the build: the roles of parent D5 and the doc and code routes of parent D6, set out in `plan.md` under Build Roles
 
 **Deliverables**:
 - `score-jev-tiebreak.mjs` with a zero-call census, baseline column, comparators and power line by default, a `--jev` arm, a `--deem` arm, R21's Deem half and the conditional Jev calibration
 - `tests/parity/score-jev-tiebreak.vitest.ts` with the stub-`jev`, stub-`cli-deem` and fake-server cases
 - A report and a per-call JSONL in a directory the operator names, from one run per model arm
+- The system-skill-advisor docs that parent D6 requires, written through sk-doc (section 3, Files to Change)
+- Every column's verdict line recorded in `implementation-summary.md`, so the orchestrator can log the deciding verdicts in the parent goal (parent D4)
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -89,6 +92,8 @@ Produce a number per backend that settles whether a `choice` from the Python `je
 - A Deem arm behind `--deem`: one `cli-deem choice` per eligible row per option order, over at most 25 cluster keys plus `none`, 3 option orders and the same four-outcome verdict in its own column. Larger clusters print as unmeasured (C5).
 - A Gate 3 calibration (research R21) in two halves. R21's Deem half runs on every `--deem` run beside the `choice` arm. The Jev half runs only when the census prints `underpowered`, under the same `--jev` switch and the same gate, in place of the Jev `choice` arm.
 - A per-call JSONL and a report written to a directory the operator names.
+- The Keep Rule of section 4, fixed on 2026-09-28 before any model run, with one verdict line per column that phase 009 can cite (parent D4).
+- The docs parent D6 requires for the skill this phase changes, system-skill-advisor: its `SKILL.md`, README, changelog, feature catalog and manual testing playbook, written through sk-doc. The two folder READMEs beside the new files and the files generated from the new docs follow.
 
 ### Out of Scope
 
@@ -115,6 +120,15 @@ Produce a number per backend that settles whether a `choice` from the Python `je
 | `routing-accuracy/scorer-eval-baseline.json` | Read only | The pinned 53/70 the baseline column must reproduce |
 | `.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/*.js` | Read only | The built scorer, projection and alias helpers the script imports |
 | `<operator-named report dir>/` | Create at run time | `report.json` and `calls.jsonl` from a run with a model arm. Outside the repository unless the operator names a path inside it |
+| `.skilled/skills/system-skill-advisor/SKILL.md` | Modify | Parent D6, through sk-doc: the `version` line and a pointer to the new eval. The frontmatter `description` and the `<!-- Keywords: -->` line stay unchanged, because the advisor's projection reads both (`projection.ts:693-703`, `skill-markdown.ts:25`, `:50`) and a change there could move the pinned 53/70 |
+| `.skilled/skills/system-skill-advisor/README.md` | Modify | Parent D6, through sk-doc: names the offline tie-break eval, its two switches and its dormant default |
+| `.skilled/skills/system-skill-advisor/changelog/v<next>.md` | Create | Parent D6, through sk-doc: the release note, numbered at build time after `v0.11.1.0.md` by sk-doc's changelog rules. It was missing from this list |
+| `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/<new entry>.md` and `feature-catalog/feature-catalog.md` | Create, Modify | Parent D6, through sk-doc: one catalog entry for the eval and its index row. The entry sits beside `ambiguity.md`, whose cluster it measures. Name proposed. It was missing from this list |
+| `.skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/<new scenario>.md` and `manual-testing-playbook/manual-testing-playbook.md` | Create, Modify | Parent D6, through sk-doc: the index row and manual scenarios for the default run, a gate skip and a `--deem` run. Name proposed. It was missing from this list |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md`, `runtime/tests/parity/README.md` | Modify | Each folder README tables its folder's direct files, so the new script and the new test each need a row. Neither D6 row names them, and both would go stale |
+| `.skilled/skills/system-skill-advisor/leaf-manifest.json`, `leaf-aliases.json` | Regenerate | The new catalog and playbook files are routed leaves under `leafRoots`, so both files are rebuilt together with `ci-skill-root-metadata.cjs --fix` (`leaf-manifest.config.json` `_note`) |
+| `.hermes/skills/system-skill-advisor/SKILL.md` | Regenerate | The Hermes copy of `SKILL.md`, rewritten by `sync-skills-hermes.cjs` |
+| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and its fixtures | Regenerate | The trigger index reads skill docs that carry trigger phrases, so the new docs change its corpus. Rebuilt when its `--check` reports them stale |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -131,13 +145,13 @@ Produce a number per backend that settles whether a `choice` from the Python `je
 | REQ-003 | The script never handles a credential | It never reads, stores, logs or passes a key, and it holds no key literal and no key variable name. `jev` resolves its own key from its store or the provider's environment variable. `grep -nE 'API_KEY\|TYPESAFE' score-jev-tiebreak.mjs` returns no match, and no spawned argument list carries a key. The same `--provider P` goes to check 3, to `jev auth test` and to every judgment. `cli-deem` takes no key, and the script passes it none |
 | REQ-004 | The census counts headroom and prints the power line before any model call | Over the 177 skill-firing rows of `labeled-prompts.jsonl` and the 64 of `holdout-prompts.jsonl`, per file and per 50/50 split, the report prints alias-aware eligible, movable, gold-first, gold-outside and gold-in-top-3 counts, with cluster membership read from `ambiguousWith` and tau 0.03 slice membership beside it. It also prints the count of clusters with more than 25 members, which the Deem arm prints as unmeasured. The power line prints movable rows, the decided-row ceiling, the wins a `keep` needs and the true win rate needed for 80% power, by the exact one-sided binomial at 0.05. Zero movable rows prints `no headroom`, and 1 to 4 prints `underpowered`. Neither runs a `choice` arm, even with `--jev` or `--deem` |
 | REQ-005 | The baseline column reproduces the recorded baseline under the capture's exact env | Before any `dist` import the script sets the env of `capture-scorer-eval-baseline.mjs:35-46` exactly: a fresh `mkdtemp` directory as `SYSTEM_SKILL_ADVISOR_DB_DIR`, `SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC=1`, `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1`, `PYTHONDONTWRITEBYTECODE=1` and `VITEST=true`, and it deletes `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`, `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` and `SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW`. With the alias-aware match (`:70-76`), holdout top-1 prints 53/70. Any other number prints `baseline mismatch: comparison void`, voids the run and runs no arm |
-| REQ-006 | The script is read-only | After a default run and a run with each model arm, `git status --porcelain` lists only `score-jev-tiebreak.mjs`, `score-jev-tiebreak.vitest.ts` and, if the operator named one inside the repository, the report directory. The corpus files and `scorer-eval-baseline.json` are unchanged |
+| REQ-006 | The script is read-only | A default run and a run with each model arm leave `git status --porcelain` as it was before the run, except for a report directory the operator named inside the repository. The corpus files and `scorer-eval-baseline.json` are unchanged. The build's own changed paths are the rows of section 3's Files to Change and this phase folder, nothing else |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-007 | Each arm returns one pre-registered verdict in its own backend column over decided rows | One verdict per backend column. A decided row is an eligible row whose modal pick changes the gold's reciprocal rank, gold-first rows included. Movable wins and gold demotions print apart. `keep` needs all four: an exact one-sided sign test at 0.05 over decided rows, a win over each comparator on identical rows (the rerank on held-out rows only), no fall in right@3 and an aggregate flip rate of at most 0.10. `kill` means the sign test at 0.05 favors the scorer's order. Below 5 decided rows the verdict is `underpowered`, and anything else is `inconclusive`. The report prints wins, losses, ties, abstentions, unmeasured rows and the exact p per column. A comparison between the columns uses only rows both decided, with a one-sided bound on the paired gap (C6). A Deem `keep` holds only for the commit pair it was measured on (C3) |
+| REQ-007 | Each arm returns one pre-registered verdict in its own backend column over decided rows | One verdict per backend column. A decided row is an eligible row whose modal pick changes the gold's reciprocal rank, gold-first rows included. Movable wins and gold demotions print apart. `keep` needs all four: an exact one-sided sign test at 0.05 over decided rows, a win over each comparator on identical rows (the rerank on held-out rows only), no fall in right@3 and an aggregate flip rate of at most 0.10. `kill` means the sign test at 0.05 favors the scorer's order. Below 5 decided rows the verdict is `underpowered`, and anything else is `inconclusive`. The report prints wins, losses, ties, abstentions, unmeasured rows and the exact p per column. A comparison between the columns uses only rows both decided, with a one-sided bound on the paired gap (C6). A Deem `keep` holds only for the commit pair it was measured on (C3). The Keep Rule below fixes the inputs, the thresholds and the verdict line |
 | REQ-008 | Each arm reports an aggregate flip rate over three passes or three option orders | Jev: the arm runs three passes with no answer cache. The flip rate is the non-modal answers over all measured calls, and it must be at most 0.10 for `keep`. A row with three different picks is `unstable` and undecided. Deem: 3 option orders replace the passes, because the same request returns the same answer (40 of 40 repeats). The orders are fixed here (research question 46): the cluster keys in the scorer's order with `none` last, then that list rotated left by one position, then rotated left by two. Every eligible row has at least 3 options, so the three orders always differ. The order-flip rate is the non-modal picks over all measured calls and must be at most 0.10 for `keep`, and three different picks make a row `unstable` and undecided (C4) |
 | REQ-009 | Every call is recorded | `calls.jsonl` has one line per spawned `jev` call with row id, pass, wall time in ms, exit code, `jev` version, provider, model, the answer key or none, the pick probability, the `none` probability and a status of `measured`, `abstained`, `unmeasured` or `unmeasured_timeout`. Provider and model come from one `jev auth test --provider P` at the start of the arm. For each `cli-deem` call the line carries backend `deem`, the model id, the model commit, the source commit and the option order in place of the `jev` version and provider, with the commit pair taken from `cli-deem health` (C2). The report prints latency p50 and p95 per column |
 | REQ-010 | Every exit code and missing answer has one handling | A row is decided only when all 3 reruns, or for Deem all 3 option orders, return a submitted key, and a missing answer never becomes 0 or `none`. Exit 0 with a submitted key is a pick. `none` keeps the scorer's order and counts as an abstention, and the report prints how many `none` answers fell on rows whose gold was in the cluster. Exit 1, unparseable stdout or a key outside the submitted set marks the row `unmeasured`. Exit 2 stops the arm, because the script built a bad command. Exit 3 after the gate prints `jev arm stopped: key rejected` and marks finished rows `partial`. Exit 4 gets one backoff retry, then the row is `unmeasured`. A spawn past its 90 s cap is killed and marked `unmeasured_timeout`. Exit 130 stops the arm as `interrupted`. The Deem exits after the Deem gate follow the shared gate contract in research section 12: exit 1 or HTTP 400 marks the row `unmeasured`. Exit 2 stops the arm. Exit 3 prints `deem arm stopped: backend refused`. Exit 4 triggers one recheck of health and the commit pair: an unreachable server prints `deem arm stopped: server gone` and a changed pair prints `deem arm stopped: model commit changed mid-run` (all proposed), each with finished rows `partial`. A passing recheck with the same pair retries the row once, then marks it `unmeasured`. Exit 130 stops the arm as `interrupted`. No path writes a default score or a default verdict |
@@ -145,6 +159,35 @@ Produce a number per backend that settles whether a `choice` from the Python `je
 | REQ-012 | The tau 0.03 split is reported, never a veto | The report splits each backend column's wins and losses into rows inside and outside the frozen tau 0.03 slice. The split does not change the verdict |
 | REQ-013 | The comparators are scored on identical rows | Confidence order inside the cluster, always-second and the outcome-weighted rerank are each scored with MRR, right@1 and right@3 on the same rows as the scorer column, the rerank on held-out rows only (`score-outcome-rerank.mjs:123`). The census prints them with zero calls |
 | REQ-014 | The Gate 3 calibration: a Deem half on every `--deem` run, a Jev half only when the census prints `underpowered` | Deem half: with `--deem` and the Deem gate passing, on every run REQ-005 does not void, the script asks one `cli-deem noul` per labeled prompt in one pass (195 calls, 127 `yes` and 68 `no`) on whether the request requires writing a file (proposed wording). It prints accuracy, F1, Brier score, a 5-bin ECE and a fitted temperature beside the classifier's archived F1 of 0.9843. No threshold on raw Deem probabilities is set before it runs, because the served model reports temperature 1.0 (C7). It has no rerun clause: its stability is the commit pair (C4). It runs beside the Deem `choice` arm and with the Deem gate failing prints only that gate's skip line. Jev half: with `--jev`, the gate passing and the census at `underpowered`, the script asks one `jev noul --provider P` per labeled prompt (195 rows: 127 `yes`, 68 `no`) over 3 reruns, about 585 calls, on whether the request requires writing a file (proposed wording). It prints accuracy, F1, Brier score, the aggregate flip rate and latency p50 and p95 beside the classifier's archived F1 of 0.9843. It uses REQ-009's record and REQ-010's exit handling. Unmeasured rows leave every average. It has no switch and no verdict of its own, and with the gate failing it prints only the gate's skip line |
+
+### Keep Rule (fixed 2026-09-28, before any model run)
+
+Parent D4 counts a Deem `keep` printed under this rule as the operator's keep that unlocks phase 009. The rule is written out in full so 009 can cite it. It binds every `--jev` and `--deem` run of this phase unchanged. A change to it after the first model run voids that run's verdict for 009, and the arm reruns under the changed rule.
+
+**Inputs.** Each backend column is judged on its own inputs:
+- The baseline. Holdout top-1 prints 53/70 under REQ-005's env. Any other number voids the run, and no column prints a verdict.
+- The census. It counts at least 5 movable rows. At `no headroom` or `underpowered` no `choice` arm runs, so no column prints a verdict.
+- The rows. Every eligible row among the 177 labeled and 64 holdout skill-firing rows, with the cluster read from `ambiguousWith`. The Deem column leaves out clusters over 25 keys, which print as unmeasured.
+- The answers. Each row gets 3: three Jev passes with no answer cache or three Deem option orders (REQ-008). A row is measured only when all 3 are submitted keys. Its modal pick is the key that at least 2 of the 3 name, and three different keys make it `unstable`.
+- The comparison rows. These are the column's measured rows. On each, the column's order is the scorer's order with the modal pick moved first inside the cluster. A `none` or `unstable` row keeps the scorer's order.
+- Decided rows. A decided row is a comparison row whose modal pick changes the gold's reciprocal rank. A win raises that rank and a loss lowers it, so a gold demotion is a loss. Gold-first rows count.
+- The comparators. Confidence order inside the cluster, always-second and the outcome-weighted rerank are scored on the column's comparison rows. The rerank is scored on the held-out half of those rows only (REQ-013).
+
+**Thresholds.** Let n be the decided rows, w the wins and l the losses, so n = w + l. The steps run in this order, and the first that applies sets the verdict:
+1. `underpowered` when n is below 5.
+2. `kill` when the exact one-sided binomial P(X >= l) for X ~ Binomial(n, 0.5) is at or below 0.05.
+3. `keep` when all four hold: P(X >= w) is at or below 0.05, the column's MRR is above each comparator's MRR on the same rows, the column's right@3 is at or above the scorer order's right@3 on the same rows and the aggregate flip rate is at or below 0.10. The flip rate counts non-modal answers over all measured calls, which for Deem is the order-flip rate.
+4. `inconclusive` otherwise.
+
+A column whose arm stopped prints its stop line (`jev arm stopped:`, `deem arm stopped:` or `interrupted`) and no verdict line. A partial run therefore never prints `keep`.
+
+**Where the verdict prints.** Each column prints one line on stdout after its metrics, in this form (field names proposed, the form fixed here):
+
+`verdict: <keep|kill|inconclusive|underpowered> backend=<jev|deem> decided=<n> wins=<w> losses=<l> p_win=<P(X>=w)> p_loss=<P(X>=l)> flip=<rate>`
+
+The Deem line adds `model=<id> model_commit=<sha> source_commit=<sha>`, taken from `cli-deem health` at the gate. The Jev line adds `provider=<P> model=<model>`, taken from `jev auth test`. `report.json` holds the same fields under `columns.<backend>.verdict`, with each of the four keep conditions, its number and whether it held.
+
+**What a keep unlocks.** Only the Deem column's `keep` unlocks 009, and only for the commit pair on its line (C3). A Jev `keep` is recorded and unlocks nothing. Without a Deem `keep` the phase still closes. `implementation-summary.md` then records every column's verdict line, and the orchestrator copies the deciding verdicts to the parent goal's log.
 
 ### Edge Cases
 
@@ -162,7 +205,7 @@ Produce a number per backend that settles whether a `choice` from the Python `je
 - **A model other than `deem-0.8-v1`.** A server launched without the pinned id reports `deem-1.5`, and a foreign server can hold the port. The arm prints `deem arm skipped: model` with a details line naming the id found. An answer whose `model` field differs after the gate makes `cli-deem` exit 3, and the arm stops with `deem arm stopped: backend refused`.
 - **A loading Deem server.** The server binds its port only after the weights load, about 10 s after a start (`deem_server.py:1000`), so the check sees a refused connection and prints `deem arm skipped: not reachable`. The script never waits for it and never starts it.
 - **A Deem update mid-run.** An update restarts the server and can land every six hours. The next call exits 4, the recheck finds a changed commit pair or no server, and the arm prints `deem arm stopped: model commit changed mid-run` or `deem arm stopped: server gone`, with finished rows `partial`. The next run requalifies any keep on the new pair (C3).
-- **A cluster of more than 25 members.** The torch backend reads at most 26 options, 25 keys plus `none` (`deem_server.py:166`, `:222-230`). The Deem arm never sends such a row, prints it as unmeasured and counts it in the census column of REQ-004. The Jev arm asks it as today.
+- **A cluster of more than 25 members.** The torch backend reads at most 26 options, 25 keys plus `none` (`deem_server.py:166`, `:223-231`). The Deem arm never sends such a row, prints it as unmeasured and counts it in the census column of REQ-004. The Jev arm asks it as today.
 - **A busy Deem server.** The server serves one request at a time behind one lock (`deem_server.py:201`, `:236`), so another caller's batch delays each call and inflates wall time. The arm sends one request at a time, and the report prints p50 and p95 from what it measured, never a corrected figure.
 
 ### Amendment Trace (2026-09-27)
@@ -202,6 +245,19 @@ Source: `../007-classifier-deep-research/research/research.md` section 14, `### 
 | REQ-011 | Payload class, planned calls, tokens | Adds the Deem notice: nothing leaves the machine, planned calls and wall time at the measured p50 (C14) |
 | REQ-012 | The Jev column's split | Each backend column's split |
 | REQ-014 | Jev calibration on `underpowered` | Adds the Deem half on every `--deem` run: 195 `noul` calls in one pass, accuracy, F1, Brier, 5-bin ECE and a fitted temperature, no threshold on raw probabilities (C7) |
+
+### Amendment Trace (2026-09-28, wave 3)
+
+Source: the parent `goal.md` D4, D5 and D6 and its log row "New directive, wave 3". IDs were kept and no requirement was added.
+
+| Item | Earlier wording | Now |
+|------|-----------------|-----|
+| REQ-006 | After each run, `git status --porcelain` lists only the script, its vitest file and an in-repo report directory | A run leaves `git status --porcelain` as it was, and the build's changed paths are Files to Change plus this phase folder (parent D6) |
+| REQ-007 | The four-outcome rule, stated in one cell | Points to the Keep Rule (parent D4) |
+| Keep Rule | Spread over REQ-007, REQ-008 and REQ-010, with the comparator win, the step order, a stopped arm and the verdict line left open | One subsection with its inputs, ordered thresholds and verdict line, fixed before any run. A comparator win is a higher MRR on the same rows, and a stopped arm prints no verdict. Only a Deem `keep` unlocks 009 (parent D4) |
+| Scope, Files to Change | The script and its vitest file only | Adds the D6 docs, the two folder READMEs and the generated files (parent D6) |
+| Risks, Open Questions | No doc risk, no Deem pair drift, no D7 note | The D6 docs can move 53/70, the Deem source commit has moved and the corpus privacy question meets parent D7 |
+| Edge case, 26 options | `deem_server.py:222-230` | `:223-231`, reread on 2026-09-28 |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -210,7 +266,7 @@ Source: `../007-classifier-deep-research/research/research.md` section 14, `### 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Before any model call, the operator reads from the census how many rows can move, how the scorer compares with three zero-call comparators and what win rate a `keep` would need.
-- **SC-002**: From one run with a model arm the operator gets one verdict line per backend column, `keep`, `kill`, `inconclusive` or `underpowered`, plus that backend's first per-call latency record. Every `--deem` run also gives R21's Deem accuracy set. When the census prints `underpowered`, the Jev calibration supplies the Jev latency record instead.
+- **SC-002**: From one run with a model arm the operator gets one verdict line per backend column, `keep`, `kill`, `inconclusive` or `underpowered`, plus that backend's first per-call latency record. Every `--deem` run also gives R21's Deem accuracy set. When the census prints `underpowered`, the Jev calibration supplies the Jev latency record instead. A Deem verdict line names the commit pair it was measured on, which is what phase 009 cites.
 - **SC-003**: A machine with no Jev key and no Deem server, or a run with neither switch, sees no new behavior and no call.
 
 ### Proof Plan
@@ -222,9 +278,10 @@ Written before the build, from the final synthesis's R1 slice and test cases.
 3. A synthetic corpus with one movable win, one gold demotion, one gold-outside row and one `none` lands each row in its own column. Boundary: the demotion counts as a decided loss, and the `none` counts as an abstention.
 4. With the stub, each gate failure prints its skip line and leaves the census byte-identical. Exit 3 after the gate prints `jev arm stopped: key rejected`, exit 4 retries once, exit 2 stops the arm and a hang past 90 s is `unmeasured_timeout`. Boundary: a row with one missing rerun answer never enters the sign test. With a stub `cli-deem`, each Deem skip line prints and leaves the census byte-identical. Exit 3 after the Deem gate prints `deem arm stopped: backend refused`, and exit 4 rechecks once, then prints `deem arm stopped: server gone` or `deem arm stopped: model commit changed mid-run` with finished rows `partial`.
 5. With a key and `--jev`, the report prints wins, losses, ties, abstentions and unmeasured rows, the exact p, the aggregate flip rate, p50 and p95 and one verdict line. Every `calls.jsonl` line carries wall time, exit code, provider, model and status. A `--deem` run against a fake server prints its own column, its order-flip rate and the commit pair, and R21's Deem half prints accuracy, F1, Brier score, ECE and a fitted temperature.
-6. `git status --porcelain` shows no change outside the new script, its vitest file and its report directory. Boundary: any write to the corpus, `scorer-eval-baseline.json` or the ratchet fails the phase.
+6. A default run and a run with each model arm leave `git status --porcelain` as it was before the run. At close it lists only the rows of Files to Change and this phase folder. Boundary: any write to the corpus, `scorer-eval-baseline.json` or the ratchet fails the phase.
+7. A synthetic Deem column that meets all four keep conditions prints `verdict: keep backend=deem` with the commit pair. Boundary: the same column with its MRR at or below one comparator's prints `verdict: inconclusive`, and a column whose arm stopped prints no verdict line.
 
-**Kill criterion.** `baseline mismatch: comparison void` voids the run. Only `verdict: kill` on a backend's column closes that backend's served forms of research R3: a Deem `kill` closes R3's live Deem form, and a Jev `kill` closes the Jev form. `no headroom`, `underpowered`, `inconclusive` and every `deem arm skipped:` or `deem arm stopped:` line close nothing. A Deem `keep` holds only for its commit pair. A new pair suspends it (`requalify: model commit changed`, proposed) until the keep rule reruns in full on the same harness, and a change is not a kill (C3).
+**Kill criterion.** `baseline mismatch: comparison void` voids the run. Only `verdict: kill` on a backend's column closes that backend's served forms of research R3: a Deem `kill` closes R3's live Deem form, and a Jev `kill` closes the Jev form. `no headroom`, `underpowered`, `inconclusive` and every `deem arm skipped:` or `deem arm stopped:` line close nothing. A Deem `keep` holds only for its commit pair. A new pair suspends it (`requalify: model commit changed`, proposed) until the keep rule reruns in full on the same harness, and a change is not a kill (C3). A Deem `keep` under section 4's Keep Rule is the keep that unlocks phase 009 (parent D4).
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -235,7 +292,9 @@ Written before the build, from the final synthesis's R1 slice and test cases.
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | The advisor `dist` build | The script cannot import the scorer, or scores with a stale one | Build `dist` first. REQ-005 voids the comparison when the baseline is not 53/70 |
-| Dependency | A Jev credential for provider P or a Deem server passing its check | That backend's arm cannot run | The default run needs neither. The Jev arm skips with `jev arm skipped: no credential` and the operator sets a key. The Deem arm skips with its `deem arm skipped:` line and the operator runs `deem-ctl start`, never the script |
+| Dependency | A Jev credential for provider P or a Deem server passing its check | That backend's arm cannot run | The default run needs neither. The Jev arm skips with `jev arm skipped: no credential` and the operator sets a key. Parent D7 makes a missing credential a stop for the operator, so the keyed run of the fifth goal criterion waits there. The Deem arm skips with its `deem arm skipped:` line and the operator runs `deem-ctl start`, never the script |
+| Risk | The D6 doc edits move the pinned baseline. The advisor's projection reads `SKILL.md`'s frontmatter `description` and its `<!-- Keywords: -->` line (`projection.ts:693-703`, `skill-markdown.ts:50`) | Med. A changed number voids every run (REQ-005) and fails the H1 ratchet | Leave both unchanged. After the doc commit, rerun the H1 ratchet and the census and read 53/70 before any model run |
+| Risk | The Deem commit pair moves between runs. The source commit on disk was `6755b30` on 2026-09-27 and read `7cf293f` on 2026-09-28, with `serve/` identical between the two (`git diff` printed nothing). The model commit still reads `8cbabbb` | Low. A keep names one pair, and a newer pair suspends it (C3) | The verdict line carries the pair `cli-deem health` printed at the gate, and 009 cites that pair, never the one recorded in `deem-local.md` |
 | Dependency | `cli-deem` (proposed) from phase 008 | The Deem arm cannot be built or run before it lands | The census and the Jev arm do not wait on it. The Deem arm is built only after it lands, and its tests use a stub `cli-deem` or a fake server, never the real one |
 | Risk | Headroom is small: at most 55 movable rows, 38 labeled and 17 holdout | High | The census prints the power line before any call. Below 5 movable rows the `choice` arm does not run |
 | Risk | A keep is unreachable even above 5 rows: at 5 to 20 decided rows it needs a true win rate of 0.80 to 0.96 | Med | The power line says so first. A low power line does not stop the arm, because an `inconclusive` run still yields the first latency record |
@@ -252,7 +311,7 @@ Written before the build, from the final synthesis's R1 slice and test cases.
 
 - How many rows are movable, and how many eligible gold-first rows can a pick demote? The census answers both with zero calls.
 - Can provider and model be read from each `choice` output, or only from `jev auth test --provider P`? Reading one judgment's JSON at build time answers it. The plan records them from `auth test` until then.
-- Is any routing corpus prompt private? The corpus authoring history answers it. The operator decides before the first keyed Jev run. The Deem arm sends nothing off the machine, so the question does not gate it.
+- Is any routing corpus prompt private? The corpus authoring history answers it. The operator decides before the first keyed Jev run. The Deem arm sends nothing off the machine, so the question does not gate it. This stop conflicts with parent D7, which stops the build only for an install yes or a missing credential. The conflict is named for the orchestrator, not resolved here.
 - Should the Jev half of the Gate 3 calibration also run at `no headroom`? The synthesis triggers it on `underpowered` only (1 to 4 movable rows), yet its stated value is a latency number even when the advisor leaves no headroom. This phase follows the trigger as written. The operator decides whether to widen it. The Deem half needs no such choice, because it runs on every `--deem` run.
 - Does a Deem `choice` beat the scorer's order, and does its pick hold across the 3 option orders (research question 40)? The `--deem` column answers it.
 - Can the two columns be compared at all? At most 55 rows can move, and about 137 decided rows per arm resolve a 0.10 gap (lineage-reported), so the one-sided bound of REQ-007 is expected to print wide on R1's rows (C6). R21's 195 labels can resolve about a 0.10 gap.
