@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Confirm phase 010 has landed, then rebuild the index to scratch with `generate-trigger-index.mjs --out`, `--manifest`, `--diagnostics` and `--variants` all pointing into scratch, and diff its path set against `runtime/data/trigger-index.json`. Expect 0 missing and an unchanged `git status --porcelain` (`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`)
-- [ ] T002 Read the owner's contracts before writing: the retrieval `README.md`, `lookup-trigger-index.mjs`, `lib/rg-lane.mjs`, `lib/normalize.mjs`, `measure-cold-lookup.mjs` and `tests/trigger-index.vitest.ts`, and route the code write through `sk-code` (`.skilled/skills/system-spec-kit/runtime/cli/retrieval/`)
+- [ ] T001 Phase 010 is Complete (2026-09-27). Rebuild the index to scratch with `generate-trigger-index.mjs --out`, `--manifest`, `--diagnostics` and `--variants` all pointing into scratch, and diff its path set against `runtime/data/trigger-index.json`. Expect 0 missing and an unchanged `git status --porcelain` (`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`)
+- [ ] T002 Read the owner's contracts before writing: the retrieval `README.md`, `lookup-trigger-index.mjs`, `lib/rg-lane.mjs`, `lib/normalize.mjs`, `measure-cold-lookup.mjs` and `tests/trigger-index.vitest.ts`, and route the code write through sk-code's OpenCode route (`sk-code-opencode`). Record the `cli` vitest project's pass and fail counts as the baseline before any code change (`.skilled/skills/system-spec-kit/runtime/cli/retrieval/`)
 - [ ] T003 [P] Build the vitest fixture corpus: three tracks, packets with clean, placeholder and leaking descriptions, and an index built with the package's `generate()` (`.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -49,11 +49,14 @@ contextType: "general"
 - [ ] T006 Ripgrep baseline: path-only recipe over `specs` per distinct 3-plus-character token with a per-token cache, distinct-token file score, tie rule, own-folder exclusion (same file)
 - [ ] T007 Zero-call output: both accuracies on identical rows, the better one as baseline, the paraphrase-probe line, the headroom line with `no headroom` above 0.90, the 10-point margin printed as a constant, no file written (same file)
 - [ ] T008 [B] Deem gate behind `--deem`: `cli-deem health` within 2,000 ms, the four skip lines, `--out` required, the payload notice (same file). Blocked on phase 008
-- [ ] T009 [B] Deem arm: 17 options from the track descriptions with their SHA-256 printed, three left rotations, modal pick, `unstable`, `none` as abstention, the exit table and `calls.jsonl` records with the commit pair (same file). Blocked on phase 008
+- [ ] T009 [B] Deem arm: the fixed `-q` instruction printed verbatim, 17 options from the track descriptions and the fixed `none` description with their SHA-256 printed, three left rotations, modal pick, `unstable`, `none` as abstention, the exit table and `calls.jsonl` records with the commit pair (same file). Blocked on phase 008
 - [ ] T016 Jev gate behind `--jev`: identity line with the `jev` path and provider P first, then `command -v jev`, `jev --version` printing `jev 0.6.2` and `jev auth status --provider P`, the three skip lines, `--out` required, the payload notice without a dollar figure (same file)
-- [ ] T017 Jev arm: one `jev auth test --provider P`, the same 17 options and three rotations as the Deem arm with no answer cache, the question on stdin and closed, the same `--provider P` on every call, the 90 s spawn cap, phase 002's exit handling and `calls.jsonl` lines carrying the `jev` version, provider and model (same file)
-- [ ] T010 Verdict per backend column: rows that backend measured, accuracy gap against the baseline, exact one-sided sign test on discordant rows, flip rate, `verdict <backend>: keep` or `verdict <backend>: stop (<reason>)`, `requalify: model commit changed` on a new Deem pair and `requalify: model changed` on a new Jev provider or model (same file)
+- [ ] T017 Jev arm: one `jev auth test --provider P`, the same `-q` instruction, 17 options and three rotations as the Deem arm with no answer cache, the question on stdin and closed, the same `--provider P` on every call, the 90 s spawn cap, phase 002's exit handling and `calls.jsonl` lines carrying the `jev` version, provider and model (same file)
+- [ ] T010 Verdict per backend column, exactly spec REQ-004: the baseline method with the lookup winning a tie, measured rows as those with three submitted keys, coverage, margin, sign test and flips in that order with integer counts and an exact p, the `margin: 0.10` and `keep rule:` lines before any call, `verdict <backend>: keep` or `verdict <backend>: stop (<reason>)` on stdout and in that column of `report.json` with K, M, A, B, W, L, F and p, `requalify: model commit changed` on a new Deem pair and `requalify: model changed` on a new Jev provider or model (same file)
 - [ ] T011 README: add the script row and tree line, and note that it reads the probe queries of `semantic-probes.json` (`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`)
+- [ ] T019 After the runs, one sentence in the retrieval section of `SKILL.md` and one line in the retrieval section of `README.md`, each naming the script, its zero-call default and its two switches, through sk-doc (parent goal D6) (`.skilled/skills/system-spec-kit/SKILL.md`, `.skilled/skills/system-spec-kit/README.md`)
+- [ ] T020 [P] The next changelog version file through `sk-create-changelog` (parent goal D6) (`.skilled/skills/system-spec-kit/changelog/`)
+- [ ] T021 [P] One feature-catalog entry and its index row through `sk-create-feature-catalog`, and one manual-testing-playbook scenario covering the zero-call run and a stub-backend skip with its index row through `sk-create-manual-testing-playbook` (parent goal D6) (`.skilled/skills/system-spec-kit/feature-catalog/retrieval/`, `.skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -61,11 +64,13 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Vitest: at least 17 cases, a happy path plus one edge case for each changed surface, the Deem exit 4 changed-pair case, the requalify case, the Jev key-rejected case and one `--provider` value on every logged `jev` call. Run from `runtime/cli`: `npx vitest run --config ../../vitest.config.ts --project cli tests/score-track-narrowing.vitest.ts` (`.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts`)
-- [ ] T013 One zero-call run on the real tree with stub `cli-deem` and `jev` first on `PATH`. Record both accuracies, the kept row count and the headroom line in `goal.md`'s log
-- [ ] T014 [B] Unless T013 printed `no headroom`, one `--deem --out <dir>` run against the served instance. Record the verdict line, the commit pair and p50 and p95 in `goal.md`'s log
-- [ ] T018 [B] Only when the operator passes `--jev`, one `--jev --out <dir>` run. Record the identity line, the verdict line, provider, model and p50 and p95 in `goal.md`'s log. Blocked on the operator's flag
-- [ ] T015 `git status --porcelain` shows only the script, its test, the README and the report directory. `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization'` on the script returns no match
+- [ ] T012 Vitest: at least 18 cases, a happy path plus one edge case for each changed surface, the Deem exit 4 changed-pair case, the requalify case, the Jev key-rejected case, one `--provider` value on every logged `jev` call and `stop (coverage)` with 2 of 10 kept rows unmeasured. Run from `runtime/cli`: `npx vitest run --config ../../vitest.config.ts --project cli tests/score-track-narrowing.vitest.ts` (`.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts`)
+- [ ] T013 One zero-call run on the real tree with stub `cli-deem` and `jev` first on `PATH`. Record both accuracies, the kept row count and the headroom line in `goal.md`'s log. A `no headroom` line is the phase's verdict for the parent goal's log (parent goal D4)
+- [ ] T014 [B] Unless T013 printed `no headroom`, one `--deem --out <dir>` run against the served instance. Record the verdict line, the commit pair, the report path and p50 and p95 in `goal.md`'s log for the parent goal's log. A `verdict deem: keep` here is the operator's keep that unlocks phase 009, and any other verdict still closes the phase (parent goal D4)
+- [ ] T018 Only when the operator passes `--jev`, one `--jev --out <dir>` run. Record the identity line, the verdict line, provider, model and p50 and p95 in `goal.md`'s log. The build never waits for the flag (parent goal D7): with no flag by close, mark this task done as not requested and log that reason
+- [ ] T015 `git status --porcelain` shows only the paths in spec section 3 and the report directory. `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization'` on the script returns no match
+- [ ] T022 `python3 .skilled/skills/sk-doc/scripts/validate_document.py` exits 0 on every skill doc T011 and T019 to T021 changed (parent goal D6)
+- [ ] T023 A cross-family review of the script and its test leaves no open P0 or P1 finding and the `cli` vitest project fails nothing beyond T002's baseline. Then the parent orchestrator commits with path-scoped commits (parent goal D5)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -119,7 +124,7 @@ contextType: "general"
 - [ ] CHK-010 [P0] Code passes lint/format checks
 - [ ] CHK-011 [P0] No console errors or warnings
 - [ ] CHK-012 [P1] Error handling implemented: every `cli-deem` exit has one handling
-- [ ] CHK-013 [P1] Code follows project patterns: MODULE banner, exported pure functions, `isMainModule`, no spec path or requirement id in comments
+- [ ] CHK-013 [P1] Code follows project patterns through sk-code's OpenCode route: MODULE banner, exported pure functions, `isMainModule`, no spec path or requirement id in comments
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -131,6 +136,7 @@ contextType: "general"
 - [ ] CHK-021 [P0] Manual testing complete: one zero-call run and, unless `no headroom`, one `--deem` run
 - [ ] CHK-022 [P1] Edge cases tested: leak drop, own-folder exclusion, `no headroom`, stub backend skip
 - [ ] CHK-023 [P1] Error scenarios validated: exit 4 with a changed commit pair
+- [ ] CHK-024 [P1] A cross-family review leaves no open P0 or P1 finding, and the `cli` vitest project fails nothing beyond its recorded baseline (parent goal D5)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -164,7 +170,7 @@ contextType: "general"
 
 - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
 - [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [ ] CHK-042 [P1] The retrieval README and `system-spec-kit`'s `SKILL.md`, `README.md`, changelog, feature catalog and manual testing playbook updated through sk-doc, with `validate_document.py` exiting 0 on each (parent goal D6)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -184,10 +190,10 @@ contextType: "general"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P1 Items | 15 | 0/15 |
+| P2 Items | 0 | 0/0 |
 
-**Verification Date**: 2026-09-27
+**Verification Date**: 2026-09-27, counts amended 2026-09-28
 <!-- /ANCHOR:summary -->
 
 ---

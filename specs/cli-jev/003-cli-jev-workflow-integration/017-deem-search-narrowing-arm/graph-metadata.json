@@ -50,6 +50,10 @@
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
       ".skilled/skills/system-spec-kit/vitest.config.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
       "runtime/data/trigger-index.json",
       "retrieval/README.md",
@@ -108,6 +112,24 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -181,29 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The committed trigger-index lookup finds exact wording and little else",
     "created_at": "2026-09-27T11:50:23Z",
-    "last_save_at": "2026-09-27T12:09:49.393Z",
+    "last_save_at": "2026-09-28T09:26:34.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:819664cb9e099d8a2d55970155e602e43e76f6d3b2531b6b073f8c6e1bd5fd12",
+    "source_fingerprint": "sha256:5e727c92407e0934c9683badca621991af7e144c4c6ff0b7884833cfe6426772",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68f74f61e6022548b4eb56615646c16dc2cfb293cc564324385980bd129fc73e",
-      "plan.md": "11f3d6d83416964412364d50c7dcf398f117eed585d29ab5bb9f1e5f9528e41e",
-      "tasks.md": "8152554d9887b17ac4b75b8dc3f0ae4e82f2617651df55b140effb632168f5d7",
-      "implementation-summary.md": "6da0df721cac948ca2c2cbb57d6fdea45d594100ad0cec08cb63dc27eaa6392a"
+      "spec.md": "3df96a83c97827ef6f938c9308824d51b341b32c4b4ba59c6e0635c7d5391acd",
+      "plan.md": "971a9c59c255259e55e41419e127f9f04161b7661c3e8fee8d99d437ca755f67",
+      "tasks.md": "44061488f130fe526ce3e0e5950197eb6085e301784b9753a40f19b214a2217b",
+      "implementation-summary.md": "95584bcbd7a0ebb13c7876528d82061b460515e434d8d631176cfdfa0e7ffa59"
     },
     "last_active_at": null
   }
