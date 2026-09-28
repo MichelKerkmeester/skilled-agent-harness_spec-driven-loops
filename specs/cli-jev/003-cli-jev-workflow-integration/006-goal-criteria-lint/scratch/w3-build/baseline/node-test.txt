@@ -1,0 +1,28 @@
+✔ positive fixture passes every named check (4.048ms)
+✔ anchored criteria count even after a numbered directive list (0.878292ms)
+✔ an over-length phase child that is not a phase parent passes the budget (1.505959ms)
+✔ binding-row-removed-but-identifier-mentioned fails only missing-binding-row (1.34325ms)
+✔ objective-placeholder fails only placeholder (1.213042ms)
+✔ decision-placeholder fails only placeholder (1.055125ms)
+✔ criterion-placeholder fails only placeholder (1.049917ms)
+✔ criteria-count-out-of-range fails only criteria-count (1.026792ms)
+✔ over-budget-parent fails only parent-budget (1.482542ms)
+✔ over-budget-nested-phase-parent fails only parent-budget (1.739833ms)
+✔ frontmatter-inner-fence fails only frontmatter-fence (1.333708ms)
+✔ an unfilled copy of goal-top-level-template.md fails placeholder on objective, decision and criteria (1.203625ms)
+✔ an unfilled copy of goal-phase-parent-template.md fails placeholder on objective, decision and criteria (1.186458ms)
+✔ an unfilled copy of goal-phase-child-template.md fails placeholder on objective, decision and criteria (1.173792ms)
+✔ a goal.md path checks the folder that holds it (57.973875ms)
+✔ a path to another file still exits 2 as not a directory (26.768417ms)
+✔ goal-top-level-template.md keeps the fixed text of goal.md.tmpl at level 2 (0.849958ms)
+✔ goal-phase-parent-template.md keeps the fixed text of goal.md.tmpl at level phase (0.197209ms)
+✔ goal-phase-child-template.md keeps the fixed text of goal.md.tmpl at level 2 (0.386209ms)
+✔ a template missing a fixed line fails parity and names the line (0.201916ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183.229375

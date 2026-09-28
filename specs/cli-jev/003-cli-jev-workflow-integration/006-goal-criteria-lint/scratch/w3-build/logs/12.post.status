@@ -1,0 +1,9 @@
+ M .skilled/skills/sk-doc/sk-create-goal/SKILL.md
+?? .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md
+?? .skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md
+?? .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md
+?? .skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl
+?? .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs
+?? .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs
+?? .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs
+?? .skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs

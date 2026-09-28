@@ -1,0 +1,18 @@
+Both verification checks pass and the printed JSON matches the required output exactly. The `git status` shows my two target files plus untracked files not created by me (other workers': `count-pi-goal-nudges.*`, `scratch/w3-build/`); my edit session touched exactly the two named files. Nothing inferred: both commands' output and exit 0 are observed above. Test suites and spec validation stay with the orchestrator per the brief.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.silled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs (+88/-4)
+.skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs (+48/-2)
+EDITS:
+lint-goal-criteria.cjs:42 RULE5_PATTERNS and RULE5_UNNAMED_PATTERNS appended after FUNCTION_WORDS with their comment
+lint-goal-criteria.cjs:145 hasNamedArtifact helper added after isNamedToken
+lint-goal-criteria.cjs:251 rule5ExternalFile, classifyCriterion, lintCriterion added after rule4DanglingRefs with JSDoc
+lint-goal-criteria.cjs:332 three new functions added to module.exports
+lint-goal-criteria.test.cjs:19 imports extended with rule5ExternalFile, classifyCriterion, lintCriterion
+lint-goal-criteria.test.cjs:132 four tests appended (rule 5 fail, rule 5 pass, both rules, placeholder/unscored)
+CHECKS:
+node --check .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs -> no output (exit 0)
+node -e "const m=require('./.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs');console.log(JSON.stringify(m.lintCriterion('Rows match per the spec where they apply')))" -> {"class":"scored","rule4":["the spec"],"rule5":["per the spec","where they"]} (exit 0)
+BLOCKED REASON: none

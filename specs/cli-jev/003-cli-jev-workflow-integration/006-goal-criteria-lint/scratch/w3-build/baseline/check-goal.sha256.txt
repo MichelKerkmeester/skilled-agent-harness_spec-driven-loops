@@ -1,0 +1,1 @@
+4bf117a97684d37d6b13f883c7829b301f9a2bd8f725632f55772c4c97aadcd6  .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs

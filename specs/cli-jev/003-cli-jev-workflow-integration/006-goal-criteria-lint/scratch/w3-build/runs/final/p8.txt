@@ -1,0 +1,28 @@
+goals_scanned=0
+scratch_excluded=0
+criteria=0
+scored=0
+rule4_violations=0
+rule5_violations=0
+both_violations=0
+placeholder=0
+lexical_unscored=0
+no_input=0
+errors=1
+[lint-goal-criteria] ERROR specs/no-such-packet: packet not found
+P8a missing packet exit=0
+[lint-goal-criteria] ERROR unknown option: --bogus
+P8b unknown option exit=0
+goals_scanned=1
+scratch_excluded=0
+criteria=0
+scored=0
+rule4_violations=0
+rule5_violations=0
+both_violations=0
+placeholder=0
+lexical_unscored=0
+no_input=0
+errors=1
+[lint-goal-criteria] ERROR specs/a/goal.md: EACCES: permission denied, open '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/13974574-59f7-48b5-b4cd-aa93ca9ca737/scratchpad/w3-006-p8/specs/a/goal.md'
+P8c unreadable goal exit=0

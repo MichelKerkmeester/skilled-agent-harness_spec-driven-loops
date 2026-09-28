@@ -1,0 +1,15 @@
+TASK: update one existing manual testing playbook scenario so it is byte-identical to literal text the orchestrator already wrote to sk-doc's rules for that doc type.
+Source (read only, do not edit): specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/playbook-lint-goal-criteria.md
+Target (replace its content): .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md
+
+The source differs from the current target only here (read both first and confirm):
+- line 32: the text "as described in`, and `exit=0`. Step 6" becomes "as described in`. It ends with `exit=0`. Step 6"
+
+Step: make the target byte-identical to the source, for example with
+  cp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/playbook-lint-goal-criteria.md .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md
+Do not reword, reflow or reformat anything. Do not run any command the document lists. Change no other file.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/playbook-lint-goal-criteria.md .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md
+Accept when: 1 file changed and nothing else; cmp prints nothing and exits 0; validate_document exits 0.
