@@ -70,7 +70,7 @@ Planning probe (`probe-census.mjs`, this folder, read-only, not a build target):
 | 28 | `briefs/28-skill-md.md`: `SKILL.md` version 0.11.1.0 to 0.13.0.0 and one pointer bullet | pi, 18 s, exit 0 | `SKILL.md` | DONE. `git diff`: the version line and one added bullet; `description` and the Keywords comment untouched. `validate_document.py` exit 0, `Total issues: 0`; grep 2 |
 | 29 | `briefs/29-readme.md`: README section 8 row for the offline eval | pi, 16 s, exit 0 | `README.md` | DONE. `git diff`: one added row. `validate_document.py` exit 0, `Total issues: 0`; grep 1 |
 
-No brief was re-dispatched. One corrective brief, 12b, followed brief 12 because brief 12's new arm made an older gate test's expectation stale. Every executor handback read `STATUS: DONE`, with no stray question and no auth error, and every tree diff showed only the files its brief allowed. 35 dispatches by executor (from `logs/*.status`): cursor 21 (01 to 09, 11, 12, 13, 15, 17, 18, 30 to 34 in section 10 and 35 in section 11), devin 5 (10, 12b, 14, 16, 26), pi 9 (20 to 25, 27 to 29).
+No brief was re-dispatched. One corrective brief, 12b, followed brief 12 because brief 12's new arm made an older gate test's expectation stale. Every executor handback read `STATUS: DONE`, with no stray question and no auth error, and every tree diff showed only the files its brief allowed. 40 dispatches by executor (from `logs/*.status`): cursor 23 (01 to 09, 11, 12, 13, 15, 17, 18, 30 to 34 in section 10, 35 in section 11, 36 and 37 in section 13), devin 5 (10, 12b, 14, 16, 26), pi 12 (20 to 25, 27 to 29, 38 in section 13, 39 and 40 in section 14).
 
 ## 4. Regeneration (the phase's named generated files, run by the orchestrator)
 
@@ -213,3 +213,43 @@ The live Deem verdict of section 10 stands: brief 35 changes only the `--jev` pa
 
 4. Keep Rule question, settle before any Deem rerun on a new commit pair (reviewer P2 a). Brief 30 gives the alias pair `memory:save` and `command-memory-save` distinct option text, and the modal pick counts them as separate answers. Counting alias-equivalent picks as one answer changes the Deem column. The reviewer reports unstable 17 to 13, flip 0.3123 to 0.2643, verdict still kill 38/8/30. An offline recount here from `runs/deem-review/calls.jsonl` (`runs/p2a-alias-check.txt`, canonical key through `mergedSkillForAlias`) agrees on unstable 13 and flip 0.2643 but gives `decided=37 wins=8 losses=29 p_loss=0.0004`: still `kill`. The difference in decided rows is UNKNOWN until one canonicalization rule is fixed in the Keep Rule.
 5. Open test gap (reviewer P2 b): the brief 30 case's stub `cli-deem` ignores option text, so it proves the `[key]` suffix reaches the argument list but not that the real client accepts the options or maps the answer back. The fake-server test uses distinct descriptions and does not cover it either.
+
+## 13. Round 3 follow-up (two P2s closed before closure)
+
+Context: review round 3 passed; the orchestrator session committed the build as `807ce287be` and the index as `64968e9b58`, and this folder is now tracked. Round 3's two P2s: `--deem` could call without `--out` (REQ-009, every call recorded), and the catalog entry still read as if `--out` were optional (D6, docs true to code).
+
+| Brief | Executor | Change | Check |
+|-------|----------|--------|-------|
+| `briefs/36-deem-needs-out.md` | cursor, 90 s | after `deemGate` passes and before `runDeemArm`, a missing or empty `--out` writes `--deem needs --out <dir> so every call is recorded` to stderr and returns 2, with no headroom condition because a passing Deem gate always calls (the calibration runs at any headroom); a failed gate keeps its skip line and exit 0; the one passing-gate `runScript(['--deem'])` case now has a temp `--out`; new case: passing stub gate without `--out` gives exit 2, the stderr text, the census prefix plus the health line, and a stub log of `health` only | diff against `logs/36.pre.*`: only the brief's edits; `node --check` 0; grep 6; vitest `Tests 53 passed (53)`, exit 0 |
+| `briefs/37-jev-refusal-headroom.md` | cursor, 96 s | test only: a passing Jev stub gate driven through the `census` dependency; at `no headroom` without `--out`: exit 0, `no headroom` printed, no refusal on stderr, stub log `--version`, `auth status --provider openrouter` only; at `underpowered` without `--out`: exit 2, the refusal on stderr, the same two-line stub log (no `auth test`, `choice` or `noul`) | script byte-identical to `logs/37.pre.mjs`; test diff read; vitest `Tests 55 passed (55)`, exit 0 |
+| `briefs/38-catalog-out-line.md` | pi, 19 s | `feature-catalog/scorer-fusion/tie-break-eval.md:28`: "With `--out <dir>` the run writes `calls.jsonl` and `report.json` there." replaced by "Once an arm's gate passes and it will call, the run needs `--out <dir>`, where it writes `calls.jsonl` and `report.json`. Without it the script exits 2 before any call." | a `sed` of the pre-copy with that one substitution equals the new file; `validate_document.py` exit 0, `Total issues: 0`; grep 1 |
+
+Other changed skill docs grepped for `--out`, `--jev` and `--deem`, with no second brief needed. The README, routing-accuracy README, parity README and `SKILL.md` do not mention `--out`. The changelog's "`--out <dir>` writes one `calls.jsonl` line per call ..." states what `--out` does and does not call it optional. The playbook scenario's step 4 already passes `--out`, and its step 3 (`--jev`, OpenRouter, no `--out`) is a gate-skip run that stays exit 0 when no OpenRouter key is stored, as its Expected text says.
+
+Final-state checks. Each run's porcelain snapshots and output were kept outside the repository during the run and copied to `runs/r38-*` afterwards, because this folder is now tracked and writing into it mid-run would change the porcelain:
+
+| Check | Command | Result | Exit |
+|-------|---------|--------|------|
+| Syntax | `node --check $S` | no output | 0 |
+| Eval test file | `vitest run tests/parity/score-jev-tiebreak.vitest.ts` | `Tests 55 passed (55)` (`logs/37.vitest.txt`) | 0 |
+| Default run | `env -u JEV_PROVIDER node $S` (`runs/r38-default.*`) | byte-identical to the first default census; porcelain the same; stderr empty | 0 |
+| `--jev`, node-only PATH | `PATH=/usr/bin:/bin:<dir holding only a node symlink> node $S --jev` (`runs/r38-jev-nodeonly.*`) | census, `jev: path=none provider=official`, `jev arm skipped: jev not on PATH`; porcelain the same | 0 |
+| `--deem`, node-only PATH, server unreachable | the same PATH with `CLI_DEEM_URL=http://127.0.0.1:9` (`runs/r38-deem-nodeonly-deadurl.*`) | census, `deem arm skipped: not reachable`; porcelain the same | 0 |
+| `--deem`, node-only PATH, served instance | the same PATH, default URL (`runs/r38-deem-nodeonly-served.*`) | the script falls back to `node` plus the repo's `cli-deem.mjs` when `cli-deem` is not on PATH, and Deem is serving, so the gate passes: census, `deem: health backend=torch model=deem-0.8-v1 model_commit=8cbabbb2... source_commit=c8a5523c...`, then stderr `--deem needs --out <dir> so every call is recorded`. This is the new refusal. `server.log` shows only `GET /health`, with no decision call | 2 |
+| Advisor suite, full | `vitest run` (`logs/final5-advisor-vitest.*`) | `Test Files 130 passed (130)`, `Tests 1026 passed \| 6 skipped (1032)`, 197 s; `ps` table 234,213 bytes before, 197,486 after. Against 1023 / 6: +3 (the three new cases), 0 failures | 0 |
+| Typecheck | `npm run typecheck` | no diagnostics | 0 |
+| Changed doc | `validate_document.py feature-catalog/scorer-fusion/tie-break-eval.md` | `Total issues: 0` | 0 |
+| Generated files | `generate-trigger-index.mjs --check`; `ci-skill-root-metadata.cjs` | `trigger index matches the corpus`; `checked=16 passed=16 failed=0` | 0, 0 |
+
+With the served instance up, the Deem gate cannot be failed by PATH alone, because the script falls back to the repo client. The unreachable-URL row is how the "gate fails" path was exercised without stopping the server. Nobody started or stopped the server.
+
+## 14. Round 4 follow-up (doc-only P2)
+
+Review round 4 passed with one doc-only P2: the skill README's "Offline tie-break eval" row and the v0.13.0.0 changelog's gate bullet did not say that an arm whose gate passes needs `--out`. Before briefing, both target lines were read; each held the coordinator's old text exactly once, so neither brief needed adapting.
+
+| Brief | Executor | Change | Check |
+|-------|----------|--------|-------|
+| `briefs/39-readme-out-line.md` | pi, 23 s | `README.md:229`: "and each switch runs its model arm only when that backend's own checks pass \|" replaced by "and each switch runs its model arm only when that backend's own checks pass. An arm that will call needs `--out <dir>` for its call records, and exits 2 without it \|" | applying that one substitution to `logs/39.pre.md` reproduces the new file exactly; the porcelain delta against `logs/39.pre-status.txt` is `README.md` plus this brief's own log files; `validate_document.py` exit 0, `Total issues: 0` (`logs/39.validate.txt`); grep 1 |
+| `briefs/40-changelog-out-line.md` | pi, 15 s | `changelog/v0.13.0.0.md:23`: after "A failed gate prints one skip line and leaves the census unchanged, and the script never reads a key." appended " An arm whose gate passes needs `--out <dir>`, and without it the script exits 2 before any call." on the same line | applying that one substitution to `logs/40.pre.md` reproduces the new file exactly; the porcelain delta against `logs/40.pre-status.txt` is `v0.13.0.0.md` plus this brief's own log files; `validate_document.py` exit 0, `Total issues: 0` (`logs/40.validate.txt`); grep 1; `README.md` revalidated after brief 40, exit 0 |
+
+The advisor suite was not rerun here, because the session is already running it and neither file feeds a test.

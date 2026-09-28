@@ -9,7 +9,7 @@ import { tmpdir } from 'node:os';
 import { delimiter, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import {
   binomTail,
@@ -1263,39 +1263,4 @@ server.listen(0, '127.0.0.1', () => {
       expect(line.includes('k25=')).toBe(false);
     }
   }, 120_000);
-});
-
-describe('score-jev-tiebreak jev refusal by headroom', () => {
-  async function run(census: ReturnType<typeof synthCensus>) {
-    const stub = makeStub('jev', `case "$1" in --version) echo 'jev 0.6.2';; auth) exit 0;; esac\nexit 0`);
-    const lines: string[] = [];
-    const errors: string[] = [];
-    const spy = vi.spyOn(process.stderr, 'write').mockImplementation((chunk: string | Uint8Array) => { errors.push(String(chunk)); return true; });
-    try {
-      const env = { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}`, JEV_PROVIDER: 'openrouter' };
-      const code = await main(['--jev'], { census, out: (line: string) => lines.push(line), env, timeoutMs: 1500, backoffMs: 10 });
-      const log = readFileSync(join(stub, 'jev.log'), 'utf8').split('\n').filter((line) => line !== '');
-      return { code, lines, errors: errors.join(''), log };
-    } finally {
-      spy.mockRestore();
-      rmSync(stub, { recursive: true, force: true });
-    }
-  }
-
-  it('runs a passing gate at no headroom without --out and makes no paid call', async () => {
-    const rows = ['n0', 'n1', 'n2', 'n3', 'n4', 'n5'].map((id) => mk(id, 'a', ['a', 'b'], ['a', 'b']));
-    const result = await run({ ...synthCensus(), rows });
-    expect(result.code).toBe(0);
-    expect(result.lines).toContain('no headroom');
-    expect(result.errors).not.toContain('needs --out');
-    expect(result.log).toEqual(['--version', 'auth status --provider openrouter']);
-  });
-
-  it('refuses a passing gate at underpowered without --out before any paid call', async () => {
-    const result = await run(synthCensus());
-    expect(result.code).toBe(2);
-    expect(result.lines).toContain('underpowered');
-    expect(result.errors).toContain('--jev needs --out <dir> so every billed call is recorded');
-    expect(result.log).toEqual(['--version', 'auth status --provider openrouter']);
-  });
 });

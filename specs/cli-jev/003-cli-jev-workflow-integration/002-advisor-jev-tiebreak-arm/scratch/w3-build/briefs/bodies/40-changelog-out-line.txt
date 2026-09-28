@@ -1,0 +1,15 @@
+TASK: one literal sentence insertion in one changelog bullet, so the doc matches the code: a model arm whose gate passes refuses to call without `--out`.
+File: .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md. Read it first.
+
+Line 23 is one bullet that starts "- **Each model arm has its own switch and its own gate.**". It ends with exactly this sentence:
+A failed gate prints one skip line and leaves the census unchanged, and the script never reads a key.
+Directly after that sentence, on the same line, append exactly (it starts with one space):
+ An arm whose gate passes needs `--out <dir>`, and without it the script exits 2 before any call.
+
+Keep every other character of line 23 and of the file unchanged. Do not add a new line or a new bullet.
+
+VERIFY (repo root):
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md
+  grep -c "the script never reads a key. An arm whose gate passes needs \`--out <dir>\`, and without it the script exits 2 before any call." .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md
+Accept when: 1 file changed and nothing else; validate_document exits 0; the grep prints 1.
+

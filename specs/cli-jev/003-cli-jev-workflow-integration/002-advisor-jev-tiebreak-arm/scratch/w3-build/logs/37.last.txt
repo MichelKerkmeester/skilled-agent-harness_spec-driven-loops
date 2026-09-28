@@ -1,0 +1,13 @@
+The packet goal is set. The parity test now covers both Jev `--out` refusal branches: a passing gate at `no headroom` returns 0 with only the free calls, and a passing gate at `underpowered` returns 2 with the refusal before any billed call.
+
+SKILL ROUTING: sk-code → test append on the OpenCode surface.  
+REPO RULES: prevent-overengineering.md
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+36/-1)
+EDITS: score-jev-tiebreak.vitest.ts:12 imported vi from vitest
+EDITS: score-jev-tiebreak.vitest.ts:1268 added the jev refusal-by-headroom cases
+CHECKS: grep -c "jev refusal by headroom" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts -> 1 (exit 0)
+BLOCKED REASON: none
+```
