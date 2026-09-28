@@ -46,9 +46,9 @@ The plan was amended on 2026-09-27 from the final synthesis, `../004-deep-resear
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met. Level 1 has no `acceptance-criteria.md`, so the gate is `goal.md` section 3: 7 of 7 criteria ticked, with criteria 4 and 6 amended at close and the reasons logged there
+- [x] Tests passing (if applicable). `tests/parity/score-jev-tiebreak.vitest.ts` 55 passed, and the full advisor suite 130 files, 1026 passed, 6 skipped, 0 failed, exit 0, from the final state (orchestrator session record)
+- [x] Docs updated (spec/plan/tasks). The closure pass of 2026-09-28 recorded the build evidence and corrected the stale premises
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -67,7 +67,7 @@ A standalone offline eval script: read the corpus, score it, print a report. It 
 - **`clusterFor(row)`**: runs the scorer once and reads the passing top and its `ambiguousWith` list as `applyAmbiguity` wrote them (`ambiguity.ts:44-58`). It never recomputes margins, because the cluster is a union of a score margin and a confidence margin (`:22-36`) and a member can sit below a non-member in score order.
 - **`classifyRows()`**: marks eligible, movable, gold-first, gold-outside and gold-in-top-3, with the alias-aware match of `capture-scorer-eval-baseline.mjs:70-76`, per file and per 50/50 split by sorted id (`score-outcome-rerank.mjs:118-121`). Frozen tau 0.03 membership comes from `ambiguity-prompts.jsonl`. It also counts clusters with more than 25 members, which the Deem arm prints as unmeasured.
 - **`reprintBaseline()`**: prints holdout top-1 over all 70 rows. Anything other than 53/70 prints `baseline mismatch: comparison void` and stops the run.
-- **`comparators()`**: scores the scorer's order, confidence order inside the cluster, always-second and the outcome-weighted rerank, each with MRR, right@1 and right@3 (`score-outcome-rerank.mjs:85-112`). The rerank is scored on held-out rows only, because its fold trains on the train half (`:123`).
+- **`comparators()`**: scores the scorer's order, confidence order inside the cluster, always-second and the outcome-weighted rerank, each with MRR, right@1 and right@3 (`score-outcome-rerank.mjs:85-112`). The rerank is scored on held-out rows only, because its fold trains on the train half (`:123`). The rerank module that `score-outcome-rerank.mjs:38` imports, `outcome-weighted-rerank.js`, was deleted in commit `6b99eb68d2`, so that script no longer runs. The eval therefore inlines the blend: the fused score times a Beta(1, 1) posterior of train-half outcomes.
 - **`powerLine()`**: prints movable rows, the decided-row ceiling, the minimum wins for an exact one-sided sign test at 0.05 and the true win rate needed for 80% power. For example, 5 decided rows need 5 wins and a win rate of 0.956, and 55 need 35 wins and 0.680. Zero movable rows prints `no headroom`, and 1 to 4 prints `underpowered`. Neither runs a `choice` arm on either backend.
 - **`gate()`**, the Jev half: runs only when `--jev` is set, once per run, stopping at the first failure. It first resolves the provider P as `process.env.JEV_PROVIDER` when set and `official` otherwise, then prints one identity line with the resolved `jev` path and P.
   1. `command -v jev`. Failing prints `jev arm skipped: jev not on PATH`.
