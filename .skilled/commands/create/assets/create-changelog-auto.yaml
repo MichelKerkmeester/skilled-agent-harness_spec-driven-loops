@@ -658,6 +658,7 @@ workflow:
           Continue to step_8_save_context
       - "Derive release_tag: \"v{next_version}\" -- the same version already written to {output_path}"
       - "Derive release_title: \"{release_tag} — {editorial_title}\", where editorial_title is the entry's H1 without its leading version and the comma after it. The H1 `# v4.0.0.1, The Foundation Hardened: Old Specs Forward and Quieter Sessions` gives `v4.0.0.1 — The Foundation Hardened: Old Specs Forward and Quieter Sessions`"
+      - "Derive tag_message: \"{release_tag}: {editorial_title}\" with the first colon in editorial_title, if it has one, turned into a comma. The H1 above gives `v4.0.0.1: The Foundation Hardened, Old Specs Forward and Quieter Sessions`. The title is used instead of the summary's first sentence, which often opens with the version and would repeat it"
       - "Check for tag collision: run `git tag --list {release_tag}`. IF the tag already exists -> PAUSE, report the conflict, do not overwrite it, set release_published = false, set release_published_display = \"No -- tag {release_tag} already exists\""
       - "Verify `gh` CLI is available and authenticated: run `gh auth status`. IF unavailable/unauthenticated -> PAUSE, report, set release_published = false, set release_published_display = \"No -- gh CLI unavailable or unauthenticated\""
       - "Check working tree state: run `git status --porcelain -- {output_path}`. IF uncommitted, log a warning that the tag was created on a HEAD that may not include the just-written changelog file (autonomous mode never auto-commits)"
@@ -667,11 +668,10 @@ workflow:
             Strip it through its closing "---" line, plus any blank lines after it
           IF the next line starts with "# " (the editorial title H1):
             Strip that line and any immediately following blank lines
-          IF anything was stripped:
-            Write the remainder to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md)
-          ELSE:
-            Use {output_path} directly as the notes file
-      - "Run: git tag -a {release_tag} -m \"{release_tag}: {summary_first_sentence}\""
+          Append a blank line and then the footer line:
+            Full changelog: `.skilled/changelog/skilled/v{next_version}.md`
+          Write the result to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md) and use it as {notes_file_path}
+      - "Run: git tag -a {release_tag} -m \"{tag_message}\""
       - "Run: git push origin {release_tag}"
       - "Run: gh release create {release_tag} --title \"{release_title}\" --notes-file {notes_file_path}"
       - "Capture the release URL returned by gh release create"
