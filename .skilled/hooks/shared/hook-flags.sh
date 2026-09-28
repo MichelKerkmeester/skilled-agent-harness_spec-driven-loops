@@ -22,26 +22,35 @@ if [ -z "$__hook_flags_config" ]; then
   done
 fi
 
+# Only the value's edges are trimmed, as in hook-flags.cjs, so "o n" stays off.
 __hook_flags_truthy() {
-  case "$(printf '%s' "${1:-}" | tr 'A-Z' 'a-z' | tr -d '[:space:]')" in
+  __hf_t=$(printf '%s' "${1:-}" | tr 'A-Z' 'a-z')
+  __hf_t=${__hf_t#"${__hf_t%%[![:space:]]*}"}
+  __hf_t=${__hf_t%"${__hf_t##*[![:space:]]}"}
+  case "$__hf_t" in
     1|true|yes|on) return 0 ;;
     *) return 1 ;;
   esac
 }
 
+# An editor that saves UTF-8 with a signature puts a byte order mark before the
+# first line, and the file readers in Node and Python drop it, so this one does.
+__hf_bom=$(printf '\357\273\277')
+
 # Print the effective value for an env-var name: the environment value when the
 # variable is set (even to empty, so env wins), else the config-file value, else
-# nothing. A missing/unreadable file yields nothing (fail-open). In the file a '#'
-# after a space or tab ends the value, as in hook-flags.cjs, so a line carrying a
-# trailing comment still counts.
+# nothing. Whether the variable is set decides, never what it holds. A missing or
+# unreadable file yields nothing (fail-open). In the file a '#' after a space or
+# tab ends the value, as in hook-flags.cjs, so a line carrying a trailing comment
+# still counts.
 __hook_flags_resolve() {
-  eval "__hf_r=\${$1-__HF_UNSET__}"
-  if [ "$__hf_r" != "__HF_UNSET__" ]; then
+  if eval "[ \"\${$1+set}\" = set ]"; then
+    eval "__hf_r=\${$1}"
     printf '%s' "$__hf_r"
     return 0
   fi
   [ -n "$__hook_flags_config" ] && [ -r "$__hook_flags_config" ] || return 0
-  __hf_line=$(grep -E "^[[:space:]]*$1[[:space:]]*=" "$__hook_flags_config" 2>/dev/null | grep -v '^[[:space:]]*#' | tail -1)
+  __hf_line=$(LC_ALL=C grep -E "^($__hf_bom)?[[:space:]]*$1[[:space:]]*=" "$__hook_flags_config" 2>/dev/null | grep -v '^[[:space:]]*#' | tail -1)
   [ -n "$__hf_line" ] || return 0
   __hf_v=${__hf_line#*=}
   __hf_v=$(printf '%s' "$__hf_v" | sed -e 's/[[:blank:]]#.*$//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^"\(.*\)"$/\1/' -e "s/^'\(.*\)'\$/\1/")
