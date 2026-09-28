@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d3f9292d46fcac965a536d9f0f33e614d3184039a2636c4e06884ffa43f278dc",
+  "manifestHash": "e5b476d0195e173cf8df71d07e2419ca15cc6772aec4e5a8bbb1e923936b38a3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22215,6 +22215,9 @@
       "commercial safe profile",
       "commercial-safe profile"
     ],
+    "commit body always required": [
+      "commit body always required"
+    ],
     "commit disappeared after autosync": [
       "commit disappeared after autosync"
     ],
@@ -22248,6 +22251,9 @@
     ],
     "commit message template": [
       "commit message template"
+    ],
+    "commit msg body gate": [
+      "commit-msg body gate"
     ],
     "commit msg whitelist": [
       "commit-msg whitelist"
@@ -33521,9 +33527,6 @@
     ],
     "doc validation off switch tasks": [
       "doc validation off switch tasks"
-    ],
-    "doc validation off switches": [
-      "doc validation off switches"
     ],
     "doc validation off switches summary": [
       "doc validation off switches summary"
@@ -48542,9 +48545,6 @@
     ],
     "lean trio shipped": [
       "lean trio shipped"
-    ],
-    "leaner goals": [
-      "leaner goals"
     ],
     "leaner templates and bounded search": [
       "Leaner Templates and Bounded Search"
@@ -81042,6 +81042,9 @@
     "sk git 1 6 0 0": [
       "sk-git 1.6.0.0"
     ],
+    "sk git 1 7 0 0": [
+      "sk-git 1.7.0.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -81170,6 +81173,9 @@
     ],
     "sk git v1 6 0 0": [
       "sk-git v1.6.0.0"
+    ],
+    "sk git v1 7 0 0": [
+      "sk-git v1.7.0.0"
     ],
     "sk git workflow support": [
       "sk-git workflow support"
@@ -82411,6 +82417,9 @@
     ],
     "skill advisor plugin hardening": [
       "skill advisor plugin hardening"
+    ],
+    "skill advisor prompt hook": [
+      "skill advisor prompt hook"
     ],
     "skill advisor py": [
       "skill_advisor.py"
