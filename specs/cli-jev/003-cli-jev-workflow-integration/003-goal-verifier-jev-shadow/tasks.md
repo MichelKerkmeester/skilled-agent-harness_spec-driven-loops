@@ -28,7 +28,9 @@ contextType: "implementation"
 
 **Task Format**: `T### [P?] Description (file path)`
 
-T001 to T022 keep their ids. The 2026-09-27 amendment added T023 to T031 and listed them where they run. The two-backend amendment the same day added T032 and T033 for the Deem half and rewrote T008, T009, T012 to T016, T018, T019, T029 and T030 in place.
+T001 to T022 keep their ids. The 2026-09-27 amendment added T023 to T031 and listed them where they run. The two-backend amendment the same day added T032 and T033 for the Deem half and rewrote T008, T009, T012 to T016, T018, T019, T029 and T030 in place. The wave 3 amendment on 2026-09-28 added T034 to T036 and rewrote T001, T011, T016, T021, T022, T026 and T027 in place for parent D4 and D6.
+
+**Label gate (parent D4).** This phase closes after T034, T035 and the verification tasks. No model writes a label. T001, T011 and every other `[B]` task wait for the operator's labels and are not part of this phase's completion. **Who builds (parent D5):** a fresh Opus 5.5 xhigh build orchestrator dispatches single-change briefs to Devin, Pi on Cline and Cursor by Bash and runs the census and the builder itself. The orchestrator session verifies, gets a cross-family code review and commits (`plan.md` section 4).
 <!-- /ANCHOR:notation -->
 
 ---
@@ -49,15 +51,17 @@ T001 to T022 keep their ids. The 2026-09-27 amendment added T023 to T031 and lis
 
 - [ ] T024 Write the Pi census: the method line, the closed record-type whitelist with a named error, per-session counts by verdict and reason category, first and last dates, totals and no message text (`.skilled/hooks/goal/lib/count-pi-goal-nudges.mjs`)
 - [ ] T025 Write the census test: a fixture session with one nudge per reason, an unknown record type that exits non-zero and a grep that finds no message text (`.skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs`)
-- [ ] T026 Run the census on the Pi session directory the operator names and reconcile its totals with 1,457 nudges in 28 sessions and 1,616 matches in 37 files, naming the unit or window behind any gap (`implementation-summary.md`)
-- [ ] T027 Write the fixture builder: Claude rows paired with native `goal_status` pre-labels, Pi rows with the recorded nudge verdict, each with the raw text, its as-ingested form and the raw length (`.skilled/hooks/goal/lib/build-verifier-fixture.cjs`)
-- [ ] T001 **Operator task.** Label the rows the builder writes: adjudicate Claude rows where the pre-label and the heuristic disagree, spot-check about 10 agreements, label every Pi row `met`, `not_met` or `blocked`, strip every secret and decide whether the file is committed (`.skilled/hooks/goal/lib/verifier-labeled-set.jsonl`)
+- [ ] T026 Run the census on `~/.pi/agent/sessions`, the operator's choice (parent D4), over every date, and reconcile its totals with 1,457 nudges in 28 sessions and 1,616 matches in 37 files, naming the unit, the window or the 2026-09-27 delivery change behind any gap (`implementation-summary.md`)
+- [ ] T027 Write the fixture builder: Claude rows paired with native `goal_status` pre-labels, Pi rows with the recorded nudge verdict and an empty `label`, each with the raw text, its as-ingested form and the raw length (`.skilled/hooks/goal/lib/build-verifier-fixture.cjs`)
+- [ ] T034 Run the builder once at the label gate on `~/.pi/agent/sessions`, adding Claude rows only from a transcript directory the operator has named. Write the rows to `.skilled/hooks/goal/lib/verifier-labeled-set.jsonl`, leave that file uncommitted and record the row count per source in `implementation-summary.md`. No model writes a label (parent D4)
+- [ ] T035 Add the census, builder, scorer and their tests to the goal hooks README's directory tree, key files and validation sections and to the hub README's `goal/` tree lines, through sk-doc (`.skilled/hooks/goal/README.md`, `.skilled/hooks/README.md:138-139`)
+- [ ] T001 [B] Past the label gate (parent D4), not part of this phase's completion. **Operator task.** Label the rows the builder writes: adjudicate Claude rows where the pre-label and the heuristic disagree, spot-check about 10 agreements, label every Pi row `met`, `not_met` or `blocked`, strip every secret and decide whether the file is committed. No model writes a label (`.skilled/hooks/goal/lib/verifier-labeled-set.jsonl`)
 - [ ] T005 Write the scorer's loader and label normalization, mapping `not-met` to `not_met`, keeping `unclear` as its own row and rejecting any other value (`.skilled/hooks/goal/lib/score-verifier-labeled-set.cjs`)
 - [ ] T006 Add the three zero-call arms on identical rows: the heuristic through `__test.writeGoalAtomic` and `__test.maybeVerifyGoal` in a `mkdtemp` state directory, the tail-window arm and goal-core parity, with per-check attribution and the clamp-defect count (same file)
 - [ ] T028 [P] Optional: add R4's claims column from `detectCompletionClaim` on the raw text beside an optional `claim_label`, leaving the report byte-identical without it (same file)
 - [ ] T007 Add the stop boundaries against the better of the heuristic and tail-window arms: under 30 rows, no headroom with the clamp-fix finding, no reachable rows. Otherwise print the three REQ-014 conditions (same file)
 - [ ] T010 Write the scorer test: the 1,300-character full-stop case, a held blocking-language row, an `unclear` row, fewer than 30 rows and a stub `jev` and a stub `cli-deem` (proposed, phase 008) that log no call (`.skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs`)
-- [ ] T011 Run the zero-call report on the operator's labeled set and read the stop or gate line
+- [ ] T011 [B] Past the label gate (parent D4): run the zero-call report on the operator's labeled set and read the stop or gate line
 - [ ] T029 [B] Past the gate only: confirm that the tail-window arm leaves an unfixable false `not_met`, the only condition for a Deem arm. For a Jev arm also confirm that the three redaction cases pass and that 002 has recorded a per-call latency. Write the confirmation per backend in `goal.md`'s log before any model arm code
 - [ ] T030 [B] Past the gate only: write the confidence bands for the cascade table into `spec.md` REQ-009, and for a Deem arm the option-order scheme into REQ-006, before the first model call
 - [ ] T008 [B] Past the gate only, Jev arm: add the key gate, `--jev`, the identity line, `command -v jev`, `jev --version` equal to `jev 0.6.2` and `jev auth status --provider <provider>` exit 0, with the three skip lines and one `--provider` for every check and call (scorer)
@@ -68,7 +72,8 @@ T001 to T022 keep their ids. The 2026-09-27 amendment added T023 to T031 and lis
 - [ ] T013 [B] Keep only: add the value for the backend that kept, `deem` (proposed) or `jev`, to `VALID_VERIFIER_MODES` and its branch, keeping the heuristic as the acting verifier (`.opencode/plugins/opencode-goal.js`)
 - [ ] T014 [B] Keep only: add the session-cached gate, with one `--provider` for `jev` or the 500 ms Deem check that never starts the server for `deem`, the enablement line, the async timeout-bounded shadow call to `jev` or `cli-deem` with its own catch, the `busy` skip, the `jev-shadow` or `deem-shadow` log, the one-line disable on a changed Deem commit pair and a `verifier_shadow` line only on disagreement (same file)
 - [ ] T015 [B] Keep only: add supervisor cases for no-backend parity, a malformed answer, exit 3 mid-session, exit 4 and a thrown shadow error against a stub `jev`, plus a fake Deem server with a failed check and a changed commit pair for `deem` mode (`.opencode/plugins/tests/opencode-goal-supervisor.test.cjs`)
-- [ ] T016 [B] Keep only: update the idle-verification bullet and the `OPENCODE_GOAL_VERIFIER` rows to list both values (`.skilled/hooks/goal/goal-plugin.md:53` and `:70`, `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:337`)
+- [ ] T016 [B] Keep only: update the idle-verification bullet and the `OPENCODE_GOAL_VERIFIER` rows to list both values, through sk-doc (`.skilled/hooks/goal/goal-plugin.md:53` and `:70`, `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:338`)
+- [ ] T036 [B] Keep only (parent D6): add the value that kept to the goal plugin's feature catalog and playbook pages in system-spec-kit and system-skill-advisor, write a changelog entry in each skill and recheck both skills' `SKILL.md` and README with `rg` for the verifier values, changing them only if one lists them. All through sk-doc (paths in `spec.md` section 3)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -81,8 +86,8 @@ T001 to T022 keep their ids. The 2026-09-27 amendment added T023 to T031 and lis
 - [ ] T018 Run the scorer with a stub `jev` and a stub `cli-deem` first on `PATH` and confirm both stub logs stay empty, the zero-call report prints and the exit status is 0 with no per-call file
 - [ ] T019 [B] Past the gate only: check the per-call JSONL for a wall time, exit code and pick probability on every call, and on every Deem call the backend, model id, commit pair and option order, and confirm it holds no row text
 - [ ] T020 [B] Keep only: rerun the goal suites and `goal-doc-contract.test.cjs` and compare against T004's count
-- [ ] T021 Run `git status --short` and confirm no change outside the files in `spec.md` REQ-012
-- [ ] T022 Run `validate.sh --strict` and `check-goal.cjs` on this phase
+- [ ] T021 Run `git status --short` and confirm no change outside the files in `spec.md` REQ-012, and that the fixture is untracked
+- [ ] T022 Run `validate.sh --strict` and `check-goal.cjs` on this phase, and `validate_document.py` on every doc the build changed
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -90,8 +95,9 @@ T001 to T022 keep their ids. The 2026-09-27 amendment added T023 to T031 and lis
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, with T008, T009, T012, T019, T029, T030, T032 and T033 closed as not applicable on a stop, T008 and T009 or T032 and T033 closed as not applicable for a backend never built and T013 to T016 and T020 closed as not applicable on a stop or a drop
-- [ ] No `[B]` blocked tasks remaining
+- [ ] At the label gate (parent D4): every task without `[B]` marked `[x]`, and every `[B]` task left open and listed in `implementation-summary.md` as waiting for the operator's labels
+- [ ] After the labels, outside this phase's completion: all tasks marked `[x]`, with T008, T009, T012, T019, T029, T030, T032 and T033 closed as not applicable on a stop, T008 and T009 or T032 and T033 closed as not applicable for a backend never built and T013 to T016, T020 and T036 closed as not applicable on a stop or a drop
+- [ ] No `[B]` task blocked by anything but the label gate
 - [ ] Manual verification passed
 <!-- /ANCHOR:completion -->
 
