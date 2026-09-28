@@ -1,0 +1,39 @@
+# What changed since the re-proof after phase 14, 2026-09-28T16:47:30Z
+That re-proof ran all 45 scenario runs on the tree committed as 0dc044de8c (12:49Z to 14:20Z, all PASS).
+
+## commits 0dc044de8c..e36d99cfb8
+e36d99cfb8 2026-09-28T18:31+0200 chore(system-spec-kit): rebuild the trigger index from committed content
+003dabe08d 2026-09-28T18:29+0200 docs(docs): align the root and skill advisor READMEs with the repository
+1d7ec8f39d 2026-09-28T16:34+0200 chore(system-spec-kit): rebuild the trigger index from committed content
+b115fdab2e 2026-09-28T16:31+0200 docs(specs): prove the packet 030 goal again after phase 14
+
+## every path those commits changed outside specs/
+.skilled/skills/system-skill-advisor/README.md
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+README.md
+
+## of those, paths the scenarios run through
+.skilled/skills/system-skill-advisor/README.md
+
+## advisor or hook code that reads the trigger index (the other changed data)
+(none)
+
+## uncommitted edits in the scenario paths, all from another session
+ M .skilled/hooks/README.md
+ M .skilled/hooks/shared/hook-flags.sh
+ M .skilled/hooks/shared/hook-flags.test.cjs
+
+## which scenario-path files source hook-flags.sh
+.skilled/hooks/git/pre-commit
+.skilled/hooks/shared/hook-flags.cjs
+.skilled/hooks/shared/hook-flags.sh
+.skilled/scripts/session-cleanup.sh
+
+## the only flags hook-flags.env sets (values), and whether it starts with a byte order mark
+SPECKIT_SKIP_VALIDATION=0
+SKDOC_SKIP_VALIDATION=0
+first bytes:            23  20  48                                                    
+

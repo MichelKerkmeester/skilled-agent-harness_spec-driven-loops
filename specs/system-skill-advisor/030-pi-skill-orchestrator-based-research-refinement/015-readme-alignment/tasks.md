@@ -56,6 +56,7 @@ contextType: "general"
 - [x] T009 `validate_document.py --type readme` and `hvr_scan.py` on both READMEs (`evidence/final-checks.txt`)
 - [x] T010 `repair-derived` on this phase and the parent, `validate.sh --strict --recursive` on packet 030, `check-goal.cjs` and `goal.cjs packet` at `packet_budget=ok` (`evidence/strict-validate.txt`)
 - [x] T011 Recheck `git status` and stage only this phase's paths by name. The commit, the trigger index rebuild and the push follow, and goal criterion 6 covers them
+- [x] T012 Prove the parent goal's six criteria again from the final state, and carry the 45 scenario results forward only after checking what changed since they ran (`evidence/goal-reverify/`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

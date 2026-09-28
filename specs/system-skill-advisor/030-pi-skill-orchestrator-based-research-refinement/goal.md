@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-28T16:26:28Z"
+    last_updated_at: "2026-09-28T16:56:58Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed phase 15 with both READMEs aligned to the repository"
+    recent_action: "Proved the six criteria again after phase 15"
     next_safe_action: "None. All fifteen phases are complete"
     blockers: []
     key_files: []
@@ -130,6 +130,7 @@ and findings belong here.
 | 014-changelog-alignment | Done | Phase Documentation Map in `spec.md` reads Complete. The advisor changelog follows the contract, nine new entries in eight changelog folders record the advisor work and v4.0.0.2 carries it. Two fresh reviews found 35 problems, each checked against its source |
 | Goal proved again after phase 14 | Done | The four suites, the live plugin load and the installer check pass at `0dc044de8c` before and after the matrix, and a sandboxed daemon leaves the live generation file unchanged. After phase 13's proof another session's `3ad952e58e` changed how both hook-flag resolvers parse a value, so all nine scenarios reran in the five CLIs, and 45 of 45 runs pass. The live advisor's pids, lease and generation matched before and after (`014-changelog-alignment/evidence/goal-reverify/`) |
 | 015-readme-alignment | Done | Phase Documentation Map in `spec.md` reads Complete. Both READMEs match the repository on every claim a source check found wrong, with 70 root README ledger rows and four advisor README items fixed (`015-readme-alignment/evidence/claim-ledger.md`) |
+| Goal proved again after phase 15 | Done | The four suites, the live plugin load and the installer check pass from the final state with phase 14's counts, and a sandboxed daemon leaves the live generation file unchanged. The 45 scenario results from `0dc044de8c` carry forward. The commits since change READMEs, which the advisor's doc harvest skips, and trigger index data, which no hook or advisor code reads. Another session's uncommitted `hook-flags.sh` edit changes how a value with inner spaces or a file with a byte order mark resolves, and no flag set today has either (`015-readme-alignment/evidence/goal-reverify/`) |
 
 ### Deviations and findings
 
@@ -154,4 +155,5 @@ and findings belong here.
 | Two Codex runs with no native line | CL-005 and CP-003 passed in Codex with no native advisor line, although Codex completed all five prompt hooks in each, and the advisor wrote no diagnostics record for either. Codex keeps no hook stderr, so which of the two kill deadlines in its hook chain fired is inferred. The hook code is outside this packet's scope, so it waits for the operator (`014-changelog-alignment/evidence/goal-reverify/native-lines.txt`) |
 | Two tester sandboxes came back | The Codex testers of CL-001 and CL-005 removed their own sandboxes, then a sandbox daemon's SIGTERM record recreated each folder, the path phase 12 closed for CP-003. The orchestrator recorded and removed both. The test brief does not ask testers to wait for that daemon (`014-changelog-alignment/evidence/goal-reverify/leftover-tester-folders.txt`) |
 | D3 wording cut for the phase 15 binding row | The 015 row pushed the durable slice past 4,000 characters. Under step 5 of the sk-create-goal cut order, D3 keeps its choice and its second sentence moves here: scenarios read advisor diagnostics from the diagnostics JSONL |
+| Live advisor replaced before phase 15's proof | The pair recorded after phase 14's proof, launcher 21222 and daemon 21257, had exited by this proof, and a new pair, 81654 and 81788, started at 16:24:50Z with a startup scan (generation 586). No command of this session sent a signal after 14:20Z, the advisor build dates from 2026-09-27 and no launcher log exists, so the cause is unknown. It is advisor runtime behavior outside this packet's scope, so it waits for the operator (`015-readme-alignment/evidence/goal-reverify/state-before.txt`) |
 <!-- /ANCHOR:log -->
