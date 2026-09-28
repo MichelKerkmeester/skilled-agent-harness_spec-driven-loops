@@ -58,6 +58,7 @@ contextType: "implementation"
 - [x] T010 Run both suites: commit-msg 19 of 19 and pre-commit 55 of 55. The same suites against the HEAD hooks fail exactly the seven new checks
 - [x] T011 Check each README claim against the hook source: the install trigger in every runtime's session start, the 100-file deletion ceiling, the four-file body rule and what `--uninstall` removes
 - [x] T012 Run `validate_document.py` on `README.md` and `CONTRIBUTING.md` beside their HEAD versions (no new issue), and `hvr_scan.py` on the added lines (0 hard blockers)
+- [x] T013 Cover this phase in the v4.0.0.2 release entry, then review the whole entry before release with packet 062 (`.skilled/changelog/skilled/v4.0.0.2.md`). Evidence: the entry's Git Hooks and the Root Docs section, and the review recorded in 062's T026
 <!-- /ANCHOR:phase-3 -->
 
 ---
