@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8c6c7e3921c37bfcaa6e82bf885e80b726dd595c2a437cbff29a97b2bbe1078b",
+  "manifestHash": "d00ccb02f2c037cae6d4308a6cd17286bd0ba798da32cad9f291478c6fe13810",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17637,6 +17637,9 @@
     "cli devin 1 4 4 0": [
       "cli-devin 1.4.4.0"
     ],
+    "cli devin 1 4 5 0": [
+      "cli-devin 1.4.5.0"
+    ],
     "cli devin 17 skill audit": [
       "cli-devin 17-skill audit"
     ],
@@ -17709,6 +17712,9 @@
     "cli devin readme template": [
       "cli-devin readme template"
     ],
+    "cli devin rule rewording plan": [
+      "cli-devin rule rewording plan"
+    ],
     "cli devin swe 1 6 audit": [
       "cli-devin SWE 1.6 audit"
     ],
@@ -17744,6 +17750,9 @@
     ],
     "cli devin v1 4 4 0": [
       "cli-devin v1.4.4.0"
+    ],
+    "cli devin v1 4 5 0": [
+      "cli-devin v1.4.5.0"
     ],
     "cli devin wiring plan": [
       "cli-devin wiring plan"
@@ -24837,6 +24846,15 @@
     "cp 003": [
       "cp-003"
     ],
+    "cp 003 negative control": [
+      "cp-003 negative control"
+    ],
+    "cp 003 sandbox teardown": [
+      "cp-003 sandbox teardown"
+    ],
+    "cp 003 teardown tasks": [
+      "cp-003 teardown tasks"
+    ],
     "cp 004": [
       "cp-004"
     ],
@@ -26799,6 +26817,9 @@
     ],
     "damping sweep results": [
       "damping sweep results"
+    ],
+    "dangerous mode approval per task": [
+      "dangerous mode approval per task"
     ],
     "dangerously skip permissions risk": [
       "dangerously skip permissions risk"
@@ -32202,6 +32223,9 @@
     "devin allowlist prune": [
       "devin allowlist prune"
     ],
+    "devin approval per task": [
+      "devin approval per task"
+    ],
     "devin background execution": [
       "devin background execution"
     ],
@@ -32276,6 +32300,9 @@
     ],
     "devin custom agent": [
       "devin custom agent"
+    ],
+    "devin dangerous mode approval": [
+      "devin dangerous mode approval"
     ],
     "devin deep loop executor": [
       "devin deep loop executor"
@@ -32411,6 +32438,9 @@
     ],
     "devin p templates": [
       "devin -p templates"
+    ],
+    "devin permission approval": [
+      "devin permission approval"
     ],
     "devin permission hook": [
       "devin permission hook"
@@ -42493,6 +42523,18 @@
     ],
     "goal prompt choice": [
       "goal_prompt_choice"
+    ],
+    "goal re verification follow ups": [
+      "goal re-verification follow-ups"
+    ],
+    "goal re verification follow ups plan": [
+      "goal re-verification follow-ups plan"
+    ],
+    "goal re verification follow ups summary": [
+      "goal re-verification follow-ups summary"
+    ],
+    "goal re verification follow ups tasks": [
+      "goal re-verification follow-ups tasks"
     ],
     "goal reminder cadence": [
       "goal reminder cadence"
@@ -75481,6 +75523,9 @@
     "scatter plot layout": [
       "scatter plot layout"
     ],
+    "scenario 457 benchmark record": [
+      "scenario 457 benchmark record"
+    ],
     "scenario 457 evidence repair": [
       "scenario 457 evidence repair"
     ],
@@ -78353,6 +78398,9 @@
     ],
     "sign out clickup": [
       "sign out clickup"
+    ],
+    "signal free sandbox teardown": [
+      "signal-free sandbox teardown"
     ],
     "signal ordering contract": [
       "signal ordering contract"
