@@ -1,3 +1,9 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dist Freshness Guard
+// ───────────────────────────────────────────────────────────────────
+// Asserts the compiled runtime under dist/ covers every lib source and was
+// built from the source content currently on disk.
+
 import { describe, it, expect } from 'vitest';
 import { createRequire } from 'node:module';
 import { mkdtempSync, mkdirSync, readFileSync, existsSync, statSync, readdirSync, writeFileSync, utimesSync } from 'node:fs';
@@ -45,7 +51,7 @@ describe('dist freshness — global walk', () => {
     ).toEqual([]);
   });
 
-  it('no lib/**/*.ts is newer than its compiled dist counterpart', () => {
+  it('no lib/**/*.ts is newer than its compiled dist counterpart unless an attested build matches its content', () => {
     const sources = walkTsFiles(LIB);
     const stale: string[] = [];
     for (const src of sources) {
@@ -56,9 +62,17 @@ describe('dist freshness — global walk', () => {
       const dstMtime = statSync(distPath).mtimeMs;
       if (srcMtime > dstMtime + 1000) stale.push(`${rel} (src newer by ${Math.round((srcMtime - dstMtime) / 1000)}s)`);
     }
+    // Git can rewrite a source with the bytes the build already compiled, and
+    // `tsc --build` then emits nothing, so a newer file time alone never proves
+    // staleness. A build the checker attested for the current content outranks it.
+    const verdict = stale.length > 0
+      ? distFreshness.checkPackageFreshness('system-spec-kit/runtime', { entry: 'default' })
+      : null;
+    const attested = verdict?.status === 'fresh' && verdict.origin === 'build';
+    const unattested = attested ? [] : stale;
     expect(
-      stale,
-      `${stale.length} source file(s) newer than dist — run 'npm run build':\n  ${stale.slice(0, 10).join('\n  ')}${stale.length > 10 ? `\n  ...and ${stale.length - 10} more` : ''}`,
+      unattested,
+      `${unattested.length} source file(s) newer than dist — run 'npm run build':\n  ${unattested.slice(0, 10).join('\n  ')}${unattested.length > 10 ? `\n  ...and ${unattested.length - 10} more` : ''}`,
     ).toEqual([]);
   });
 });
