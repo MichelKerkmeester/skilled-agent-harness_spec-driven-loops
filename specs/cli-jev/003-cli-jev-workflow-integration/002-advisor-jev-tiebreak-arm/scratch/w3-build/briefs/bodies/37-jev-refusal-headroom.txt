@@ -1,0 +1,44 @@
+TASK: test-only. Cover the two headroom branches of the Jev `--out` refusal in main. A passing Jev gate at `no headroom` without `--out` exits 0, no refusal, no paid call. At `underpowered` without `--out` it exits 2 with the refusal and no paid call. Paid calls are `auth test`, `choice` and `noul`; the gate's `--version` and `auth status` are free.
+File: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts only. Read main in R/scripts/routing-accuracy/score-jev-tiebreak.mjs (do not edit it), then the test file's imports, synthCensus, mk and makeStub.
+
+1. Change `import { describe, expect, it } from 'vitest';` to `import { describe, expect, it, vi } from 'vitest';`.
+2. Add at the end of the file:
+describe('score-jev-tiebreak jev refusal by headroom', () => {
+  async function run(census: ReturnType<typeof synthCensus>) {
+    const stub = makeStub('jev', `case "$1" in --version) echo 'jev 0.6.2';; auth) exit 0;; esac\nexit 0`);
+    const lines: string[] = [];
+    const errors: string[] = [];
+    const spy = vi.spyOn(process.stderr, 'write').mockImplementation((chunk: string | Uint8Array) => { errors.push(String(chunk)); return true; });
+    try {
+      const env = { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}`, JEV_PROVIDER: 'openrouter' };
+      const code = await main(['--jev'], { census, out: (line: string) => lines.push(line), env, timeoutMs: 1500, backoffMs: 10 });
+      const log = readFileSync(join(stub, 'jev.log'), 'utf8').split('\n').filter((line) => line !== '');
+      return { code, lines, errors: errors.join(''), log };
+    } finally {
+      spy.mockRestore();
+      rmSync(stub, { recursive: true, force: true });
+    }
+  }
+
+  it('runs a passing gate at no headroom without --out and makes no paid call', async () => {
+    const rows = ['n0', 'n1', 'n2', 'n3', 'n4', 'n5'].map((id) => mk(id, 'a', ['a', 'b'], ['a', 'b']));
+    const result = await run({ ...synthCensus(), rows });
+    expect(result.code).toBe(0);
+    expect(result.lines).toContain('no headroom');
+    expect(result.errors).not.toContain('needs --out');
+    expect(result.log).toEqual(['--version', 'auth status --provider openrouter']);
+  });
+
+  it('refuses a passing gate at underpowered without --out before any paid call', async () => {
+    const result = await run(synthCensus());
+    expect(result.code).toBe(2);
+    expect(result.lines).toContain('underpowered');
+    expect(result.errors).toContain('--jev needs --out <dir> so every billed call is recorded');
+    expect(result.log).toEqual(['--version', 'auth status --provider openrouter']);
+  });
+});
+Change nothing else in the file.
+
+VERIFY (repo root): grep -c "jev refusal by headroom" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts
+Accept when: 1 file changed and nothing else; the grep prints 1. Do not run vitest; the orchestrator runs it.
+

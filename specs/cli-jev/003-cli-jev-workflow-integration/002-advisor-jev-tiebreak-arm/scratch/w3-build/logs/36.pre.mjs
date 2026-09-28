@@ -1508,7 +1508,6 @@ export function deemGate(ctx) {
 /**
  * Prints the offline census. A bad flag returns 2. A voided comparison returns 1.
  * A passing Jev gate that would make billed calls returns 2 without --out, before the first billed call.
- * A passing Deem gate returns 2 without --out, before its first call.
  * A passing Jev gate runs the choice arm when the movable count has headroom.
  * A passing Deem gate runs the local choice arm.
  * @param {string[]} argv - Arguments after the script path.
@@ -1565,11 +1564,6 @@ export async function main(argv, deps = {}) {
   }
   if (values.deem === true) {
     const gate = deemGate({ out, env });
-    // Every passing Deem gate leads to calls, so the run must leave its call record behind.
-    if (gate.passed && (typeof values.out !== 'string' || values.out === '')) {
-      process.stderr.write('--deem needs --out <dir> so every call is recorded\n');
-      return 2;
-    }
     if (gate.passed) {
       deemResult = await runDeemArm(census, gate, summary.headroom, { out, env, timeoutMs, outDir: values.out });
     }

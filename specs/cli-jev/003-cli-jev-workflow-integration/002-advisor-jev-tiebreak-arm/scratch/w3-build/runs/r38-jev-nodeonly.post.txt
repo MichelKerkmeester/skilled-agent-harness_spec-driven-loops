@@ -1,0 +1,27 @@
+ M .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs
+ M .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/briefs/36-deem-needs-out.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/briefs/37-jev-refusal-headroom.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/briefs/38-catalog-out-line.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/briefs/bodies/36-deem-needs-out.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/briefs/bodies/37-jev-refusal-headroom.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/briefs/bodies/38-catalog-out-line.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/36.dispatch.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/36.last.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/36.pre-status.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/36.pre.mjs
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/36.pre.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/36.status
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/36.vitest.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/37.dispatch.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/37.last.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/37.pre.mjs
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/37.pre.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/37.status
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/37.vitest.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/38.dispatch.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/38.last.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/38.pre.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/logs/38.status
+?? specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/
