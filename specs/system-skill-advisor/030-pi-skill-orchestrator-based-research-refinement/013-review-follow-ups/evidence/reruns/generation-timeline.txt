@@ -1,0 +1,12 @@
+# monitor start 07:39:23.589Z, 282 watched source files
+07:39:23.589Z baseline {"generation": 570, "updatedAt": "2026-09-28T07:39:18.152Z", "sourceSignature": "f671771518196670f5c9165deab092a2e71f4a75c712f35a42869b55ad97513e", "reason": "advisor-server-watcher-reindex", "state": "live"}
+07:47:17.408Z changed {"generation": 571, "updatedAt": "2026-09-28T07:47:17.215Z", "sourceSignature": "aed41586474b59281a177e0e85a7f194ba7b1cc12b80d7d6ca5dadc40a71e39e", "reason": "advisor-server-watcher-reindex", "state": "live"}
+    watched file written 07:47:13.724Z .skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md
+    watched file written 07:47:13.724Z .skilled/skills/system-spec-kit/references/validation/validation-rules.md
+07:51:42.368Z changed {"generation": 572, "updatedAt": "2026-09-28T07:51:42.296Z", "sourceSignature": null, "reason": "SIGTERM", "state": "unavailable"}
+07:51:43.182Z changed {"generation": 573, "updatedAt": "2026-09-28T07:51:43.021Z", "sourceSignature": "6e9f5e175b1ee8d903f0ca1b1d9d3e7f4db564860e31523137b4df0bf4e4a47b", "reason": "advisor-server-startup-scan", "state": "live"}
+07:51:43.809Z changed {"generation": 574, "updatedAt": "2026-09-28T07:51:43.691Z", "sourceSignature": null, "reason": "SIGTERM", "state": "unavailable"}
+07:51:44.221Z changed {"generation": 575, "updatedAt": "2026-09-28T07:51:44.167Z", "sourceSignature": "a12c43145d67129e279cf109c897401e0ccdb8b6fe60d7fdbf42d8da3da2b5ab", "reason": "advisor-server-startup-scan", "state": "live"}
+07:53:06.627Z changed {"generation": 576, "updatedAt": "2026-09-28T07:53:06.522Z", "sourceSignature": "05622c82920c649776fab62eb93c59f38b664c4955a883c23b8307772f5a0e44", "reason": "advisor-server-watcher-reindex", "state": "live"}
+    watched file written 07:53:03.268Z .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh
+# monitor stop 07:58:31.575Z

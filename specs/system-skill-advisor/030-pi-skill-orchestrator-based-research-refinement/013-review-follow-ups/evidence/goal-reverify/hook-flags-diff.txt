@@ -1,0 +1,100 @@
+# The code in b274f085fb, the one commit since the phase 11 matrix that changed code in a path the carried scenarios run through, 2026-09-28T08:10:50Z
+# Both hunks add a function and the export adds its name. No existing function changed. The advisor's Claude prompt
+# hook and most spec-kit hooks load hook-flags for isHookEnabled (the list below), and they resolve their switches
+# as before. The four suites were rerun at 396d26d4ff as well.
+## git diff 4f4d25288c..396d26d4ff -- .skilled/hooks/shared/hook-flags.cjs .skilled/hooks/shared/hook-flags.sh
+diff --git a/.skilled/hooks/shared/hook-flags.cjs b/.skilled/hooks/shared/hook-flags.cjs
+index 3bcd13ad707..12a775fbcd8 100644
+--- a/.skilled/hooks/shared/hook-flags.cjs
++++ b/.skilled/hooks/shared/hook-flags.cjs
+@@ -169,6 +169,25 @@ function isHookEnabled(concern, env, config) {
+   return true;
+ }
+ 
++// True when one named switch resolves truthy, for a switch that is not a hook
++// concern (a validator's opt-out, say) but is saved in the same file under the
++// same precedence: the environment answers whenever the name is set there, even
++// to an empty value, and the config file answers otherwise. `env` and `config`
++// are injectable exactly as they are for isHookEnabled.
++function isFlagOn(name, env, config) {
++  if (typeof name !== "string" || !name.trim()) return false;
++  const hasEnv = env !== undefined && env !== null;
++  const source = hasEnv ? env : process.env;
++  if (source[name] !== undefined) return isTruthy(source[name]);
++  const cfg =
++    config !== undefined && config !== null
++      ? config
++      : hasEnv
++        ? EMPTY_CONFIG
++        : fileConfig();
++  return isTruthy(cfg[name]);
++}
++
+ // The canonical per-concern kill-switch env var for a concern slug. A blank
+ // concern has no flag (skipped), so callers never look up "MK__DISABLED".
+ function concernFlag(concern) {
+@@ -181,6 +200,7 @@ function concernFlag(concern) {
+ 
+ module.exports = {
+   isHookEnabled,
++  isFlagOn,
+   concernFlag,
+   isTruthy,
+   loadConfigFile,
+diff --git a/.skilled/hooks/shared/hook-flags.sh b/.skilled/hooks/shared/hook-flags.sh
+index 35874393b38..6e2ebc610ba 100755
+--- a/.skilled/hooks/shared/hook-flags.sh
++++ b/.skilled/hooks/shared/hook-flags.sh
+@@ -46,6 +46,17 @@ __hook_flags_resolve() {
+   printf '%s' "$__hf_v"
+ }
+ 
++# Succeed when one named switch resolves truthy, for a switch that is not a hook
++# concern (a validator's opt-out, say) but is saved in the same file under the
++# same precedence. The name is checked before use because the resolver expands
++# it through eval, so anything but a plain variable name is refused.
++hook_flag_on() {
++  case "${1:-}" in
++    ''|[0-9]*|*[!A-Za-z0-9_]*) return 1 ;;
++  esac
++  __hook_flags_truthy "$(__hook_flags_resolve "$1")"
++}
++
+ hook_enabled() {
+   __hook_flags_truthy "$(__hook_flags_resolve SYSTEM_HOOKS_DISABLED)" && return 1
+   [ -n "${1:-}" ] || return 0
+## rg -l hook-flags over .skilled/skills/system-skill-advisor and .skilled/skills/system-spec-kit/runtime (no output means no file)
+.skilled/skills/system-spec-kit/runtime/hooks/cursor/session-end.ts
+.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md
+.skilled/skills/system-spec-kit/runtime/hooks/cursor/session-start.ts
+.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md
+.skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs
+.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs
+.skilled/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts
+.skilled/skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts
+.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-context.ts
+.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
+.skilled/skills/system-spec-kit/runtime/hooks/pi/session-stop-context.ts
+.skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts
+.skilled/skills/system-spec-kit/runtime/hooks/cursor/precompact.ts
+.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts
+.skilled/skills/system-spec-kit/runtime/hooks/cursor/post-tool-use.mjs
+.skilled/skills/system-spec-kit/runtime/hooks/codex/session-start.ts
+.skilled/skills/system-spec-kit/runtime/hooks/devin/session-start.ts
+.skilled/skills/system-spec-kit/runtime/hooks/devin/session-stop.ts
+.skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs
+.skilled/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs
+.skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
+.skilled/skills/system-spec-kit/runtime/hooks/codex/session-stop.ts
+.skilled/skills/system-spec-kit/runtime/hooks/codex/compact-inject.ts
+.skilled/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts
+.skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs
+.skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts
+.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+.skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts
+.skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs
+.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh
+.skilled/skills/system-spec-kit/runtime/cli/tests/validate-skip-switch.vitest.ts
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+rg_matches=33

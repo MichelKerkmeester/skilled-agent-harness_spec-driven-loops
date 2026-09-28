@@ -1,0 +1,5 @@
+<!-- dispatch: codex exec --model gpt-6-luna, model_reasoning_effort=max, service_tier=fast, --sandbox read-only; 08:01:33Z to 08:04:49Z, exit 0, 87,492 tokens. Brief: brief-4.txt -->
+
+VERDICT: PASS
+CHECK 4: PASS - Both triage passages and F12 state the reason, approximate delay, other live-writer categories, and quiet-rerun conditions (`daemon-absent-fallback.md:123`; `cli-hook-transport-down-fail-open.md:103`; `spec.md:90`). The runtime confirms the 1-second stable-write wait, 2-second debounce, and wired reason (`watcher.ts:103-104,420-429`; `advisor-server.ts:357-362`; `watcher-orchestrator.ts:118-124`). Other publication paths include startup scan, shutdown and stale-lease takeover, explicit scan, and rebuild (`advisor-server.ts:138-153`; `lifecycle.ts:49-68,109-116`; `scan.ts:53-62`; `advisor-rebuild.ts:88-96`). The generation schema has no writer identity, so a quiet-rerun change points to the sandbox only under the stated conditions; it does not identify the writer by itself (`generation-metadata.ts:7-13`; `generation.ts:31-46`; `generation-trace.txt:66-67`).
+NOTES: none

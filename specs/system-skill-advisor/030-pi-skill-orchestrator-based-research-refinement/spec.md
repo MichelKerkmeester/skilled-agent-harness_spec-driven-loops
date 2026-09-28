@@ -12,10 +12,10 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-28T05:36:00Z"
+    last_updated_at: "2026-09-28T08:18:17Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Completed 012-reverify-follow-ups"
-    next_safe_action: "None. All twelve phases are complete"
+    recent_action: "Completed 013-review-follow-ups"
+    next_safe_action: "None. All thirteen phases are complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -59,7 +59,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete. Phases 1 to 12 are complete. Phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found until all 45 scenario reruns passed. Phase 10 closed the Codex hook cleanup and every phase 6 review advisory, phase 11 fixed the seven small problems phase 10 had noticed and phase 12 closed the four follow-ups the goal re-verification after phase 11 left |
+| **Status** | Complete. Phases 1 to 13 are complete. Phase 8 tested the refinements inside every CLI, and phase 9 fixed what it found until all 45 scenario reruns passed. Phase 10 closed the Codex hook cleanup and every phase 6 review advisory, and phase 11 fixed the seven small problems phase 10 had noticed. Phase 12 closed the four follow-ups the goal re-verification after phase 11 left, and phase 13 closed what a fresh review of phase 12 found |
 | **Created** | 2026-09-26 |
 | **Branch** | `main` |
 | **Parent Spec** | None. This packet sits directly under the `system-skill-advisor` track root |
@@ -134,6 +134,7 @@ Phase 1 writes research artifacts, plus one fix to the research workflows that i
 | 10 | 010-review-advisories-and-codex-cleanup/ | Run the removal-only Codex installer and restore hook trust, then fix the twelve phase 6 review advisories and the seven siblings found while verifying them | Complete |
 | 11 | 011-observation-fixes/ | Fix the seven small problems phase 10's close-out named: the drift-guard count, an unused import, voice-rule punctuation, placeholder phase descriptions and the `create.sh` numbering behind them, metrics log modes and six Dependabot alerts | Complete |
 | 12 | 012-reverify-follow-ups/ | Close the four follow-ups the goal re-verification after phase 11 left: the operator's Devin approval with the cli-devin rule reworded to match, a signal-free sandbox teardown for CP-003 and CP-004 with five CLI reruns of each, CP-004's July record removed and the scenario 457 benchmark record | Complete |
+| 13 | 013-review-follow-ups/ | Close what a fresh Opus review of phase 12 confirmed: scenario 433 gets the signal-free teardown, all three teardown blocks check their variables and `lsof` and remove with `rm -r`, one watched crash test runs and the phase 12 records are corrected. The reruns also traced a false `CHANGED` to the live advisor's own reindex | Complete |
 
 R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Each waits on a replay or an A/B test that has not run.
 
@@ -159,6 +160,7 @@ R8, R9 and R10 from `001-deep-research/research/research.md` are not planned. Ea
 | 009-test-findings-remediation | 010-review-advisories-and-codex-cleanup | The removal-only installer and its `--check` exist, and the phase 6 advisories are still open | `install-codex-hooks.mjs --check` runs against a temp copy, and the phase 6 report lists the twelve P2 findings |
 | 010-review-advisories-and-codex-cleanup | 011-observation-fixes | Phase 10's close-out lists the seven observations it left outside its scope | The phase 10 close-out names each observation, and phase 11 `spec.md` records them as O1 to O7 |
 | 011-observation-fixes | 012-reverify-follow-ups | The goal re-verification after phase 11 names each follow-up it left for the operator | The parent goal log lists the follow-ups, and phase 12 `spec.md` records them as FU1 to FU4 |
+| 012-reverify-follow-ups | 013-review-follow-ups | A fresh review of phase 12 names each finding with its file and line | Phase 13 `spec.md` records them as F1 to F11 |
 <!-- /ANCHOR:phase-map -->
 
 ---

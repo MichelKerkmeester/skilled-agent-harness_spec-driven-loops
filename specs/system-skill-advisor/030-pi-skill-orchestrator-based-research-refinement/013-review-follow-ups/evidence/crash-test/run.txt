@@ -1,0 +1,50 @@
+started 07:08:41Z, HEAD 4f4d25288c, teardown sha 1c3658031eab
+live generation before: 910b4e92982a34c582eab755e6957e565754d291  .skilled/skills/.state/advisor/skill-graph-generation.json
+live lease names launcher 87524 and daemon 87539; all advisor pids: 9479 9492 87524 87539 
+advisor processes before:
+  pid=9479 ppid=1 .worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=9492 ppid=9479 .worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=87524 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=87539 ppid=87524 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+cold start exit=0 into /tmp/cp004.pVGD0c, freshness "freshness": "live"
+sandbox launcher 26444, daemon 26449 (.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js), socket /tmp/cp004.pVGD0c/sock/daemon-ipc.sock
+checks passed: socket inside the sandbox, neither pid live, 26444 is a launcher
+07:08:45Z SIGKILL sent to sandbox launcher 26444, both sandbox lease files removed
+teardown ran from +.02s to +25.71s and printed:
+  live generation file unchanged
+  sandbox advisor exited; sandbox removed
+
+live generation after:  910b4e92982a34c582eab755e6957e565754d291  .skilled/skills/.state/advisor/skill-graph-generation.json
+live generation file unchanged
+live lease after: 87524 87539 /tmp/system-skill-advisor/1c78cc277b52/daemon-ipc.sock
+advisor processes after:
+  pid=9479 ppid=1 .worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=9492 ppid=9479 .worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=87524 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=87539 ppid=87524 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+leftover sandboxes: 0
+finished 07:09:10Z
+
+fast samples: 186, from +-0.98s to +18.85s
+sample interval: median 0.110s, max 0.130s
+scans: 109, median length 0.180s
+last sample before the kill (+-0.03s): lease=1 socket=daemon-ipc.sock daemon=alive daemon holds: db/skill-graph-daemon-lease.sqlite,db/skill-graph-daemon-lease.sqlite-shm,db/skill-graph-daemon-lease.sqlite-wal,db/skill-graph.sqlite,db/skill-graph.sqlite-shm,db/skill-graph.sqlite-wal,sock/daemon-ipc.sock
+
+both lease files gone: +0.07s
+socket folder empty: +15.85s
+daemon holds no skill-graph.sqlite: +15.74s
+daemon holds no sandbox path: +15.74s
+daemon gone: +15.85s
+lease-and-socket test says not running: +15.85s
+test with the open-file clause says not running: +15.95s
+first empty open-file scan after the kill: started +15.73s, ended +15.91s
+
+window where only the open-file clause saw the daemon: 0.10s
+the socket folder emptied after the database closed (-0.11s between them)
+
+what the sandbox daemon held open, each change:
+  +-0.98s  db/skill-graph-daemon-lease.sqlite,db/skill-graph-daemon-lease.sqlite-shm,db/skill-graph-daemon-lease.sqlite-wal,db/skill-graph.sqlite,db/skill-graph.sqlite-shm,db/skill-graph.sqlite-wal,sock/daemon-ipc.sock
+  +15.74s  -
+
+live lease pid across all samples: 87524
+live launcher across all samples: alive; live daemon: alive

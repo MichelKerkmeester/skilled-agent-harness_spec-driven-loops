@@ -44,3 +44,15 @@ d73d5b161d 2026-09-27T17:19+0200 docs(specs): close the Skilled release-line pac
 ## uncommitted changes in the same paths, this phase's and other sessions'
  M .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/daemon-absent-fallback.md
  M .skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md
+
+## correction, added by phase 13 on 2026-09-28
+The path list above left out the compiled route manifests, which the advisor reads when it recommends a hub.
+- 666abc1a22 and bec26045d0 each changed the sk-doc route manifest,
+  .skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json, and its authored copy.
+- Phase 12 itself re-minted the cli-external-orchestration manifest and its authored copy, uncommitted when this
+  record was written.
+- The advisor attaches a hub's compiled route to that hub's recommendation as extra metadata
+  (runtime/handlers/advisor-recommend.ts:348-378). None of the seven carried scenarios, CL-001, CL-005, CL-006,
+  NC-001, NC-004, 433 and 457, checks a compiled route, so their phase 11 verdicts stand. "Only changelog entries
+  changed" was wrong. No commit changed code in these paths, and the route manifests that changed feed only that
+  metadata.
