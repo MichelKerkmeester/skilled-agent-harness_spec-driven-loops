@@ -39,16 +39,28 @@
       "first"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
+      ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
+      "benchmark/reports/README.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".hermes/skills/cli-classifier/SKILL.md",
+      ".hermes/skills/cli-deem/SKILL.md",
+      ".skilled/skills/cli-classifier/SKILL.md",
+      ".skilled/skills/cli-classifier/mode-registry.json",
+      ".skilled/skills/cli-classifier/graph-metadata.json",
+      ".skilled/skills/cli-classifier/leaf-manifest.json",
+      ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      "scratch/build/build-evidence.md",
+      "scratch/build/replay/stage2-replay.cjs"
     ],
     "entities": [
       {
@@ -82,9 +94,51 @@
         "source": "derived"
       },
       {
+        "name": "cli-deem.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-deem.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
         "name": "skill-graph.json",
         "kind": "config",
         "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/cli-classifier/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/leaf-manifest.json",
         "source": "derived"
       },
       {
@@ -97,6 +151,18 @@
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-replay.cjs",
+        "kind": "file",
+        "path": "scratch/build/replay/stage2-replay.cjs",
         "source": "derived"
       },
       {
@@ -140,65 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Build Roles",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Reopen Deem",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four Planned phases want a Deem arm (002, 003, 005 and 006), and the repository has 0 runtime Deem callers",
     "created_at": "2026-09-27T09:21:54Z",
-    "last_save_at": "2026-09-28T06:59:25.027Z",
+    "last_save_at": "2026-09-28T11:28:40.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51122c2cb03b4936ab518cb0bed89235ce861c0f800236e2627c7a031fe8bdc0",
+    "source_fingerprint": "sha256:760c62ed47a955f7f76411cfef1f0fb3eab19bbbf038cd1a1805c29bee858c7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9588fb9e0611a97190ec507f343715a494ac720634b91730debece821c0f0d2c",
-      "plan.md": "e870620a3a2427e31f594148bd8b63fd7d839a382e4d769268016256d00fdd99",
-      "tasks.md": "94db837734f496d0353118279f8813593b298e73096aab15698ecb6d16b268a2",
-      "implementation-summary.md": "c0f5cc473c422c25859621137a0143570709588441a6c6638e8522fbee18c4f4"
+      "spec.md": "19153b5b757048bf411781f8a2a1e7ef96ff20cd0ad1834b2065b364cd9ea9b7",
+      "plan.md": "a064e4b691951ba72cf43d8908d577c08cfe489e94c351eda07d54816ec396cf",
+      "tasks.md": "5fc958c3ae1f94b3315e76eb87de1a4b15020ce6f13fa3e79a0018fb7dfd35fa",
+      "implementation-summary.md": "9da10ce66f26d3cfb769ba1daa9b2cf90b9678cb9ca1bc1da60197a5886a1580"
     },
     "last_active_at": null
   }

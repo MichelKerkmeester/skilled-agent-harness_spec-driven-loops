@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: cli-classifier Hub with the cli-deem Client"
-description: "A new cli-classifier hub root (proposed) with one transport mode, cli-deem (proposed): a dependency-free Node client that translates jev-style flags into Deem's request shape, returns jev-cli's answer shape and implements the stub-refusing Deem check as cli-deem health. Fake-server tests first, then the orchestrator's one live health call."
+description: "A new cli-classifier hub root with one transport mode, cli-deem: a dependency-free Node client that translates jev-style flags into Deem's request shape, returns jev-cli's answer shape and implements the stub-refusing Deem check as cli-deem health. Fake-server tests first, then the orchestrator's one live health call."
 trigger_phrases:
   - "cli-classifier hub plan"
   - "cli-deem client plan"
@@ -23,14 +23,14 @@ contextType: "implementation"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Node.js ES module (`cli-deem.mjs`, proposed) using only `node:` built-ins (`http`, `fs`, `child_process` for the source commit, `process`). JSON and Markdown for the hub files |
+| **Language/Stack** | Node.js ES module (`cli-deem.mjs`) using only `node:` built-ins (`http`, `fs`, `child_process` for the source commit, `process`). JSON and Markdown for the hub files |
 | **Framework** | The parent-hub canon checked by `.skilled/commands/doctor/scripts/parent-skill-check.cjs`. The local Deem server's HTTP API at `127.0.0.1:8300` |
 | **Storage** | None. The client writes nothing. The commit pair is read from `~/.local/share/deem/` |
-| **Testing** | `node --test` on `cli-deem/scripts/tests/cli-deem.test.mjs` (proposed) against an in-test fake server on an ephemeral port, `parent-skill-check.cjs` on the hub, a two-stage route replay, `sync-skills-hermes.cjs --check` and `git status --porcelain` |
+| **Testing** | `node --test` on `cli-deem/scripts/tests/cli-deem.test.mjs` against an in-test fake server on an ephemeral port, `parent-skill-check.cjs` on the hub, a two-stage route replay, `sync-skills-hermes.cjs --check` and `git status --porcelain` |
 
 ### Overview
 
-The phase mints `.skilled/skills/cli-classifier/` (proposed) as a parent hub with one transport mode, `cli-deem` (proposed). The mode's script takes `jev`-like flags, posts Deem's own request shape to the local server and prints `jev-cli`'s answer shape, so an arm written for `jev` output reads Deem output with no second parser. `cli-deem health` is the Deem half of the parent goal's D1. The source is `../007-classifier-deep-research/research/research.md` section 14 (`### 008-cli-classifier-hub (new)`), section 12 (`### R23.` and the shared two-backend gate contract) and section 3 (the wire, the Deem check and the lifecycle).
+The phase mints `.skilled/skills/cli-classifier/` as a parent hub with one transport mode, `cli-deem`. The mode's script takes `jev`-like flags, posts Deem's own request shape to the local server and prints `jev-cli`'s answer shape, so an arm written for `jev` output reads Deem output with no second parser. `cli-deem health` is the Deem half of the parent goal's D1. The source is `../007-classifier-deep-research/research/research.md` section 14 (`### 008-cli-classifier-hub (new)`), section 12 (`### R23.` and the shared two-backend gate contract) and section 3 (the wire, the Deem check and the lifecycle).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -44,9 +44,9 @@ The phase mints `.skilled/skills/cli-classifier/` (proposed) as a parent hub wit
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,7 +94,7 @@ D5 of the parent goal sets who builds. A fresh Opus 5.5 xhigh build orchestrator
 2. Write `cli-deem.mjs` and its tests against an in-test fake server: a stub backend refused, a wrong model id, a refused connection, an HTTP 400, 27 options, 65 questions, the answer round trip and duplicate descriptions. No test reaches port 8300.
 3. Write the packet's `SKILL.md`, three references and feature catalog, then the hub root files, all through sk-doc, and run `parent-skill-check.cjs` on the hub.
 4. Regenerate the advisor graph, the trigger index and the Hermes copies, then run the two-stage route replay of a Deem prompt.
-5. Hand the orchestrator the one live `cli-deem health`, which should print `torch`, `deem-0.8-v1` and the pair `8cbabbb` and `6755b30`.
+5. Hand the orchestrator the one live `cli-deem health`, which should print `torch`, `deem-0.8-v1` and the pair `deem-ctl status` prints. That was `8cbabbb` and `6755b30` when this plan was written. A release landed on 2026-09-28, so the served pair is now `8cbabbb` and `7cf293f`.
 6. Run `git status --porcelain` and confirm only the hub, this phase folder and the generated files `spec.md` REQ-008 names changed.
 <!-- /ANCHOR:phases -->
 
