@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c0b2fa018a53cfe4714aa7f0b6c5003f04e0713a5e60552ba1b21f55e2793d7f",
+  "corpusHash": "c58a297751f9ebce06a60d9e6f4eae35aa0c9986ff191caf01c238dd58e73629",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -18,7 +18,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23224,
+  "includedPathCount": 23234,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2772,6 +2772,7 @@
     ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/README.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/quality-gate/quality-checklist.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
@@ -5977,6 +5978,7 @@
     ".skilled/skills/sk-doc/changelog/v2.2.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.2.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.2.3.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
@@ -7927,6 +7929,7 @@
     ".skilled/skills/system-spec-kit/changelog/v4.1.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.1.4.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v4.1.5.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -11560,6 +11563,8 @@
     "specs/sk-doc/062-doc-validation-off-switches/acceptance-criteria.md",
     "specs/sk-doc/062-doc-validation-off-switches/implementation-summary.md",
     "specs/sk-doc/062-doc-validation-off-switches/plan.md",
+    "specs/sk-doc/062-doc-validation-off-switches/review/fanout-attribution.md",
+    "specs/sk-doc/062-doc-validation-off-switches/review/review-report.md",
     "specs/sk-doc/062-doc-validation-off-switches/spec.md",
     "specs/sk-doc/062-doc-validation-off-switches/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
@@ -23212,7 +23217,12 @@
     "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/research/resource-map.md",
     "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/spec.md",
     "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/changelog/changelog-033-066-pre-v4-spec-upgrade.md",
+    "specs/system-speckit/033-system-speckit-v4/changelog/changelog-033-067-root-docs-and-git-hook-disclosure.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md",
     "specs/system-speckit/034-create-canonical-specs-root/implementation-summary.md",
@@ -23246,7 +23256,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "15c274e4baa06ba9c625163cc081847c394580554a054c5af97ad220e8d455ff",
+  "manifestHash": "f3e7c97f379c8bab2f5e05c497c230c63b867922798fa8917d929297cc5b6735",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25266,6 +25276,10 @@
     },
     {
       "path": "specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/062-doc-validation-off-switches/review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -28102,6 +28116,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure/scratch",
       "reason": "excluded directory"
     },
     {
