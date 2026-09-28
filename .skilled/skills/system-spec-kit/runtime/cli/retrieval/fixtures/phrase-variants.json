@@ -1,5 +1,5 @@
 {
-  "manifestHash": "26e65b67d73ea86fa1151bbb862bb17edde54c2a80f8630c0ebb9d8ae293ba69",
+  "manifestHash": "9d9c6df8b97a62a2bdef85df287ed699df57e84ba07c9f8ce9cbf66847ec7c7b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8367,6 +8367,21 @@
     "advisor caller rewire": [
       "advisor caller rewire"
     ],
+    "advisor changelog closure gate": [
+      "advisor changelog closure gate"
+    ],
+    "advisor changelog four part names": [
+      "advisor changelog four-part names"
+    ],
+    "advisor changelog four part rename": [
+      "advisor changelog four-part rename"
+    ],
+    "advisor changelog rename plan": [
+      "advisor changelog rename plan"
+    ],
+    "advisor changelog rename tasks": [
+      "advisor changelog rename tasks"
+    ],
     "advisor cleanup": [
       "advisor cleanup"
     ],
@@ -8595,6 +8610,9 @@
     ],
     "advisor hook 4 runtime parity": [
       "advisor hook 4-runtime parity"
+    ],
+    "advisor hook budget cap": [
+      "advisor hook budget cap"
     ],
     "advisor hook cli spawn trim": [
       "advisor hook cli spawn trim"
@@ -9016,6 +9034,9 @@
     ],
     "advisor source path snake case": [
       "advisor source path snake case"
+    ],
+    "advisor source root move": [
+      "advisor source root move"
     ],
     "advisor stale wording fix": [
       "advisor stale wording fix"
@@ -14509,6 +14530,9 @@
     "casual prompt gate tasks": [
       "casual prompt gate tasks"
     ],
+    "casual prompts skip the advisor": [
+      "casual prompts skip the advisor"
+    ],
     "cat 24 409 benchmark": [
       "cat-24-409 benchmark",
       "cat-24/409 benchmark"
@@ -14971,8 +14995,20 @@
     "changelog accuracy": [
       "changelog accuracy"
     ],
+    "changelog alignment acceptance criteria": [
+      "changelog alignment acceptance criteria"
+    ],
     "changelog alignment audit": [
       "changelog alignment audit"
+    ],
+    "changelog alignment plan": [
+      "changelog alignment plan"
+    ],
+    "changelog alignment summary": [
+      "changelog alignment summary"
+    ],
+    "changelog alignment tasks": [
+      "changelog alignment tasks"
     ],
     "changelog anchored version": [
       "changelog anchored version"
@@ -17313,6 +17349,9 @@
     "cli codex 1 9 4 0": [
       "cli-codex 1.9.4.0"
     ],
+    "cli codex 1 9 5 0": [
+      "cli-codex 1.9.5.0"
+    ],
     "cli codex adapter": [
       "cli-codex adapter"
     ],
@@ -17474,6 +17513,9 @@
     ],
     "cli codex v1 9 4 0": [
       "cli-codex v1.9.4.0"
+    ],
+    "cli codex v1 9 5 0": [
+      "cli-codex v1.9.5.0"
     ],
     "cli command aliases snake kebab camel": [
       "cli command aliases snake kebab camel"
@@ -17889,6 +17931,9 @@
     "cli external orchestration 1 7 0 0": [
       "cli-external-orchestration 1.7.0.0"
     ],
+    "cli external orchestration 1 7 1 0": [
+      "cli-external-orchestration 1.7.1.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -17966,6 +18011,9 @@
     ],
     "cli external orchestration v1 7 0 0": [
       "cli-external-orchestration v1.7.0.0"
+    ],
+    "cli external orchestration v1 7 1 0": [
+      "cli-external-orchestration v1.7.1.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -21484,6 +21532,9 @@
     "codex hook parity": [
       "codex hook parity"
     ],
+    "codex hook parity scenario": [
+      "codex hook parity scenario"
+    ],
     "codex hooks": [
       "codex hooks"
     ],
@@ -21495,6 +21546,9 @@
     ],
     "codex hooks rewiring shipped": [
       "codex hooks rewiring shipped"
+    ],
+    "codex hooks run once": [
+      "codex hooks run once"
     ],
     "codex hooks watchdog": [
       "codex hooks watchdog"
@@ -26236,6 +26290,9 @@
     "cursor grok glm effort suffix": [
       "cursor grok glm effort suffix"
     ],
+    "cursor grok model allowlist": [
+      "cursor grok model allowlist"
+    ],
     "cursor hook contract": [
       "cursor hook contract"
     ],
@@ -29225,6 +29282,9 @@
     "deep loop runtime 1 5 0 1": [
       "deep-loop-runtime 1.5.0.1"
     ],
+    "deep loop runtime 1 5 1 0": [
+      "deep-loop-runtime 1.5.1.0"
+    ],
     "deep loop runtime ci job": [
       "deep-loop runtime ci job"
     ],
@@ -29281,6 +29341,9 @@
     ],
     "deep loop runtime v1 5 0 1": [
       "deep-loop-runtime v1.5.0.1"
+    ],
+    "deep loop runtime v1 5 1 0": [
+      "deep-loop-runtime v1.5.1.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -29578,6 +29641,9 @@
     ],
     "deep research 1 15 0 0": [
       "deep-research 1.15.0.0"
+    ],
+    "deep research 1 15 1 0": [
+      "deep-research 1.15.1.0"
     ],
     "deep research 1 2 0 0": [
       "deep-research 1.2.0.0"
@@ -30196,6 +30262,9 @@
     "deep research v1 15 0 0": [
       "deep-research v1.15.0.0"
     ],
+    "deep research v1 15 1 0": [
+      "deep-research v1.15.1.0"
+    ],
     "deep research v1 2 0 0": [
       "deep-research v1.2.0.0"
     ],
@@ -30274,6 +30343,9 @@
     ],
     "deep review 1 11 0 36": [
       "deep-review 1.11.0.36"
+    ],
+    "deep review 1 11 1 0": [
+      "deep-review 1.11.1.0"
     ],
     "deep review 1 2 0 0": [
       "deep-review 1.2.0.0"
@@ -30873,6 +30945,9 @@
     ],
     "deep review v1 11 0 36": [
       "deep-review v1.11.0.36"
+    ],
+    "deep review v1 11 1 0": [
+      "deep-review v1.11.1.0"
     ],
     "deep review v1 2 0 0": [
       "deep-review v1.2.0.0"
@@ -34273,6 +34348,9 @@
     ],
     "drift guard scripts path fixed": [
       "drift guard scripts path fixed"
+    ],
+    "drift guard wired into ci": [
+      "drift guard wired into CI"
     ],
     "drift marker lock staleness constant mismatch": [
       "drift marker lock staleness constant mismatch"
@@ -38006,6 +38084,9 @@
     "fan out prototype result": [
       "fan-out prototype result"
     ],
+    "fan out research closes complete": [
+      "fan-out research closes complete"
+    ],
     "fan out research plan": [
       "fan-out research plan"
     ],
@@ -38017,6 +38098,9 @@
     ],
     "fan out review campaign": [
       "fan-out review campaign"
+    ],
+    "fan out review closes complete": [
+      "fan-out review closes complete"
     ],
     "fan out review runtime database exempt": [
       "fan-out review runtime database exempt"
@@ -61105,6 +61189,9 @@
     "packet 030 audit closeout": [
       "packet 030 audit closeout"
     ],
+    "packet 030 changelog entries": [
+      "packet 030 changelog entries"
+    ],
     "packet 035 baseline": [
       "packet 035 baseline"
     ],
@@ -66384,8 +66471,8 @@
     "prompt isolation safety": [
       "prompt isolation safety"
     ],
-    "prompt knowledge drift guard extended and wired into ci": [
-      "Prompt-Knowledge Drift Guard Extended and Wired into CI"
+    "prompt knowledge drift guard": [
+      "prompt-knowledge drift guard"
     ],
     "prompt license registry": [
       "prompt license registry"
@@ -70318,6 +70405,9 @@
     "remote push permission": [
       "remote push permission"
     ],
+    "removal only codex hook installer": [
+      "removal-only codex hook installer"
+    ],
     "removal usage evidence check": [
       "removal usage evidence check"
     ],
@@ -71446,6 +71536,9 @@
     ],
     "research config record": [
       "research config record"
+    ],
+    "research confirm quality guards": [
+      "research confirm quality guards"
     ],
     "research context snapshot": [
       "research context snapshot"
@@ -73281,6 +73374,9 @@
     ],
     "review stop decisions five gates": [
       "review stop decisions five gates"
+    ],
+    "review stop policy honored": [
+      "review stop policy honored"
     ],
     "review stop signals": [
       "review stop signals"
@@ -78045,6 +78141,9 @@
     "shared synthesis close out": [
       "shared synthesis close-out"
     ],
+    "shared synthesis close out script": [
+      "shared synthesis close-out script"
+    ],
     "shared tool runner": [
       "shared tool runner"
     ],
@@ -79209,6 +79308,9 @@
     "sk code opencode 1 0 0 5": [
       "sk-code-opencode 1.0.0.5"
     ],
+    "sk code opencode 1 0 1 0": [
+      "sk-code-opencode 1.0.1.0"
+    ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
     ],
@@ -79241,6 +79343,9 @@
     ],
     "sk code opencode v1 0 0 5": [
       "sk-code-opencode v1.0.0.5"
+    ],
+    "sk code opencode v1 0 1 0": [
+      "sk-code-opencode v1.0.1.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -81958,6 +82063,9 @@
     "skill advisor catalog alignment": [
       "skill advisor catalog alignment"
     ],
+    "skill advisor changelog alignment": [
+      "skill advisor changelog alignment"
+    ],
     "skill advisor cli": [
       "skill advisor cli",
       "skill-advisor cli"
@@ -82256,6 +82364,9 @@
     ],
     "skill advisor regression py": [
       "skill_advisor_regression.py"
+    ],
+    "skill advisor release notes section": [
+      "skill advisor release notes section"
     ],
     "skill advisor rename completion": [
       "skill_advisor rename completion"
@@ -82691,6 +82802,9 @@
     ],
     "skill benchmark upcaster tasks": [
       "skill benchmark upcaster tasks"
+    ],
+    "skill brief is back": [
+      "skill brief is back"
     ],
     "skill changelog retrofit": [
       "skill changelog retrofit"
@@ -88612,11 +88726,11 @@
     "system skill advisor": [
       "system skill advisor"
     ],
-    "system skill advisor 0 1 0": [
-      "system-skill-advisor 0.1.0"
+    "system skill advisor 0 1 0 0": [
+      "system-skill-advisor 0.1.0.0"
     ],
-    "system skill advisor 0 10 0": [
-      "system-skill-advisor 0.10.0"
+    "system skill advisor 0 10 0 0": [
+      "system-skill-advisor 0.10.0.0"
     ],
     "system skill advisor 0 11 0 0": [
       "system-skill-advisor 0.11.0.0"
@@ -88624,29 +88738,35 @@
     "system skill advisor 0 11 1 0": [
       "system-skill-advisor 0.11.1.0"
     ],
-    "system skill advisor 0 2 0": [
-      "system-skill-advisor 0.2.0"
+    "system skill advisor 0 11 2 0": [
+      "system-skill-advisor 0.11.2.0"
     ],
-    "system skill advisor 0 3 0": [
-      "system-skill-advisor 0.3.0"
+    "system skill advisor 0 12 0 0": [
+      "system-skill-advisor 0.12.0.0"
     ],
-    "system skill advisor 0 4 0": [
-      "system-skill-advisor 0.4.0"
+    "system skill advisor 0 2 0 0": [
+      "system-skill-advisor 0.2.0.0"
     ],
-    "system skill advisor 0 5 0": [
-      "system-skill-advisor 0.5.0"
+    "system skill advisor 0 3 0 0": [
+      "system-skill-advisor 0.3.0.0"
     ],
-    "system skill advisor 0 6 0": [
-      "system-skill-advisor 0.6.0"
+    "system skill advisor 0 4 0 0": [
+      "system-skill-advisor 0.4.0.0"
     ],
-    "system skill advisor 0 7 0": [
-      "system-skill-advisor 0.7.0"
+    "system skill advisor 0 5 0 0": [
+      "system-skill-advisor 0.5.0.0"
     ],
-    "system skill advisor 0 8 0": [
-      "system-skill-advisor 0.8.0"
+    "system skill advisor 0 6 0 0": [
+      "system-skill-advisor 0.6.0.0"
     ],
-    "system skill advisor 0 9 0": [
-      "system-skill-advisor 0.9.0"
+    "system skill advisor 0 7 0 0": [
+      "system-skill-advisor 0.7.0.0"
+    ],
+    "system skill advisor 0 8 0 0": [
+      "system-skill-advisor 0.8.0.0"
+    ],
+    "system skill advisor 0 9 0 0": [
+      "system-skill-advisor 0.9.0.0"
     ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
@@ -88732,11 +88852,11 @@
     "system skill advisor topology": [
       "system_skill_advisor topology"
     ],
-    "system skill advisor v0 1 0": [
-      "system-skill-advisor v0.1.0"
+    "system skill advisor v0 1 0 0": [
+      "system-skill-advisor v0.1.0.0"
     ],
-    "system skill advisor v0 10 0": [
-      "system-skill-advisor v0.10.0"
+    "system skill advisor v0 10 0 0": [
+      "system-skill-advisor v0.10.0.0"
     ],
     "system skill advisor v0 11 0 0": [
       "system-skill-advisor v0.11.0.0"
@@ -88744,29 +88864,35 @@
     "system skill advisor v0 11 1 0": [
       "system-skill-advisor v0.11.1.0"
     ],
-    "system skill advisor v0 2 0": [
-      "system-skill-advisor v0.2.0"
+    "system skill advisor v0 11 2 0": [
+      "system-skill-advisor v0.11.2.0"
     ],
-    "system skill advisor v0 3 0": [
-      "system-skill-advisor v0.3.0"
+    "system skill advisor v0 12 0 0": [
+      "system-skill-advisor v0.12.0.0"
     ],
-    "system skill advisor v0 4 0": [
-      "system-skill-advisor v0.4.0"
+    "system skill advisor v0 2 0 0": [
+      "system-skill-advisor v0.2.0.0"
     ],
-    "system skill advisor v0 5 0": [
-      "system-skill-advisor v0.5.0"
+    "system skill advisor v0 3 0 0": [
+      "system-skill-advisor v0.3.0.0"
     ],
-    "system skill advisor v0 6 0": [
-      "system-skill-advisor v0.6.0"
+    "system skill advisor v0 4 0 0": [
+      "system-skill-advisor v0.4.0.0"
     ],
-    "system skill advisor v0 7 0": [
-      "system-skill-advisor v0.7.0"
+    "system skill advisor v0 5 0 0": [
+      "system-skill-advisor v0.5.0.0"
     ],
-    "system skill advisor v0 8 0": [
-      "system-skill-advisor v0.8.0"
+    "system skill advisor v0 6 0 0": [
+      "system-skill-advisor v0.6.0.0"
     ],
-    "system skill advisor v0 9 0": [
-      "system-skill-advisor v0.9.0"
+    "system skill advisor v0 7 0 0": [
+      "system-skill-advisor v0.7.0.0"
+    ],
+    "system skill advisor v0 8 0 0": [
+      "system-skill-advisor v0.8.0.0"
+    ],
+    "system skill advisor v0 9 0 0": [
+      "system-skill-advisor v0.9.0.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -88986,6 +89112,9 @@
     ],
     "system spec kit 4 1 3 0": [
       "system-spec-kit 4.1.3.0"
+    ],
+    "system spec kit 4 1 4 0": [
+      "system-spec-kit 4.1.4.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -89334,6 +89463,9 @@
     ],
     "system spec kit v4 1 3 0": [
       "system-spec-kit v4.1.3.0"
+    ],
+    "system spec kit v4 1 4 0": [
+      "system-spec-kit v4.1.4.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -91768,6 +91900,9 @@
     "turn end mutation validation plan": [
       "turn_end mutation validation plan"
     ],
+    "turn without a suggestion": [
+      "turn without a suggestion"
+    ],
     "twelve confirmed code findings": [
       "twelve confirmed code findings"
     ],
@@ -91845,6 +91980,9 @@
     ],
     "two lineage fan out": [
       "two lineage fan-out"
+    ],
+    "two live drift guards": [
+      "two live drift guards"
     ],
     "two model fan out results": [
       "two model fan out results"
