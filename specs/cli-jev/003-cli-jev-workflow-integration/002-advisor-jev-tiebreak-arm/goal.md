@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm"
-    last_updated_at: "2026-09-28T15:55:00Z"
+    last_updated_at: "2026-09-28T16:20:00Z"
     last_updated_by: "closure-leaf"
-    recent_action: "Closed from build and session evidence, 7 of 7 criteria ticked"
+    recent_action: "Recorded briefs 41 and 42 and review round 5"
     next_safe_action: "Orchestrator commits the phase docs"
     blockers: []
     key_files:
@@ -135,6 +135,7 @@ and findings belong here.
 | Review round 4 | Done | PASS. The refusal adds no call before it, and the one doc P2 closed with briefs 39 and 40. No open P0 or P1. Source: session record |
 | Host reruns from the final state | Done | Eval file 55 passed, exit 0. Full advisor suite 130 files, 1026 passed, 6 skipped, exit 0, against the 129 / 971 / 6 baseline: +1 file, +55 tests, 0 failures. Typecheck exit 0. Default run byte-identical. Source: session record |
 | Phase docs | Done | Closure leaf, 2026-09-28: tasks, this log and `implementation-summary.md` record the evidence, and `spec.md` and `plan.md` carry the corrected premises. Gate results are in `implementation-summary.md` Verification |
+| T014 and T025 closed | Done | After the closure commit `268bc10e7c`, two test-only Cursor briefs. Brief 41: an answer outside the submitted keys is recorded `unmeasured` for Jev and Deem and leaves the sign test. Brief 42: an exit 130 in the choice loop prints `<arm> arm stopped: interrupted` and `partial_rows=0`, with no verdict and exit 0, for both arms. Script byte-identical (`git diff --quiet` exit 0), eval file 59 passed, full advisor suite 1030 passed and 6 skipped (+4, run by the build leaf), review round 5 PASS. Committed as `d1c6db0cde`, and 42 of 42 tasks are ticked. Still open: round 5's P2, `main`'s doc comment at `score-jev-tiebreak.mjs:1509-1511` not saying a stopped arm exits 0, and no test for exit 130 during `jev auth test` (`:949`) or the Jev calibration (`:991`). Source: build record section 15, session record |
 
 ### Deciding verdicts for phase 009
 

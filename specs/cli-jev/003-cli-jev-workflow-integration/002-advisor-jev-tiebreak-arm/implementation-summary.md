@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Offline Advisor Jev Tie-Break Arm"
-description: "score-jev-tiebreak.mjs now measures offline whether a Jev or local Deem choice beats the skill advisor's own order inside its near-tie cluster. The default run is a zero-call census, and each model arm runs only behind its own switch and gate. Both live runs printed kill, so no Deem keep unlocks phase 009. Built as 807ce287be and 3d3885274d."
+description: "score-jev-tiebreak.mjs now measures offline whether a Jev or local Deem choice beats the skill advisor's own order inside its near-tie cluster. The default run is a zero-call census, and each model arm runs only behind its own switch and gate. Both live runs printed kill, so no Deem keep unlocks phase 009. Built as 807ce287be and 3d3885274d, with test-only briefs 41 and 42 in d1c6db0cde."
 trigger_phrases:
   - "advisor jev tie-break summary"
   - "score-jev-tiebreak status"
@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm"
-    last_updated_at: "2026-09-28T15:55:00Z"
+    last_updated_at: "2026-09-28T16:20:00Z"
     last_updated_by: "closure-leaf"
-    recent_action: "Closed from build and session evidence, 7 of 7 criteria ticked"
+    recent_action: "Recorded briefs 41 and 42 and review round 5, 42 of 42 tasks ticked"
     next_safe_action: "Orchestrator commits the phase docs"
     blockers: []
     key_files:
@@ -111,7 +111,7 @@ Both verdicts are `kill`, because each column's losses outweigh its wins with a 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs` | Created | The census, comparators, power line, both gates and arms, both calibration halves, the column comparison and `report.json`. Briefs 01 to 17 and 30 to 36 |
-| `.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts` | Created | 55 cases with stub `jev` and `cli-deem` binaries and a fake Deem server. Briefs 01 to 18, 12b and 30 to 37 |
+| `.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts` | Created | 59 cases with stub `jev` and `cli-deem` binaries and a fake Deem server. Briefs 01 to 18, 12b, 30 to 37, 41 and 42 |
 | `feature-catalog/scorer-fusion/tie-break-eval.md` and `feature-catalog/feature-catalog.md` | Created, Modified | The catalog entry and its index row, 43 to 44 features. Briefs 22, 23 and 38 |
 | `manual-testing-playbook/scorer-fusion/tie-break-eval.md` and `manual-testing-playbook/manual-testing-playbook.md` | Created, Modified | Scenario SC-006 and its index row, 47 to 48 scenarios. Briefs 24 and 25 |
 | `runtime/tests/manual-testing-playbook.vitest.ts` | Modified | Its six pinned `47`s moved to `48` for the new scenario. Brief 26, deviation 1 |
@@ -125,7 +125,7 @@ Both verdicts are `kill`, because each column's losses outweigh its wins with a 
 | `scratch/w3-build/` | Created | The build record: `build-evidence.md`, the briefs and their bodies, the doc sidecars, the probe, the logs and the run outputs |
 | `spec.md`, `plan.md`, `tasks.md`, `goal.md` and this file | Modified | The closure pass recorded the evidence and corrected the stale premises |
 
-Every path above except the trigger index, the Hermes copy and this folder is under `.skilled/skills/system-skill-advisor/`. The build commit `807ce287be` holds 443 files, 15 build paths and 428 record files. The follow-up `3d3885274d` holds 71, 5 skill files and 66 record files. The index commit `64968e9b58` holds 4. `git diff --name-only 31cf3bf2af HEAD`, with this folder left out, lists 19 paths, each one a row of `spec.md` Files to Change.
+Every path above except the trigger index, the Hermes copy and this folder is under `.skilled/skills/system-skill-advisor/`. The build commit `807ce287be` holds 443 files, 15 build paths and 428 record files. The follow-up `3d3885274d` holds 71, 5 skill files and 66 record files. The index commit `64968e9b58` holds 4. The closure docs are `268bc10e7c`, and `d1c6db0cde` holds 23, the vitest file and 22 record files. `git diff --name-only 31cf3bf2af HEAD`, with this folder left out, lists 19 paths, each one a row of `spec.md` Files to Change.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -135,7 +135,9 @@ Every path above except the trigger index, the Hermes copy and this folder is un
 
 The operator released the phase on 2026-09-28 (parent `goal.md` D3), and it was built third, after 008 and 016. A build orchestrator, Opus 5.5 at xhigh, took a baseline and ran a read-only planning probe. It then sent 40 single-change briefs from `scratch/w3-build/briefs/` by Bash: 23 to Cursor `grok-4.7-xhigh-fast`, 5 to Devin `deepseek-v4-1-flash-max` and 12 to Pi `cline-pass/cline-pass/deepseek-v4.1-flash` at xhigh. Every handback read `STATUS: DONE` on first dispatch, and each tree diff held only the files its brief named. The one corrective brief, 12b, updated a gate test that brief 12's new arm had made stale.
 
-The orchestrator session made both live runs and got four cross-family reviews of the code from a Claude `review` agent. Round 1 failed on one P0 and two P1s, fixed by briefs 30 to 34. Round 2 failed on one P1 that a fix had introduced, fixed by brief 35. Round 3 passed with two P2s. The session committed the build as `807ce287be` and rebuilt the trigger index as `64968e9b58`. It then closed the two P2s with briefs 36 to 38, and round 4 passed with one doc P2, closed by briefs 39 and 40. The session committed that follow-up as `3d3885274d` and reran the gates from the final state. This closure pass recorded the evidence in the phase docs and ran the phase gates.
+The orchestrator session made both live runs and got four cross-family reviews of the code from a Claude `review` agent. Round 1 failed on one P0 and two P1s, fixed by briefs 30 to 34. Round 2 failed on one P1 that a fix had introduced, fixed by brief 35. Round 3 passed with two P2s. The session committed the build as `807ce287be` and rebuilt the trigger index as `64968e9b58`. It then closed the two P2s with briefs 36 to 38, and round 4 passed with one doc P2, closed by briefs 39 and 40. The session committed that follow-up as `3d3885274d` and reran the gates. The first closure pass recorded the evidence, left T014 and T025 open and was committed as `268bc10e7c`.
+
+The session then closed both tasks with two test-only briefs to Cursor. Brief 41 tests an answer outside the submitted keys, and brief 42 tests an exit 130 in the choice loop, each for both arms. The script stayed byte-identical, review round 5 passed, and the session committed the tests as `d1c6db0cde`. A second closure pass recorded that evidence and reran the phase gates.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -167,7 +169,7 @@ The orchestrator session made both live runs and got four cross-family reviews o
 | Check | Result |
 |-------|--------|
 | Build, baseline at HEAD `10697dcceb` | `npm run build` exit 0. Full advisor suite `Test Files 129 passed (129)`, `Tests 971 passed \| 6 skipped (977)`, exit 0. Typecheck clean. `validate_document.py` 9 of 9 exit 0. Playbook `scenarios=47 violations=0`, skill-root metadata 16 of 16, Hermes 73 in sync (`E` section 1) |
-| Build, each brief | `node --check` exit 0 after every script brief, and the eval file green after each one, 7 cases after brief 01 up to 55 after brief 37 (`E` sections 3, 10, 11 and 13) |
+| Build, each brief | `node --check` exit 0 after every script brief, and the eval file green after each one, 7 cases after brief 01 up to 55 after brief 37 and 59 after brief 42 (`E` sections 3, 10, 11, 13 and 15) |
 | Build, proof P1 default run with logging stubs first on PATH | Census, `baseline: holdout_top1=53/70`, four comparators and the power line, exit 0, neither stub log created, porcelain unchanged (`E` section 5) |
 | Build, proof P2 gate skips | `jev arm skipped: no credential` with `provider=openrouter`, `jev arm skipped: version` with `found="jev 0.2.3"`, `deem arm skipped: stub backend` and `deem arm skipped: model` with `found="deem-1.5"`. Each exit 0 with the census as a byte-identical prefix and no judgment in the stub logs |
 | Build, proof P3 no key and one provider | `grep -nE 'API_KEY\|TYPESAFE' S` no match, exit 1. Jev stub log 336 lines, 335 with exactly `--provider openrouter` and the other `--version`. `cli-deem` stub log 529 lines, none with `--provider` or a key-like word |
@@ -176,15 +178,18 @@ The orchestrator session made both live runs and got four cross-family reviews o
 | Live, deciding Deem run, 16:59:13 to 17:01:05 | Exit 0, 528 calls on one commit pair, the column, verdict and calibration lines above. `server.log` grew by 1 health line and 528 decisions |
 | Session, host checks after the build | `grep -nE 'API_KEY\|TYPESAFE'` exit 1. `validate_document.py` 10 of 10 changed skill docs exit 0. The playbook test diff holds only the 47 to 48 counts |
 | Session, the gate-skip path from the final state | With a PATH holding only `node`: `--jev` exit 0, `jev: path=none provider=official`, `jev arm skipped: jev not on PATH`. With `CLI_DEEM_URL=http://127.0.0.1:1`: `deem arm skipped: not reachable`, exit 0. Live `--deem` without `--out`: exit 2, `--deem needs --out <dir> so every call is recorded`, the census an identical prefix |
-| Session, eval file from the final state | `vitest run tests/parity/score-jev-tiebreak.vitest.ts`: 55 passed, exit 0 |
-| Session, full advisor suite from the final state | `Test Files 130 passed`, `Tests 1026 passed`, 6 skipped, exit 0. Against the baseline: +1 file, +55 tests, 0 failures. The `ps` table stayed near 210 KB, well under the 1 MiB helper buffer |
+| Session, eval file after the follow-up | `vitest run tests/parity/score-jev-tiebreak.vitest.ts`: 55 passed, exit 0 |
+| Session, full advisor suite after the follow-up | `Test Files 130 passed`, `Tests 1026 passed`, 6 skipped, exit 0. Against the baseline: +1 file, +55 tests, 0 failures. The `ps` table stayed near 210 KB, well under the 1 MiB helper buffer |
 | Session, typecheck and changed docs | `npm run typecheck` exit 0, 0 `error TS`. `validate_document.py` exit 0 on the catalog entry, README and changelog the follow-up changed |
 | Session, trigger index | Rebuilt from `git archive HEAD`: generator exit 0, 0 scratch-path leaks, `--check` exit 0 with 23,314 documents, 0 stale, 0 obsolete and 0 untrusted |
 | Review round 1 (Claude `review` agent, stub runs) | FAIL: one P0 (a three-way split counted 2 non-modal answers where the Keep Rule counts 3), two P1s (a Deem verdict printed before the `noul` pass, an exit-4 first attempt missing from `calls.jsonl` and p50/p95) and one P2 folded in (`--jev` without `--out`). The reviewer recomputed the Jev `kill` independently: decided 38, wins 11, losses 27 |
 | Review round 2 | FAIL: the round-1 findings fixed, one new P1 (the `--out` refusal ran before the census and the gate). Two P2s recorded as open items. The reviewer recomputed the Deem `kill`: decided 38, wins 8, losses 30 |
 | Review round 3 | PASS: the P1 closed on every path, with zero paid spawns wherever the gate fails. Two P2s, closed by briefs 36 and 37 |
 | Review round 4 | PASS: the `--deem` refusal adds no call before it and the tests assert behavior. One doc P2, closed by briefs 39 and 40. No open P0 or P1 on this phase's code |
-| Closure pass, read-only | Every `calls.jsonl` line carries its required fields: 334 of 334 Jev lines, and 333 Deem `choice` lines plus 195 `noul` lines, all on one commit pair (`node` over `R/jev/` and `R/deem-review/`). `cmp` of the pre and post porcelain snapshots of the Jev, Deem and default runs: identical. `cmp` of `R/r38-default.stdout.txt` and `R/p1-default.stdout.txt`: exit 0. The three commits' paths match Files to Change. The test file has no exit 130 case and no answer outside the submitted keys |
+| Session, after briefs 41 and 42 | `git diff --quiet` on the script exit 0, so it is byte-identical. `vitest run tests/parity/score-jev-tiebreak.vitest.ts`: `Tests 59 passed (59)`, exit 0 |
+| Build leaf, full advisor suite after briefs 41 and 42 | `Test Files 130 passed (130)`, `Tests 1030 passed \| 6 skipped (1036)`, exit 0, `ps` table about 180 KB. Against 1026: +4, the four new tests, 0 failures. `npm run typecheck` exit 0, though its config excludes `tests`, so it does not typecheck the test file (`E` section 15) |
+| Review round 5 | PASS on briefs 41 and 42. One P2 open: `main`'s doc comment at `S:1509-1511` does not say a stopped arm exits 0 |
+| Closure pass, read-only | Every `calls.jsonl` line carries its required fields: 334 of 334 Jev lines, and 333 Deem `choice` lines plus 195 `noul` lines, all on one commit pair (`node` over `R/jev/` and `R/deem-review/`). `cmp` of the pre and post porcelain snapshots of the Jev, Deem and default runs: identical. `cmp` of `R/r38-default.stdout.txt` and `R/p1-default.stdout.txt`: exit 0. The three commits' paths match Files to Change. At the first closure the test file had no exit 130 case and no answer outside the submitted keys, the gaps briefs 41 and 42 closed |
 | Closure pass: `repair-derived.cjs --folder <this phase> --apply` | `inspected=1 repaired=1 failed=0`, exit 0: the graph metadata re-derived from the closed docs |
 | Closure pass: `validate.sh <this phase> --strict` | `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`, exit 0, 0 `RESULT: FAILED` lines. `STATUS_CROSS_DOC_CONSISTENCY` reads Complete in both `spec.md` and this file |
 | Closure pass: `check-goal.cjs <this phase>` | `RESULT: PASSED (5/5 checks)`, exit 0 |
@@ -217,13 +222,14 @@ The orchestrator session made both live runs and got four cross-family reviews o
 
 1. **No Deem keep, so phase 009 stays locked.** Both columns printed `kill`. The decision on 009 passes to phase 017.
 2. **Open Keep Rule question: alias keys.** The modal pick counts `memory:save` and `command-memory-save` as two answers. Counting them as one gives 13 unstable rows and a flip rate of 0.2643, still `kill`. The reviewer reports decided 38, and the build leaf's recount gives decided 37 with 29 losses, a difference that stays UNKNOWN until one canonical rule is fixed. Settle it before any rerun on a new commit pair.
-3. **Two tasks left open.** No test drives exit 130, which the script handles at `S:949`, `:991`, `:1082` and `:1173` (T025). No stub run or test answers a key outside the submitted set, a branch read at `S:1067-1077` and not run (T014).
-4. **The alias-option test stub ignores option text.** It proves the ` [key]` suffix reaches the argument list, not that the real client accepts the options or maps the answer back. The reviewer of round 2 confirmed that brief 30 maps every live Deem answer to the right key.
-5. **An adjacent advisor test helper.** `runtime/tests/skill-advisor-cli-test-utils.ts:224-229` calls `spawnSync('ps')` with the default 1 MiB buffer. It fails 3 orphan-reaping tests with ENOBUFS when the process table is larger, which the session saw at 1.4 MB during the 008 build. This is environmental and outside this phase's code.
-6. **Deem estimates ran low.** The cost line's `est_wall_s=34.6` used the planning p50 of 65.6 ms. The run measured 241 ms at p50 and 340 ms at p95 per call.
-7. **The Deem update fix is not yet proven.** The session gave the update job `AbandonProcessGroup`, so a restart inside the job should outlive it. That the next real release leaves the server running is INFERRED until one lands under launchd.
-8. **Untested live paths.** The Jev half of the calibration and the column comparison each passed their tests but never ran live, because the census was not `underpowered` and each run had one column.
-9. **Older README gaps.** `runtime/scripts/routing-accuracy/README.md` tables 3 of its folder's 8 code files and `runtime/tests/parity/README.md` 2 of 7 test files. The build added only its own rows.
+3. **Exit 130 is tested in the choice loop only.** Briefs 41 and 42 closed T014 and T025, but an exit 130 during `jev auth test` (`S:949`) and during the Jev calibration's `noul` pass (`S:991`) still has no test. That the new tests would fail on a broken script is inferred from reading it, because no mutation run was made.
+4. **Open review P2: a doc comment.** Round 5 found that `main`'s doc comment at `S:1509-1511` lists its return codes without saying that a stopped arm exits 0.
+5. **The alias-option test stub ignores option text.** It proves the ` [key]` suffix reaches the argument list, not that the real client accepts the options or maps the answer back. The reviewer of round 2 confirmed that brief 30 maps every live Deem answer to the right key.
+6. **An adjacent advisor test helper.** `runtime/tests/skill-advisor-cli-test-utils.ts:224-229` calls `spawnSync('ps')` with the default 1 MiB buffer. It fails 3 orphan-reaping tests with ENOBUFS when the process table is larger, which the session saw at 1.4 MB during the 008 build. This is environmental and outside this phase's code.
+7. **Deem estimates ran low.** The cost line's `est_wall_s=34.6` used the planning p50 of 65.6 ms. The run measured 241 ms at p50 and 340 ms at p95 per call.
+8. **The Deem update fix is not yet proven.** The session gave the update job `AbandonProcessGroup`, so a restart inside the job should outlive it. That the next real release leaves the server running is INFERRED until one lands under launchd.
+9. **Untested live paths.** The Jev half of the calibration and the column comparison each passed their tests but never ran live, because the census was not `underpowered` and each run had one column.
+10. **Older README gaps.** `runtime/scripts/routing-accuracy/README.md` tables 3 of its folder's 8 code files and `runtime/tests/parity/README.md` 2 of 7 test files. The build added only its own rows.
 <!-- /ANCHOR:limitations -->
 
 ---
