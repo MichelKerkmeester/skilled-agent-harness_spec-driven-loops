@@ -8,7 +8,7 @@ trigger_phrases:
   - "location-based validation"
 importance_tier: important
 contextType: implementation
-version: 3.6.0.26
+version: 4.1.0.39
 ---
 
 # Path-Scoped Validation Rules - Location-Based Validation
@@ -119,11 +119,11 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 | Variable                  | Default | Description                                          |
 | ------------------------- | ------- | ---------------------------------------------------- |
-| `SPECKIT_VALIDATION`      | true    | Set to `false` to disable validation                 |
+| `SPECKIT_VALIDATION`      | true    | Set to `false` to skip validation, the same way `SPECKIT_SKIP_VALIDATION` does |
 | `SPECKIT_STRICT`          | false   | Set to `true` for strict mode                        |
 | `SPECKIT_JSON`            | false   | Set to `true` for JSON output                        |
 | `SPECKIT_VERBOSE`         | false   | Set to `true` for verbose output                     |
-| `SPECKIT_SKIP_VALIDATION` | unset   | Set to any value to skip validation entirely         |
+| `SPECKIT_SKIP_VALIDATION` | unset   | Set to `1`, `true`, `yes` or `on` to skip every rule and exit 0. Also read from `.skilled/hooks/hook-flags.env`, and a set environment value wins over the file even when it is `0` or empty. Under `--json` a skipped run still prints a report, marked `skipped: true` |
 | `SPECKIT_QUIET`           | false   | Set to `true` for quiet output                       |
 | `SPECKIT_RULES`           | unset   | Comma-separated rule subset (e.g. `FILE_EXISTS,LEVEL_DECLARED`). Narrows which rules run; it never changes how a rule decides. An unrecognised name is a hard error, so a typo cannot silently reduce the run to nothing. |
 
