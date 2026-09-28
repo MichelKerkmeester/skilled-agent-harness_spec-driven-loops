@@ -20,6 +20,7 @@ fi
 MESSAGE_FILE="${1:-}"
 if [[ -z "$MESSAGE_FILE" || ! -f "$MESSAGE_FILE" ]]; then
   printf 'BLOCKED: commit-msg hook received no readable message file.\n' >&2
+  printf 'Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...\n' >&2
   exit 1
 fi
 
@@ -32,6 +33,7 @@ CLEAN_MESSAGE="$(git stripspace --strip-comments < "$MESSAGE_FILE")"
 if [[ -z "$CLEAN_MESSAGE" ]]; then
   printf 'BLOCKED: commit message is empty.\n' >&2
   printf 'Expected: type(scope): imperative summary\n' >&2
+  printf 'Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...\n' >&2
   exit 1
 fi
 

@@ -87,6 +87,7 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
       *)
         echo "BLOCKED [gate:comment-hygiene]: checker failed for $file (exit $CHECKER_RC)." >&2
         printf '%s\n' "$CHECKER_OUTPUT" >&2
+        echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..." >&2
         exit 1
         ;;
     esac
@@ -97,6 +98,7 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
     echo "BLOCKED [gate:comment-hygiene]: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
     echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
     echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
+    echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..."
     exit 1
   fi
 fi
@@ -104,6 +106,7 @@ fi
 # --- Agent mirror-sync gate (blocking) ---
 # Agents are authored in .opencode/agents/ and mirrored to .claude.
 # Block a commit that desyncs the mirrors. Only staged agent files are checked.
+# No switch of its own: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 turns off the whole chain.
 MIRROR_CHECKER="$SOURCE_ROOT/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
 
 STAGED_AGENTS=()
@@ -114,6 +117,7 @@ done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencod
 if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
   if [[ ! -f "$MIRROR_CHECKER" ]] && _in_toolchain_repo; then
     echo "BLOCKED [gate:agent-mirror-sync]: checker is missing: $MIRROR_CHECKER" >&2
+    echo "Bypass: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit ... (this gate has no switch of its own, so that one turns off every pre-commit gate)" >&2
     exit 1
   elif ! command -v node >/dev/null 2>&1 || [[ ! -f "$MIRROR_CHECKER" ]]; then
     echo "WARNING: node or agent mirror-sync checker unavailable — skipping mirror gate" >&2
@@ -121,6 +125,7 @@ if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
     echo ""
     echo "BLOCKED [gate:agent-mirror-sync]: staged agent files desync the .opencode / .claude mirrors."
     echo "Fix: re-sync the mirrors so each agent body matches, then re-stage."
+    echo "Bypass: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit ... (this gate has no switch of its own, so that one turns off every pre-commit gate)"
     exit 1
   fi
 fi
@@ -173,6 +178,7 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && command -v node >/dev/null
       echo "This commit stages a mirror source or output, so leaving those out ships a stale mirror:" >&2
       printf '%s\n' "$STAGED_MIRROR_RELATED" | sed 's/^/  staged: /' >&2
       echo "Fix: git add the unstaged paths above and re-commit." >&2
+      echo "Bypass: SPECKIT_SKIP_MIRROR_PARITY=1 git commit ..." >&2
       exit 1
     fi
     # Not blocked, but never silent: an unreported dirty mirror is how a stale copy
