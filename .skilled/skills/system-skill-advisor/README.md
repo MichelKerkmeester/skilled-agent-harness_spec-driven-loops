@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.11.0.0
+version: 0.12.0.54
 ---
 
 # system-skill-advisor
@@ -83,7 +83,7 @@ Expected result: `rebuilt: true`, generation deltas, refreshed `skillCount`, dia
 
 Use the CLI as the Gate 2 path when no hook brief is present, when scripting a check, or when diagnosing hook behavior. The automatic brief and the CLI read the same daemon, so a manual check and the automatic route agree. `list-tools` enumerates all nine commands offline. Exit taxonomy: `0` success, `1` runtime error, `64` usage or schema error, `69` protocol or dist mismatch, `75` retryable daemon error.
 
-Two guardrails apply. First, callers bound the CLI call with their own timeout and fail open on expiry or exit `75`; the CLI starts the daemon when the socket is cold and answers from the local scorer when the daemon stays unreachable. A degraded answer is stale, not missing. Second, CLI calls are sent untrusted by default: the mutation commands `advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances` require `--trusted` (or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`), which is the maintainer path. There is no MCP transport to fall back to.
+Two guardrails apply. First, callers bound the CLI call with their own timeout and fail open on expiry or exit `75`. The CLI starts the daemon when the socket is cold and answers from the local scorer when the daemon stays unreachable. A degraded answer is stale, not missing. Second, CLI calls are sent untrusted by default: the mutation commands `advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances` require `--trusted` (or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`), which is the maintainer path. There is no MCP transport to fall back to.
 
 ```bash
 node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
@@ -96,7 +96,7 @@ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
 
 ### OpenCode Plugin Note
 
-The Skill Advisor bridge plugin injects routing advice at prompt time. Constant advisor policy is delivered in full on the first proven message and after registered lifecycle boundaries. Route-only repeats require confirmed primitive identity, valid transcript evidence, matching versioned state, stable generation/epoch clocks, and an atomically advanced high-water mark. When there is no brief, the plugin and the hooks emit a fallback that opens with one status line (`Advisor: outage (...)`, `Advisor: no skill matched.` or `Advisor: prompt skipped.`), and a repeat in a confirmed session keeps that line and drops the directives. With the opt-in `deduplicateTransforms` on, the plugin decides same-message transform dedup on the full block before lifecycle reduction, so a repeated transform for the same message is suppressed. Full-delivery receipts commit after stdout handoff; boundary failure poisons older receipts; unsafe or unavailable durable state stays full. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `opencode_goal` and `opencode_goal_status`. Its command router delegates all state reads and writes to `opencode_goal` and `opencode_goal_status`. Active continuation remains opt-in through `OPENCODE_GOAL_AUTONOMY`. Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `opencode_goal` and `opencode_goal_status` in the session tool set. A live model turn persists per-session state.
+The Skill Advisor bridge plugin injects routing advice at prompt time. Constant advisor policy is delivered in full on the first proven message and after registered lifecycle boundaries. Route-only repeats require confirmed primitive identity, valid transcript evidence, matching versioned state, stable generation/epoch clocks and an atomically advanced high-water mark. When there is no brief, the plugin and the hooks emit a fallback that opens with one status line (`Advisor: outage (...)`, `Advisor: no skill matched.` or `Advisor: prompt skipped.`), and a repeat in a confirmed session keeps that line and drops the directives. With the opt-in `deduplicateTransforms` on, the plugin decides same-message transform dedup on the full block before lifecycle reduction, so a repeated transform for the same message is suppressed. Full-delivery receipts commit after stdout handoff. A boundary failure poisons older receipts, and unsafe or unavailable durable state stays full. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `opencode_goal` and `opencode_goal_status`. Its command router delegates all state reads and writes to `opencode_goal` and `opencode_goal_status`. Active continuation remains opt-in through `OPENCODE_GOAL_AUTONOMY`. Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `opencode_goal` and `opencode_goal_status` in the session tool set. A live model turn persists per-session state.
 
 ---
 
@@ -129,7 +129,7 @@ Every response carries a trust state so the caller knows what to do next.
 | `live` | Index is fresh and queryable | Use the recommendation directly |
 | `stale` | Index is queryable but a source changed since the last build | Use scored recommendations with a caveat, then call `advisor_rebuild` |
 | `absent` | The SQLite database is missing | Call `advisor_rebuild`. Do not act on an empty result |
-| `unavailable` | The subsystem cannot be reached | The CLI answers from the local scorer and marks the result degraded; treat it as stale, then rebuild |
+| `unavailable` | The subsystem cannot be reached | The CLI answers from the local scorer and marks the result degraded. Treat it as stale, then rebuild |
 
 ### The SQLite Skill Graph
 
@@ -153,7 +153,7 @@ The CLI exposes nine commands, each accepting snake case, kebab case and camel c
 |---|---|
 | `advisor_recommend` | Recommend skills for a prompt (`topK`, `includeAttribution`, `includeAbstainReasons`, `confidenceThreshold`, `uncertaintyThreshold`, `includeCompiledRoute`) |
 | `advisor_rebuild` | Rebuild the advisor index from checked-in metadata |
-| `advisor_status` | Report freshness, generation, trust state, lane weights and daemon info |
+| `advisor_status` | Report freshness, generation, lane weights, skill count, scan times and a trust state that reads `unavailable` when the daemon is down |
 | `advisor_validate` | Run the corpus, holdout, parity, safety and latency bundle (`confirmHeavyRun: true` required) |
 | `skill_graph_scan` | Index every `graph-metadata.json` into the SQLite skill graph |
 | `skill_graph_query` | Traverse the skill graph (the ten query types above) |
@@ -214,7 +214,7 @@ A: Memory, spec folders and continuity stay in `system-spec-kit`. The advisor de
 
 **Q: Where are the runtime hooks documented?**
 
-A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across every runtime (Claude, Codex, Cursor, Devin, Pi) and the OpenCode plugin. The source adapters live under `.skilled/skills/system-skill-advisor/hooks/`.
+A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across every runtime (Claude, Codex, Cursor, Devin, Pi) and the OpenCode plugin. The advisor's own handler, the Pi extension and the CLI fallback live under `hooks/`. Claude, Codex, Cursor and Devin enter through thin shims in `system-spec-kit/runtime/hooks/<runtime>/`, and the OpenCode plugin is `.skilled/plugins/system-skill-advisor.js`.
 
 ---
 

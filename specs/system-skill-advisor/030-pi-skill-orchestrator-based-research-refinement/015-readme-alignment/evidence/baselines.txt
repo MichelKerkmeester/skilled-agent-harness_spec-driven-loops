@@ -1,0 +1,49 @@
+# Baselines before any README edit (2026-09-28T16:05:29Z)
+HEAD 1d7ec8f39d
+
+## README.md
+blob 9c731162664903ece9559ce088cc67fe4d7b4879 lines     1508
+--- validate_document.py --type readme
+
+✅ VALID: README.md
+Document type: readme
+Total issues: 0
+exit=0
+
+## .skilled/skills/system-skill-advisor/README.md
+blob 62ca8496600793c093b4a2d994c80b6abe862c04 lines      252
+--- validate_document.py --type readme
+
+✅ VALID: .skilled/skills/system-skill-advisor/README.md
+Document type: readme
+Total issues: 0
+exit=0
+
+# HVR baseline before any README edit (hvr_scan.py, same run)
+
+## hvr-before-README_md.txt
+HVR SCAN: README.md
+  x1    first@989   hard   punctuation            ;
+  x2    first@876   soft2  soft-deduction         craft
+  x5    first@986   soft1  soft-deduction         do
+  x1    first@29    soft1  soft-deduction         get
+  x47   first@37    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          1
+  mechanical deductions:  -15
+  mechanical ceiling:     85/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality
+
+## hvr-before-_skilled_skills_system-skill-advisor_README_md.txt
+HVR SCAN: .skilled/skills/system-skill-advisor/README.md
+  x4    first@86    hard   punctuation            ;
+  x2    first@125   soft1  soft-deduction         do
+  x1    first@21    soft1  soft-deduction         get
+  x5    first@84    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          4
+  mechanical deductions:  -23
+  mechanical ceiling:     77/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality

@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement"
-    last_updated_at: "2026-09-28T14:27:43Z"
+    last_updated_at: "2026-09-28T16:26:28Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Proved the six criteria again after phase 14"
-    next_safe_action: "None. All fourteen phases are complete"
+    recent_action: "Closed phase 15 with both READMEs aligned to the repository"
+    next_safe_action: "None. All fifteen phases are complete"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Grok 4.7 xhigh-fast through cli-cursor implements code fixes and GPT-6 Luna max fast through cli-codex verifies them. The orchestrator may make a few-line fix with its own objective check, which Luna still verifies. Opus agents lead design and docs. The orchestrator dispatches every CLI run itself. |
 | D2 | Global Codex files change only on the operator's direction, each backed up first with its rollback recorded. |
-| D3 | The spec-kit hook shim never forwards its child's stderr. Scenarios read advisor diagnostics from the diagnostics JSONL. |
+| D3 | The spec-kit hook shim never forwards its child's stderr. |
 | D4 | cli-codex danger-full-access is for scenario test runs only. |
 | D5 | cli-devin `--permission-mode dangerous` is for scenario test runs only. |
 
@@ -76,6 +76,7 @@ phase and binds as if written here.
 | 012-reverify-follow-ups | `012-reverify-follow-ups/goal.md` |
 | 013-review-follow-ups | `013-review-follow-ups/goal.md` |
 | 014-changelog-alignment | `014-changelog-alignment/goal.md` |
+| 015-readme-alignment | `015-readme-alignment/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -128,6 +129,7 @@ and findings belong here.
 | Goal proved again after phase 13 | Done | The four suites, the live plugin load, a sandboxed daemon and the installer check pass from the final state, and the suites, the plugin load and the installer check passed again at `396d26d4ff` after another session's three commits. 433, CP-003 and CP-004 pass in all five CLIs, two 433 runs on a quiet rerun. The other six scenarios keep their phase 11 result, since the one code change in the paths they run through, `b274f085fb`, adds a function to the hook flags and changes no existing one (`013-review-follow-ups/evidence/goal-reverify/`) |
 | 014-changelog-alignment | Done | Phase Documentation Map in `spec.md` reads Complete. The advisor changelog follows the contract, nine new entries in eight changelog folders record the advisor work and v4.0.0.2 carries it. Two fresh reviews found 35 problems, each checked against its source |
 | Goal proved again after phase 14 | Done | The four suites, the live plugin load and the installer check pass at `0dc044de8c` before and after the matrix, and a sandboxed daemon leaves the live generation file unchanged. After phase 13's proof another session's `3ad952e58e` changed how both hook-flag resolvers parse a value, so all nine scenarios reran in the five CLIs, and 45 of 45 runs pass. The live advisor's pids, lease and generation matched before and after (`014-changelog-alignment/evidence/goal-reverify/`) |
+| 015-readme-alignment | Done | Phase Documentation Map in `spec.md` reads Complete. Both READMEs match the repository on every claim a source check found wrong, with 70 root README ledger rows and four advisor README items fixed (`015-readme-alignment/evidence/claim-ledger.md`) |
 
 ### Deviations and findings
 
@@ -151,4 +153,5 @@ and findings belong here.
 | A stalled tester run after phase 14 | One OpenCode CL-001 run waited 13 minutes on a model stream that sent nothing after 13:10:30Z. The orchestrator stopped that run and its two MCP children by pid and reran it, and the rerun passed (`014-changelog-alignment/evidence/goal-reverify/excluded-windows.tsv`) |
 | Two Codex runs with no native line | CL-005 and CP-003 passed in Codex with no native advisor line, although Codex completed all five prompt hooks in each, and the advisor wrote no diagnostics record for either. Codex keeps no hook stderr, so which of the two kill deadlines in its hook chain fired is inferred. The hook code is outside this packet's scope, so it waits for the operator (`014-changelog-alignment/evidence/goal-reverify/native-lines.txt`) |
 | Two tester sandboxes came back | The Codex testers of CL-001 and CL-005 removed their own sandboxes, then a sandbox daemon's SIGTERM record recreated each folder, the path phase 12 closed for CP-003. The orchestrator recorded and removed both. The test brief does not ask testers to wait for that daemon (`014-changelog-alignment/evidence/goal-reverify/leftover-tester-folders.txt`) |
+| D3 wording cut for the phase 15 binding row | The 015 row pushed the durable slice past 4,000 characters. Under step 5 of the sk-create-goal cut order, D3 keeps its choice and its second sentence moves here: scenarios read advisor diagnostics from the diagnostics JSONL |
 <!-- /ANCHOR:log -->

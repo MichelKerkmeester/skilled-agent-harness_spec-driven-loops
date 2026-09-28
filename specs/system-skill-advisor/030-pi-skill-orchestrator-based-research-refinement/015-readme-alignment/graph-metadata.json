@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment",
+  "spec_folder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment",
+  "parent_id": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "root readme alignment",
+      "skill advisor readme alignment",
+      "readme claim ledger",
+      "readme alignment plan",
+      "readme claim check approach",
+      "readme alignment tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "readme alignment summary",
+      "root readme drift fixed"
+    ],
+    "key_topics": [
+      "root",
+      "readme",
+      "alignment",
+      "skill",
+      "advisor",
+      "claim",
+      "ledger",
+      "plan",
+      "check",
+      "approach",
+      "tasks",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "evidence/claim-ledger.md",
+      ".skilled/skills/system-skill-advisor/README.md",
+      "evidence/recheck.sh",
+      "evidence/final-checks.txt",
+      "evidence/baselines.txt",
+      "evidence/strict-validate.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "claim-ledger.md",
+        "kind": "doc",
+        "path": "evidence/claim-ledger.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "recheck.sh",
+        "kind": "script",
+        "path": "evidence/recheck.sh",
+        "source": "derived"
+      },
+      {
+        "name": "final-checks.txt",
+        "kind": "file",
+        "path": "evidence/final-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baselines.txt",
+        "kind": "file",
+        "path": "evidence/baselines.txt",
+        "source": "derived"
+      },
+      {
+        "name": "strict-validate.txt",
+        "kind": "file",
+        "path": "evidence/strict-validate.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Check",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root README says `validate.sh` runs 38 rules and the command library has 32 entry points, where the registry holds 40 rules and `.skilled/commands` holds 36 entry points",
+    "created_at": "2026-09-28T15:48:49Z",
+    "last_save_at": "2026-09-28T16:26:46.165Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b8d26ffdffc32b049bbb861b769973069e7dd09028fbdacd793acd4196355c85",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "40b6bb5e39ad3f21e9ac4c4bd922ccc18ad8b4de8148964ace6ab92de604aaba",
+      "plan.md": "1d61af2e2f5076f2ba81621bdd5b4d4383ea1d031d852cf689c87226f29b4286",
+      "tasks.md": "d65f1eafb3eb58b0b73f95a069c4c9a9565c76f933a68401b0227169e9c2f38e",
+      "implementation-summary.md": "73d9180c35d26b714112c5c7993e2861e419a8ab4bf7701a6974277110241e5e"
+    },
+    "last_active_at": null
+  }
+}
