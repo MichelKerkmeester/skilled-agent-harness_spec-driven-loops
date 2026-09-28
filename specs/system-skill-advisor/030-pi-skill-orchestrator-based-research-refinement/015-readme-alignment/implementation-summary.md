@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment"
-    last_updated_at: "2026-09-28T16:26:28Z"
+    last_updated_at: "2026-09-28T16:56:58Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Fixed the confirmed drift in both READMEs and rechecked every fix at its source"
+    recent_action: "Proved the parent goal's six criteria again from the final state"
     next_safe_action: "None. The commit and the push close the phase"
     blockers: []
     key_files:
@@ -66,6 +66,7 @@ The root README fixes fall into four kinds. Counts had moved: 40 validation rule
 | `README.md` | Modified | 70 ledger rows of drift fixed in place, no section moved |
 | `.skilled/skills/system-skill-advisor/README.md` | Modified | Two drifts fixed, four HVR semicolons split and `version` set to `0.12.0.54` |
 | `015-readme-alignment/evidence/` | Created | Baselines, the claim ledger, the recheck script and the final checks |
+| `015-readme-alignment/evidence/goal-reverify/` | Created | The parent goal's six criteria proved again, with the state snapshots, the checks and the record of what changed since the last scenario matrix |
 | `015-readme-alignment/` docs | Modified | Spec, plan, tasks, goal and this summary |
 | `../goal.md` | Modified | Binds this phase's goal. D3's second sentence moved to the log to keep the slice within 4,000 characters |
 | `../spec.md` | Modified | Phase 15 row and handoff row |
@@ -76,7 +77,9 @@ The root README fixes fall into four kinds. Counts had moved: 40 validation rule
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The baselines came first: both READMEs valid, one hard HVR blocker in the root README and four in the advisor README. Four Opus agents then checked the root README in four line ranges and wrote nothing. Their 80 flagged claims joined the orchestrator's own findings. Each one was confirmed or rejected at its cited file and line, by a count or by a command run. The fixes went in as exact-match replacements that fail on anything but a single match, so no line changed by accident. `evidence/recheck.sh` then proved each new statement against its source from the final state, 48 checks in all. The validator and the HVR scan ran on both files again. The commit, the trigger index rebuild and the push to origin/main follow, and goal criterion 6 covers them.
+The baselines came first: both READMEs valid, one hard HVR blocker in the root README and four in the advisor README. Four Opus agents then checked the root README in four line ranges and wrote nothing. Their 80 flagged claims joined the orchestrator's own findings. Each one was confirmed or rejected at its cited file and line, by a count or by a command run. The fixes went in as exact-match replacements that fail on anything but a single match, so no line changed by accident. `evidence/recheck.sh` then proved each new statement against its source from the final state, 48 checks in all. The validator and the HVR scan ran on both files again. The commit `003dabe08d`, the trigger index rebuild `e36d99cfb8` and the push to origin/main followed.
+
+The operator then set the parent goal again, so its six criteria were proved again from the final state. The four suites, the live OpenCode plugin load, the Codex installer check and a sandboxed daemon ran fresh. The 45 scenario runs from `0dc044de8c` carry forward, because `evidence/goal-reverify/changes-since.txt` shows nothing they read has changed since they ran.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,6 +94,7 @@ The baselines came first: both READMEs valid, one hard HVR blocker in the root R
 | Drop a timing figure rather than print a new one | The 108 ms figure came from one old measurement, and a number from one machine today would age the same way |
 | Set the advisor README version to 0.12.0.54 by hand | `compute` derives 0.12.0.53 before this commit, and the phase commit adds the 54th real edit, so the written value holds once the commit lands |
 | Cut D3's reasoning, not a criterion, to fit the parent goal | Step 5 of the sk-create-goal cut order shortens decision prose to the choice. The moved sentence sits in the parent log |
+| Carry the 45 scenario results forward instead of rerunning them | The commits since they ran change READMEs, which `doc-frontmatter.ts` leaves out of the advisor's doc harvest, and trigger index data, which no hook or advisor code reads. The one uncommitted edit on a scenario path, another session's `hook-flags.sh`, changes how a value with inner spaces or a file with a byte order mark resolves, and no flag set today has either. Phases 12 and 13 carried results forward on the same test |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -107,6 +111,10 @@ The baselines came first: both READMEs valid, one hard HVR blocker in the root R
 | `hvr_scan.py`, advisor README | 0 hard blockers, down from 4. Mechanical deductions -3, down from -23 |
 | Serial commas in added lines | None. Each added `, and` joins two clauses rather than ending a list |
 | Parent goal | `goal.cjs packet` reports 3,978 durable characters and `packet_budget=ok`, and `check-goal.cjs` passes 5 of 5 |
+| Parent goal re-proof, suites | Advisor runtime typecheck exit 0 and 971 tests passed. Spec-kit hook suites 237 passed. Pi dispatch 50 passed. OpenCode plugin 35 passed, 0 failed. All four match phase 14's counts (`evidence/goal-reverify/final-state/`) |
+| Parent goal re-proof, plugin and installer | OpenCode 1.18.32 logged no `failed to load plugin` line and listed `spec_kit_skill_advisor_status`. `install-codex-hooks.mjs --check` printed `OK ~/.codex/hooks.json` |
+| Parent goal re-proof, sandboxed daemon | The live generation file and lease hashes matched before and after a CP-004 cold start, and the sandbox was removed (`evidence/goal-reverify/crit3-sandbox-daemon.txt`) |
+| Parent goal re-proof, live advisor | Pids, lease and generation identical before and after every check (`evidence/goal-reverify/state-before.txt`, `state-after.txt`) |
 <!-- /ANCHOR:verification -->
 
 ---

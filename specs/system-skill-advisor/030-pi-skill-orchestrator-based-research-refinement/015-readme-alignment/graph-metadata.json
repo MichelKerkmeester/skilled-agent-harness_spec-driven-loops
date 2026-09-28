@@ -49,7 +49,10 @@
       "evidence/claim-ledger.md",
       ".skilled/skills/system-skill-advisor/README.md",
       "evidence/recheck.sh",
+      "evidence/goal-reverify/changes-since.txt",
       "evidence/final-checks.txt",
+      "evidence/goal-reverify/crit3-sandbox-daemon.txt",
+      "evidence/goal-reverify/state-before.txt",
       "evidence/baselines.txt",
       "evidence/strict-validate.txt"
     ],
@@ -103,9 +106,27 @@
         "source": "derived"
       },
       {
+        "name": "changes-since.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/changes-since.txt",
+        "source": "derived"
+      },
+      {
         "name": "final-checks.txt",
         "kind": "file",
         "path": "evidence/final-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "crit3-sandbox-daemon.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/crit3-sandbox-daemon.txt",
+        "source": "derived"
+      },
+      {
+        "name": "state-before.txt",
+        "kind": "file",
+        "path": "evidence/goal-reverify/state-before.txt",
         "source": "derived"
       },
       {
@@ -179,29 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Check",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The root README says `validate.sh` runs 38 rules and the command library has 32 entry points, where the registry holds 40 rules and `.skilled/commands` holds 36 entry points",
     "created_at": "2026-09-28T15:48:49Z",
-    "last_save_at": "2026-09-28T16:26:46.165Z",
+    "last_save_at": "2026-09-28T16:58:35.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8d26ffdffc32b049bbb861b769973069e7dd09028fbdacd793acd4196355c85",
+    "source_fingerprint": "sha256:cda8e7a8a877d059e945977940237ec31c71d0ed955c2a7b37d57a84c1c70507",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "40b6bb5e39ad3f21e9ac4c4bd922ccc18ad8b4de8148964ace6ab92de604aaba",
+      "spec.md": "9130be42c9c14d407a93ac9c1a0d8dcbf9b95fcf95892f027ce5aa4db0522723",
       "plan.md": "1d61af2e2f5076f2ba81621bdd5b4d4383ea1d031d852cf689c87226f29b4286",
-      "tasks.md": "d65f1eafb3eb58b0b73f95a069c4c9a9565c76f933a68401b0227169e9c2f38e",
-      "implementation-summary.md": "73d9180c35d26b714112c5c7993e2861e419a8ab4bf7701a6974277110241e5e"
+      "tasks.md": "23f74bef4f0f2ab6a63d2f8a3556ca9dbc5a910f189089b0e9027f23b4d27a54",
+      "implementation-summary.md": "6701c4174febd51cf95db4777c42f7c6fc0151e96d5102fc193694681340dc3f"
     },
     "last_active_at": null
   }

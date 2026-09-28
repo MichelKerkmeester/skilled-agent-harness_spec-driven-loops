@@ -38,7 +38,7 @@ contextType: "general"
 
 This is **Phase 15** of packet 030. After phase 14 the operator asked whether the root README and the skill advisor README still match the repository.
 
-**Scope Boundary**: the two READMEs only. A drift found in any other document is reported, not fixed.
+**Scope Boundary**: the two READMEs only. A drift found in any other document is reported, not fixed. After the push the operator set the parent goal again, so the phase also proves the parent goal's six criteria from the final state.
 
 **Dependencies**:
 - The sources each claim names: code, configs, command docs, skill docs and git history.
@@ -74,6 +74,7 @@ A reader of either README can act on what it says without meeting a count, a nam
 - Confirm each suspected drift at its cited source before any edit, and fix the confirmed ones in place without changing the README structure.
 - Clear the HVR hard blockers the scan finds in the two files, so each edited file ends with none.
 - Set the advisor README `version` under the frontmatter versioning standard.
+- Prove the parent goal's six criteria again from the final state. The re-proof after phase 14 ran all 45 scenario runs at `0dc044de8c`. Every commit since changes docs or trigger index data that no scenario reads, and the one uncommitted edit on a scenario path, another session's `hook-flags.sh`, resolves every flag set today the same way, so the 45 results carry forward. Added when the operator set the parent goal again on 2026-09-28.
 
 ### Out of Scope
 - Drift in other documents, such as install guides or reference docs. It goes to the ledger as a follow-up.
@@ -87,6 +88,7 @@ A reader of either README can act on what it says without meeting a count, a nam
 | `README.md` | Modify | Fix each confirmed drift |
 | `.skilled/skills/system-skill-advisor/README.md` | Modify | Fix each confirmed drift, clear the hard HVR blockers and set `version` |
 | `015-readme-alignment/evidence/` | Create | Baselines, the claim ledger and the final checks |
+| `015-readme-alignment/evidence/goal-reverify/` | Create | The parent goal's six criteria proved again, with the scripts and the record of what changed since the last scenario matrix |
 | `../goal.md` | Modify | Bind this phase's goal and keep the durable slice within 4,000 characters |
 <!-- /ANCHOR:scope -->
 
@@ -139,7 +141,7 @@ A reader of either README can act on what it says without meeting a count, a nam
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. The operator chose this phase for the work and asked for a push to main when it is done.
+- None. The operator chose this phase for the work and asked for a push to main when it is done, then set the parent goal again after the push, which added the goal proof.
 <!-- /ANCHOR:questions -->
 
 ---
