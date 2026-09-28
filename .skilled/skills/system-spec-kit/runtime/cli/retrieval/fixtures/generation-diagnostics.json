@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7287,
+    "missing-frontmatter": 7293,
     "non-yaml-frontmatter": 2,
-    "ok": 12314,
+    "ok": 12330,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23289,
+  "documentsScanned": 23311,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "48e81161ef2f816f43630a3cd436321ae0cc0bddebff4cceb277a95049df9e90",
+  "manifestHash": "83e80fa6cb921f349d5ed05dd3485bf1d4eaf0df4bc36fa2bc2862b6ba3335de",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,13 +41,49 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32030,
+      "ok": 32078,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
     }
   },
   "rows": [
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
     {
       "category": "missing-frontmatter",
       "line": 2,

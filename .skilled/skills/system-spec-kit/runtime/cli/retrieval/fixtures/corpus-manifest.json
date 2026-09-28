@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e85b1eddbb1daed3527bd162f12a5cb03322761192df1f00ed8b35f89f6b3227",
+  "corpusHash": "301679e8b1aef65e6ecce50c97d1236cf87c3cb18965fd4f4b1a4bf94b2b1cfd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23289,
+  "includedPathCount": 23311,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -103,6 +103,28 @@
     ".skilled/skills/.state/loop-guard/README.md",
     ".skilled/skills/.state/smart-router-telemetry/README.md",
     ".skilled/skills/.state/spec-gate/README.md",
+    ".skilled/skills/cli-classifier/README.md",
+    ".skilled/skills/cli-classifier/ROUTER.md",
+    ".skilled/skills/cli-classifier/SKILL.md",
+    ".skilled/skills/cli-classifier/benchmark/README.md",
+    ".skilled/skills/cli-classifier/benchmark/reports/README.md",
+    ".skilled/skills/cli-classifier/changelog/v1.0.0.0.md",
+    ".skilled/skills/cli-classifier/cli-deem/README.md",
+    ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
+    ".skilled/skills/cli-classifier/cli-deem/changelog/v1.0.0.0.md",
+    ".skilled/skills/cli-classifier/cli-deem/feature-catalog/availability-check/health-check.md",
+    ".skilled/skills/cli-classifier/cli-deem/feature-catalog/feature-catalog.md",
+    ".skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/batched-run.md",
+    ".skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/choice-selection.md",
+    ".skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/noul-probability.md",
+    ".skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/score-level.md",
+    ".skilled/skills/cli-classifier/cli-deem/references/deem-ctl-lifecycle.md",
+    ".skilled/skills/cli-classifier/cli-deem/references/model-pin.md",
+    ".skilled/skills/cli-classifier/cli-deem/references/wire-contract.md",
+    ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md",
+    ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md",
+    ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
+    ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/cli-external-orchestration/README.md",
     ".skilled/skills/cli-external-orchestration/ROUTER.md",
     ".skilled/skills/cli-external-orchestration/SKILL.md",
@@ -23319,7 +23341,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "48e81161ef2f816f43630a3cd436321ae0cc0bddebff4cceb277a95049df9e90",
+  "manifestHash": "83e80fa6cb921f349d5ed05dd3485bf1d4eaf0df4bc36fa2bc2862b6ba3335de",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
