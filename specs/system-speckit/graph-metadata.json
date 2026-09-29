@@ -18,7 +18,8 @@
     "system-speckit/038-track-aware-archive",
     "system-speckit/039-phase-aware-archive",
     "system-speckit/040-goal-parent-single-limit",
-    "system-speckit/041-fix-write-recipe-backfill-flag"
+    "system-speckit/041-fix-write-recipe-backfill-flag",
+    "system-speckit/042-fix-write-recipe-commit-step"
   ],
   "manual": {
     "depends_on": [],
