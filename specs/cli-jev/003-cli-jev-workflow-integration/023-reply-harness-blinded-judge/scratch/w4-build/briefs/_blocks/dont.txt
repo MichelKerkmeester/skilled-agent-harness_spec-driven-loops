@@ -1,0 +1,9 @@
+DON'T
+- Edit, create or delete any file this brief does not name.
+- Run a git command that writes (add, commit, stash, checkout, restore, reset, merge, rebase, push).
+- Install anything (npm/pnpm/pip/brew install, npm ci) or touch node_modules.
+- Open any .env file, print environment variables, or write a key or token into any file.
+- Call jev, the local Deem server (127.0.0.1:8300) or any network service.
+- Put spec paths, packet or phase numbers, or REQ/task ids in code comments.
+- Reformat, reorder or "improve" anything outside the named edit.
+- Ask a question. If a step cannot be done exactly as written, stop and report BLOCKED with the reason.

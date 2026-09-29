@@ -1,0 +1,43 @@
+I'll start by reading the two target files in full and the model arm in M, as the brief requires.
+
+Now let me read the rest of both files.
+
+I have the full picture of S, T, and the M arm. Before editing, let me check the supporting files (rubric, scorer) and the repo's rule/skill files.
+
+Baseline confirmed: 28 `^export function` lines, so `buildReport` brings it to 29. Both S and T are untracked files (no merge risk). There is a root `REPO RULES.md` — Gate 5 requires loading it before my first write, and the persona requires the sk-code route. Let me do those now.
+
+Gate 1 surfaces my pre-resolved spec packet (023-reply-harness-blinded-judge), and Gate 5 requires loading the rule files the trigger table names for my action: adding code and tests, keeping scope, reporting results, and the edit itself. Loading those plus the repo AGENTS.md.
+
+I have everything I need. **Stakes read: low blast, contained** — two untracked benchmark files, no runtime consumers yet, edits preserve every existing line; undo is reverting the targeted edits (I keep them minimal and anchored). Rule files loaded: prevent-overengineering, scope-discipline, evidence-and-proof, blast-radius (Gate 5), plus the sk-code route (quality mode owns author checks; this is an ES-module implementation edit).
+
+**Plan before acting:** Files: `judge-agreement.mjs` (add `runDeemArm` at end of §7, `buildReport` in §9, wire `main`), `judge-agreement.test.mjs` (add `LEVELS` import, `scenario`/`third` helpers, four tests). Tools: edit (exact anchors), exec for checks. Proof plan (before first edit): `node --check S` → exit 0; `node --check T` → exit 0; `^export function` count → 29 (baseline observed: 28); module import smoke check exports both new functions; `git status` unchanged except the two named files.
+
+Making the S edits now.
+
+S edits applied cleanly (all existing lines preserved; `runDeemArm` ends §7, `buildReport` sits in §9, `main` now wires the arm, the call log, and `report.json`). Now the two T edits: the `LEVELS` import and the scenario helper plus four tests.
+
+Both files edited. Now running the brief's checks: `node --check` on each file, the `^export function` count (baseline was 28, target 29), plus a module-load smoke check and a `git status` comparison.
+
+All checks pass: both files parse (exit 0), the `^export function` count is 29 (baseline 28 + `buildReport`; `runDeemArm` is `async` and correctly not counted), and the module loads with both new exports present. The `git status` delta shows two sk-doc files changed by a concurrent worker (not touched by any of my calls — my six writes targeted only S and T). Let me capture exact line counts for the handback.
+
+Final state verified: S is 1188 lines (was 983), T is 789 (was 638), the `^export function` count is 29 by two independent counts, both files parse clean, and the module loads with both new exports. No temporary output was created and my writes touched only the two named files.
+
+Process notes for the record — GATE 1: trigger-index lookup surfaced the bound packet (`023-reply-harness-blinded-judge/spec.md`, 0.88). SKILL ROUTING: sk-code hub read and its quality-mode standards applied (comment hygiene, scoped verification); the hub's compiled-router command was not run, as the brief limits commands to the listed checks and forbids local-service calls. REPO RULES: prevent-overengineering, scope-discipline, evidence-and-proof, blast-radius — loaded before the first write. State: working tree, uncommitted, nothing pushed; `node --test` deliberately not run (orchestrator's). Only the orchestrator can confirm the four new tests and the suite; the static trace of the expected counts (147 calls, A/B/W/L, verdicts) matched the brief.
+
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs (+205 net lines/-0)
+  .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (+151 net lines/-0)
+EDITS:
+  judge-agreement.mjs:824-959 STEP 1 — runDeemArm added at end of section 7: one `score` call per labeled reply and dimension with sorted-SHA walk, exit-4 retry behind readDeemHealth (server gone / model commit changed stops), calls.jsonl record per spawn, stop returns `{ stopped, partialReplies }`, then column/latency lines, dimensionLines, `flips: n/a (commit pair)`, conditional requalify, verdictLine with model commit suffix, column return
+  judge-agreement.mjs:984-1023 STEP 2 — buildReport added in section 9 (census/Shas/K/baselineAgreement/keepRule + per-backend columns, stopped, skipped, requalify maps); :1131 labelsSha const; :1143-1182 main builds callLog/stored when --deem/--jev, replaces the placeholder comment with the runDeemArm call, writes `outDir/report.json` as JSON.stringify(report, null, 2) + '\n' after the arms
+  judge-agreement.test.mjs:9 STEP 3 — LEVELS added to the import; :640-789 scenario(fixture, pick) helper (labels.jsonl + answers.json keyed by sha256Hex(entry.text)|judgeGuidance), third(g, b) helper, and the four verdict tests (keep / stop margin / kill / stop coverage)
+CHECKS:
+  node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> no output, clean parse (exit 0)
+  node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs -> no output, clean parse (exit 0)
+  count of `^export function` in judge-agreement.mjs -> 29 matches (search tool); node -e count -> `count=29` (exit 0); baseline captured before edits was 28
+  node --input-type=module -e "import('./.../judge-agreement.mjs')" -> `runDeemArm=function buildReport=function` (exit 0)
+  wc -l both files -> 1188 and 789 (exit 0)
+  node --test -> not run by this worker (brief: orchestrator runs the suite)
+  git status --short -> my two files untracked as before, no new entries; only delta vs session start is two sk-doc files modified by a concurrent worker, none written by me (exit 0)
+BLOCKED REASON: none

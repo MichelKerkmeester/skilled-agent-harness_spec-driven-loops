@@ -1,0 +1,69 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/code.md; focused summary for a one-change brief) ===
+You are @code, a leaf implementer dispatched by an orchestrator (Depth: 1). Never dispatch another agent.
+Scope: edit only the files this brief names. Read each file before editing it and re-read the edited region after.
+Standards: read .skilled/skills/sk-code/SKILL.md and follow the route it resolves for this file type.
+Comment hygiene is a hard block: no spec paths, packet or phase numbers, or REQ/task ids in code comments. Keep the durable why.
+Verification: run only the checks this brief lists. Fail closed: no retry loop, no workaround. Report exact commands, result lines and exit codes.
+Output: end with the HANDBACK block, STATUS DONE or BLOCKED.
+=== END AGENT PERSONA (resolved persona: code) ===
+
+TASK: add the keep-rule verdict per backend column to the script, with unit tests.
+S = .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs (exists)
+T = .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (exists)
+Read S and T in full first, then `.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` lines 806-900 (an exact BigInt sign test and a verdict in the same style). Keep every existing line unchanged. Same style as S.
+
+STEP 1. In S, insert section `6. VERDICT` between section 5 and section 9, starting with a comment: the keep rule is fixed before any model run, counts stay integers and both tails are exact, so no rounding decides a verdict. Exports:
+- `binomialTail(k, n)`: exact P(X >= k) for X ~ Binomial(n, 1/2). n === 0 gives `{ p: 1, below: false }`. Otherwise sum the BigInt coefficients C(n, i) for i from k to n into `num`, `den = 1n << BigInt(n)`, return `{ p: Number(num) / Number(den), below: 20n * num < den }`.
+- `modalLevel(levels)`: one element gives `{ level: levels[0], top: 1 }`. Otherwise the level whose count is more than half of `levels.length` gives `{ level, top: count }`, and when none is, `{ level: null, top: 1 }`, the unstable case of three different levels.
+- `decideVerdict({ backend, K, M, A, B, W, L, F })`: `win = binomialTail(W, W + L)`, `loss = binomialTail(L, W + L)`. The first failing check decides, in this order: `!(10 * M >= 9 * K)` gives `'stop (coverage)'`; `loss.below` gives `'kill'`; `!(10 * (A - B) >= 7 * M)` gives `'stop (margin)'`; `!win.below` gives `'stop (sign test)'`; `backend === 'jev' && !(10 * F <= 21 * M)` gives `'stop (flips)'`; otherwise `'keep'`. Returns `{ verdict, pWin: win.p, pLoss: loss.p }`.
+- `formatP(p)`: `p.toPrecision(4)`.
+- `summarizeColumn({ backend, labeled, baseline, answers, dimensionIds, reruns })`: labeled maps reply SHA to `{ grades }`, baseline maps SHA to a levels object, answers maps SHA to an object from id to an array of levels where `null` is an unmeasured call. K is `labeled.size`. Visit labeled SHAs in sorted order. A reply is measured only when every id holds an array of exactly `reruns` entries and none is null. For each measured reply: M += 1, and per id `{ level, top } = modalLevel(array)`, `F += reruns - top`, `unstable += 1` when level is null, a column hit when `level === grades[id]`, a baseline hit when `baseline.get(sha)[id] === grades[id]`. A and B sum the hits; per id keep `{ column, baseline, cells }`. W += 1 when the reply's column hits beat its baseline hits, L += 1 when they fall short. Returns `{ backend, K, M, A, B, W, L, F, unstable, perDimension, verdict, pWin, pLoss }` using `decideVerdict`.
+- `verdictLine(summary, labelsSha, suffix)`: `` `verdict ${backend}: ${verdict} K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${backend === 'jev' ? F : 'n/a'} p_win=${formatP(pWin)} p_loss=${formatP(pLoss)} labels_sha256=${labelsSha}` `` plus `` ` ${suffix}` `` when suffix is a non-empty string.
+- `dimensionLines(summary, dimensionIds)`: one line per id, `` `dimension ${backend} ${id}: column=${column}/${cells} baseline=${baseline}/${cells}` ``. A comment says the table is reported and never decides a verdict.
+
+STEP 2. In T, add four tests:
+24. `binomialTail(5, 5)` is `{ p: 0.03125, below: true }`, `binomialTail(4, 4)` is `{ p: 0.0625, below: false }`, `binomialTail(0, 0)` and `binomialTail(0, 3)` each have p 1 and below false.
+25. `modalLevel(['absent', 'absent', 'fully met'])` is `{ level: 'absent', top: 2 }`, `modalLevel(['absent', 'partly met', 'fully met'])` is `{ level: null, top: 1 }`, `modalLevel(['partly met'])` is `{ level: 'partly met', top: 1 }`.
+26. `decideVerdict` verdicts, all with K 20: `{ backend: 'deem', M: 17, A: 119, B: 51, W: 17, L: 0, F: 0 }` is `'stop (coverage)'`; M 20, A 0, B 60, W 0, L 20 is `'kill'`; M 20, A 60, B 60, W 0, L 0 is `'stop (margin)'`; M 20, A 140, B 60, W 4, L 0 is `'stop (sign test)'`; jev M 20, A 140, B 60, W 20, L 0, F 100 is `'stop (flips)'`; the same with F 42 is `'keep'`; deem M 20, A 140, B 60, W 20, L 0 is `'keep'`.
+27. On 20 SHAs where every grade is `'fully met'`, every answer array is `['fully met']` and the baseline is `'fully met'` on the first 3 ids and `'absent'` on the rest, `summarizeColumn({ backend: 'deem', ..., reruns: 1 })` gives A 140, B 60, W 20, L 0, verdict `'keep'`, and `verdictLine(summary, 'abc', 'model=m')` starts with `'verdict deem: keep K=20 M=20 A=140 B=60 W=20 L=0 F=n/a p_win='` and ends with `' labels_sha256=abc model=m'`.
+
+Accept when: 2 files changed (S and T), no other file changed, both pass `node --check`, and `grep -c "^export function" S` prints 20.
+Checks you run: `node --check S`, `node --check T`, that grep. Do not run `node --test`: the orchestrator runs it.
+
+RUN CONTEXT
+- Repo root, a git worktree. Run every command from here:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration
+- Spec folder (pre-approved, Gate 3 answered): specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge
+- Other workers edit other files in this tree at the same time. Touch only the files this brief names.
+- The orchestrator runs the test suites, spec validation and every git commit after you return.
+- Your sandbox may block test runners that open local sockets (tsx, vitest). Run only the checks listed here; the orchestrator runs the rest.
+
+DON'T
+- Edit, create or delete any file this brief does not name.
+- Run a git command that writes (add, commit, stash, checkout, restore, reset, merge, rebase, push).
+- Install anything (npm/pnpm/pip/brew install, npm ci) or touch node_modules.
+- Open any .env file, print environment variables, or write a key or token into any file.
+- Call jev, the local Deem server (127.0.0.1:8300) or any network service.
+- Put spec paths, packet or phase numbers, or REQ/task ids in code comments.
+- Reformat, reorder or "improve" anything outside the named edit.
+- Ask a question. If a step cannot be done exactly as written, stop and report BLOCKED with the reason.
+
+HANDBACK (print exactly this block, filled in, as your last output)
+STATUS: DONE | BLOCKED
+FILES CHANGED: one line per file: <path> (+<added>/-<removed>)
+EDITS: one line per step: <file>:<line> <what changed>
+CHECKS: one line per check: <command> -> <result line> (exit <n>)
+BLOCKED REASON: <one line, or none>

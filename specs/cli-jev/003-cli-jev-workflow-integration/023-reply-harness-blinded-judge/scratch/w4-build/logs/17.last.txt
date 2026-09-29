@@ -1,0 +1,10 @@
+F created as an exact byte copy of D; both checks pass.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/feature-catalog/evaluation-and-observability/offline-judge-agreement.md (+75/-0)
+EDITS: .skilled/skills/sk-communication/feature-catalog/evaluation-and-observability/offline-judge-agreement.md:1 created via `cp` from draft (full file, bytes identical)
+CHECKS:
+- `cmp specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-build/drafts/offline-judge-agreement.md .skilled/skills/sk-communication/feature-catalog/evaluation-and-observability/offline-judge-agreement.md` -> no output (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/feature-catalog/evaluation-and-observability/offline-judge-agreement.md` -> `✅ VALID ... Total issues: 0` (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,6 @@
+6393685a6f07721141c4b7237cdd739c89430de74bb43c4600964d9c9b97c01e  .skilled/skills/sk-communication/benchmark/reply-harness/blind.mjs
+c4c6f0013dd46821249a43c1574f9bb0e49091c82be1f2389b8565d4491628ad  .skilled/skills/sk-communication/benchmark/reply-harness/compare.mjs
+bac7cff51814db7612492317a37179fd74e63c5454532ff756450517fb174987  .skilled/skills/sk-communication/benchmark/reply-harness/generate-prompts.mjs
+a4eec9821c9e26bd02967896f50eec3246a510b7c8c958c55ace369495911edf  .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs
+ea499257cec2587a65d0feb9618740549ffe8f5a834387f6bda758096ad59f88  .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs
+0e8e38829731aff3f29e69ce012a5a294529afd563504df91c23b60e877e664c  .skilled/skills/sk-communication/benchmark/reply-harness/score.mjs

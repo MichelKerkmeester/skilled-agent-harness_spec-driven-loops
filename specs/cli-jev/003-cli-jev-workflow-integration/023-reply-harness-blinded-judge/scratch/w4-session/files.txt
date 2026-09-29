@@ -1,0 +1,10 @@
+.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs
+.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs
+.skilled/skills/sk-communication/README.md
+.skilled/skills/sk-communication/SKILL.md
+.skilled/skills/sk-communication/benchmark/reply-harness/README.md
+.skilled/skills/sk-communication/feature-catalog/feature-catalog.md
+.skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/sk-communication/changelog/v1.4.0.0.md
+.skilled/skills/sk-communication/feature-catalog/evaluation-and-observability/offline-judge-agreement.md
+.skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md

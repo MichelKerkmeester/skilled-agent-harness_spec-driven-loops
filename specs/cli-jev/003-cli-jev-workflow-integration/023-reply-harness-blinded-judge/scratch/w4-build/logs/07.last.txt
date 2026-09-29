@@ -1,0 +1,46 @@
+I'll read the two target files in full and the reference section.
+
+Now the remaining parts of S and T, plus a bit more of the reference file for the summary/verdict-line style.
+
+Now let me follow the persona's routing requirement and check the current export count baseline.
+
+The hub routes through a compiled router first. Let me follow its contract, then load the packet it resolves.
+
+The compiled router defers on an ambiguous surface; per the hub's fallback rule I'll resolve the mode the legacy route would pick for an implement-with-tests task — sk-code-quality — and load its packet.
+
+The target is JavaScript in the OpenCode surface, so the surface packet's implement doctrine and its JS checklist are the right route. Loading those plus the required quality checklist.
+
+Both files are read, the route is resolved (OpenCode surface, JavaScript ESM checklist; `.mjs` is strict by module semantics, JSDoc on exports, comment hygiene). Baseline export count is 13, so 7 new exports land exactly on the required 20. Now the source edit:
+
+S is edited. Now the test file: import line first, then append the four tests.
+
+
+
+Both files edited. Running the three specified checks:
+
+All three checks pass. Since comment hygiene is a hard block, let me run the repo's hygiene checker on both modified files (read-only), and confirm the scoped working-tree state.
+
+The checker errored on my invocation (it looks like it embeds a heredoc that didn't parse). Let me read its head to invoke it the intended way.
+
+It's a Python script behind a `.sh` name — my `bash` invocation was wrong. Running it per file with python3:
+
+Clean on both. Final evidence pass — file lengths and the export inventory:
+
+All acceptance criteria are met. Summary of what was done and evidence:
+
+- **S** (`judge-agreement.mjs`): new `6. VERDICT` section inserted between section 5 and section 9 — 7 new exports (`binomialTail`, `modalLevel`, `decideVerdict`, `formatP`, `summarizeColumn`, `verdictLine`, `dimensionLines`) in the existing style (BigInt exact tails mirroring `signTestP`, JSDoc, early-return checks). Every pre-existing line is unchanged.
+- **T** (`judge-agreement.test.mjs`): import widened with the five new names the tests use; four tests appended covering the exact tails, the modal/unstable cases, the first-failure keep-rule order, and the column summary + verdict line on 20 SHAs.
+- Comment hygiene checker ran clean on both files (exit 0 each); scoped `git status` shows only the two named files.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs (+151/-0)
+FILES CHANGED: .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (+44/-1, the -1 being the replaced import line)
+EDITS: judge-agreement.mjs:414-564 inserted section `6. VERDICT` (fixed-rule comment; binomialTail exact BigInt tail with exact 20n*num < den test; modalLevel majority with null unstable case; decideVerdict coverage → kill → margin → sign test → jev flips → keep; formatP; summarizeColumn measured/reruns gating, F, unstable, perDimension, W/L; verdictLine with F=n/a for non-jev; dimensionLines reported-only table)
+EDITS: judge-agreement.test.mjs:9 widened the import with binomialTail, decideVerdict, modalLevel, summarizeColumn, verdictLine
+EDITS: judge-agreement.test.mjs:513-555 appended the four tests (exact tails 0.03125/0.0625 and n=0; modal two-of-three and three-way split and single; all seven decideVerdict verdicts; summarizeColumn A=140 B=60 W=20 L=0 verdict keep plus verdictLine start/end)
+CHECKS: node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> CHECK_S=PASS (exit 0)
+CHECKS: node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs -> CHECK_T=PASS (exit 0)
+CHECKS: grep -c "^export function" .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> 20 (exit 0)
+CHECKS: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <each of S and T> -> no violations printed (exit 0 both; the script is Python with a .sh name, so it must be run via python3/direct exec, not bash)
+CHECKS: git status --porcelain -- .skilled/skills/sk-communication/benchmark/reply-harness/ -> only the two target files listed (both pre-existing untracked `??`) (exit 0)
+BLOCKED REASON: none

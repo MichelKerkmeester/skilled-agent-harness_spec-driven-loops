@@ -1,0 +1,40 @@
+
+
+Both files read; S is truncated at line 477 of 505. Reading the remainder.
+
+Now let me read the supporting files — `score.mjs`, `cases.json`, and the harness directory — to confirm the details the steps depend on.
+
+I have the full picture. Key confirmations from `score.mjs`: it dies on a missing reply file (line 312), dies on an empty reply (line 330), dies on unreadable `meta.json` (line 314-320), and writes `rows`/`noOps` with `replyFile` and `dimensionScores`. `cases.json` is a 7-case array with `id` fields. Now I'll make the edits — all of S first, then T.
+
+S is done. Now the test file edits.
+
+All edits applied. Now re-reading the edited regions to verify before running checks.
+
+S verified. Now running the three named checks.
+
+All three checks pass. Final self-review: confirm only the two files changed and no stale references remain.
+
+Checks are green. One last scan for duplicate or misplaced test titles in T.
+
+
+
+All steps are complete and verified. Final state:
+
+- **S** (`.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs`, 505 → 542 lines): `CASES_PATH` exported; `runBaseline` now stages each replies dir into `tmp/replies` — real text when present and non-empty, `'placeholder for an empty or missing reply\n'` otherwise (meta copied beside each), spawns `score.mjs` on the staged dir, drops stand-in rows, and remaps keys to the source dir; `summaryLines` takes `noBaseline` (default 0) and prints `no baseline:` after `unmatched:` plus `no_baseline=` on the labels line; `main` counts a matched SHA with no scores into `noBaseline`, filters `labeled` of baseline-less SHAs into `noBaselineRows`, and the `score.mjs gave no scores` exit-2 path is gone.
+- **T** (`.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs`, 472 → 511 lines): the missing-reply test now deletes `C1.md` + empties `C2.md` and expects a size-5 Map without both paths; a new test throws on a malformed `C3.meta.json`; a new main-level test empties `r1/C1.md` and `m1/C1-A.md` and expects exit 0 with `matched: 21`, `no baseline: 1`, and the stop line; the default-run prefix assertion (`slice(0, 4)`) still passes since `no baseline: 0` lands after the asserted prefix.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs (+47/-10)
+FILES CHANGED: .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (+41/-2)
+EDITS: judge-agreement.mjs:41 added exported CASES_PATH below RUBRIC_PATH with one-line JSDoc
+EDITS: judge-agreement.mjs:152-202 rewrote runBaseline JSDoc and body: tmp/replies staging, per-case stand-in/real write, meta copy, score.mjs on tmp/replies, stand-in rows skipped, keys remapped to source dir
+EDITS: judge-agreement.mjs:376-399 summaryLines accepts noBaseline (default 0), prints `no baseline:` after `unmatched:`, labels line gains no_baseline=${labelsInfo.noBaselineRows ?? 0}
+EDITS: judge-agreement.mjs:501-535 main counts noBaseline instead of returning 2, filters labeled of baseline-less SHAs into noBaselineRows, wires labelsInfo and summaryLines
+EDITS: judge-agreement.test.mjs:189-201 test 8 rewritten: missing C1.md + empty C2.md -> Map of size 5 without both paths
+EDITS: judge-agreement.test.mjs:203-211 new test: malformed C3.meta.json -> runBaseline throws /score\.mjs failed on/
+EDITS: judge-agreement.test.mjs:390-413 new test: empty r1/C1.md + emptied m1/C1-A.md -> exit 0, matched: 21, no baseline: 1, stop last line
+EDITS: judge-agreement.test.mjs:379 default-run prefix assertion unchanged; `no baseline: 0` lands at index 4, after the asserted slice(0, 4)
+CHECKS: node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> (no output; syntax valid) (exit 0)
+CHECKS: node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs -> (no output; syntax valid) (exit 0)
+CHECKS: grep -c "score.mjs gave no scores" .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> 0 (exit 1, zero matches)
+BLOCKED REASON: none

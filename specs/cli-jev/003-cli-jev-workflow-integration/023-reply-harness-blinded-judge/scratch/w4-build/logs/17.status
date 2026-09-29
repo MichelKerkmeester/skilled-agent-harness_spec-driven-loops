@@ -1,0 +1,1 @@
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-build/briefs/17-doc.md exit=0 seconds=30

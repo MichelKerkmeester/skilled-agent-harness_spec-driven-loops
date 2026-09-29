@@ -1,0 +1,37 @@
+✔ readMaskedReply returns the body under the marker and null without one (0.619875ms)
+✔ buildCensus counts every masked file and matches every distinct reply (35.496209ms)
+✔ buildCensus reports the masked reply whose source changed after masking (31.200875ms)
+✔ listMarkdown refuses a path that is not a directory (0.757917ms)
+✔ levelOfScore reads 0 as absent, 1 as fully met and a value between as partly met (0.345458ms)
+✔ levelOfScore returns null outside the scale or without a number (0.100208ms)
+✔ runBaseline maps every reply file to its dimension scores and leaves no temp dir (1688.056125ms)
+✔ runBaseline stands in for a missing and an empty reply and still scores the rest (630.993375ms)
+✔ runBaseline throws when score.mjs fails on a replies dir (165.226458ms)
+✔ parseLabels numbers a row by its 1-based line and skips the empty ones (0.315666ms)
+✔ parseLabels names the first missing dimension (0.093ms)
+✔ parseLabels rejects a grade outside the three levels (0.063917ms)
+✔ joinLabels keys one entry per reply SHA and reports a grade conflict (137.870709ms)
+✔ joinLabels skips a graded reply edited after masking and refuses a path outside the census (134.141542ms)
+✔ summaryLines stops below the label gate (0.602709ms)
+✔ summaryLines plans the arm calls and reports agreement above the gate (0.173417ms)
+✔ summaryLines refuses headroom when the baseline already agrees (0.146208ms)
+✔ the stub jev answers --version and logs the call, and cli-deem health exits 3 (154.353416ms)
+✔ the stub scores the same state 2, then 2, then 0 from the answers table (155.080584ms)
+✔ main prints the census report and the label gate stop on the default run (1464.152416ms)
+✔ main keeps an empty reply out of the baseline and still reports the census (1534.192083ms)
+✔ main refuses --deem without --out before reading any file (226.944625ms)
+✔ main reports a labels row that drops a dimension (1725.339834ms)
+✔ main stops on a label conflict between two rows grading one reply (1702.822958ms)
+✔ the script exits 2 with usage on stderr when --replies is missing (174.083958ms)
+✔ binomialTail sums the exact upper tail and flags p below 0.05 (0.155834ms)
+✔ modalLevel names the level over half the reruns and the unstable three-way split (0.065042ms)
+✔ decideVerdict stops at the first failed check in keep-rule order (0.075708ms)
+✔ summarizeColumn counts column and baseline hits and prints the verdict line (0.31675ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10027.640959

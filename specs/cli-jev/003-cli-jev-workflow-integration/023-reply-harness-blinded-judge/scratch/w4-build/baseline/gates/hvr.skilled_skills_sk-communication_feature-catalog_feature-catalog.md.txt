@@ -1,0 +1,9 @@
+HVR SCAN: .skilled/skills/sk-communication/feature-catalog/feature-catalog.md
+  x8    first@69    hard   punctuation            ;
+  x37   first@15    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          8
+  mechanical deductions:  -40
+  mechanical ceiling:     60/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality

@@ -1,0 +1,41 @@
+I'll run the read-only recheck for both findings. Starting with the manifest freshness checks and the diff.
+
+Finding 1 evidence collected: both new leaf docs are in the manifest and aliases, and both CI checks pass. Now Finding 2 — locating REQ-014, the COMM-011 index section, and reading the scenario plus the script.
+
+Both Finding 2 files now name `--jev`. I need to verify the new sentences against the actual script behavior. Let me read REQ-014 from the phase spec and the Jev gate in the script.
+
+Now let me read the Jev gate implementation and the main flow to verify the scenario's claims about the identity line, version pin, `auth status` exit handling, and skip lines.
+
+The scenario and index section now name `--jev`. Let me see the exact new sentences via a read-only diff, and read the Deem gate to verify the "gated the same way" claim.
+
+Both new sentences are in place. Let me collect the exact line evidence with the same grep the original reviewer used, and confirm the two new leaf docs exist on disk.
+
+Evidence is complete. Before writing the verdict, let me check how prior runs in this phase formatted their ending, so the verdict/handback ordering matches what the orchestrator consumes.
+
+Let me check the full grep overflow for how a prior recheck output ordered its VERDICT and HANDBACK lines.
+
+
+
+All evidence is collected and verified. Here is the recheck report.
+
+**Finding 1: closed** — both new leaf docs are now registered and both gates are green: `ci-leaf-manifest-freshness.cjs` prints `checked=15 fresh=15 failed=0` with `OK sk-communication ed1afb69…` (was 15/14 STALE at review time), `ci-skill-root-metadata.cjs` prints `checked=15 passed=15 failed=0 fixed=0`, and `git diff` shows `feature-catalog/evaluation-and-observability/offline-judge-agreement.md` and `manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md` added to both `leaf-manifest.json` and `leaf-aliases.json` (matching `leafResourceId`/`diskPath`/`workflowMode`, sorted correctly); both files exist on disk.
+
+**Finding 2: closed** — the scenario now names `--jev` at [offline-judge-census-stops-at-label-gate.md:16](file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md) (the reviewer's `grep -n jev` rc=1 now returns 1 hit) and the `### COMM-011` index section names it at [manual-testing-playbook.md:228](file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md). Checked against `judge-agreement.mjs`: identity line printed first at 986 (gate runs only behind `--jev`, 1423), version pin `jev 0.6.2` at 969 compared against the first `--version` stdout line (999–1002), `auth status --provider <p>` required to exit 0 (1009), and any non-zero exit — including 3 — prints exactly `jev arm skipped: no credential` (1010–1012); the census prints before the arms (1410) and "a skipped or refused gate leaves every earlier line as it was" (1442). The index's "gated the same way" and "identity line and one skip line" claims match `deemGate` (693–706) and `jevGate` observable behavior. No sentence contradicts the code.
+
+**New P0/P1 introduced by the fixes:** none.
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none
+CHECKS: `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs` -> `checked=15 fresh=15 failed=0` (exit 0)
+CHECKS: `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` -> `checked=15 passed=15 failed=0 fixed=0` (exit 0)
+CHECKS: `git diff -- .skilled/skills/sk-communication/leaf-manifest.json .skilled/skills/sk-communication/leaf-aliases.json` -> both new leaf docs added to both files (exit 0)
+CHECKS: `git diff -- .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md` -> COMM-011 index block with `--jev` sentence shown (exit 0; scenario file is untracked, so no diff entry)
+CHECKS: `grep -in jev .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md` -> 1 match, line 16 (exit 0; was no-hit rc=1 at review time)
+CHECKS: `grep -in jev .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md` -> 1 match, line 228 (exit 0)
+CHECKS: `ls -l` both new leaf doc paths -> both exist (exit 0)
+CHECKS: read `.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs:965-1016,1410-1442,693-706` -> identity line 986, version pin 969/1002, `auth status` 1009-1011, census unchanged 1410/1442 — all new sentences accurate (read-only)
+BLOCKED REASON: none

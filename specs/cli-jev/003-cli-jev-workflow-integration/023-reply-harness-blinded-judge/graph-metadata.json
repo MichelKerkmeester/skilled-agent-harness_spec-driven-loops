@@ -39,19 +39,25 @@
       "keep"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-communication/benchmark/reply-harness/blind.mjs",
+      ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs",
+      ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/sk-communication/SKILL.md",
+      "scratch/w4-build/build-evidence.md",
+      "scratch/w4-session/session-evidence.md",
+      "runtime/data/trigger-index.json",
       ".skilled/skills/sk-communication/benchmark/reply-harness/README.md",
       ".skilled/skills/sk-communication/SKILL.md",
       ".skilled/skills/sk-communication/README.md",
-      "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md"
+      "scratch/w4-build/briefs/01-task.md"
     ],
     "entities": [
       {
@@ -85,21 +91,15 @@
         "source": "derived"
       },
       {
-        "name": "blind.mjs",
+        "name": "judge-agreement.mjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/blind.mjs",
+        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs",
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-communication/SKILL.md",
+        "name": "judge-agreement.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs",
         "source": "derived"
       },
       {
@@ -112,6 +112,42 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "01-task.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/briefs/01-task.md",
         "source": "derived"
       },
       {
@@ -167,41 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Keep Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Keep Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The reply harness masks two conditions' replies so that \"a judge, human or model,\" can read them blind (`.skilled/skills/sk-communication/benchmark/reply-harness/README.md:11`)",
     "created_at": "2026-09-29T12:42:35Z",
-    "last_save_at": "2026-09-29T13:53:35.454Z",
+    "last_save_at": "2026-09-29T16:15:35.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:309a72d1d762b48a336e5c5b0f63060555be4c731a519f32b6d0256568bbb08a",
+    "source_fingerprint": "sha256:335bb05b1ec50d9abf2055e4415d282fdb530dc7ac3937c7436bf4869008045b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2330546d9ecacb2108001f61927715b69e78e2f454b3003802359804eef66e5e",
-      "plan.md": "60e01aca273218aa3f20289f1fafb192739215f8ee8fff3e8b6d2d8fa8a3fa28",
-      "tasks.md": "3d90e60c0425a14a891060f456bfcfec02691c3ca8ea4a22bacb2de58cfb03ef",
-      "implementation-summary.md": "3315de4971a40c20bab366410af8d8a1aac01ed44c286ffa737edf0b708d2272"
+      "spec.md": "c0478ac59fb32d46d209750fecb69b155bb6fc9eb0256396d1da4d142dbaf0a8",
+      "plan.md": "0c64afe3b4114bcf0aab60c26889edecda0e0466f2dc6ec0efa3dec53699a29d",
+      "tasks.md": "3a8ca67987a8f5447b90ca67df637c209b942035bec3014d2d482694ace44e58",
+      "implementation-summary.md": "36e222778f417380f73c660495bf8e4aa3f16e5d374b801cf6a55fd65e00a55d"
     },
     "last_active_at": null
   }

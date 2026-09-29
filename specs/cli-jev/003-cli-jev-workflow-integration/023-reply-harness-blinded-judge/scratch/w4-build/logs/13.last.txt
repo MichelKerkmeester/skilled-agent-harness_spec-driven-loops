@@ -1,0 +1,14 @@
+All four edits landed at the expected locations. Acceptance criteria met: one file changed, exactly 3 `## ` lines, validator prints `VALID` with exit 0.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/benchmark/reply-harness/README.md +11/-3
+EDITS:
+.skilled/skills/sk-communication/benchmark/reply-harness/README.md:3 overview heading inserted and overview paragraph rewritten (lines 3-9, was 3-5)
+.skilled/skills/sk-communication/benchmark/reply-harness/README.md:17 judge-agreement.mjs bullet inserted above the release-gate.md bullet
+.skilled/skills/sk-communication/benchmark/reply-harness/README.md:20 "## Run order" replaced by "--- / blank / ## 3. RUN ORDER"
+.skilled/skills/sk-communication/benchmark/reply-harness/README.md:29 run-order step 6 inserted below step 5
+CHECKS:
+grep -c "^## " .skilled/skills/sk-communication/benchmark/reply-harness/README.md -> 3 (exit 0)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/benchmark/reply-harness/README.md -> ✅ VALID: .skilled/skills/sk-communication/benchmark/reply-harness/README.md / Total issues: 0 (exit 0)
+BLOCKED REASON: none
