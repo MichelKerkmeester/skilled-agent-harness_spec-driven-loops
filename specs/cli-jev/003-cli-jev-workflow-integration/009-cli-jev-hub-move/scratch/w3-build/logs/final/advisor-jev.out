@@ -1,0 +1,135 @@
+[
+  {
+    "skill": "cli-classifier",
+    "kind": "skill",
+    "confidence": 0.8483,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.610806,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "cli-classifier",
+      "liveScore": 0.610806,
+      "shadowScore": 0.572806,
+      "delta": -0.038,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.602,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.152599,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.152599,
+      "shadowScore": 0.152749,
+      "delta": 0.00015,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "cli-external-orchestration",
+    "kind": "skill",
+    "confidence": 0.5721,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.096996,
+    "dominant_lane": "graph_causal",
+    "status": "active",
+    "_shadow": {
+      "skillId": "cli-external-orchestration",
+      "liveScore": 0.096996,
+      "shadowScore": 0.106868,
+      "delta": 0.009872,
+      "dominantShadowLane": "graph_causal"
+    }
+  },
+  {
+    "skill": "mcp-tooling",
+    "kind": "skill",
+    "confidence": 0.5641,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.082087,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-tooling",
+      "liveScore": 0.082087,
+      "shadowScore": 0.075692,
+      "delta": -0.006395,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "system-deep-loop",
+    "kind": "skill",
+    "confidence": 0.5627,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.079464,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-deep-loop",
+      "liveScore": 0.079464,
+      "shadowScore": 0.08055,
+      "delta": 0.001086,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "sk-design",
+    "kind": "skill",
+    "confidence": 0.5595,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.073477,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-design",
+      "liveScore": 0.073477,
+      "shadowScore": 0.068477,
+      "delta": -0.005,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.5548,
+    "uncertainty": 0.34,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.064736,
+    "dominant_lane": "semantic_shadow",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.064736,
+      "shadowScore": 0.070725,
+      "delta": 0.005989,
+      "dominantShadowLane": "semantic_shadow"
+    }
+  }
+]

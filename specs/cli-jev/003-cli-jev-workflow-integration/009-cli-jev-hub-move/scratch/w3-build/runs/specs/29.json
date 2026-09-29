@@ -1,0 +1,18 @@
+{
+ "file": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md",
+ "context": [
+  "the dispatch audit now reports a jev dispatch under skill cli-classifier (the Jev transport is",
+  "mode cli-jev of the cli-classifier hub), so a false positive would resolve to cli-classifier."
+ ],
+ "edits": [
+  [
+   34,
+   "a quoted or logged string resolves to `cli-jev`;",
+   "a quoted or logged string resolves to `cli-classifier`;"
+  ]
+ ],
+ "checks": [
+  "grep -c \"resolves to \\`cli-jev\\`\" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md   (expect 0)"
+ ],
+ "out": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/29.body.md"
+}

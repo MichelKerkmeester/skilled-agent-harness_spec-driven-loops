@@ -1,0 +1,11 @@
+$ grep -c '^| \[JEV-' .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+22
+exit=0
+$ git diff HEAD -M --summary -- .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/manual-testing-playbook.md .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+ rename .skilled/skills/{cli-jev => cli-classifier}/cli-usage/manual-testing-playbook/manual-testing-playbook.md (98%)
+exit=0
+$ git diff HEAD -M --stat --find-renames -- .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/manual-testing-playbook.md .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+ .../cli-usage/manual-testing-playbook/manual-testing-playbook.md        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+exit=0
+53daaec1f16ad7cd556e67aa1fb2f5834845cfb5e0ffed4e37bcce0e580778ef  .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md

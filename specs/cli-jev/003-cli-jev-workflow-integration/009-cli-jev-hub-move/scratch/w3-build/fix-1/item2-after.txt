@@ -1,0 +1,30 @@
+$ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+
+✅ VALID: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md, so README rules were applied. Pass --type to choose the rule set.
+exit=0
+$ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md --type playbook
+
+✅ VALID: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+Document type: playbook
+Total issues: 0
+exit=0
+$ grep -c '^| \[JEV-' .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+22
+exit=0
+$ git diff HEAD -M --summary -- .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/manual-testing-playbook.md .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+ rename .skilled/skills/{cli-jev => cli-classifier}/cli-usage/manual-testing-playbook/manual-testing-playbook.md (94%)
+exit=0
+$ git diff HEAD -M --stat --find-renames -- .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/manual-testing-playbook.md .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+ .../manual-testing-playbook.md                     | 32 +++++++++++++++-------
+ 1 file changed, 22 insertions(+), 10 deletions(-)
+exit=0
+## scenario rows identical before/after?
+rows-diff-exit=0
+## em dash count before/after (moved text only, none added)
+      35
+      35

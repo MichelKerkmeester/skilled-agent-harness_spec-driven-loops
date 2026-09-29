@@ -1,0 +1,47 @@
+
+
+Both files match the brief's expected state (lines 30-32 comment, line 41 `'cli-jev',`), and I've loaded the sk-code hub; it routes this `.cjs` system file to the OpenCode surface packet. Let me load that packet and sanity-check the two files are distinct regular files before editing.
+
+Both are distinct regular files (different inodes, same 6176 bytes), so both need the edit independently. The sk-code route resolves to the OpenCode surface, JavaScript slice; the change itself is the frozen literal substitution from the brief. Applying EDIT A (comment block) to both files now.
+
+EDIT A applied to both files. Now EDIT B (the hub id) on both files.
+
+Both edits applied to both files. Now running the brief's three checks, each with explicit exit-code capture, plus a scoped read-only git status/numstat for the acceptance evidence.
+
+All three checks pass. Final-state verification: inspecting the scoped diff to confirm the edits are exactly the frozen strings and nothing else moved.
+
+All checks green and the diff is exactly the frozen edit (identical pre/post blob hashes `a843a0bd19 -> 562c342466` on both files). Two quick compliance reads before I finalize: the repo-root `REPO RULES.md` existence check (Gate 5) and the root `AGENTS.md` that was flagged as not-injected.
+
+`REPO RULES.md` exists — Gate 5 requires me to load it against my action (code-file edit) before finalizing. Reading it now.
+
+Gate 5: my action (reporting results, quoting numbers, ending a turn with a substantive reply) matches the trigger table entries for evidence, uncertainty, and the communication family. Loading those rule files now.
+
+Gate 5 load done. One gap the evidence rule flags: `node --check` exiting 0 with no output is a weak receipt, and I have no negative control that the export check actually discriminates. Running an affirmative syntax re-check, the same export check against the pre-edit HEAD blob, and a branch/status read.
+
+Done: both `resolve.cjs` twins carry the frozen literal edit and remain byte-identical. Every check passes.
+
+SKILL ROUTING: sk-code → sk-code-opencode (OpenCode surface, JavaScript slice)
+REPO RULES: `.skilled/repo-rules/evidence-and-proof.md`, `uncertainty-and-honesty.md`, `communication.md`, `communication-prose.md`, `communication-handoff.md`
+
+Diff accounting: git's line-based numstat reads +5/-4 per file because it counts the three rewritten comment lines as delete+add. In added/removed terms the edit is +2/-1 per file: one net-new comment line and one swapped hub id. I wrote only the two named files.
+
+State: edited and unstaged on branch `worktrees/069-cli-jev-workflow-integration`. Next is yours: run the suites, spec validation and the commit. Nothing is blocked on me.
+
+STATUS: DONE
+FILES CHANGED:
+.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs (+5/-4)
+specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs (+5/-4)
+EDITS:
+.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:30-32 -> 30-33 comment block replaced (3 lines become 4, cli-jev clause rewritten to the cli-classifier admission wording)
+.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:41 -> 42 `'cli-jev',` -> `'cli-classifier',`
+specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs:30-32 -> 30-33 comment block replaced (3 lines become 4, cli-jev clause rewritten to the cli-classifier admission wording)
+specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs:41 -> 42 `'cli-jev',` -> `'cli-classifier',`
+CHECKS:
+node --check .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs -> no diagnostics (exit 0)
+node --check .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs && node --check specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs && echo "SYNTAX-OK: both resolve.cjs parse" -> SYNTAX-OK: both resolve.cjs parse (exit 0)
+cmp .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs -> files identical, no output (exit 0)
+node -e "console.log([...require('./.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs').DEFAULT_ON_HUBS].join(','))" -> sk-code,system-deep-loop,mcp-tooling,cli-external-orchestration,cli-classifier,sk-doc,sk-design (exit 0)
+negative control, same export check run against the pre-edit HEAD blob via git show + in-memory Module._compile -> sk-code,system-deep-loop,mcp-tooling,cli-external-orchestration,cli-jev,sk-doc,sk-design (exit 0)
+git diff --numstat -- <both paths> -> 5	4 .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs and 5	4 specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/resolve.cjs (exit 0)
+git status --porcelain -- <both paths> -> " M" on each (exit 0)
+BLOCKED REASON: none

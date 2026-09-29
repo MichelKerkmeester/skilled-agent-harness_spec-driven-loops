@@ -1,0 +1,12 @@
+All three checks pass. Scoped `git status` on the two named paths shows exactly one modification and one deletion.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/description.json (+1/-1)
+FILES CHANGED: .skilled/skills/cli-jev/description.json (+0/-1, deleted)
+EDITS: .skilled/skills/cli-classifier/description.json:1 replaced with prepared merged copy (byte-for-byte)
+EDITS: .skilled/skills/cli-jev/description.json:1 file deleted via plain rm (working tree only)
+CHECKS: cmp scratch/w3-build/attach/description.json .skilled/skills/cli-classifier/description.json -> no output (exit 0)
+CHECKS: test ! -e .skilled/skills/cli-jev/description.json -> no output (exit 0)
+CHECKS: python3 -m json.tool .skilled/skills/cli-classifier/description.json > /dev/null -> no output (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,55 @@
+===== brief 19b (pi) .skilled/agents/orchestrate.md .claude/agents/orchestrate.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/19b-agent-row.md: 63 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/19b-agent-row.md exit=0 seconds=52
+--- handback 19b
+STATUS: DONE
+FILES CHANGED: .skilled/agents/orchestrate.md (+1/-1 by me; file currently +3/-3 vs HEAD, see note)
+               .claude/agents/orchestrate.md (+1/-1)
+EDITS: .skilled/agents/orchestrate.md:838 substring "(the `cli-jev` hub's transport)" -> "(mode `cli-jev` of the `cli-classifier` hub)" inside the table row
+       .claude/agents/orchestrate.md:826 same substring replacement in the same table row
+CHECKS: grep -c "cli-jev` hub's transport" .skilled/agents/orchestrate.md .claude/agents/orchestrate.md -> .skilled/agents/orchestrate.md:0 / .claude/agents/orchestrate.md:0 (exit 1 — expected, grep exits 1 on zero matches)
+        grep -c "(mode `cli-jev` of the `cli-classifier` hub)" .skilled/agents/orchestrate.md .claude/agents/orchestrate.md -> .skilled/agents/orchestrate.md:1 / .claude/agents/orchestrate.md:1 (exit 0)
+BLOCKED REASON: none
+```
+
+Honest note on the acceptance line "2 files changed, +1/-1 lines in each against its last state":
+- `.claude/agents/orchestrate.md` is exactly `1  1` in `git diff --numstat`.
+- `.skilled/agents/orchestrate.md` reads `3  3` against HEAD because two other hunks in that same file (the `cli-jev` hub → `cli-classifier` hub rename at line 472 and at line 850) were already present in the working tree when I edited, written by another concurrent worker. My `edit` call replaced exactly 1 block in that file. Those two hunks are outside my brief, so I did not revert or touch them — reverting would destroy another worker's in-scope change.
+
+Only the two named files differ; `.codex/`, `.pi/` and `.hermes/` were not opened.
+--- tree delta
+0a1
+>  M .claude/agents/orchestrate.md
+numstat: 
+===== brief 19c (pi) .claude/agents/orchestrate.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/19c-claude-orchestrate.md: 69 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/19c-claude-orchestrate.md exit=0 seconds=70
+--- handback 19c
+STATUS: DONE
+FILES CHANGED: .claude/agents/orchestrate.md (+2/-2)
+EDITS:
+.claude/agents/orchestrate.md:463 "now lives in its own hub: `cli-usage`, the only mode of `.skilled/skills/cli-jev/`." → "lives in the classifier hub: mode `cli-jev` of `.skilled/skills/cli-classifier/`, over the packet `cli-usage`."
+.claude/agents/orchestrate.md:841 "- `.skilled/skills/cli-jev/SKILL.md`" → "- `.skilled/skills/cli-classifier/SKILL.md`"
+.claude/agents/orchestrate.md:841 "the hub that carries the `cli-usage` transport, the judgment-only mode that runs nothing" → "the hub whose `cli-jev` mode carries the `cli-usage` transport, the judgment-only mode that runs nothing"
+CHECKS:
+grep -c "skills/cli-jev/" .claude/agents/orchestrate.md -> 0 (exit 1)
+grep -c "skills/cli-classifier/" .claude/agents/orchestrate.md -> 2 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+numstat: 3	3	.claude/agents/orchestrate.md
+===== brief 20b (pi) .claude/agents/prompt-improver.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/20b-claude-prompt-improver.md: 60 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/20b-claude-prompt-improver.md exit=0 seconds=51
+--- handback 20b
+STATUS: DONE
+FILES CHANGED: .claude/agents/prompt-improver.md (+1/-1)
+EDITS: .claude/agents/prompt-improver.md:56 replaced substring "the only mode of the `cli-jev` hub" → "mode `cli-jev` of the `cli-classifier` hub" (rest of line byte-identical)
+CHECKS:
+- grep -c "the \`cli-jev\` hub" .claude/agents/prompt-improver.md -> 0 (exit 1, no match as expected)
+- grep -c "cli-classifier" .claude/agents/prompt-improver.md -> 1 (exit 0)
+- git diff --stat (scoped) -> .claude/agents/prompt-improver.md | 2 +- (1 file changed by me, +1/-1); `.skilled/agents/prompt-improver.md` also differs from HEAD but held the new text before my first tool call (pre-edit grep showed 0 old-text matches there) — pre-existing concurrent-worker change, untouched by me (exit 0)
+BLOCKED REASON: none
+--- tree delta
+1a2
+>  M .claude/agents/prompt-improver.md
+numstat: 1	1	.claude/agents/prompt-improver.md

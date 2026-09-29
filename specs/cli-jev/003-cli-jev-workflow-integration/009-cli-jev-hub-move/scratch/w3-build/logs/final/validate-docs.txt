@@ -1,0 +1,31 @@
+.claude/agents/orchestrate.md | auto: exit 0, type agent, issues 1
+.claude/agents/prompt-improver.md | auto: exit 0, type agent, issues 1
+.skilled/agents/orchestrate.md | auto: exit 0, type agent, issues 1
+.skilled/agents/prompt-improver.md | auto: exit 0, type agent, issues 1
+.skilled/skills/cli-classifier/benchmark/README.md | auto: exit 0, type readme, issues 0
+.skilled/skills/cli-classifier/benchmark/reports/README.md | auto: exit 0, type readme, issues 0
+.skilled/skills/cli-classifier/changelog/v1.1.0.0.md | auto: exit 0, type changelog, issues 0
+.skilled/skills/cli-classifier/cli-deem/README.md | auto: exit 0, type readme, issues 0
+.skilled/skills/cli-classifier/cli-deem/SKILL.md | auto: exit 0, type skill, issues 0
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md | auto: exit 0, type feature_catalog, issues 0
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md | auto: exit 0, type readme, issues 1 | --type feature_catalog: exit 0, issues 0
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md | auto: exit 0, type feature_catalog, issues 0
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md | auto: exit 0, type playbook_feature, issues 0
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md | auto: exit 0, type playbook_feature, issues 0
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md | auto: exit 1, type readme, issues 2 | --type playbook: exit 1, issues 4 | auto errors: missing_required_section Missing required section: overview
+.skilled/skills/cli-classifier/cli-usage/README.md | auto: exit 0, type readme, issues 0
+.skilled/skills/cli-classifier/cli-usage/SKILL.md | auto: exit 0, type skill, issues 0
+.skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md | auto: exit 0, type playbook_feature, issues 0
+.skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md | auto: exit 0, type playbook_feature, issues 0
+.skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md | auto: exit 0, type playbook_feature, issues 0
+.skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md | auto: exit 0, type playbook_feature, issues 0
+.skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md | auto: exit 0, type playbook_feature, issues 0
+.skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md | auto: exit 0, type readme, issues 1 | --type playbook: exit 0, issues 0
+.skilled/skills/cli-classifier/README.md | auto: exit 0, type readme, issues 0
+.skilled/skills/cli-classifier/ROUTER.md | auto: exit 0, type readme, issues 1
+.skilled/skills/cli-classifier/shared/README.md | auto: exit 0, type readme, issues 0
+.skilled/skills/cli-classifier/SKILL.md | auto: exit 0, type skill, issues 0
+.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md | auto: exit 0, type feature_catalog, issues 0
+.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md | auto: exit 0, type readme, issues 1 | --type feature_catalog: exit 0, issues 0
+.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md | auto: exit 0, type asset, issues 0
+README.md | auto: exit 0, type readme, issues 0

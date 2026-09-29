@@ -1,0 +1,1 @@
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/19c-claude-orchestrate.md exit=0 seconds=70

@@ -1,0 +1,9 @@
+The named edit is applied, but check 1 does not match its expectation. The brief authorizes exactly one edit (line 34, +1/-1), yet the identical substring `a quoted or logged string resolves to \`cli-jev\`;` also appears on line 56 (the JEV-018 table row), which the brief does not name and scope forbids me to touch. So `grep -c` cannot reach 0 while honoring "Accept when: 1 file changed, +1/-1 lines." That is a contradiction inside the brief — I am reporting it rather than editing outside the named edit.
+
+HANDBACK
+STATUS: BLOCKED
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md (+1/-1)
+EDITS: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md:34 `a quoted or logged string resolves to \`cli-jev\`;` -> `a quoted or logged string resolves to \`cli-classifier\`;`
+CHECKS: grep -c "resolves to \`cli-jev\`" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> 1 (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> ✅ VALID: ...prose-mention-is-not-a-dispatch.md, Total issues: 0 (exit 0)
+BLOCKED REASON: grep expects 0 but line 56 (table row JEV-018) contains the same OLD substring outside the single authorized edit; the brief's +1/-1 scope and its grep expect-0 contradict — authorize a line-56 edit or accept the residual.

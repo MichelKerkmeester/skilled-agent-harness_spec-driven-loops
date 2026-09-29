@@ -1,0 +1,9 @@
+  cli-classifier              pass                    5 pass, 0 drift, 0 stale, 0 n/a
+  cli-external-orchestration  pass                    7 pass, 0 drift, 0 stale, 3 n/a; 5 mode(s) without gold
+  mcp-tooling                 pass                    16 pass, 0 drift, 0 stale, 0 n/a; 1 mode(s) without gold
+  sk-code                     pass                    1 pass, 0 drift, 0 stale, 0 n/a; 4 mode(s) without gold
+  sk-design                   pass                    4 pass, 0 drift, 0 stale, 0 n/a; 3 mode(s) without gold
+  sk-doc                      pass                    24 pass, 0 drift, 0 stale, 2 n/a; 6 mode(s) without gold
+  system-deep-loop            pass                    20 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.

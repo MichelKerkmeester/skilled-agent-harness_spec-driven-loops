@@ -1,0 +1,32 @@
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/tasks.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/tasks.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/acceptance-criteria.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/description.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/implementation-summary.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/tasks.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/spec.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/baseline-raw/
+?? specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/baselines.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/prompts.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/route-baseline.txt

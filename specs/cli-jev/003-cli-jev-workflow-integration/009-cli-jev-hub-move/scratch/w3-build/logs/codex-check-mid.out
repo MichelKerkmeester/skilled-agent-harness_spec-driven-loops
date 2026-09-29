@@ -1,0 +1,3 @@
+[codex-agent-sync] Drift detected:
+[codex-agent-sync] STALE .codex/agents/orchestrate.toml
+[codex-agent-sync] STALE .codex/agents/prompt-improver.toml

@@ -1,0 +1,70 @@
+--- specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/fix-1/playbook-before.md	2026-09-29 11:41:16
++++ .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md	2026-09-29 11:45:33
+@@ -45,12 +45,8 @@
+ 
+ ---
+ 
+-## 1. HOW TO RUN
++## 1. OVERVIEW
+ 
+-```bash
+-command -v jev && jev --version          # the binary is the precondition for every scenario
+-```
+-
+ Each scenario is its own file under a category directory and carries its full execution truth: the
+ prompt, the command, the expected observable, the 9-column contract table, the recorded result, the
+ source anchors and the failure triage. 22 deterministic scenarios across 5 categories.
+@@ -65,8 +61,16 @@
+ 
+ ---
+ 
+-## 2. EVIDENCE RULES
++## 2. GLOBAL PRECONDITIONS
+ 
++```bash
++command -v jev && jev --version          # the binary is the precondition for every scenario
++```
++
++---
++
++## 3. GLOBAL EVIDENCE REQUIREMENTS
++
+ Every executed scenario records four things and nothing else counts:
+ 
+ 1. The exact command, including every flag.
+@@ -79,8 +83,16 @@
+ 
+ ---
+ 
+-## 3. SCENARIO INDEX
++## 4. DETERMINISTIC COMMAND NOTATION
+ 
++Each scenario file gives its commands in a fenced `bash` block under `### Commands`. Run that block
++exactly as written, from the repository root, with the provider variables the scenario names cleared
++or set as it says.
++
++---
++
++## 5. SCENARIO INDEX
++
+ | ID | Scenario | Category | Observable | Blocker |
+ |---|---|---|---|---|
+ | [JEV-001](cli-invocation/binary-resolves-and-pins-version.md) | `jev` resolves on `PATH` and prints the pinned version | cli-invocation | `jev 0.6.2` on stdout, exit 0 | — |
+@@ -108,7 +120,7 @@
+ 
+ ---
+ 
+-## 4. RUN RECORD
++## 6. RUN RECORD
+ 
+ The recorded runs live under `../benchmark/reports/`: the phase-004 unauthenticated pass, the
+ authenticated verification that closed the two credential rows, and the post-migration
+@@ -126,7 +138,7 @@
+ 
+ ---
+ 
+-## 5. FAILURE TRIAGE
++## 7. FAILURE TRIAGE
+ 
+ | Symptom | Most likely cause | Next check |
+ |---|---|---|

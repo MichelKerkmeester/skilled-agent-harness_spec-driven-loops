@@ -1,6 +1,6 @@
 ---
 title: "Build Phase: Move cli-jev into the cli-classifier Hub"
-description: "Move the cli-jev hub into the proposed cli-classifier hub as mode cli-jev over its unchanged cli-usage packet, beside cli-deem, with one git mv of every hub file, one commit and a route replay that must match its pre-move baseline. The same commit onboards cli-classifier to the compiled fleet in cli-jev's place. The build starts once 008 is Complete (operator, 2026-09-29, parent D4 amended)."
+description: "Move the cli-jev hub into the cli-classifier hub as mode cli-jev over its unchanged cli-usage packet, beside cli-deem, with one git mv of every hub file, one commit and a route replay that must match its pre-move baseline. The same commit onboards cli-classifier to the compiled fleet in cli-jev's place. Built in ea883967d4 once 008 was Complete (operator, 2026-09-29, parent D4 amended)."
 trigger_phrases:
   - "cli-jev hub move"
   - "cli-jev into cli-classifier"
@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-27 |
 | **Source** | `../007-classifier-deep-research/research/research.md` section 14, `### 009-cli-jev-hub-move (new)`, with R23 in section 12 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
@@ -40,7 +40,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 9** of the cli-jev workflow integration specification. It builds the second half of recommendation R23 and carries out decision D2 of the parent goal: the new hub `cli-classifier` (proposed, phase 008) holds `cli-jev` (moved) and `cli-deem` (proposed, phase 008). The source is the round-3 synthesis, `../007-classifier-deep-research/research/research.md`: section 14 (`### 009-cli-jev-hub-move (new)`), section 12 (`### R23.`), the What Not To Build row 104 and the citation ledger rows 79 to 94.
+This is **Phase 9** of the cli-jev workflow integration specification. It builds the second half of recommendation R23 and carries out decision D2 of the parent goal: the hub `cli-classifier` (built in phase 008) holds `cli-jev` (moved here) and `cli-deem` (built in phase 008). The source is the round-3 synthesis, `../007-classifier-deep-research/research/research.md`: section 14 (`### 009-cli-jev-hub-move (new)`), section 12 (`### R23.`), the What Not To Build row 104 and the citation ledger rows 79 to 94.
 
 **Scope Boundary**: A routing identity change. `cli-jev` becomes mode `cli-jev` of `cli-classifier` over its packet folder `cli-usage`, whose name and transport contract stay as they are. system-deep-loop is the precedent: its mode `research` runs over packet `deep-research`. No feature gains a switch, and no Jev or Deem call is part of the phase.
 
@@ -76,6 +76,8 @@ Decision D2 of the parent goal puts both classifier transports under one hub, bu
 The footprint is larger than the lists. The hub holds 81 tracked files, 59 of them in `cli-usage` and 22 at hub level. 62 tracked files outside `specs/` and the hub name `cli-jev` (both counts by `git ls-files` and `git grep -l` on 2026-09-29, where 2026-09-27 counted 81 and 48, matching ledger row 94). A partial move fails badly here. A lineage proposed `git mv` of `cli-usage` alone followed by `rm -rf .skilled/skills/cli-jev`, which deletes the other 22 hub files, among them `manual-testing-playbook/`, `benchmark/`, `changelog/` and `shared/` (What Not To Build row 104).
 
 `cli-classifier` is not in the compiled fleet. The guard's `HUBS` (`compiled-route-guard.cjs:45-53`) lists 7 hubs without it, `013-live-activation/activation/` has no `cli-classifier/`, and on 2026-09-29 `node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "score this with deem"` printed `{"servingAuthority":"legacy","hubId":"cli-classifier"}` with exit 0. That line holds no `action`, `selectionKind` or `packetId`, so a replay through `--hub cli-classifier` cannot match the baseline unless the move also onboards the hub in `cli-jev`'s place, as `../../002-cli-jev-hub-migration/004-compiled-fleet-onboarding/implementation-summary.md` did for `cli-jev`.
+
+This statement records the state at `3dde18cb54`, before the move. The move commit `ea883967d4` resolved it, and `implementation-summary.md` records the result.
 
 ### Purpose
 
@@ -222,8 +224,8 @@ Counts are from `git ls-files` and `git grep -l` on 2026-09-27, rechecked on 202
 ## 7. OPEN QUESTIONS
 
 - Answered on 2026-09-29, research open question 49 (`../007-classifier-deep-research/research/research.md:1172`): the build starts once 008 is Complete (operator, 2026-09-29, parent D4 amended). No Deem `keep` is needed. The 2026-09-28 answer, which waited on a Deem keep in 002 or 017, is superseded, and the deciding verdicts of 002 and 017 stay in the parent goal's log.
-- Where do the hub's two changelog files, `v0.1.0.0.md` and `v0.2.0.0.md`, land if 008's `cli-classifier/changelog/` already holds those versions? They move byte-identical, and the path is decided at build so the changelog-shape check still passes.
-- Should the dispatch audit report a `jev` dispatch as skill `cli-classifier` or keep a per-mode label? This phase plans `cli-classifier`, the hub id, as every other hub reports.
+- Where do the hub's two changelog files, `v0.1.0.0.md` and `v0.2.0.0.md`, land if 008's `cli-classifier/changelog/` already holds those versions? Answered at build on 2026-09-29: 008's `changelog/` held only `v1.0.0.0.md`, so both moved byte-identical to `cli-classifier/changelog/v0.1.0.0.md` and `v0.2.0.0.md`, `R100` in `ea883967d4`. The build added `v1.1.0.0.md` for the move.
+- Should the dispatch audit report a `jev` dispatch as skill `cli-classifier` or keep a per-mode label? Answered at build on 2026-09-29: it reports `cli-classifier`, the hub id, with packet path `cli-classifier/cli-usage`, as every other hub reports.
 <!-- /ANCHOR:questions -->
 
 ---

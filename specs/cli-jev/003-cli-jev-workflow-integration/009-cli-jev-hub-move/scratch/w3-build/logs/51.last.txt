@@ -1,0 +1,9 @@
+The prepared scenario copy is in place and both checks pass: `cmp` reports byte identity (exit 0) and `validate_document.py` reports `✅ VALID ... Total issues: 0` (exit 0). One file changed; nothing else touched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md (+20/-18)
+EDITS: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md:all file replaced byte-for-byte with the prepared copy from the packet scratch attach dir (no hand edits)
+CHECKS: cmp <scratch copy> .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md -> ✅ VALID, Document type: playbook_feature, Total issues: 0 (exit 0)
+BLOCKED REASON: none

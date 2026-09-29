@@ -1,0 +1,9 @@
+**1. Pattern match:** sk-design lines 90-120 show `assertGoldExpectations(entry, evaluated, projection)` with the same `fail`/`GOLD_MISMATCH` helper and same five checks; the cli-classifier copy (lines 136-165) is identical except parameter names `result`/`observed`. Matches.
+
+**2. Fixture check:** all 9 cases print `True` for `'gold' in c and 'expectedIntents' in c['gold']`, and a second pass shows every `gold` has both `expectedIntents` and `expectedResources`. Defer/reject cases have `expectedModes=None`, but the check uses `entry.expectedModes || []` and compares to `[]` — clean `GOLD_MISMATCH`, not a crash. No case can crash the check as written.
+
+**3. Comment hygiene:** the added comment is only "Build-time expectation check: the fixture's declared action, selection kind, modes, intents and resources are asserted against the evaluated decision and its scorer projection, so a behavior change that rewrites the typed route gold fails here instead of silently re-baselining." No spec path, phase/packet number, or REQ/task/finding id (grep hits for `PHASE_ROOT`/`mode.packet` are pre-existing identifiers).
+
+Findings: none.
+
+VERDICT: PASS

@@ -1,0 +1,52 @@
+===== brief 29b (pi) .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/29b-jev018-row.md: 62 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/29b-jev018-row.md exit=0 seconds=51
+--- handback 29b
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md (+1/-1)
+EDITS: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md:56 `FAIL when a quoted or logged string resolves to \`cli-jev\`;` → `FAIL when a quoted or logged string resolves to \`cli-classifier\`;`
+CHECKS:
+- grep -c "resolves to \`cli-jev\`" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> 0 (exit 1)
+- grep -c "resolves to \`cli-classifier\`" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> 2 (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+numstat: 2	2	.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+===== brief 53b (pi) .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/53b-alias-v2.md: 57 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/53b-alias-v2.md exit=0 seconds=30
+--- handback 53b
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md (+17/-15)
+EDITS:
+- .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md: whole file replaced byte-for-byte with the prepared copy (restores Why This Matters paragraph and the pre-move recorded result above the 2026-09-29 result)
+CHECKS:
+- cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/playbook-v2/hub-routing/alias-still-resolves.md .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md -> no output (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+numstat: 17	15	.skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md
+===== brief 52b (pi) .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/52b-cj001-v2.md: 57 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/52b-cj001-v2.md exit=0 seconds=34
+--- handback 52b
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md (+20/-18)
+EDITS: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md:1 whole file replaced by the prepared copy — pre-move recorded result restored above the 2026-09-29 result; routing content unchanged
+CHECKS: cmp scratch/w3-build/attach/playbook-v2/hub-routing/judgment-request-routes-to-transport.md .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+numstat: 20	18	.skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md
+===== brief 36c (pi) .skilled/skills/cli-classifier/shared/README.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/36c-shared-readme-v3.md: 57 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/36c-shared-readme-v3.md exit=0 seconds=1202
+--- handback 36c
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/shared/README.md (+3/-11)
+EDITS: .skilled/skills/cli-classifier/shared/README.md:1 replaced with the prepared copy, title names cli-classifier and a numbered `## 1. OVERVIEW` heading sits above the moved hub body
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/shared-v3/README.md .skilled/skills/cli-classifier/shared/README.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/shared/README.md -> ✅ VALID: .skilled/skills/cli-classifier/shared/README.md, Document type: readme, Total issues: 0 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+numstat: 3	1	.skilled/skills/cli-classifier/shared/README.md

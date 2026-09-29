@@ -1,0 +1,26 @@
+SKILL ROUTING: advisor → sk-doc (0.93) | ARTIFACT: sk-doc → hub SKILL.md loaded (task is operator-prescribed text movement; no packet generator invoked)
+REPO RULES: evidence-and-proof.md, communication-handoff.md
+
+Step 8 output:
+
+```
+$ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+✅ VALID: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+Document type: readme
+Total issues: 1
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched ...manual-testing-playbook.md, so README rules were applied. Pass --type to choose the rule set.
+exit status: 0
+
+$ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md --type playbook
+✅ VALID: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+Document type: playbook
+Total issues: 0
+exit status: 0
+
+$ grep -c '^| \[JEV-' .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+22
+exit status: 0
+```
+
+DONE

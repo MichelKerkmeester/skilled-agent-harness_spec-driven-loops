@@ -1,0 +1,23 @@
+{
+ "file": ".skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md",
+ "context": [
+  "the dispatch audit now reports a jev dispatch under skill cli-classifier with packet path",
+  "cli-classifier/cli-usage; `directExecutor()` returns cli-classifier for the jev and jev-mcp basenames."
+ ],
+ "edits": [
+  [
+   16,
+   "recognised as a `cli-jev` dispatch,",
+   "recognised as a Jev dispatch of the `cli-classifier` hub,"
+  ],
+  [
+   28,
+   "`directExecutor()` returns `cli-jev` for",
+   "`directExecutor()` returns `cli-classifier` for"
+  ]
+ ],
+ "checks": [
+  "grep -c \"cli-jev\" .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md   (expect 0)"
+ ],
+ "out": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/31.body.md"
+}

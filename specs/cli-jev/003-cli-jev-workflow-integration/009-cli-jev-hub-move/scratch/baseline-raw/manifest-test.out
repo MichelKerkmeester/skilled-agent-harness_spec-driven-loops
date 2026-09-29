@@ -1,0 +1,411 @@
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-test-Ff0zzY/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-staging-fail-r12Fq0/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-postpublish-fail-ymWL8j/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-sB5sfF/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-xgrJRa/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-xgrJRa/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-xgrJRa/compiled-routing.rollback-44226-1790661306548
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/.sandboxes/compiled-route-sync-revert-xgrJRa/compiled-routing.rollback-44226-1790661306548
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/.sandboxes/compiled-route-sync-revert-xgrJRa/compiled-routing.rollback-44226-1790661306548
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-PbJpRg/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-21sgfX/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-dxeT8J/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-hMTkrd/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-ah4fiq/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-RfyuYR/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-HhjgwL/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-status-rebind-ZKT1YD/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-status-rebind-ZKT1YD/compiled-routing.rollback-44226-1790661308990
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/.sandboxes/compiled-route-status-rebind-ZKT1YD/compiled-routing.rollback-44226-1790661308990
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/.sandboxes/compiled-route-status-rebind-ZKT1YD/compiled-routing.rollback-44226-1790661308990
+▶ canonical compiled-route manifest
+  ✔ rejects unsafe identities and reports a missing safe manifest (0.875708ms)
+  ✔ fails closed on root, registry, source-link, and compiler errors (36.309959ms)
+  ✔ mints one inert generation-one manifest through the CLI (35.739625ms)
+  ✔ keeps routing byte-identical across mint and rejects duplicate mint (52.123667ms)
+  ✔ returns fresh in compact and pretty form, then detects all input drift axes (197.782917ms)
+  ✔ reports malformed manifests without compiling or rewriting them (2.070375ms)
+  ✔ keeps serving cause separate from manifest freshness in status (7.438917ms)
+  ✖ preserves the external manifest across the sync capture/restore round trip (102.763041ms)
+  ✖ publishes the current authored topology atomically into an isolated runtime (291.084792ms)
+  ✔ leaves an existing runtime untouched when the authored source is unavailable (1.455208ms)
+  ✔ refuses to replace an existing root that is not a verified closure (48.533458ms)
+  ✖ aborts at staging-verify failure without touching the serving root (265.1435ms)
+  ✖ restores the exact prior closure when post-publish verification fails (252.562042ms)
+  ✖ a concurrent external manifest created during publication survives finalize (253.348167ms)
+  ✖ revert swaps the retained rollback back into the serving root (688.324417ms)
+  ✖ rejects arbitrary, symlinked, and stale rollback paths without mutation (265.377666ms)
+  ✖ three-way reconciliation preserves a serving-only external update (268.842709ms)
+  ✖ failed finalize and revert verification retain both recoverable roots (276.092208ms)
+  ✖ closure fingerprints reject code-byte drift in the retained rollback (273.975083ms)
+  ✖ finalize and revert cleanup resume after individual removal failures (274.748458ms)
+  ✖ terminal cleanup resumes lock failure without deleting newer publication state (275.791125ms)
+  ✖ rename failures retain a serving root and recoverable publication state (283.56975ms)
+  ✔ long-lived status rebinding follows an atomic generation replacement (1096.947167ms)
+  ✔ canonical manifest writers refuse mutation while publication is locked (1.614667ms)
+  ✔ canonical manifest writers hold the shared lock through their atomic write (6.250208ms)
+  ✔ fails sync capture and restore closed on invalid or conflicting entries (2.13175ms)
+  ✔ uses atomic create-if-absent under concurrent writers (68.222792ms)
+  ✔ refuses an existing committed manifest before reading source inputs (1.054291ms)
+  ✖ keeps fixed routing maps unchanged and reports only authorized pre-publication drift (0.223541ms)
+  ✔ refreshes a stale manifest to fresh through the CLI, bumping generation and preserving defaults (46.408834ms)
+  ✔ a concurrent serving-authority flip during refresh is preserved, not reverted (11.057625ms)
+  ✔ refuses to refresh unsafe hub identities and a missing manifest without writing anything (31.161292ms)
+  ✔ preserves a non-default shadowOnly value through refresh rather than hardcoding it (7.351791ms)
+  ✔ keeps the CLI thin, machine-readable, and usage-safe (74.964791ms)
+  ✔ binds an explicit runtime root before the library loads (274.641917ms)
+  ✔ rejects malformed --runtime-root syntax with usage exit 2 (67.321041ms)
+  ✔ fails closed when the override root lacks a coherent compiled-routing layout (100.692209ms)
+  ✔ sequential same-process explicit-root calls each bind their own runtime root (167.683ms)
+  ✔ a preloaded private binding cannot capture an explicit or a default operation (136.018625ms)
+  ✔ a default operation after an explicit-root operation targets the promoted root (93.456375ms)
+  ✔ symlink aliases of one runtime root share one lock and one closure (335.661375ms)
+  ✔ keeps parse and coherence failures closed through the isolated path (28.083458ms)
+✖ canonical compiled-route manifest (6757.99675ms)
+ℹ tests 42
+ℹ suites 1
+ℹ pass 28
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6801.58075
+
+✖ failing tests:
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:433:3
+✖ preserves the external manifest across the sync capture/restore round trip (102.763041ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve/. Input:
+  
+  '55 closure files under authored root\n' +
+    '  003-contract-schemas/lib/canonical.cjs\n' +
+    '  003-contract-schemas/schemas/compiled-policy.v1.schema.json\n' +
+    '  004-compiler-n1-shadow/compiler/compiler.cjs\n' +
+    '  004-compiler-n1-shadow/compiler/errors.cjs\n' +
+    '  004-compiler-n1-shadow/compiler/order.cjs\n' +
+    '  004-compiler-n1-shadow/harness/json-schema.cjs\n' +
+    '  005-decision-evaluator/lib/decision-contract.cjs\n' +
+    '  005-decision-evaluator/lib/projector.cjs\n' +
+    '  008-calibration/001-holdout-corpus/lib/calibration-corpus.cjs\n' +
+    '  008-calibration/002-rank-vs-calibrated-contract/calibration-method-envelope.v1.json\n' +
+    '  008-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs\n' +
+    '  009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json\n' +
+    '  009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs\n' +
+    '  009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs\n' +
+    '  009-parent-hub-rollout/001-sk-code/lib/policy-card.cjs\n' +
+    '  009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs\n' +
+    '  009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json\n' +
+    '  009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs\n' +
+    '  009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs\n' +
+    '  009-parent-hub-rollout/002-system-deep-loop/lib/policy-card.cjs\n' +
+    '  009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs\n' +
+    '  009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json\n' +
+    '  009-parent-hub-rollout/003-mcp-tooling/harness/build-artifacts.cjs\n' +
+    '  009-parent-hub-rollout/003-mcp-tooling/lib/policy-card.cjs\n' +
+    '  009-parent-hub-rollout/003-mcp-tooling/lib/registry-compiler.cjs\n' +
+    '  009-parent-hub-rollout/003-mcp-tooling/lib/router.cjs\n' +
+    '  009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json\n' +
+    '  009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs\n' +
+    '  009-parent-hub-rollout/004-cli-external-orchestration/lib/policy-card.cjs\n' +
+    '  009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs\n' +
+    '  009-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs\n' +
+    '  009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json\n' +
+    '  009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs\n' +
+    '  009-parent-hub-rollout/007-sk-doc/lib/policy-card.cjs\n' +
+    '  009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs\n' +
+    '  009-parent-hub-rollout/007-sk-doc/lib/router.cjs\n' +
+    '  009-parent-hub-rollout/008-cli-jev/fixtures/canary-cases.v1.json\n' +
+    '  009-parent-hub-rollout/008-cli-jev/harness/build-artifacts.cjs\n' +
+    '  009-parent-hub-rollout/008-cli-jev/lib/policy-card.cjs\n' +
+    '  009-parent-hub-rollout/008-cli-jev/lib/registry-compiler.cjs\n' +
+    '  009-parent-hub-rollout/008-cli-jev/lib/router.cjs\n' +
+    '  009-parent-hub-rollout/009-sk-design/fixtures/canary-cases.v1.json\n' +
+    '  009-parent-hub-rollout/009-sk-design/harness/build-artifacts.cjs\n' +
+    '  009-parent-hub-rollout/009-sk-design/lib/canary-router.cjs\n' +
+    '  009-parent-hub-rollout/009-sk-design/lib/policy-card.cjs\n' +
+    '  009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs\n' +
+    '  013-live-activation/activation/cli-external-orchestration/manifest.json\n' +
+    '  013-live-activation/activation/cli-jev/manifest.json\n' +
+    '  013-live-activation/activation/mcp-tooling/manifest.json\n' +
+    '  013-live-activation/activation/sk-code/manifest.json\n' +
+    '  013-live-activation/activation/sk-design/manifest.json\n' +
+    '  013-live-activation/activation/sk-doc/manifest.json\n' +
+    '  013-live-activation/activation/system-deep-loop/manifest.json\n' +
+    '  014-runtime-engine/lib/compiled-route.cjs\n' +
+    '  014-runtime-engine/lib/resolve.cjs\n' +
+    'all 7 hubs resolve\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:461:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '55 closure files under authored root\n  003-contract-schemas/lib/canonical.cjs\n  003-contract-schemas/schemas/compiled-policy.v1.schema.json\n  004-compiler-n1-shadow/compiler/compiler.cjs\n  004-compiler-n1-shadow/compiler/errors.cjs\n  004-compiler-n1-shadow/compiler/order.cjs\n  004-compiler-n1-shadow/harness/json-schema.cjs\n  005-decision-evaluator/lib/decision-contract.cjs\n  005-decision-evaluator/lib/projector.cjs\n  008-calibration/001-holdout-corpus/lib/calibration-corpus.cjs\n  008-calibration/002-rank-vs-calibrated-contract/calibration-method-envelope.v1.json\n  008-calibration/002-rank-vs-calibrated-contract/lib/calibration-contract.cjs\n  009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json\n  009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs\n  009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs\n  009-parent-hub-rollout/001-sk-code/lib/policy-card.cjs\n  009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs\n  009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json\n  009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs\n  009-parent-hub-rollout/002-system-deep-loop/lib/canary-router.cjs\n  009-parent-hub-rollout/002-system-deep-loop/lib/policy-card.cjs\n  009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs\n  009-parent-hub-rollout/003-mcp-tooling/fixtures/canary-cases.v1.json\n  009-parent-hub-rollout/003-mcp-tooling/harness/build-artifacts.cjs\n  009-parent-hub-rollout/003-mcp-tooling/lib/policy-card.cjs\n  009-parent-hub-rollout/003-mcp-tooling/lib/registry-compiler.cjs\n  009-parent-hub-rollout/003-mcp-tooling/lib/router.cjs\n  009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json\n  009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs\n  009-parent-hub-rollout/004-cli-external-orchestration/lib/policy-card.cjs\n  009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs\n  009-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs\n  009-parent-hub-rollout/007-sk-doc/fixtures/canary-cases.v1.json\n  009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs\n  009-parent-hub-rollout/007-sk-doc/lib/policy-card.cjs\n  009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs\n  009-parent-hub-rollout/007-sk-doc/lib/router.cjs\n  009-parent-hub-rollout/008-cli-jev/fixtures/canary-cases.v1.json\n  009-parent-hub-rollout/008-cli-jev/harness/build-artifacts.cjs\n  009-parent-hub-rollout/008-cli-jev/lib/policy-card.cjs\n  009-parent-hub-rollout/008-cli-jev/lib/registry-compiler.cjs\n  009-parent-hub-rollout/008-cli-jev/lib/router.cjs\n  009-parent-hub-rollout/009-sk-design/fixtures/canary-cases.v1.json\n  009-parent-hub-rollout/009-sk-design/harness/build-artifacts.cjs\n  009-parent-hub-rollout/009-sk-design/lib/canary-router.cjs\n  009-parent-hub-rollout/009-sk-design/lib/policy-card.cjs\n  009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs\n  013-live-activation/activation/cli-external-orchestration/manifest.json\n  013-live-activation/activation/cli-jev/manifest.json\n  013-live-activation/activation/mcp-tooling/manifest.json\n  013-live-activation/activation/sk-code/manifest.json\n  013-live-activation/activation/sk-design/manifest.json\n  013-live-activation/activation/sk-doc/manifest.json\n  013-live-activation/activation/system-deep-loop/manifest.json\n  014-runtime-engine/lib/compiled-route.cjs\n  014-runtime-engine/lib/resolve.cjs\nall 7 hubs resolve\n',
+    expected: /all 6 hubs resolve/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:479:3
+✖ publishes the current authored topology atomically into an isolated runtime (291.084792ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:483:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:553:3
+✖ aborts at staging-verify failure without touching the serving root (265.1435ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:557:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:573:3
+✖ restores the exact prior closure when post-publish verification fails (252.562042ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:578:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:596:3
+✖ a concurrent external manifest created during publication survives finalize (253.348167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:599:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:627:3
+✖ revert swaps the retained rollback back into the serving root (688.324417ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:649:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:658:3
+✖ rejects arbitrary, symlinked, and stale rollback paths without mutation (265.377666ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:662:32)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:691:3
+✖ three-way reconciliation preserves a serving-only external update (268.842709ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:696:7)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:712:3
+✖ failed finalize and revert verification retain both recoverable roots (276.092208ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:716:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:738:3
+✖ closure fingerprints reject code-byte drift in the retained rollback (273.975083ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:742:27)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:757:3
+✖ finalize and revert cleanup resume after individual removal failures (274.748458ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:762:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:813:3
+✖ terminal cleanup resumes lock failure without deleting newer publication state (275.791125ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:167:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:820:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:865:3
+✖ rename failures retain a serving root and recoverable publication state (283.56975ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /all 6 hubs resolve; 0 reads under \.opencode\/specs/. Input:
+  
+  'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs'
+  
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:160:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:872:7)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs',
+    expected: /all 6 hubs resolve; 0 reads under \.opencode\/specs/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:1125:3
+✖ keeps fixed routing maps unchanged and reports only authorized pre-publication drift (0.223541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  7 !== 6
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/tests/compiled-route-manifest.test.cjs:1127:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 7,
+    expected: 6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
