@@ -28,6 +28,7 @@ trigger_phrases:
 | `init_skill.py` | Scaffolds a skill directory. |
 | `package_skill.py` | Validates and packages a skill directory. |
 | `regenerate-skill-derived.cjs` | Regenerates derived skill data. |
+| `score-clarify-default.cjs` | Counts compiled-routing clarify answers with zero model calls and scores labeled clarify rows behind a 30-row gate. |
 | `validate-compiled-routing-scenarios.cjs` | Validates compiled-routing scenario content. |
 | `validate-playbook-topology.cjs` | Validates manual playbook topology. |
 | `validate_skill_package.py` | Runs skill and parent-hub package validation. |

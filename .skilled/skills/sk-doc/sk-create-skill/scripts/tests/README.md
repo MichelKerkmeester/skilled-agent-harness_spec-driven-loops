@@ -28,6 +28,7 @@ trigger_phrases:
 | `generate-leaf-manifest-scopes.test.cjs` | Tests per-mode leaf scoping and the hash-equal leaf-set refusal. |
 | `leaf-resource-contract.test.cjs` | Tests typed leaf-resource identity behavior. |
 | `root-router-contract.test.cjs` | Tests the two-state root ROUTER.md contract and its stable negative codes. |
+| `score-clarify-default.test.cjs` | Tests the clarify census, the transcript count, the label gate, the keep rule and both backend gates on stub binaries. |
 | `skill-derived-regenerator.test.cjs` | Tests derived-data regeneration and freshness behavior. |
 | `skill-root-metadata-contract.test.cjs` | Tests skill-root metadata classification and fleet conformance. |
 | `validate-compiled-routing-scenarios.test.cjs` | Tests compiled-routing scenario admission fixtures. |
