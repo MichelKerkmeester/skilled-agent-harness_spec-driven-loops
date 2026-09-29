@@ -1,0 +1,1 @@
+executor=devin model=deepseek-v4-1-flash-max brief=specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-build/briefs/c1.md exit=1 seconds=102

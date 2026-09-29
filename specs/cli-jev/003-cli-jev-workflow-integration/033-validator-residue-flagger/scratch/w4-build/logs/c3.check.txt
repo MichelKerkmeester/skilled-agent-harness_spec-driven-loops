@@ -1,0 +1,26 @@
+✔ corpus walk (377.587417ms)
+✔ parser three shapes (161.728084ms)
+✔ parser skipped shape (148.351333ms)
+✔ dimension mapping (340.322458ms)
+✔ commit resolution (191.16625ms)
+✔ untracked review file (338.637875ms)
+✔ location resolves (348.777917ms)
+✔ location dropped (373.354292ms)
+✔ refused .env (374.201791ms)
+✔ draw reproducible (4653.57675ms)
+✔ draw spacing (2480.556792ms)
+✔ draw refuses labels (2470.69075ms)
+✔ draw shortfall (361.792541ms)
+✔ label gate 99 (3803.060083ms)
+✔ default zero calls (437.123209ms)
+✔ baseline and headroom (3610.018375ms)
+✔ no headroom (3672.760583ms)
+✔ underpowered (0.071125ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24188.737

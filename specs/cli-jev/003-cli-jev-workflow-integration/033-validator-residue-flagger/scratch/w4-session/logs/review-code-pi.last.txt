@@ -1,0 +1,27 @@
+All checks done: tests run (35/35, exit 0), key grep and comment-hygiene gate run clean, sign test hand-checked. Report follows.
+
+---
+
+P2 score-residue-flagger.cjs:593 - labelGate completes only at `labeled === 100`, so a hand-edited labels file with 101 labeled rows prints `stop: fewer than 100 labeled rows` (:1523) although 101 rows carry labels (probed: labelGate → {complete:false, labeled:101}); unreachable via --draw (always 100 rows), so out of the spec's state space.
+
+P2 score-residue-flagger.cjs:943 - the unmeasured-row exclusion (a row enters M only with exactly 3 (jev) / 1 (deem) finite probabilities) is never exercised through an arm; the named "2 of 10 rows unmeasured" case (test.cjs:528) hand-feeds K=10 M=8 instead of producing it. Input showing the gap: 2 of 10 `noul` replies exit 0 with unparseable JSON - no case runs that path.
+
+P2 score-residue-flagger.cjs:1430,540 - parseArgs' error contract (unknown switch, non-integer `--seed`, missing value) and readJsonl's corrupt-line throw are exported surfaces with no edge-case test; every exit-2 case in the suite comes from main's handlers (:1481-1507), never the `'error' in flags` branch.
+
+REQ-001 met - default run spawns no backend and writes nothing; stub logs empty (test 'default zero calls').
+REQ-002 met - per-severity, per-dimension, per-shape counts, skipped tables, resolvable rows, HEAD sha (:357-372); no finding text printed.
+REQ-003 met - first parent of the adding commit (:237-243); `.env` and untracked paths refused before any open (:268-275); unresolved rows counted and dropped (:334-341).
+REQ-004 met - draw writes the 12 fields, labels null, refuses a labeled file, stop line at 99 rows; 101-row edge is the first P2.
+REQ-005 met - flag-nothing right = clean count, printed beside defect share (:1528-1533).
+REQ-006 met - thresholds constant, printed before any call; five checks in order (:717-725); sign test hand-checked W=5,L=0 → 1/32 = 0.03125 < 0.05, and 20·num < 2^n is the exact p<0.05 test.
+REQ-007 met - health once at 2000 ms, four skip lines with details, no key, no server start (:993-1071).
+REQ-008 met - identity line, `jev 0.6.2` pin, `auth status --provider P`, skip lines; one `--provider` per call (test 'jev one provider').
+REQ-009 met - key grep (API_KEY|TYPESAFE|Bearer|Authorization) no match, run; payload is the `-q` instruction plus the window on stdin (:1114, :1302).
+REQ-010 met - writes only the labels file and the operator-named out dir; tests assert `git status --porcelain` unchanged.
+REQ-011 met - one noul per row/category, fixed instructions with digests, flag at >=0.5, 3 Jev reruns uncached, 1 Deem call, Brier printed and never decisive.
+REQ-012 met - cost lines before first calls, one calls.jsonl record per spawn with the required fields, stop lines with `partial rows`, `--out` required before any call (:1505).
+REQ-013 met - Deem pair / Jev version+provider+model per column; requalify prints before the verdict (:1164-1170, :1351-1357).
+REQ-014 met (tests) / not checked (docs) - `node --test` 35 pass, 0 fail, exit 0 (>=18), every named case present, stubbed backends, no empty test; docs reviewed separately; P2s above are coverage-only.
+D1-D7 met - dormancy holds: zero calls on the default run and behind any failed gate, one skip line, nothing else changes; no secret read, stored or passed; scope is the two listed files.
+
+VERDICT: PASS

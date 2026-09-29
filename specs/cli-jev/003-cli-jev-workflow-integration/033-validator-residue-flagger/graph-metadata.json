@@ -39,21 +39,28 @@
       "label"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs",
       ".skilled/skills/system-deep-loop/deep-review/scripts/README.md",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md",
       ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
       ".hermes/skills/deep-review/SKILL.md",
       ".skilled/skills/system-deep-loop/deep-review/README.md",
-      "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
-      "scripts/README.md"
+      ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.md",
+      "scratch/w4-session/docs/facts.txt",
+      "scratch/w4-session/session-evidence.md"
     ],
     "entities": [
       {
@@ -87,9 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+        "name": "score-residue-flagger.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-residue-flagger.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs",
         "source": "derived"
       },
       {
@@ -99,15 +112,51 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.0.37.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md",
+        "source": "derived"
+      },
+      {
+        "name": "residue-flagger-measurement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md",
+        "source": "derived"
+      },
+      {
         "name": "feature-catalog.md",
         "kind": "doc",
-        "path": "feature-catalog/feature-catalog.md",
+        "path": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "facts.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/docs/facts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
         "source": "derived"
       },
       {
@@ -157,53 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Committed",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Affected Surfaces",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A document can pass every validator and still hold a correctness or traceability defect, because no validator checks either (`research.md:475`)",
     "created_at": "2026-09-29T12:42:44Z",
-    "last_save_at": "2026-09-29T13:53:52.719Z",
+    "last_save_at": "2026-09-29T22:01:24.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98bebb54e7085458aef1562ab414d82c015794e9c664a5ed941781081259d24c",
+    "source_fingerprint": "sha256:261928cbe4d5db3d5405a81dcf107440b370bb7e8370496129e4ab3a0b8ce415",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3419433535b4cd5c3eb7f0965cc6dde3c098320104a208452c13ba8209e6d486",
-      "plan.md": "6844cb05dff6eaa4fa947daa5c8c960d0965e1b9cbf6b2c6aadeaaf94665e584",
-      "tasks.md": "6b04719a34e6c1aa86f43efe90f77ac2108cc42168f5da118b6e523efce16812",
-      "implementation-summary.md": "97517b1e92b45da13ca881cbfffce8053b55b93ea25dd7c72baaaa26c7b1c572"
+      "spec.md": "6eaf0386f716c22c2f126540378c5aded65f6e1f14fc1af52a4d3f48abae9b2a",
+      "plan.md": "c2daae88f85ceda1a3517fd493b864bd6bac2bf9311a93407dce2db8f7221b95",
+      "tasks.md": "416f6ffffff186ce2dc13bc38400fca804d8fd029528d8eb8eaaaf44575b1b49",
+      "implementation-summary.md": "3432783b34b0d04188d5d9538d4d8901cc1fc02a2727f53a4bfdfab22d7a9191"
     },
     "last_active_at": null
   }

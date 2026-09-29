@@ -1,0 +1,28 @@
+All checks are green. Summary of the step-4 build before handback:
+
+**What landed** (design §4 step 4, "Gate, baseline, headroom, rules")
+- `S` section 5 (new): `labelGate`, `baselineLines`, `headroomLine`, `ruleLines`, `instructionLines` — each JSDoc'd and exported; `sha256Hex` (already landed in step 3) is reused unchanged for the two instruction digests.
+- `main` now prints the fixed rules (`margin:`, `keep rule:`, both instruction lines) on every run after the census, reads `--labels`/default `LABELS_PATH`, prints `stop: fewer than 100 labeled rows` when the gate is incomplete, else the two flag-nothing baseline lines and the headroom line, still with zero calls and zero writes.
+- `T` gains `runMainWithStubs` (stub bin first on PATH, so a stray call would be logged) and `writeLabels` (a relabeled drawn file), plus the five named cases: `label gate 99`, `default zero calls`, `baseline and headroom`, `no headroom`, `underpowered`.
+
+**Design calls where §2 left a shape open** (flagged, none silent)
+1. `headroomLine` checks the 90-percent rule before the defect floor, exactly as §2.2 lists them and as `score-injection-screen.mjs` does. At the only complete-gate size (100 labels) the two conditions overlap, so `underpowered` is unreachable through `main`; its case is therefore a direct assertion with a 10-row summary (`right=6, defect=4`) — the sibling's exact underpowered shape. If the orchestrator wants `< 5 defect` to win at 100 rows, that is a one-line order swap.
+2. `sha256Hex` was already present from step 3; step 4 uses it and leaves it untouched.
+3. A malformed labels file exits 2 with `readJsonl`'s message, per the "unreadable input" exit row, matching the draw path.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+100/-3)
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs (+101/-0)
+EDITS: score-residue-flagger.cjs:571 added section 5 LABEL GATE, BASELINE AND HEADROOM — labelGate, baselineLines, headroomLine, ruleLines, instructionLines; ARGUMENTS renumbered to 6
+EDITS: score-residue-flagger.cjs:725 main prints rules + instructions every run, reads labels, stop line under 100 labels, else baseline and headroom; MAIN renumbered to 7
+EDITS: score-residue-flagger.cjs:775 exported the five new functions; EXPORTS renumbered to 8
+EDITS: score-residue-flagger.test.cjs:196 added runMainWithStubs and writeLabels helpers
+EDITS: score-residue-flagger.test.cjs:405 added cases label gate 99, default zero calls, baseline and headroom, no headroom, underpowered
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> no output (exit 0)
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> no output (exit 0)
+CHECKS: node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> tests 18, pass 18, fail 0 (exit 0)
+CHECKS: check-comment-hygiene.sh on S and T -> no output (exit 0 each)
+CHECKS: grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' on S -> no match (exit 1)
+BLOCKED REASON: none
+```

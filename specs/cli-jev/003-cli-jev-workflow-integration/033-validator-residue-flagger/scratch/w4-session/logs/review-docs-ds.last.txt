@@ -1,0 +1,27 @@
+Findings:
+
+- `P1 .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs:321` - a review file in the git index but not at HEAD aborts the run instead of dropping its rows: `buildCensus` reads every `ls-files` path with `readAtCommit` and `main:1510` has no catch, so after `git add` of a new `specs/.../review/f.md`, `main([])` rejects with `git show <HEAD>:specs/demo/review/f.md exited 128` (probe on a temp repo; no test stages a file, the fixture commits each write).
+- `P1 .hermes/skills/deep-review/SKILL.md:5` - spec.md:118 and tasks.md T018 require regenerating this copy with `sync-skills-hermes.cjs`, but the tracked file still says `version: 1.11.0.36` with no residue-flagger sentence and `git status --porcelain -- .hermes` is empty; commits 709b1078ee/1a0fb2ea33 regenerated theirs.
+- `P2 .skilled/skills/system-deep-loop/deep-review/README.md:11` - version 1.11.0.36 while `SKILL.md:5` and `changelog/v1.11.0.37.md` state 1.11.0.37; the two new leaves also disagree (feature-catalog leaf:9 = 1.11.0.0, playbook leaf:4 = 1.11.0.37); `frontmatter-version.mjs compute` derives 1.11.0.0 for both new leaves.
+- `P2 .../feature-catalog/review-dimensions/residue-flagger-measurement.md:28` - "Every run also prints `margin: 0.10` ... `keep rule:` ... `instruction`" is false of `--draw`: `--draw --seed 1` prints only its one `draw:` line (test `draw reproducible` asserts `lines.length === 1`).
+- `P2` feature leaf:28 and `changelog/v1.11.0.37.md:22` - "Until 100 rows carry a label"/"fewer than 100" overstates `labelGate` (`script:593`), which completes only at exactly 100: a labels file with 101 labeled rows still prints `stop: fewer than 100 labeled rows` and runs no arm.
+- `P2 .skilled/.../tests/score-residue-flagger.test.cjs:441` - `censusLines`' printed format is only prefix-checked; `parseArgs` error branches, the 101-row boundary and a both-switches run have no case.
+
+Requirements:
+
+- REQ-001 met - real-tree default run exit 0, census + stop, stubs uncalled, no writes.
+- REQ-002 met - counts verified (5862/115/796/525); no finding text.
+- REQ-003 met - commit/location resolution and refused/dropped counted; staged-file abort is the P1.
+- REQ-004 met - draw shape, no text, reproducibility, refusal, shortfall tested.
+- REQ-005 met - right = clean count; defect share printed.
+- REQ-006 met - rule fixed; hand-checked: `signTestP(5,0)` = 1/32 ≈ .03125 below; `(4,0)` = 1/16 = .0625 not.
+- REQ-007 met - 2,000 ms health gate, skip lines, repo fallback, no key.
+- REQ-008 met - identity line, pinned version, auth status, one provider P.
+- REQ-009 met - key grep exit 1; no `.env` opened/passed; payload = fixed `-q` + window.
+- REQ-010 met - no review/template/reducer edits; default run left status unchanged.
+- REQ-011 met - prompts recomputed to the printed SHA-256; stdin closed; 3 reruns; Deem once; flag ≥ 0.5.
+- REQ-012 met - cost lines, call statuses, exit table, `--out`, brier; p50 60.5 ms matches `deem-local.md:38`.
+- REQ-013 met - per-column identity recorded; both requalify lines tested.
+- REQ-014 met - 35 tests pass, 0 fail; `validate_document.py` exits 0 on all nine docs (version caveat above).
+
+VERDICT: FAIL

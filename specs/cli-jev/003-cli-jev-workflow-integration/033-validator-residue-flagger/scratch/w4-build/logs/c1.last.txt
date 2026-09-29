@@ -1,0 +1,37 @@
+I'll start by reading the design docs and checking whether the target files already exist.
+
+I have sections 1–3. Let me read the remainder (section 4 build steps) and check whether the target files exist.
+
+Neither S nor T exists — this is the first step (section 4 step 2: Census). I need to follow the sibling shape. Let me read the named sibling script and tests.
+
+
+
+
+
+Now let me look at the test sibling and the injection-screen fixture shape (temp git repo, stub bins, clean env).
+
+
+
+
+
+Let me look at the injection-screen script's git helpers, which the design's interface names.
+
+
+
+Now let me check the spec folder for the underlying requirements about location resolution (the `.env` refused rule) and the census formats.
+
+
+
+Let me look at real review tables in the repo to understand the location cell formats, and check the research block that defines this corpus.
+
+
+
+
+
+Let me read the research block that defines the corpus and the validators (D) section.
+
+
+
+Let me check the real corpus table header casings, since the parser must match them.
+
+

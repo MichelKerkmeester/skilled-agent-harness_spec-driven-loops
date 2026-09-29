@@ -1,0 +1,8 @@
+Both edits verified in place, syntax check and full test file pass.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+5/-0) | .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs (+13/-0)
+EDITS: score-residue-flagger.cjs:139-140 JSDoc now says a header-less table is skipped only when a data row holds a cell exactly `P0`/`P1`/`P2`; score-residue-flagger.cjs:185-191 data-row walk sets `holdsSeverity` on an exact severity cell; score-residue-flagger.cjs:208 `skipped.push` gated on `holdsSeverity` (`else if`); score-residue-flagger.test.cjs:261-272 added test `parser ignores a table without severities` after `parser skipped shape`, asserting empty `tables` and empty `skipped` for a `| Metric | Value |` table.
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> no output (syntax OK) (exit 0); node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> "ℹ pass 35 / ℹ fail 0 / ℹ cancelled 0 / ℹ skipped 0" (exit 0)
+BLOCKED REASON: none

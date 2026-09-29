@@ -1,0 +1,10 @@
+Row added in the section 2 table after the `render-contract-snapshot.cjs` row, modelled on that row, everything else byte-identical. Claims checked against the script's code: the census prints `severity`/`dimension` lines (`score-residue-flagger.cjs:359-361`), zero calls unless `--jev` or `--deem` (`:1435-1436`, FACTS stub runs), the labels file is `residue-flagger-labels.jsonl` (`:28`).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: one line per file: `.skilled/skills/system-deep-loop/deep-review/scripts/README.md` (+1/-0)
+EDITS: one line per step: `.skilled/skills/system-deep-loop/deep-review/scripts/README.md`:25 added one `score-residue-flagger.cjs` row after the `render-contract-snapshot.cjs` row in the section 2 table (census per severity and dimension, zero-call default, `--jev`/`--deem`, labels file `residue-flagger-labels.jsonl`)
+CHECKS: one line per check:
+`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/scripts/README.md --type readme` -> `✅ VALID: .skilled/skills/system-deep-loop/deep-review/scripts/README.md` / `Total issues: 0` (exit 0)
+`git diff --stat -- .skilled/skills/system-deep-loop/deep-review/scripts/README.md` -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

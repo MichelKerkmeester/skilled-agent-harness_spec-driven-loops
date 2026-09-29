@@ -1,0 +1,12 @@
+All claims in the doc trace to design section 2, `facts.txt`, and the script's own code (`USAGE` at line 42, `drawRows` shortfall at 425, `labelGate`/`baselineLines`/`headroomLine`/`ruleLines`/`instructionLines` at 591-650, `decideVerdict`/`verdictText`/`verdictLine` at 717-753, `main` at 1466-1580). No verdict result is claimed as printed output, per R section 4 step 10 and ruling 4.
+
+CHECKS run at the repo root:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md` -> `✅ VALID: ...` / `Document type: feature_catalog` / `Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md` -> no output, the file is new and untracked (exit 0); `git status --porcelain` shows `?? .../residue-flagger-measurement.md` and nothing else in the tree
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md (+60/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md:1 created the leaf: frontmatter (title "Residue Flagger Measurement", description, 4 trigger phrases, version 1.11.0.0), sections 1 to 4 modelled on review-dimensions/correctness.md, SOURCE FILES tables (implementation: the script and the labels file; validation: the test as `Node test`, the playbook scenario as `Manual playbook`)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md -> `✅ VALID: .skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md`, `Document type: feature_catalog`, `Total issues: 0` (exit 0) | git diff --stat -- .skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md -> no output lines (exit 0)
+BLOCKED REASON: none
