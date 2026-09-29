@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 55 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 56 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -388,7 +388,7 @@ Expected signals: Recovery marker durable (fsynced) before the torn frame is ren
 
 ## 10. SCORING
 
-This category covers 3 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-010 | Bayesian scorer
 
@@ -432,6 +432,21 @@ Expected signals: No stub call in the default run, `stop: fewer than 5 confirmed
 
 #### Test Execution
 > **Feature File:** [DLR-056](../manual-testing-playbook/scoring/stop-rater-replay.md)
+
+---
+
+### DLR-057 | Stop-hint replay
+
+#### Description
+Adds `scripts/score-stop-hint.cjs`, an offline replay of one stop-rater report that scores its recorded stops as confirm-mode hints and changes no gate and no live loop. A run reads one `report.json`, makes no model call in any mode, and writes nothing unless `--out <dir>` asks for a report. `--jev` and `--deem` add the rater's recorded `jev` and `deem` columns to the two columns every report carries, `legacy` and `sources`.
+
+#### Scenario Contract
+Prompt: `Run the stop-hint replay on the fixture reports with logging stubs first on PATH and confirm the refusals name their reason on stderr, the gate stop prints one line and writes nothing, the missing model columns skip by name without changing the rest, no stub is called, and the suite passes.`
+
+Expected signals: `rater report not found: <dir>/report.json` and `rater report is not JSON: <path>` on stderr with empty stdout and exit 2, `stop: rater report has no confirmed gold` as the whole stdout with exit 0 in both gate shapes, `jev column skipped: rater report has none` and `deem column skipped: rater report has none` on a report with no rater columns, `git status --porcelain` unchanged, and 28 passing tests.
+
+#### Test Execution
+> **Feature File:** [DLR-057](../manual-testing-playbook/scoring/stop-hint-replay.md)
 
 ---
 
@@ -966,3 +981,4 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-054 | [F052 Torn-tail recovery marker ordering](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) | [state-safety/torn-tail-recovery-marker-ordering.md](../manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md) |
 | DLR-055 | [F051 append-mode-event.cjs](../feature-catalog/script-entry-points/append-mode-event-script.md) | [script-entry-points/append-mode-event-script.md](../manual-testing-playbook/script-entry-points/append-mode-event-script.md) |
 | DLR-056 | [F056 Stop-rater replay](../feature-catalog/scoring/stop-rater-replay.md) | [scoring/stop-rater-replay.md](../manual-testing-playbook/scoring/stop-rater-replay.md) |
+| DLR-057 | [F057 Stop-hint replay](../feature-catalog/scoring/stop-hint-replay.md) | [scoring/stop-hint-replay.md](../manual-testing-playbook/scoring/stop-hint-replay.md) |
