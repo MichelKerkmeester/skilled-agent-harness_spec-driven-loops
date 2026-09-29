@@ -1,0 +1,10 @@
+The file is written and both checks pass. Two things I saw but did not touch, since the step names only three edits: line 115's closure-wave list still names `MB-038..042 plus MB-R01 and MB-049` without MB-052, and line 715's Lane B enumeration still lists seven validation targets while the count now reads 8. Both are one-line follow-ups for the orchestrator if it wants them.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md (+15/-2)
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md:808 inserted the `MB-052 | Zero-Call Fixture Census and Stub-Backend Skip` index block (Description, Scenario Contract, Expected signals, Test Execution link) at the end of section 15, shaped on the `5D-051` block
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md:116 release-readiness subtotal `46` -> `47`, `MB-052` named in the numbered-scenarios list
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md:715 section 15 lead `covers 7` -> `covers 8`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md --type playbook -> `✅ VALID: ... Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md -> `1 file changed, 15 insertions(+), 2 deletions(-)` (exit 0)
+BLOCKED REASON: none

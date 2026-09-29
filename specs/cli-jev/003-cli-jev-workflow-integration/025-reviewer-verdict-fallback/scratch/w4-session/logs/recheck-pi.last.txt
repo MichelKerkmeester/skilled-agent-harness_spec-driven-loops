@@ -1,0 +1,18 @@
+All checks done. Findings:
+
+**P1 (calls.jsonl drops the picked key's probability) — `closed`**
+- `lib/score-verdict-fallback.cjs`: both `record()` functions take `pickProb` immediately after `pick` (lines 812/820-821 and 1019/1027-1028). Both arms read it as `parsed?.answers?.answer?.probabilities?.[value]` and store it only when `typeof prob === 'number' && Number.isFinite(prob)`, else `null` (lines 877-878, 1074-1075) — i.e. the picked key's probability, finite-guarded, exactly as claimed. Retry records pass `null, null` for pick/pickProb (both arms' exit-code-4 path); stop paths (codes 2/3/130) never reach the pick branch so `pickProb` stays `null` on the final record; the Jev `auth test` record carries `pickProb: null` (line 1000).
+- `tests/verdict-fallback.vitest.ts`: the Deem stub emits `"probabilities":{"<pick>":0.9}` (line 712) and the record assertions expect `pickProb: 0.9` (lines 766-768); the Jev stub emits no `probabilities` (line 867) and its assertions expect `pickProb: null` (auth record line 920, row records lines 927-929). Assertions use `toEqual` with `pickProb: 0.9` / `pickProb: null`, so a missing key or wrong value fails — the regression is genuinely covered. Orchestrator-reported `Tests 31 passed (31)` is consistent with this.
+
+**Ruling on `none`:** agree — this script's `OPTION_PAIRS` is `pass`, `fail`, `block` only (lines 35-39) and `pickProb` is read solely for the validated picked key, so no `none` probability exists here to log; the sibling scorer's `none` key has no counterpart in this option set.
+
+**New P0/P1 in the two files:** none. (Sub-threshold note only: both `record()` doc comments say "its pick and status stay empty" without naming `pickProb` — cosmetic comment drift, not a defect.)
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none
+CHECKS: `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` -> no output, syntax OK (exit 0)
+BLOCKED REASON: none
+
+VERDICT: PASS

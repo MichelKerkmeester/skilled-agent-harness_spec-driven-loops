@@ -1,0 +1,26 @@
+Step 7 (Deem gate) is complete. Summary of what changed, then the handback.
+
+**S** `score-verdict-fallback.cjs`:
+- §1: added `spawnSync` from `node:child_process` (needed by `readDeemHealth`).
+- New §6 DEEM GATE between §5 and §11: `DEEM_MODEL` constant plus `which(name, env)`, `deemCommand(env)`, `readDeemHealth(cmd, env)`, `deemGate(ctx)` — sibling `score-d4-agreement.cjs` behavior, each with JSDoc, health line/skip lines identical (`not reachable`, `stub backend`, `model` + `deem: found=`, `bad health response` + `deem: found=`).
+- §11 `main`: after the gate line, `--deem` now runs `deemGate`; a passed gate under a closed label gate prints `deem arm skipped: label gate|no headroom` (sibling shape, Jev side still first and unchanged).
+- §12 exports: `DEEM_MODEL`, `which`, `deemCommand`, `readDeemHealth`, `deemGate`.
+
+**T** `verdict-fallback.vitest.ts`: header line + new `score-verdict-fallback deem gate` describe with tests 12–13 (`a fake health passes`; `a stub backend skips byte-identically`), using the sibling test shape and the existing helpers. All earlier functions/tests unchanged; test count 16 → 18.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+134/-0)
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts (+35/-0)
+EDITS: .../lib/score-verdict-fallback.cjs:22 added `const { spawnSync } = require('node:child_process');` to §1 IMPORTS
+EDITS: .../lib/score-verdict-fallback.cjs:437-566 added §6 DEEM GATE: `DEEM_MODEL`, `which`, `deemCommand`, `readDeemHealth`, `deemGate` (JSDoc each)
+EDITS: .../lib/score-verdict-fallback.cjs:698-703 `main` now gates `--deem` through `deemGate` after the gate line; closed-gate reason line kept and shared via `closedReason`
+EDITS: .../lib/score-verdict-fallback.cjs:713,718 exported `DEEM_MODEL` and `which`, `deemCommand`, `readDeemHealth`, `deemGate`
+EDITS: .../tests/verdict-fallback.vitest.ts:9 header now lists the Deem gate area
+EDITS: .../tests/verdict-fallback.vitest.ts:553-585 added `score-verdict-fallback deem gate` describe with tests `a fake health passes` and `a stub backend skips byte-identically`
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts -> 18 (exit 0)
+BLOCKED REASON: none
+```
+
+Note: both files were already untracked build products of earlier steps, so `git status --porcelain` shows them as `??`; no other file was written by me. Vitest was not run per the brief — the orchestrator owns the suite run (expected `Tests 18 passed (18)`).

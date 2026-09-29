@@ -1,0 +1,15 @@
+STATUS: DONE
+FILES CHANGED:
+- `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` (+287/-1)
+- `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` (+168/-0)
+EDITS:
+- `lib/score-verdict-fallback.cjs:570` §7 JEV GATE added: `trackedFile` (`:581`) and `jevGate` (`:608`), both JSDoc'd and exported
+- `lib/score-verdict-fallback.cjs:941` §9 `runJevArm` added: auth test, 3 rotated `choice` calls per row, exit-4 backoff, stop/partial table, latency, requalify, jev suffix
+- `lib/score-verdict-fallback.cjs:1237` `main` jev block wired before the deem block: `jevGate` then `runJevArm`, replacing the step-6 placeholder skip line
+- `lib/score-verdict-fallback.cjs:1271` exports extended with `trackedFile, jevGate, runJevArm`
+- `tests/verdict-fallback.vitest.ts:588` jev gate describe added: `exit 0 passes` (14), `exit 3 prints no credential` (15), `an untracked outputs file without --accept-payload` (16)
+- `tests/verdict-fallback.vitest.ts:812` jev arm describe added: `verdict: keep` (23) with `calls.jsonl` auth/call record assertions, `verdict: stop (flips)`
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` -> no output (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` -> `30` (exit 0)
+BLOCKED REASON: none

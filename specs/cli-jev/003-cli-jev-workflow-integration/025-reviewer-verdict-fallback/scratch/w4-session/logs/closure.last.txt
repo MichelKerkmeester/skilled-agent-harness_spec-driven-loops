@@ -1,0 +1,28 @@
+STATUS: DONE
+FILES CHANGED:
+- specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/goal.md (+29/-13)
+- specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/graph-metadata.json (+25/-23) (through repair-derived.cjs)
+- specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/implementation-summary.md (+101/-26)
+- specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/plan.md (+9/-9)
+- specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md (+3/-3)
+- specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/tasks.md (+24/-24)
+
+EDITS:
+- spec.md:3,26,110 Status set to Complete; description now names commit d657558a2e and the label-gate close; the changelog cell names the landed v1.19.0.0.md
+- plan.md:41-55 Definition of Ready and Definition of Done ticked with evidence; the builder roster now states parent D5 as amended on 2026-09-29 (no Claude leaves)
+- tasks.md:31 closure note and the `SE` shorthand added; T001 to T015 and T018 to T020 ticked with their commands and results; T016 and T017 left `[B]` with operator reasons; all three completion criteria ticked
+- goal.md:14-27 continuity fields updated, completion_pct 100; the six completion criteria ticked; Label gate and Build rows replaced and build, census, arm-skip, tests, read-only, docs, review and closure rows added; one path-resolution deviation, the executor switch, the P1 fix and four P2 findings added
+- implementation-summary.md:1-196 rewritten from Planned to Complete: what was built, files and commit d657558a2e, delivery, decisions, verification, review verdicts, deviations and operator items
+- (none) acceptance-criteria.md is absent at Level 1, so step 3 was skipped
+
+CHECKS:
+- `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder <phase> --apply` -> `inspected=1 repaired=1 failed=0` (exit 0)
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <phase> --strict` -> `RESULT: PASSED` (exit 0); `Summary: Errors: 0  Warnings: 0`; 0 lines matching `RESULT: FAILED`
+- `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <phase>` -> `RESULT: PASSED (5/5 checks)` (exit 0)
+- `node .skilled/hooks/goal/bin/goal.cjs packet <phase> --workspace "$PWD"` -> `packet_durable_chars=3403 packet_budget=unknown` (exit 0)
+- `git status --porcelain -- <phase>` -> six `M` rows outside `scratch/`, no other path (exit 0)
+- `grep -rn "—" <phase>/*.md` -> no match (exit 1)
+
+STATUS SET: Complete in `spec.md` and `implementation-summary.md`, all six goal criteria ticked, 19 of 21 tasks ticked. Why: the census printed `stop: fewer than 12 labeled regex-miss outputs` from the final state (session evidence section 2), so the phase closes at its label gate under parent D4 and parent criterion 2.
+OPEN ROWS: T016 `[B]` waits on at least 12 labeled regex-miss outputs before a live `--deem` run; T017 `[B]` waits on the operator's labels, `--jev` flag and credential; four review P2 findings are recorded and not chased (parent D5); `spec.md` section 7's three questions remain operator items (output collection, `--grader llm` as a column, the meaning of `block`).
+BLOCKED REASON: none

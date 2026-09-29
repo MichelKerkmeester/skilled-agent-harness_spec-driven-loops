@@ -1,0 +1,22 @@
+# 025 session notes (feed session-evidence.md)
+
+- Executors: c1 to c5 Devin DeepSeek; Devin quota ran out on c6 (no write); c1b Devin fixed the test fixture (a case inherits its fixture's `reviewer_output`, as `applyCase` merges); c6 Pi MiMo (1,548 s); c6f onward DeepSeek on Cline.
+- After c6 the check failed 4 of 16: `main([])` exited 2 with `ENOENT ... benchmark-profiles/.skilled/...`. The shipped profile names `fixtureDir` repository-relative, and `loadFixtureCases` tried only the working directory and the profile's folder, as the sibling `reviewer-scorer.cjs` does, so it worked only from the repository root. Fix brief `c6f`: add `REPO_ROOT` and try it between the two. Deviation from design section 2 ("resolve as `reviewer-scorer.cjs:73-86` does"): a superset of the sibling's order, so any path the sibling resolves still resolves the same way.
+- Code queue done 19:5x: c6f to c10 on Cline, each `STATUS: DONE`, check exit 0.
+- Session proofs from the code's final state (`$SP/w4v/025`): default run exit 0 with `fixture cases: 8 hits: 8 misses: 0` and `stop: fewer than 12 labeled regex-miss outputs`, stub logs unwritten; stub Deem backend adds only `deem arm skipped: stub backend`; `jev` auth exit 3 adds only the identity line and `jev arm skipped: no credential`; each `--out` folder holds only `report.json` (spec file table allows it); `git status --porcelain` equal before and after; key grep exit 1.
+- Suite: `verdict-fallback.vitest.ts` 31 of 31; `model-benchmark/tests/` 15 files, 236 tests, exit 0 (HEAD has 14 test files, 024's final count 205); whole deep-improvement `8 failed | 28 passed (36)`, `43 failed | 395 passed (438)`, the 46 FAIL names identical to 024's baseline list.
+- Session finding for review: `USAGE` (line 63) carries the comment "printed whenever the run cannot start", but no path prints it.
+- Docs d11 to d19 on Pi MiMo with a FACTS file, `scratch/w4-session/docs/facts.txt`.
+
+## Cross-family review
+- Code, Pi MiMo (871 s): `VERDICT: FAIL`, 1 P1 and 3 P2. SHA-1 over `files-code.txt` `e7217e352137...` before and after.
+  - P1: `calls.jsonl` records keep `pick` but drop the picked key's probability, which REQ-009 takes from phase 017's REQ-008. Fix `c11f` (DeepSeek) adds `pickProb` to every record (the probability from `answers.answer.probabilities`, else null), and `c11g` pins it in the tests (the Deem stub now answers with a probability of 0.9, the Jev stub with none). Session ruling: 017 also logs a `none` probability, but this script's three options (pass, fail, block) hold no `none` key, so there is nothing to log for it.
+  - P2 recorded, not chased: the `USAGE` comment says the line prints when the run cannot start, but nothing prints it; the version gate reads only the first stdout line; the test "a bad label exits 2 naming the row" asserts only the parser's throw, never `main`'s exit 2.
+- Docs and step 6 (`main`), DeepSeek on Cline (354 s): `VERDICT: FAIL`, 2 P1 and 2 P2. SHA-1 over `files-docs.txt` `be2105b0be65...` before and after.
+  - P1: `lib/README.md` said `score-verdict-fallback.cjs` is the folder's single entrypoint, but `reviewer-scorer.cjs` also runs from the command line. Fix `f1` (MiMo, 160 s).
+  - P1: the same README's `Imports` row called `sweep-reporter.cjs` the one intra-lib edge, but the new script requires `./reviewer-scorer.cjs`. Fix `f1`.
+  - P2 fixed because the goal asks for docs true to the code: the playbook's section 15 lead list and its Model-Benchmark Mode cross-reference row left out the new entry. Fix `f2` (MiMo, 183 s).
+  - P2 recorded, not chased: the deep-improvement `README.md` frontmatter stays 1.17.0.38 and the playbook root 1.17.0.44, while the release is 1.19.0.0 (pre-existing drift).
+- Session check: the catalog package validator printed 37 warnings for `system-deep-loop/deep-improvement`, one of them new, `root_leaf_description_mismatch` on `reviewer-verdict-fallback.md`. Fix `f3` (MiMo, 59 s) set the root description to the entry's frontmatter, and the package is back to `violations=36`.
+- All nine docs pass `validate_document.py` (exit 0), the catalog root with `--type feature_catalog` and the playbook root with `--type playbook`.
+- Rechecks: Pi MiMo on `c11f`/`c11g` (106 s) `VERDICT: PASS`, the P1 closed and the `none` ruling agreed; code SHA-1 `274d809cbc66...` before and after. DeepSeek on `f1` to `f3` (read-only) `VERDICT: PASS`, all four closed; SHA-1 over the three docs `31c26e0b8006...` before and after.

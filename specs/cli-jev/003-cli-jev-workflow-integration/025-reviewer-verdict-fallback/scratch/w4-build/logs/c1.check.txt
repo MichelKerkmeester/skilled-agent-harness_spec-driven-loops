@@ -1,0 +1,63 @@
+
+ RUN  v5.0.1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts
+
+ ❯ model-benchmark/tests/verdict-fallback.vitest.ts (2 tests | 2 failed) 9ms
+   ❯ score-verdict-fallback fixtures (2)
+     × merges visible and hidden cases 6ms
+     × a case with no reviewer_output 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  model-benchmark/tests/verdict-fallback.vitest.ts > score-verdict-fallback fixtures > merges visible and hidden cases
+AssertionError: expected [ { fixtureId: 'fx-a', …(2) }, …(4) ] to deeply equal [ { fixtureId: 'fx-a', …(2) }, …(4) ]
+
+- Expected
++ Received
+
+@@ -23,8 +23,9 @@
+  cannot judge",
+    },
+    {
+      "fixtureId": "fx-b",
+      "name": "hidden silent",
+-     "output": null,
++     "output": "VERDICT: BLOCK
++ cannot judge",
+    },
+  ]
+
+ ❯ model-benchmark/tests/verdict-fallback.vitest.ts:77:19
+     75|     const cases = vf.loadFixtureCases(profile);
+     76|
+     77|     expect(cases).toEqual([
+       |                   ^
+     78|       { fixtureId: 'fx-a', name: 'visible clean', output: 'VERDICT: PA…
+     79|       { fixtureId: 'fx-a', name: 'visible informal', output: 'Looks fi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  model-benchmark/tests/verdict-fallback.vitest.ts > score-verdict-fallback fixtures > a case with no reviewer_output
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ model-benchmark/tests/verdict-fallback.vitest.ts:94:29
+     92|     const census = vf.censusFixtures(vf.loadFixtureCases(profile));
+     93|
+     94|     expect(census.noOutput).toBe(1);
+       |                             ^
+     95|     expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'…
+     96|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  18:19:23
+   Duration  160ms (import 60%, transform 19%, tests 16%, worker 5%)
+

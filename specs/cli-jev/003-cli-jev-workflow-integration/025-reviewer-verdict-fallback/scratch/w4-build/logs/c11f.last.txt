@@ -1,0 +1,21 @@
+Applied the four edits exactly as specified, in both `runDeemArm` and `runJevArm`; nothing outside S was touched. Routing: compiled `sk-code` router → `sk-code-opencode` (JavaScript slice); no comments added, no ephemeral ids.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+24/-15 edit-tool accounting, net +9 lines; file is untracked at HEAD so no git baseline exists)
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:812 deem `record(...)` signature gains `pickProb` after `pick`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:821 deem record object gains `pickProb,` after `pick,`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:849 deem retry call now `record(row, order, attempt, r, null, null, 'unmeasured')`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:860-861 deem `let pickProb = null;` added next to `let pick = null;`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:877-878 deem measured branch reads `probabilities[value]` into `prob`, assigns finite number or null
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:888 deem main call log passes `pickProb` between `pick` and `status`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1000 jev `auth test` record gains `pickProb: null,` after `pick: null,`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1019 jev `record(...)` signature gains `pickProb` after `pick`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1028 jev record object gains `pickProb,` after `pick,`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1050 jev retry call now `record(row, order, attempt, r, null, null, 'unmeasured')`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1057-1058 jev `let pickProb = null;` added next to `let pick = null;`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1074-1075 jev measured branch reads `probabilities[value]` into `prob`, assigns finite number or null
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1085 jev main call log passes `pickProb` between `pick` and `status`
+CHECKS: `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` -> no output, parse clean (exit 0)
+CHECKS: `grep -c "pickProb" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` -> 11 (exit 0)
+CHECKS: `grep -n "record(row" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` -> 4 call sites (849, 888, 1050, 1085) all 7-arg; no `pick, status` leftovers (exit 0)
+BLOCKED REASON: none

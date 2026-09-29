@@ -1,0 +1,28 @@
+Review complete. Both files read in full, callers (`reviewer-scorer.cjs`, `profile-resolve.cjs`), phase 017's contract and `cli-deem.mjs` checked, suite run (31/31), default run verified, sign test hand-checked.
+
+**Findings**
+
+P1 score-verdict-fallback.cjs:812,1014 - `calls.jsonl` records carry `pick` but omit the picked key's probability (and the `none` probability) that REQ-009 adopts from 017's REQ-008 apart from the id field - a measured call whose answer holds `answers.answer.probabilities` (cli-deem.mjs:547-554) logs none of it, where 017 logs `pickProb`/`noneProb` (score-track-narrowing.mjs:1318-1329).
+
+P2 score-verdict-fallback.cjs:62-63 - USAGE's comment says it prints whenever the run cannot start, but no path prints it - `--deem` without `--out` prints only `--deem needs --out <dir>…` (session notes flag this too).
+
+P2 score-verdict-fallback.cjs:626 - the version gate reads only the first stdout line where REQ-006 demands exactly `jev 0.6.2` - a binary printing `jev 0.6.2\nnoise` passes.
+
+P2 verdict-fallback.vitest.ts:151-158 - the test named "a bad label exits 2 naming the row" asserts only that `parseOutputs` throws and never runs `main`, so REQ-003's exit-2 is unasserted - `runMain(['--outputs', badFile])` is the missing check.
+
+**Requirements**
+
+REQ-001 met - bare run exits 0 printing both baselines, `margin: 0.10`, `keep rule:`, power and gate lines; no spawn, no file (stubs log nothing).
+REQ-002 met - imports `extractVerdict` unchanged; prints `fixture cases: 8 hits: 8 misses: 0`; hits leave `kept`; no-output cases never dispatched.
+REQ-003 met - parser errors name the row and exit 2; 11-row and missing-block gates print their stop lines; `labels_sha256` on verdict line and report.
+REQ-004 met - checks in order coverage, kill, margin, sign, flips, exact BigInt `20*num<den`; hand-check W=9,L=1 gives 11/1024=0.01074 and the keep line matches.
+REQ-005 met - Deem only behind `--deem` after health; four skip lines byte-identical to census; 2,000 ms is enforced inside `cli-deem` (cli-deem.mjs:35).
+REQ-006 met - identity line, `which`, pinned version, `auth status --provider P`, same P on auth test and every call (P2 laxity above).
+REQ-007 met - secret grep empty, `git status --porcelain` unchanged after a run, untracked payload needs `--accept-payload`, a Deem arm runs alone.
+REQ-008 met - fixed `-q`/options with SHA before any call, stdin written and closed, three rotated fresh calls, modal pick with unstable a miss.
+REQ-009 not met - cost-first lines and exit table match 017 and `--out` exits 2, but `calls.jsonl` drops 017's probability fields (P1).
+REQ-010 met - commit pair / version+provider+model per column in report and verdict suffix; requalify prints before the verdict (tested).
+REQ-011 met - 31 cases pass (≥16), every named surface covered, both arms stubbed; only the P2 bad-label gap above.
+REQ-012 not checked - docs are reviewed separately.
+
+VERDICT: FAIL

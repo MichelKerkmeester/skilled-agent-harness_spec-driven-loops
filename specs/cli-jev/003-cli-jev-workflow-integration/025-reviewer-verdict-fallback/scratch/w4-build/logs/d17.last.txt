@@ -1,0 +1,15 @@
+HANDBACK
+
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md` (+19/-3)
+EDITS:
+- `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md`:4 frontmatter `version: 1.18.0.0` -> `1.19.0.0`
+- `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md`:33 Model-benchmark mode category row `5 features` -> `6 features`, `lib/score-verdict-fallback.cjs` added to the Primary Runtime Surface cell
+- `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md`:299 section 5 lead sentence, "the reviewer-verdict fallback measurement" appended to the coverage enumeration
+- `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md`:379 one index block appended under section 5 (`### Reviewer verdict fallback` with `#### Description`, `#### How It Works`, `#### Source Files` linking `model-benchmark-mode/reviewer-verdict-fallback.md`), shape matched to the `### Hallucination grader agreement` block
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md --type feature_catalog` -> `✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md / Document type: feature_catalog / Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md` -> `1 file changed, 19 insertions(+), 3 deletions(-)` (exit 0)
+BLOCKED REASON: none
+
+Every number, switch and printed-line claim in the new block was checked against `score-verdict-fallback.cjs` (`USAGE` at line 63, strict `parseArgs` options at 1237-1248, census and gate lines at 1296-1331, `report.json`/`calls.jsonl` writes at 1387-1394 and the lazy `createCallLog` at 737-751) and `facts.txt`. Per ruling 3 the block claims no `verdict` line, since no run printed one.
