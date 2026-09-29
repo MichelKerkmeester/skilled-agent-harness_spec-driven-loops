@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "60ab7e789235e4ba96ae26d94633bfe353c72a3cb971d17773d5340ef34ed996",
+      "sha256": "baacecaa22c53ec16d51128b8f14dfa6f0b2fed7b69d22524f3267805fe46852",
       "section": "full"
     },
     {
