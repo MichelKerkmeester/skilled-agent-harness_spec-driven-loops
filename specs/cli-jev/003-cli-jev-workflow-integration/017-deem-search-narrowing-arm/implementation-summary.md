@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 17: deem-search-narrowing-arm"
-description: "score-track-narrowing.mjs measures offline whether a Deem or Jev pick of the spec track beats ripgrep and the trigger-index lookup at naming the right track. The live Deem run printed verdict deem: stop (margin), 10 right against ripgrep's 68 of 256, so phase 009 stays Planned. Built and committed as f7ae1ff44c, 14 of 14 acceptance criteria Met."
+description: "score-track-narrowing.mjs measures offline whether a Deem or Jev pick of the spec track beats ripgrep and the trigger-index lookup at naming the right track. The live Deem run printed verdict deem: stop (margin), 10 right against ripgrep's 68 of 256. The one live Jev run printed verdict jev: keep, 97 right against 68, for jev 0.6.2, provider official and model jev-1.13.0. Built and committed as f7ae1ff44c, 14 of 14 acceptance criteria Met."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -25,9 +25,9 @@ _memory:
       session_id: "spec-cli-jev-003-017-deem-search-narrowing-arm"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Does the Jev service accept 17 options? Only a --jev run on the operator's flag answers it"
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "Does the Jev service accept 17 options? Yes. The live --jev run of 2026-09-29 measured 256 of 256 rows with 0 unmeasured"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 17: deem-search-narrowing-arm
@@ -61,7 +61,9 @@ You can now measure, offline and on a counted number, whether one classifier pic
 
 **The two arms.** Behind `--deem` and a passing `cli-deem health`, or `--jev` and phase 002's Jev gate, the script asks one `choice` per question over the 16 tracks plus `none`, in three option orders, and takes the modal pick. It records every call in `calls.jsonl` and writes `report.json` to the `--out` directory. `--deem` or `--jev` without `--out` exits 2 before any output or call. The keep rule of `spec.md` REQ-004 decides each column: at least 90 percent of rows measured, a gain of at least 10 points over the baseline, a sign test below 0.05 and a flip rate of at most 0.10, checked in that order.
 
-**The result.** On the real tree the test set kept 256 rows across 16 tracks. The lookup named the right track on 17 of them and ripgrep on 68, so ripgrep is the baseline and a 10-point gain fit. The live Deem run printed `verdict deem: stop (margin) K=256 M=256 A=10 B=68 W=5 L=63 F=461 p=1.000` on the commit pair `8cbabbb`/`c8a5523`. Deem measured all 256 rows and named the right track on 10. Its picks follow option position, with 209 rows unstable across the three orders. Only a live Deem `keep` unlocks phase 009 (parent goal D4), so 009 stays Planned. Its deciding verdicts are 002's Jev `kill`, 002's Deem `kill` and this `stop (margin)`.
+**The result.** On the real tree the test set kept 256 rows across 16 tracks. The lookup named the right track on 17 of them and ripgrep on 68, so ripgrep is the baseline and a 10-point gain fit. The live Deem run printed `verdict deem: stop (margin) K=256 M=256 A=10 B=68 W=5 L=63 F=461 p=1.000` on the commit pair `8cbabbb`/`c8a5523`. Deem measured all 256 rows and named the right track on 10. Its picks follow option position, with 209 rows unstable across the three orders. The Deem `stop (margin)` stands. Phase 009 no longer waits on a Deem `keep`, because the operator amended parent goal D4 on 2026-09-29 so that 009 unlocks once 008 is Complete, and that amendment releases it. The verdicts on record before the amendment are 002's Jev `kill`, 002's Deem `kill` and this `stop (margin)`.
+
+**The Jev run.** On the operator's "Yes, one run (Recommended)" of 2026-09-29, one live `--jev` run on `jev 0.6.2`, provider `official` and model `jev-1.13.0` printed `verdict jev: keep K=256 M=256 A=97 B=68 W=78 L=49 F=47 p=0.006330`. Jev measured all 256 rows with 17 options each and named the right track on 97. It abstained on 57, which count as wrong, and 3 rows were unstable. Its latency was p50 330 ms and p95 391 ms. The session recounted the column from `calls.jsonl` and recomputed p. This keep serves nothing, because serving a pick needs a later phase, and opening one is the operator's call.
 
 **The skill docs.** `system-spec-kit`'s `SKILL.md`, README, a new changelog file, a feature-catalog entry and a manual-testing-playbook scenario, with their index rows, each name the script, its zero-call default and both switches (parent goal D6). None of them names a verdict.
 
@@ -104,7 +106,7 @@ The orchestrator session checked the result on the host and recounted the live v
 | Decision | Why |
 |----------|-----|
 | The live run's verdict stands for the final script | The live run used the script with SHA-256 `b9197509...`. The final `594e3eff...` differs only in where the `--out` refusal sits, moved by brief 23 to close the review's P1. Round 2 diffed the two: the zero-call path, both gates, both arms, the verdict code and `buildReport` are byte-identical. The keep rule did not change, so REQ-004's void clause does not apply, and no second live run was made |
-| Close T018 as not requested | The build never waits for the operator's `--jev` flag (parent D7), and no flag came. The Jev arm is proven on stubs only |
+| Close T018 as not requested | The build never waits for the operator's `--jev` flag (parent D7), and no flag came by close. The operator's one live run of 2026-09-29 then replaced that closure (T018) |
 | Amend REQ-008 and NFR-P02, not the code | The script also asks the 14 gold-bearing probes, so the probe line can report model hits. The reviewer rated that honest and asked for the spec to follow |
 | Keep the coverage condition in the keep rule | The session accepted it before any run: it tightens the rule and stops a keep resting only on the rows a backend answered |
 | Wall time on stderr | Stdout stays byte-identical run to run (NFR-R01), which the byte-identical skip checks rely on |
@@ -130,6 +132,8 @@ The build orchestrator ran the build checks on 2026-09-28, and the orchestrator 
 | Build: zero-call run `W/runs/zero-call-final` | Exit 0, 1,944.1 s, no stub call, `git status` unchanged, `baseline lookup: 17/256 right (0.0664)`, `baseline ripgrep: 68/256 right (0.2656)`, `headroom: a 10-point gain fits above 68/256` |
 | Build: live Deem run `W/runs/deem-live-1` | 18:26:14Z to 19:02:58Z, exit 0, `verdict deem: stop (margin) K=256 M=256 A=10 B=68 W=5 L=63 F=461 p=1.000`, the same pair in `cli-deem health` before and after, p50 703 ms and p95 728 ms, `git status` unchanged |
 | Session: recount of `calls.jsonl` | 810 lines, 0 missing `wallMs`, `exitCode`, `modelId`, `modelCommit` or `sourceCommit`. K=256, M=256, A=10, F=461, matching the report. `10*(A-B)` is -580 against `M` 256, so `stop (margin)` holds |
+| Session: live Jev run `W/runs/jev-live-1` | 05:35:03Z to 05:57:23Z on 2026-09-29, exit 0, `verdict jev: keep K=256 M=256 A=97 B=68 W=78 L=49 F=47 p=0.006330`, provider `official`, model `jev-1.13.0`, p50 330 ms and p95 391 ms, `git status` unchanged |
+| Session: recount of the Jev `calls.jsonl` | 811 lines, 1 `auth_test`, 768 `test` and 42 `probe`, each `measured` with exit code 0 on attempt 1. M=256, A=97, F=47, 3 unstable and 57 abstained, matching the report. The exact one-sided sign test on W 78 and L 49, recomputed in Python, gives p 0.00633034 |
 | Session, after brief 23: `node S --deem` and `node S --jev` without `--out`, stub binaries first on `PATH` | Exit 2 each in 0 s, empty stdout, stderr `--<arm> needs --out <dir> so every call is recorded`, no stub call logged |
 | Build and session: `validate_document.py` on the 8 changed skill docs | Exit 0 each. The two index files keep the `document_type_fallback` warning they had at baseline |
 | Build: `validate-playbook-package.cjs --package system-spec-kit` | `PASS`, `scenarios=85`, `warnings=1`, exit 0 (84 scenarios at baseline) |
@@ -170,11 +174,11 @@ The build orchestrator ran the build checks on 2026-09-28, and the orchestrator 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The Jev arm is proven on stubs only.** No `--jev` run was requested, so whether the Jev service accepts 17 options is still UNKNOWN, and the stub run sends 3.
+1. **The stub Jev run sends 3 options, not 17.** The one live `--jev` run of 2026-09-29 showed the Jev service takes 17: 256 of 256 rows measured, 0 unmeasured. Its keep holds only for `jev 0.6.2`, provider `official` and model `jev-1.13.0`.
 2. **Open P2s from the review, recorded, not fixed (parent D5).** A reused `--out` dir truncates the earlier `calls.jsonl` and `report.json`. A model or backend recheck failure prints `server gone`. The stub-backend and wrong-model stubs exit 0 where the real `cli-deem` exits 3. No test covers a Deem exit-4 passing recheck, `server gone`, the Jev exit-4 backoff or the 90 s timeout. Brief 23 removed the only assertions of the passing Deem health line and of `JEV_PROVIDER` reaching the identity line and `auth status`. Inside `jevGate` a local `path` shadows the `node:path` import.
 3. **Deem answers by option position.** Order 0 picks `agents` on 238 of 256 rows and order 2 `cli-jev` on 208, a flip rate of 0.6003. Nothing was tuned.
 4. **Never run it beside the `cli` suite.** The ripgrep baseline exits 2 when a directory under `specs/` vanishes mid-walk, as the suite's temp fixture did once.
-5. **The index hash moved.** The runs read `manifestHash` `fdebd12a...`. After `2d101bd6d8` a rerun prints `7bc9bd5b...`, and a keep holds only for what it was measured on (REQ-009).
+5. **The index hash moved.** The zero-call and Deem runs read `manifestHash` `fdebd12a...`, and the Jev run read `9481e0d6...`. After `2d101bd6d8` a rerun prints `7bc9bd5b...`, and a keep holds only for what it was measured on (REQ-009).
 6. **`report.json` renders p as a float**, `0.9999999999999971` here, while the decision uses an exact comparison and stdout prints `p=1.000`.
 7. **No case covers both switches at once, or a switch under `no headroom`.** The code for the second is read, not tested.
 <!-- /ANCHOR:limitations -->
