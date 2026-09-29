@@ -2,7 +2,7 @@
 name: sk-create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
 <!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
@@ -79,6 +79,7 @@ Ask one focused clarification before authoring if it is unclear whether the user
 | Parent hubs | `assets/parent-skill/parent-skill-*` | Create hub SKILL, registry, router, description, and graph metadata files. |
 | Validation | `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` | Check completion, package distribution zips, and inspect structure. |
 | Routing measurement | `scripts/score-clarify-default.cjs` | Count how often compiled hubs answer `clarify` with zero model calls and write unlabeled clarify rows. `--score` stops below 30 labeled rows. Past that gate `--jev` or `--deem` asks a classifier for a default pick. |
+| Leaf-route replay | `scripts/leaf-route-replay.cjs` | Replay the committed stage-two keyword block of each hub's `ROUTER.md` against its gold scenarios with zero model calls. `--transcripts` recounts `ROUTER.md` reads. Past its gate `--jev` or `--deem` asks a classifier to break ties. |
 | Overflow detail | `references/README.md`, `references/{shared,skill,parent-skill}/`, `../shared/` | Load only for edge cases, exhaustive examples, or schema details beyond this SKILL.md. |
 
 ### Smart Router Pseudocode
@@ -468,5 +469,6 @@ Use these only for overflow detail, exhaustive examples, or schema checks beyond
 - `scripts/init_skill.py` - standalone skill scaffold helper.
 - `scripts/package_skill.py` - validation and packaging helper.
 - `scripts/score-clarify-default.cjs` - zero-call clarify census and default-pick scorer. It stops below 30 labeled rows. `--jev` or `--deem` scores a pick only past that gate.
+- `scripts/leaf-route-replay.cjs` - zero-call stage-two keyword replay and read recount. It scores the `ROUTER.md` keyword block against the committed gold scenarios. `--transcripts` recounts reads and `--jev` or `--deem` breaks ties.
 - `../shared/references/core-standards.md` - shared markdown standards.
 - `../shared/references/validation.md` - shared validation workflow.

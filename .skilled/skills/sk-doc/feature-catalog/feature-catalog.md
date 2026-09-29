@@ -1,6 +1,6 @@
 ---
 title: "sk-doc: Feature Catalog"
-description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets, the default-on compiled-routing fast path that resolves ahead of it, the zero-call clarify census, the shared validator's changelog entry check and the advisory goal-criteria lint."
+description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets, the default-on compiled-routing fast path that resolves ahead of it, the zero-call clarify census, the stage-two leaf route replay with its keep rule, the shared validator's changelog entry check and the advisory goal-criteria lint."
 trigger_phrases:
   - "sk-doc feature catalog"
   - "sk-doc hub capabilities"
@@ -40,6 +40,20 @@ Each of the hub's fourteen packets owns a single `Keyword triggers:` line as the
 #### Source Files
 
 See [`packet-authored-registry-routing/packet-authored-registry-routing.md`](packet-authored-registry-routing/packet-authored-registry-routing.md) for the full discriminator and source anchors.
+
+### Leaf Route Replay
+
+#### Description
+
+Replays each parent hub's stage-two keyword block against the committed gold with zero model calls and judges keep, drop or stop against the prose arm.
+
+#### Current Reality
+
+`leaf-route-replay.cjs` in `sk-create-skill` runs each parent hub's `INTENT_SIGNALS` and `RESOURCE_MAP` blocks over the 56-row committed gold, one row per committed scenario that carries a prompt and leaf pairs, and prints per-hub precision, recall, F1 and exact match with zero model calls. sk-code's gold row prints `surface slice not replayed` and stays unscored, and `cli-classifier` prints `stage1-only`. `--transcripts <dir>` recounts each hub's router-file reads behind the block as counts and bytes per hub and week, and `--prose <file>` compares the keyword arm with the pairs a prose transcript records under the coverage rule `10*P >= 9*N` and prints `replay verdict: keep`, `drop` or `stop (prose arm covers <P> of <N> rows)`. The tie-break arms stay dormant until `--jev` or `--deem` with `--out <dir>` run behind their own gates, Jev first, and end each column in `verdict <jev|deem>: <keep|kill|stop (<reason>)>` under the keep rule. A `keep` serves nothing.
+
+#### Source Files
+
+See [`packet-authored-registry-routing/leaf-route-replay.md`](packet-authored-registry-routing/leaf-route-replay.md) for the keyword arm, the gold, the replay rule and source anchors.
 
 ---
 
@@ -105,4 +119,4 @@ Flags goal completion criteria that a reader cannot check from the line alone, s
 
 See [`document-validation/goal-criteria-lint.md`](document-validation/goal-criteria-lint.md) for the rules, the line classes and source anchors.
 
-Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the goal-criteria lint of `sk-create-goal` and the clarify census of `sk-create-skill`, which ship no catalog of their own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.
+Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the goal-criteria lint of `sk-create-goal` and the clarify census and leaf route replay of `sk-create-skill`, which ship no catalog of their own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.
