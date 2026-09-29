@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.0.20
+version: 1.2.0.21
 ---
 
 # create-skill
@@ -97,6 +97,17 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs --
 
 `--score` refuses to judge below 30 labeled rows and prints `stop: fewer than 30 labeled rows`. Past that gate, `--jev` or `--deem` with `--out <dir>` asks the classifier three times per row in rotated option order and prints one verdict per backend against the router's first alternative. A `keep` serves nothing, because the front door still prints no default.
 
+### Replaying Stage-Two Leaf Routes
+
+When a hub's `ROUTER.md` keyword block scores a request, the winning intents pick the leaf routes. [`scripts/leaf-route-replay.cjs`](./scripts/leaf-route-replay.cjs) measures how well those picks match the committed gold scenarios. With no switch it makes no model call. It scores each hub's predicted leaf routes against the gold routes and prints one `hub=` line per hub plus a `total` line. `--transcripts <dir>` counts real `ROUTER.md` reads in a folder you name without printing any text. `--prose <file>` compares the keyword arm against a prose arm and prints one `replay verdict:` line that keeps, drops or stops.
+
+```bash
+node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --report <dir> --transcripts <dir> --prose <file>
+node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --jev --deem --out <dir>
+```
+
+Both tie-break arms stay dormant behind their gates. `--jev` or `--deem` with `--out <dir>` runs the matching gate and, when it passes, asks the classifier three times per tied row in rotated option order and prints one `verdict` line per backend. A `keep` serves nothing, because no router, map, manifest or playbook is touched.
+
 ---
 
 ## 5. INTEGRATION & NAVIGATION
@@ -157,6 +168,7 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | Strict contract check | `python3 scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
 | Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
 | Clarify census and scorer | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | `pass 28` and `fail 0` |
+| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 33` and `fail 0` |
 
 ---
 
@@ -173,3 +185,4 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Scaffold helper for new standalone or parent-hub folders |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |
 | [`scripts/score-clarify-default.cjs`](./scripts/score-clarify-default.cjs) | Zero-call clarify census and default-pick scorer |
+| [`scripts/leaf-route-replay.cjs`](./scripts/leaf-route-replay.cjs) | Zero-call Stage-Two leaf-route replay and tie-break scorer |
