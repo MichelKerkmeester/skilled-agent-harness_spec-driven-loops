@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Unified spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index and ripgrep retrieval. Required for file modifications."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 4.5.0.0
+version: 4.6.0.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
@@ -571,6 +571,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Compaction recall census | `node .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs --transcripts <dir> --newest-compacted 15 --out <file outside the repo>` makes no model call, prints counts and one `stop:` line and changes no transcript |
 | Alignment suggestion measurement | `cd .skilled/skills/system-spec-kit/runtime/cli && npx tsx evals/score-alignment-suggestion.ts` makes no model call and prints below-50 alignment counts per save path; `--score <rows>` prints `stop: fewer than 30 labeled rows` until the operator labels 30, and `--jev` or `--deem` with `--out <dir outside the repo>` add a verdict column behind that backend's own check |
 | Completion claim audit | `node .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs --rows <file>` runs the offline completion-claim audit and makes no model call by default, and `--deem` and `--jev` with `--out <dir outside the repo>` each run that backend's arm behind that backend's own check (`--accept-payload` is required for `--jev`) |
+| Debug next-check measurement | `node .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs --fixture <file outside the repo>` makes no model call by default and changes no debug step, and `--jev` or `--deem` with `--out <dir>` each run that backend's arm behind that backend's own check |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
 | Upgrade level | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/007-feature/` |
