@@ -1,0 +1,7 @@
+#!/bin/sh
+# Logging stand-in for cli-deem: records every invocation and answers nothing real.
+printf 'cli-deem %s\n' "$*" >> "$(dirname "$0")/calls.log"
+case "$1" in
+  health) echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"x","source_commit":"y"}' ;;
+  *) exit 1 ;;
+esac

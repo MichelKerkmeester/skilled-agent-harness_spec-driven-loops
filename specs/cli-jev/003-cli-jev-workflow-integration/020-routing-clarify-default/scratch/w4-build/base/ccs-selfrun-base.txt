@@ -1,0 +1,11 @@
+./advisor-index-handoff-contract.test.cjs exit 0
+./ci-leaf-manifest-freshness.test.cjs exit 0
+./compiled-routing-lockstep-parity.test.cjs exit 0
+./create-journey-proof.test.cjs exit 0
+./generate-leaf-manifest-scopes.test.cjs exit 0
+./leaf-resource-contract.test.cjs exit 0
+./root-router-contract.test.cjs exit 0
+./skill-derived-regenerator.test.cjs exit 0
+./skill-root-metadata-contract.test.cjs exit 1
+./validate-compiled-routing-scenarios.test.cjs exit 0
+./validate-playbook-topology.test.cjs exit 0

@@ -1,0 +1,28 @@
+I'll start by reading the two files I need to edit, plus the sk-code skill contract the brief tells me to follow.I've read both target files and the sk-code hub. Now let me follow the route sk-code resolves for this file type (a Node CLI script → OpenCode surface, implement doctrine), and probe the exact divider width used in the script so my new section matches it.The divider probes missed — likely a different dash count or character. Let me bisect with a few probes.The count of `─` (924) suggests the divider run is longer than I guessed. Let me pin the exact run length and check `$` anchoring behavior.The `$` anchor appears unsupported in this grep tool (even `^// 1\. IMPORTS$` misses), and each section has two divider lines — so 924 total dashes likely means 12 dividers × 77. Let me confirm the exact run length.Confirmed: 12 dividers, exactly 77 dashes each. One ambiguity: whether a trailing space follows the dashes (my pattern may have been whitespace-trimmed). Let me check that, plus confirm my renumber anchors are unique.Confirmed: dividers are exactly `// ` + 77 `─`, no trailing space, and both renumber anchors are unique. sk-code's route for this file type resolves to the OpenCode surface (system code under `.skilled/`, `.cjs` → JavaScript tier), implement doctrine — read before edit, comment hygiene, verify with the listed checks.
+
+Now making the edits to `score-clarify-default.cjs`:All nine edits applied cleanly. Now the test file edits, plus verifying my new dividers are exactly 77 dashes (count should go 12 → 14).Both new dividers verified at exactly 77 dashes. Now re-reading both edited files in full, and running the mandated checks.All three mandated checks pass. The script read was truncated at line 533 (file is 595 lines) — let me read the tail, and inspect the scoped diff to confirm exactly two files changed with no stray artifacts.All checks pass. Final review of the complete diff against the brief:
+
+- **File 1** — section 5 `TRANSCRIPTS` inserted between PROMPT SOURCES and CLI, CLI renumbered to 6, EXPORTS to 7; `FRONT_DOOR_PATTERN` with its one-line why; `countTranscripts` (counts only, never text: recursive sorted walk, `isFile()` only, `matchAll` for distinct hub/action pairs, per-hub zeroed cells, `perFile` for every file read); `transcriptLines`; `parseArgs`/`USAGE`/dir validation/print/report/EXPORTS all as specified.
+- **File 2** — the four requires added; tests 7 and 8 appended exactly as specified (`{ timeout: 120000 }` on the spawning test).
+- `git status` shows only my two files touched by me (both pre-existing-untracked in this worktree; other entries belong to concurrent workers); no temp artifacts created; new dividers verified byte-consistent at 77 `─`.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs (+104/-0 net; untracked in this worktree, 491 -> 595 lines)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs (+46/-0 net; untracked in this worktree, 130 -> 176 lines)
+EDITS: score-clarify-default.cjs:34-37 USAGE gains [--transcripts <dir>]; FRONT_DOOR_PATTERN added with one-line why comment
+EDITS: score-clarify-default.cjs:340-414 new section 5 TRANSCRIPTS: countTranscripts (count-only recursive walk, distinct hub/action pairs, perFile) and transcriptLines (totals, sorted per-hub lines, real clarify rate)
+EDITS: score-clarify-default.cjs:417 CLI divider renumbered to 6; score-clarify-default.cjs:568 EXPORTS divider renumbered to 7
+EDITS: score-clarify-default.cjs:426-445 parseArgs gains transcripts: null and the --transcripts value flag with the same missing-value rule
+EDITS: score-clarify-default.cjs:507-514 main rejects a non-directory --transcripts before any census work (err + return 2), then counts transcripts
+EDITS: score-clarify-default.cjs:532-537 transcript lines printed when counted, else unchanged 'real clarify rate: not measured'
+EDITS: score-clarify-default.cjs:550-559 report.json: realClarifyRate becomes { clarify, total }, transcripts key holds the count (both null otherwise)
+EDITS: score-clarify-default.cjs:584-585 EXPORTS gains countTranscripts, transcriptLines
+EDITS: tests/score-clarify-default.test.cjs:13-16 node:fs/os/path/child_process requires added
+EDITS: tests/score-clarify-default.test.cjs:136-155 test 7 countTranscripts counts each front-door line once, escaped or plain
+EDITS: tests/score-clarify-default.test.cjs:157-176 test 8 transcript count prints counts and no transcript text, timeout 120000
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs -> (no output) (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> (no output) (exit 0)
+CHECKS: grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> 8 (exit 0)
+BLOCKED REASON: none
+```

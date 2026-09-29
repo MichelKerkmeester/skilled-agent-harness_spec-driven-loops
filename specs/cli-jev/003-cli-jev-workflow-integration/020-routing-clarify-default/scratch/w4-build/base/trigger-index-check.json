@@ -1,0 +1,12 @@
+{
+  "corpusManifestHash": "d158efe9af0fad686c86bfe01271ca558ddab6847ebde28b189099099df31da0",
+  "documentsScanned": 23405,
+  "durationMs": 19659.970792,
+  "fresh": true,
+  "indexManifestHash": "5e87dcc907150c6a567730a56413a7cf2ce56dc5bfc84536b4e69464b6178df3",
+  "indexPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+  "missingDocuments": 0,
+  "obsoletePaths": [],
+  "staleDocuments": [],
+  "untrustedDocuments": []
+}

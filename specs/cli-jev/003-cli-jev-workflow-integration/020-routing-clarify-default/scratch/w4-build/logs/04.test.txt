@@ -1,0 +1,20 @@
+✔ census counts a mode clarify and keeps only gold among its alternatives (1.01ms)
+✔ census counts a missing prompt, an engine throw and an unknown hub as unparsed (0.171875ms)
+✔ census keeps checklist alternatives apart and writes no row for them (0.092292ms)
+✔ rowLines writes every label empty (0.150042ms)
+✔ parseArgs reads both census flags and refuses an unknown flag or a missing value (0.1185ms)
+✔ hubForSkill maps a hub id and a mode packet and nothing else (0.110459ms)
+✔ countTranscripts counts each front-door line once, escaped or plain (1.624625ms)
+✔ the transcript count prints counts and no transcript text (653.773458ms)
+✔ the gate stops at 29 labeled rows (46.384208ms)
+✔ 30 labeled rows pass the gate and print the fixed rule lines (52.856541ms)
+✔ a label outside the row's alternatives exits 2 and names the row (46.746333ms)
+✔ a baseline above nine tenths prints no headroom (51.284542ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 923.667625

@@ -1,0 +1,19 @@
+All steps executed as written: source read in full, placed via `cp` (no retyping), `cmp` clean, `git diff --stat` shows one file, validator reports zero issues.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md (+29/-6)
+EDITS:
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:4 version 1.2.0.3 -> 1.2.0.4
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:11 feature-catalog sentence updated for SKL-007 hub-catalog link
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:28 overview counts six->seven scenarios, three->four parent hubs
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:39 coverage boundary adds census zero-model and 30-row scorer clauses
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:204 PARENT HUB range SKL-004..SKL-006 -> SKL-004..SKL-007
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:269 SKL-007 block inserted (Description, Scenario Contract, Test Execution)
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:298 automated-test row for score-clarify-default.test.cjs added
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:306 catalog sentence reworded to "no feature catalog of its own"
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:316 index row for SKL-007 added
+CHECKS:
+- cmp specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-build/drafts/playbook-index.after.md .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md -> no output (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md --type playbook -> Total issues: 0 (exit 0)
+BLOCKED REASON: none

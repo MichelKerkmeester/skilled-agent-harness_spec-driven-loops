@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md
+Document type: feature_catalog
+Total issues: 0

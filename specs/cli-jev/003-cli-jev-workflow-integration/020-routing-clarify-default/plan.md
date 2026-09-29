@@ -37,17 +37,19 @@ contextType: "implementation"
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
+Evidence: `BE` is `scratch/w4-build/build-evidence.md` and `SE` is `scratch/w4-session/session-evidence.md`; where the two disagree, `SE` wins.
+
 ### Definition of Ready
-- [ ] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel
-- [ ] Phase 021's build is not running, since both change `sk-create-skill`'s `SKILL.md`, README and changelog
-- [ ] The Keep Rule, the 10-point margin and the 30-row gate in `spec.md` are unchanged since 2026-09-29
+- [x] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel. Evidence: the release is the build's stated precondition and the build ran under it (`scratch/w4-build/build-evidence.md` section 1)
+- [x] Phase 021's build is not running, since both change `sk-create-skill`'s `SKILL.md`, README and changelog. Evidence: `git status --porcelain -- .skilled/skills/sk-doc/sk-create-skill` printed nothing at the build's start and no `build-021` brief exists (`BE` section 1)
+- [x] The Keep Rule, the 10-point margin and the 30-row gate in `spec.md` are unchanged since 2026-09-29. Evidence: the code pins `LABEL_GATE = 30`, `margin: 0.10` and the rule lines from `spec.md` section 4, and the review hand-checked `tailP(7,5)=29/128` and `tailP(30,30)=2^-30` (`SE` section 3)
 
 ### Definition of Done
-- [ ] The census ran on the real tree with zero calls and its counts are in `goal.md`'s log
-- [ ] The unlabeled rows file exists with every `label` empty, and the scorer printed `stop: fewer than 30 labeled rows` on it
-- [ ] `node --test` on the test file exits 0 with at least 16 passing tests, and sk-create-skill's script suite fails nothing beyond its baseline
-- [ ] `validate_document.py` exits 0 on every changed skill doc (parent D6)
-- [ ] A cross-family review leaves no open P0 or P1 finding (parent D5)
+- [x] The census ran on the real tree with zero calls and its counts are in `goal.md`'s log. Evidence: `PATH="$STUB:$PATH" node S --report runs/census --rows-out runs/census/rows.jsonl` exit 0 with `stub/calls.log` never created; the counts are in `goal.md`'s log (`BE` section 5 P1, `SE` section 2)
+- [x] The unlabeled rows file exists with every `label` empty, and the scorer printed `stop: fewer than 30 labeled rows` on it. Evidence: `grep -c` finds `"label":""` on 2 of 2 rows, and the scorer printed `stop: fewer than 30 labeled rows (0 labeled)`, exit 0 (`BE` section 5 P2, `SE` section 2)
+- [x] `node --test` on the test file exits 0 with at least 16 passing tests, and sk-create-skill's script suite fails nothing beyond its baseline. Evidence: `tests 28, pass 28, fail 0`, exit 0; the dir run ends 47 tests, 46 pass, the same one pre-existing `skill-root-metadata-contract` failure as the baseline (`BE` sections 5 and P7 table, `SE` section 2)
+- [x] `validate_document.py` exits 0 on every changed skill doc (parent D6). Evidence: exit 0 and `Total issues: 0` on all nine changed docs, the playbook index with `--type playbook` and the catalog index with `--type feature_catalog` (`BE` section 5 P5)
+- [x] A cross-family review leaves no open P0 or P1 finding (parent D5). Evidence: Pi MiMo on the code and Devin DeepSeek on the docs, both `VERDICT: PASS` with REQ-001 to REQ-010 met; 8 P2 findings recorded and not chased (`SE` section 3)
 <!-- /ANCHOR:quality-gates -->
 
 ---

@@ -1,0 +1,17 @@
+✔ advisor-index-handoff.md exists and defines the verification-state enum (1.358917ms)
+✔ advisor-index-handoff.md states the description.json / graph-vocabulary guardrail (A7) (0.343292ms)
+✔ every full-handoff create surface references advisor-index-handoff.md by path (6.471209ms)
+✔ every full-handoff create surface reports refresh status as NOT RUN, never auto-refreshing (1.018125ms)
+✔ standalone create surfaces never render H-only metadata fields in the handoff (0.673875ms)
+✔ parent create surfaces render the H-specific fields (description.json, leaf-manifest.json, command-metadata.json) (0.326791ms)
+✔ parent create workflows use the scoped generate-leaf-manifest.cjs --write, never invoke the fleet --fix gate (0.339167ms)
+✔ doctor-skill-advisor.yaml derives skill_graph_validate severity using the shared vocabulary, not a top-level flag (1.117542ms)
+✔ doctor-skill-advisor.yaml terminal verification_status uses the fail/partial/pass/skipped_unverified vocabulary (0.263042ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14.592083

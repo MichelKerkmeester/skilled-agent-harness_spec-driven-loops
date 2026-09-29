@@ -1,0 +1,12 @@
+All three edits applied exactly once; the scoped diff shows only those changes (3 insertions, 1 deletion — the version-line replacement). Validation printed `Total issues: 0` and exited 0.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/SKILL.md (+3/-1)
+EDITS:
+- .skilled/skills/sk-doc/sk-create-skill/SKILL.md:5 `version: 1.2.0.0` → `version: 1.4.0.0`
+- .skilled/skills/sk-doc/sk-create-skill/SKILL.md:81 after the Validation table row, added the `Routing measurement | scripts/score-clarify-default.cjs` row
+- .skilled/skills/sk-doc/sk-create-skill/SKILL.md:470 after the `scripts/package_skill.py` bullet, added the `scripts/score-clarify-default.cjs` bullet
+CHECKS:
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/SKILL.md -> `Total issues: 0` (exit 0)
+BLOCKED REASON: none

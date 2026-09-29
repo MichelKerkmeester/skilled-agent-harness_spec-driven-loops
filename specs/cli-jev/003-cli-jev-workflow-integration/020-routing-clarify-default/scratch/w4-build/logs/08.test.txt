@@ -1,0 +1,35 @@
+✔ census counts a mode clarify and keeps only gold among its alternatives (0.714ms)
+✔ census counts a missing prompt, an engine throw and an unknown hub as unparsed (0.07175ms)
+✔ census keeps checklist alternatives apart and writes no row for them (0.055458ms)
+✔ rowLines writes every label empty (0.088458ms)
+✔ parseArgs reads both census flags and refuses an unknown flag or a missing value (0.076ms)
+✔ hubForSkill maps a hub id and a mode packet and nothing else (0.058209ms)
+✔ countTranscripts counts each front-door line once, escaped or plain (1.786667ms)
+✔ the transcript count prints counts and no transcript text (602.908125ms)
+✔ the gate stops at 29 labeled rows (44.223292ms)
+✔ 30 labeled rows pass the gate and print the fixed rule lines (48.659375ms)
+✔ a label outside the row's alternatives exits 2 and names the row (40.03575ms)
+✔ a baseline above nine tenths prints no headroom (47.893666ms)
+✔ tailP is exact (0.243708ms)
+✔ decideVerdict checks coverage, kill, margin, sign test and flips in order (0.139459ms)
+✔ scoreColumn counts measured, unstable and flips (0.155542ms)
+✔ --deem without --out exits 2 before any output (42.822417ms)
+✔ a stub or unreachable deem backend skips the arm and leaves the rest byte-identical (339.450541ms)
+✔ a jev without a credential prints its identity and one skip line (255.19375ms)
+✔ jev off PATH and a wrong jev version each skip (147.374666ms)
+✔ a deem stub that answers the label keeps (1461.32775ms)
+✔ a deem stub that answers the first alternative stops on margin (1319.703041ms)
+✔ a deem stub that loses to the baseline kills (1141.472042ms)
+✔ four failing deem calls in thirty rows stop on coverage (1372.042667ms)
+✔ the label gate blocks the deem arm before any call (38.109375ms)
+✔ a jev stub that answers the label keeps (1502.426792ms)
+✔ with both switches the jev verdict prints before the deem verdict (3131.14425ms)
+✔ a rejected key stops the jev arm with no verdict (156.355083ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11753.761958

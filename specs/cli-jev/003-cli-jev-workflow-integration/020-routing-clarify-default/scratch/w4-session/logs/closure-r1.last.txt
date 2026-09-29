@@ -1,0 +1,46 @@
+Everything is recorded and verified. Final handback:
+
+---
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: one line per file: <path> (+<added>/-<removed>)
+- specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md (+3/-3)
+- specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/plan.md (+10/-8)
+- specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/tasks.md (+23/-21)
+- specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/goal.md (+38/-14)
+- specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/implementation-summary.md (+84/-20)
+- specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/graph-metadata.json (+59/-52, via repair-derived.cjs)
+
+EDITS: one line per step: <file>:<line> <what changed>
+- tasks.md:33 added the closure line naming commit `65c71719ac` and the `BE`/`SE` evidence sources
+- tasks.md:41-45 ticked T001 to T003 with baselines, contract-read and fixture evidence
+- tasks.md:51-59 ticked T004 to T011 with census, gate, rows, docs and regeneration evidence
+- tasks.md:68-75 ticked T012 to T017 with test, run, grep, doc-validation, review and commit evidence; T018 left open for the operator
+- tasks.md:80-82 ticked the three Completion Criteria rows
+- goal.md:14-21,28 continuity fields updated (closure-leaf, 2026-09-29T15:39:02Z, completion_pct 100, built key_files)
+- goal.md:64-69 ticked all 6 completion criteria
+- goal.md:83-96 log Progress: added Build, Census (T013), Label gate (T014), Tests (T012), Docs (T010/T011), Review and commit (T017), Live Jev run and Phase docs rows
+- goal.md:99-117 Deviations and findings: added 15 rows (5 build deviations, 8 review P2 findings, the 82 to 83 recount), each with its source
+- spec.md:3 frontmatter description now records the build and closure; :26 Status Complete; :74 corrected 82 to 83 playbook files and replaced the stale UNKNOWN with the census answer (2 rows, none with gold)
+- plan.md:40 added the `BE`/`SE` source line; :43-45 ticked Definition of Ready; :50-54 ticked Definition of Done with evidence
+- implementation-summary.md:3-28 frontmatter description and continuity rewritten for the built state; :41-52 Status Complete with Completed at the label gate (parent D4); :54-102 What Was Built (census output, rows, gate, arms, tests, nine docs, Files Changed, commit); :104-112 How It Was Delivered; :114-128 Key Decisions; :130-158 Verification table; :160-168 Known Limitations with the operator items
+- graph-metadata.json re-derived by repair-derived.cjs after the doc edits
+
+CHECKS: one line per check: <command> -> <result line> (exit <n>)
+- node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default --apply -> `inspected=1 repaired=1 failed=0` (exit 0)
+- bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default --strict -> `RESULT: PASSED`, 0 lines matching `RESULT: FAILED` over the whole output (exit 0)
+- node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default -> `RESULT: PASSED (5/5 checks)` (exit 0)
+- node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default --workspace "$PWD" -> `STATUS=OK`, `packet_budget=unknown` (phase child, by design), `packet_durable_chars=3458` (at or under 4000) (exit 0)
+- git status --porcelain on the phase folder outside scratch/ -> 6 files, all inside the phase folder (5 docs + graph-metadata.json) (exit 0)
+
+Status set: **Complete** in `spec.md` and `implementation-summary.md`, because the session reran the gate from the final state and it printed `stop: fewer than 30 labeled rows (0 labeled)` (`scratch/w4-session/session-evidence.md` section 2), and every remaining open row is an operator item under parent D4.
+
+Rows left open with their reason:
+- tasks.md T018: past the label gate. Needs 30 operator labels (the committed prompts give 2 rows, so `--transcripts` or hand-picked prompts first), then a `--deem` run and, on the operator's flag, a `--jev` run. Parent D4 puts it outside this phase's completion.
+- implementation-summary.md Known Limitations 1-3 (operator items): the labels, the live Jev run awaiting the operator's yes, and serving, which needs the routing owner's `compiledRoute` output-contract change first.
+- Known Limitations 4: the 8 review P2 findings, recorded and not chased per parent D5 (no P0 or P1 was open).
+- Known Limitations 7: the `../changelog/` refresh `spec.md` names, blocked on there being no parent `changelog/` directory and on this pass's folder-only write scope.
+- No `acceptance-criteria.md` row exists to mark: the folder has none (Level 1, step 3 not applicable).
+
+BLOCKED REASON: none

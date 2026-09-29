@@ -1,0 +1,1 @@
+[sk-doc] validate-compiled-routing-scenarios content-admission fixtures passed

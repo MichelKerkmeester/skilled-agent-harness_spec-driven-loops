@@ -1,0 +1,61 @@
+
+
+
+
+
+
+Now let me check the source file's constants section and the sk-code skill route, then make the edits.
+
+Now I'll gather exact formatting details before editing (divider line length), and check the baseline test count.
+
+The sk-code hub routes this to its quality mode; the brief's own checks govern this leaf task. Now I'll make the edits to `score-clarify-default.cjs`, starting with imports, constants, USAGE, and `parseArgs`.
+
+Now the GATES section insert, section renumbering, `runScoreCommand`, `main`, and exports.
+
+The main file edits are in. Let me verify divider consistency and syntax before moving to the tests.
+
+Main file verified. Now the test file: helpers first, then the four tests.
+
+Both files are edited. Now the brief's checks, plus a direct run of the edited test file to prove the new tests actually pass (no sockets involved — plain `node --test`).
+
+Listed checks pass. Now a self-verification run of the test file:
+
+All 19 tests pass, including the 4 new ones. Final state verification — scoped diff and a re-read of the edited CLI region:
+
+The diff stat was empty — let me check whether these files are tracked in git or new/untracked in this worktree, and get line counts.
+
+Files are untracked (new in this worktree), so no git baseline exists — net line counts will come from my before/after reads. Final check: section numbering and comment hygiene in the main file.
+
+All checks are green. Final summary of the work:
+
+**What changed**
+- `score-clarify-default.cjs`: new section 8 GATES porting `which`, `jevGate`, `deemCommand`, `readDeemHealth`, `deemGate` to CommonJS with the pinned constants; CLI renumbered to 9 with `--jev` / `--deem` / `--out` parsing, the `--out` requirement check in `main`, and gate dispatch after the `headroom:` line (Jev then Deem, each only behind its own switch); exports renumbered to 10 with the five gate functions added.
+- Test file: `makeStubs` (sh stubs for `jev` and `cli-deem` with the version/auth/health/choice behaviors), `runWithStubs`, `withoutLines`, plus the four new tests on 30 `'second'` rows.
+
+**Verification**: `node --check` passes on both files; `grep -c "^test("` prints 19; a self-verification run of the edited test file passes 19/19 (I ran `node --test` on the one file as the direct proof of the change — no sockets, finished in ~1.7s).
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs (+191 net, 945->1136 lines; untracked file, no git baseline)
+- .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs (+151 net, 306->457 lines; untracked file, no git baseline)
+
+EDITS:
+- score-clarify-default.cjs:17 IMPORTS: added `const { spawnSync } = require('child_process');`
+- score-clarify-default.cjs:49-53 CONSTANTS: appended JEV_VERSION='jev 0.6.2', DEEM_MODEL='deem-0.8-v1', HEALTH_TIMEOUT_MS=2000, JEV_TIMEOUT_MS=90000, REPO_CLI_DEEM='.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs'
+- score-clarify-default.cjs:36 USAGE: now ends ` | --score <rows file> [--jev] [--deem] [--out <dir>]`
+- score-clarify-default.cjs:702-862 new section `8. GATES` with which/jevGate/deemCommand/readDeemHealth/deemGate (JSDoc kept, printed lines and logic identical to the source, timeouts from the new constants, repo fallback `[process.execPath, path.join(repoRoot, REPO_CLI_DEEM)]`)
+- score-clarify-default.cjs:865 CLI renumbered to 9; :1094 EXPORTS renumbered to 10
+- score-clarify-default.cjs:712-744 parseArgs: added jev:false/deem:false/out:null; --jev/--deem take no value; --out takes a value; `--jev and --deem need --score <file>` after the loop
+- score-clarify-default.cjs:959-960, 1001-1004 runScoreCommand: deps gains env; after the headroom line, `if (args.jev) jevGate({ out, env })` then `if (args.deem) deemGate({ out, env, repoRoot })`, return 0 (neither runs on no-headroom or label-gate stop)
+- score-clarify-default.cjs:1017-1029 main: `env = deps.env || process.env`; `--jev`/`--deem` without `--out` prints `error: --jev and --deem need --out <dir>` to stderr and returns 2 before any other work; env passed into runScoreCommand
+- score-clarify-default.cjs:1122-1126 exports: which, jevGate, deemCommand, readDeemHealth, deemGate
+- tests/score-clarify-default.test.cjs:59-129 helpers makeStubs (executable /bin/sh stubs, STUB_LOG append first, version/auth/health/choice behaviors, `{ dir, log }`), runWithStubs, withoutLines
+- tests/score-clarify-default.test.cjs:380-457 tests 16-19: --deem without --out exits 2 with empty stdout; stub/unreachable deem skip leaves rest byte-identical; jev no-credential identity + one skip line; jev off PATH and wrong version each skip
+
+CHECKS:
+- `node --check .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` -> no output (exit 0)
+- `node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` -> no output (exit 0)
+- `grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` -> 19 (exit 0)
+- `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` (extra self-verification) -> `pass 19 / fail 0` (exit 0)
+
+BLOCKED REASON: none

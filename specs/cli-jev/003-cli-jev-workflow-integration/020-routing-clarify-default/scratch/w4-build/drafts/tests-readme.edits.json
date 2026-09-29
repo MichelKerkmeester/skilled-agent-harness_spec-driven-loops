@@ -1,0 +1,6 @@
+[
+ [
+  "| `root-router-contract.test.cjs` | Tests the two-state root ROUTER.md contract and its stable negative codes. |\n",
+  "| `root-router-contract.test.cjs` | Tests the two-state root ROUTER.md contract and its stable negative codes. |\n| `score-clarify-default.test.cjs` | Tests the clarify census, the transcript count, the label gate, the keep rule and both backend gates on stub binaries. |\n"
+ ]
+]

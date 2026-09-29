@@ -1,0 +1,1 @@
+[sk-doc] skill-derived regenerator + freshness gate coverage passed

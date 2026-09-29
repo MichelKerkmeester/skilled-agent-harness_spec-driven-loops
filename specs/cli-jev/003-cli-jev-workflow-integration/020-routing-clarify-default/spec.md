@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 20: routing-clarify-default"
-description: "Test research R12 offline: whether a Jev or Deem choice picks the right default among a compiled hub router's clarify alternatives more often than the first alternative the router lists. R12 waited on gold, since the canary fixtures hold 3 clarify rows and none names a right answer. A zero-call census counts clarify outcomes over committed prompts and writes unlabeled rows, and the phase stops at a 30-row label gate. Planned, released 2026-09-29."
+description: "Test research R12 offline: whether a Jev or Deem choice picks the right default among a compiled hub router's clarify alternatives more often than the first alternative the router lists. R12 waited on gold, since the canary fixtures hold 3 clarify rows and none names a right answer. A zero-call census counts clarify outcomes over committed prompts and writes unlabeled rows, and the phase stops at a 30-row label gate. Built and closed at that label gate on 2026-09-29, commit 65c71719ac."
 trigger_phrases:
   - "routing clarify default"
   - "clarify suggested default"
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -71,7 +71,7 @@ When a compiled hub router finds near-tied modes it answers `clarify` with a sho
 
 R12 would suggest one alternative as the default. The research parked it as later for one reason: no gold. Recounted on 2026-09-29, the seven hubs' canary fixtures hold 86 cases with 3 `clarify` and 11 `defer` expectations, and all 3 clarify rows carry `expectedIntents` of `defer` or `unknown`, never a right alternative. No record says how often clarify happens in real use (research question 10): the front door prints one JSON line and persists nothing (`.skilled/bin/compiled-route.cjs:25-51`). A served default also has no seam today, because `compiledRoute` returns only action, selection kind, targets and identity and drops the alternatives (`014-runtime-engine/lib/compiled-route.cjs:96-108`).
 
-Two committed sources can supply gold with no labeling: hub playbook scenarios carry an `expected_workflow_mode`, 82 files across the seven hubs with 9 of them `UNKNOWN` or null (counted 2026-09-29), and a clarify whose alternatives include that mode has a right answer. How many such rows exist is UNKNOWN until the census runs.
+Two committed sources can supply gold with no labeling: hub playbook scenarios carry an `expected_workflow_mode`, 83 files across the seven hubs with 9 of them `UNKNOWN` or null (recounted at the build, 2026-09-29, which found 83 where this spec first counted 82), and a clarify whose alternatives include that mode has a right answer. The census found 2 mode-alternative rows over 359 committed prompts and none with gold (`gold_in_alternatives=0`), so the 30-row gate cannot be reached from committed prompts alone.
 
 ### Purpose
 
