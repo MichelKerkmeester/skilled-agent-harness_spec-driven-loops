@@ -42,8 +42,8 @@ Each skill name links to its own README. One-line descriptions reflect current b
 
 | Skill | What it does |
 |---|---|
+| [`cli-classifier`](cli-classifier/README.md) | Parent hub for typed judgments from classifier models: routes by `workflowMode` to two `packetKind: "transport"` modes, `cli-jev` (over the `cli-usage` packet, bridging the Jev CLI and MCP surface) and `cli-deem` (the local Deem server), each returning one typed value and never mutating the workspace |
 | [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch, holding no per-mode logic: routes by `workflowMode` to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes` |
-| [`cli-jev`](cli-jev/README.md) | Parent hub for Jev typed judgments: routes by `workflowMode` to its one `packetKind: "transport"` mode, `cli-usage`, which bridges the Jev CLI and MCP surface, returns one typed value and never mutates the workspace |
 | [`cli-orca`](cli-orca/README.md) | Standalone class-S skill for Orca CLI work: managed worktrees, terminals, the embedded browser, automations, artifacts, handoffs and skill sharing, plus one authored reference and one verbatim snapshot for each of the eight official Orca skills |
 
 ### mcp-*: External Tool Surfaces

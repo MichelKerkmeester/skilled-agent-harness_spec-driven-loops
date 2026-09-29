@@ -1,5 +1,5 @@
 {
-  "count": 1057,
+  "count": 1100,
   "mode": "readme",
   "results": [
     {
@@ -241,6 +241,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/bin/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/changelog/skilled/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -641,6 +651,86 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/.state/spec-gate/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/cli-deem/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/cli-usage/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/cli-usage/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/cli-usage/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/shared/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4035,87 +4125,6 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-jev/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-jev/benchmark/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-jev/cli-usage/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-jev/cli-usage/benchmark/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-jev/cli-usage/benchmark/reports/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-jev/shared/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-orca/README.md",
@@ -6077,6 +6086,43 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal--review-remediation/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/benchmark/reports/2026-09-26--manual-testing-playbook--create-goal/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -6690,6 +6736,36 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-doc/sk-create-frontmatter/references/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/sk-create-goal/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "unknown",
+      "file": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -9578,6 +9654,33 @@
     },
     {
       "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
@@ -10702,6 +10805,502 @@
       ],
       "document_type": "readme",
       "file": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/logs/13.pre/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/logs/14.pre/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/rust/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/serve/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-cli-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-cli-main/plugin/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-cli-main/plugin/hooks/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-review-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/pi-jev-context-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/coverage-model-v1/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/evidence-v3/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/frontend-v2/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/probe-v2/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/rust-compiler-companion-v1/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/rust-coverage-v1/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/rust-probe-transport-v1/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/rust-probe-transport-v3/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/v1/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/examples/checkout-verification/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/examples/checkout-verification/agent-run/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/examples/checkout-verification/recorded/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/examples/react-verification/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/plugins/supercov/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/spikes/python-monitoring/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/spikes/query-index/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/spikes/rustc-backend/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -12080,6 +12679,47 @@
       ],
       "document_type": "readme",
       "file": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/README.md",
+      "return_code": 1,
+      "total_issues": 1,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Remove the Table of Contents and use numbered H2 sections for navigation.",
+          "message": "This document type must not contain a Table of Contents.",
+          "rule_id": "general_no_toc",
+          "severity": "blocking",
+          "type": "general_no_toc"
+        },
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/README.md",
+      "return_code": 1,
+      "total_issues": 2,
+      "valid": false,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [
+        {
+          "fix_hint": "Add section with name containing \"overview\"",
+          "message": "Missing required section: overview",
+          "severity": "blocking",
+          "type": "missing_required_section"
+        }
+      ],
+      "document_type": "readme",
+      "file": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/docs/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,

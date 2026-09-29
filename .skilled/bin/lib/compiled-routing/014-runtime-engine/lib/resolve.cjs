@@ -27,9 +27,10 @@ const FLAG = 'SPECKIT_COMPILED_ROUTING';
 const DEBUG_FLAG = 'SPECKIT_COMPILED_ROUTING_DEBUG';
 
 // Per-hub default-on cohort. The five hubs cut over together were verified
-// compiled-serving by the legacy-parity harness before it was retired; cli-jev
-// joined at its own first activation, admitted on its own canary corpus and a
-// fresh manifest. sk-design joins the same way, on this rollout's admission.
+// compiled-serving by the legacy-parity harness before it was retired;
+// cli-classifier joined at its own first activation, admitted on its own canary
+// corpus and a fresh manifest, when it absorbed the Jev transport as a mode.
+// sk-design joins the same way, on this rollout's admission.
 // An unset flag resolves to compiled for every hub listed here;
 // SPECKIT_COMPILED_ROUTING=0 remains the explicit fleet-wide kill-switch back
 // to legacy.
@@ -38,7 +39,7 @@ const DEFAULT_ON_HUBS = new Set([
   'system-deep-loop',
   'mcp-tooling',
   'cli-external-orchestration',
-  'cli-jev',
+  'cli-classifier',
   'sk-doc',
   'sk-design',
 ]);

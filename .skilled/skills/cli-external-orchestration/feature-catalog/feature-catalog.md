@@ -36,7 +36,7 @@ Use this catalog as the current-state inventory for the `cli-external-orchestrat
 
 #### Current Reality
 
-The seven workflow packets are `packetKind: "workflow"`; each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to a hub of its own at [`../../cli-jev/SKILL.md`](../../cli-jev/SKILL.md) as the `cli-usage` mode, and the `transport-axis` extension went with it, so this registry declares no extension at all. `cli-hermes` carries its own catalog package at [`../cli-hermes/feature-catalog/feature-catalog.md`](../cli-hermes/feature-catalog/feature-catalog.md). The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
+The seven workflow packets are `packetKind: "workflow"`; each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-usage` packet, and the `transport-axis` extension went with it, so this registry declares no extension at all. `cli-hermes` carries its own catalog package at [`../cli-hermes/feature-catalog/feature-catalog.md`](../cli-hermes/feature-catalog/feature-catalog.md). The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
 
 #### Source Files
 

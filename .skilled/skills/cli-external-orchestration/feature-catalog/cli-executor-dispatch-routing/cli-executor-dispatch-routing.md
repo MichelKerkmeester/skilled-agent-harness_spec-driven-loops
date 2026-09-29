@@ -17,7 +17,7 @@ version: 1.6.0.0
 
 `cli-external-orchestration` is registry-driven: `mode-registry.json` lists all seven modes in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.
 
-The seven executor packets — `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` — are `packetKind: "workflow"`; each independently classifies dispatch intent, chooses or confirms a provider, and conducts the dispatched session. The transport this hub used to declare, `cli-jev`, now lives in its own hub (`.skilled/skills/cli-jev/`) as the `cli-usage` mode: it returns one typed judgment from a state and runs nothing, and the hub that carries it is the one whose `transport-axis` extension names it.
+The seven executor packets — `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` — are `packetKind: "workflow"`; each independently classifies dispatch intent, chooses or confirms a provider, and conducts the dispatched session. The transport this hub used to declare, `cli-jev`, now lives in the `cli-classifier` hub (`.skilled/skills/cli-classifier/`) as mode `cli-jev` over the `cli-usage` packet: it returns one typed judgment from a state and runs nothing, and that hub's `transport-axis` extension names it.
 
 ---
 
@@ -44,7 +44,7 @@ The router resolves to `single` (one dominant executor signal routes to one mode
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/cli-external-orchestration/SKILL.md` | Shared | States the two-axis model, routing rule, and outcome set. |
-| `.skilled/skills/cli-external-orchestration/mode-registry.json` | Shared | Declarative registry for the seven executor packets. The `transport-axis` extension left with the mode it named, so this registry declares no extension and the `cli-jev` hub declares the axis. |
+| `.skilled/skills/cli-external-orchestration/mode-registry.json` | Shared | Declarative registry for the seven executor packets. The `transport-axis` extension left with the mode it named, so this registry declares no extension and the `cli-classifier` hub declares the axis. |
 | `.skilled/skills/cli-external-orchestration/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
 
 ### Validation And Tests

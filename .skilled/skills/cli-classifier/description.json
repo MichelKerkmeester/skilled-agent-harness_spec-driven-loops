@@ -1,11 +1,19 @@
 {
   "name": "cli-classifier",
-  "description": "cli-classifier is the single public skill identity for classifier models served on this machine. It routes a request to its cli-deem transport through mode-registry.json and hub-router.json and holds no packet-local logic. The advisor sees one hub. The transport asks the local Deem server for one typed value and never mutates this workspace.",
-  "version": "1.0.0.0",
+  "description": "cli-classifier is the single public skill identity for classifier models that return typed judgments. It routes a request to its cli-jev transport (hosted Jev, over the cli-usage packet) or its cli-deem transport (the local Deem server) through mode-registry.json and hub-router.json and holds no packet-local logic. The advisor sees one hub. A transport asks its backend for one typed value and never mutates this workspace.",
+  "version": "1.1.0.0",
   "importance_tier": "high",
   "keywords": [
     "cli-classifier",
+    "cli-jev",
+    "cli-usage",
     "cli-deem",
+    "jev",
+    "typed judgment",
+    "jev-mcp",
+    "jev noul",
+    "jev choice",
+    "jev score",
     "deem",
     "local classifier",
     "local deem",
@@ -16,6 +24,10 @@
     "deem health check"
   ],
   "trigger_examples": [
+    "use jev choice to pick a queue",
+    "ask jev for a probability that this plan ships on time",
+    "score these three levels with jev",
+    "run a batch of typed questions through jev",
     "ask deem whether this incident is urgent",
     "have the local deem model pick an owner for this ticket",
     "rate this incident's severity with deem",
@@ -23,5 +35,5 @@
     "is the local deem server healthy",
     "what does the cli-classifier hub do"
   ],
-  "lastUpdated": "2026-09-28T12:00:00Z"
+  "lastUpdated": "2026-09-29T09:00:00Z"
 }

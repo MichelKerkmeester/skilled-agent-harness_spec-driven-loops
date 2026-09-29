@@ -5,9 +5,11 @@ trigger_phrases:
   - "cli-classifier root router"
   - "classifier routing control"
   - "deem routing control"
+  - "jev routing control"
+  - "typed judgment routing"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 router_state: stage1-only
 skill_pointer: SKILL.md
 ---
@@ -16,13 +18,13 @@ skill_pointer: SKILL.md
 
 This is the cli-classifier hub's second-layer control document, first-class at the hub root as `ROUTER.md`. `hub-router.json` selects the workflow mode. This document would map a request's intent to the exact packet-local leaf resources that mode loads.
 
-The hub ships `router_state: stage1-only`. It owns no second stage yet, so all four machine collections stay empty and routing delegates to `hub-router.json` plus `mode-registry.json`. Promote to `active` only when the maps carry concrete, resolvable leaf paths, never placeholder intents. Every `RESOURCE_MAP` path would be packet-qualified (`cli-deem/references/...`) and would convert to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+The hub ships `router_state: stage1-only`. It owns no second stage yet, so all four machine collections stay empty and routing delegates to `hub-router.json` plus `mode-registry.json`. Promote to `active` only when the maps carry concrete, resolvable leaf paths, never placeholder intents. Every `RESOURCE_MAP` path would be packet-qualified (`cli-usage/references/...` or `cli-deem/references/...`) and would convert to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
 ---
 
 ## 1. OVERVIEW
 
-`SKILL.md` picks the mode. This document, once promoted, would pick what that mode loads. Until then a cli-classifier request loads the transport packet's own `SKILL.md` through `hub-router.json`. The transport's references are navigation, not stage-two selections.
+`SKILL.md` picks the mode. This document, once promoted, would pick what that mode loads. Until then a cli-classifier request loads the selected transport packet's own `SKILL.md` through `hub-router.json`. A transport's references are navigation, not stage-two selections.
 
 An intent that matches nothing is a gap to report, not a reason to load everything.
 
@@ -30,9 +32,9 @@ An intent that matches nothing is a gap to report, not a reason to load everythi
 
 ## 2. INTENT MODEL
 
-The one registered mode is `cli-deem`, a `packetKind: "transport"` client for the locally served Deem model. A Deem judgment request resolves to it. A request that needs work done resolves to a workflow mode in whatever hub owns that work, with the transport attached as the judgment source.
+Two modes are registered, both `packetKind: "transport"`. Mode `cli-jev` runs over the packet folder `cli-usage`, a bridge to the `jev` CLI and MCP surface for hosted Jev judgments. Mode `cli-deem` is a client for the locally served Deem model. A judgment request resolves to the transport whose backend it names. A request that needs work done resolves to a workflow mode in whatever hub owns that work, with the transport attached as the judgment source.
 
-One dominant judgment intent routes to the transport. Two near-tied intents (within the router's ambiguity delta) defer rather than guess a value.
+One dominant judgment intent routes to its transport. A request that names both backends by their aliases routes to both in tie-break order, `cli-jev` first. Two near-tied intents (within the router's ambiguity delta) defer rather than guess a value.
 
 ---
 
