@@ -1,0 +1,14 @@
+.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
+.skilled/skills/cli-classifier/SKILL.md
+.skilled/skills/cli-classifier/README.md
+.skilled/skills/cli-classifier/ROUTER.md
+.skilled/skills/cli-classifier/description.json
+.skilled/skills/cli-classifier/hub-router.json
+.skilled/skills/cli-classifier/mode-registry.json
+.skilled/skills/cli-classifier/benchmark/README.md
+.skilled/skills/cli-classifier/changelog/v1.2.0.0.md
+.skilled/skills/cli-classifier/feature-catalog/feature-catalog.md
+.skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md
+.skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md

@@ -1,0 +1,26 @@
+Test run: `node --test …/tests/score-injection-screen.test.mjs` → 40 pass, 0 fail, exit 0. Key grep (`API_KEY|TYPESAFE|Bearer|Authorization`) on the scorer: no match.
+
+**Findings**
+
+- P2 score-injection-screen.mjs:47 - `MAX_ROWS_PER_SOURCE = 30` where REQ-004's acceptance says "no more than 20 from one source group (proposed)", and no deviation is recorded in build-evidence - on the real corpus (in-band: supercov 837, jev-cli 139, claude-jev 28, pi-jev-context 8, jev-review 5, social 5) a 20 cap yields at most 78 picks and `--draw` throws `draw needs 90 sections`; 30 is the workable value, but the spec, the frozen draw rule and tests:321 (`count <= 30`) now disagree silently.
+- P2 tests/score-injection-screen.test.mjs:304 - the keep-rule line is never pinned: `assert.equal(rules[4], S.KEEP_RULE_LINE)` compares the module's constant to itself - set `KEEP_RULE_LINE` to any wrong string and all 40 tests still pass.
+- P2 tests/score-injection-screen.test.mjs - `spawnCall`'s timeout branch is never exercised - a stub that sleeps past `timeoutMs` would run `settle(null, true)`, leaving REQ-012's `unmeasured_timeout` status untested.
+
+**Requirements**
+
+- REQ-001 met - no spawn outside the two arms; test 428 asserts empty stub logs, empty out dir, clean porcelain.
+- REQ-002 met - both censuses print counts plus HEAD commit, no section/URL/query (lines 217-221, 379-409).
+- REQ-003 met - only `ls-files` paths opened; notes file excluded, `.env*` refused and never read (walkCorpus 254-267).
+- REQ-004 met - draw schema, seeded insert lines, refusal on labeled file, `stop: fewer than 90 labeled rows` before any arm; per-source cap is the P2 above.
+- REQ-005 met - both comparators over identical scored rows, tie falls to flag-nothing, both accuracies and `instructs` share printed (646-681).
+- REQ-006 met - five checks in fixed order (758-766), rule lines before any call; sign test hand-checked: signTestP(5,0)=C(5,5)/2^5=1/32=0.03125 (matches tests:468), (4,0)=1/16 fails the exact `20*num < 2^n` test.
+- REQ-007 met - dormant behind `--deem` plus `health` in 2000 ms; named skip lines, no key, no server start (991-1067).
+- REQ-008 met - identity line, PATH check, exact `jev 0.6.2`, `auth status`, same `--provider P` on auth test and every judgment (1229-1261, 1369).
+- REQ-009 met - key grep empty; request is `-q` instruction plus one section on stdin only.
+- REQ-010 met - writes only under `--out`; porcelain asserted unchanged (tests:443).
+- REQ-011 met - call shape and SHA-256 printed, missing answer `unmeasured` never 0, thresholds reported only, Brier printed, 3 Jev reruns / 1 Deem call.
+- REQ-012 met - cost lines first, calls.jsonl fields, 017's exit table incl. key rejected / backend refused / pair changed / server gone / interrupted, `partial rows`, `--out` enforced before any call.
+- REQ-013 met - pair, version, provider, model per column; `requalify:` printed before the verdict (1195-1204, 1428-1434).
+- REQ-014 met on tests (40 cases incl. every named case, exit 0) - doc half not checked: skill docs are outside the two files in scope.
+
+VERDICT: PASS

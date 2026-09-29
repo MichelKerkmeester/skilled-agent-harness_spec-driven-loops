@@ -1,0 +1,1 @@
+executor=devin model=deepseek-v4-1-flash-max brief=specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/02-fetch-census.md exit=0 seconds=212

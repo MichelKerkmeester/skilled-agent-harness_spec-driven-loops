@@ -1,0 +1,8 @@
+TASK: bump the hub SKILL.md version to match its newest changelog entry. One literal edit in 1 file.
+FILE (edit): `.skilled/skills/cli-classifier/SKILL.md`. Read it first.
+EDIT: line 5, replace `version: 1.1.0.0` with `version: 1.2.0.0`. Change nothing else.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/SKILL.md
+  node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier
+  git diff --stat -- .skilled/skills/cli-classifier/SKILL.md
+Accept when: 1 file changed and nothing else; the validator exits 0; the check prints `OK: parent-skill-check`; the diff of SKILL.md holds this one version line plus the lines earlier briefs added.

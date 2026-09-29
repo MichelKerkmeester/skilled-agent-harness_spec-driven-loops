@@ -1,0 +1,46 @@
+
+
+
+
+
+
+Now reading S and T in full.
+
+
+
+
+
+
+
+Now let me check the sk-code skill routing as the persona requires, and the tail of T for exact end-of-file state.
+
+Now I'll make the S edit. Inserting the section 8 block between the section 8 and section 9 dividers.
+
+S edit applied cleanly. Now appending the five tests to T.
+
+Both edits are in. Now running the brief's verification checks plus a read-only diff stat for the handback.
+
+The diff stat came back empty — let me check whether these files are tracked in this worktree.
+
+Files are untracked (new, created by earlier workers) — that's why the diff stat was empty. Let me confirm the line counts of the two edited files for the handback deltas.
+
+Verification is green. Let me quickly check for a repo-level rules file (Gate 5 compliance) before finalizing.
+
+
+
+A repo rules file exists and routes writes and close-outs to rule files. Loading the ones whose triggers fired (code/test addition, reporting results, turn handoff).
+
+Rules loaded and reviewed — the additions were fully mandated by the frozen design, nothing speculative was introduced. Strengthening the syntax-check receipts with affirmative markers, per the evidence rule.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+136/-0)
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+40/-0)
+EDITS: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:701 added the fixed comment line under the section 8 divider
+EDITS: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:703-737 copied exported signTestP and nearestRank verbatim from N, JSDoc included
+EDITS: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:739-835 added formatP, decideVerdict, verdictText and summarizeColumn with JSDoc per R section 8 (nothing else in S touched)
+EDITS: .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs:452-490 appended the five tests (keep, kill precision, stop coverage with 2 unmeasured, stop margin, jev flips vs deem)
+CHECKS: node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> "syntax ok: score-injection-screen.mjs" (exit 0)
+CHECKS: node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> "syntax ok: score-injection-screen.test.mjs" (exit 0)
+CHECKS: grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 26 (expected 26; counted with the repo grep tool) (exit 0)
+CHECKS: node --test (not run; out of the brief's listed checks, orchestrator runs the suite) -> n/a
+BLOCKED REASON: none

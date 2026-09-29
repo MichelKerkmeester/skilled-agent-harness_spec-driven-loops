@@ -1,0 +1,12 @@
+Both checks passed. F created byte-identical to C; validator exits 0.
+
+CHECKS output:
+- `cmp .../feature-catalog-leaf.md .../injection-screen-measurement.md && echo same` -> `same` (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md --type feature_catalog` -> last two lines: `Document type: feature_catalog` / `Total issues: 0` (exit 0)
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md (+1 file created, -0)
+EDITS: .skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md:1 byte-identical cp of C (no reflow, no edits)
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/content/feature-catalog-leaf.md .skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md && echo same -> same (exit 0) | python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md --type feature_catalog -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none

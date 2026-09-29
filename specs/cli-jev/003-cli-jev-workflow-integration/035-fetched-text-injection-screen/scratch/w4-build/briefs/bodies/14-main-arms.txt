@@ -1,0 +1,39 @@
+TASK: add buildReport to S (R section 12), wire both arms into main (R section 13 steps 5 to 7), and add four tests to T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/ref/design.md (read only).
+S and T exist; read both first. Read R sections 10, 11, 12 and 13 only.
+
+STEP 1. In S section 12 (REPORT), under its divider, add exported buildReport with JSDoc exactly per R section 12
+(instructionSha256 is sha256(INSTRUCTION), lexicalSha256 is sha256(LEXICAL_PATTERNS.join('\n'))).
+STEP 2. In S main, replace the final `return 0` with steps 5, 6 and 7 of R section 13 exactly, Jev first, then Deem, then
+`return 0`. Change nothing else in S.
+STEP 3. Append four tests to the end of T. Shared setup where named: root = makeRepo(corpusFiles()); bin = makeStubs();
+none = tempDir('none'); noLabels = ['--labels', path.join(none, 'labels.jsonl'), '--planted', path.join(none, 'planted.jsonl')];
+base = await runMain(noLabels, { root, bin }); outDir = path.join(tempDir('out'), 'run').
+ a. '--deem with a stub backend adds one skip line and writes nothing':
+    r = await runMain(['--deem', '--out', outDir, ...noLabels], { root, bin, env: { STUB_DEEM_BACKEND: 'stub' } });
+    assert.equal(r.code, 0); assert.deepEqual(r.lines, [...base.lines, 'deem arm skipped: stub backend']);
+    assert.equal(fs.existsSync(outDir), false);
+ b. '--jev with no credential adds the identity line and one skip line':
+    r = await runMain(['--jev', '--out', outDir, ...noLabels], { root, bin, env: { STUB_AUTH_STATUS_EXIT: '3' } });
+    assert.equal(r.code, 0); assert.deepEqual(r.lines, [...base.lines, `jev: path=${path.join(bin, 'jev')} provider=official`,
+      'jev arm skipped: no credential']); assert.equal(fs.existsSync(outDir), false);
+ c. 'a passing gate before the labels exist calls no model':
+    r = await runMain(['--deem', '--out', outDir, ...noLabels], { root, bin });
+    assert.deepEqual(r.lines.slice(-2), ['deem: health backend=torch model=deem-0.8-v1 model_commit=aaa source_commit=bbb',
+      'deem arm skipped: fewer than 90 labeled rows']); assert.deepEqual(stubLog(bin, 'cli-deem'), [['health']]);
+    assert.equal(fs.existsSync(outDir), false);
+ d. 'both switches on the labeled fixture print a verdict per backend, jev first, and record every call':
+    root = makeRepo(corpusFiles()); bin = makeStubs(); f = await labeledFixture(root); outDir = path.join(tempDir('out'), 'run');
+    r = await runMain(['--deem', '--jev', '--out', outDir, '--labels', f.labels, '--planted', f.planted], { root, bin });
+    assert.equal(r.code, 0); verdicts = r.lines.filter((l) => l.startsWith('verdict '));
+    assert.equal(verdicts.length, 2); assert.match(verdicts[0], /^verdict jev: keep /); assert.match(verdicts[1], /^verdict deem: keep /);
+    report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
+    assert.equal(report.columns.jev.verdict, 'keep'); assert.equal(report.columns.deem.modelCommit, 'aaa'); assert.equal(report.K, 90);
+    calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
+    assert.equal(calls.length, 361); assert.ok(calls.every((c) => typeof c.wallMs === 'number' && 'exitCode' in c));
+
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
+  grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs   (expect 40)
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; T holds 40 tests.

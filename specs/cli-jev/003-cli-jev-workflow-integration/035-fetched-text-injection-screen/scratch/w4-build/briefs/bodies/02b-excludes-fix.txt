@@ -1,0 +1,19 @@
+TASK: make T's fixture repositories ignore the caller's global git excludes file, which hides fixture paths under specs/.
+T = .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs. Read T first.
+Cause, confirmed by the orchestrator: this machine's global excludes file ignores `/specs`, so `git add -A` in a fixture
+repository skips every `specs/...` file and the first fetch-census test sees 0 state files.
+
+STEP 1. T:47 currently reads exactly:
+    '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null',
+Replace that one line with exactly these two lines:
+    '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null',
+    '-c', 'core.excludesFile=/dev/null', '-c', 'core.attributesFile=/dev/null',
+Then, directly above the line in makeRepo that reads `  const gitArgs = [`, add this one comment line with the same
+indentation as that line:
+  // The caller's global excludes and attributes files must not hide or rewrite fixture files.
+Change nothing else in T. Edit no other file.
+
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
+  grep -c "core.excludesFile=/dev/null" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs   (expect 1)
+Accept when: 1 file changed (T) with 2 lines added and none removed beyond the one replaced line; node --check exits 0; the grep prints 1.

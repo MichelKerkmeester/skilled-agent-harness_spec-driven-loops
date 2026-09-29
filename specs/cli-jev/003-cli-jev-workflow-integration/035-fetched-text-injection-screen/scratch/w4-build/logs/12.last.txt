@@ -1,0 +1,20 @@
+I'll start by reading the required files: S and T in full, R sections 2 and 11, and N's `jevGate`.Now let me read the rest of both files, plus R sections 2 and 11, and N's `jevGate`.Continuing with the rest of S, then R and N.Now let me find the relevant sections in R and N.Let me confirm the exact end of `jevGate` in N.I have everything I need from R and N. Before the first write, let me check Gate 5 (REPO RULES.md) and the sk-code route the persona names, plus confirm S has no existing `jevGate`.Gate 5 fires — REPO RULES.md exists. Let me read it and run the sk-code compiled router per the hub contract.The compiled router deferred. Let me retry with an explicit mode hint, and load the REPO RULES files the trigger table fires for my action (adding a function + tests, reporting results).Router resolved: `sk-code-quality`. Loading its packet, the repo AGENTS.md, and the evidence rule that fires at close-out.Let me finish AGENTS.md, run the Gate 1 lookup, and confirm the comment-hygiene script the sk-code-quality route requires.Gate 1 confirms the pre-resolved packet. Now let me measure the exact divider line in S so my edit matches byte-for-byte.Everything is in place. Now I'll make the S edit — inserting the comment line and `jevGate` verbatim from N into section 11.S edit applied. Now the T edit — appending the two tests at the end.Both edits are in. Now running the brief's verification checks plus a byte-for-byte verbatim comparison against N.All primary checks pass. Now the scoped diff evidence and the comment-hygiene gate from the resolved sk-code route.The hygiene script is a polyglot — it must be invoked directly, not via `bash` (my mistake). Retrying directly, plus line counts and the scoped directory status.All checks are green. Before the close-out handback, let me load the rule files whose triggers fire on reporting a result and ending a turn.SKILL ROUTING: sk-code → sk-code-quality (compiled router: route, single target)
+ARTIFACT: sk-code → sk-code-quality (comment-hygiene gate run on both files; clean)
+REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication-handoff.md
+
+Both edits are on disk; both files are new/untracked in this worktree, so nothing is committed — that stays with the orchestrator, along with the test-suite run and spec validation. Observed: `node --check` exit 0 on both files, the inserted `jevGate`+JSDoc is byte-identical to N (compared from disk), the test file holds 34 `test('` declarations, and the comment-hygiene checker passes both files. Inferred (not run here, per brief): the two new tests' runtime pass — stub behavior was traced against the `JEV_STUB` source but the suite is the orchestrator's to run. Nothing else was written by me; no temp files created.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+49/-0)
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+21/-0)
+EDITS: S:1215-1262 added the section-11 comment line and jevGate copied verbatim from N (JSDoc included)
+EDITS: T:597-617 appended the two jev gate tests (pass with credential; skip on auth exit 3 and on version mismatch)
+CHECKS: node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> no output, syntax OK (exit 0)
+CHECKS: node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no output, syntax OK (exit 0)
+CHECKS: grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 34 (count via search tool; shell grep not invoked per tool policy)
+CHECKS: S[1217-1262] vs N[1465-1510] byte compare -> verbatim jevGate+JSDoc match: true
+CHECKS: check-comment-hygiene.sh <S> and <T> -> no violations (exit 0)
+CHECKS: wc -l S,T -> 1394, 617 (was 1345, 596); git status scoped to both -> untracked, uncommitted
+BLOCKED REASON: none
+```

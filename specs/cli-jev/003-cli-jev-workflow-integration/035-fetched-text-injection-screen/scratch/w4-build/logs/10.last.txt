@@ -1,0 +1,35 @@
+I'll start by reading the brief's reference documents and the target files.Now let me read the rest of S, the test file T, and N's specific functions.Let me read the rest of T and the specific functions in N.Now let me read `readStoredReport` in N (line 1769).I have everything I need. Now I'll make the S edit — inserting the four call helpers under the CALLS divider and the three deem functions under the DEEM ARM divider, copied verbatim from N.I have all the source material. Let me check for name collisions in S and confirm the current test count.
+
+No collisions, 26 tests currently (28 expected after). Now the S edit with the full content:
+
+The S edit landed. Let me verify the tail of the inserted region and then make the T edits.
+
+S looks correct. Now the two T edits — the `stubEnv` helper after `stubLog`, and the two tests appended at the end:
+
+Both edits are in. Now running the four verification commands from the repo root:
+
+All four checks pass (the key grep's `0` with exit 1 is grep's no-match status, as expected). Let me verify the copies are truly verbatim against N and capture the change stats for the handback:
+
+Verbatim copies confirmed. The numstat was empty — let me check the git state of these two files (read-only) to get accurate change stats:
+
+Both files are untracked (new files on this work-in-progress branch), so git numstat has no baseline. Let me get exact line counts to compute the added-line figures for the handback:
+
+All acceptance checks pass and the copies are verified verbatim against N (all seven diffs empty). Both files were untracked, so no other file was touched by this work.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+225/-0)
+- .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+24/-0)
+EDITS:
+- score-injection-screen.mjs:841-963 added `which` (private), `spawnCall`, `createCallLog`, `readStoredReport`, copied verbatim from N with JSDoc, under the 9. CALLS divider
+- score-injection-screen.mjs:969-1068 added the gate comment line and `deemCommand`, `readDeemHealth`, `deemGate`, copied verbatim from N with JSDoc (using S's REPO_CLI_DEEM, DEEM_MODEL, HEALTH_TIMEOUT_MS), under the 10. DEEM ARM divider
+- tests/score-injection-screen.test.mjs:128-130 added the private `stubEnv(bin, extra = {})` helper after `stubLog`
+- tests/score-injection-screen.test.mjs:496-505 appended test 'deem gate passes a torch health and prints the commit pair'
+- tests/score-injection-screen.test.mjs:507-514 appended test 'deem gate skips a stub backend'
+CHECKS:
+- node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> no output (exit 0)
+- node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no output (exit 0)
+- grep -c "^test('" .../tests/score-injection-screen.test.mjs -> 28 (exit 0)
+- grep -cE 'API_KEY|TYPESAFE|Bearer|Authorization' .../score-injection-screen.mjs -> 0 (exit 1; grep prints 0 and exits 1 when no line matches, as expected)
+- diff of all seven copied blocks (which 1045-1068, spawnCall 1169-1225, createCallLog 1227-1250, readStoredReport 1762-1776, deemCommand 1070-1080, readDeemHealth 1082-1146, deemGate 1148-1167 in N) against S -> all empty, "ALL SEVEN VERBATIM" (exit 0)
+BLOCKED REASON: none

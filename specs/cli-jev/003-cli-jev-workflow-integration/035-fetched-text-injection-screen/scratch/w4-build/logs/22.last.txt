@@ -1,0 +1,12 @@
+All checks pass. `git diff --numstat` confirms my edit is `2  0` in F alone; the other dirty paths belong to concurrent workers and were not touched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/README.md (+2/-0)
+EDITS:
+- .skilled/skills/cli-classifier/README.md:74 (new row after old line 73) — inserted navigation row `| [benchmark/injection-screen/] ... |`
+- .skilled/skills/cli-classifier/README.md:85 (before old line 85) — inserted release row `| v1.2.0.0 | [changelog/v1.2.0.0.md] |`
+CHECKS:
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/README.md --type readme -> "✅ VALID: .skilled/skills/cli-classifier/README.md / Document type: readme / Total issues: 0" (exit 0)
+- grep -c "benchmark/injection-screen/\|changelog/v1.2.0.0.md" .skilled/skills/cli-classifier/README.md -> "2" (exit 0)
+BLOCKED REASON: none

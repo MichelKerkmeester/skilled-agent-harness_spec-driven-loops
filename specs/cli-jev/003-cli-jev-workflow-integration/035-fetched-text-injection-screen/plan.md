@@ -67,7 +67,7 @@ Single-file offline measurement script with exported pure functions for the test
 - **Corpus walker**: tracked `.md` under the parent's `context/`, the operator's notes file excluded, `.env` basenames refused, grouped by source.
 - **Section splitter**: ATX headings outside fenced code, sections of 5 to 60 lines.
 - **Lexical screen**: the four fixed patterns, printed with their SHA-256 before any label.
-- **Drawer**: `--draw --seed <n>` writes 60 natural and 30 planted rows, 20 per source group at most, with a seeded insert line per planted row.
+- **Drawer**: `--draw --seed <n>` writes 60 natural and 30 planted rows, 30 per source group at most (amended 2026-09-29 from 20, see `goal.md`'s log), with a seeded insert line per planted row.
 - **Baseline and label gate**: flag-nothing and the lexical screen, the stop line under 90 labels or a missing planted sentence, and the headroom lines.
 - **Deem arm**: the health gate, the payload notice, one `cli-deem noul` per row, exit handling and records with the commit pair.
 - **Jev arm**: the identity line, the three checks, one `jev auth test --provider P`, the payload notice, three `jev noul --provider P` calls per row with no cache, the 90 s cap, exit handling and records with version, provider and model.
@@ -102,7 +102,7 @@ Each step's observable check:
 
 1. **Baseline.** Run `node --test .skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` and record the counts with the exit code before any change. On 2026-09-29 it printed tests 34, pass 34 and fail 0 and exited 0 (this leaf).
 2. **Censuses.** Check: the default run prints the fetch census and the corpus census with 185 files grouped by source, sections in the band and lexical hits, with the HEAD commit, and the stub logs stay empty.
-3. **Draw.** Check: `--draw --seed 1` twice into two temp paths gives byte-identical files with 90 rows and no text field, no source group passes 20 rows, each planted row names an insert line inside its section, and a third `--draw` over a file with a label exits 2.
+3. **Draw.** Check: `--draw --seed 1` twice into two temp paths gives byte-identical files with 90 rows and no text field, no source group passes 30 rows (the amended cap, see `goal.md`'s log), each planted row names an insert line inside its section, and a third `--draw` over a file with a label exits 2.
 4. **Baseline and label gate.** Check: the default run on the drawn file prints `stop: fewer than 90 labeled rows`, and on a test file with 90 labels and 30 sentences prints both accuracies, the `instructs` share, `margin: 0.10`, the `keep rule:` line and a headroom line.
 5. **Model arms.** Add the Deem arm, then the Jev arm. Check: the test cases for both gates, both skips, both exit paths, the missing answer recorded `unmeasured` and one `--provider` per `jev` call pass.
 6. **Verdict.** Check: the test cases `keep`, `kill (precision)`, `stop (coverage)`, `stop (margin)` and `requalify` pass.

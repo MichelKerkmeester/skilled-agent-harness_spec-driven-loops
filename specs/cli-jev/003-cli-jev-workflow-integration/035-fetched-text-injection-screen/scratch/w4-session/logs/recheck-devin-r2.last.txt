@@ -1,0 +1,37 @@
+I'll run the three recheck steps. Starting with the sync check and locating the artifact files.
+
+Sync check passes. Now reading the Hermes copy's version/Offline Measurement section and running the scorer.
+
+Sync check passes and the scorer ran. Now let me examine the JSONL files and the spec documents.
+
+Now let me inspect the JSONL files structurally and locate the phase spec documents.
+
+The data has more structure than the brief's shorthand — let me cross-tab it precisely, and read the spec/goal requirements.
+
+The JSONL cross-tab matches REQ-004's structure. Now let me verify the canonical skill version, the draw-code cap semantics, and the section-length bounds in the drawn rows.
+
+The draw code confirms the cap semantics: seeded shuffle over in-band sections, at most `MAX_ROWS_PER_SOURCE` picks per source, 90 picks total, throw if under. Final per-row exactness checks and canonical-section confirmation:
+
+Read-only recheck complete. No files edited or created; no writing git commands run.
+
+**Finding 1: closed** — `sync-skills-hermes.cjs --check` exit 0, `PASS: 72 Hermes skill copies in sync`. `.hermes/skills/cli-classifier/SKILL.md:5` carries `version: 1.2.0.0`, matching the canonical `.skilled/skills/cli-classifier/SKILL.md:5`, and its `Offline Measurement` section (lines 123–125) is present and matches the canonical section (lines 118–120: zero-call default run, `--jev`/`--deem` behind their gates, no verdict wired).
+
+**Finding 2: closed** — the ruling holds on the numbers. In-band counts: supercov-main 837, jev-cli-main 139, claude-jev-main 28, pi-jev-context-main 8, social posts 5, jev-review-main 5, external websites 0. Cap 20: 20+20+20+8+5+5+0 = **78 rows max < 90**, so a cap of 20 cannot fill the 90-row budget (draw code throws `draw needs 90 sections, found N under the per-source cap`). Cap 30: 30+30+28+8+5+5+0 = **106 rows max ≥ 90**, so 30 fills it. The actual seed-20260929 draw obeys cap 30 exactly (max per source = 30; supercov-main 30 natural, jev-cli-main 30 combined). The recorded deviation stands; REQ-004 amendment at closure has its reason.
+
+**Finding 3: closed** — `labels.jsonl` 90 lines, `planted.jsonl` 30 lines. No text field: labels rows carry exactly REQ-004's 12 fields `{id, kind, source, doc, section_start, section_end, commit, section_sha12, planted_id, insert_line, label, labeler}` (0 non-canonical key sets), planted rows exactly `{id, sentence}`. Cross-tab: `natural|null|null = 60`, `planted|instructs|construction = 30` — every natural row `label: null`/`labeler: null`; every planted row labeled by construction, `planted_id` p01–p30 unique and matching `planted.jsonl`'s id set, `insert_line` non-null, sections disjoint from the natural rows (sha12 overlap 0), all sections 5–49 lines (within 5–60), single corpus commit `6aa7ca0980d0c385d925ec3b048fd2db87464807`. `planted.jsonl` all `sentence: null`. Against D4: the only `labeler` values present are `null` and `construction` — no model labels; the scorer reads both files and prints `stop: fewer than 90 labeled rows`, the label gate REQ-004 mandates until the operator labels.
+
+New P0/P1: none.
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck; no file edited, created or deleted)
+EDITS: none (read-only recheck)
+CHECKS: `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` -> `PASS: 72 Hermes skill copies in sync` (exit 0)
+CHECKS: `node .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` -> `corpus: total sections=1138 in_band=1022`, `labels: labeled=30 of 90 planted_sentences=0 of 30`, `stop: fewer than 90 labeled rows` (exit 0)
+CHECKS: `wc -l labels.jsonl planted.jsonl` -> `90 labels.jsonl, 30 planted.jsonl, 120 total` (exit 0)
+CHECKS: node cross-tab of kind/label/labeler and per-source counts -> `natural|null|null=60, planted|instructs|construction=30, max rows/source=30` (exit 0)
+CHECKS: node bounds/ids check -> `outside 5..60: 0, sha12 overlap=0, planted id-set equal: true, null insert_line=0` (exit 0)
+CHECKS: node per-row key exactness -> `non-canonical key sets: 0 of 90 and 0 of 30, distinct commit=6aa7ca0980d0c385d925ec3b048fd2db87464807` (exit 0)
+BLOCKED REASON: none

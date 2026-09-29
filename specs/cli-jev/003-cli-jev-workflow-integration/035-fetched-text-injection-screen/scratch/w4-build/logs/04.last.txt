@@ -1,0 +1,15 @@
+I have all three files read. Now I'll make the S edit (Step 1): add `buildCorpus`, `corpusCensusLines`, `ruleLines` after `lexicalHit` in section 5.S is edited. Now Step 2: add the two private helpers to T after `makeRepo`.Now Step 3: append the two tests at the end of T.Both files are edited. Now I'll run the three verification checks from the repo root, exactly as the brief lists them.All three checks pass. Let me confirm the diff is confined to the two named files and get the change counts.Files are untracked (created by earlier workers in this worktree), so git shows them as new. Let me confirm final line counts for the handback.All steps complete. Handback:
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+83/-0)
+- .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+48/-0)
+EDITS:
+- score-injection-screen.mjs:346 added exported buildCorpus, corpusCensusLines and ruleLines with JSDoc after lexicalHit; buildCorpus reads each document only through readAtCommit; nothing else changed
+- score-injection-screen.test.mjs:58 added private sectionDoc(title) and corpusFiles() helpers after makeRepo
+- score-injection-screen.test.mjs:159 appended the buildCorpus census test and the ruleLines test
+CHECKS:
+- node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> exit=0 (exit 0)
+- node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> exit=0 (exit 0)
+- grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 11 (exit 0)
+BLOCKED REASON: none

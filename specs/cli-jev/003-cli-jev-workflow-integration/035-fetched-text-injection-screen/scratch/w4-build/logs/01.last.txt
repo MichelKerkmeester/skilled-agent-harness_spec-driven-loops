@@ -1,0 +1,78 @@
+
+
+
+
+I have R's contract. Now let me check the target directory state, resolve the sk-code route, and read N for the file-style reference.
+
+The compiled route returned `defer` (no dominant mode) — per the hub that means a surface bundle; this is a Node ESM system script, so the OPENCODE surface packet applies. The target directory doesn't exist yet, so I'll create it. Let me also load repo rules and check for any existing reference of this file elsewhere in the packet.
+
+The repo rules router confirms the triggers that fire (add a file; report a result). The 017 scratch logs look like they hold a structurally similar prior scorer — worth one look to settle the comment placement ("above the keep-rule constants") before writing. Let me check.
+
+The scratch briefs folder holds `01-skeleton.md` — likely the full form of this dispatch. Let me read it before writing anything.
+
+The dispatched brief matches the file exactly. One ambiguity remains (comment placement in section 2) — the packet spec may pin it down. Let me check the packet's spec and the wave build plan.
+
+There's a `baseline/` folder in the wave directory — it may hold a reference form of the scorer. Let me check it and the build evidence.
+
+The baseline folder is gate captures only — no reference implementation. Let me search the wider tree for any reference form of this exact file before settling the last ambiguity.
+
+No reference implementation exists, so the design text governs. Before writing, let me load the routed JavaScript style evidence (the persona requires following the route) and check for any lint config.
+
+Style evidence loaded: divider width 67 confirmed, max line length 100 with long-string exception. Let me check how the sibling scorers format the long entry line and long constants before I write.
+
+
+
+Found sibling scorers with the same author conventions. Let me find the exact `const isEntry` form the design quotes.
+
+
+
+Let me check whether the repo's alignment verifier enforces line length — that decides the wrapping question.
+
+The design's constant block is a listing (it omits `export`/`const` keywords and annotates "(private)"), so I'll render idiomatic declarations, one per line, in the listed order, with the section-2 comment above the frozen call-shape/keep-rule block. Creating the directories and both files now.
+
+Now writing S.
+
+Now T.
+
+Both files are written. Now the verification pass — first the divider integrity and a re-read, then the brief's four checks.
+
+The divider counter reported 29 lines where I expect 28 — let me list them to find the extra.
+
+Line 18 is a closing divider in the header — N has one, but the design's header enumeration lists only three lines plus comments. Let me check the most recently built sibling scorer for the current convention.
+
+Let me check the most recent sibling build (packet 023, same wave process) for the header convention.
+
+
+
+Two wave-built sibling scorers (005, 002) both omit a closing divider, and the design's header enumeration lists exactly three lines plus comments. Removing the extra closing divider from S.
+
+Now the brief's verification commands, plus a divider recount and a scoped git status.
+
+All four brief checks pass. Let me re-read T in full to confirm its final content (S's edited region was already re-read in the edit result).
+
+Both files verified. Getting exact line counts for the handback.
+
+All checks pass from the final state. Handback:
+
+```
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+203/-0)
+.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+63/-0)
+EDITS:
+S:1-17 shebang, header comment (MODULE + R section 1 text), one closing divider removed after review so the header reads divider/MODULE/divider/comments
+S:19-21 section 1 divider; S:23-29 imports from node:child_process, node:crypto, node:fs, node:path, node:process, node:url, node:util only
+S:31-65 section 2 divider; all constants R section 2 lists (SCRIPT_DIR/LEXICAL_REGEXES/REPO_CLI_DEEM/GIT_ENV_REDIRECTORS private, rest exported), with the freeze comment at S:51 above the call-shape and keep-rule block
+S:67-149 section 3 exports with JSDoc: git (spawnSync, GIT_ENV_REDIRECTORS-stripped env, maxBuffer 268435456, throw on status/error), trackedFiles, headCommit, readAtCommit, sha256, sha12, compareCodeUnits
+S:151-189 dividers only for sections 4 FETCH CENSUS, 5 CORPUS, 6 DRAW, 7 LABEL GATE AND BASELINE, 8 VERDICT, 9 CALLS, 10 DEEM ARM, 11 JEV ARM, 12 REPORT
+S:191-203 section 13: placeholder export async function main(argv, deps = {}) returning 0, then the two entry lines (isEntry guard + process.exitCode = await main)
+T:1-63 header (MODULE: Injection Screen Measurement Tests + fixture comment), imports (assert, execFileSync, fs, os, path, test, fileURLToPath, * as S), CONTEXT constant, cleanEnv/tempDir/makeRepo helpers, one test 'trackedFiles lists committed paths and headCommit is a full hash'
+CHECKS:
+node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> no output (exit 0)
+node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no output (exit 0)
+node .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs; echo "exit=$?" -> no output, exit=0 (exit 0)
+grep -cE 'API_KEY|TYPESAFE|Bearer|Authorization' .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> 0 (grep exit 1, no matches; expected 0)
+node divider audit -> score-injection-screen.mjs dividers=28 bad=0; score-injection-screen.test.mjs dividers=2 bad=0 (exit 0)
+git status --porcelain -- .skilled/skills/cli-classifier/benchmark/injection-screen/ -> ?? .skilled/skills/cli-classifier/benchmark/injection-screen/ only (exit 0)
+BLOCKED REASON: none
+```

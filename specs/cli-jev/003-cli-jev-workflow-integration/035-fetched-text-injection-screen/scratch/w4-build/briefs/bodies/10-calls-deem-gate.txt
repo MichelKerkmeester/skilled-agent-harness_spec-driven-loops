@@ -1,0 +1,32 @@
+TASK: add the call helpers (R section 9) and the Deem gate (first bullet of R section 10) to S, a stubEnv helper to T, and two tests.
+R = specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/ref/design.md (read only).
+N = .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (read only, never edit). S and T exist; read both
+first. Read R sections 1, 2, 9 and 10 only. In N read only: `which` (line 1054), `deemCommand` (1076), `readDeemHealth` (1090),
+`deemGate` (1154), `spawnCall` (1190), `createCallLog` (1236) and `readStoredReport` (1769), each with the JSDoc above it.
+
+STEP 1. In S section 9 (CALLS), under its divider, copy verbatim from N, JSDoc included: which (keep it private), spawnCall,
+createCallLog, readStoredReport. In S section 10 (DEEM ARM), under its divider, add the comment line
+`// The gate reads the local model's health once, passes no key and starts no server, so a skipped arm writes no file.`,
+then copy verbatim from N, JSDoc included: deemCommand, readDeemHealth, deemGate. They must use S's own REPO_CLI_DEEM,
+DEEM_MODEL and HEALTH_TIMEOUT_MS constants, which already exist. Change nothing else in S.
+STEP 2. In T, after stubLog, add a private helper:
+ stubEnv(bin, extra = {}): ({ ...cleanEnv(), PATH: `${bin}${path.delimiter}${process.env.PATH}`, ...extra }).
+STEP 3. Append two tests to the end of T:
+ a. 'deem gate passes a torch health and prints the commit pair':
+    bin = makeStubs(); lines = [];
+    gate = S.deemGate({ out: (line) => lines.push(line), env: stubEnv(bin) });
+    assert.equal(gate.passed, true); assert.equal(gate.modelCommit, 'aaa'); assert.equal(gate.sourceCommit, 'bbb');
+    assert.deepEqual(lines, ['deem: health backend=torch model=deem-0.8-v1 model_commit=aaa source_commit=bbb']);
+    assert.deepEqual(stubLog(bin, 'cli-deem'), [['health']]);
+ b. 'deem gate skips a stub backend':
+    bin = makeStubs(); lines = [];
+    gate = S.deemGate({ out: (line) => lines.push(line), env: stubEnv(bin, { STUB_DEEM_BACKEND: 'stub' }) });
+    assert.equal(gate.passed, false); assert.equal(gate.reason, 'deem arm skipped: stub backend');
+    assert.deepEqual(lines, ['deem arm skipped: stub backend']);
+
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
+  grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs   (expect 28)
+  grep -cE 'API_KEY|TYPESAFE|Bearer|Authorization' .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs   (expect 0)
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; T holds 28 tests; the key grep prints 0.

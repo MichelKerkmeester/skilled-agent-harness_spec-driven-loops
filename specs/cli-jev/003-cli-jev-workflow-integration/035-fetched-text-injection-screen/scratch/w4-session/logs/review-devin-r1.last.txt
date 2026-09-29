@@ -1,0 +1,110 @@
+I'll start by reading the phase docs and parent goal, then the full file list, then the scorer and its tests. This is a read-only review, so I won't write anything.
+
+Now reading the phase's spec, goal, and build evidence.
+
+Reading the rest of spec.md and the build evidence.
+
+Now let me see the working tree state and the session file list, then read the scorer and tests.
+
+The session file list confirms 14 changed files — the scorer and test plus the 12 docs. I'll read the code as evidence for doc accuracy, then the docs.
+
+
+
+
+
+
+
+
+
+Now let me read the test file and check a few spec details.
+
+The per-source cap needs a precise check. Let me confirm the spec's exact number and finish the test file.
+
+Let me check the earlier session reviews for context on known findings.
+
+
+
+
+
+
+
+The prior review logs are empty — I'm producing the first report. Let me launch the test suite in the background and run the hub checks while it runs.
+
+The Hermes copy check fails for cli-classifier — the spec's Files to Change requires regenerating it. Let me confirm the drift and check whether a commit hook would handle it.
+
+
+
+
+
+
+
+All 40 tests pass. Now let me locate the doc validator and read the remaining docs in full.
+
+
+
+
+
+
+
+The new playbook scenario fails `--type playbook` validation. Let me compare with existing scenario files and the package validator.
+
+
+
+
+
+
+
+
+
+
+
+Let me check whether the build was meant to produce the drawn label files, and read the phase's tasks/summary.
+
+
+
+
+
+
+
+
+
+Let me check how the sibling label-gate phase (003) handled its drawn labels, to judge whether the missing draw here is a miss.
+
+
+
+Let me check whether the build session recorded a plan for the draw task (T015) before I finalize.
+
+Let me verify my review left the tree untouched, then finalize.
+
+## Findings
+
+P1 `.hermes/skills/cli-classifier/SKILL.md:5` (spec.md:120) - the generated copy was never regenerated: it still says `version: 1.1.0.0` and lacks the "Offline Measurement" section - `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` prints `DRIFT cli-classifier` and exits 1 (build baseline: `PASS: 72 ... in sync`); Files to Change and T018 require the sync.
+
+P1 `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:47` - `MAX_ROWS_PER_SOURCE = 30`, and `feature-catalog/measurements/injection-screen-measurement.md:32` repeats "no more than 30", but `spec.md:140` REQ-004 caps at 20 and no amendment records the change - a 20-cap draws only 78 of 90 rows from the real corpus (1022 in-band sections; 837/139/28/8/5/5 per group), so the spec, not the code, needs the amendment.
+
+P1 `labels.jsonl`/`planted.jsonl` (absent; spec.md:117, tasks.md T015) - the drawn files were never produced: the Files to Change row says "The build writes ids and hashes" and T015 runs `--draw` on the real tree, but the folder holds only the script and tests, so the operator has nothing to label.
+
+P2 `.skilled/skills/cli-classifier/README.md:8` - version stays 1.1.0.0 while the release is 1.2.0.0; the v1.1.0.0 release bumped this field (`ea883967d4`).
+
+P2 `.skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md:4` - same stale 1.1.0.0; the same release bumped it.
+
+P2 `.skilled/skills/cli-classifier/SKILL.md:158` - "Hub changelog" still links `changelog/v1.1.0.0.md`; `ea883967d4` updated that line to the newest entry, and `changelog/v1.2.0.0.md` now exists.
+
+## Requirements
+
+REQ-001 met - default run exits 0 with both censuses, the rule lines and the stop line; zero stub calls, no file, clean status.
+REQ-002 met - counts with the HEAD commit; no section, URL or query printed.
+REQ-003 met - notes file excluded, `.env` refused and never opened (live run: excluded=1, refused=2); corpus reads only tracked paths.
+REQ-004 not met - cap 30 against the spec's 20; drawn files absent (schema, seeded insert, refusal and gate otherwise tested).
+REQ-005 met - identical rows, better wins, tie to flag-nothing; both accuracies and the instructs share printed.
+REQ-006 met - five checks in order; exact sign test (W=5,L=0 gives 0.03125 < 0.05; W=4,L=0 gives 0.0625).
+REQ-007 met - deem gate and dormancy, four skip reasons, 2,000 ms health, no server start, no key.
+REQ-008 met - identity line first, `jev 0.6.2` pin, `auth status` exit 0, one `--provider` everywhere.
+REQ-009 met - key grep empty; no `.env` read; a request carries the fixed `-q` plus one section.
+REQ-010 met - runs left `git status` unchanged; writes only under `--out`.
+REQ-011 met - fixed `-q` SHA-256 printed before calls; 0.25/0.75 counts printed, never decisive; unmeasured never 0; Brier; 3 Jev reruns, 1 Deem.
+REQ-012 met - payload/planned-call lines; calls.jsonl fields and exit table; `--out` required; partial on stop.
+REQ-013 met - requalify lines before the verdict; report records what each column measured on.
+REQ-014 met - 40/40 tests pass with every named case; the six hub docs name the scorer, its zero-call default and both switches; `validate_document.py` exits 0 on each.
+
+VERDICT: FAIL
