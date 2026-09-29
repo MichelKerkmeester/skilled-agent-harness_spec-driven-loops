@@ -39,19 +39,28 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts",
+      "runtime/scripts/README.md",
+      "runtime/README.md",
       ".skilled/skills/system-deep-loop/SKILL.md",
       ".skilled/skills/system-deep-loop/runtime/README.md",
-      "runtime/README.md",
-      "runtime/scripts/README.md",
-      ".skilled/commands/deep/assets/deep-research-confirm.yaml"
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.7.0.0.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-deep-loop/SKILL.md",
+      "scratch/w4-session/session-evidence.md",
+      "scratch/w4-session/docs/facts.txt"
     ],
     "entities": [
       {
@@ -85,9 +94,21 @@
         "source": "derived"
       },
       {
+        "name": "score-stop-hint.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-stop-hint.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+        "path": "runtime/scripts/README.md",
         "source": "derived"
       },
       {
@@ -97,9 +118,39 @@
         "source": "derived"
       },
       {
-        "name": "deep-research-confirm.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+        "name": "v1.7.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.7.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "stop-hint-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "facts.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/docs/facts.txt",
         "source": "derived"
       },
       {
@@ -155,53 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "The Keep Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "In confirm mode the operator answers a continue-or-stop question after every iteration",
     "created_at": "2026-09-29T12:42:40Z",
-    "last_save_at": "2026-09-29T13:54:35.302Z",
+    "last_save_at": "2026-09-29T21:12:22.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57e07307409ba9bde4adcc60354dff016511c825fe45d21d0ca617cb87192616",
+    "source_fingerprint": "sha256:7a86cc05059fafe44bb829f72fa6be0fe4739c3f4210846871508c814b6860a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6e8f39e02b7e2fc1ff225c5e90e8a5ee055d509d50ddf4b6b934ff64b816ff9d",
-      "plan.md": "82cb996a9211f1899a4a6641553ce12d535a28689f253d91cbdc07b2a74c06a3",
-      "tasks.md": "9a06473a03c3d5daa8f4fcab660eaae5a4788c483a33e593dd4974acc8b76dce",
-      "implementation-summary.md": "8e59612163161f928d294dbe906e613347b0e3c112cee61b5b5089e39bbdbb0a"
+      "spec.md": "14896685c2a681fedd86a4d8a5678b5b4ea64ccde92a2e95e125194e052d3ffe",
+      "plan.md": "84385dc27bfd1cf45241a0ae914b7a1020402e709b97466251357e4584922799",
+      "tasks.md": "44fb0bc4141d35ed8e679bc0b38b0eeddbc60a2b54f06e57f763ad7a38d7a736",
+      "implementation-summary.md": "032182f493bf6d2f6f6d96ecc9d75aff947bad95d32db77d6ca5cab27d8cbad6"
     },
     "last_active_at": null
   }

@@ -1,0 +1,33 @@
+# FACTS for the 028 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs` (CommonJS, run with `node` from the repository root).
+Test: `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts`, 28 tests, all pass (`npx vitest run tests/unit/score-stop-hint.vitest.ts` from `runtime`).
+Usage string (the synopsis; the script exports it): `node .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs --rater-report <dir> [--jev] [--deem] [--out <dir>]`.
+Versions and IDs, read at doc time after 027's commit (orchestrator ruling 2): the newest runtime changelog is `v1.6.0.0.md` (027's), so this phase writes `changelog/v1.7.0.0.md`, and new entries carry `version: 1.7.0.0`. The highest catalog ID is F056 and the highest playbook ID is DLR-056 (both 027's), so this phase takes F057 and DLR-057. The design's `v1.5.0.2.md` is stale. The hub `SKILL.md` `version:` (3.0.1.0) and the hub changelog stay unchanged (ruling 3).
+Nearest models, written by phase 027 in the same files: the `score-stop-rater.cjs` clause in `SKILL.md` line 111, the sentence at `runtime/README.md` line 49, the row at `runtime/scripts/README.md` line 52, the catalog entry `scoring/stop-rater-replay.md` with its index block near `feature-catalog.md` line 440, and the scenario `scoring/stop-rater-replay.md` with its index block near `manual-testing-playbook.md` line 434 and its row at line 968.
+
+What it does: it reads one stop-rater report (`<dir>/report.json`, written by `score-stop-rater.cjs --out <dir>`) and scores whether each recorded stop would have made a good confirm-mode hint. It spawns no process and calls no model in any mode: `--jev` and `--deem` only add the rater's recorded `jev` and `deem` columns to the two columns every report carries, `legacy` and `sources`. It changes no gate and no live loop.
+Hint rule: a column's recorded stop is a hint only when it lands strictly before the lineage's recorded last iteration. A hint at or after the gold iteration is right and saves the iterations from the hint to the last; a hint before gold is wrong and saves nothing. A column with no recorded stop for a lineage leaves that lineage unmeasured.
+
+Exit 2, each before any output line:
+- No `--rater-report` prints `--rater-report <dir> is required`.
+- A missing report prints `rater report not found: <dir>/report.json`.
+- A report that is not JSON prints `rater report is not JSON: <path>`; one without a lineage list prints `rater report has no lineage list: <path>`; a lineage without numeric gold and last iteration prints `rater report lineage <i> is missing gold or lastIteration`.
+- `--out` naming the report's own folder prints `--out <dir> would overwrite the rater report: <dir>/report.json`.
+- An unknown switch prints node's own parser message.
+`--jev` or `--deem` without `--out` is allowed, since no call is made.
+
+Session runs from the final code (`$SP/w4v/028-final`), with logging stubs for `cli-deem` and `jev` first on PATH:
+- 027's final census written with `--deem --out <dir>` stops at `stop: fewer than 5 confirmed lineages`, so its report's label gate did not pass.
+- The default run on that report, exit 0, full stdout:
+      stop: rater report has no confirmed gold
+- `--jev --deem --out <dir>` on the same report prints the same one line, exit 0, and creates no `<dir>`.
+- Every stub log stayed absent. `git status` outside `specs/` was equal before and after.
+
+Past the gate (only when the rater report's label gate passed; tests cover it on fixtures, no real run has reached it):
+- The keep rule line first: `keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, precision 10*W >= 9*(W+L), savings 5*W >= M, sign test p_win < 0.05, flips 10*F <= C (jev only)`.
+- Columns in the order `legacy`, `sources`, then `jev`, then `deem` (ruling 4). Each prints `column <name>: measured <M> hints <n> right <W> wrong <L> no hint <n> saved <n>`, then its verdict line `verdict <name>: <keep|kill|stop (coverage)|stop (precision)|stop (savings)|stop (sign test)|stop (flips)> K=<n> M=<n> W=<n> L=<n> saved=<n> p=<p> report=<first 12 hex of the report's SHA-256>`.
+- A requested model column the rater skipped, stopped or never recorded prints `<jev|deem> column skipped: rater report has none` instead.
+- With `--out`, a model column whose stored rater identity changed prints `requalify: rater changed` before its verdict.
+- With `--out <dir>` a run past the gate writes `<dir>/report.json`, with a kept column's stored hint `**Stop hint**: <column> replay says this loop found its last new cited source by iteration <t>`, where `<t>` stays literal for the live gate to fill. A run stopped at the gate writes nothing.
+No run has printed a `verdict` line. Docs must not claim one was printed.

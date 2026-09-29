@@ -1,0 +1,14 @@
+**Recheck of the gate-stop sentence (line 39)**
+
+closed - main lines 446-450 call `gateStopLine(loaded.report)` and on non-null print it via `out(stopLine)` then `return 0`; `gateStopLine` (119-121) returns `NO_GOLD_LINE` = `stop: rater report has no confirmed gold` unless `report?.gate?.label?.passed === true` (node probe: unarmed/failed -> the line, passed -> null), main's `return 0` precedes `out(KEEP_RULE_LINE)` (454), the column loop, and the `--out` write block (511-521), so nothing is written on gate stop; every refusal path returns 2 through `err()` only, before any `out()` call (parse 421, missing `--rater-report` 427, collision 435, read failures 443 vs. throws 88/94/97/104), matching "each exits 2 before any output line". The vitest cases "gate stop prints the stop line and exits 0" and "reader refuses a missing report" assert exactly one stdout line / code 0 and no stdout / code 2 respectively.
+
+New P0/P1 in `stop-hint-replay.md`: none.
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none
+EDITS: none
+CHECKS: read `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md` (lines 39, 47-53) -> sentence cross-references the refusal list and gate stop -> (exit 0); read `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs` (lines 119-121, 401-524) -> gate stop returns 0 before keep-rule print, column loop and writeReport; all refusals return 2 via err() before any out() -> (exit 0); `node -e "gateStopLine probe"` -> `{"unarmed":"stop: rater report has no confirmed gold","failed":"stop: rater report has no confirmed gold","passed":null,"line":"stop: rater report has no confirmed gold"}` (exit 0); `git status --porcelain -- <file>` -> `?? ...stop-hint-replay.md` (untracked, no diff baseline) (exit 0)
+BLOCKED REASON: none

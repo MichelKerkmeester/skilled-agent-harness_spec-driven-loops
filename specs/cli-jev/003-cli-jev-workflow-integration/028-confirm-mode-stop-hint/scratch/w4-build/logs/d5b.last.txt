@@ -1,0 +1,12 @@
+The diff shows exactly the three named edits and nothing else. Both checks pass.
+
+- The block title `Stop-hint replay` and Description match the leaf's frontmatter title and description verbatim (root-leaf parity rules in `validate_catalog_package.py` confirmed satisfied).
+- Every How It Works claim is backed by the script (`USAGE`, `DEFAULT_COLUMNS`, `KEEP_RULE_LINE` printed first at `out(KEEP_RULE_LINE)` before the columns, `writeReport` only with `--out`) and FACTS (`--jev`/`--deem` add recorded columns, no model call). No `verdict` line is claimed as printed (rulings 5).
+- The block sits right after the F056 stop-rater replay block, keeping the `---` divider shape of the model's index blocks.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md (+18/-2)
+EDITS: .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:444 added the `### Stop-hint replay` index block (Description, How It Works, Source Files) right after the F056 stop-rater replay block, matching `scoring/stop-hint-replay.md` title and description; :19 entries sentence 55 to 56; :27 scoring row count 3 features to 4 features
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md --type feature_catalog -> "✅ VALID: .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md" (exit 0); git diff --stat -- .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md -> "1 file changed, 18 insertions(+), 2 deletions(-)" (exit 0)
+BLOCKED REASON: none

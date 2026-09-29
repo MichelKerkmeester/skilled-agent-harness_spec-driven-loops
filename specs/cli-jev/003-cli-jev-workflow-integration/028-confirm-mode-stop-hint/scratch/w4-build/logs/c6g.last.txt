@@ -1,0 +1,11 @@
+Both checks confirm the edit landed exactly as specified. The file was untracked before my edit; the `M`/`??` entries in `git status` are other workers' concurrent files — I touched only T.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts (+18/-16)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:348 replaced the `requalify prints before the verdict` it-block with the two-round-trip `requalify prints only when the rater identity changed since the stored run` block (no other change in T; S untouched)
+CHECKS: grep -c "requalify prints only when the rater identity changed" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts -> 1 (exit 0)
+CHECKS: grep -c "requalify prints before the verdict" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts -> 0 (exit 1, expected for zero matches)
+BLOCKED REASON: none
+
+Notes for the orchestrator: vitest was not run here (sandbox may block socket-opening runners). The new block's third round depends on S's stored shape `columns.<name>.rater` as a string (S lines 503 and 483), which matches the brief's premise; the first two rounds write `outDir/report.json` through S and read it back, so the write-then-read round trip is now exercised.

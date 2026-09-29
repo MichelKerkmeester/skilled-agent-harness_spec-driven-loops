@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 28: confirm-mode-stop-hint"
-description: "Test research R9 offline: replay the confirm-mode post-iteration gate over phase 027's lineages and measure whether a stop hint drawn from a zero-call rule or from 027's recorded Jev or Deem rater would be right often enough to show. It makes no model call in any mode, reads 027's report, and each signal column ends in one verdict line under a keep rule fixed here."
+description: "Test research R9 offline: replay the confirm-mode post-iteration gate over phase 027's lineages and measure whether a stop hint drawn from a zero-call rule or from 027's recorded Jev or Deem rater would be right often enough to show. It makes no model call in any mode, reads 027's report, and each signal column ends in one verdict line under a keep rule fixed here. Built and closed at its label gate on 2026-09-29, commit `97200ea481`."
 trigger_phrases:
   - "confirm-mode stop hint"
   - "score-stop-hint"
@@ -23,14 +23,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 28 of 35 |
 | **Predecessor** | 027-stop-second-rater |
 | **Successor** | 029-p0-reread-order |
-| **Handoff Criteria** | The script has read phase 027's `report.json` and printed, per signal column, the lineages it measured, the right and wrong hints, the iterations saved and either a stop line or one `verdict <column>:` line. Without a 027 report that passed 027's label gate, it printed `stop: rater report has no confirmed gold` and closed there |
+| **Handoff Criteria** | The script has read phase 027's `report.json` and printed, per signal column, the lineages it measured, the right and wrong hints, the iterations saved and either a stop line or one `verdict <column>:` line. Without a 027 report that passed 027's label gate, it printed `stop: rater report has no confirmed gold` and closed there. The 2026-09-29 final run read a 027 report whose label gate stopped, so it printed the stop line, no verdict line and wrote nothing |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -100,17 +100,17 @@ Owner of every code path below: `system-deep-loop`. The code follows sk-code's O
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs` | Create | Report reader, hint columns, counts, Keep Rule and verdict lines. Proposed name. About 250 to 350 LOC (estimate) |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts` | Create | Fixture 027 reports and a stub-binary no-call check |
+| `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs` | Create | Report reader (c1), hint rule and per-column counts (c2), column selector and skip lines (c3), the Keep Rule, verdict lines and requalify (c4), the stored report, hint line and no-call guard (c5). Built at 574 lines, with fixes c6f and c6g |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts` | Create | Fixture 027 reports, a stub-binary no-call check and the requalify round trip. Built with 28 cases in 424 lines |
 | `.skilled/skills/system-deep-loop/runtime/scripts/README.md` | Modify | One row for the new script |
 | `.skilled/skills/system-deep-loop/SKILL.md` | Modify | Parent D6: one sentence naming the offline hint evaluation and saying the gate is unchanged |
 | `.skilled/skills/system-deep-loop/runtime/README.md` | Modify | Parent D6: one line naming the script, its input and its switches |
-| `.skilled/skills/system-deep-loop/runtime/changelog/v<next>.md` | Create | Parent D6, through `sk-create-changelog`. The newest file at planning is `v1.5.0.1.md` |
-| `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md` and `feature-catalog.md` | Create, Modify | Parent D6: one entry (proposed name) and its index row |
-| `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md` and `manual-testing-playbook.md` | Create, Modify | Parent D6: one scenario and its index row |
-| Generated copies (the Hermes `SKILL.md`, leaf manifests, trigger index) | Regenerate | Only when their own checks report them stale after the doc edits |
+| `.skilled/skills/system-deep-loop/runtime/changelog/v<next>.md` | Create | Parent D6, through `sk-create-changelog`. Built as `v1.7.0.0.md`, next after 027's `v1.6.0.0.md` |
+| `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md` and `feature-catalog.md` | Create, Modify | Parent D6, through `sk-create-feature-catalog`: the F057 `stop-hint-replay.md` entry and its index row |
+| `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md` and `manual-testing-playbook.md` | Create, Modify | Parent D6, through `sk-create-manual-testing-playbook`: the DLR-057 `stop-hint-replay.md` scenario and its index row |
+| Generated copies (the Hermes `SKILL.md`, leaf manifests, trigger index) | Regenerate | The Hermes `SKILL.md` copy and the two route manifests of the hub `SKILL.md`, regenerated after their own checks reported drift, plus the three compiled deep command contracts recompiled from the staged tree. The trigger index follows in its own commit |
 | `<027 report dir>/report.json`, `calls.jsonl` | Read only | The replay this phase evaluates |
-| `<operator-named report dir>/` | Create at run time | `report.json` |
+| `<operator-named report dir>/` | Create at run time | `report.json` from a run past the label gate; the 2026-09-29 final run stopped at the gate, so it wrote nothing |
 <!-- /ANCHOR:scope -->
 
 ---
