@@ -1,0 +1,2 @@
+.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs
+.skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs

@@ -1,0 +1,17 @@
+✔ extract prose (0.701584ms)
+✔ extract fenced skip (0.120917ms)
+✔ resolve order (138.027875ms)
+✔ resolve ambiguous basename (136.8015ms)
+✔ resolve unresolved (137.164625ms)
+✔ dead missing target (249.794584ms)
+✔ dead past end (294.440792ms)
+✔ refused .env (141.101375ms)
+✔ refused untracked (360.298667ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1505.619875

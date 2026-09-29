@@ -1,0 +1,32 @@
+Report complete from the opened files, the phase docs (spec, goal, design, rulings, session notes), parent D1–D7, the 017 exit table and the cli-deem/cli-usage contracts, plus a live `node --test` run (32 pass / 0 fail) and a hand-check of the sign test (`P(X≥7|n=8)=9/256=0.0352<0.05` → below; `37/256=0.145` → not; exact BigInt arithmetic correct).
+
+**Findings**
+
+P0 cite-drift-scan.mjs:1094 (also :1398, :1135-1144, :1456) - drift-flag polarity is inverted: `noul` is P("yes, the window still shows"), so REQ-011 flags drifted when p < 0.5, but `flag = probability >= 0.5` and TP/FP/A/Brier treat `flag` as drifted - a `supports` row answered 0.9 becomes FP (test:703 asserts TP=10 FP=30), scoring a good reader as its inverse.
+
+P1 cite-drift-scan.mjs:1634,1659 - gates spawn before the label/headroom gate is read: 39 labels + `--deem --out d` still sends `cli-deem health` (HTTP) although REQ-004 says "no arm calls, even with a switch set" and the design says a no-headroom run "calls a backend" (REQ-007's "with --deem" wording is the tension); no test pins a switch under the label gate.
+
+P2 cite-drift-scan.mjs:1565 - draw refusal keys on any non-null `labeler`, so a construction-only file (every draw, :418) blocks `--draw --seed 2` with "operator labels present"; REQ-004 guards only operator labels.
+
+P2 cite-drift-scan.mjs:1052,1312 - stdin state's `target` is the bare resolved path; REQ-009 names the target `path:line` (the citing sentence embeds the citation text, so the datum usually rides along).
+
+P2 test-cite-drift-scan.mjs:608-631 - verdict cases feed unreachable counts (A=140, B=60 at M=20), and nothing covers `stop (sign test)`, `stop (flips)` or disagreeing Jev reruns (script:1443-1445), leaving the flip bound untested.
+
+**Requirements**
+
+REQ-001 met - default run spawns only git; stub-log and clean-status test cover it.
+REQ-002 met - pattern, fence skip, resolution order, per-skill/total lines with commit match.
+REQ-003 met - dead list and refusals correct; a nowhere target lands in `unresolved`, not REQ-003's `refused` wording.
+REQ-004 not met - gate spawns under the label gate (P1) and over-broad draw refusal (P2).
+REQ-005 met - tokens, label map, tie-to-flag-nothing exactly as specified, tested.
+REQ-006 met - five checks in order, fixed lines before any run; sign test exact.
+REQ-007 met - one health run, skip vocabulary and details lines match; 10 s spawn bound over cli-deem's own 2,000 ms request bound.
+REQ-008 met - identity line, gate order, exit table (incl. Deem 4 recheck+retry), partial rows, `--out` exit 2.
+REQ-009 not met - request target lacks `:line`; key grep clean, payload tracked-committed only.
+REQ-010 met - writes only labels, calls.jsonl, report.json; no validator or cited file touched.
+REQ-011 not met - threshold polarity inverted (P0).
+REQ-012 met - cost lines, calls.jsonl schema and every exit handling match 017's table.
+REQ-013 met - per-column identity recorded; requalify notices printed before verdicts, tested.
+REQ-014 met - 32 cases incl. every listed one; docs not checked here (separate review).
+
+VERDICT: FAIL

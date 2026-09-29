@@ -1,0 +1,36 @@
+✔ extract prose (0.923208ms)
+✔ extract fenced skip (0.094791ms)
+✔ resolve order (158.250375ms)
+✔ resolve ambiguous basename (117.21775ms)
+✔ resolve unresolved (119.63225ms)
+✔ dead missing target (211.967333ms)
+✔ dead past end (232.509541ms)
+✔ refused .env (131.514375ms)
+✔ refused untracked (281.216791ms)
+✔ draw reproducible (2069.06ms)
+✔ draw refuses labels (94.611083ms)
+✔ comparator flags (0.251208ms)
+✔ comparator no token (0.055791ms)
+✔ comparator token present (0.038083ms)
+✔ label gate 39 (851.806042ms)
+✔ instruction printed (1197.57725ms)
+✔ no headroom (1331.425208ms)
+✔ underpowered (1043.054959ms)
+✔ default zero calls (222.590542ms)
+✔ verdict keep (0.2475ms)
+✔ verdict kill precision (0.039625ms)
+✔ verdict stop coverage (0.031666ms)
+✔ verdict stop margin (0.135959ms)
+✔ verdict requalify (0.056ms)
+✔ deem gate pass (4132.453625ms)
+✔ deem stub backend (1613.225875ms)
+✔ deem exit 4 changed pair (1001.591875ms)
+✔ --out required (91.751584ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14952.325

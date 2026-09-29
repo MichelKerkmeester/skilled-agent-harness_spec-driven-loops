@@ -1,0 +1,9 @@
+Exactly one row added after the `frontmatter-version.mjs` row. It names `cite-drift-labels.jsonl` inside the row as the default labels file `--draw` writes, with no separate labels-file row. Every claim traces to FACTS or the script: the citation format and census from FACTS line 9 and the script's `cite dead:` output, the zero-call default from the script's module comment and FACTS line 17, the 40 rows (20 live, 20 constructed) from FACTS line 10 and the script's `draw:` line, `LABELS_PATH` beside the script from the script's constants, the `--out` requirement for `--jev`/`--deem` from the script's error line, and the two fixed comparators from FACTS line 9. No verdict line is claimed (ruling 5).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/shared/scripts/README.md (+1/-0)
+EDITS: .skilled/skills/sk-doc/shared/scripts/README.md:24 added one `cite-drift-scan.mjs` row directly after the `frontmatter-version.mjs` row in the section 2 CONTENTS table, naming `cite-drift-labels.jsonl` as the default labels file `--draw` writes
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/shared/scripts/README.md --type readme -> `✅ VALID: .skilled/skills/sk-doc/shared/scripts/README.md` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/sk-doc/shared/scripts/README.md -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,10 @@
+One row added at `README.md:193`, everything else byte-identical. Every claim in the row traces to FACTS or the script: the census prints per-skill and total citation counts (`cite-drift-scan.mjs:1608-1610`), the default run makes no model call (script header, FACTS "Zero model calls by default"), and `--jev`/`--deem` each require `--out <dir>` (`cite-drift-scan.mjs:1546`). No verdict is named, per ruling 5.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/sk-doc/README.md` (+1/-0)
+EDITS: `.skilled/skills/sk-doc/README.md:193` added the `Citation drift scan` row to the section 8 checks table, modelled on the `README structure` row
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/README.md` -> `✅ VALID: .skilled/skills/sk-doc/README.md / Document type: readme / Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/sk-doc/README.md` -> `.skilled/skills/sk-doc/README.md | 1 + / 1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

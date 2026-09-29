@@ -1,0 +1,21 @@
+All checks pass. Note: the `git diff` for `SKILL.md` also shows a pre-existing sentence about `shared/scripts/cite-drift-scan.mjs` that is not mine. My edit replaced only the version string; that sentence was already in the working tree from another worker's step in this packet. Reported in the handback below.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/sk-doc/SKILL.md (+1/-1)
+.skilled/skills/sk-doc/ROUTER.md (+1/-1)
+.skilled/skills/sk-doc/description.json (+1/-1)
+.skilled/skills/sk-doc/hub-router.json (+1/-1)
+.skilled/skills/sk-doc/mode-registry.json (+1/-1)
+EDITS:
+.skilled/skills/sk-doc/SKILL.md:5 `version: 2.2.2.0` to `version: 2.2.3.0`
+.skilled/skills/sk-doc/ROUTER.md:11 `version: 2.2.2.0` to `version: 2.2.3.0`
+.skilled/skills/sk-doc/description.json:4 `"version": "2.2.2.0",` to `"version": "2.2.3.0",`
+.skilled/skills/sk-doc/hub-router.json:3 `"version": "2.2.2.0",` to `"version": "2.2.3.0",`
+.skilled/skills/sk-doc/mode-registry.json:3 `"version": "2.2.2.0",` to `"version": "2.2.3.0",`
+CHECKS:
+ls .skilled/skills/sk-doc/changelog/v2.2.3.0.md -> `.skilled/skills/sk-doc/changelog/v2.2.3.0.md` (exit 0)
+grep -c "2\.2\.3\.0" (five files) -> `SKILL.md:1` `ROUTER.md:1` `description.json:1` `hub-router.json:1` `mode-registry.json:1` (exit 0)
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc -> `OK: parent-skill-check — all hard invariants passed, 0 warnings` (exit 0)
+BLOCKED REASON: none

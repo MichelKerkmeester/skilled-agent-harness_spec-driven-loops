@@ -1,0 +1,20 @@
+All checks pass. Final verification summary:
+
+- `node --check` on S: exit 0, no output
+- `node --check` on T: exit 0, no output
+- Key grep (`API_KEY|TYPESAFE|Bearer|Authorization`): no match
+- ID grep (`REQ-|ADR-|CHK-|spec paths`): no match
+- I edited only the two named files; other dirty paths in `git status` belong to concurrent workers
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs (+289/-0)
+FILES CHANGED: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs (+179/-0)
+EDITS: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1232-1494 added "7. JEV ARM" section — `JEV_VERSION`, `JEV_RERUNS`, `BACKOFF_MS`, exported `jevGate(ctx)`, exported `runJevArm(plan, gate, ctx)` (payload line, one auth test, 3 noul reruns per row with provider and exit handling, modal flag, flips F, column/brier/verdict lines)
+EDITS: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1511 added `deps.backoffMs` JSDoc and :1520 `backoffMs` default
+EDITS: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1631-1654 added `--jev` handling ahead of the Deem arm (Jev first per rulings §4), wiring `skipped`/`columns`/`stopped` and report fields
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:15 extended import with `jevGate`, `runJevArm`
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:79-87 extended stub with jev `--version`, `auth status`, `auth test`, `noul` branches (STUB_AUTH_STATUS_EXIT, STUB_JEV_NOUL_EXIT)
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:819-988 added cases `jev gate pass`, `jev no credential`, `jev one provider`, `jev exit 3 after gate`
+CHECKS: node --check .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> (no output) (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs -> (no output) (exit 0)
+BLOCKED REASON: none
