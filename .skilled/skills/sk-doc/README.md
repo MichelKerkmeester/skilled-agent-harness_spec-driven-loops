@@ -190,6 +190,7 @@ The skill ships the checks that prove a document is ready.
 | Full quality | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py document.md` returns the DQI, the checklist and the violations in JSON |
 | Flowchart shape | `bash .skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh` checks box alignment and label consistency |
 | Package gate | `python3 .skilled/skills/sk-doc/scripts/package_skill.py` validates a skill and bundles it to a zip |
+| Citation drift scan | `node .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` prints per-skill and total citation counts with zero model calls by default, and `--jev` and `--deem` each need `--out <dir>` to run one measurement arm |
 
 ---
 
