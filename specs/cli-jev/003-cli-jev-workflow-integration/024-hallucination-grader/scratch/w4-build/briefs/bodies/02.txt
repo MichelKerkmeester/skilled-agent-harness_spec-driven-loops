@@ -1,0 +1,35 @@
+TASK: the scorer's D4 grader factory throws for a grader kind it does not know, instead of silently returning the mock stub. 2 files. M = .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark
+
+STEP 1. M/scorer/score-model-variant.cjs, function buildGraderFn (lines 197-226).
+a. In its JSDoc, line 205 reads ` * @returns {Function} Async grader function (virtualFixture, outputText, opts)`. Insert after it one line:
+` * @throws {Error} When graderKind is not 'llm', 'mock' or 'noop'`
+b. Lines 208-211 read exactly:
+```
+  if (graderKind === 'noop') {
+    return async () => ({ score: 1.0, confidence: 1.0, parse_status: 'noop', dim_id: 'D4', rationale: 'grader disabled (noop)', evidence: [] });
+  }
+  const mode = graderKind === 'llm' ? 'real' : 'mock';
+```
+Insert between the closing `  }` and the `const mode` line exactly:
+```
+  // An unknown kind used to fall through to the mock stub, which scores D4
+  // with fake numbers; fail loudly so the caller sees the typo.
+  if (graderKind !== 'llm' && graderKind !== 'mock') {
+    throw new Error(`buildGraderFn: unknown grader kind '${graderKind}' (expected noop, mock or llm)`);
+  }
+```
+Do not change the `graderKind = 'mock'` default in `score()` (line 253) or the CLI default (line 354). Change nothing else.
+
+STEP 2. M/tests/scorer.vitest.ts. Inside `describe('buildGraderFn factory', ...)` (starts line 147), after the `it('mock grader returns a parseable deterministic score (no LLM)', ...)` block and before the describe's closing `});`, add:
+```
+  it('throws for a grader kind outside noop, mock and llm', () => {
+    expect(() => scorer.buildGraderFn('jev')).toThrow(/unknown grader kind 'jev'/);
+  });
+```
+
+VERIFY (repo root; paste each command, its result line and exit code):
+  node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs
+  node -e "try { require('./.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs').buildGraderFn('jev'); console.log('no throw'); } catch (e) { console.log(e.message); }"   (expect: buildGraderFn: unknown grader kind 'jev' (expected noop, mock or llm))
+  node -e "const m = require('./.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs'); for (const k of ['noop','mock','llm']) console.log(k, typeof m.buildGraderFn(k));"   (expect three lines ending in function)
+  grep -c "throws for a grader kind outside" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts   (expect 1)
+Accept when: 2 files changed (score-model-variant.cjs, scorer.vitest.ts) and nothing else; each check prints what it expects.

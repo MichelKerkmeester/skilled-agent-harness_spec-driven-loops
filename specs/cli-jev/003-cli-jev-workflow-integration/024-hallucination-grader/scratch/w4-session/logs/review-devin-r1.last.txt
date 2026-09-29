@@ -1,0 +1,27 @@
+I'll start by orienting: listing the phase folder, reading the phase docs, and running the framework's Gate 1 lookup.Gate 1 surfaced the phase spec. Now reading the phase contract docs.Reading the rest of the spec, the build evidence, and the parent goal.The build-evidence path differs; locating it.Locating the build evidence and mapping the phase's uncommitted files.The review prompt is stored alongside its dispatch; build-evidence.md is absent from the named path. Let me pull the code diffs and read the new script.Now reading the new script in full (1,323 lines).Now the test file for the new script.Now the modified test files' diffs and the docs' sizes.Checking the fixture count against the docs' "0 of 21" claim, and running the phase's test suite.Waiting on the suite; meanwhile reading the smaller docs in full.Suite is green at 205/14 as the README claims. Now the main skill docs.Checking phase 017's built script, which this phase's REQ-006/REQ-010 say to follow.Phase 017's script lives in the system-spec-kit packet. Comparing its health-gate and exit-handling patterns.Reading the scorer README and the feature catalog in full.Reading the manual testing playbook (full, in chunks).Now verification runs: sign-test hand check, secret and comment-hygiene greps, and the guard's placement in the runner.Running the phase's manual scenario 5D-051 end-to-end (all artifacts under /tmp).Plain census verified: zero calls, `allowlist: 0 of 21`, stop line. Now the `--deem` stub run.Scenario 5D-051 verified end-to-end. Now checking the README per-file test counts and repo cleanliness after the runs.Now a critical check: the Deem health shape the new script expects vs what `cli-deem` actually prints, and phase 017's exact check.Final check: `cli-deem`'s own health timeout (the 2,000 ms REQ-006 pins) and one last look at the Deem-arm skip path in the built script.All verification is done. Here is my review report.
+
+---
+
+**Note:** `scratch/w4-build/build-evidence.md` does not exist at the path the brief names; I verified from `spec.md`/`goal.md`, the appendix, the working tree, and live runs (suite, playbook scenario 5D-051, `validate_document.py`).
+
+**Findings**
+- P2 `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md:37,40,49` - test-count table is stale/blank: `scorer.vitest.ts` says 10 (actual 11), `run-benchmark-hardening.vitest.ts` says 6 (actual 8), and the new `d4-agreement.vitest.ts` row's Tests cell is empty (actual 32) - `npx vitest run model-benchmark/tests/scorer.vitest.ts` prints 11 passed; the totals line (205/14) is correct.
+- P2 `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md:222` and `README.md:108` - the arm gate is summarized as "once 30 outputs carry labels" / "stops below 30 labeled outputs", but the code also requires 5 of each class - 30 labeled rows split 29/1 make `--deem` print `stop: fewer than 5 labeled yes outputs` and no verdict column; changelog and catalog entry state the full gate.
+
+**Requirements**
+- REQ-001 met - live `--grader jev` run: exit 2, names `'jev'`, usage line, no report written; `buildGraderFn` throw covered.
+- REQ-002 met - plain run printed census/baseline/margin/keep-rule/power/stop lines, exit 0, spawned no stub, wrote no file.
+- REQ-003 met - run printed outputs 21, matched 21, unmatched 0, `allowlist: 0 of 21`, labeled counts; unmatched output counted.
+- REQ-004 met - bad label value exits 2 naming the row; class-gate lines; SHA-256 in census, verdict line and report.
+- REQ-005 met - rule fixed in constants and printed; exact BigInt tails; hand check `tail(5,5)=1/32=0.03125`, 5-1 -> 7/64 stop (sign test), 0-8 kill.
+- REQ-006 met - health under cli-deem's own 2,000 ms; four skip lines; stub run added one line and exit 0; server never started.
+- REQ-007 met - identity line, exact `jev 0.6.2`, auth status exit 0, three skip lines; provider flows to status, auth test and every call.
+- REQ-008 met - runs left `git status` unchanged; secret grep no match; payload gate covered; Deem still runs after a Jev payload skip.
+- REQ-009 met - fixed `-q` noul; state is task/visibleSpec/allowlist/output; >=0.5 yes; three Jev reruns, no cache, modal call.
+- REQ-010 met - notices, planned calls, 60.5 ms and token estimates, no dollar figure; calls.jsonl carries wallMs/exitCode/modelId/modelCommit/sourceCommit; missing `--out` exits 2 pre-call.
+- REQ-011 met - commit pair / Jev version+provider+model recorded; requalify lines precede the verdict.
+- REQ-012 met - `failed` for unparseable (harness word), unmeasured never scored, timeout status from phase 017's vocabulary.
+- REQ-013 met - 32 cases plus one each in the two existing files; every listed case present; no vacuous tests.
+- REQ-014 met - docs name the check, script, zero-call default and switches; `validate_document.py` exits 0 on all ten changed docs; the gate summary above is the one inaccuracy.
+
+VERDICT: PASS

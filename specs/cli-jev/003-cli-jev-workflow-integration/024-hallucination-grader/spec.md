@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 24: hallucination-grader"
-description: "Turn the model-benchmark runner's silent mock fallback for an unknown --grader into a startup error, then measure offline whether a Jev or Deem noul that flags invented flags, files or functions in benchmark outputs agrees with the operator's labels more often than the 5dim scorer's deterministic hallucination-flag check. A zero-call census prints the outputs, the allowlist coverage and a label gate of 30 labeled outputs first. Planned, released 2026-09-29."
+description: "Turn the model-benchmark runner's silent mock fallback for an unknown --grader into a startup error, then measure offline whether a Jev or Deem noul that flags invented flags, files or functions in benchmark outputs agrees with the operator's labels more often than the 5dim scorer's deterministic hallucination-flag check. A zero-call census prints the outputs, the allowlist coverage and a label gate of 30 labeled outputs first. Built and closed at its label gate on 2026-09-29, commit fb3f9c0599."
 trigger_phrases:
   - "hallucination grader"
   - "d4 hallucination grader kind"
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |

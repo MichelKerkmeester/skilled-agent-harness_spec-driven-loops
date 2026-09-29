@@ -1,0 +1,30 @@
+I'll start by reading the files named in the brief.
+
+I have the source, test file, design section 5, and the model code. Let me check the TS config for BigInt literal support and look at how the surrounding test infra is set up.
+
+
+
+
+
+I have everything I need. Now I'll make the edits: section 6 in the scorer (inserted after `chooseBaseline`, EXPORTS renumbered to 7) and the keep-rule tests in the test file.
+
+All four edits are in. Now the verification checks from the brief.
+
+All three checks pass. Now a read-only scoped diff to confirm only the two named files changed and to get exact line counts.
+
+The two files are untracked in this worktree (the orchestrator commits later), so the numstat is empty. Let me get exact line counts for the handback and confirm the final state of the scorer tail.
+
+All checks pass and the scoped state is exactly the two named files. Final state confirmed: S = 369 lines with `// 6. KEEP RULE` at 259-363 and `// 7. EXPORTS` at 366, exports extended; T = 234 lines with the keep-rule header line and six-test describe appended.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs (+106/-0 net; 263 -> 369 lines, two lines rewritten in place)
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts (+89/-0 net; 145 -> 234 lines)
+EDITS: score-d4-agreement.cjs:259 inserted `// 6. KEEP RULE` section after chooseBaseline (binomialTail, decideVerdict, formatP, summarizeColumn, each JSDoc'd, exact-tails comment included)
+EDITS: score-d4-agreement.cjs:260 renumbered the EXPORTS divider `// 6.` -> `// 7. EXPORTS`
+EDITS: score-d4-agreement.cjs:369 appended binomialTail, decideVerdict, formatP, summarizeColumn to module.exports
+EDITS: d4-agreement.vitest.ts:8 added `//   Keep rule (binomialTail, decideVerdict, summarizeColumn)` to the MODULE header list
+EDITS: d4-agreement.vitest.ts:148 appended `describe('score-d4-agreement keep rule', ...)` with six it() covering keep, kill, margin stop, coverage stop, jev-only flips, and both summarizeColumn cases
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs -> no output, clean (exit 0)
+CHECKS: node -e "...decideVerdict({ backend: 'deem', K: 30, M: 30, A: 25, B: 22, W: 4, L: 1, F: 0 })" -> {"outcome":"stop","reason":"sign test","pWin":0.1875,"pLoss":0.96875} (exit 0)
+CHECKS: grep -c "// 7. EXPORTS" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs -> 1 (exit 0)
+BLOCKED REASON: none

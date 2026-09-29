@@ -1,0 +1,69 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/code.md; focused summary for a one-change brief) ===
+You are @code, a leaf implementer dispatched by an orchestrator (Depth: 1). Never dispatch another agent.
+Scope: edit only the files this brief names. Read each file before editing it and re-read the edited region after.
+Standards: read .skilled/skills/sk-code/SKILL.md and follow the route it resolves for this file type.
+Comment hygiene is a hard block: no spec paths, packet or phase numbers, or REQ/task ids in code comments. Keep the durable why.
+Verification: run only the checks this brief lists. Fail closed: no retry loop, no workaround. Report exact commands, result lines and exit codes.
+Output: end with the HANDBACK block, STATUS DONE or BLOCKED.
+=== END AGENT PERSONA (resolved persona: code) ===
+
+TASK: add the zero-call entry point `main(argv, deps)` and the CLI entry to the D4 agreement script, with four tests. 2 files. No model arm yet.
+S = .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs
+T = .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts
+Read first: S, T, and section 6 of specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-build/design.md (implement ONLY section 6; the arms of sections 7-10 come in later briefs). Model to copy for the deps pattern: `main` in .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1882-1960 (read only).
+
+STEP 1. In S, after `summarizeColumn`, add a section `// 7. MAIN` holding `async function main(argv, deps = {})` exactly as design section 6: deps `out`, `err`, `env`, `timeoutMs` (90000), `backoffMs` (2000); strict `parseArgs` with options `outputs`, `fixtures`, `labels`, `out` (string) and `deem`, `jev`, `accept-payload` (boolean); every exit-2 case of section 6 in that order, printing only on `err`; labeled rows `{ file, id, fixture, outputPath, label, check }` built from the matched outputs in file order, `check` from `deterministicCall`; `labelsSha` null without `--labels`, else `sha256Hex` of the file bytes; `chooseBaseline` over the rows; then every `out` line of section 6 in order, ending with the gate line. Keep `rows`, `baseline`, `labelsSha` and a `gate` value ('label', 'headroom' or 'open') in locals, then leave exactly this marker line before `return 0;`: `  // Arms run here: the Jev block, then the Deem block.` Put the whole census-to-baseline part in one try/catch that prints the error message on `err` and returns 2.
+Renumber EXPORTS to `// 8. EXPORTS`, add `main` to `module.exports`, and after the exports add `// 9. CLI ENTRYPOINT` with: `if (require.main === module) { main(process.argv.slice(2)).then((code) => { process.exitCode = code; }); }`.
+
+STEP 2. In T add `//   Zero-call run (main)` to the MODULE header list, then add helpers after `writeOutputs`:
+- `stubDir(bodies: Record<string, string>)`: a temp dir holding one executable file (mode 0o755) per key, content `#!/bin/sh\nD=$(dirname "$0")\necho "$*" >> "$D/<name>.log"\n<body>\n`.
+- `runMain(argv: string[], env: NodeJS.ProcessEnv = process.env)`: awaits `d4.main(argv, { out, err, env, timeoutMs: 5000, backoffMs: 1 })`, collecting `out` lines into `lines` and `err` lines into `errs`; returns `{ code, lines, errs }`.
+- `labeledSet(yesFlag: number, yesPlain: number, no: number)`: `fixtures = writeFixtures()`; an outputs temp dir with files `fx-b.run1.md` ... `fx-b.run<total>.md` in that order: the first yesFlag hold `Use tool --force\nHALLUCINATED\n`, the next yesPlain hold `The tool has a hidden mode.\nHALLUCINATED\n`, the rest hold `A plain correct answer.\n`; a separate temp dir with `labels.jsonl`, one row per output, `yes` for the first yesFlag+yesPlain and `no` for the rest; returns `{ outputs, fixtures, labels }` (labels = the jsonl path).
+Then append `describe('score-d4-agreement zero-call run', ...)` with four it():
+1. default run: fixtures `writeFixtures()`, outputs `writeOutputs(['fx-a.md', 'fx-b.run2.md', 'fx-c.md', 'orphan.md'])`, stubs `stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' })`, env PATH `${stubs}${path.delimiter}${process.env.PATH}`. Code 0; `lines` equal exactly `['outputs: 4', 'matched: 3', 'unmatched: 1', 'allowlist: 1 of 3', 'labels: none', 'labeled: 0 (yes 0, no 0)', 'labels dropped: 0', 'baseline check: right 0 of 0', 'baseline majority: no right 0 of 0', 'baseline method: check right 0 of 0', `question: ${d4.QUESTION}`, d4.MARGIN_LINE, d4.KEEP_RULE_LINE, d4.POWER_LINE, 'stop: fewer than 30 labeled outputs']`; no `.log` file in the stub dir; the outputs dir still lists exactly its four files.
+2. class gate: `labeledSet(4, 0, 26)` -> lines include 'labeled: 30 (yes 4, no 26)' and the last line is 'stop: fewer than 5 labeled yes outputs'.
+3. headroom and open gate: `labeledSet(10, 0, 20)` ends with 'no headroom' (the check is right on 30 of 30); `labeledSet(0, 10, 20)` includes 'baseline method: check right 20 of 30' and ends with 'planned calls: jev 91, deem 30'.
+4. refusals: `['--outputs', dir, '--deem']` gives code 2, `lines` [] and errs ['--deem needs --out <dir> so every call is recorded']; `[]` gives code 2 and errs [d4.USAGE]; a labels file holding `{"output":"fx-a.md","hallucinated":"maybe"}` gives code 2 and errs ['labels row 1: hallucinated must be yes or no, got "maybe"'].
+
+VERIFY (repo root; paste each command, its result line and exit code):
+  node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs
+  node .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs --outputs .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures; echo "exit=$?"   (expect `allowlist: 0 of 21`, last line `stop: fewer than 30 labeled outputs`, exit=0)
+Accept when: 2 files changed (S and T) and nothing else; each check prints what it expects.
+
+RUN CONTEXT
+- Repo root, a git worktree. Run every command from here:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration
+- Spec folder (pre-approved, Gate 3 answered): specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader
+- Other workers edit other files in this tree at the same time. Touch only the files this brief names.
+- The orchestrator runs the test suites, spec validation and every git commit after you return.
+- Your sandbox may block test runners that open local sockets (tsx, vitest). Run only the checks listed here; the orchestrator runs the rest.
+
+DON'T
+- Edit, create or delete any file this brief does not name.
+- Run a git command that writes (add, commit, stash, checkout, restore, reset, merge, rebase, push).
+- Install anything (npm/pnpm/pip/brew install, npm ci) or touch node_modules.
+- Open any .env file, print environment variables, or write a key or token into any file.
+- Call jev, the local Deem server (127.0.0.1:8300) or any network service.
+- Put spec paths, packet or phase numbers, or REQ/task ids in code comments.
+- Reformat, reorder or "improve" anything outside the named edit.
+- Ask a question. If a step cannot be done exactly as written, stop and report BLOCKED with the reason.
+
+HANDBACK (print exactly this block, filled in, as your last output)
+STATUS: DONE | BLOCKED
+FILES CHANGED: one line per file: <path> (+<added>/-<removed>)
+EDITS: one line per step: <file>:<line> <what changed>
+CHECKS: one line per check: <command> -> <result line> (exit <n>)
+BLOCKED REASON: <one line, or none>
