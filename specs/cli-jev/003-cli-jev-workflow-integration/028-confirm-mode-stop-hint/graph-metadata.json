@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "confirm-mode stop hint",
+      "score-stop-hint",
+      "stop suggestion precision",
+      "gate post iteration hint",
+      "research r9 test phase",
+      "stop hint evaluator plan",
+      "score-stop-hint build",
+      "confirm-mode hint precision plan",
+      "rater report reader",
+      "stop hint tasks",
+      "score-stop-hint tasks",
+      "hint precision tests"
+    ],
+    "key_topics": [
+      "confirm-mode",
+      "stop",
+      "hint",
+      "score-stop-hint",
+      "suggestion",
+      "precision",
+      "gate",
+      "post",
+      "iteration",
+      "research",
+      "test",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/README.md",
+      "runtime/README.md",
+      "runtime/scripts/README.md",
+      ".skilled/commands/deep/assets/deep-research-confirm.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In confirm mode the operator answers a continue-or-stop question after every iteration",
+    "created_at": "2026-09-29T12:42:40Z",
+    "last_save_at": "2026-09-29T13:54:35.302Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:57e07307409ba9bde4adcc60354dff016511c825fe45d21d0ca617cb87192616",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6e8f39e02b7e2fc1ff225c5e90e8a5ee055d509d50ddf4b6b934ff64b816ff9d",
+      "plan.md": "82cb996a9211f1899a4a6641553ce12d535a28689f253d91cbdc07b2a74c06a3",
+      "tasks.md": "9a06473a03c3d5daa8f4fcab660eaae5a4788c483a33e593dd4974acc8b76dce",
+      "implementation-summary.md": "8e59612163161f928d294dbe906e613347b0e3c112cee61b5b5089e39bbdbb0a"
+    },
+    "last_active_at": null
+  }
+}

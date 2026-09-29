@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hallucination grader",
+      "d4 hallucination grader kind",
+      "score-d4-agreement",
+      "silent mock grader fallback",
+      "research R7 d4 grader",
+      "hallucination grader plan",
+      "score-d4-agreement plan",
+      "grader startup check plan",
+      "d4 keep rule plan",
+      "hallucination grader tasks",
+      "score-d4-agreement tasks",
+      "grader startup check tasks"
+    ],
+    "key_topics": [
+      "hallucination",
+      "grader",
+      "kind",
+      "score-d4-agreement",
+      "silent",
+      "mock",
+      "fallback",
+      "research",
+      "plan",
+      "startup",
+      "check",
+      "keep"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+      "tests/README.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/README.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-benchmark.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 5dim scorer weighs D4, the hallucination dimension, at 0.15 (`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:58`) and takes D4 from the grader (`:300`)",
+    "created_at": "2026-09-29T12:42:36Z",
+    "last_save_at": "2026-09-29T13:53:37.113Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1fca8b718476dd0328de966df0354b17e1d42a4458aa68cbc9e9ad9124b1bedd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "acb29291cf024b53415142da9a7d1398b4993a6c552a2595a8a5b1528334a5ee",
+      "plan.md": "a82fba04bc84143e96654bd12d7464ba49589e67d3520254a9178470668ae004",
+      "tasks.md": "0e10647b6918abce331d57e23819d8139220f333d0b297224524d5deffde683b",
+      "implementation-summary.md": "22a05401971f72547f8c4d1c8c693ca471c54e6057d23c4d8686cb8c0325b83c"
+    },
+    "last_active_at": null
+  }
+}

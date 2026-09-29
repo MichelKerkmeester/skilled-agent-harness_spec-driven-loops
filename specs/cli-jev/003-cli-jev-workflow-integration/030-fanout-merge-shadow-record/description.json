@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record",
+  "description": "Test research R15 offline: find the cross-lineage finding pairs the fan-out merge decides near its 0.15 title line or never compares because their bodies differ, stop at the operator's pair-label gate, then measure whether a Jev or Deem same-or-different judgment matches the labels better than the merge's own decision.",
+  "keywords": [
+    "r15",
+    "jev",
+    "deem",
+    "offline",
+    "fanout",
+    "merge",
+    "shadow",
+    "record"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "030",
+  "folderSlug": "fanout-merge-shadow-record",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

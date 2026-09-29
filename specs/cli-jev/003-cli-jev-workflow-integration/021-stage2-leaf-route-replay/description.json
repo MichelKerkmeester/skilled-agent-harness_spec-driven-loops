@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay",
+  "description": "Test research R25 offline: a deterministic stage-2 replay of each hub's ROUTER.md keyword block, scored on leaf-set F1 against the committed expected_leaf_resources gold, with zero model calls.",
+  "keywords": [
+    "r25",
+    "jev",
+    "deem",
+    "offline",
+    "stage2",
+    "leaf",
+    "route",
+    "replay"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "021",
+  "folderSlug": "stage2-leaf-route-replay",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

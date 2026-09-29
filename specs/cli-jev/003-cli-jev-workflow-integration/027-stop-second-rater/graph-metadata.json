@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stop second-rater replay",
+      "score-stop-rater",
+      "deep-research stop gold",
+      "novelty second rater",
+      "research r8 test phase",
+      "stop rater replay plan",
+      "score-stop-rater build",
+      "stop gold derivation",
+      "novelty score arm plan",
+      "stop rater tasks",
+      "score-stop-rater tasks",
+      "stop gold label gate tasks"
+    ],
+    "key_topics": [
+      "stop",
+      "second-rater",
+      "replay",
+      "score-stop-rater",
+      "deep-research",
+      "gold",
+      "novelty",
+      "second",
+      "rater",
+      "research",
+      "test",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/README.md",
+      "runtime/README.md",
+      "runtime/scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A deep-research loop decides when to stop from the model's own `newInfoRatio`, the self-reported share of new information in each iteration",
+    "created_at": "2026-09-29T12:42:39Z",
+    "last_save_at": "2026-09-29T13:53:42.490Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a630b37e20c7ed5c0477c13ed7014b5ec2f8997c9713c1e5d3150681e8a53787",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5a52f7d035921de2276a98267ab360a1953338514086ba10895070b24053ac06",
+      "plan.md": "74cbe47fa877cf4551131ea43dedfdd627baf179d54795701b362795c51af34a",
+      "tasks.md": "d0ddde394255674bb70a470b8380c65089a6ab71f6136bb67b2c183f8ce5e80b",
+      "implementation-summary.md": "22eeb4be6445c9256398d898e92b8cd0d0ceecf7692e7ad71f33be692849cda5"
+    },
+    "last_active_at": null
+  }
+}

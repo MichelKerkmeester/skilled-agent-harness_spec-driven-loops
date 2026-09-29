@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment folder suggestion",
+      "score-alignment-suggestion",
+      "below-50 alignment census",
+      "low alignment save suggestion",
+      "r13 alignment gold",
+      "alignment suggestion plan",
+      "below-50 census plan",
+      "alignment label gate plan",
+      "save path replay plan",
+      "alignment suggestion tasks",
+      "below-50 census tasks",
+      "alignment label gate verification"
+    ],
+    "key_topics": [
+      "alignment",
+      "folder",
+      "suggestion",
+      "score-alignment-suggestion",
+      "below-50",
+      "census",
+      "low",
+      "save",
+      "r13",
+      "gold",
+      "plan",
+      "label"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/cli/spec-folder/alignment-validator.ts",
+      "specs/sk-doc/z_archive/016-create-diff-mode/001-research-and-requirements/research/lineages/document-diff-2/logs/fanout-lineage.out",
+      "runtime/cli/evals/README.md",
+      "runtime/cli/tests/README.md",
+      ".hermes/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      "evals/check-architecture-boundaries.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-validator.ts",
+        "kind": "code",
+        "path": "runtime/cli/spec-folder/alignment-validator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-lineage.out",
+        "kind": "file",
+        "path": "specs/sk-doc/z_archive/016-create-diff-mode/001-research-and-requirements/research/lineages/document-diff-2/logs/fanout-lineage.out",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/evals/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-architecture-boundaries.ts",
+        "kind": "code",
+        "path": "evals/check-architecture-boundaries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A save checks how well its content matches the target spec folder",
+    "created_at": "2026-09-29T12:42:35Z",
+    "last_save_at": "2026-09-29T13:53:33.668Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b42654bb8a887c642f8ddd612c8856fbcf226d22c1351727dd8a52d820f19e01",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "511d3da00269a31131ea325e624f58003f26fb9a93f9157764c981530b972c6a",
+      "plan.md": "78b3150f36385d1a19e00ec00f2b4c7930dd381b3698f192e1a2173df1548c96",
+      "tasks.md": "82609dbaa55d6db8c0ddc128c3c0caeacaa86321f44b4be20b0b7fe967db9953",
+      "implementation-summary.md": "5c2ceb1dbc31ddef7de2df65a553c1206b8a0aa8483148b5715e896c6853ba1f"
+    },
+    "last_active_at": null
+  }
+}

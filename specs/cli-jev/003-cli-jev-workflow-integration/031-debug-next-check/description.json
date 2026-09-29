@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/031-debug-next-check",
+  "description": "Test research R18 offline: with no caller seam in this repository, measure over an operator-labeled fixture of debug hypotheses whether a Jev or Deem choice of the cheapest next check beats the best constant answer, which includes the research's kill line of always read_code.",
+  "keywords": [
+    "r18",
+    "jev",
+    "deem",
+    "offline",
+    "debug",
+    "next",
+    "check"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "031",
+  "folderSlug": "debug-next-check",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

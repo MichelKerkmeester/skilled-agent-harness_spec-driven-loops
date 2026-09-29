@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge",
+  "description": "Measure offline whether a Jev or Deem score per rubric dimension agrees with the operator's grades of masked replies from the sk-communication reply harness more often than the harness's own mechanical scores do.",
+  "keywords": [
+    "r6",
+    "jev",
+    "deem",
+    "offline",
+    "reply",
+    "harness",
+    "blinded",
+    "judge"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "023",
+  "folderSlug": "reply-harness-blinded-judge",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

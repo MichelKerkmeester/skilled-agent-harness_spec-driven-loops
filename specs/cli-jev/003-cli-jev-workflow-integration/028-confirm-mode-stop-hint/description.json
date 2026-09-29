@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint",
+  "description": "Test research R9 offline: replay the confirm-mode post-iteration gate over phase 027's lineages and measure whether a stop hint drawn from a zero-call rule or from 027's recorded Jev or Deem rater would be right often enough to show.",
+  "keywords": [
+    "r9",
+    "jev",
+    "deem",
+    "offline",
+    "confirm",
+    "mode",
+    "stop",
+    "hint"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "028",
+  "folderSlug": "confirm-mode-stop-hint",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

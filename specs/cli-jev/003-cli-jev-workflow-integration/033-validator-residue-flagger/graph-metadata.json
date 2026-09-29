@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validator residue flagger",
+      "score-residue-flagger",
+      "correctness traceability flagger",
+      "review finding residue",
+      "residue flagger keep rule",
+      "residue flagger plan",
+      "score-residue-flagger plan",
+      "residue flagger label gate",
+      "residue flagger build order",
+      "residue flagger tasks",
+      "score-residue-flagger tasks",
+      "residue flagger verification"
+    ],
+    "key_topics": [
+      "validator",
+      "residue",
+      "flagger",
+      "score-residue-flagger",
+      "correctness",
+      "traceability",
+      "review",
+      "finding",
+      "keep",
+      "rule",
+      "plan",
+      "label"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/README.md",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      ".hermes/skills/deep-review/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/README.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Jev",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Committed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A document can pass every validator and still hold a correctness or traceability defect, because no validator checks either (`research.md:475`)",
+    "created_at": "2026-09-29T12:42:44Z",
+    "last_save_at": "2026-09-29T13:53:52.719Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:98bebb54e7085458aef1562ab414d82c015794e9c664a5ed941781081259d24c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3419433535b4cd5c3eb7f0965cc6dde3c098320104a208452c13ba8209e6d486",
+      "plan.md": "6844cb05dff6eaa4fa947daa5c8c960d0965e1b9cbf6b2c6aadeaaf94665e584",
+      "tasks.md": "6b04719a34e6c1aa86f43efe90f77ac2108cc42168f5da118b6e523efce16812",
+      "implementation-summary.md": "97517b1e92b45da13ca881cbfffce8053b55b93ea25dd7c72baaaa26c7b1c572"
+    },
+    "last_active_at": null
+  }
+}

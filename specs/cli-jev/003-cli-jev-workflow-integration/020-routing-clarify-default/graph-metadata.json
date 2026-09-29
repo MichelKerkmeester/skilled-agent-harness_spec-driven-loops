@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing clarify default",
+      "clarify suggested default",
+      "score-clarify-default",
+      "compiled routing clarify census",
+      "r12 clarify gold",
+      "clarify default plan",
+      "score-clarify-default plan",
+      "clarify census plan",
+      "clarify label gate plan",
+      "clarify default tasks",
+      "score-clarify-default tasks",
+      "clarify census tasks"
+    ],
+    "key_topics": [
+      "routing",
+      "clarify",
+      "default",
+      "suggested",
+      "score-clarify-default",
+      "compiled",
+      "census",
+      "r12",
+      "gold",
+      "plan",
+      "label",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs",
+      ".hermes/skills/sk-create-skill/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-compiled-routing-scenarios.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Not To Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When a compiled hub router finds near-tied modes it answers `clarify` with a short list of alternatives and suggests no default",
+    "created_at": "2026-09-29T12:42:33Z",
+    "last_save_at": "2026-09-29T13:53:30.128Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f17d9c72fd129b844e7bf61164e034ab5608b1fa02a26ff72e7c7819373848f7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "49d4148bcd2effb71e5d9b1a0706219e6eaacb8f79e2be557192165b856037c5",
+      "plan.md": "8f38d29855ef9d22e2eb407efbc1ff5aa9503e21aebb9f7a9f18298cc11c770b",
+      "tasks.md": "a99add958c91462c678eb0505c563d85b72b5593f9258c71c0a7332f58306c79",
+      "implementation-summary.md": "6b9c5f361cb524dec3461a4cd6135c426903c150faaf8bf1a5bb236d7b3e219a"
+    },
+    "last_active_at": null
+  }
+}
