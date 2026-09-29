@@ -39,16 +39,23 @@
       "gate"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/w4-build/runs/census/rows.jsonl",
+      "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
+      ".hermes/skills/sk-create-skill/SKILL.md",
+      "scratch/w4-build/build-evidence.md",
+      "scratch/w4-session/session-evidence.md",
       ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs",
-      ".hermes/skills/sk-create-skill/SKILL.md"
+      ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md"
     ],
     "entities": [
       {
@@ -82,6 +89,48 @@
         "source": "derived"
       },
       {
+        "name": "rows.jsonl",
+        "kind": "file",
+        "path": "scratch/w4-build/runs/census/rows.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-clarify-default.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-clarify-default.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
         "name": "compiled-route.cjs",
         "kind": "file",
         "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
@@ -94,9 +143,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "clarify-default-measurement.md",
         "kind": "doc",
-        "path": ".hermes/skills/sk-create-skill/SKILL.md",
+        "path": ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md",
         "source": "derived"
       },
       {
@@ -152,53 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Keep Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When a compiled hub router finds near-tied modes it answers `clarify` with a short list of alternatives and suggests no default",
     "created_at": "2026-09-29T12:42:33Z",
-    "last_save_at": "2026-09-29T13:53:30.128Z",
+    "last_save_at": "2026-09-29T15:44:04.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f17d9c72fd129b844e7bf61164e034ab5608b1fa02a26ff72e7c7819373848f7",
+    "source_fingerprint": "sha256:8cdae354aa25b24a5526e197f8f3f257c73e8332e8e9b89ac70231bb716a2c50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49d4148bcd2effb71e5d9b1a0706219e6eaacb8f79e2be557192165b856037c5",
-      "plan.md": "8f38d29855ef9d22e2eb407efbc1ff5aa9503e21aebb9f7a9f18298cc11c770b",
-      "tasks.md": "a99add958c91462c678eb0505c563d85b72b5593f9258c71c0a7332f58306c79",
-      "implementation-summary.md": "6b9c5f361cb524dec3461a4cd6135c426903c150faaf8bf1a5bb236d7b3e219a"
+      "spec.md": "0510df6c8de80da6e6647981fd7166805d09cb4c55bcbdce34508a6f5f37f93f",
+      "plan.md": "010994ab00451ee80f58a73e9c0459ec6a8fa8f6a033d76b65efdc3f1bae98fb",
+      "tasks.md": "24fc81ddc75d12e81e5cdf074cfe447e3d8ac963719add7197371207537e2ad2",
+      "implementation-summary.md": "f0491d8bfc0a37645bdb5cb4e1ea401e5443a992a969b71685f87d5bd5912d9d"
     },
     "last_active_at": null
   }

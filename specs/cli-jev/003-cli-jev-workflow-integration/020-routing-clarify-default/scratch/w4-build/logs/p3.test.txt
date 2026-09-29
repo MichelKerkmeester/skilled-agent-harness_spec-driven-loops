@@ -1,0 +1,36 @@
+✔ census counts a mode clarify and keeps only gold among its alternatives (1.55475ms)
+✔ census counts a missing prompt, an engine throw and an unknown hub as unparsed (0.236ms)
+✔ census keeps checklist alternatives apart and writes no row for them (0.194375ms)
+✔ rowLines writes every label empty (0.262417ms)
+✔ parseArgs reads both census flags and refuses an unknown flag or a missing value (0.22075ms)
+✔ hubForSkill maps a hub id and a mode packet and nothing else (0.212375ms)
+✔ countTranscripts counts each front-door line once, escaped or plain (2.020083ms)
+✔ the transcript count prints counts and no transcript text (464.6575ms)
+✔ the gate stops at 29 labeled rows (47.511833ms)
+✔ 30 labeled rows pass the gate and print the fixed rule lines (57.791042ms)
+✔ a label outside the row's alternatives exits 2 and names the row (43.957416ms)
+✔ a baseline above nine tenths prints no headroom (52.167583ms)
+✔ tailP is exact (0.14325ms)
+✔ decideVerdict checks coverage, kill, margin, sign test and flips in order (0.11125ms)
+✔ scoreColumn counts measured, unstable and flips (0.140125ms)
+✔ --deem without --out exits 2 before any output (39.091625ms)
+✔ a stub or unreachable deem backend skips the arm and leaves the rest byte-identical (357.290041ms)
+✔ a jev without a credential prints its identity and one skip line (262.239375ms)
+✔ jev off PATH and a wrong jev version each skip (162.513292ms)
+✔ a deem stub that answers the label keeps (1370.401875ms)
+✔ a deem stub that answers the first alternative stops on margin (1242.702208ms)
+✔ a deem stub that loses to the baseline kills (1071.781ms)
+✔ four failing deem calls in thirty rows stop on coverage (1180.137459ms)
+✔ the label gate blocks the deem arm before any call (36.546833ms)
+✔ a jev stub that answers the label keeps (1068.886792ms)
+✔ with both switches the jev verdict prints before the deem verdict (2017.273292ms)
+✔ a rejected key stops the jev arm with no verdict (112.349875ms)
+✔ a deem stub with another model or an unreadable health answer skips with a details line (174.8275ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9835.768667

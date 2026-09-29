@@ -1,0 +1,9 @@
+.skilled/skills/sk-doc/sk-create-skill/SKILL.md type=auto exit=0 Total issues: 0
+.skilled/skills/sk-doc/sk-create-skill/README.md type=auto exit=0 Total issues: 0
+.skilled/skills/sk-doc/sk-create-skill/changelog/v1.4.0.0.md type=auto exit=0 Total issues: 0
+.skilled/skills/sk-doc/sk-create-skill/scripts/README.md type=auto exit=0 Total issues: 0
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md type=auto exit=0 Total issues: 0
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/count-clarify-and-stop-at-the-label-gate.md type=auto exit=0 Total issues: 0
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md type=playbook exit=0 Total issues: 0
+.skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md type=auto exit=0 Total issues: 0
+.skilled/skills/sk-doc/feature-catalog/feature-catalog.md type=feature_catalog exit=0 Total issues: 0

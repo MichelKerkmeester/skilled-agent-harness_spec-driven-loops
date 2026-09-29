@@ -1,0 +1,16 @@
+I'll start by reading the target files and the reference implementation.Now let me read the rest of the target file and the rest of the reference implementation.Now let me read the test file.Both files are clear. Before editing, let me check the repo rules and the sk-code skill route as the persona directs.REPO RULES.md exists — per the framework, I need to read it before my first write.The trigger table fires on several actions (adding functions/tests, reporting results, ending a turn). Loading the named rule files before the write.Rules loaded. My move: extend `score-clarify-default.cjs` in place with the named functions (frozen scope, per the brief), nothing else. Now making the edits.All four edits applied. Now running the required checks.All three required checks pass. The listed checks prove syntax and count but cannot fail if my expected constants are wrong, so I'll additionally run just the three new tests directly — fast, pure-function, no sockets — before claiming done.All three new tests pass (3/3). Final-state check: confirm the scoped diff is exactly the two files and capture the line counts for the handback.Empty diff output — need to check whether these paths are tracked, ignored, or nested differently in this worktree.The two files are untracked in this worktree (no HEAD version), so `git diff` can't produce a diffstat — the orchestrator will add/commit them. Let me cross-validate my line counts with `wc -l`.Both target files are verified in place. The scoped diff is exactly the two named files (both untracked in this worktree, so the orchestrator's add/commit will pick them up; no stray artifacts created). Move taken: extend `score-clarify-default.cjs` in place with new pure functions beside the existing ones — nothing existing was changed beyond the section renumber and the additive export list, so no caller contract breaks.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs (+154/-6)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs (+45/-0)
+EDITS: score-clarify-default.cjs:553 new section `7. VERDICT` (tailP, modalPick, decideVerdict, scoreColumn, formatP, verdictLine), opened with the exact-BigInt comment; CLI header renumbered to 8
+EDITS: score-clarify-default.cjs:908 EXPORTS header renumbered to 9
+EDITS: score-clarify-default.cjs:930 EXPORTS gains tailP, modalPick, decideVerdict, scoreColumn, formatP, verdictLine
+EDITS: score-clarify-default.test.cjs:263 test 13 `tailP is exact`
+EDITS: score-clarify-default.test.cjs:270 test 14 `decideVerdict checks coverage, kill, margin, sign test and flips in order`
+EDITS: score-clarify-default.test.cjs:287 test 15 `scoreColumn counts measured, unstable and flips` (includes the verdictLine string assertion)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs -> no output (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> no output (exit 0)
+CHECKS: grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> 15 (exit 0)
+CHECKS: node --test --test-name-pattern "tailP is exact|decideVerdict checks|scoreColumn counts" <test file> -> tests 3, pass 3, fail 0 (exit 0)
+BLOCKED REASON: none

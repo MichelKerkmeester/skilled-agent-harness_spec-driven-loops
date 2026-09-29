@@ -1,0 +1,47 @@
+I'll start by reading the style references and checking the target directory structure.
+
+Let me look at an existing test file in that directory for the test banner and conventions.
+
+The existing tests are plain scripts, but the brief explicitly requires a `node:test` file. Let me check for `node:test` usage in the repo and get the exact banner character widths so the box aligns.
+
+Let me get exact box metrics to build matching banner lines.
+
+
+
+The canonical banner is 79 chars with a 74-char interior. Now let me check whether sibling scorer scripts exist elsewhere in the repo (the "scorer trio" reference) to match established patterns, and check the tests README.
+
+
+
+`score-goal-lint.cjs` in sk-create-goal is the closest analogue. Let me read it and its test to match conventions.
+
+Now I have all conventions. Let me generate the exact banner lines (79-char box, 74-char interior) and divider so alignment is byte-exact.
+
+
+
+Now let me check whether the repo uses optional catch binding (unused `error` in catch would be a lint concern) before writing.
+
+Optional catch binding is used in the repo — I'll use `catch {` where the error is unused. Writing FILE 1 now.
+
+Now FILE 2, the node:test file.
+
+Both files written. Now re-reading them to verify against the brief before running checks.
+
+Both files verified against the brief. Now running the three acceptance checks.
+
+All three checks pass. One final structural sanity check on banner alignment and file scope (read-only).
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs (+142/-0)
+- .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs (+103/-0)
+
+EDITS:
+- score-clarify-default.cjs:1-142 created: banner (79-char box copied from the sibling shape), read-only doc comment, sections 1-4 (IMPORTS empty with note, CONSTANTS, CENSUS, EXPORTS), constants NONE_KEY/SOURCES/ACTIONS, functions emptyCell/modeAlternatives/runCensus, module.exports with all six names, no main/require.main
+- tests/score-clarify-default.test.cjs:1-103 created: test banner, 'use strict', node:test/assert/S requires, engineFrom/clarify/route/modes helpers, three node:test cases pinning mode clarify + gold, unparsed paths, and checklist split
+
+CHECKS:
+- node --check .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs -> no output, syntax OK (exit 0)
+- node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> no output, syntax OK (exit 0)
+- grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> 3 (exit 0)
+
+BLOCKED REASON: none

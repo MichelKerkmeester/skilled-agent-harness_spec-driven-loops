@@ -1,0 +1,109 @@
+✔ advisor-index-handoff.md exists and defines the verification-state enum (10.030167ms)
+✔ advisor-index-handoff.md states the description.json / graph-vocabulary guardrail (A7) (0.974458ms)
+✔ every full-handoff create surface references advisor-index-handoff.md by path (33.808417ms)
+✔ every full-handoff create surface reports refresh status as NOT RUN, never auto-refreshing (1.659833ms)
+✔ standalone create surfaces never render H-only metadata fields in the handoff (1.015875ms)
+✔ parent create surfaces render the H-specific fields (description.json, leaf-manifest.json, command-metadata.json) (0.494083ms)
+✔ parent create workflows use the scoped generate-leaf-manifest.cjs --write, never invoke the fleet --fix gate (0.53175ms)
+✔ doctor-skill-advisor.yaml derives skill_graph_validate severity using the shared vocabulary, not a top-level flag (2.940834ms)
+✔ doctor-skill-advisor.yaml terminal verification_status uses the fail/partial/pass/skipped_unverified vocabulary (0.439125ms)
+[sk-doc] leaf-manifest freshness traversal coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs (190.593292ms)
+[sk-doc] compiled-routing-lockstep-parity fixture coverage passed
+[sk-doc] live report: 6/15 surfaces carry the directive block
+[sk-doc] live report: all surfaces carrying the directive are in normalized parity
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/compiled-routing-lockstep-parity.test.cjs (164.54225ms)
+[sk-doc] create journey proof passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs (1096.939542ms)
+[sk-doc] leaf-manifest scope contract coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs (336.101292ms)
+[sk-doc] leaf-resource-contract unit coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs (130.772084ms)
+[root-router-contract] all positive and negative fixtures passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs (95.862333ms)
+[sk-doc] skill-derived regenerator + freshness gate coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs (229.094333ms)
+node:internal/assert/utils:146
+  throw error;
+  ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
++   'cli-classifier',
+    'cli-external-orchestration',
++   'cli-orca',
+    'mcp-code-mode',
+    'mcp-tooling',
+    'sk-code',
+    'sk-communication',
+    'sk-design',
+
+    at testFleetDiscoveryUsesTheAuthoredMarker (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:249:10)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:589:3)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'cli-classifier',
+    'cli-external-orchestration',
+    'cli-orca',
+    'mcp-code-mode',
+    'mcp-tooling',
+    'sk-code',
+    'sk-communication',
+    'sk-design',
+    'sk-doc',
+    'sk-git',
+    'sk-prompt',
+    'sk-vision',
+    'system-deep-loop',
+    'system-skill-advisor',
+    'system-spec-kit'
+  ],
+  expected: [
+    'cli-external-orchestration',
+    'mcp-code-mode',
+    'mcp-tooling',
+    'sk-code',
+    'sk-communication',
+    'sk-design',
+    'sk-doc',
+    'sk-git',
+    'sk-prompt',
+    'sk-vision',
+    'system-deep-loop',
+    'system-skill-advisor',
+    'system-spec-kit'
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.8.2
+✖ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs (90.030583ms)
+[sk-doc] validate-compiled-routing-scenarios content-admission fixtures passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs (213.3495ms)
+[sk-doc] validate-playbook-topology quote-tolerance coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-playbook-topology.test.cjs (104.123458ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1111.284125
+
+✖ failing tests:
+
+test at .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:1:1
+✖ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs (90.030583ms)
+  'test failed'

@@ -1,0 +1,3 @@
+?? specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-build/

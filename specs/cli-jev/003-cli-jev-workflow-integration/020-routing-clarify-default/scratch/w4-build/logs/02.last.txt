@@ -1,0 +1,53 @@
+I'll start by reading the target files and the reference file mentioned in the brief.
+
+Now let me examine the dependencies the new code will use: the compiled-route module, a mode-registry, the canary fixture, and the corpus files.
+
+
+
+
+
+
+
+Now let me load the skill the persona names and check the repo's rule trigger table (Gate 5).
+
+
+
+Before editing, I'll verify the new cross-require will actually resolve (the scorer will `require` the scenarios validator, which pulls `@spec-kit/shared`), and check for other consumers.
+
+The cross-require resolves cleanly. Now let me get the exact divider bytes so my edits match precisely.
+
+Rules and skill context loaded. Now I'll make the edits to the scorer: imports, constants, and the new PROMPT SOURCES + CLI sections.
+
+Now the main insertion: PROMPT SOURCES and CLI sections after the census core.
+
+Now renumber the EXPORTS section and extend the exports with the require.main entry point.
+
+The scorer is assembled. Let me re-read the full file to verify the result end to end.
+
+The scorer reads correctly. Now append the three tests to the test file.
+
+Both files are edited. Now the acceptance checks: `node --check` on both, the `grep -c` count, and a read-only diff stat.
+
+All three acceptance checks pass. Let me run one load-level smoke check of the cross-module require chain (the thing the test runner will exercise) and confirm my diff scope.
+
+Scope is clean: only my two named files (untracked, as the prior brief left them). Let me capture final line counts for the handback.
+
+All checks pass and the diff is scoped to exactly the two named files. Handback:
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs (+350/-1; 142→491 lines)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs (+27/-0; 103→130 lines)
+EDITS: score-clarify-default.cjs:17-20 IMPORTS replaced placeholder with fs/path requires and `scenarios = require('./validate-compiled-routing-scenarios.cjs')`
+EDITS: score-clarify-default.cjs:29-34 CONSTANTS appended REPO_ROOT, COMPILED_ROUTE_MODULE, CANARY_ROOT, CORPUS_DIR, CORPUS_FILES, USAGE
+EDITS: score-clarify-default.cjs:140-335 inserted `4. PROMPT SOURCES` — readRegistry, hubForSkill, loadCanaryPrompts, loadPlaybookPrompts, loadCorpusPrompts, rowLines (each JSDoc'd)
+EDITS: score-clarify-default.cjs:337-463 inserted `5. CLI` — parseArgs (first-error, missing-value rules), censusLines (header, per-hub/source pairs, total, corpus line), async main (deps sinks/repoRoot, exit 2 on arg error, canary→playbook→corpus through runCensus, `real clarify rate: not measured`, --rows-out, --report, return 0)
+EDITS: score-clarify-default.cjs:466 renumbered EXPORTS 4→6; :469-485 added the nine new exports; :487-491 added the require.main block after EXPORTS
+EDITS: score-clarify-default.test.cjs:105-111 test 4 `rowLines writes every label empty` (deepEqual + Object.keys order)
+EDITS: score-clarify-default.test.cjs:113-121 test 5 `parseArgs reads both census flags and refuses an unknown flag or a missing value`
+EDITS: score-clarify-default.test.cjs:123-130 test 6 `hubForSkill maps a hub id and a mode packet and nothing else`
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs -> no output (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> no output (exit 0)
+CHECKS: grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> 6 (exit 0)
+CHECKS: node -e require of the scorer (cross-module load smoke) -> exports: NONE_KEY,SOURCES,ACTIONS,emptyCell,modeAlternatives,runCensus,readRegistry,hubForSkill,loadCanaryPrompts,loadPlaybookPrompts,loadCorpusPrompts,rowLines,parseArgs,censusLines,main; load ok (exit 0)
+CHECKS: git status --short scoped to scripts/ -> only the two named files, both untracked (exit 0)
+BLOCKED REASON: none

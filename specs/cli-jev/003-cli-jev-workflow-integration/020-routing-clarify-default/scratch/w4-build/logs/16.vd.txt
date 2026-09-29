@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md
+Document type: feature_catalog
+Total issues: 0

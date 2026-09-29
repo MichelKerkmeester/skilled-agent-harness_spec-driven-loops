@@ -1,0 +1,9 @@
+All steps complete. Source read in full (62 lines), file placed byte-for-byte, both checks pass.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md (+61/-0)
+EDITS: .skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md:1 created via `cp` from the draft, byte-for-byte (no reformatting)
+CHECKS: `cmp specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-build/drafts/clarify-default-measurement.md .skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md` -> no output (exit 0)
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md` -> `Total issues: 0` (exit 0)
+BLOCKED REASON: none

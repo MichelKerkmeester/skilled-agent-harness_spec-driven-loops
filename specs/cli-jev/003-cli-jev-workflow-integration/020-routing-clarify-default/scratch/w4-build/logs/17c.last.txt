@@ -1,0 +1,17 @@
+Both edits applied exactly as specified; only the named file was touched by me (the other modified files in `git status` belong to concurrent workers).
+
+**Verification summary:**
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog` → `Total issues: 0` (exit 0)
+- Same command without `--type` → 1 `document_type_fallback` warning (pre-existing at HEAD), exit 0 — reported, not fixed
+- EDIT 1 verified at line 18, EDIT 2 verified at line 94, each applied once
+
+Note: the file's working-tree diff is +5/−4 because it already carried a prior brief's frontmatter change (+3/−2) before my edits (+2/−2).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md (+2/-2 from this brief; file total +5/-4 including prior brief's frontmatter edit)
+EDITS: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:18 inserted the zero-call clarify census sentence after the compiled-routing fast-path sentence
+EDITS: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:94 note now credits the clarify census of `sk-create-skill` alongside the goal-criteria lint, "which ship no catalog of their own"
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog` -> `Total issues: 0` (exit 0)
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md` -> `[document_type_fallback] No document type rule matched ... README rules were applied.` `Total issues: 1` (exit 0)
+BLOCKED REASON: none

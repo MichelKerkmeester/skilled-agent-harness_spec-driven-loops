@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/count-clarify-and-stop-at-the-label-gate.md
+Document type: playbook_feature
+Total issues: 0

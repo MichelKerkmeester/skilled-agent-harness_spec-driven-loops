@@ -1,0 +1,14 @@
+✔ census counts a mode clarify and keeps only gold among its alternatives (0.593542ms)
+✔ census counts a missing prompt, an engine throw and an unknown hub as unparsed (0.077209ms)
+✔ census keeps checklist alternatives apart and writes no row for them (0.053708ms)
+✔ rowLines writes every label empty (0.081292ms)
+✔ parseArgs reads both census flags and refuses an unknown flag or a missing value (0.054958ms)
+✔ hubForSkill maps a hub id and a mode packet and nothing else (0.060625ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44.239542

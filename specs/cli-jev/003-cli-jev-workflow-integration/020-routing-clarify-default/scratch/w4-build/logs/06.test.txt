@@ -1,0 +1,27 @@
+✔ census counts a mode clarify and keeps only gold among its alternatives (0.756375ms)
+✔ census counts a missing prompt, an engine throw and an unknown hub as unparsed (0.205792ms)
+✔ census keeps checklist alternatives apart and writes no row for them (0.244ms)
+✔ rowLines writes every label empty (0.116792ms)
+✔ parseArgs reads both census flags and refuses an unknown flag or a missing value (0.102708ms)
+✔ hubForSkill maps a hub id and a mode packet and nothing else (0.099083ms)
+✔ countTranscripts counts each front-door line once, escaped or plain (2.582583ms)
+✔ the transcript count prints counts and no transcript text (596.435625ms)
+✔ the gate stops at 29 labeled rows (43.270208ms)
+✔ 30 labeled rows pass the gate and print the fixed rule lines (56.539875ms)
+✔ a label outside the row's alternatives exits 2 and names the row (45.364917ms)
+✔ a baseline above nine tenths prints no headroom (59.526958ms)
+✔ tailP is exact (0.234916ms)
+✔ decideVerdict checks coverage, kill, margin, sign test and flips in order (0.176333ms)
+✔ scoreColumn counts measured, unstable and flips (0.216ms)
+✔ --deem without --out exits 2 before any output (48.457708ms)
+✔ a stub or unreachable deem backend skips the arm and leaves the rest byte-identical (234.998292ms)
+✔ a jev without a credential prints its identity and one skip line (163.21725ms)
+✔ jev off PATH and a wrong jev version each skip (155.401333ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1486.151833
