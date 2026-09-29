@@ -99,8 +99,12 @@ Common pitfalls: `SPECDOC_SUFFICIENCY_004` (research.md needs anchor + citation 
 ### Step 7: Commit + push
 
 - Stay on main (no feature branches per memory rule)
-- Conventional commit message: `feat|chore|fix(<packet>): <short description>`
-- Co-Authored-By trailer
+- Subject: `type(subsystem): summary`. Take the type from the first match in the priority list in `.skilled/skills/sk-git/SKILL.md` (a doc-only packet is `docs`) and name the owning subsystem as the scope, such as `spec-kit`. Never use the packet number or path as the scope.
+- Body: at least one prose line that says why. Trailers do not count as a body.
+- Trailers: `Spec: <track>/<packet>`, the packet's path below `specs/` without the `specs/` segment. `prepare-commit-msg` stamps `Commit-Id:`, so never type it.
+- No attribution trailers. The `commit-msg` hook refuses `Co-Authored-By:` and `Claude-Session:`.
+
+The full contract is `.skilled/skills/sk-git/assets/commit-message-template.md`.
 
 Verification gate: confirm `git status --short` only includes the intended packet files before commit.
 
