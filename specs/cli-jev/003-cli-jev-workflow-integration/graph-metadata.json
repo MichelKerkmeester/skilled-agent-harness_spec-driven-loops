@@ -176,13 +176,13 @@
         "source": "derived"
       },
       {
-        "name": "Status Complete",
+        "name": "Deciding Deem",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Cursor Grok",
+        "name": "No Deem",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -190,17 +190,17 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-28T19:38:23.989Z",
+    "last_save_at": "2026-09-29T00:52:27.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:aaa5eba5962502c300637f7618a217811142ae32ae9f5a44c79f14d31bb5088e",
+    "source_fingerprint": "sha256:c4eeb3f434d9f665fe954c9bb734e9523b0c3f9192cb289defe81b2eed371b74",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6b1a513bb09f7111d53e09f439b636b807e1e04509c4cdecc221d0346ffabb58"
+      "spec.md": "b0fd92e07541169ad1567e83a727e8134bc9c710fa9b6c77644ed7b8c6c31d17"
     },
     "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
     "last_active_at": "2026-09-27T09:37:40.643Z"

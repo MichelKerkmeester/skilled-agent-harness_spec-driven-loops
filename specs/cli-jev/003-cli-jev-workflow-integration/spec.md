@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
-    last_updated_at: "2026-09-28T10:00:00Z"
-    last_updated_by: "spec-pass-leaf"
-    recent_action: "Recorded wave 3 answers for 016 and 009"
-    next_safe_action: "Build 008, then 016, per D3 of goal.md"
+    last_updated_at: "2026-09-29T00:49:00Z"
+    last_updated_by: "parent-closure-leaf"
+    recent_action: "Phase map synced: 002, 003, 005, 006, 008, 016 and 017 Complete, 009 Planned with no Deem keep"
+    next_safe_action: "Operator: the open items in goal.md's log row Open for the operator"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 94
     open_questions:
       - "Which recommendations pass the usefulness bar and become build phases"
     answered_questions: []
@@ -85,7 +85,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 
 ### Out of Scope
 
-- Building a phase before the operator releases it. On 2026-09-27 the operator released 018, then 010, then 011 to 015 (014 with gate option A). On 2026-09-28 the operator released every remaining Planned phase, built in the order 008, 016, 002, 017, 003, 005, 006 and 009 (D3 of `goal.md`). 009 still builds only after a Deem `keep` in 002 or 017 (D4 of `goal.md`).
+- Building a phase before the operator releases it. On 2026-09-27 the operator released 018, then 010, then 011 to 015 (014 with gate option A). On 2026-09-28 the operator released every remaining Planned phase in the order 008, 016, 002, 017, 003, 005, 006 and 009, with builds on disjoint paths free to run in parallel (D3 of `goal.md`). 009 builds only after a Deem `keep` in 002 or 017 (D4 of `goal.md`). Neither printed one, so 009 stays Planned.
 - Changing the `cli-jev` hub or its `cli-usage` transport contract, except the move under `cli-classifier` that phase 009 plans for D2 of `goal.md`.
 - Editing the vendored repositories under `context/`. They are reference material.
 - Storing any key or secret in Jev state, in a digest or in a research artifact.
@@ -121,13 +121,13 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-deep-research/ | Context digests and research angles, the Grok 4.7 roster entry, a 30-iteration fan-out over DeepSeek, MiMo and Grok, and a fresh Opus synthesis | Complete |
-| 2 | 002-advisor-jev-tiebreak-arm/ | A zero-call census of the advisor's near-tie rows with three comparators and a power line first, then, offline and by hand, whether a Jev or Deem `choice` beats the scorer under a keep rule that can fail, each backend in its own column. Dormant without a Jev key or a healthy local Deem | Planned |
-| 3 | 003-goal-verifier-jev-shadow/ | A zero-call Pi census of goal-verify nudges, then the verifier's first error rates from three zero-call arms on an operator-labeled set. A model arm and an opt-in shadow mode in the OpenCode goal plugin, preferring Deem, follow only past a gate fixed before the build. Dormant without a Jev key or a healthy local Deem | Planned |
+| 2 | 002-advisor-jev-tiebreak-arm/ | A zero-call census of the advisor's near-tie rows with three comparators and a power line first, then, offline and by hand, whether a Jev or Deem `choice` beats the scorer under a keep rule that can fail, each backend in its own column. Dormant without a Jev key or a healthy local Deem | Complete |
+| 3 | 003-goal-verifier-jev-shadow/ | A zero-call Pi census of goal-verify nudges, then the verifier's first error rates from three zero-call arms on an operator-labeled set. A model arm and an opt-in shadow mode in the OpenCode goal plugin, preferring Deem, follow only past a gate fixed before the build. Dormant without a Jev key or a healthy local Deem | Complete |
 | 4 | 004-deep-research-expansion/ | Re-synthesize round 1 from the AI Council review, run 20 forced iterations over Grok 4.7, MiMo V2.6 Pro, SWE-2 Max and DeepSeek V4.1 Flash, write the final synthesis and reconcile the Planned build phases | Complete |
-| 5 | 005-compaction-recall-harness/ | A zero-call census of host compactions over transcripts the operator names: what the stock summary and the recorded brief keep, and a printed stop line that decides whether an offline deletion arm on either backend is worth building. Dormant without a Jev key or a healthy local Deem | Planned |
-| 6 | 006-goal-criteria-lint/ | A lexical lint of goal criteria against rules 4 and 5 of `sk-create-goal`, under a rubric the operator adopts before labeling. A model arm on either backend only past the stop rule. Dormant without a Jev key or a healthy local Deem | Planned |
+| 5 | 005-compaction-recall-harness/ | A zero-call census of host compactions over transcripts the operator names: what the stock summary and the recorded brief keep, and a printed stop line that decides whether an offline deletion arm on either backend is worth building. Dormant without a Jev key or a healthy local Deem | Complete |
+| 6 | 006-goal-criteria-lint/ | A lexical lint of goal criteria against rules 4 and 5 of `sk-create-goal`, under a rubric the operator adopts before labeling. A model arm on either backend only past the stop rule. Dormant without a Jev key or a healthy local Deem | Complete |
 | 7 | 007-classifier-deep-research/ | Research round 3 on classifier models, Jev and a local Deem 0.8B: context reduction, validator judgment calls, sk-prompt, sk-design and a `cli-classifier` hub, over 45 forced iterations on five model families with one Opus 5.5 high lead per lineage, a fresh Opus 5.5 max synthesis and the Planned phases reconciled for both backends | Complete |
-| 8 | 008-cli-classifier-hub/ | Mint the `cli-classifier` hub with `cli-deem` as its first mode, a Node standard-library client for the local Deem server, tested against a fake server first. `cli-jev` stays where it is | Planned |
+| 8 | 008-cli-classifier-hub/ | Mint the `cli-classifier` hub with `cli-deem` as its first mode, a Node standard-library client for the local Deem server, tested against a fake server first. `cli-jev` stays where it is | Complete |
 | 9 | 009-cli-jev-hub-move/ | Move `cli-jev` into `cli-classifier` as mode `cli-jev` over its unchanged `cli-usage` packet, with a route-replay baseline before and after | Planned |
 | 10 | 010-trigger-index-search-fixes/ | Unblock the trigger-index rebuild that this packet's vendored model cards refuse, regenerate the stale committed index and keep a build aimed elsewhere off every tracked file. A staleness check is measured before it is placed, and the score-0 miss shape stays the owner's open decision. Owner `system-spec-kit`, no classifier | Complete |
 | 11 | 011-spec-validator-fixes/ | Make `AC_COVERAGE` report a cited `file:line` that does not resolve, with the enforce switch's floor, cutoff and advisory default unchanged. Let `check-goal.cjs` accept a path ending in `goal.md`, exit contract frozen. Owners `system-spec-kit` and `sk-create-goal`, no classifier | Complete |
@@ -135,8 +135,8 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 13 | 013-sk-prompt-framework-docs/ | Reconcile sk-prompt's promise of 7 frameworks with the 5 its registry holds, from the owner's own sources, and make a run read only the chosen framework's section, checked by a before-and-after byte count. Owner `sk-prompt`, no classifier | Complete |
 | 14 | 014-sk-design-doc-and-routing-check/ | Rewrite sk-design's stale rule 6 after a live compiled-route rerun and put the md-generator's 80-point gate to the owner as two options with a recommendation. Record the hub's first routing accuracy by replaying its playbook scenarios. Owner `sk-design`, no classifier | Complete |
 | 15 | 015-fanout-merge-and-steering-fixes/ | Diagnose from the three rounds' committed lineage files why `fanout-merge.cjs` rebuilds fewer count-only findings than the lineages recorded, then fix it with a regression test built from those files. Give each iteration its lineage's `steer.md` when one exists. Owner `system-deep-loop`, no classifier | Complete |
-| 16 | 016-deem-local-hardening/ | The operator's four answers on the local Deem install, 2026-09-28: the open CORS exposure accepted with a revisit trigger, a local access log through `deem-ctl`, `DEEM_N_ORDERS` held at 1 until 002's order-flip rate and a reviewed copy of `deem-ctl` in `007`'s context with a `cmp` check. No patch to Deem's code, no classifier | Planned |
-| 17 | 017-deem-search-narrowing-arm/ | An offline arm where one Deem `choice` picks the spec track a question is about and ripgrep searches inside it, kept only if it beats a zero-call ripgrep and trigger-index baseline by a margin fixed before the build. Needs 008 and 010. Dormant without a Jev key or a healthy local Deem | Planned |
+| 16 | 016-deem-local-hardening/ | The operator's four answers on the local Deem install, 2026-09-28: the open CORS exposure accepted with a revisit trigger, a local access log through `deem-ctl`, `DEEM_N_ORDERS` held at 1 until 002's order-flip rate and a reviewed copy of `deem-ctl` in `007`'s context with a `cmp` check. No patch to Deem's code, no classifier | Complete |
+| 17 | 017-deem-search-narrowing-arm/ | An offline arm where one Deem `choice` picks the spec track a question is about and ripgrep searches inside it, kept only if it beats a zero-call ripgrep and trigger-index baseline by a margin fixed before the build. Needs 008 and 010. Dormant without a Jev key or a healthy local Deem | Complete |
 | 18 | 018-worktree-provision-shared-link/ | Stop worktree provisioning from skipping a package whose only dependencies are `@spec-kit/*` `file:` links, with a fixture test, and plan this worktree's one-time sk-doc repair as an install that waits for the operator's yes. Owner `sk-git`, no classifier | Complete |
 
 ### Phase Transition Rules
