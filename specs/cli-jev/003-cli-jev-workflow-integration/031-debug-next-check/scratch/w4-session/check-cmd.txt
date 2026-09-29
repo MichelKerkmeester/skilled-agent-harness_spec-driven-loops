@@ -1,0 +1,1 @@
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit && npx vitest run runtime/tests/debug-next-check.vitest.ts

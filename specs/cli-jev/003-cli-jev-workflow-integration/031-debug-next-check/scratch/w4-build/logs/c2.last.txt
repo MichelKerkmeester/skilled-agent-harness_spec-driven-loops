@@ -1,0 +1,25 @@
+S2 is implemented and the briefed checks pass. One disclosure before the handback: design §3's `gate at 30` row lists "four `constant` lines, `baseline:` line" alongside "no stop line" — those constant/baseline lines are S3's deliverable ("Prints lines 3-5"), so at S2 that test asserts the fixture/labels lines and the absence of any `stop:` line; S3's named tests (`baseline best`, `baseline tie`, `no headroom`) cover the constant/baseline half on the same 30-row input.
+
+Verification evidence I ran (both from repo root):
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` → no output, exit 0.
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` → `11`, exit 0.
+- Vitest was not run (not in this brief; the orchestrator runs it). The skill-directory worktree-wide diff still shows other workers' sk-doc/deep-loop/orchestration-log edits that predate or bypass this brief; I wrote only the two named paths.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs (+207/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts (+91/-0)
+EDITS: score-debug-next-check.mjs:14-19 added createHash, existsSync, readFileSync, statSync, basename imports
+EDITS: score-debug-next-check.mjs:52-59 added LABELS, FIXTURE_FIELDS, LABEL_GATE constants
+EDITS: score-debug-next-check.mjs:130-180 added section 6 REPOSITORY PATH GUARD: canonicalizeExistingPrefix + exported isInsideRepository (dev/ino identity walk)
+EDITS: score-debug-next-check.mjs:182-294 added section 7 FIXTURE READER: parseFixtureRows (exact six-field schema, line+id named refusals), sha256Hex, exported readFixture (inside-repo refusal before read, rows/sha256/counts on success)
+EDITS: score-debug-next-check.mjs:296-298 renumbered CLI divider 6 -> 8
+EDITS: score-debug-next-check.mjs:337-339 renumbered MAIN divider 7 -> 9
+EDITS: score-debug-next-check.mjs:359-377 main: --jev/--deem need --out refusal; fixture read before any census line prints
+EDITS: score-debug-next-check.mjs:391-400 main: fixture/labels lines and the <30 label-gate stop line
+EDITS: debug-next-check.vitest.ts:63-81 added fixtureRow and writeFixture temp helpers
+EDITS: debug-next-check.vitest.ts:126-195 added tests: --jev without --out, --deem without --out, fixture valid, unknown label, fixture inside repo, gate at 29, gate at 30
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs -> no output, exit 0
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts -> 11, exit 0
+BLOCKED REASON: none
+```

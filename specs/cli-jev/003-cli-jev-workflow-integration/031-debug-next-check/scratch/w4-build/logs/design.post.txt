@@ -1,0 +1,41 @@
+ M .hermes/skills/system-spec-kit/SKILL.md
+ M .skilled/skills/sk-doc/sk-create-skill/SKILL.md
+ M .skilled/skills/system-spec-kit/README.md
+ M .skilled/skills/system-spec-kit/SKILL.md
+ M .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/system-spec-kit/runtime/cli/evals/README.md
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/README.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/tasks.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/graph-metadata.json
+?? .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs
+?? .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+?? .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs
+?? .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts
+?? .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md
+?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md
+?? .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-session/

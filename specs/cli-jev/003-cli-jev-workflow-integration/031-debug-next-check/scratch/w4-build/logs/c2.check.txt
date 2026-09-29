@@ -1,0 +1,50 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ❯ runtime/tests/debug-next-check.vitest.ts (11 tests | 2 failed) 127402ms
+     ✓ default run  19825ms
+     ✓ seam planted 113ms
+     ✓ seam clean 79ms
+     ✓ mined corpus  23878ms
+     ✓ --jev without --out  761ms
+     ✓ --deem without --out 35ms
+     ✓ fixture valid 6ms
+     ✓ unknown label 37ms
+     ✓ fixture inside repo 36ms
+     × gate at 29 34506ms
+     × gate at 30 48125ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  runtime/tests/debug-next-check.vitest.ts > score-debug-next-check > gate at 29
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ runtime/tests/debug-next-check.vitest.ts:172:3
+    170|   });
+    171|
+    172|   it('gate at 29', () => {
+       |   ^
+    173|     const rows = Array.from({ length: 29 }, (_, index) => fixtureRow({…
+    174|     const fixture = writeFixture(rows);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  runtime/tests/debug-next-check.vitest.ts > score-debug-next-check > gate at 30
+Error: Test timed out in 30000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ runtime/tests/debug-next-check.vitest.ts:185:3
+    183|   });
+    184|
+    185|   it('gate at 30', () => {
+       |   ^
+    186|     const rows = Array.from({ length: 30 }, (_, index) => fixtureRow({…
+    187|     const fixture = writeFixture(rows);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 9 passed (11)
+   Start at  19:41:42
+   Duration  127.55s (transform 36ms, setup 20ms, import 16ms, tests 127.40s, environment 0ms)
+

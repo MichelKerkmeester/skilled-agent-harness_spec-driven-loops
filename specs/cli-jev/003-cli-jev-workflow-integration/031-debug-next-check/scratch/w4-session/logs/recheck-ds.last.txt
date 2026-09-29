@@ -1,0 +1,23 @@
+**Finding (P1 recheck):** `closed` — all three sentences now match `seamSearch` in `score-debug-next-check.mjs`, which runs `git grep -l next_check -- :!specs SEAM_FIXTURES ...SEAM_SELF` with `SEAM_FIXTURES` excluding the generated trigger-phrase fixture folder (`runtime/cli/retrieval/fixtures`) and `SEAM_SELF` excluding `**/*debug-next-check*` and `**/*debug-next-check*/**` — i.e. every path whose name holds `debug-next-check`:
+- changelog:19 states tracked files outside `specs/`, minus the fixture folder and "every path named for this census" (compressed but consistent with the name rule).
+- feature-catalog:28 states tracked files outside `specs/` naming `next_check`, minus the fixture folder and "every path whose name holds `debug-next-check`" — exact.
+- playbook:72 states tracked files outside `specs/` and `runtime/cli/retrieval/fixtures/`, minus "every path whose name holds `debug-next-check`"; the old false "script and test appear as hits once tracked" claim is gone.
+
+Other seam sentences in the four files: playbook:31 (print behavior: `seam: none` or one line per hit) matches script lines 1381–1384; feature-catalog:50 carries no exclusion claim; feature-catalog:20's summary is superseded by the exact statement at line 28; README contains no seam sentence. The rationale clause "script, test and docs carry the search key" is compressed (test: 5, feature-catalog: 3 occurrences of `next_check`; playbook/changelog carry only the hyphenated name and are excluded by name) but the operative exclusion rule as stated is exact — a nit, not load-bearing.
+
+**New P0/P1 in the three files:** none.
+
+`node .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` from repo root -> first line `seam: none` (exit 0; full output also matches the changelog's `mined: debug_delegation=1 hypothesis_files=0`, `mined rows: 0`).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck; no file edited or created)
+EDITS: none (no edits made)
+CHECKS: node .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs -> `seam: none` (exit 0)
+CHECKS: rg -n -i 'seam' changelog/v4.6.0.0.md feature-catalog/.../debug-next-check.md manual-testing-playbook/.../debug-next-check.md -> matches at changelog:19, feature-catalog:26/28/50, playbook:31/72; all verified true (exit 0)
+CHECKS: rg -n -i 'left out|exclude|appear as hit|fixture folder|tracked file' on the three files + runtime/scripts/README.md -> only the three fixed sentences; README has no seam sentence (exit 0)
+CHECKS: rg -c next_check runtime/tests/debug-next-check.vitest.ts feature-catalog/.../debug-next-check.md -> test:5, feature-catalog:3 (exit 0)
+CHECKS: git status --porcelain -- <four named files> -> all `??` untracked, on-disk text is the reviewed state (exit 0)
+BLOCKED REASON: none
+
+VERDICT: PASS

@@ -1,0 +1,9 @@
+SKILL ROUTING: User directed → sk-doc → `sk-create-readme` (read its `SKILL.md` and `assets/readme-template.md`; matched the model paragraphs `:313-317` and `:319-323` in shape). Every claim in the paragraph was checked against `score-debug-next-check.mjs` (module header comment, `LABEL_GATE = 30`, `stop: fewer than 30 labeled rows` at `:1410`, `payloadSplit`/`jev arm skipped: payload not accepted` at `:1425`, `parseCliArgs` switches) and FACTS. No `verdict` line is claimed as printed (ruling 4). Placement after the completion-claim audit paragraph per FACTS.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/README.md (+8/-0)
+EDITS: .skilled/skills/system-spec-kit/README.md:330 one measurement paragraph inserted after the completion-claim audit paragraph, before `## 5. COMMANDS`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/README.md -> `✅ VALID: .skilled/skills/system-spec-kit/README.md`, `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/README.md -> `1 file changed, 8 insertions(+)` (exit 0)
+BLOCKED REASON: none

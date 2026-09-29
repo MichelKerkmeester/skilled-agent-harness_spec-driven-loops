@@ -1,0 +1,9 @@
+.skilled/skills/system-spec-kit/SKILL.md
+.skilled/skills/system-spec-kit/README.md
+.skilled/skills/system-spec-kit/runtime/scripts/README.md
+.skilled/skills/system-spec-kit/changelog/v4.6.0.0.md
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md
+.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md
+.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs

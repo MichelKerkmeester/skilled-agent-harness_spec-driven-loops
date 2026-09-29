@@ -1,0 +1,146 @@
+I'll start by reading the phase documents and the parent goal to understand the task.
+
+Now let me read the phase documents.
+
+
+
+Now let me explore the sibling script and its tests, plus the directory structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+I've read the pattern file. Now let me look at the phase 017 and 002 implementations for the Deem/Jev arm shapes and exit handling, plus the vendored hypotheses catalog.
+
+Now let me check the spec's cited lines and the existing doc files in the skill.
+
+Citations check out so far. Let me verify the seam search and read the existing doc files.
+
+Important find — the seam search now returns a hit outside `specs/`. Let me inspect it.
+
+
+
+
+
+The seam search has a real conflict — a generated retrieval fixture now mirrors this phase's own trigger phrase. Let me investigate further and check how sibling phases handled census searches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me read the vitest suite, the runtime config, and the stub-test patterns.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The concurrent phase 022 build is in flight with a close sibling scorer. Let me examine its structure as the pattern for gates and verdicts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me read the two skill hubs the persona requires — sk-code and sk-doc — to shape the build steps.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I have everything I need. Let me check the target directory state before writing.
+
+All checks are done. Now I'll write the build design.
+
+Now the verification commands from the brief.
+
+The file passes the line and section checks. Let me verify one citation I made before finalizing.
+
+
+
+One citation needs correcting — the column-line reference points at the wrong line. Let me fix it.
+
+
+
+Now the final verification from the brief, and a check that only this one file was touched.
+
+
+
+The design is complete and verified. Summary of what was done:
+
+**Deliverable**: `specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/design.md` (159 lines, six sections).
+
+**Key findings encoded in the design**:
+- All spec-cited `file:line` premises check out except one drift: `git grep -l next_check -- ':!specs'` now prints a generated retrieval fixture (`phrase-variants.json:27782`) that mirrors this spec's own trigger phrase, so the seam rule excludes `runtime/cli/retrieval/fixtures/` — flagged as open question Q1 with the amendment wording.
+- The interface pins every switch, exit code, stdout line, written file, exported function and constant, following `judge-agreement.mjs` for the gates and exact BigInt tails and the alignment scorer's deciding-tail `p=` semantics.
+- 30 test cases, both arms on stubs; 8 Devin code steps, 6 Pi doc steps (each with path, sk-doc mode, model file and facts) and one generated-copy/validation step; a proof plan row per goal criterion.
+- Open questions Q2–Q11 (p semantics, `mined:` tokens, withheld-line shape, refusal messages, timeouts, changelog version, column/keep-rule lines, fixture lines, SHA placement) each carry a proposed answer.
+
+```
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/design.md (+159/-0)
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/design.md:1 created the build design with sections 1-6 (159 lines)
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/design.md:157 corrected the column-line citation to score-track-narrowing.mjs:1008-1013
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/design.md:58 pinned withheld= after unstable= on the Jev column line
+CHECKS: wc -l specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/design.md -> 159 specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/design.md (exit 0)
+CHECKS: grep -c '^## ' specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/design.md -> 6 (exit 0)
+BLOCKED REASON: none
+```
