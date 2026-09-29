@@ -100,7 +100,7 @@
     "mysql2": "^3.23.1",
     "nitro": "3.0.260603-beta",
     "node-sql-parser": "^5.4.0",
-    "nodemailer": "^9.1.1",
+    "nodemailer": "^10.0.12",
     "papaparse": "^5.5.3",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "4.7.76",
@@ -160,7 +160,7 @@
     "@xmldom/xmldom": "^0.8.15",
     "esbuild": "^0.28.1",
     "fast-uri": "^3.1.5",
-    "nanoid": "3.3.17",
+    "nanoid": "3.3.18",
     "postcss": "^8.5.23",
     "pptxgenjs": {
       "image-size": "$image-size"
