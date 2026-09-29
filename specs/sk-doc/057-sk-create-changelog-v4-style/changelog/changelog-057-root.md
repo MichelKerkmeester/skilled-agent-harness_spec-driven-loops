@@ -10,7 +10,7 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
-## 2026-09-23
+## 2026-09-29
 
 > Spec folder: `specs/sk-doc/057-sk-create-changelog-v4-style` (Level 1)
 
@@ -24,7 +24,8 @@ The /create:changelog skill now writes release notes in the narrative house styl
 - Dispatch cli-codex drafting review for the new template shape -- folded per the approved plan into the finished-artifact consistency review (T010), the blueprint was drafted from the direct v4 analysis
 - [P] Reconcile command YAMLs with the new template -- both parse as valid YAML, remaining mentions are the new prohibition wording
 - Add the packet changelog changelog/v1.1.0.0.md so SKILL.md 1.1.0.0 has a matching entry -- compact v4 format, structural checks PASSED 0, VALID, 0 hard blockers
-- Bump packet to 1.1.0.0, write nested changelog entry, fill implementation-summary.md -- nested entry written via the generator (changelog/changelog-057-root.md), summary filled, decision note records the 2-5 to 2-7 heading amendment
+- Concision pass: add the selection and say-it-once rules to the template (Choose by Reader Impact, a wider Drop by Default list, Say Each Fact Once, The Cut Test and a Usually column beside each ceiling) -- 14,136 to 12,683 bytes, VALID, 0 hard blockers, and template sections 2 to 5 keep the numbers CHG-005 and the auto YAML cite
+- Concision pass: add a SELECT CONTENT step, say-it-once rules and two content checks to both command YAMLs, and replace "tasks.md completed items" as a content source -- both parse with yaml.safe_load
 
 ### Changed
 
@@ -76,7 +77,7 @@ The /create:changelog skill now writes release notes in the narrative house styl
 
 - Published changelogs are unchanged. History stays as written, so older entries beside a new one will not match. The template tells writers not to copy them.
 - The nested changelog format is owned by the spec-kit templates. Its shape (H1, dated H2, Added/Changed/Fixed) is not the v4 two-tier narrative, by design.
-- The exemplar path depends on an uncommitted move. .skilled/changelog/system-spec-kit/v4.0.0.0.md resolves through a symlink to .skilled/skills/system-spec-kit/changelog/v4.0.0.0.md, which is still untracked (moved byte-for-byte from the 033 packet's changelog folder). Committing this packet without that move leaves twelve exemplar pointers dead across the seven contract files.
+- The exemplar lives on the release line. It moved to .skilled/changelog/skilled/v4.0.0.0.md, which is committed, and every pointer names that path.
 - The routing pin and SKILL.md ship together. The re-pinned sk-doc manifests hold the hash of the edited SKILL.md. Committing one without the other leaves sk-doc serving legacy routing.
 - Frontmatter versions move at commit time. The build segment counts each doc's git edits, so the version tool needs a second pass once these edits are committed.
-- Nothing is committed. All changes sit unstaged in the working tree.
+- A mode's SKILL.md edit moves the sk-doc pin. The hub hashes every mode's SKILL.md as a routing input, so the concision pass left sk-doc on legacy routing in the working tree. The pre-commit route-remint gate re-mints and stages the manifest in the same commit.

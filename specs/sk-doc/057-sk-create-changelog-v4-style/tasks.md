@@ -61,6 +61,12 @@ contextType: "general"
 - [x] T024 Add the packet changelog `changelog/v1.1.0.0.md` so SKILL.md 1.1.0.0 has a matching entry -- compact v4 format, structural checks PASSED 0, VALID, 0 hard blockers
 - [x] T025 Apply the derived frontmatter versions to six child docs -- README 1.1.0.12, template 1.1.0.28, references/README 1.1.0.9, worked-examples 1.1.0.8, topology-edge-cases 1.1.0.5, version-bump-rules 1.1.0.4, verify ok 7 of 7
 - [x] T026 Operator-directed drift fixes outside the packet -- Hermes mirrors regenerated for sk-create-changelog and sk-design, Codex hooks reinstalled, sk-doc compiled-routing activation manifests re-pinned to the current policy hash in both copies
+- [x] T028 Concision pass: add the selection and say-it-once rules to the template (Choose by Reader Impact, a wider Drop by Default list, Say Each Fact Once, The Cut Test and a Usually column beside each ceiling) -- 14,136 to 12,683 bytes, VALID, 0 hard blockers, and template sections 2 to 5 keep the numbers CHG-005 and the auto YAML cite
+- [x] T029 Concision pass: rewrite SKILL.md so each rule lives in one place -- 35,933 to 25,585 bytes, sections 1 to 12, steps 1 to 7 and the router code, keyword line and keywords comment unchanged (sha256 equal to HEAD), description under the 130-character budget, `quick_validate.py` valid with no warning
+- [x] T030 Concision pass: rewrite the mode README and the four references -- 32,652 to 25,067 bytes together, the compact worked example replaced by a lean rewrite of v1.3.1.0 annotated with what it leaves out, and the expanded excerpt's repeated fact removed. The 4 hard blockers `version-bump-rules.md` carried before the pass are gone
+- [x] T031 Concision pass: add a SELECT CONTENT step, say-it-once rules and two content checks to both command YAMLs, and replace "tasks.md completed items" as a content source -- both parse with `yaml.safe_load`
+- [x] T032 Concision pass: renumber the component discovery rules and repoint CHG-008 and CHG-009 from rule 8 to rule 7 -- rule 8 had pointed at the spec-path tiebreaker since the hub rule was inserted, so the citations were stale before this pass
+- [x] T033 Concision pass: bump SKILL.md to 1.3.2.0 and write `changelog/v1.3.2.0.md` to the new rules, then regenerate only this mode's Hermes copy -- 2 summary sentences and 4 bullets where v1.3.1.0 had 3 and 6
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,6 +81,9 @@ contextType: "general"
 - [x] T020 Make the structural checks reproducible (`scratch/check-changelog-structure.py`) and rerun them -- exemplar PASSED 0, both worked examples PASSED 0, the real v3.9.0.0 changelog FAILED 10, the pre-fix compact example FAILED 4
 - [x] T021 Repair the packet record and rerun every gate -- metadata re-derived, placeholders filled, status reconciled, nested changelog regenerated, validate.sh --strict RESULT: PASSED
 - [x] T027 Rerun every gate after the drift round -- sk-doc serves compiled with two route replays correct, Hermes check leaves only deep-ai-council, Codex hooks --check OK, validate.sh --strict RESULT: PASSED
+- [x] T034 Concision pass: extend `scratch/check-changelog-structure.py` with O1 (internal labels) and O2 (a sentence repeated across sections) and prove both -- the exemplar, v4.0.0.1, both worked examples and v1.3.2.0 PASSED 0. v1.3.1.0 and v1.3.0.0 FAILED 2 each on scenario IDs, v4.0.0.2 FAILED 1 on a packet number and a planted repeat FAILED 1 on O2
+- [x] T035 Concision pass: prove no rule was lost -- 108 load-bearing tokens (paths, commands, limits and rule words) present in the old seven files are all present in the new ones, and 60 link and path targets resolve with 0 missing
+- [x] T036 Concision pass: rerun the validators on every touched doc -- `validate_document.py` 0 issues and `hvr_scan.py` 0 hard blockers on all eight mode files and both playbook scenarios, and every voice ceiling rose or held except the template's, which moved from 91 to 89 on soft-deduction words its new rules use
 <!-- /ANCHOR:phase-3 -->
 
 ---

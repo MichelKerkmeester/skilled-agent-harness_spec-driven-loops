@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The /create:changelog skill now writes release notes in the v4 exemplar's narrative style, and a post-close review brought the contract, the command YAMLs and the exemplar into agreement so the exemplar passes every check the contract teaches."
+description: "The /create:changelog skill writes release notes in the v4 exemplar's narrative style, and a later concision pass made its entries and its own docs shorter, with each fact said once and no rule lost."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,16 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/057-sk-create-changelog-v4-style"
-    last_updated_at: "2026-09-23T07:04:05Z"
+    last_updated_at: "2026-09-29T07:44:06Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed open ends and drift after the review"
-    next_safe_action: "Commit with the exemplar move and routing pins"
+    recent_action: "Concision pass for entries and docs"
+    next_safe_action: "Commit so the hook re-mints the sk-doc pin"
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
       - ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md"
       - ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md"
       - ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.1.0.0.md"
+      - ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md"
       - ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
     session_dedup:
       fingerprint: "sha256:9ac79662045130751bf265dffd2b51e3f41f295806b9e6bfda44d7c36a660d01"
@@ -73,6 +74,12 @@ A third pass closed what the review had only reported. SKILL.md and `references/
 
 The same pass fixed drift the gates surfaced. The SKILL.md edits had moved the sk-doc routing policy hash, so both activation manifests were re-pinned and sk-doc serves compiled routing again. The Hermes mirrors for `sk-create-changelog` and `sk-design` were regenerated, and the Codex hooks were reinstalled after the session-start check flagged drift.
 
+### Concision pass
+
+Entries written to the contract still ran long, because the workflow drew content from every completed task and nothing stopped one fact from appearing in four sections. The template now chooses content before any of it is written. It keeps a change only when the reader would notice it, act on it or decide differently because of it. Test changes, internal labels, process detail and follow-on housekeeping join the drop list. Say Each Fact Once gives every section one job, and a Usually column beside each ceiling sets the target without moving the checks the exemplar must pass. Both command YAMLs gained a SELECT CONTENT step, and `tasks.md` is no longer a list to transcribe.
+
+The skill's own docs got the same treatment. Each rule now lives in one place, with the template owning what an entry says and SKILL.md owning the workflow, so the seven docs fell from 82,721 to 63,335 bytes. The router code, the keyword line and every section, rule and step number the playbook cites stayed in place, apart from one rule renumbering whose two stale citations were repointed. The worked example is now a lean rewrite of the mode's v1.3.1.0 entry, annotated with what it leaves out, and the mode's own v1.3.2.0 entry was written to the new rules.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -93,7 +100,9 @@ The same pass fixed drift the gates surfaced. The SKILL.md edits had moved the s
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json` | Modified | The promoted copy, byte-identical to the authored one |
 | `~/.codex/hooks.json` (outside the repo) | Reinstalled | Operator-directed drift fix by the repo's installer, backup kept beside it |
 | `specs/sk-doc/057-sk-create-changelog-v4-style/*` | Created | This packet's docs, this summary and the nested changelog entry |
-| `specs/sk-doc/057-sk-create-changelog-v4-style/scratch/check-changelog-structure.py` | Created | The structural checks as a rerunnable script, so the positive and negative tests can be repeated |
+| `specs/sk-doc/057-sk-create-changelog-v4-style/scratch/check-changelog-structure.py` | Created | The structural checks as a rerunnable script, so the positive and negative tests can be repeated. The concision pass added O1 (internal labels) and O2 (repeated sentences) |
+| `.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md` | Created | Concision pass: the mode's entry, written to the new rules |
+| `.skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md`, `route-skilled-release-entry.md` | Modified | Concision pass: CHG-008 and CHG-009 cite rule 7 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -125,6 +134,10 @@ The drift round followed an operator instruction to fix any open ends or existin
 | The GitHub release body drops frontmatter and the title H1 | Allowing frontmatter would otherwise publish it into the release notes, because the release step only stripped a leading H1 |
 | Release mechanics are documented, not changed | The spec keeps release mechanics out of scope. The YAMLs already defined them, so calling them UNKNOWN was a false claim about existing behavior, and correcting it changes no mechanics |
 | README, packet changelog and drift fixes go beyond the frozen file list | The operator asked for every open end and drift fixed. Each one is recorded here and in tasks T022-T026 rather than folded silently into the original scope |
+| Selection rules live in the template, and SKILL.md points to them | Step 4 reads the template anyway, and a rule stated in both files is the drift the first pass spent three rounds reconciling |
+| Ceilings stay, a Usually column sets the target | The exemplar must still pass every check it teaches, so the concision pass moved the target and left the gate where it was |
+| The discovery rules were renumbered and two citations repointed | CHG-008 and CHG-009 already cited a stale rule 8. Merging three ownership rules into one left the release-line rule at 7, and both scenarios now cite it |
+| O1 and O2 run in the packet checker, and the workflow applies them as step 5 checks | The spec keeps new runtime scanners out of scope. O2 catches a near-verbatim repeat, and a paraphrased one rests on the writer following Say Each Fact Once |
 | Other sessions' drift stays theirs | The `deep-ai-council` Hermes mirror is fixed in its own worktree, and the `cli-external-orchestration` stale manifest belongs to its live cutover. Touching either would collide with that work |
 | The drafting review (T004) was folded into the consistency review | The approved plan carried one cli-codex review. The blueprint was drafted from the direct v4 analysis, so the dispatched review audited the finished artifacts instead |
 <!-- /ANCHOR:decisions -->
@@ -153,6 +166,10 @@ The drift round followed an operator instruction to fix any open ends or existin
 | cli-codex consistency review | 9 confirmed findings, all applied. The post-close review found the further gaps listed above, all fixed |
 | REQ-004 stale-reference check | PASS: no stale usage remains. SKILL.md and topology-edge-cases.md keep explanatory retirement notes (the retired `Search` and `Saving Memories` vocabulary, the stale `NN--` and `00--` patterns) by design |
 | spec validate.sh --strict on this packet | PASS, RESULT: PASSED, 0 errors, 0 warnings |
+| Concision pass: O1 and O2 controls | PASS: the exemplar, v4.0.0.1, both worked examples and v1.3.2.0 pass with 0 violations. v1.3.1.0 and v1.3.0.0 fail on scenario IDs, v4.0.0.2 on a packet number and a planted repeat on O2 |
+| Concision pass: no rule lost | PASS: 108 load-bearing tokens from the old seven docs all survive, the router code and keyword lines hash equal to HEAD and 60 link and path targets resolve |
+| Concision pass: validators | PASS: `validate_document.py` 0 issues, `hvr_scan.py` 0 hard blockers on every touched doc, `quick_validate.py` valid with the description warning gone, both YAMLs parse |
+| Concision pass: Hermes copy | PASS for `sk-create-changelog` after a single-skill render. The check still reports `cli-opencode`, drifted by another session's commit |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -162,10 +179,12 @@ The drift round followed an operator instruction to fix any open ends or existin
 
 1. **Published changelogs are unchanged.** History stays as written, so older entries beside a new one will not match. The template tells writers not to copy them.
 2. **The nested changelog format is owned by the spec-kit templates.** Its shape (H1, dated H2, Added/Changed/Fixed) is not the v4 two-tier narrative, by design.
-3. **The exemplar path depends on an uncommitted move.** `.skilled/changelog/system-spec-kit/v4.0.0.0.md` resolves through a symlink to `.skilled/skills/system-spec-kit/changelog/v4.0.0.0.md`, which is still untracked (moved byte-for-byte from the 033 packet's changelog folder). Committing this packet without that move leaves twelve exemplar pointers dead across the seven contract files.
+3. **The exemplar lives on the release line.** It moved to `.skilled/changelog/skilled/v4.0.0.0.md`, which is committed, and every pointer names that path.
 4. **The routing pin and SKILL.md ship together.** The re-pinned sk-doc manifests hold the hash of the edited SKILL.md. Committing one without the other leaves sk-doc serving legacy routing.
 5. **Frontmatter versions move at commit time.** The build segment counts each doc's git edits, so the version tool needs a second pass once these edits are committed.
-6. **Nothing is committed.** All changes sit unstaged in the working tree.
+6. **A mode's SKILL.md edit moves the sk-doc pin.** The hub hashes every mode's SKILL.md as a routing input, so the concision pass left sk-doc on legacy routing in the working tree. The pre-commit route-remint gate re-mints and stages the manifest in the same commit.
+7. **Child doc versions still read 1.1.0.x.** The version tool derives 1.3.0.x but skips a doc that already has a version unless `--update` is passed.
+8. **CHG-005 expects the retired vocabulary.** Its expected result still lists `New Features` and `Bug Fixes`, which the template forbids, and the concision pass left the playbook's other scenarios alone.
 <!-- /ANCHOR:limitations -->
 
 ---
