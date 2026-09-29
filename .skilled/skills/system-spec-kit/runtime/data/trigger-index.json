@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9481e0d60815d22e1b1c76c7f5aff8930df2b020a750f119a969793f69fa85df",
+  "manifestHash": "0286547dee78e337e18bcd92a375433ced868d22a227131cbc8d2fb5a21ed11d",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -88,8 +88,13 @@
     ".skilled/skills/cli-classifier/README.md",
     ".skilled/skills/cli-classifier/ROUTER.md",
     ".skilled/skills/cli-classifier/benchmark/README.md",
+    ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
+    ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/README.md",
+    ".skilled/skills/cli-classifier/changelog/v0.1.0.0.md",
+    ".skilled/skills/cli-classifier/changelog/v0.2.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v1.0.0.0.md",
+    ".skilled/skills/cli-classifier/changelog/v1.1.0.0.md",
     ".skilled/skills/cli-classifier/cli-deem/README.md",
     ".skilled/skills/cli-classifier/cli-deem/changelog/v1.0.0.0.md",
     ".skilled/skills/cli-classifier/cli-deem/feature-catalog/availability-check/health-check.md",
@@ -101,6 +106,26 @@
     ".skilled/skills/cli-classifier/cli-deem/references/deem-ctl-lifecycle.md",
     ".skilled/skills/cli-classifier/cli-deem/references/model-pin.md",
     ".skilled/skills/cli-classifier/cli-deem/references/wire-contract.md",
+    ".skilled/skills/cli-classifier/cli-usage/README.md",
+    ".skilled/skills/cli-classifier/cli-usage/assets/question-shaping-card.md",
+    ".skilled/skills/cli-classifier/cli-usage/benchmark/README.md",
+    ".skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-authenticated-verification/skill-benchmark-report.md",
+    ".skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-phase-004-unauthenticated-pass/skill-benchmark-report.md",
+    ".skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/skill-benchmark-report.md",
+    ".skilled/skills/cli-classifier/cli-usage/benchmark/reports/README.md",
+    ".skilled/skills/cli-classifier/cli-usage/changelog/v1.0.0.0.md",
+    ".skilled/skills/cli-classifier/cli-usage/changelog/v1.0.1.0.md",
+    ".skilled/skills/cli-classifier/cli-usage/changelog/v1.0.2.0.md",
+    ".skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md",
+    ".skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md",
+    ".skilled/skills/cli-classifier/cli-usage/feature-catalog/judgment-primitives/judgment-primitives.md",
+    ".skilled/skills/cli-classifier/cli-usage/feature-catalog/surfaces/surfaces.md",
+    ".skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md",
+    ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/cli-classifier/cli-usage/references/cli-reference.md",
+    ".skilled/skills/cli-classifier/cli-usage/references/integration-patterns.md",
+    ".skilled/skills/cli-classifier/cli-usage/references/mcp-server.md",
+    ".skilled/skills/cli-classifier/cli-usage/references/providers-and-models.md",
     ".skilled/skills/cli-external-orchestration/README.md",
     ".skilled/skills/cli-external-orchestration/ROUTER.md",
     ".skilled/skills/cli-external-orchestration/benchmark/README.md",
@@ -342,31 +367,6 @@
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md",
     ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
-    ".skilled/skills/cli-jev/ROUTER.md",
-    ".skilled/skills/cli-jev/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
-    ".skilled/skills/cli-jev/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md",
-    ".skilled/skills/cli-jev/changelog/v0.1.0.0.md",
-    ".skilled/skills/cli-jev/changelog/v0.2.0.0.md",
-    ".skilled/skills/cli-jev/cli-usage/README.md",
-    ".skilled/skills/cli-jev/cli-usage/assets/question-shaping-card.md",
-    ".skilled/skills/cli-jev/cli-usage/benchmark/README.md",
-    ".skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-authenticated-verification/skill-benchmark-report.md",
-    ".skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-phase-004-unauthenticated-pass/skill-benchmark-report.md",
-    ".skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/skill-benchmark-report.md",
-    ".skilled/skills/cli-jev/cli-usage/benchmark/reports/README.md",
-    ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.0.0.md",
-    ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.1.0.md",
-    ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md",
-    ".skilled/skills/cli-jev/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md",
-    ".skilled/skills/cli-jev/cli-usage/feature-catalog/feature-catalog.md",
-    ".skilled/skills/cli-jev/cli-usage/feature-catalog/judgment-primitives/judgment-primitives.md",
-    ".skilled/skills/cli-jev/cli-usage/feature-catalog/surfaces/surfaces.md",
-    ".skilled/skills/cli-jev/cli-usage/feature-catalog/transport-classification/transport-classification.md",
-    ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/manual-testing-playbook.md",
-    ".skilled/skills/cli-jev/cli-usage/references/cli-reference.md",
-    ".skilled/skills/cli-jev/cli-usage/references/integration-patterns.md",
-    ".skilled/skills/cli-jev/cli-usage/references/mcp-server.md",
-    ".skilled/skills/cli-jev/cli-usage/references/providers-and-models.md",
     ".skilled/skills/cli-orca/README.md",
     ".skilled/skills/cli-orca/assets/PROVENANCE.md",
     ".skilled/skills/cli-orca/changelog/v0.1.0.0.md",
@@ -19970,14 +19970,14 @@
       7647
     ],
     "2026 09 20 cli jev playbook re run": [
-      342
+      101
     ],
     "2026 09 20 cli jev validation": [
-      333,
-      341
+      78,
+      100
     ],
     "2026 09 26 cli jev validation": [
-      334
+      79
     ],
     "2026 09 27 sk design validation": [
       1069
@@ -21222,7 +21222,7 @@
       71
     ],
     "active spec folder handoff": [
-      119
+      144
     ],
     "active vec attach plan": [
       7694
@@ -22090,7 +22090,7 @@
       2030
     ],
     "advisor identity": [
-      95
+      120
     ],
     "advisor import acceptance criteria": [
       11968
@@ -22832,7 +22832,7 @@
       10437
     ],
     "agent delegation table": [
-      162
+      187
     ],
     "agent dispatch table": [
       2183
@@ -23902,10 +23902,10 @@
       10854
     ],
     "anthropic": [
-      107
+      132
     ],
     "anthropic model roster": [
-      128
+      153
     ],
     "anthropic ttl repair extension": [
       3075
@@ -23917,7 +23917,7 @@
       1204
     ],
     "anti hallucination wording": [
-      123
+      148
     ],
     "anti pattern catalog": [
       1212
@@ -24172,7 +24172,7 @@
       1104
     ],
     "approved spec folder": [
-      146
+      171
     ],
     "arc 008 closes hold path": [
       9289
@@ -25501,10 +25501,10 @@
       7116
     ],
     "audited deep loop runtime": [
-      96
+      121
     ],
     "auth checks provider ids": [
-      273
+      298
     ],
     "auth method display": [
       499
@@ -25516,10 +25516,10 @@
       496
     ],
     "authenticated official surface": [
-      345
+      104
     ],
     "authenticated providers count": [
-      303
+      328
     ],
     "authentication": [
       2407,
@@ -26240,7 +26240,7 @@
       10760
     ],
     "batched run": [
-      84
+      89
     ],
     "bayesian scorer": [
       1909
@@ -26532,7 +26532,7 @@
       10910
     ],
     "benchmark evidence citations point to the hub": [
-      267
+      292
     ],
     "benchmark evidence for skills": [
       1289
@@ -26809,13 +26809,13 @@
       3975
     ],
     "blank line removals": [
-      149
+      174
     ],
     "blank lines and dividers": [
-      157
+      182
     ],
     "blank padded divider": [
-      116
+      141
     ],
     "blast radius breadcrumbs": [
       10321
@@ -27528,10 +27528,10 @@
       2255
     ],
     "build briefs one change": [
-      309
+      334
     ],
     "build doc dispatch shape": [
-      224
+      249
     ],
     "build failure recovery steps": [
       826
@@ -27565,7 +27565,7 @@
       5774
     ],
     "buildhermeslineagecommand": [
-      229,
+      254,
       2542
     ],
     "buildlineagecommand delegation plan": [
@@ -27626,8 +27626,8 @@
       1730
     ],
     "bundle gate strictness": [
-      123,
-      152
+      148,
+      177
     ],
     "bundled regression sweep 009": [
       9305
@@ -28114,13 +28114,13 @@
       4852
     ],
     "canonical card cross link": [
-      153
+      178
     ],
     "canonical card moved": [
       1980
     ],
     "canonical card reference": [
-      254
+      279
     ],
     "canonical continuity": [
       9228
@@ -28224,7 +28224,7 @@
       1978
     ],
     "canonical reference moved to hub": [
-      156
+      181
     ],
     "canonical review artifacts frozen": [
       1810
@@ -29949,7 +29949,7 @@
       4651
     ],
     "chatgpt oauth sign in": [
-      161
+      186
     ],
     "check ac coverage": [
       10260
@@ -30127,7 +30127,7 @@
       11370
     ],
     "check prompt quality card sync": [
-      234
+      259
     ],
     "check review convergence": [
       1826
@@ -30368,10 +30368,10 @@
       11030
     ],
     "child dispatch envelope": [
-      206
+      231
     ],
     "child dispatch preamble": [
-      331
+      356
     ],
     "child drift audit result": [
       11028
@@ -30461,13 +30461,13 @@
       11430
     ],
     "choice criteria": [
-      338
+      97
     ],
     "choice judgment": [
-      337
+      96
     ],
     "choice selection": [
-      85
+      90
     ],
     "chokidar dead dependency": [
       11667
@@ -30702,10 +30702,10 @@
       7548
     ],
     "circular delegation": [
-      144
+      169
     ],
     "circular self dispatch guard": [
-      249
+      274
     ],
     "citation census": [
       11447
@@ -30893,54 +30893,54 @@
       2196
     ],
     "claude auth status": [
-      126
+      151
     ],
     "claude baseline md scaffold": [
       1281
     ],
     "claude cli": [
-      91,
-      107
+      116,
+      132
     ],
     "claude code": [
-      107,
+      132,
       2043
     ],
     "claude code agent catalog": [
-      132
+      157
     ],
     "claude code agent delegation": [
-      132
+      157
     ],
     "claude code agent flag routing": [
-      132
+      157
     ],
     "claude code background execution": [
-      135
+      160
     ],
     "claude code budget cap flag": [
-      133
+      158
     ],
     "claude code built in tools": [
-      133
+      158
     ],
     "claude code cli flags": [
-      134
+      159
     ],
     "claude code deep reasoning delegation": [
-      135
+      160
     ],
     "claude code default model sonnet": [
-      136
+      161
     ],
     "claude code delegation": [
-      112
+      137
     ],
     "claude code dispatch prompt discipline": [
-      108
+      133
     ],
     "claude code dispatch templates": [
-      109
+      134
     ],
     "claude code doc contract evidence": [
       9666
@@ -30952,10 +30952,10 @@
       9669
     ],
     "claude code effort thinking lever": [
-      136
+      161
     ],
     "claude code goal hook benchmark": [
-      110
+      135
     ],
     "claude code goal nesting": [
       12071,
@@ -30966,61 +30966,61 @@
       3671
     ],
     "claude code json schema output": [
-      134
+      159
     ],
     "claude code model overrides": [
-      108
+      133
     ],
     "claude code model selection": [
-      134
+      159
     ],
     "claude code model selection strategy": [
-      135
+      160
     ],
     "claude code non interactive mode": [
-      134
+      159
     ],
     "claude code permission modes": [
-      134
+      159
     ],
     "claude code plan mode read only": [
-      133
+      158
     ],
     "claude code prompt precedence rule": [
-      108
-    ],
-    "claude code prompt quality card": [
-      108
-    ],
-    "claude code prompt templates": [
-      109
-    ],
-    "claude code providers and models": [
-      136
-    ],
-    "claude code readme rewritten": [
-      118
-    ],
-    "claude code review prompt template": [
-      109
-    ],
-    "claude code session resume flags": [
-      134
-    ],
-    "claude code structured output schema": [
       133
     ],
+    "claude code prompt quality card": [
+      133
+    ],
+    "claude code prompt templates": [
+      134
+    ],
+    "claude code providers and models": [
+      161
+    ],
+    "claude code readme rewritten": [
+      143
+    ],
+    "claude code review prompt template": [
+      134
+    ],
+    "claude code session resume flags": [
+      159
+    ],
+    "claude code structured output schema": [
+      158
+    ],
     "claude code test generation prompt": [
-      109
+      134
     ],
     "claude code troubleshooting": [
-      134
+      159
     ],
     "claude code userpromptsubmit hook": [
       2043
     ],
     "claude code vs opencode comparison": [
-      133
+      158
     ],
     "claude code wrapper": [
       3669,
@@ -31042,7 +31042,7 @@
       908
     ],
     "claude extended thinking dispatch": [
-      133
+      158
     ],
     "claude gemini codex devin hook adapter results": [
       9073
@@ -31091,10 +31091,10 @@
       7213
     ],
     "claude opus 5 5 model id": [
-      130
+      155
     ],
     "claude opus sonnet haiku dispatch": [
-      136
+      161
     ],
     "claude output projection wrapper": [
       3669,
@@ -31225,7 +31225,7 @@
       1515
     ],
     "clear scoring rubric": [
-      124,
+      149,
       1539
     ],
     "clearer support for git workflows": [
@@ -31272,7 +31272,10 @@
       1148
     ],
     "cli classifier 1 0 0 0": [
-      79
+      83
+    ],
+    "cli classifier 1 1 0 0": [
+      84
     ],
     "cli classifier benchmark": [
       77
@@ -31281,10 +31284,10 @@
       77
     ],
     "cli classifier benchmark index": [
-      78
+      80
     ],
     "cli classifier benchmark reports": [
-      78
+      80
     ],
     "cli classifier hub": [
       75,
@@ -31294,7 +31297,7 @@
       2742
     ],
     "cli classifier hub identity": [
-      79
+      83
     ],
     "cli classifier hub move verification": [
       2751
@@ -31327,76 +31330,79 @@
       2750
     ],
     "cli classifier v1 0 0 0": [
-      79
+      83
+    ],
+    "cli classifier v1 1 0 0": [
+      84
     ],
     "cli claude code 1 0 0 0": [
-      112
+      137
     ],
     "cli claude code 1 1 1 0": [
-      113
+      138
     ],
     "cli claude code 1 1 10 0": [
-      114
+      139
     ],
     "cli claude code 1 1 11 0": [
-      115
+      140
     ],
     "cli claude code 1 1 12 0": [
-      116
+      141
     ],
     "cli claude code 1 1 13 0": [
-      117
+      142
     ],
     "cli claude code 1 1 2 0": [
-      118
+      143
     ],
     "cli claude code 1 1 3 0": [
-      119
+      144
     ],
     "cli claude code 1 1 4 0": [
-      120
+      145
     ],
     "cli claude code 1 1 5 0": [
-      121
+      146
     ],
     "cli claude code 1 1 6 0": [
-      122
+      147
     ],
     "cli claude code 1 1 7 0": [
-      123
+      148
     ],
     "cli claude code 1 1 8 0": [
-      124
+      149
     ],
     "cli claude code 1 1 9 0": [
-      125
+      150
     ],
     "cli claude code 1 2 0 0": [
-      126
+      151
     ],
     "cli claude code 1 3 0 0": [
-      127
+      152
     ],
     "cli claude code 1 4 0 0": [
-      128
+      153
     ],
     "cli claude code 1 5 0 0": [
-      129
+      154
     ],
     "cli claude code 1 5 1 0": [
-      130
+      155
     ],
     "cli claude code 1 5 2 0": [
-      131
+      156
     ],
     "cli claude code benchmark": [
-      110
+      135
     ],
     "cli claude code benchmark index": [
-      111
+      136
     ],
     "cli claude code benchmark reports": [
-      111
+      136
     ],
     "cli claude code executor": [
       7363
@@ -31423,151 +31429,151 @@
       1822
     ],
     "cli claude code skill benchmark artifacts": [
-      110
+      135
     ],
     "cli claude code v1 0 0 0": [
-      112
+      137
     ],
     "cli claude code v1 1 1 0": [
-      113
+      138
     ],
     "cli claude code v1 1 10 0": [
-      114
+      139
     ],
     "cli claude code v1 1 11 0": [
-      115
+      140
     ],
     "cli claude code v1 1 12 0": [
-      116
-    ],
-    "cli claude code v1 1 13 0": [
-      117
-    ],
-    "cli claude code v1 1 2 0": [
-      118
-    ],
-    "cli claude code v1 1 3 0": [
-      119
-    ],
-    "cli claude code v1 1 4 0": [
-      120
-    ],
-    "cli claude code v1 1 5 0": [
-      121
-    ],
-    "cli claude code v1 1 6 0": [
-      122
-    ],
-    "cli claude code v1 1 7 0": [
-      123
-    ],
-    "cli claude code v1 1 8 0": [
-      124
-    ],
-    "cli claude code v1 1 9 0": [
-      125
-    ],
-    "cli claude code v1 2 0 0": [
-      126
-    ],
-    "cli claude code v1 3 0 0": [
-      127
-    ],
-    "cli claude code v1 4 0 0": [
-      128
-    ],
-    "cli claude code v1 5 0 0": [
-      129
-    ],
-    "cli claude code v1 5 1 0": [
-      130
-    ],
-    "cli claude code v1 5 2 0": [
-      131
-    ],
-    "cli codex 1 0 0 0": [
       141
     ],
-    "cli codex 1 0 1 0": [
+    "cli claude code v1 1 13 0": [
       142
     ],
-    "cli codex 1 1 0 0": [
+    "cli claude code v1 1 2 0": [
       143
     ],
-    "cli codex 1 3 1 0": [
+    "cli claude code v1 1 3 0": [
       144
     ],
-    "cli codex 1 3 2 0": [
+    "cli claude code v1 1 4 0": [
       145
     ],
-    "cli codex 1 3 3 0": [
+    "cli claude code v1 1 5 0": [
       146
     ],
-    "cli codex 1 4 0 0": [
+    "cli claude code v1 1 6 0": [
       147
     ],
-    "cli codex 1 4 1 0": [
+    "cli claude code v1 1 7 0": [
       148
     ],
-    "cli codex 1 4 10 0": [
+    "cli claude code v1 1 8 0": [
       149
     ],
-    "cli codex 1 4 2 0": [
+    "cli claude code v1 1 9 0": [
       150
     ],
-    "cli codex 1 4 3 0": [
+    "cli claude code v1 2 0 0": [
       151
     ],
-    "cli codex 1 4 4 0": [
+    "cli claude code v1 3 0 0": [
       152
     ],
-    "cli codex 1 4 5 0": [
+    "cli claude code v1 4 0 0": [
       153
     ],
-    "cli codex 1 4 6 0": [
+    "cli claude code v1 5 0 0": [
       154
     ],
-    "cli codex 1 4 7 0": [
+    "cli claude code v1 5 1 0": [
       155
     ],
-    "cli codex 1 4 8 0": [
+    "cli claude code v1 5 2 0": [
       156
     ],
-    "cli codex 1 4 9 0": [
-      157
-    ],
-    "cli codex 1 5 0 0": [
-      158
-    ],
-    "cli codex 1 6 0 0": [
-      159
-    ],
-    "cli codex 1 6 1 0": [
-      160
-    ],
-    "cli codex 1 7 0 0": [
-      161
-    ],
-    "cli codex 1 7 1 0": [
-      162
-    ],
-    "cli codex 1 8 0 0": [
-      163
-    ],
-    "cli codex 1 9 0 0": [
-      164
-    ],
-    "cli codex 1 9 1 0": [
-      165
-    ],
-    "cli codex 1 9 2 0": [
+    "cli codex 1 0 0 0": [
       166
     ],
-    "cli codex 1 9 3 0": [
+    "cli codex 1 0 1 0": [
       167
     ],
-    "cli codex 1 9 4 0": [
+    "cli codex 1 1 0 0": [
       168
+    ],
+    "cli codex 1 3 1 0": [
+      169
+    ],
+    "cli codex 1 3 2 0": [
+      170
+    ],
+    "cli codex 1 3 3 0": [
+      171
+    ],
+    "cli codex 1 4 0 0": [
+      172
+    ],
+    "cli codex 1 4 1 0": [
+      173
+    ],
+    "cli codex 1 4 10 0": [
+      174
+    ],
+    "cli codex 1 4 2 0": [
+      175
+    ],
+    "cli codex 1 4 3 0": [
+      176
+    ],
+    "cli codex 1 4 4 0": [
+      177
+    ],
+    "cli codex 1 4 5 0": [
+      178
+    ],
+    "cli codex 1 4 6 0": [
+      179
+    ],
+    "cli codex 1 4 7 0": [
+      180
+    ],
+    "cli codex 1 4 8 0": [
+      181
+    ],
+    "cli codex 1 4 9 0": [
+      182
+    ],
+    "cli codex 1 5 0 0": [
+      183
+    ],
+    "cli codex 1 6 0 0": [
+      184
+    ],
+    "cli codex 1 6 1 0": [
+      185
+    ],
+    "cli codex 1 7 0 0": [
+      186
+    ],
+    "cli codex 1 7 1 0": [
+      187
+    ],
+    "cli codex 1 8 0 0": [
+      188
+    ],
+    "cli codex 1 9 0 0": [
+      189
+    ],
+    "cli codex 1 9 1 0": [
+      190
+    ],
+    "cli codex 1 9 2 0": [
+      191
+    ],
+    "cli codex 1 9 3 0": [
+      192
+    ],
+    "cli codex 1 9 4 0": [
+      193
     ],
     "cli codex adapter": [
       6716,
@@ -31580,10 +31586,10 @@
       8956
     ],
     "cli codex benchmark index": [
-      140
+      165
     ],
     "cli codex benchmark reports": [
-      140
+      165
     ],
     "cli codex child session marker": [
       9614
@@ -31636,7 +31642,7 @@
       11663
     ],
     "cli codex hooks": [
-      329
+      354
     ],
     "cli codex read only leaf": [
       5703,
@@ -31658,88 +31664,88 @@
       12341
     ],
     "cli codex v1 0 0 0": [
-      141
-    ],
-    "cli codex v1 0 1 0": [
-      142
-    ],
-    "cli codex v1 1 0 0": [
-      143
-    ],
-    "cli codex v1 3 1 0": [
-      144
-    ],
-    "cli codex v1 3 2 0": [
-      145
-    ],
-    "cli codex v1 3 3 0": [
-      146
-    ],
-    "cli codex v1 4 0 0": [
-      147
-    ],
-    "cli codex v1 4 1 0": [
-      148
-    ],
-    "cli codex v1 4 10 0": [
-      149
-    ],
-    "cli codex v1 4 2 0": [
-      150
-    ],
-    "cli codex v1 4 3 0": [
-      151
-    ],
-    "cli codex v1 4 4 0": [
-      152
-    ],
-    "cli codex v1 4 5 0": [
-      153
-    ],
-    "cli codex v1 4 6 0": [
-      154
-    ],
-    "cli codex v1 4 7 0": [
-      155
-    ],
-    "cli codex v1 4 8 0": [
-      156
-    ],
-    "cli codex v1 4 9 0": [
-      157
-    ],
-    "cli codex v1 5 0 0": [
-      158
-    ],
-    "cli codex v1 6 0 0": [
-      159
-    ],
-    "cli codex v1 6 1 0": [
-      160
-    ],
-    "cli codex v1 7 0 0": [
-      161
-    ],
-    "cli codex v1 7 1 0": [
-      162
-    ],
-    "cli codex v1 8 0 0": [
-      163
-    ],
-    "cli codex v1 9 0 0": [
-      164
-    ],
-    "cli codex v1 9 1 0": [
-      165
-    ],
-    "cli codex v1 9 2 0": [
       166
     ],
-    "cli codex v1 9 3 0": [
+    "cli codex v1 0 1 0": [
       167
     ],
-    "cli codex v1 9 4 0": [
+    "cli codex v1 1 0 0": [
       168
+    ],
+    "cli codex v1 3 1 0": [
+      169
+    ],
+    "cli codex v1 3 2 0": [
+      170
+    ],
+    "cli codex v1 3 3 0": [
+      171
+    ],
+    "cli codex v1 4 0 0": [
+      172
+    ],
+    "cli codex v1 4 1 0": [
+      173
+    ],
+    "cli codex v1 4 10 0": [
+      174
+    ],
+    "cli codex v1 4 2 0": [
+      175
+    ],
+    "cli codex v1 4 3 0": [
+      176
+    ],
+    "cli codex v1 4 4 0": [
+      177
+    ],
+    "cli codex v1 4 5 0": [
+      178
+    ],
+    "cli codex v1 4 6 0": [
+      179
+    ],
+    "cli codex v1 4 7 0": [
+      180
+    ],
+    "cli codex v1 4 8 0": [
+      181
+    ],
+    "cli codex v1 4 9 0": [
+      182
+    ],
+    "cli codex v1 5 0 0": [
+      183
+    ],
+    "cli codex v1 6 0 0": [
+      184
+    ],
+    "cli codex v1 6 1 0": [
+      185
+    ],
+    "cli codex v1 7 0 0": [
+      186
+    ],
+    "cli codex v1 7 1 0": [
+      187
+    ],
+    "cli codex v1 8 0 0": [
+      188
+    ],
+    "cli codex v1 9 0 0": [
+      189
+    ],
+    "cli codex v1 9 1 0": [
+      190
+    ],
+    "cli codex v1 9 2 0": [
+      191
+    ],
+    "cli codex v1 9 3 0": [
+      192
+    ],
+    "cli codex v1 9 4 0": [
+      193
     ],
     "cli command aliases snake kebab camel": [
       10091
@@ -31798,97 +31804,97 @@
       9963
     ],
     "cli cursor 1 0 0 0": [
-      180
+      205
     ],
     "cli cursor 1 1 0 0": [
-      181
+      206
     ],
     "cli cursor 1 2 0 0": [
-      182
+      207
     ],
     "cli cursor 1 3 0 0": [
-      183
+      208
     ],
     "cli cursor 1 4 0 0": [
-      184
+      209
     ],
     "cli cursor 1 4 1 0": [
-      185
+      210
     ],
     "cli cursor 1 4 2 0": [
-      186
+      211
     ],
     "cli cursor 1 5 0 0": [
-      187
+      212
     ],
     "cli cursor benchmark": [
-      178
+      203
     ],
     "cli cursor benchmark index": [
-      179
+      204
     ],
     "cli cursor benchmark reports": [
-      179
+      204
     ],
     "cli cursor dispatch rules": [
       12347
     ],
     "cli cursor goal hook benchmark": [
-      178
+      203
     ],
     "cli cursor grok": [
       2958
     ],
     "cli cursor hook adapters": [
-      325
+      350
     ],
     "cli cursor hooks": [
-      326
+      351
     ],
     "cli cursor manual testing playbook validation": [
-      178
+      203
     ],
     "cli cursor readme rewrite": [
-      182
+      207
     ],
     "cli cursor v1 0 0 0": [
-      180
+      205
     ],
     "cli cursor v1 1 0 0": [
-      181
+      206
     ],
     "cli cursor v1 2 0 0": [
-      182
+      207
     ],
     "cli cursor v1 3 0 0": [
-      183
+      208
     ],
     "cli cursor v1 4 0 0": [
-      184
+      209
     ],
     "cli cursor v1 4 1 0": [
-      185
+      210
     ],
     "cli cursor v1 4 2 0": [
-      186
+      211
     ],
     "cli cursor v1 5 0 0": [
-      187
+      212
     ],
     "cli decommission orphan removal": [
       11852
     ],
     "cli deem 1 0 0 0": [
-      81
+      86
     ],
     "cli deem build result": [
       2743
     ],
     "cli deem capabilities": [
-      83
+      88
     ],
     "cli deem choice": [
-      85
+      90
     ],
     "cli deem client": [
       2745
@@ -31909,32 +31915,32 @@
       2744
     ],
     "cli deem feature catalog": [
-      83
+      88
     ],
     "cli deem health": [
-      82,
+      87,
       2745
     ],
     "cli deem health smoke": [
       2742
     ],
     "cli deem noul": [
-      86
+      91
     ],
     "cli deem readme": [
-      80
+      85
     ],
     "cli deem run": [
-      84
+      89
     ],
     "cli deem score": [
-      87
+      92
     ],
     "cli deem status": [
       2743
     ],
     "cli deem v1 0 0 0": [
-      81
+      86
     ],
     "cli deem verification tasks": [
       2746
@@ -31943,43 +31949,43 @@
       9041
     ],
     "cli devin 1 0 0 0": [
-      199
+      224
     ],
     "cli devin 1 1 0 0": [
-      200
+      225
     ],
     "cli devin 1 2 0 0": [
-      201
+      226
     ],
     "cli devin 1 3 0 0": [
-      202
+      227
     ],
     "cli devin 1 4 0 0": [
-      203
+      228
     ],
     "cli devin 1 4 1 0": [
-      204
+      229
     ],
     "cli devin 1 4 2 0": [
-      205
+      230
     ],
     "cli devin 1 4 3 0": [
-      206
+      231
     ],
     "cli devin 1 4 4 0": [
-      207
+      232
     ],
     "cli devin 1 4 5 0": [
-      208
+      233
     ],
     "cli devin 17 skill audit": [
       9061
     ],
     "cli devin benchmark index": [
-      198
+      223
     ],
     "cli devin benchmark reports": [
-      198
+      223
     ],
     "cli devin cli codex cli pi fanout wiring": [
       5741
@@ -32044,7 +32050,7 @@
       11607
     ],
     "cli devin readme template": [
-      201
+      226
     ],
     "cli devin rule rewording plan": [
       6553
@@ -32060,49 +32066,49 @@
       9255
     ],
     "cli devin v1 0 0 0": [
-      199
+      224
     ],
     "cli devin v1 1 0 0": [
-      200
+      225
     ],
     "cli devin v1 2 0 0": [
-      201
+      226
     ],
     "cli devin v1 3 0 0": [
-      202
+      227
     ],
     "cli devin v1 4 0 0": [
-      203
+      228
     ],
     "cli devin v1 4 1 0": [
-      204
+      229
     ],
     "cli devin v1 4 2 0": [
-      205
+      230
     ],
     "cli devin v1 4 3 0": [
-      206
+      231
     ],
     "cli devin v1 4 4 0": [
-      207
+      232
     ],
     "cli devin v1 4 5 0": [
-      208
+      233
     ],
     "cli devin wiring plan": [
       5709
     ],
     "cli dispatch": [
-      91
+      116
     ],
     "cli dispatch audit": [
-      327
+      352
     ],
     "cli dispatch audit trail": [
-      327
+      352
     ],
     "cli dispatch authorization": [
-      322
+      347
     ],
     "cli dispatch containment and recursion guards": [
       8155,
@@ -32117,7 +32123,7 @@
       3258
     ],
     "cli dispatch hangs with no output": [
-      331
+      356
     ],
     "cli dispatch matrix": [
       6898
@@ -32126,19 +32132,19 @@
       8814
     ],
     "cli dispatch preflight authorization": [
-      328
+      353
     ],
     "cli dispatch resource map": [
-      92
+      117
     ],
     "cli dispatch surface router": [
-      92
+      117
     ],
     "cli doc contract evidence": [
       9674
     ],
     "cli executor dispatch routing": [
-      326
+      351
     ],
     "cli executor fanout parity": [
       5732
@@ -32165,7 +32171,7 @@
       6252
     ],
     "cli executor leaf routing": [
-      92
+      117
     ],
     "cli executor matrix": [
       1743
@@ -32177,58 +32183,58 @@
       7363
     ],
     "cli executor two axis dispatch routing": [
-      323
+      348
     ],
     "cli exit code taxonomy docs": [
       10095
     ],
     "cli external hub": [
-      94
+      119
     ],
     "cli external orchestration": [
       2453
     ],
     "cli external orchestration 1 0 0 0": [
-      94
+      119
     ],
     "cli external orchestration 1 1 0 0": [
-      95
+      120
     ],
     "cli external orchestration 1 2 0 0": [
-      96
+      121
     ],
     "cli external orchestration 1 3 0 0": [
-      97
+      122
     ],
     "cli external orchestration 1 4 0 0": [
-      98
+      123
     ],
     "cli external orchestration 1 4 1 0": [
-      99
+      124
     ],
     "cli external orchestration 1 4 2 0": [
-      100
+      125
     ],
     "cli external orchestration 1 4 3 0": [
-      101
+      126
     ],
     "cli external orchestration 1 4 4 0": [
-      102
+      127
     ],
     "cli external orchestration 1 4 5 0": [
-      103
+      128
     ],
     "cli external orchestration 1 5 0 0": [
-      104
+      129
     ],
     "cli external orchestration 1 6 0 0": [
-      105
+      130
     ],
     "cli external orchestration 1 7 0 0": [
-      106
+      131
     ],
     "cli external orchestration benchmark": [
-      93
+      118
     ],
     "cli external orchestration changelog retrofit": [
       4545
@@ -32246,66 +32252,66 @@
       4546
     ],
     "cli external orchestration compiled routing": [
-      324,
-      326
+      349,
+      351
     ],
     "cli external orchestration eighth mode": [
       2674
     ],
     "cli external orchestration feature catalog": [
-      326
+      351
     ],
     "cli external orchestration hub capabilities": [
-      326
+      351
     ],
     "cli external orchestration hub router scoring": [
-      323
+      348
     ],
     "cli external orchestration skill benchmark artifacts": [
-      93
+      118
     ],
     "cli external orchestration smart routing": [
-      92,
-      323
+      117,
+      348
     ],
     "cli external orchestration v1 0 0 0": [
-      94
+      119
     ],
     "cli external orchestration v1 1 0 0": [
-      95
+      120
     ],
     "cli external orchestration v1 2 0 0": [
-      96
+      121
     ],
     "cli external orchestration v1 3 0 0": [
-      97
+      122
     ],
     "cli external orchestration v1 4 0 0": [
-      98
+      123
     ],
     "cli external orchestration v1 4 1 0": [
-      99
+      124
     ],
     "cli external orchestration v1 4 2 0": [
-      100
+      125
     ],
     "cli external orchestration v1 4 3 0": [
-      101
+      126
     ],
     "cli external orchestration v1 4 4 0": [
-      102
+      127
     ],
     "cli external orchestration v1 4 5 0": [
-      103
+      128
     ],
     "cli external orchestration v1 5 0 0": [
-      104
+      129
     ],
     "cli external orchestration v1 6 0 0": [
-      105
+      130
     ],
     "cli external orchestration v1 7 0 0": [
-      106
+      131
     ],
     "cli fallback envelope normalization": [
       10099
@@ -32370,31 +32376,31 @@
       10091
     ],
     "cli hermes 1 0 0 0": [
-      220
+      245
     ],
     "cli hermes 1 0 1 0": [
-      221
+      246
     ],
     "cli hermes 1 0 2 0": [
-      222
+      247
     ],
     "cli hermes 1 0 3 0": [
-      223
+      248
     ],
     "cli hermes 1 0 4 0": [
-      224
+      249
     ],
     "cli hermes benchmark": [
-      218
+      243
     ],
     "cli hermes benchmark index": [
-      219
+      244
     ],
     "cli hermes benchmark reports": [
-      219
+      244
     ],
     "cli hermes capabilities": [
-      232
+      257
     ],
     "cli hermes creation": [
       2621
@@ -32403,7 +32409,7 @@
       2530
     ],
     "cli hermes dispatch": [
-      326
+      351
     ],
     "cli hermes dispatch rules": [
       12351
@@ -32412,10 +32418,10 @@
       2542
     ],
     "cli hermes executorkind": [
-      229
+      254
     ],
     "cli hermes feature catalog": [
-      232
+      257
     ],
     "cli hermes findings": [
       2528
@@ -32424,10 +32430,10 @@
       2548
     ],
     "cli hermes manual testing playbook benchmark": [
-      218
+      243
     ],
     "cli hermes mode registry entry": [
-      233
+      258
     ],
     "cli hermes pi dispatch rules": [
       12349
@@ -32451,7 +32457,7 @@
       12352
     ],
     "cli hermes prompt card": [
-      234
+      259
     ],
     "cli hermes research scope": [
       2527
@@ -32460,37 +32466,37 @@
       2548
     ],
     "cli hermes v1 0 0 0": [
-      220
+      245
     ],
     "cli hermes v1 0 1 0": [
-      221
+      246
     ],
     "cli hermes v1 0 2 0": [
-      222
+      247
     ],
     "cli hermes v1 0 3 0": [
-      223
+      248
     ],
     "cli hermes v1 0 4 0": [
-      224
+      249
     ],
     "cli hermes validation report": [
-      218
+      243
     ],
     "cli hermes workflowmode": [
-      233
+      258
     ],
     "cli hook runner results": [
       8881
     ],
     "cli jev 0 1 0 0": [
-      335
+      81
     ],
     "cli jev 0 2 0 0": [
-      336
+      82
     ],
     "cli jev authenticated verification": [
-      340
+      99
     ],
     "cli jev canary replay baseline": [
       2750
@@ -32546,7 +32552,7 @@
       2700
     ],
     "cli jev hub identity": [
-      335
+      81
     ],
     "cli jev hub migration": [
       2702
@@ -32570,10 +32576,10 @@
       2751
     ],
     "cli jev hub routing baseline": [
-      333
+      78
     ],
     "cli jev hub routing phrasings": [
-      334
+      79
     ],
     "cli jev into cli classifier": [
       2750
@@ -32582,7 +32588,10 @@
       2747
     ],
     "cli jev joins the compiled serving closure": [
-      336
+      82
+    ],
+    "cli jev mode of cli classifier": [
+      84
     ],
     "cli jev move kill criterion": [
       2747
@@ -32607,12 +32616,12 @@
       2701
     ],
     "cli jev playbook run": [
-      333,
-      334,
-      341
+      78,
+      79,
+      100
     ],
     "cli jev post migration re verification": [
-      342
+      101
     ],
     "cli jev replay baseline goal": [
       2747
@@ -32622,9 +32631,6 @@
     ],
     "cli jev replay results": [
       2748
-    ],
-    "cli jev root router": [
-      332
     ],
     "cli jev route replay plan": [
       2749
@@ -32642,10 +32648,10 @@
       2678
     ],
     "cli jev v0 1 0 0": [
-      335
+      81
     ],
     "cli jev v0 2 0 0": [
-      336
+      82
     ],
     "cli jev workflow integration": [
       2807
@@ -32690,124 +32696,124 @@
       6420
     ],
     "cli opencode 1 0 0 0": [
-      249
-    ],
-    "cli opencode 1 1 0 0": [
-      250
-    ],
-    "cli opencode 1 2 0 0": [
-      251
-    ],
-    "cli opencode 1 3 0 0": [
-      252
-    ],
-    "cli opencode 1 3 10 0": [
-      253
-    ],
-    "cli opencode 1 3 11 0": [
-      254
-    ],
-    "cli opencode 1 3 12 0": [
-      255
-    ],
-    "cli opencode 1 3 13 0": [
-      256
-    ],
-    "cli opencode 1 3 14 0": [
-      257
-    ],
-    "cli opencode 1 3 15 0": [
-      258
-    ],
-    "cli opencode 1 3 15 2": [
-      259
-    ],
-    "cli opencode 1 3 15 3": [
-      260
-    ],
-    "cli opencode 1 3 2 0": [
-      261
-    ],
-    "cli opencode 1 3 3 0": [
-      262
-    ],
-    "cli opencode 1 3 4 0": [
-      263
-    ],
-    "cli opencode 1 3 5 0": [
-      264
-    ],
-    "cli opencode 1 3 6 0": [
-      265
-    ],
-    "cli opencode 1 3 7 0": [
-      266
-    ],
-    "cli opencode 1 3 8 0": [
-      267
-    ],
-    "cli opencode 1 3 9 0": [
-      268
-    ],
-    "cli opencode 1 4 0 0": [
-      269
-    ],
-    "cli opencode 1 4 1 0": [
-      270
-    ],
-    "cli opencode 1 4 10 0": [
-      271
-    ],
-    "cli opencode 1 4 11 0": [
-      272
-    ],
-    "cli opencode 1 4 12 0": [
-      273
-    ],
-    "cli opencode 1 4 2 0": [
       274
     ],
-    "cli opencode 1 4 3 0": [
+    "cli opencode 1 1 0 0": [
       275
     ],
-    "cli opencode 1 4 4 0": [
+    "cli opencode 1 2 0 0": [
       276
     ],
-    "cli opencode 1 4 5 0": [
+    "cli opencode 1 3 0 0": [
       277
     ],
-    "cli opencode 1 4 6 0": [
+    "cli opencode 1 3 10 0": [
       278
     ],
-    "cli opencode 1 4 7 0": [
+    "cli opencode 1 3 11 0": [
       279
     ],
-    "cli opencode 1 4 8 0": [
+    "cli opencode 1 3 12 0": [
       280
     ],
-    "cli opencode 1 4 9 0": [
+    "cli opencode 1 3 13 0": [
       281
+    ],
+    "cli opencode 1 3 14 0": [
+      282
+    ],
+    "cli opencode 1 3 15 0": [
+      283
+    ],
+    "cli opencode 1 3 15 2": [
+      284
+    ],
+    "cli opencode 1 3 15 3": [
+      285
+    ],
+    "cli opencode 1 3 2 0": [
+      286
+    ],
+    "cli opencode 1 3 3 0": [
+      287
+    ],
+    "cli opencode 1 3 4 0": [
+      288
+    ],
+    "cli opencode 1 3 5 0": [
+      289
+    ],
+    "cli opencode 1 3 6 0": [
+      290
+    ],
+    "cli opencode 1 3 7 0": [
+      291
+    ],
+    "cli opencode 1 3 8 0": [
+      292
+    ],
+    "cli opencode 1 3 9 0": [
+      293
+    ],
+    "cli opencode 1 4 0 0": [
+      294
+    ],
+    "cli opencode 1 4 1 0": [
+      295
+    ],
+    "cli opencode 1 4 10 0": [
+      296
+    ],
+    "cli opencode 1 4 11 0": [
+      297
+    ],
+    "cli opencode 1 4 12 0": [
+      298
+    ],
+    "cli opencode 1 4 2 0": [
+      299
+    ],
+    "cli opencode 1 4 3 0": [
+      300
+    ],
+    "cli opencode 1 4 4 0": [
+      301
+    ],
+    "cli opencode 1 4 5 0": [
+      302
+    ],
+    "cli opencode 1 4 6 0": [
+      303
+    ],
+    "cli opencode 1 4 7 0": [
+      304
+    ],
+    "cli opencode 1 4 8 0": [
+      305
+    ],
+    "cli opencode 1 4 9 0": [
+      306
     ],
     "cli opencode authoring complete": [
       9674
     ],
     "cli opencode benchmark": [
-      247
+      272
     ],
     "cli opencode benchmark index": [
-      248
+      273
     ],
     "cli opencode benchmark reports": [
-      248
+      273
     ],
     "cli opencode budget mirror": [
-      284
+      309
     ],
     "cli opencode child session marker": [
       9614
     ],
     "cli opencode cli claude code cli codex cli cursor dispatch": [
-      323
+      348
     ],
     "cli opencode cli codex cli copilot playbook run": [
       8818
@@ -32828,7 +32834,7 @@
       9677
     ],
     "cli opencode goal hook validation report": [
-      247
+      272
     ],
     "cli opencode reference frontmatter": [
       9676
@@ -32840,103 +32846,103 @@
       8928
     ],
     "cli opencode v1 0 0 0": [
-      249
-    ],
-    "cli opencode v1 1 0 0": [
-      250
-    ],
-    "cli opencode v1 2 0 0": [
-      251
-    ],
-    "cli opencode v1 3 0 0": [
-      252
-    ],
-    "cli opencode v1 3 10 0": [
-      253
-    ],
-    "cli opencode v1 3 11 0": [
-      254
-    ],
-    "cli opencode v1 3 12 0": [
-      255
-    ],
-    "cli opencode v1 3 13 0": [
-      256
-    ],
-    "cli opencode v1 3 14 0": [
-      257
-    ],
-    "cli opencode v1 3 15 0": [
-      258
-    ],
-    "cli opencode v1 3 15 2": [
-      259
-    ],
-    "cli opencode v1 3 15 3": [
-      260
-    ],
-    "cli opencode v1 3 2 0": [
-      261
-    ],
-    "cli opencode v1 3 3 0": [
-      262
-    ],
-    "cli opencode v1 3 4 0": [
-      263
-    ],
-    "cli opencode v1 3 5 0": [
-      264
-    ],
-    "cli opencode v1 3 6 0": [
-      265
-    ],
-    "cli opencode v1 3 7 0": [
-      266
-    ],
-    "cli opencode v1 3 8 0": [
-      267
-    ],
-    "cli opencode v1 3 9 0": [
-      268
-    ],
-    "cli opencode v1 4 0 0": [
-      269
-    ],
-    "cli opencode v1 4 1 0": [
-      270
-    ],
-    "cli opencode v1 4 10 0": [
-      271
-    ],
-    "cli opencode v1 4 11 0": [
-      272
-    ],
-    "cli opencode v1 4 12 0": [
-      273
-    ],
-    "cli opencode v1 4 2 0": [
       274
     ],
-    "cli opencode v1 4 3 0": [
+    "cli opencode v1 1 0 0": [
       275
     ],
-    "cli opencode v1 4 4 0": [
+    "cli opencode v1 2 0 0": [
       276
     ],
-    "cli opencode v1 4 5 0": [
+    "cli opencode v1 3 0 0": [
       277
     ],
-    "cli opencode v1 4 6 0": [
+    "cli opencode v1 3 10 0": [
       278
     ],
-    "cli opencode v1 4 7 0": [
+    "cli opencode v1 3 11 0": [
       279
     ],
-    "cli opencode v1 4 8 0": [
+    "cli opencode v1 3 12 0": [
       280
     ],
-    "cli opencode v1 4 9 0": [
+    "cli opencode v1 3 13 0": [
       281
+    ],
+    "cli opencode v1 3 14 0": [
+      282
+    ],
+    "cli opencode v1 3 15 0": [
+      283
+    ],
+    "cli opencode v1 3 15 2": [
+      284
+    ],
+    "cli opencode v1 3 15 3": [
+      285
+    ],
+    "cli opencode v1 3 2 0": [
+      286
+    ],
+    "cli opencode v1 3 3 0": [
+      287
+    ],
+    "cli opencode v1 3 4 0": [
+      288
+    ],
+    "cli opencode v1 3 5 0": [
+      289
+    ],
+    "cli opencode v1 3 6 0": [
+      290
+    ],
+    "cli opencode v1 3 7 0": [
+      291
+    ],
+    "cli opencode v1 3 8 0": [
+      292
+    ],
+    "cli opencode v1 3 9 0": [
+      293
+    ],
+    "cli opencode v1 4 0 0": [
+      294
+    ],
+    "cli opencode v1 4 1 0": [
+      295
+    ],
+    "cli opencode v1 4 10 0": [
+      296
+    ],
+    "cli opencode v1 4 11 0": [
+      297
+    ],
+    "cli opencode v1 4 12 0": [
+      298
+    ],
+    "cli opencode v1 4 2 0": [
+      299
+    ],
+    "cli opencode v1 4 3 0": [
+      300
+    ],
+    "cli opencode v1 4 4 0": [
+      301
+    ],
+    "cli opencode v1 4 5 0": [
+      302
+    ],
+    "cli opencode v1 4 6 0": [
+      303
+    ],
+    "cli opencode v1 4 7 0": [
+      304
+    ],
+    "cli opencode v1 4 8 0": [
+      305
+    ],
+    "cli opencode v1 4 9 0": [
+      306
     ],
     "cli orca 0 1 0 0": [
       359
@@ -33023,7 +33029,7 @@
       4873
     ],
     "cli orchestration routing benchmark": [
-      93
+      118
     ],
     "cli orchestrator drift": [
       7092
@@ -33070,70 +33076,70 @@
       10091
     ],
     "cli pi 1 0 0 0": [
-      296
+      321
     ],
     "cli pi 1 1 0 0": [
-      297
+      322
     ],
     "cli pi 1 2 0 0": [
-      298
+      323
     ],
     "cli pi 1 3 0 0": [
-      299
+      324
     ],
     "cli pi 1 4 0 0": [
-      300
+      325
     ],
     "cli pi 1 4 1 0": [
-      301
+      326
     ],
     "cli pi 1 5 0 0": [
-      302
+      327
     ],
     "cli pi 1 5 1 0": [
-      303
+      328
     ],
     "cli pi 1 5 10 0": [
-      304
+      329
     ],
     "cli pi 1 5 11 0": [
-      305
+      330
     ],
     "cli pi 1 5 11 1": [
-      306
+      331
     ],
     "cli pi 1 5 2 0": [
-      307
+      332
     ],
     "cli pi 1 5 3 0": [
-      308
+      333
     ],
     "cli pi 1 5 4 0": [
-      309
+      334
     ],
     "cli pi 1 5 5 0": [
-      310
+      335
     ],
     "cli pi 1 5 6 0": [
-      311
+      336
     ],
     "cli pi 1 5 7 0": [
-      312
+      337
     ],
     "cli pi 1 5 8 0": [
-      313
+      338
     ],
     "cli pi 1 5 9 0": [
-      314
+      339
     ],
     "cli pi benchmark": [
-      294
+      319
     ],
     "cli pi benchmark index": [
-      295
+      320
     ],
     "cli pi benchmark reports": [
-      295
+      320
     ],
     "cli pi build brief plan": [
       2627
@@ -33178,10 +33184,10 @@
       6471
     ],
     "cli pi goal hook validation report": [
-      294
+      319
     ],
     "cli pi manual testing playbook benchmark": [
-      294
+      319
     ],
     "cli pi one change per brief": [
       2628
@@ -33194,61 +33200,61 @@
       2632
     ],
     "cli pi v1 0 0 0": [
-      296
+      321
     ],
     "cli pi v1 1 0 0": [
-      297
+      322
     ],
     "cli pi v1 2 0 0": [
-      298
+      323
     ],
     "cli pi v1 3 0 0": [
-      299
+      324
     ],
     "cli pi v1 4 0 0": [
-      300
+      325
     ],
     "cli pi v1 4 1 0": [
-      301
+      326
     ],
     "cli pi v1 5 0 0": [
-      302
+      327
     ],
     "cli pi v1 5 1 0": [
-      303
+      328
     ],
     "cli pi v1 5 10 0": [
-      304
+      329
     ],
     "cli pi v1 5 11 0": [
-      305
+      330
     ],
     "cli pi v1 5 11 1": [
-      306
+      331
     ],
     "cli pi v1 5 2 0": [
-      307
+      332
     ],
     "cli pi v1 5 3 0": [
-      308
+      333
     ],
     "cli pi v1 5 4 0": [
-      309
+      334
     ],
     "cli pi v1 5 5 0": [
-      310
+      335
     ],
     "cli pi v1 5 6 0": [
-      311
+      336
     ],
     "cli pi v1 5 7 0": [
-      312
+      337
     ],
     "cli pi v1 5 8 0": [
-      313
+      338
     ],
     "cli pi v1 5 9 0": [
-      314
+      339
     ],
     "cli playbook model swap": [
       2867
@@ -33459,31 +33465,31 @@
       9021
     ],
     "cli usage 1 0 0 0": [
-      344
+      103
     ],
     "cli usage 1 0 1 0": [
-      345
+      104
     ],
     "cli usage 1 0 2 0": [
-      346
+      105
     ],
     "cli usage benchmark": [
-      339
+      98
     ],
     "cli usage benchmark index": [
-      343
+      102
     ],
     "cli usage benchmark reports": [
-      343
+      102
     ],
     "cli usage capabilities": [
-      348
+      107
     ],
     "cli usage feature catalog": [
-      348
+      107
     ],
     "cli usage manual testing playbook benchmark": [
-      339
+      98
     ],
     "cli usage mode": [
       2680,
@@ -33492,19 +33498,19 @@
       2702
     ],
     "cli usage playbook": [
-      352
+      111
     ],
     "cli usage v1 0 0 0": [
-      344
+      103
     ],
     "cli usage v1 0 1 0": [
-      345
+      104
     ],
     "cli usage v1 0 2 0": [
-      346
+      105
     ],
     "cli usage validation report": [
-      339
+      98
     ],
     "cli versus mcp": [
       750,
@@ -33727,10 +33733,10 @@
       8787
     ],
     "cline route": [
-      103
+      128
     ],
     "cline route resolution": [
-      278
+      303
     ],
     "clipped register versus a plan": [
       2488,
@@ -33795,10 +33801,10 @@
       11929
     ],
     "closed roster": [
-      103
+      128
     ],
     "closed seven model gateway roster": [
-      227
+      252
     ],
     "closed status discovery": [
       517
@@ -34170,7 +34176,7 @@
       9157
     ],
     "cloud handoff": [
-      195
+      220
     ],
     "cloud icon": [
       1146
@@ -36007,7 +36013,7 @@
       7853
     ],
     "code review": [
-      137,
+      162,
       932
     ],
     "code review 015 code graph advisor refinement pt 01 changelog": [
@@ -36152,10 +36158,10 @@
       8979
     ],
     "codex": [
-      137
+      162
     ],
     "codex advisor brief": [
-      172
+      197
     ],
     "codex advisor brief hook": [
       9540
@@ -36168,10 +36174,10 @@
       6342
     ],
     "codex agent catalog": [
-      169
+      194
     ],
     "codex agent delegation": [
-      169
+      194
     ],
     "codex agent parity coverage": [
       5572,
@@ -36190,53 +36196,53 @@
       5707
     ],
     "codex availability probe": [
-      96
+      121
     ],
     "codex background execution": [
-      173
+      198
     ],
     "codex built in features": [
-      144
+      169
     ],
     "codex built in tools": [
-      171
+      196
     ],
     "codex child envelope one shot dispatch": [
       12343
     ],
     "codex clear check": [
-      138
+      163
     ],
     "codex cli": [
-      91,
-      137
+      116,
+      162
     ],
     "codex cli flags": [
-      170
+      195
     ],
     "codex cli wrapper": [
       3675
     ],
     "codex code generation template": [
-      139
+      164
     ],
     "codex cold start": [
       6714
     ],
     "codex conductor executor model": [
-      169
+      194
     ],
     "codex config toml": [
-      170
+      195
     ],
     "codex cross validation": [
-      173
+      198
     ],
     "codex cursor devin hook wiring": [
       2895
     ],
     "codex default model gpt 5 5": [
-      174
+      199
     ],
     "codex devin adapter crash": [
       11694
@@ -36245,10 +36251,10 @@
       11692
     ],
     "codex dispatch prompt discipline": [
-      138
+      163
     ],
     "codex dispatch safeguards": [
-      158
+      183
     ],
     "codex dispatch shape fold in": [
       2932
@@ -36263,39 +36269,39 @@
       9673
     ],
     "codex exec": [
-      91
+      116
     ],
     "codex exec command reference": [
-      170
+      195
     ],
     "codex exec json stream": [
       3673,
       3675
     ],
     "codex exec model reasoning effort": [
-      174
+      199
     ],
     "codex exec templates": [
-      139
+      164
     ],
     "codex frontmatter authoring complete": [
       9670
     ],
     "codex generate review fix cycle": [
-      173
+      198
     ],
     "codex goal nesting": [
       12071,
       12072
     ],
     "codex gpt 5 6 terra": [
-      174
+      199
     ],
     "codex gpt 6 luna sol": [
-      174
+      199
     ],
     "codex guard adapters": [
-      329
+      354
     ],
     "codex home auth": [
       6089
@@ -36313,7 +36319,7 @@
       6545
     ],
     "codex hook contract": [
-      172
+      197
     ],
     "codex hook health": [
       47
@@ -36322,12 +36328,12 @@
       59
     ],
     "codex hook parity": [
-      329,
+      354,
       9540,
       9559
     ],
     "codex hooks": [
-      172
+      197
     ],
     "codex hooks reinstall duplicates": [
       12185
@@ -36342,7 +36348,7 @@
       47
     ],
     "codex image input": [
-      171
+      196
     ],
     "codex json stream envelope": [
       3674
@@ -36351,7 +36357,7 @@
       6089
     ],
     "codex mcp integration": [
-      171
+      196
     ],
     "codex mcp runtime alignment tasks": [
       6344
@@ -36374,7 +36380,7 @@
       8999
     ],
     "codex orchestration patterns": [
-      173
+      198
     ],
     "codex output projection": [
       3673,
@@ -36389,37 +36395,37 @@
       9538
     ],
     "codex profile config file": [
-      167
+      192
     ],
     "codex profile dispatch": [
-      169
+      194
     ],
     "codex prompt framework selection": [
-      138
+      163
     ],
     "codex prompt quality card": [
-      138
+      163
     ],
     "codex prompt templates": [
-      139
+      164
     ],
     "codex providers and models": [
-      174
+      199
     ],
     "codex readme rewrite": [
-      145
-    ],
-    "codex reasoning effort": [
       170
     ],
+    "codex reasoning effort": [
+      195
+    ],
     "codex reasoning effort lever": [
-      174
+      199
     ],
     "codex review command": [
-      171
+      196
     ],
     "codex review prompt template": [
-      139
+      164
     ],
     "codex sandbox": [
       5744
@@ -36428,16 +36434,16 @@
       12343
     ],
     "codex sandbox modes": [
-      170
+      195
     ],
     "codex sandbox strategy": [
-      173
+      198
     ],
     "codex search exec fanout": [
       5050
     ],
     "codex session resume fork": [
-      170
+      195
     ],
     "codex sessionstart hook": [
       9540,
@@ -36450,10 +36456,10 @@
       6341
     ],
     "codex spec folder handoff": [
-      146
+      171
     ],
     "codex startup context": [
-      172
+      197
     ],
     "codex startup context injection": [
       9540
@@ -36472,16 +36478,16 @@
       9559
     ],
     "codex validation pipeline": [
-      173
+      198
     ],
     "codex vs claude code capabilities": [
-      171
+      196
     ],
     "codex web research template": [
-      139
+      164
     ],
     "codex web search flag": [
-      171
+      196
     ],
     "codex wrapper": [
       3673,
@@ -36499,7 +36505,7 @@
       13
     ],
     "cognition": [
-      195
+      220
     ],
     "cognitive laws design": [
       1218
@@ -37303,7 +37309,7 @@
       2297
     ],
     "compact dispatch guidance": [
-      127
+      152
     ],
     "compact inject": [
       65
@@ -37506,7 +37512,7 @@
       2833
     ],
     "compiled route front door": [
-      324,
+      349,
       413,
       814,
       1255,
@@ -37532,7 +37538,7 @@
       12213
     ],
     "compiled routing and legacy fallback": [
-      324,
+      349,
       413,
       814,
       1255,
@@ -37551,7 +37557,7 @@
       4286
     ],
     "compiled routing directive": [
-      335
+      81
     ],
     "compiled routing evidence": [
       4288
@@ -38136,7 +38142,7 @@
       3968
     ],
     "composer": [
-      175
+      200
     ],
     "composite converged pivot": [
       1763
@@ -38280,7 +38286,7 @@
       8809
     ],
     "conductor executor agent model": [
-      132
+      157
     ],
     "confidence cutoff shim": [
       2069
@@ -38347,7 +38353,7 @@
       1486
     ],
     "configuration based setup path": [
-      143
+      168
     ],
     "configuration style prompt template": [
       1519
@@ -38845,7 +38851,7 @@
       10728
     ],
     "content hygiene fixes": [
-      260
+      285
     ],
     "content normalizer": [
       2359
@@ -39806,7 +39812,7 @@
       9550
     ],
     "copilot default gpt 5 4": [
-      251
+      276
     ],
     "copilot evidence absent": [
       11695
@@ -39894,7 +39900,7 @@
       910
     ],
     "copy paste claude cli prompts": [
-      109
+      134
     ],
     "copy ready utcp config": [
       379
@@ -41139,7 +41145,7 @@
       23
     ],
     "credential check dispatch": [
-      252
+      277
     ],
     "credential health check": [
       493
@@ -41175,13 +41181,13 @@
       1552
     ],
     "cross ai delegation": [
-      91
+      116
     ],
     "cross ai handback": [
-      244
+      269
     ],
     "cross ai orchestration patterns": [
-      135
+      160
     ],
     "cross ai scoring": [
       6902
@@ -41196,7 +41202,7 @@
       8139
     ],
     "cross cli prompt guidance": [
-      262,
+      287,
       1525
     ],
     "cross cli rerun": [
@@ -41484,7 +41490,7 @@
       3117
     ],
     "cross runtime goal isolation": [
-      326
+      351
     ],
     "cross runtime goal scope": [
       3113
@@ -41585,8 +41591,8 @@
       3250
     ],
     "cross validate": [
-      137,
-      195
+      162,
+      220
     ],
     "csrf protection checklist": [
       1012
@@ -41855,7 +41861,7 @@
       1264
     ],
     "curated roster luna max": [
-      184
+      209
     ],
     "current it landscape": [
       1159
@@ -41885,94 +41891,94 @@
       536
     ],
     "cursor": [
-      175
+      200
     ],
     "cursor agent": [
-      91,
-      175
+      116,
+      200
     ],
     "cursor agent command reference": [
-      189
+      214
     ],
     "cursor agent delegation": [
-      188
+      213
     ],
     "cursor agent stdout projection": [
       3685,
       3687
     ],
     "cursor agent templates": [
-      177
+      202
     ],
     "cursor allowlist supported models": [
-      193
+      218
     ],
     "cursor approval modes": [
-      189
+      214
     ],
     "cursor approval sandbox behavior": [
-      180
+      205
     ],
     "cursor approval strategy": [
-      192
+      217
     ],
     "cursor background execution": [
-      192
+      217
     ],
     "cursor clear check": [
-      176
+      201
     ],
     "cursor cli": [
-      91,
-      175
+      116,
+      200
     ],
     "cursor cli config": [
-      189
+      214
     ],
     "cursor cli config json": [
-      194
+      219
     ],
     "cursor cli flags": [
-      189
+      214
     ],
     "cursor cli hooks and spec gate integration": [
-      325
+      350
     ],
     "cursor cli spec gate integration": [
-      326
+      351
     ],
     "cursor cloud worker": [
-      190
+      215
     ],
     "cursor code generation template": [
-      177
+      202
     ],
     "cursor composer template": [
-      177
+      202
     ],
     "cursor conductor executor model": [
-      188
+      213
     ],
     "cursor cross validation": [
-      192
+      217
     ],
     "cursor default model composer": [
-      193
+      218
     ],
     "cursor dispatch prompt discipline": [
-      176
+      201
     ],
     "cursor editor config": [
-      194
+      219
     ],
     "cursor execution mode dispatch": [
-      188
+      213
     ],
     "cursor gemini 3 7 flash high": [
-      185
+      210
     ],
     "cursor generate review fix cycle": [
-      192
+      217
     ],
     "cursor goal fail open": [
       2924
@@ -41990,49 +41996,49 @@
       2925
     ],
     "cursor grok glm effort suffix": [
-      193
+      218
     ],
     "cursor hook contract": [
-      191
+      216
     ],
     "cursor hook events": [
-      191
+      216
     ],
     "cursor hook stderr report": [
       11758
     ],
     "cursor hooks": [
-      191
+      216
     ],
     "cursor hooks json": [
-      191
+      216
     ],
     "cursor hooks json shared configuration": [
-      325
+      350
     ],
     "cursor mcp client": [
-      190
+      215
     ],
     "cursor mcp json hooks json rules": [
-      194
+      219
     ],
     "cursor mode ask plan": [
-      188
+      213
     ],
     "cursor mode plan trust fanout": [
       5718
     ],
     "cursor model allowlist": [
-      181
+      206
     ],
     "cursor model selection": [
-      189
+      214
     ],
     "cursor opencode preflight parity": [
       2590
     ],
     "cursor orchestration patterns": [
-      192
+      217
     ],
     "cursor output wrapper": [
       3685,
@@ -42040,10 +42046,10 @@
       3687
     ],
     "cursor plan ask template": [
-      177
+      202
     ],
     "cursor plugin marketplace": [
-      190
+      215
     ],
     "cursor prebind injection": [
       2923
@@ -42052,22 +42058,22 @@
       2916
     ],
     "cursor pretooluse spec gate": [
-      325
+      350
     ],
     "cursor prompt framework selection": [
-      176
+      201
     ],
     "cursor prompt quality card": [
-      176
+      201
     ],
     "cursor prompt templates": [
-      177
+      202
     ],
     "cursor providers and models": [
-      193
+      218
     ],
     "cursor providers and models catalog": [
-      181
+      206
     ],
     "cursor runtime adapter seam": [
       3687
@@ -42079,16 +42085,16 @@
       11182
     ],
     "cursor self invocation guard": [
-      180
+      205
     ],
     "cursor session resume": [
-      189
+      214
     ],
     "cursor sessionstart goal injection": [
       2924
     ],
     "cursor shared config": [
-      194
+      219
     ],
     "cursor style reference": [
       1093
@@ -42097,19 +42103,19 @@
       5720
     ],
     "cursor unique surfaces": [
-      190
+      215
     ],
     "cursor validation pipeline": [
-      192
+      217
     ],
     "cursor vision command": [
       1549
     ],
     "cursor workspace isolation": [
-      194
+      219
     ],
     "cursor worktree": [
-      190
+      215
     ],
     "cursor wrapper": [
       3685,
@@ -42171,7 +42177,7 @@
       3403
     ],
     "cx 002 provider roster": [
-      167
+      192
     ],
     "cycle detection decision record": [
       5176
@@ -42610,10 +42616,10 @@
       9009
     ],
     "dangerous mode approval per task": [
-      208
+      233
     ],
     "dangerously skip permissions risk": [
-      285
+      310
     ],
     "dangling git hook probe": [
       12143
@@ -43318,7 +43324,7 @@
       1681
     ],
     "deem 0 8 v1 label": [
-      89
+      94
     ],
     "deem 0 8b latency memory": [
       2735
@@ -43333,13 +43339,13 @@
       2793
     ],
     "deem answer fields": [
-      90
+      95
     ],
     "deem availability": [
-      82
+      87
     ],
     "deem batch request": [
-      84
+      89
     ],
     "deem check health plan": [
       2744
@@ -43360,7 +43366,7 @@
       2743
     ],
     "deem commit pair": [
-      89
+      94
     ],
     "deem cors decision tasks": [
       2793
@@ -43378,7 +43384,7 @@
       2793
     ],
     "deem ctl lifecycle": [
-      88
+      93
     ],
     "deem ctl versioning": [
       2792
@@ -43396,14 +43402,14 @@
       2793
     ],
     "deem health check": [
-      80,
-      81
+      85,
+      86
     ],
     "deem hub route replay": [
       2746
     ],
     "deem judgment subcommands": [
-      83
+      88
     ],
     "deem local backend verdict": [
       2739
@@ -43422,7 +43428,7 @@
       2735
     ],
     "deem model pin": [
-      89
+      94
     ],
     "deem n orders decision": [
       2792
@@ -43437,25 +43443,25 @@
       2745
     ],
     "deem option cap": [
-      90
+      95
     ],
     "deem ordered scale": [
-      87
+      92
     ],
     "deem phase reconciliation tasks": [
       2741
     ],
     "deem pick an option": [
-      85
+      90
     ],
     "deem question cap": [
-      90
+      95
     ],
     "deem requalification": [
-      89
+      94
     ],
     "deem request fields": [
-      90
+      95
     ],
     "deem research round 3 results": [
       2737
@@ -43479,13 +43485,13 @@
       2710
     ],
     "deem update schedule": [
-      88
+      93
     ],
     "deem wire contract": [
-      90
+      95
     ],
     "deem yes no probability": [
-      86
+      91
     ],
     "deep": [
       8534,
@@ -44939,7 +44945,7 @@
       5732
     ],
     "deep loop fan out model": [
-      301
+      326
     ],
     "deep loop fanout outcome": [
       8970
@@ -45150,7 +45156,7 @@
       5492
     ],
     "deep loop permissions gate": [
-      288
+      313
     ],
     "deep loop phase 004 planning gate": [
       5046
@@ -45623,7 +45629,7 @@
       10067
     ],
     "deep reasoning": [
-      107
+      132
     ],
     "deep research": [
       1737
@@ -47147,25 +47153,25 @@
       11745
     ],
     "deepseek route roster": [
-      308
+      333
     ],
     "deepseek v4 1 flash": [
-      307
+      332
     ],
     "deepseek v4 flash": [
-      101
+      126
     ],
     "deepseek v4 flash default": [
-      275
+      300
     ],
     "deepseek v4 flash max": [
-      203
+      228
     ],
     "deepseek v4 pro compat warning": [
       3079
     ],
     "deepseek v4 pro retired": [
-      301
+      326
     ],
     "deepseek via devin enabled": [
       5737
@@ -47189,7 +47195,7 @@
       1927
     ],
     "default dispatch gpt 5 5": [
-      147
+      172
     ],
     "default ephemeral ttl ms": [
       7531,
@@ -47208,7 +47214,7 @@
       9138
     ],
     "default invocation block": [
-      121
+      146
     ],
     "default json benchmark": [
       1655
@@ -47395,42 +47401,42 @@
       6993
     ],
     "delegate from hermes": [
-      237
+      262
     ],
     "delegate from pi": [
-      315
+      340
     ],
     "delegate task to claude agent": [
-      132
+      157
     ],
     "delegate task to codex": [
-      169
+      194
     ],
     "delegate task to cursor": [
-      188
+      213
     ],
     "delegate to claude": [
-      107
+      132
     ],
     "delegate to codex": [
-      91
+      116
     ],
     "delegate to cursor": [
-      175
+      200
     ],
     "delegate to devin": [
-      91
+      116
     ],
     "delegate to hermes": [
-      91,
-      215
+      116,
+      240
     ],
     "delegate to opencode": [
-      244
+      269
     ],
     "delegate to pi": [
-      91,
-      291
+      116,
+      316
     ],
     "delegated readme refresh": [
       2631
@@ -47616,7 +47622,7 @@
       11108
     ],
     "deny by default rules": [
-      288
+      313
     ],
     "dependabot alerts": [
       12011
@@ -48398,13 +48404,13 @@
       465
     ],
     "devin": [
-      195
+      220
     ],
     "devin adapter plan": [
       5709
     ],
     "devin agent md profile": [
-      209
+      234
     ],
     "devin allowlist parity plan": [
       5734
@@ -48422,41 +48428,41 @@
       6552
     ],
     "devin background execution": [
-      213
+      238
     ],
     "devin browser workflow": [
-      211
+      236
     ],
     "devin built in tools": [
-      212
+      237
     ],
     "devin clear check": [
-      196
+      221
     ],
     "devin cli": [
-      91,
-      195
+      116,
+      220
     ],
     "devin cli flags": [
-      210
+      235
     ],
     "devin cli output wrapper": [
       3683
     ],
     "devin cloud handoff": [
-      211
+      236
     ],
     "devin cloud handoff integration": [
-      213
+      238
     ],
     "devin cloud handoff template": [
-      197
+      222
     ],
     "devin cloud session": [
-      211
+      236
     ],
     "devin code generation template": [
-      197
+      222
     ],
     "devin commands gap": [
       2596,
@@ -48467,10 +48473,10 @@
       8955
     ],
     "devin config json": [
-      210
+      235
     ],
     "devin cross validation": [
-      213
+      238
     ],
     "devin curated four family scope": [
       5739
@@ -48497,7 +48503,7 @@
       2932
     ],
     "devin custom agent": [
-      209
+      234
     ],
     "devin dangerous mode approval": [
       6554
@@ -48521,10 +48527,10 @@
       5734
     ],
     "devin delegation patterns": [
-      199
+      224
     ],
     "devin dispatch prompt discipline": [
-      196
+      221
     ],
     "devin executor implementation": [
       5709
@@ -48540,16 +48546,16 @@
       5710
     ],
     "devin fetch tool": [
-      212
+      237
     ],
     "devin gemini 3 7 flash high": [
-      204
+      229
     ],
     "devin generate review fix cycle": [
-      213
+      238
     ],
     "devin glm swe grok deepseek dispatch": [
-      214
+      239
     ],
     "devin goal adapter implementation": [
       2919
@@ -48582,32 +48588,32 @@
       3112
     ],
     "devin grok 4 6": [
-      202
+      227
     ],
     "devin handoff command": [
-      211,
-      212
+      236,
+      237
     ],
     "devin hooks migration": [
       9046
     ],
     "devin long running task": [
-      211
+      236
     ],
     "devin max tier models": [
-      203
+      228
     ],
     "devin mcp config ownership": [
       5011
     ],
     "devin mcp integration": [
-      212
+      237
     ],
     "devin model alias reference": [
-      214
+      239
     ],
     "devin model catalog": [
-      200
+      225
     ],
     "devin model list reconciliation": [
       5773
@@ -48619,13 +48625,13 @@
       5775
     ],
     "devin model selection": [
-      210
+      235
     ],
     "devin orchestration patterns": [
-      213
+      238
     ],
     "devin p command reference": [
-      210
+      235
     ],
     "devin p print projection": [
       3681,
@@ -48638,40 +48644,40 @@
       3684
     ],
     "devin p templates": [
-      197
+      222
     ],
     "devin permission approval": [
-      208
+      233
     ],
     "devin permission hook": [
       62
     ],
     "devin permission mode effort lever": [
-      214
+      239
     ],
     "devin permission model": [
-      212
+      237
     ],
     "devin permission modes": [
-      210
+      235
     ],
     "devin projectmessage routing": [
       3683
     ],
     "devin prompt framework selection": [
-      196
+      221
     ],
     "devin prompt quality card": [
-      196
+      221
     ],
     "devin prompt templates": [
-      197
+      222
     ],
     "devin prompt time injection hook sk vision mjs": [
       1546
     ],
     "devin providers and models": [
-      214
+      239
     ],
     "devin prune plan": [
       5738
@@ -48686,14 +48692,14 @@
       5718
     ],
     "devin review prompt template": [
-      197
+      222
     ],
     "devin roster gpt 6 luna": [
       2513
     ],
     "devin run subagent": [
-      209,
-      212
+      234,
+      237
     ],
     "devin runtime adapter wiring": [
       3681,
@@ -48709,10 +48715,10 @@
       5720
     ],
     "devin self invocation guard": [
-      199
+      224
     ],
     "devin session resume continue": [
-      210
+      235
     ],
     "devin sessionstart hook fix": [
       9507
@@ -48730,28 +48736,28 @@
       2915
     ],
     "devin subagent delegation": [
-      209
+      234
     ],
     "devin subagent explore": [
-      209
+      234
     ],
     "devin subagent fan out": [
-      213
+      238
     ],
     "devin subagent general": [
-      209
+      234
     ],
     "devin subagent template": [
-      197
+      222
     ],
     "devin supported models runtime": [
       5735
     ],
     "devin swe default model": [
-      214
+      239
     ],
     "devin tool surface": [
-      212
+      237
     ],
     "devin userpromptsubmit goal inject": [
       2920
@@ -48760,7 +48766,7 @@
       1546
     ],
     "devin vm offload": [
-      211
+      236
     ],
     "devin workspace trust gate": [
       5774
@@ -48775,7 +48781,7 @@
       5781
     ],
     "devpass deepseek row": [
-      277
+      302
     ],
     "devpass deepseek shipped": [
       5780
@@ -48784,7 +48790,7 @@
       5783
     ],
     "devpass llm gateway route": [
-      311
+      336
     ],
     "devtools quick commands": [
       1040
@@ -49213,7 +49219,7 @@
     ],
     "dispatch audit trail": [
       51,
-      327
+      352
     ],
     "dispatch candidate scoring": [
       1690
@@ -49262,7 +49268,7 @@
       2995
     ],
     "dispatch inspector classification": [
-      322
+      347
     ],
     "dispatch mandate removal evidence": [
       2996
@@ -49292,7 +49298,7 @@
       46
     ],
     "dispatch preflight authorization": [
-      328
+      353
     ],
     "dispatch preflight defect table": [
       2590
@@ -49324,7 +49330,7 @@
       2687
     ],
     "dispatch rule checks hermes": [
-      226
+      251
     ],
     "dispatch script tasks": [
       6899
@@ -49349,7 +49355,7 @@
       2970
     ],
     "dispatch shapes hermes entry": [
-      225
+      250
     ],
     "dispatch tokenizer plan": [
       2977
@@ -49361,7 +49367,7 @@
       2982
     ],
     "dispatched child asks the spec folder question": [
-      331
+      356
     ],
     "display configuration": [
       499
@@ -50300,10 +50306,10 @@
       8865
     ],
     "documented model choices": [
-      159
+      184
     ],
     "documented provider prefixes": [
-      251
+      276
     ],
     "documents diffed against templates": [
       11517
@@ -51491,7 +51497,7 @@
       9511
     ],
     "eight grok 4 7 ids": [
-      187
+      212
     ],
     "eight mode gates event ledger": [
       5473
@@ -52386,7 +52392,7 @@
       1880
     ],
     "enforced model scope": [
-      99
+      124
     ],
     "enforcement approval prompts": [
       1398
@@ -52952,7 +52958,7 @@
       1516
     ],
     "escalation trigger list": [
-      125
+      150
     ],
     "esm module compliance": [
       25
@@ -53451,7 +53457,7 @@
       7358
     ],
     "executor aliases": [
-      94
+      119
     ],
     "executor allowlist gemini 3 7 flash high": [
       1574
@@ -53478,7 +53484,7 @@
       1890
     ],
     "executor audit identity and environment scoping": [
-      228
+      253
     ],
     "executor audit provenance": [
       5562,
@@ -53736,7 +53742,7 @@
       532
     ],
     "extended thinking": [
-      107
+      132
     ],
     "extension convention lint pin": [
       11972
@@ -53834,10 +53840,10 @@
       6894
     ],
     "extra divider before section 1": [
-      149
+      174
     ],
     "extra divider removed": [
-      117
+      142
     ],
     "extract cluster validate pipeline": [
       1198
@@ -54384,7 +54390,7 @@
       9375
     ],
     "fable 5 1 model id": [
-      131
+      156
     ],
     "fable 5 bm25 decision": [
       11146
@@ -54717,7 +54723,7 @@
       6525
     ],
     "fan out default deepseek": [
-      307
+      332
     ],
     "fan out executors": [
       3788
@@ -54772,10 +54778,10 @@
       5780
     ],
     "fan out rule lineages": [
-      168
+      193
     ],
     "fan out rule research review": [
-      186
+      211
     ],
     "fan out runner discarded stderr": [
       11710
@@ -55197,7 +55203,7 @@
       10482
     ],
     "feature catalog": [
-      83,
+      88,
       603,
       1124,
       1241,
@@ -56777,7 +56783,7 @@
       11293
     ],
     "flash variant max pin": [
-      275
+      300
     ],
     "flat level 3 packet": [
       2809
@@ -58103,7 +58109,7 @@
       4354
     ],
     "full plugin runtime": [
-      244
+      269
     ],
     "full project green": [
       11836
@@ -58249,7 +58255,7 @@
       12285
     ],
     "gate 3 preamble": [
-      148
+      173
     ],
     "gate 3 question": [
       2271
@@ -58469,7 +58475,7 @@
       5589
     ],
     "gateway model count": [
-      277
+      302
     ],
     "gateway only ledger mutation": [
       5534
@@ -58503,13 +58509,13 @@
       10409
     ],
     "gemini 3 7 flash": [
-      99
+      124
     ],
     "gemini family count": [
-      204
+      229
     ],
     "gemini flash allowlist": [
-      185
+      210
     ],
     "gemini mcp policy underscores": [
       7631
@@ -58574,7 +58580,7 @@
       1702
     ],
     "generate review fix cycle": [
-      135
+      160
     ],
     "generate trigger index": [
       11617
@@ -58749,7 +58755,7 @@
       11739
     ],
     "generic calling ai": [
-      142
+      167
     ],
     "generic description": [
       1212
@@ -59078,7 +59084,7 @@
       3065
     ],
     "glm 5 3 catalog entry": [
-      274
+      299
     ],
     "glm 5 3 deep research decommission": [
       6472
@@ -59087,10 +59093,10 @@
       3176
     ],
     "glm 5 3 flash workaround routes": [
-      276
+      301
     ],
     "glm 5 3 opencode go gateway": [
-      274
+      299
     ],
     "glm 5 3 research dispatch plan": [
       6471
@@ -59917,7 +59923,7 @@
     ],
     "goal manage cli": [
       57,
-      330,
+      355,
       2911
     ],
     "goal manage cli playbook": [
@@ -60159,7 +60165,7 @@
       12082
     ],
     "goal rollback": [
-      330
+      355
     ],
     "goal rubric closure": [
       4636
@@ -60198,7 +60204,7 @@
       4697
     ],
     "goal session isolation": [
-      330
+      355
     ],
     "goal set string cut order": [
       11556
@@ -60594,19 +60600,19 @@
       10997
     ],
     "gpt 5 6 luna max": [
-      98
+      123
     ],
     "gpt 5 6 luna max ids": [
-      184
+      209
     ],
     "gpt 5 6 roster": [
-      159
+      184
     ],
     "gpt 5 6 to gpt 6": [
       2641
     ],
     "gpt 6 astra roster": [
-      166
+      191
     ],
     "gpt 6 cutover acceptance": [
       2638
@@ -60621,25 +60627,25 @@
       2642
     ],
     "gpt 6 grid pro slugs": [
-      271
+      296
     ],
     "gpt 6 luna cutover": [
       2641
     ],
     "gpt 6 luna default": [
-      312
+      337
     ],
     "gpt 6 luna devin roster": [
       2517
     ],
     "gpt 6 luna gpt 6 sol": [
-      165
+      190
     ],
     "gpt 6 luna max": [
-      207
+      232
     ],
     "gpt 6 luna sol": [
-      222
+      247
     ],
     "gpt 6 prompting guide": [
       2517
@@ -60648,7 +60654,7 @@
       2641
     ],
     "gpt 6 sol luna": [
-      281
+      306
     ],
     "gpt followup audit review report": [
       11007
@@ -61276,16 +61282,16 @@
       11637
     ],
     "grok 4 6 allowlist": [
-      183
+      208
     ],
     "grok 4 6 thinking tier": [
-      183
+      208
     ],
     "grok 4 6 xhigh tier": [
-      202
+      227
     ],
     "grok 4 7 allowlist": [
-      187
+      212
     ],
     "grok 4 7 allowlist plan": [
       2705
@@ -61769,7 +61775,7 @@
       745
     ],
     "health check": [
-      82
+      87
     ],
     "health content text audit": [
       11181
@@ -61914,82 +61920,82 @@
       11833
     ],
     "hermes agent": [
-      104,
-      215
+      129,
+      240
     ],
     "hermes agent delegation": [
-      237
+      262
     ],
     "hermes agent integration": [
       2621
     ],
     "hermes chat": [
-      215
+      240
     ],
     "hermes chat oneshot dispatch shape": [
-      229
+      254
     ],
     "hermes clear check": [
-      216
+      241
     ],
     "hermes cli": [
-      91,
-      215
+      116,
+      240
     ],
     "hermes cli executor": [
       2621
     ],
     "hermes cli flags": [
-      238
+      263
     ],
     "hermes code mode server": [
-      242
+      267
     ],
     "hermes constraints versus other runtimes": [
       2527
     ],
     "hermes cross ai dispatch": [
-      241
+      266
     ],
     "hermes delegate task": [
-      237
+      262
     ],
     "hermes dispatch audit trail": [
-      225
+      250
     ],
     "hermes dispatch environment prefixes": [
-      228
+      253
     ],
     "hermes dispatch guards": [
-      232
+      257
     ],
     "hermes dispatch prompt discipline": [
-      216
+      241
     ],
     "hermes dispatch shape recognition": [
-      225
+      250
     ],
     "hermes enable project plugins": [
-      236
+      261
     ],
     "hermes executor kind": [
-      232
+      257
     ],
     "hermes executor kind and lineage command": [
-      229
+      254
     ],
     "hermes exit codes": [
-      238
+      263
     ],
     "hermes explicit toolsets required": [
-      226
+      251
     ],
     "hermes fan out lineage": [
-      241,
+      266,
       2542
     ],
     "hermes fan out template": [
-      217
+      242
     ],
     "hermes folder": [
       2621
@@ -62001,7 +62007,7 @@
       12283
     ],
     "hermes hard rule preflight checks": [
-      226
+      251
     ],
     "hermes hard rules": [
       2548
@@ -62010,47 +62016,47 @@
       2530
     ],
     "hermes help": [
-      238
+      263
     ],
     "hermes hooks": [
-      240
+      265
     ],
     "hermes hub routing": [
-      233
+      258
     ],
     "hermes integration pattern": [
-      241
+      266
     ],
     "hermes joins external orchestration": [
-      220
+      245
     ],
     "hermes known context": [
       2529
     ],
     "hermes leaf toolsets": [
-      231
+      256
     ],
     "hermes lineage command": [
-      232
+      257
     ],
     "hermes llmgateway provider": [
-      227,
-      243
+      252,
+      268
     ],
     "hermes max turns": [
-      230
+      255
     ],
     "hermes mcp": [
-      242
+      267
     ],
     "hermes mcp add": [
-      242
+      267
     ],
     "hermes mcp deny by default": [
-      242
+      267
     ],
     "hermes mimo roster": [
-      221
+      246
     ],
     "hermes mirror ci guard": [
       12202
@@ -62060,65 +62066,65 @@
       12292
     ],
     "hermes oneshot": [
-      238
+      263
     ],
     "hermes persona": [
-      237
+      262
     ],
     "hermes plugin hooks": [
-      240
+      265
     ],
     "hermes plugins": [
-      239
+      264
     ],
     "hermes pre verify": [
-      240
+      265
     ],
     "hermes pre verify guard": [
-      236
+      261
     ],
     "hermes project plugin hooks": [
-      236
+      261
     ],
     "hermes project skills": [
-      239
+      264
     ],
     "hermes project skills trust": [
-      235
+      260
     ],
     "hermes prompt framework selection": [
-      216
+      241
     ],
     "hermes prompt quality card": [
-      216
+      241
     ],
     "hermes prompt templates": [
-      217
+      242
     ],
     "hermes prompt templates commands": [
-      237
+      262
     ],
     "hermes providers and models": [
-      243
+      268
     ],
     "hermes query file": [
-      238
+      263
     ],
     "hermes query flags": [
-      225
+      250
     ],
     "hermes quiet mode": [
-      238
+      263
     ],
     "hermes read only toolsets": [
-      231
+      256
     ],
     "hermes reasoning level": [
-      230,
-      243
+      255,
+      268
     ],
     "hermes repo guards plugin": [
-      240
+      265
     ],
     "hermes research angles": [
       2527
@@ -62130,65 +62136,65 @@
       2528
     ],
     "hermes review template": [
-      217
+      242
     ],
     "hermes roster": [
-      243
+      268
     ],
     "hermes run budget margin seconds": [
-      230
+      255
     ],
     "hermes runtime folder": [
-      232
+      257
     ],
     "hermes runtime folder and prompt sync": [
-      235
+      260
     ],
     "hermes runtime research": [
       2530
     ],
     "hermes session id self presence": [
-      228
+      253
     ],
     "hermes shell hooks": [
-      240
+      265
     ],
     "hermes skills hooks mcp": [
       2530
     ],
     "hermes skills trust": [
-      239
+      264
     ],
     "hermes spec gate": [
       12285
     ],
     "hermes supported models": [
-      227,
+      252,
       2542
     ],
     "hermes sync manifest": [
-      235
+      260
     ],
     "hermes toolsets": [
-      239
+      264
     ],
     "hermes validation handback": [
-      241
+      266
     ],
     "hermes versus six runtimes": [
       2528
     ],
     "hermes web search policy": [
-      231
+      256
     ],
     "hermes write guard": [
-      239
+      264
     ],
     "hermes write template": [
-      217
+      242
     ],
     "hermes yolo required for writes": [
-      226
+      251
     ],
     "hermetic code graph db cleanup": [
       10706,
@@ -62877,7 +62883,7 @@
       1295
     ],
     "how to phrase a jev question": [
-      338
+      97
     ],
     "how to style a destructive button": [
       1188
@@ -62950,7 +62956,7 @@
       3232
     ],
     "hub mode registration": [
-      233
+      258
     ],
     "hub only routing hit": [
       4428
@@ -65405,7 +65411,7 @@
       619
     ],
     "inspectdispatch classification": [
-      328
+      353
     ],
     "install aside": [
       428,
@@ -65771,7 +65777,7 @@
       559
     ],
     "invocation pattern column": [
-      162
+      187
     ],
     "ios simulator orca": [
       371
@@ -65825,7 +65831,7 @@
       542
     ],
     "is deem up": [
-      82
+      87
     ],
     "is hook output visible": [
       60
@@ -65877,7 +65883,7 @@
       11374
     ],
     "ishermesmodelallowed": [
-      227
+      252
     ],
     "ishookenabled architecture": [
       3118
@@ -66164,7 +66170,7 @@
       2706
     ],
     "jev answer shapes": [
-      349
+      108
     ],
     "jev arm key gate": [
       2709,
@@ -66177,10 +66183,10 @@
       2713
     ],
     "jev audit shape": [
-      347
+      106
     ],
     "jev batch questions": [
-      354
+      113
     ],
     "jev census baseline column": [
       2711
@@ -66189,13 +66195,13 @@
       2712
     ],
     "jev cli": [
-      337
+      96
     ],
     "jev cli reference": [
-      353
+      112
     ],
     "jev cli surface": [
-      350
+      109
     ],
     "jev compaction census brief recorded": [
       2722
@@ -66213,7 +66219,7 @@
       2719
     ],
     "jev custom provider": [
-      356
+      115
     ],
     "jev deem context reduction research": [
       2736
@@ -66225,23 +66231,23 @@
       2728
     ],
     "jev dispatch guards": [
-      347,
-      348
+      106,
+      107
     ],
     "jev exit code checks": [
-      352
+      111
     ],
     "jev exit codes": [
-      353
+      112
     ],
     "jev final synthesis summary": [
       2720
     ],
     "jev flags": [
-      353
+      112
     ],
     "jev gate": [
-      354
+      113
     ],
     "jev goal binding": [
       2806
@@ -66253,7 +66259,7 @@
       2706
     ],
     "jev hard rules": [
-      347
+      106
     ],
     "jev integration build phases": [
       2807
@@ -66262,61 +66268,67 @@
       2806
     ],
     "jev integration pattern": [
-      354
+      113
     ],
     "jev joins as a transport": [
-      105
+      130
     ],
     "jev judgment": [
-      337
+      96
     ],
     "jev judgment contract": [
-      346
+      105
     ],
     "jev judgment dispatch": [
-      354
+      113
+    ],
+    "jev judgment hub": [
+      75
     ],
     "jev judgment primitives": [
-      348,
-      349
+      107,
+      108
     ],
     "jev key gate tasks": [
       2713
     ],
     "jev live judgment run": [
-      340,
-      342
+      99,
+      101
     ],
     "jev manual testing": [
-      352
+      111
     ],
     "jev mcp": [
-      337,
-      355
+      96,
+      114
     ],
     "jev mcp host": [
-      355
+      114
     ],
     "jev mcp server": [
-      355
+      114
     ],
     "jev mcp server contract": [
-      344
+      103
     ],
     "jev mcp surface": [
-      350
+      109
     ],
     "jev mcp tools": [
-      355
+      114
     ],
     "jev model ids": [
-      356
+      115
+    ],
+    "jev moves into cli classifier": [
+      84
     ],
     "jev near tie cluster arm": [
       2709
     ],
     "jev noul choice score run": [
-      353
+      112
     ],
     "jev opt in integration": [
       2807
@@ -66325,7 +66337,7 @@
       2707
     ],
     "jev packetkind": [
-      351
+      110
     ],
     "jev phase reconciliation goal": [
       2719
@@ -66337,16 +66349,16 @@
       2724
     ],
     "jev prompt card": [
-      338
+      97
     ],
     "jev provider table": [
-      350
+      109
     ],
     "jev providers": [
-      356
+      115
     ],
     "jev question shaping": [
-      338
+      97
     ],
     "jev re synthesis plan": [
       2721
@@ -66409,7 +66421,7 @@
       2722
     ],
     "jev routing control": [
-      332
+      76
     ],
     "jev shadow mode plan": [
       2716
@@ -66430,7 +66442,7 @@
       2798
     ],
     "jev state input": [
-      353
+      112
     ],
     "jev synthesis tasks": [
       2708
@@ -66445,14 +66457,14 @@
       2702
     ],
     "jev transport classification": [
-      348,
-      351
+      107,
+      110
     ],
     "jev transport mode": [
       2674
     ],
     "jev triage": [
-      354
+      113
     ],
     "jev typed judgment integration": [
       2807
@@ -66461,11 +66473,11 @@
       2707
     ],
     "jev validation scenarios": [
-      352,
+      111,
       2665
     ],
     "jev vercel openrouter": [
-      356
+      115
     ],
     "jev what not to build": [
       2706
@@ -66665,7 +66677,7 @@
       11847
     ],
     "judgment transport": [
-      106
+      131
     ],
     "kebab case naming rule": [
       1267
@@ -67947,7 +67959,7 @@
       10500
     ],
     "legacy goal migration": [
-      330
+      355
     ],
     "legacy goal state migration": [
       3110
@@ -68903,7 +68915,7 @@
       3160
     ],
     "live verified evidence": [
-      297
+      322
     ],
     "live vs archived rename boundary": [
       11099
@@ -69087,10 +69099,10 @@
       3261
     ],
     "llmgateway luna sol": [
-      222
+      247
     ],
     "llmgateway mimo v2 6 pro": [
-      280
+      305
     ],
     "llms txt specification": [
       1264
@@ -69148,13 +69160,13 @@
     ],
     "local classifier hub": [
       75,
-      79
+      83
     ],
     "local deem client": [
-      81
+      86
     ],
     "local deem judgment": [
-      80
+      85
     ],
     "local embedder process boundary": [
       9196
@@ -69542,13 +69554,13 @@
       11645
     ],
     "luna max priority": [
-      207
+      232
     ],
     "luna sol closure gate": [
       2638
     ],
     "luna sol gpt 6 generation": [
-      165
+      190
     ],
     "luna sol gpt 6 shipped": [
       2639
@@ -70292,7 +70304,7 @@
       9348
     ],
     "manual testing id format control": [
-      308
+      333
     ],
     "manual testing playbook": [
       1378,
@@ -70537,7 +70549,7 @@
       8859
     ],
     "max only rule": [
-      101
+      126
     ],
     "max rounds without convergence emits non converged": [
       1602
@@ -73186,7 +73198,7 @@
       2274
     ],
     "memory handback protocol": [
-      120,
+      145,
       2274
     ],
     "memory harness": [
@@ -74744,7 +74756,7 @@
       1003
     ],
     "mimo dispatch scaffold": [
-      246
+      271
     ],
     "mimo fix dispatch": [
       10997
@@ -74753,13 +74765,13 @@
       2636
     ],
     "mimo llm gateway route": [
-      272
+      297
     ],
     "mimo playbook wave results": [
       10155
     ],
     "mimo profile and prompt guidance": [
-      265
+      290
     ],
     "mimo profiles llm gateway": [
       1674
@@ -74786,19 +74798,19 @@
       2637
     ],
     "mimo v2 6 generation spelling": [
-      279
+      304
     ],
     "mimo v2 6 id cutover": [
-      279
+      304
     ],
     "mimo v2 6 pro gateway": [
-      311
+      336
     ],
     "mimo v2 6 pro roster": [
-      280
+      305
     ],
     "mimo v2 6 pro spelling": [
-      221
+      246
     ],
     "min iterations guard pass": [
       1762
@@ -74837,13 +74849,13 @@
       768
     ],
     "minimax dispatch scaffold": [
-      246
+      271
     ],
     "minimax m3 dispatchable id": [
-      256
+      281
     ],
     "minimax prompt guidance and slug correction": [
-      263
+      288
     ],
     "miniterations convergence": [
       1762
@@ -75671,7 +75683,7 @@
       4824
     ],
     "mode roster table": [
-      97
+      122
     ],
     "mode scaffold acceptance criteria": [
       4379
@@ -76032,7 +76044,7 @@
       3622
     ],
     "model guidance": [
-      112
+      137
     ],
     "model hallucination weak retrieval findings": [
       8818
@@ -76066,7 +76078,7 @@
       9717
     ],
     "model reasoning effort": [
-      147
+      172
     ],
     "model runtime inventory": [
       7513,
@@ -76082,7 +76094,7 @@
       10906
     ],
     "model selection cli reference": [
-      298
+      323
     ],
     "model server default spawn": [
       6363
@@ -76913,7 +76925,7 @@
       1827
     ],
     "native extension event count": [
-      298
+      323
     ],
     "native first advisor hooks": [
       2031
@@ -77128,7 +77140,7 @@
       1376
     ],
     "nested cli packets": [
-      95
+      120
     ],
     "nested codex exec": [
       6099
@@ -77188,10 +77200,10 @@
       569
     ],
     "nested workflow packet": [
-      158
+      183
     ],
     "neutral delegation wording": [
-      142
+      167
     ],
     "never invent a db class": [
       833,
@@ -78033,14 +78045,14 @@
       694
     ],
     "noul choice score run": [
-      349
+      108
     ],
     "noul probability": [
-      86,
-      337
+      91,
+      96
     ],
     "nous hermes": [
-      215
+      240
     ],
     "nous research hermes": [
       2621
@@ -78150,11 +78162,11 @@
       4811
     ],
     "numbered h2 dividers": [
-      116,
-      157
+      141,
+      182
     ],
     "numbered h2 sections": [
-      255
+      280
     ],
     "numbered section banner": [
       1032
@@ -78214,10 +78226,10 @@
       496
     ],
     "oauth session before dispatch": [
-      126
+      151
     ],
     "oauth session pre flight": [
-      161
+      186
     ],
     "oauth through mcp remote": [
       404
@@ -78767,7 +78779,7 @@
       587
     ],
     "official credential stored": [
-      345
+      104
     ],
     "official linear tickets skill": [
       368
@@ -79066,10 +79078,10 @@
       11992
     ],
     "one canonical tier 3 trigger list": [
-      154
+      179
     ],
     "one catalog for providers and models": [
-      269
+      294
     ],
     "one formatter every printed value": [
       1085
@@ -79087,7 +79099,7 @@
       3802
     ],
     "one line pitch": [
-      164,
+      189,
       1748
     ],
     "one owning document": [
@@ -79202,32 +79214,32 @@
       11571
     ],
     "openai": [
-      137
+      162
     ],
     "openai codex subscription route": [
-      312
+      337
     ],
     "openai embeddings": [
       2385
     ],
     "openai fallback slug": [
-      271
+      296
     ],
     "openai fast mode fork": [
       3164
     ],
     "openai gpt 6 grid": [
-      281
+      306
     ],
     "opencode": [
       2045,
       3414
     ],
     "opencode ablation suite template": [
-      246
+      271
     ],
     "opencode adr 001 detection": [
-      290
+      315
     ],
     "opencode advisor plugin export": [
       6539
@@ -79236,16 +79248,16 @@
       6537
     ],
     "opencode agent delegation": [
-      282
+      307
     ],
     "opencode agent permissions": [
       859
     ],
     "opencode agent routing matrix": [
-      282
+      307
     ],
     "opencode agent slug selection": [
-      282
+      307
     ],
     "opencode agent template": [
       1271
@@ -79269,13 +79281,13 @@
       9059
     ],
     "opencode circular dispatch refusal": [
-      290
+      315
     ],
     "opencode cli": [
-      91
+      116
     ],
     "opencode cli reference": [
-      283
+      308
     ],
     "opencode code organization": [
       907
@@ -79308,25 +79320,25 @@
       879
     ],
     "opencode context budget": [
-      284
+      309
     ],
     "opencode cross ai handback": [
-      286
+      311
     ],
     "opencode cross repo dispatch": [
-      287
+      312
     ],
     "opencode deep loop dispatch safety": [
-      285
+      310
     ],
     "opencode default model opencode go flash": [
-      289
+      314
     ],
     "opencode destructive scope violation": [
-      285
+      310
     ],
     "opencode dispatch framework precedence": [
-      245
+      270
     ],
     "opencode examples model routes": [
       1597
@@ -79335,7 +79347,7 @@
       906
     ],
     "opencode full runtime dispatch": [
-      287
+      312
     ],
     "opencode go cache compat": [
       3079
@@ -79350,10 +79362,10 @@
       3080
     ],
     "opencode go deepseek default": [
-      278
+      303
     ],
     "opencode go removal": [
-      258
+      283
     ],
     "opencode go usage limit fan out": [
       5782
@@ -79368,7 +79380,7 @@
       2010
     ],
     "opencode goal headless validation report": [
-      247
+      272
     ],
     "opencode goal optimization": [
       3111
@@ -79395,7 +79407,7 @@
       2936
     ],
     "opencode integration patterns": [
-      286
+      311
     ],
     "opencode javascript checklist": [
       862
@@ -79416,7 +79428,7 @@
       12146
     ],
     "opencode layered self dispatch check": [
-      290
+      315
     ],
     "opencode layout decision": [
       12150
@@ -79425,31 +79437,31 @@
       12147
     ],
     "opencode leaf agent constraints": [
-      282
+      307
     ],
     "opencode link decision tree": [
       12149
     ],
     "opencode memory epilogue": [
-      246
+      271
     ],
     "opencode minimax llmgateway gpt dispatch": [
-      289
+      314
     ],
     "opencode model context windows": [
-      284
+      309
     ],
     "opencode model default": [
-      250
+      275
     ],
     "opencode model overrides": [
-      245
+      270
     ],
     "opencode model selection": [
-      283
+      308
     ],
     "opencode multi agent workflow": [
-      282
+      307
     ],
     "opencode native plugin": [
       3659,
@@ -79459,7 +79471,7 @@
       3663
     ],
     "opencode parallel detached session": [
-      286
+      311
     ],
     "opencode path inventory": [
       12135
@@ -79468,7 +79480,7 @@
       12180
     ],
     "opencode permissions matrix": [
-      288
+      313
     ],
     "opencode persistent wrapper": [
       7771
@@ -79553,19 +79565,19 @@
       3662
     ],
     "opencode prompt quality card": [
-      245
+      270
     ],
     "opencode prompt templates": [
-      246
+      271
     ],
     "opencode provider auth pre flight": [
-      283
+      308
     ],
     "opencode provider row": [
-      131
+      156
     ],
     "opencode providers and models": [
-      289
+      314
     ],
     "opencode python checklist": [
       864
@@ -79583,22 +79595,22 @@
       2835
     ],
     "opencode run": [
-      244
+      269
     ],
     "opencode run command flag adherence": [
       10170
     ],
     "opencode run dispatch": [
-      249
+      274
     ],
     "opencode run dispatch template": [
-      246
+      271
     ],
     "opencode run flags": [
-      283
+      308
     ],
     "opencode run hang non interactive": [
-      286
+      311
     ],
     "opencode run sweeper kill gap": [
       8613
@@ -79625,8 +79637,8 @@
       910
     ],
     "opencode self invocation guard": [
-      286,
-      290
+      311,
+      315
     ],
     "opencode senses architecture": [
       4894
@@ -79663,10 +79675,10 @@
       12134
     ],
     "opencode stdin dev null rule": [
-      286
+      311
     ],
     "opencode structured event stream": [
-      287
+      312
     ],
     "opencode surface standards check": [
       2859
@@ -79702,7 +79714,7 @@
       9543
     ],
     "opencode truncation marker": [
-      284
+      309
     ],
     "opencode tui worker plugin2": [
       8563
@@ -79720,29 +79732,29 @@
       923
     ],
     "opencode unique capabilities": [
-      287
+      312
     ],
     "opencode universal patterns": [
       909
     ],
     "opencode variant reasoning effort": [
-      283,
-      289
+      308,
+      314
     ],
     "opencode version drift": [
-      283
+      308
     ],
     "opencode vision plugin": [
       1547
     ],
     "opencode vs sibling cli skills": [
-      287
+      312
     ],
     "opencode worker farm dispatch": [
-      246
+      271
     ],
     "opencode worktree isolation dispatch": [
-      285
+      310
     ],
     "openltm continuity resilience": [
       9854,
@@ -79760,7 +79772,7 @@
       3176
     ],
     "openrouter allowlist": [
-      102
+      127
     ],
     "openrouter back on the roster": [
       2624
@@ -79772,7 +79784,7 @@
       3177
     ],
     "openrouter provider roster": [
-      276
+      301
     ],
     "openrouter restore checklist": [
       2625
@@ -79797,7 +79809,7 @@
       2876
     ],
     "operator agent directory": [
-      304
+      329
     ],
     "operator approval grammar": [
       4771
@@ -80066,7 +80078,7 @@
       9349
     ],
     "opus single id": [
-      130
+      155
     ],
     "or r 01 election race investigation": [
       9450
@@ -80318,7 +80330,7 @@
       2453
     ],
     "orchestrate claude code from external ai": [
-      135
+      160
     ],
     "orchestrate rule 7 plan": [
       2452
@@ -80673,7 +80685,7 @@
       1170
     ],
     "output contract layer": [
-      300
+      325
     ],
     "output schema": [
       1598
@@ -80852,7 +80864,7 @@
       3790
     ],
     "ox alpha routes": [
-      102
+      127
     ],
     "oxford comma": [
       10809,
@@ -81671,7 +81683,7 @@
       6601
     ],
     "parallel detached": [
-      244
+      269
     ],
     "parallel dispatch configuration": [
       2140
@@ -82702,7 +82714,7 @@
       1927
     ],
     "permissions matrix schema": [
-      288
+      313
     ],
     "persist artifacts cjs": [
       1599
@@ -84019,7 +84031,7 @@
       11847
     ],
     "pi 017 allowlist scenario": [
-      313
+      338
     ],
     "pi advisor dist path test": [
       6504
@@ -84028,16 +84040,16 @@
       2012
     ],
     "pi agent": [
-      291
-    ],
-    "pi agent delegation": [
-      315
-    ],
-    "pi api key": [
       316
     ],
+    "pi agent delegation": [
+      340
+    ],
+    "pi api key": [
+      341
+    ],
     "pi blackhole auto compacts": [
-      309
+      334
     ],
     "pi blackhole dispatched child": [
       2628
@@ -84049,8 +84061,8 @@
       2626
     ],
     "pi built in tools": [
-      315,
-      320
+      340,
+      345
     ],
     "pi cache affinity override": [
       3079
@@ -84169,26 +84181,26 @@
       2349
     ],
     "pi clear check": [
-      292
+      317
     ],
     "pi cli": [
-      91,
-      291
-    ],
-    "pi cli flags": [
+      116,
       316
     ],
+    "pi cli flags": [
+      341
+    ],
     "pi coding agent": [
-      291
+      316
     ],
     "pi compaction dedup reset": [
       2850
     ],
     "pi contract pin": [
-      296
+      321
     ],
     "pi cross ai dispatch": [
-      317
+      342
     ],
     "pi dedup reset after compaction": [
       2851
@@ -84197,10 +84209,10 @@
       1674
     ],
     "pi delegation boundary": [
-      315
+      340
     ],
     "pi dev cli": [
-      291
+      316
     ],
     "pi devin cursor support": [
       2425
@@ -84254,7 +84266,7 @@
       2978
     ],
     "pi dispatch cli pi": [
-      302
+      327
     ],
     "pi dispatch compaction reset verification": [
       2849
@@ -84281,7 +84293,7 @@
       2979
     ],
     "pi dispatch prompt discipline": [
-      292
+      317
     ],
     "pi enabledmodels union alpha": [
       2623
@@ -84305,10 +84317,10 @@
       3155
     ],
     "pi extension system": [
-      320
+      345
     ],
     "pi extensions": [
-      319
+      344
     ],
     "pi factory evidence": [
       2983
@@ -84407,10 +84419,10 @@
       2717
     ],
     "pi has no default model": [
-      321
+      346
     ],
     "pi help": [
-      316
+      341
     ],
     "pi hook adapter blocking": [
       2949
@@ -84437,16 +84449,16 @@
       3154
     ],
     "pi integration pattern": [
-      317
+      342
     ],
     "pi json integration": [
-      317
+      342
     ],
     "pi json mode": [
-      316
+      341
     ],
     "pi json template": [
-      293
+      318
     ],
     "pi lifecycle proxy": [
       2349
@@ -84455,7 +84467,7 @@
       5965
     ],
     "pi live smoke": [
-      304
+      329
     ],
     "pi local directive suppression": [
       2879
@@ -84464,10 +84476,10 @@
       2878
     ],
     "pi mcp": [
-      318
+      343
     ],
     "pi mcp extension": [
-      318
+      343
     ],
     "pi model provider mapping": [
       5778
@@ -84479,7 +84491,7 @@
       3079
     ],
     "pi native skills": [
-      319
+      344
     ],
     "pi no extensions read only builder": [
       5726
@@ -84491,10 +84503,10 @@
       3002
     ],
     "pi openai codex opencode go minimax llmgateway": [
-      321
+      346
     ],
     "pi openrouter roster": [
-      303
+      328
     ],
     "pi output projection": [
       3679
@@ -84509,10 +84521,10 @@
       3225
     ],
     "pi passthrough model selection": [
-      321
+      346
     ],
     "pi print mode": [
-      316
+      341
     ],
     "pi print mode wrapper": [
       3677,
@@ -84522,7 +84534,7 @@
       3678
     ],
     "pi print template": [
-      293
+      318
     ],
     "pi prompt advisor": [
       2012,
@@ -84541,14 +84553,14 @@
       3085
     ],
     "pi prompt framework selection": [
-      292
+      317
     ],
     "pi prompt quality card": [
-      292
+      317
     ],
     "pi prompt templates": [
-      293,
-      319
+      318,
+      344
     ],
     "pi provider map moved": [
       5780
@@ -84566,7 +84578,7 @@
       5715
     ],
     "pi providers and models": [
-      321
+      346
     ],
     "pi registertool vision": [
       4894
@@ -84575,23 +84587,23 @@
       812
     ],
     "pi resource loader": [
-      319
+      344
     ],
     "pi review prompt template": [
-      293
+      318
     ],
     "pi roster minus ultraspeed": [
-      223
+      248
     ],
     "pi rpc client": [
-      317
+      342
     ],
     "pi rpc mode": [
-      316,
-      320
+      341,
+      345
     ],
     "pi rpc template": [
-      293
+      318
     ],
     "pi runner stdin checks": [
       1597
@@ -84615,7 +84627,7 @@
       2029
     ],
     "pi skill discovery": [
-      319
+      344
     ],
     "pi skill orchestrator": [
       6562
@@ -84646,10 +84658,10 @@
       12280
     ],
     "pi stdio": [
-      318
+      343
     ],
     "pi streamable http": [
-      318
+      343
     ],
     "pi subagent directive": [
       2956,
@@ -84678,7 +84690,7 @@
       3002
     ],
     "pi subagents dropped": [
-      302
+      327
     ],
     "pi subagents hook cleanup status": [
       2996
@@ -84693,10 +84705,10 @@
       2998
     ],
     "pi thinking reasoning effort": [
-      321
+      346
     ],
     "pi third party package": [
-      318
+      343
     ],
     "pi tool call coverage": [
       2982
@@ -84711,10 +84723,10 @@
       2979
     ],
     "pi tool surface": [
-      320
+      345
     ],
     "pi tools capabilities reference": [
-      297
+      322
     ],
     "pi turn end event probe": [
       2916
@@ -84723,13 +84735,13 @@
       12283
     ],
     "pi ultraspeed id": [
-      223
+      248
     ],
     "pi unique capabilities": [
-      320
+      345
     ],
     "pi validation handback": [
-      317
+      342
     ],
     "pi visible directive repetition": [
       2879
@@ -84744,10 +84756,10 @@
       4895
     ],
     "pi worker": [
-      315
+      340
     ],
     "pi workflow mode": [
-      296
+      321
     ],
     "pi wrapper": [
       3677,
@@ -85182,7 +85194,7 @@
       7982
     ],
     "playbook authoring bugs": [
-      148
+      173
     ],
     "playbook cheapest model": [
       2867
@@ -85378,7 +85390,7 @@
       4408
     ],
     "playbook scenario count": [
-      306
+      331
     ],
     "playbook scenario links": [
       7175
@@ -86193,11 +86205,11 @@
       9834
     ],
     "pre planning density guidance": [
-      122,
-      151
+      147,
+      176
     ],
     "pre planning density guidance propagated": [
-      261
+      286
     ],
     "pre platform tooling": [
       1159
@@ -86221,7 +86233,7 @@
       10701
     ],
     "pre resolve gate for a dispatched worker": [
-      331
+      356
     ],
     "pre ship rollback removed": [
       5929
@@ -86507,7 +86519,7 @@
       3248
     ],
     "primary agents subagents": [
-      250
+      275
     ],
     "primary checkout reconcile": [
       54,
@@ -86594,7 +86606,7 @@
       9316
     ],
     "problem first overview": [
-      182
+      207
     ],
     "problem first readme": [
       9500
@@ -87053,7 +87065,7 @@
       577
     ],
     "project context handoff": [
-      119
+      144
     ],
     "project milestones": [
       1174
@@ -87217,7 +87229,7 @@
       2124
     ],
     "prompt card precedence": [
-      153
+      178
     ],
     "prompt card sync": [
       4838
@@ -87246,7 +87258,7 @@
       4852
     ],
     "prompt composition guidance": [
-      152
+      177
     ],
     "prompt engineering": [
       1515
@@ -87255,7 +87267,7 @@
       1516
     ],
     "prompt guidance and composition order": [
-      266
+      291
     ],
     "prompt hardening": [
       7302,
@@ -87315,7 +87327,7 @@
       4888
     ],
     "prompt improver hermes eligibility row": [
-      234
+      259
     ],
     "prompt improver model eligibility": [
       4889
@@ -87407,19 +87419,19 @@
       9406
     ],
     "prompt quality card moved": [
-      115,
+      140,
       1528
     ],
     "prompt quality card related resources": [
-      114
+      139
     ],
     "prompt quality card sync and prompt improver eligibility": [
-      234
+      259
     ],
     "prompt quality card template": [
-      114,
-      155,
-      253
+      139,
+      180,
+      278
     ],
     "prompt safe bounded context query": [
       1609
@@ -87446,8 +87458,8 @@
       1385
     ],
     "prompt templates leading divider": [
-      117,
-      256
+      142,
+      281
     ],
     "prompt time advisor brief adapters": [
       9073
@@ -87706,9 +87718,9 @@
       3657
     ],
     "providers and models catalog": [
-      128,
-      163,
-      299
+      153,
+      188,
+      324
     ],
     "provision build step plan": [
       12334
@@ -87826,7 +87838,7 @@
       930
     ],
     "purpose first readme rewrite on the refined skill readme template": [
-      270
+      295
     ],
     "push and create a pull request": [
       1501
@@ -88227,10 +88239,10 @@
       1893
     ],
     "quote safe executor normalization": [
-      322
+      347
     ],
     "quoted executor bypass": [
-      328
+      353
     ],
     "quoted executor dispatch bypass": [
       2994
@@ -88711,7 +88723,7 @@
       7103
     ],
     "readme capability table": [
-      129
+      154
     ],
     "readme cascade": [
       6868,
@@ -88851,7 +88863,7 @@
       11354
     ],
     "readme model examples": [
-      201
+      226
     ],
     "readme plan": [
       12258
@@ -88866,13 +88878,13 @@
       946
     ],
     "readme punctuation patterns": [
-      145
+      170
     ],
     "readme purpose first rewrite": [
-      164
+      189
     ],
     "readme purpose first structure": [
-      129
+      154
     ],
     "readme purpose first voice": [
       446
@@ -88881,7 +88893,7 @@
       1408
     ],
     "readme quick start guidance": [
-      118
+      143
     ],
     "readme readability improvement": [
       12259
@@ -88893,7 +88905,7 @@
       946
     ],
     "readme refined template": [
-      300
+      325
     ],
     "readme refresh": [
       6868,
@@ -89096,7 +89108,7 @@
       9612
     ],
     "reasoning depth workflow": [
-      143
+      168
     ],
     "reasoningeffort to thinking cli pi": [
       5716
@@ -91852,10 +91864,10 @@
       6514
     ],
     "repeated reference material": [
-      160
+      185
     ],
     "repeated reference tables": [
-      127
+      152
     ],
     "repeating findings": [
       1744
@@ -91952,10 +91964,10 @@
       3513
     ],
     "repo guards plugin": [
-      104
+      129
     ],
     "repo guards project plugin": [
-      236
+      261
     ],
     "repo hygiene and residue": [
       10508
@@ -93146,10 +93158,10 @@
       1887
     ],
     "research review lineages": [
-      305
+      330
     ],
     "research review loop types": [
-      206
+      231
     ],
     "research run plan": [
       11640
@@ -95069,10 +95081,10 @@
       7301
     ],
     "rm 8 prevention playbook": [
-      285
+      310
     ],
     "rm 8 replay walkthrough": [
-      288
+      313
     ],
     "rm 8 tasks": [
       7303
@@ -95129,7 +95141,7 @@
       1603
     ],
     "roll back deem": [
-      88
+      93
     ],
     "rollback": [
       1689
@@ -95374,7 +95386,7 @@
       11980
     ],
     "root router": [
-      100
+      125
     ],
     "root router authoring": [
       1424
@@ -95495,7 +95507,7 @@
       3233
     ],
     "route requests by work type": [
-      141
+      166
     ],
     "route this request": [
       1969
@@ -95898,7 +95910,7 @@
       2320
     ],
     "run budget margin and reasoning pin": [
-      230
+      255
     ],
     "run capped pool": [
       1896
@@ -96899,7 +96911,7 @@
       6539
     ],
     "sandbox levels": [
-      141
+      166
     ],
     "sandbox mutation test": [
       10157
@@ -96920,7 +96932,7 @@
       6537
     ],
     "sandboxed child tsx checks": [
-      168
+      193
     ],
     "sanitizeskilllabel": [
       1989,
@@ -97623,13 +97635,13 @@
       2713
     ],
     "score judgment": [
-      337
+      96
     ],
     "score level": [
-      87
+      92
     ],
     "score levels": [
-      338
+      97
     ],
     "score model variant": [
       1729
@@ -98356,9 +98368,9 @@
       6466
     ],
     "second opinion": [
-      137,
-      175,
-      195
+      162,
+      200,
+      220
     ],
     "second research lineage advisor": [
       6468
@@ -98546,7 +98558,7 @@
       11224
     ],
     "self invocation rule": [
-      113
+      138
     ],
     "self loop edge rejection": [
       1614
@@ -99427,7 +99439,7 @@
       629
     ],
     "share url": [
-      244
+      269
     ],
     "shared active goal plan": [
       2910
@@ -99946,10 +99958,10 @@
       5346
     ],
     "shared runtime dispatch": [
-      305
+      330
     ],
     "shared runtime research review": [
-      224
+      249
     ],
     "shared safe fix engine": [
       10893,
@@ -100095,10 +100107,10 @@
       9171
     ],
     "shoulddenypidispatch": [
-      328
+      353
     ],
     "shoulddenypidispatch pi authorization gate": [
-      322
+      347
     ],
     "shouldfireadvisor reconnect": [
       6509
@@ -100503,7 +100515,7 @@
       5100
     ],
     "single build doc dispatch": [
-      186
+      211
     ],
     "single canonical state write path decision": [
       6036
@@ -100590,7 +100602,7 @@
       11659
     ],
     "single source catalog": [
-      163
+      188
     ],
     "single source continuity": [
       11389
@@ -102604,7 +102616,7 @@
       9476
     ],
     "sk doc asset template": [
-      155
+      180
     ],
     "sk doc audit": [
       6857,
@@ -102767,7 +102779,7 @@
       9479
     ],
     "sk doc reference template": [
-      253
+      278
     ],
     "sk doc root router adoption": [
       1250
@@ -102785,7 +102797,7 @@
       1261
     ],
     "sk doc section dividers": [
-      255
+      280
     ],
     "sk doc sk code drift findings": [
       8965
@@ -103275,9 +103287,9 @@
       9717
     ],
     "sk prompt models hub": [
-      115,
-      156,
-      254
+      140,
+      181,
+      279
     ],
     "sk prompt models packet deletion": [
       4860
@@ -105329,7 +105341,7 @@
       11141
     ],
     "skill md cli reference pointer": [
-      160
+      185
     ],
     "skill md code rank embed keyword": [
       9386
@@ -106073,7 +106085,7 @@
       7675
     ],
     "smart fallback pattern": [
-      150
+      175
     ],
     "smart router ci check": [
       9021
@@ -108230,7 +108242,7 @@
       10025
     ],
     "speckit compiled routing": [
-      324,
+      349,
       413,
       814,
       1255,
@@ -108307,7 +108319,7 @@
       12077
     ],
     "speckit hermes state dir": [
-      228
+      253
     ],
     "speckit index spec docs default corrected": [
       2170
@@ -109148,7 +109160,7 @@
       10575
     ],
     "stale model counts": [
-      98
+      123
     ],
     "stale opencode path references": [
       12138
@@ -109338,7 +109350,7 @@
       1483
     ],
     "standalone template": [
-      97
+      122
     ],
     "standard asset structure": [
       1425
@@ -109398,7 +109410,7 @@
       9369
     ],
     "start the deem server": [
-      88
+      93
     ],
     "start timer": [
       534
@@ -110404,7 +110416,7 @@
       3163
     ],
     "subagent delegation": [
-      195
+      220
     ],
     "subagent dispatch policy": [
       3002
@@ -111038,7 +111050,7 @@
       796
     ],
     "surface router": [
-      100
+      125
     ],
     "surface router pattern": [
       1242
@@ -111084,7 +111096,7 @@
       6468
     ],
     "swe 2 effort ids": [
-      205
+      230
     ],
     "swe 2 max cursor pi fan out": [
       2721
@@ -111102,10 +111114,10 @@
       6469
     ],
     "swe alias default": [
-      200
+      225
     ],
     "swe alias resolution": [
-      205
+      230
     ],
     "sweep ac traceability": [
       11932
@@ -111240,7 +111252,7 @@
       12327
     ],
     "sync prompts hermes": [
-      235
+      260
     ],
     "sync runtime mirrors": [
       2331
@@ -114383,7 +114395,7 @@
       11605
     ],
     "terra ultra ceiling": [
-      166
+      191
     ],
     "terse arch conform": [
       9058
@@ -114864,7 +114876,7 @@
       41
     ],
     "the gpt 5 6 model roster": [
-      259
+      284
     ],
     "the readme rebuilt as purpose first narrative": [
       2207
@@ -114917,7 +114929,7 @@
       2230
     ],
     "thinking effort lever": [
-      299
+      324
     ],
     "third lineage findings": [
       6470
@@ -115044,7 +115056,7 @@
       4471
     ],
     "three tier precedence rule": [
-      124
+      149
     ],
     "three tier setup resolution": [
       2304
@@ -115090,10 +115102,10 @@
       6565
     ],
     "tier 3 escalation bullet": [
-      125
+      150
     ],
     "tier 3 guidance model links and discovery triggers": [
-      268
+      293
     ],
     "tier 4 legacy template cleanup": [
       6691
@@ -115484,7 +115496,7 @@
       394
     ],
     "toolset selection and web search policy": [
-      231
+      256
     ],
     "tooltip bearing forms html cards": [
       1091
@@ -115875,10 +115887,10 @@
       8437
     ],
     "transport axis extension moved": [
-      346
+      105
     ],
     "transport axis jev": [
-      351
+      110
     ],
     "transport baseline summary": [
       4450
@@ -116626,13 +116638,13 @@
       5041
     ],
     "typed jev judgments": [
-      344
+      103
     ],
     "typed judgment routing": [
-      332
+      76
     ],
     "typed judgment transport": [
-      337
+      96
     ],
     "typed ledger append": [
       1911
@@ -116680,16 +116692,16 @@
       1003
     ],
     "typesafe api key": [
-      356
+      115
     ],
     "typesafe jev": [
-      337
+      96
     ],
     "typesafe jev judgment": [
       2674
     ],
     "typesafe jev mcp": [
-      355
+      114
     ],
     "typescript async patterns": [
       919
@@ -116774,10 +116786,10 @@
       770
     ],
     "ultraspeed left the picker": [
-      313
+      338
     ],
     "ultraspeed no longer allowed": [
-      314
+      339
     ],
     "umbrella docs capability sync": [
       8943
@@ -117005,7 +117017,7 @@
       3248
     ],
     "unnecessary loops": [
-      113
+      138
     ],
     "unphotographed surface obsidian plugin": [
       836
@@ -117120,7 +117132,7 @@
       562
     ],
     "update deem": [
-      88
+      93
     ],
     "update document": [
       585
@@ -120207,7 +120219,7 @@
       1189
     ],
     "web search": [
-      137
+      162
     ],
     "webflow animation quality": [
       1028
@@ -121052,25 +121064,25 @@
       1443
     ],
     "which model for claude code dispatch": [
-      136
+      161
     ],
     "which model for codex dispatch": [
-      174
+      199
     ],
     "which model for cursor dispatch": [
-      193
+      218
     ],
     "which model for devin dispatch": [
-      214
+      239
     ],
     "which model for hermes dispatch": [
-      243
+      268
     ],
     "which model for opencode dispatch": [
-      289
+      314
     ],
     "which model for pi dispatch": [
-      321
+      346
     ],
     "which model may act as prompt improve": [
       4889
@@ -121906,25 +121918,25 @@
       10405
     ],
     "xiaomi direct api and minimax m2 7 removal": [
-      257
+      282
     ],
     "xiaomi mimo roster cutover": [
       2636
     ],
     "xiaomi provider leaves roster": [
-      314
+      339
     ],
     "xiaomi provider reference": [
-      310
+      335
     ],
     "xiaomi routes leave roster": [
-      272
+      297
     ],
     "xiaomi token plan adds mimo v2 5 pro": [
-      264
+      289
     ],
     "xiaomi v2 6 models": [
-      310
+      335
     ],
     "xss prevention frontend": [
       1012

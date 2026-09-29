@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9481e0d60815d22e1b1c76c7f5aff8930df2b020a750f119a969793f69fa85df",
+  "manifestHash": "0286547dee78e337e18bcd92a375433ced868d22a227131cbc8d2fb5a21ed11d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17157,6 +17157,9 @@
     "cli classifier 1 0 0 0": [
       "cli-classifier 1.0.0.0"
     ],
+    "cli classifier 1 1 0 0": [
+      "cli-classifier 1.1.0.0"
+    ],
     "cli classifier benchmark": [
       "cli-classifier benchmark"
     ],
@@ -17210,6 +17213,9 @@
     ],
     "cli classifier v1 0 0 0": [
       "cli-classifier v1.0.0.0"
+    ],
+    "cli classifier v1 1 0 0": [
+      "cli-classifier v1.1.0.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -18432,6 +18438,9 @@
     "cli jev joins the compiled serving closure": [
       "cli-jev Joins the Compiled Serving Closure"
     ],
+    "cli jev mode of cli classifier": [
+      "cli-jev mode of cli-classifier"
+    ],
     "cli jev move kill criterion": [
       "cli-jev move kill criterion"
     ],
@@ -18464,9 +18473,6 @@
     ],
     "cli jev replay results": [
       "cli-jev replay results"
-    ],
-    "cli jev root router": [
-      "cli-jev root router"
     ],
     "cli jev route replay plan": [
       "cli-jev route replay plan"
@@ -47919,6 +47925,9 @@
     "jev judgment dispatch": [
       "jev judgment dispatch"
     ],
+    "jev judgment hub": [
+      "jev judgment hub"
+    ],
     "jev judgment primitives": [
       "jev judgment primitives"
     ],
@@ -47951,6 +47960,9 @@
     ],
     "jev model ids": [
       "jev model ids"
+    ],
+    "jev moves into cli classifier": [
+      "jev moves into cli-classifier"
     ],
     "jev near tie cluster arm": [
       "jev near-tie cluster arm"
