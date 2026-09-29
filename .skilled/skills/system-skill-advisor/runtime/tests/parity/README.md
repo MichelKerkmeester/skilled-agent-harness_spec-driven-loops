@@ -30,6 +30,7 @@ Current state:
 parity/
 +-- python-ts-parity.vitest.ts  # Python to TypeScript scorer parity gates
 +-- score-jev-tiebreak.vitest.ts  # Offline tie-break eval checks with stub binaries and a fake Deem server
++-- score-suggested-order.vitest.ts  # Offline suggested-order eval checks with stub binaries and stub timed children
 `-- README.md
 ```
 
@@ -41,6 +42,7 @@ parity/
 |---|---|
 | `python-ts-parity.vitest.ts` | Runs corpus parity checks, holdout accuracy checks and lexical ablation assertions. |
 | `score-jev-tiebreak.vitest.ts` | Pins the tie-break eval's census, keep rule, gates, exit handling, calibration and report with stub `jev` and `cli-deem` binaries and a fake Deem server. It makes no model call. |
+| `score-suggested-order.vitest.ts` | Pins the suggested-order eval's helpers, keep rule, timed child, headroom stops, gates, both arms and report with synthetic rows, stub `jev` and `cli-deem` binaries and stub children. It makes no model call. |
 
 ---
 
