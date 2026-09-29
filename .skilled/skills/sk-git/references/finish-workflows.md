@@ -12,7 +12,7 @@ trigger_phrases:
   - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.18
+version: 1.7.0.32
 ---
 
 # Git Finish - Detailed Workflow Reference
@@ -717,7 +717,11 @@ User: "commit and push all changes and create release v2.1.0.0"
 Agent: "I'm using the git-commit skill to commit, then creating the release."
 
 [Commit and Push]
-> git add -A
+> git add src/auth/oauth.ts src/middleware/rate-limit.ts src/config/redis.ts
+> git diff --cached --name-only
+src/auth/oauth.ts
+src/middleware/rate-limit.ts
+src/config/redis.ts
 > git commit -m "release(v2.1.0.0): add OAuth2 authentication + API rate limiting" -m "Cuts the release that ships sign-in and per-client rate limits."
 > git push origin main
 
