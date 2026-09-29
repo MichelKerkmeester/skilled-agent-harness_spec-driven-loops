@@ -1,0 +1,11 @@
+HVR SCAN: .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md
+  x6    first@20    hard   punctuation            ;
+  x1    first@260   hard   punctuation            —
+  x3    first@20    soft1  soft-deduction         do
+  x20   first@9     review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          7
+  mechanical deductions:  -38
+  mechanical ceiling:     62/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality

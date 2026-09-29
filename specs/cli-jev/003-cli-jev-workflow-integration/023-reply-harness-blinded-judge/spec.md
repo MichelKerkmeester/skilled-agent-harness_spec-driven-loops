@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 23: reply-harness-blinded-judge"
-description: "Measure offline whether a Jev or Deem score per rubric dimension agrees with the operator's grades of masked replies from the sk-communication reply harness more often than the harness's own mechanical scores do. A zero-call census prints the masked replies, the mechanical baseline and a label gate of 20 operator-graded replies before any model call. Planned, released 2026-09-29."
+description: "Measure offline whether a Jev or Deem score per rubric dimension agrees with the operator's grades of masked replies from the sk-communication reply harness more often than the harness's own mechanical scores do. A zero-call census prints the masked replies, the mechanical baseline and a label gate of 20 operator-graded replies before any model call. Built and closed at its label gate on 2026-09-29, commit b5e71ae777."
 trigger_phrases:
   - "reply harness blinded judge"
   - "reply harness judge agreement"
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -104,7 +104,7 @@ Owner of every path below: `sk-communication`. The build follows that owner's `b
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs` | Create | Census, mechanical baseline, label gate, both arms and the per-column verdicts. Proposed name, Node standard library only |
-| `.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs` | Create | `node --test` cases against a fixture run and stub `cli-deem` and `jev` binaries. Proposed name. T002 confirms the runner, because the harness ships no test file today |
+| `.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs` | Create | `node --test` cases against a fixture run and stub `cli-deem` and `jev` binaries. Proposed name. T002 confirmed `node --test`, because the harness shipped no test file at planning |
 | `.skilled/skills/sk-communication/benchmark/reply-harness/README.md` | Modify | One "What each piece does" row and one run-order step naming the script, its zero-call default and its two switches |
 | `.skilled/skills/sk-communication/SKILL.md` | Modify | One sentence naming the offline judge measurement. A search for `reply-harness` in `SKILL.md` finds nothing today, so sk-doc places the sentence (parent goal D6) |
 | `.skilled/skills/sk-communication/README.md` | Modify | One line naming the script and its switches (parent goal D6) |

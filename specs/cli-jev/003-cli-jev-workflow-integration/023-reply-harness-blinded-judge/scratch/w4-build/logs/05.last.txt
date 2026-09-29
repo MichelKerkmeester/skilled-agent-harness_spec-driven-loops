@@ -1,0 +1,28 @@
+I'll read both files in full first, as the brief requires.
+
+Now let me check the script's exports so I import `sha256Hex` correctly.
+
+Both files read. Let me verify `sha256Hex` hashes the raw string (the stub hashes raw stdin), so the test table key matches.
+
+`sha256Hex` hashes the raw string, matching the stub's raw-stdin hash. Now I'll apply the four edits to T: add the two imports, paste the stub block after `makeFixture`, and append the two tests.
+
+Imports are in. Now the stub block after `makeFixture` and the two new tests at the end.
+
+All four edits are applied. Now the two required checks, plus a full re-read of T to confirm the final state.
+
+Both checks pass and the final state is confirmed: the stub block at lines 49-106 matches the draft character-for-character, the helpers and tests are in place, and no other file was touched.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (+96/-1)
+EDITS: judge-agreement.test.mjs:2 added `import { spawnSync } from 'node:child_process';`
+       judge-agreement.test.mjs:8 added `sha256Hex` to the existing import from './judge-agreement.mjs'
+       judge-agreement.test.mjs:49-106 pasted draft lines 1-36 verbatim (comment + `function stubMain()`), then `STUB_SOURCE`, `makeStubBin`, `stubEnv`, `readStubLog` directly below
+       judge-agreement.test.mjs:306-321 test 17: stub `jev --version` status 0 / stdout `'jev 0.6.2\n'` / one log line starting `'jev\t--version'`; `cli-deem health` with `STUB_HEALTH: 'stub'` status 3
+       judge-agreement.test.mjs:323-339 test 18: `answers.json` keyed `${sha256Hex('state')}|Q` -> `[2, 2, 0]`, three `jev score` runs print 2, then 2, then 0
+CHECKS: node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs -> no output (parse OK) (exit 0)
+        grep -c "function stubMain" .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs -> 1 (exit 0)
+BLOCKED REASON: none
+```
+
+Notes for the orchestrator: every pre-existing line is unchanged apart from the one named import line, which now also carries `sha256Hex`; `node --test` was not run per the brief.

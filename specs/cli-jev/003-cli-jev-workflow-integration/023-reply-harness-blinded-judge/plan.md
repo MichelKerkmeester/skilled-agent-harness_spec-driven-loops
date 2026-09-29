@@ -37,17 +37,19 @@ The script works in two slices. Slice 1 makes no model call: it joins each maske
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
+Evidence: `BE` is `scratch/w4-build/build-evidence.md` and `SE` is `scratch/w4-session/session-evidence.md`; where the two disagree, `SE` wins.
+
 ### Definition of Ready
-- [ ] The operator released this phase on 2026-09-29 (parent goal D3, amended by the "Bind and release" answer), so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel
-- [ ] The Keep Rule in `spec.md` section 4 is unchanged since this plan, and no model run has happened
-- [ ] T002 has recorded the owner's test runner and the baseline `git status --porcelain`
+- [x] The operator released this phase on 2026-09-29 (parent goal D3, amended by the "Bind and release" answer), so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel. Evidence: the release is the build's stated precondition and the build ran under it (`BE` section 1, `SE` section 1)
+- [x] The Keep Rule in `spec.md` section 4 is unchanged since this plan, and no model run has happened. Evidence: the census prints the `keep rule:` line with the spec's order and thresholds, and no model ran: every run used logging stubs and the census stops at the label gate (`SE` section 2)
+- [x] T002 has recorded the owner's test runner and the baseline `git status --porcelain`. Evidence: `node --test .skilled/skills/sk-communication/benchmark/reply-harness/` printed `tests 0` (the harness shipped no test file) and `baseline/git-status-pre.txt` holds the 6-line pre-build porcelain (`BE` section 1)
 
 ### Definition of Done
-- [ ] Every REQ in `spec.md` section 4 meets its acceptance criteria, or is listed as waiting on the label gate
-- [ ] `node --test judge-agreement.test.mjs` exits 0 with at least 18 passed and 0 failed
-- [ ] The zero-call census on the three committed runs is recorded in `goal.md`'s log, and so is a verdict line or the label gate's `stop:` line
-- [ ] Cross-family review leaves no open P0 or P1 finding (parent goal D5)
-- [ ] `validate_document.py` exits 0 on every skill doc changed (parent goal D6), and `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] Every REQ in `spec.md` section 4 meets its acceptance criteria, or is listed as waiting on the label gate. Evidence: REQ-001 to REQ-014 are built, covered by `tests 43, pass 43, fail 0` and the proof runs; the criteria needing operator labels or a live run are listed in `implementation-summary.md` Known Limitations as waiting on the label gate (`SE` sections 2 and 3)
+- [x] `node --test judge-agreement.test.mjs` exits 0 with at least 18 passed and 0 failed. Evidence: `tests 43`, `pass 43`, `fail 0`, exit 0 (`SE` section 2)
+- [x] The zero-call census on the three committed runs is recorded in `goal.md`'s log, and so is a verdict line or the label gate's `stop:` line. Evidence: the counts, the baseline and `stop: fewer than 20 labeled replies` are in `goal.md`'s log, recorded by this closure pass (`SE` section 2)
+- [x] Cross-family review leaves no open P0 or P1 finding (parent goal D5). Evidence: Pi MiMo on the code `VERDICT: PASS` with 4 P2; Devin DeepSeek on the docs found 2 P1 and 3 P2, both P1 closed and the recheck `VERDICT: PASS`; 7 P2 recorded and not chased (`SE` section 3)
+- [x] `validate_document.py` exits 0 on every skill doc changed (parent goal D6), and `validate.sh --strict` on this phase prints `RESULT: PASSED`. Evidence: exit 0 on all 8 changed docs (`SE` section 2), and `validate.sh --strict` prints `RESULT: PASSED`, run by this closure pass (results in `implementation-summary.md` Verification)
 <!-- /ANCHOR:quality-gates -->
 
 ---

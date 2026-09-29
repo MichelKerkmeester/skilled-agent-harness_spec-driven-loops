@@ -1,0 +1,40 @@
+I'll start by reading the brief's named files. Let me read S and T in full, and M lines 1455-1510.
+
+Now let me read the rest of S (from line 461) and the rest of T.
+
+Now let me read the remaining part of S (lines 860-1188), which contains the end of section 7, section 8 and the main entry point.
+
+I have the full picture now. Let me run two pre-checks: the current `^export function` count in S (to confirm the brief's target of 31 after adding 2), and whether `score.mjs` is git-tracked (test 40 depends on it).
+
+Pre-checks confirm: 29 existing `^export function` lines (→ 31 after adding `jevGate` and `payloadClass`), and `score.mjs` is git-tracked (so test 40's expectation holds). Now the edits — first the section 8 insertion in S.
+
+Section 8 is in. Now the `main` jev block and the `buildReport` call.
+
+S is done. Now the test file: the import, `stubEnv`, and the four tests.
+
+Now append the four tests at the end of T.
+
+All edits are in. Now the three checks from the brief.
+
+All three checks pass. Now the final-state check: confirm only S and T carry my changes.
+
+Both files are untracked in this worktree (the orchestrator handles commits), so `git diff --numstat` is empty. Let me confirm the final line counts for the handback and re-read the key edited regions in S.
+
+All checks pass and the final state is verified: only the two named files were edited, both syntax-clean, and the `^export function` count is 29 (pre-edit baseline) + 2 new exports = 31. The jev block in `main` matches the brief line-for-line against main's own variable names, and `buildReport` now receives `jev: jevResult`.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs (+104/-1)
+- .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (+96/-1)
+EDITS:
+- judge-agreement.mjs:961-1041 added section 8 JEV ARM: three-line header, comment (gate only behind --jev, reads no key and passes none, jev resolves its own credential), JEV_VERSION and jevGate copied verbatim from score-track-narrowing.mjs with JSDoc, and payloadClass running `git -C <dir> ls-files -z -- .` per distinct masked dir with the untracked/committed return
+- judge-agreement.mjs:1232-1253 added the jev block in main above the deem gate: jevGate, then payloadClass with the `--accept-payload` refusal, then label-gate/headroom skip, with the placeholder comment for the passing arm
+- judge-agreement.mjs:1280 buildReport call now passes `jev: jevResult` instead of `jev: undefined`
+- judge-agreement.test.mjs:9 import list now includes payloadClass
+- judge-agreement.test.mjs:100 stubEnv sets `JEV_PROVIDER: ''` after STUB_LOG and before `...extra`
+- judge-agreement.test.mjs:791-884 four tests appended: identity line + `no credential` skip with stub log order `jev/--version`, `jev/auth status --provider official`; `--accept-payload` then `label gate`; payload refusal with the deem verdict still printed and no `jev\tscore` log line; payloadClass untracked vs committed
+CHECKS:
+- node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> S SYNTAX OK (exit 0)
+- node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs -> T SYNTAX OK (exit 0)
+- grep -c "^export function" judge-agreement.mjs -> 31 (exit 0; run via the repo search tool per tool policy, not a grep shell command)
+BLOCKED REASON: none

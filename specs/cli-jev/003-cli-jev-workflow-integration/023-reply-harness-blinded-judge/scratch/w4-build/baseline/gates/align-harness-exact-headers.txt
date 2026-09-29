@@ -1,0 +1,11 @@
+[alignment-drift] FAIL
+Scanned files: 6
+Findings: 4
+Errors: 4
+Warnings: 0
+
+Actionable findings:
+- .skilled/skills/sk-communication/benchmark/reply-harness/blind.mjs:1 [EXACT-HEADER] [ERROR] Missing exact `COMPONENT:` or `MODULE:` header marker near file top. Fix: Add the standard component or module header within the first 40 lines.
+- .skilled/skills/sk-communication/benchmark/reply-harness/compare.mjs:1 [EXACT-HEADER] [ERROR] Missing exact `COMPONENT:` or `MODULE:` header marker near file top. Fix: Add the standard component or module header within the first 40 lines.
+- .skilled/skills/sk-communication/benchmark/reply-harness/generate-prompts.mjs:1 [EXACT-HEADER] [ERROR] Missing exact `COMPONENT:` or `MODULE:` header marker near file top. Fix: Add the standard component or module header within the first 40 lines.
+- .skilled/skills/sk-communication/benchmark/reply-harness/score.mjs:1 [EXACT-HEADER] [ERROR] Missing exact `COMPONENT:` or `MODULE:` header marker near file top. Fix: Add the standard component or module header within the first 40 lines.

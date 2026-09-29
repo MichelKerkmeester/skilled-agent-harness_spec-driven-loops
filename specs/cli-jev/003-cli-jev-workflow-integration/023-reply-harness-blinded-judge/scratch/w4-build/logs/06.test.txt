@@ -1,0 +1,31 @@
+✔ readMaskedReply returns the body under the marker and null without one (0.66625ms)
+✔ buildCensus counts every masked file and matches every distinct reply (29.417042ms)
+✔ buildCensus reports the masked reply whose source changed after masking (26.956958ms)
+✔ listMarkdown refuses a path that is not a directory (0.808459ms)
+✔ levelOfScore reads 0 as absent, 1 as fully met and a value between as partly met (0.501916ms)
+✔ levelOfScore returns null outside the scale or without a number (0.096042ms)
+✔ runBaseline maps every reply file to its dimension scores and leaves no temp dir (1599.692417ms)
+✔ runBaseline throws when score.mjs fails on a replies dir (72.665792ms)
+✔ parseLabels numbers a row by its 1-based line and skips the empty ones (0.339666ms)
+✔ parseLabels names the first missing dimension (0.233667ms)
+✔ parseLabels rejects a grade outside the three levels (0.086333ms)
+✔ joinLabels keys one entry per reply SHA and reports a grade conflict (33.012959ms)
+✔ joinLabels skips a graded reply edited after masking and refuses a path outside the census (34.791458ms)
+✔ summaryLines stops below the label gate (0.481583ms)
+✔ summaryLines plans the arm calls and reports agreement above the gate (0.130959ms)
+✔ summaryLines refuses headroom when the baseline already agrees (0.062708ms)
+✔ the stub jev answers --version and logs the call, and cli-deem health exits 3 (236.162667ms)
+✔ the stub scores the same state 2, then 2, then 0 from the answers table (156.740917ms)
+✔ main prints the census report and the label gate stop on the default run (1600.749125ms)
+✔ main refuses --deem without --out before reading any file (23.337375ms)
+✔ main reports a labels row that drops a dimension (2655.570333ms)
+✔ main stops on a label conflict between two rows grading one reply (2248.421083ms)
+✔ the script exits 2 with usage on stderr when --replies is missing (71.748625ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8852.004041

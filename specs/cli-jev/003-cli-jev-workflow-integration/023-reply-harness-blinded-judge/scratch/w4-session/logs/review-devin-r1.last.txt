@@ -1,0 +1,194 @@
+I'll start by reading the phase's requirements, goal, and build evidence, then the files in scope.
+
+
+
+Now let me check the working tree state and locate the code under review.
+
+The code files are untracked (new), so they don't appear in the diff — I'll read them as the referent for the doc claims. Let me read the main script and its test.
+
+
+
+
+
+
+
+Now the test file.
+
+
+
+Now let me check the real backend contracts the script depends on: `score.mjs` output shape, `cli-deem` health/score output, and the rubric.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me check the real `jev` CLI contract (read-only help/version only, no calls).
+
+
+
+
+
+
+
+
+
+
+
+The jev contract checks out (version string, auth status exit 3, `answers.answer.score`, exit codes 1/2/3/4/130). Now let me check `blind.mjs`'s mask format against the parser, then run the phase's tests.
+
+Now let me run the phase's test suite and the COMM-011 census command.
+
+While the suite runs, let me read the docs in scope.
+
+
+
+
+
+Let me check the test run.
+
+43/43 tests pass. Now the real-run census from the playbook (COMM-011), with tree status before and after.
+
+The census matches. One detail to investigate: `no baseline: 1` on the real runs. Let me find which committed reply lacks a baseline.
+
+
+
+
+
+Comment hygiene and secrets check clean. Now the playbook's exact focused-test command and doc validation.
+
+
+
+Now the playbook scenario file and the modified catalog/playbook regions.
+
+
+
+
+
+
+
+
+
+
+
+Let me run the package-level doc validators myself to confirm the new entries don't regress them.
+
+
+
+
+
+
+
+
+
+A manifest check regressed versus baseline (15/15 → 14/15). Let me identify which skill is stale.
+
+This looks like a regression caused by this phase. Let me check whether a commit hook would regenerate it.
+
+
+
+
+
+
+
+This is a genuine regression. Let me check the phase's plan/tasks to see whether the manifest refresh was in scope.
+
+
+
+
+
+
+
+Let me check the Hermes mirror, trigger index, and README manifest gates too, since they were green at baseline.
+
+
+
+
+
+
+
+The pipe masked the real exit code. Let me rerun the trigger-index check properly, checking whether this phase's docs are in the stale list.
+
+
+
+
+
+Let me check the phase's acceptance criteria for a gate row covering the manifest.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me confirm the scoped fix command for the stale manifest.
+
+
+
+
+
+
+
+Let me check how the phase's acceptance criteria interpret REQ-014, since the playbook scenario never names `--jev`.
+
+
+
+
+
+Let me check whether the CI workflow that runs these manifest checks is current, to calibrate the manifest finding.
+
+
+
+
+
+
+
+# Cross-family review — 023-reply-harness-blinded-judge
+
+**Findings**
+
+- P1 `.skilled/skills/sk-communication/leaf-manifest.json:4-27` — the two new leaf docs are missing from the leaf manifest, so two gates this build recorded green now fail — `ci-leaf-manifest-freshness.cjs` prints `checked=15 fresh=14 failed=1` (STALE sk-communication) and `ci-skill-root-metadata.cjs` prints `checked=15 passed=14 failed=1` (leaf-aliases.json also stale); both were 15/15 at baseline (`scratch/w4-build/build-evidence.md:19-20`) and CI runs both (`.github/workflows/routing-registry-drift.yml:195-196`); regenerate sk-communication's manifest and aliases.
+- P1 `.skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md:16` — REQ-014 requires each changed doc to name the script, its zero-call default and its two switches; this scenario (and its root section) never names `--jev` — `grep -n jev` on the file returns nothing (rc=1) while `--deem` appears, so an operator reading COMM-011 learns one switch only.
+- P2 `.skilled/skills/sk-communication/changelog/v1.4.0.0.md:26` — the keep-rule summary drops the exact kill test and the Jev flip bound, so its three named checks predict a different verdict — `A=0 B=60 M=20 W=0 L=20` prints `verdict deem: kill` (`judge-agreement.mjs:468`, test line 577) where coverage + sign test + margin alone would give `stop (margin)`.
+- P2 `.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs:905-931,1177-1199` — no test exercises the exit-table stops (2/3/4/130, timeout) or the requalify lines; REQ-013 does not name them, but nothing else covers them.
+- P2 trigger index (session artifact) — `generate-trigger-index.mjs --check` now exits 1 with 13 stale docs; 2 are this phase's new docs, 11 belong to sibling builds; needs the session's rebuild before commit.
+
+**Requirements**
+
+- REQ-001 met — real-run census printed 42/38/38 and the stop line, exit 0; test 20 shows stub `cli-deem`/`jev` log nothing.
+- REQ-002 met — real counts match; the unmatched edge is test 3.
+- REQ-003 met — `score.mjs` spawned unchanged per replies dir; 0/1/between mapping tests 7-9.
+- REQ-004 met — row errors exit 2 (test 25), conflict stops (26), 19-reply gate (15), labels SHA printed; no model writes a grade.
+- REQ-005 met — keep rule in spec order; hand-checked exact tails: 1/32<0.05, W=4 L=0 → 1/16 → stop (sign test).
+- REQ-006 met — health mapping matches cli-deem's exit 3/4 and JSON shape; tests 23-24.
+- REQ-007 met — identity line, `jev 0.6.2` pin (real CLI prints it), auth status `--provider`; tests 39, 43.
+- REQ-008 met — secret grep empty (rc=1); `git status` unchanged after the census; payload tests 41-42.
+- REQ-009 met — stdin state closed after write, `-q` guidance, levels in order, rounding; tests 32, 43.
+- REQ-010 met — exit handling, calls.jsonl fields, planned calls, `--out` before calls (test 22); code-read for 2/3/4/130.
+- REQ-011 met — requalify prints before the verdict; untested (P2).
+- REQ-012 met — per-dimension lines reported, never deciding; test 31.
+- REQ-013 met — `node --test`: 43 pass, 0 fail, every enumerated case present.
+- REQ-014 not met — all 8 docs `validate_document.py` exit 0 and are true to the code, but the scenario omits `--jev` (P1).
+
+VERDICT: FAIL

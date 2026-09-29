@@ -1,0 +1,9 @@
+Both checks pass from the repo root, output and exit status read. F exists at the exact path with D's 81 lines / 6425 bytes; `cmp` confirms byte identity. No file other than F was created, edited or deleted by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md (+81/-0)
+EDITS: .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md:1-81 created via `cp` from D, byte-identical, read back and verified
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-build/drafts/offline-judge-census-stops-at-label-gate.md .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md -> "✅ VALID ... Document type: playbook_feature, Total issues: 0" (exit 0)
+BLOCKED REASON: none

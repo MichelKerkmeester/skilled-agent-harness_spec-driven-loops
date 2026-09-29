@@ -1,0 +1,19 @@
+All seven edits are present in F, byte-identical to D. Only F was touched by me; other dirty files belong to concurrent workers.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md (+15/-4)
+EDITS:
+- .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md:42 Python 3 precondition extended to cover the mechanical scorer `COMM-011` runs
+- .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md:70 command notation now covers `node --test --test-name-pattern` values as exact focused-test filters
+- .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md:115 wave 4 row adds `COMM-011` and the offline judge census purpose
+- .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md:226-233 new `COMM-011 | Offline judge census stops at the label gate` block at end of section 10
+- .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md:239 sentence exception: `COMM-011` runs the reply comparison scripts under `benchmark/reply-harness/`
+- .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md:252 section 11 table row "Offline judge agreement | Judge agreement tests | `COMM-011`"
+- .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md:269 section 12 table row `COMM-011` Release Gating, Critical Path: No
+CHECKS:
+- `shasum -a 256 .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md` (pre-copy) -> `0da9968efcff48763d88072f956a418de5ee53cff78eae80c02b33263c54c953` (exit 0)
+- `cmp specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-build/drafts/playbook/manual-testing-playbook.md .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md` -> no output (exit 0)
+- `git diff --stat -- .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md` -> `1 file changed, 15 insertions(+), 4 deletions(-)` (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md` -> `✅ VALID: ...manual-testing-playbook.md` (exit 0; one non-blocking `document_type_fallback` warning)
+BLOCKED REASON: none

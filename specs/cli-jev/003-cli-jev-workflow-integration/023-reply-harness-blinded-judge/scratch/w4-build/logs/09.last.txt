@@ -1,0 +1,42 @@
+I'll start by reading the three files — the target source, its test file, and the source module to copy from.
+
+Now let me read the rest of S and T, plus the specified ranges of M.
+
+Now reading the specified ranges of M.
+
+I have everything I need to see the structure. Before editing, let me check the repo's import style for these functions in the sibling module's test file, and get the baseline count of `export function` lines in S.
+
+Baseline is 23 `export function` lines; adding 5 gives the required 28. Let me check the sibling test file's import style at line 37.
+
+All context gathered. The sibling test file confirms a single extended import statement is the codebase convention. Now I'll apply the four edits: two to S (section 7 additions, section 9 addition) and two to T (import extension, three new tests).
+
+Edit 1 applied. Now the section 9 insertion (readStoredReport above `main`) and the two T edits.
+
+All four edits are in. Now let me verify: (1) the copied blocks are byte-for-byte identical to M, (2) both files pass `node --check`, (3) the export count, and (4) that only S and T changed.
+
+All verifications green so far: copied blocks are byte-for-byte verbatim from M, both files pass `node --check`, and the export count is exactly 28. Let me get final line counts for the handback and cross-check the count with the search tool.
+
+Line counts confirm the deltas (S: 851→983, T: 603→638), and the search tool cross-checks 28 exports. Before the handback, the persona standard says to read the sk-code route for this file type — let me confirm it resolves consistently with the brief's bounded checks.
+
+All checks pass. The work is complete and verified.
+
+Summary: copied `nearestRank`, `spawnCall`, `createCallLog`, and `readStoredReport` verbatim from M into S (JSDoc included), added `parseScoreAnswer` from the brief, and added the three tests to T with the import extended. A byte-level check confirmed all four copied blocks match M exactly (1 occurrence each). Per instruction I did not run `node --test`; the orchestrator runs the suites.
+
+```
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs (+132/-0; 851->983 lines)
+- .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (+36/-1; 603->638 lines)
+EDITS:
+- judge-agreement.mjs:708 nearestRank, spawnCall and createCallLog copied from M with JSDoc, changing nothing, at end of section 7
+- judge-agreement.mjs:804 parseScoreAnswer added at end of section 7
+- judge-agreement.mjs:831 readStoredReport copied from M with JSDoc, changing nothing, above main in section 9
+- judge-agreement.test.mjs:9 import extended with createCallLog, parseScoreAnswer, readStoredReport, spawnCall; :605-638 three tests added (parseScoreAnswer levels; createCallLog/readStoredReport; spawnCall echo and timeout)
+CHECKS:
+- node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> no output (exit 0)
+- node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs -> no output (exit 0)
+- grep -c "^export function" .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> 28 (exit 0)
+- node -e verbatim check of M:979-990, 1169-1225, 1227-1250, 1762-1776 in S -> nearestRank/spawnCall/createCallLog/readStoredReport VERBATIM, 1 occurrence each (exit 0)
+- git status --porcelain -> only the two named files edited by this worker; other entries are concurrent workers' files (exit 0)
+BLOCKED REASON: none
+```
