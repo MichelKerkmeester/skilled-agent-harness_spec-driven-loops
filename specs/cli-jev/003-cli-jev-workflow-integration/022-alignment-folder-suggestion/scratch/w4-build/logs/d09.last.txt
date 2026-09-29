@@ -1,0 +1,12 @@
+Created the entry and verified it. `SKILL ROUTING: advisor live, sk-doc 0.95 → sk-create-changelog` `ARTIFACT: sk-doc → sk-create-changelog/SKILL.md` `REPO RULES: prevent-overengineering.md, scope-discipline.md, communication.md, communication-prose.md, evidence-and-proof.md, communication-handoff.md`
+
+The file follows `v4.3.0.0.md` in frontmatter keys, section order and voice. One deviation from the model shape: its `> Spec folder:` blockquote is left out, because the FACTS block does not fill that slot and the brief says to leave unfilled slots out. `validate_document.py` does not require it and passes without it. The only file I touched is the one the brief names. The other modified files in `git status` belong to the concurrent workers.
+
+Nothing is left for the operator. The orchestrator runs the test suites, spec validation and the commit.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md (+33/-0)
+EDITS: .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md:1 created the entry: frontmatter (title, description, trigger_phrases, importance_tier, contextType, version), H1, summary, `## What's New at a Glance` with 12 bullets naming S, T and the 9 listed files, `## Upgrade`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md -> "✅ VALID: .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md" / "Total issues: 0" (exit 0)
+BLOCKED REASON: none

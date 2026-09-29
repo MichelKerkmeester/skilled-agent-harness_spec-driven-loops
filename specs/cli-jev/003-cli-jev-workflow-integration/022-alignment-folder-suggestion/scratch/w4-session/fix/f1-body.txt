@@ -1,0 +1,12 @@
+TASK: correct four literal strings in one catalog entry so it says what the code does. Nothing else changes.
+FILE (edit): `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md`. Read it first.
+EDIT 1, line 9: `version: 4.3.0.0` becomes `version: 4.4.0.0`.
+EDIT 2, line 20: `S measures offline whether` becomes `The script measures offline whether`.
+EDIT 3, line 20: `S holds no credential and reads none` becomes `It holds no credential and reads none`.
+EDIT 4, line 30: `writes one row per event with an empty` becomes `writes one row per low or infrastructure event that lists alternatives, with an empty`.
+WHY: `S` was a brief's shorthand for the script and means nothing to a reader. The rows writer in `runtime/cli/evals/score-alignment-suggestion.ts` (around line 1497) keeps only low or infrastructure events whose alternatives list is not empty. The release is 4.4.0.0.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md
+  grep -cE 'S measures|S holds|one row per event' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md
+  git diff --stat -- .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md
+Accept when: only that file changed, 4 lines; the validator exits 0; the grep prints 0.

@@ -1,0 +1,9 @@
+TASK: add one line to a README's file tree. Nothing else changes.
+FILE (edit): `.skilled/skills/system-spec-kit/runtime/cli/evals/README.md`. Read it first.
+EDIT: in the `## 2. PACKAGE TOPOLOGY` tree, directly after the line `+-- import-policy-allowlist.json              # Managed import exceptions`, insert this line, aligned the same way:
++-- score-alignment-suggestion.ts             # Offline alignment folder suggestion measurement
+WHY: the script is in this folder and in the KEY FILES table, but the tree omits it.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/evals/README.md
+  git diff --stat -- .skilled/skills/system-spec-kit/runtime/cli/evals/README.md
+Accept when: only that file changed, 1 line added; the validator exits 0.

@@ -1,0 +1,19 @@
+TASK: let the two header rules in S find a header anywhere on a line, and pin it with one new case in T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/briefs/ref/design.md (read only).
+S and T are named at the top of R. Open only S and T. Why: when a JSON log's output string starts with the header, the header
+shares its line with the JSON key (for example `{"output":"   Alignment check: ...`), and the anchored rule misses it.
+
+1. In S, section 3, replace exactly these two lines:
+   S:63 old: const CLI_HEADER = /^\s*Phase 1B Alignment: (.+) \((\d+)% match\)\s*$/;
+        new: const CLI_HEADER = /Phase 1B Alignment: (.+) \((\d+)% match\)\s*$/;
+   S:64 old: const DATA_HEADER = /^\s*Alignment check: (.+) \((\d+)% match\)\s*$/;
+        new: const DATA_HEADER = /Alignment check: (.+) \((\d+)% match\)\s*$/;
+   Change nothing else in S. Decision lines stay anchored.
+2. In T, inside describe('line scan'), after the last case, add:
+   it('finds a header that shares its line with a JSON key', ...): text = JSON.stringify({ output: [
+   '   Alignment check: 007-zeta (10% match)', '', '   Warning: LOW ALIGNMENT WARNING (10% match)' ].join('\n') });
+   expect(scanText(text)).toEqual([{ path: 'data', band: 'low', target: '007-zeta', printedScore: 10, alternatives: [],
+   hardBlock: false, pick: null }]).
+
+VERIFY (repo root): node --check <S>; node --check <T>; grep -c "it('" <T>; grep -c 'HEADER = /\^' <S>
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; the first grep prints 5 and the second 0.

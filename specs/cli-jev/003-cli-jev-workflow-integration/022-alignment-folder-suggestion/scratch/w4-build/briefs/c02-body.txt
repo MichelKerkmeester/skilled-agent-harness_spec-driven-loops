@@ -1,0 +1,35 @@
+TASK: add R section 4 (census) and R section 11 (main, census mode only) to S, and pin them with three cases in T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/briefs/ref/design.md (read only).
+S and T are named at the top of R. Read R sections 1, 4 and 11, then S and T. Open no other file; R fixes every choice.
+
+1. S section 1: add the imports these steps use (node:child_process spawnSync, node:fs, node:path, node:util parseArgs,
+   `isMainModule` and `dirnameFromImportMeta` from '../lib/esm-entry.js', `isPathInsideRoot` from '../utils/path-utils.js').
+   Section 2: add REPO_ROOT and SPECS_ROOT exactly as R section 1 defines them.
+2. S section 4: SOURCE_EXTENSIONS, the eight decision phrases (the R section 3 decision texts without the prefix and without
+   regex escapes), and the exported listTrackedCandidates, censusFiles, summarizeEvents and formatPathLines of R section 4.
+3. S section 11: export the MainDeps type and main exactly as R section 11 says. Parse every option now and apply all six
+   refusals. In census mode print, in order: the `census source:` line, the `committed:` line, the two `committed path` lines,
+   then `transcript events: not measured`; with --report write `<report>/report.json` (mkdir -p) holding
+   `{ committed: { files, events, skippedSource, paths }, replay: [], transcripts: null }` where events is the count.
+   Leave a `--score` run returning 2 with err line `--score is not built yet` (a later step replaces it). Add the entry block
+   of R section 1 as the last lines of S. Sections 5 to 10 do not exist yet; keep the section numbers of R.
+4. T: add describe('census') with three cases. Put S's REPO path in T as resolve(__dirname, '..', '..', '..', '..', '..', '..').
+ a. 'summarizes events per path': summarizeEvents over five events (cli low with alternatives ['x','y'] and pick 'x'; cli low
+    with hardBlock true and no alternatives; cli infrastructure, no alternatives; cli moderate; data aligned) gives cli
+    { aligned: 0, moderate: 1, low: 2, infrastructure: 1, below50: 3, withAlternatives: 1, withoutAlternatives: 2, hardBlocks: 1,
+    picks: 1 } and data all 0 except aligned 1; formatPathLines('committed', that)[0] equals
+    'committed path cli: aligned=0 moderate=1 low=2 infrastructure=1 below50=3 with_alternatives=1 without_alternatives=2 hard_blocks=1 picks=1'.
+ b. 'a census run makes no model call and writes counts only': temp dirs for logs, stubs, report. logs/a.log holds the six
+    lines of the JSON-escaped case (d) of describe('line scan') as plain lines; logs/b.txt holds the two lines
+    '   Phase 1B Alignment: 902-e2e/001-phase-1 (60% match)' and '   Warning: Moderate alignment (60%) - proceeding with caution'.
+    Stubs `jev` and `cli-deem` (mode 0o755): "#!/bin/sh\necho \"$*\" >> \"$(dirname \"$0\")/<name>.log\"\nexit 0\n".
+    main(['--report', reportDir], { out, err, env: { ...process.env, PATH: stubDir + delimiter + process.env.PATH },
+    trackedFiles: () => ({ files: [a, b], skippedSource: 1 }), specsRoot: <an empty temp dir> }) resolves 0; out holds
+    'committed: files=2 events=2 skipped_source=1', 'committed path cli: aligned=0 moderate=1 low=1 infrastructure=0 below50=1
+    with_alternatives=0 without_alternatives=1 hard_blocks=1 picks=0' (one line) and 'transcript events: not measured';
+    neither stub log exists; report.json parses and its committed.events is 2.
+ c. '--report inside the repository is refused before any output': main(['--report', join(REPO, 'no-such-report-dir')], { out, err })
+    resolves 2, out is empty and err equals ['refused: --report path is inside the repository'].
+
+VERIFY (repo root): node --check <S>; node --check <T>; grep -c "it('" <T>
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; the grep prints 8.

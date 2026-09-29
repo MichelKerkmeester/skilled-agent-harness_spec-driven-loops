@@ -1,0 +1,7 @@
+census source: tracked files via git grep, source code skipped
+committed: files=6 events=4 skipped_source=1
+committed path cli: aligned=0 moderate=1 low=2 infrastructure=0 below50=2 with_alternatives=0 without_alternatives=2 hard_blocks=2 picks=0
+committed path data: aligned=0 moderate=0 low=0 infrastructure=1 below50=1 with_alternatives=0 without_alternatives=1 hard_blocks=0 picks=0
+replay cli: validateContentAlignment root=specs numbered_folders=0 decision=low alternatives listed: 0
+replay data: validateFolderAlignment root=synthetic numbered_folders=3 decision=low alternatives listed: 2
+transcript events: not measured

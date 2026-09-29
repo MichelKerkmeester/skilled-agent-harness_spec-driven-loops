@@ -1,0 +1,26 @@
+TASK: add R section 5 (path replay) to S, print its two lines from main, and pin it with two new cases in T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/briefs/ref/design.md (read only).
+S, T and V are named at the top of R. Read R sections 1, 5 and 11, then S, T and V lines 477-712. Open no other file.
+
+1. S section 1: import `validateContentAlignment`, `validateFolderAlignment`, `isArchiveFolder` and the type
+   `AlignmentCollectedData` from '../spec-folder/alignment-validator.js', plus what the replay needs from node:fs and node:os.
+2. S section 5 (after section 4): REPLAY_DATA, and the exported replayPath and buildSyntheticTree, exactly as R section 5
+   says. The swap of console.log and of both isTTY properties must be undone in a finally, even when the validator throws.
+3. S section 11, census mode: right after the two `committed path` lines, run replayPath('cli', specsRoot, '000-replay-target')
+   with specsRoot = deps.specsRoot ?? SPECS_ROOT, then build a synthetic tree, run replayPath('data', tree.root, tree.target)
+   and remove the tree in a finally. Print the two replay lines of R section 5 (`decision=none` when decision is null).
+   In report.json replace `replay: []` with two objects `{ path, fn, root, numberedFolders, decision, alternativesListed }`
+   (fn is the validator function name, root is 'specs' or 'synthetic', alternativesListed is a count, no folder names).
+4. T: in describe('census') case 'a census run makes no model call and writes counts only', add two expectations:
+   out contains 'replay cli: validateContentAlignment root=specs numbered_folders=0 decision=low alternatives listed: 0' and
+   'replay data: validateFolderAlignment root=synthetic numbered_folders=3 decision=low alternatives listed: 2'.
+   Then add describe('path replay') with two cases:
+ a. 'the cli path lists no alternative on a root with no numbered folder': a temp dir holding folders 'cli-jev' and 'sk-doc';
+    replayPath('cli', dir, '000-replay-target') resolves to { numberedFolders: 0, decision: 'low', alternatives: [] }.
+ b. 'the data path lists the higher-scoring siblings and restores the terminal flags': const before = [process.stdout.isTTY,
+    process.stdin.isTTY]; const tree = buildSyntheticTree(); push tree.root to tempDirs; replayPath('data', tree.root, tree.target)
+    resolves to { numberedFolders: 3, decision: 'low', alternatives: ['003-quantum-telemetry', '002-quantum-lattice-orchard'] },
+    and [process.stdout.isTTY, process.stdin.isTTY] equals before afterwards.
+
+VERIFY (repo root): node --check <S>; node --check <T>; grep -c "it('" <T>
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; the grep prints 10.

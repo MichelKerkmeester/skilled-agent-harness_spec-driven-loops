@@ -1,0 +1,20 @@
+TASK: fix the swapped arguments of the repository-path refusal in S, and make its case in T safe if the refusal ever fails.
+S and T are named at the top of
+specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/briefs/ref/design.md.
+Open only S and T. Why: `isPathInsideRoot(rootDir, targetPath)` takes the root first (shared/utils/path-containment.ts:36),
+so S asked whether the repository sits inside the report path; the vitest case failed (`expected +0 to be 2`) and the run
+wrote a report into the repository.
+
+1. S:398 old: `    if (value !== undefined && isPathInsideRoot(path.resolve(value), repoRoot)) {`
+          new: `    if (value !== undefined && isPathInsideRoot(repoRoot, path.resolve(value))) {`
+   Change nothing else in S.
+2. T:167, in the case '--report inside the repository is refused before any output':
+   old: `    const code = await main(['--report', join(REPO, 'no-such-report-dir')], {`
+   new: `    const code = await main(['--report', join(REPO, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md', 'report-dir')], {`
+   and add `trackedFiles: () => ({ files: [], skippedSource: 0 }),` as the first property of that call's deps object, so a
+   broken refusal can neither scan the repository nor create a folder (a directory cannot be made under a file).
+   Keep every expectation of that case as it is.
+
+VERIFY (repo root): node --check <S>; node --check <T>; grep -c 'isPathInsideRoot(repoRoot, path.resolve(value))' <S>;
+grep -c 'no-such-report-dir' <T>
+Accept when: 2 files changed (S +1/-1, T about +2/-1) and nothing else; both node --check exit 0; the greps print 1 and 0.

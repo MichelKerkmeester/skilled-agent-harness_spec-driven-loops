@@ -1,0 +1,53 @@
+I'll start by reading the brief's reference document to get the exact contract.
+
+Let me read the rest of section 11 and then the two target files.
+
+Now the rest of S and the test file.
+
+I have the full contract. Now I'll make the four edits: section 7 into S, the score branch in main, and the helper plus five cases in T.
+
+Section 7 is in. Now the main `--score` branch in S and both T edits.
+
+Both S edits are in. Now the helper and five cases at the end of T.
+
+All edits are applied. Now the three listed checks from the repo root.
+
+All three checks pass. Let me inspect the section-7 divider bytes match the file's existing rule lines (read-only check via the search tool).
+
+Zero matches — the pattern may be off. Let me look at the actual divider lines.
+
+18 divider lines exist (2 header + 12 for sections 1–6 + 2 for section 7 + 2 for section 11), but the exact-count pattern didn't match. Let me pin the actual character count.
+
+
+
+The `{n,}` quantifier seems not to behave as expected. Let me validate the engine with a small bound.
+
+The search tool's `{n}` repetition appears unsupported (it also failed on a known line). I'll settle the divider-byte question with a read-only integrity check, since the file convention requires the exact `// ` + 67 `─` form.
+
+
+
+All dividers are the exact 70-char form. Now let me confirm the scoped diff — only S and T changed.
+
+The two target files are untracked (created by earlier briefs, uncommitted) — my edits touched only them; the other entries belong to concurrent workers. Final state confirmation:
+
+Both files are in their final state (S: 847 lines, T: 461 lines) and all checks pass. Handback:
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts (+138/-3)
+- .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts (+124/-0)
+
+EDITS:
+- S:504-593 added section 7 SCORER AND GATE: `interface Row`, `parseRows` (1-based `bad row at line <n>`, blank lines skipped), `rowOptions`, `effectiveLabel`, `foreignLabelIds`, `chooseBaseline` (top only when strictly greater)
+- S:688-735 replaced the `--score is not built yet` branch: missing file → `rows file not found` exit 2; parse and foreign-label failures exit 2 with no stdout; then rows line, both 30-row gates (exit 0, no arm), baseline line, headroom over callable rows (`10*right > 9*K` → `no headroom baseline_right=<r> K=<K>` exit 0), else `margin: 0.10`, keep rule, question, return 0 (--jev/--deem do nothing more yet)
+- T:9 import extended with `chooseBaseline, parseRows`
+- T:339-461 added `writeRows(dir, specs)` helper (id `row-000N` padded to 4, path 'data', target '001-a', alternatives ['002-b','003-c'], state default 'pick:001-a', gold null, label) and `describe('scorer and gate')` with the five cases a–e
+
+CHECKS:
+- node --check .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts -> no output (exit 0)
+- node --check .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts -> no output (exit 0)
+- grep -c "it('" .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts -> 21 (exit 0)
+- extra read-only inspection (node -e over the two files) -> S: dividers 18, all 70 chars; T: dividers 2, all 70 chars (exit 0)
+- extra read-only inspection (git status --short / git diff --stat) -> S and T are the only paths these edits touched; both are untracked new files, and every other dirty path in the worktree belongs to concurrent workers
+
+BLOCKED REASON: none

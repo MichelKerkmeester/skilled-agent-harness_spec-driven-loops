@@ -1,0 +1,50 @@
+I'll start by reading the brief files: R (design.md) first to find S and T, then X (stubs.txt).
+
+
+
+Now let me read S and T.
+
+
+
+Now T:
+
+
+
+I have R sections 9/11, X, S, and T. Let me run the brief's checks as a baseline before editing (to confirm the tooling and current counts).
+
+Baseline confirmed: `node --check` works (Node 26, type stripping), S/T exit 0, T currently has 28 `it('` lines and 0 `it.each(`. Now I'll make the S edits — first the fs import and main changes:
+
+The stale-dist warnings are from a repo hook (the orchestrator handles builds; not in my checks). Now the main S insertion — section 9 between section 8 and the MAIN divider:
+
+Section 9 is in. Now the T edits — import the two gates, then append the helper and `describe('backend gates')`:
+
+
+
+Both files are edited. Now running the brief's required verification from the repo root:
+
+All four checks pass. Let me confirm the changed-file set with a read-only status:
+
+Both named files are untracked pre-existing artifacts in this worktree (other entries belong to other workers — not mine). Let me get exact line counts for the handback:
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts (+167/-0)
+- .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts (+116/-0)
+
+EDITS:
+- S:14 node:fs import gained accessSync, constants, statSync (one line rewritten in place)
+- S:706-866 added section 9 BACKEND GATES: unexported which (PATH lookup via statSync + X_OK), exported jevGate (identity line, PATH → version → auth → acceptPayload skips, spawnSync with stdio ['ignore','pipe','pipe'], encoding utf8, timeout HEALTH_TIMEOUT_MS*5, given env), deemCommand (PATH cli-deem else process.execPath + repo cli-deem.mjs), readDeemHealth (health probe, timeout HEALTH_TIMEOUT_MS; not reachable / stub backend / model / bad health response with found), deemGate (healthy identity line, else skip line plus found line for model and bad health response)
+- S:751 added `let acceptPayload = false;`
+- S:761 added `acceptPayload = values['accept-payload'] === true;` to the parse block
+- S:846-851 score mode after the question line: env = deps.env ?? process.env; `if (jev) jevGate({ out, env, acceptPayload });` and `if (deem) deemGate({ out, env });` then return 0
+- T:9 import line gained deemGate and jevGate
+- T:535-569 added makeBackendStubs(): temp dir pushed to tempDirs, both X scripts written byte-for-byte as template literals (every `${` escaped as `\${`, every printf `\n` written `\\n`), chmod 0o755, returns dir
+- T:571-649 added describe('backend gates'): jev pass case, it.each over four jev skips (not on PATH / version / no credential / payload not accepted), deem healthy case, it.each over four deem skips (unreachable / stub / model / bad)
+
+CHECKS:
+- node --check .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts -> no output, exit 0 (exit 0)
+- node --check .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts -> no output, exit 0 (exit 0)
+- grep -c "it('" .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts -> 30 (exit 0)
+- grep -c "it.each(" .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts -> 2 (exit 0)
+
+BLOCKED REASON: none

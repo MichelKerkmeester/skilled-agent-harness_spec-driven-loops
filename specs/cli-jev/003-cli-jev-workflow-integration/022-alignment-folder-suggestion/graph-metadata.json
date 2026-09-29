@@ -39,20 +39,28 @@
       "label"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "runtime/cli/spec-folder/alignment-validator.ts",
-      "specs/sk-doc/z_archive/016-create-diff-mode/001-research-and-requirements/research/lineages/document-diff-2/logs/fanout-lineage.out",
+      "feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md",
+      "manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md",
+      "changelog/v4.4.0.0.md",
       "runtime/cli/evals/README.md",
       "runtime/cli/tests/README.md",
+      "runtime/cli/evals/score-alignment-suggestion.ts",
+      "runtime/cli/tests/score-alignment-suggestion.vitest.ts",
       ".hermes/skills/system-spec-kit/SKILL.md",
-      ".skilled/skills/system-spec-kit/vitest.config.ts",
-      "evals/check-architecture-boundaries.ts"
+      "scratch/w4-build/build-evidence.md",
+      "scratch/w4-session/session-evidence.md",
+      "evals/score-alignment-suggestion.ts",
+      "tests/score-alignment-suggestion.vitest.ts",
+      "runtime/cli/spec-folder/alignment-validator.ts",
+      "specs/sk-doc/z_archive/016-create-diff-mode/001-research-and-requirements/research/lineages/document-diff-2/logs/fanout-lineage.out",
+      ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts"
     ],
     "entities": [
       {
@@ -86,15 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "alignment-validator.ts",
-        "kind": "code",
-        "path": "runtime/cli/spec-folder/alignment-validator.ts",
+        "name": "alignment-suggestion-measurement.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md",
         "source": "derived"
       },
       {
-        "name": "fanout-lineage.out",
-        "kind": "file",
-        "path": "specs/sk-doc/z_archive/016-create-diff-mode/001-research-and-requirements/research/lineages/document-diff-2/logs/fanout-lineage.out",
+        "name": "v4.4.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v4.4.0.0.md",
         "source": "derived"
       },
       {
@@ -104,21 +112,45 @@
         "source": "derived"
       },
       {
+        "name": "score-alignment-suggestion.ts",
+        "kind": "code",
+        "path": "runtime/cli/evals/score-alignment-suggestion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-alignment-suggestion.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/score-alignment-suggestion.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".hermes/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/vitest.config.ts",
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/build-evidence.md",
         "source": "derived"
       },
       {
-        "name": "check-architecture-boundaries.ts",
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-validator.ts",
         "kind": "code",
-        "path": "evals/check-architecture-boundaries.ts",
+        "path": "runtime/cli/spec-folder/alignment-validator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-lineage.out",
+        "kind": "file",
+        "path": "specs/sk-doc/z_archive/016-create-diff-mode/001-research-and-requirements/research/lineages/document-diff-2/logs/fanout-lineage.out",
         "source": "derived"
       },
       {
@@ -174,35 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Keep Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A save checks how well its content matches the target spec folder",
     "created_at": "2026-09-29T12:42:35Z",
-    "last_save_at": "2026-09-29T13:53:33.668Z",
+    "last_save_at": "2026-09-29T17:00:24.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b42654bb8a887c642f8ddd612c8856fbcf226d22c1351727dd8a52d820f19e01",
+    "source_fingerprint": "sha256:a28ed6aaf3378426bcf85c44610aa365cefd2a8a723b804cb769c746887cf5cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "511d3da00269a31131ea325e624f58003f26fb9a93f9157764c981530b972c6a",
+      "spec.md": "2736c8184f94c58d746ab61db62ccd0eac6f68b16606aac76344f500240f21d6",
       "plan.md": "78b3150f36385d1a19e00ec00f2b4c7930dd381b3698f192e1a2173df1548c96",
-      "tasks.md": "82609dbaa55d6db8c0ddc128c3c0caeacaa86321f44b4be20b0b7fe967db9953",
-      "implementation-summary.md": "5c2ceb1dbc31ddef7de2df65a553c1206b8a0aa8483148b5715e896c6853ba1f"
+      "tasks.md": "452e134c9d2d66e20999c129ba23cee5e75a587a184fa46ee9fc6e2e2361148b",
+      "implementation-summary.md": "93d859883265b0a56a4b9ad8ee9bd633e5b2de4faa5eb495bc253236a6d14a4d"
     },
     "last_active_at": null
   }

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 22: alignment-folder-suggestion"
-description: "Test research R13 offline: whether a Jev or Deem choice among the folders a low-alignment save already lists picks the right folder more often than staying with the target or taking the top-scored alternative. R13 waited on gold, since no archived record says which folder a below-50 save should have used. A zero-call census counts below-50 events per path, confirms which path lists alternatives at all and stops at a 30-row label gate. Planned, released 2026-09-29."
+description: "Test research R13 offline: whether a Jev or Deem choice among the folders a low-alignment save already lists picks the right folder more often than staying with the target or taking the top-scored alternative. R13 waited on gold, since no archived record says which folder a below-50 save should have used. A zero-call census counts below-50 events per path, confirms which path lists alternatives at all and stops at a 30-row label gate. Released 2026-09-29, built and closed at its label gate the same day, commit ba70806077."
 trigger_phrases:
   - "alignment folder suggestion"
   - "score-alignment-suggestion"
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -84,7 +84,7 @@ R13 would suggest one of the listed folders. The research parked it as later bec
 - No committed record pairs a below-50 save with its final folder.
 
 **Two save paths, and only one can use a suggestion.**
-- **The CLI path.** The documented save passes the folder as an argument (`references/memory/save-workflow.md:211-213`). That reaches `validateContentAlignment` with the specs root as the folder list (`runtime/cli/spec-folder/folder-detector.ts:1034-1045`). The specs root holds track folders and 0 folders matching `^\d{3}-`, so this path lists no alternatives. This is INFERRED from the code and a listing, and the census confirms it. Even a chosen alternative is ignored on this path (`ALIGNMENT_BYPASSED`, `:1047-1049`).
+- **The CLI path.** The documented save passes the folder as an argument (`references/memory/save-workflow.md:211-213`). That reaches `validateContentAlignment` with the specs root as the folder list (`runtime/cli/spec-folder/folder-detector.ts:1034-1045`). The specs root holds track folders and 0 folders matching `^\d{3}-`, so this path lists no alternatives. This was INFERRED from the code and a listing; the 2026-09-29 path replay confirms it: `replay cli: validateContentAlignment root=specs numbered_folders=0 decision=low alternatives listed: 0`. Even a chosen alternative is ignored on this path (`ALIGNMENT_BYPASSED`, `:1047-1049`).
 - **The data path.** `validateFolderAlignment` (`folder-detector.ts:1160-1167`) lists the target's numbered siblings and does switch.
 
 ### Purpose

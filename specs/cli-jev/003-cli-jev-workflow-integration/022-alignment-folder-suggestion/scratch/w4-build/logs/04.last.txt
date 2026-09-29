@@ -1,0 +1,61 @@
+
+
+
+
+Now reading S and T as named at the top of R.
+
+
+
+I've read R (sections 6 and 11), S, and T. Now let me establish a baseline: confirm `node --check` works on these `.ts` files and count the current test/divider lines.
+
+`node --check` works on these `.ts` files (both exit 0). T baseline: 12 `it('` → 16 after four new cases. The divider pattern found 0, so let me measure the actual divider line lengths precisely before I reproduce them.
+
+The dividers are 67 `─` characters (204 bytes: 3 + 3×67). Let me pin down why the anchored pattern missed, so my format check is reliable.
+
+`^// ─` matches all 14 dividers, but `─{67}$` doesn't — let me find the true dash count.
+
+`$`-anchored dash patterns fail even with `+`. Let me get ground truth on the divider line composition with node.
+
+Ground truth: divider = `// ` + exactly 67 × U+2500 (70 chars). The grep tool's `$` anchor misbehaves on multibyte lines here, so I'll verify dividers with node instead. Now I'll make the S edits.
+
+Noted the stale-dist warning — that's a build artifact concern the orchestrator owns (my brief forbids touching anything beyond S and T), so I'll flag it in my handback rather than running a build. Continuing with the section 6 insertion.
+
+Section 6 is in. Now the section 11 wiring: refusal 7, the census transcript/rows block, and the report field.
+
+
+
+
+
+S is fully wired. Now the T edits: the import and the helper plus the four-case describe.
+
+Both files are edited. Now the verification pass: re-read the edited regions and run the brief's checks (plus a divider-format check, since R fixes the divider style).
+
+`node --check` passes on both and all 16 dividers are exactly 67 dashes. But the `it('` count is 17, not 16 — let me find the extra match.
+
+Found it: my `.split('\n')` on line 307 contains the substring `it('`, inflating the count. I'll use a regex separator so the grep counts exactly the 16 test cases.
+
+
+
+All acceptance checks now pass: 16 `it('` lines, both `node --check` exit 0, 16 dividers exact, and only S and T are my touched files (the rest are other workers' concurrent changes). One last contract check from R section 1 — the forbidden-string scan on S.
+
+Implementation complete and verified. One operational note before the handback: the edit hook repeatedly reported `STALE DIST WARNING: @spec-kit/cli` — the package's `dist` needs `npm run build` (owned by the orchestrator; my brief forbids touching anything beyond S and T). Also, one line in case c used `.split('\n')`, whose substring `it('` inflated the count check to 17; I switched it to `.split(/\n/)` so the count reflects exactly the 16 test cases.
+
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` (+178/-3); `.skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts` (+115/-2)
+EDITS:
+- S:14 added `existsSync` to the `node:fs` import
+- S:385-503 added section 6 TRANSCRIPTS AND ROWS: `TRANSCRIPT_EXTENSIONS`, `SESSION_SUMMARY`, internal `walkJsonObjects`, exported `extractSessionSummary`, `scanTranscriptFile`, `listTranscriptFiles`
+- S:592-595 added refusal 7 after refusal 6: `transcripts path not found`, exit 2
+- S:622-673 replaced `out('transcript events: not measured')` with the census block: `transcripts: files=<n> events=<n>` + `formatPathLines('transcripts', ...)`, or the unchanged not-measured line; `--rows-out` writes `row-####` JSONL (mkdir -p parent) and prints `rows written: <n> state_null=<k>`
+- S:702 report.json `transcripts` now `transcriptReport` (`{ files, events, paths, rowsWritten, stateNull }`; null without `--transcripts`, counts null without `--rows-out`)
+- T:9 imported `scanTranscriptFile`
+- T:226-251 added `transcriptDir()` helper (temp dir, `s1.jsonl` with the three specified lines)
+- T:253-337 added `describe('transcripts and rows')` with the four specified cases
+CHECKS:
+- `node --check <S>` -> exit 0
+- `node --check <T>` -> exit 0
+- grep `it\('` on T (repo grep tool, count mode) -> 16 matches
+- divider format (node): 16 divider lines, each exactly `// ` + 67 × `─`
+- forbidden-string scan on S (`API_KEY|TYPESAFE|Bearer|Authorization`) -> 0 matches
+- `git status --porcelain` -> only S and T touched by this worker (other entries are other workers')
+BLOCKED REASON: none
