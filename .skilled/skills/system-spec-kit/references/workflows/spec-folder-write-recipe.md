@@ -98,7 +98,7 @@ Common pitfalls: `SPECDOC_SUFFICIENCY_004` (research.md needs anchor + citation 
 
 ### Step 7: Commit + push
 
-- Stay on main (no feature branches per memory rule)
+- Workspace: use the one the operator chose, a worktree or the current branch. Never pick it yourself and never create a branch with git primitives (see "Workspace Choice Enforcement" in `.skilled/skills/sk-git/SKILL.md`). `main` is on the remote allowlist, so pushing it needs no extra approval, and a branch off the allowlist needs the operator's go-ahead for that push (see "Remote Push Permission Enforcement" in the same file).
 - Subject: `type(subsystem): summary`. Take the type from the first match in the priority list in `.skilled/skills/sk-git/SKILL.md` (a doc-only packet is `docs`) and name the owning subsystem as the scope, such as `spec-kit`. Never use the packet number or path as the scope.
 - Body: at least one prose line that says why. Trailers do not count as a body.
 - Trailers: `Spec: <track>/<packet>`, the packet's path below `specs/` without the `specs/` segment. `prepare-commit-msg` stamps `Commit-Id:`, so never type it.
