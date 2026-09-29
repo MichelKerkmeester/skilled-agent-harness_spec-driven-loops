@@ -39,7 +39,7 @@ Coverage note: automated tests remain authoritative for exhaustive unit, integra
 
 1. Start at the repository root unless a scenario explicitly changes into the projection package.
 2. Use Node.js 22 or newer, npm 10 or newer, and the package dependencies already installed from its lockfile.
-3. Use Python 3 for the advisor compatibility smoke in `COMM-001`.
+3. Use Python 3 for the advisor compatibility smoke in `COMM-001` and for the mechanical scorer that `COMM-011` runs.
 4. Confirm the referenced scenario file, catalog file, implementation file, and test file exist before execution.
 5. Preserve unrelated working-tree changes and record `git status --short` before and after the run.
 6. Do not contact a live provider; all package scenarios use existing injected transports or deterministic fixtures.
@@ -67,7 +67,7 @@ Evidence must remain content-free: never capture provider credentials, raw priva
 - `bash: <command>` means run the command exactly in a POSIX-compatible shell.
 - `package: <command>` means run the command from `.skilled/skills/sk-communication/cli-communication-projection/`.
 - `->` separates sequential steps in a single operator session.
-- Quoted Vitest names are exact focused-test filters, not descriptive placeholders.
+- Quoted Vitest names and `node --test --test-name-pattern` values are exact focused-test filters, not descriptive placeholders.
 - An exit status of zero is required unless the feature file explicitly names a different observable result.
 - The full package gate is `package: npm run check`; focused commands prove the individual scenario and do not waive that final gate.
 
@@ -112,7 +112,7 @@ Run scenarios in dependency order so failures are localized:
 | 1 | Advisor Routing | `COMM-001` | Confirm the request reaches the owning skill. |
 | 2 | Fidelity And Privacy | `COMM-002..COMM-003`, `COMM-009`, `COMM-010` | Confirm immutable fallback, privacy-before-ranking, and external-cli fail-closed dispatch. |
 | 3 | Presentation Tiers | `COMM-004..COMM-005` | Confirm atomic ownership and original visibility. |
-| 4 | Release Gating | `COMM-006..COMM-008` | Confirm provisional evidence, doctor blocks, and human-certified release evidence. |
+| 4 | Release Gating | `COMM-006..COMM-008`, `COMM-011` | Confirm provisional evidence, doctor blocks, human-certified release evidence, and the offline judge census stopping at its label gate. |
 
 Finish each wave before beginning the next. Persist results after each scenario so a later operator can distinguish an unexecuted scenario from an executed failure.
 
@@ -223,11 +223,20 @@ Prompt: `Verify that only a complete, fresh, passing, human-certified evidence b
 > **Feature File:** [COMM-008](release-gating/human-certified-bundle-gates-release.md)
 > **Catalog:** [Release readiness and rollback](../feature-catalog/packaging-and-release/release-readiness-and-rollback.md)
 
+### COMM-011 | Offline judge census stops at the label gate
+
+Verify the offline judge measurement counts the committed masked replies and stops at its label gate with zero model calls, and that a stub Deem backend is skipped without changing the census. The `--jev` switch is gated the same way, and a Jev without a credential prints its identity line and one skip line.
+
+Prompt: `Check that the offline judge measurement counts the committed masked replies and stops at its label gate without calling a model, then return PASS or FAIL with evidence.`
+
+> **Feature File:** [COMM-011](release-gating/offline-judge-census-stops-at-label-gate.md)
+> **Catalog:** [Offline judge agreement](../feature-catalog/evaluation-and-observability/offline-judge-agreement.md)
+
 ---
 
 ## 11. AUTOMATED TEST CROSS-REFERENCE
 
-The complete automated suite lives under [`.skilled/skills/sk-communication/cli-communication-projection/test/`](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/). Focused scenario commands use only files in that tree; final release review also runs `npm run check` from the package directory.
+The complete automated suite lives under [`.skilled/skills/sk-communication/cli-communication-projection/test/`](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/). Focused scenario commands use only files in that tree, except `COMM-011`, which runs the reply comparison scripts under [`.skilled/skills/sk-communication/benchmark/reply-harness/`](../../../../.skilled/skills/sk-communication/benchmark/reply-harness/); final release review also runs `npm run check` from the package directory.
 
 | Coverage Area | Automated Test Anchor | Scenario IDs |
 |---|---|---|
@@ -240,6 +249,7 @@ The complete automated suite lives under [`.skilled/skills/sk-communication/cli-
 | Provisional evaluation | [Proxy judge tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/evaluation/proxy-judge.test.ts), [release gate tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts) | `COMM-006` |
 | Compatibility doctor | [Doctor tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/doctor/doctor.test.ts) | `COMM-007` |
 | Release readiness | [Release gate tests](../../../../.skilled/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts) | `COMM-008` |
+| Offline judge agreement | [Judge agreement tests](../../../../.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs) | `COMM-011` |
 
 ---
 
@@ -256,6 +266,7 @@ The complete automated suite lives under [`.skilled/skills/sk-communication/cli-
 | Release Gating | `COMM-006` | [Provisional evaluation blocks release](release-gating/provisional-evaluation-blocks-release.md) | [Blind non-inferiority evaluation](../feature-catalog/evaluation-and-observability/blind-non-inferiority-evaluation.md) | Yes |
 | Release Gating | `COMM-007` | [Compatibility doctor selects original-only](release-gating/compatibility-doctor-selects-original-only.md) | [Compatibility doctor](../feature-catalog/packaging-and-release/compatibility-doctor.md) | Yes |
 | Release Gating | `COMM-008` | [Human-certified bundle gates release](release-gating/human-certified-bundle-gates-release.md) | [Release readiness and rollback](../feature-catalog/packaging-and-release/release-readiness-and-rollback.md) | Yes |
+| Release Gating | `COMM-011` | [Offline judge census stops at the label gate](release-gating/offline-judge-census-stops-at-label-gate.md) | [Offline judge agreement](../feature-catalog/evaluation-and-observability/offline-judge-agreement.md) | No |
 
 > **COMM-001 catalog mapping.** COMM-001 validates *skill-level advisor discoverability* — that a projection prompt routes to `sk-communication`. That is a property of the skill wrapper, not the `cli-communication-projection` package, so the package feature catalog (which inventories package behavior) has no exact entry for it. The linked "Privacy-first provider routing" catalog entry is the nearest package behavior the scenario prompt exercises.
 >

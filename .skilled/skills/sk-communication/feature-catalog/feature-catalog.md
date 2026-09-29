@@ -6,7 +6,7 @@ trigger_phrases:
   - "communication projection capabilities"
   - "plain-English projection inventory"
   - "communication projection feature inventory"
-last_updated: "2026-09-14"
+last_updated: "2026-09-29"
 version: 1.0.0.0
 ---
 
@@ -18,7 +18,7 @@ This document is the current feature inventory for the `sk-communication` skill 
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the shipped communication-projection surface. Each feature summary links to a per-feature reference with implementation and test anchors under `.skilled/skills/sk-communication/cli-communication-projection/`.
+Use this catalog as the canonical inventory for the shipped communication-projection surface. Each feature summary links to a per-feature reference with implementation and test anchors under `.skilled/skills/sk-communication/cli-communication-projection/`, or under `.skilled/skills/sk-communication/benchmark/reply-harness/` for the offline judge measurement.
 
 ---
 
@@ -189,6 +189,22 @@ Telemetry emission is schema-checked and suppresses malformed events, aggregatio
 #### Source Files
 
 See [`evaluation-and-observability/content-free-observability.md`](evaluation-and-observability/content-free-observability.md) for full implementation and test file listings.
+
+---
+
+### Offline judge agreement
+
+#### Description
+
+Measures offline whether a Deem or Jev score per rubric dimension agrees with the operator's grades of masked replies more often than the mechanical scores, with a zero-call default and a label gate.
+
+#### Current Reality
+
+`judge-agreement.mjs` joins masked replies to their reply files by the SHA-256 of the reply text, scores the baseline with `score.mjs` unchanged and stops below 20 operator-graded replies without calling a model. `--jev` and `--deem` each run only after their own check and with `--out <dir>`, ask one `score` per reply and dimension, and print one verdict per column under a keep rule fixed before any run. No verdict reaches `compare.mjs` or the release gate.
+
+#### Source Files
+
+See [`evaluation-and-observability/offline-judge-agreement.md`](evaluation-and-observability/offline-judge-agreement.md) for full implementation and test file listings.
 
 ---
 

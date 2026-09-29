@@ -2,7 +2,7 @@
 name: sk-communication
 description: Projects terse CLI output to plain English byte-safely, across six runtimes, leaving canonical bytes unchanged.
 allowed-tools: [Read, Write, Bash, Grep, Glob]
-version: 1.3.0.0
+version: 1.4.0.0
 ---
 
 <!-- Keywords: communication projection, claudish to english, rewrite CLI output, plain-english projection, presentation projection, privacy-first rewrite, full-projection, safe-native, provider adapters, exact-original fallback, deepseek ollama llama.cpp, blind non-inferiority evaluation, compatibility doctor, release gate -->
@@ -224,6 +224,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 - `.skilled/skills/sk-communication/cli-communication-projection/` — the implementation; read `src/<subsystem>/index.ts` for the public surface.
 - `.skilled/skills/sk-communication/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.
+- `.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs`: an offline measurement of whether a Deem or Jev judge agrees with the operator's grades of masked replies more often than the mechanical scores, calling no model unless `--deem` or `--jev` is set and never feeding the release gate.
 
 ### Deep Detail
 
