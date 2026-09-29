@@ -1,0 +1,13 @@
+The block matches the model's shape (Description / Current Reality / Source Files), the Description is byte-equal to the leaf file's frontmatter description for root-leaf parity, and the title `Leaf Route Replay` matches the leaf's `title`. All stated facts were checked against the script itself (USAGE line at `leaf-route-replay.cjs:52`, the six switches in `parseArgs` at 1494-1510, the printed lines at 1563-1599) and the real run output in `replay-run.txt` (`surface slice not replayed`, `stage1-only`, `total gold=56`, the `replay verdict: stop (prose arm covers 0 of 55 rows)` format). Ruling 5 (Jev gate first, each switch runs its own gate) is reflected in "run behind their own gates, Jev first". `last_updated` already reads `2026-09-29`, today's date, so the refresh kept its value.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md (+16/-2)
+EDITS:
+- .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:3 refreshed frontmatter description to name the stage-two leaf route replay (last_updated already current at 2026-09-29, version untouched per brief)
+- .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:45 added the `### Leaf Route Replay` block under `## 2. PACKET ROUTING` after the packet-authored entry, with Description (matching the leaf's frontmatter description), Current Reality (zero-call keyword arm over the 56-row committed gold, `surface slice not replayed` and `stage1-only` markers, the `--transcripts` recount, the `--prose` replay verdict under `10*P >= 9*N`, the `--jev`/`--deem` arms behind their own gates with `--out <dir>` and the keep rule) and Source Files linking `packet-authored-registry-routing/leaf-route-replay.md`
+- .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:124 closing Note now lists the leaf route replay of `sk-create-skill`
+CHECKS:
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog -> `✅ VALID: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md`, `Total issues: 0` (exit 0)
+- git diff --stat -- .skilled/skills/sk-doc/feature-catalog/feature-catalog.md -> `1 file changed, 16 insertions(+), 2 deletions(-)` (exit 0)
+BLOCKED REASON: none

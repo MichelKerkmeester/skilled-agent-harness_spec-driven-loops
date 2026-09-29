@@ -1,0 +1,10 @@
+TASK: add the Jev and Deem gates to S, with design cases 23 to 25 in T.
+R = `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/design.md` (read only) and `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/rulings.md` (read only; it overrides R where they differ).
+S and T exist; read both first. Read R section 2 on `which`, `jevGate`, `deemCommand`, `readDeemHealth`, `deemGate`, and the sibling's same-named functions, which you copy byte-for-byte in behavior and line text (identity line, three Jev skip lines with the version details line, four Deem skip lines with the details line on the last two, 2,000 ms health timeout).
+STEP 1. S: add those five functions with JSDoc and export them. Do not wire them into `main` yet.
+STEP 2. T: add the sibling's stub helpers (a temp dir of logging `jev` and `cli-deem` stubs whose behavior env variables control, first on PATH), then design cases 23 to 25, calling each gate directly with a captured `out`.
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+  grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+Accept when: 2 files changed (S and T) and nothing else; both `node --check` exit 0; the grep prints 23.

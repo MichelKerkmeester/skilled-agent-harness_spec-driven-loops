@@ -1,0 +1,19 @@
+HANDBACK
+
+STATUS: DONE
+FILES CHANGED:
+- `.skilled/skills/sk-doc/feature-catalog/feature-catalog.md` (+1/-1)
+- `.skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md` (+1/-1)
+- `.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md` (+1/-1)
+EDITS:
+- `feature-catalog.md`:52 replaced `recounts the `ROUTER.md` reads behind the block` with `recounts each hub's router-file reads behind the block`, no backticked file name, rest of line kept
+- `leaf-route-replay.md`:28 replaced `with a line that does not fit that grammar counted unparsed and never guessed` with `a line that does not fit that grammar is skipped and never guessed` (the leading `with` was inside the rewritten clause so the requested wording appears verbatim), rest of line kept
+- `manual-testing-playbook.md`:11 replaced `SKL-007 links the sk-doc hub catalog entry for its script.` with `SKL-007 and SKL-008 each link the sk-doc hub catalog entry for their script.`
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog` -> `✅ VALID: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md` / `Total issues: 0` (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md` -> `✅ VALID: .skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md` / `Total issues: 0` (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md --type playbook` -> `✅ VALID: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md` / `Total issues: 0` (exit 0)
+- `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package sk-doc` -> `PACKAGE sk-doc: WARN tier=warn violations=6` (exit 0)
+BLOCKED REASON: none
+
+Truth checks behind the edits: `readProse` in `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` returns `unparsed` (lines 608-641) and `main` never prints it, `replayVerdict` consumes only `prose.byId`, and both `SKL-007` and `SKL-008` scenario files link "The sk-doc hub catalog entry for the script". The worktree carries other dirty files from concurrent workers; my diff touched only the three named files.

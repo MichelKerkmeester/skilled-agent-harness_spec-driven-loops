@@ -1,0 +1,25 @@
+**Findings**
+
+- P1 `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs:497` — the `--prose` surface has no happy path: the only prose test is a missing file exiting 2, and every verdict test injects a fake `{byId}` map (line 85), so `readProse` (`scripts/leaf-route-replay.cjs:610-642`) is never executed by any test — a real prose file has never gone through the parser.
+- P2 `scripts/leaf-route-replay.cjs:641` and `main` at `:1574` — `readProse`'s `unparsed` count is returned then dropped, so a malformed prose line is silently ignored; prose line `S-1 junk` still yields a verdict as if the line were absent, while the catalog entry (:28) says such lines are "counted unparsed".
+- P2 `scripts/leaf-route-replay.cjs:1394` — a Jev `auth test` spawn past the 90 s timeout is recorded `status:"unmeasured"`, not `unmeasured_timeout`; REQ-007 says a Jev spawn past 90 s is `unmeasured_timeout` (a `jev auth test` hanging 91 s shows it).
+- P2 `tests/leaf-route-replay.test.cjs:197-199` — the deem health stub branches `down|model|bad` are never exercised, so `deem arm skipped: not reachable`, `model`, `bad health response` (REQ-003) have no test.
+- P2 `tests/leaf-route-replay.test.cjs:661` — no test drives the Jev arm to a verdict; `verdict jev:` appears only in a negative assertion, so the Jev counting block (`script:1452-1478`) never runs under test.
+- P2 `manual-testing-playbook/manual-testing-playbook.md:11` — "SKL-007 links the sk-doc hub catalog entry for its script" is stale; SKL-008 links one too (`:307`).
+
+**Checks** — Sign test by hand: `tailP(7,5)=29/128` exact BigInt; kill `P(X>=L)<=0.05`, sign `P(X>=W)<0.05`, order coverage→kill→margin→sign→flips→keep matches spec §4. Label gate: none applies (no labeled rows exist; the gate is the prose-coverage stop). Reproduced: plain run exit 0, `stop (prose arm covers 0 of 55 rows)`, no writes; key grep exits 1; comment hygiene clean; six docs VALID; `validate.sh --strict` RESULT: PASSED.
+
+**Requirements**
+
+- REQ-001 met — zero-call run spawns nothing and changes nothing.
+- REQ-002 met — port matches recovered `b45ea54cea3^` keyword rules (word boundaries, delta 1, UNKNOWN).
+- REQ-003 met — both gates and skip lines as worded; ruling 5 (Deem gate still runs after a failed Jev gate) outranks the phase wording and test 33 covers it.
+- REQ-004 met — no key/`.env` read; recount prints counts only.
+- REQ-005 met — unscored/unresolvable/stage1-only counted per hub.
+- REQ-006 met — keys + `none_of_these`, comma-joined paths, three rotations, modal/unstable → union.
+- REQ-007 met — fields and exit handling present; auth-timeout status is the P2 above.
+- REQ-008 met — payload/planned-calls/wall lines, no dollar figure.
+- REQ-009 met — 33/33 pass, all nine named surfaces; the `--prose` parser gap is outside the enumeration.
+- REQ-010 met — all six changed docs validate; no doc claims behavior the code lacks.
+
+VERDICT: FAIL

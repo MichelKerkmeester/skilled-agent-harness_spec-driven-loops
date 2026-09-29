@@ -1,0 +1,17 @@
+All checks pass. The doc matches the SKL-007 block shape, every quoted line is byte-identical to `replay-run.txt` and confirmed in the script source (per-hub line builders at `leaf-route-replay.cjs:459-461`, `router reads: not measured` at `:1571`, the stop line at `:677`), and the catalog link path matches the one ruling 3 fixed and the SKL-008 scenario file already cites.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md (+27/-4)
+EDITS:
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:4 frontmatter `version: 1.2.0.4` to `1.2.0.5`
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:28 coverage sentence seven to eight scenarios, per-category count Four to Five so the sentence stays true
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:39 coverage-boundary sentence gained the leaf-route replay boundary: no model call and a verdict that stops when the prose arm covers too few gold rows
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:204 section 8 heading now (`SKL-004..SKL-008`)
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:290-310 the SKL-008 block after SKL-007: description, scenario contract with the exact prompt and the real replay lines, desired outcome, feature-file and catalog lines, matching the SKL-007 block shape
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:320 section 9 test cross-reference row for `leaf-route-replay.test.cjs` | SKL-008
+- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:339 section 10 index row SKL-008 | Replay Stage-Two leaf routes | PARENT HUB
+CHECKS:
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md --type playbook -> `✅ VALID: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md` / `Document type: playbook` / `Total issues: 0` (exit 0)
+- git diff --stat -- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md -> `1 file changed, 27 insertions(+), 4 deletions(-)` (exit 0)
+BLOCKED REASON: none

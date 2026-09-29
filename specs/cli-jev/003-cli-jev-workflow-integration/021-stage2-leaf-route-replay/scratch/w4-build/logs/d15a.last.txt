@@ -1,0 +1,14 @@
+SKILL ROUTING: advisor hook live (sk-code 0.95/0.16 vs system-spec-kit 0.95/0.16, both pass, doc artifact governs) → ARTIFACT: sk-doc → `sk-create-readme` mode, template `assets/readme-code-template.md` and MODEL row read.
+REPO RULES: `communication-prose.md`, `evidence-and-proof.md`, `communication-handoff.md` (trigger table match on prose edit, result report, turn close).
+
+The row sits after the `score-clarify-default.cjs` row per step 15. Every stated behavior was checked in `leaf-route-replay.cjs` (usage line 52, `main` lines 1528-1631, arm gates 722-745 and 843-848) against design section 2. The only edit beyond the row was dropping a serial comma from my own added line, required by `communication-prose.md` §3.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/sk-doc/sk-create-skill/scripts/README.md` (+1/-0)
+EDITS: `.skilled/skills/sk-doc/sk-create-skill/scripts/README.md`:32 added the `leaf-route-replay.cjs` table row after the `score-clarify-default.cjs` row, shape matched to that row
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/scripts/README.md` -> `✅ VALID: .skilled/skills/sk-doc/sk-create-skill/scripts/README.md` / `Document type: readme` / `Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/sk-doc/sk-create-skill/scripts/README.md` -> ` .skilled/skills/sk-doc/sk-create-skill/scripts/README.md | 1 +` / ` 1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none
+
+Nothing is blocked on you. Other workers' files show as modified in `git status` and are outside my one-file scope, left untouched for the orchestrator's commit step.

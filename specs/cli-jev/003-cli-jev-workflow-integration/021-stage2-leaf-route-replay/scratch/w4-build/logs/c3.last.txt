@@ -1,0 +1,102 @@
+I'll start by reading the required files: the design (R), the rulings, and the two existing files S and T.
+
+Now let me read the existing script (S) and test file (T).
+
+
+
+I have R section 2's recount/prose/verdict block. Let me read the rest of the design doc (lines 162-190) and check the sibling script's line-scan style that R references.
+
+The sibling has the line-scan style in `countTranscripts`. Let me read that section plus its helpers to match conventions exactly.
+
+Now let me look at the sibling's pattern constants (the escaped-quote line-scan style), the packet spec for exact recount/prose/verdict requirements, and the leaf contract's `compositeKey`.
+
+Let me read the packet spec for the exact recount/prose/verdict requirements.
+
+Let me read the spec sections 3 and 4 in full for exact wording.
+
+Now let me check the leaf contract's `compositeKey` and the scenario parser's id/leafPairs shapes.
+
+Let me check for any existing drafts or references of these functions in the repo, and look at the packet goal.
+
+No existing drafts. Let me check the sibling's tests for the transcript fixture format it uses.
+
+Let me check the packet's plan.md and scratch dir for more precise interface notes on this brief.
+
+There's a `briefs` directory. Let me check for this brief's full text and any bodies with more detail.
+
+
+
+
+
+
+
+The retired replay has no recount — it's new. Before implementing, let me verify the real transcript schema (field shapes only, no content) so the recount matches actual Claude Code transcripts.
+
+My brief is c3. Let me quickly check the neighboring briefs (c2, c4) to see the exact partition and any interface expectations on my functions.
+
+
+
+The wave is sequential c1→c7; c4 (main wiring) follows me and will use my exports. Now let me follow the required skill route for the code write.
+
+The route resolves to the OpenCode surface packet. Let me load it.
+
+The route slices to the JavaScript trio. Let me load those references.
+
+
+
+Route loaded (sk-code → sk-code-opencode → JavaScript trio). Now let me verify my ISO-week math and expected precision strings with a quick inline node check, and look at the sibling test's import style.
+
+All verifications pass. Now let me make the S edits — first the constants block.
+
+Now insert the new section 8 and renumber EXPORTS to 9.
+
+Now add the four functions to `module.exports`. Let me read the file's end first.
+
+
+
+S is complete. Let me syntax-check it now.
+
+S is clean. Now the T edits — imports first.
+
+Now add the test helpers for the transcript and verdict cases.
+
+Now append design cases 12–16 to T.
+
+Both files are edited. Now run the three listed verification checks.
+
+All three checks pass. Now a one-shot functional smoke check of the new functions (temp dirs only, cleaned up) to confirm the new code actually behaves before handback.
+
+
+
+Smoke check passes. Final-state verification: confirm the diff is scoped to exactly S and T and no stray artifacts exist.
+
+The tree has many other workers' modifications. Let me check the git state of exactly my two files.
+
+Both files are untracked (the orchestrator commits after the wave), so no git diff is expected. Let me confirm the final line counts for the handback and that no temp dirs were left behind.
+
+One last integrity check — confirm the four new exports are wired, then re-read the final edited regions.
+
+Both files are final and verified. Summary of the work:
+
+- **S** (`.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs`): added the recount patterns to the constants block, then a new section 8 "Recount, prose and the replay verdict" with `isoWeek` and `recordResultBytes` helpers plus `countRouterReads` (recursive sorted walk, one count per Read-on-`ROUTER.md` line, bytes from the paired `tool_result` by `tool_use_id`, hub/week buckets, counts and bytes only), `routerReadLines` (`router reads:` + per-bucket lines), `readProse` (id + `workflowMode:leafResourceId` grammar into composite-key sets with an unparsed count) and `replayVerdict` (coverage `10*P >= 9*N` else the stop line; keyword vs prose mean F1 on the P rows, `n/a` at P=0). Exports section renumbered to 9 and all four added to `module.exports`.
+- **T**: appended design cases 12–16; cases 12–13 build a synthetic transcript in a `fs.mkdtempSync(path.join(os.tmpdir(), 'leaf-route-replay-'))` temp dir and remove it in `finally`.
+
+Only the two named files were touched (both are untracked in this worktree; the orchestrator commits). No temp artifacts left behind.
+
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs (+227/-6)
+  .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs (+104/-0)
+EDITS:
+  leaf-route-replay.cjs:56 added the four transcript line patterns and MS_PER_WEEK to the constants block
+  leaf-route-replay.cjs:468 added section 8: isoWeek, recordResultBytes, countRouterReads, routerReadLines, readProse, replayVerdict
+  leaf-route-replay.cjs:678 renumbered EXPORTS to 9 and exported countRouterReads, routerReadLines, readProse, replayVerdict
+  leaf-route-replay.test.cjs:13 imported node:fs, node:os, node:path
+  leaf-route-replay.test.cjs:54 added transcriptDir, verdictRows, proseOf helpers
+  leaf-route-replay.test.cjs:198 appended design cases 12 to 16
+CHECKS:
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs -> (no output) (exit 0)
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> (no output) (exit 0)
+  grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> 16 (exit 0)
+  node -e '<functional smoke of recount, prose grammar and all four verdict lines>' -> smoke OK: recount 1 read/22 bytes/W40, no text; prose grammar; keep, drop, stop(0), stop(8) (exit 0)
+BLOCKED REASON: none

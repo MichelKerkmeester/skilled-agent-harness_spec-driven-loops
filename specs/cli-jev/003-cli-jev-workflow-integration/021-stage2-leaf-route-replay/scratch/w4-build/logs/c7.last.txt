@@ -1,0 +1,131 @@
+I'll start by reading the referenced design docs and the two target files.
+
+Now let me read the two target files (S and T).
+
+Now let me read the rest of S (lines 477-1175) to see the gates, verdict math, parseArgs, main and exports.
+
+
+
+Now let me read the sibling script to copy its spawn/record/stop handling for the arms.
+
+
+
+
+
+
+
+
+
+I have the sibling pattern. Now let me check the spec folder and scratch directory for any additional detail on the arm contract.
+
+The design.md is 190 lines but my read showed 161. Let me read the remainder, and check the briefs directory for this step's brief.
+
+Let me read the brief files to find this step's full contract (c5-c7 cover the step-6 split).
+
+c7 is my brief. Let me check c5 (the gates brief) to understand established context shapes.
+
+Now let me check the phase spec for the authoritative arm/gate behavior details.
+
+
+
+Let me check the design body files for the arm contract details.
+
+Let me check the logs directory for orchestrator notes on the arm ctx shape.
+
+There's a c7.last.txt — possibly a prior attempt at this brief. Let me read it and the c6 check log.
+
+c7.last.txt is the logging harness capturing my own session. Let me check the retired replay reference for its arm/texts shape.
+
+Let me check what arm-related constants and strings already exist in S and T.
+
+Let me check the phase goal.md and implementation summary for arm wiring notes.
+
+Let me check phase 002 (referenced for exit handling) for an existing arm implementation pattern.
+
+Phase 002 is the tie-break arm this design ports from. Let me find its implementation.
+
+
+
+
+
+
+
+
+
+
+
+Let me check the sibling's test file for how it exercises the arms.
+
+
+
+
+
+I need the scenario parser's exact grammar for synthetic playbook files. Let me read the validator.
+
+Now let me read the leaf resource contract to confirm path resolution rules.
+
+I now have the full picture. Let me record my plan, then make the edits.
+
+Now the first S edit — inserting the ARMS section before the CLI section:
+
+Now renumber the EXPORTS banner and wire the new block into `main`:
+
+
+
+
+
+Now the exports edit:
+
+
+
+S is complete. Now the T edits — first the stub `choice` branches:
+
+Path typo — retrying with the correct path:
+
+
+
+
+
+Now the tied synthetic repo helper, after `syntheticRepoRoot()`:
+
+
+
+Now append the six tests at the end of T:
+
+
+
+All edits applied. Let me re-read the edited regions of S to verify (per the persona's re-read requirement):
+
+
+
+Now running the three listed verification checks:
+
+All three checks pass. Let me confirm the change footprint with read-only git commands:
+
+The diff stat is empty because both files are new (untracked). Let me confirm their status specifically:
+
+Let me do a final review pass over the remaining edited regions (Deem arm start and the stubs):
+
+Let me verify the section banners and a few cross-references:
+
+Let me run the comment-hygiene and no-key greps over my two files:
+
+Let me verify each of the eight exported names has exactly one definition (a typo would crash every test at require time):
+
+All verifications pass. Let me close out the todo list:
+
+All steps are complete and verified. Here is the handback:
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs (+518/-0 net; 1175 → 1693 lines)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs (+195/-0 net; 492 → 687 lines)
+EDITS: S:1007 inserted section 11 ARMS — spawnCall, writeCall, rotations, optionArgs, judgeChoice, intentTexts, runJevArm, runDeemArm with JSDoc, copying the sibling's spawn/record/stop handling (every spawn reaches calls.jsonl before a stop; stops print `<backend>: partial_rows=<n>` and no verdict; arms read the hub's ROUTER.md via ctx.repoRoot for intentTexts); CLI/EXPORTS banners renumbered 11→12, 12→13
+EDITS: S:1588 replaced `// arms run here` with the switch block: `tied: K=`, `baseline:`, `margin: 0.10`, `keep rule:` lines, then `no headroom` and no gate below 5 improvable rows, else the Jev gate+arm when `--jev` then the Deem gate+arm when `--deem` regardless of the other's outcome, and a post-arm report.json write to `--report || --out` so columns land in the report; also printed the `instruction:` line design section 2 lists so the fixed `-q` string prints before any call (recorded deviation from the brief's four-line enumeration)
+EDITS: S:1670 exported spawnCall, writeCall, rotations, optionArgs, judgeChoice, intentTexts, runJevArm, runDeemArm
+EDITS: T:164 added an env-controlled `choice` branch (STUB_CHOICE, STUB_CHOICE_EXIT) to both stubs
+EDITS: T:107 added TIED_ROUTER_BODY and tiedRepoRoot — a synthetic repo whose first hub replays to five tied rows, `exactRows: 1` leaving four improvable
+EDITS: T:558 appended cases 17, 18, 21, 22, 27 and `--jev --deem with a jev lacking a credential still runs the deem gate`
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs -> (no output) exit 0
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> (no output) exit 0
+CHECKS: grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> 33 exit 0
+BLOCKED REASON: none

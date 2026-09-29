@@ -1,0 +1,10 @@
+TASK: add the baseline choice, headroom count and verdict math to S, with design cases 19 and 20 in T.
+R = `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/design.md` (read only) and `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/rulings.md` (read only; it overrides R where they differ).
+S and T exist; read both first. Read R section 2 on `chooseBaseline`, `improvableCount`, `tailP`, `modalPick`, `decideVerdict`, `formatP`, `verdictLine` and the keep rule constants, and the sibling's same-named functions for the shape.
+STEP 1. S: add those seven functions with JSDoc and export them. `decideVerdict` checks, in order: coverage `10*M >= 9*K`, kill `P(X >= L) <= 0.05`, margin `10*(SA-SB) >= M`, sign test `P(X >= W) < 0.05` (p = 1 when W+L = 0), flips `10*F <= 3*M`, else keep. `tailP(n, k)` is the exact one-sided binomial tail at 0.5.
+STEP 2. T: append design cases 19 and 20. Case 20 has one assertion per outcome; add `tailP(7, 5) equals 29/128` and `tailP(30, 30) equals 2 ** -30`.
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+  grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+Accept when: 2 files changed (S and T) and nothing else; both `node --check` exit 0; the grep prints 27.

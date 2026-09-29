@@ -1,0 +1,65 @@
+I'll start by reading the design docs, the sibling files for style, and the ported source.
+
+Now the sibling files for style and the ported source.
+
+
+
+
+
+
+
+
+
+
+
+Now let me check the packet docs, the retired source's UNKNOWN handling, and the sibling test style.
+
+
+
+
+
+My brief matches c1. Now the sk-code route and remaining style references.
+
+
+
+
+
+
+
+Let me check exact header widths and file tails of the siblings.
+
+
+
+
+
+
+
+
+
+Now let me capture the exact divider bytes from the sibling before writing.
+
+Now I'll write the script S.
+
+Now the test file T.
+
+Both files created. Now the three listed verification checks.
+
+All three listed checks pass. Now a single inspection run to confirm the six cases behave as designed (no test runner, pure function eval) and the header widths match the sibling.
+
+All six cases match the design exactly. Now re-reading the created files and confirming the tree state.
+
+
+
+Both files are on disk, re-read, and verified. All checks pass, and the six design cases evaluate to the exact expected values (inspection run: `state=active` with `ALPHA,BETA` declaration order, `stage1-only` empty maps, `false/false/true` keyword hits, `[{A,4},{B,4}]` scores, `[A,B]`/`[A]` selections, `[]` with empty leaf set).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs (+214/-0)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs (+106/-0)
+EDITS: leaf-route-replay.cjs:1-214 box header, JSDoc, imports (child_process, fs, path, root-router-contract, leaf-resource-contract, scenarios), constants block, parseRouter (+ local quotedStrings/parseIntentSignals/parseResourceMap), keywordHits/scoreIntents/selectIntents ported verbatim, module.exports (4 functions + 16 constants)
+EDITS: leaf-route-replay.test.cjs:1-106 node:test + node:assert/strict, requires S, router-text helper and active-router fixture, design cases 1-6 one test each
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs -> (no output) (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> (no output) (exit 0)
+CHECKS: grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> 6 (exit 0)
+CHECKS: node <<'NODE' (module load + six-case inspection, no test runner) -> state=active order=ALPHA,BETA; stage1-only {} {} []; hits false false true; scores [{A,4},{B,4}]; select [A,B] [A]; unknown [] leaf-set [] (exit 0)
+CHECKS: git status --porcelain .skilled/skills/sk-doc/sk-create-skill/scripts/ -> only the two new `??` files; grep for spec paths/REQ ids in both files -> no matches (exit 1)
+BLOCKED REASON: none

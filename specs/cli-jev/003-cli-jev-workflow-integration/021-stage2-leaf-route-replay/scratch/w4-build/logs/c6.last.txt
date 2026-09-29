@@ -1,0 +1,42 @@
+I'll start by reading the task files: R (design.md), rulings.md, and both S and T.
+
+Now let me read S (the script) and T (the test file).
+
+Now let me read the rest of S (from line 477 onward) to see the gates already added.
+
+Now let me look at the sibling `score-clarify-default.cjs` for the shape of these seven functions.
+
+The sibling has 5 of the 7 names. Let me read that region and search for baseline-related functions.
+
+Let me check the current test count in T and look at the sibling's keep-rule constants and tests for these functions.
+
+Let me read the sibling's constants block and its tests for these functions.
+
+Let me read the sibling test cases for shape.
+
+Now let me check the retired replay for `chooseBaseline`/`improvableCount` shape (read-only `git show`).
+
+I have everything I need. Now I'll add the seven functions to S (new section 10, between gates and CLI), renumber the following section headers, and export them.
+
+Now renumber the exports header and add the seven exports.
+
+S is updated. Now append design cases 19 and 20 plus the two tailP tests to T.
+
+Both files are edited. Now run the three verification commands from the repo root.
+
+All three checks pass. Let me confirm my footprint is exactly the two named files and the section numbering stayed sequential.
+
+Both checks green and only the two named files carry my edits (they are untracked, created by earlier briefs; the orchestrator commits). Let me confirm the exact line counts for the handback.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs (+162/-2)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs (+47/-0)
+EDITS: leaf-route-replay.cjs:853-1005 added section 10 "BASELINE AND VERDICT MATH" with chooseBaseline, improvableCount, tailP, modalPick, decideVerdict, formatP, verdictLine (JSDoc on each; decideVerdict order coverage -> kill -> margin -> sign test -> flips -> keep, exact BigInt tails)
+EDITS: leaf-route-replay.cjs:1007 CLI section renumbered 10 -> 11
+EDITS: leaf-route-replay.cjs:1119 exports section renumbered 11 -> 12
+EDITS: leaf-route-replay.cjs:1160-1166 exported the seven new functions
+EDITS: tests/leaf-route-replay.test.cjs:447-492 appended case 19 (chooseBaseline better arm then tie -> union), case 20 (decideVerdict order, one assertion per outcome), and tailP(7, 5) = 29/128, tailP(30, 30) = 2 ** -30
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs -> no output (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> no output (exit 0)
+CHECKS: grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> 27 (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,9 @@
+Both checks pass. The doc exists at the named path, the validator reports `feature_catalog` type with zero issues, and the scoped diff shows no tracked file touched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md` (+61/-0)
+EDITS: `.skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md`:1 created the per-feature leaf from MODEL `feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md`, frontmatter (`title`, `description`, 4 `trigger_phrases`, `version: 2.2.0.1`), `<!-- sk-doc-template: skill_asset_feature_catalog -->` anchor, sections `1. OVERVIEW`, `2. HOW IT WORKS` (3 paragraphs: keyword arm and zero-call default with the 56-row committed gold and the `hub=sk-code gold=1 unscored=1 surface slice not replayed` plus `hub=cli-classifier stage1-only` markers, the `--transcripts` recount and `router reads: not measured`, the `10*P >= 9*N` replay rule and verdict lines, then the `--jev`/`--deem` arms with the printed `keep rule:` line and `report.json`/`calls.jsonl` outputs), `3. SOURCE FILES` (4 Implementation rows, 2 Validation And Tests rows), `4. SOURCE METADATA` (Group `Packet-Authored, Registry-Projected Routing`, related reference to `packet-authored-registry-routing.md`)
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md` -> `✅ VALID: .skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md` / `Document type: feature_catalog` / `Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md` -> (no output, file is new and untracked) (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,30 @@
+All four gates pass from the final state. Status set to **Complete**: the phase printed its replay verdict stop from the final state (`replay verdict: stop (prose arm covers 0 of 55 rows)`), which parent D4 and parent criterion 2 accept as closing, and the only open task row is the operator's (T018).
+
+STATUS: DONE
+FILES CHANGED:
+- specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/spec.md (+2/-2)
+- specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/plan.md (+9/-7)
+- specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/tasks.md (+23/-21)
+- specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/goal.md (+26/-14)
+- specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/implementation-summary.md (+87/-21)
+- specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/graph-metadata.json (+63/-55) via `repair-derived.cjs`
+
+EDITS:
+- spec.md:3 description now says built and closed at its replay verdict stop, commit `fcacc26bf3`
+- spec.md:26 Status `Planned` -> `Complete`
+- plan.md:40 added the `SE` evidence line; plan.md:43-45 DoR and plan.md:48-51 DoD ticked with evidence
+- tasks.md:33 added the closure paragraph naming `fcacc26bf3` and `SE`
+- tasks.md:41-72 T001-T017 ticked with commands and results; tasks.md:73 T018 left open for the operator; tasks.md:80-82 completion criteria ticked
+- goal.md:14-22 continuity updated (`closure-leaf`, 100 pct, bounded action lines); goal.md:64-69 six criteria ticked; goal.md:86-100 build progress rows and five deviation rows added
+- implementation-summary.md rewritten: what was built, files and commit, delivery, decisions, verification, nine known limitations
+- graph-metadata.json re-derived by `repair-derived.cjs --apply` (status, key files, entities)
+
+CHECKS:
+- `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder <phase> --apply` -> `inspected=1 repaired=1 failed=0` first run, `inspected=1 repaired=0 failed=0` final run (exit 0)
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <phase> --strict` -> `RESULT: PASSED`, `Summary: Errors: 0  Warnings: 0`, 0 `RESULT: FAILED` (exit 0)
+- `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <phase>` -> `RESULT: PASSED (5/5 checks)` (exit 0)
+- `node .skilled/hooks/goal/bin/goal.cjs packet <phase> --workspace "$PWD"` -> `packet_durable_chars=3387 packet_budget=unknown` (exit 0; unknown is by design for a phase child)
+
+STATUS SET: Complete. The zero-call replay printed its verdict stop from the final state (`SE` section 2), every goal criterion and T001-T017 are ticked, and the only open row is T018, an operator item under parent D4.
+OPEN ROWS: T018 waits on the operator (a transcript directory, a prose file covering 90 percent of the 55 scored rows, one `--deem --out` run, one `--jev --out` run on the flag). The trigger index `--check` exits 1 on this phase's new catalog entry and changelog, a repo-wide write left to the orchestrator. `../changelog/` does not exist, so the spec's changelog note cannot be honored from this folder. Seven `ROUTER.md` stale sentences stay with the hub owners.
+BLOCKED REASON: none

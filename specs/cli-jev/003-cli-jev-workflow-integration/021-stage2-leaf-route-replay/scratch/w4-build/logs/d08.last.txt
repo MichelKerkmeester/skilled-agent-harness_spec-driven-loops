@@ -1,0 +1,12 @@
+All three named changes are in place and nothing else moved. The facts in both rows are grounded in the script's own header comment, `USAGE` at line 52 and `main` at lines 1519 to 1599, and the MODEL shape is the two 020 rows (table row at line 81, bullet at the score-clarify-default line).
+
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` +3/-1
+EDITS:
+- `.skilled/skills/sk-doc/sk-create-skill/SKILL.md`:5 version bump `1.4.0.0` to `1.5.0.0`
+- `.skilled/skills/sk-doc/sk-create-skill/SKILL.md`:82 added `| Leaf-route replay | scripts/leaf-route-replay.cjs | ... |` row after the line 81 row, three sentences mirroring the 020 row
+- `.skilled/skills/sk-doc/sk-create-skill/SKILL.md`:472 added `scripts/leaf-route-replay.cjs` bullet after the 020 bullet, mirroring its shape
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/SKILL.md` -> `✅ VALID: .skilled/skills/sk-doc/sk-create-skill/SKILL.md` `Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/sk-doc/sk-create-skill/SKILL.md` -> `1 file changed, 3 insertions(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: none

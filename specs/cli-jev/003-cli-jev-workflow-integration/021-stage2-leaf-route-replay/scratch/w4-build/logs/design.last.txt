@@ -1,0 +1,86 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I have all the facts I need. Now writing the design file.
+
+
+
+
+
+
+
+Design written and verified. Only the one named file was created; the scratch `w4-build/` directory already held the orchestrator's briefs and logs, and no tracked file was touched.
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/design.md (+190/-0)
+EDITS: design.md:1 created the six-section build design (premises, interface, 28 test cases, 16 build steps, proof plan, open questions)
+CHECKS: wc -l specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/design.md -> 190 (exit 0)
+CHECKS: grep -c '^## ' specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/design.md -> 6 (exit 0)
+BLOCKED REASON: none

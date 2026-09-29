@@ -1,0 +1,17 @@
+Both checks pass. The `git diff --stat` line is empty because the file is new and untracked in this worktree, which matches "created" in the accept condition.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md` (+30/-0)
+EDITS:
+- `.skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md`:1 created, frontmatter block per MODEL v1.4.0.0.md shape (`title`, `description`, `trigger_phrases` with the two identity phrases plus topic phrase `stage-two leaf route replay`, `importance_tier`, `contextType`, `version: 1.5.0.0`)
+- `.skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md`:13 editorial title H1 and summary narrative (compact format, MODEL shape)
+- `.skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md`:17 spec folder blockquote, `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay` (Level 1, from `spec.md` `SPECKIT_LEVEL: 1`)
+- `.skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md`:21 `## What's New at a Glance`, six bullets covering the step's named facts (new script, zero-call default, `--transcripts` recount, `--prose` arm and replay verdict with the real stop line, `--jev`/`--deem` tie-break arms and the keep rule, no serving)
+- `.skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md`:29 `## Upgrade`, no migration
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md` -> `✅ VALID: .skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md` (Document type: changelog, Total issues: 0) (exit 0)
+- `git diff --stat -- .skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md` -> no output, empty stat (exit 0, file is new/untracked, 30 lines written)
+BLOCKED REASON: none
+
+Facts trace: switches and printed lines checked in `leaf-route-replay.cjs` (USAGE line 52, `MARGIN_LINE`/`keep rule`/`no headroom` 1593-1599, `router reads: not measured` 1571, skip lines 724/738/745/846, `--out` error 1540, `ORDERS = 3` and rotations per tied row), replay verdict line quoted from `scratch/w4-build/replay-run.txt` line 14 (`replay verdict: stop (prose arm covers 0 of 55 rows) N=55 P=0 ...`), ruling 5 not needed here (no gate-order claim in this doc).
