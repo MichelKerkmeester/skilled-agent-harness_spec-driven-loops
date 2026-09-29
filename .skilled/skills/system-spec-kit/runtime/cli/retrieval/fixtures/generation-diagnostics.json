@@ -3,10 +3,10 @@
     "duplicate-phrase": 54,
     "missing-frontmatter": 7292,
     "non-yaml-frontmatter": 2,
-    "ok": 12338,
+    "ok": 12423,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23318,
+  "documentsScanned": 23403,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "538845a7d0f2ec5f3462df43f32b98df6a5d8afad69b3d3a37194c65441a477b",
+  "manifestHash": "5e87dcc907150c6a567730a56413a7cf2ce56dc5bfc84536b4e69464b6178df3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32102,
+      "ok": 32429,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -70576,6 +70576,74 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch",
       "reason": "excluded directory"
     },
     {

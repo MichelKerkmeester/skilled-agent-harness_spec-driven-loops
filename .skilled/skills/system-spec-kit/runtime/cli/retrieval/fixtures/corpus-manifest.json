@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6921700e505d27811ec078d25563d9294adc3b616712d4e0cead4a14d31f02aa",
+  "corpusHash": "1cacc8a9dffd40c1d12ee4aa8911a4fe8f51bf57d06f2854f32e5806cacfbe70",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23318,
+  "includedPathCount": 23403,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8708,6 +8708,91 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/plan.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-ask.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-pick.md",
@@ -23348,7 +23433,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "538845a7d0f2ec5f3462df43f32b98df6a5d8afad69b3d3a37194c65441a477b",
+  "manifestHash": "5e87dcc907150c6a567730a56413a7cf2ce56dc5bfc84536b4e69464b6178df3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24316,6 +24401,74 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch",
       "reason": "excluded directory"
     },
     {
