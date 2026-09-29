@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b474f2b091e8914a606488e4c93ad635553847810cffdf2d86a056a9c8ab2028",
+  "corpusHash": "cd86e58d9e199eb90d0cacf1a0fab3b7fe4859a6cee017e3a1271e90ffbe4dd4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -23353,7 +23353,7 @@
     "specs/system-speckit/040-goal-parent-single-limit/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "2e5ed8d2658b7a4fafab65e049c2b7326e3299e6cf868085b71688ee3ee679c5",
+  "manifestHash": "9481e0d60815d22e1b1c76c7f5aff8930df2b020a750f119a969793f69fa85df",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24321,6 +24321,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/scratch",
       "reason": "excluded directory"
     },
     {
