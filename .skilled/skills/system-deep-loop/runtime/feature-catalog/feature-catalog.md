@@ -16,7 +16,7 @@ This document combines the current feature inventory for the `runtime/` skill in
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 54 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 55 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
@@ -24,7 +24,7 @@ Use this catalog as the canonical inventory for the live `runtime/` feature surf
 | [prompt-rendering](../feature-catalog/prompt-rendering) | 1 features | `lib/deep-loop/prompt-pack.ts` |
 | [validation](validation/) | 3 features | `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/plugins/system-deep-loop-guard.js` |
 | [state-safety](../feature-catalog/state-safety) | 13 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
-| [scoring](scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
+| [scoring](scoring/) | 3 features | `lib/deep-loop/bayesian-scorer.ts`, `scripts/score-stop-rater.cjs` |
 | [coverage-graph](../feature-catalog/coverage-graph) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
 | [script-entry-points](../feature-catalog/script-entry-points) | 5 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
 | [council](council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
@@ -422,6 +422,22 @@ Adds a convergence score-delta signal comparing the current graph score with the
 #### Source Files
 
 See [`scoring/convergence-score-delta.md`](../feature-catalog/scoring/convergence-score-delta.md) for full implementation and validation file listings.
+
+---
+
+### Stop-rater replay
+
+#### Description
+
+Replays recorded deep-research lineage states offline and rates each stop decision against gold derived from the delta files.
+
+#### How It Works
+
+`score-stop-rater.cjs` walks the tracked lineage states and prints the census with zero model calls by default, derives each lineage's gold from first-appearance sources in its delta files, and opens the `--jev` or `--deem` arm only after five confirmed reads.
+
+#### Source Files
+
+See [`scoring/stop-rater-replay.md`](../feature-catalog/scoring/stop-rater-replay.md) for full implementation and validation file listings.
 
 ---
 

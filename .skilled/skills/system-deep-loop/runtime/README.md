@@ -46,6 +46,7 @@ Generated dependencies under `node_modules/` and repository metadata directories
 | Vitest configuration | `vitest.config.ts` |
 
 Consumers import domain behavior from `lib/` or invoke a documented script from `scripts/`. The mode workflows own user-facing orchestration and pass durable inputs into this runtime.
+The stop-rater replay at `scripts/score-stop-rater.cjs` makes no model call by default and opens its two rating arms only behind the `--jev` and `--deem` switches.
 
 ---
 

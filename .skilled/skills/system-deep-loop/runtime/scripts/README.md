@@ -49,6 +49,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `query.cjs` | Queries coverage gaps, contradictions and stored graph state. |
 | `reduce-state.cjs` | Reduces durable state records into a current runtime projection. |
 | `render-command-contract.cjs` | Renders the command contract used by validation and dispatch. |
+| `score-stop-rater.cjs` | Replays recorded deep-research stop decisions offline against gold derived from the delta files, with no model call by default. The `--jev` and `--deem` switches open a rating arm and `--gold-reads <file>` supplies the confirmed reads that gate it. |
 | `status.cjs` | Reports session-scoped graph health and stored row counts. |
 | `synthesis-closeout.cjs` | Checks a finished research or review synthesis against its iteration state, including lineage logs, and stages the completion event for the gateway. |
 | `upsert.cjs` | Stores graph nodes, edges and iteration events. |
