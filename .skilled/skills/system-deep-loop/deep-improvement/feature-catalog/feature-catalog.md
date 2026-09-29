@@ -28,7 +28,7 @@ The skill runs two lanes through one agent. Each category and feature below is t
 |---|---:|---|---|
 | Evaluation loop | 7 features | Lane A | `.skilled/commands/deep/agent-improvement.md`, deep-improvement YAML workflows, `scripts/*.cjs` |
 | Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:agent-improvement`, `.skilled/agents/deep-improvement.md` |
-| Scoring system | 4 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
+| Scoring system | 5 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `scorer/score-d4-agreement.cjs` |
 | Model-benchmark mode | 5 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
 
 ---
@@ -209,7 +209,7 @@ See [`integration-scanning/command-dispatch.md`](../feature-catalog/integration-
 
 **Lane:** Shared (Lane A scores candidates, Lane B can opt into the same 5-dim scorer)
 
-These entries describe the dynamic scoring stack that derives evaluation structure from the target agent, applies the five-dimension rubric, records deterministic score outputs, and turns repeated runs into dimensional progress and stop-state summaries.
+These entries describe the dynamic scoring stack that derives evaluation structure from the target agent, applies the five-dimension rubric, records deterministic score outputs, and turns repeated runs into dimensional progress and stop-state summaries. The last entry covers the offline check of hallucination graders against operator labels.
 
 ### Five-dimension rubric
 
@@ -275,6 +275,22 @@ See [`scoring-system/dimensional-progress.md`](../feature-catalog/scoring-system
 
 ---
 
+### Hallucination grader agreement
+
+#### Description
+
+Measures offline how well the deterministic hallucination check and a Deem or Jev grader agree with operator labels on benchmark outputs.
+
+#### How It Works
+
+`scripts/model-benchmark/scorer/score-d4-agreement.cjs --outputs <dir>` matches benchmark outputs to their fixtures, counts the operator's labels and prints the `hallucination-flag` baseline with a fixed keep rule, with no model call by default. `--deem` and `--jev` each add a model arm that runs only after its own checks pass and once 30 outputs carry labels, at least 5 in each class, and a finished arm prints one `verdict` line.
+
+#### Source Files
+
+See [`scoring-system/hallucination-grader-agreement.md`](../feature-catalog/scoring-system/hallucination-grader-agreement.md) for full implementation and validation file listings.
+
+---
+
 ## 5. MODEL-BENCHMARK MODE
 
 **Lane:** Lane B (model-benchmark)
@@ -321,7 +337,7 @@ Selects the pattern matcher by default or the opt-in five-dimension scorer for m
 
 #### How It Works
 
-`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer. `--grader noop` is the default deterministic grader with no model dispatch, with `--grader mock` and `--grader llm` selecting the stub or real grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`.
+`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer. `--grader noop` is the default deterministic grader with no model dispatch, with `--grader mock` and `--grader llm` selecting the stub or real grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`. Any other `--grader` value exits 2 before a profile loads.
 
 #### Source Files
 

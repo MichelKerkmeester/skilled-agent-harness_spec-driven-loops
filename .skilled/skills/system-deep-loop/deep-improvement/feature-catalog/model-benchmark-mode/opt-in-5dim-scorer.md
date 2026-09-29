@@ -26,7 +26,7 @@ This feature controls how `run-benchmark.cjs` judges materialized outputs. It ke
 
 `run-benchmark.cjs --scorer pattern` is the default. It uses the byte-identical heading and pattern matcher, so a run with no scorer flag produces the same deterministic result as before. `--scorer 5dim` is opt-in: it routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer that combines deterministic checks with a pluggable grader.
 
-Grader selection is separate from scorer selection. `--grader noop` is the default and stays deterministic with no model dispatch. `--grader mock` selects the stub grader and `--grader llm` selects the real grader. The benchmark report and the `benchmark_run` record carry `scoringMethod: pattern` or `scoringMethod: 5dim`, so downstream consumers can attribute each result to the scorer that produced it.
+Grader selection is separate from scorer selection. `--grader noop` is the default and stays deterministic with no model dispatch. `--grader mock` selects the stub grader and `--grader llm` selects the real grader. Any other value exits 2 with the usage line before a profile loads, so a mistyped kind can no longer score with the stub. The benchmark report and the `benchmark_run` record carry `scoringMethod: pattern` or `scoringMethod: 5dim`, so downstream consumers can attribute each result to the scorer that produced it.
 
 ---
 

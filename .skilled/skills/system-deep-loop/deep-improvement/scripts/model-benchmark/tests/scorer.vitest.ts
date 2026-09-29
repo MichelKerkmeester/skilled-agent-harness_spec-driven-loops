@@ -157,4 +157,7 @@ describe('buildGraderFn factory', () => {
     expect(typeof res.score).toBe('number');
     expect(res.score).toBeGreaterThan(0);
   });
+  it('throws for a grader kind outside noop, mock and llm', () => {
+    expect(() => scorer.buildGraderFn('jev')).toThrow(/unknown grader kind 'jev'/);
+  });
 });
