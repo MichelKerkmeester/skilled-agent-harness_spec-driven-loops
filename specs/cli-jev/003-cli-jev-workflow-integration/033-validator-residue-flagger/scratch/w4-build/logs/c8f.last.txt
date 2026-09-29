@@ -1,0 +1,9 @@
+Both checks pass. Only `score-residue-flagger.cjs` was edited; the other modified files in the scripts directory belong to concurrent workers and were not touched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+6/-4)
+EDITS: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs:89 `ls-files -z` → `ls-tree -r -z --name-only HEAD`, split and filter kept
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> no output (exit 0) (exit 0)
+CHECKS: node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> pass 35, fail 0 (exit 0)
+BLOCKED REASON: none

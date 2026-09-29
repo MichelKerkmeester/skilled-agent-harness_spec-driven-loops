@@ -1,0 +1,11 @@
+SKILL ROUTING: User directed → `sk-doc`, mode `sk-create-skill` (design step 10). ARTIFACT: sk-doc → `sk-create-skill/assets/skill/skill-md-template.md` read; the MODEL is the Review Dimensions section of the target file itself ("modelled on that section"), matched in style.
+
+Work done: added the one required sentence after the Review Dimensions table in `.skilled/skills/system-deep-loop/deep-review/SKILL.md`, and nothing else. Every claim is grounded in the script's own header and docstring ("offline residue-flagger measurement census", "counts finding tables and resolvable citations across committed review documents", "The default run is a census only: it spawns no backend call and writes no file") plus `main()`'s rule that zero calls happen unless `--jev` or `--deem` is set, and the design's step 10 clause "it adds no column" (spec scope wording: "adds no column to any review table"). No verdict line is named, per ruling 4 and FACTS ("No verdict line has been printed by any run"). `version:` left untouched as instructed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/SKILL.md (+2/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/SKILL.md:315 one sentence after the Review Dimensions table naming `scripts/score-residue-flagger.cjs`, the offline measurement, its zero-call default, `--jev` and `--deem`, and that it adds no column to any review table
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/SKILL.md -> `✅ VALID: .skilled/skills/system-deep-loop/deep-review/SKILL.md` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/deep-review/SKILL.md -> `1 file changed, 2 insertions(+)` (exit 0)
+BLOCKED REASON: none

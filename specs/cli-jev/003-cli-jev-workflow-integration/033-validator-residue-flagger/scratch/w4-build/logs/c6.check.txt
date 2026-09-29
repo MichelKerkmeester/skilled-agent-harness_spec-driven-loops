@@ -1,0 +1,41 @@
+✔ corpus walk (440.378208ms)
+✔ parser three shapes (168.142ms)
+✔ parser skipped shape (167.54425ms)
+✔ dimension mapping (415.516917ms)
+✔ commit resolution (255.403625ms)
+✔ untracked review file (397.602916ms)
+✔ location resolves (423.032417ms)
+✔ location dropped (459.788416ms)
+✔ refused .env (442.059959ms)
+✔ draw reproducible (5336.900041ms)
+✔ draw spacing (2666.043916ms)
+✔ draw refuses labels (2401.120709ms)
+✔ draw shortfall (378.813042ms)
+✔ label gate 99 (3936.616958ms)
+✔ default zero calls (445.208125ms)
+✔ baseline and headroom (4135.240291ms)
+✔ no headroom (4106.639875ms)
+✔ underpowered (0.058583ms)
+✔ verdict keep (0.153708ms)
+✔ verdict kill precision (0.04025ms)
+✔ verdict stop coverage (0.026084ms)
+✔ verdict stop margin (0.020708ms)
+✔ brier score (0.068833ms)
+✔ deem gate pass (464.9725ms)
+✔ deem stub backend (5104.626875ms)
+✔ deem keep (11295.87375ms)
+✔ deem exit 4 changed pair (138.870583ms)
+✔ --out required (193.235125ms)
+✔ requalify (423.620041ms)
+✔ jev gate pass (2293.123ms)
+✔ jev no credential (496.482667ms)
+✔ jev one provider (240.617417ms)
+✔ jev exit 3 after gate (170.209916ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47446.539208

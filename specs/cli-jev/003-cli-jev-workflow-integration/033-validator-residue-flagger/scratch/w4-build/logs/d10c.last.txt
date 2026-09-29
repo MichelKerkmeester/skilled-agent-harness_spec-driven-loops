@@ -1,0 +1,9 @@
+The doc is on disk and both listed checks pass. `git diff --stat` prints nothing because the file is newly created and untracked, which `git status --porcelain` confirms with a single `??` row and no other change in the changelog folder.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md (+26/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md:1 created the changelog entry: frontmatter (`title`, `description`, 4 `trigger_phrases`, `importance_tier`, `contextType`), H1 `# v1.11.0.37: Residue Flagger Measurement`, summary naming `score-residue-flagger.cjs` and its zero-call default, spec-folder line, `## What's New at a Glance` with three bullets (zero-call census lines, `--jev`/`--deem` behind their own gates with `--out` and skip lines, `--draw`/`--seed`/`--labels` and the `stop: fewer than 100 labeled rows` label gate), `## Upgrade` as `No migration required.`, all modelled on `v1.11.0.36.md`. No verdict line is claimed since no run printed one.
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md -> `✅ VALID: ... Document type: changelog / Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md -> no output (exit 0; file is new/untracked, `git status --porcelain` shows only `?? .../changelog/v1.11.0.37.md`)
+BLOCKED REASON: none

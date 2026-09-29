@@ -1,0 +1,24 @@
+## Recheck — three fixes by Pi MiMo
+
+**1. P1 `staged review file` abort — closed.** `trackedFiles` now lists HEAD's tree (`score-residue-flagger.cjs:90`: `git ls-tree -r -z --name-only HEAD`); the census reads `readAtCommit` at `headCommit` (`:310`, `:324`) and `drawRows` reads at the same `census.commit` (`:431`, `:437-440`), so list and read now cover the same tree. The new test (`score-residue-flagger.test.cjs:312-331`) stages `specs/demo/review/staged.md`, commits nothing, asserts it is absent from `trackedFiles`, and `main([])` exits 0 with `files=2`, `rows=6` — it passes. Pre-fix this path reached `git show HEAD:<staged>` and rejected out of `main` (no catch around `buildCensus` at `:1513`), so the test is a real regression guard.
+
+**2. P2 catalog "every run prints margin/keep/questions" — closed.** `main` prints `censusLines`, `ruleLines` (`margin: 0.10` + keep rule) and `instructionLines` only on the non-draw path (`:1512-1516`), and the draw branch makes exactly one `out` call, the `draw:` line (`:1501`). The leaf now says "Every run except `--draw`" and "A draw prints only its one `draw:` line" (`residue-flagger-measurement.md:28`), matching the code.
+
+**3. P2 playbook `version:` — closed.** The leaf carries `version: 1.11.0.0` (`manual-testing-playbook/.../residue-flagger-measurement.md:4`). Derivation: anchor = max(SKILL.md `1.11.0.36`, changelog max `v1.11.0.37`) = 1.11.0.37; for a non-SKILL doc `derived = [anchor.major, anchor.minor, 0, min(realEditCount, 99)]`, and the file is untracked, so `git log --follow --numstat` yields no commits → `realEditCount = 0` → `1.11.0.0`. The catalog leaf carries the same value.
+
+**Weigh — `trackedFiles` callers.** `rg` shows no caller outside this script and its test. `resolveLocation`'s refusal set now keys on HEAD's tree (`:261`, `:276`): an index-only `.md` (staged, uncommitted) is refused rather than dropped — it exists at no commit, so it could never have resolved; a HEAD-only `.md` (staged for deletion) is now readable, and it is committed content, so nothing untracked or private is opened. The draw uses the same HEAD set and reads at HEAD. The amended catalog leaf and changelog describe exactly this. One note: spec REQ-002/REQ-003 (and `plan.md`/`tasks.md`) still name `git ls-files` as the mechanism — that wording is now stale, since `git ls-files` is what caused the abort; the requirement's stated intent ("committed files", never open anything outside the tracked set) is what the fix satisfies. Not a defect in the five named files, but the orchestrator should note or amend the spec wording at close.
+
+**New P0/P1 in the five named files:** none. No forbidden spec/phase/REQ references in the changed code comments; the comment additions state the durable why ("HEAD's tree", "staging is not committing").
+
+**Check**
+- `node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs` → `ℹ tests 36`, `ℹ pass 36`, `ℹ fail 0`, `ℹ skipped 0` (exit 0); `✔ staged review file` present.
+
+```
+STATUS: DONE
+FILES CHANGED: none — read-only recheck
+EDITS: none — read-only recheck
+CHECKS: node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> ℹ pass 36 / ℹ fail 0 / ℹ tests 36 (exit 0)
+BLOCKED REASON: none
+```
+
+VERDICT: PASS

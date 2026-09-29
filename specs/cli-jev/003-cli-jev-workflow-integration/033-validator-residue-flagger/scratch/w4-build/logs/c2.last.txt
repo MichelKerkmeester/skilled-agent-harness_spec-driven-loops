@@ -1,0 +1,39 @@
+All checks are green. Summary of the step-3 build before the handback:
+
+**What landed** (design §4 step 3, "Draw")
+- `S` section 4 (new): `sha256Hex`, `mulberry32`, `drawRows`, `readJsonl`, `writeJsonl`, `holdsLabels` — each JSDoc'd and exported; section renumbering keeps the file's numbered layout sequential (`5. ARGUMENTS`, `6. MAIN`, `7. EXPORTS`).
+- `main` gains the `--draw`/`--seed`/`--labels` handling: refuses `--jev`/`--deem`/`--out` with `--draw takes only --seed and --labels`; requires `--seed`; refuses a labels file holding a label with the verbatim `draw refused: <path> holds a label`; runs `buildCensus` → `drawRows` → `writeJsonl`; prints the single 2.2 draw line; every failure exits 2 with no write.
+- `T` gains the draw fixture (two 100-line documents, 30 resolving citations each) plus the `runMain` harness, and the four named cases: `draw reproducible`, `draw spacing`, `draw refuses labels`, `draw shortfall`.
+
+**Design calls where section 2 left a shape open** (all flagged, none silent):
+1. `sha256Hex` landed with this step, one step ahead of §4 step 4: `drawRows`'s `window_sha12` is defined in §2.3/§2.4 in terms of `sha256Hex`, so the frozen-interface primitive was required here. Step 4 finds it present and uses it.
+2. Draw mode prints exactly the one draw line (§2.2 "Draw mode, one line"), not the census block; this mirrors the `score-injection-screen.mjs` sibling the design names for `--draw`.
+3. Wordings §2 did not fix: `draw needs 25 resolvable rows in <category>, found <n>` (shortfall, per §2.1 "naming the shortfall"), `draw needs 25 negative lines for <category>, found <n>` (fail-closed guard for a cited-dense corpus), `--draw needs --seed <n>`, `--draw takes only --seed and --labels`.
+
+**Verification** (all from repo root; earlier 9 cases and their fixtures untouched; only `S` and `T` show under the scripts path, repo-wide `git status` identical to pre-flight):
+
+```
+node --check .../score-residue-flagger.cjs              -> no output (exit 0)
+node --check .../tests/score-residue-flagger.test.cjs   -> no output (exit 0)
+node --test  .../tests/score-residue-flagger.test.cjs   -> tests 13, pass 13, fail 0 (exit 0)
+python3 check-comment-hygiene.sh on S and T             -> no output (exit 0 each)
+```
+
+The `draw reproducible` case is the step's own check: two same-seed `--draw` runs produce byte-identical labels files, 100 rows, no text field, 50/50, 25 per category.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+241/-3)
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs (+124/-0)
+EDITS: score-residue-flagger.cjs:17 added `crypto` and `fs` imports
+EDITS: score-residue-flagger.cjs:366 added section 4 DRAW — sha256Hex, mulberry32, drawRows, readJsonl, writeJsonl, holdsLabels; ARGUMENTS renumbered to 5
+EDITS: score-residue-flagger.cjs:631 added the `--draw`/`--seed`/`--labels` handling in main (takes-only, needs-seed, label refusal, census + drawRows + writeJsonl, draw line, exit 2 via catch)
+EDITS: score-residue-flagger.cjs:662 renumbered MAIN to 6 and EXPORTS to 7; exported sha256Hex, mulberry32, drawRows, readJsonl, writeJsonl, holdsLabels
+EDITS: score-residue-flagger.test.cjs:152 added the draw fixture (two 100-line docs, 30 citations each) and the runMain harness
+EDITS: score-residue-flagger.test.cjs:296 added cases draw reproducible, draw spacing, draw refuses labels, draw shortfall
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> no output (exit 0)
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> no output (exit 0)
+CHECKS: node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> tests 13, pass 13, fail 0 (exit 0)
+CHECKS: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <S> -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <T> -> no output (exit 0)
+BLOCKED REASON: none

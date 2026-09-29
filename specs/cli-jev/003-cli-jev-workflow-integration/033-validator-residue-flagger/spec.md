@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 33: validator-residue-flagger"
-description: "Test offline whether a Jev or Deem noul flags correctness and traceability defects in document passages better than the review table does today, which is not at all. A zero-call census of committed deep-review finding rows prints first, the operator confirms 50 finding-cited passages and judges 50 others clean, and each backend column ends in keep, kill or stop under a rule fixed here. Planned, released 2026-09-29."
+description: "Test offline whether a Jev or Deem noul flags correctness and traceability defects in document passages better than the review table does today, which is not at all. A zero-call census of committed deep-review finding rows prints first, the operator confirms 50 finding-cited passages and judges 50 others clean, and each backend column ends in keep, kill or stop under a rule fixed here. Built and closed at its label gate on 2026-09-29, commit `c13e968a58`; the draw finds 0 resolvable correctness rows, so no labels file exists."
 trigger_phrases:
   - "validator residue flagger"
   - "score-residue-flagger"
@@ -23,14 +23,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 33 of 35 |
 | **Predecessor** | 032-citation-drift-scan |
 | **Successor** | 034-hvr-reader-needed-lens |
-| **Handoff Criteria** | The zero-call run has printed the finding-row census and either `stop: fewer than 100 labeled rows` or the flag-nothing baseline on the labeled rows with a headroom line. After the operator's labels, each backend whose gate passed has printed one `verdict <backend>:` line from a live `--out` run with its `calls.jsonl`, or its skip line. The verdict lines go in `goal.md`'s log for the parent goal's log |
+| **Handoff Criteria** | The zero-call run has printed the finding-row census and `stop: fewer than 100 labeled rows`. After the operator's labels, each backend whose gate passed would print one `verdict <backend>:` line from a live `--out` run with its `calls.jsonl`; the 2026-09-29 final run stopped at the label gate instead, and `--draw --seed 20260929` exits 2 with `draw needs 25 resolvable rows in correctness, found 0`, so no labels file exists and that branch waits on the operator and on a corpus with resolvable correctness rows. The verdict lines would go in `goal.md`'s log for the parent goal's log |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,11 +50,11 @@ This is **Phase 33** of the cli-jev workflow integration specification. It is on
 - Release. Released on 2026-09-29, when the operator's "Bind and release" amended parent goal D3. Phases 019 to 035 build in number order, and disjoint builds may run in parallel.
 
 **Deliverables**:
-- `score-residue-flagger.cjs` (proposed) with the finding-row census, a `--draw` mode that writes the unlabeled sample, the label gate, the flag-nothing baseline, a `--jev` arm and a `--deem` arm (proposed switches)
-- `score-residue-flagger.test.cjs` (proposed) against fixture review folders in a temp git repository, with stub `jev` and `cli-deem` binaries
-- `residue-flagger-labels.jsonl` (proposed) with 100 drawn rows and no text
-- One zero-call report and, once the labels exist, one live report per backend whose gate passed, in a directory the operator names
-- The deep-review docs parent goal D6 names, written through sk-doc: `SKILL.md`, `README.md`, one changelog file, one feature-catalog entry and one manual-testing-playbook entry
+- `score-residue-flagger.cjs`, built at 1,648 lines, with the finding-row census, a `--draw` mode that writes the unlabeled sample, the label gate, the flag-nothing baseline, a `--jev` arm and a `--deem` arm
+- `score-residue-flagger.test.cjs`, built at 997 lines and 36 cases, against fixture review folders in a temp git repository, with stub `jev` and `cli-deem` binaries
+- `residue-flagger-labels.jsonl` (proposed) with 100 drawn rows and no text. The build wrote none: `--draw --seed 20260929` exits 2 on today's tree with `draw needs 25 resolvable rows in correctness, found 0`, so the draw waits on a corpus with resolvable correctness rows (operator item)
+- The zero-call report, printed from the final state (134 s, 90,510 bytes); a live report per backend whose gate passed needs the operator's labels, in a directory the operator names
+- The deep-review docs parent goal D6 names, written through sk-doc and landed in `c13e968a58`: `SKILL.md` and its Hermes copy, `README.md`, `changelog/v1.11.0.37.md`, one feature-catalog entry in `review-dimensions` and one manual-testing-playbook entry (DRV-069)
 
 **Changelog**:
 - The parent packet has no `../changelog/` folder, so there is no packet changelog to refresh at close. The skill changelog this phase writes is listed under Files to Change.
@@ -107,19 +107,19 @@ Produce one verdict per backend column that settles whether a Jev or Deem `noul`
 
 ### Files to Change
 
-Owner of every path below: `system-deep-loop`, in its `deep-review` packet. The script sits beside `render-contract-snapshot.cjs` and its test beside `reduce-state-summary-fallback.test.cjs`. Code follows sk-code's OpenCode route, and the docs go through sk-doc's modes (parent goal D6). Code comments carry no spec path, phase number or requirement id. Every name below is proposed.
+Owner of every path below: `system-deep-loop`, in its `deep-review` packet. The script sits beside `render-contract-snapshot.cjs` and its test beside `reduce-state-summary-fallback.test.cjs`. Code follows sk-code's OpenCode route, and the docs go through sk-doc's modes (parent goal D6). Code comments carry no spec path, phase number or requirement id. Every name below is proposed. The build also recompiled `.skilled/commands/deep/assets/compiled/deep-review.contract.md` and re-minted `system-deep-loop`'s route manifests, both generated from the changed `SKILL.md` in `c13e968a58`.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs` | Create | Census, commit and location resolution, `--draw`, label gate, flag-nothing baseline, `--jev` and `--deem` arms and the per-column verdicts. About 450 to 550 LOC (estimate) |
-| `.skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs` | Create | `node --test` cases on fixture review folders with stub `jev` and `cli-deem` binaries |
-| `.skilled/skills/system-deep-loop/deep-review/scripts/residue-flagger-labels.jsonl` | Create | 100 drawn rows, no text. The build writes ids and hashes. The operator fills every label |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs` | Create | Census, commit and location resolution, `--draw`, label gate, flag-nothing baseline, `--jev` and `--deem` arms and the per-column verdicts. Built at 1,648 lines, above the 450 to 550 LOC estimate |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs` | Create | `node --test` cases on fixture review folders with stub `jev` and `cli-deem` binaries. Built at 997 lines and 36 cases |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/residue-flagger-labels.jsonl` | Create at draw time | 100 drawn rows, no text. The build wrote none: `--draw --seed 20260929` exits 2 with `draw needs 25 resolvable rows in correctness, found 0`, so the draw waits on a corpus with resolvable correctness rows (operator item). The operator then fills every label |
 | `.skilled/skills/system-deep-loop/deep-review/scripts/README.md` and `scripts/tests/README.md` | Modify | One row each |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` and its Hermes copy `.hermes/skills/deep-review/SKILL.md` | Modify and regenerate | One sentence naming the offline measurement, its zero-call default and its two switches, and saying it adds no column. The copy is regenerated with `sync-skills-hermes.cjs` |
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Modify | One line naming the script, its default and its switches |
-| `.skilled/skills/system-deep-loop/deep-review/changelog/v<next>.md` | Create | The next version after the newest at build time (`v1.11.0.36.md` at planning), through `sk-create-changelog` |
+| `.skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md` | Create | The version after `v1.11.0.36.md`, taken at build time, through `sk-create-changelog`. `SKILL.md`'s `version:` was set to 1.11.0.37 by hand, since the frontmatter sync dry run matched 0 files and `apply` rewrites far wider (design step 10 deviation) |
 | `.skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md` and `feature-catalog/feature-catalog.md` | Create and Modify | One entry and its index row, through `sk-create-feature-catalog` |
-| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/<category>/residue-flagger-measurement.md` and `manual-testing-playbook/manual-testing-playbook.md` | Create and Modify | One scenario covering the zero-call run and a stub-backend skip, plus its index row, through `sk-create-manual-testing-playbook`. The category is chosen at build |
+| `.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md` (DRV-069) and `manual-testing-playbook/manual-testing-playbook.md` | Create and Modify | One scenario covering the zero-call run and a stub-backend skip, plus its index row, through `sk-create-manual-testing-playbook` |
 | `<operator-named report dir>/` | Create at run time | `report.json`, and `calls.jsonl` from a run with a model arm |
 <!-- /ANCHOR:scope -->
 

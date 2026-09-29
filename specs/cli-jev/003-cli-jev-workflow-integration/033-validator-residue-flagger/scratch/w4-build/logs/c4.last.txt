@@ -1,0 +1,18 @@
+All checks pass from the final state. The hygiene grep hits shown are pre-existing fixture paths and the corpus filter from steps 2–4; my added comment region (S:640–750, T:477–533) contains no spec paths, packet/phase numbers or REQ/task ids. Scope is exactly the two named files (both untracked, created earlier in this build).
+
+Work completed — step 5 added the keep-rule/verdict section to `score-residue-flagger.cjs` (`signTestP`, `brierScore`, `decideVerdict`, `verdictText`, `verdictLine`, each JSDoc'd and exported; sections 7–9 renumbered) and added the four named cases plus one small `brier score` case to the test file, leaving every earlier function and test unchanged.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+118/-4)
+- .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs (+59/-1)
+EDITS:
+- .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs:641 inserted section 6 `KEEP RULE AND VERDICT` with `signTestP`, `brierScore`, `decideVerdict`, `verdictText`, `verdictLine` (design 2.4 signatures; sibling `score-injection-screen.mjs` verdict shape, keep rule verbatim; Deem prints `F=n/a`, p at four significant digits)
+- .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs:680 renumbered `// 8. MAIN`
+- .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs:754 renumbered `// 9. EXPORTS`
+- .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs:779 exported the five new functions after `instructionLines`
+- .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs:475 appended cases `verdict keep`, `verdict kill precision`, `verdict stop coverage`, `verdict stop margin` (section 3 inputs: 2-of-10 unmeasured coverage stop; `10*(A-B) < M` margin stop; precision kill on `5*TP < 4*(TP+FP)`), plus one compact `brier score` case for the new export
+CHECKS:
+- node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> score-residue-flagger.cjs: syntax OK (exit 0)
+- node --check .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> score-residue-flagger.test.cjs: syntax OK (exit 0)
+BLOCKED REASON: none
