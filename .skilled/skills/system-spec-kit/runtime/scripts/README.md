@@ -31,6 +31,8 @@ Two of them exist because the naive version fails in a way that is easy to miss:
 scripts/
 +-- compaction-recall/
 |   `-- score-compaction-recall.mjs  # Zero-call census of what host compactions keep
++-- completion-claim-audit/
+|   `-- score-completion-claims.mjs  # Audit of the completion-claim detector, zero-call by default
 +-- finalize-dist.mjs        # Post-build: freshness entries, stale dist pruning, JSON copying
 +-- run-tests.mjs            # Bounded default test runner (npm test)
 +-- run-tests-sharded.mjs    # Sharded runner for the full suite (npm run test:sharded)
@@ -44,6 +46,7 @@ This folder holds scripts only; its one test suite (`resource-map-extractor.vite
 | File | Purpose | Key Behavior |
 |---|---|---|
 | `compaction-recall/score-compaction-recall.mjs` | Operator-run census of host compactions | Reads only the transcripts named with `--transcripts` and makes no model call. It prints counts, scores and one `stop:` line and writes one JSON report to an `--out` path outside every named transcript directory. |
+| `completion-claim-audit/score-completion-claims.mjs` | Operator-run audit of the completion-claim detector | Reads the turn rows named with `--rows` and makes no model call by default. `--deem` and `--jev` each run only behind that backend's own check. The Jev arm needs `--accept-payload`, and `--out` must name a directory outside the repository. |
 | `finalize-dist.mjs` | Completes `npm run build` after `tsc --build` | Records the package build and source-hash cache through `../cli/lib/dist-freshness.cjs`, copies JSON assets into `dist/`, prunes stale dist roots, and checks the required artifacts are present. |
 | `run-tests.mjs` | Backs `npm test` | Routes `npm test -- --run ...` to the requested Vitest lane without running the full core suite first, under a process-group timeout that terminates the whole group on overrun. |
 | `run-tests-sharded.mjs` | Backs `npm run test:sharded` | Splits the suite into `SPECKIT_TEST_SHARDS` shards (default 12) and runs them serially, each in its own worker. |
