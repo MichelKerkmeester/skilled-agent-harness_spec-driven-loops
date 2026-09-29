@@ -322,6 +322,11 @@ default run makes no model call and changes no save. `--score` runs alone and st
 gate: with fewer than 30 labeled rows it prints one stop line and exits 0. `--jev` and `--deem`
 each add a verdict column behind that backend's own check.
 
+`runtime/scripts/completion-claim-audit/score-completion-claims.mjs` scores the completion-claim
+detector against operator-labeled turns. Its default run makes no model call and writes no file.
+`--deem` and `--jev` each run that backend's arm behind its own check, and the Jev arm needs
+`--accept-payload` because its payload is the operator's session text.
+
 ---
 
 ## 5. COMMANDS
