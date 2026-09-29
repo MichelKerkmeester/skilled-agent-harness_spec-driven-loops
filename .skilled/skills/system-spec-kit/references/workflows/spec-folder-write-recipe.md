@@ -113,8 +113,8 @@ Verification gate: confirm `git status --short` only includes the intended packe
 ## 4. POST-CHECKS
 
 - [ ] validate.sh --strict exit 0
-- [ ] git status clean (only the new packet files)
-- [ ] git push origin main success
+- [ ] The commit holds only the new packet files (in a shared tree, `git status` may still list other sessions' changes)
+- [ ] The commit reached origin on the branch you worked on (the Workspace bullet in Step 7 says which pushes need approval)
 - [ ] /speckit:save via generate-context.js (optional but recommended)
 
 ---

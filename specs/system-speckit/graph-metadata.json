@@ -20,7 +20,8 @@
     "system-speckit/040-goal-parent-single-limit",
     "system-speckit/041-fix-write-recipe-backfill-flag",
     "system-speckit/042-fix-write-recipe-commit-step",
-    "system-speckit/043-fix-write-recipe-workspace-bullet"
+    "system-speckit/043-fix-write-recipe-workspace-bullet",
+    "system-speckit/044-fix-write-recipe-post-checks"
   ],
   "manual": {
     "depends_on": [],
