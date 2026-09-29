@@ -1,0 +1,93 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I have everything I need. Now writing the design file.
+
+
+
+
+
+
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/scratch/w4-build/design.md (+298/-0)
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/scratch/w4-build/design.md:1 created the build design with sections 1 Premises, 2 Interface, 3 Test cases, 4 Build steps, 5 Proof plan, 6 Open questions
+CHECKS: wc -l specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/scratch/w4-build/design.md -> `     298 specs/.../design.md` (exit 0)
+CHECKS: grep -c '^## ' specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/scratch/w4-build/design.md -> `6` (exit 0)
+CHECKS: git status --porcelain -- specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/ -> `?? specs/.../025-reviewer-verdict-fallback/scratch/w4-build/` only (exit 0)
+BLOCKED REASON: none

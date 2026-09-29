@@ -39,20 +39,22 @@
       "rule"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
       "lib/README.md",
       "tests/README.md",
+      ".hermes/skills/deep-improvement/SKILL.md",
+      "scratch/w4-session/session-evidence.md",
       ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
       ".skilled/skills/system-deep-loop/deep-improvement/README.md",
       "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md"
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/w4-session/notes.md"
     ],
     "entities": [
       {
@@ -86,12 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "reviewer-scorer.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": "lib/README.md",
@@ -100,7 +96,13 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "path": ".hermes/skills/deep-improvement/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
         "source": "derived"
       },
       {
@@ -113,6 +115,12 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "notes.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/notes.md",
         "source": "derived"
       },
       {
@@ -182,7 +190,7 @@
         "source": "derived"
       },
       {
-        "name": "Pattern One",
+        "name": "Test Files",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -192,17 +200,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The reviewer scorer reads a verdict from a reviewer's output with one regex (`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:117-123`)",
     "created_at": "2026-09-29T12:42:37Z",
-    "last_save_at": "2026-09-29T13:53:38.977Z",
+    "last_save_at": "2026-09-29T19:06:15.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:809b42f336f559c896245debe8db073278c9a931f5ff0e7bd5e586f7ea703290",
+    "source_fingerprint": "sha256:73a4baf47b5eddd7f4e8299ff7978a73e179fe3261fec2789a6163316578fe7a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bdb1d1a13fbee5099083f439fe762fe5ac75af69d78c29092268ecda14ebfeb1",
-      "plan.md": "6deffc5f5e345707d0401762ebdbe6acf27603535d1ac5756069116dd58cbb3f",
-      "tasks.md": "4fac501d0e1b3c854635b3bcfdb496f291d86f834cdc3ae9dd64a69559099d7d",
-      "implementation-summary.md": "7b105ef25114e21c2947420c32f269274268c48a1452034ba629815de2988977"
+      "spec.md": "8eedcfcf40b160cec2f0c4c9ec1449e349dae41ec0b942aab9e19ea53e895f8d",
+      "plan.md": "b868477e57b02cf17524e921d803c156e9fe11fb98a3de766709f569aee88dd2",
+      "tasks.md": "27246ea9b53b78403e86f41ba429c4ec68978a05f755ee65ec21df68c780c1f5",
+      "implementation-summary.md": "090b09de38706b3f8558940af36bf6d34a5600a688e2c53ee059d27ae40b0577"
     },
     "last_active_at": null
   }

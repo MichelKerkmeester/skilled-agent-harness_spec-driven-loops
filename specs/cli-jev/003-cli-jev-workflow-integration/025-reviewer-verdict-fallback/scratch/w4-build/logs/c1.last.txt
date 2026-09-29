@@ -1,0 +1,50 @@
+
+
+
+
+Now let me read the sibling test, the reviewer-scorer lib, and profile-resolve to match shapes.
+
+
+
+Now the profile resolver, the reviewer profile, and a fixture to learn the data shapes.
+
+
+
+Let me check the project layout for test config, and verify the module dependencies exist.
+
+
+
+
+
+
+
+
+
+I have the full picture. Let me measure the sibling's box header so the new file's header aligns, and check the exact sibling wording I should mirror.
+
+Let me confirm the module chain loads cleanly (no side effects at require time).
+
+Everything checks out. Now I'll create the script (S) with sections 1–3 per the design.
+
+Now the test file (T) with tests 1 and 2.
+
+Now the two listed verification checks, plus a read-only status check that only S and T appeared.
+
+Both checks pass. Let me confirm the file set and re-read the created files to verify their final state.
+
+
+
+Both files are in place and verified. Task complete.
+
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+163/-0)
+.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts (+97/-0)
+EDITS:
+score-verdict-fallback.cjs:1-163 created file: box header + sections 1 IMPORTS, 2 CONSTANTS (all constants from R section 2), 3 CENSUS (sha256Hex, resolveProfile, loadFixtureCases, censusFixtures), exports divider numbered 12 per the design's section map (CLI entrypoint lands with main)
+verdict-fallback.vitest.ts:1-97 created file: sibling-style header + helpers (tempDir, writeFixtures, stubDir — only those tests 1-2 use; writeOutputs/runMain land with the steps that need them), describe('score-verdict-fallback fixtures') with tests 'merges visible and hidden cases' and 'a case with no reviewer_output'
+CHECKS:
+node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs -> no output, clean parse (exit 0)
+grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts -> 2 (exit 0)
+git status --porcelain -- <S> <T> -> both paths untracked (??), no tracked file touched (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,36 @@
+# FACTS for the 025 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` (CommonJS, run with `node`).
+Test: `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts`, 31 tests, all pass.
+Suite: `npx vitest run model-benchmark/tests/` from `deep-improvement/scripts` prints `Test Files  15 passed (15)` and `Tests  236 passed (236)` (before this phase: 205 across 14).
+Version: deep-improvement goes from 1.18.0.0 to 1.19.0.0.
+
+Switches (node parseArgs, strict): `--profile <path-or-id>` (default `reviewer-regression.json`), `--outputs <file>`, `--reports <dir>` (repeatable), `--jev`, `--deem`, `--out <dir>`, `--accept-payload`.
+Exit 2: an unknown switch (node's own message), unreadable input, or `--deem`/`--jev` without `--out <dir>`, which prints `--deem needs --out <dir> so every call is recorded` (or `--jev needs ...`) before any call.
+Zero model calls by default: a run with logging stubs for `cli-deem` and `jev` first on PATH left both stub logs unwritten.
+
+Default run, exit 0, full stdout:
+    fixture cases: 8 hits: 8 misses: 0
+    labeled: 0 (pass 0, fail 0, block 0)
+    baseline majority: pass right 0 of 0
+    baseline loose: right 0 of 0
+    baseline method: loose right 0 of 0
+    baseline unknown: right 0 of 0
+    question: Which verdict does this reviewer output give?
+    options: 3 sha256=6c5e221169decec88acef0f7f10d22b413b98cdaae775807e8587341b6b1f771
+    orders: 3, name order then rotated left by 1 and by 2
+    margin: 0.10
+    keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, margin 10*(A-B) >= M, sign test p_win < 0.05, flips 10*F <= 3*M
+    power: a keep needs at least 5 wins with no loss, since 0.5^5 is 0.031
+    stop: fewer than 12 labeled regex-miss outputs
+
+Other census lines the code prints when their input is given: `outputs rows: <n> hits: <n> misses: <n>` (with `--outputs`), `report <path>: pattern=<n> llm-grader=<n> none=<n>` (one per `--reports` dir), `fixture no recorded output: <n>` (when a fixture case has no recorded output).
+Label gate, in order: fewer than 12 labeled regex-miss outputs prints `stop: fewer than 12 labeled regex-miss outputs`; then `stop: no labeled pass output`, `stop: no labeled fail output`, `stop: no labeled block output`; then `no headroom` when 10 x baseline right > 9 x K; else `planned calls: jev <3K+1>, deem <3K>`.
+Arms: `--jev` runs its gate and arm first, then `--deem`, each on its own gate. A failed gate prints its skip line and never runs the other backend in its place.
+- `--deem --out <dir>` with a Deem health reporting backend `stub` adds one line: `deem arm skipped: stub backend`.
+- `--jev --out <dir>` with a `jev` whose `auth status` exits 3 adds two lines: `jev: path=<path> provider=official` and `jev arm skipped: no credential`.
+- With a passing gate while the label gate is closed, the arm prints `deem arm skipped: label gate` (or `jev arm skipped: label gate`, or `... no headroom`).
+- Any run with `--jev` or `--deem` writes `report.json` in `--out`; a run past the gate also appends `calls.jsonl` there.
+No run has printed a `verdict` line. Docs must not claim one was printed.
+The fixture census on the shipped profile: 8 cases, 8 hits, 0 misses, so the fallback runs on none of the known cases.
+The script defines a `USAGE` string and exports it, but no run prints it: an unknown switch prints only node's own message. Docs may quote the usage string as the synopsis, never as printed output.

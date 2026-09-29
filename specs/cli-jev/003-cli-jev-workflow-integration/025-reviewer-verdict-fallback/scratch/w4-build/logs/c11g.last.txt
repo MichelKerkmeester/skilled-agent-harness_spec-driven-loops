@@ -1,0 +1,14 @@
+All edits are on disk and the required check passes.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts (+9/-8)
+EDITS: .skilled/.../verdict-fallback.vitest.ts:712 deem-arm `ANSWER` stub now echoes `probabilities:{"'$pick'":0.9}` alongside the choice (jev-arm stub at 867 unchanged)
+EDITS: .skilled/.../verdict-fallback.vitest.ts:766 `pickProb: 0.9,` inserted after `pick: 'pass',` (deem keep, order 1)
+EDITS: .skilled/.../verdict-fallback.vitest.ts:767 `pickProb: 0.9,` inserted after `pick: 'pass',` (deem keep, order 2)
+EDITS: .skilled/.../verdict-fallback.vitest.ts:768 `pickProb: 0.9,` inserted after `pick: 'pass',` (deem keep, order 3)
+EDITS: .skilled/.../verdict-fallback.vitest.ts:920 `pickProb: null,` added after `pick: null,` in `expect(calls[0]).toEqual({...})` (jev arm)
+EDITS: .skilled/.../verdict-fallback.vitest.ts:927-929 `pickProb: null,` inserted after `pick: 'pass',` in all three objects of `expect(calls.slice(1, 4)).toEqual([...])` (jev arm)
+CHECKS: `grep -c "pickProb" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` -> 7 (exit 0)
+CHECKS: `grep -n "pickProb" <T> | cut -d: -f1` -> 766,767,768,920,927,928,929 (exit 0) — exactly the 7 intended locations
+CHECKS: `git status --porcelain -- <T>` -> `?? <T>` (exit 0) — T is an untracked new file in this worktree, so `git diff` is empty; no other file was touched by this worker
+BLOCKED REASON: none

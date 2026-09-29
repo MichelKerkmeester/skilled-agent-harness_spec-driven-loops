@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 25: reviewer-verdict-fallback"
-description: "Measure offline whether a Jev or Deem choice over pass, fail and block classifies reviewer outputs that the reviewer scorer's verdict regex misses more accurately than zero-call rules. A zero-call census first replays the regex over every recorded reviewer output and prints how many it misses, and the phase stops at a label gate of 12 labeled regex-miss outputs. Planned, released 2026-09-29."
+description: "Measure offline whether a Jev or Deem choice over pass, fail and block classifies reviewer outputs that the reviewer scorer's verdict regex misses more accurately than zero-call rules. A zero-call census first replays the regex over every recorded reviewer output and prints how many it misses, and the phase stops at a label gate of 12 labeled regex-miss outputs. Built and closed at its label gate on 2026-09-29, commit d657558a2e."
 trigger_phrases:
   - "reviewer verdict fallback"
   - "reviewer verdict classifier"
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -107,7 +107,7 @@ Owner of every path below: `system-deep-loop`, in its `deep-improvement` packet.
 | `S/lib/README.md` and `S/tests/README.md` | Modify | One script row, and the new test file with the suite's counts |
 | `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md` | Modify | One sentence in the model-benchmark scoring lines (`:222-224`) naming the offline fallback measurement. `SKILL.md` names the reviewer scorer nowhere today, only `reviewer-schema.md` in its resource map (`:118`), so sk-doc places the sentence (parent goal D6) |
 | `.skilled/skills/system-deep-loop/deep-improvement/README.md` | Modify | One line naming the script and its switches (parent goal D6) |
-| `.skilled/skills/system-deep-loop/deep-improvement/changelog/v<next>.md` | Create | The next version file after the newest at build time (`v1.9.0.0.md` at planning, or phase 024's file if it lands first), through `sk-create-changelog` |
+| `.skilled/skills/system-deep-loop/deep-improvement/changelog/v<next>.md` | Create | The next version file after the newest at build time (`v1.19.0.0.md`, next after phase 024's `v1.18.0.0.md`), through `sk-create-changelog` |
 | `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/<entry>.md` and `feature-catalog/feature-catalog.md` | Create and Modify | One catalog entry and its index row, through `sk-create-feature-catalog` |
 | `.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/<scenario>.md` and `manual-testing-playbook/manual-testing-playbook.md` | Create and Modify | One scenario covering the census on the fixtures and a stub-backend skip, plus its index row, through `sk-create-manual-testing-playbook` |
 | `S/lib/reviewer-scorer.cjs`, the four `reviewer-*.json` fixtures and `reviewer-regression.json` | Read only | `extractVerdict` is imported unchanged, and the fixtures and profile are replayed |

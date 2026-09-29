@@ -1,0 +1,22 @@
+Step 10 is implemented and verified. Summary of what changed:
+
+- **S** — added `readStoredReport` to §8 ARM HELPERS (sibling behavior, JSDoc'd, exported); added a new §10 REPORT section with `buildReport` producing `{ question, optionsSha256, labelsSha256, census, labeled, baseline, gate, columns, stopped, skipped, requalify }`; wired `main` to read the stored report when `--jev`/`--deem` is set, pass it into both arms, capture skipped/stopped/column results, and write `<out>/report.json` (nothing without a switch); extended the exports.
+- **T** — added test 25 `report: requalify prints before the verdict` (seeded old deem commit pair → requalify line immediately before the verdict line, plus the recorded `requalify.deem`), and appended the named `report.json` assertions to tests 13 (`report.skipped.deem`), 18 (`report.columns.deem` verdict/line/modelCommit), and 24 (`report.skipped.deem`, `calls.jsonl` absent). Every earlier function and assertion is untouched; the arms' existing requalify hooks now receive the stored report from `main`.
+
+STATUS: DONE
+FILES CHANGED:
+- `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` (+140/-0)
+- `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` (+35/-0)
+EDITS:
+- `lib/score-verdict-fallback.cjs:753` §8 added `readStoredReport(outDir)` with JSDoc, sibling behavior, exported at `:1411`
+- `lib/score-verdict-fallback.cjs:1117` §10 REPORT added: `buildReport(parts)` with `optionsSha256`, column/stop/skip/requalify buckets, JSDoc, exported at `:1412`
+- `lib/score-verdict-fallback.cjs:1340` `main` wired: reads the stored report when `--jev`/`--deem` is set, passes `stored` to both arms, captures skip/stop/column results, writes `<out>/report.json` only under those switches
+- `lib/score-verdict-fallback.cjs:1215` `main` JSDoc notes the report write for a switched run
+- `tests/verdict-fallback.vitest.ts:587` test 13 appended `report.skipped.deem` assertion (out dir hoisted to a const)
+- `tests/verdict-fallback.vitest.ts:690` test 24 appended `report.skipped.deem` assertion
+- `tests/verdict-fallback.vitest.ts:779` test 18 appended `report.columns.deem` verdict/line/modelCommit assertions
+- `tests/verdict-fallback.vitest.ts:825` test 25 added: `report: requalify prints before the verdict` (seeded old pair, requalify line directly before the verdict line, `report.requalify.deem`)
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` -> no output (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` -> `31` (exit 0)
+BLOCKED REASON: none

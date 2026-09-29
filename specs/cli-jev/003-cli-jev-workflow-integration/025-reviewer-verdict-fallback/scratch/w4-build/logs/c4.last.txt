@@ -1,0 +1,68 @@
+I'll start by reading the design doc and rulings, then check whether the target files already exist.
+
+Now let me check whether the target files exist and read the sibling for shape.
+
+Both files exist from earlier steps — reading them fully before extending.
+
+Both files exist from steps 1–3. Now let me read the named sibling for shape (`scorer/score-d4-agreement.cjs`) and check its baseline-related code.
+
+
+
+
+
+Let me check how the sibling test file shapes its baseline tests, and how the script's section dividers are laid out around §5.
+
+
+
+The sibling precedent is clear. Let me check the spec for any elaboration on test 9's tie behavior before I write the test.
+
+
+
+Let me read the rest of the design (lines 248–298), which I haven't seen yet.
+
+Let me check the scratch build directory for any additional notes on this step.
+
+Let me see how the previous step workers interpreted their test rows, for consistency.
+
+Before the first write, loading repo rules and the sk-code route as the persona requires.
+
+REPO RULES triggers fired for: adding functions/tests (overengineering), scope, reporting results, and turn handoff. Loading those rule files.
+
+
+
+
+
+
+
+Loading the sk-code-opencode surface packet (the route for `.cjs`/`.ts` under this path) before the first code write.
+
+
+
+
+
+
+
+Rules and route loaded. Plan: S gets §4 BASELINES (`loosePick`, `chooseBaseline` + exports), T gets the module-map line and tests 8–9; checks are the brief's `node --check` and `grep -cE`, plus a read-only `node -e` smoke like the prior steps. Applying the edits:
+
+Edits applied. Re-reading the edited regions, then running the checks.
+
+Now the checks — the brief's two commands plus a read-only `node -e` smoke on the exact test data:
+
+All three checks pass. Running the remaining read-only confirmations (no-key grep, scoped git status, line counts):
+
+One more triggered rule to load before I report the judgment calls in my handback.
+
+Step 4 (baselines) is built, and the brief's checks pass. S gained §4 BASELINES — `loosePick` and `chooseBaseline`, each with JSDoc, both exported — and T gained the module-map line plus the two baselines tests (7 `it` cases total; the earlier 5 are unchanged).
+
+Two test-content calls are disclosed for review, both grounded in the repository:
+
+1. Test 8 carries the design's three inputs plus one trailing-`fail`-after-prose input, because REQ-011 (`spec.md:141`) requires that exact case and the test name claims "takes the last whole word" — the design's three inputs never exercise the last-match rule.
+2. Test 9 carries the 12-label scenario (loose right 9 vs majority 6 → `method: loose`, `right` 9) plus a compact tie case (2 vs 2 → loose), because the test name and the fixed Keep Rule (`spec.md:146`) both state "the loose rule on a tie", and the sibling test covers its analogous tie branch the same way (`d4-agreement.vitest.ts:166-186`).
+
+Vitest was not run — the brief's sandbox note assigns suites to the orchestrator. Observed instead: the module loads under `node -e` and every asserted value reproduces exactly.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+48/-0); .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts (+51/-0)
+EDITS: score-verdict-fallback.cjs:260-305 added §4 BASELINES — `loosePick(text)` (last whole `pass|fail|block` word, `/\b(pass|fail|block)\b/gi` case-insensitive, lowercased, else null) and `chooseBaseline(rows)` (majority class with pass>fail>block label tie-break, loose wins a tie, returns `{ majorityClass, majorityRight, looseRight, method, right, calls }`); score-verdict-fallback.cjs:316 exported `loosePick, chooseBaseline`; verdict-fallback.vitest.ts:6 added module-map line `Baselines (loosePick, chooseBaseline)`; verdict-fallback.vitest.ts:163-211 added baselines describe — test 8 (`loosePick` on the three design inputs + one trailing-`fail`-after-prose input) and test 9 (12 labels: majorityRight 6, looseRight 9, method loose, right 9, calls map; tie: 2 vs 2, method loose, right 2)
+CHECKS: `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` -> no output (exit 0); `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` -> 7 (exit 0); `node -e` read-only smoke of `loosePick`/`chooseBaseline` on the exact test data -> `loosePick: ["fail","block",null,"fail"]`; `baseline: pass 6 9 loose 9`; `calls: ["pass","fail","block",null,"pass","fail",null,"pass","block","fail",null,"pass"]`; `tie: pass 2 2 loose 2` (exit 0); `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' <S>` -> no match (grep exit 1); `git status --porcelain -- <S> <T>` -> both `??`, only these two files touched (exit 0)
+BLOCKED REASON: none

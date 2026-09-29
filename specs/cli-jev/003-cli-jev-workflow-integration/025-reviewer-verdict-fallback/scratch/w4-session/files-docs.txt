@@ -1,0 +1,10 @@
+.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md
+.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md
+.skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+.skilled/skills/system-deep-loop/deep-improvement/README.md
+.skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.0.0.md
+.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/reviewer-verdict-fallback.md
+.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md
+.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/verdict-fallback-census.md
+.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs

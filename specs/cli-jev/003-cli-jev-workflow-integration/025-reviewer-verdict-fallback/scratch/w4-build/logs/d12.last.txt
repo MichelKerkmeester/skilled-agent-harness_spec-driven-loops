@@ -1,0 +1,14 @@
+Both checks pass. The diff stat covers only the named file (`2 insertions(+), 1 deletion(-)`); the other dirty paths in `git status` belong to parallel workers and were not touched by me.
+
+**What changed** in `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md`:
+1. Line 25, "Current state" count line: `205 tests across 14 files` → `236 tests across 15 files` (measured per FACTS: `Test Files 15 passed (15)`, `Tests 236 passed (236)`).
+2. Line 50, one new KEY FILES row after the `d4-agreement.vitest.ts` MODEL row: `verdict-fallback.vitest.ts`, Tests `31` (per FACTS, confirmed by counting 31 `it(` in the test file), Covers cell describing census, baselines, label gate, Deem/Jev gates and skips, keep rule and both arms on stub backends. No printed `verdict` line is claimed anywhere, per ruling 3.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md (+2/-1)
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md:25 count line 205 tests across 14 files -> 236 tests across 15 files
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md:50 appended row `verdict-fallback.vitest.ts` | 31 | coverage cell after the d4-agreement MODEL row
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md -> `✅ VALID ... Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md -> `1 file changed, 2 insertions(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: none
