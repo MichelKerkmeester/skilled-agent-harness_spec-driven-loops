@@ -1,0 +1,10 @@
+The doc is written and both checks pass. One deliberate omission to record: the MODEL carries a `> Spec folder: ... (Level {N})` blockquote, but no level number appears in FACTS or in the script, so under the brief's truth rule that slot was left out. Everything stated comes from `design.md` section 2, `cite-drift-scan.mjs` and `facts.txt`, and no verdict line is claimed since no run printed one.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/changelog/v2.2.3.0.md (+26/-0)
+EDITS: .skilled/skills/sk-doc/changelog/v2.2.3.0.md:1 created the entry modelled on changelog/v2.2.2.0.md: six frontmatter fields (`title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version: 2.2.3.0`), H1 and narrative opening, four at-a-glance bullets stating the script `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs`, its zero-call default, both switches `--jev`/`--deem` behind `--out <dir>`, and the `--draw --seed <n>` label gate, then `## Upgrade` with no migration. No verdict named. The model's spec-folder blockquote slot left out because neither FACTS nor the script shows a level number
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/changelog/v2.2.3.0.md -> `✅ VALID: .skilled/skills/sk-doc/changelog/v2.2.3.0.md` / `Document type: changelog` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/sk-doc/changelog/v2.2.3.0.md -> empty output, file is newly created and untracked (exit 0)
+CHECKS: git status --porcelain -- .skilled/skills/sk-doc/changelog/v2.2.3.0.md -> `?? .skilled/skills/sk-doc/changelog/v2.2.3.0.md` (exit 0, supplementary, read-only, scoped to the named file)
+BLOCKED REASON: none

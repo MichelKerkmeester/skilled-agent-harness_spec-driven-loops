@@ -1,0 +1,32 @@
+✔ extract prose (0.913208ms)
+✔ extract fenced skip (0.12ms)
+✔ resolve order (2885.660625ms)
+✔ resolve ambiguous basename (335.517917ms)
+✔ resolve unresolved (592.639042ms)
+✔ dead missing target (818.34475ms)
+✔ dead past end (307.709792ms)
+✔ refused .env (177.476792ms)
+✔ refused untracked (385.208584ms)
+✔ draw reproducible (3209.003666ms)
+✔ draw refuses labels (309.456292ms)
+✔ comparator flags (0.2755ms)
+✔ comparator no token (0.052084ms)
+✔ comparator token present (0.045625ms)
+✔ label gate 39 (1697.9075ms)
+✔ instruction printed (2625.1725ms)
+✔ no headroom (1654.939875ms)
+✔ underpowered (991.463667ms)
+✔ default zero calls (187.279209ms)
+✔ verdict keep (0.202916ms)
+✔ verdict kill precision (0.043375ms)
+✔ verdict stop coverage (0.035459ms)
+✔ verdict stop margin (0.025875ms)
+✔ verdict requalify (0.057584ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16239.006916

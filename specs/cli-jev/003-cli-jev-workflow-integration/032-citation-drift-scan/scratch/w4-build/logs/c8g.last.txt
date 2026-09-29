@@ -1,0 +1,22 @@
+Both files are untracked in this worktree (no committed baseline to diff against), so the scoped-diff check reports no tracked changes; S was only read, never written. All seven literal replacements are in T, verified by re-read, and the suite passes.
+
+Key summary lines from the verification run:
+
+```
+ℹ tests 32
+ℹ pass 32
+ℹ fail 0
+ℹ duration_ms 22442.331416
+```
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs (+7/-7)
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:701 `'brier deem: 0.6100'` -> `'brier deem: 0.2100'`
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:703 deem verdict `A=10 B=30 W=10 L=30 TP=10 FP=30` -> `A=30 B=30 W=0 L=0 TP=0 FP=0`
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:713 deem calls `assert.equal(call.flag, true)` -> `false`
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:841 `'brier jev: 0.6100'` -> `'brier jev: 0.2100'`
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:842 jev verdict `A=10 B=30 W=10 L=30 TP=10 FP=30` -> `A=30 B=30 W=0 L=0 TP=0 FP=0`
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:863 jev rowCalls `assert.equal(call.flag, true)` -> `false`
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:937 jev one-provider verdict `A=0 B=1 W=0 L=1 TP=0 FP=1` -> `A=1 B=1 W=0 L=0 TP=0 FP=0`
+CHECKS: node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs -> `ℹ pass 32` / `ℹ fail 0` (exit 0)
+BLOCKED REASON: none

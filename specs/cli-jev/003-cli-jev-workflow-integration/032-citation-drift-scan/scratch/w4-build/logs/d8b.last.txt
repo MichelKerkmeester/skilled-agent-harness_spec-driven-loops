@@ -1,0 +1,9 @@
+All checks pass. The row is grounded in the script and test facts: the test file exists at `.skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` and tests `cite-drift-scan.mjs` (its own import line, `test-cite-drift-scan.mjs:15`), matching the model row's shape.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/scripts/tests/README.md (+1/-0)
+EDITS: .skilled/skills/sk-doc/scripts/tests/README.md:74 one section 4 table row `test-cite-drift-scan.mjs` added after the `test-frontmatter-version.mjs` row, modelled on that row
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/scripts/tests/README.md --type readme -> `✅ VALID: .skilled/skills/sk-doc/scripts/tests/README.md` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/sk-doc/scripts/tests/README.md -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

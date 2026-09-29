@@ -1,0 +1,16 @@
+Verification passes. The doc is written, the validator is green, and nothing else in the tree was touched.
+
+What the file contains and where each fact came from:
+- Shape mirrors the MODEL `sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md`: frontmatter `title`/`description`/`version`, H1, intro line, sections `1. OVERVIEW` to `5. SOURCE METADATA`, the `### Prompt` / 9-column table / `### Commands` / fixture block / `### Expected` / `### Evidence` / `### Pass / Fail` / `### Failure Triage` / `### Optional Supplemental Checks` subsections.
+- Per R section 4 step 10: `SD-021`, the zero-call default run plus one stub-backend skip, no `stage:` and no `expected_*` fields (also no `id:`, since the template enrols a scenario by any of those fields and R section 6 question 2 requires the file to report `unenrolled`), and no verdict is named anywhere (rulings item 5).
+- Every printed line is verbatim from `cite-drift-scan.mjs` (`skill <skill>: ...`, `citations=... commit=<sha12>`, `cite dead: ...`, `margin: 0.10`, `keep rule: ...`, `stop: fewer than 40 labeled rows`, `deem arm skipped: stub backend`, `jev: path=<path> provider=official`, `jev arm skipped: no credential`) and matches `facts.txt` session runs. Switch facts: `--deem`/`--jev` each run one backend and need `--out <dir>`, `--labels <file>` names another labels file, default run spawns nothing and writes nothing (`calls.jsonl` on first call, `report.json` only after the arms at the `planned` gate, confirmed in `createCallLog`/`main`). Stub behaviour is checked against `readDeemHealth` (exit 3 with `stub` on stderr -> `stub backend`) and `jevGate` (`--version` -> `jev 0.6.2`, `auth status` exit 3 -> `no credential`).
+- `version: 2.2.0.0` follows `sk-create-frontmatter/references/frontmatter-versioning.md` child-doc derivation for a brand-new file (X=2, Y=2 from the sk-doc anchor, Z=0, W=0), matching the sibling `document-validation/` leaves `goal-criteria-lint.md` and `changelog-entry-frontmatter-check.md`.
+- The stubs note is the ruling 1 / R section 6 question 3 note: the `PATH` stub refuses at the Deem gate, not a mocked model.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: one line per file: `.skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md` (+137/-0, new file)
+EDITS: one line per step: `.skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md:1` created the full SD-021 scenario doc (sections 1-5, zero-call run plus Deem stub-backend skip, no `stage:`/`expected_*`/`id:` fields)
+CHECKS: one line per check: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md` -> `✅ VALID: ... Document type: playbook_feature / Total issues: 0` (exit 0)
+CHECKS: one line per check: `git diff --stat -- .skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md` -> empty output (exit 0, file is new and untracked; `git status --porcelain` shows `?? .skilled/skills/sk-doc/manual-testing-playbook/document-validation/` containing only this file)
+BLOCKED REASON: none

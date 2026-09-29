@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 32: citation-drift-scan"
-description: "Test offline whether a Jev or Deem noul that asks if a cited file:line window still shows what the citing sentence claims finds drifted skill-doc citations better than a zero-call identifier-overlap check. A zero-call census and dead check print first, the operator labels 20 live citations beside 20 constructed drifts, and each backend column ends in keep, kill or stop under a rule fixed here. Planned, released 2026-09-29."
+description: "Test offline whether a Jev or Deem noul that asks if a cited file:line window still shows what the citing sentence claims finds drifted skill-doc citations better than a zero-call identifier-overlap check. A zero-call census and dead check print first, the operator labels 20 live citations beside 20 constructed drifts, and each backend column ends in keep, kill or stop under a rule fixed here. Built and closed at its label gate on 2026-09-29, commit `c5d3ced36f`."
 trigger_phrases:
   - "citation drift scan"
   - "cite-drift-scan"
@@ -23,14 +23,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 32 of 35 |
 | **Predecessor** | 031-debug-next-check |
 | **Successor** | 033-validator-residue-flagger |
-| **Handoff Criteria** | The zero-call run has printed the citation census, the dead count and either `stop: fewer than 40 labeled rows` or both comparators' accuracy on the labeled rows with a headroom line. After the operator's labels, each backend whose gate passed has printed one `verdict <backend>:` line from a live `--out` run with its `calls.jsonl`, or its skip line. The verdict lines go in `goal.md`'s log for the parent goal's log |
+| **Handoff Criteria** | The zero-call run has printed the citation census, the dead count and `stop: fewer than 40 labeled rows`. After the operator's labels, each backend whose gate passed would print one `verdict <backend>:` line from a live `--out` run with its `calls.jsonl`; the 2026-09-29 final runs stopped at the label gate instead, so no verdict line exists and that branch waits on the operator. No labels file is committed (parent D4). The verdict lines would go in `goal.md`'s log for the parent goal's log |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,7 +38,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 32** of the cli-jev workflow integration specification. It is one of the Planned test phases 019 to 035 that turn each item the round-3 synthesis parked as `later` into a measured verdict, per the operator on 2026-09-29: "I want a phase per later item not yet planned or implemented so we can test everything". Its item is R24, the citation-drift advisory scan (`../007-classifier-deep-research/research/research.md:844-863`).
+This is **Phase 32** of the cli-jev workflow integration specification. It is one of the test phases 019 to 035 that turn each item the round-3 synthesis parked as `later` into a measured verdict, per the operator on 2026-09-29: "I want a phase per later item not yet planned or implemented so we can test everything". Its item is R24, the citation-drift advisory scan (`../007-classifier-deep-research/research/research.md:844-863`).
 
 **Scope Boundary**: One new read-only advisory script in sk-doc's shared scripts, its Node test, one labels file and the sk-doc docs that parent goal D6 requires. It edits no validator (`validate_document.py`, `validate.sh`, `check-ac-coverage.sh`, `validate_catalog_package.py`) and no cited file, so every existing check and every doc reads as today.
 
@@ -47,14 +47,14 @@ This is **Phase 32** of the cli-jev workflow integration specification. It is on
 - Phase 009 (`009-cli-jev-hub-move`) is Complete (`ea883967d4`). The Jev transport's contract now lives at `.skilled/skills/cli-classifier/cli-usage/SKILL.md`, and the Jev arm needs the Python `jev-cli` 0.6.2 on `PATH` with a credential that `jev auth status --provider <P>` resolves, where P is `JEV_PROVIDER` when set and `official` otherwise.
 - For the Deem arm only: the local Deem server passing the check in `.skilled/skills/cli-classifier/cli-deem/SKILL.md:49-57`.
 - The operator's labels on 20 live citations (the label gate, REQ-004). No model writes a label.
-- Release. Released on 2026-09-29, when the operator's "Bind and release" amended parent goal D3. Phases 019 to 035 build in number order, and disjoint builds may run in parallel.
+- Release. Released on 2026-09-29, when the operator's "Bind and release" amended parent goal D3. Phases 019 to 035 built in number order, and disjoint builds ran in parallel.
 
 **Deliverables**:
-- `cite-drift-scan.mjs` (proposed) with the census, the dead check, the identifier-overlap comparator, a `--draw` mode that writes the unlabeled sample, the label gate, a `--jev` arm and a `--deem` arm (proposed switches)
-- `test-cite-drift-scan.mjs` (proposed) against fixture docs and stub `jev` and `cli-deem` binaries
-- `cite-drift-labels.jsonl` (proposed) with 40 drawn rows and no text
-- One zero-call report and, once the labels exist and the baseline leaves headroom, one live report per backend whose gate passed, in a directory the operator names
-- The sk-doc docs parent goal D6 names, written through sk-doc: `SKILL.md`, `README.md`, one changelog file, one feature-catalog entry and one manual-testing-playbook entry
+- `cite-drift-scan.mjs`, built at 1,707 lines, with the census, the dead check, the identifier-overlap comparator, a `--draw` mode that writes the unlabeled sample, the label gate, a `--jev` arm and a `--deem` arm
+- `test-cite-drift-scan.mjs`, built at 989 lines and 32 cases, against fixture docs and stub `jev` and `cli-deem` binaries
+- `cite-drift-labels.jsonl` (proposed) with 40 drawn rows and no text. `--draw --seed <n>` writes it, and the build committed none: parent D4 stops the phase at its label gate, so the draw is the operator's first step
+- One zero-call report; a live report per backend whose gate passed needs the operator's labels and 40 winnable rows, in a directory the operator names
+- The sk-doc docs parent goal D6 names, written through sk-doc: `SKILL.md` and its Hermes copy, `README.md`, `changelog/v2.2.3.0.md`, one feature-catalog entry in `document-validation` and one manual-testing-playbook entry (SD-021)
 
 **Changelog**:
 - The parent packet has no `../changelog/` folder, so there is no packet changelog to refresh at close. The skill changelog this phase writes is listed under Files to Change.
@@ -109,16 +109,16 @@ Owner of every path below: `sk-doc`. The script sits beside `frontmatter-version
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` | Create | Census, resolution rule, dead check, identifier-overlap comparator, `--draw`, label gate, `--jev` and `--deem` arms and the per-column verdicts. About 400 to 500 LOC (estimate. swe-06 estimated 180 for the scan alone) |
-| `.skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` | Create | `node --test` cases on fixture docs with stub `jev` and `cli-deem` binaries |
-| `.skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl` | Create | 40 drawn rows, no text. The build writes ids, hashes and constructed labels. The operator fills the 20 live labels |
-| `.skilled/skills/sk-doc/shared/scripts/README.md` | Modify | One contents row for the script and the labels file |
+| `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` | Create | Census, resolution rule, dead check, identifier-overlap comparator, `--draw`, label gate, `--jev` and `--deem` arms and the per-column verdicts. Built at 1,707 lines (the plan estimated 400 to 500; swe-06 estimated 180 for the scan alone) |
+| `.skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` | Create | `node --test` cases on fixture docs with stub `jev` and `cli-deem` binaries. Built at 989 lines and 32 cases |
+| `.skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl` | Create at draw time | 40 drawn rows, no text. `--draw --seed <n>` writes ids, hashes and constructed labels. The build committed no labels file (parent D4); the operator draws, then fills the 20 live labels |
+| `.skilled/skills/sk-doc/shared/scripts/README.md` | Modify | One row for the script, naming the labels file as the default file `--draw` writes (design step 8 deviation) |
 | `.skilled/skills/sk-doc/scripts/tests/README.md` | Modify | One row for the test file |
 | `.skilled/skills/sk-doc/SKILL.md` and its Hermes copy `.hermes/skills/sk-doc/SKILL.md` | Modify and regenerate | One sentence naming the offline scan, its zero-call default and its two switches. The copy is regenerated with `sync-skills-hermes.cjs` |
 | `.skilled/skills/sk-doc/README.md` | Modify | One line naming the script, its default and its switches |
-| `.skilled/skills/sk-doc/changelog/v<next>.md` | Create | The next version after the newest at build time (`v2.2.2.0.md` at planning), through `sk-create-changelog` |
-| `.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md` and `feature-catalog/feature-catalog.md` | Create and Modify | One entry and its index row, through `sk-create-feature-catalog` |
-| `.skilled/skills/sk-doc/manual-testing-playbook/<category>/citation-drift-scan.md` and `manual-testing-playbook/manual-testing-playbook.md` | Create and Modify | One scenario covering the zero-call run and a stub-backend skip, plus its index row, through `sk-create-manual-testing-playbook`. The category is chosen at build |
+| `.skilled/skills/sk-doc/changelog/v2.2.3.0.md` | Create | The next version after `v2.2.2.0`, through `sk-create-changelog`, with 2.2.3.0 set in the five hub version fields |
+| `.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md` and `feature-catalog/feature-catalog.md` | Create and Modify | One entry (`version: 2.2.0.0`) and its index block, through `sk-create-feature-catalog` |
+| `.skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md` and `manual-testing-playbook/manual-testing-playbook.md` | Create and Modify | Scenario SD-021, covering the zero-call run and a stub-backend skip, plus its index rows, through `sk-create-manual-testing-playbook`. The build chose `document-validation/` |
 | `<operator-named report dir>/` | Create at run time | `report.json`, and `calls.jsonl` from a run with a model arm |
 <!-- /ANCHOR:scope -->
 
@@ -133,7 +133,7 @@ Owner of every path below: `sk-doc`. The script sits beside `frontmatter-version
 |----|-------------|---------------------|
 | REQ-001 | **The default run makes zero model calls.** | Without `--jev` or `--deem`, the script prints the census, the dead count, the label-gate line or both comparators' accuracy with the headroom line, never spawns `jev` or `cli-deem` and writes no file. Stub `jev` and `cli-deem` binaries first on `PATH`, each logging one line per call, log nothing |
 | REQ-002 | **The census counts citations the synthesis's way.** | The pattern matches `<path>.<ts\|cjs\|mjs\|js\|py\|md\|json\|sh>:<n>` and `:<n>-<m>` in prose outside fenced code. Each match resolves against the citing file's folder, the repository root, the skill root, then a unique basename, and only against `git ls-files`. The report prints per skill and in total: citations, in range, past end, ambiguous and unresolved, with the HEAD commit |
-| REQ-003 | **Dead citations need no call, and nothing private is read.** | A resolved target that is missing, or a line past its end, is `dead`, is printed as `cite dead: <doc>:<line> -> <target>:<line>` and is never asked. A target outside `git ls-files`, or any basename starting `.env`, is never opened and is counted as `refused` |
+| REQ-003 | **Dead citations need no call, and nothing private is read.** | A resolved target that is missing, or a line past its end, is `dead`, is printed as `cite dead: <doc>:<line> -> <target>:<line>` and is never asked. A target outside `git ls-files`, or any basename starting `.env`, is never opened and is counted as `refused`. A citation that matches no tracked path and no file on disk counts as `unresolved`, not `refused` |
 | REQ-004 | **The labels exist before any model verdict, and no model writes one.** | `--draw --seed <n>` writes `cite-drift-labels.jsonl` with 40 rows `{id, doc, doc_line, target, target_line, window_start, window_end, commit, claim_sha12, window_sha12, kind, verdict, labeler}` and no text. 20 rows are live in-range citations sampled across skills with `verdict` and `labeler` null. 20 rows are constructed from 20 other live citations: the window moves 60 lines down the same file, wrapping, never within 20 lines of the cited line, with `verdict` `contradicts` and `labeler` `construction`. Every row is read at its recorded `commit` with `git show`, so a later edit never moves a label. `--draw` refuses to overwrite a file that holds a non-null operator label. Until 40 rows carry a verdict, every run prints `stop: fewer than 40 labeled rows` and no arm calls, even with a switch set |
 | REQ-005 | **Both comparators are scored on identical rows, and the better one is the baseline.** | Flag-nothing never flags. Identifier overlap flags a row as drifted when none of the citing sentence's code-shaped tokens, backticked spans split on non-identifier characters with the target's own basename removed, appears in the window from 10 lines above to 10 lines below the cited line. A sentence with no such token is not flagged. Labels map `supports` to clean and `partial` or `contradicts` to drifted. The baseline method is whichever comparator is right on more labeled rows, flag-nothing on a tie |
 | REQ-006 | **The keep rule is fixed before any model run and applies per backend column.** | See the Keep Rule below. Changing it after the first model run is an amendment that voids every earlier verdict |

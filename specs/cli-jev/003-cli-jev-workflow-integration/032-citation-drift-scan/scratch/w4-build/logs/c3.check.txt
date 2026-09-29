@@ -1,0 +1,19 @@
+✔ extract prose (0.849958ms)
+✔ extract fenced skip (0.119083ms)
+✔ resolve order (115.383875ms)
+✔ resolve ambiguous basename (99.131334ms)
+✔ resolve unresolved (98.054709ms)
+✔ dead missing target (187.524834ms)
+✔ dead past end (183.803084ms)
+✔ refused .env (106.576833ms)
+✔ refused untracked (250.133542ms)
+✔ draw reproducible (1978.299ms)
+✔ draw refuses labels (84.906584ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3149.2685

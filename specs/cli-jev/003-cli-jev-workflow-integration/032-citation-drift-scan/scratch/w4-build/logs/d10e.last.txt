@@ -1,0 +1,13 @@
+SKILL ROUTING: User directed → sk-doc → mode `sk-create-feature-catalog` (read `SKILL.md`, packet `SKILL.md`, `feature-catalog-template.md`, `feature-catalog-snippet-template.md`)
+ARTIFACT: sk-doc → `sk-create-feature-catalog` (feature-catalog leaf, modelled on `document-validation/goal-criteria-lint.md`)
+REPO RULES: `prevent-overengineering.md`, `communication-prose.md`, `evidence-and-proof.md`, `communication-handoff.md`
+
+Wrote the one leaf doc from design section 4 step 10, section 2 and the script's own constants and print lines. Facts (usage line, switches, printed lines, draw shapes, gate order, exit codes) verified against `cite-drift-scan.mjs` (`USAGE` line 46, `INSTRUCTION` line 85, refusal line 1567) and `facts.txt`. No verdict outcome is named anywhere. `git diff --stat` prints nothing because the file is new and untracked, so the scoped `git status --porcelain` is the change proof and shows only this file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md (+60/-0)
+EDITS: .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:1 created the leaf doc: frontmatter (`title: "Citation Drift Scan"`, `version: 2.2.3.0`), sections 1 to 4 per `goal-criteria-lint.md` shape, SOURCE FILES tables (implementation: script + labels file; validation: test as `Node test`, playbook scenario as `Manual playbook`); then :38 one sentence reworded to match the script's `operator labels present` refusal
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md -> "✅ VALID ... Total issues: 0" (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md -> no output, new untracked file (exit 0); corroborated by git status --porcelain -- .skilled/skills/sk-doc/feature-catalog/ -> "?? .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md" (exit 0)
+BLOCKED REASON: none

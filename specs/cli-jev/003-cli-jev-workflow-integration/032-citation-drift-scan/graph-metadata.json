@@ -39,21 +39,28 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
       ".skilled/skills/sk-doc/shared/scripts/README.md",
       ".skilled/skills/sk-doc/scripts/tests/README.md",
       ".skilled/skills/sk-doc/SKILL.md",
       ".hermes/skills/sk-doc/SKILL.md",
       ".skilled/skills/sk-doc/README.md",
-      "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md"
+      ".skilled/skills/sk-doc/changelog/v2.2.3.0.md",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/sk-doc/description.json",
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/skills/sk-doc/mode-registry.json",
+      ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md",
+      ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md"
     ],
     "entities": [
       {
@@ -87,9 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
         "source": "derived"
       },
       {
@@ -99,15 +112,51 @@
         "source": "derived"
       },
       {
-        "name": "feature-catalog.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "feature-catalog/feature-catalog.md",
+        "path": ".skilled/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
+        "name": "v2.2.3.0.md",
         "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/sk-doc/changelog/v2.2.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "citation-drift-scan.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
@@ -157,53 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Tracked",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Affected Surfaces",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skill docs cite code as `file:line`, and agents follow those citations to decide what the code does",
     "created_at": "2026-09-29T12:42:43Z",
-    "last_save_at": "2026-09-29T13:53:51.091Z",
+    "last_save_at": "2026-09-29T21:28:12.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ff1d323c9bb5a7cf5fa60c2c73c883464fca11babde39b1c9f6ac3f172a0b97",
+    "source_fingerprint": "sha256:2328b64a64091a0c37d7bdcf510995d043a13128c9a4de37db11983b56b45414",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "592418bcf4eba8c5812461fa122f700215b3f611d7441dadafe379a6e0d83985",
-      "plan.md": "2a0c90055227dfad294f0bd63c13e436fbc1dd7177e3072a1a588db9f14d97a5",
-      "tasks.md": "dab3839d56a835c897e2cef3cce2aed6e3a05c297b5a100fa8efd86f862e57ea",
-      "implementation-summary.md": "61c464b831cef79f7e9c375bbf637176d38973617448e972a0d4e7af10d25311"
+      "spec.md": "979f9532b5711c005b14046c3b7099f72969cda4b7fdf31e714fa302676248f2",
+      "plan.md": "dc57f481c9eb373e44668036943f3019952726cbb217f749b1bc1b8641c5f759",
+      "tasks.md": "7a728cf939883c774e49ccac0678acc82e3cc3e18381a2f5f25ec1651af7ad2d",
+      "implementation-summary.md": "ee9cf4a0bf8e829704d6da5ebd7a9b6728848343db41ae506cd81bb501d5b6b2"
     },
     "last_active_at": null
   }
