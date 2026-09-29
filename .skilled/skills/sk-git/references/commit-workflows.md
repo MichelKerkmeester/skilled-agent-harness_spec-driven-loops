@@ -10,7 +10,7 @@ trigger_phrases:
   - "staged deny pattern assertion"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.9
+version: 1.7.0.16
 ---
 
 # Git Commit - Detailed Workflow Reference
@@ -347,7 +347,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
 git reset HEAD TASK_NOTES.md debug_output.txt
 
 # Use targeted staging instead
-git add src/ tests/  # Stage only specific directories
+git add path/to/your/file1 path/to/your/file2  # Stage only your files, by explicit path
 ```
 
 ### Unrelated In-Flight WIP Got Staged or Committed

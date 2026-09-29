@@ -10,7 +10,7 @@ trigger_phrases:
   - "failed push rejected remote"
 importance_tier: normal
 contextType: general
-version: 1.1.0.12
+version: 1.7.0.22
 ---
 
 # Shared Patterns - Cross-Workflow Reference
@@ -158,7 +158,7 @@ git diff --name-only               # Changed file names only
 **Stage files**:
 ```bash
 git add <specific-files>           # Targeted staging (preferred)
-git add src/ tests/                # Stage directories
+git add path/to/dir/               # A whole directory, only when every file in it is yours
 git add -p                         # Interactive staging
 ```
 
