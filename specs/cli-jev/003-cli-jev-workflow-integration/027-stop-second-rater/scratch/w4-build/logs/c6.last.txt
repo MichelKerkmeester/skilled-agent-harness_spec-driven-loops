@@ -1,0 +1,29 @@
+All checks pass. Step 6 (Jev arm) is implemented.
+
+**STATUS: DONE**
+
+**FILES CHANGED:**
+- `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` (+410/-17)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` (+124/-1)
+
+**EDITS:**
+- `score-stop-rater.cjs:20` imports `spawn` beside `spawnSync` for the async call helper
+- `score-stop-rater.cjs:68-69` adds `JEV_RERUNS = 3` (constant + durable why)
+- `score-stop-rater.cjs:690-816` new section 9 STATE AND CALL HELPERS: exported `buildState(iterationFiles, iteration)` (`<label> — <source>` for the iteration, earlier labels after), `spawnCall(file, args, stdinText, env, timeoutMs)` (stdin written then closed, single-settle timeout kill), `createCallLog(outDir)` (append-only `calls.jsonl`)
+- `score-stop-rater.cjs:818-1042` new section 10 JEV ARM: exported `runJevArm(plan, gate, ctx)` — `withheldRecords` published checks first, payload notice `<3n+1>` + token estimate, one `auth test`, 3 `score --provider P -q QUESTION -l <level> x5` per iteration, median level → ratio, F dissenters, exit 2/3/130 stop lines + `jev: partial lineages=<n>`, 4 backs off once then retries, oversize/published iterations get one no-spawn record, `calls.jsonl` on every spawn; column/verdict delegated to the shared `summarizeColumn`/`verdictLine` seams that code step 8 adds, so those two verdict tests and the earlier gate-pass case go green at step 8
+- `score-stop-rater.cjs:1045,1117,1381,1434` renumbered REPORT 11, MAIN 12, EXPORTS 13, CLI ENTRYPOINT 14
+- `score-stop-rater.cjs:1127,1136,1311-1348,1370` main: deps resolve `backoffMs`, builds the arm plan (per-lineage vote options + state text), runs the arm after a passing gate, and writes per-lineage `stops.jev` from the arm result
+- `score-stop-rater.cjs:1403,1423-1426` exports `JEV_RERUNS`, `buildState`, `spawnCall`, `createCallLog`, `runJevArm`
+- `score-stop-rater.vitest.ts:9` header lists the Jev arm area
+- `score-stop-rater.vitest.ts:652-772` new describe `score-stop-rater jev arm`: `rateableRepo` (5 lineages, 4 iterations, gold 2, zero-call baseline right 0), `jevArmStub` (scripted 0/0/4 levels on a counter), `runArm`; tests `jev arm prints keep on scripted answers`, `jev arm stops on flips`, `every logged jev call carries one provider`
+
+**CHECKS:**
+- `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> no output (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> 25 (22 prior + 3 new) (exit 0)
+- `git status --porcelain` -> only S and T written by this step (other untracked paths belong to other workers) (exit 0)
+- `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization'` on S -> no match (exit 1)
+- `grep -nE 'specs/|REQ-[0-9]|ADR-|CHK-|T[0-9]{3}|phase [0-9]|w4-build'` on S and T -> no match (exit 1)
+- fixture arithmetic simulated against the module's own `deriveGold`/`stopFor`/`rightOf` in a temp tree -> `gold=2 recorded=4 legacy=4 sources=4 baselineRight=0 armRight=5 Fkeep=0 Fflips=20` => `keep` / `stop (flips)` (exit 0)
+- `vitest` not run: sandbox blocks the runner; the orchestrator runs the suite (two verdict tests await step 8's `summarizeColumn`/`verdictLine`)
+
+**BLOCKED REASON:** none

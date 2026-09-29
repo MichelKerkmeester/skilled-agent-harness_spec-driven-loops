@@ -39,18 +39,18 @@ contextType: "implementation"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel
-- [ ] The Keep Rule, the call shape of REQ-008 and the 24,000-character bound are unchanged since this spec was written
-- [ ] Phase 008's `cli-deem` answers `health`, for the Deem arm only
-- [ ] `jev --version` prints `jev 0.6.2` and `jev auth status --provider P` exits 0, for a `--jev` run only
+- [x] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel. Evidence: the build ran under the release; the build commit `709b1078ee` sits directly on phase 026's closure commit `a2e73ccefc`, and phase 026 reads `Status | Complete` (`git log` at this closure pass)
+- [x] The Keep Rule, the call shape of REQ-008 and the 24,000-character bound are unchanged since this spec was written. Evidence: no model run happened, and the review's two P1 fixes touched the sample order and the headroom arm close, neither the Keep Rule nor the call shape; the recheck prints `VERDICT: PASS` and the review marks REQ-004 and REQ-008 met (`SE` sections 2 and 3)
+- [x] Phase 008's `cli-deem` answers `health`, for the Deem arm only. Evidence: phase 008 reads Complete in the parent goal's criteria; the Deem gate's fake-health case passes in `V`, and no live health check ran, since the label gate stops before any backend gate (parent D4; `SE` section 2)
+- [x] `jev --version` prints `jev 0.6.2` and `jev auth status --provider P` exits 0, for a `--jev` run only. Evidence: no `--jev` run past the gate happened, so this check was never needed; the pinned-version and `no credential` skips are on the `V` fixtures (`SE` sections 2 and 6)
 
 ### Definition of Done
-- [ ] The vitest file exits 0 with at least 20 passed tests and 0 failed
-- [ ] The default run printed its census, and either `no headroom`, a label-gate stop line or one verdict line per model column that ran
-- [ ] `git status --porcelain` is the same before and after every run, and the build commit changes only spec section 3's paths and this folder
-- [ ] `validate_document.py` exits 0 on every skill doc the phase changed (parent D6)
-- [ ] A cross-family review leaves no open P0 or P1 finding, and the runtime vitest suite fails nothing beyond its baseline recorded before the build (parent D5)
-- [ ] The census numbers and every stop or verdict line are in `goal.md`'s log for the parent's log
+- [x] The vitest file exits 0 with at least 20 passed tests and 0 failed. Evidence: `Tests 36 passed (36)`, exit 0 (`scratch/w4-session/logs/recheck-ds.last.txt`; `SE` section 2)
+- [x] The default run printed its census, and either `no headroom`, a label-gate stop line or one verdict line per model column that ran. Evidence: the default run printed the census and the gated runs printed `stop: fewer than 5 confirmed lineages`; no model column ran, so no verdict line exists (`SE` section 2)
+- [x] `git status --porcelain` is the same before and after every run, and the build commit changes only spec section 3's paths and this folder. Evidence: porcelain was equal before and after every run; `709b1078ee` holds the 11 phase files plus both route manifests (13 files), and the closure commit holds this folder (`SE` sections 2 and 5)
+- [x] `validate_document.py` exits 0 on every skill doc the phase changed (parent D6). Evidence: exit 0 on all eight changed docs, including both index roots (`SE` sections 3 and 4; the doc briefs' checks)
+- [x] A cross-family review leaves no open P0 or P1 finding, and the runtime vitest suite fails nothing beyond its baseline recorded before the build (parent D5). Evidence: the code review printed `VERDICT: FAIL` with 2 P1 and 2 P2, both P1s closed by c9f, c9g and their tests, and the recheck printed `VERDICT: PASS`; the docs review's P1 and one P2 closed by f1 with a `VERDICT: PASS` recheck; the suite's five failures were the compiled-contract drift that `24473df4fa` closes, and in that commit's export the two failing files print `Tests 42 passed (42)` (`SE` sections 3 and 5)
+- [x] The census numbers and every stop or verdict line are in `goal.md`'s log for the parent's log. Evidence: the census line and `stop: fewer than 5 confirmed lineages` are in `goal.md`'s log and `implementation-summary.md` Verification, recorded by this closure pass; no verdict line was printed (`SE` section 2)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -82,7 +82,7 @@ Tracked state files become a lineage set. Each lineage gets a gold and three zer
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-**Who builds (parent D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step and runs the CLI executors by Bash only: Devin `deepseek-v4-1-flash-max` and Pi `llmgateway/mimo-v2.6-pro` at thinking `high`. The orchestrator session verifies each step against its check, gets a cross-family review of the code (Pi reviews Devin's files and Devin reviews Pi's), fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route. The skill docs go through sk-doc (parent D6).
+**Who builds (parent D5, amended on 2026-09-29).** Only Pi writes, with no Claude leaves: DeepSeek V4.1 Flash on Cline at `--thinking xhigh`, then OpenCode Go, then LLM Gateway at `--thinking max`, and `llmgateway/mimo-v2.6-pro` at `high`. The session writes one single-change brief per step, runs the CLI executors by Bash only, verifies each step against its check, gets a cross-family review (a file goes to the family that did not write it), fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route. The skill docs go through sk-doc (parent D6).
 
 Each step's observable check:
 

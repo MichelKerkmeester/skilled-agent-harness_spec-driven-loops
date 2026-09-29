@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 27: stop-second-rater"
-description: "Test research R8 offline: replay archived deep-research lineages, derive the stop each one should have made from its cited sources and measure whether a Jev or Deem score of each iteration's novelty moves the replayed stop closer to that gold than the zero-call stop rules do. A zero-call census prints the headroom first, the operator's five-lineage read gates the gold and each backend column ends in one verdict line under a keep rule fixed here."
+description: "Test research R8 offline: replay archived deep-research lineages, derive the stop each one should have made from its cited sources and measure whether a Jev or Deem score of each iteration's novelty moves the replayed stop closer to that gold than the zero-call stop rules do. A zero-call census prints the headroom first, the operator's five-lineage read gates the gold and each backend column ends in one verdict line under a keep rule fixed here. Built and closed at its label gate on 2026-09-29, commits `709b1078ee` and `24473df4fa`."
 trigger_phrases:
   - "stop second-rater replay"
   - "score-stop-rater"
@@ -23,14 +23,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 27 of 35 |
 | **Predecessor** | 026-completion-claim-audit |
 | **Successor** | 028-confirm-mode-stop-hint |
-| **Handoff Criteria** | The zero-call census has printed the lineage counts, the derived gold, the three zero-call stop methods' accuracy on identical lineages and either `no headroom` or the planned calls. Then either the scorer printed `stop: fewer than 5 confirmed lineages` or `stop: derived gold disagrees on <k> of 5 lineages`, or a run past that gate printed one `verdict <backend>:` line per backend column that ran, or that backend's skip line. Phase 028 reads this phase's `report.json` and `calls.jsonl` and makes no call of its own |
+| **Handoff Criteria** | The zero-call census has printed the lineage counts, the derived gold, the three zero-call stop methods' accuracy on identical lineages and either `no headroom` or the planned calls. Then either the scorer printed `stop: fewer than 5 confirmed lineages` or `stop: derived gold disagrees on <k> of 5 lineages`, or a run past that gate printed one `verdict <backend>:` line per backend column that ran, or that backend's skip line. Phase 028 reads this phase's `report.json` and `calls.jsonl` and makes no call of its own. The 2026-09-29 final run stopped at the gate, so it wrote `report.json` and no `calls.jsonl` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -69,7 +69,7 @@ This is **Phase 27** of the cli-jev workflow integration specification. On 2026-
 
 A deep-research loop decides when to stop from the model's own `newInfoRatio`, the self-reported share of new information in each iteration. Three weighted votes read it: a rolling average of the last three ratios below `convergenceThreshold` (0.30), a MAD noise floor (0.35) and question coverage of at least 0.85 (0.35), and a weighted score above 0.60 nominates STOP (`.skilled/commands/deep/assets/deep-research-confirm.yaml:637-661`, `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md:41-47`). The reducer already distrusts the number when it sits flat at 0.9 or higher and emits `novelty_signal_inert` (`deep-research/scripts/reduce-state.cjs:965-989`). Nobody has measured whether a second rater would stop a loop closer to where it stopped finding things.
 
-The research parked R8 as `later` for one reason: no gold stop is confirmed (`../007-classifier-deep-research/research/research.md:420`). Its planned gold, the last iteration that adds a first-appearance cited source in `deltas/`, is derived by code, and whether it matches the iteration prose is open question 8, answered only by a five-lineage manual read. The record also says the local replays come first, because they are non-model work and decide whether a model arm is worth buying. The corpus is larger than the record's 178: this leaf counted 449 tracked lineages with a `deep-research-config.json` on 2026-09-29. Of those, 246 cannot move their stop (`stopPolicy` `max-iterations`, `convergenceMode` `off` or `minIterations` at least `maxIterations`), 203 can, and 115 of the 203 keep a `deltas/` folder, holding 1,160 iteration records. Nine of the 115 hold three consecutive ratios at or above 0.9. These are rough counts by one `node` pass. The census fixes the rule and prints its own.
+The research parked R8 as `later` for one reason: no gold stop is confirmed (`../007-classifier-deep-research/research/research.md:420`). Its planned gold, the last iteration that adds a first-appearance cited source in `deltas/`, is derived by code, and whether it matches the iteration prose is open question 8, answered only by a five-lineage manual read. The record also says the local replays come first, because they are non-model work and decide whether a model arm is worth buying. The corpus is larger than the record's 178. The final run's census prints `lineages: tracked 486 no config 37 forced 235 no deltas 92 kept 122 no gold 106 sampled 16 inert 4`: 449 lineages carry a `deep-research-config.json`, 235 of those cannot move their stop (`stopPolicy` `max-iterations`, `convergenceMode` `off` or `minIterations` at least `maxIterations`), 122 movable lineages keep a `deltas/` folder, 106 of the 122 carry no first-appearance source, all 16 with a gold were sampled, and 4 of the 16 hold an inert window. The census fixes the rule and prints its own.
 
 ### Purpose
 
@@ -106,17 +106,17 @@ Owner of every code path below: `system-deep-loop`. The code lives in its `runti
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` | Create | Lineage set, gold, the three zero-call methods, census, label gate, both arms and the per-column verdicts. Proposed name. About 500 to 650 LOC (estimate) |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` | Create | Fixture-lineage, stub-`jev` and stub-`cli-deem` cases. The runtime vitest config includes `tests/**/*.{vitest,test}.ts` |
+| `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` | Create | Lineage set, gold, the three zero-call methods, census, label gate, both arms and the per-column verdicts. Built at 1,957 lines |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` | Create | Fixture-lineage, stub-`jev` and stub-`cli-deem` cases. The runtime vitest config includes `tests/**/*.{vitest,test}.ts`. Built with 36 cases in 1,150 lines |
 | `.skilled/skills/system-deep-loop/runtime/scripts/README.md` | Modify | One row for the new script |
 | `.skilled/skills/system-deep-loop/SKILL.md` | Modify | Parent D6: one sentence naming the offline replay and saying it changes no stop |
 | `.skilled/skills/system-deep-loop/runtime/README.md` | Modify | Parent D6: one line naming the script, its zero-call default and its two switches |
-| `.skilled/skills/system-deep-loop/runtime/changelog/v<next>.md` | Create | Parent D6, through `sk-create-changelog`. The newest file at planning is `v1.5.0.1.md` |
-| `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md` and `feature-catalog.md` | Create, Modify | Parent D6, through `sk-create-feature-catalog`: one entry (proposed name) and its index row |
-| `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md` and `manual-testing-playbook.md` | Create, Modify | Parent D6, through `sk-create-manual-testing-playbook`: the zero-call run and a stub-backend skip, plus the index row |
-| Generated copies (the Hermes `SKILL.md`, leaf manifests, trigger index) | Regenerate | Only when their own checks report them stale after the doc edits. The build names each one it touched |
+| `.skilled/skills/system-deep-loop/runtime/changelog/v<next>.md` | Create | Parent D6, through `sk-create-changelog`. Built as `v1.6.0.0.md`, next after `v1.5.0.1.md` |
+| `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md` and `feature-catalog.md` | Create, Modify | Parent D6, through `sk-create-feature-catalog`: the F056 `stop-rater-replay.md` entry and its index row |
+| `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md` and `manual-testing-playbook.md` | Create, Modify | Parent D6, through `sk-create-manual-testing-playbook`: the DLR-056 `stop-rater-replay.md` scenario, its zero-call run and a stub-backend skip, plus the index row |
+| Generated copies (the Hermes `SKILL.md`, leaf manifests, trigger index) | Regenerate | The Hermes `SKILL.md` copy and the two route manifests of the hub `SKILL.md`, regenerated after their own checks reported drift. The trigger index follows in its own commit |
 | `specs/**/deep-research-state.jsonl`, `deep-research-config.json`, `deltas/*.jsonl` | Read only | The lineage corpus |
-| `<operator-named report dir>/` | Create at run time | `report.json`, and `calls.jsonl` from a run with a model arm |
+| `<operator-named report dir>/` | Create at run time | `report.json`, and `calls.jsonl` from a run with a model arm; the final run stopped at the label gate, so it held `report.json` only |
 <!-- /ANCHOR:scope -->
 
 ---

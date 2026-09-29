@@ -1,0 +1,18 @@
+Recheck complete. Both fixes verified against the actual test run and `pickBaseline`.
+
+**Fix results**
+- **Fix 1 (test count 36): closed** — from `.skilled/skills/system-deep-loop/runtime`, `npx vitest run tests/unit/score-stop-rater.vitest.ts` → `Tests  36 passed (36)` / `Test Files  1 passed (1)`, exit `0`. All three named lines now read "36 passing tests": `manual-testing-playbook/scoring/stop-rater-replay.md:28`, `:87` (Step 9: "36 passing tests and 0 failing"), `manual-testing-playbook/manual-testing-playbook.md:431`. No stale `35` remains anywhere in the three files.
+- **Fix 2 (tie rule): closed** — `pickBaseline` (`scripts/score-stop-rater.cjs:444-453`) iterates `order = ['legacy', 'sources', 'recorded']` and replaces only on `counts[name] > counts[method]` (strict), so a tie at the max keeps the earliest in that order. `feature-catalog/scoring/stop-rater-replay.md:37` states exactly "with a tie going to the first of `legacy`, `sources` and `recorded` in that order." Doc and code agree.
+- **New P0/P1 in the three files: none.** The other `36`/`36` mentions in the playbook (lines 656/658) belong to the unrelated executor-config scenario. Frontmatter, tables, anchors and surrounding prose are intact at all edited sites.
+
+```
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none
+CHECKS: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/score-stop-rater.vitest.ts -> Tests 36 passed (36) (exit 0)
+CHECKS: grep -n -iE "tie|baseline" + \b35\b sweep over the three named files -> no stale count; tie text matches pickBaseline (exit 0)
+CHECKS: full read of both stop-rater-replay.md files and playbook lines 405-460/968 -> fixed lines in place, structure intact (exit 0)
+BLOCKED REASON: none
+```
+
+VERDICT: PASS

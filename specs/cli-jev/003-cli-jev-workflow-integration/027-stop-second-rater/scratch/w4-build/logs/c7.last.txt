@@ -1,0 +1,19 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs (+319/-1); .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+172/-0)
+EDITS:
+- score-stop-rater.cjs:1045 new section 11 DEEM GATE AND ARM (REPO_CLI_DEEM, deemCommand, readDeemHealth, deemGate, runDeemArm with JSDoc); sections 11-14 renumbered 12-15
+- score-stop-rater.cjs:1582 one call log hoisted for the whole run so both arms append to one calls.jsonl
+- score-stop-rater.cjs:1624 main runs the Deem gate and arm behind `--deem` and the passing label gate, after the Jev arm
+- score-stop-rater.cjs:1682 report lineages stops.deem read from the arm's stop map
+- score-stop-rater.cjs:1689 buildReport call now carries the deem arm result
+- score-stop-rater.cjs:1741 exports deemCommand, readDeemHealth, deemGate, runDeemArm
+- score-stop-rater.vitest.ts:9 header row for the Deem gate and arm
+- score-stop-rater.vitest.ts:120 module-level deemStub and runWithEnv helpers
+- score-stop-rater.vitest.ts:800-944 four named tests: deem gate passes a fake health; deem gate skips a stub backend byte-identically; deem arm stops on a changed pair at exit 4; oversize state is withheld
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> no output (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> 29 (exit 0)
+- `git status --porcelain -- <S> <T>` -> both `??`, untracked, nothing else touched by this step (exit 0)
+- `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' <S>` -> no output (exit 1)
+- `grep -nE 'REQ-|ADR-|CHK-|task-[0-9]|specs/|027[-_]' <S> <T>` -> no output (exit 1)
+BLOCKED REASON: none

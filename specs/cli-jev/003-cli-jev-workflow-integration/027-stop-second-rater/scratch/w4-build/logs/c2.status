@@ -1,0 +1,1 @@
+executor=pi-cline model=cline-pass/cline-pass/deepseek-v4.1-flash brief=specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/briefs/c2.md exit=0 seconds=377

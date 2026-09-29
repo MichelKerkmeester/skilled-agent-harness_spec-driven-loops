@@ -1,0 +1,10 @@
+Both checks pass. The file is untracked in this worktree (created by earlier work in the same tree), so `git diff` has no baseline — but I made exactly one write, to S only.
+
+Summary of what changed in `main` (line 1702, now 1702–1711): the sample ordering still puts inert-window lineages first, then orders each group by the SHA-256 of the lineage path instead of the raw path string. `crypto` was already required at line 19. Nothing in T was touched.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs (+10/-1)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:1702 replaced the path-string tiebreak with a precomputed SHA-256 path hash map and an inert-first comparator
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs -> no output, node-check-exit=0 (exit 0)
+CHECKS: grep -c "createHash('sha256').update(entry.path)" .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs -> 1, grep-exit=0 (exit 0)
+BLOCKED REASON: none

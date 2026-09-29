@@ -1,0 +1,46 @@
+Work is complete and verified. Final state:
+
+- `spec.md`: Status `Complete`, description carries the commits, corpus counts replaced with the final census (`486/37/235/92/122/106/16/4`), the handoff records that the gate stop wrote `report.json` and no `calls.jsonl`, file rows name the built artifacts.
+- `plan.md`: DoR/DoD ticked with evidence, builder roster corrected to parent D5 as amended 2026-09-29.
+- `tasks.md`: T001-T016 and T018-T020 ticked with command/result evidence, T017 left `[B]`, completion criteria ticked.
+- `goal.md`: all six criteria ticked, continuity updated, progress/deviations rows added (executor roster, c1f and c6 deviations, the two P1s and their fixes, the docs P1 and tie P2, the compiled-contract regression, fixture-only past-gate skips, no verdict line, 3 P2s, no `build-evidence.md`, premise corrections).
+- `implementation-summary.md`: rewritten from the session evidence with files, commits, verification table, review verdicts, deviations and operator items.
+- `graph-metadata.json` re-derived; `description.json` unchanged.
+
+```
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/spec.md (+11/-11)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/plan.md (+11/-11)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/tasks.md (+24/-24)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/goal.md (+42/-16)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/implementation-summary.md (+103/-19)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/graph-metadata.json (+68/-58, re-derived by repair-derived.cjs)
+EDITS: spec.md:3 appended the closure state and commits to the description
+EDITS: spec.md:26 Status Planned -> Complete
+EDITS: spec.md:33 handoff criteria records the 2026-09-29 gate stop wrote report.json and no calls.jsonl
+EDITS: spec.md:72 corpus counts replaced with the final census line
+EDITS: spec.md:109,110,114-117,119 file rows now name the built script (1,957 lines), test (36 cases), changelog v1.6.0.0.md, F056 and DLR-056, regenerated copies and report.json only
+EDITS: plan.md:42-45 Definition of Ready ticked with evidence
+EDITS: plan.md:48-53 Definition of Done ticked with evidence
+EDITS: plan.md:85 builder roster corrected to parent D5 as amended 2026-09-29
+EDITS: tasks.md:31 notation records the closure and the build record
+EDITS: tasks.md:39-72 T001-T016 and T018-T020 ticked with command and result evidence, T017 left [B] with the gate stop as the phase result
+EDITS: tasks.md:80-82 completion criteria ticked
+EDITS: goal.md:14-27 continuity updated (completion_pct 100, open questions, key files)
+EDITS: goal.md:62-67 all six completion criteria ticked
+EDITS: goal.md:85-93 progress rows (build, baseline, census and gate, tests, docs and packages, review, commit and fix, closure, open) and deviation rows with sources
+EDITS: implementation-summary.md:1 full rewrite: what changed and why, files and commits, verification table, review verdicts, deviations, operator items
+EDITS: graph-metadata.json re-derived by repair-derived.cjs (no hand edit)
+CHECKS: node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater --apply -> inspected=1 repaired=1 failed=0 (exit 0)
+CHECKS: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater --strict -> RESULT: PASSED, Summary: Errors: 0  Warnings: 0, 0 lines matching RESULT: FAILED (exit 0)
+CHECKS: node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater -> RESULT: PASSED (5/5 checks) (exit 0)
+CHECKS: node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater --workspace "$PWD" -> packet_durable_chars=3956, packet_budget=unknown (exit 0)
+CHECKS: git status --porcelain -- specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater -> only the six phase docs plus the pre-existing untracked scratch/w4-build/ and scratch/w4-session/ (exit 0)
+CHECKS: git show --name-only 709b1078ee -> 13 files; git show --name-only 24473df4fa -> 3 files (exit 0)
+STATUS WHY: Complete in spec.md and implementation-summary.md, because the final-state runs printed the label-gate stop stop: fewer than 5 confirmed lineages (parent D4, parent criterion 2) and every remaining open row is an operator item.
+OPEN ROWS: tasks.md T017 stays [B], blocked on the operator's five-lineage gold-reads file, the prerequisite for the live Deem run and the Jev run on the operator's yes (parent D4).
+OPEN ROWS: goal.md "Open for the operator" row: the gold reads, a live Deem run, a Jev run on the operator's yes, and serving a kept rater (a later phase).
+OPEN ROWS: 3 review P2 findings recorded, not chased (parent D5): C counts only calls behind a full median; the planned-calls line counts every iteration record; the withheld-path test asserts the helpers only.
+OPEN ROWS: acceptance-criteria.md is absent from the phase folder, so there was no row to mark there.
+BLOCKED REASON: none
+```

@@ -1,0 +1,24 @@
+Read-only recheck complete. I inspected both named files (no writes, no git writes).
+
+**Fix 1 — `no headroom` closes both arms after a passed label gate:** `closed` — `score-stop-rater.cjs:1763-1764` computes `armsOpen = labelPassed && headroomLine !== 'no headroom'` and `headroomSkip = labelPassed && !armsOpen`; lines 1774-1776 print `jev arm skipped: no headroom` and record `jevResult = { skipped: 'no headroom' }`, lines 1816-1818 do the same for deem, both gated on their respective switch. Order is `no headroom` (out at 1749, label gate silent on pass) → jev skip (1775) → deem skip (1817). The skip is recorded via `buildReport` (`report.skipped[backend] = arm.skipped`, lines 1526-1528) and `gate.headroom` (1516). Test `score-stop-rater.vitest.ts:479-522` builds ten saturated lineages (three iterations, distinct sources → gold=3, all three methods stop at 3 → `baseline: legacy right 10 of 10` → `10*10 > 9*10` → `no headroom` in `gateLine`, line 464), feeds agreeing derived gold reads for all ten so the label gate passes, then asserts `no headroom` precedes `jev arm skipped: no headroom` precedes `deem arm skipped: no headroom`, no `stop:` line, and the stub log never exists.
+
+**Fix 2 — sample ordered by SHA-256 of the path:** `closed` — `score-stop-rater.cjs:1702-1711` builds `crypto.createHash('sha256').update(entry.path).digest('hex')` per candidate, sorts inert first (`Number(b.inert) - Number(a.inert)`) with hex-string comparison as the within-group order, then `slice(0, SAMPLE_MAX)` (SAMPLE_MAX=25, line 40). Hash input matches the test: `entry.path` is `path.dirname(stateFile)` from `git ls-files` output (lines 84-95, 1634), i.e. the bare lineage name; the test (`vitest.ts:232-253`) hashes the same name string and compares `report.json`'s 25 `entry.path` values, order preserved by `buildReport`'s map (line 1512). All 30 fixture lineages sit in one group (single 0.04 ratio cannot form the 3-ratio ≥0.9 inert window), so the compared order is pure hash order.
+
+**Fix 3 — `oversize state is withheld` fixture:** `closed` — `vitest.ts:963-1005` now uses three iterations with one repeated source (`src-${index}-a` in all three delta files) and a 25000-char label at iteration 1. Derived gold=1 while every stop rule lands at 3 (legacy votes stop at n=3: mean 0.04 < threshold 0.05; sources never votes stop → `stopFor` falls back to last n; recorded=3), so `rightOf(3, 1)` is false on all five → baseline right 0 of 5 → `gateLine` prints `planned calls: …` and the arm opens. `buildState` (705-739) folds every earlier non-empty label into later states, so all 5×3=15 states exceed `STATE_MAX_CHARS` (24000, line 46); the deem arm appends one `unmeasured_oversize` record per state and `continue`s before `spawnCall` (1239-1243) → 15 records, no `score` in the stub log, and `deem: nothing leaves the machine…` prints at line 1200 — exactly what the test asserts.
+
+**New findings at P0/P1:** none. (Checked skip-line gating when only one switch is set, `headroomSkip` equivalence to `labelPassed && headroomLine === 'no headroom'`, hash-map uniqueness of `entry.path`, and report ordering — no issues.)
+
+VERDICT: PASS
+
+SKILL ROUTING: User directed → markdown reviewer persona (read-only recheck); no artifact write, no skill contract load needed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none
+CHECKS: `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> no output, syntax OK (exit 0)
+CHECKS: `rg -n "headroom" .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> armsOpen/headroomSkip 1763-1764, skip lines 1775/1817 (exit 0)
+CHECKS: `rg -n "createHash|crypto" .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> sha256 of entry.path at 1704 (exit 0)
+CHECKS: `rg -c "^\s*it\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> 36 (exit 0)
+CHECKS: `git status --porcelain -- <the two named files>` -> both `??`, untouched by this worker (exit 0)
+BLOCKED REASON: none

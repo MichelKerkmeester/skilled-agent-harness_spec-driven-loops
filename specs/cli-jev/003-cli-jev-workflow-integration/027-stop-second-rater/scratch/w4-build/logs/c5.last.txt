@@ -1,0 +1,18 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs (+173/-19)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+131/-3)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:553-686 added section 8 JEV GATE AND PUBLISHED CHECK with exported `which(name, env)`, `jevGate(ctx)` (identity line, `--version` exactly `jev 0.6.2`, `auth status --provider P` exit 0, P = `JEV_PROVIDER` else `official`, sibling-shaped skip lines), `existsAtOriginMain(repoRoot, relPath)` (`git cat-file -e origin/main:<relPath>`), and `withheldRecords(lineages, repoRoot, provider)` (every delta file must pass; one `unmeasured_unpublished` record per withheld iteration)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:689,761,993,1041 renumbered REPORT 9, MAIN 10, EXPORTS 11, CLI ENTRYPOINT 12
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:765-768 main JSDoc now names the backend gate
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:777-779 main deps now resolve `env` (default `process.env`) and `timeoutMs` (default `CALL_TIMEOUT_MS`)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:943-960 main runs `jevGate` after the label gate passes when `--jev` is set; a failed gate records `{ skipped: reason }`
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:987 report parts now carry the Jev arm result
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:1029-1033 exports `which`, `jevGate`, `existsAtOriginMain`, `withheldRecords`
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts:8 module header lists the Jev gate area
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts:524-649 added describe `score-stop-rater jev gate` with `jev gate passes a stub` (identity line, no skip, stub log prefix `--version` then `auth status --provider official`), `jev gate skips with no credential` (census prefix byte-identical, exit 0), `jev gate skips on version` (skip line then `jev: found="0.2.3" path=...`), `unpublished lineage is withheld from jev` (published file true, absent file false, one `unmeasured_unpublished` record per withheld iteration and none for the published lineage)
+CHECKS: `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> no output (exit 0)
+CHECKS: `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> 22 (18 prior + 4 new) (exit 0)
+CHECKS: `git status --porcelain` vs pre-step snapshot -> identical (exit 0)
+CHECKS: `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization'` on S -> no match (exit 1)
+CHECKS: `grep -nE 'specs/|REQ-[0-9]|ADR-|CHK-|T0[0-9][0-9]|phase [0-9]|w4-build'` on S and T -> no match (exit 1)
+BLOCKED REASON: none

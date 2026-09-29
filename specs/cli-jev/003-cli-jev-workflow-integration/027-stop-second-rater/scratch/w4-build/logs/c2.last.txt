@@ -1,0 +1,25 @@
+STATUS: DONE
+FILES CHANGED:
+- `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` (+285/-0 net vs step 1; created in step 1, extended by this step)
+- `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` (+175/-0 net vs step 1; created in step 1, extended by this step)
+
+EDITS:
+- `score-stop-rater.cjs:50` added `MARGIN_LINE`, `KEEP_RULE_LINE`, `POWER_LINE` constants
+- `score-stop-rater.cjs:255` new section 6 STOP REPLAY: `readStateRecords`, `coverageSeries`, `replayVote`, `stopFor`, `rightOf`, `pickBaseline`, `gateLine`, each JSDoc'd
+- `score-stop-rater.cjs:469,628,668` renumbered section dividers MAIN/EXPORTS/CLI to 7/8/9
+- `score-stop-rater.cjs:535` `deriveGold` now destructures `cited` and `firstAppearance` for the sources series
+- `score-stop-rater.cjs:553` per-candidate state read, threshold/minIterations from config, coverage map, recorded/legacy/sources stops on the candidate
+- `score-stop-rater.cjs:591` added method right counts, baseline pick, question-counts line, margin/keep/power lines, gate line
+- `score-stop-rater.cjs:641,656` exported the three new constants and seven functions
+- `score-stop-rater.vitest.ts:6` module header line for the new stop-replay surface
+- `score-stop-rater.vitest.ts:208` `score-stop-rater methods`: `recorded stops at the last iteration`, `legacy stop honors minIterations`, `legacy honors a STOP_BLOCKED event`, `sources stop lands on its gold`, `vote redistributes weight without counts`
+- `score-stop-rater.vitest.ts:318` `score-stop-rater baseline and gate`: `baseline tie goes to legacy`, `census prints no headroom on a saturated fixture`
+
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> no output (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> 13 (exit 0; 6 prior + 7 new)
+- additional read-only: plain-`node` harness in `/tmp` exercising all seven new cases -> ALL LOCAL CHECKS PASSED (exit 0); this caught and fixed one fixture flaw — a rolling-only stop can no longer nominate once MAD is available (0.30/0.65 < 0.60), so the blocked-stop fixture now uses ratio 0.0 so the vote nominates again at 4
+- additional read-only: `node .../score-stop-rater.cjs` default run on the real corpus -> exit 0, prints `method recorded: right 5 of 16`, `method legacy: right 5 of 16`, `method sources: right 4 of 16`, `baseline: legacy right 5 of 16`, `question counts: 12 of 16`, `planned calls: deem 239 jev 718`
+- scope: `git status --porcelain` shows only S and T as files I touched (`??`); every other entry is a concurrent worker's file, untouched. The `/tmp` harness created throwaway git fixture repos outside the worktree only. No test runner, no install, no network, no secrets (hygiene greps for ids/spec paths and `API_KEY|TYPESAFE|Bearer|Authorization` both exit 1)
+
+BLOCKED REASON: none

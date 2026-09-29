@@ -1,0 +1,10 @@
+One line changed in T, and the same check now passes where it failed before: 5 failed before the edit, 0 failed after. The global `core.hooksPath=/Users/michelkerkmeester/.config/git/hooks` was the mechanism, and the fixture repository now runs no hooks.
+
+The edited file is untracked in this worktree, so `git diff` shows nothing for it. The line-hash re-read is the receipt for "only line 41 changed": every other line hash is byte-identical to the pre-edit read.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+1/-1)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts:41 added `'-c', 'core.hooksPath=/dev/null',` directly after `'-c', 'commit.gpgsign=false',` in the `commitAll` commit call
+CHECKS: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/score-stop-rater.vitest.ts -> Tests  5 failed | 1 passed (6) (exit 1, pre-edit baseline)
+CHECKS: cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/score-stop-rater.vitest.ts -> Tests  6 passed (6) (exit 0, post-edit)
+BLOCKED REASON: none
