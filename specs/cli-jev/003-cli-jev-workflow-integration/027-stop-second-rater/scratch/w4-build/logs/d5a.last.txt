@@ -1,0 +1,11 @@
+Both strings confirmed in the script. The doc is complete and verified.
+
+Summary of what was written: `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md`, a new per-feature catalog leaf (F056). It follows the local model `scoring/convergence-score-delta.md` for frontmatter keys, section order, template marker and metadata, and the sibling `hallucination-grader-agreement.md` for the `HOW IT WORKS` subsection shape. Every switch, printed line, constant and behavior comes from `scripts/score-stop-rater.cjs` and design section 2 with FACTS winning. The verdict line is described only as code behavior, no run-observed claim. No measured census snapshot numbers were frozen into prose. The `Source phase` slot was left out since no truth source fills it and runtime docs avoid phase history. The playbook row was left out of Validation And Tests because that file does not exist yet (separate step).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md (+90/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md:1 created the leaf doc (frontmatter, OVERVIEW, HOW IT WORKS with Census and Baseline / Label Gate and Keep Rule / Deem and Jev Arms, SOURCE FILES, SOURCE METADATA with F056); :43 precision edit, the median of the three Jev levels becomes the iteration's ratio
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md -> ✅ VALID ... Total issues: 0 (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md -> no output, file is a new untracked addition (exit 0); git status --porcelain for that path shows only `?? .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md`
+BLOCKED REASON: none

@@ -1,0 +1,7 @@
+# Orchestrator rulings on design.md section 6 (2026-09-29)
+
+1. Every section 6 answer is accepted as proposed. The changelog version is the next after the newest `runtime/changelog/` file present at doc time (`v1.6.0.0.md` today); the new catalog and playbook entries carry that version, and IDs are the next after the highest present at doc time.
+2. Gate order (parent D1, "Jev first, else Deem"): with both switches, the Jev gate and arm run first, then the Deem gate and arm, each on its own gate and regardless of the other's outcome. A failed gate prints its skip line and never runs the other backend in its place.
+3. Docs name only what the code prints. A `verdict` line is claimed nowhere unless a run printed it.
+4. Phases 028, 029 and 030 share `runtime/changelog/`, the runtime catalog and the runtime playbook, and build after this phase. This phase takes the next version and IDs present at its own doc time; the counts in the two indexes are read at doc time, never taken from this design.
+5. Tests run on a machine whose global git config sets `core.hooksPath`, and its commit-msg hook rejects a commit without a body. Every test that creates a git repository passes `-c core.hooksPath=/dev/null` (beside `-c commit.gpgsign=false`) to each `git commit` it runs, as `cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs` line 48 does. Test code and the scripts never run the machine's hooks.

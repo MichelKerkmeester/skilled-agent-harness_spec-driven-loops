@@ -1,0 +1,77 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime
+
+ ❯ tests/unit/score-stop-rater.vitest.ts (25 tests | 4 failed) 11146ms
+     × jev gate passes a stub 1323ms
+     × jev arm prints keep on scripted answers 1725ms
+     × jev arm stops on flips 1766ms
+     × every logged jev call carries one provider 1667ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/score-stop-rater.vitest.ts > score-stop-rater jev gate > jev gate passes a stub
+ReferenceError: summarizeColumn is not defined
+ ❯ runJevArm scripts/score-stop-rater.cjs:1034:19
+ ❯ Object.main scripts/score-stop-rater.cjs:1345:19
+ ❯ runWithEnv tests/unit/score-stop-rater.vitest.ts:546:18
+    544|     const lines: string[] = [];
+    545|     const errs: string[] = [];
+    546|     const code = await rater.main(argv, {
+       |                  ^
+    547|       out: (line: string) => lines.push(line),
+    548|       err: (line: string) => errs.push(line),
+ ❯ tests/unit/score-stop-rater.vitest.ts:559:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/unit/score-stop-rater.vitest.ts > score-stop-rater jev arm > jev arm prints keep on scripted answers
+ReferenceError: summarizeColumn is not defined
+ ❯ runJevArm scripts/score-stop-rater.cjs:1034:19
+ ❯ Object.main scripts/score-stop-rater.cjs:1345:19
+ ❯ runArm tests/unit/score-stop-rater.vitest.ts:710:18
+    708|     const lines: string[] = [];
+    709|     const errs: string[] = [];
+    710|     const code = await rater.main(argv, {
+       |                  ^
+    711|       out: (line: string) => lines.push(line),
+    712|       err: (line: string) => errs.push(line),
+ ❯ tests/unit/score-stop-rater.vitest.ts:725:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/unit/score-stop-rater.vitest.ts > score-stop-rater jev arm > jev arm stops on flips
+ReferenceError: summarizeColumn is not defined
+ ❯ runJevArm scripts/score-stop-rater.cjs:1034:19
+ ❯ Object.main scripts/score-stop-rater.cjs:1345:19
+ ❯ runArm tests/unit/score-stop-rater.vitest.ts:710:18
+    708|     const lines: string[] = [];
+    709|     const errs: string[] = [];
+    710|     const code = await rater.main(argv, {
+       |                  ^
+    711|       out: (line: string) => lines.push(line),
+    712|       err: (line: string) => errs.push(line),
+ ❯ tests/unit/score-stop-rater.vitest.ts:744:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/unit/score-stop-rater.vitest.ts > score-stop-rater jev arm > every logged jev call carries one provider
+ReferenceError: summarizeColumn is not defined
+ ❯ runJevArm scripts/score-stop-rater.cjs:1034:19
+ ❯ Object.main scripts/score-stop-rater.cjs:1345:19
+ ❯ runArm tests/unit/score-stop-rater.vitest.ts:710:18
+    708|     const lines: string[] = [];
+    709|     const errs: string[] = [];
+    710|     const code = await rater.main(argv, {
+       |                  ^
+    711|       out: (line: string) => lines.push(line),
+    712|       err: (line: string) => errs.push(line),
+ ❯ tests/unit/score-stop-rater.vitest.ts:761:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 21 passed (25)
+   Start at  19:35:17
+   Duration  11.45s (transform 31ms, setup 0ms, import 62ms, tests 11.15s, environment 0ms)
+

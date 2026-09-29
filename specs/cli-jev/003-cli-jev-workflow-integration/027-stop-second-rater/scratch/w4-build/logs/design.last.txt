@@ -1,0 +1,200 @@
+I'll start by reading the phase docs and the parent goal, then the sibling scorer pattern.
+
+Now the rest of the spec, plus this phase's tasks and goal:
+
+Phase docs read. Now the sibling pattern files and the key cited seams:
+
+The sibling is 1323 lines. Let me read the rest and its test:
+
+
+
+Now the sibling's test file and the runtime package structure:
+
+
+
+I have the full sibling pattern. Now let me verify every cited seam in today's tree. First batch of citations:
+
+All four check out so far. Next batch — convergence.cjs seams and the fanout-merge main shape:
+
+All convergence seams check out. Now the research-doc citations and the phase-002 provider gate:
+
+Citations check out. Now section 12 of the research doc and the runtime package layout:
+
+Research section 12 confirmed (row 12, `later`, `score`, Deem). Now the runtime package details and doc structures:
+
+Now the doc structures to model the doc steps on:
+
+
+
+Now the remaining doc anchors — scripts README, runtime README, SKILL.md, and the catalog/playbook ID numbering:
+
+Interesting — need the full ID inventory to pick the next catalog/playbook IDs:
+
+
+
+Let me check the changelog versioning convention and the sk-doc modes the spec names:
+
+
+
+
+
+The changelog convention needs care. Let me check the component changelog layout and recent version bumps:
+
+
+
+
+
+
+
+Phase 022 is the closest precedent (new offline scorer + docs, minor changelog bump). Let me study its build plan:
+
+Let me check whether sibling phases in this wave have design docs to match, and inspect 022's shipped doc artifacts:
+
+
+
+That's an older format. Let me read the most recent design (026) to match the current brief format:
+
+
+
+Now I need the real lineage data shapes. Let me find a lineage with config, state, and deltas:
+
+
+
+
+
+
+
+
+
+The finding record shape needs the contract. Let me check the deltas contract:
+
+
+
+
+
+
+
+
+
+Now let me find the closest sibling scripts — 017's Deem `score` arm and 002's Jev arm — to pin the `score` call shape:
+
+
+
+Now the actual `score` subcommand contract in cli-deem (the client this phase will spawn):
+
+
+
+
+
+
+
+Now the Jev `score` shape — checking phase 002's script and the Jev docs:
+
+
+
+Phase 023 is the direct `score` sibling. Let me read its shipped script's score handling:
+
+
+
+
+
+
+
+
+
+Let me check how common the `source`/`label` fields are across the tracked finding records:
+
+
+
+The strict reading gives far fewer movable lineages than the spec's rough count. Let me find which field handling reproduces the spec's numbers:
+
+The lenient rule reproduces the spec's corpus counts (207/116 ≈ 203/115). Let me confirm the inert-window default and delta naming variants:
+
+
+
+The "(0.30)" is the rolling signal's weight, not the threshold. Let me confirm the config threshold distribution and `origin/main` presence:
+
+
+
+Let me check the playbook scoring section header, the coverage map tail, and how phase 022 bumped the catalog versions:
+
+
+
+
+
+
+
+
+
+Let me check the most recent wave-built catalog entry (024's) for the version convention:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now the parent SKILL.md — its version line and where the sentence goes:
+
+The hub SKILL.md has version authority rules. Let me check how its version tracks edits:
+
+
+
+
+
+
+
+Let me verify how cli-deem reads state (stdin vs flag) and the `-s` default:
+
+Let me pin the exact anchor line numbers for the doc steps:
+
+
+
+I have everything I need. Let me verify the scratch directory and then write the design:
+
+
+
+
+
+Now I'll write the design file:
+
+Now the verification checks:
+
+Checks pass (251 lines, 6 sections). Let me verify the two placement anchors I cited in the doc steps:
+
+
+
+The design is written and verified. Both checks pass, and no other file was touched.
+
+**Summary of what the design fixes** (all from the phase docs and code I opened):
+
+- **Premises (§1)** — 24 rows: every cited seam checked in today's tree, all `ok` (the confirm-YAML vote, convergence-signals rubric, reducer inert branch, convergence.cjs guards, research R8 record, state-jsonl record shapes, deem-local timings, cli-deem `score` contract, phase-002 provider rule), plus a re-count of the corpus (486 tracked state files / 449 configs / 207 movable / 116 with deltas) and the two files to create, `missing`.
+- **Interface (§2)** — one script, four switches, exit 0/2 only, the full census line set (`lineages:`/`gold:`/`reads:`/`method …`/`baseline:`/`question counts:`/gate), the label-gate stop lines, both gate skip sets, the stop/partial lines, the exact verdict line with `p=` and `baseline=`, `report.json`/`calls.jsonl` shapes, and every exported function with its signature, modeled on the shipped `score-d4-agreement.cjs`.
+- **Test cases (§3)** — 34 named cases, both arms on stubs only, walker/published cases in a temp git repo.
+- **Build steps (§4)** — 8 Devin code steps (one behavior + named tests each) and 6 Pi doc steps, including the next runtime changelog `v1.6.0.0.md`, catalog `F056` and playbook `DLR-056` entries with their index edits at exact anchors.
+- **Proof plan (§5)** — one row per goal criterion, label-gate stop as the accepted end state.
+- **Open questions (§6)** — 16 decisions marked `(proposed)`, including the threshold reading, the lenient movable rule, delta-name variants, and the `p=` tail choice.
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/design.md (+251/-0)
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/design.md:1 created the six-section build design (premises, interface, test cases, build steps, proof plan, open questions)
+CHECKS: wc -l specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/design.md -> 251 specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/design.md (exit 0)
+CHECKS: grep -c '^## ' specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/design.md -> 6 (exit 0)
+CHECKS: git status --porcelain -- specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/ -> ?? specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/ (exit 0, only this file created)
+BLOCKED REASON: none

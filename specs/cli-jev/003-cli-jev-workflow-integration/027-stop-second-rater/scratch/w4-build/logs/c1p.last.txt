@@ -1,0 +1,11 @@
+Both files created from scratch (this was the first code step). Step 1 delivered: header, imports, constants (minus the three step-2 lines), `USAGE`, `listStateFiles`, `readConfig`, `isMovable`, `deltaIterationFiles`, `deriveGold`, `isInertWindow` (the inert-window computation), and `main` with the `--gold-reads`/`--out` parse and the `lineages:`/`gold:`/`reads:` census lines — each function JSDoc'd and exported. T holds exactly the six named cases, no spawn of the script; the walker cases run in temp git repos and observe counts through `main`'s injected `out`. Interpretation worth flagging to the orchestrator: the `reads:` line prints the derived gold of the first five sampled (`reads: none` when empty), since `parseGoldReads` is step 3's function and cannot feed a step-1 line. Verification ran only the two brief-listed checks; vitest runs with the orchestrator, so test pass/fail is unverified here (inferred only from review). Only S and T were touched; `git status` shows both new (`??`) alongside pre-existing changes from other workers.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs (+390/-0)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+205/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:1 created (header, imports, constants, USAGE, walker, gold, inert window, main, exports, entrypoint)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts:1 created (six named cases: 3 walker, 2 gold, 1 inert window)
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs -> (no output) (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts -> 6 (exit 0)
+BLOCKED REASON: none

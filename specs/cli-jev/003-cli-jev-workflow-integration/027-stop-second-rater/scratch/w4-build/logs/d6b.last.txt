@@ -1,0 +1,15 @@
+All checks pass. The diff shows exactly the five named index edits and nothing else. Facts in the new block are grounded in FACTS and the script's own printed lines (`stop: fewer than 5 confirmed lineages` at `score-stop-rater.cjs:546`, `jev arm skipped: no credential` at `:624`, `deem arm skipped: stub backend` at `:1160`), no verdict line is claimed, and the index counts were read at doc time (54 blocks, 54 rows, `54 deterministic scenarios`, scoring `2 scenarios`) before bumping to 55/3.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md (+19/-3)
+EDITS:
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:39 `54 deterministic scenarios` -> `55 deterministic scenarios`
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:106 release count `all 54 scenarios` -> `all 55 scenarios`
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:391 scoring category `2 scenarios` -> `3 scenarios`
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:423 new `### DLR-056 | Stop-rater replay` block after the DLR-040 block (Description from the scenario file overview, Prompt and Expected signals from its scenario contract), before `## 11. COVERAGE GRAPH`
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:968 coverage-map row `| DLR-056 | [F056 Stop-rater replay](...) | [scoring/stop-rater-replay.md](...) |` appended after the DLR-055 row
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md --type playbook` -> `✅ VALID: ...manual-testing-playbook.md` / `Document type: playbook` / `Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` -> `1 file changed, 19 insertions(+), 3 deletions(-)` (exit 0)
+BLOCKED REASON: none

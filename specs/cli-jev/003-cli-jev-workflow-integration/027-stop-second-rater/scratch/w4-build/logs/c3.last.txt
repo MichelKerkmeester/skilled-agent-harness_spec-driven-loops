@@ -1,0 +1,22 @@
+Step 3 is implemented and the two listed checks pass. Notes for the orchestrator:
+
+- `labelGate` follows REQ-006 literally: it checks the first five sampled lineages the census's `reads:` line names (missing read ⇒ `stop: fewer than 5 confirmed lineages`; mismatches ⇒ `stop: derived gold disagrees on <k> of 5 lineages`). The parsed map local is `goldReads`, renamed to avoid colliding with the census `reads:` line variable already in `main`.
+- The pass-case test (`label gate passes five agreeing rows`) can only assert "no `stop:` line + exit 0" at this step — no arm exists yet. Its fixture is deliberately unsaturated (baseline right 0 of 5) and it carries stub backends on `PATH`, so once steps 5–8 add the arms the run proceeds past the gate into the backend gates deterministically, never touching a live backend.
+- Gate stops intentionally do not write a report yet; that is step 4's `--out` work. The tests pass `--out` so they survive step 4's `--out`-with-switch rule.
+- vitest was not run here (orchestrator scope), per the brief.
+
+HAND BACK
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs (+119/-12 this step; untracked new file, 782 lines)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+104/-3 this step; untracked new file, 481 lines)
+EDITS: score-stop-rater.cjs:469 new section 7 LABEL GATE: `parseGoldReads` (JSONL → `Map<lineage, goldIteration>`, throws `gold reads row <n>: <reason>`) and `labelGate({ sampled, reads })` (`{ passed, line }`, the two REQ-006 stop lines); MAIN renumbered to 8, EXPORTS to 9, CLI ENTRYPOINT to 10
+EDITS: score-stop-rater.cjs:588 `--gold-reads` read/parsed before the walk (unreadable or bad row → stderr message, exit 2, nothing on stdout), map held as `goldReads`
+EDITS: score-stop-rater.cjs:721 after the census and headroom gate line, with `--jev`/`--deem` the label gate runs before any arm: on a stop it prints the line and returns 0
+EDITS: score-stop-rater.cjs:768 exported `parseGoldReads`, `labelGate` after `gateLine`
+EDITS: score-stop-rater.vitest.ts:6 module map line `Label gate (parseGoldReads, labelGate)`
+EDITS: score-stop-rater.vitest.ts:103 helpers `stubBackends`, `fiveLineageRepo`, `writeGoldReads` (fixture: 5 lineages, gold 1, baseline right 0 of 5 so headroom exists)
+EDITS: score-stop-rater.vitest.ts:428 new `describe('score-stop-rater label gate')` with `label gate stops below five reads`, `label gate stops on one disagreement`, `label gate passes five agreeing rows`
+CHECKS: `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> no output (exit 0)
+CHECKS: `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> 16 (exit 0)
+BLOCKED REASON: none
