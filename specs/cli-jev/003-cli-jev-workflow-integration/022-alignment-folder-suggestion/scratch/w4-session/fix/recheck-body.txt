@@ -1,0 +1,10 @@
+TASK: read-only recheck of four doc fixes made after your review of this phase. Edit nothing, create nothing, run no git command that writes.
+The fixes, all by Pi MiMo:
+1. `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md`: `version:` 4.3.0.0 to 4.4.0.0; line 20's two sentences that began `S measures` and `S holds` now begin `The script measures` and `It holds`; line 30 now says `--rows-out` writes one row per low or infrastructure event that lists alternatives.
+2. `.skilled/skills/system-spec-kit/changelog/v4.4.0.0.md` line 19: the same `--rows-out` correction.
+3. `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md`: the `### Alignment suggestion measurement` Description paragraph now equals the entry's frontmatter `description`.
+4. `.skilled/skills/system-spec-kit/runtime/cli/evals/README.md`: one tree line for `score-alignment-suggestion.ts` in section 2.
+Check each against the code (`runtime/cli/evals/score-alignment-suggestion.ts`, the rows writer near line 1497) and run:
+  python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package system-spec-kit 2>&1 | grep -E 'tier=|alignment-suggestion'
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <each of the four files> (the catalog index with --type feature_catalog)
+Report one line per fix: `closed|open - evidence`, and any new P0 or P1 in these four files. End with exactly one line `VERDICT: PASS` (all closed, nothing new at P0 or P1) or `VERDICT: FAIL`.

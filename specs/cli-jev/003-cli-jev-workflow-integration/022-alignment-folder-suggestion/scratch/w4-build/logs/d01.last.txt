@@ -1,0 +1,14 @@
+Both checks pass and the feature-catalog tree shows exactly one new file.
+
+SKILL ROUTING: User directed → sk-doc (mode `sk-create-feature-catalog`)
+ARTIFACT: sk-doc → `.skilled/skills/sk-doc/sk-create-feature-catalog/` (SKILL.md §6 per-feature contract, `assets/feature-catalog-snippet-template.md`, model file matched for frontmatter keys, section order and anchors)
+
+Created `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md`, matching the model's shape: same frontmatter keys (`title`, `description`, `trigger_phrases`, `version`), `version: 4.3.0.0` derived per the frontmatter versioning rule (skill anchor 4.3 from `SKILL.md` and `changelog/v4.3.0.0.md`, new file gets `W=0`), the `sk-doc-template` marker, and sections `## 1. OVERVIEW` through `## 4. SOURCE METADATA`. Every claim comes from the FACTS block. The Related references neighbor slot is left out because the facts name no neighboring entry. The playbook scenario is linked as a `Manual playbook` row in the Validation And Tests table, the way the model links its scenario.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md (+72/-0)
+EDITS: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:1 created the feature-catalog entry: title, zero-call default, label gate, two opt-in arms with gates, keep rule and verdict line, nothing served, source tables with S/T and the read-only validator, playbook scenario 461 link
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md -> "✅ VALID: ... Document type: feature_catalog / Total issues: 0" (exit 0)
+CHECKS: grep -c "score-alignment-suggestion" .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md -> "5" (exit 0)
+BLOCKED REASON: none

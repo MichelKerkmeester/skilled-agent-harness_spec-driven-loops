@@ -1,0 +1,31 @@
+I'll start by reading the design document (R) to understand the required structure.
+
+Now let me read the remainder of R and the relevant lines of V, plus check whether S and T already exist.
+
+S and T don't exist yet. Let me read V's header (line 1) for the exact divider format, and check the tsconfig/package context.
+
+Now let me check the build scratch area for related briefs, and search the repo for any existing implementation of this scan (to resolve how JSON-escaped logs are handled).
+
+
+
+
+
+Let me check the packet's own docs for more detail on this scan design, especially any mention of the JSON envelope handling.
+
+
+
+Let me verify the exact divider length, the tsconfig strictness, and a sample test file's conventions.
+
+Let me find the real committed log the census targets, to see the exact on-disk format the scan must read.
+
+
+
+The census targets real transcript files — let me check the exact raw shape the scan must read in the fanout log.
+
+Let me check the base tsconfig strictness flags and verify `node --check` works on TS files here.
+
+
+
+Let me check the house style for the tempDirs scaffold in sibling test files.
+
+

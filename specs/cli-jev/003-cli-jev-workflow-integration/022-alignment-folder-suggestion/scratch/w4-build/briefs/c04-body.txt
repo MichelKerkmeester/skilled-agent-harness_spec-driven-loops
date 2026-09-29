@@ -1,0 +1,35 @@
+TASK: add R section 6 (transcripts and rows) to S, wire --transcripts and --rows-out into main, and pin them with four cases in T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/briefs/ref/design.md (read only).
+S and T are named at the top of R. Read R sections 6 and 11, then S and T. Open no other file; R fixes every choice.
+
+1. S section 6 (after section 5): the exported extractSessionSummary, scanTranscriptFile and listTranscriptFiles of R section 6.
+2. S section 11: add refusal 7 of R section 11 after refusal 6. In census mode, when --transcripts is given, replace the line
+   `transcript events: not measured` with the `transcripts:` line and formatPathLines('transcripts', ...); with --rows-out
+   write the rows of R section 6 (mkdir -p the parent) and print `rows written: <n> state_null=<k>`. In report.json set
+   transcripts to null without --transcripts, else `{ files, events, paths, rowsWritten, stateNull }` (rowsWritten and
+   stateNull null without --rows-out). Only counts reach stdout, stderr and report.json.
+3. T: add a helper transcriptDir() that makes a temp dir holding s1.jsonl with three lines, where OUT is the first ten
+   lines of case b of describe('line scan') (all but its last, pick line), joined with '\n':
+   line 1: JSON.stringify({ type: 'assistant', message: { content: [{ type: 'tool_use', id: 'toolu_1', name: 'Bash', input:
+     { command: "node generate-context.js --json '" + JSON.stringify({ specFolder: '001-billing-export', sessionSummary:
+     'Paired summary text' }) + "'" } }] } })
+   line 2: JSON.stringify({ type: 'user', message: { content: [{ type: 'tool_result', tool_use_id: 'toolu_1', content: OUT }] },
+     toolUseResult: { stdout: OUT } })
+   line 3: the same as line 2 with tool_use_id 'toolu_9'.
+   Then add describe('transcripts and rows') with four cases:
+ a. 'pairs an event with the save call that produced it': scanTranscriptFile(<s1 text>) has length 2 (the toolUseResult copy
+    is not counted); [0].state is 'Paired summary text', [1].state is null, both have band 'low' and 2 alternatives.
+ b. 'a transcript census prints counts and no transcript text': main(['--transcripts', dir], { out, err, trackedFiles: () =>
+    ({ files: [], skippedSource: 0 }), specsRoot: <empty temp dir> }) resolves 0; out contains 'transcripts: files=1 events=2' and
+    'transcripts path data: aligned=0 moderate=0 low=2 infrastructure=0 below50=2 with_alternatives=2 without_alternatives=0 hard_blocks=0 picks=0',
+    not 'transcript events: not measured'; out.join('\n') contains neither 'Paired summary text' nor 'quantum'.
+ c. 'the rows writer leaves every label empty and a null state when no save call pairs': rowsFile in another temp dir; main with
+    ['--transcripts', dir, '--rows-out', rowsFile] and the same deps resolves 0; out contains 'rows written: 2 state_null=1';
+    row 1 equals { id: 'row-0001', path: 'data', target: '001-billing-export', alternatives: ['003-quantum-telemetry',
+    '002-quantum-lattice-orchard'], state: 'Paired summary text', gold: null, label: '' }; row 2 has id 'row-0002', state null, label ''.
+ d. '--rows-out inside the repository is refused before any output': main(['--transcripts', dir, '--rows-out', join(REPO, '.skilled',
+    'skills', 'system-spec-kit', 'SKILL.md', 'rows.jsonl')], { out, err, trackedFiles: () => ({ files: [], skippedSource: 0 }) })
+    resolves 2, out is empty and err equals ['refused: --rows-out path is inside the repository'].
+
+VERIFY (repo root): node --check <S>; node --check <T>; grep -c "it('" <T>
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; the grep prints 16.

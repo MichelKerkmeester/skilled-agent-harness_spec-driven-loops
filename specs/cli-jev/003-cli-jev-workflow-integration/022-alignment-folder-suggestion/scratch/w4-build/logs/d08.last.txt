@@ -1,0 +1,8 @@
+The README names single test files, so T was named once in the README's existing single-vitest-file form, the run command in Section 4 ENTRYPOINTS. The file states no test-file count, so none was raised. Nothing else changed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/tests/README.md (+2/-0)
+EDITS: .skilled/skills/system-spec-kit/runtime/cli/tests/README.md:81-82 added the `npx vitest run` entrypoint for `tests/score-alignment-suggestion.vitest.ts` after the `tests/test-integration.vitest.ts` command, matching the README's existing single-vitest-file form
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/tests/README.md -> `✅ VALID: ... README.md` `Total issues: 0` (exit 0); grep -ci "alignment suggestion\|score-alignment-suggestion" .skilled/skills/system-spec-kit/runtime/cli/tests/README.md -> `1` (exit 0); git diff --stat -- .skilled/skills/system-spec-kit/runtime/cli/tests/README.md -> `1 file changed, 2 insertions(+)` (exit 0)
+BLOCKED REASON: none

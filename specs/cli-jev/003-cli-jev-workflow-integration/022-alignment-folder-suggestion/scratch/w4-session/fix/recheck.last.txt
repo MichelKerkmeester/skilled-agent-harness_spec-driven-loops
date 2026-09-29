@@ -1,0 +1,42 @@
+I'll recheck the four doc fixes read-only. Starting by reading the fixed files and the code they must match.
+
+Fix 1 and 2 text look present. Now checking the code's actual `--rows-out` behavior and reading the remaining two files.
+
+Code confirms the rows writer (line 1497: `low` or `infrastructure` band with `alternatives.length > 0`, empty `label` at line 1508, `--transcripts` required at line 1327). Now checking the catalog index paragraph and the evals README.
+
+All four fixes look present in the text. Now verifying the Description paragraph byte-equality and running the listed validators.
+
+Description matches byte-for-byte and the package check shows no `alignment-suggestion` lines. Running the four document validators, one per file for clean exit codes.
+
+All four document validators pass with 0 issues. One more read-only filter over the package check's full output to confirm none of its 85 warnings reference these four files.
+
+All four fixes verified. Summary of the recheck:
+
+**Fix verdicts**
+1. `closed` - feature file line 9 now `version: 4.4.0.0`; line 20 sentences begin `The script measures` / `It holds`; line 30 `--rows-out` wording matches the code at `evals/score-alignment-suggestion.ts:1495-1517` (filter is `band === 'low' || 'infrastructure'` with `alternatives.length > 0`, `label: ''`; `--rows-out` requires `--transcripts` at 1327-1328).
+2. `closed` - changelog line 19 carries the same corrected `--rows-out` sentence, matching the code.
+3. `closed` - catalog index line 126 is byte-equal to the entry's frontmatter `description` (repr comparison: EQUAL).
+4. `closed` - `evals/README.md` section 2 tree line 42 has the single `score-alignment-suggestion.ts` entry.
+
+**New P0/P1:** none. All four files pass `validate_document.py` with `Total issues: 0` (exit 0); the package check's WARN tier references none of the four files (a grep over its full output for the four paths returns no matches).
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck; no file created, edited or deleted)
+EDITS:
+- .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:9 version 4.3.0.0 -> 4.4.0.0 (verified)
+- .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:20 `S measures`/`S holds` -> `The script measures`/`It holds` (verified)
+- .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:30 and .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md:19 `--rows-out` wording corrected to match code (verified)
+- .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:126 Description now byte-equals entry frontmatter description (verified)
+- .skilled/skills/system-spec-kit/runtime/cli/evals/README.md:42 tree line for score-alignment-suggestion.ts present in section 2 (verified)
+CHECKS:
+- python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package system-spec-kit 2>&1 | grep -E 'tier=|alignment-suggestion' -> `PACKAGE system-spec-kit: WARN tier=warn violations=85` (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md -> `✅ VALID ... Total issues: 0` (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md -> `✅ VALID ... Total issues: 0` (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md --type feature_catalog -> `✅ VALID ... Total issues: 0` (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/evals/README.md -> `✅ VALID ... Total issues: 0` (exit 0)
+- python3 (repr comparison of frontmatter description vs index Description paragraph) -> `EQUAL` (exit 0)
+- python3 .../validate_catalog_package.py --package system-spec-kit 2>&1 | grep -nE 'alignment-suggestion|feature-catalog/feature-catalog\.md|v4\.4\.0\.0|evals/README|score-alignment' -> no matches (exit 1)
+BLOCKED REASON: none

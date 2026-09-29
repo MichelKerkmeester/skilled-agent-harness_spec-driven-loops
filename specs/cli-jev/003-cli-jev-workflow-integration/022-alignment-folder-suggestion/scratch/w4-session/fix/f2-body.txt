@@ -1,0 +1,8 @@
+TASK: correct one literal string in the changelog so it says what the code does. Nothing else changes.
+FILE (edit): `.skilled/skills/system-spec-kit/changelog/v4.4.0.0.md`. Read it first.
+EDIT, line 19: `writes one row per event with an empty` becomes `writes one row per low or infrastructure event that lists alternatives, with an empty`.
+WHY: the rows writer in `runtime/cli/evals/score-alignment-suggestion.ts` (around line 1497) keeps only low or infrastructure events whose alternatives list is not empty.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md
+  git diff --stat -- .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md
+Accept when: only that file changed, 1 line; the validator exits 0.

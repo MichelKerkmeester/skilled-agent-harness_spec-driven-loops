@@ -1,0 +1,35 @@
+
+
+I've read R. Now reading S and T as the brief names them.
+
+S is 847 lines; reading the rest to see section 7's full extent and where section 8 belongs.
+
+Now reading T to see its structure and conventions.
+
+I have R, S, and T in context. Section 8 goes between section 7 (ends at `chooseBaseline`) and section 11 MAIN. Before editing, two quick pre-checks: confirm the divider line character count I must reproduce, and the current git state of the two files.
+
+Both files are untracked new files; S has 18 dividers all exactly 70 chars, T has 21 `it('` lines. Now making the S edit — inserting section 8 between section 7 and section 11.
+
+S edit landed cleanly. (Noting the stale-dist hook message: the brief forbids touching anything but S and T and says the orchestrator runs builds/tests, so I will not run the build.)
+
+Now the two T edits: extend the import list, and append the `keep rule` describe block after the `scorer and gate` block.
+
+Both edits applied. Now running the brief's exact verification checks (plus a divider/line-count sanity check).
+
+All three checks pass, dividers are uniform (20 lines, all 70 chars), and the section order is `7 → 8 KEEP RULE → 11`, with `main` untouched. Baselines recorded pre-edit (S 847 / T 461 lines) confirm the deltas: S +111, T +72 net (plus the one replaced import line).
+
+NOTE: an edit hook reported a stale `@spec-kit/cli` dist. I did not run the build — the brief names only S and T and says the orchestrator runs builds/tests; please rebuild before the test run.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts (+111/-0)
+- .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts (+73/-1)
+EDITS:
+- S:595 inserted section 8 KEEP RULE after section 7: binomTail + binomialCoefficient (multiplicative C), modalPick, VerdictCounts, countVerdict, decideVerdict, verdictLine; main untouched
+- T:9 extended the S import list with binomTail, countVerdict, decideVerdict, modalPick, verdictLine
+- T:463 appended describe('keep rule') with the seven cases a-g
+CHECKS:
+- node --check .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts -> no output (exit 0)
+- node --check .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts -> no output (exit 0)
+- grep -c "it('" .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts -> 28 (exit 0)
+BLOCKED REASON: none

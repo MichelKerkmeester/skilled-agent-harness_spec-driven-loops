@@ -1,0 +1,11 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` (+1/-0)
+EDITS:
+- `.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md:203` inserted the scenario 461 index row directly after the 460 row
+- EDIT 2: no change, the file states no hand-maintained scenario count or scenario id list (line 56: `Scenario counts are derived by the runner from the walked tree; do not hand-maintain them here.`) and `460` appears only in its own index row
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md --type playbook` -> `✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` / `Total issues: 0` (exit 0)
+- `grep -c "alignment-suggestion-measurement" .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` -> `1` (exit 0)
+- `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-spec-kit` -> `PASS package=system-spec-kit tier=FAIL_CLOSED scenarios=87 categories=10 operator=73 routing_gold_excluded=14 violations=0 warnings=1` (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,9 @@
+TASK: add the alignment suggestion measurement to the skill's feature-catalog index.
+FILE (edit): `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md`. Read it first.
+MODEL: its own section `### Compaction recall census` (about line 108 to 118): a `####` Description, Current Reality and Source Files block, then `---`.
+WRITE: one new section `### Alignment suggestion measurement` directly after that section's closing `---`, in the same four-part shape, shorter than or equal to the model section. Source Files says: See [`tooling-and-scripts/alignment-suggestion-measurement.md`](tooling-and-scripts/alignment-suggestion-measurement.md) for full implementation and test file listings. If the file keeps a table of contents, an entry count or a per-category list that names the compaction recall census, add the new entry there the same way. Change nothing else.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md --type feature_catalog
+  grep -c "alignment-suggestion-measurement.md" .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+  git diff --stat -- .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+Accept when: 1 file changed and nothing else; the validator exits 0; the grep prints at least 1; the diff has no deleted line except a count or list line you updated.
