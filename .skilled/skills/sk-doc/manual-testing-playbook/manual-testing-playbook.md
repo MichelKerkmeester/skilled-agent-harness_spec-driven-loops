@@ -31,6 +31,7 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 | 5 | Token Cost Baseline | `token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (4 resources), ceiling (ON_DEMAND load-all). |
 | 6 | Agent Dispatch | `agent-dispatch/` | SD-018, SD-020 | `@markdown` agent dispatch across cli-claude-code and cli-opencode (DeepSeek v4 Pro direct API). EXECUTES real work — distinct from the routing-trace-probe sections. SD-019 was never authored as a separate on-disk scenario — see the §06 note. |
 | 7 | Holdout | `holdout/` | SD-H01 .. SD-H13, less H05, H10 and H12 | Generalization probes excluded from the fitted routing aggregate: natural-phrasing rewrites and independent keyword-blind prompts across SKILL_CREATION / DOC_QUALITY / README_CREATION / CHANGELOG / OPTIMIZATION / FEATURE_CATALOG. The two FLOWCHART probes moved to the design hub with their mode, and SD-H12 retired with the intent it probed. |
+| 8 | Document Validation | `document-validation/` | SD-021 | `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` counts the `file.ext:line` citations in the prose of the tracked skill docs and prints the dead ones with zero model calls by default, while `--jev` and `--deem` each measure one backend behind `--out <dir>`. |
 
 ---
 
@@ -83,6 +84,9 @@ Independent holdouts — authored by an agent blind to the router keyword list:
 - **SD-H13** — `holdout/ind-feature-catalog.md` — FEATURE_CATALOG, keyword-blind.
 
 All 10 carry `stage: holdout`: excluded from the fitted routing aggregate, scored only for the fitted-vs-held-out generalization gap.
+
+### 08 — Document Validation
+- **SD-021** — `document-validation/citation-drift-scan.md` — Citation drift scan with `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs`, zero model calls by default: the default run prints the count lines, the dead citations and the label-gate stop, and a `--deem` run with a stub backend is refused at the health check. `--jev` and `--deem` each need `--out <dir>`.
 
 ---
 

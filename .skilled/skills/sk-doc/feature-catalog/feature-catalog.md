@@ -119,4 +119,18 @@ Flags goal completion criteria that a reader cannot check from the line alone, s
 
 See [`document-validation/goal-criteria-lint.md`](document-validation/goal-criteria-lint.md) for the rules, the line classes and source anchors.
 
+### Citation Drift Scan
+
+#### Description
+
+Reports the dead file-and-line citations in the tracked skill docs, where the target is gone or the cited line sits past its end, so an author can repair the citation before a reader follows it.
+
+#### Current Reality
+
+`cite-drift-scan.mjs` in `sk-doc`'s shared scripts counts the file-and-line citations in the prose of every tracked skill doc at `HEAD`, resolves each against the tracked files and prints one `cite dead: <doc>:<line> -> <target>:<line>` line per dead citation, where the target is missing on disk or the cited line sits past its end. The default run makes zero model calls and writes no file. `--jev` and `--deem` each run one backend and each needs `--out <dir>` so every call is recorded, with the Jev gate and arm first when both are set.
+
+#### Source Files
+
+See [`document-validation/citation-drift-scan.md`](document-validation/citation-drift-scan.md) for the resolution order, the label sample and source anchors.
+
 Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the goal-criteria lint of `sk-create-goal` and the clarify census and leaf route replay of `sk-create-skill`, which ship no catalog of their own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.
