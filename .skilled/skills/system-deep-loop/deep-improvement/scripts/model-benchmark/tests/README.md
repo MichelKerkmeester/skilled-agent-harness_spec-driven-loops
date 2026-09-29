@@ -22,7 +22,7 @@ cd .skilled/skills/system-deep-loop/deep-improvement/scripts && npx vitest run m
 
 Current state:
 
-- The suite is green at **205 tests across 14 files**.
+- The suite is green at **236 tests across 15 files**.
 - Lane B tests (scorer, opt-in 5-dim scorer, grader/runner hardening, remediation) cover the legacy agent-improvement benchmark path.
 - `d4-agreement.vitest.ts` covers the offline D4 agreement measurement: the zero-call census, the label gate, the keep rule and both arms on stub backends.
 - Sweep tests (foundation, runtime, acceptance, stats-CI, isolation, dispatch-envelope) cover the matrix expander, correctness gate, trust verdict, normalized dispatch envelope, and per-cell cwd-isolation.
@@ -47,3 +47,4 @@ Current state:
 | `dispatch-envelope.vitest.ts` | 18 | Normalized dispatch envelope (latency, nullable tokens/cost, OpenCode JSON-stream usage parsing). |
 | `sweep-isolation.vitest.ts` | 15 | Per-cell cwd is under `os.tmpdir()` (not repo root), holds the prompt file, is cleaned up after single + multi-cell sweeps, and a simulated model write does not leak; plus fixture-shape + profile-load coverage for the hard / validation fixture packs. |
 | `d4-agreement.vitest.ts` |  | Offline D4 agreement measurement: the zero-call census, the label gate, the keep rule and both arms on stub backends. |
+| `verdict-fallback.vitest.ts` | 31 | Offline reviewer verdict fallback measurement: the fixture, outputs and reports census, the baselines, the label gate, the Deem and Jev gates and their skips, the keep rule and both arms on stub backends. |

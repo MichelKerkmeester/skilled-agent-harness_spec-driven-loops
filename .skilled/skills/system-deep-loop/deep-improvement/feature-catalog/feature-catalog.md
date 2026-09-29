@@ -1,7 +1,7 @@
 ---
 title: "deep-improvement: Feature Catalog"
 description: "Unified reference combining the evaluation loop, integration scanning, scoring, and model-benchmark mode surfaces that currently ship in deep-improvement."
-version: 1.18.0.0
+version: 1.19.0.0
 ---
 
 # deep-improvement: Feature Catalog
@@ -29,7 +29,7 @@ The skill runs two lanes through one agent. Each category and feature below is t
 | Evaluation loop | 7 features | Lane A | `.skilled/commands/deep/agent-improvement.md`, deep-improvement YAML workflows, `scripts/*.cjs` |
 | Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:agent-improvement`, `.skilled/agents/deep-improvement.md` |
 | Scoring system | 5 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `scorer/score-d4-agreement.cjs` |
-| Model-benchmark mode | 5 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
+| Model-benchmark mode | 6 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`, `lib/score-verdict-fallback.cjs` |
 
 ---
 
@@ -295,7 +295,7 @@ See [`scoring-system/hallucination-grader-agreement.md`](../feature-catalog/scor
 
 **Lane:** Lane B (model-benchmark)
 
-These entries describe the model-benchmark path that benchmarks a model or prompt framework instead of mutating an agent file. They cover the mode switch in the loop host, the model-agnostic dispatcher, the opt-in five-dimension scorer, and the record-level mode field plus the two hardening env gates.
+These entries describe the model-benchmark path that benchmarks a model or prompt framework instead of mutating an agent file. They cover the mode switch in the loop host, the model-agnostic dispatcher, the opt-in five-dimension scorer, the record-level mode field plus the two hardening env gates, and the reviewer-verdict fallback measurement.
 
 ### Mode switch
 
@@ -374,5 +374,21 @@ Turns benchmark reports into quality-delta evidence and blocks promotion on regr
 #### Source Files
 
 See [`model-benchmark-mode/score-delta-benchmark-gates.md`](../feature-catalog/model-benchmark-mode/score-delta-benchmark-gates.md) for full implementation and validation file listings.
+
+---
+
+### Reviewer verdict fallback
+
+#### Description
+
+Measures offline how well a Deem or Jev grader resolves the reviewer outputs the deterministic verdict pattern misses, against operator labels.
+
+#### How It Works
+
+`scripts/model-benchmark/lib/score-verdict-fallback.cjs --profile <path-or-id>`, `reviewer-regression.json` by default, counts each recorded reviewer output as a hit when the deterministic pattern reads a verdict from it and a miss when it does not, adds the operator's labeled misses from `--outputs <file>` and the verdict-method counts of each `--reports <dir>`, and prints the two zero-call baselines with a fixed keep rule. `--jev` and `--deem` each add an arm behind its own gate, and neither arm runs before 12 labeled regex-miss outputs carry at least one label of each kind and the baseline leaves headroom. A run with either switch writes `<out>/report.json`, and a run past the gate also appends `<out>/calls.jsonl`.
+
+#### Source Files
+
+See [`model-benchmark-mode/reviewer-verdict-fallback.md`](../feature-catalog/model-benchmark-mode/reviewer-verdict-fallback.md) for full implementation and validation file listings.
 
 ---
