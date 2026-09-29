@@ -1,0 +1,14 @@
+All four named edits applied, nothing else touched, validator exits 0. Every printed line and number in the new block is grounded in `facts.txt` and `score-stop-hint.cjs` (`rater report not found` :88, `rater report is not JSON` :94, `NO_GOLD_LINE` :29, `SKIP_SUFFIX` :31 + `selectColumns` :211, 28 tests per FACTS). No `verdict` line is claimed, per ruling 5. IDs DLR-057 / F057 match FACTS and the on-disk scenario and catalog entries.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` (+18/-2)
+EDITS:
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:39 scenarios sentence 55 -> 56 deterministic scenarios
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:391 SCORING category intro count 3 -> 4 scenarios
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:438 inserted `### DLR-057 | Stop-hint replay` block (Description, Scenario Contract, Test Execution) right after the DLR-056 block, before `## 11. COVERAGE GRAPH`
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:984 inserted DLR-057 cross-reference row right after the DLR-056 row
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md --type playbook` -> `✅ VALID: .../manual-testing-playbook.md` `Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` -> `1 file changed, 18 insertions(+), 2 deletions(-)` (exit 0)
+BLOCKED REASON: none

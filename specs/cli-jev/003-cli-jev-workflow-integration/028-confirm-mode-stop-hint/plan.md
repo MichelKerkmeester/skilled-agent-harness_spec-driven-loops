@@ -39,17 +39,17 @@ contextType: "implementation"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel
-- [ ] Phase 027's report format is fixed in its build, so the reader has a real shape to parse
-- [ ] The Keep Rule is unchanged since this spec was written
+- [x] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel. Evidence: the build ran under the release; the build commit `97200ea481` sits directly on phase 027's closure commit `c91420429b`, and phase 027 reads `Status | Complete` (`git log` at this closure pass)
+- [x] Phase 027's report format is fixed in its build, so the reader has a real shape to parse. Evidence: 027's final report (`$SP/w4v/027/c2a-out/report.json`, 5,721 bytes, 16 lineages, `gate.label.passed=false`) was read by this phase's session runs; the reader's shapes and refusals are pinned in `V` (`SE` section 2; design section 1)
+- [x] The Keep Rule is unchanged since this spec was written. Evidence: no fix touched `decideVerdict`; the two P1 fixes changed the requalify comparison and its test, and `V` cases 16 to 23 pin the Keep Rule's fixed order and every outcome (`SE` section 3; `scratch/w4-build/logs/c4.check.txt`)
 
 ### Definition of Done
-- [ ] The vitest file exits 0 with at least 10 passed tests and 0 failed
-- [ ] One run on a real 027 report printed each column's verdict, or the phase closed on `stop: rater report has no confirmed gold`
-- [ ] `git status --porcelain` is the same before and after every run, and no workflow YAML changed
-- [ ] `validate_document.py` exits 0 on every skill doc the phase changed (parent D6)
-- [ ] A cross-family review leaves no open P0 or P1 finding, and the runtime vitest suite fails nothing beyond its baseline (parent D5)
-- [ ] Every stop or verdict line is in `goal.md`'s log for the parent's log
+- [x] The vitest file exits 0 with at least 10 passed tests and 0 failed. Evidence: `Tests 28 passed (28)`, exit 0 (`scratch/w4-build/logs/c6g.check.txt`; `SE` section 2)
+- [x] One run on a real 027 report printed each column's verdict, or the phase closed on `stop: rater report has no confirmed gold`. Evidence: the default run and the `--jev --deem` run on 027's final report printed `stop: rater report has no confirmed gold`, exit 0; no verdict line exists (`SE` section 2; facts.txt)
+- [x] `git status --porcelain` is the same before and after every run, and no workflow YAML changed. Evidence: porcelain outside `specs/` was equal before and after every run; `git diff --stat .skilled/commands/deep/assets/` is empty at this closure pass and the commit `97200ea481` touches no workflow YAML (`SE` sections 2 and 5)
+- [x] `validate_document.py` exits 0 on every skill doc the phase changed (parent D6). Evidence: exit 0 on all eight changed docs, including both index roots (`SE` section 2; the doc briefs' checks)
+- [x] A cross-family review leaves no open P0 or P1 finding, and the runtime vitest suite fails nothing beyond its baseline (parent D5). Evidence: the code review printed `VERDICT: FAIL` with 2 P1 and 2 P2, both P1s closed by c6f and c6g and the recheck prints `VERDICT: PASS`; the docs review printed `VERDICT: PASS` with 1 P2 fixed by f1 and a `VERDICT: PASS` recheck, 1 P2 recorded; the suite from the staged state printed 126 files and 2,456 tests all passing against 027's 125 files and 2,428 tests (`SE` sections 2 and 3)
+- [x] Every stop or verdict line is in `goal.md`'s log for the parent's log. Evidence: `stop: rater report has no confirmed gold` is in `goal.md`'s log and `implementation-summary.md` Verification, recorded by this closure pass; no verdict line was printed (`SE` section 2; facts.txt)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -79,7 +79,7 @@ Single-file offline evaluator with exported pure functions for the tests and a `
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-**Who builds (parent D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step and runs the CLI executors by Bash only: Devin `deepseek-v4-1-flash-max` and Pi `llmgateway/mimo-v2.6-pro` at thinking `high`. The orchestrator session verifies each step, gets a cross-family review of the code, fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route, and the docs go through sk-doc (parent D6).
+**Who builds (parent D5, amended on 2026-09-29).** Only Pi writes, with no Claude leaves: DeepSeek V4.1 Flash on Cline at `--thinking xhigh`, then OpenCode Go, then LLM Gateway at `--thinking max`, and `llmgateway/mimo-v2.6-pro` at `high`. The session writes one single-change brief per step, runs the CLI executors by Bash only, verifies each step against its check, gets a cross-family review (a file goes to the family that did not write it), fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route, and the docs go through sk-doc (parent D6).
 
 Each step's observable check:
 

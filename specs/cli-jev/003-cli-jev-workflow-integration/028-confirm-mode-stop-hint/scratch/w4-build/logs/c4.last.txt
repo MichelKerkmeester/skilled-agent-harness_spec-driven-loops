@@ -1,0 +1,22 @@
+Done. Two deviations from the brief's letter must be recorded before the handback — both forced by design §2's stdout contract (keep-rule line + one verdict line per column), which c4 `main` must print:
+
+1. **Four earlier tests could not stay byte-identical and pass.** Tests 11, 12, 14, 15 asserted the pre-c4 exact stdout arrays (`['column legacy: …', 'column sources: …']`). Once `main` prints the keep-rule line and verdict lines (design §2 items 1–3, REQ-004, proof plan 1, sibling output shape), those exact arrays are impossible. I preserved each test's name and intent: they now assert the two formatted `column ` lines via a filter, and 14/15 additionally assert the skip line is last. Tests 1–10 and 13 (byte-identity property, still holds) are untouched.
+2. **Case 16's `p` prints in fixed notation.** Design §2 fixes `formatP = toPrecision(4)` (sibling's exact formatter); `(3.814697265625e-5).toPrecision(4)` is `0.00003815`, so test 16 asserts `p=0.00003815`, not the table's `p=3.815e-5`. The function follows §2 and the sibling; only the table's notation differs.
+3. **Test 26 asserts the stdout half only** (`requalify: rater changed` immediately before `verdict deem:`). Its `report.requalify.deem` half requires c5's writer; no report is written at c4.
+
+Evidence: `node --check` exit 0; 24 test cases present; a direct `node` smoke of the exact fixture arithmetic for cases 16–23 and 26 produced the expected lines (`16 keep: … p=0.00003815…`, `17 kill: … p=0.03125`, `18 precision`, `19 coverage K=20 M=17`, `20 savings`, `21 sign test`, `22 flips`, `23 jev keep … jev_version=jev-1.0 provider=official model=stub-model`, `26 requalify idx 6 → verdict deem:`), plus `gate stop` prints only the stop line. Vitest was not run (orchestrator owns it).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs (+162/-21)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts (+145/-16)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:216 added section 6 VERDICT AND REQUALIFY — `binomialTail`, `decideVerdict`, `formatP`, `raterSuffix`, `verdictLine`, `readStoredReport`, each with JSDoc; renumbered MAIN/EXPORTS/CLI banners to 7/8/9
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:384 `main` prints `KEEP_RULE_LINE` after a passed gate, reads the stored report via `--out`, prints per column the column line, `REQUALIFY_LINE` when a prior model identity differs, and the verdict line with sha12 and rater suffix
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:453 exported the six new functions
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:6 added the verdict/requalify module-header line
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:73 added `sha12Of` helper
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:163,177,206,219 relaxed tests 11/12/14/15 to the `column ` line filter (deviation 1 above)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:227 appended cases 16–23 and 26 (describe `score-stop-hint verdicts`, `score-stop-hint requalify`)
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts -> 24 (exit 0)
+CHECKS: node stdin smoke of cases 16–23, 26 and the gate-stop/default run -> all expected lines matched (exit 0; extra observation, not a listed check)
+BLOCKED REASON: none

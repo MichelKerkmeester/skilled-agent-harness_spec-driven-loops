@@ -1,0 +1,22 @@
+Implementation complete. Summary:
+
+- **S** `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs` — added section 7 REPORT (`hintLine`, `buildReport`, `writeReport`), renumbered MAIN/EXPORTS/CLI to 8/9/10; `main` now accumulates finished-column records (`K/M/hints/W/L/noHint/saved`, `outcome`, `reason`, `p`, exact `verdict` line; `hintLine` on keep; `rater` identity; `requalify`) plus skipped lines and the model-column requalify map, and writes `<out>/report.json` whole only when the gate passed and `--out` was given. Exports extended.
+- **T** `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts` — added `runMainWithEnv` seam helper and the four c5 tests: kept-column hint line, report holds every verdict line, stub `jev`/`cli-deem` never log in either mode, source holds no rater spawn. Vitest not run here per brief (orchestrator runs suites); test count went 24 → 28.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs (+103/-0 net; untracked)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts (+74/-0 net; untracked)
+EDITS:
+- ..runtime/scripts/score-stop-hint.cjs:326 inserted section 7 REPORT (hintLine, buildReport, writeReport); sections renumbered 8 MAIN / 9 EXPORTS / 10 CLI ENTRYPOINT
+- ..runtime/scripts/score-stop-hint.cjs:392-395 main JSDoc widened to name the `--out` report write
+- ..runtime/scripts/score-stop-hint.cjs:458-521 main accumulates column/skip/requalify records, attaches kept-column hintLine, writes report only with `--out`
+- ..runtime/scripts/score-stop-hint.cjs:561-565 exports added hintLine, buildReport, writeReport
+- ..runtime/tests/unit/score-stop-hint.vitest.ts:7 header list extended with the report/no-call-guard entry
+- ..runtime/tests/unit/score-stop-hint.vitest.ts:74-86 added runMainWithEnv (injected env seam)
+- ..runtime/tests/unit/score-stop-hint.vitest.ts:366-422 added tests 24, 25 (report and out) and 27, 28 (no-call guard)
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs` -> no output, exit 0
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts` -> 28, exit 0
+- (supporting) `grep -n "spawn" .../score-stop-hint.cjs` -> no match, exit 1 (backs case 28's static guard)
+BLOCKED REASON: none

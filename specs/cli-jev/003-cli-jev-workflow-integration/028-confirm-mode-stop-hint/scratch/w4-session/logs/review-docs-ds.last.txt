@@ -1,0 +1,17 @@
+**Report: cross-family docs review — phase 028**
+
+Findings:
+- `P2 .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md:39 - the gate-stop sentence is unconditional, but the --out collision refusal is checked first, so an ungated report with --out naming its own folder never prints the stop line - verified: node .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs --rater-report /tmp/dlr-057/stop --out /tmp/dlr-057/stop prints empty stdout, stderr --out <dir> would overwrite the rater report: .../report.json, exit 2; the collision refusal also has no vitest case and no playbook step`
+
+Requirements:
+- `REQ-001 met - no spawn/child_process/network import in the script; the stub-log test passes and no stub log exists in the recorded run (script:17-20, tests:400-423)`
+- `REQ-002 met - missing/unparseable report exit 2 with the named lines; both gate shapes print exactly stop: rater report has no confirmed gold, exit 0 (captured /tmp/dlr-057/stop.txt, nogate.txt; script:82-121, 446-450)`
+- `REQ-003 met - hintFor/countColumn implement t<r, right when gold<=t, saved r-t; tests 6-11 (script:139-174, test lines 143-169)`
+- `REQ-004 met - rule constants and printed line match the docs byte-for-byte; hand-checked W=0,L=5 gives p_loss=0.03125 → kill, W=18,L=1 gives p_win=20/2^19≈3.8e-5 → keep (script:52, 229-260)`
+- `REQ-005 met - default run prints only legacy/sources; skip lines leave the rest byte-identical (captured default.txt/skip.txt/stripped.txt; tests 185-240)`
+- `REQ-006 met - sha12 of the read bytes plus jev_version/provider/model or model/model_commit/source_commit, names matching 027's recorded fields; requalify tested by a three-run round trip (script:279-289, 487; tests 347-366)`
+- `REQ-007 met - hintLine stored only on keep, <t> literal; git status shows .skilled/commands/deep/assets/ untouched (script:338-340, 502)`
+- `REQ-008 met - vitest run tests/unit/score-stop-hint.vitest.ts: 28 passed, exit 0; all eight changed docs VALID on validate_document.py (type-matched); versions/IDs agree: changelog v1.7.0.0, entries 1.7.0.0, F057, DLR-057, catalog 56 entries = 56 §6 blocks, playbook 56 scenarios = 56 DLR blocks, scoring 4=4, hub SKILL.md 3.0.1.0 unchanged`
+- `D1 (dormancy) met - no mode calls jev/cli-deem at all; --jev/--deem only read 027's recorded columns, no key/token/.env is read`
+
+VERDICT: PASS

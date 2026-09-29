@@ -1,0 +1,9 @@
+Both checks pass. Every claim in the sentence is grounded: path and "reads one stop-rater report" from FACTS and the script's own header, the confirm-mode hint wording from the design's `d1` fact line and the script header, "makes no model call in any column" from ruling 4, "changes no gate" from the `d1` fact line. No switch, number or printed line is claimed, so ruling 5 is satisfied. Ruling 3 held: `version:` (3.0.1.0) and the hub changelog are untouched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/SKILL.md (+1/-1)
+EDITS: .skilled/skills/system-deep-loop/SKILL.md:111 inserted one sentence in the §3 Backend paragraph at the seam the step's anchor names (the anchor predates 027's commit, so it is immediately after 027's `score-stop-rater.cjs` clause, modeled on it and on `deep-improvement/SKILL.md`'s appended scorer sentence): the offline `score-stop-hint.cjs` replay, its stop-rater report input, its confirm-mode hint judgment, no model call in any column and no gate change
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/SKILL.md -> `✅ VALID: .skilled/skills/system-deep-loop/SKILL.md` `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/SKILL.md -> `1 file changed, 1 insertion(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: none
