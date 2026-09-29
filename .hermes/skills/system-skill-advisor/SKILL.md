@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through the daemon-backed advisor CLI and stable advisor command ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.13.0.0
+version: 0.14.0.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"
@@ -385,6 +385,7 @@ Package references:
 - `references/scoring/lane-weight-tuning.md` — measured lane-weight change workflow.
 - `references/scoring/validation-baselines.md` — `advisor_validate` baselines and troubleshooting.
 - `runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs`: offline Jev and Deem tie-break eval of the near-tie cluster, with a zero-call census by default.
+- `runtime/scripts/routing-accuracy/score-suggested-order.mjs`: offline Jev and Deem order of the whole near-tie cluster, with each call timed inside a child like the prompt hook's and a zero-call run by default.
 - `references/graph/skill-graph-query-cookbook.md` — worked `skill_graph_query` examples.
 - `references/graph/skill-graph-drift.md` — detect and reconcile SQLite drift from source files.
 - `references/graph/skill-graph-extraction-plan.md` — extraction history and completion record.
