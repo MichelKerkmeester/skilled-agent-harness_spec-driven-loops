@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Language/Stack** | Node.js ES module (`.mjs`), no new dependency |
 | **Framework** | Node file streams split on the newline byte, not `readline`, which also breaks lines at U+2028 (`spec.md` section 6). The built spec-kit `dist` only for `--replay` |
 | **Storage** | None in the repository. One JSON report at the `--out` path the run passes, outside the transcript directory and the repository |
-| **Testing** | Vitest through the package's bounded runner, synthetic fixtures with a canary string, stub `jev` and `cli-deem` (proposed, phase 008) binaries for the zero-call proof |
+| **Testing** | Vitest through the hoisted binary, `npx vitest run` from `runtime/`. The package's bounded runner, `npm test`, fails in this worktree before any test runs, because `runtime/scripts/run-tests.mjs:10` resolves a `runtime/node_modules/.bin/vitest` that does not exist. Synthetic fixtures with a canary string, stub `jev` and `cli-deem` (proposed, phase 008) binaries for the zero-call proof |
 
 ### Overview
 
@@ -44,9 +44,9 @@ The script picks this project's 15 newest compacted transcripts (parent D4), str
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met. Level 1 has no `acceptance-criteria.md`, and all six `goal.md` criteria are ticked, two of them amended at close with logged reasons
+- [x] Tests passing (if applicable). `Tests 24 passed (24)`, exit 0, rerun by the orchestrator session after the review fix
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -65,7 +65,7 @@ A standalone offline census: stream, classify, score, print. It lives in a new `
 - **`parseTranscript()`**: a stream per file, split on the newline byte. Each line is parsed as JSON and its `type` checked against `KNOWN_TYPES`, the 21 record types seen in main-session files on 2026-09-27. A bad line, an unknown type or a boundary missing `compactMetadata` stops that session with `parse error: <file>:<line>: <reason>`. A file under a `subagents/` path segment is classed as a subagent file.
 - **`findBoundaries()`**: `system` records whose `subtype` is `compact_boundary` and that carry `compactMetadata`. It reads `trigger`, `preTokens`, `postTokens`, `durationMs` and `preservedSegment`, plus `isSidechain` and `entrypoint` from the record.
 - **`readStockSummary()`**: the first `user` record with `isCompactSummary` within 30 records after the boundary. Its text is held in memory for scoring only.
-- **`readRecordedBrief()`**: the first `attachment` record within 30 records whose `attachment.type` is `hook_success` and `attachment.hookName` is `SessionStart:compact`. It records presence, the `Recovered Context (Post-Compaction)` marker (`session-prime.ts:98`) and the length in characters. With none, it records the window's other `SessionStart:compact` status.
+- **`readRecordedBrief()`**: the first `attachment` record within 30 records whose `attachment.type` is `hook_success`, whose `attachment.hookName` is `SessionStart:compact` and whose `attachment.command` contains `session-prime`, because several hooks answer that event. It records presence, the `Recovered Context (Post-Compaction)` marker (`session-prime.ts:98`) and the length in characters. With none, it records the window's other `SessionStart:compact` status.
 - **`replayBrief()`**: only under `--replay` and only where no brief is recorded. It imports `buildMergedCompactResult` from the built `dist/hooks/claude/compact-inject.js` and stamps the row with `replay_version`.
 - **`toMessages()`**: rebuilds the records between the previous boundary, or the file start, and this one as the vendored `Message` and `ToolCall` shapes.
 - **Estimator port**: `estimateTokens` (`state.ts:31-41`) and `fitState` (`state.ts:198-307`) from npm `jevctl` 0.2.3, MIT, with a durable "ported from" comment. It prints the staged estimate and stage, or counts a throw. The defaults come from `compact.ts:22-26`: keep threshold 0.5, the newest 6 messages pinned, 25,000 state tokens and a 300-character head.
@@ -100,7 +100,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ### Build Route (parent D5)
 
-A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step above and runs each through a CLI executor by Bash only: Devin `deepseek-v4-1-flash-max`, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh`, or Cursor `grok-4.7-xhigh-fast`. The orchestrator session verifies each result against section 5, gets a cross-family review of the script and test and commits the phase's files path-scoped on worktree 069, with no push or merge to main (parent D7). The script and test follow sk-code's OpenCode route (`sk-code/sk-code-opencode`), per parent D6.
+A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step above and runs each through a CLI executor by Bash only. The operator's roster of 2026-09-28 (parent D5, amended in `3cbe44727e`) is Devin `deepseek-v4-1-flash-max` and Pi `llmgateway/mimo-v2.6-pro`, and the build and its review fix used only those two. The earlier roster also named Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` and Cursor `grok-4.7-xhigh-fast`. The orchestrator session verifies each result against section 5, gets a cross-family review of the script and test and commits the phase's files path-scoped on worktree 069, with no push or merge to main (parent D7). The script and test follow sk-code's OpenCode route (`sk-code/sk-code-opencode`), per parent D6.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -112,13 +112,13 @@ Commands run from the repository root unless a row says otherwise, with `S=.skil
 
 | Check | Command | Expected output |
 |-------|---------|-----------------|
-| Unit cases | from `.skilled/skills/system-spec-kit/runtime`: `npm test -- --run tests/compaction-recall.vitest.ts` | 12 passed, exit 0. The cases: a missing written file gives 1 violation; an unknown type exits 1 with a named error; a malformed line does the same; an empty directory exits 0 with `compactions=0`; a clean session, which carries a raw U+2028 in one text field, gives 0 violations; an oversized state records `fit_throw` and continues; a recorded brief is read and not replayed; a boundary without one takes the replay path with `replay_version`; the report holds no `CANARY-` string; the stub `jev` and `cli-deem` logs stay empty; `--newest-compacted 1` picks the newer of two compacted files and skips a still newer file with no boundary and a file under `subagents/`; `--newest-compacted 5` over two compacted files takes both and its `selection:` line says 2 |
-| No transcripts named | `node $S --out $OUT` | `no transcripts named`, exit 2, no report written |
-| Report inside the transcripts | `node $S --transcripts $NAMED --out $NAMED/r.json` | `refused: report path inside transcript directory`, exit 2 |
+| Unit cases | from `.skilled/skills/system-spec-kit/runtime`: `npx vitest run tests/compaction-recall.vitest.ts`. The planned `npm test -- --run` form fails here before any test runs (section 1) | 12 passed, exit 0, then 24 after the review fix. The review fix added twelve cases: the symlinked script path, five `--out` containment cases, the in-process planted-string case, no transcripts named, `--max-file-bytes`, `partial_tails`, `uncheckable` and `stop: arm may be specified`. The planned cases: a missing written file gives 1 violation; an unknown type exits 1 with a named error; a malformed line does the same; an empty directory exits 0 with `compactions=0`; a clean session, which carries a raw U+2028 in one text field, gives 0 violations; an oversized state records `fit_throw` and continues; a recorded brief is read and not replayed; a boundary without one takes the replay path with `replay_version`; the report holds no `CANARY-` string; the stub `jev` and `cli-deem` logs stay empty; `--newest-compacted 1` picks the newer of two compacted files and skips a still newer file with no boundary and a file under `subagents/`; `--newest-compacted 5` over two compacted files takes both and its `selection:` line says 2 |
+| No transcripts named | `node $S --out $OUT` | `no transcripts named` on stderr, empty stdout, exit 2, no report written |
+| Report inside the transcripts | `node $S --transcripts $NAMED --out $NAMED/r.json` | `refused: report path inside transcript directory` on stderr, exit 2 |
 | Census, zero calls | `PATH="$STUB:$PATH" node $S --transcripts $NAMED --newest-compacted 15 --out $OUT` | A `method:` line, a `scope:` line, a `selection:` line, one row per boundary, exactly one `stop:` line, exit 0 or exit 1 with each stopped session named. `$STUB/jev.log` and `$STUB/cli-deem.log` are empty |
 | Boundary total | an independent parsed count over the 15 files the rows name: split each on the newline byte, parse each line as JSON and count records with `type` `system`, `subtype` `compact_boundary` and `compactMetadata` | The same total as the `scope:` line |
 | No key names | `grep -niE 'api_key\|apikey\|secret\|bearer' $S .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` | No match, exit 1 |
-| Code route | `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall` | Exit 0 (parent D6) |
+| Code route | `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall` | Exit 0 with `Scanned files: 1` (parent D6). The checker skips untracked files, so before the commit it scans nothing, and a check then needs a copy outside any git tree |
 | Skill docs | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <doc>` on each system-spec-kit doc in `spec.md`'s Files to Change | `VALID` and exit 0 on each (parent D6, parent criterion 3) |
 | Code review | a cross-family review of the script and test, run by the orchestrator session | No open P0 or P1 finding (parent D5) |
 | Read-only | `git status --porcelain` | Only the files in `spec.md`'s Files to Change |
