@@ -2,7 +2,7 @@
 name: cli-classifier
 description: "Routes classifier judgment requests to the cli-jev (hosted Jev) or cli-deem (local Deem) transport through mode-registry.json. Holds no packet-local logic."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 <!-- Keywords: cli-classifier, cli-jev, cli-usage, cli-deem, jev, typed judgment, jev-mcp, local classifier, deem, deem model, deem judgment, deem health, noul, choice, score, local deem server -->
@@ -114,6 +114,10 @@ cli-classifier/
 ### Extensions
 
 - `transport-axis`: declares `transports: ["cli-deem", "cli-jev"]`. The per-hub gate enforces the whole transport contract: routingClass `metadata`, `mutatesWorkspace: false`, the forbidden tool set and membership in the axis.
+
+### Offline Measurement
+
+`benchmark/injection-screen/score-injection-screen.mjs` measures offline whether a Jev or Deem `noul` spots text that tries to instruct an agent better than flag-nothing or a fixed lexical screen. Its default run makes zero model calls. `--jev` and `--deem` each run one backend only after that backend's own gate passes. No hook screens fetched content, so no verdict is wired to anything.
 
 ---
 
