@@ -1,0 +1,16 @@
+TASK: move the playbook inventory test's six scenario-count pins from 48 to 49, because the playbook gains one scenario. Test file only.
+F = .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts. Read lines 40-60 first.
+
+Replace these six exact strings, each once, and change nothing else:
+1. line 45: `live 48-scenario corpus` -> `live 49-scenario corpus`
+2. line 50: `'48 deterministic scenario files across 9 categories'` -> `'49 deterministic scenario files across 9 categories'`
+3. line 51: in the string that starts with 'all 48 scenario files are, change 48 to 49 and keep the rest of the string exactly as it is
+4. line 53: `expect(rows).toHaveLength(48);` -> `expect(rows).toHaveLength(49);`
+5. line 54: `.size).toBe(48);` -> `.size).toBe(49);`
+6. line 55: `expect(files).toHaveLength(48);` -> `expect(files).toHaveLength(49);`
+Leave the `24-scenario` / `24 scenarios` negative match on line 52 unchanged.
+
+VERIFY (repo root):
+  grep -c "49" .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts
+  grep -c "48" .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts
+Accept when: only F changed (+6/-6 lines); the first grep prints 6; the second prints 0.

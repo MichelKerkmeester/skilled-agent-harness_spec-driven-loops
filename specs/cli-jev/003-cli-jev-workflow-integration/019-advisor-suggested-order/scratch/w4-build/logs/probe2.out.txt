@@ -1,0 +1,8 @@
+row=rr-iter2-001 wall=1231 status=0 signal=null out={"importMs":176,"advisorMs":1024,"head":"{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Advisor: live; ambiguous: sk-co"}
+row=rr-iter2-002 wall=755 status=0 signal=null out={"importMs":42,"advisorMs":686,"head":"{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Advisor: live; use sk-doc 0.95/"}
+row=rr-iter2-003 wall=816 status=0 signal=null out={"importMs":46,"advisorMs":741,"head":"{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Advisor: live; ambiguous: syste"}
+row=rr-iter2-004 wall=855 status=0 signal=null out={"importMs":66,"advisorMs":759,"head":"{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Advisor: live; ambiguous: sk-co"}
+row=rr-iter2-005 wall=803 status=0 signal=null out={"importMs":49,"advisorMs":724,"head":"{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Advisor: live; ambiguous: syste"}
+row=rr-iter2-006 wall=838 status=0 signal=null out={"importMs":50,"advisorMs":748,"head":"{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Advisor: live; ambiguous: syste"}
+row=rr-iter2-007 wall=803 status=0 signal=null out={"importMs":41,"advisorMs":735,"head":"{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Advisor: live; ambiguous: syste"}
+row=rr-iter2-008 wall=705 status=0 signal=null out={"importMs":47,"advisorMs":629,"head":"{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Advisor: live; ambiguous: sk-do"}

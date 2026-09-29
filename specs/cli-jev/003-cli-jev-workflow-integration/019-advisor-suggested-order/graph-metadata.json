@@ -39,22 +39,28 @@
       "test"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-skill-advisor/SKILL.md",
+      "scratch/w4-build/build-evidence.md",
+      "scratch/w4-build/evidence-tail.draft.md",
+      "scratch/w4-session/session-evidence.md",
+      "scratch/w4-session/p4-deem/calls.jsonl",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs",
       ".skilled/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/system-skill-advisor/README.md",
-      "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
-      ".hermes/skills/system-skill-advisor/SKILL.md",
       "hooks/claude/user-prompt-submit.ts",
-      ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts"
+      "scratch/w4-session/p4.stdout.txt"
     ],
     "entities": [
       {
@@ -88,21 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "score-jev-tiebreak.mjs",
+        "name": "score-suggested-order.mjs",
         "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "name": "score-suggested-order.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts",
         "source": "derived"
       },
       {
@@ -118,6 +118,48 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-tail.draft.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/evidence-tail.draft.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "calls.jsonl",
+        "kind": "file",
+        "path": "scratch/w4-session/p4-deem/calls.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "score-jev-tiebreak.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
         "name": "manual-testing-playbook.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
@@ -130,9 +172,9 @@
         "source": "derived"
       },
       {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/vitest.config.ts",
+        "name": "p4.stdout.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/p4.stdout.txt",
         "source": "derived"
       },
       {
@@ -164,47 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Keep Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Keep Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor marks a near-tie cluster",
     "created_at": "2026-09-29T12:42:32Z",
-    "last_save_at": "2026-09-29T13:53:28.332Z",
+    "last_save_at": "2026-09-29T16:53:07.774Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e22c14a9db4db65a164487d7f2905ac78a547d54bdc508b47785e8dddcb2dbef",
+    "source_fingerprint": "sha256:e6b468ca371f528fade8b78da3553ad9342fcf52bc951b29c9786b4bd5e99d88",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1bf48b479d25b5912c93dc1540e2fac127a9212307fdc5ccd2d71110570af6f2",
-      "plan.md": "f2e6b8abc2dd0ff07bc7f718e0fb8def553f050e4f3467a171dc9401a1ea12ed",
-      "tasks.md": "7e959fe995d907025fafc1bff466f2c12655e80c717c46458dbe3e22ec214d37",
-      "implementation-summary.md": "ba02e9ddcb7d5965481bb901a8848746b233463a16f26e1cdc73ce696be60167"
+      "spec.md": "06da607b276ba8bdca4208a35e0c158fcc433a0d0f3220ea501fa1c625580297",
+      "plan.md": "797782e381f1a76aa71d9cf48aac8bc6c5209ed3a03ccb11f0a262047fac778b",
+      "tasks.md": "914eb40a2bb78e98fb8f0a77d59b34a166f1f687d7c471b91bc25cdcd940d201",
+      "implementation-summary.md": "2edf303f922bec6ef2e2de060511ee039a7a45730964a9702e5ae76aeeb58819"
     },
     "last_active_at": null
   }

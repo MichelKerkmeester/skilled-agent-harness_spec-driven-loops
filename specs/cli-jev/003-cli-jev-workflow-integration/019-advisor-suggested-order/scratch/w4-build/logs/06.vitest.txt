@@ -1,0 +1,35 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime
+
+Unknown option '--bogus'
+--jev and --deem need --out <dir> so every call is recorded
+ ❯ tests/parity/score-suggested-order.vitest.ts (35 tests | 1 failed) 35501ms
+     × times the advisor child on each prompt and reports the latency stop 4857ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/parity/score-suggested-order.vitest.ts > score-suggested-order advisor timing and headroom > times the advisor child on each prompt and reports the latency stop
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/parity/score-suggested-order.vitest.ts:365:22
+    363|     const t = await timeAdvisor(['late a', 'late b'], { childFile: stu…
+    364|     expect(t.n).toBe(2);
+    365|     expect(t.killed).toBe(0);
+       |                      ^
+    366|     expect(t.over2200).toBe(2);
+    367|     expect(t.p95).toBeGreaterThanOrEqual(2300);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 34 passed (35)
+   Start at  16:39:05
+   Duration  35.71s (transform 57ms, setup 21ms, import 65ms, tests 35.50s, environment 0ms)
+

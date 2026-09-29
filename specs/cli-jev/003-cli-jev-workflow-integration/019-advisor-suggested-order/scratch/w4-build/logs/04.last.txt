@@ -1,0 +1,35 @@
+I'll read the two target files and the code skill routing contract first.
+
+Both files read. Now let me check `spawnCall` (for wallMs semantics) and the sk-code routing contract the brief names.
+
+Now let me see `spawnCall` and run the compiled router the skill contract names.
+
+The compiled router resolved `sk-code-opencode` (system-code surface). Let me read that packet's contract, then make the edits.
+
+The route resolves JavaScript/TypeScript evidence — I'll match the file's existing JSDoc and style conventions. Let me check the `Awaited<ReturnType<...>>` convention in this runtime before writing the JSDoc for the async helper.
+
+Conventions confirmed. Now I'll add the three functions to the script, after `childEnv`.
+
+Now the test file — import additions and the new describe block.
+
+
+
+Both files edited. Now running the two verification commands plus a read-only status check to confirm only the two named files changed.
+
+Both acceptance checks pass. Let me get exact line counts for the handback.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+51/-0)
+- .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+30/-0)
+EDITS:
+- score-suggested-order.mjs:329-353 added `timeAdvisor` after `childEnv` (sequential `runTimedChild` per prompt, walls/killed, p50/p95/max/over2200 return)
+- score-suggested-order.mjs:355-365 added `advisorLine` (rounded quantiles, `none` when null)
+- score-suggested-order.mjs:367-378 added `headroomLine` (movable stop, then latency stop on null/over-budget p95; JSDoc notes either line stops both model arms before any call)
+- score-suggested-order.vitest.ts:26-28 added `timeAdvisor`, `advisorLine`, `headroomLine` to the import
+- score-suggested-order.vitest.ts:328-353 added describe 'score-suggested-order advisor timing and headroom' with the three specified its (30_000 ms timeout on the timing it)
+CHECKS:
+- node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> no output (exit 0)
+- node -e "import('./.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs').then((m) => console.log(m.headroomLine(4, 800), '|', m.headroomLine(23, 2201), '|', m.headroomLine(5, 2200)))" -> `no headroom (movable) | no headroom (latency) | null` (exit 0)
+- git status --porcelain -> only the two named files touched by this worker; other listed changes belong to concurrent workers (exit 0)
+BLOCKED REASON: none

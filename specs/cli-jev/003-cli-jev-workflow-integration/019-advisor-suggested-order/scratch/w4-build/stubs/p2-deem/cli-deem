@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "$*" >> "$(dirname "$0")/cli-deem.log"
+case "$1" in health) echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"a","source_commit":"b"}'; exit 0;; esac
+exit 1

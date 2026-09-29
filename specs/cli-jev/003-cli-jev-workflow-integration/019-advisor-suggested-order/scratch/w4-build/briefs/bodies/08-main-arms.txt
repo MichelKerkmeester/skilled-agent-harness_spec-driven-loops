@@ -1,0 +1,20 @@
+TASK: wire the two gates and the two arms into main(), Jev first, each gate once, only when there is headroom, with tests.
+R = .skilled/skills/system-skill-advisor/runtime. Files: S = R/scripts/routing-accuracy/score-suggested-order.mjs and T = R/tests/parity/score-suggested-order.vitest.ts. Read both first, then R/scripts/routing-accuracy/score-jev-tiebreak.mjs lines 1375-1411 and 1489-1506 (jevGate, deemGate; never edit that file).
+
+In S:
+1. Add deemGate and jevGate to the score-jev-tiebreak import (alphabetical) and `const GATE_TIMEOUT_MS = 10000;`.
+2. In main, replace the final `return 0;` (after `out(KEEP_RULE_LINE);`) with:
+   - `let jevResult;` and `let deemResult;`
+   - when headroom is null: armCtx = { out, env: childEnv(env), outDir: values.out, childFile: deps.childFile, timeoutMs: deps.timeoutMs, backoffMs: deps.backoffMs, advisorP50: timing.p50 }. When values.jev is true: gate = jevGate({ out, env, timeoutMs: GATE_TIMEOUT_MS }); when gate.passed, jevResult = await runArm('jev', census, gate, armCtx). Then, when values.deem is true: gate = deemGate({ out, env }); when gate.passed, deemResult = await runArm('deem', census, gate, armCtx). One comment line: Jev runs first, each gate runs once, and a failed gate never starts the other backend.
+   - `return 0;`
+   Add timeoutMs and backoffMs to main's JSDoc deps list. jevResult and deemResult stay unused in this step; a later step writes them to a report.
+
+In T: add `function linesOf(args: string[], deps: object)` that runs main(args, { ...deps, out: (l: string) => lines.push(l) }) and resolves { code, lines }. `const noProvider = () => { const env = { ...process.env }; delete env.JEV_PROVIDER; return env; };` Then describe('score-suggested-order gates and arms in main') with its, each comparing against base = (await linesOf([], { census: censusOf(6), timing })).lines:
+ 1. deemDir = makeBin('cli-deem', `echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"a","source_commit":"b"}'`); linesOf(['--deem', '--out', tmp], { census: censusOf(6), timing, env: { ...noProvider(), PATH: `${deemDir}:${process.env.PATH}` } }) gives code 0 and lines equal to [...base, 'deem arm skipped: stub backend']; cli-deem.log lines are ['health'].
+ 2. jevDir = makeBin('jev', 'case "$1" in --version) echo "jev 0.6.2";; auth) exit 3;; esac'); the same with ['--jev', '--out', tmp] and jevDir first on PATH gives code 0 and lines equal to [...base, `jev: path=${join(jevDir, 'jev')} provider=official`, 'jev arm skipped: no credential']; jev.log lines are ['--version', 'auth status --provider official'].
+ 3. censusOf(4) with ['--jev', '--deem', '--out', tmp] and both of those stub dirs first on PATH: code 0, a 'no headroom (movable)' line, no line starting 'jev' or 'deem', and neither log file exists.
+ 4. Both gates pass: jevDir2 = nodeBin('jev', JEV_STUB) and deemDir2 = nodeBin('cli-deem', DEEM_STUB) first on PATH, linesOf(['--jev', '--deem', '--out', tmp], { census: censusOf(6), timing, env: { ...noProvider(), PATH }, childFile: stubChild(), backoffMs: 10 }): code 0; the lines hold `jev: path=${join(jevDir2, 'jev')} provider=official`; the first line starting 'verdict jev:' comes before the line starting 'deem: health backend=torch', which comes before the first line starting 'verdict deem:'. Timeout 120_000.
+
+VERIFY (repo root): node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+  grep -c "jevGate({ out, env, timeoutMs: GATE_TIMEOUT_MS })\|deemGate({ out, env })" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+Accept when: the same 2 files changed and nothing else; node --check exits 0; grep prints 2.

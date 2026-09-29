@@ -1,0 +1,11 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime
+
+Unknown option '--bogus'
+--jev and --deem need --out <dir> so every call is recorded
+
+ Test Files  1 passed (1)
+      Tests  38 passed (38)
+   Start at  16:45:21
+   Duration  38.33s (transform 59ms, setup 22ms, import 63ms, tests 38.10s, environment 0ms)
+

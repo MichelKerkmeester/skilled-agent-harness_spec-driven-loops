@@ -1,0 +1,12 @@
+TASK: regenerate the advisor skill's two generated leaf files with their own generator, scoped to that one skill. Run one command; edit nothing by hand.
+The skill gained a catalog entry, a playbook scenario and a changelog, so its leaf-manifest.json is stale. The generator writes only .skilled/skills/system-skill-advisor/leaf-manifest.json and .skilled/skills/system-skill-advisor/leaf-aliases.json when scoped with --skill.
+
+1. From the repo root run exactly:
+   node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix --skill system-skill-advisor
+2. Do not run it without --skill, and do not run it for any other skill. Another skill's stale manifest belongs to another worker.
+3. Do not open, edit or reformat either JSON file yourself.
+
+VERIFY (repo root):
+  node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --skill system-skill-advisor | tail -2
+  git status --porcelain -- .skilled/skills/system-skill-advisor/leaf-manifest.json .skilled/skills/system-skill-advisor/leaf-aliases.json
+Accept when: only those 2 files changed; the check prints checked=1 passed=1 failed=0 and exits 0.

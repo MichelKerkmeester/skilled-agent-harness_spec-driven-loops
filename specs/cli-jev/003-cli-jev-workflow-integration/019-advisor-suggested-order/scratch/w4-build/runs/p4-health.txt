@@ -1,0 +1,2 @@
+{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21","source_commit":"3883f79261e5c61d3e8f230cad02b50c6d2b1891"}
+exit=0

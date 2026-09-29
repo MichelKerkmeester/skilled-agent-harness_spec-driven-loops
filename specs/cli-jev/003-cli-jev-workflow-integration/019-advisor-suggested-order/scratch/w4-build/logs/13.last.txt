@@ -1,0 +1,12 @@
+I've read the target file — all six pins are at lines 45, 50, 51, 53, 54, 55 exactly as briefed, with the `24-scenario` negative match on line 52 to leave alone. The hub routes a TypeScript test-file edit to the `sk-code-quality` workflow mode with the `sk-code-opencode` surface bundle; loading those packet contracts before writing.Routing resolved: `.skilled/` TypeScript test edit → `sk-code-quality` gate over the `sk-code-opencode` surface. The gate's relevant constraints here are comment hygiene (no comments added) and in-place-only edits — the brief already pins both. Applying the six disjoint replacements now.All six edits applied. Now re-reading the edited region and running the briefed verification checks from the repo root.STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts (+6/-6)
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:45 `live 48-scenario corpus` -> `live 49-scenario corpus`
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:50 `'48 deterministic scenario files across 9 categories'` -> `'49 deterministic scenario files across 9 categories'`
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:51 `'all 48 scenario files are `PASS`'` -> `'all 49 scenario files are `PASS`'` (line 52 `24-scenario`/`24 scenarios` negative match left unchanged)
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:53 `expect(rows).toHaveLength(48);` -> `expect(rows).toHaveLength(49);`
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:54 `.size).toBe(48);` -> `.size).toBe(49);`
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts:55 `expect(files).toHaveLength(48);` -> `expect(files).toHaveLength(49);`
+CHECKS: `grep -c "49" .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts` -> `6` (exit 0)
+CHECKS: `grep -c "48" .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts` -> `0` (grep exit 1, no matches — expected)
+CHECKS: `git diff --numstat -- <F>` -> `6	6	.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`; `git status --porcelain -- <F>` -> ` M <F>` (exit 0, only F modified)
+BLOCKED REASON: none
