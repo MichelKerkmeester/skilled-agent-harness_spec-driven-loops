@@ -11,10 +11,10 @@
     "claude-fable-5-1": {
       "effortLevel": "medium"
     },
-    "claude-opus-5": {
+    "claude-opus-5-5": {
       "effortLevel": "xhigh"
     },
-    "claude-opus-5-5": {
+    "claude-sonnet-5-5": {
       "effortLevel": "xhigh"
     }
   },
