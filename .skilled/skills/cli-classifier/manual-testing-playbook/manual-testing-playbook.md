@@ -15,7 +15,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds the hub-routing scenarios for `cli-classifier`. The hub registers two modes, both declared `packetKind: "transport"`: `cli-jev`, which runs over the packet folder `cli-usage` and bridges the hosted Jev service, and `cli-deem`, a client for the Deem model served on this machine. The routing questions are small. Does a Jev request resolve `cli-jev`? Does a Deem request resolve `cli-deem`? Do other requests stay out? Each transport's own behavior is covered in its packet: `cli-usage/manual-testing-playbook/` for Jev and `cli-deem/scripts/tests/cli-deem.test.mjs` for Deem. These scenarios do not replace them.
+The walked tree holds the hub-routing scenarios for `cli-classifier` and one measurement scenario for its offline injection screen scorer. The hub registers two modes, both declared `packetKind: "transport"`: `cli-jev`, which runs over the packet folder `cli-usage` and bridges the hosted Jev service, and `cli-deem`, a client for the Deem model served on this machine. The routing questions are small. Does a Jev request resolve `cli-jev`? Does a Deem request resolve `cli-deem`? Do other requests stay out? Each transport's own behavior is covered in its packet: `cli-usage/manual-testing-playbook/` for Jev and `cli-deem/scripts/tests/cli-deem.test.mjs` for Deem. These scenarios do not replace them.
 
 The `CJ-` scenarios came from the retired `cli-jev` hub with the Jev transport. Their two recorded runs sit under `benchmark/reports/`.
 
@@ -29,7 +29,7 @@ The `CJ-` scenarios came from the retired `cli-jev` hub with the Jev transport. 
 
 ### Package Boundaries
 
-- The scenarios validate routing only. They never start the Deem server and never send a judgment to either backend.
+- The hub-routing scenarios validate routing only. `CC-004` runs the injection screen scorer on stub binaries. No scenario starts the Deem server or sends a judgment to either backend.
 - The hub serves compiled routes. The front door answers from the policy pinned in `013-live-activation/activation/cli-classifier/manifest.json`, not from the legacy sentinel.
 
 ---
@@ -122,7 +122,19 @@ Prompt: `cli-jev noul for this question.`
 
 ---
 
-## 7. AUTOMATED TEST CROSS-REFERENCE
+## 7. MEASUREMENTS
+
+### CC-004 | The injection screen scorer runs with zero model calls
+
+Verify the offline injection screen scorer prints its censuses without calling a backend and that failing gates add only their skip lines.
+
+Prompt: `Run the injection screen scorer with fake jev and cli-deem on my PATH and show me it calls neither`
+
+> **Feature File:** [CC-004](measurements/injection-screen-measurement.md)
+
+---
+
+## 8. AUTOMATED TEST CROSS-REFERENCE
 
 | Coverage Area | Automated Or Structural Anchor | Scenario IDs |
 |---|---|---|
@@ -131,10 +143,11 @@ Prompt: `cli-jev noul for this question.`
 | Compiled canary corpus | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json` | none, replayed by the rollout harness |
 | Jev transport behavior | [cli-usage playbook](../cli-usage/manual-testing-playbook/manual-testing-playbook.md) | none, covered by the `JEV-` scenarios |
 | Deem client behavior | [cli-deem tests](../cli-deem/scripts/tests/cli-deem.test.mjs) | none, covered by `node --test` |
+| Injection screen scorer | [score-injection-screen tests](../benchmark/injection-screen/tests/score-injection-screen.test.mjs) | `CC-004` |
 
 ---
 
-## 8. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 9. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -143,3 +156,4 @@ Prompt: `cli-jev noul for this question.`
 | CC-003 | An out-of-domain request resolves nothing here | Hub Routing | [CC-003](hub-routing/out-of-domain-resolves-nothing.md) |
 | CJ-001 | A Jev judgment request resolves mode cli-jev | Hub Routing | [CJ-001](hub-routing/judgment-request-routes-to-transport.md) |
 | CJ-002 | The cli-jev name resolves the Jev transport | Hub Routing | [CJ-002](hub-routing/alias-still-resolves.md) |
+| CC-004 | The injection screen scorer runs with zero model calls | Measurements | [CC-004](measurements/injection-screen-measurement.md) |

@@ -9,7 +9,7 @@ trigger_phrases:
   - "typed judgment routing"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.0
+version: 1.2.0.0
 router_state: stage1-only
 skill_pointer: SKILL.md
 ---

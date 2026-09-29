@@ -71,6 +71,7 @@ The hub registers two modes. The registry lists them and the router picks one, o
 | [`hub-router.json`](./hub-router.json) | Router policy, signals and vocabulary classes | See which phrases pick `cli-jev` or `cli-deem` |
 | [`ROUTER.md`](./ROUTER.md) | The stage-two control document, `stage1-only` | Promote it only with a concrete leaf map |
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the references a mode loads |
+| [`benchmark/injection-screen/`](./benchmark/injection-screen/) | The offline injection screen scorer and its tests | Its default run makes zero model calls. `--jev` and `--deem` each add one backend behind that backend's own gate |
 
 The manifest regenerates when packets change, so read it as a snapshot.
 
@@ -82,6 +83,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 | Release | Entry |
 |---|---|
+| v1.2.0.0 | [`changelog/v1.2.0.0.md`](./changelog/v1.2.0.0.md) |
 | v1.1.0.0 | [`changelog/v1.1.0.0.md`](./changelog/v1.1.0.0.md) |
 | v1.0.0.0 | [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) |
 | v0.2.0.0 | [`changelog/v0.2.0.0.md`](./changelog/v0.2.0.0.md) |

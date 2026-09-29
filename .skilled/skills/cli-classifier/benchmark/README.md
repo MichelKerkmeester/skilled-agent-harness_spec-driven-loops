@@ -29,6 +29,7 @@ The two runs under `reports/` predate this hub's Jev mode. They measured the Jev
 | Path | Contents |
 |---|---|
 | [`reports/`](./reports/) | One folder per run, indexed by `reports/README.md` |
+| [`injection-screen/`](./injection-screen/) | `score-injection-screen.mjs` and its tests: an offline check of whether a Jev or Deem `noul` spots text that tries to instruct an agent. The default run makes zero model calls. `--jev` and `--deem` each run one backend behind that backend's own gate |
 
 ---
 

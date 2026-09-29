@@ -1,7 +1,7 @@
 {
   "name": "cli-classifier",
   "description": "cli-classifier is the single public skill identity for classifier models that return typed judgments. It routes a request to its cli-jev transport (hosted Jev, over the cli-usage packet) or its cli-deem transport (the local Deem server) through mode-registry.json and hub-router.json and holds no packet-local logic. The advisor sees one hub. A transport asks its backend for one typed value and never mutates this workspace.",
-  "version": "1.1.0.0",
+  "version": "1.2.0.0",
   "importance_tier": "high",
   "keywords": [
     "cli-classifier",
