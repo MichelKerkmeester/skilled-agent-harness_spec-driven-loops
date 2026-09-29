@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7292,
+    "missing-frontmatter": 7298,
     "non-yaml-frontmatter": 2,
-    "ok": 12423,
+    "ok": 12436,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23403,
+  "documentsScanned": 23422,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5e87dcc907150c6a567730a56413a7cf2ce56dc5bfc84536b4e69464b6178df3",
+  "manifestHash": "e0dcfc7cd78264d726a016a036431073ac2b3e0e475d4ec3696e2e66171429b1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32429,
+      "ok": 32465,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -232,6 +232,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -11792,6 +11798,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-communication/manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -29570,6 +29582,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/count-clarify-and-stop-at-the-label-gate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31347,6 +31365,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/missing-candidate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/unknown-grader-and-d4-census.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -33716,6 +33740,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -34852,6 +34882,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5e87dcc907150c6a567730a56413a7cf2ce56dc5bfc84536b4e69464b6178df3",
+  "manifestHash": "e0dcfc7cd78264d726a016a036431073ac2b3e0e475d4ec3696e2e66171429b1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10149,8 +10149,14 @@
     "alignment stylistic not behavioral": [
       "alignment stylistic not behavioral"
     ],
+    "alignment suggestion measurement": [
+      "alignment suggestion measurement"
+    ],
     "alignment suggestion plan": [
       "alignment suggestion plan"
+    ],
+    "alignment suggestion scorer": [
+      "alignment suggestion scorer"
     ],
     "alignment suggestion tasks": [
       "alignment suggestion tasks"
@@ -16851,6 +16857,9 @@
     "clarifies validation coverage": [
       "clarifies validation coverage"
     ],
+    "clarify census and label gate": [
+      "clarify census and label gate"
+    ],
     "clarify census plan": [
       "clarify census plan"
     ],
@@ -16859,6 +16868,9 @@
     ],
     "clarify census verdict": [
       "clarify census verdict"
+    ],
+    "clarify default measurement": [
+      "clarify default measurement"
     ],
     "clarify default plan": [
       "clarify default plan"
@@ -17313,6 +17325,9 @@
     "cli classifier 1 1 0 0": [
       "cli-classifier 1.1.0.0"
     ],
+    "cli classifier 1 2 0 0": [
+      "cli-classifier 1.2.0.0"
+    ],
     "cli classifier benchmark": [
       "cli-classifier benchmark"
     ],
@@ -17325,8 +17340,14 @@
     "cli classifier benchmark reports": [
       "cli-classifier benchmark reports"
     ],
+    "cli classifier feature catalog": [
+      "cli-classifier feature catalog"
+    ],
     "cli classifier hub": [
       "cli-classifier hub"
+    ],
+    "cli classifier hub features": [
+      "cli-classifier hub features"
     ],
     "cli classifier hub goal": [
       "cli-classifier hub goal"
@@ -17369,6 +17390,9 @@
     ],
     "cli classifier v1 1 0 0": [
       "cli-classifier v1.1.0.0"
+    ],
+    "cli classifier v1 2 0 0": [
+      "cli-classifier v1.2.0.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -28189,6 +28213,9 @@
     "deem update schedule": [
       "deem update schedule"
     ],
+    "deem whole cluster kill": [
+      "deem whole-cluster kill"
+    ],
     "deem wire contract": [
       "deem wire contract"
     ],
@@ -28985,6 +29012,9 @@
     "deep improvement 1 17 2 0": [
       "deep-improvement 1.17.2.0"
     ],
+    "deep improvement 1 18 0 0": [
+      "deep-improvement 1.18.0.0"
+    ],
     "deep improvement 1 2 0 0": [
       "deep-improvement 1.2.0.0"
     ],
@@ -29332,6 +29362,9 @@
     ],
     "deep improvement v1 17 2 0": [
       "deep-improvement v1.17.2.0"
+    ],
+    "deep improvement v1 18 0 0": [
+      "deep-improvement v1.18.0.0"
     ],
     "deep improvement v1 2 0 0": [
       "deep-improvement v1.2.0.0"
@@ -44686,6 +44719,9 @@
     "hallucination grader": [
       "hallucination grader"
     ],
+    "hallucination grader agreement": [
+      "hallucination grader agreement"
+    ],
     "hallucination grader goal": [
       "hallucination grader goal"
     ],
@@ -47364,8 +47400,14 @@
     "injection screen label tasks": [
       "injection screen label tasks"
     ],
+    "injection screen measurement": [
+      "injection screen measurement"
+    ],
     "injection screen plan": [
       "injection screen plan"
+    ],
+    "injection screen scorer": [
+      "injection screen scorer"
     ],
     "injection screen status": [
       "injection screen status"
@@ -48672,6 +48714,9 @@
     "judge agreement completion criteria": [
       "judge-agreement completion criteria"
     ],
+    "judge agreement mjs": [
+      "judge-agreement.mjs"
+    ],
     "judge agreement plan": [
       "judge-agreement plan"
     ],
@@ -48836,6 +48881,9 @@
     ],
     "l9 sweep disposition": [
       "L9 sweep disposition"
+    ],
+    "label gate": [
+      "label gate"
     ],
     "label task with tag": [
       "label task with tag"
@@ -52341,6 +52389,9 @@
     "masked reply grading": [
       "masked reply grading"
     ],
+    "masked reply label gate": [
+      "masked reply label gate"
+    ],
     "mass deletion guard blocked commit": [
       "mass deletion guard blocked commit"
     ],
@@ -53690,6 +53741,9 @@
     ],
     "meaning judge wiring": [
       "meaning-judge-wiring"
+    ],
+    "measure d4 grader against labels": [
+      "measure d4 grader against labels"
     ],
     "measure event frequency from the log": [
       "measure event frequency from the log"
@@ -58479,9 +58533,6 @@
     "near tie order keep rule": [
       "near-tie order keep rule"
     ],
-    "near tie order not built": [
-      "near-tie order not built"
-    ],
     "near tie order verification": [
       "near-tie order verification"
     ],
@@ -60251,6 +60302,9 @@
     "offline certificate verifier tasks": [
       "offline certificate verifier tasks"
     ],
+    "offline check for model judges": [
+      "offline check for model judges"
+    ],
     "offline cli smoke": [
       "offline CLI smoke"
     ],
@@ -60260,8 +60314,17 @@
     "offline flag for cupt": [
       "offline flag for cupt"
     ],
+    "offline hallucination grader measurement": [
+      "offline hallucination grader measurement"
+    ],
+    "offline hallucination grader test": [
+      "offline hallucination grader test"
+    ],
     "offline jev and deem tie break eval": [
       "offline jev and deem tie-break eval"
+    ],
+    "offline judge agreement": [
+      "Offline judge agreement"
     ],
     "offline listing": [
       "offline listing"
@@ -60280,6 +60343,9 @@
     ],
     "offline review verifier plan": [
       "offline review verifier plan"
+    ],
+    "offline suggested order eval": [
+      "offline suggested-order eval"
     ],
     "offline task query": [
       "offline task query"
@@ -67794,6 +67860,9 @@
     "prompt improver model eligibility": [
       "prompt improver model eligibility"
     ],
+    "prompt injection classifier test": [
+      "prompt injection classifier test"
+    ],
     "prompt injection screen measurement": [
       "prompt injection screen measurement"
     ],
@@ -68748,9 +68817,6 @@
     ],
     "r3 live form test": [
       "r3 live form test"
-    ],
-    "r3 planned phase": [
-      "r3 planned phase"
     ],
     "race safe canunlinkexistingsocket": [
       "race safe canUnlinkExistingSocket"
@@ -72232,6 +72298,9 @@
     ],
     "reply harness rerun": [
       "reply harness rerun"
+    ],
+    "reply judge keep rule": [
+      "reply judge keep rule"
     ],
     "reply scoring harness": [
       "reply scoring harness"
@@ -77473,6 +77542,9 @@
     "score alignment suggestion status": [
       "score-alignment-suggestion status"
     ],
+    "score alignment suggestion ts": [
+      "score-alignment-suggestion.ts"
+    ],
     "score candidate": [
       "score-candidate"
     ],
@@ -77484,6 +77556,9 @@
     ],
     "score clarify default": [
       "score-clarify-default"
+    ],
+    "score clarify default cjs": [
+      "score-clarify-default.cjs"
     ],
     "score clarify default completion criteria": [
       "score-clarify-default completion criteria"
@@ -77532,6 +77607,9 @@
     ],
     "score d4 agreement": [
       "score-d4-agreement"
+    ],
+    "score d4 agreement cjs": [
+      "score-d4-agreement.cjs"
     ],
     "score d4 agreement completion criteria": [
       "score-d4-agreement completion criteria"
@@ -81516,6 +81594,9 @@
     "sk communication 1 3 0 0": [
       "sk-communication 1.3.0.0"
     ],
+    "sk communication 1 4 0 0": [
+      "sk-communication 1.4.0.0"
+    ],
     "sk communication assessment": [
       "sk-communication assessment"
     ],
@@ -81632,6 +81713,9 @@
     ],
     "sk communication v1 3 0 0": [
       "sk-communication v1.3.0.0"
+    ],
+    "sk communication v1 4 0 0": [
+      "sk-communication v1.4.0.0"
     ],
     "sk create agent 1 0 0 0": [
       "sk-create-agent 1.0.0.0"
@@ -82086,6 +82170,9 @@
     "sk create skill 1 3 0 0": [
       "sk-create-skill 1.3.0.0"
     ],
+    "sk create skill 1 4 0 0": [
+      "sk-create-skill 1.4.0.0"
+    ],
     "sk create skill playbook": [
       "sk-create-skill playbook"
     ],
@@ -82100,6 +82187,9 @@
     ],
     "sk create skill v1 3 0 0": [
       "sk-create-skill v1.3.0.0"
+    ],
+    "sk create skill v1 4 0 0": [
+      "sk-create-skill v1.4.0.0"
     ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
@@ -90037,6 +90127,12 @@
     "sufficient fits goal": [
       "sufficient fits goal"
     ],
+    "suggested order eval": [
+      "suggested order eval"
+    ],
+    "suggested order eval verdict": [
+      "suggested order eval verdict"
+    ],
     "suggested order plan": [
       "suggested order plan"
     ],
@@ -90739,6 +90835,9 @@
     "system skill advisor 0 13 0 0": [
       "system-skill-advisor 0.13.0.0"
     ],
+    "system skill advisor 0 14 0 0": [
+      "system-skill-advisor 0.14.0.0"
+    ],
     "system skill advisor 0 2 0": [
       "system-skill-advisor 0.2.0"
     ],
@@ -90861,6 +90960,9 @@
     ],
     "system skill advisor v0 13 0 0": [
       "system-skill-advisor v0.13.0.0"
+    ],
+    "system skill advisor v0 14 0 0": [
+      "system-skill-advisor v0.14.0.0"
     ],
     "system skill advisor v0 2 0": [
       "system-skill-advisor v0.2.0"
@@ -91110,6 +91212,9 @@
     ],
     "system spec kit 4 3 0 0": [
       "system-spec-kit 4.3.0.0"
+    ],
+    "system spec kit 4 4 0 0": [
+      "system-spec-kit 4.4.0.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -91464,6 +91569,9 @@
     ],
     "system spec kit v4 3 0 0": [
       "system-spec-kit v4.3.0.0"
+    ],
+    "system spec kit v4 4 0 0": [
+      "system-spec-kit v4.4.0.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
