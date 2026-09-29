@@ -39,21 +39,28 @@
       "vendored"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "changelog/v4.3.0.0.md",
+      ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/system-spec-kit/changelog/v4.3.0.0.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md",
       "feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md",
       "manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
       "dist/hooks/claude/compact-inject.js",
-      "runtime/scripts/README.md"
+      "runtime/tests/compaction-recall.vitest.ts"
     ],
     "entities": [
       {
@@ -87,6 +94,24 @@
         "source": "derived"
       },
       {
+        "name": "v4.3.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v4.3.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-compaction-recall.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-recall.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
@@ -96,6 +121,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-recall-census.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md",
         "source": "derived"
       },
       {
@@ -175,35 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Session Source",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nobody has measured what a host compaction in this project keeps, so there is no baseline a deletion pass on either backend could be judged against",
     "created_at": "2026-09-27T04:39:31Z",
-    "last_save_at": "2026-09-28T09:22:31.812Z",
+    "last_save_at": "2026-09-29T00:34:58.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d3d62d5e77b31101c7ddb25dab47bbc8ab218018d68d2001a2f6bd0febe0319",
+    "source_fingerprint": "sha256:e4564dc105f59f01ae62271cf4d6fe2c35a24c2ea6357050ca14202ae7ec10f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cc07cf3272519d2698ff1157dab778441f70416bc062b9459d78261e506d93a9",
-      "plan.md": "fe77361b4e6e2290b2d03e77a457e06894110a0b2d3ff8248e88270650f16ff5",
-      "tasks.md": "36d49831aae9421ee981e143eabaad4a796838744f55d6380e8ba687d8ba9dc4",
-      "implementation-summary.md": "8ac6b39db65dddbf84f0c9eae9d573c61fd213501d06cd43cd0de6c7b4ec3f8a"
+      "spec.md": "9271e077e9a147b33316b188ac73afa48125a5580304058ba22bd8c4a53c22de",
+      "plan.md": "2bad841e84a2e7a4bedb91d5393a4399a0b982fe89d8efaa0566f5b0b906e87d",
+      "tasks.md": "ced97f81fe477a1d19101f93ff0319f435c198bcc52504f80d2090292e965534",
+      "implementation-summary.md": "1578a9956003359e73f827e03aa83b4df61b8f32e0f413b584c9b519367897ca"
     },
     "last_active_at": null
   }
