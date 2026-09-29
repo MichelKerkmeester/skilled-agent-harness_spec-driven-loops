@@ -316,6 +316,12 @@ scores and one stop line: whether the stock summary and the recovered-context br
 work after the compaction uses, and whether the vendored staged fit can hold the session at all. It
 changes no hook, setting or transcript.
 
+`runtime/cli/evals/score-alignment-suggestion.ts` measures offline whether a classifier picking one
+of the folders the validator lists when a save scores below 50 would beat the plain baseline. Its
+default run makes no model call and changes no save. `--score` runs alone and stops at the label
+gate: with fewer than 30 labeled rows it prints one stop line and exits 0. `--jev` and `--deem`
+each add a verdict column behind that backend's own check.
+
 ---
 
 ## 5. COMMANDS

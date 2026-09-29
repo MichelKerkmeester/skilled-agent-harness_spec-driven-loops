@@ -119,6 +119,22 @@ See [`tooling-and-scripts/compaction-recall-census.md`](tooling-and-scripts/comp
 
 ---
 
+### Alignment suggestion measurement
+
+#### Description
+
+Measures, with zero model calls on the default run, whether a classifier picking one listed spec folder would beat the plain baseline when a save's alignment score falls below 50, then prints one verdict per opt-in arm.
+
+#### Current Reality
+
+`.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` runs offline: its default run makes zero model calls and starts neither `jev` nor `cli-deem`. Today it stops at its label gate because no operator labels exist yet.
+
+#### Source Files
+
+See [`tooling-and-scripts/alignment-suggestion-measurement.md`](tooling-and-scripts/alignment-suggestion-measurement.md) for full implementation and test file listings.
+
+---
+
 ### Completion-verdict freshness validation
 
 #### Description
