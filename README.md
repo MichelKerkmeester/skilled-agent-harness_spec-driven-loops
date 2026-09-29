@@ -822,9 +822,9 @@ Describe the job and it hands the dispatch to the right one.
 
 #### JUDGMENT TRANSPORT
 
-**`cli-jev`** - typed judgments from the Jev CLI
+**`cli-classifier`** - typed judgments from the Jev CLI or the local Deem model
 
-When a decision needs a number rather than prose, this hub asks the `jev` CLI for one: a probability, a choice between options, a score position or a batch of keyed answers. It returns the value and changes nothing else.
+When a decision needs a number rather than prose, this hub asks a classifier for one: the hosted Jev service through the `jev` CLI (mode `cli-jev`) or the Deem model served on this machine (mode `cli-deem`). It returns a probability, a choice between options, a score position or a batch of keyed answers, and changes nothing else.
 
 - **A value you can act on.** Structured JSON or a bare number, never a paragraph
 - **Pairs with the workflow skills.** The judgment stays read-only, so hand the follow-up edit to a workflow skill
@@ -1348,9 +1348,9 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 - Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`. Stack-independent
 
-**`cli-jev`** - ✅ codebase-agnostic
+**`cli-classifier`** - ✅ codebase-agnostic
 
-- Parent hub for the Jev typed-judgment transport: routes to `cli-usage` for a probability, an option key, a score position or a batch of keyed answers from the `jev` CLI. Stack-independent. Needs the `jev` CLI on PATH
+- Parent hub for typed-judgment transports: routes to `cli-jev` (the `jev` CLI, over the `cli-usage` packet) or `cli-deem` (the local Deem server) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Mode `cli-jev` needs the `jev` CLI on PATH and mode `cli-deem` needs the local Deem server running
 
 **`mcp-tooling`** - ✅ codebase-agnostic
 

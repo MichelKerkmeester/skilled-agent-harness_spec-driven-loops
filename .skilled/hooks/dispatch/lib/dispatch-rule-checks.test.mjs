@@ -9,14 +9,17 @@ import { DISPATCH_SHAPES, matchDispatchShape, resolveDispatchPacket } from './di
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CLI_ORCHESTRATION = path.resolve(HERE, '../../../skills/cli-external-orchestration');
-// The Jev transport left that hub for one of its own. A scan of a single root reads its
-// eight checks as implemented-but-undeclared, so every cli-* packet in either hub is scanned.
-const CLI_JE = path.resolve(HERE, '../../../skills/cli-jev');
-const PACKET_ROOTS = [CLI_ORCHESTRATION, CLI_JE];
+// The Jev transport is a mode of the classifier hub. A scan of a single root reads its
+// eight checks as implemented-but-undeclared, so that hub is scanned too, but only for the
+// packets a dispatch shape governs: its Deem client has no shape, so no preflight reads it.
+const CLI_CLASSIFIER = path.resolve(HERE, '../../../skills/cli-classifier');
+const PACKET_ROOTS = [CLI_ORCHESTRATION, CLI_CLASSIFIER];
+const GOVERNED = new Set(DISPATCH_SHAPES.map((shape) => shape.packetPath));
+const scanned = (root, name) => root === CLI_ORCHESTRATION || GOVERNED.has(`cli-classifier/${name}`);
 const packetSkillDocs = () =>
   PACKET_ROOTS.flatMap((root) =>
     fs.readdirSync(root, { withFileTypes: true })
-      .filter((entry) => entry.isDirectory() && entry.name.startsWith('cli-'))
+      .filter((entry) => entry.isDirectory() && entry.name.startsWith('cli-') && scanned(root, entry.name))
       .map((entry) => path.join(root, entry.name, 'SKILL.md'))
       .filter((md) => fs.existsSync(md)));
 const CO = path.join(CLI_ORCHESTRATION, 'cli-opencode/SKILL.md');
@@ -461,12 +464,12 @@ test('a jev dispatch is governed from the command, and mentions of it are not', 
     ['stdio server started by a shell', 'jev-mcp < request.jsonl'],
   ];
   for (const [label, cmd] of govern) {
-    assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-jev', `should govern (${label}): ${cmd}`);
+    assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-classifier', `should govern (${label}): ${cmd}`);
   }
 
   const doNotGovern = [
     ['prose quoting it', 'echo "triage with jev choice before dispatch"'],
-    ['grep for the text', 'grep -rn "jev noul" .skilled/skills/cli-jev/cli-usage'],
+    ['grep for the text', 'grep -rn "jev noul" .skilled/skills/cli-classifier/cli-usage'],
     ['heredoc documenting it', 'python3 - <<\'PY\'\nshape = "jev score -l low -l high"\nPY'],
     ['node printing it', 'node -e \'console.log("jev run @request.json")\''],
     ['version probe', 'jev --version'],

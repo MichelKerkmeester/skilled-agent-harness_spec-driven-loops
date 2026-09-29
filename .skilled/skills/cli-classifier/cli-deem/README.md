@@ -104,13 +104,13 @@ The model id `deem-0.8-v1` is a launch label that survives every update. The com
 - A script needs one availability answer before it chooses Deem for a run.
 - An operator wants to see which commits the server is running.
 
-For a hosted judgment with a stored key, use the `cli-jev` hub instead. Starting, updating and rolling back the server belongs to `deem-ctl`, described in [`references/deem-ctl-lifecycle.md`](./references/deem-ctl-lifecycle.md).
+For a hosted judgment with a stored key, use this hub's `cli-jev` mode instead. Starting, updating and rolling back the server belongs to `deem-ctl`, described in [`references/deem-ctl-lifecycle.md`](./references/deem-ctl-lifecycle.md).
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `cli-jev` | The hosted Jev transport. Same answer field names, a different backend, no silent failover between the two |
+| `cli-jev` | The hosted Jev transport, a mode of the same hub over the `cli-usage` packet. Same answer field names, a different backend, no silent failover between the two |
 | `cli-classifier` | The hub that routes a Deem request to this packet |
 
 ---

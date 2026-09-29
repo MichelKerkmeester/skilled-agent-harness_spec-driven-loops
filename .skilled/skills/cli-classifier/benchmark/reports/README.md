@@ -24,6 +24,10 @@ Each row below is one run folder. Add a row by hand when a run folder lands, new
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-09-26 | [`2026-09-26--manual-testing-playbook--hub-routing-phrasings/`](./2026-09-26--manual-testing-playbook--hub-routing-phrasings/) | compiled front door, `--hub cli-jev`, policy `033a20d9…` | 3 PASS, 0 FAIL, 0 SKIP; the six advertised Jev phrasings route | **PASS** | `manual-testing-playbook` |
+| 2026-09-20 | [`2026-09-20-hub-routing-baseline/`](./2026-09-20-hub-routing-baseline/) | compiled front door, `--hub cli-jev`, policy `3240ebf5…` | 3 PASS, 0 FAIL, 0 SKIP | **PASS** | `manual-testing-playbook` |
+
+Both runs measured the Jev routing surface before it became mode `cli-jev` of this hub, so they name the retired `cli-jev` hub and its `cli-usage` mode. They stay as recorded.
 
 ---
 

@@ -31,7 +31,7 @@ version: 1.0.0.0
 - **The server is not running.** Every subcommand then exits 4 and changes nothing. Starting the server is the operator's step with `deem-ctl`, never this client's.
 - **The question is a fact this repository can answer.** A grep, a test run or a read settles it. A model opinion about it is a guess.
 - **The request needs an edit, a build or a test.** This packet has no file or process tools. Dispatch a workflow mode and use `cli-deem` only for the judgment that steers it.
-- **A hosted judgment is wanted.** Jev with a stored key is the `cli-jev` hub's transport. The two backends never fail over to each other silently.
+- **A hosted judgment is wanted.** Jev with a stored key is this hub's `cli-jev` mode, over the `cli-usage` packet. The two backends never fail over to each other silently.
 - **A prose answer is the deliverable.** Deem returns no explanation.
 
 ---

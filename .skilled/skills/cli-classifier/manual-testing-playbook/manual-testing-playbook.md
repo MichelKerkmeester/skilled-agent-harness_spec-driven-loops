@@ -1,7 +1,7 @@
 ---
 title: "cli-classifier: Manual Testing Playbook"
-description: "Operator-facing manual validation for cli-classifier hub routing: a Deem request resolves the hub and its one transport, while other requests stay out."
-version: 1.0.0.0
+description: "Operator-facing manual validation for cli-classifier hub routing: a Jev request resolves mode cli-jev, a Deem request resolves mode cli-deem, and other requests stay out."
+version: 1.1.0.0
 ---
 
 # cli-classifier: Manual Testing Playbook
@@ -15,7 +15,9 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds the hub-routing scenarios for `cli-classifier`. The hub registers one mode, `cli-deem`, declared `packetKind: "transport"`. Its routing question is therefore small. Does a Deem request resolve the hub? Do other requests stay out? The client's own behavior is covered by `cli-deem/scripts/tests/cli-deem.test.mjs`, which runs against a fake server. These scenarios do not replace it.
+The walked tree holds the hub-routing scenarios for `cli-classifier`. The hub registers two modes, both declared `packetKind: "transport"`: `cli-jev`, which runs over the packet folder `cli-usage` and bridges the hosted Jev service, and `cli-deem`, a client for the Deem model served on this machine. The routing questions are small. Does a Jev request resolve `cli-jev`? Does a Deem request resolve `cli-deem`? Do other requests stay out? Each transport's own behavior is covered in its packet: `cli-usage/manual-testing-playbook/` for Jev and `cli-deem/scripts/tests/cli-deem.test.mjs` for Deem. These scenarios do not replace them.
+
+The `CJ-` scenarios came from the retired `cli-jev` hub with the Jev transport. Their two recorded runs sit under `benchmark/reports/`.
 
 ### Realistic Test Model
 
@@ -27,15 +29,15 @@ The walked tree holds the hub-routing scenarios for `cli-classifier`. The hub re
 
 ### Package Boundaries
 
-- The scenarios validate routing only. They never start the Deem server and never send a judgment.
-- The hub has no compiled activation manifest, so the compiled front door answers with the legacy sentinel. Stage two then resolves through `hub-router.json`, which registers one signal.
+- The scenarios validate routing only. They never start the Deem server and never send a judgment to either backend.
+- The hub serves compiled routes. The front door answers from the policy pinned in `013-live-activation/activation/cli-classifier/manifest.json`, not from the legacy sentinel.
 
 ---
 
 ## 2. GLOBAL PRECONDITIONS
 
 1. Start at the repository root.
-2. Use a current Node.js runtime so the advisor entry point runs.
+2. Use a current Node.js runtime so the advisor entry point and the compiled front door run.
 3. Confirm the advisor graph includes `cli-classifier` before any scenario runs.
 4. Preserve unrelated working-tree changes.
 
@@ -78,17 +80,17 @@ A scenario is `PASS` only when its preconditions hold, the exact prompts and com
 
 ## 6. HUB ROUTING
 
-### CC-001 | A Deem request resolves cli-classifier
+### CC-001 | A Deem request resolves mode cli-deem
 
-Verify the advisor ranks `cli-classifier` first for a Deem judgment request and the hub's registry resolves `cli-deem`.
+Verify the advisor ranks `cli-classifier` first for a Deem judgment request and the front door routes a single `cli-deem` target.
 
 Prompt: `ask deem for a probability that this incident is urgent`
 
 > **Feature File:** [CC-001](hub-routing/deem-request-routes-to-transport.md)
 
-### CC-002 | A Jev request stays with cli-jev
+### CC-002 | A Jev request resolves mode cli-jev
 
-Verify a request that names the hosted Jev service ranks `cli-jev` and never `cli-classifier`.
+Verify a request that names the hosted Jev service ranks `cli-classifier` first and the front door routes a single `cli-jev` target over `cli-usage`.
 
 Prompt: `ask jev for a probability that this plan ships on time`
 
@@ -96,11 +98,27 @@ Prompt: `ask jev for a probability that this plan ships on time`
 
 ### CC-003 | An out-of-domain request resolves nothing here
 
-Verify a request with no classifier signal produces no `cli-classifier` recommendation.
+Verify a request with no classifier signal produces no `cli-classifier` recommendation and that the front door defers it and the judgment-words holdout.
 
 Prompt: `summarize the release notes for the last sprint`
 
 > **Feature File:** [CC-003](hub-routing/out-of-domain-resolves-nothing.md)
+
+### CJ-001 | A Jev judgment request resolves mode cli-jev
+
+Verify a `jev judgment` request and the six advertised Jev phrasings each route a single `cli-jev` target.
+
+Prompt: `Use jev judgment to decide whether this incident is urgent, and give me the probability.`
+
+> **Feature File:** [CJ-001](hub-routing/judgment-request-routes-to-transport.md)
+
+### CJ-002 | The cli-jev name resolves the Jev transport
+
+Verify a request that names only `cli-jev` routes a single `cli-jev` target through the alias registration.
+
+Prompt: `cli-jev noul for this question.`
+
+> **Feature File:** [CJ-002](hub-routing/alias-still-resolves.md)
 
 ---
 
@@ -108,9 +126,11 @@ Prompt: `summarize the release notes for the last sprint`
 
 | Coverage Area | Automated Or Structural Anchor | Scenario IDs |
 |---|---|---|
-| Hub routing contract | [cli-classifier SKILL.md](../SKILL.md) | `CC-001`, `CC-002`, `CC-003` |
-| Router vocabulary | [hub-router.json](../hub-router.json) | `CC-001`, `CC-003` |
-| Client behavior | [cli-deem tests](../cli-deem/scripts/tests/cli-deem.test.mjs) | none, covered by `node --test` |
+| Hub routing contract | [cli-classifier SKILL.md](../SKILL.md) | `CC-001`, `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
+| Router vocabulary | [hub-router.json](../hub-router.json) | `CC-001`, `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
+| Compiled canary corpus | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json` | none, replayed by the rollout harness |
+| Jev transport behavior | [cli-usage playbook](../cli-usage/manual-testing-playbook/manual-testing-playbook.md) | none, covered by the `JEV-` scenarios |
+| Deem client behavior | [cli-deem tests](../cli-deem/scripts/tests/cli-deem.test.mjs) | none, covered by `node --test` |
 
 ---
 
@@ -118,6 +138,8 @@ Prompt: `summarize the release notes for the last sprint`
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
-| CC-001 | A Deem request resolves cli-classifier | Hub Routing | [CC-001](hub-routing/deem-request-routes-to-transport.md) |
-| CC-002 | A Jev request stays with cli-jev | Hub Routing | [CC-002](hub-routing/jev-request-stays-with-cli-jev.md) |
+| CC-001 | A Deem request resolves mode cli-deem | Hub Routing | [CC-001](hub-routing/deem-request-routes-to-transport.md) |
+| CC-002 | A Jev request resolves mode cli-jev | Hub Routing | [CC-002](hub-routing/jev-request-stays-with-cli-jev.md) |
 | CC-003 | An out-of-domain request resolves nothing here | Hub Routing | [CC-003](hub-routing/out-of-domain-resolves-nothing.md) |
+| CJ-001 | A Jev judgment request resolves mode cli-jev | Hub Routing | [CJ-001](hub-routing/judgment-request-routes-to-transport.md) |
+| CJ-002 | The cli-jev name resolves the Jev transport | Hub Routing | [CJ-002](hub-routing/alias-still-resolves.md) |
