@@ -1,6 +1,6 @@
 {
   "specFolder": "cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm",
-  "description": "Plan an offline measurement of whether one Deem or Jev choice that picks the spec track beats ripgrep and the trigger-index lookup at naming the right track, under a keep rule fixed before the build. Deem is preferred and Jev runs on the operator flag.",
+  "description": "Plan an offline measurement of whether one Deem or Jev choice that picks the spec track beats ripgrep and the trigger-index lookup at naming the right track, under a keep rule fixed before the build. Jev comes first, then Deem, and Jev runs on the operator flag.",
   "keywords": [
     "deem",
     "jev",

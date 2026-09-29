@@ -66,6 +66,7 @@
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      "008-cli-classifier-hub/spec.md",
       "001-deep-research/goal.md",
       "002-advisor-jev-tiebreak-arm/goal.md",
       "003-goal-verifier-jev-shadow/goal.md",
@@ -75,8 +76,7 @@
       "007-classifier-deep-research/goal.md",
       "008-cli-classifier-hub/goal.md",
       "009-cli-jev-hub-move/goal.md",
-      "010-trigger-index-search-fixes/goal.md",
-      "011-spec-validator-fixes/goal.md"
+      "010-trigger-index-search-fixes/goal.md"
     ],
     "entities": [
       {
@@ -190,17 +190,17 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-29T00:52:27.425Z",
+    "last_save_at": "2026-09-29T06:26:02.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c4eeb3f434d9f665fe954c9bb734e9523b0c3f9192cb289defe81b2eed371b74",
+    "source_fingerprint": "sha256:891046c2e57550f1a3f84d5b6bc23645fa67b65a4a94b0ec4c5140f7bfdecec4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0fd92e07541169ad1567e83a727e8134bc9c710fa9b6c77644ed7b8c6c31d17"
+      "spec.md": "7a3f00eb3058a9a958fabc8e07d1873fe8057aee40ea809ab64eb56a2bf660ac"
     },
     "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
     "last_active_at": "2026-09-27T09:37:40.643Z"

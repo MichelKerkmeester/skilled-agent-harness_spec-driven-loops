@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nobody has measured what a host compaction in this project keeps, so there is no baseline a deletion pass on either backend could be judged against",
     "created_at": "2026-09-27T04:39:31Z",
-    "last_save_at": "2026-09-29T00:34:58.457Z",
+    "last_save_at": "2026-09-29T06:11:46.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4564dc105f59f01ae62271cf4d6fe2c35a24c2ea6357050ca14202ae7ec10f7",
+    "source_fingerprint": "sha256:32dae4e48bd481a5e310efc56311e3def9701de50c949a2b591328fd096c3167",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9271e077e9a147b33316b188ac73afa48125a5580304058ba22bd8c4a53c22de",
+      "spec.md": "f33743158236dbb9373fb9ab26cf918408f3b34c64808d818ead2be2acd1ba08",
       "plan.md": "2bad841e84a2e7a4bedb91d5393a4399a0b982fe89d8efaa0566f5b0b906e87d",
       "tasks.md": "ced97f81fe477a1d19101f93ff0319f435c198bcc52504f80d2090292e965534",
       "implementation-summary.md": "1578a9956003359e73f827e03aa83b4df61b8f32e0f413b584c9b519367897ca"

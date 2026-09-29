@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 17: deem-search-narrowing-arm"
-description: "One read-only Node script in system-spec-kit's retrieval package builds a leak-filtered track test set, scores ripgrep and the trigger-index lookup at track level with zero calls, then, behind --deem (preferred) or --jev and each backend's own checks, scores one choice over the 16 spec tracks per column under a keep rule fixed in the spec."
+description: "One read-only Node script in system-spec-kit's retrieval package builds a leak-filtered track test set, scores ripgrep and the trigger-index lookup at track level with zero calls, then, behind --jev or --deem (Jev first, then Deem) and each backend's own checks, scores one choice over the 16 spec tracks per column under a keep rule fixed in the spec."
 trigger_phrases:
   - "track narrowing plan"
   - "score-track-narrowing plan"
@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Testing** | Vitest, the `cli` project of `.skilled/skills/system-spec-kit/vitest.config.ts` |
 
 ### Overview
-`score-track-narrowing.mjs` (proposed) builds questions from packet descriptions, drops placeholders and name leaks, and scores two zero-call baselines at track level with each question's own folder excluded. It prints the baseline and a headroom line first. Behind `--deem` and a passing Deem check, or `--jev` and a passing Jev gate, it asks one `choice` per question in three option orders and prints `verdict <backend>: keep` or `verdict <backend>: stop (<reason>)` per column under the rule in spec REQ-004. Deem is preferred: the plan's live run is `--deem`, and a `--jev` run happens only on the operator's flag. A `verdict deem: keep` from that live run is the operator's keep that unlocks phase 009 (parent goal D4). Any other verdict still closes the phase and goes in `goal.md`'s log for the parent goal.
+`score-track-narrowing.mjs` (proposed) builds questions from packet descriptions, drops placeholders and name leaks, and scores two zero-call baselines at track level with each question's own folder excluded. It prints the baseline and a headroom line first. Behind `--deem` and a passing Deem check, or `--jev` and a passing Jev gate, it asks one `choice` per question in three option orders and prints `verdict <backend>: keep` or `verdict <backend>: stop (<reason>)` per column under the rule in spec REQ-004. Jev first, then Deem (operator, 2026-09-29): a `--jev` run happens only on the operator's flag, and the plan's live run is `--deem`. A `verdict deem: keep` from that live run is the operator's keep that unlocks phase 009 (parent goal D4). (Superseded 2026-09-29: 009 unlocks once 008 is Complete, parent D4 amended. A keep still decides whether a pick may be served, which needs a later phase.) Any other verdict still closes the phase and goes in `goal.md`'s log for the parent goal.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,7 +40,7 @@ contextType: "implementation"
 ### Definition of Ready
 - [x] Phase 010's regenerated index is committed and a scratch rebuild finds 0 missing documents (010 is Complete, so this is a check, not a wait). `--check` exit 0 with 0 stale, and the scratch rebuild matched the committed index (`tasks.md` T001)
 - [x] Phase 008's `cli-deem` has landed, for the Deem arm only. 008 is Complete (`ee3a1b057c`)
-- [x] `jev` 0.6.2 is on `PATH` with a credential for provider P, for a `--jev` run only. Not needed: no `--jev` run was made (`tasks.md` T018)
+- [x] `jev` 0.6.2 is on `PATH` with a credential for provider P, for a `--jev` run only. Used once: before the live `--jev` run of 2026-09-29 `jev --version` printed `jev 0.6.2` and `jev auth status --provider official` exited 0 (`tasks.md` T018)
 - [x] The leak rule, the baseline definitions, the `-q` instruction and the REQ-004 keep rule in `spec.md` are unchanged since the 2026-09-28 amendment. The closure amendment touched only REQ-008's call count and NFR-P02, after the runs
 
 ### Definition of Done
@@ -141,7 +141,7 @@ Each step's observable check:
 | Phase 008 `cli-deem` | Internal | Green, Complete since 2026-09-28 (`ee3a1b057c`) | Steps 4 and 6's `--deem` run wait. Steps 1 to 3 do not |
 | sk-doc modes for the skill docs | Internal | Green | Step 7 waits |
 | Local Deem server | External, operator-run | Green, served per `deem-local.md` | The `--deem` run prints its skip line |
-| `jev` 0.6.2 and a credential for provider P | External, operator-held | Not exercised here, because no `--jev` run was made. Phase 002's session check found `jev auth status --provider official` exit 0 | The `--jev` run prints its skip line |
+| `jev` 0.6.2 and a credential for provider P | External, operator-held | Exercised once, by the live `--jev` run of 2026-09-29 on `jev 0.6.2`, provider `official` and model `jev-1.13.0`. Phase 002's session check found `jev auth status --provider official` exit 0 | The `--jev` run prints its skip line |
 | `rg` on `PATH` or `SPECKIT_RG_BIN` | External | Green | The ripgrep baseline exits 2 |
 <!-- /ANCHOR:dependencies -->
 

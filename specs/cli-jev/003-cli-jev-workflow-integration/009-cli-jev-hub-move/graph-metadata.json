@@ -47,6 +47,7 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/cli-jev/mode-registry.json",
+      "manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/cli-jev/SKILL.md",
       ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
       ".skilled/bin/compiled-route-sync.cjs",
@@ -59,8 +60,7 @@
       ".hermes/skills/cli-usage/SKILL.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/skills/README.txt",
-      "manual-testing-playbook/manual-testing-playbook.md"
+      ".skilled/skills/README.txt"
     ],
     "entities": [
       {
@@ -97,6 +97,12 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".skilled/skills/cli-jev/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -166,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "Build Phase",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Decision D2 of the parent goal puts both classifier transports under one hub, but `cli-jev` is its own hub today with one mode",
     "created_at": "2026-09-27T09:21:55Z",
-    "last_save_at": "2026-09-28T06:59:28.230Z",
+    "last_save_at": "2026-09-29T06:13:46.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd469e0a502d29b6f20ad3079e950fb7ed1a36de7648acf9e25a28e7f5bc1835",
+    "source_fingerprint": "sha256:5bd5e07db7c5b5a4ee96e9988fcd4be4fe4b3c35d1bbacc936f03bb7561881b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "94416b9c03a0770bb1c25cef6f848289d861f888f87cddf31215e18e43b40c43",
-      "plan.md": "6355446effffd7484b2449fc1e671589e93a8b0e543d5fb5583141fb9612f141",
-      "tasks.md": "e52fe40d5bb7683c24681591b79ca1484b0ccea2c95c2779b0d3e9511cc47c68",
+      "spec.md": "0ad2051cd9b20d46563aa55b851dc37411aa02d023b4e45aee86e779448d6d0f",
+      "plan.md": "244c7ef2a9fcc599b808e99754f601a960a44e7abb6dd6e5a2fd98157ee9572a",
+      "tasks.md": "2f1e1e0b1d21ce67cc38a318cefc8526a03adfd14d6aae1b56921f6110292c81",
       "implementation-summary.md": "a52a04ff5f7454b1b7d26d80114584ccc91966cdc9f8c521fb6c3668b92915c7"
     },
     "last_active_at": null
