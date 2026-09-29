@@ -21,7 +21,8 @@
     "system-speckit/041-fix-write-recipe-backfill-flag",
     "system-speckit/042-fix-write-recipe-commit-step",
     "system-speckit/043-fix-write-recipe-workspace-bullet",
-    "system-speckit/044-fix-write-recipe-post-checks"
+    "system-speckit/044-fix-write-recipe-post-checks",
+    "system-speckit/045-fix-write-recipe-verification-gate"
   ],
   "manual": {
     "depends_on": [],
