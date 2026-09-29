@@ -2,7 +2,7 @@
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]"
-version: 1.11.0.36
+version: 1.11.0.37
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 ---
 
@@ -316,6 +316,8 @@ The four primary review dimensions (configured in `assets/review-mode-contract.y
 | **Security** | Vulnerabilities, exposure, trust boundaries | Inputs validated? Credentials exposed? |
 | **Spec-Alignment / Traceability** | Spec vs. implementation fidelity | Code matches spec.md? Planned items present? |
 | **Completeness / Maintainability** | Coverage, dead code, documentation | TODOs resolved? Code self-documenting? |
+
+`scripts/score-residue-flagger.cjs` is the offline residue-flagger measurement: it counts finding tables and resolvable citations across committed review documents, its default run is a census that spawns no backend call and writes no file, `--jev` and `--deem` are the only switches that call a backend, and it adds no column to any review table.
 
 ### Lifecycle + Reducer Contract
 
