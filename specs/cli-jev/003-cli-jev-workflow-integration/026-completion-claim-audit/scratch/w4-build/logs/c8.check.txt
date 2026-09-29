@@ -1,0 +1,20 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ runtime/tests/completion-claim-audit.vitest.ts (23 tests) 19070ms
+     ✓ deem gate happy: a healthy backend and the planned gate open the arm path  1359ms
+     ✓ verdict keep: 30 matching calls against 25 regex hits keep the column  1304ms
+     ✓ verdict kill: five losses with no win kill the column  1750ms
+     ✓ verdict stop (margin): two net correct calls sit under the ten-point margin  1521ms
+     ✓ verdict stop (coverage): 26 measured rows stop the arm at the coverage floor  1497ms
+     ✓ jev gate happy: the pinned version and a credential open the arm path  3640ms
+     ✓ jev gate edge: a rejected credential skips the arm and leaves the census byte-identical  317ms
+     ✓ payload gate edge: without --accept-payload the jev arm is skipped and deem still runs  1316ms
+     ✓ verdict Jev stop (flips): three reruns that flip 2-1 on every row stop the jev arm  3349ms
+     ✓ stored-report requalify: a report from another commit pair prints the requalify line  2287ms
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  19:44:19
+   Duration  19.58s (transform 77ms, setup 51ms, import 78ms, tests 19.07s, environment 0ms)
+

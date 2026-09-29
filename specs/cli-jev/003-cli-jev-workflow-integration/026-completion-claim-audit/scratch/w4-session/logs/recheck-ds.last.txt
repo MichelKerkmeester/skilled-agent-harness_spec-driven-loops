@@ -1,0 +1,19 @@
+Recheck complete. Both fixes verified against `score-completion-claims.mjs`.
+
+**Fix 1 — allowlist claim (`.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md:40`): closed** — `isAllowedOutputString` (score-completion-claims.mjs:350-352) allows exactly claim words (`OUTPUT_LABELS = new Set(CLAIM_WORDS)`, line 314), this run's row ids, and `/^[0-9a-f]{64}$/` lowercase hex digests (line 317). `main` builds `census` (1182), calls `hasFreeText(census, { ids: ... })` once (1185) and prints `stop: census void (free text in output)` (1186) before the first census line prints (1189); the post-census Deem health line (`deemGate`, line 690, called at 1244) never passes through the guard. The doc's two sentences match the code exactly, including the explicit carve-out for post-census lines.
+
+**Fix 2 — tree line (`.skilled/skills/system-spec-kit/runtime/scripts/README.md:35`): closed** — the line now reads `` `-- score-completion-claims.mjs  # Audit of the completion-claim detector, zero-call by default``. Backends are spawned only inside the `values.jev`/`values.deem` blocks (1217, 1243), so a default run makes no model call; this matches the file's own inventory row (README.md:49) and the catalog overview.
+
+**New P0/P1 in the two edited files: none** — the rest of the edited paragraph also holds: `report.json` is written only for `--deem`/`--jev` (1276-1294), and exits are `0` for census/skip/stop (1187, 1295) and `2` for the four refused-command-line classes (1125-1180).
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck; no file edited, created or deleted)
+EDITS: none — rechecked `completion-claim-audit.md`:40 (allowlist claim vs mjs:314-317, 350-362, 1182-1189, 1244) and `README.md`:35 (tree line vs mjs:1217, 1243)
+CHECKS: `grep -n "hasFreeText\|census void\|free text" score-completion-claims.mjs` -> `361:export function hasFreeText`, `1185: if (hasFreeText(census ...`, `1186: out('stop: census void (free text in output)')` (exit 0)
+CHECKS: `read` mjs:300-429 -> `OUTPUT_LABELS = new Set(CLAIM_WORDS)`, `SHA256_PATTERN = /^[0-9a-f]{64}$/`, allowlist ternary confirmed (exit 0)
+CHECKS: `read` mjs:1098-1311 -> census built 1182, guard 1185-1188 before first print 1189; Deem health at 690 via call 1244; report/exit paths confirmed (exit 0)
+CHECKS: `read` both doc files -> named edits present at the named lines, surrounding text byte-consistent (exit 0)
+BLOCKED REASON: none

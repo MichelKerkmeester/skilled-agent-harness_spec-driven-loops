@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 26: completion-claim-audit"
-description: "Measure offline, on turn texts the operator names and labels, how often the completion-evidence sentinel's claim regex fires on a turn that never claimed completion or misses one that did, and whether a Jev or Deem noul reads a completion claim more accurately than the regex. A zero-call census prints the regex's fires and per-word counts first and stops at a label gate of 30 labeled turns. Planned, released 2026-09-29."
+description: "Measure offline, on turn texts the operator names and labels, how often the completion-evidence sentinel's claim regex fires on a turn that never claimed completion or misses one that did, and whether a Jev or Deem noul reads a completion claim more accurately than the regex. A zero-call census prints the regex's fires and per-word counts first and stops at a label gate of 30 labeled turns. Built and closed at its label gate on 2026-09-29, commit `1a0fb2ea33`."
 trigger_phrases:
   - "completion claim audit"
   - "completion claim regex false fire"
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -104,9 +104,9 @@ Owner of every path below: `system-spec-kit`. The build follows that owner's `ru
 | `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` | Create | Census, per-word counts, label gate, both arms and the per-column verdicts. Proposed name |
 | `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` and `runtime/tests/completion-claim-audit-fixtures/` | Create | Synthetic rows and labels, never real conversation text, plus stub `cli-deem` and `jev` cases. Proposed names |
 | `.skilled/skills/system-spec-kit/runtime/scripts/README.md` | Modify | One inventory row naming the script, its zero-call default and its two switches |
-| `.skilled/skills/system-spec-kit/SKILL.md` | Modify | One sentence beside the completion-evidence sentinel's mention naming the offline audit (parent goal D6) |
+| `.skilled/skills/system-spec-kit/SKILL.md` | Modify | One Quick Reference Commands row after `Alignment suggestion measurement` naming the offline audit at version 4.5.0.0 (parent goal D6; `SKILL.md` has no completion-evidence sentinel mention, so sk-doc placed the row there) |
 | `.skilled/skills/system-spec-kit/README.md` | Modify | One line naming the script and its switches (parent goal D6) |
-| `.skilled/skills/system-spec-kit/changelog/v<next>.md` | Create | The next version file after the newest at build time (`v4.3.0.0.md` at planning), through `sk-create-changelog` |
+| `.skilled/skills/system-spec-kit/changelog/v<next>.md` | Create | The next version file after the newest at build time (`v4.5.0.0.md`, next after phase 022's `v4.4.0.0.md`), through `sk-create-changelog` |
 | `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/<entry>.md` and `feature-catalog/feature-catalog.md` | Create and Modify | One catalog entry and its index row beside `compaction-recall-census.md`, through `sk-create-feature-catalog` |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/<scenario>.md` and `manual-testing-playbook/manual-testing-playbook.md` | Create and Modify | One scenario covering the census on synthetic rows and a stub-backend skip, plus its index row, through `sk-create-manual-testing-playbook` |
 | `.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs` | Read only | `detectCompletionClaim` and `COMPLETION_CLAIM_PATTERN` are imported unchanged |

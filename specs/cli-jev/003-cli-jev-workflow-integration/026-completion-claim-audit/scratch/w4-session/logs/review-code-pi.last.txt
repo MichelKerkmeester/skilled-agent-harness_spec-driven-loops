@@ -1,0 +1,26 @@
+SKILL ROUTING: hook brief (ambiguous sk-code 0.95 vs system-spec-kit 0.94, both pass) → read-only code review, no artifact write; Comment hygiene directive checked — no violations in either scoped file. Ran the phase's suite: `npx vitest run tests/completion-claim-audit.vitest.ts` → 23 passed, 0 failed.
+
+P2 .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:1185 - the free-text guard runs only over the census object, whose sole strings are row ids, and `stringLeaves` (:324) skips keys, so it can never fire and no later printed value is guarded - a run's `deem: found=<health stdout>` line (:696) and the verdict/regex lines print without passing the allowlist the design promises "before any line or file".
+
+P2 score-completion-claims.mjs:232 - `firstClaimWord` matches substrings, not the pattern's `\b` words - a silent row labeled `yes` whose tail ends "...affixed to the wall" prints `regex missed claims: 1 (by word: fixed=1)` although no claim word appears.
+
+P2 .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts:1 - no case runs an arm switch below the label gate or any stop exit, so `deem arm skipped: label gate` (script:1248), `jev arm skipped: label gate` (:1226) and every `arm stopped:` line are untested - `--deem` with 0 labels, or a stub exiting 3 on `noul`, prints them today.
+
+P2 specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch/w4-session/notes.md:1 - the review brief's session-notes file does not exist; the session's runs live in `scratch/w4-session/docs/facts.txt` - `find scratch/w4-session` lists no notes.md.
+
+REQ-001 met - no-switch run prints census, per-word counts, regex errors, margin/keep/power and one gate line; stubs log nothing, no file written (default-run test, facts.txt).
+REQ-002 met - detector and pattern imported from the sentinel (script:41), first-word counts on the 400-char tail; 40-char slice scan of every row finds nothing on stdout.
+REQ-003 met - false fires, missed claims, per-word split and accuracy print from labels with zero calls (labels-happy test).
+REQ-004 met - bad claim value and unknown id exit 2 naming the row; gate floors 30/5; labels SHA-256 printed; no code path writes a label file.
+REQ-005 met - coverage → kill → margin → sign test → jev flips fixed in `decideVerdict`, exact BigInt tails; hand check W=5 L=0: P(X≥5|5)=1/32=0.03125; W=5 L=3: 93/256=0.3633, 219/256=0.8555 — matches the tests.
+REQ-006 met - Deem arm only behind `--deem` after `cli-deem health`; four skip reasons; skip leaves the census byte-identical; server never started.
+REQ-007 met - identity line, exact `jev 0.6.2` pin, `auth status --provider P` exit 0, three skip lines, P threaded to test and every judgment.
+REQ-008 met - `--accept-payload` gate with Deem still running without it (test); secret grep empty; `--out` inside repo exits 2 before any call.
+REQ-009 met - fixed QUESTION verbatim as `-q`, trimmed tail on closed stdin, 0.5 threshold, Deem once, Jev three with modal call and no cache.
+REQ-010 met - cost lines before each arm's first call, calls.jsonl fields and exit table per spawn, `--out` mandatory before any call.
+REQ-011 met - commit pair / version+provider+model recorded per column; `requalify:` prints before the verdict on a differing stored pair (test).
+REQ-012 met - 23 passing cases cover every case the acceptance criteria names, both backends stubbed, every test asserts output or artifacts.
+REQ-013 not checked - skill docs not written yet; outside this code review.
+D1 met - neither switch spawns anything; each arm runs only behind its own switch and passing gate; either failing changes nothing; no key read or passed.
+
+VERDICT: PASS

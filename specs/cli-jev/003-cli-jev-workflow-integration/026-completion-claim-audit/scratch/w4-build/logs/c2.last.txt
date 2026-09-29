@@ -1,0 +1,22 @@
+All checks pass. Step 2 is implemented on disk and re-read.
+
+**What changed**
+
+- **S** — new section `5. OUTPUT GUARD` (C's guard shape, `score-compaction-recall.mjs:1389-1452`): `OUTPUT_LABELS`, `SHA256_PATTERN`, exported `stringLeaves` / `hasFreeText`, private `isAllowedOutputString`; `MAIN` renumbered to 6 and its `@returns` names the void outcome; `main` now checks the whole census object before any line is printed and prints `stop: census void (free text in output)` if a string falls outside ids / fixed labels / hex digests. Only strings are leaves; counts are numbers by type. The trip path exits 0 because §2's exit table admits only 0 and 2 ("No other code") and says stops exit 0 — C's void uses 1, so this is the one deliberate divergence from C, flagged for the orchestrator.
+- **T** — `default run` added: exit 0, census line, both stub logs empty, and no 40-character window of any row in the run's fixture appears on stdout. Earlier functions and tests untouched.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs (+62/-0 this step; 236 lines total)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts (+20/-0 this step; 156 lines total)
+EDITS: S:108-167 inserted "5. OUTPUT GUARD" (OUTPUT_LABELS, SHA256_PATTERN, exported stringLeaves + hasFreeText, private isAllowedOutputString, C:1389-1452 shape); MAIN renumbered to 6
+EDITS: S:173 main @returns now names the guard-void outcome
+EDITS: S:212-218 main checks hasFreeText(census, {ids}) before any line; void prints `stop: census void (free text in output)` and returns 0 — §2 permits only 0/2 and says stops exit 0, so C's void code 1 is not imported (flagged)
+EDITS: T:137-155 added `default run` on census-happy: exit 0, `rows: 12 fires: 10`, both stub logs empty, no 40-char window of the fixture rows on stdout
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs -> (no output) (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts -> 3 (exit 0)
+CHECKS: extra node --experimental-strip-types --check .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts -> (no output) (exit 0)
+CHECKS: extra node .../score-completion-claims.mjs --rows .../census-happy.jsonl -> `rows: 12 fires: 10` + words line, 0 of 40-char fixture windows on stdout (exit 0)
+CHECKS: extra imported hasFreeText: clean census false; planted row-text string true; string listed among ids allowed
+BLOCKED REASON: none
+```

@@ -1,0 +1,17 @@
+Done. The scenario doc is written at `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md`, shaped exactly like the MODEL `compaction-recall-census.md` (frontmatter `title`/`description`/`version`, sections `1. OVERVIEW` through `5. SOURCE METADATA`, same H3 layout under `3. TEST EXECUTION`).
+
+Facts and provenance:
+- Printed lines, switches and exit behavior come from `score-completion-claims.mjs` and FACTS. No `verdict` line is claimed anywhere (FACTS line 32, ruling 5).
+- `rows: 12 fires: 10` and the `words:` line were confirmed by running the script on `tests/completion-claim-audit-fixtures/census-happy.jsonl` exactly as the doc's command 3 does, with the doc's stub `cli-deem`/`jev` first on `PATH`. That run printed 11 census lines ending `stop: fewer than 30 labeled rows`, exit 0, and wrote no stub log. The `--deem` run printed the same lines plus `deem arm skipped: stub backend`, exit 0, and its stub log held exactly `cli-deem health`. `git status --porcelain | diff` printed nothing.
+- Scenario ID 462, `version: 4.5.0.0` per orchestrator ruling 2. The index row is untouched, it belongs to the sibling brief.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md (+101/-0)
+EDITS: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md:1 created the 462 scenario: frontmatter (title, description, version 4.5.0.0), `1. OVERVIEW`, `2. SCENARIO CONTRACT`, `3. TEST EXECUTION` (Prompt, Commands, Expected, Evidence, Pass / Fail, Failure Triage), `4. SOURCE FILES`, `5. SOURCE METADATA`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md -> `✅ VALID: ...completion-claim-audit.md` / `Document type: playbook_feature` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md -> no output (new untracked file; `git status --porcelain` prints `?? .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md`) (exit 0)
+CHECKS: doc command 3 (dry run, stubs first on PATH) -> `rows: 12 fires: 10` ... `stop: fewer than 30 labeled rows` (exit 0), and `find /tmp/cca-462-stub -name '*.log' -print` -> no output
+CHECKS: doc command 5 (dry run) -> same census lines then `deem arm skipped: stub backend` (exit 0), and `find /tmp/cca-462-stub -name '*.log' -exec cat {} \;` -> `cli-deem health`
+CHECKS: git status --porcelain | diff /tmp/cca-462-before.txt - -> no output (exit 0)
+BLOCKED REASON: none

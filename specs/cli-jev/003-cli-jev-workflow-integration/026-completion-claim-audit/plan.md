@@ -38,16 +38,16 @@ The script works in two slices. Slice 1 makes no model call: it runs the sentine
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The operator released this phase on 2026-09-29 (parent goal D3, amended by the "Bind and release" answer), so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel
-- [ ] The Keep Rule and the fixed `-q` in `spec.md` section 4 are unchanged since this plan, and no model run has happened
-- [ ] T002 has recorded the runtime vitest baseline for the sentinel's three suites and the pre-run `git status --porcelain`
+- [x] The operator released this phase on 2026-09-29 (parent goal D3, amended by the "Bind and release" answer), so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel. Evidence: the build ran under the release; the build commit `1a0fb2ea33` sits directly on phase 025's build commit `d657558a2e`, and phase 025 reads `Status | Complete` (`git log` at this closure pass)
+- [x] The Keep Rule and the fixed `-q` in `spec.md` section 4 are unchanged since this plan, and no model run has happened. Evidence: the default run prints the `keep rule:` line and the power line, and every run used the logging stubs, so no model was called (`SE` section 2)
+- [x] T002 has recorded the runtime vitest baseline for the sentinel's three suites and the pre-run `git status --porcelain`. Evidence: the recorded baseline is the runtime root suite, 108 files and 1,305 tests before against 109 files and 1,328 tests after, with the same failing-name list, and `git status --porcelain` was equal before and after (`SE` section 2)
 
 ### Definition of Done
-- [ ] Every REQ in `spec.md` section 4 meets its acceptance criteria, or is listed as waiting on the label gate
-- [ ] The new vitest file exits 0 with at least 16 passed, and the sentinel's three existing suites fail nothing beyond T002's baseline
-- [ ] The census counts are recorded in `goal.md`'s log, and so is a verdict line or the label gate's `stop:` line
-- [ ] Cross-family review leaves no open P0 or P1 finding (parent goal D5)
-- [ ] `validate_document.py` exits 0 on every skill doc changed (parent goal D6), and `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] Every REQ in `spec.md` section 4 meets its acceptance criteria, or is listed as waiting on the label gate. Evidence: both cross-family reviewers mark REQ-001 to REQ-012 met after the P1 fix and the recheck (`SE` section 3), and the live verdict runs wait at the label gate, listed in `implementation-summary.md`
+- [x] The new vitest file exits 0 with at least 16 passed, and the sentinel's three existing suites fail nothing beyond T002's baseline. Evidence: `Tests 23 passed (23)`, and the runtime root suite holds the same failing names before and after (`SE` section 2)
+- [x] The census counts are recorded in `goal.md`'s log, and so is a verdict line or the label gate's `stop:` line. Evidence: the counts and `stop: fewer than 30 labeled rows` are in `goal.md`'s log, recorded by this closure pass (`SE` section 2)
+- [x] Cross-family review leaves no open P0 or P1 finding (parent goal D5). Evidence: the code review prints `VERDICT: PASS` with 4 P2; the docs review prints `VERDICT: FAIL` with 1 P1 and 2 P2, fix f1 closes the P1, and the recheck prints `VERDICT: PASS`; 3 P2 findings are recorded and not chased (`SE` section 3)
+- [x] `validate_document.py` exits 0 on every skill doc changed (parent goal D6), and `validate.sh --strict` on this phase prints `RESULT: PASSED`. Evidence: exit 0 on all eight changed docs (`SE` section 2), and `validate.sh --strict` prints `RESULT: PASSED`, run by this closure pass (results in `implementation-summary.md` Verification)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -83,7 +83,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 4. **Docs.** The scripts README row, then system-spec-kit's `SKILL.md`, `README.md`, changelog, feature catalog and playbook through sk-doc.
 5. **Runs and review.** Past the label gate, one live `--deem --out` run, a `--jev` run only on the operator's flag and acceptance, then cross-family review and the parent's commit.
 
-Who builds (parent goal D5): a fresh Opus 5.5 xhigh build orchestrator sends single-change briefs to Devin `deepseek-v4-1-flash-max` and Pi `llmgateway/mimo-v2.6-pro` at thinking `high`, verifies each result and gets the code reviewed by a model of another family. P0 and P1 findings are fixed, and P2 findings are recorded.
+Who builds (parent goal D5, amended by the operator on 2026-09-29): only DeepSeek V4.1 Flash and MiMo v2.6 Pro write, with no Claude leaves. The session ran the single-change briefs for the code on DeepSeek V4.1 Flash through Cline at `--thinking xhigh` and the doc briefs on Pi `llmgateway/mimo-v2.6-pro` at `high`, verified each result itself and had the code and docs reviewed by a model of another family. P0 and P1 findings are fixed, and P2 findings are recorded.
 <!-- /ANCHOR:phases -->
 
 ---

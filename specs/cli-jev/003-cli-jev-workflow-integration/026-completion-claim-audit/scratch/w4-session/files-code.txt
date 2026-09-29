@@ -1,0 +1,2 @@
+.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs
+.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts
