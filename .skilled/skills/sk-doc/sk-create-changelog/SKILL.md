@@ -1,17 +1,17 @@
 ---
 name: sk-create-changelog
-description: Author global or packet-local changelogs in the v4 narrative style, with topology detection, versions, voice enforcement, omission rules, and release notes.
+description: Author global or packet-local changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
 
 # create-changelog
 
-`create-changelog` is the changelog-authoring workflow packet of the `sk-doc` family. It creates global component changelog files under `.skilled/changelog/{component}/v{VERSION}.md` or packet-local nested changelogs under a spec packet's `changelog/` folder, depending on source topology.
+`create-changelog` is the changelog-authoring workflow packet of the `sk-doc` family. It writes a global component changelog under `.skilled/changelog/{component}/v{VERSION}.md`, or a packet-local nested changelog under a spec packet's `changelog/` folder, depending on the source topology.
 
-The executable contract lives here: resolve the work source, detect global vs packet-local output, calculate the version when global versioning applies, generate content from the canonical format, validate, then write the file. Use `assets/changelog-template.md` as the shared global changelog template and the `references/` set (routed by `references/README.md`) only for supplementary worked examples or edge cases.
+This file is the executable contract: resolve the source, detect the output mode, calculate the version, generate, validate and write. `assets/changelog-template.md` owns what an entry says and how it reads. The `references/` set, routed by `references/README.md`, holds worked examples and edge cases.
 
 ---
 
@@ -19,29 +19,24 @@ The executable contract lives here: resolve the work source, detect global vs pa
 
 ### Activation Triggers
 
-Use this workflow when the task involves:
+Use this workflow to:
 
-1. Creating a global component changelog for `.skilled/changelog/{component}/v{VERSION}.md`.
-2. Creating a packet-local nested changelog for a spec folder or phase child.
-3. Running or supporting `/create:changelog`.
-4. Resolving a changed spec folder, component hint, or recent git history into a changelog target.
-5. Calculating the next four-part semantic version for a global changelog.
-6. Preparing GitHub release notes from the generated global changelog content.
+1. Create a global component changelog at `.skilled/changelog/{component}/v{VERSION}.md`.
+2. Create a packet-local nested changelog for a spec folder or phase child.
+3. Run or support `/create:changelog`.
+4. Resolve a changed spec folder, component hint or recent git history into a changelog target.
+5. Calculate the next four-part version for a global changelog.
+6. Prepare GitHub release notes from a generated global changelog.
 
 Keyword triggers: `create changelog`, `/create:changelog`, `changelog`, `changelog entry`, `release notes`, `global changelog`, `packet-local changelog`, `nested changelog`, `since the last version`, `--bump`, `--release`, `vX.Y.Z.B`.
 
 ### When NOT to Use
 
-Use another `sk-doc` packet when:
-
-1. The user only wants a generic release plan with no file output.
-2. The target is a README. Use `create-readme`.
-3. The target is an agent, command, benchmark package, flowchart, feature catalog, manual testing playbook, or skill. Use `create-agent`, `create-command`, `create-benchmark`, `create-flowchart`, `create-feature-catalog`, `create-manual-testing-playbook`, or `create-skill`.
-4. The user wants to audit, validate, score, or optimize an existing changelog. Use `create-quality-control`.
-5. The work source is too ambiguous to resolve to a spec folder, component hint, or recent git history.
-6. The user asks for Git branch, commit or PR work, or for release mechanics beyond the `--release` tag and GitHub release.
-
-Use `sk-git` for Git workflow ownership. This packet may prepare release notes when `/create:changelog skilled --release` is requested. The tag and GitHub release themselves run in the command YAMLs' release step (§8), and only for the `skilled` release line.
+1. A release plan with no file output.
+2. A README (`create-readme`), agent, command, benchmark, flowchart, feature catalog, manual testing playbook or skill. Each has its own `create-*` packet.
+3. Auditing, scoring or optimizing an existing changelog (`create-quality-control`).
+4. A source too ambiguous to resolve to a spec folder, a component hint or recent git history.
+5. Branch, commit or PR work and release mechanics beyond `--release`, which `sk-git` owns. The tag and GitHub release run in the command YAMLs' release step (section 8), and only for the `skilled` release line.
 
 ---
 
@@ -49,31 +44,20 @@ Use `sk-git` for Git workflow ownership. This packet may prepare release notes w
 
 ### Family Boundary
 
-This is a nested workflow packet under `sk-doc`. It owns changelog authoring only. The single advisor identity lives at the `sk-doc` hub root, so never add packet-local `graph-metadata.json`.
-
-### Output-Mode Routing
-
-Route the resolved work source to one of two output modes before generating content:
-
-1. **Global component mode** -- write to `.skilled/changelog/{component}/v{VERSION}.md` with four-part semantic versioning when the source resolves to a component hint, git history, or a non-phased spec folder without an existing `changelog/`.
-2. **Packet-local nested mode** -- write through the spec-kit nested generator into the packet `changelog/` folder when `--nested` is set, or when the spec folder is a phase child, has direct child phase folders, or already has a `changelog/` folder.
-
-The full detection and target-resolution logic lives in HOW IT WORKS and TOPOLOGY AND TARGET RESOLUTION below.
+This is a nested workflow packet under `sk-doc` and owns changelog authoring only. The single advisor identity lives at the `sk-doc` hub root, so never add a packet-local `graph-metadata.json`.
 
 ### Router Resilience
 
-This packet routes by source topology and the resulting global or packet-local output mode. It does not use runtime keyed resource discovery through `references/<key>/` because its references are flat.
+The packet routes by source topology to one of two output modes, global component or packet-local nested (section 6). Its references are flat, so it uses no `references/<key>/` discovery.
 
-- Load optional markdown resources only after resolving them under this packet and confirming they exist.
-- Treat `references/README.md` as the fallback route map when source topology or output mode is unclear.
-- Ask for the missing source type, target component or packet, or version intent instead of silently loading no resources.
-- Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
+- Load an optional resource only after resolving it under this packet and confirming it exists.
+- Treat `references/README.md` as the fallback route map when the topology or output mode is unclear.
+- Ask for the missing source type, target or version intent instead of silently loading nothing.
+- Add a `references/<key>/` runtime-key router only if the packet gains keyed subdirectories.
 
 ### Smart Router Pseudocode
 
-For this flat-reference packet, the canonical resilient router discovers resources at call
-time, guards and loads only what exists, scores the two output modes, and returns a
-disambiguation checklist rather than silently loading nothing:
+The resilient router discovers resources at call time, loads only what exists, scores the two output modes and returns a disambiguation checklist rather than loading nothing:
 
 ```python
 from pathlib import Path
@@ -149,31 +133,16 @@ def route_changelog_request(request):
 
 ## 3. REQUIRED INPUTS
 
-At least one source input is required:
-
-| Input | Required | Source meaning |
+| Input | Required | Meaning |
 | --- | --- | --- |
-| `source_type` | Yes | One of `spec_folder`, `component`, or `git_history` |
-| `spec_folder` | When `source_type = spec_folder` | Path to the spec folder to summarize |
-| `component_hint` | When `source_type = component` | Component name or keyword to match against discovered changelog folders |
-| `version_bump` | Optional | One of `major`, `minor`, `patch`, `build`, or `auto` (default) |
-| `--nested` | Optional | Forces packet-local nested changelog mode |
-| `--release` | Optional | After a `skilled` release entry is written, tags the version and publishes the GitHub release with the entry as its body (§8). Any other component skips the release |
+| `source_type` | Yes, resolved before writing | `spec_folder`, `component` or `git_history` |
+| `spec_folder` | When `source_type = spec_folder` | The spec folder to summarize |
+| `component_hint` | When `source_type = component` | A name matched against the discovered changelog folders |
+| `version_bump` | Optional, default `auto` | `major`, `minor`, `patch`, `build` or `auto` |
+| `--nested` | Optional | Forces packet-local nested mode |
+| `--release` | Optional | After a `skilled` release entry is written, tags the version and publishes the GitHub release with the entry as its body (section 8). Any other component skips the release |
 
-Input handling rules:
-
-1. `source_type` must resolve before writing.
-2. `version_bump` defaults to `auto`.
-3. Changelog root defaults to `.skilled/changelog/` for global output.
-4. Version format is `v{MAJOR}.{MINOR}.{PATCH}.{BUILD}`.
-5. Initial global version is `v1.0.0.0` when no prior version exists.
-6. Dates use `YYYY-MM-DD` when date output is needed.
-
-Confidence rules from the source workflow:
-
-1. Proceed normally at 80-100 percent confidence with citable source evidence.
-2. Proceed cautiously at 40-79 percent confidence and document assumptions.
-3. Stop and ask with A/B/C options below 40 percent confidence.
+Global output lives under `.skilled/changelog/`. Versions read `v{MAJOR}.{MINOR}.{PATCH}.{BUILD}`, the first one is `v1.0.0.0` and dates use `YYYY-MM-DD`. Between 40 and 79 percent confidence in the source or target, proceed and record the assumptions. Below 40 percent, stop and ask with A/B/C options.
 
 ---
 
@@ -181,21 +150,7 @@ Confidence rules from the source workflow:
 
 ### Global Component Changelog
 
-Global changelogs live at:
-
-```text
-.skilled/changelog/{component}/v{VERSION}.md
-```
-
-Resolve `{component}` as a lowercase kebab-case segment matching `^[a-z0-9]+(?:-[a-z0-9]+)*$`, or as `{hub}/{link}` when the folder is a hub, with each segment matching that pattern. Reject ambiguous component hints rather than emitting a guessed or underscore-bearing directory. The `v{VERSION}.md` filename is an exact version contract and is not slug-normalized.
-
-Global mode uses four-part semantic versions:
-
-```text
-v{MAJOR}.{MINOR}.{PATCH}.{BUILD}
-```
-
-Version bump rules:
+A global entry is written to `.skilled/changelog/{component}/v{VERSION}.md`. `{component}` is a lowercase kebab-case segment matching `^[a-z0-9]+(?:-[a-z0-9]+)*$`, or `{hub}/{link}` when the folder is a hub, with each segment matching that pattern. Reject an ambiguous hint rather than emit a guessed or underscore-bearing directory. The `v{VERSION}.md` filename is an exact version contract and is never slug-normalized.
 
 | Bump | Calculation | Source trigger intent |
 | --- | --- | --- |
@@ -204,50 +159,33 @@ Version bump rules:
 | `patch` | `{MAJOR}.{MINOR}.{PATCH+1}.0` | Incremental improvement, bug fix, refactor, docs, cleanup |
 | `build` | `{MAJOR}.{MINOR}.{PATCH}.{BUILD+1}` | Hotfix, typo, same-day build on an already-published version |
 
-Auto detection order:
-
-1. Use the explicit `--bump` flag first when present.
-2. Check `spec.md` title and purpose for change-type keywords.
-3. Check git commit messages for conventional commit prefixes.
-4. Default to `patch` if no clear signal exists.
-5. If the calculated file already exists, increment the build segment until unique.
+Auto detection takes the explicit `--bump` flag first, then change-type keywords in the `spec.md` title and purpose, then conventional commit prefixes. With no clear signal it defaults to `patch`. If the calculated file already exists, increment the build segment until the path is unique.
 
 ### Packet-Local Nested Changelog
 
-Packet-local changelogs are a separate output mode. They do not use global component folders or four-part release versioning.
+Packet-local changelogs use no global component folder and no four-part version. A root spec folder writes to `changelog/changelog-<packet>-root.md`, and a phase child writes to `../changelog/changelog-<packet>-<phase-folder>.md`. `<packet>` and `<phase-folder>` are validated kebab-case segments. Keep the fixed `changelog-` prefix and `-root.md` suffix, and reject a slug that cannot be resolved without collision.
 
-Nested output paths from the shared template:
-
-1. Root spec folders write to `changelog/changelog-<packet>-root.md`.
-2. Phase child folders write to `../changelog/changelog-<packet>-<phase-folder>.md`.
-
-`<packet>` and `<phase-folder>` are validated lowercase kebab-case segments. Preserve the fixed `changelog-` prefix and `-root.md` suffix, and reject an input whose semantic slug cannot be resolved without collision.
-
-Nested mode uses the spec-kit generator and templates:
+Nested mode writes through the spec-kit generator, whose templates are `.skilled/skills/system-spec-kit/templates/changelog/root.md` and `phase.md` beside it:
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write
 ```
 
-Canonical nested templates are `.skilled/skills/system-spec-kit/templates/changelog/root.md` and `.skilled/skills/system-spec-kit/templates/changelog/phase.md`.
-
 ---
 
 ## 5. CHANGELOG FORMAT CONTRACT
 
-Read `assets/changelog-template.md` before generating global changelog content. It defines the two-tier narrative format, the voice rules, the omission decision-aid, and the conciseness caps. The canonical exemplar every generated changelog must be able to sit beside is `.skilled/changelog/skilled/v4.0.0.0.md`.
+Read `assets/changelog-template.md` before generating global content. It owns the compact and expanded shapes (section 2), what to leave out and the say-it-once rule (section 3), voice and length (section 4) and format selection (section 5). Every entry must be able to sit beside the canonical exemplar, `.skilled/changelog/skilled/v4.0.0.0.md`, without looking out of place.
 
-### Shared Format Facts
+The contract in one pass:
 
-The shared template states:
+1. Frontmatter first, then an optional editorial title H1, then the summary narrative. No version header, backlink or version-date line.
+2. Compact under 10 reader-visible changes when the release is neither major nor breaking: summary, `## What's New at a Glance` and `## Upgrade`, with `## Why This Release` only when the summary does not say why.
+3. Expanded for 10 or more changes, a major bump or any breaking change: opening narrative, `## Why This Release`, `## What's New at a Glance`, topical H2 sections with benefit-led H4 items and `## Upgrade Notes`.
+4. A spec-folder blockquote, `> Spec folder: `{path}` (Level {N})`, when the release has a spec folder.
+5. Content chosen by reader impact and each fact said once. No file, test or schema tables unless the numbers are the story.
 
-1. Global changelog files open with the frontmatter block the Frontmatter Contract below defines, then the editorial title when the release has one (the exemplar's shape), then the summary narrative. No version header, no backlink, no version-date line.
-2. The summary leads with why the release matters, not technical stats.
-3. When the release has a spec folder, the spec folder line is a blockquote: `> Spec folder: `{path}` (Level {N})`.
-4. Compact format is a lean narrative: summary, at-a-glance bullets, Upgrade. Add a short Why This Release section when the motivation is not obvious.
-5. Expanded format is the full v4 narrative: opening narrative, Why This Release, What's New at a Glance, topical H2 sections with benefit-led H4 story items, and Upgrade Notes.
-6. Files Changed tables, test-metric tables and schema tables are not default sections. A table appears only when the numbers themselves are the story (the omission rules in the template govern this).
-7. Use compact format under 10 changes when the release is not major and has no breaking change. Use expanded format for 10 or more changes, a major bump, or any breaking change.
+When a source such as an older command snippet conflicts with the template, follow the template, write the narrative format and record the mismatch rather than inventing a hybrid.
 
 ### Frontmatter Contract
 
@@ -261,77 +199,9 @@ A global entry must be as findable as a spec document, so its frontmatter block 
 | `importance_tier` | `"normal"` |
 | `contextType` | `"general"` |
 
-Identity phrases name the entry the way a reader asks for it. A skill entry declares `<component> v<version>` and `<component> <version>`, where `<component>` is the `name:` in the `SKILL.md` of the folder that holds the entry's changelog folder, never a `{hub}/{link}` target. The deep-loop runtime has no `SKILL.md` and is `deep-loop-runtime`. A Skilled release entry declares `v<version> release notes` and `skilled v<version>`. A topic phrase is 2 to 6 words from the entry's own text that name what changed. It carries no version number, and it never fits any release the way "bug fixes" or "documentation updates" would. A component entry may keep a `version:` key after the five.
+Identity phrases name the entry the way a reader asks for it. A skill entry declares `<component> v<version>` and `<component> <version>`, where `<component>` is the `name:` in the `SKILL.md` of the folder that holds the entry's changelog folder, never a `{hub}/{link}` target. The deep-loop runtime has no `SKILL.md` and is `deep-loop-runtime`. A Skilled release entry declares `v<version> release notes` and `skilled v<version>`. A topic phrase is 2 to 6 words from the entry's own text that name what changed. It carries no version number and never fits any release the way "bug fixes" would. A component entry may keep a `version:` key after the five.
 
 Packet-local entries take their block from the spec-kit nested templates, and the nested generator derives their identity phrase from the output path.
-
-### Compact Format
-
-Required shape:
-
-```markdown
-{Summary paragraph: 1-3 sentences. What the release does and why it matters.}
-
-> Spec folder: `{path}` (Level {N}) (only when the release has a spec folder)
-
-## What's New at a Glance
-
-- **{The change, stated as a short sentence.}** {One or two plain sentences on what it means for the reader.}
-
-## Upgrade
-
-{Migration steps, or "No migration required."}
-```
-
-### Expanded Format
-
-Required shape:
-
-```markdown
-{Opening narrative: 1-5 paragraphs, plain prose, no headers.}
-
-> Spec folder: `{path}` (Level {N}) (only when the release has a spec folder)
-
-## Why This Release
-
-{The motivation in one to three short paragraphs, or bullets with bold lead-ins stating the practical gain.}
-
-## What's New at a Glance
-
-- **{The theme, stated as a short sentence.}** {One or two plain sentences on what changed.}
-
----
-
-## {Topical Domain}
-
-{Optional 1-2 sentence introduction.}
-
-#### {Benefit-led heading, usually 2-7 words}
-
-{One to three flowing paragraphs, seven at most: what was broken, what changed, why it matters.}
-
-&nbsp;
-
-#### {Next heading}
-
-{Same pattern. Inline **Breaking:** markers where a change breaks something.}
-
----
-
-## Upgrade Notes
-
-- **Adopt.** {renames and new things to use}
-- **Repoint.** {moved paths}
-- **Drop.** {removed surfaces}
-```
-
-### Section Naming
-
-Name H2 sections for the domain they change, the way the exemplar names sections `Spec Kit`, `Safer Git`, `Documentation as a System`. Pick one to five domains per release. A release the size of the exemplar legitimately spans more, provided every domain earns its section. Do not use fixed change-type labels (`New Features`, `Bug Fixes`) when a domain name says more. The template's old fixed vocabulary (`Search`, `Saving Memories` and similar) is retired.
-
-### Source Contract Mismatch
-
-The auto workflow YAML previously carried older snippets that required `# v{VERSION}`, a version-date header, and `###` highlight headings. Those snippets are reconciled with this contract. When any source nevertheless conflicts with `assets/changelog-template.md`, follow the template, write in the narrative format, and record the mismatch rather than inventing a hybrid format.
 
 ---
 
@@ -339,121 +209,71 @@ The auto workflow YAML previously carried older snippets that required `# v{VERS
 
 ### Mode Detection
 
-When `source_type = spec_folder`, read these files when present:
+For a spec folder, read `implementation-summary.md` first and `spec.md` for the title, purpose and level. Read `tasks.md` only to confirm what shipped. Then pick the output mode:
 
-1. `{spec_folder}/implementation-summary.md` as the primary source.
-2. `{spec_folder}/tasks.md` for completed tasks.
-3. `{spec_folder}/spec.md` for title, purpose, requirements, and level.
+1. `--nested` present: nested mode.
+2. The folder is a phase child, has direct child phase folders or already has `changelog/`: nested mode.
+3. Otherwise: global mode.
 
-Then detect output mode:
-
-1. If `--nested` is present, use nested mode.
-2. Else if the spec folder is a phase child, has direct child phase folders, or already has `changelog/`, use nested mode.
-3. Else use global mode.
-
-When `source_type = component`, use the component hint, recent commits, and component file patterns. This is global mode.
-
-When `source_type = git_history`, use recent git log and diff stats. This is global mode.
+A component hint or git history source is always global mode, built from recent commits and the files they touched.
 
 ### Global Component Discovery
 
-Discover component folders dynamically from the actual repository. Do not hardcode the component table.
+Discover component folders from the repository at run time with `ls -d .skilled/changelog/*/ 2>/dev/null | sort`, never from a hardcoded table. Then resolve:
 
-```bash
-ls -d .skilled/changelog/*/ 2>/dev/null | sort
-```
+1. Each folder is a plain component name, such as `sk-doc` or `system-spec-kit`, with no numeric prefix. One folder is not a skill: `skilled` is the framework release line, with one entry per Skilled release.
+2. Match changed paths against folder names by whole path segment, never by substring.
+3. Match `.skilled/skills/{name}/**` to the folder named `{name}`, and `.skilled/commands/**` or `.skilled/agents/**` to the folder that owns them.
+4. Resolve a hub to one of its links, never to the hub folder. A hub is a real folder other than `skilled`, such as `sk-doc` or `sk-code`, holding one link per member packet plus `parent`, the hub's own changelog. `ls -l .skilled/changelog/{hub}/` lists them. A path under `.skilled/skills/{hub}/{packet}/` resolves to the link whose target is `{packet}/changelog`. Any other path under the hub, and a hint that names the hub, resolve to `{hub}/parent`. A hint that names a member by its link, its packet folder or `{hub}/{link}` resolves to that link.
+5. Match `component_hint` against folder names exactly.
+6. Use spec path segments as a tiebreaker.
+7. Resolve to `skilled` only when `component_hint` names it. A changed path never selects it, because the operator chooses a framework release.
+8. If nothing matches, do not invent or default a folder. Pause and ask which component the changelog belongs to.
 
-Resolution strategy:
+Then choose the target:
 
-1. Treat each discovered folder as a plain component name (e.g. `sk-doc`, `system-spec-kit`, `sk-code`). The folders under `.skilled/changelog/` are not numerically prefixed, so match on the plain folder names as they exist on disk. One folder is not a skill: `skilled` is the framework release line, with one entry per Skilled release.
-2. Match changed file paths against discovered component names by whole path segment, never by substring.
-3. Match `.skilled/skills/{name}/**` to the folder named `{name}` when possible.
-4. Match `.skilled/commands/**` to the folder that owns those commands when possible.
-5. Match `.skilled/agents/**` to the folder that owns those agents when possible.
-6. Match `component_hint` against discovered folder names exactly.
-7. Resolve a hub to one of its links, never to the hub folder itself. A hub is a real folder other than `skilled`, such as `sk-doc` or `sk-code`, and it holds one link per member packet plus `parent`, the hub's own changelog. `ls -l .skilled/changelog/{hub}/` lists the links with their targets. A path under `.skilled/skills/{hub}/{packet}/` resolves to `{hub}/{link}`, the link whose target is `{packet}/changelog`. Any other path under the hub, and a hint that names the hub, resolve to `{hub}/parent`. A hint that names a member by its link, its packet folder or `{hub}/{link}` resolves to that link.
-8. Match spec path segments against discovered folder names as a tiebreaker.
-9. Resolve to `skilled` only when `component_hint` names it. A changed path never selects it, because a framework release is chosen by the operator, never inferred from one file.
-10. If no folder matches, do not invent or default to a fallback folder. Pause and ask which component this changelog belongs to.
-
-Component selection rules:
-
-1. If one component accounts for more than 60 percent of changed files, choose it as primary.
-2. If several components are roughly equal, list all affected components and choose primary by file count.
-3. If no component matches, pause and ask rather than writing to a guessed folder.
-4. Verify the chosen target folder exists before writing.
-5. Never create a missing global changelog component folder as part of this workflow.
+1. A component with more than 60 percent of the changed files is primary.
+2. With several roughly equal components, pick the primary by file count and list the rest as secondary.
+3. Verify the target folder exists before writing, and never create a missing one.
 
 ---
 
 ## 7. CREATION WORKFLOW
 
-Complete these seven steps in order. The SKILL.md is the primary workflow contract. The command YAMLs number the same workflow as eight steps, because they run the optional GitHub release as its own step 7 between writing the file and reporting.
+Complete these seven steps in order. The command YAMLs number the same workflow as eight steps, because they run the optional GitHub release as its own step 7.
 
-After resolving a component, packet, or phase slug and before writing, validate that authored slug with the shared checker. Exact version filenames remain governed by the version contract, and frozen changelog paths remain exempt under the filesystem-naming canon.
+Before writing, validate each authored component, packet or phase slug. Exact version filenames and frozen changelog paths stay exempt.
 
 ```bash
 python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <component-or-phase-slug>
 ```
 
-1. **Analyze context.** Determine source type from the request or setup output. For a spec folder, read implementation summary, tasks, and spec files, then extract work summary, files changed, change type, level, and output mode. For a component hint, gather recent commits and affected files for that component. For git history, inspect recent commits and diff stats. Compile `work_context` with summary, files, change type, and source.
-2. **Resolve output target.** If nested mode, run the nested changelog generator with `--json`, read the root or phase nested template, extract the output path, and skip global component mapping. If global mode, discover `.skilled/changelog/*/`, parse component folders, match changed files and hints, choose the primary component, list secondary components, and verify `.skilled/changelog/{resolved_folder}/` exists.
-3. **Determine version.** If nested mode, skip version calculation. If global mode, list the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on), parse the latest `vX.Y.Z.B` version, choose bump type from explicit `--bump` or auto-detection, calculate the next version, and increment the build segment if the file already exists.
-4. **Generate content.** Read `assets/changelog-template.md` for global mode or the spec-kit nested template for nested mode. Set date when needed. In global mode, write the frontmatter block first, per the Frontmatter Contract in section 5: the title, a description of one or two sentences, the identity phrases the target path gives, one or two topic phrases from the entry's own words, `importance_tier` and `contextType`. Select compact format for fewer than 10 non-breaking, non-major changes and expanded format for 10 or more changes, a major bump, or any breaking change. Write the narrative opening that leads with why the release matters. Apply the omission decision-aid: drop file inventories, test metrics, schema churn and mid-cycle internal experiments by default, and compress reverted work to one story sentence. Add tables only when the numbers themselves are the story. Generate the topical sections, at-a-glance bullets, and upgrade notes with bold lead-ins.
-5. **Validate quality.** Check format, version, and content before writing. Confirm required sections are present, version is strictly greater than the latest global version, no target file exists, summary is non-empty, every path the changelog names exists, and upgrade guidance is present. Auto-fix small missing sections when safe, then revalidate.
-6. **Write the file.** If nested mode, run `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write` and verify the output path. If global mode, write `.skilled/changelog/{primary_component}/v{next_version}.md` and read back the first lines to verify creation. If secondary components exist, note them as additional changelog candidates rather than writing extra files silently.
-7. **Report and preserve context.** Report status, path, component, version, bump type, summary, section count, and files tracked. If a spec folder was the source, note that context can be preserved through the normal memory save workflow. Do not claim completion until the written file has been verified.
+1. **Analyze context.** Resolve the source type and read the source (section 6). Compile `work_context`: what changed for the reader, the change type, the level and the source.
+2. **Resolve output target.** Nested mode: run the nested generator with `--json`, read the root or phase template and take the output path from it. Global mode: discover the folders, match paths and hints (section 6), choose the primary component, list secondary ones and verify `.skilled/changelog/{resolved_folder}/` exists.
+3. **Determine version.** Nested mode skips this. Global mode lists the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on), parses the latest `vX.Y.Z.B`, chooses the bump (section 4) and calculates the next version, incrementing the build segment while the file exists.
+4. **Generate content.** Read `assets/changelog-template.md`, or the spec-kit nested template in nested mode. In global mode:
+   - Write the frontmatter block per the Frontmatter Contract in section 5.
+   - Choose the content before writing it (template section 3). List what changed, keep what the reader would notice, act on or decide differently about, merge items with the same effect and drop the housekeeping.
+   - Select compact or expanded from the changes that survive (template section 5).
+   - Write each section to its one job, so a fact appears once: themes in the opening, the gap in Why This Release, one payoff line per theme at a glance, the detail in the H4 items and only actions in the upgrade notes.
+   - Lead with why the release matters, and add a table only when its numbers are the story.
+5. **Validate quality.** Run the section 9 checks on the draft. Confirm the version is strictly greater than the latest one, no file exists at the target and every path the entry names exists. Apply the cut test (template section 3), fix what is safe and revalidate.
+6. **Write the file.** Nested mode: run `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js {spec_folder} --write` and verify the output path. Global mode: write `.skilled/changelog/{primary_component}/v{next_version}.md` and read back its first lines. Report secondary components as candidates rather than writing extra files.
+7. **Report and preserve context.** Report the path, component, version, bump type, summary, section count and files tracked. A spec-folder source can preserve context through the normal memory save workflow. Do not claim completion before the written file is verified.
 
-Hard gates:
-
-1. Source context and resolution inputs must be present.
-2. Global mode must resolve to an existing changelog component folder before writing.
-3. Global mode must calculate a unique sequential version before writing.
-4. Generated content must validate before writing.
-
-Pause conditions:
-
-1. Confidence drops below 40 percent.
-2. Component resolution is ambiguous with multiple equally likely targets.
-3. Version calculation produces an unexpected result.
-4. Generated content has empty required sections.
+Pause when confidence drops below 40 percent, component resolution stays ambiguous, the calculated version looks wrong or a required section would be empty.
 
 ---
 
 ## 8. NOTATION AND FORMAT RULES
 
-### Voice
+The voice, structure, omission and length rules live in `assets/changelog-template.md` sections 3 and 4. The non-negotiables are:
 
-1. Write for a smart person who is not a developer.
-2. Lead with why the release matters, not technical stats.
-3. Explain every change as what was broken, what changed, and why it matters.
-4. One idea per sentence, active voice, no hedging.
-5. Explain jargon on first use with parenthetical definitions.
-6. Keep file inventories, line numbers and machinery names the user never touches out of the narrative. The spec packet holds the file map. Identifiers the reader must act on (skill names, paths, commands) appear where the reader needs them.
-7. Follow the HVR rules: no Oxford commas, em dashes, or semicolons.
-
-### Omission Decision-Aid
-
-Apply before writing, not during cleanup. The full keep/drop list lives in `assets/changelog-template.md` Section 3. The operating rules are:
-
-1. Keep user-visible behavior, breaking changes with their migration step, anything the user must do, and honest corrections of wrong claims.
-2. Drop file-by-file inventories, test pass counts and metric tables, schema internals, counts of review passes, validation rounds or line-count deltas, and internal machinery names the user never touches.
-3. Compress work that was tried and reverted during the cycle to one story sentence, or drop it entirely.
-4. A table appears only when the numbers themselves are the story. Most changelogs contain zero tables.
-5. When in doubt, ask whether a curious reader can find the detail in the spec packet. If yes, it does not belong in the changelog.
-
-### Structure
-
-1. Open each at-a-glance bullet with a bold lead-in sentence, then one or two plain sentences, all on one list line.
-2. Use one to three flowing paragraphs per item in expanded format, seven at most for a dense item. Never `**Problem:**` and `**Fix:**` labels.
-3. Use short benefit-led H4 subheadings, 2-7 words for most and 10 at most, easy to scan. No packet IDs, no numbering, no sentence-length headings unless sequence is load-bearing.
-4. Name H2 sections for the domain they change, not the change type.
-5. Use H4 (`####`) for item headings. Never H3.
-6. Use `&nbsp;` between H4 items within the same H2.
-7. Use `---` only between H2 sections. Never place `---` or `&nbsp;` between an H2, or its intro paragraph, and the first H4.
-8. Mark breaking changes inline with `**Breaking:**` at the point they are described.
-9. Avoid metrics soup. Do not pack many numbers into one sentence.
-10. Respect the conciseness caps in the template: 3-sentence summary, Why This Release within 3 short paragraphs or 4 sentences, 12 at-a-glance bullets, 7 paragraphs per H4 item, 10 words per H4 heading, 40 prose lines for a compact file.
+1. Write for a smart person who is not a developer, and lead with why the release matters.
+2. Keep what the reader would notice or act on. Drop file inventories, test counts, internal labels, process detail and follow-on housekeeping, and compress reverted work to one story sentence or nothing.
+3. Say each fact once, in the section whose job it is.
+4. Bold lead-in sentences on glance bullets, H4 item headings of 2-7 words (10 at most), `&nbsp;` between H4 items, `---` only between H2 sections and inline `**Breaking:**` markers.
+5. No Oxford commas, em dashes or semicolons, per the Human Voice Rules.
 
 ### Release Notes
 
@@ -463,59 +283,49 @@ For GitHub release notes, use the changelog content with any YAML frontmatter an
 Full changelog: `.skilled/changelog/{component}/v{VERSION}.md`
 ```
 
-The command YAMLs own the release itself, as `step_7_publish_release`, and run it only when `publish_release` is explicitly true and the component is `skilled`, the framework release line. Any other component skips the release, because component versions share the `vX.X.X.X` shape with release tags and a component version must never become one. The tag is `v{next_version}`, the version just written, and the release title is the tag followed by the entry's editorial title, the H1 without its leading version. The step checks for a tag collision and for an authenticated `gh`, then runs `git tag -a`, `git push origin {release_tag}` and `gh release create {release_tag} --title {release_title} --notes-file {notes_file}`, which publishes immediately with no draft stage. `:confirm` shows the exact commands and runs them only after approval. A packet-local changelog never releases, because it has no repo-wide version to tag. This packet prepares the release body and nothing more.
+The command YAMLs own the release itself, as `step_7_publish_release`, and run it only when `publish_release` is explicitly true and the component is `skilled`, the framework release line. Any other component skips the release, because component versions share the `vX.X.X.X` shape with release tags and a component version must never become one. The tag is `v{next_version}`, and the release title is the tag followed by the entry's editorial title, the H1 without its leading version. The step checks for a tag collision and an authenticated `gh`, then runs `git tag -a`, `git push origin {release_tag}` and `gh release create {release_tag} --title {release_title} --notes-file {notes_file}`, which publishes at once with no draft stage. `:confirm` shows the exact commands and runs them only after approval. A packet-local changelog never releases, because it has no repo-wide version to tag.
 
 ---
 
 ## 9. VALIDATION
 
-Before delivery, validate target, version, and content.
+Validate the target, version and content before writing.
 
 Global changelog checks:
 
-1. Target path is `.skilled/changelog/{component}/v{VERSION}.md`.
-2. Target component folder exists before writing.
-3. Version follows `vX.Y.Z.B`.
-4. Version is strictly greater than the latest existing version in that folder, counting its generation folders.
-5. No file already exists at the target version path.
-6. The prose opens with the summary narrative, not a machine version header, per the shared template. Frontmatter and the editorial title, the exemplar's shape, are allowed.
-7. Spec folder blockquote is present when source is a spec folder.
-8. Compact files include the summary narrative, `## What's New at a Glance` and `## Upgrade`.
-9. Expanded files include the opening narrative, `## Why This Release`, `## What's New at a Glance`, at least one topical H2 section with H4 items, and `## Upgrade Notes`.
-10. No default Files Changed, Test Impact or Schema Changes section is present. Any table present passes the earned-evidence rule: the numbers themselves are the story.
-11. The summary is concise, plain English, and explains why the release matters.
-12. Omission rules applied: no file-by-file inventories, no test-metric tables, no schema tables, no mid-cycle experiment detail beyond a one-line story sentence, and no counts of review passes, validation rounds or line-count deltas.
-13. Conciseness caps respected: summary within 3 sentences, Why This Release within 3 short paragraphs or 4 sentences, at-a-glance within 12 bullets, no H4 item beyond 7 paragraphs, compact files within 40 prose lines.
-14. H4 headings are benefit-led and 10 words at most, with most at 2-7. No numbered headings, no sentence-length headings, no H3 inside topical sections.
-15. The frontmatter block carries `title`, `description`, `trigger_phrases`, `importance_tier` and `contextType` in contract order, and `trigger_phrases` holds both identity phrases for the target path plus at least one topic phrase. `validate_document.py` blocks an entry whose block, keys, phrases or version phrase are missing.
+1. The target is `.skilled/changelog/{component}/v{VERSION}.md` in an existing folder, and no file exists at that path.
+2. The version follows `vX.Y.Z.B` and is strictly greater than the latest one in the folder, counting its generation folders.
+3. The frontmatter carries `title`, `description`, `trigger_phrases`, `importance_tier` and `contextType` in contract order, with both identity phrases for the target path and at least one topic phrase. `validate_document.py` blocks an entry whose block, keys or phrases are missing.
+4. The prose opens with the summary narrative, and the spec-folder blockquote is present when the source is a spec folder.
+5. The tier's sections are present: compact carries the summary, `## What's New at a Glance` and `## Upgrade`. Expanded carries the opening narrative, `## Why This Release`, `## What's New at a Glance`, at least one topical H2 with H4 items and `## Upgrade Notes`.
+6. No Files Changed, Test Impact or Schema Changes section. Any table passes the earned-evidence rule.
+7. Omission applied: no file inventories, test counts, process detail or housekeeping items. No internal labels (task, requirement, scenario or finding IDs, packet or phase numbers) appear outside the spec-folder line.
+8. Each fact appears once: no sentence restates one from another section, and each glance bullet adds something the summary did not.
+9. The template's ceilings hold: summary within 3 sentences, opening within 5 paragraphs, Why This Release within 3 short paragraphs or 4 sentences, at most 12 glance bullets, H4 items within 7 paragraphs, H4 headings within 10 words and compact files within 40 prose lines.
+10. H4 headings are benefit-led and never numbered or sentence-length, and no H3 sits inside a topical section.
 
-Voice and structural enforcement, run on the draft before writing:
+Voice gate, run on the draft before writing:
 
 ```bash
 python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <draft-file>
 ```
 
-The scan must report zero hard blockers. Mechanical deductions below the hard-blocker threshold are acceptable. A hard blocker (banned punctuation, banned words) blocks the write until fixed. If the scanner is unavailable, apply the HVR rules manually and record that the scan was skipped.
-
-Structural checks complement the scanner: bold lead-ins on at-a-glance bullets, `&nbsp;` between H4 items within a section, `---` only between H2 sections, no `**Problem:**`/`**Fix:**` labels, and inline `**Breaking:**` markers rather than a separate section when context permits.
+The scan must report zero hard blockers (banned punctuation or words). Deductions below that threshold are acceptable. If the scanner is unavailable, apply the rules by hand and record that the scan was skipped. Structural checks complement it: bold lead-ins on glance bullets, `&nbsp;` between H4 items, `---` only between H2 sections, no `**Problem:**`/`**Fix:**` labels and inline `**Breaking:**` markers.
 
 Nested changelog checks:
 
-1. Output path resolves inside the target packet's `changelog/` folder.
-2. Root spec folder output uses `changelog/changelog-<packet>-root.md`.
-3. Phase child output uses `../changelog/changelog-<packet>-<phase-folder>.md`.
-4. The spec-kit nested generator is the write path.
-5. Global version rules are not applied.
-6. The rendered block names the entry by the identity phrase the generator derives from the output path, and carries no phrase that every packet's changelog would share.
+1. The output path resolves inside the target packet's `changelog/` folder, as `changelog/changelog-<packet>-root.md` for a root spec folder or `../changelog/changelog-<packet>-<phase-folder>.md` for a phase child.
+2. The spec-kit nested generator is the write path, and global version rules are not applied.
+3. The rendered block names the entry by the identity phrase the generator derives from the output path, and carries no phrase that every packet's changelog would share.
 
-Suggested shared markdown checks after writing authored markdown:
+After writing, run the shared markdown checks:
 
 ```bash
 python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <written-file>
 python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <written-file>
 ```
 
-If validation fails, fix blocking issues before delivery or report the exact blocker and command output.
+If validation fails, fix the blocking issues or report the exact blocker and command output.
 
 ---
 
@@ -523,62 +333,53 @@ If validation fails, fix blocking issues before delivery or report the exact blo
 
 ### ✅ ALWAYS
 
-1. Always follow the seven-step workflow in order.
-2. Always read `assets/changelog-template.md` before generating global changelog content.
-3. Always dynamically discover global changelog component folders from `.skilled/changelog/`.
-4. Always resolve global mode to an existing component folder before writing.
-5. Always validate global version sequencing before writing.
-6. Always keep global version numbers four-part: `vX.Y.Z.B`.
-7. Always choose compact vs expanded format from change count and release type.
-8. Always use the spec-kit nested changelog generator for packet-local output.
-9. Always list secondary affected components when detected.
-10. Always verify the written file before claiming completion.
-11. Always keep this packet self-contained and leave advisor graph identity at the `sk-doc` hub root.
+1. Follow the seven-step workflow in order.
+2. Read `assets/changelog-template.md` before generating global content.
+3. Discover global component folders from `.skilled/changelog/` at run time, and resolve to an existing one before writing.
+4. Keep global versions four-part and strictly sequential.
+5. Choose content by reader impact and say each fact once.
+6. Use the spec-kit nested generator for packet-local output.
+7. List secondary affected components.
+8. Verify the written file before claiming completion.
+9. Keep this packet self-contained, with the advisor identity at the `sk-doc` hub root.
 
 ### ⛔ NEVER
 
-1. Never add packet-local `graph-metadata.json`.
-2. Never skip version validation for global changelogs.
-3. Never overwrite an existing changelog file.
-4. Never use a version number that already exists.
-5. Never guess a component folder without file path, hint, spec path, or fallback analysis.
-6. Never create missing global changelog folders inside this workflow.
-7. Never write a changelog with an empty summary or empty required sections.
-8. Never apply global component versioning rules to nested packet-local changelogs.
-9. Never make the command router or YAML reference the only workflow contract for this packet.
-10. Never hide source-format conflicts. Mark them clearly and prefer the canonical template when formatting prose.
+1. Add a packet-local `graph-metadata.json`.
+2. Overwrite an existing changelog or reuse an existing version.
+3. Guess a component folder, or create a missing one.
+4. Write an entry with an empty summary or an empty required section.
+5. Apply global version rules to nested packet-local changelogs.
+6. Make the command router or YAML the only workflow contract.
+7. Hide a source-format conflict. Record it and follow the template.
 
 ### ⚠️ ESCALATE IF
 
-1. Source context cannot be found in a spec folder, component history, or git history.
-2. Component resolution remains ambiguous after file-count and path-segment analysis.
-3. The calculated version is unexpected or cannot be made unique by build increment.
-4. Required changelog sections would be empty.
-5. The user requests a GitHub release action but no Git release workflow or command context is available.
-6. Validation fails after safe local fixes.
+1. No source context can be found in a spec folder, component history or git history.
+2. Component resolution stays ambiguous after file-count and path-segment analysis.
+3. The calculated version is unexpected or cannot be made unique.
+4. A required section would be empty.
+5. The user asks for a GitHub release with no git release workflow or command context available.
+6. Validation still fails after safe local fixes.
 
 ---
 
 ## 11. REFERENCES
 
-Use these only when the core path above is not enough:
-
-1. `assets/changelog-template.md` for the canonical global changelog and release-note format.
-2. `references/README.md` route-map to the overflow set: `references/worked-examples.md` (filled-in global and packet-local entries), `references/version-bump-rules.md` (concrete four-part version choices), and `references/topology-edge-cases.md` (placement, back-dating, source conflicts, and the optional GitHub release flow).
-3. `.skilled/commands/create/changelog.md` for the thin `/create:changelog` router boundary.
-4. `.skilled/commands/create/assets/create-changelog-auto.yaml` and `create-changelog-confirm.yaml` for the source workflows this packet inlines. `/create:changelog` runs `:auto` (autonomous) or `:confirm` (interactive checkpoints), and both resolve to this same packet contract.
+1. `assets/changelog-template.md`: the canonical format, selection, voice and length rules.
+2. `references/README.md`: the route map to `worked-examples.md` (filled-in entries), `version-bump-rules.md` (concrete version choices) and `topology-edge-cases.md` (placement, back-dating, source conflicts and the release flow).
+3. `.skilled/commands/create/changelog.md`: the thin `/create:changelog` router.
+4. `.skilled/commands/create/assets/create-changelog-auto.yaml` and `create-changelog-confirm.yaml`: the `:auto` and `:confirm` workflows, which resolve to this same contract.
 
 ---
 
 ## 12. SUCCESS CRITERIA
 
-The workflow is successful when:
+The workflow succeeds when:
 
-1. The output mode is correctly classified as global or packet-local nested.
-2. Global output is written to `.skilled/changelog/{component}/v{VERSION}.md`, or nested output is written through the spec-kit nested generator to the packet `changelog/` path.
-3. Global versioning is sequential, unique, and four-part.
-4. The file follows the compact or expanded shape from `assets/changelog-template.md`.
-5. The changelog reads in the v4 narrative style: why-first opening, benefit-led headings, omission rules applied, upgrade notes with bold lead-ins.
-6. Optional release-note body uses the changelog content and appends the full changelog path when `--release` is requested.
-7. Validation passes, or any remaining issue is escalated with exact evidence.
-8. No other files are modified unless the user explicitly requested them.
+1. The output mode is classified correctly, and the file lands at its global path or through the nested generator.
+2. Global versioning is sequential, unique and four-part.
+3. The entry follows the template's compact or expanded shape and reads in the v4 style: why first, benefit-led headings, only what the reader needs and each fact said once.
+4. A release body, when requested, uses the entry and appends the full changelog path.
+5. Validation passes, or the remaining issue is escalated with exact evidence.
+6. No other file changes unless the user asked for it.
