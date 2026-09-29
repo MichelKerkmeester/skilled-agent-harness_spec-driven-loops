@@ -1,0 +1,12 @@
+
+## 7. MEASUREMENTS
+
+### CC-004 | The injection screen scorer runs with zero model calls
+
+Verify the offline injection screen scorer prints its censuses without calling a backend and that failing gates add only their skip lines.
+
+Prompt: `Run the injection screen scorer with fake jev and cli-deem on my PATH and show me it calls neither`
+
+> **Feature File:** [CC-004](measurements/injection-screen-measurement.md)
+
+---

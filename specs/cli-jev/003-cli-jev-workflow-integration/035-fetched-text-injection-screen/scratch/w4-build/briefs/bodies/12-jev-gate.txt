@@ -1,0 +1,28 @@
+TASK: add the Jev gate to S (first bullet of R section 11) and two tests to T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/ref/design.md (read only).
+N = .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (read only, never edit). S and T exist; read both
+first. Read R sections 2 and 11 only, and in N only `jevGate` with the JSDoc above it (search `export function jevGate`).
+
+STEP 1. In S section 11 (JEV ARM), under its divider, add the comment line
+`// jev resolves its own credential; this script reads and passes none, so a skipped arm writes no file.`, then copy jevGate
+verbatim from N, JSDoc included. It uses S's own JEV_VERSION and which. Change nothing else in S.
+STEP 2. Append two tests to the end of T:
+ a. 'jev gate passes a stub with jev 0.6.2 and a stored credential':
+    bin = makeStubs(); lines = [];
+    gate = S.jevGate({ out: (line) => lines.push(line), env: stubEnv(bin, { JEV_PROVIDER: 'openrouter' }), timeoutMs: 20000 });
+    assert.equal(gate.passed, true); assert.equal(gate.provider, 'openrouter');
+    assert.deepEqual(lines, [`jev: path=${path.join(bin, 'jev')} provider=openrouter`]);
+    assert.deepEqual(stubLog(bin, 'jev'), [['--version'], ['auth', 'status', '--provider', 'openrouter']]);
+ b. 'jev gate skips with no credential when auth status exits 3':
+    bin = makeStubs(); lines = [];
+    gate = S.jevGate({ out: (line) => lines.push(line), env: stubEnv(bin, { STUB_AUTH_STATUS_EXIT: '3' }), timeoutMs: 20000 });
+    assert.equal(gate.passed, false);
+    assert.deepEqual(lines, [`jev: path=${path.join(bin, 'jev')} provider=official`, 'jev arm skipped: no credential']);
+    lines.length = 0; S.jevGate({ out: (line) => lines.push(line), env: stubEnv(bin, { STUB_JEV_VERSION: 'jev 0.7.0' }), timeoutMs: 20000 });
+    assert.equal(lines[1], 'jev arm skipped: version');
+
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
+  grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs   (expect 34)
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; T holds 34 tests.

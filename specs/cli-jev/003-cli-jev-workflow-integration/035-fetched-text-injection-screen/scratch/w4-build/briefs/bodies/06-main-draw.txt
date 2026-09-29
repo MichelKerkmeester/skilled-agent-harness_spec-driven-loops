@@ -1,0 +1,39 @@
+TASK: give S's main its argument parsing, the --draw mode and the --out refusal (R section 13 opening paragraph and steps 1 and 2), add a runMain helper to T, and three tests.
+R = specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/ref/design.md (read only). S and T exist; read both first. Read R sections 1, 6 and 13 only.
+
+STEP 1. In S section 13, replace the placeholder main with the real signature, JSDoc naming every dep, the deps defaults,
+the parseArgs call, labelsPath and plantedPath, then steps 1 and 2 of R section 13 exactly. After step 2, return 0 for now
+(a later brief adds steps 3 to 7 there). Keep the two entry lines last. Change nothing else in S.
+
+STEP 2. In T, after corpusFiles, add a private helper:
+ async function runMain(args, options = {}): lines = [], errs = []; code = await S.main(args, { repoRoot: options.root,
+   contextDir: CONTEXT, out: (line) => lines.push(line), err: (line) => errs.push(line), env: { ...cleanEnv(),
+   PATH: options.bin ? `${options.bin}${path.delimiter}${process.env.PATH}` : process.env.PATH, ...(options.env ?? {}) },
+   timeoutMs: 20000, backoffMs: 1 }); return { code, lines, errs }.
+STEP 3. Append three tests to the end of T:
+ a. '--draw writes byte-identical files for one seed':
+    root = makeRepo(corpusFiles()); a = tempDir('draw-a'); b = tempDir('draw-b');
+    for (const dir of [a, b]) { r = await runMain(['--draw', '--seed', '7', '--labels', path.join(dir, 'labels.jsonl'),
+      '--planted', path.join(dir, 'planted.jsonl')], { root }); assert.equal(r.code, 0); }
+    for (const name of ['labels.jsonl', 'planted.jsonl']) assert.equal(fs.readFileSync(path.join(a, name), 'utf8'),
+      fs.readFileSync(path.join(b, name), 'utf8'));
+    assert.equal(fs.readFileSync(path.join(a, 'labels.jsonl'), 'utf8').trim().split('\n').length, 90);
+    assert.equal(r.lines[0], `draw: seed=7 commit=${S.headCommit(root)} rows=90 natural=60 planted=30`);
+ b. '--draw refuses to overwrite a file that holds a label':
+    root = makeRepo(corpusFiles()); dir = tempDir('draw-c'); labels = path.join(dir, 'labels.jsonl');
+    args = ['--draw', '--seed', '7', '--labels', labels, '--planted', path.join(dir, 'planted.jsonl')];
+    assert.equal((await runMain(args, { root })).code, 0);
+    rows = S.readJsonl(labels); rows[0] = { ...rows[0], label: 'clean', labeler: 'operator' }; S.writeJsonl(labels, rows);
+    before = fs.readFileSync(labels, 'utf8'); r = await runMain(['--draw', '--seed', '8', '--labels', labels, '--planted',
+      path.join(dir, 'planted.jsonl')], { root });
+    assert.equal(r.code, 2); assert.match(r.errs.join('\n'), /draw refused/); assert.equal(fs.readFileSync(labels, 'utf8'), before);
+ c. '--jev without --out exits 2 before any call':
+    r = await runMain(['--jev'], { root: makeRepo(corpusFiles()) });
+    assert.equal(r.code, 2); assert.deepEqual(r.lines, []);
+    assert.deepEqual(r.errs, ['--jev and --deem need --out <dir> so every call is recorded']);
+
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
+  grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs   (expect 15)
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; T holds 15 tests.

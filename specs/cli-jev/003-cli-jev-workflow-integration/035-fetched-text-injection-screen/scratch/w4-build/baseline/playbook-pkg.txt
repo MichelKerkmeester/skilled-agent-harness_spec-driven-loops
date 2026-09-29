@@ -1,0 +1,7 @@
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+FAIL package=cli-classifier tier=FAIL_CLOSED scenarios=5 categories=1 operator=5 routing_gold_excluded=0 violations=2 warnings=0
+  BAKED_RUN_TRANSCRIPT hub-routing/alias-still-resolves.md:71 dated run evidence appears in scenario truth
+  BAKED_RUN_TRANSCRIPT hub-routing/judgment-request-routes-to-transport.md:74 dated run evidence appears in scenario truth
+exit=1

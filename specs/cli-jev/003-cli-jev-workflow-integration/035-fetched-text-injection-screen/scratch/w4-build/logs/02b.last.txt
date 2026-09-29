@@ -1,0 +1,20 @@
+I'll read the target file first, then make the two precise edits.
+
+The file matches the brief. Line 47 is exactly as described, and `const gitArgs = [` is at line 44 with 2-space indentation. Making both edits now.
+
+Both edits applied. Now re-reading the edited region and running the two verification checks.
+
+Both checks pass. Running one read-only diff confirmation scoped to the file to confirm the change counts.
+
+Edits are in place and verified. The file is untracked in this worktree (so `git diff` shows nothing — the orchestrator owns git operations), but the read-back confirms exactly +2 lines, 0 removed, in this one file only.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+2/-0)
+EDITS: tests/score-injection-screen.test.mjs:44 added comment "The caller's global excludes and attributes files must not hide or rewrite fixture files." above const gitArgs = [
+       tests/score-injection-screen.test.mjs:49 added '-c', 'core.excludesFile=/dev/null', '-c', 'core.attributesFile=/dev/null', after the core.hooksPath line
+CHECKS: node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no output (exit 0)
+        grep -c "core.excludesFile=/dev/null" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 1 (exit 0)
+        git status --porcelain -- <file> -> ?? .skilled/.../score-injection-screen.test.mjs (exit 0, read-only confirmation; file untracked, no other file touched)
+BLOCKED REASON: none
+```

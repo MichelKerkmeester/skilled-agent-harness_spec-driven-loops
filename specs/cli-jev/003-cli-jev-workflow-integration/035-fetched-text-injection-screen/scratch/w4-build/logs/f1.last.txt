@@ -1,0 +1,17 @@
+All three checks ran. The named edit is on disk and correct, but the acceptance bar for the parent-skill-check is not met — it reports cross-file version drift in four files outside my named scope.
+
+What I observed:
+- The edit: `.skilled/skills/cli-classifier/SKILL.md` line 5, `version: 1.1.0.0` → `version: 1.2.0.0`, nothing else touched by me. The diff also shows a 4-line "Offline Measurement" section added earlier by other briefs — exactly the "lines earlier briefs added" the accept clause allows.
+- Validator: clean, exit 0.
+- `parent-skill-check`: **FAIL, exit 1** — `13b-version` now passes (SKILL.md 1.2.0.0 matches the newest changelog entry), but `13a-version` fires 4 failures: `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` still carry `1.1.0.0` against SKILL.md's `1.2.0.0`. Those four files are not named in my brief, and editing them would violate the brief's DON'T scope rule, so I left them untouched. Per the persona ("If a step cannot be done exactly as written, stop and report BLOCKED") and the completion rule ("keep the completion claim blocked... or report the blocker with evidence"), I cannot claim DONE while the named acceptance check prints FAIL.
+
+```
+HANDBACK
+STATUS: BLOCKED
+FILES CHANGED: .skilled/skills/cli-classifier/SKILL.md (+5/-1)  [my edit: +1/-1; +4 is the earlier briefs' Offline Measurement section]
+EDITS: .skilled/skills/cli-classifier/SKILL.md:5 `version: 1.1.0.0` -> `version: 1.2.0.0`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/SKILL.md -> `✅ VALID: .skilled/skills/cli-classifier/SKILL.md | Total issues: 0` (exit 0)
+CHECKS: node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier -> `FAIL: parent-skill-check — 4 invariant failures, 0 warnings` (exit 1)
+CHECKS: git diff --stat -- .skilled/skills/cli-classifier/SKILL.md -> `1 file changed, 5 insertions(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: parent-skill-check prints FAIL not `OK: parent-skill-check` — 13a-version: ROUTER.md, description.json, hub-router.json, mode-registry.json still carry 1.1.0.0 vs SKILL.md's 1.2.0.0 (13b passes; those four files are outside this brief's named scope so I did not touch them; a companion bump of those four files to 1.2.0.0 will clear it).
+```

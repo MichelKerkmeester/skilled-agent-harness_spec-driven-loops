@@ -39,20 +39,28 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".claude/settings.json",
-      ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
-      ".skilled/skills/cli-classifier/benchmark/README.md",
-      ".skilled/skills/cli-classifier/SKILL.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
       ".hermes/skills/cli-classifier/SKILL.md",
-      ".skilled/skills/cli-classifier/README.md",
-      "manual-testing-playbook/manual-testing-playbook.md"
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/manifest.json",
+      "scratch/w4-build/build-evidence.md",
+      "scratch/w4-session/session-evidence.md",
+      ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+      ".claude/settings.json",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/planted.jsonl",
+      ".skilled/skills/cli-classifier/benchmark/README.md",
+      ".skilled/skills/cli-classifier/SKILL.md"
     ],
     "entities": [
       {
@@ -86,27 +94,75 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
+        "name": "feature-catalog.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-classifier/benchmark/README.md",
+        "path": "feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/cli-classifier/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "score-injection-screen.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-injection-screen.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "labels.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "planted.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/planted.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/benchmark/README.md",
         "source": "derived"
       },
       {
@@ -150,59 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Tracked",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Affected Surfaces",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A fetched page can carry sentences aimed at the agent that reads it, and the agent reads them as it reads everything else",
     "created_at": "2026-09-29T12:42:46Z",
-    "last_save_at": "2026-09-29T13:54:37.030Z",
+    "last_save_at": "2026-09-29T16:41:44.150Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dadceee7a179e6cf522aae3d97132213a0e62bef6d7e018e1055aacbfbabdbca",
+    "source_fingerprint": "sha256:7c6b30b17a7b87fedeb0c59511c886c3f42e7c98198e16f24e03725859561009",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b84d93c35381b133c2b64219bd67f889d5451a01319561a301216950f9135ef7",
-      "plan.md": "aa438ef8675494abace62c84279dd226979e09020552c7203f19821a2eca329b",
-      "tasks.md": "b370849221bb19e8f7d85831471486fdb9c9442190cc8a2539bd334db0a37f80",
-      "implementation-summary.md": "e50dff31dc2ffde6ccb9a0ad908a66aeb74bf60df41a2a931def84c79089f293"
+      "spec.md": "1454683a203dd6da73a50fa4be4a803dec5be0b1257150752e137b5932b5e525",
+      "plan.md": "70377415985674dac2e6e3e982001599eba0a47e08462981fe62043aa59de4f4",
+      "tasks.md": "d757a8388b8bceae942544cdfaf408f287f75d97e320179bb0e54d6964641c85",
+      "implementation-summary.md": "e23715f59cfad8844b3895f72b6359eee7d105ec4f8b21cfe52acc503cf33315"
     },
     "last_active_at": null
   }

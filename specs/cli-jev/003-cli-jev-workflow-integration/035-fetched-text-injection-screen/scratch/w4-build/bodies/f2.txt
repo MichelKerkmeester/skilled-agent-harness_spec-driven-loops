@@ -1,0 +1,12 @@
+TASK: carry the hub's new release version into its four other version fields, so every hub file matches SKILL.md. The same literal edit in 4 named files.
+EDITS (read each file first; change only the line named):
+  `.skilled/skills/cli-classifier/hub-router.json` line 3: `  "version": "1.1.0.0",` becomes `  "version": "1.2.0.0",`
+  `.skilled/skills/cli-classifier/description.json` line 4: `  "version": "1.1.0.0",` becomes `  "version": "1.2.0.0",`
+  `.skilled/skills/cli-classifier/mode-registry.json` line 4: `  "version": "1.1.0.0",` becomes `  "version": "1.2.0.0",`
+  `.skilled/skills/cli-classifier/ROUTER.md` line 12: `version: 1.1.0.0` becomes `version: 1.2.0.0`
+Change nothing else in any file. Do not touch SKILL.md, which already says 1.2.0.0.
+VERIFY (repo root), paste each result line:
+  node -e "for (const f of ['hub-router.json','description.json','mode-registry.json']) JSON.parse(require('fs').readFileSync('.skilled/skills/cli-classifier/'+f,'utf8'))" && echo json-ok
+  node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier
+  git diff --stat -- .skilled/skills/cli-classifier/hub-router.json .skilled/skills/cli-classifier/description.json .skilled/skills/cli-classifier/mode-registry.json .skilled/skills/cli-classifier/ROUTER.md
+Accept when: exactly these 4 files changed, 1 insertion and 1 deletion each; `json-ok` prints; the check prints `OK: parent-skill-check`.

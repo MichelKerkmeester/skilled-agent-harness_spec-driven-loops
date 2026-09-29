@@ -1,0 +1,30 @@
+
+
+Both files read; the target lines match the brief exactly. Checking uniqueness of the JSDoc strings before editing, and loading the routed skill contract.
+
+JSDoc strings are unique (single match each at S:550-551). Making the three exact edits and running the hub's compiled route in parallel.
+
+Edits applied. Re-reading the edited regions to confirm final state, then running the three checks.
+
+Final state confirmed. Running the three verification checks.
+
+All checks pass. One scoped read-only diff to confirm the exact change surface:
+
+Diff against index is empty — checking whether these files are tracked or staged:
+
+All checks green. The two files are untracked in this worktree (expected — the orchestrator owns commits), so `git diff` was empty; content verified by direct post-edit reads instead.
+
+SKILL ROUTING: sk-code → compiled route returned `defer`; the brief's edits were exact and frozen, so they were applied as written (no route substitution).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+2/-2)
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+1/-0)
+EDITS: score-injection-screen.mjs:550-551 JSDoc params widened to `object[]|null` and `{ id, sentence }[]|null`
+EDITS: score-injection-screen.mjs:555-556 `?? []` fallback on both branches and `row.label !== undefined` added to the natural-row check
+EDITS: score-injection-screen.test.mjs:209 added `assert.equal(S.holdsOperatorContent(null, null), false);` directly after the existing `[]`/planted assertion, same indentation
+CHECKS: node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> no diagnostics (exit 0)
+CHECKS: node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no diagnostics (exit 0)
+CHECKS: grep -c "holdsOperatorContent(null, null)" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 1 (exit 0)
+BLOCKED REASON: none
+
+Note for the orchestrator: both files are untracked in this worktree (`git status` shows `??`), so the diff surface was confirmed by post-edit reads of S:545-557 and T:205-211 rather than `git diff`. No other file was touched.

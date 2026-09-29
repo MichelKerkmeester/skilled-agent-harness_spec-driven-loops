@@ -1,0 +1,8 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/changelog/v1.2.0.0.md (+23/-0)
+EDITS: .skilled/skills/cli-classifier/changelog/v1.2.0.0.md:1 new file created as exact byte copy of the prepared changelog source (cp, no retype or reflow)
+CHECKS:
+- cmp specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/content/changelog-v1.2.0.0.md .skilled/skills/cli-classifier/changelog/v1.2.0.0.md && echo same -> "same" (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/changelog/v1.2.0.0.md -> "✅ VALID: .skilled/skills/cli-classifier/changelog/v1.2.0.0.md / Document type: changelog / Total issues: 0" (exit 0)
+BLOCKED REASON: none
