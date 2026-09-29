@@ -113,7 +113,7 @@ Release passes only when:
 
 1. No feature verdict is `FAIL`.
 2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 and MB-049 (model-benchmark), E2E-050 (accept/ship promotion), and DI-R01..DI-R07 plus DI-R10 (intra-routing recall) have all been executed or explicitly skipped with a named blocker.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement subtotal is 46 numbered scenarios (`IS-001..MB-042` plus MB-049, E2E-050, 5D-051, and the reviewer regression `MB-R01`) and 8 intra-routing-recall scenarios (`DI-R01..DI-R07` plus `DI-R10`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement subtotal is 47 numbered scenarios (`IS-001..MB-042` plus MB-049, E2E-050, 5D-051, MB-052, and the reviewer regression `MB-R01`) and 8 intra-routing-recall scenarios (`DI-R01..DI-R07` plus `DI-R10`).
 4. No unresolved blocking triage item remains.
 5. Drift between root summaries and per-feature files has been resolved, with the per-feature file treated as the temporary source of truth until resynchronized.
 
@@ -712,7 +712,7 @@ Desired user-visible outcome: PASS verdict showing benchmark completion has a re
 
 ## 15. MODEL-BENCHMARK MODE
 
-This category covers 7 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane B (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, reviewer-prompt expected-verdict fixtures, the unknown-value fallbacks, the criteria-exec hardening gate, and score-delta benchmark gates. See `SKILL.md` "Lane B: Model-Benchmark" for the source-of-truth contract.
+This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane B (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, reviewer-prompt expected-verdict fixtures, the unknown-value fallbacks, the criteria-exec hardening gate, score-delta benchmark gates, and the reviewer verdict fallback census. See `SKILL.md` "Lane B: Model-Benchmark" for the source-of-truth contract.
 
 ### MB-038 | Mode Switch Routing via loop-host
 
@@ -804,6 +804,19 @@ Expected signals: `report.json` contains `outcomeScoreDelta`, `fixtureDeltas[]`,
 
 #### Test Execution
 > **Feature File:** [MB-049](../manual-testing-playbook/model-benchmark-mode/score-delta-benchmark-gates.md)
+
+### MB-052 | Zero-Call Fixture Census and Stub-Backend Skip
+
+#### Description
+`score-verdict-fallback.cjs` prints its fixture census without a model call and skips a stub Deem backend by name.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that the verdict fallback census makes no model call and that a stub Deem backend is skipped by name. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: The plain census exits 0 with `fixture cases: 8 hits: 8 misses: 0` and `stop: fewer than 12 labeled regex-miss outputs` and calls no stub. The `--deem` run adds only `deem arm skipped: stub backend`.
+
+#### Test Execution
+> **Feature File:** [MB-052](../manual-testing-playbook/model-benchmark-mode/verdict-fallback-census.md)
 
 ---
 
@@ -949,6 +962,6 @@ The feature catalog root is `.skilled/skills/system-deep-loop/deep-improvement/f
 | Reducer Dimensions | `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/dimensional-progress.md` |
 | End-to-End Loop | `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/evaluation-loop/initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md`, `two-phase-promotion-and-rollback.md` |
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
-| Model-Benchmark Mode | `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/mode-switch.md`, `model-dispatcher.md`, `opt-in-5dim-scorer.md`, `mode-records-and-gates.md`, `score-delta-benchmark-gates.md` |
+| Model-Benchmark Mode | `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/mode-switch.md`, `model-dispatcher.md`, `opt-in-5dim-scorer.md`, `mode-records-and-gates.md`, `score-delta-benchmark-gates.md`, `reviewer-verdict-fallback.md` |
 
 Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model-benchmark/evaluator-contract.md`, `references/agent-improvement/integration-scanning.md`, and `references/shared/quick-reference.md`.
