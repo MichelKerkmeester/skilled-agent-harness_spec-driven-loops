@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0286547dee78e337e18bcd92a375433ced868d22a227131cbc8d2fb5a21ed11d",
+  "manifestHash": "538845a7d0f2ec5f3462df43f32b98df6a5d8afad69b3d3a37194c65441a477b",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -32596,7 +32596,7 @@
     "cli jev move kill criterion": [
       2747
     ],
-    "cli jev move planned": [
+    "cli jev move results": [
       2748
     ],
     "cli jev parent hub": [
