@@ -1,5 +1,5 @@
 {
-  "manifestHash": "538845a7d0f2ec5f3462df43f32b98df6a5d8afad69b3d3a37194c65441a477b",
+  "manifestHash": "5e87dcc907150c6a567730a56413a7cf2ce56dc5bfc84536b4e69464b6178df3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8391,6 +8391,18 @@
     "advisor caller rewire": [
       "advisor caller rewire"
     ],
+    "advisor child budget verdict": [
+      "advisor child budget verdict"
+    ],
+    "advisor child latency budget": [
+      "advisor child latency budget"
+    ],
+    "advisor child timing plan": [
+      "advisor child timing plan"
+    ],
+    "advisor child timing tasks": [
+      "advisor child timing tasks"
+    ],
     "advisor cleanup": [
       "advisor cleanup"
     ],
@@ -9088,6 +9100,15 @@
     ],
     "advisor status rebuild playbook": [
       "advisor status rebuild playbook"
+    ],
+    "advisor suggested order": [
+      "advisor suggested order"
+    ],
+    "advisor suggested order goal": [
+      "advisor suggested order goal"
+    ],
+    "advisor suggested order summary": [
+      "advisor suggested order summary"
     ],
     "advisor suite drift plan": [
       "advisor suite drift plan"
@@ -10083,6 +10104,27 @@
     "alignment executor implementation": [
       "alignment executor implementation"
     ],
+    "alignment folder suggestion": [
+      "alignment folder suggestion"
+    ],
+    "alignment folder suggestion goal": [
+      "alignment folder suggestion goal"
+    ],
+    "alignment folder suggestion summary": [
+      "alignment folder suggestion summary"
+    ],
+    "alignment gold not built": [
+      "alignment gold not built"
+    ],
+    "alignment label gate": [
+      "alignment label gate"
+    ],
+    "alignment label gate plan": [
+      "alignment label gate plan"
+    ],
+    "alignment label gate verification": [
+      "alignment label gate verification"
+    ],
     "alignment mode removed": [
       "alignment mode removed"
     ],
@@ -10106,6 +10148,12 @@
     ],
     "alignment stylistic not behavioral": [
       "alignment stylistic not behavioral"
+    ],
+    "alignment suggestion plan": [
+      "alignment suggestion plan"
+    ],
+    "alignment suggestion tasks": [
+      "alignment suggestion tasks"
     ],
     "alignment validation": [
       "alignment validation"
@@ -12570,6 +12618,18 @@
     "belief truth maintenance deep loop": [
       "belief truth maintenance deep loop"
     ],
+    "below 50 alignment census": [
+      "below-50 alignment census"
+    ],
+    "below 50 census plan": [
+      "below-50 census plan"
+    ],
+    "below 50 census tasks": [
+      "below-50 census tasks"
+    ],
+    "below 50 census verdict": [
+      "below-50 census verdict"
+    ],
     "below floor truncation": [
       "below floor truncation"
     ],
@@ -12989,6 +13049,15 @@
     ],
     "blinded adjudication verification evidence": [
       "blinded adjudication verification evidence"
+    ],
+    "blinded judge keep rule": [
+      "blinded judge keep rule"
+    ],
+    "blinded judge results": [
+      "blinded judge results"
+    ],
+    "blinded judge verification": [
+      "blinded judge verification"
     ],
     "bloated skill description": [
       "bloated skill description"
@@ -15908,6 +15977,9 @@
     "chatgpt oauth sign in": [
       "chatgpt oauth sign-in"
     ],
+    "cheapest next check": [
+      "cheapest next check"
+    ],
     "check ac coverage": [
       "check-ac-coverage"
     ],
@@ -16629,6 +16701,42 @@
     "citation census": [
       "citation census"
     ],
+    "citation drift build order": [
+      "citation drift build order"
+    ],
+    "citation drift keep rule": [
+      "citation drift keep rule"
+    ],
+    "citation drift label gate": [
+      "citation drift label gate"
+    ],
+    "citation drift label tasks": [
+      "citation drift label tasks"
+    ],
+    "citation drift plan": [
+      "citation drift plan"
+    ],
+    "citation drift scan": [
+      "citation drift scan"
+    ],
+    "citation drift scan goal": [
+      "citation drift scan goal"
+    ],
+    "citation drift scan status": [
+      "citation drift scan status"
+    ],
+    "citation drift scan summary": [
+      "citation drift scan summary"
+    ],
+    "citation drift tasks": [
+      "citation drift tasks"
+    ],
+    "citation drift verdict": [
+      "citation drift verdict"
+    ],
+    "citation drift verification": [
+      "citation drift verification"
+    ],
     "citation grounding floor": [
       "citation grounding floor"
     ],
@@ -16661,6 +16769,21 @@
     ],
     "citationpolicy do not cite results": [
       "citationPolicy do_not_cite_results"
+    ],
+    "cite drift scan": [
+      "cite-drift-scan"
+    ],
+    "cite drift scan completion criteria": [
+      "cite-drift-scan completion criteria"
+    ],
+    "cite drift scan plan": [
+      "cite-drift-scan plan"
+    ],
+    "cite drift scan planned": [
+      "cite-drift-scan planned"
+    ],
+    "cite drift scan tasks": [
+      "cite-drift-scan tasks"
     ],
     "cite with caveat tier": [
       "cite with caveat tier"
@@ -16727,6 +16850,36 @@
     ],
     "clarifies validation coverage": [
       "clarifies validation coverage"
+    ],
+    "clarify census plan": [
+      "clarify census plan"
+    ],
+    "clarify census tasks": [
+      "clarify census tasks"
+    ],
+    "clarify census verdict": [
+      "clarify census verdict"
+    ],
+    "clarify default plan": [
+      "clarify default plan"
+    ],
+    "clarify default tasks": [
+      "clarify default tasks"
+    ],
+    "clarify gold not built": [
+      "clarify gold not built"
+    ],
+    "clarify label gate": [
+      "clarify label gate"
+    ],
+    "clarify label gate plan": [
+      "clarify label gate plan"
+    ],
+    "clarify label gate verification": [
+      "clarify label gate verification"
+    ],
+    "clarify suggested default": [
+      "clarify suggested default"
     ],
     "clarity program decisions": [
       "clarity program decisions"
@@ -22852,6 +23005,9 @@
     "compiled routing authority": [
       "compiled routing authority"
     ],
+    "compiled routing clarify census": [
+      "compiled routing clarify census"
+    ],
     "compiled routing closure": [
       "compiled routing closure"
     ],
@@ -22981,8 +23137,41 @@
     "completion checking script": [
       "completion checking script"
     ],
+    "completion claim audit": [
+      "completion claim audit"
+    ],
+    "completion claim audit goal": [
+      "completion claim audit goal"
+    ],
+    "completion claim audit plan": [
+      "completion claim audit plan"
+    ],
+    "completion claim audit results": [
+      "completion claim audit results"
+    ],
+    "completion claim audit status": [
+      "completion claim audit status"
+    ],
+    "completion claim audit summary": [
+      "completion claim audit summary"
+    ],
+    "completion claim audit tasks": [
+      "completion claim audit tasks"
+    ],
+    "completion claim census plan": [
+      "completion claim census plan"
+    ],
+    "completion claim census tasks": [
+      "completion claim census tasks"
+    ],
     "completion claim gate": [
       "completion claim gate"
+    ],
+    "completion claim keep rule": [
+      "completion claim keep rule"
+    ],
+    "completion claim label gate": [
+      "completion claim label gate"
     ],
     "completion claim obsidian plugin": [
       "completion claim obsidian plugin"
@@ -22992,6 +23181,9 @@
     ],
     "completion claim reconciliation": [
       "completion claim reconciliation"
+    ],
+    "completion claim regex false fire": [
+      "completion claim regex false fire"
     ],
     "completion criteria": [
       "completion criteria"
@@ -23058,6 +23250,9 @@
     ],
     "completion sentinel": [
       "completion sentinel"
+    ],
+    "completion sentinel claim audit": [
+      "completion sentinel claim audit"
     ],
     "completion sentinel plugin": [
       "completion sentinel plugin"
@@ -23395,6 +23590,18 @@
     "confirm invariance": [
       "confirm invariance"
     ],
+    "confirm mode hint precision plan": [
+      "confirm-mode hint precision plan"
+    ],
+    "confirm mode hint verification": [
+      "confirm-mode hint verification"
+    ],
+    "confirm mode stop hint": [
+      "confirm-mode stop hint"
+    ],
+    "confirm mode stop hint goal": [
+      "confirm-mode stop hint goal"
+    ],
     "confirm the target file": [
       "confirm the target file"
     ],
@@ -23493,6 +23700,12 @@
     ],
     "consolidation write lock ordering": [
       "consolidation write-lock ordering"
+    ],
+    "constant answer baseline": [
+      "constant answer baseline"
+    ],
+    "constant baseline tests": [
+      "constant baseline tests"
     ],
     "constant directive repetition": [
       "constant directive repetition"
@@ -24704,6 +24917,12 @@
     ],
     "correctness gate": [
       "correctness gate"
+    ],
+    "correctness traceability flag verdict": [
+      "correctness traceability flag verdict"
+    ],
+    "correctness traceability flagger": [
+      "correctness traceability flagger"
     ],
     "correlation distribution": [
       "correlation distribution"
@@ -26764,6 +26983,21 @@
     "d4 grader": [
       "D4 grader"
     ],
+    "d4 grader keep rule": [
+      "d4 grader keep rule"
+    ],
+    "d4 grader results": [
+      "d4 grader results"
+    ],
+    "d4 hallucination grader kind": [
+      "d4 hallucination grader kind"
+    ],
+    "d4 keep rule plan": [
+      "d4 keep rule plan"
+    ],
+    "d4 label gate": [
+      "d4 label gate"
+    ],
     "d4 r grader dim id mismatch": [
       "d4-r grader dim_id mismatch"
     ],
@@ -27535,11 +27769,26 @@
     "debug handoff schema": [
       "debug handoff schema"
     ],
+    "debug hypothesis check choice": [
+      "debug hypothesis check choice"
+    ],
     "debug log gating launcher": [
       "debug log gating launcher"
     ],
     "debug logging flag": [
       "debug logging flag"
+    ],
+    "debug next check choice": [
+      "debug next_check choice"
+    ],
+    "debug next check goal": [
+      "debug next check goal"
+    ],
+    "debug next check plan": [
+      "debug next check plan"
+    ],
+    "debug next check tasks": [
+      "debug next check tasks"
     ],
     "debug workflow doctrine": [
       "debug workflow doctrine"
@@ -30609,6 +30858,9 @@
     ],
     "deep research state jsonl": [
       "deep-research-state.jsonl"
+    ],
+    "deep research stop gold": [
+      "deep-research stop gold"
     ],
     "deep research strategy": [
       "deep research strategy"
@@ -38534,6 +38786,9 @@
     "fan out runner review lineage": [
       "fan-out runner review lineage"
     ],
+    "fan out shadow pair record": [
+      "fan-out shadow pair record"
+    ],
     "fan out stall watchdog": [
       "fan-out stall watchdog"
     ],
@@ -38690,6 +38945,9 @@
     "fanout merge fix tasks": [
       "fanout merge fix tasks"
     ],
+    "fanout merge pair labels": [
+      "fanout merge pair labels"
+    ],
     "fanout merge reconstruction gap": [
       "fanout-merge reconstruction gap"
     ],
@@ -38698,6 +38956,12 @@
     ],
     "fanout mirror parity test": [
       "fanout mirror parity test"
+    ],
+    "fanout pair replay plan": [
+      "fanout pair replay plan"
+    ],
+    "fanout pair replay tasks": [
+      "fanout pair replay tasks"
     ],
     "fanout parity docs closeout": [
       "fanout parity docs closeout"
@@ -38761,6 +39025,9 @@
     ],
     "fanout search adapter tasks": [
       "fanout search adapter tasks"
+    ],
+    "fanout shadow pair goal": [
+      "fanout shadow pair goal"
     ],
     "fanout stall watchdog": [
       "fanout-stall-watchdog"
@@ -39178,6 +39445,15 @@
     "fetch task file": [
       "fetch task file"
     ],
+    "fetched text injection screen": [
+      "fetched text injection screen"
+    ],
+    "fetched text injection screen goal": [
+      "fetched text injection screen goal"
+    ],
+    "fetched text injection screen summary": [
+      "fetched text injection screen summary"
+    ],
     "fewer skills safer paths": [
       "fewer skills safer paths"
     ],
@@ -39442,6 +39718,9 @@
     ],
     "file lifecycle store hardening": [
       "file lifecycle store hardening"
+    ],
+    "file line citation check": [
+      "file:line citation check"
     ],
     "file protection levels": [
       "file protection levels"
@@ -41743,6 +42022,9 @@
     "gate open epoch dedup": [
       "gate open-epoch dedup"
     ],
+    "gate post iteration hint": [
+      "gate post iteration hint"
+    ],
     "gate question fix plan": [
       "gate question fix plan"
     ],
@@ -43694,6 +43976,12 @@
     "grader selection": [
       "grader selection"
     ],
+    "grader startup check plan": [
+      "grader startup check plan"
+    ],
+    "grader startup check tasks": [
+      "grader startup check tasks"
+    ],
     "grader system prompts": [
       "grader system prompts"
     ],
@@ -44394,6 +44682,24 @@
     ],
     "half precision qwen reranker": [
       "half precision qwen reranker"
+    ],
+    "hallucination grader": [
+      "hallucination grader"
+    ],
+    "hallucination grader goal": [
+      "hallucination grader goal"
+    ],
+    "hallucination grader plan": [
+      "hallucination grader plan"
+    ],
+    "hallucination grader status": [
+      "hallucination grader status"
+    ],
+    "hallucination grader summary": [
+      "hallucination grader summary"
+    ],
+    "hallucination grader tasks": [
+      "hallucination grader tasks"
     ],
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
@@ -45333,6 +45639,9 @@
     "highest priority review dimension": [
       "highest-priority review dimension"
     ],
+    "hint precision tests": [
+      "hint precision tests"
+    ],
     "historic context preservation": [
       "historic context preservation"
     ],
@@ -45957,6 +46266,9 @@
     "hvr in a reply": [
       "hvr in a reply"
     ],
+    "hvr lens keep rule": [
+      "hvr lens keep rule"
+    ],
     "hvr lint changelog": [
       "hvr lint changelog"
     ],
@@ -45965,6 +46277,33 @@
     ],
     "hvr punctuation no matches": [
       "hvr punctuation no matches"
+    ],
+    "hvr reader lens": [
+      "hvr_reader_lens"
+    ],
+    "hvr reader lens completion criteria": [
+      "hvr_reader_lens completion criteria"
+    ],
+    "hvr reader lens plan": [
+      "hvr reader lens plan"
+    ],
+    "hvr reader lens planned": [
+      "hvr_reader_lens planned"
+    ],
+    "hvr reader lens status": [
+      "hvr reader lens status"
+    ],
+    "hvr reader lens tasks": [
+      "hvr reader lens tasks"
+    ],
+    "hvr reader needed lens": [
+      "hvr reader-needed lens"
+    ],
+    "hvr reader needed lens goal": [
+      "hvr reader-needed lens goal"
+    ],
+    "hvr reader needed lens summary": [
+      "hvr reader-needed lens summary"
     ],
     "hvr readme audit": [
       "hvr readme audit"
@@ -47012,6 +47351,33 @@
     ],
     "injection refusal ledger tasks": [
       "injection refusal ledger tasks"
+    ],
+    "injection screen build order": [
+      "injection screen build order"
+    ],
+    "injection screen keep rule": [
+      "injection screen keep rule"
+    ],
+    "injection screen label gate": [
+      "injection screen label gate"
+    ],
+    "injection screen label tasks": [
+      "injection screen label tasks"
+    ],
+    "injection screen plan": [
+      "injection screen plan"
+    ],
+    "injection screen status": [
+      "injection screen status"
+    ],
+    "injection screen tasks": [
+      "injection screen tasks"
+    ],
+    "injection screen verdict": [
+      "injection screen verdict"
+    ],
+    "injection screen verification": [
+      "injection screen verification"
     ],
     "injection selectivity": [
       "injection selectivity"
@@ -48303,6 +48669,21 @@
     "jsonl state log integrity review": [
       "JSONL state log integrity review"
     ],
+    "judge agreement completion criteria": [
+      "judge-agreement completion criteria"
+    ],
+    "judge agreement plan": [
+      "judge-agreement plan"
+    ],
+    "judge agreement planned": [
+      "judge-agreement planned"
+    ],
+    "judge agreement script": [
+      "judge-agreement script"
+    ],
+    "judge agreement tasks": [
+      "judge-agreement tasks"
+    ],
     "judge extraction plan": [
       "judge extraction plan"
     ],
@@ -49232,6 +49613,30 @@
     ],
     "leaf review agent": [
       "leaf review agent"
+    ],
+    "leaf route replay": [
+      "leaf-route-replay"
+    ],
+    "leaf route replay completion criteria": [
+      "leaf-route-replay completion criteria"
+    ],
+    "leaf route replay goal": [
+      "leaf route replay goal"
+    ],
+    "leaf route replay plan": [
+      "leaf route replay plan"
+    ],
+    "leaf route replay status": [
+      "leaf-route-replay status"
+    ],
+    "leaf route replay summary": [
+      "leaf route replay summary"
+    ],
+    "leaf route replay tasks": [
+      "leaf route replay tasks"
+    ],
+    "leaf set f1 replay": [
+      "leaf-set f1 replay"
     ],
     "leaf surface boundary": [
       "leaf surface boundary"
@@ -51017,6 +51422,9 @@
     "louvain naming decision": [
       "louvain naming decision"
     ],
+    "low alignment save suggestion": [
+      "low alignment save suggestion"
+    ],
     "low signal query": [
       "low signal query"
     ],
@@ -51926,6 +52334,12 @@
     ],
     "masked paired review": [
       "masked paired review"
+    ],
+    "masked reply baseline plan": [
+      "masked reply baseline plan"
+    ],
+    "masked reply grading": [
+      "masked reply grading"
     ],
     "mass deletion guard blocked commit": [
       "mass deletion guard blocked commit"
@@ -55728,6 +56142,9 @@
     "merge back to main locally": [
       "merge back to main locally"
     ],
+    "merge baseline decision": [
+      "merge baseline decision"
+    ],
     "merge diagnosis tasks": [
       "merge diagnosis tasks"
     ],
@@ -55745,6 +56162,9 @@
     ],
     "merge not replace auto fix": [
       "merge not replace auto-fix"
+    ],
+    "merge oracle tests": [
+      "merge oracle tests"
     ],
     "merge point dot": [
       "merge point dot"
@@ -58047,8 +58467,23 @@
     "near duplicate of backfill decision": [
       "near duplicate of backfill decision"
     ],
+    "near duplicate title line": [
+      "near-duplicate title line"
+    ],
     "near tie cluster eval": [
       "near-tie cluster eval"
+    ],
+    "near tie cluster order": [
+      "near-tie cluster order"
+    ],
+    "near tie order keep rule": [
+      "near-tie order keep rule"
+    ],
+    "near tie order not built": [
+      "near-tie order not built"
+    ],
+    "near tie order verification": [
+      "near-tie order verification"
     ],
     "nearest ancestor spec": [
       "nearest ancestor spec"
@@ -58286,6 +58721,15 @@
     ],
     "next action verb list": [
       "next action verb list"
+    ],
+    "next check keep rule": [
+      "next check keep rule"
+    ],
+    "next check label gate plan": [
+      "next check label gate plan"
+    ],
+    "next check payload gate tests": [
+      "next check payload gate tests"
     ],
     "next focus anchor": [
       "next focus anchor"
@@ -59069,6 +59513,15 @@
     ],
     "novelty claims continuity projections": [
       "novelty claims continuity projections"
+    ],
+    "novelty score arm plan": [
+      "novelty score arm plan"
+    ],
+    "novelty score arm tests": [
+      "novelty score arm tests"
+    ],
+    "novelty second rater": [
+      "novelty second rater"
     ],
     "now next later": [
       "now next later"
@@ -61765,6 +62218,12 @@
     "p0 hard blockers": [
       "p0 hard blockers"
     ],
+    "p0 label gate plan": [
+      "p0 label gate plan"
+    ],
+    "p0 label gate tasks": [
+      "p0 label gate tasks"
+    ],
     "p0 p1 evidence markers": [
       "P0 P1 evidence markers"
     ],
@@ -61785,6 +62244,12 @@
     ],
     "p0 regression dataset": [
       "p0 regression dataset"
+    ],
+    "p0 reread order": [
+      "p0 reread order"
+    ],
+    "p0 reread order goal": [
+      "p0 reread order goal"
     ],
     "p0 single record delete gate bypass": [
       "P0 single-record delete gate bypass"
@@ -62208,6 +62673,15 @@
     ],
     "pain point diagram": [
       "pain point diagram"
+    ],
+    "pair judgment keep rule": [
+      "pair judgment keep rule"
+    ],
+    "pair label gate plan": [
+      "pair label gate plan"
+    ],
+    "pair label gate tasks": [
+      "pair label gate tasks"
     ],
     "paired allowlist copies": [
       "paired allowlist copies"
@@ -67320,6 +67794,9 @@
     "prompt improver model eligibility": [
       "prompt improver model eligibility"
     ],
+    "prompt injection screen measurement": [
+      "prompt injection screen measurement"
+    ],
     "prompt isolation safety": [
       "prompt isolation safety"
     ],
@@ -68245,11 +68722,35 @@
     "r1 p1 001 resolution evidence": [
       "R1-P1-001 resolution evidence"
     ],
+    "r12 clarify gold": [
+      "r12 clarify gold"
+    ],
+    "r12 planned phase": [
+      "r12 planned phase"
+    ],
+    "r13 alignment gold": [
+      "r13 alignment gold"
+    ],
+    "r13 planned phase": [
+      "r13 planned phase"
+    ],
     "r20 model arm not built": [
       "r20 model arm not built"
     ],
     "r20 stop line": [
       "r20 stop line"
+    ],
+    "r25 leaf routing": [
+      "r25 leaf routing"
+    ],
+    "r25 planned phase": [
+      "r25 planned phase"
+    ],
+    "r3 live form test": [
+      "r3 live form test"
+    ],
+    "r3 planned phase": [
+      "r3 planned phase"
     ],
     "race safe canunlinkexistingsocket": [
       "race safe canUnlinkExistingSocket"
@@ -68322,6 +68823,9 @@
     ],
     "ratchet run": [
       "ratchet run"
+    ],
+    "rater report reader": [
+      "rater report reader"
     ],
     "ratified transition versioning rollback policy": [
       "ratified transition versioning rollback policy"
@@ -68538,6 +69042,33 @@
     ],
     "reader fail closed test": [
       "reader fail closed test"
+    ],
+    "reader lens sibling script plan": [
+      "reader lens sibling script plan"
+    ],
+    "reader lens sibling script tasks": [
+      "reader lens sibling script tasks"
+    ],
+    "reader needed lens build order": [
+      "reader-needed lens build order"
+    ],
+    "reader needed lens keep rule": [
+      "reader-needed lens keep rule"
+    ],
+    "reader needed lens label gate": [
+      "reader-needed lens label gate"
+    ],
+    "reader needed lens label tasks": [
+      "reader-needed lens label tasks"
+    ],
+    "reader needed lens verdict": [
+      "reader-needed lens verdict"
+    ],
+    "reader needed lens verification": [
+      "reader-needed lens verification"
+    ],
+    "reader needed voice categories": [
+      "reader-needed voice categories"
     ],
     "reader normalization": [
       "reader normalization"
@@ -69910,6 +70441,9 @@
     ],
     "regeneration identical criterion": [
       "regeneration identical criterion"
+    ],
+    "regex miss census tasks": [
+      "regex miss census tasks"
     ],
     "region cropping sk vision crop": [
       "Region cropping (sk_vision_crop)"
@@ -71672,6 +72206,30 @@
     "replayable deep loop observability": [
       "replayable deep-loop observability"
     ],
+    "reply harness blinded judge": [
+      "reply harness blinded judge"
+    ],
+    "reply harness judge agreement": [
+      "reply harness judge agreement"
+    ],
+    "reply harness judge goal": [
+      "reply harness judge goal"
+    ],
+    "reply harness judge plan": [
+      "reply harness judge plan"
+    ],
+    "reply harness judge status": [
+      "reply harness judge status"
+    ],
+    "reply harness judge summary": [
+      "reply harness judge summary"
+    ],
+    "reply harness judge tasks": [
+      "reply harness judge tasks"
+    ],
+    "reply harness label gate": [
+      "reply harness label gate"
+    ],
     "reply harness rerun": [
       "reply harness rerun"
     ],
@@ -72647,6 +73205,48 @@
     "research progress visualization": [
       "research progress visualization"
     ],
+    "research r10 test goal": [
+      "research r10 test goal"
+    ],
+    "research r10 test phase": [
+      "research r10 test phase"
+    ],
+    "research r15 test goal": [
+      "research r15 test goal"
+    ],
+    "research r15 test phase": [
+      "research r15 test phase"
+    ],
+    "research r18 test goal": [
+      "research r18 test goal"
+    ],
+    "research r18 test phase": [
+      "research r18 test phase"
+    ],
+    "research r4 completion claim": [
+      "research R4 completion claim"
+    ],
+    "research r5 reviewer fallback": [
+      "research R5 reviewer fallback"
+    ],
+    "research r6 blinded judge": [
+      "research R6 blinded judge"
+    ],
+    "research r7 d4 grader": [
+      "research R7 d4 grader"
+    ],
+    "research r8 test goal": [
+      "research r8 test goal"
+    ],
+    "research r8 test phase": [
+      "research r8 test phase"
+    ],
+    "research r9 test goal": [
+      "research r9 test goal"
+    ],
+    "research r9 test phase": [
+      "research r9 test phase"
+    ],
     "research recovery strategies": [
       "research recovery strategies"
     ],
@@ -72844,6 +73444,33 @@
     ],
     "residue decommission missed": [
       "residue decommission missed"
+    ],
+    "residue flagger build order": [
+      "residue flagger build order"
+    ],
+    "residue flagger keep rule": [
+      "residue flagger keep rule"
+    ],
+    "residue flagger label gate": [
+      "residue flagger label gate"
+    ],
+    "residue flagger label tasks": [
+      "residue flagger label tasks"
+    ],
+    "residue flagger plan": [
+      "residue flagger plan"
+    ],
+    "residue flagger status": [
+      "residue flagger status"
+    ],
+    "residue flagger tasks": [
+      "residue flagger tasks"
+    ],
+    "residue flagger verdict": [
+      "residue flagger verdict"
+    ],
+    "residue flagger verification": [
+      "residue flagger verification"
     ],
     "resilient resource discovery": [
       "resilient resource discovery"
@@ -73947,6 +74574,9 @@
     "review executor behavior scenarios": [
       "review executor behavior scenarios"
     ],
+    "review finding residue": [
+      "review finding residue"
+    ],
     "review finding schema": [
       "review finding schema"
     ],
@@ -74266,6 +74896,15 @@
     "reviewer benchmark substrate": [
       "reviewer benchmark substrate"
     ],
+    "reviewer fallback keep rule": [
+      "reviewer fallback keep rule"
+    ],
+    "reviewer fallback label gate": [
+      "reviewer fallback label gate"
+    ],
+    "reviewer fallback results": [
+      "reviewer fallback results"
+    ],
     "reviewer fixture": [
       "reviewer fixture"
     ],
@@ -74298,6 +74937,27 @@
     ],
     "reviewer scorer lane b": [
       "reviewer scorer lane b"
+    ],
+    "reviewer verdict classifier": [
+      "reviewer verdict classifier"
+    ],
+    "reviewer verdict fallback": [
+      "reviewer verdict fallback"
+    ],
+    "reviewer verdict fallback goal": [
+      "reviewer verdict fallback goal"
+    ],
+    "reviewer verdict fallback plan": [
+      "reviewer verdict fallback plan"
+    ],
+    "reviewer verdict fallback status": [
+      "reviewer verdict fallback status"
+    ],
+    "reviewer verdict fallback summary": [
+      "reviewer verdict fallback summary"
+    ],
+    "reviewer verdict fallback tasks": [
+      "reviewer verdict fallback tasks"
     ],
     "reviewing a draft rule": [
       "reviewing a draft rule"
@@ -74905,6 +75565,18 @@
     "router final report": [
       "router-final report"
     ],
+    "router md leaf replay": [
+      "router.md leaf replay"
+    ],
+    "router md read recount": [
+      "router.md read recount"
+    ],
+    "router md replay build": [
+      "router.md replay build"
+    ],
+    "router md replay verification": [
+      "router.md replay verification"
+    ],
     "router measurement": [
       "router measurement"
     ],
@@ -74988,6 +75660,15 @@
     ],
     "routing benchmark": [
       "routing benchmark"
+    ],
+    "routing clarify default": [
+      "routing clarify default"
+    ],
+    "routing clarify default goal": [
+      "routing clarify default goal"
+    ],
+    "routing clarify default summary": [
+      "routing clarify default summary"
     ],
     "routing completeness": [
       "routing completeness"
@@ -76267,6 +76948,12 @@
     "save mutex liveness causal generation bump": [
       "save mutex liveness causal generation bump"
     ],
+    "save path replay plan": [
+      "save path replay plan"
+    ],
+    "save path replay tasks": [
+      "save path replay tasks"
+    ],
     "save quality gate persistence": [
       "save quality gate persistence"
     ],
@@ -76777,6 +77464,15 @@
     "score adjustment role": [
       "score adjustment role"
     ],
+    "score alignment suggestion": [
+      "score-alignment-suggestion"
+    ],
+    "score alignment suggestion completion criteria": [
+      "score-alignment-suggestion completion criteria"
+    ],
+    "score alignment suggestion status": [
+      "score-alignment-suggestion status"
+    ],
     "score candidate": [
       "score-candidate"
     ],
@@ -76785,6 +77481,21 @@
     ],
     "score candidate test": [
       "score-candidate test"
+    ],
+    "score clarify default": [
+      "score-clarify-default"
+    ],
+    "score clarify default completion criteria": [
+      "score-clarify-default completion criteria"
+    ],
+    "score clarify default plan": [
+      "score-clarify-default plan"
+    ],
+    "score clarify default status": [
+      "score-clarify-default status"
+    ],
+    "score clarify default tasks": [
+      "score-clarify-default tasks"
     ],
     "score compaction recall": [
       "score-compaction-recall"
@@ -76804,11 +77515,65 @@
     "score compaction recall tasks": [
       "score-compaction-recall tasks"
     ],
+    "score completion claims": [
+      "score-completion-claims"
+    ],
+    "score completion claims completion criteria": [
+      "score-completion-claims completion criteria"
+    ],
+    "score completion claims plan": [
+      "score-completion-claims plan"
+    ],
+    "score completion claims planned": [
+      "score-completion-claims planned"
+    ],
+    "score completion claims tasks": [
+      "score-completion-claims tasks"
+    ],
+    "score d4 agreement": [
+      "score-d4-agreement"
+    ],
+    "score d4 agreement completion criteria": [
+      "score-d4-agreement completion criteria"
+    ],
+    "score d4 agreement plan": [
+      "score-d4-agreement plan"
+    ],
+    "score d4 agreement planned": [
+      "score-d4-agreement planned"
+    ],
+    "score d4 agreement tasks": [
+      "score-d4-agreement tasks"
+    ],
+    "score debug next check": [
+      "score-debug-next-check"
+    ],
+    "score debug next check build": [
+      "score-debug-next-check build"
+    ],
+    "score debug next check completion criteria": [
+      "score-debug-next-check completion criteria"
+    ],
+    "score debug next check tasks": [
+      "score-debug-next-check tasks"
+    ],
     "score delta benchmark gates": [
       "score-delta benchmark gates"
     ],
     "score executor reliability": [
       "score executor reliability"
+    ],
+    "score fanout pairs": [
+      "score-fanout-pairs"
+    ],
+    "score fanout pairs build": [
+      "score-fanout-pairs build"
+    ],
+    "score fanout pairs completion criteria": [
+      "score-fanout-pairs completion criteria"
+    ],
+    "score fanout pairs tasks": [
+      "score-fanout-pairs tasks"
     ],
     "score goal lint": [
       "score-goal-lint"
@@ -76824,6 +77589,21 @@
     ],
     "score hypothetical seat output": [
       "score hypothetical seat output"
+    ],
+    "score injection screen": [
+      "score-injection-screen"
+    ],
+    "score injection screen completion criteria": [
+      "score-injection-screen completion criteria"
+    ],
+    "score injection screen plan": [
+      "score-injection-screen plan"
+    ],
+    "score injection screen planned": [
+      "score-injection-screen planned"
+    ],
+    "score injection screen tasks": [
+      "score-injection-screen tasks"
     ],
     "score jev tiebreak": [
       "score-jev-tiebreak"
@@ -76855,6 +77635,21 @@
     "score model variant cjs": [
       "score-model-variant.cjs"
     ],
+    "score residue flagger": [
+      "score-residue-flagger"
+    ],
+    "score residue flagger completion criteria": [
+      "score-residue-flagger completion criteria"
+    ],
+    "score residue flagger plan": [
+      "score-residue-flagger plan"
+    ],
+    "score residue flagger planned": [
+      "score-residue-flagger planned"
+    ],
+    "score residue flagger tasks": [
+      "score-residue-flagger tasks"
+    ],
     "score scale battery plan": [
       "score scale battery plan"
     ],
@@ -76863,6 +77658,57 @@
     ],
     "score scale unification": [
       "score scale unification"
+    ],
+    "score severity replay": [
+      "score-severity-replay"
+    ],
+    "score severity replay build": [
+      "score-severity-replay build"
+    ],
+    "score severity replay completion criteria": [
+      "score-severity-replay completion criteria"
+    ],
+    "score severity replay tasks": [
+      "score-severity-replay tasks"
+    ],
+    "score stop hint": [
+      "score-stop-hint"
+    ],
+    "score stop hint build": [
+      "score-stop-hint build"
+    ],
+    "score stop hint completion criteria": [
+      "score-stop-hint completion criteria"
+    ],
+    "score stop hint tasks": [
+      "score-stop-hint tasks"
+    ],
+    "score stop rater": [
+      "score-stop-rater"
+    ],
+    "score stop rater build": [
+      "score-stop-rater build"
+    ],
+    "score stop rater completion criteria": [
+      "score-stop-rater completion criteria"
+    ],
+    "score stop rater tasks": [
+      "score-stop-rater tasks"
+    ],
+    "score suggested order": [
+      "score-suggested-order"
+    ],
+    "score suggested order completion criteria": [
+      "score-suggested-order completion criteria"
+    ],
+    "score suggested order plan": [
+      "score-suggested-order plan"
+    ],
+    "score suggested order status": [
+      "score-suggested-order status"
+    ],
+    "score suggested order tasks": [
+      "score-suggested-order tasks"
     ],
     "score this document": [
       "score this document"
@@ -76884,6 +77730,21 @@
     ],
     "score verdict delta": [
       "score verdict delta"
+    ],
+    "score verdict fallback": [
+      "score-verdict-fallback"
+    ],
+    "score verdict fallback completion criteria": [
+      "score-verdict-fallback completion criteria"
+    ],
+    "score verdict fallback plan": [
+      "score-verdict-fallback plan"
+    ],
+    "score verdict fallback planned": [
+      "score-verdict-fallback planned"
+    ],
+    "score verdict fallback tasks": [
+      "score-verdict-fallback tasks"
     ],
     "scored on nothing before": [
       "scored on nothing before"
@@ -78404,6 +79265,18 @@
     "severity mapping implementation": [
       "severity mapping implementation"
     ],
+    "severity replay": [
+      "severity replay"
+    ],
+    "severity replay keep rule": [
+      "severity replay keep rule"
+    ],
+    "severity replay plan": [
+      "severity replay plan"
+    ],
+    "severity replay tasks": [
+      "severity replay tasks"
+    ],
     "severity weighted convergence": [
       "severity weighted convergence"
     ],
@@ -79523,6 +80396,9 @@
     ],
     "silent hook catch stderr": [
       "silent hook catch stderr"
+    ],
+    "silent mock grader fallback": [
+      "silent mock grader fallback"
     ],
     "silent reinterpretation": [
       "silent reinterpretation"
@@ -83841,6 +84717,12 @@
     "skill doc alignment": [
       "skill doc alignment"
     ],
+    "skill doc citation drift": [
+      "skill doc citation drift"
+    ],
+    "skill doc citation drift verdict": [
+      "skill doc citation drift verdict"
+    ],
     "skill doc contract authoring": [
       "skill doc contract authoring"
     ],
@@ -87532,6 +88414,21 @@
     "stage2 latency tasks": [
       "stage2 latency tasks"
     ],
+    "stage2 leaf route replay": [
+      "stage2 leaf route replay"
+    ],
+    "stage2 replay not built": [
+      "stage2 replay not built"
+    ],
+    "stage2 replay plan": [
+      "stage2 replay plan"
+    ],
+    "stage2 replay tasks": [
+      "stage2 replay tasks"
+    ],
+    "stage2 replay verdict": [
+      "stage2 replay verdict"
+    ],
     "stage3 rerank flag gate": [
       "stage3-rerank flag gate"
     ],
@@ -88332,8 +89229,26 @@
     "stop evaluator": [
       "stop evaluator"
     ],
+    "stop gold derivation": [
+      "stop gold derivation"
+    ],
+    "stop gold keep rule": [
+      "stop gold keep rule"
+    ],
+    "stop gold label gate tasks": [
+      "stop gold label gate tasks"
+    ],
     "stop grading prose shape": [
       "stop grading prose shape"
+    ],
+    "stop hint evaluator plan": [
+      "stop hint evaluator plan"
+    ],
+    "stop hint keep rule": [
+      "stop hint keep rule"
+    ],
+    "stop hint tasks": [
+      "stop hint tasks"
     ],
     "stop hook advisory": [
       "stop hook advisory"
@@ -88365,6 +89280,12 @@
     "stop preserving bad statuses": [
       "stop preserving bad statuses"
     ],
+    "stop rater replay plan": [
+      "stop rater replay plan"
+    ],
+    "stop rater tasks": [
+      "stop rater tasks"
+    ],
     "stop reason max iterations": [
       "stop reason max iterations"
     ],
@@ -88376,6 +89297,15 @@
     ],
     "stop running timer": [
       "stop running timer"
+    ],
+    "stop second rater goal": [
+      "stop second-rater goal"
+    ],
+    "stop second rater replay": [
+      "stop second-rater replay"
+    ],
+    "stop suggestion precision": [
+      "stop suggestion precision"
     ],
     "stop timer": [
       "stop timer"
@@ -89107,6 +90037,12 @@
     "sufficient fits goal": [
       "sufficient fits goal"
     ],
+    "suggested order plan": [
+      "suggested order plan"
+    ],
+    "suggested order tasks": [
+      "suggested order tasks"
+    ],
     "suggested phase counts": [
       "suggested phase counts"
     ],
@@ -89526,6 +90462,9 @@
     ],
     "synchronization points diagram": [
       "synchronization points diagram"
+    ],
+    "synonym cycling significance inflation false ranges": [
+      "synonym cycling significance inflation false ranges"
     ],
     "synthesis": [
       "synthesis"
@@ -91779,6 +92718,12 @@
     "threshold parity": [
       "threshold parity"
     ],
+    "tie break arm plan": [
+      "tie-break arm plan"
+    ],
+    "tie break arm tasks": [
+      "tie-break arm tasks"
+    ],
     "tie break eval": [
       "tie-break eval"
     ],
@@ -93589,6 +94534,9 @@
     "unknown fallback checklist": [
       "unknown fallback checklist"
     ],
+    "unknown grader startup check": [
+      "unknown grader startup check"
+    ],
     "unknown legacy record migration": [
       "unknown legacy record migration"
     ],
@@ -94757,6 +95705,15 @@
     "validator report shapes": [
       "validator report shapes"
     ],
+    "validator residue flagger": [
+      "validator residue flagger"
+    ],
+    "validator residue flagger goal": [
+      "validator residue flagger goal"
+    ],
+    "validator residue flagger summary": [
+      "validator residue flagger summary"
+    ],
     "validator spec document integrity audit": [
       "validator spec document integrity audit"
     ],
@@ -94774,6 +95731,15 @@
     ],
     "validator unconditional markers": [
       "validator unconditional markers"
+    ],
+    "validity funnel log": [
+      "validity funnel log"
+    ],
+    "validity funnel plan": [
+      "validity funnel plan"
+    ],
+    "validity funnel tests": [
+      "validity funnel tests"
     ],
     "value embedding in prose": [
       "value embedding in prose"
@@ -95020,6 +95986,15 @@
     ],
     "verdict identical pinned sample": [
       "verdict identical pinned sample"
+    ],
+    "verdict regex census plan": [
+      "verdict regex census plan"
+    ],
+    "verdict regex miss census": [
+      "verdict regex miss census"
+    ],
+    "verdict regex miss gate": [
+      "verdict regex miss gate"
     ],
     "verdicts": [
       "verdicts"
@@ -95516,6 +96491,9 @@
     "voice": [
       "voice"
     ],
+    "voice category flag verdict": [
+      "voice category flag verdict"
+    ],
     "voice half delegation": [
       "voice half delegation"
     ],
@@ -95850,6 +96828,9 @@
     ],
     "web search": [
       "web search"
+    ],
+    "webfetch injection classifier": [
+      "webfetch injection classifier"
     ],
     "webflow animation quality": [
       "webflow animation quality"
