@@ -9,7 +9,7 @@ trigger_phrases:
   - "rm-8 prevention playbook"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.14
+version: 1.4.0.19
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
@@ -126,15 +126,16 @@ Worktree isolation is the cheapest single change that converts "deletion of N tr
 
 ### Layer 3 (REQUIRED) — commit-before-dispatch safety net
 
-Before dispatching, commit any in-flight working-tree state on `main`. Even with Layer 2, a commit guarantees `git restore` is a one-command recovery if anything escapes the worktree (or if your own orchestration overwrites files in main during artifact sync-back).
+Before dispatching, commit the dispatch target's own in-flight changes on `main`, staging them by explicit path. Leave every other change in the tree alone. In a shared tree it belongs to another session, and committing it would publish work you did not write. Even with Layer 2, a commit guarantees `git restore` is a one-command recovery for the target's files if anything escapes the worktree (or if your own orchestration overwrites files in main during artifact sync-back).
 
 ```bash
-git status --short
+git status --short -- <relevant-paths>
 git add <relevant-paths>
+git diff --cached --name-only
 git commit -m "chore(wip): snapshot in-flight work before deep-loop dispatch on <target>" -m "Recovery baseline taken before the dispatch, so its writes can be told apart."
 ```
 
-The commit hash is the recovery baseline. Surface it to the operator before dispatch.
+The commit hash is the recovery baseline. Surface it to the operator before dispatch. When the target has no in-flight changes there is nothing to commit, so `git rev-parse HEAD` is the baseline.
 
 ### Layer 4 (FALLBACK) — model selection
 
@@ -158,7 +159,7 @@ This requires changes to the YAML wrapper (pre/post hooks) and is a separate pac
 
 - [ ] Layer 1: rendered prompt contains literal `BANNED OPERATIONS` and `ALLOWED WRITE PATHS` strings (grep the rendered prompt before dispatch).
 - [ ] Layer 2: dispatch `--dir` points at a `git worktree`, not the live working tree.
-- [ ] Layer 3: `git status` clean OR working tree committed; recovery commit hash recorded.
+- [ ] Layer 3: the target's own in-flight changes committed by explicit path (staged set checked with `git diff --cached --name-only`, other sessions' changes left alone), recovery commit hash recorded.
 - [ ] Layer 4: model+executor pairing matches risk tolerance for the target shape (single child = lower risk; phase parent with multiple children = higher risk, prefer copilot or pair with all of Layers 1–3).
 
 ---
