@@ -39,24 +39,28 @@
       "keep"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs",
-      ".claude/settings.json",
-      ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+      ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+      "runtime/tests/completion-claim-audit.vitest.ts",
       "runtime/scripts/README.md",
-      "runtime/vitest.config.ts",
+      "changelog/v4.5.0.0.md",
+      "feature-catalog/tooling-and-scripts/completion-claim-audit.md",
+      "manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/README.md",
-      "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/system-spec-kit/runtime/vitest.config.ts"
+      ".skilled/skills/system-spec-kit/changelog/v4.5.0.0.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -90,21 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "completion-evidence-sentinel.cjs",
+        "name": "score-completion-claims.mjs",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
         "source": "derived"
       },
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "verifier-labeled-set.jsonl",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+        "name": "completion-claim-audit.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/completion-claim-audit.vitest.ts",
         "source": "derived"
       },
       {
@@ -114,9 +112,15 @@
         "source": "derived"
       },
       {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "runtime/vitest.config.ts",
+        "name": "v4.5.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v4.5.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-claim-audit.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/completion-claim-audit.md",
         "source": "derived"
       },
       {
@@ -128,13 +132,13 @@
       {
         "name": "feature-catalog.md",
         "kind": "doc",
-        "path": "feature-catalog/feature-catalog.md",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -206,7 +210,7 @@
     ],
     "causal_summary": "The completion-evidence sentinel decides that a turn claimed completion when one of ten words, `completed`, `resolved`, `fixed`, `finished`, `shipped`, `released`, `deployed`, `implemented`, `occurred` or `happened`, appears in the last 400 characters of the turn (`.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs:64`, `:70`, `:113-119`)",
     "created_at": "2026-09-29T12:42:38Z",
-    "last_save_at": "2026-09-29T13:53:40.743Z",
+    "last_save_at": "2026-09-29T19:12:27.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d886be7410b24bfca75c0e2a9785d5a603764a1a10c7a13ad351b49fb045f74",
+    "source_fingerprint": "sha256:532a3961f3167df630405b1c73eb81a14f5992491278e38860d9680f4431ff33",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cda1ff9aca24478eaefc6d0d7d2ce88b1a98ab2bf530c95768de8c291a3039a8",
-      "plan.md": "76ce5bacf3d2ab25529cab25f34b76e7d844488e4dd6f659e7bfa98c2fc2ea96",
-      "tasks.md": "67fc59d4804e0531525845561d7e7d9501a7e909a5a81b89e3c664812165d332",
-      "implementation-summary.md": "d138e2716d8817ed65441218ddab8617526ad3bfb75814aac032d97465b97ceb"
+      "spec.md": "495b3eeae7badf626a65546a319b128d5ee07e30407cd6b13d04c4412b80da16",
+      "plan.md": "3de1e68d3026c4807722241334f2639aec51aaf6260aeef992cf1519b80dab0d",
+      "tasks.md": "376f5c8fe4fa8db1b6aa0c66073903b59d78fc7151305ba3a588c648664f15c8",
+      "implementation-summary.md": "af58fea22473371baf5d8e2a296e0f021ee834f262b60d08670eaaabfdb7c0a8"
     },
     "last_active_at": null
   }

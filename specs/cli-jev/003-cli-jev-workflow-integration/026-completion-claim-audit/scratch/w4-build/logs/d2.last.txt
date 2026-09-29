@@ -1,0 +1,10 @@
+All checks pass. The row states only what FACTS and the script show: the usage path and `--rows <file>` from the exported `USAGE` string and `parseArgs`, the zero-call default from FACTS, `--deem`/`--jev` with `--out` outside the repository behind each backend's own check, and `--accept-payload` required for `--jev`. No `verdict` line is claimed. Version bumped 4.4.0.0 to 4.5.0.0 per ruling 2. Row placed directly after the `Alignment suggestion measurement` row per ruling 3.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/SKILL.md (+2/-1)
+EDITS: .skilled/skills/system-spec-kit/SKILL.md:5 `version: 4.4.0.0` changed to `version: 4.5.0.0` (ruling 2)
+EDITS: .skilled/skills/system-spec-kit/SKILL.md:573 new Quick Reference Commands row `Completion claim audit` inserted directly after the `Alignment suggestion measurement` row (ruling 3), one sentence naming the offline completion-claim audit, its zero-call default and its two switches `--deem`/`--jev`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/SKILL.md -> `✅ VALID: .skilled/skills/system-spec-kit/SKILL.md` / `Document type: skill` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/SKILL.md -> `1 file changed, 2 insertions(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: none

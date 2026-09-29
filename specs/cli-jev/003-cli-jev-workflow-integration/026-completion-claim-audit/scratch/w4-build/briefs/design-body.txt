@@ -1,0 +1,15 @@
+TASK: write the build design for this phase as one markdown file. Write or edit no code.
+FILE (create): `{PHASE}/scratch/w4-build/design.md`
+READ FIRST: the parent goal `specs/cli-jev/003-cli-jev-workflow-integration/goal.md` (decisions D1 to D7), then this phase's `spec.md`, `plan.md`, `tasks.md` and `goal.md`, then every existing file the spec's "Files to Change" table names, then the shipped sibling `.skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` with its vitest suite under `runtime/tests/` (same skill), and for the Jev and Deem arms `.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs` as the pattern for the Jev and Deem gates, the keep rule, the verdict line and the tests.
+WRITE these sections, in order:
+## 1. Premises: each `file:line` the spec cites, checked in today's tree, as `ok`, `moved: old -> new` or `missing`.
+## 2. Interface: the script path; every CLI switch with its rules and exit codes; every stdout line format; every file written; each exported function with its signature and behavior. Gates, keep rule and verdict line follow the sibling. Name each constant (label gate size, margin, timeouts).
+## 3. Test cases: one line per case, `name | input | expected`. Happy path plus one edge per public surface; both arms on stubs, never a live backend.
+## 4. Build steps: an ordered list. Each step is one change for one executor. A code step (Devin) is one behavior plus its test cases in named files, with the exact functions, lines and test names. A doc step (Pi) is one doc: its path, its sk-doc mode, the MODEL file to copy the shape from, and the facts it states. Plan every doc parent D6 requires: `SKILL.md`, README, changelog (the next version after the newest in the skill's `changelog/`), feature catalog entry and index, playbook scenario and index, and each folder README the spec names.
+## 5. Proof plan: one row per criterion in this phase's `goal.md`, with the exact command and expected output. The label gate stop line is an accepted end state.
+## 6. Open questions: what the spec leaves undecided, each with your answer marked `(proposed)`.
+Keep it under 400 lines, with no prose beyond what a builder needs.
+VERIFY (repo root), paste each result line:
+  wc -l {PHASE}/scratch/w4-build/design.md
+  grep -c '^## ' {PHASE}/scratch/w4-build/design.md
+Accept when: 1 file created (design.md) and nothing else changed; the grep prints 6.

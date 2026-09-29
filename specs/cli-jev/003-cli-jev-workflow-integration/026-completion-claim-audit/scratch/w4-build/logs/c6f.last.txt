@@ -1,0 +1,8 @@
+Edit landed and verification is green. One workspace note: S shows as untracked (`??`) in this worktree, so `git diff` is empty by construction — the change is on disk and was made solely by my single `edit_lines` call on line 1003; I touched no other file.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs (+1/-1)
+EDITS: .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:1003 plan object in the `runDeemArm(...)` call changed from `{ labeled, ... }` to `{ labeled: labels, rowsById, labelsSha: labelsInfo.sha256 }`
+CHECKS: node --check scripts/completion-claim-audit/score-completion-claims.mjs -> (no output) (exit 0)
+CHECKS: npx vitest run tests/completion-claim-audit.vitest.ts -> Test Files 1 passed (1) / Tests 16 passed (16) (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,34 @@
+STATUS: DONE
+FILES CHANGED:
+- `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` (+195/-1; now 432 lines)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` (+58/-0; now 215 lines)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-happy-rows.jsonl` (+30)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-happy.jsonl` (+30)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-class-gate.jsonl` (+30)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-headroom.jsonl` (+30)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-unknown-id.jsonl` (+1)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-bad-value.jsonl` (+1)
+
+EDITS:
+- score-completion-claims.mjs:32 added exported `LABEL_GATE=30`, `CLASS_GATE=5`, `MARGIN_LINE`, `KEEP_RULE_LINE`, `POWER_LINE`
+- score-completion-claims.mjs:124 added section 5 LABELS: `parseLabels`, `sha256Hex`, `classCounts`, `firstClaimWord`, `regexErrors`, `byWordList`; renumbered later sections
+- score-completion-claims.mjs:244 added section 6 GATE: `gateLine` (row floor, class floors, headroom, planned calls)
+- score-completion-claims.mjs:370 read `--labels`, refuse exit 2 on unreadable/bad rows before any print; 392 fixed stale guard comment
+- score-completion-claims.mjs:402 added `labels:`, `labeled:`, `regex accuracy:`, `regex false fires:`, `regex missed claims:`, margin/keep/power, gate lines
+- completion-claim-audit.vitest.ts:7 imported `createHash`; added `labels happy`, `labels edge (unknown id)`, `labels edge (bad value)`, `class gate edge`, `headroom edge` (earlier tests unchanged)
+
+CHECKS:
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` -> no output, exit 0
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` -> `8`, exit 0
+- `node <S> --rows labels-happy-rows.jsonl --labels labels-happy.jsonl` -> `labeled: 30 (yes 15, no 15)`, `regex accuracy: 27 of 30 = 0.9000`, last line `planned calls: deem=30 jev=91`, exit 0
+- `node <S> --rows labels-happy-rows.jsonl --labels labels-headroom.jsonl` -> `regex accuracy: 28 of 30 = 0.9333`, last line `no headroom`, exit 0
+- `node <S> --rows labels-happy-rows.jsonl --labels labels-class-gate.jsonl` -> last line `stop: fewer than 5 labeled no rows`, exit 0
+- `node <S> --rows labels-happy-rows.jsonl --labels labels-unknown-id.jsonl` -> stdout empty, stderr `labels row 1: unknown id not-in-rows`, exit 2
+- `node <S> --rows labels-happy-rows.jsonl --labels labels-bad-value.jsonl` -> stderr `labels row 1: claim must be yes or no, got "maybe"`, exit 2
+- `node <S> --rows census-happy.jsonl` -> last line `stop: fewer than 30 labeled rows`, exit 0
+- `grep -nE "REQ-|specs/|packet|phase [0-9]|026-" <S> <T>` -> no matches, exit 1 (comment hygiene clean)
+- `git status --porcelain` scoped to S, T and fixtures -> only those three paths, all untracked; no other file touched, no git write run
+
+Note: vitest was deliberately not run (sandbox), per the brief. Direct script runs were read-only, no stubs invoked, no network, no writes.
+
+BLOCKED REASON: none

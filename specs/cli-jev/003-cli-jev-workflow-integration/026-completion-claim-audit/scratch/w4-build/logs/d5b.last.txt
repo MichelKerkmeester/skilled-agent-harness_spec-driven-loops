@@ -1,0 +1,9 @@
+Both checks pass. The block description is byte-identical to the leaf frontmatter description in `tooling-and-scripts/completion-claim-audit.md`, the H3 equals the leaf title, and every stated behavior comes from the script's `USAGE`, `main` and printed lines plus FACTS (zero calls by default, no file on a default run, no `verdict` line ever printed, per ruling 5).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md (+16/-0)
+EDITS: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:122 inserted the `### Completion claim audit` block (Description, Current Reality, Source Files) between the `### Compaction recall census` block and `### Alignment suggestion measurement`, nothing else changed
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md --type feature_catalog -> `✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md -> `1 file changed, 16 insertions(+)` (exit 0)
+BLOCKED REASON: none

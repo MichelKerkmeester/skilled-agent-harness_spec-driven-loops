@@ -1,0 +1,21 @@
+I have completed the review. Verification performed from the worktree root: full reads of all eight docs, the script (1310 lines), its test (559 lines), the sentinel, the Claude Stop adapter, the phase spec/goal/design/rulings/facts, and parent D1–D7; reran the default census over `census-happy.jsonl` (`rows: 12 fires: 10`) and phase 003's fixture (`rows: 50 fires: 4`, exact words line), the vitest suite (23 passed, 0 failed), the secret grep (no match), the comment-hygiene and spec-path greps (no match), `validate_document.py` on all eight docs (exit 0 each), and checked that `detectCompletionClaim` is the one both Stop hooks call, that no hook references the script, and that the Deem repo-copy fallback path exists.
+
+P1 .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md:40 - "Every string the run prints or writes passes an allowlist" claims a guard the code does not apply; `hasFreeText` is called only on the census object (score-completion-claims.mjs:1185) with an allowlist of claim words, row ids and 64-hex (script:314-317, 350-362), so the printed `deem: found=<json>` line and every verdict line never pass it - a stub health returning `{"ok":false,...}` prints through it today.
+P2 .skilled/skills/system-spec-kit/runtime/scripts/README.md:35 - tree line "Zero-call audit" drops the "by default" qualifier its own inventory row carries; `--deem`/`--jev` make model calls.
+P2 .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts:1 - no case covers a label-gate skip or any `arm stopped:` exit, so `deem arm skipped: label gate`, `jev arm skipped: label gate`, `deem arm stopped: backend refused` and the Jev stop table are untested (also recorded by the code review).
+
+REQ-001 met - default run prints census, per-word, regex, margin/keep/power and a gate line; stubs log nothing; no file.
+REQ-002 met - sentinel import verified; my rerun of phase 003's fixture printed `rows: 50 fires: 4`; 40-char scan finds no row text.
+REQ-003 met - labels-happy case prints accuracy, 2 false fires, 1 missed claim with per-word split, zero calls.
+REQ-004 met - yes/no and unknown-id refusals exit 2 naming the row; 30/5 floors; labels sha printed; no model writes labels.
+REQ-005 met - coverage→kill→margin→sign test→flips in `decideVerdict`, exact BigInt tails; hand-check W=5,L=0 gives p_win 0.03125; W=0,L=5 gives p_loss 0.03125.
+REQ-006 met - Deem only behind `--deem` plus health; four skip reasons; skip byte-identical, exit 0.
+REQ-007 met - identity line, exact `jev 0.6.2` pin, auth status exit 0, provider threaded to status/test/judgments.
+REQ-008 met - payload gate skips Jev only and Deem still runs; secret grep empty; `--out` inside repo exits 2 before any call.
+REQ-009 met - fixed question on closed stdin, trimmed tail, 0.5 threshold, Deem 1x / Jev 3x modal, no cache.
+REQ-010 met - cost/payload lines print before first call; calls.jsonl fields and exit table match.
+REQ-011 met - Deem commit pair and Jev version/provider/model recorded; Deem requalify tested.
+REQ-012 met - 23 passed, 0 failed; every case REQ-012 names is present with both arms stubbed.
+REQ-013 not met - the guard sentence above states more than the code does; all eight docs still pass `validate_document.py` exit 0 and no verdict is claimed.
+
+VERDICT: FAIL
