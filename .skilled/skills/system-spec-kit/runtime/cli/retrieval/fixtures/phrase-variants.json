@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2e5ed8d2658b7a4fafab65e049c2b7326e3299e6cf868085b71688ee3ee679c5",
+  "manifestHash": "9481e0d60815d22e1b1c76c7f5aff8930df2b020a750f119a969793f69fa85df",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22660,14 +22660,14 @@
     "compaction brief recall": [
       "compaction brief recall"
     ],
-    "compaction census planned": [
-      "compaction census planned"
-    ],
     "compaction census results": [
       "compaction census results"
     ],
     "compaction census stop line": [
       "compaction census stop line"
+    ],
+    "compaction census stop line result": [
+      "compaction census stop line result"
     ],
     "compaction census verification": [
       "compaction census verification"
@@ -42716,11 +42716,11 @@
     "goal criteria lint goal": [
       "goal criteria lint goal"
     ],
+    "goal criteria lint label gate": [
+      "goal criteria lint label gate"
+    ],
     "goal criteria lint plan": [
       "goal criteria lint plan"
-    ],
-    "goal criteria lint planned": [
-      "goal criteria lint planned"
     ],
     "goal criteria lint results": [
       "goal criteria lint results"

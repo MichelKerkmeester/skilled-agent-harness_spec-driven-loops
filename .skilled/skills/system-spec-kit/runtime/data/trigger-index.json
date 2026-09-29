@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2e5ed8d2658b7a4fafab65e049c2b7326e3299e6cf868085b71688ee3ee679c5",
+  "manifestHash": "9481e0d60815d22e1b1c76c7f5aff8930df2b020a750f119a969793f69fa85df",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -37342,15 +37342,15 @@
       2234,
       2728
     ],
-    "compaction census planned": [
-      2726
-    ],
     "compaction census results": [
       2726
     ],
     "compaction census stop line": [
       2725,
       2727
+    ],
+    "compaction census stop line result": [
+      2726
     ],
     "compaction census verification": [
       2729
@@ -59642,11 +59642,11 @@
     "goal criteria lint goal": [
       2730
     ],
+    "goal criteria lint label gate": [
+      2731
+    ],
     "goal criteria lint plan": [
       2732
-    ],
-    "goal criteria lint planned": [
-      2731
     ],
     "goal criteria lint results": [
       2731
