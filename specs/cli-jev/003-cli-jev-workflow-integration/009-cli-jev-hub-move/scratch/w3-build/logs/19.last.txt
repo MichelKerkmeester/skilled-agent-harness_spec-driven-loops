@@ -1,0 +1,13 @@
+Both edits are exactly as briefed — only the named substrings changed; all surrounding text, punctuation, and trailing `(§4 Rule 7)` fragments are byte-identical. Mirrored copies under `.claude/`, `.codex/`, `.pi/`, `.hermes/` untouched; the other dirty paths in the tree belong to other workers.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.s\killed/agents/orchestrate.md (+2/-2)
+EDITS:
+.s\killed/agents/orchestrate.md:475 replaced "now lives in its own hub: `cli-usage`, the only mode of `.skilled/skills/cli-jev/`." with "lives in the classifier hub: mode `cli-jev` of `.skilled/skills/cli-classifier/`, over the packet `cli-usage`."
+.s\killed/agents/orchestrate.md:853 replaced "- `.skilled/skills/cli-jev/SKILL.md`" with "- `.skilled/skills/cli-classifier/SKILL.md`" and "the hub that carries the `cli-usage` transport, the judgment-only mode that runs nothing" with "the hub whose `cli-jev` mode carries the `cli-usage` transport, the judgment-only mode that runs nothing"
+CHECKS:
+grep -c "skills/cli-jev/" .skilled/agents/orchestrate.md -> 0 (exit 1)
+grep -c "skills/cli-classifier/" .skilled/agents/orchestrate.md -> 2 (exit 0)
+BLOCKED REASON: none

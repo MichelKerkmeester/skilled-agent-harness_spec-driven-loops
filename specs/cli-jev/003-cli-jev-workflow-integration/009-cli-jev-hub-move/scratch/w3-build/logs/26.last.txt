@@ -1,0 +1,8 @@
+Both checks pass. The tree contains many other modified files, but those are the concurrent workers' edits; my own change is confined to `.skilled/skills/README.txt` (+1/-1). Lines 44–47 read: separator, `cli-classifier` row, unchanged `cli-external-orchestration` row, unchanged `cli-orca` row.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/README.txt (+1/-1)
+EDITS: .skilled/skills/README.txt:45 inserted `cli-classifier` row above the `cli-external-orchestration` row (line 45) and deleted the old `cli-jev` row (former line 46) in the same replacement
+CHECKS: grep -c "cli-jev/README.md" .skilled/skills/README.txt -> 0 (exit 1) | sed -n '45p' .skilled/skills/README.txt | grep -c "^| \[\`cli-classifier\`\]" -> 1 (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,15 @@
+All four edits applied and both checks match expectations. My changes touched only `README.md` (+4/-4); the other dirty files are the concurrent workers' pre-existing changes, untouched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: README.md (+4/-4)
+EDITS:
+- README.md:825 list entry retitled `cli-jev` → `cli-classifier` with Deem model wording
+- README.md:827 JUDGMENT TRANSPORT description rewritten for the two classifier modes
+- README.md:1351 codebase-agnostic entry retitled `cli-jev` → `cli-classifier`
+- README.md:1353 parent-hub bullet rewritten to route `cli-jev`/`cli-deem` with per-mode requirements
+CHECKS:
+- grep -c "^\*\*\`cli-jev\`\*\*" README.md -> 0 (exit 1)
+- grep -c "^\*\*\`cli-classifier\`\*\*" README.md -> 2 (exit 0)
+- git diff --numstat README.md -> 4	4	README.md (exit 0)
+BLOCKED REASON: none

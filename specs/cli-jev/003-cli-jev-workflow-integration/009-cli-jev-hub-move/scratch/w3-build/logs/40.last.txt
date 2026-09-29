@@ -1,0 +1,15 @@
+Both of my scoped files are the only ones I touched; the other working-tree entries belong to concurrent workers in this shared tree, as the brief states.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/cli-classifier/README.md (+5023/-3868) — replaced with prepared merged copy (byte-for-byte)
+.skilled/skills/cli-jev/README.md (+0/-1611) — deleted (working tree only, plain rm)
+EDITS:
+.skilled/skills/cli-classifier/README.md:1 cp of scratch/w3-build/attach/README.md over the file, whole-file replacement
+.skilled/skills/cli-jev/README.md:1 file deleted
+CHECKS:
+cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/README.md .skilled/skills/cli-classifier/README.md -> no output (exit 0)
+test ! -e .skilled/skills/cli-jev/README.md -> no output (exit 0)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/README.md --type readme -> ✅ VALID: .skilled/skills/cli-classifier/README.md / Total issues: 0 (exit 0)
+BLOCKED REASON: none

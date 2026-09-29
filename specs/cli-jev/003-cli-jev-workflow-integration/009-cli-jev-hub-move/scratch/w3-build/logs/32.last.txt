@@ -1,0 +1,12 @@
+Both checks pass and the diff is exactly +2/-2 in the one named file (other dirty files in the tree belong to concurrent workers and are untouched by me).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md (+2/-2)
+EDITS:
+- .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md:16 ``cli-usage` is the first mode of the` → ``cli-usage` is the packet of mode `cli-jev` in the`
+- .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md:17 ``cli-jev` hub and its only `packetKind: "transport"`: the hub resolves the mode` → ``cli-classifier` hub, one of its two `packetKind: "transport"` modes: the hub resolves the mode`
+CHECKS:
+- grep -c "cli-jev\` hub" .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md -> `0` (exit 1 — grep's no-match exit, count 0 as expected)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md -> `✅ VALID: .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md` (exit 0)
+BLOCKED REASON: none

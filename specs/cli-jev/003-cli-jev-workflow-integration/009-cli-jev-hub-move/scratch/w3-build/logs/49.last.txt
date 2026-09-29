@@ -1,0 +1,8 @@
+My scoped changes are exactly the two named files: 1 modified, 1 deleted. (The tree carries other workers' concurrent changes; I touched only the two named paths.)
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md (+5041/-3465); .skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md (+0/-5816)
+EDITS: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md:1 full-file byte-for-byte replacement from prepared copy (scratch/w3-build/attach/playbook/hub-routing/out-of-domain-resolves-nothing.md); .skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md:1 file deleted from working tree (plain rm)
+CHECKS: cmp scratch/.../out-of-domain-resolves-nothing.md .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md -> no output (exit 0); test ! -e .skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md -> no output (exit 0); python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md -> "✅ VALID: ... Total issues: 0" (exit 0)
+BLOCKED REASON: none

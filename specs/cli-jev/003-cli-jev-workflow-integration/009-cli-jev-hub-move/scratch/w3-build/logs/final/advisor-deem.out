@@ -1,0 +1,21 @@
+[
+  {
+    "skill": "cli-classifier",
+    "kind": "skill",
+    "confidence": 0.8963,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.700103,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "cli-classifier",
+      "liveScore": 0.700103,
+      "shadowScore": 0.648703,
+      "delta": -0.0514,
+      "dominantShadowLane": "explicit_author"
+    }
+  }
+]

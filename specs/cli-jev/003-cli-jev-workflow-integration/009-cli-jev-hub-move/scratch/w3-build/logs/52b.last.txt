@@ -1,0 +1,7 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md (+20/-18)
+EDITS: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md:1 whole file replaced by the prepared copy — pre-move recorded result restored above the 2026-09-29 result; routing content unchanged
+CHECKS: cmp scratch/w3-build/attach/playbook-v2/hub-routing/judgment-request-routes-to-transport.md .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none

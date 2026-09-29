@@ -1,0 +1,17 @@
+{
+ "file": ".skilled/skills/cli-classifier/shared/README.md",
+ "context": [
+  "this folder moved from the retired `cli-jev` hub into the `cli-classifier` hub; its title names the old hub."
+ ],
+ "edits": [
+  [
+   1,
+   "# cli-jev shared tier",
+   "# cli-classifier shared tier"
+  ]
+ ],
+ "checks": [
+  "grep -c \"cli-jev\" .skilled/skills/cli-classifier/shared/README.md   (expect 0)"
+ ],
+ "out": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/36.body.md"
+}

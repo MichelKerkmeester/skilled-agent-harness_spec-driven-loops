@@ -1,0 +1,18 @@
+I'll read both target files first to verify the exact content before editing.Both files read. Lines 2, 68, 69 match the brief. Before editing, I'll inspect the exact bytes of those lines (trailing whitespace matters for the header edit) and confirm the two files are currently byte-identical.Pre-edit state confirmed: both files byte-identical, line 2 is 58 chars. I need the exact trailing-space count on line 2 to construct a width-preserving replacement (old prefix is 28 chars; new prefix "…CLASSIFIER ROUTER" is 35, so trailing spaces must shrink by 7).Line 2 confirmed: prefix 28 chars + 29 spaces + `║` = 58 chars. New line will be 35-char prefix + 22 spaces + `║` = 58. Now applying the three literal edits to both files (six edits total, batched).All six edits applied. Re-reading the edited regions to confirm exact content and line widths.Both files verified at the edited lines: line 2 is 58 chars (width preserved), and the new strings match the brief exactly. Now running the brief's checks.All checks pass. Both files are byte-identical after the edits, syntax-clean, with `cli-jev` and `Jev` fully gone from the router, and `git diff --numstat` confirms +3/-3 per file.
+
+STATUS: DONE
+FILES CHANGED: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs (+3/-3)
+FILES CHANGED: specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs (+3/-3)
+EDITS: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs:2 header renamed to `LIBRARY: CLI CLASSIFIER ROUTER` (line kept at 58 chars: 29 → 22 trailing spaces)
+EDITS: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs:68 budgetRef renamed to `uncertainty:cli-classifier:v1`
+EDITS: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs:69 question renamed to `Which classifier transport should resolve this request?`
+EDITS: specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs:2 header renamed to `LIBRARY: CLI CLASSIFIER ROUTER` (line kept at 58 chars: 29 → 22 trailing spaces)
+EDITS: specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs:68 budgetRef renamed to `uncertainty:cli-classifier:v1`
+EDITS: specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs:69 question renamed to `Which classifier transport should resolve this request?`
+CHECKS: `node --check .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs` -> syntax OK (exit 0)
+CHECKS: `node --check specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs` -> syntax OK (exit 0)
+CHECKS: `cmp .skilled/.../router.cjs specs/.../router.cjs` -> byte-identical (exit 0)
+CHECKS: `grep -c "cli-jev" .skilled/.../router.cjs` -> 0 (exit 1, grep's no-match status; expected count 0)
+CHECKS: `grep -c "Jev" .skilled/.../router.cjs` -> 0 (exit 1, grep's no-match status; expected count 0)
+CHECKS: `git diff --numstat -- <both files>` -> 3 3 per file (exit 0), matches +3/-3 acceptance
+BLOCKED REASON: none

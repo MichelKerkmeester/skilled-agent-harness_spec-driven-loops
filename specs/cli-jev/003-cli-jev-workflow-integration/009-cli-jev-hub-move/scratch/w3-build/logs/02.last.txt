@@ -1,0 +1,17 @@
+I'll execute the copy-and-delete brief. First, verify the prepared source and target exist before touching anything.All three files present. Running Step 1 (copy) and Step 2 (rm), then the four checks.Copy and delete done. Now the four verification checks, each with its own exit code.All four checks pass. Confirming the scoped state with read-only git queries to report accurate diff numbers.Both acceptance criteria met — exactly one modified, one deleted, nothing else in scope. Getting the line count for an accurate handback.All steps complete and verified. Handback:
+
+```
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/cli-classifier/hub-router.json (+40/-8)
+  .skilled/skills/cli-jev/hub-router.json (+0/-54)
+EDITS:
+  .skilled/skills/cli-classifier/hub-router.json:1-85 replaced byte-for-byte with the prepared router copy (cp)
+  .skilled/skills/cli-jev/hub-router.json:1-54 deleted via plain rm (working tree only, no git command)
+CHECKS:
+  cmp <prepared> .skilled/skills/cli-classifier/hub-router.json -> no output (exit 0)
+  test ! -e .skilled/skills/cli-jev/hub-router.json -> no output (exit 0)
+  node -e "JSON.parse(...hub-router.json)" -> no output (exit 0)
+  grep -c '"tieBreak": \["cli-jev", "cli-deem"\]' .skilled/skills/cli-classifier/hub-router.json -> 1 (exit 0)
+BLOCKED REASON: none
+```

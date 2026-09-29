@@ -1,0 +1,43 @@
+$ node specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs
+{"activationArtifacts":5,"compiledArtifacts":6,"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","graphHash":"acca07e7526ff913c5b93da1a1971ba8f59e58ef44a7c20be0b1debe13fcdb5c","status":"built"}
+exit=0
+$ node -e (runtime module: loadSnapshot + typedGold in memory, no writes)
+runtime typedGold ok, cases=9
+exit=0
+## twin compiled+activation status (after)
+AM specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/acceptance.json
+A  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/fence-state.json
+AM specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/manifest.candidate.json
+A  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/manifest.json
+A  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/manifest.prior.json
+AM specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/PolicyCardV1.md
+AM specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/advisor-projection.json
+AM specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/blast-radius.json
+AM specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/destination-graph.json
+AM specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/policy.json
+AM specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/route-gold.typed.json
+## diff --stat (after)
+ .../008-cli-classifier/activation/acceptance.json                 | 2 +-
+ .../008-cli-classifier/activation/manifest.candidate.json         | 2 +-
+ .../008-cli-classifier/compiled/PolicyCardV1.md                   | 8 ++++----
+ .../008-cli-classifier/compiled/advisor-projection.json           | 2 +-
+ .../008-cli-classifier/compiled/blast-radius.json                 | 2 +-
+ .../008-cli-classifier/compiled/destination-graph.json            | 2 +-
+ .../008-cli-classifier/compiled/policy.json                       | 2 +-
+ .../008-cli-classifier/compiled/route-gold.typed.json             | 2 +-
+ 8 files changed, 11 insertions(+), 11 deletions(-)
+## sha256 (after)
+3e59cb3973f58830ecd91c73e1a43df2eb42f80f4f1a249f27bf15bfbb057ae3  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/advisor-projection.json
+1718f0719faf355cb1b75ceb862e45701e0a4bb59a75413dfe110b4873e8bf44  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/blast-radius.json
+81481526b186edb8d1eec10dac76a9b865a05cf46698b6ccfd84e489cddf6a28  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/destination-graph.json
+40b8467127194fbdb69e27e3a023e3eb0c39dcca933f8d12f1374f5eb62b265b  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/policy.json
+a9869bb01b4e77cf05d72cb8e89219cd980b24fb99e10ce79425c04e555a4341  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/PolicyCardV1.md
+2551574561c77c65c0a49a2f309b320168886283dd7ed01f5532167c23eca8a7  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/route-gold.typed.json
+26e9c5faf86dd2217b3dbc0e1ad3c806724827b859fc078573741542782a6405  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/acceptance.json
+c900e688555fef1095fe8e56d87d588fe1605b57e715029f9b62269dbf9908a3  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/fence-state.json
+b0ec8c33eb2b342aa0d0b25d73216fcf40f76d0bdf34c3c39ee4f1dc1b7ac119  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/manifest.candidate.json
+5485c5a4a6faddca886425dedc59bd0d5340f7946f9bf7f6a8fec36e802a8c23  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/manifest.json
+5485c5a4a6faddca886425dedc59bd0d5340f7946f9bf7f6a8fec36e802a8c23  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/manifest.prior.json
+## runtime tree compiled/activation present?
+ls: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/activation: No such file or directory
+ls: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/compiled: No such file or directory

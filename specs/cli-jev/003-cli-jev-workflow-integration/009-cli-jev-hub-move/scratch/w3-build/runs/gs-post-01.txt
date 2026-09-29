@@ -1,0 +1,137 @@
+R  .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-jev/fixtures/canary-cases.v1.json -> .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json
+R  .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-jev/harness/build-artifacts.cjs -> .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs
+R  .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-jev/lib/policy-card.cjs -> .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/policy-card.cjs
+R  .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-jev/lib/registry-compiler.cjs -> .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/registry-compiler.cjs
+R  .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-jev/lib/router.cjs -> .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs
+R  .skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/fence-state.json -> .skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/fence-state.json
+R  .skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-jev/manifest.json -> .skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json
+R  .skilled/skills/cli-jev/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing-run.sh -> .skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing-run.sh
+R  .skilled/skills/cli-jev/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing.txt -> .skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing.txt
+R  .skilled/skills/cli-jev/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md -> .skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md
+R  .skilled/skills/cli-jev/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/hub-routing-run.sh -> .skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/hub-routing-run.sh
+R  .skilled/skills/cli-jev/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/hub-routing.txt -> .skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/hub-routing.txt
+R  .skilled/skills/cli-jev/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md -> .skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md
+R  .skilled/skills/cli-jev/changelog/v0.1.0.0.md -> .skilled/skills/cli-classifier/changelog/v0.1.0.0.md
+R  .skilled/skills/cli-jev/changelog/v0.2.0.0.md -> .skilled/skills/cli-classifier/changelog/v0.2.0.0.md
+R  .skilled/skills/cli-jev/cli-usage/README.md -> .skilled/skills/cli-classifier/cli-usage/README.md
+R  .skilled/skills/cli-jev/cli-usage/SKILL.md -> .skilled/skills/cli-classifier/cli-usage/SKILL.md
+R  .skilled/skills/cli-jev/cli-usage/assets/question-shaping-card.md -> .skilled/skills/cli-classifier/cli-usage/assets/question-shaping-card.md
+R  .skilled/skills/cli-jev/cli-usage/benchmark/README.md -> .skilled/skills/cli-classifier/cli-usage/benchmark/README.md
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-authenticated-verification/skill-benchmark-report.md -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-authenticated-verification/skill-benchmark-report.md
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-phase-004-unauthenticated-pass/skill-benchmark-report.md -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-phase-004-unauthenticated-pass/skill-benchmark-report.md
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/auth-probe.sh -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/auth-probe.sh
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/auth-probe.txt -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/auth-probe.txt
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/compare-surface.py -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/compare-surface.py
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/compare.py -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/compare.py
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/dispatch-audit-live.txt -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/dispatch-audit-live.txt
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/leak-check.py -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/leak-check.py
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/mcp-probe.py -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/mcp-probe.py
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/preflight-probe.sh -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/preflight-probe.sh
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/preflight-probe.txt -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/preflight-probe.txt
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/preflight-probe2.sh -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/preflight-probe2.sh
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/preflight-probe2.txt -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/preflight-probe2.txt
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/probe-matrix.sh -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/probe-matrix.sh
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/probe-matrix.txt -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/probe-matrix.txt
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/probe-surface.sh -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/probe-surface.sh
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/probe-surface.txt -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/probe-surface.txt
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/rule-checks.txt -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/raw/rule-checks.txt
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/skill-benchmark-report.md -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/2026-09-20-post-migration-reverification/skill-benchmark-report.md
+R  .skilled/skills/cli-jev/cli-usage/benchmark/reports/README.md -> .skilled/skills/cli-classifier/cli-usage/benchmark/reports/README.md
+R  .skilled/skills/cli-jev/cli-usage/changelog/v1.0.0.0.md -> .skilled/skills/cli-classifier/cli-usage/changelog/v1.0.0.0.md
+R  .skilled/skills/cli-jev/cli-usage/changelog/v1.0.1.0.md -> .skilled/skills/cli-classifier/cli-usage/changelog/v1.0.1.0.md
+R  .skilled/skills/cli-jev/cli-usage/changelog/v1.0.2.0.md -> .skilled/skills/cli-classifier/cli-usage/changelog/v1.0.2.0.md
+R  .skilled/skills/cli-jev/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md
+R  .skilled/skills/cli-jev/cli-usage/feature-catalog/feature-catalog.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md
+R  .skilled/skills/cli-jev/cli-usage/feature-catalog/judgment-primitives/judgment-primitives.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/judgment-primitives/judgment-primitives.md
+R  .skilled/skills/cli-jev/cli-usage/feature-catalog/surfaces/surfaces.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/surfaces/surfaces.md
+R  .skilled/skills/cli-jev/cli-usage/feature-catalog/transport-classification/transport-classification.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/binary-resolves-and-pins-version.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/cli-invocation/binary-resolves-and-pins-version.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/judgment-help-omits-hidden-endpoint-flag.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/cli-invocation/judgment-help-omits-hidden-endpoint-flag.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/one-judgment-per-type-returns-typed-answer.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/cli-invocation/one-judgment-per-type-returns-typed-answer.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/root-help-lists-six-subcommands.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/cli-invocation/root-help-lists-six-subcommands.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/declared-hard-rules-refuse-violations.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/declared-hard-rules-refuse-violations.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/batch-request-with-no-key-exits-3.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/batch-request-with-no-key-exits-3.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/choice-single-option-not-refused.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/choice-single-option-not-refused.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/key-never-echoed-on-error-path.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/key-never-echoed-on-error-path.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/malformed-json-state-exits-2.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/malformed-json-state-exits-2.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/missing-required-flag-is-argparse-failure.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/missing-required-flag-is-argparse-failure.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/no-key-exits-3-with-structured-json.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/no-key-exits-3-with-structured-json.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/refused-connection-exits-4.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/refused-connection-exits-4.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/request-without-questions-exits-2.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/request-without-questions-exits-2.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/score-single-level-not-refused.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/score-single-level-not-refused.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/unknown-subcommand-is-argparse-failure.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/unknown-subcommand-is-argparse-failure.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/unreadable-state-file-exits-2.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/unreadable-state-file-exits-2.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/manual-testing-playbook.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/mcp-server/handshake-and-four-tools.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/mcp-server/handshake-and-four-tools.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/auth-status-reports-key-state.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/providers/auth-status-reports-key-state.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/custom-provider-requires-endpoint.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/providers/custom-provider-requires-endpoint.md
+R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/invalid-provider-env-exits-2.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/providers/invalid-provider-env-exits-2.md
+R  .skilled/skills/cli-jev/cli-usage/references/cli-reference.md -> .skilled/skills/cli-classifier/cli-usage/references/cli-reference.md
+R  .skilled/skills/cli-jev/cli-usage/references/integration-patterns.md -> .skilled/skills/cli-classifier/cli-usage/references/integration-patterns.md
+R  .skilled/skills/cli-jev/cli-usage/references/mcp-server.md -> .skilled/skills/cli-classifier/cli-usage/references/mcp-server.md
+R  .skilled/skills/cli-jev/cli-usage/references/providers-and-models.md -> .skilled/skills/cli-classifier/cli-usage/references/providers-and-models.md
+R  .skilled/skills/cli-jev/manual-testing-playbook/hub-routing/alias-still-resolves.md -> .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md
+R  .skilled/skills/cli-jev/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md -> .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md
+ M .skilled/skills/cli-classifier/mode-registry.json
+R  .skilled/skills/cli-jev/shared/README.md -> .skilled/skills/cli-classifier/shared/README.md
+ D .skilled/skills/cli-jev/mode-registry.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/tasks.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/tasks.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/acceptance-criteria.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/description.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/implementation-summary.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/tasks.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/graph-metadata.json
+ M specs/cli-jev/003-cli-jev-workflow-integration/spec.md
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/activation/acceptance.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/acceptance.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/activation/fence-state.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/fence-state.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/activation/manifest.candidate.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/manifest.candidate.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/activation/manifest.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/manifest.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/activation/manifest.prior.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/activation/manifest.prior.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/compiled/PolicyCardV1.md -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/PolicyCardV1.md
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/compiled/advisor-projection.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/advisor-projection.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/compiled/blast-radius.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/blast-radius.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/compiled/destination-graph.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/destination-graph.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/compiled/policy.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/policy.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/compiled/route-gold.typed.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/route-gold.typed.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/fixtures/canary-cases.v1.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/harness/build-artifacts.cjs -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/lib/policy-card.cjs -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/lib/policy-card.cjs
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/lib/registry-compiler.cjs -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/lib/registry-compiler.cjs
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/lib/router.cjs -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/lib/router.cjs
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/activation-record.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/activation-record.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/fence-state.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/fence-state.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.candidate.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/manifest.candidate.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/manifest.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.prior.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/manifest.prior.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/manifest.serving-prior.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/manifest.serving-prior.json
+R  specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-jev/serving-flip-record.json -> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/serving-flip-record.json
+?? specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/baseline-raw/
+?? specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/baselines.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/prompts.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/route-baseline.txt
+?? specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/
+?? specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/live-jev.sh

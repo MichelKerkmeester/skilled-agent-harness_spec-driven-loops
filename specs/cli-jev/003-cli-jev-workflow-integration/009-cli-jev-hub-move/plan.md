@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Move cli-jev into the cli-classifier Hub"
-description: "Record a route replay of the 7 canary cases and 3 hub-routing scenarios, then in one commit git mv all 81 cli-jev hub files into the proposed cli-classifier hub, merge the hub-level files, register mode cli-jev over packet cli-usage, update every literal list and onboard cli-classifier to the compiled fleet in cli-jev's place. The replay must match the baseline, or the commit is reverted."
+description: "Record a route replay of the 7 canary cases and 3 hub-routing scenarios, then in one commit git mv all 81 cli-jev hub files into the cli-classifier hub, merge the hub-level files, register mode cli-jev over packet cli-usage, update every literal list and onboard cli-classifier to the compiled fleet in cli-jev's place. The replay must match the baseline, or the commit is reverted."
 trigger_phrases:
   - "cli-jev hub move plan"
   - "cli-jev git mv plan"
@@ -30,7 +30,7 @@ contextType: "implementation"
 
 ### Overview
 
-The hub `cli-jev` moves under `cli-classifier` (proposed, phase 008) as mode `cli-jev` over its packet `cli-usage`, beside `cli-deem` (proposed, phase 008). system-deep-loop is the model: mode `research` runs over packet `deep-research`. The work is a routing identity change, so the plan guards against two failures, a lost file and a changed route. A baseline replay is taken first. Then one commit moves every file with `git mv`, merges the hub-level files into the `cli-classifier` root, updates each literal list, onboards `cli-classifier` to the compiled fleet in `cli-jev`'s place and regenerates the derived artifacts. The onboarding is what lets the replay pass: without it the front door serves `cli-classifier` as legacy. The post-move replay must match the baseline on every prompt, and any mismatch reverts the commit.
+The hub `cli-jev` moves under `cli-classifier` (built in phase 008) as mode `cli-jev` over its packet `cli-usage`, beside `cli-deem` (built in phase 008). system-deep-loop is the model: mode `research` runs over packet `deep-research`. The work is a routing identity change, so the plan guards against two failures, a lost file and a changed route. A baseline replay is taken first. Then one commit moves every file with `git mv`, merges the hub-level files into the `cli-classifier` root, updates each literal list, onboards `cli-classifier` to the compiled fleet in `cli-jev`'s place and regenerates the derived artifacts. The onboarding is what lets the replay pass: without it the front door serves `cli-classifier` as legacy. The post-move replay must match the baseline on every prompt, and any mismatch reverts the commit.
 
 The source is `../007-classifier-deep-research/research/research.md` section 14 (`### 009-cli-jev-hub-move (new)`) and R23 in section 12.
 <!-- /ANCHOR:summary -->
@@ -44,12 +44,12 @@ The source is `../007-classifier-deep-research/research/research.md` section 14 
 - [x] Problem statement clear and scope documented
 - [x] Success criteria measurable
 - [x] Dependencies identified
-- [ ] 008-cli-classifier-hub is Complete and `parent-skill-check.cjs` passes on `.skilled/skills/cli-classifier`. The build starts then (operator, 2026-09-29, parent D4 amended), with no Deem `keep`
+- [x] 008-cli-classifier-hub is Complete and `parent-skill-check.cjs` passes on `.skilled/skills/cli-classifier`. The build starts then (operator, 2026-09-29, parent D4 amended), with no Deem `keep`. Evidence: `../008-cli-classifier-hub/spec.md:27` Status Complete, and the session's baseline check exited 0 at `3dde18cb54`
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] The post-move replay matches the baseline on all 10 prompts
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met. Evidence: this Level 1 phase has no `acceptance-criteria.md`, and the six `goal.md` criteria are all ticked
+- [x] The post-move replay matches the baseline on all 10 prompts. Evidence: all 17 baseline prompts, which hold the 10, match with 0 mismatches (`scratch/w3-session/compare-output.txt`)
+- [x] Docs updated (spec/plan/tasks). Evidence: closed on 2026-09-29 from the build and session evidence
 <!-- /ANCHOR:quality-gates -->
 
 ---

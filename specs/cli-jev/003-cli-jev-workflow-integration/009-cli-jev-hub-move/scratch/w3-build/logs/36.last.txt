@@ -1,0 +1,9 @@
+The edit is applied and matches its accept criterion. The second check, however, fails for a pre-existing reason I cannot fix inside the named edit. The derivation: OBSERVED, the pre-edit read showed the whole seven-line file and it has no Overview section; OBSERVED, `validate_document.py:263-264` decides document type from the filename (`readme.md` -> `readme`) and `validate_required_sections` reads `requiredSections` from the rules config, never from the title line. So `missing_required_section: overview` would have fired identically before my change, and repairing it means adding a section, which the brief forbids. Per Law 4 completion stays blocked while the designated gate fails.
+
+STATUS: BLOCKED
+FILES CHANGED: .skilled/skills/cli-classifier/shared/README.md (+1/-1)
+EDITS: .skilled/skills/cli-classifier/shared/README.md:1 title "# cli-jev shared tier" -> "# cli-classifier shared tier"
+CHECKS: grep -c "cli-jev" .skilled/skills/cli-classifier/shared/README.md -> 0 (exit 1, grep's no-match exit; expected count 0 met)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/shared/README.md -> "❌ INVALID: .skilled/skills/cli-classifier/shared/README.md ... 🚫 Blocking errors (1): - [missing_required_section] Missing required section: overview" (exit 1)
+CHECKS: git diff --numstat -- .skilled/skills/cli-classifier/shared/README.md -> "1	1	.skilled/skills/cli-classifier/shared/README.md" (exit 0)
+BLOCKED REASON: validate_document.py exits 1 (missing required section "overview"), pre-existing and unfixable within the one-substring edit (README body never had an Overview section and doc type is filename-determined). Orchestrator decides: keep the title fix and add an Overview section or relax the check expectation.

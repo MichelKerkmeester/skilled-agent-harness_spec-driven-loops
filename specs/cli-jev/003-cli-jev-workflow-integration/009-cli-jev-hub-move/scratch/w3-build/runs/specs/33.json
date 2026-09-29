@@ -1,0 +1,46 @@
+{
+ "file": ".skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md",
+ "out": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/33.body.md",
+ "context": [
+  "`cli-usage` is now the packet of mode `cli-jev` in the two-mode `cli-classifier` hub. This",
+  "catalog entry still names the retired `cli-jev` hub path, a one-mode registry and `cli-usage` as the",
+  "mode key. The parent-skill-check run on the merged hub exits 0 with `PASS: 5i`, two registered modes",
+  "and `PASS: 3c`, and the retired `CJ-003` scenario now lives in this hub's `CC-003`."
+ ],
+ "edits": [
+  [
+   47,
+   ".skilled/skills/cli-jev` exits 0 with `PASS: 5i` and one registered mode;",
+   ".skilled/skills/cli-classifier` exits 0 with `PASS: 5i` and two registered modes;"
+  ],
+  [
+   49,
+   "same run reports the moved-mode failure class `3c` as absent, because this hub's single mode resolves",
+   "same run passes the moved-mode check `3c`, because both of this hub's modes resolve"
+  ],
+  [
+   50,
+   "to an existing packet folder.",
+   "to existing packet folders."
+  ],
+  [
+   88,
+   "`cli-usage`. The routing vocabulary adds the mode's own name, `cli-usage`, to the same alias class,",
+   "`cli-jev`, over the packet folder `cli-usage`. The routing vocabulary adds the packet's name, `cli-usage`, to the same alias class,"
+  ],
+  [
+   90,
+   "request that names the mode explicitly is the one case",
+   "request that names the packet explicitly is the one case"
+  ],
+  [
+   95,
+   "corpus (`CJ-001` \u2026 `CJ-003`) re-checks",
+   "corpus (`CJ-001`, `CJ-002` and `CC-003`) re-checks"
+  ]
+ ],
+ "keep": "Leave line 87 and every other line unchanged.",
+ "checks": [
+  "grep -c \"skills/cli-jev\" .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md   (expect 0)"
+ ]
+}

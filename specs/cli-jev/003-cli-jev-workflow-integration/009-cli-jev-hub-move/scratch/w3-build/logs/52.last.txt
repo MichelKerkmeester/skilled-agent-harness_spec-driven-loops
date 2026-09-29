@@ -1,0 +1,9 @@
+Copied the prepared scenario over the target and verified. The tree contains many other diffs from concurrent workers on the hub move; my only write was the one named file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md (+19/-19)
+EDITS: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md:1 whole file replaced byte-for-byte with the prepared copy (scenario now expects mode cli-jev of cli-classifier over the cli-usage packet; prompt unchanged)
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/playbook/hub-routing/judgment-request-routes-to-transport.md .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md -> "✅ VALID ... Total issues: 0" (exit 0)
+BLOCKED REASON: none

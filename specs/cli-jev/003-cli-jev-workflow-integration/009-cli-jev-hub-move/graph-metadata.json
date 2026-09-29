@@ -39,28 +39,28 @@
       "two"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/cli-jev/mode-registry.json",
-      "manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/cli-jev/SKILL.md",
-      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
-      ".skilled/bin/compiled-route-sync.cjs",
-      ".skilled/bin/compiled-route-guard.cjs",
-      ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
-      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
-      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
-      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
-      ".hermes/skills/cli-jev/SKILL.md",
-      ".hermes/skills/cli-usage/SKILL.md",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/skills/README.txt"
+      "scratch/w3-build/disposition.md",
+      ".skilled/skills/cli-classifier/README.md",
+      ".skilled/skills/cli-classifier/ROUTER.md",
+      ".skilled/skills/cli-classifier/SKILL.md",
+      ".skilled/skills/cli-classifier/benchmark/README.md",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing-run.sh",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing.txt",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/hub-routing-run.sh",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/hub-routing.txt",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md",
+      ".skilled/skills/cli-classifier/changelog/v0.1.0.0.md",
+      ".skilled/skills/cli-classifier/changelog/v0.2.0.0.md",
+      ".skilled/skills/cli-classifier/cli-usage/README.md",
+      ".skilled/skills/cli-classifier/cli-usage/SKILL.md"
     ],
     "entities": [
       {
@@ -94,81 +94,57 @@
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-jev/mode-registry.json",
+        "name": "disposition.md",
+        "kind": "doc",
+        "path": "scratch/w3-build/disposition.md",
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "path": ".skilled/skills/cli-classifier/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/ROUTER.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-jev/SKILL.md",
+        "path": ".skilled/skills/cli-classifier/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "compiled-route.cjs",
+        "name": "hub-routing-run.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing-run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hub-routing.txt",
         "kind": "file",
-        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "path": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing.txt",
         "source": "derived"
       },
       {
-        "name": "compiled-route-sync.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
         "source": "derived"
       },
       {
-        "name": "compiled-route-guard.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "name": "v0.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/changelog/v0.1.0.0.md",
         "source": "derived"
       },
       {
-        "name": "compiled-routing-flag.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
-        "source": "derived"
-      },
-      {
-        "name": "resolve.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "serving-closure.manifest.json",
-        "kind": "config",
-        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-audit.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".skilled/skills/README.txt",
+        "name": "v0.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/changelog/v0.2.0.0.md",
         "source": "derived"
       },
       {
@@ -206,11 +182,35 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Decision D2 of the parent goal puts both classifier transports under one hub, but `cli-jev` is its own hub today with one mode",
     "created_at": "2026-09-27T09:21:55Z",
-    "last_save_at": "2026-09-29T06:13:46.014Z",
+    "last_save_at": "2026-09-29T10:19:28.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5bd5e07db7c5b5a4ee96e9988fcd4be4fe4b3c35d1bbacc936f03bb7561881b9",
+    "source_fingerprint": "sha256:915edb533435cc626f8302ff659b0f5ac8cbac8936a8ca4e2fe4fffe6e24e541",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ad2051cd9b20d46563aa55b851dc37411aa02d023b4e45aee86e779448d6d0f",
-      "plan.md": "244c7ef2a9fcc599b808e99754f601a960a44e7abb6dd6e5a2fd98157ee9572a",
-      "tasks.md": "2f1e1e0b1d21ce67cc38a318cefc8526a03adfd14d6aae1b56921f6110292c81",
-      "implementation-summary.md": "a52a04ff5f7454b1b7d26d80114584ccc91966cdc9f8c521fb6c3668b92915c7"
+      "spec.md": "c860421ed32e56edb681b7fde001e40fe0b8044bbf4e2b1ddde01d7e8fe86bfc",
+      "plan.md": "1d5db9b9cf1a931a9a52f6abc329c33de1541a547fcd8545b707f8452916bc9d",
+      "tasks.md": "06cb0f0245a653a8d4835c07f8d92825fccb9744fd4cdae15178d8f3663ebdec",
+      "implementation-summary.md": "e0817db0c9dfcf134c7fd0f492c52ded02acf39f0a6352106017621022999bfa"
     },
     "last_active_at": null
   }

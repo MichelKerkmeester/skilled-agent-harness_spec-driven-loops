@@ -1,0 +1,28 @@
+{
+ "file": ".skilled/skills/cli-classifier/cli-usage/README.md",
+ "context": [
+  "`cli-usage` is no longer the only mode of a `cli-jev` hub. It is the packet of mode `cli-jev` in",
+  "the `cli-classifier` hub, beside the local `cli-deem` transport."
+ ],
+ "edits": [
+  [
+   3,
+   "The cli-jev hub's first transport mode -",
+   "The packet of the cli-classifier hub's cli-jev transport mode -"
+  ],
+  [
+   20,
+   "> The first mode of the `cli-jev` hub, and its only `packetKind: \"transport\"`. Jev reads",
+   "> The packet of mode `cli-jev` in the `cli-classifier` hub, a `packetKind: \"transport\"`. Jev reads"
+  ],
+  [
+   28,
+   "`cli-jev` is the hub's transport for typed judgments,",
+   "Mode `cli-jev` is the hub's hosted transport for typed judgments,"
+  ]
+ ],
+ "checks": [
+  "grep -c \"cli-jev\\` hub\" .skilled/skills/cli-classifier/cli-usage/README.md   (expect 0)"
+ ],
+ "out": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/34.body.md"
+}

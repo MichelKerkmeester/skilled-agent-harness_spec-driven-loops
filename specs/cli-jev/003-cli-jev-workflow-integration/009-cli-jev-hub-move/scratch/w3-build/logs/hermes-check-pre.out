@@ -1,0 +1,5 @@
+DRIFT cli-classifier
+DRIFT cli-deem
+DRIFT cli-usage
+STALE cli-jev
+FAIL: 3 drifted, 1 stale; run without --check to regenerate

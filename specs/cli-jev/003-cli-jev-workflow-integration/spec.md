@@ -12,9 +12,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
-    last_updated_at: "2026-09-29T00:49:00Z"
-    last_updated_by: "parent-closure-leaf"
-    recent_action: "Phase map synced: 002, 003, 005, 006, 008, 016 and 017 Complete, 009 Planned with no Deem keep"
+    last_updated_at: "2026-09-29T10:10:00Z"
+    last_updated_by: "closure-leaf"
+    recent_action: "Phase map synced: 009 Complete in ea883967d4, so all 18 phase rows read Complete"
     next_safe_action: "Operator: the open items in goal.md's log row Open for the operator"
     blockers: []
     key_files:
@@ -85,8 +85,8 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 
 ### Out of Scope
 
-- Building a phase before the operator releases it. On 2026-09-27 the operator released 018, then 010, then 011 to 015 (014 with gate option A). On 2026-09-28 the operator released every remaining Planned phase in the order 008, 016, 002, 017, 003, 005, 006 and 009, with builds on disjoint paths free to run in parallel (D3 of `goal.md`). 009 builds once 008 is Complete (D4 of `goal.md`, amended by the operator on 2026-09-29, which dropped the earlier need for a Deem `keep` in 002 or 017).
-- Changing the `cli-jev` hub or its `cli-usage` transport contract, except the move under `cli-classifier` that phase 009 plans for D2 of `goal.md`.
+- Building a phase before the operator releases it. On 2026-09-27 the operator released 018, then 010, then 011 to 015 (014 with gate option A). On 2026-09-28 the operator released every remaining Planned phase in the order 008, 016, 002, 017, 003, 005, 006 and 009, with builds on disjoint paths free to run in parallel (D3 of `goal.md`). 009 was built once 008 was Complete (D4 of `goal.md`, amended by the operator on 2026-09-29, which dropped the earlier need for a Deem `keep` in 002 or 017), in `ea883967d4`.
+- Changing the `cli-jev` hub or its `cli-usage` transport contract, except the move under `cli-classifier` that phase 009 made for D2 of `goal.md`.
 - Editing the vendored repositories under `context/`. They are reference material.
 - Storing any key or secret in Jev state, in a digest or in a research artifact.
 - Any feature that calls a classifier or changes behavior while its backend's check fails. Jev: `command -v jev && jev auth status --provider <the provider its judgments use>`, which only reads, never prints the key and spends no quota (`cli-usage/SKILL.md:98-102`). Deem: the local server passes a health check that refuses the stub backend (`007-classifier-deep-research/context/deem-local.md`). Each feature also keeps its own opt-in switch per backend, and with neither backend it runs exactly as it does today.
@@ -107,7 +107,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | `NNN-*/{spec,plan,tasks,goal}.md` for each proposed phase | Create | 002 onward | Planned build phases from the synthesis |
 | `007-classifier-deep-research/{context,scratch,research}/**` | Create | 007 | The Deem install record and measurements, 45 angles, briefs, five lineages and the round-3 synthesis |
 | `002-*`, `003-*`, `005-*`, `006-*` phase docs | Modify | 007 | The two-backend amendments from the round-3 synthesis |
-| `008-cli-classifier-hub/*`, `009-cli-jev-hub-move/*` | Create | 007 | The two new Planned phases from the round-3 synthesis |
+| `008-cli-classifier-hub/*`, `009-cli-jev-hub-move/*` | Create | 007 | The two new phases from the round-3 synthesis, authored as Planned |
 | `010-*` to `018-*` phase docs | Create | 010 to 018 | The Planned owner-fix and follow-up phases. Each build changes the owner files its own `spec.md` names |
 <!-- /ANCHOR:scope -->
 
@@ -128,7 +128,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 6 | 006-goal-criteria-lint/ | A lexical lint of goal criteria against rules 4 and 5 of `sk-create-goal`, under a rubric the operator adopts before labeling. A model arm on either backend only past the stop rule. Dormant without a Jev key or a healthy local Deem | Complete |
 | 7 | 007-classifier-deep-research/ | Research round 3 on classifier models, Jev and a local Deem 0.8B: context reduction, validator judgment calls, sk-prompt, sk-design and a `cli-classifier` hub, over 45 forced iterations on five model families with one Opus 5.5 high lead per lineage, a fresh Opus 5.5 max synthesis and the Planned phases reconciled for both backends | Complete |
 | 8 | 008-cli-classifier-hub/ | Mint the `cli-classifier` hub with `cli-deem` as its first mode, a Node standard-library client for the local Deem server, tested against a fake server first. `cli-jev` stays where it is | Complete |
-| 9 | 009-cli-jev-hub-move/ | Move `cli-jev` into `cli-classifier` as mode `cli-jev` over its unchanged `cli-usage` packet, with a route-replay baseline before and after, and onboard `cli-classifier` to the compiled fleet in `cli-jev`'s place | Planned |
+| 9 | 009-cli-jev-hub-move/ | Move `cli-jev` into `cli-classifier` as mode `cli-jev` over its unchanged `cli-usage` packet, with a route-replay baseline before and after, and onboard `cli-classifier` to the compiled fleet in `cli-jev`'s place | Complete |
 | 10 | 010-trigger-index-search-fixes/ | Unblock the trigger-index rebuild that this packet's vendored model cards refuse, regenerate the stale committed index and keep a build aimed elsewhere off every tracked file. A staleness check is measured before it is placed, and the score-0 miss shape stays the owner's open decision. Owner `system-spec-kit`, no classifier | Complete |
 | 11 | 011-spec-validator-fixes/ | Make `AC_COVERAGE` report a cited `file:line` that does not resolve, with the enforce switch's floor, cutoff and advisory default unchanged. Let `check-goal.cjs` accept a path ending in `goal.md`, exit contract frozen. Owners `system-spec-kit` and `sk-create-goal`, no classifier | Complete |
 | 12 | 012-sk-doc-validator-and-reference-fixes/ | Replace `validate_document.py`'s silent README fallback with a visible notice or failure and give `quick_validate.py` one severity for a non-qualified MCP tool token. Repoint or remove three dead `file:line` references in the deep-research and spec-kit playbooks. Owners `sk-doc`, `system-deep-loop` and `system-spec-kit`, no classifier | Complete |

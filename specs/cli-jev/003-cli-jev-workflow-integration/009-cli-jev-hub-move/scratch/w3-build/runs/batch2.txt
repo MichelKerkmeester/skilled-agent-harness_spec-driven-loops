@@ -1,0 +1,10 @@
+28 pi markdown jev017 .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md
+29 pi markdown jev018 .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+30 pi markdown usage-playbook-root .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+31 pi markdown dispatch-guards-catalog .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md
+32 pi markdown usage-feature-catalog .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md
+33 pi markdown transport-classification .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md
+34 pi markdown usage-readme .skilled/skills/cli-classifier/cli-usage/README.md
+35 pi markdown deem-readme .skilled/skills/cli-classifier/cli-deem/README.md
+19 pi markdown agent-orchestrate .skilled/agents/orchestrate.md
+20 pi markdown agent-prompt-improver .skilled/agents/prompt-improver.md

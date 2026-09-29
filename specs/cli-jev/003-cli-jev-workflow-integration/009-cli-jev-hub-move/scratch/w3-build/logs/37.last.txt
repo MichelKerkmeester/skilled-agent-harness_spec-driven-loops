@@ -1,0 +1,15 @@
+All checks pass. One observation: the prepared copy itself ends in `0a` (195 bytes, trailing newline present), which contradicts the brief's parenthetical "it has no trailing newline" — but its hash is exactly the expected `aa840b21…`, and both targets are byte-identical to it per `cmp`, so the acceptance criterion is met. Only the two named files changed in the worktree (`AM`); every other file in both activation folders is untouched (`A`, staged only).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json (+195/-195)
+specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/manifest.json (+195/-195)
+EDITS:
+skilled/…/cli-classifier/manifest.json:1 byte-for-byte copy of prepared manifest (195 bytes)
+specs/sk-doc/…/cli-classifier/manifest.json:1 byte-for-byte copy of prepared manifest (195 bytes)
+CHECKS:
+cmp <prepared> .skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json -> no output (exit 0)
+cmp <prepared> specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-classifier/manifest.json -> no output (exit 0)
+shasum -a 256 $R $T -> aa840b21735c7de220e5054f84a4faac84a8641862673dd952ef87f4294ddc7a (twice) (exit 0)
+BLOCKED REASON: none

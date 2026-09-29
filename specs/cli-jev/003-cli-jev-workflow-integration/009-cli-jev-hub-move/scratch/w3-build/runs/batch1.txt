@@ -1,0 +1,6 @@
+21 pi markdown ceo-dispatch-routing .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md
+22 pi markdown ceo-feature-catalog .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md
+24 pi markdown prompt-card .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+25 pi markdown root-readme README.md
+26 pi markdown skills-readme .skilled/skills/README.txt
+27 devin code fanout-merge-test .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts

@@ -1,0 +1,1 @@
+aa840b21735c7de220e5054f84a4faac84a8641862673dd952ef87f4294ddc7a  .skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json

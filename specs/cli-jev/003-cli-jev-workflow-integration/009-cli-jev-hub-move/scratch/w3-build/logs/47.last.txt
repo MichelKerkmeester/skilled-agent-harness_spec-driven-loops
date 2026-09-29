@@ -1,0 +1,8 @@
+Both checks pass and the scoped status shows exactly one deletion attributable to this task; the other working-tree differences belong to concurrent workers per the run context.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-jev/leaf-manifest.json (+0/-1)
+EDITS: .skilled/skills/cli-jev/leaf-manifest.json:all file deleted with plain rm (working tree only, no git rm)
+CHECKS: test ! -e .skilled/skills/cli-jev/leaf-manifest.json -> no output (exit 0) | test -f .skilled/skills/cli-classifier/leaf-manifest.json -> no output (exit 0)
+BLOCKED REASON: none
