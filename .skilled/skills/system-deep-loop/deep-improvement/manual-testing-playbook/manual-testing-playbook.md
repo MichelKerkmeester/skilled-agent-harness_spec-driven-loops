@@ -113,7 +113,7 @@ Release passes only when:
 
 1. No feature verdict is `FAIL`.
 2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 and MB-049 (model-benchmark), E2E-050 (accept/ship promotion), and DI-R01..DI-R07 plus DI-R10 (intra-routing recall) have all been executed or explicitly skipped with a named blocker.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement subtotal is 45 numbered scenarios (`IS-001..MB-042` plus MB-049, E2E-050, and the reviewer regression `MB-R01`) and 8 intra-routing-recall scenarios (`DI-R01..DI-R07` plus `DI-R10`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement subtotal is 46 numbered scenarios (`IS-001..MB-042` plus MB-049, E2E-050, 5D-051, and the reviewer regression `MB-R01`) and 8 intra-routing-recall scenarios (`DI-R01..DI-R07` plus `DI-R10`).
 4. No unresolved blocking triage item remains.
 5. Drift between root summaries and per-feature files has been resolved, with the per-feature file treated as the temporary source of truth until resynchronized.
 
@@ -249,7 +249,7 @@ Expected signals: File `/tmp/test-profile.json` is created after the command com
 
 ## 9. 5-DIMENSION SCORER
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### 5D-009 | Dynamic 5D Scoring on Non-Hardcoded Agent (Orchestrate)
 
@@ -289,6 +289,19 @@ Expected signals: Exit code is 1 (not 0); Output is valid JSON (no stack trace);
 
 #### Test Execution
 > **Feature File:** [5D-011](../manual-testing-playbook/five-d-scorer/missing-candidate.md)
+
+### 5D-051 | Unknown Grader Exit and Zero-Call D4 Census
+
+#### Description
+`run-benchmark.cjs` refuses an unknown `--grader` value before any profile loads, and `score-d4-agreement.cjs` prints its census without a model call and skips a stub backend by name.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate that an unknown grader kind stops the benchmark runner at startup, that the D4 agreement census makes no model call and that a stub Deem backend is skipped by name. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+
+Expected signals: The runner exits 2 and names `'jev'` with the usage line. The plain census exits 0 with `allowlist: 0 of 21` and `stop: fewer than 30 labeled outputs` and calls no stub. The `--deem` run adds only `deem arm skipped: stub backend`.
+
+#### Test Execution
+> **Feature File:** [5D-051](../manual-testing-playbook/five-d-scorer/unknown-grader-and-d4-census.md)
 
 ---
 

@@ -70,6 +70,7 @@ deterministic/ and lib/ do not import score-model-variant
 ```text
 scorer/
 +-- score-model-variant.cjs   # Orchestrating scorer with the public score() API
++-- score-d4-agreement.cjs    # Offline D4 agreement measurement against operator labels
 +-- deterministic/            # D1-style + D2/D3/D5 deterministic check scripts
 +-- grader/                   # D4 LLM grader harness, dispute, system prompts
 `-- lib/                      # Scorer-internal cache (runtime cache/ git-ignored)
@@ -82,6 +83,7 @@ scorer/
 | File | Responsibility |
 |---|---|
 | `score-model-variant.cjs` | Public `score()` orchestration. Synthesizes the virtual fixture, runs each deterministic check via `runDetCheck`, builds the grader via `buildGraderFn`, applies the hard gate, and computes the weighted score. |
+| `score-d4-agreement.cjs` | Offline D4 agreement measurement against operator labels. Measures whether a judgment from `--jev` or `--deem` that flags an invented command-line flag, file or function agrees with the labels more often than the baseline from the spawned `deterministic/hallucination-flag.cjs`. The default run makes no model call and writes no file. |
 | `deterministic/` | Standalone check scripts spawned per dimension: bundle gate, cwd check, pre-planning, hallucination flag. |
 | `grader/` | The D4 grader. `harness.cjs` builds the prompt, dispatches, parses, and caches. `dispute.cjs` adds adversarial escalation. |
 | `lib/` | Scorer-internal cache module backing the grader. |

@@ -203,10 +203,16 @@ function applyHardGate(d1, d2) {
  *
  * @param {string} graderKind - Grader selector: 'llm', 'mock', or 'noop'
  * @returns {Function} Async grader function (virtualFixture, outputText, opts)
+ * @throws {Error} When graderKind is not 'llm', 'mock' or 'noop'
  */
 function buildGraderFn(graderKind) {
   if (graderKind === 'noop') {
     return async () => ({ score: 1.0, confidence: 1.0, parse_status: 'noop', dim_id: 'D4', rationale: 'grader disabled (noop)', evidence: [] });
+  }
+  // An unknown kind used to fall through to the mock stub, which scores D4
+  // with fake numbers; fail loudly so the caller sees the typo.
+  if (graderKind !== 'llm' && graderKind !== 'mock') {
+    throw new Error(`buildGraderFn: unknown grader kind '${graderKind}' (expected noop, mock or llm)`);
   }
   const mode = graderKind === 'llm' ? 'real' : 'mock';
   return async (virtualFixture, outputText, opts) => {
