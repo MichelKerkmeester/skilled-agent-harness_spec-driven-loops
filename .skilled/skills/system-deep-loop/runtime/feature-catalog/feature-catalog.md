@@ -16,7 +16,7 @@ This document combines the current feature inventory for the `runtime/` skill in
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 55 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 56 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
@@ -24,7 +24,7 @@ Use this catalog as the canonical inventory for the live `runtime/` feature surf
 | [prompt-rendering](../feature-catalog/prompt-rendering) | 1 features | `lib/deep-loop/prompt-pack.ts` |
 | [validation](validation/) | 3 features | `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/plugins/system-deep-loop-guard.js` |
 | [state-safety](../feature-catalog/state-safety) | 13 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
-| [scoring](scoring/) | 3 features | `lib/deep-loop/bayesian-scorer.ts`, `scripts/score-stop-rater.cjs` |
+| [scoring](scoring/) | 4 features | `lib/deep-loop/bayesian-scorer.ts`, `scripts/score-stop-rater.cjs` |
 | [coverage-graph](../feature-catalog/coverage-graph) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
 | [script-entry-points](../feature-catalog/script-entry-points) | 5 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
 | [council](council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
@@ -438,6 +438,22 @@ Replays recorded deep-research lineage states offline and rates each stop decisi
 #### Source Files
 
 See [`scoring/stop-rater-replay.md`](../feature-catalog/scoring/stop-rater-replay.md) for full implementation and validation file listings.
+
+---
+
+### Stop-hint replay
+
+#### Description
+
+Replays one stop-rater report offline and scores whether each recorded stop would have made a good confirm-mode hint.
+
+#### How It Works
+
+`score-stop-hint.cjs` reads the report under `--rater-report <dir>` and prints a hint count and one Keep-Rule verdict per column, with the keep rule line first so every verdict can be rechecked by hand. The default run scores `legacy` and `sources` and writes no file, `--jev` and `--deem` add the rater's recorded `jev` and `deem` columns, `--out <dir>` writes `<dir>/report.json`, and no run calls a model.
+
+#### Source Files
+
+See [`scoring/stop-hint-replay.md`](../feature-catalog/scoring/stop-hint-replay.md) for full implementation and validation file listings.
 
 ---
 
