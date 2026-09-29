@@ -21,94 +21,91 @@ Filled-in changelog entries in the v4 narrative style, annotated to explain the 
 
 ## 1. OVERVIEW
 
-These examples apply the shared format in [../assets/changelog-template.md](../assets/changelog-template.md) to real content. The canonical full-scale exemplar is `.skilled/changelog/skilled/v4.0.0.0.md`. Read it for the complete expanded shape: opening narrative, Why This Release, What's New at a Glance, topical sections, Upgrade Notes. The seven-step workflow in [../SKILL.md](../SKILL.md) stays authoritative. Open this file when you want a filled-in entry to model, not the blank template.
+These examples apply [../assets/changelog-template.md](../assets/changelog-template.md) to real content. For the full expanded shape, read the canonical exemplar, `.skilled/changelog/skilled/v4.0.0.0.md`. The workflow in [../SKILL.md](../SKILL.md) stays authoritative.
 
 ---
 
 ## 2. COMPACT GLOBAL ENTRY
 
-Compact format for a release under 10 changes with no breaking change. The example is the v1.1.0.0 release of this very packet, written in the format it teaches. Every entry opens with its frontmatter block, the search metadata the Frontmatter Contract in SKILL.md section 5 defines. The exemplar also puts an editorial title H1 between the block and the narrative. Both shapes are valid: the narrative always opens the prose.
+A compact entry for a release under 10 changes with no breaking change. It is a leaner rewrite of this packet's published v1.3.1.0 entry, showing what the selection rules in template section 3 leave out. The frontmatter block comes first, per the Frontmatter Contract in SKILL.md section 5, and an editorial title H1 may follow it.
 
 ```markdown
 ---
-title: "sk-create-changelog v1.1.0.0"
-description: "The changelog template now teaches the narrative shape the v4 release notes established, and validation enforces its voice and omission rules."
+title: "sk-create-changelog v1.3.1.0, Hubs Resolve to Their Own Changelogs"
+description: "/create:changelog now resolves a hub such as sk-doc to its own changelog or to one mode's, where it used to find no version in the hub's folder of links."
 trigger_phrases:
-  - "sk-create-changelog v1.1.0.0"
-  - "sk-create-changelog 1.1.0.0"
-  - "changelog narrative template"
+  - "sk-create-changelog v1.3.1.0"
+  - "sk-create-changelog 1.3.1.0"
+  - "changelog hub component resolution"
 importance_tier: "normal"
 contextType: "general"
 ---
 
-The changelog template now teaches the narrative shape the v4 release notes established. Generated changelogs open with why the release matters, name their sections for the domain they change, and drop the machine-era tables that no reader asked for. Voice, omission and conciseness rules are enforced at validation time by the Human Voice scanner and a structural check pass.
+# v1.3.1.0, Hubs Resolve to Their Own Changelogs
 
-> Spec folder: `specs/sk-doc/057-sk-create-changelog-v4-style` (Level 1)
+`/create:changelog` now writes a hub's changelog where the hub keeps it. A hub such as `sk-doc` holds one link per mode plus `parent` and no entry of its own, so the workflow used to find no version there and would have written beside the links.
+
+> Spec folder: `specs/sk-doc/061-skilled-release-changelog/003-adjacent-alignment` (Level 2)
 
 ## What's New at a Glance
 
-- **The template has two narrative tiers.** Compact and expanded shapes model the v4 exemplar instead of tables and test metrics.
-- **An omission decision-aid decides what stays out.** File inventories, test metrics and schema churn are dropped by default, and reverted work shrinks to one story sentence.
-- **Voice is enforced at validation time.** The HVR scanner and a structural check pass gate every generated changelog before it is written.
-- **The worked examples were rebuilt.** The annotations explain the new shape on real content.
+- **A change lands in the changelog of the mode it belongs to.** A change inside one mode's packet goes to that mode's link, and anything else under the hub goes to `parent`.
+- **The next version follows the hub's own history.** The version reader reads the resolved link, so it no longer comes back empty.
 
 ## Upgrade
 
-No migration required. Existing changelog files stay as written, and new changelogs follow the narrative format.
+No migration required.
 ```
 
 **Annotations**:
 
-- The frontmatter block comes first. Its identity phrases name the component and version the way a reader asks for them, and its topic phrase names what changed in the entry's own words.
-- The opening paragraph states what the release does and why it matters in three sentences. No file paths, no file counts, no test numbers.
-- The spec-folder blockquote keeps the packet record without a table.
-- Every at-a-glance bullet opens with a bold lead-in sentence, matching the exemplar's bullets, then adds one plain sentence on the same list line. Four bullets for four themes, not one bullet per file.
-- No Files Changed section. The file map lives in the spec packet. That is the omission rule doing its job.
-- The Upgrade section stays two sentences because nothing was added that a reader must act on.
+- The summary says what changed and why in two sentences, with no file paths or counts.
+- Each glance bullet adds something the summary did not say: where a mode's change lands, and where the next version comes from.
+- The source also recorded two new playbook scenarios, a README and command-doc catch-up and a note that identity phrases keep the skill's name. None of them changes what a user of the workflow sees, so the entry leaves them in the spec packet.
+- The Upgrade line is only the action. The published entry added a sentence that repeated the first bullet, and the lean version drops it.
 
 ---
 
 ## 3. EXPANDED FORMAT EXCERPT
 
-For 10 or more changes, a major bump, or a breaking change. The excerpt condenses one topical section to show the pattern. It is written in the exemplar's style, not quoted from it. Model the opening narrative, Why This Release and at-a-glance sections on `.skilled/changelog/skilled/v4.0.0.0.md`.
+For 10 or more changes, a major bump or a breaking change. The excerpt condenses one topical section in the exemplar's style, without quoting it.
 
 ```markdown
 ## Retrieval
 
-The memory database left the framework this release. A committed trigger index and two lexical tools replaced it, and retrieval became a thing you can reason about instead of a thing you debug.
+Retrieval became something you can reason about instead of something you debug.
 
 #### The Index Replaces the Engine
 
-The SQLite database, the embedder and the daemon were decommissioned end to end. What replaced them is deliberately small: a trigger index generated from every document's frontmatter, a lookup script that reads it with no daemon, and ripgrep recipes for free text. A miss is a clean no-hit rather than a degraded guess.
+The SQLite database, the embedder and the daemon were decommissioned end to end. A trigger index generated from every document's frontmatter replaced them. A lookup script reads it with no daemon, and ripgrep recipes cover free text. A miss is now a clean no-hit rather than a degraded guess.
 
 &nbsp;
 
 #### Smaller Templates, Same Output
 
-The spec, plan and task templates consolidated into one shared core with level-gated addenda. A Level 1 research doc renders at 175 lines instead of 944. What the templates produce is identical.
+The spec, plan and task templates consolidated into one shared core with level-gated addenda. A Level 1 research doc renders at 175 lines instead of 944, and what the templates produce is identical.
 
 ---
 
 ## Upgrade Notes
 
-- **Repoint.** Anything pinned to `memory_search` or `memory_save` moves to `/speckit:search` and the continuity writer.
-- **Drop.** The spec-memory MCP server and its daemon are gone with the engine.
+- **Repoint.** Move anything pinned to `memory_search` or `memory_save` to `/speckit:search` and the continuity writer.
+- **Drop.** Remove the spec-memory MCP server from your runtime configs.
 ```
 
 **Annotations**:
 
-- The H2 is named for the domain it changes (Retrieval), not the change type. `New Features` or `Bug Fixes` would say less.
-- Each H4 heading runs four or five words and states the fact or the gain, inside the 2-7 range most headings use. No numbering.
-- One merged paragraph per item: what was broken, what replaced it, why it matters. No `**Problem:**` and `**Fix:**` labels.
-- `&nbsp;` separates the two H4 items. `---` appears only between H2 sections.
-- The Upgrade Notes carry bold Repoint/Drop lead-ins and list only the actions a reader must take. Paths appear here because this is where the reader acts on them, not in the narrative.
-- A reverted mid-cycle experiment earns at most one story sentence, in the narrative, not an item. The exemplar's pattern: an alignment mode was built during the cycle and removed before release.
+- The H2 names the domain it changes (Retrieval), not a change type such as `New Features`.
+- The section intro says what neither item says, so nothing is stated twice.
+- Each H4 heading states the fact or the gain in four or five words, and each item runs one paragraph: what was there, what replaced it and why it matters.
+- `&nbsp;` separates the items, and `---` appears only between H2 sections.
+- The Upgrade Notes carry only the actions, with the names the reader must change. Why the engine left belongs to the section above.
 
 ---
 
 ## 4. PACKET-LOCAL ENTRY
 
-Packet-local changelogs do not use the global component version sequence. The YAML routes nested mode to the spec-kit generator and reads the spec-kit root or phase template instead of the global template.
+Packet-local changelogs skip the global version sequence. Nested mode writes through the spec-kit generator and its root or phase template, which own this shape.
 
 ```markdown
 # Changelog - sk-doc parent root
@@ -135,10 +132,8 @@ This packet adds the `create-changelog` sub-skill to the sk-doc parent hub and r
 
 **Annotations**:
 
-- The exact packet-local shape is owned by `.skilled/skills/system-spec-kit/templates/changelog/root.md` and `phase.md`.
-- Use the nested generator: `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write`.
-- The output filename is deterministic, such as `changelog-<packet>-root.md` or `changelog-<packet>-<phase-folder>.md`.
-- Do not invent a `vX.Y.Z.W.md` filename for packet-local output.
+- The shape belongs to `.skilled/skills/system-spec-kit/templates/changelog/root.md` and `phase.md`, written by `node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/nested-changelog.js <spec-folder> --write`.
+- The filename is deterministic, such as `changelog-<packet>-root.md` or `changelog-<packet>-<phase-folder>.md`, never a `vX.Y.Z.W.md` name.
 
 ---
 
@@ -146,6 +141,6 @@ This packet adds the `create-changelog` sub-skill to the sk-doc parent hub and r
 
 - [README.md](README.md) - reference route-map
 - [version-bump-rules.md](version-bump-rules.md) - choosing and calculating the global four-part version
-- [topology-edge-cases.md](topology-edge-cases.md) - placement, back-dating, source conflicts, and release edge cases
+- [topology-edge-cases.md](topology-edge-cases.md) - placement, back-dating, source conflicts and release edge cases
 - [../SKILL.md](../SKILL.md) - authoritative packet workflow
 - `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar

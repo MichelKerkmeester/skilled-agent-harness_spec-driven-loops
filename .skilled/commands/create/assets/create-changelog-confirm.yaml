@@ -507,7 +507,12 @@ workflow:
       - "If changelog_mode = nested, read .skilled/skills/system-spec-kit/templates/changelog/root.md or phase.md instead"
       - "Set DATE to today's date in YYYY-MM-DD format"
       - |
-        SELECT FORMAT based on change count and release type:
+        SELECT CONTENT before writing (template section 3): keep a change only when the reader
+        would notice it, act on it or decide differently because of it. Merge changes with the
+        same effect, rank the rest by impact and drop test and playbook changes, internal labels,
+        process detail and follow-on housekeeping. Read tasks.md only to confirm what shipped.
+      - |
+        SELECT FORMAT based on the changes that survive SELECT CONTENT and the release type:
           IF change_count < 10 AND change_type != major AND no breaking change -> COMPACT format
           IF change_count >= 10 OR change_type == major OR any breaking change -> EXPANDED format
       - "Generate FRONTMATTER in global mode, per the Frontmatter Contract in SKILL.md section 5: title, a description of one or two sentences, the identity phrases for the target path ({component} {next_version} and {component} {next_version without its leading v}, or {next_version} release notes and skilled {next_version} for a Skilled release, where {component} is the name: in the SKILL.md of the folder that holds the resolved changelog folder, the link target's parent for {hub}/{link}, and deep-loop-runtime for the deep-loop runtime), one or two topic phrases from the entry's own words, importance_tier normal and contextType general"
@@ -519,6 +524,9 @@ workflow:
                     H2 sections with H4 benefit-led story items + Upgrade Notes
         Omission rules apply: no Files Changed tables, no test metrics, no schema
         tables. A table appears only when the numbers themselves are the story.
+        No internal labels outside the spec-folder line.
+        Say each fact once: themes in the opening, the gap in Why This Release, one payoff
+        line per theme at a glance, the detail in H4 items and only actions in the upgrade notes.
         Expanded-format heading rule:
           - Prefer 2-7 words, 10 at most, benefit-led
           - Make it easy to scan at a glance
@@ -542,7 +550,7 @@ workflow:
     activities:
       - "Run FORMAT CHECKS (frontmatter block with the five contract keys in order, both identity phrases and at least one topic phrase, narrative summary opening after the frontmatter and any editorial title, spec-folder blockquote when the source is a spec folder, at-a-glance bullets with bold lead-ins, expanded: Why This Release + topical H2/H4 sections + Upgrade Notes, no Files Changed/Test Impact/Schema default sections, --- only between H2 sections)"
       - "Run VERSION CHECKS (sequential, 4-segment, no duplicates)"
-      - "Run CONTENT CHECKS (compact summary within 3 sentences or expanded opening within 5 paragraphs, bold lead-in bullets, H4 headings 10 words at most, H4 items 7 paragraphs at most, omission rules applied)"
+      - "Run CONTENT CHECKS (compact summary within 3 sentences or expanded opening within 5 paragraphs, bold lead-in bullets, H4 headings 10 words at most, H4 items 7 paragraphs at most, omission rules applied, no internal labels outside the spec-folder line, each fact said once)"
       - "Auto-fix minor issues if possible"
     outputs:
       - validation_passed: "true/false"
