@@ -1,0 +1,6 @@
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=system-deep-loop/deep-improvement tier=FAIL_CLOSED scenarios=53 categories=10 operator=53 routing_gold_excluded=0 violations=0 warnings=1
+  WARN PROMPT_UNSYNCED model-benchmark-mode/reviewer-prompt-regression-fixtures.md:46 model-benchmark-mode/reviewer-prompt-regression-fixtures.md:25 scenario contract prompt differs from the execution table's Exact Prompt
+exit=0

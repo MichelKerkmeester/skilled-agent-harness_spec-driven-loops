@@ -1,0 +1,34 @@
+I'll start by reading the target files and the routing/repo context the brief points to.
+
+Both files read; `work`, `runBenchmark`, `path`, `fs` all exist in the test file, and line numbers match the brief exactly. Now Gate 5 (repo rules) and Gate 1 (trigger lookup) before the first write.
+
+Gate 1 lookup: no strong hits (all score-0 partials). Gate 5: the trigger table routes me to the rule files for result reporting, scope, test-adding, and turn handback — loading those now, plus checking `parseArgs` supports space-separated flags (the brief's test passes `['--scorer', '5dim', '--grader', 'jev']`) and confirming the target strings are unique.
+
+All context loaded: `parseArgs` supports space-separated values (`--scorer 5dim` → `args.scorer = '5dim'`), and the usage line exists exactly once. Following the sk-code hub's route for an authoring change, I'll load the quality packet while applying the two frozen edits.
+
+Both edits applied cleanly and exactly as specified. Now running the brief's verification commands plus two supporting checks: the direct behavioral negative control (unknown `--grader` must exit 2 before any profile load) and the repo's comment-hygiene gate on both modified files.
+
+The four brief checks pass and the behavioral control confirms exit 2 before any profile load. The hygiene script is Python (not bash) despite its name — let me check its shebang and re-invoke it correctly.
+
+Python script with a `python3` shebang. Re-running it correctly on both modified files.
+
+Both hygiene checks exit 0 (clean). All verification is complete; the handback follows.
+
+REPO RULES: loaded `prevent-overengineering.md`, `scope-discipline.md`, `evidence-and-proof.md`, `communication-handoff.md` (Gate 5 trigger table: test addition, leaf scope, result reporting, turn handback).
+SKILL ROUTING: User directed → @code persona; ARTIFACT: sk-code → sk-code-quality packet (quality gate; comment-hygiene checker run on both modified files).
+Beyond the brief's four checks I ran two extra read-only checks: a direct behavioral run of the new refusal path (exit 2, no report written) and the repo's comment-hygiene gate (both files clean). vitest was not run, per the brief — the orchestrator runs the suite.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs (+12/-1)
+               .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts (+12/-0)
+EDITS: run-benchmark.cjs:580 added `const usage = '<original line-582 literal, unchanged>'`; :583 now `process.stderr.write(usage);`; :587-595 inserted the unknown-grader refusal (VALID_GRADERS set, message, usage, exit 2) right after the usage-guard block
+       tests/run-benchmark-hardening.vitest.ts:265-276 appended `describe('unknown grader kind')` case
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs -> no output (exit 0)
+        grep -c "VALID_GRADERS" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs -> 2 (exit 0)
+        grep -c "process.stderr.write(usage)" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs -> 2 (exit 0)
+        grep -c "unknown grader kind" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts -> 1 (exit 0)
+        [extra] node run-benchmark.cjs --profile <missing> --outputs-dir /tmp/rb-jev-check/outputs --scorer 5dim --grader jev -> stderr "run-benchmark: unknown --grader 'jev' (expected noop, mock or llm)" + usage line, EXIT:2, NO_REPORT_WRITTEN (exit 0 wrapper)
+        [extra] python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <each file> -> no output (exit 0)
+BLOCKED REASON: none
+```

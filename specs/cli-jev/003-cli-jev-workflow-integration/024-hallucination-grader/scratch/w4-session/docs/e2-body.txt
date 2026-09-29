@@ -1,0 +1,8 @@
+TASK: add one line naming the offline D4 measurement to the packet's README.
+FILE (edit): `.skilled/skills/system-deep-loop/deep-improvement/README.md`. Read it first, then find where it describes Lane B (the `B: Model-Benchmark` row near line 106 and the paragraph after it that starts `Lane B enters through`).
+WRITE: one sentence at the end of that paragraph, or one new line directly after it in the same form, naming `scripts/model-benchmark/scorer/score-d4-agreement.cjs`, that its default run makes no model call, its 30-output label gate, and that `--jev` and `--deem` each add a verdict column behind that backend's own check. Change nothing else.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/README.md
+  grep -c "score-d4-agreement" .skilled/skills/system-deep-loop/deep-improvement/README.md
+  git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/README.md
+Accept when: 1 file changed and nothing else; the validator exits 0; the grep prints 1; the diff has at most 1 deletion.

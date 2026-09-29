@@ -1,0 +1,21 @@
+TASK: add the model-state builder and the deterministic baseline to the D4 agreement script, with three tests. 2 files.
+S = .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs
+T = .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts
+Read first: S, T, S's sibling deterministic/hallucination-flag.cjs (the check you spawn; do not edit it), and section 4 of specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-build/design.md (implement ONLY section 4).
+
+STEP 1. In S, insert a new section after `// 4. LABELS` (after `sha256Hex`) and before the EXPORTS divider: divider `// 5. BASELINE`; renumber EXPORTS to `// 6. EXPORTS`. Add, with JSDoc each:
+- `buildState(fixture, outputText)`: sections joined by `\n\n`: `Task:\n<task>` only when `typeof fixture.task === 'string'`; `Visible spec:\n<visibleSpec>` only when `typeof fixture.visibleSpec === 'string'`; `Allowlist:\n<JSON.stringify(fixture.allowlist)>` only when the fixture has an own `allowlist` property; then always `Output:\n<outputText>`.
+- `deterministicCall(fixture, outputPath)` exactly as design section 4: temp dir via `fs.mkdtempSync(path.join(os.tmpdir(), 'd4-check-'))`, write `{ id: fixture.id, allowlist: fixture.allowlist || {} }` to `fixture.json` there, spawnSync `process.execPath` with `[HALLUCINATION_CHECK, <that json>, outputPath]`, `{ encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }`, remove the temp dir in `finally`. On `res.error` or `res.status !== 0` throw `deterministic check failed on <path.basename(outputPath)>: <res.stderr trimmed, or 'exit ' + res.status when empty>`. Parse trimmed stdout; when parsing fails or `score` is not a finite number throw `deterministic check failed on <basename>: unparseable result`. Return `'yes'` when score < 1, else `'no'`. A comment says the check runs unchanged and a failure stops the run because a default score would fake the baseline.
+- `chooseBaseline(rows)` exactly as design section 4 (rows `{ file, label, check }`; majorityClass `'yes'` only when yes labels outnumber no labels; method `'check'` when checkRight >= majorityRight; calls Map file -> chosen call).
+- Add `buildState, deterministicCall, chooseBaseline` to the end of `module.exports`.
+
+STEP 2. In T add `//   Deterministic baseline (buildState, deterministicCall, chooseBaseline)` to the MODULE header list, and append a block `describe('score-d4-agreement baseline', ...)` with three it():
+1. 'reads an unlisted flag as yes and an allowlisted flag as no': `const fixtures = d4.loadFixtures(writeFixtures()); const dir = writeOutputs([]); const file = path.join(dir, 'fx-a.md'); fs.writeFileSync(file, 'Run: tool --dry-run\n');` then `d4.deterministicCall(fixtures.byId.get('fx-a'), file)` is `'no'` and `d4.deterministicCall(fixtures.byId.get('fx-b'), file)` is `'yes'`.
+2. 'keeps the check on a tie and takes the majority class when the check does worse': `d4.chooseBaseline([{ file: 'a', label: 'yes', check: 'no' }, { file: 'b', label: 'no', check: 'no' }])` has method 'check', right 1, majorityClass 'no'. `d4.chooseBaseline([{ file: 'a', label: 'yes', check: 'yes' }, { file: 'b', label: 'no', check: 'yes' }, { file: 'c', label: 'no', check: 'no' }, { file: 'd', label: 'no', check: 'yes' }])` has method 'majority', checkRight 2, majorityRight 3, right 3, and `[...calls.values()]` equal `['no', 'no', 'no', 'no']`.
+3. 'builds the state from the task, the visible spec, the allowlist and the output': for fx-a and text 'X' the result is `'Task:\nWrite add(a, b).\n\nVisible spec:\nadd(1, 2) is 3\n\nAllowlist:\n{"cli_flags":["--dry-run"],"symbols":["add"]}\n\nOutput:\nX'`; for fx-c it is `'Output:\nX'`.
+
+VERIFY (repo root; paste each command, its result line and exit code):
+  node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs
+  grep -c "// 6. EXPORTS" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs   (expect 1)
+  grep -c "describe('score-d4-agreement baseline'" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts   (expect 1)
+Accept when: 2 files changed (S and T) and nothing else; each check prints what it expects.

@@ -1,0 +1,43 @@
+I'll start by reading the target file's `jevGate` function.
+
+
+
+Baseline confirmed: `jevGate` has 5 returned objects carrying the shorthand `path,`. Now let me load the repo rules and the routed code skill as the brief requires, and check the call sites.
+
+
+
+The compiled router deferred (no target), so I'll follow the hub's legacy routing for an implement-type edit on a Node script: quality mode + opencode surface packet. Let me load those packet contracts.
+
+
+
+Routing resolved: this is `.skilled/` system code (JavaScript surface) with an implement-type edit → `sk-code-opencode` surface + `sk-code-quality` gate. My edit adds no comments, so comment hygiene is trivially satisfied. Now let me pin down every occurrence of the shadowing local across the file before editing.
+
+All 11 uses of the local are inside `jevGate`, and the shorthand returns are only there (5 of them). Now I'll apply the rename edits and load the evidence rule that governs result reporting.
+
+All edits applied. Re-reading the edited region to confirm the final state, then running the three checks.
+
+The function is fully renamed: 11 lines changed, no bare `path` local remains, and all five returned objects keep the `path` key via `path: jevPath`. Now the three prescribed checks, plus a read-only numstat scoped to this one file for the handback's +/- figures.
+
+`node --check` passes and the rename checks are clean, but the numstat came back empty — I need to understand why before reporting the file's change figures. Checking git state (read-only).
+
+All checks are in. One item needs flagging: check 3 prints **5**, not the brief's stated 6 — `jevGate` contains exactly five returned objects, confirmed against the pre-edit baseline (four `passed: false, path, provider` returns at 553/569/576/587 plus one `passed: true, path, provider` at 589). All 11 uses of the local were renamed, so 5 is the complete count; a sixth `path: jevPath` would have required changing printed text or code outside `jevGate`, both forbidden.
+
+Route: sk-code → sk-code-opencode surface + sk-code-quality gate (hub and both packets read; edit adds/removes no comments, so comment hygiene is untouched).
+REPO RULES: `REPO RULES.md`, `evidence-and-proof.md` loaded.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs (+11/-11 — 11 in-place line substitutions, file length unchanged at 1323 lines; file is untracked in git (`??`), so `git diff --numstat` is empty and the figure derives from the edit receipts)
+EDITS:
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:548-550 `const path = which('jev', ctx.env)` → `const jevPath = ...`; identity template now `path=${jevPath ?? 'none'}`; `if (jevPath === null)`
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:553,569,576 three `untracked: 0` returns: shorthand `path,` → `path: jevPath,`
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:562 `spawnSync(path, ['--version'], opts)` → `spawnSync(jevPath, ...)`
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:568 `found=` details template → `path=${jevPath}`
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:572 `spawnSync(path, ['auth', 'status', '--provider', provider], opts)` → `spawnSync(jevPath, ...)`
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:587 return: shorthand `path,` → `path: jevPath,`
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:589 success return: shorthand `path,` → `path: jevPath,`
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` -> no output, no diagnostics (exit 0)
+- `awk '/^function jevGate/,/^}/' .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs | grep -cE "const path =|spawnSync\(path"` -> `0` (exit 1 — `grep -c` exits 1 on a zero count, the expected outcome; pre-edit the same pattern matched 3 lines, 548/562/572)
+- `awk '/^function jevGate/,/^}/' .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs | grep -c "path: jevPath"` -> `5` (exit 0) — brief said expect 6; 5 is the complete count: exactly five returned objects, all converted, verified by full re-read of 546-590
+- `git status --porcelain -- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` -> `?? .skilled/.../score-d4-agreement.cjs` (exit 0; read-only probe — explains the empty numstat, orchestrator will need `git add` to commit it)
+BLOCKED REASON: none

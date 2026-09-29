@@ -1,0 +1,37 @@
+I'll start by reading the required files in parallel.
+
+Now let me read the rest of S, the test file, and the design doc.
+
+Let me read the rest of T and the design doc section.
+
+
+
+I have full context now. The design doc pins the Deem arm contract, and the port source (`runDeemArm` in score-track-narrowing.mjs:1302-1455) gives the exit table, health recheck, and stop lines. Let me make the edits to S first.
+
+S is wired. Now the test file: header entry plus the new describe block.
+
+Both files are edited. Now verification: the listed `node --check`, plus a read-only static check that the DEEM stub literal decodes to the exact shell text (escaping is the one thing `node --check` can't see).
+
+Both checks pass — the stub literal decodes byte-for-byte to the brief's shell text and parses cleanly under `sh -n`. Final scope check:
+
+Files are untracked in this worktree (created by an earlier wave), which is why `git diff --stat` is empty — the porcelain output confirms only my two files are touched. Let me get exact line deltas for the handback:
+
+All edits verified. Handback:
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs (+150/-2)
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts (+113/-0)
+EDITS:
+- score-d4-agreement.cjs:792-938 added `async function runDeemArm(plan, gate, ctx)` with JSDoc at the end of `// 9. ARM HELPERS`, after `buildReport`: planned-calls banner, one `cli-deem noul -q <QUESTION>` per row with `row.state` on stdin, `measured`/`failed`/`unmeasured`/`unmeasured_timeout` statuses, exit-4 health recheck + one retry, stop lines with `deem: partial rows=<n>`, `calls.jsonl` records `{ backend, output, rerun, attempt, wallMs, exitCode, noul, status, modelId, modelCommit, sourceCommit }`, `summarizeColumn` + nearestRank latency column line, `flips: n/a (commit pair)`, conditional `requalify: model commit changed`, verdict line; returns `{ column: { ...column, latency, modelId, modelCommit, sourceCommit }, requalify }` or `{ stopped, partialRows }`
+- score-d4-agreement.cjs:1082 added the `const plan = gate === 'open' ? {...} : null` row/state/baselineCalls/labelsSha object
+- score-d4-agreement.cjs:1107 replaced `// The Deem arm runs here after a passing gate.` with `deemResult = await runDeemArm(plan, deemCheck, { out, env, timeoutMs, callLog, stored });`
+- score-d4-agreement.cjs:1130 added `runDeemArm` to `module.exports`
+- d4-agreement.vitest.ts:10 added `//   Deem arm (runDeemArm)` to the MODULE header list
+- d4-agreement.vitest.ts:535-645 appended `describe('score-d4-agreement deem arm', ...)`: `DEEM` stub (health counter switching `m1`→`m2` when `newpair` sits beside it, EXIT4/EXIT3/BADJSON/HALLUCINATED branches), `readCalls` helper, and the three tests (keep run with 31-line log / 30 measured calls / `columns.deem.verdict` keep; changed commit pair and refused backend both stop with `partial rows=0` and no verdict; BADJSON rows fail 4 of 30 calls, requalify line immediately before `verdict deem: stop (coverage) K=30 M=26 `)
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` -> exit 0
+- read-only literal check (extract `DEEM` template from T, decode, pipe to `sh -n`) -> decoded text byte-identical to the brief's shell block, `sh -n exit: 0`
+- `git status --porcelain -- <S> <T>` -> both `??`, no other path touched by this worker
+- vitest not run (sandbox may block the runner; orchestrator runs the suites)
+BLOCKED REASON: none

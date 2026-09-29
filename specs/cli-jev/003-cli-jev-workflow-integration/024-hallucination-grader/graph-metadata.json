@@ -39,14 +39,16 @@
       "keep"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+      ".hermes/skills/deep-improvement/SKILL.md",
+      "scratch/w4-session/docs/facts.txt",
+      "scratch/w4-session/session-evidence.md",
       "tests/README.md",
       ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
       ".skilled/skills/system-deep-loop/deep-improvement/README.md",
@@ -85,21 +87,27 @@
         "source": "derived"
       },
       {
-        "name": "run-benchmark.cjs",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/deep-improvement/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "facts.txt",
         "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        "path": "scratch/w4-session/docs/facts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
         "path": "tests/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md",
         "source": "derived"
       },
       {
@@ -181,7 +189,7 @@
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Test Files",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -191,17 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 5dim scorer weighs D4, the hallucination dimension, at 0.15 (`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:58`) and takes D4 from the grader (`:300`)",
     "created_at": "2026-09-29T12:42:36Z",
-    "last_save_at": "2026-09-29T13:53:37.113Z",
+    "last_save_at": "2026-09-29T16:39:59.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1fca8b718476dd0328de966df0354b17e1d42a4458aa68cbc9e9ad9124b1bedd",
+    "source_fingerprint": "sha256:edb90c43bef5fdda6fb520e6f55f322713f0579a1468ea5654c6c870c97f5e86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "acb29291cf024b53415142da9a7d1398b4993a6c552a2595a8a5b1528334a5ee",
-      "plan.md": "a82fba04bc84143e96654bd12d7464ba49589e67d3520254a9178470668ae004",
-      "tasks.md": "0e10647b6918abce331d57e23819d8139220f333d0b297224524d5deffde683b",
-      "implementation-summary.md": "22a05401971f72547f8c4d1c8c693ca471c54e6057d23c4d8686cb8c0325b83c"
+      "spec.md": "fada9e041981b55bccf52dfe4a942c1133bcc3b90ad77a33f4665a838d88ea8d",
+      "plan.md": "0921266e9ab4b8591d2c448ec70a93612807793fadbb8d8adaa05e33d53f2fa0",
+      "tasks.md": "52e8919c5e80ec3231b5ae4935e03c894d72c07782e6f278b2aca4e7059edeb3",
+      "implementation-summary.md": "ed3374c4a302ad5a67ad3307815d51eef932de38f3756afe2534437d966e9ce2"
     },
     "last_active_at": null
   }

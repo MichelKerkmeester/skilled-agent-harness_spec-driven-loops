@@ -1,0 +1,24 @@
+TASK: add scenario 5D-051 to the manual testing playbook index. Three literal edits in 1 file.
+File: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md. Read it first.
+
+Edit 1, inside line 116. Old text:
+The deep-improvement subtotal is 45 numbered scenarios (`IS-001..MB-042` plus MB-049, E2E-050, and the reviewer regression `MB-R01`)
+New text:
+The deep-improvement subtotal is 46 numbered scenarios (`IS-001..MB-042` plus MB-049, E2E-050, 5D-051, and the reviewer regression `MB-R01`)
+(The rest of line 116 stays as it is.)
+
+Edit 2, line 252. Old:
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
+New:
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
+
+Edit 3 (do it last). Line 291 is `> **Feature File:** [5D-011](../manual-testing-playbook/five-d-scorer/missing-candidate.md)`, line 292 is blank and line 293 is `---`. Insert the exact contents of this file directly after line 291, byte for byte:
+  specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-build/content/playbook-index-block.md
+That file starts with one blank line and ends with the `> **Feature File:** [5D-051](...)` line, so the old blank line and the old `---` line follow it.
+
+Nothing else in the file changes, including its frontmatter.
+
+VERIFY (repo root; paste each command, its result line and exit code):
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md
+  grep -c "5D-051\|covers 4 scenario summaries" .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md
+Accept when: 1 file changed and nothing else; validate_document exits 0; the grep prints 6 (lines 136 and 194 already say "covers 4" for other categories).
