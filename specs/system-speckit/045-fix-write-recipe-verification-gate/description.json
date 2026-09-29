@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/045-fix-write-recipe-verification-gate",
+  "description": "Reword the write recipe Step 7 verification gate for a shared tree",
+  "keywords": [
+    "reword",
+    "write",
+    "recipe",
+    "step",
+    "verification",
+    "gate",
+    "shared",
+    "tree"
+  ],
+  "lastUpdated": "2026-09-29T07:19:57.186Z",
+  "specId": "045",
+  "folderSlug": "fix-write-recipe-verification-gate",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

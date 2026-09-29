@@ -8,7 +8,7 @@ trigger_phrases:
   - "strict validate first try"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.5
+version: 4.1.0.20
 ---
 
 # Spec Folder Write Recipe
@@ -106,7 +106,7 @@ Common pitfalls: `SPECDOC_SUFFICIENCY_004` (research.md needs anchor + citation 
 
 The full contract is `.skilled/skills/sk-git/assets/commit-message-template.md`.
 
-Verification gate: confirm `git status --short` only includes the intended packet files before commit.
+Verification gate: stage the packet files by explicit path, then confirm `git diff --cached --name-only` lists only the intended packet files before commit. In a shared tree `git status --short` also lists other sessions' changes, so it cannot be the test (see "Step 7: Scoped-Staging Discipline" in `.skilled/skills/sk-git/references/commit-workflows.md`).
 
 ---
 
