@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 19: advisor-suggested-order"
-description: "Test research R3 offline: whether a Jev or Deem choice that reorders the skill advisor's whole near-tie cluster beats the scorer's own order and fits the hook's 2,200 ms advisor budget when timed inside a child like the one the hook spawns. Phase 002 printed kill on both backends for moving one pick first, so a zero-call run prints the order census and the advisor's own time before any call. Planned, released 2026-09-29."
+description: "Test research R3 offline: whether a Jev or Deem choice that reorders the skill advisor's whole near-tie cluster beats the scorer's own order and fits the hook's 2,200 ms advisor budget when timed inside a child like the one the hook spawns. Phase 002 printed kill on both backends for moving one pick first, so a zero-call run prints the order census and the advisor's own time before any call. Built 2026-09-29: the zero-call run and a live Deem run printed `verdict deem: kill` from the final state, and the Jev column waits on the operator's `--jev` run."
 trigger_phrases:
   - "advisor suggested order"
   - "near-tie cluster order"
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
@@ -73,9 +73,9 @@ Phase 002 has answered the first reason for one form of R3. Moving the modal pic
 - `verdict: kill backend=jev decided=38 wins=11 losses=27 p_win=0.9975 p_loss=0.0069 flip=0.0153 provider=official model=jev-1.13.0`
 - `verdict: kill backend=deem decided=38 wins=8 losses=30 p_win=0.9999 p_loss=0.0002 flip=0.3123 model=deem-0.8-v1 model_commit=8cbabbb2... source_commit=c8a5523c...`
 
-Under 002's kill criterion (`../002-advisor-jev-tiebreak-arm/spec.md` section 5), each kill closes that backend's served forms of R3 at that identity. Three parts of R3 stay untested:
+Under 002's kill criterion (`../002-advisor-jev-tiebreak-arm/spec.md` section 5), each kill closes that backend's served forms of R3 at that identity. Three parts of R3 were untested at planning:
 - **The whole-cluster order.** 002 scored only the modal pick moved first. Both clients return a probability map: `cli-deem choice` rekeys it by option key (`.skilled/skills/cli-classifier/cli-deem/SKILL.md:104`), and 002 read Jev's map for the pick and `none` (`score-jev-tiebreak.mjs:1070-1072`). Whether Jev's map holds every submitted key is UNKNOWN until one recorded answer is read.
-- **The budget inside the child.** 002's `choice` p95 was 340 ms on Deem and 2,830 ms on Jev (derived from its two `calls.jsonl` files, 333 calls each), timed from a standalone script. The advisor's own share of the 2,200 ms is UNKNOWN (research question 43). A Jev p95 of 2,830 ms alone exceeds 2,200 ms, so a Jev live form is expected not to fit. This phase measures that instead of inferring it.
+- **The budget inside the child.** 002's `choice` p95 was 340 ms on Deem and 2,830 ms on Jev (derived from its two `calls.jsonl` files, 333 calls each), timed from a standalone script. The advisor's own share of the 2,200 ms was UNKNOWN at planning (research question 43) and is now measured: the advisor-only child p95 ran 929 to 1,296 ms across four real runs (`scratch/w4-build/evidence-tail.draft.md` section 9). A Jev p95 of 2,830 ms alone exceeds 2,200 ms, so a Jev live form is expected not to fit. This phase measures that instead of inferring it.
 - **Real-use value.** The shadow sink that would count live `ambiguousWith` events is opt-in (`runtime/lib/shadow/shadow-sink.ts:144-155`), and `runtime/data/` holds no `shadow-deltas.jsonl` (rechecked 2026-09-29, research question 21). The live frequency stays UNKNOWN here.
 
 The corpus leaves little room. 002's census counted 111 eligible rows of 241 skill-firing rows, 23 movable, 76 gold-first and a decided-row ceiling of 99 (`../002-advisor-jev-tiebreak-arm/implementation-summary.md:66-75`).
@@ -96,7 +96,7 @@ Produce one verdict per backend that settles, offline, whether a model's whole-c
 - Zero-call orders scored with MRR, right@1 and right@3 on identical rows: the scorer's order, confidence order (`:350`) and always-second (`:360`). The outcome-weighted rerank prints on held-out rows beside them and never decides.
 - Zero-call timing of the advisor alone. For every skill-firing prompt one child is spawned like the shim spawns the advisor (`process.execPath`, a 2,500 ms timeout and `SIGKILL`, `user-prompt-submit.ts:113-120`). It runs the built hook's exported `handleClaudeUserPromptSubmit` (`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:252`) under the capture env. The report prints p50, p95, max and the count of children past 2,200 ms. This answers research question 43.
 - A Jev arm behind `--jev` and a Deem arm behind `--deem` (proposed). Per eligible row, three option orders: the three left rotations of the cluster keys plus `none` that 002 built for its Deem arm. Each `choice` runs inside a timed child that first runs the advisor for the row's prompt. The Deem child also runs one `cli-deem health` first. The Jev child runs no gate step, because a live form checks the Jev gate once per session.
-- The row's order: cluster keys sorted by their mean probability over the three answers, ties kept in the scorer's order and placed through 002's `reorderSlots` (`:210`). When `none` has the highest mean, the row keeps the scorer's order and counts as an abstention.
+- The row's order: cluster keys sorted by their mean probability over the three answers, ties kept in the scorer's order and placed through 002's `reorderSlots` (`:210`). When `none`'s mean is strictly above every cluster key's mean, the row keeps the scorer's order and counts as an abstention. A tie between `none` and a key at the top is not an abstention, the built rule, corrected at close from `the highest mean` on the build record's deviation 7 and the review's P2 1.
 - Jev first, then Deem (parent D1). With both switches set, the Jev column runs first. Each column stands alone and a failed gate never starts the other backend.
 - The Keep Rule in section 4, fixed here before any model run, and one verdict line per column.
 - A per-call `calls.jsonl` and a `report.json` in a directory the operator names.
@@ -143,7 +143,7 @@ Owner of every code path below: `system-skill-advisor`. Code follows sk-code's O
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The default run makes zero model calls | Without `--jev` or `--deem` the script prints the census, the zero-call orders, the advisor-only timing and the power line, and never spawns `jev` or `cli-deem`. Stub `jev` and `cli-deem` binaries first on `PATH`, each appending one line per call to its own log, leave both logs empty |
-| REQ-002 | Each arm is dormant unless its switch is set and its gate passes, once per run | The gates are 002's `jevGate` and `deemGate`, unchanged. Jev: an identity line with the resolved `jev` path and provider P first, then `jev arm skipped: jev not on PATH`, `jev arm skipped: version` with a details line, or `jev arm skipped: no credential` when `command -v jev`, `jev --version` printing `jev 0.6.2` or `jev auth status --provider P` fails. Deem: `cli-deem health` within 2,000 ms, else `deem arm skipped: not reachable`, `stub backend`, `model` with a details line or `bad health response`. A skip leaves the zero-call output and the other column byte-identical and exits 0. The script never starts the Deem server |
+| REQ-002 | Each arm is dormant unless its switch is set and its gate passes, once per run | The gates are 002's `jevGate` and `deemGate`, unchanged. Jev: an identity line with the resolved `jev` path and provider P first, then `jev arm skipped: jev not on PATH`, `jev arm skipped: version` with a details line, or `jev arm skipped: no credential` when `command -v jev`, `jev --version` printing `jev 0.6.2` or `jev auth status --provider P` fails. Deem: `cli-deem health` within 002's `HEALTH_TIMEOUT_MS` of 10,000 ms, the bound the imported gate holds, else `deem arm skipped: not reachable`, `stub backend`, `model` with a details line or `bad health response`. The 2,000 ms this line first named was corrected at close on the build record's deviation 1, which asks the phase docs to pick one. A skip leaves the zero-call output and the other column byte-identical apart from the re-measured `advisor child:` line and exits 0. The script never starts the Deem server |
 | REQ-003 | The script never handles a credential | It never reads, stores, logs or passes a key and holds no key literal or key variable name. `grep -nE 'API_KEY\|TYPESAFE\|Bearer\|Authorization' score-suggested-order.mjs` returns no match. The same `--provider P` goes to `auth status`, one `jev auth test` and every judgment. `cli-deem` gets no key |
 | REQ-004 | Headroom and fit print before any call | The zero-call run prints the power line from 002's census and the advisor-only child p50, p95 and max. It prints `no headroom (movable)` below 5 movable rows and `no headroom (latency)` when the advisor-only p95 is above 2,200 ms. Either line stops both arms before any call |
 | REQ-005 | The baseline reproduces the pinned number | Under 002's capture env the census prints holdout top-1 `53/70`. Any other number prints `baseline mismatch: comparison void` and no arm runs |
@@ -237,8 +237,8 @@ Written before the build. `S` is `.skilled/skills/system-skill-advisor/runtime/s
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does the Python client's `choice` answer carry a probability for every submitted key? UNKNOWN. 002 recorded only the pick and `none` probabilities. One real answer read at build settles it.
-- How much of the 2,200 ms does the advisor itself spend (research question 43)? The zero-call run answers it.
+- Does the Python client's `choice` answer carry a probability for every submitted key? Deem settled at build: all 328 non-timeout answers of the session's 333-call run carried one, and 5 timed out (`scratch/w4-session/p4-deem/calls.jsonl`). Jev stays UNKNOWN until one recorded `jev choice` answer, which waits on the operator's `--jev` run.
+- How much of the 2,200 ms does the advisor itself spend (research question 43)? Answered at build: the advisor-only child ran `p50=629 p95=929 max=2500 over_2200=4` on the build's final zero-call run and `p50=779 p95=1011 max=1787 over_2200=0` in the session's Deem run (`scratch/w4-session/p4.stdout.txt`).
 - Is a 0.05 mean reciprocal-rank margin right? It is fixed here so the build cannot tune it. Changing it before the first model run is an amendment.
 - How often does the live advisor set `ambiguousWith`? Still 0 recorded, because the shadow sink is off by default. Enabling it is the advisor owner's call and outside this phase.
 <!-- /ANCHOR:questions -->

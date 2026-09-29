@@ -1,0 +1,14 @@
+TASK: bump the skill version and name the new script in SKILL.md. Two literal edits in one file.
+F = .skilled/skills/system-skill-advisor/SKILL.md. Read lines 1-10 and 375-390 first.
+
+1. Line 5: replace `version: 0.13.0.0` with `version: 0.14.0.0`.
+2. Directly after line 382, which reads
+- `runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs`: offline Jev and Deem tie-break eval of the near-tie cluster, with a zero-call census by default.
+   insert this one new line
+- `runtime/scripts/routing-accuracy/score-suggested-order.mjs`: offline Jev and Deem order of the whole near-tie cluster, with each call timed inside a child like the prompt hook's and a zero-call run by default.
+
+Do not change the description, the trigger phrases, the Keywords comment or any other line.
+
+VERIFY (repo root):
+  grep -c "^version: 0.14.0.0$\|score-suggested-order.mjs" .skilled/skills/system-skill-advisor/SKILL.md
+Accept when: only F changed (+2/-1 lines); grep prints 2.

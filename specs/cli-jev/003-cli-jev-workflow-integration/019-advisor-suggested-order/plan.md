@@ -38,18 +38,18 @@ contextType: "implementation"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel
-- [ ] The advisor `dist` is built and the H1 ratchet reads 53/70 at the build's starting HEAD
-- [ ] The Keep Rule, the 0.05 margin and the 2,200 ms ceiling in `spec.md` are unchanged since 2026-09-29
-- [ ] The build has read `hooks/claude/user-prompt-submit.ts` and recorded what `handleClaudeUserPromptSubmit` writes, before the child runs it
+- [x] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel. Evidence: released per parent D3, and the build ran on 2026-09-29 (`scratch/w4-build/build-evidence.md` section 1)
+- [x] The advisor `dist` is built and the H1 ratchet reads 53/70 at the build's starting HEAD. Evidence: `dist is fresh` at HEAD `bf830c3d47`, the suite holding the ratchet passed, and the census read `baseline: holdout_top1=53/70` (`scratch/w4-build/build-evidence.md` section 1)
+- [x] The Keep Rule, the 0.05 margin and the 2,200 ms ceiling in `spec.md` are unchanged since 2026-09-29. Evidence: the close pass's requirement-text edits, REQ-002's health timeout and the `none` tie sentence, sit outside the Keep Rule's thresholds, the margin and the ceiling (`goal.md` log)
+- [x] The build has read `hooks/claude/user-prompt-submit.ts` and recorded what `handleClaudeUserPromptSubmit` writes, before the child runs it. Evidence: the planning probes' record (`scratch/w4-build/build-evidence.md` section 1)
 
 ### Definition of Done
-- [ ] Every REQ in `spec.md` section 4 is met with observed evidence in `tasks.md`
-- [ ] The vitest file exits 0 with at least 20 passed tests, and the advisor package's suite fails nothing beyond its baseline recorded before the build
-- [ ] `git status --porcelain` is the same before and after each script run
-- [ ] `validate_document.py` exits 0 on every skill doc the phase changed (parent D6)
-- [ ] A cross-family review of the code leaves no open P0 or P1 finding (parent D5)
-- [ ] Every verdict line, or `no headroom`, is in `goal.md`'s log and `implementation-summary.md`
+- [x] Every REQ in `spec.md` section 4 is met with observed evidence in `tasks.md`. Evidence: T004 to T024 carry the commands and results, and the cross-family doc review found REQ-001 to REQ-012 met (`scratch/w4-session/session-evidence.md` section 3)
+- [x] The vitest file exits 0 with at least 20 passed tests, and the advisor package's suite fails nothing beyond its baseline recorded before the build. Evidence: `Tests 45 passed (45)` and the full suite `Test Files 131 passed (131)`, `Tests 1075 passed | 6 skipped (1081)` against a baseline of 130 files and 1,030 passed, 6 skipped, 0 new failures (`scratch/w4-session/session-evidence.md` section 2)
+- [x] `git status --porcelain` is the same before and after each script run. Evidence: judged on this phase's paths, before and after P1, P2 and the live Deem run (`scratch/w4-session/session-evidence.md` sections 2 and 5)
+- [x] `validate_document.py` exits 0 on every skill doc the phase changed (parent D6). Evidence: 9 of 9 (`scratch/w4-session/session-evidence.md` section 2, G2)
+- [x] A cross-family review of the code leaves no open P0 or P1 finding (parent D5). Evidence: Pi MiMo `VERDICT: PASS` on the code and Devin DeepSeek `VERDICT: PASS` on the docs, 4 P2 recorded (`scratch/w4-session/session-evidence.md` section 3)
+- [x] Every verdict line, or `no headroom`, is in `goal.md`'s log and `implementation-summary.md`. Evidence: `verdict deem: kill ...` with its commit pair is in both, beside the zero-call lines (`scratch/w4-session/p4.stdout.txt`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -109,7 +109,7 @@ Commands run from the repository root. `S=.skilled/skills/system-skill-advisor/r
 | Default run, zero calls | `PATH="$STUB:$PATH" node $S` | Census lines, `baseline: holdout_top1=53/70`, MRR, right@1 and right@3 for three zero-call orders, `advisor child: p50=... p95=... max=... over_2200=...`, the power line, `margin: 0.05`, the `keep rule:` line, exit 0 and both stub logs empty |
 | Movable headroom | vitest, synthetic corpus with 4 movable rows | `no headroom (movable)` and no stub call |
 | Latency headroom | vitest, stub advisor child sleeping 2,300 ms | `no headroom (latency)` and no stub call |
-| Deem gate skip | stub `health` reports backend `stub`, `node $S --deem --out $D` | `deem arm skipped: stub backend`, the rest byte-identical to the default run, exit 0 |
+| Deem gate skip | stub `health` reports backend `stub`, `node $S --deem --out $D` | `deem arm skipped: stub backend`, the rest byte-identical to the default run apart from the re-measured `advisor child:` line, exit 0 |
 | Jev gate skip | stub `auth status --provider official` exits 3, `node $S --jev --out $D` | Identity line naming the stub path and `official`, then `jev arm skipped: no credential`, exit 0, and the stub log holds only `--version` and `auth status --provider official` |
 | Missing `--out` | `node $S --deem` | Exit 2, empty stdout, no stub call |
 | Full map order | vitest, stub answers with full maps | The cluster reorders by mean probability, ties stay in scorer order, and a `none`-first row keeps the scorer's order |

@@ -1,0 +1,17 @@
+```
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.sskilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md (+60/-0)
+.skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md (+94/-0)
+.skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md (+29/-0)
+EDITS:
+.sskilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:1 new file, lines 1-60 copied byte-for-byte from staged catalog-suggested-order-eval.md
+.skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md:1 new file, lines 1-94 copied byte-for-byte from staged playbook-suggested-order-eval.md
+.skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md:1 new file, lines 1-29 copied byte-for-byte from staged changelog-v0.14.0.0.md
+CHECKS:
+cmp specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/content/catalog-suggested-order-eval.md .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md && echo same1 -> same1 (exit 0)
+cmp specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/content/playbook-suggested-order-eval.md .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md && echo same2 -> same2 (exit 0)
+cmp specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/content/changelog-v0.14.0.0.md .skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md && echo same3 -> same3 (exit 0)
+BLOCKED REASON: none
+```

@@ -1,0 +1,32 @@
+Closure pass complete. The phase docs now record the build, and all four gates pass from the final state.
+
+Status set: `Complete` in `spec.md` and `implementation-summary.md`, because the phase printed its verdict line (`verdict deem: kill ... source_commit=3883f792...`) from the final state in the session's live Deem run (`scratch/w4-session/p4.stdout.txt`, report.json confirms), and every remaining open row is an operator item under parent D4.
+
+Rows left open, with reasons:
+1. `tasks.md` T008, Jev half: reads one real `jev choice` answer only on the operator's `--jev` run (parent D4). Its Deem half is done and recorded: 328 of 333 answers carried every submitted key, 5 `unmeasured_timeout`.
+2. `tasks.md` T018: the live `--jev` run sends about 334 calls to the hosted classifier and waits on the operator's yes (parent D4). The exact command is recorded in `tasks.md`, `goal.md` and `implementation-summary.md`.
+3. Not closed here but recorded, per parent D5: the four review P2 findings are logged in `goal.md` and `implementation-summary.md`, not chased. No row waits on operator labels.
+
+Two corrections to the earlier partial run, from my own read-only checks: three line citations in `tasks.md` (`T:421-423`/`T:54`/`T:485-490` now `T:419-423`/`T:53`/`S:650`,`T:457-472`) and T011's "Deem stop paths" narrowed to the tested `backend refused` stop, with the untested REQ-009 branches (`server gone`, `model commit changed mid-run`) recorded as a limitation.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/goal.md (+46/-12)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/graph-metadata.json (+65/-59, derived via repair-derived.cjs)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/implementation-summary.md (+88/-22)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/plan.md (+11/-11)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/spec.md (+8/-8)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/tasks.md (+30/-28)
+EDITS: tasks.md:43,56,58 corrected line citations `T:419-423`, `T:53`, `S:650`/`T:457-472` and narrowed T011 to the tested `backend refused` stop (T:626-636)
+EDITS: plan.md:41 reworded the DoR-3 evidence so it claims only the requirement-text edits
+EDITS: spec.md:3 description now records the built Deem kill; spec.md:78 RQ43 share measured (p95 929 to 1,296 ms); spec.md:241 open question 2 answered with the two `advisor child:` lines
+EDITS: goal.md:15-17,26 continuity updated (closure-leaf, completion_pct 100); goal.md:50-55 six completion criteria ticked with proof tags (durable slice 3880 chars)
+EDITS: goal.md:83-90 log progress rows (build, P1-P5, Deem run, review, commit, phase docs) and a Verdict lines block with the printed verdict and zero-call lines
+EDITS: goal.md:96-117 deviations and findings rows: build deviations 1-11, re-dispatch 06b, review P2 1-4, three close amendments and the premises rechecked, each with its source
+EDITS: implementation-summary.md rewritten: metadata Complete/2026-09-29, what was built with the verdict, 13-row Files Changed table, delivery record, 12 deviation rows, 16 verification rows, 6 known limitations incl. T008/T018 open for the operator
+CHECKS: node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --apply -> `inspected=1 repaired=1 failed=0` (exit 0)
+CHECKS: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --strict -> `Summary: Errors: 0  Warnings: 0` then `RESULT: PASSED`, 0 lines matching `RESULT: FAILED` (exit 0)
+CHECKS: node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order -> `RESULT: PASSED (5/5 checks)` (exit 0)
+CHECKS: node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --workspace "$PWD" -> `packet_durable_chars=3880`, `packet_budget=unknown` (exit 0)
+CHECKS: git diff --numstat on the packet outside scratch/ -> 6 files, all inside the phase folder (parent `003-.../goal.md` and `graph-metadata.json` are modified by another worker at 15:19Z, untouched by me)
+BLOCKED REASON: none

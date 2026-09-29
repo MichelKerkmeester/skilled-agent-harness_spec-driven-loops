@@ -1,0 +1,16 @@
+TASK: write report.json next to calls.jsonl when a model switch is set, with the verdict fields per column, and test it.
+R = .skilled/skills/system-skill-advisor/runtime. Files: S = R/scripts/routing-accuracy/score-suggested-order.mjs and T = R/tests/parity/score-suggested-order.vitest.ts. Read both first.
+
+In S:
+1. Add mkdirSync and writeFileSync to the node:fs import and join to the node:path import.
+2. Before main add, with a JSDoc block, `export function buildReport(censusLines, timing, headroom, jevResult, deemResult)` returning { census: censusLines, advisor: { children: timing.n, p50_ms: timing.p50, p95_ms: timing.p95, max_ms: timing.max, over_2200: timing.over2200, killed: timing.killed }, headroom: headroom ?? 'ok', columns: {}, stopped: {} }, filled for each of ['jev', jevResult] and ['deem', deemResult] in that order: an undefined result adds nothing; a result with a `stopped` key sets stopped[name] = result.stopped; any other result s sets columns[name] = { rows: s.K, measured: s.M, ties: s.ties, abstentions: s.abstentions, baseline: s.baseline, calls: s.calls, p50_ms: s.p50, verdict: { outcome: s.verdict, line: s.line, K: s.K, M: s.M, W: s.W, L: s.L, F: s.F, p: s.p, p_loss: s.pLoss, mrr_column: s.M === 0 ? null : s.sa / s.M, mrr_baseline: s.M === 0 ? null : s.sb / s.M, p95_ms: s.t, ...s.identity } }.
+3. In main: keep the census lines it prints (the filtered summary lines) in an array censusLines. Just before the final `return 0;`, when values.jev or values.deem is true: mkdirSync(values.out, { recursive: true }) and writeFileSync(join(values.out, 'report.json'), `${JSON.stringify(buildReport(censusLines, timing, headroom, jevResult, deemResult), null, 2)}\n`). A run with no switch writes nothing.
+
+In T: add buildReport to the import. describe('score-suggested-order report') with its:
+ 1. buildReport unit: s = judgeColumn('deem', the keep rows of the keep-rule describe (10 m rows and 10 f rows, all favor('g')), their answers, 60 walls of 800, { isMatch: strict }), then s.line = 'verdict deem: keep ...' and s.identity = { model: 'deem-0.8-v1', model_commit: 'abc1234', source_commit: 'def5678' }; buildReport(['census: x'], timing, null, { stopped: 'jev arm stopped: key rejected' }, s) gives census ['census: x'], advisor.children 11, headroom 'ok', stopped.jev 'jev arm stopped: key rejected', columns.deem.verdict.outcome 'keep', columns.deem.verdict.W 10, columns.deem.verdict.mrr_baseline 0.75, columns.deem.verdict.model_commit 'abc1234', and no columns.jev.
+ 2. A gate skip still writes the report: the stub-backend deem run from the gates-and-arms describe (makeBin cli-deem printing the stub backend health) with ['--deem', '--out', dir] writes dir/report.json whose headroom is 'ok', columns is {}, stopped is {}, and census equals the printed lines before the first line starting 'advisor child:'.
+ 3. main(['--out', dir], { census: censusOf(6), timing, out: () => {} }) with no switch returns 0 and leaves dir empty (readdirSync(dir) gives []).
+
+VERIFY (repo root): node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+  grep -c "export function buildReport" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+Accept when: the same 2 files changed and nothing else; node --check exits 0; grep prints 1.

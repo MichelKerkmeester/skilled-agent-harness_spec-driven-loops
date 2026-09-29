@@ -1,0 +1,29 @@
+I'll start by reading the two target files and the reference file sections.Now let me read the remaining sections of both files and the reference file sections.Let me read more of the Jev arm in the reference file to see the exit handling, verdict, and calls lines.Now let me check the helper functions `spawnCall`, `writeCall`, and `classifyRow` in the reference module to get their exact contracts.I have the full picture now. Let me make the edits to `score-suggested-order.mjs` (S) first: constants, then the `runArm` extension.Now the main `runArm` extension:S is done. Now the test file: insert `JEV_STUB` after `DEEM_STUB`.Now append the Jev arm tests at the end of the test file:Both files are edited. Let me re-read the full edited regions to self-review, then run the brief's verification commands.Now the brief's verification checks, run from the repo root:Both checks pass. Final self-review confirms all six `runArm` steps and the three tests are in place, and the only files I touched are S and T. Handing back:
+
+**Summary of changes**
+
+- `score-suggested-order.mjs`: added `JEV_VERSION`/`AUTH_TIMEOUT_MS`; `runArm` now serves both backends — uncapped Jev rows, a Jev token-cost line (no dollar figure), a pre-row `auth test` with its record and exit stops, a health-free Jev job, `kind: 'choice'` on every choice record, per-backend identity/verdict extra, backend-named stop/partial/calls lines, and the Jev exit-4 backoff retry. Deem behavior is byte-identical apart from the added `kind` field.
+- `score-suggested-order.vitest.ts`: added `JEV_STUB` (log, `--version`, `auth status`, `auth test` with `STUB_AUTH`, busy exit-4 once via `busy.done`, DEEM-style answers) and the `score-suggested-order jev arm` suite with three 60s tests.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+154/-101)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+111/-0)
+EDITS: score-suggested-order.mjs:30-31 added JEV_VERSION '0.6.2' and AUTH_TIMEOUT_MS 30000
+EDITS: score-suggested-order.mjs:387-401 runArm JSDoc: backend 'jev'|'deem', Jev gate { path, provider }, ctx backoffMs default 2000
+EDITS: score-suggested-order.mjs:404 rows: jev takes every eligible row, deem keeps the DEEM_MAX_KEYS cap
+EDITS: score-suggested-order.mjs:406-419 jev cost line from optionArgs key=text lengths, planned_calls=rows*PASSES+1, est_input_tokens=ceil(chars/4), no dollar figure; deem line unchanged
+EDITS: score-suggested-order.mjs:428 stop partial line now `${backend}: partial_rows=`
+EDITS: score-suggested-order.mjs:432-457 jev auth test before rows: spawnCall with ctx.env/AUTH_TIMEOUT_MS, model from JSON when code 0 and string, auth_test record, code 3/130/other stops, auth_test out line
+EDITS: score-suggested-order.mjs:459-461 identity per backend: jev { jev_version, provider, model }, deem { model, model_commit, source_commit }
+EDITS: score-suggested-order.mjs:468-471 jev job has no health step; call cmd [gate.path] with 'choice --provider ... -q ...'
+EDITS: score-suggested-order.mjs:488 kind: 'choice' added to every choice record of both backends
+EDITS: score-suggested-order.mjs:506-521 jev exit handling: code 3 stop key rejected, code 4 attempt 1 backoff ctx.backoffMs ?? 2000 then attempt 2; codes 2/130 use backend name; deem health re-check unchanged
+EDITS: score-suggested-order.mjs:530-535 calls line `${backend}: calls=... timeouts=...`; jev verdict extra jev_version/provider/model
+EDITS: score-suggested-order.vitest.ts:91-120 JEV_STUB: logs args to jev.log, --version 'jev 0.6.2', auth status 0, auth test STUB_AUTH '3' -> 3 else {"model":"stub-model"}, busy prompt exits 4 once via busy.done, else DEEM-style answers
+EDITS: score-suggested-order.vitest.ts:639-717 jevRow/jevRun helpers (gate { path, provider: 'openrouter' }, ctx with backoffMs 10) and describe('score-suggested-order jev arm') with three 60_000 tests: full 19-call run and record checks, key-rejected stop, busy retry at order 0
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> no output, syntax OK (exit 0)
+CHECKS: grep -cE "API_KEY|TYPESAFE|Bearer|Authorization" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> 0 (exit 1, grep's no-match status)
+CHECKS: git status --short -> only the two brief-named files carry my edits (both untracked in this worktree; other workers' files present in the tree, untouched)
+BLOCKED REASON: none
+```

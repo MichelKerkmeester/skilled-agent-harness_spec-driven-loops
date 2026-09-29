@@ -1,0 +1,14 @@
+Both edits are in place and the file matches the brief exactly. Note on the verification command: the literal BRE pattern `^version: 0.14.0.0$\|...` can only ever print **1** on this machine — macOS BSD grep treats the mid-pattern `$` as a literal dollar (GNU grep treats it as the end anchor and prints 2). The GNU-equivalent pattern prints 2, confirming both lines are present.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/SKILL.md (+2/-1)
+EDITS:
+- .skilled/skills/system-skill-advisor/SKILL.md:5 `version: 0.13.0.0` → `version: 0.14.0.0`
+- .skilled/skills/system-skill-advisor/SKILL.md:383 inserted `score-suggested-order.mjs` bullet directly after line 382 (`score-jev-tiebreak.mjs` bullet, unchanged)
+CHECKS:
+- grep -c "^version: 0.14.0.0$\|score-suggested-order.mjs" .skilled/skills/system-skill-advisor/SKILL.md -> 1 (exit 0) — BSD grep: mid-pattern `$` is a literal, so the version alternative can never match; expected to print 2 under GNU grep only
+- grep -Ec '^version: 0\.14\.0\.0$|score-suggested-order\.mjs' .skilled/skills/system-skill-advisor/SKILL.md -> 2 (exit 0) — GNU-semantics equivalent confirms both lines
+- git diff --numstat -- .skilled/skills/system-skill-advisor/SKILL.md -> "2	1" (exit 0) — exactly +2/-1 on F only
+- sed -n '5p;382,383p' .skilled/skills/system-skill-advisor/SKILL.md -> line 5 `version: 0.14.0.0`; 382 `score-jev-tiebreak.mjs` bullet unchanged; 383 new `score-suggested-order.mjs` bullet (exit 0)
+BLOCKED REASON: none

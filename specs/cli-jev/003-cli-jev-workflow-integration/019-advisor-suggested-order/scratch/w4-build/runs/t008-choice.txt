@@ -1,0 +1,1 @@
+{"model":"deem-0.8-v1","answers":{"answer":{"type":"choice","choice":"sk-code","probabilities":{"sk-code":0.7295618969005627,"sk-git":0.1267788478155979,"none":0.14365925528383933},"confidence":0.5943428453508441,"x_temperature":1}},"usage":{"input_tokens":71,"output_tokens":0}}

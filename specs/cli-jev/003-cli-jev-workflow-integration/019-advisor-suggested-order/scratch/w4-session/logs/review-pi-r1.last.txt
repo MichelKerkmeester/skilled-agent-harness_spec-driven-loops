@@ -1,0 +1,25 @@
+## Cross-family review: `019-advisor-suggested-order`
+
+**Findings**
+
+- P2 `score-suggested-order.mjs:127` - abstention needs `none` strictly above every cluster key, so a `none`/key tie at the top sorts the cluster instead of keeping the scorer order and counting an abstention - input: three maps `{a:0.4, b:0.2, none:0.4}` on a row ordered `[b,a,z]` reorders to `[a,b,z]`, not abstained; spec "when `none` has the highest mean" reads as abstain.
+- P2 `score-suggested-order.mjs:446-452` - the `auth_test` record in `calls.jsonl` has `wall_ms` (not `child_wall_ms`), no row id/order/probabilities, and reuses `measured|unmeasured` for a non-measurement - a `--jev` run yields one line outside the REQ-008 shape a consumer would expect.
+
+**Requirements**
+
+- REQ-001 met - default run prints census, comparators, power, advisor line; stub logs empty (test `defaults to the zero-call comparison`).
+- REQ-002 met - 002's `jevGate`/`deemGate` unchanged (`score-jev-tiebreak.mjs:1381-1520`): identity line, `jev 0.6.2`, `auth status` exit 0, `cli-deem health`; skip is one line, rest byte-identical, exit 0 (tests).
+- REQ-003 met - grep exits 1; no key/.env read; only `--provider P` passed; Jev resolves its own key.
+- REQ-004 met - `no headroom (movable)` below 5, `(latency)` p95>2200; gates never start then (test `starts no gate when there is no headroom`).
+- REQ-005 met - 53/70 pinned in `summarizeCensus:462`; mismatch prints `baseline mismatch: comparison void`, returns 1 before timing (test).
+- REQ-006 met - writes confined to `--out` dir and a temp DB dir; tests confirm no stub call outside it; porcelain check in build-evidence P5.
+- REQ-007 met - option shape matches 002 (`score-jev-tiebreak.mjs:1245-1258` incl. clash suffix), rotations match `:1255`, question printed verbatim, row measured only on three full maps.
+- REQ-008 met - advisor→health→choice per child, SIGKILL at 2,500 ms, choice records carry all required fields (asserted in deem/jev tests).
+- REQ-009 met - exits 1 unmeasured, 2/3/130 stop with `partial_rows`, 4 one retry (backoff / health recheck with `server gone`, `model commit changed mid-run`) - all tested.
+- REQ-010 met - payload class, planned calls (+1), token estimate and `nothing leaves the machine` wall estimate before calls; no dollar figure; no `--out` exits 2 pre-output (test).
+- REQ-011 met - ran both vitest files: 46 passed, 0 failed; every named case present, stubbed backends for both arms.
+- REQ-012 met - catalog/playbook/SKILL.md/README/changelog name `--jev`, `--deem`, `--out`, the gate and verdict lines as the code spells them; playbook pin at 49 passes.
+
+Label gate met (vacuous) - no label path; nothing writes a label file. Dormancy met (parent D1) - diff touches no live path. Sign test checked by hand: binomTail(10,10)=0.0009766 → `p=0.0010` matches the keep case.
+
+VERDICT: PASS

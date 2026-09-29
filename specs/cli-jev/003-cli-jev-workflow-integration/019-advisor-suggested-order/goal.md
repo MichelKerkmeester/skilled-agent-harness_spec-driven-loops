@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order"
-    last_updated_at: "2026-09-29T13:30:00Z"
-    last_updated_by: "spec-leaf"
-    recent_action: "Authored the Planned phase from research R3"
-    next_safe_action: "Build per plan.md in number order, released 2026-09-29 (parent D3)"
+    last_updated_at: "2026-09-29T16:50:00Z"
+    last_updated_by: "closure-leaf"
+    recent_action: "Recorded the build, the Deem kill verdict and the closure gates"
+    next_safe_action: "Operator runs the --jev arm if wanted, then the orchestrator commits the phase docs"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-019-advisor-suggested-order"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,12 +59,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs` exits 0 and prints `holdout_top1=53/70`, `advisor child: p50=`, `margin: 0.05` and either `no headroom` or `planned calls:`, while stub `jev` and `cli-deem` binaries first on `PATH` log zero calls
-- [ ] With `--deem --out <dir>` and a stub `cli-deem health` reporting backend `stub` it prints `deem arm skipped: stub backend`, and with `--jev --out <dir>` and a stub whose `auth status --provider official` exits 3 it prints `jev arm skipped: no credential`. Both exit 0, and `diff` against criterion 1's stdout shows only the `deem arm skipped:` or `jev arm skipped:` line
-- [ ] From `.skilled/skills/system-skill-advisor/runtime`, `npx vitest run tests/parity/score-suggested-order.vitest.ts` exits 0 with at least 20 passed tests and 0 failed
-- [ ] Either a run with no switch printed `no headroom`, or one `--deem --out <dir>` run printed a `verdict deem:` line and wrote a `calls.jsonl` whose every line holds a child wall time, a model commit and a source commit
-- [ ] `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization'` on `score-suggested-order.mjs` exits 1, and `git status --porcelain` is identical before and after the runs in criteria 1, 2 and 4
-- [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`
+- [x] `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs` exits 0 and prints `holdout_top1=53/70`, `advisor child: p50=`, `margin: 0.05` and either `no headroom` or `planned calls:`, while stub `jev` and `cli-deem` binaries first on `PATH` log zero calls (proof P1)
+- [x] With `--deem --out <dir>` and a stub `cli-deem health` reporting backend `stub` it prints `deem arm skipped: stub backend`, and with `--jev --out <dir>` and a stub whose `auth status --provider official` exits 3 it prints `jev arm skipped: no credential`. Both exit 0, and `diff` against criterion 1's stdout shows only the `deem arm skipped:` or `jev arm skipped:` line (proof P2)
+- [x] From `.skilled/skills/system-skill-advisor/runtime`, `npx vitest run tests/parity/score-suggested-order.vitest.ts` exits 0 with at least 20 passed tests and 0 failed (proof P3)
+- [x] Either a run with no switch printed `no headroom`, or one `--deem --out <dir>` run printed a `verdict deem:` line and wrote a `calls.jsonl` whose every line holds a child wall time, a model commit and a source commit (proof P4)
+- [x] `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization'` on `score-suggested-order.mjs` exits 1, and `git status --porcelain` is identical before and after the runs in criteria 1, 2 and 4 (proof P5)
+- [x] `validate.sh --strict` on this phase prints `RESULT: PASSED` (closure pass)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,14 +80,48 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Spec authored | Done | 2026-09-29: spec, plan, tasks and this goal written as Planned from research R3, docs only. Nothing is built |
+| Spec authored | Done | 2026-09-29: spec, plan, tasks and this goal written as Planned from research R3, docs only |
 | Release | Done | 2026-09-29: the operator's "Bind and release" amended parent D3, which releases 019 to 035. Builds run in number order, and disjoint builds may run in parallel |
+| Build | Done | 2026-09-29: 18 single-change briefs from `scratch/w4-build/briefs/`, Devin 12 and Pi 6, each `STATUS: DONE`. `score-suggested-order.mjs` 710 lines, its test 856 lines with 45 cases, 9 skill docs. Source: `scratch/w4-build/build-evidence.md` and `scratch/w4-build/evidence-tail.draft.md` section 3 |
+| Proof plan P1 to P5 | Done | Rerun from the final state by the session: the zero-call run, both gate skips, 45 tests, the live Deem run and the grep and porcelain checks. Source: `scratch/w4-session/session-evidence.md` section 2 |
+| Live Deem run | Done | `node score-suggested-order.mjs --deem --out scratch/w4-session/p4-deem`, exit 0 in 597 s, 333 calls, 5 `unmeasured_timeout`. Verdict lines below. Source: `scratch/w4-session/p4.stdout.txt` |
+| Cross-family review | Done | Pi MiMo on the code and Devin DeepSeek on the docs, both `VERDICT: PASS`, no open P0 or P1, 4 P2 below. Source: `scratch/w4-session/session-evidence.md` section 3 |
+| Commit | Done | `6aa7ca0980`, 15 files, not pushed. The trigger index rebuild follows in its own commit. Source: `scratch/w4-session/session-evidence.md` section 4 |
+| Phase docs | Done | 2026-09-29 closure pass: `tasks.md`, `spec.md`, `plan.md`, this goal and `implementation-summary.md` record the build, and the four gates are in `implementation-summary.md` Verification |
+
+### Verdict lines
+
+`verdict deem: kill K=111 M=108 W=9 L=35 F=86 p=1.0000 mrr=0.6176/0.7750 p95_ms=1686 model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=3883f79261e5c61d3e8f230cad02b50c6d2b1891`
+
+Zero-call lines beside it: `advisor child: p50=629 p95=929 max=2500 over_2200=4 children=241 killed=1` on the build's final zero-call run, and `advisor child: p50=779 p95=1011 max=1787 over_2200=0 children=241 killed=0` in the Deem run. No `verdict jev:` line exists, because the Jev column waits on the operator's `--jev` run.
 
 ### Deviations and findings
+
+Sources below: build tail is `scratch/w4-build/evidence-tail.draft.md`, session record is `scratch/w4-session/session-evidence.md`.
 
 | Item | Note |
 |------|------|
 | Prior verdicts | Phase 002 printed `kill` on both backends for the pick-first form: Jev `decided=38 wins=11 losses=27 p_loss=0.0069` on `jev-1.13.0`, Deem `decided=38 wins=8 losses=30 flip=0.3123` on `8cbabbb`/`c8a5523`. This phase tests the whole-cluster order and the in-child budget, which 002 did not |
 | Seam lines rechecked 2026-09-29 | Commit `9ccb4dd416` moved the shim's budget clamp from `system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:105-108` to `:106-111` and its spawn from `:109-117` to `:113-120`, with the 2,200 ms ceiling unchanged. `user-prompt-submit.ts:22-24`, `ambiguity.ts:22-36`, `:44-58`, `lane-registry.ts:21-29`, `:33-38`, `fusion.ts:69`, `:111-114` and `shadow-sink.ts:86-100`, `:144-155` resolve unchanged |
 | Latency prior | 002's `calls.jsonl` files give `choice` p95 of 340 ms on Deem and 2,830 ms on Jev, timed outside the advisor child. The Jev figure alone exceeds 2,200 ms |
+| Deviation 1 | Deem health timeout: the imported `deemGate` holds `HEALTH_TIMEOUT_MS` 10,000 ms, not the 2,000 ms REQ-002 first named. The gate runs unchanged, and the close pass picked the imported bound (build tail §8) |
+| Deviation 2 | A gate skip re-measures `advisor child:`, so its output is byte-identical apart from that one line. P2 compares with the line masked (build tail §8) |
+| Deviation 3 | The `--out` refusal exits 2 before any output, this phase's REQ-010 order, where 002's script refused after its gate (build tail §8) |
+| Deviation 4 | The verdict line's `p=` prints the sign-test P(X >= W), and the loss test goes to `report.json` as `p_loss` (build tail §8) |
+| Deviation 5 | F counts, per measured row, 3 minus the count of the most common top answer, so a three-way split adds 2 flips (build tail §8) |
+| Deviation 6 | The margin compare `20*(SA-SB) >= M` uses a 1e-9 tolerance, so a float sum at the margin is not lost to rounding (build tail §8) |
+| Deviation 7 | `none` abstains only when its mean is strictly above every cluster key's. A top tie reorders the cluster, and the close pass corrected the spec sentence to match (build tail §8) |
+| Deviation 8 | One `optionArgs` helper appends ` [key]` when two cluster skills share a projection description, so no two options are identical text (build tail §8) |
+| Deviation 9 | `childEnv` sets `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=1`, so the capture-env daemon idles out after a minute instead of 30 (build tail §8) |
+| Deviation 10 | Size: the script is 710 lines and the test 856 with 45 cases, over the plan's 350 to 500 estimate. The extra is the timed child, both arms' exit handling and the report (build tail §8) |
+| Deviation 11 | `ci-skill-root-metadata.cjs --fix` ran scoped to `system-skill-advisor`, because another skill's root was stale from another worker (build tail §8) |
+| Re-dispatch 06b | Brief 06's latency test pinned `killed=0` and flaked under machine load. The test-only re-dispatch dropped the pin and asserts `p95 > 2200` (build tail §7) |
+| Review P2 1 | Pi: abstention needs `none` strictly above every cluster key, so a tie at the top reorders instead of abstaining. Recorded, not chased (session record §3) |
+| Review P2 2 | Pi: the `auth_test` line in `calls.jsonl` holds `wall_ms` rather than `child_wall_ms`, no row id, order or probabilities, and reuses `measured\|unmeasured` (session record §3) |
+| Review P2 3 | Devin: `SKILL.md:383` names Jev and Deem but not the literal `--jev` and `--deem` switches (session record §3) |
+| Review P2 4 | Devin: the catalog entry and changelog say each arm asks every eligible row three times, which omits the Deem arm's 25-key cluster cap (session record §3) |
+| Close amendment, REQ-002 | The 2,000 ms health bound became 002's `HEALTH_TIMEOUT_MS` of 10,000 ms, on the build record's deviation 1, which asks the phase docs to pick one |
+| Close amendment, none tie | The order sentence now says `none`'s mean strictly above every cluster key's, the built rule, from the build record's deviation 7 and review P2 1 |
+| Close amendment, T018 and criterion 1 | T018's `done as not requested` clause and the `all` wording in `tasks.md` Completion Criteria now leave T008 and T018 open for the operator, parent D4 (2026-09-29) |
+| Premises at close | The Deem source commit is `3883f79261e5c61d3e8f230cad02b50c6d2b1891`, where 002's docs hold `c8a5523`. `cli-deem` is not on `PATH` and resolved through the repo client. A real `jev` sits at `~/.local/bin/jev`, so every stub run pinned stubs first on `PATH`. Advisor timing is load-sensitive (build tail §9) |
 <!-- /ANCHOR:log -->
