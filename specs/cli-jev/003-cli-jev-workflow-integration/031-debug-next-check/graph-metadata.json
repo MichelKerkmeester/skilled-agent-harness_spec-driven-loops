@@ -39,20 +39,28 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/agents/debug.md",
-      ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts",
+      "runtime/scripts/README.md",
+      "changelog/v4.6.0.0.md",
+      "feature-catalog/tooling-and-scripts/debug-next-check.md",
+      "manual-testing-playbook/tooling-and-scripts/debug-next-check.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/README.md",
-      "runtime/scripts/compaction-recall/score-compaction-recall.mjs",
-      "runtime/scripts/README.md",
-      "references/debugging/universal-debugging-methodology.md"
+      ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/changelog/v4.6.0.0.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -86,15 +94,33 @@
         "source": "derived"
       },
       {
-        "name": "debug.md",
-        "kind": "doc",
-        "path": ".skilled/agents/debug.md",
+        "name": "score-debug-next-check.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "debug-next-check.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+        "path": "runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.6.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v4.6.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug-next-check.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/debug-next-check.md",
         "source": "derived"
       },
       {
@@ -104,15 +130,15 @@
         "source": "derived"
       },
       {
-        "name": "score-compaction-recall.mjs",
-        "kind": "file",
-        "path": "runtime/scripts/compaction-recall/score-compaction-recall.mjs",
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
-        "name": "universal-debugging-methodology.md",
+        "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": "references/debugging/universal-debugging-methodology.md",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -176,33 +202,15 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Single",
+        "name": "Test Files",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The vendored claude-jev integration asks one `choice` per debug hypothesis: which of `readcode`, `runtest`, `reproduce` or `instrument` is the cheapest way to confirm or rule it out (`../context/external repo's/claude-jev-main/src/domain/catalog/hypotheses.ts:10-15`, `:41-45`)",
     "created_at": "2026-09-29T12:42:43Z",
-    "last_save_at": "2026-09-29T13:53:49.470Z",
+    "last_save_at": "2026-09-29T21:18:16.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb8cfc0382f242be90631687010ec981c04c721909da896c04f5b6c3e2f3a120",
+    "source_fingerprint": "sha256:7b2ba9880d6b485277a7ecffa974f14062b64d209fc07e87432f04444cb2c394",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71883c27c275ba8cc7bc0468f3d70667aa05d05fdd5faaddb59f9448b69b0367",
-      "plan.md": "3cc171e10b85e624b690ef43b0ead0153601c4a4a29333c9622d5a22043d346b",
-      "tasks.md": "1237213374a43b0fcc3b40c38c7f875cf9f1a5d34ce6d26830e21ce2d103164a",
-      "implementation-summary.md": "c8ca5f3122ecc63d00de08a7a9f4903c0dc4880f991eedcb06328deaa9c0295c"
+      "spec.md": "b6b3497b418011520b1a27aadc837672e23013da0c996e7a6dfa1a281195a3a2",
+      "plan.md": "0aff324f5ccd65d480c4bce31f6db531ce5d889f7900982734fb3dca5ba0e9db",
+      "tasks.md": "875e8aeb6253d5b6c2b16f02a309a29abd378ed80bc3bd6aac12e2c85cce2556",
+      "implementation-summary.md": "c2236d9cc93ba759452d6583bb97350feeb6bad7d16f3755e6e327e85d1f8b57"
     },
     "last_active_at": null
   }

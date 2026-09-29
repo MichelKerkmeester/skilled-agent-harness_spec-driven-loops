@@ -30,7 +30,7 @@ contextType: "implementation"
 
 ### Overview
 
-`score-debug-next-check.mjs` (proposed) first prints the seam search: no caller, no mined corpus. Given an operator-named fixture it validates each row, scores the four constant answers and picks the best as the baseline. Below 30 labeled rows it prints its stop line. Past the gate, behind `--jev` or `--deem` and a passing gate, it asks one `choice` per row in three option orders and prints one verdict per backend column under spec section 4's Keep Rule. Jev reads only rows the operator accepted. Jev first, then Deem (parent D1).
+`score-debug-next-check.mjs` first prints the seam search: no caller, no mined corpus. Given an operator-named fixture it validates each row, scores the four constant answers and picks the best as the baseline. Below 30 labeled rows it prints its stop line. Past the gate, behind `--jev` or `--deem` and a passing gate, it asks one `choice` per row in three option orders and prints one verdict per backend column under spec section 4's Keep Rule. Jev reads only rows the operator accepted. Jev first, then Deem (parent D1).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -39,18 +39,18 @@ contextType: "implementation"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel
-- [ ] The operator has confirmed the owner, `system-spec-kit`, or named another
-- [ ] The Keep Rule, the four options and the `-q` wording are unchanged since this spec was written
-- [ ] Phase 008's `cli-deem` answers `health` for the Deem arm, and `jev --version` prints `jev 0.6.2` with `jev auth status --provider P` exiting 0 for a `--jev` run
+- [x] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel. Evidence: the build ran under the release; the build commit `ca40e3c2dc` sits on the released line and this phase is Complete at its label gate (`git log` at this closure pass)
+- [x] The operator has confirmed the owner, `system-spec-kit`, or named another. Evidence: no owner amendment was made; the code landed under `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/` and the docs under the same skill (`SE` section 1; `file-code.txt`)
+- [x] The Keep Rule, the four options and the `-q` wording are unchanged since this spec was written. Evidence: no fix touched the keep rule in `S`; `V` pins its fixed order and every outcome, and its last run prints `Tests 31 passed (31)`; the two test fixes changed the seam self-exclusion and the `verdict kill` schedule, not the rule (`SE` sections 1 and 2)
+- [x] Phase 008's `cli-deem` answers `health` for the Deem arm, and `jev --version` prints `jev 0.6.2` with `jev auth status --provider P` exiting 0 for a `--jev` run. Evidence: the phase was built and its gates are covered by `V` stubs; no live run happened, since both arms wait on the operator's labeled fixture (parent D4; `SE` sections 2 and 6)
 
 ### Definition of Done
-- [ ] The vitest file exits 0 with at least 22 passed tests and 0 failed
-- [ ] The census printed `seam: none` on the real tree, and either the gate stop line, `no headroom` or one verdict per model column that ran
-- [ ] `git status --porcelain` is the same before and after every run, and no agent or debugging reference changed
-- [ ] `validate_document.py` exits 0 on every skill doc the phase changed (parent D6)
-- [ ] A cross-family review leaves no open P0 or P1 finding, and the `system-spec-kit` runtime suite fails nothing beyond its baseline (parent D5)
-- [ ] Every stop or verdict line is in `goal.md`'s log for the parent's log
+- [x] The vitest file exits 0 with at least 22 passed tests and 0 failed. Evidence: `Tests 31 passed (31)`, exit 0, against the floor of 22 (`SE` section 2)
+- [x] The census printed `seam: none` on the real tree, and either the gate stop line, `no headroom` or one verdict per model column that ran. Evidence: the final-state default run printed `seam: none`, `mined: debug_delegation=1 hypothesis_files=0` and `mined rows: 0`; a 29-row synthetic fixture with both switches printed `stop: fewer than 30 labeled rows`; no run printed a verdict line (`SE` section 2)
+- [x] `git status --porcelain` is the same before and after every run, and no agent or debugging reference changed. Evidence: porcelain was equal before and after; the key grep exits 1; `git diff --stat .skilled/agents/` is empty and the build commit `ca40e3c2dc` touches only `system-spec-kit` paths (`SE` sections 2 and 5)
+- [x] `validate_document.py` exits 0 on every skill doc the phase changed (parent D6). Evidence: exit 0 on all eight changed docs (`SE` section 2; the doc briefs' checks)
+- [x] A cross-family review leaves no open P0 or P1 finding, and the `system-spec-kit` runtime suite fails nothing beyond its baseline (parent D5). Evidence: the code review printed `VERDICT: PASS` with 7 P2; the docs review's one finding was ruled a P1 and closed by c9f, c9g and f1, each rechecked `VERDICT: PASS`; the root suite printed `Test Files 110 passed | 3 skipped (113)` and `Tests 1359 passed | 13 skipped (1372)` against 026's 109 files and 1,328 tests (`SE` sections 2 and 3)
+- [x] Every stop or verdict line is in `goal.md`'s log for the parent's log. Evidence: `stop: fewer than 30 labeled rows` is in `goal.md`'s log and `implementation-summary.md` Verification, recorded by this closure pass; no run printed a verdict line (`SE` section 2; `facts.txt`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -82,7 +82,7 @@ The seam search prints first. The fixture becomes K labeled rows, the baselines 
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-**Who builds (parent D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step and runs the CLI executors by Bash only: Devin `deepseek-v4-1-flash-max` and Pi `llmgateway/mimo-v2.6-pro` at thinking `high`. The orchestrator session verifies each step, gets a cross-family review of the code, fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route, and the docs go through sk-doc (parent D6).
+**Who builds (parent D5, amended on 2026-09-29).** Only Pi writes, with no Claude leaves: DeepSeek V4.1 Flash on Cline at `--thinking xhigh`, then OpenCode Go, then LLM Gateway at `--thinking max`, and `llmgateway/mimo-v2.6-pro` at `high`. The session writes one single-change brief per step, runs the CLI executors by Bash only, verifies each step against its check, gets a cross-family review (a file goes to the family that did not write it), fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route, and the docs go through sk-doc (parent D6). The code steps and both fixes ran on DeepSeek V4.1 Flash through Cline, each checked by the test file; the eight docs ran on Pi MiMo at `high`, after the shared 026 doc files landed.
 
 Each step's observable check:
 
@@ -116,10 +116,10 @@ Each step's observable check:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | The operator's release | Operator | Given 2026-09-29: "Bind and release" amended parent D3. Builds run in number order, and disjoint builds may run in parallel | Nothing is built |
-| The operator's labeled fixture, 30 rows | Operator | Not written | Every model arm stops at the gate. The phase can close there |
+| The operator's labeled fixture, 30 rows | Operator | Not written | Every model arm stops at the gate. The phase can close there, as it did: the 2026-09-29 final runs printed `stop: fewer than 30 labeled rows` on a 29-row synthetic fixture |
 | Phase 008 `cli-deem` and a served Deem | Internal and external | Complete, served per `deem-local.md` | The Deem arm prints its skip line |
-| `jev` 0.6.2 and a credential for P | External, operator-held | Used once by 017 on 2026-09-29 | The Jev arm prints its skip line |
-| Other `system-spec-kit` doc edits | Internal | Unknown at build time | Shared `SKILL.md`, README and index files, so a parallel build on the same skill runs its doc step apart from this one |
+| `jev` 0.6.2 and a credential for P | External, operator-held | Used once by 017 on 2026-09-29; no 031 run needed one | The Jev arm prints its skip line |
+| Other `system-spec-kit` doc edits | Internal | Ran: 022 and 026 landed their own `SKILL.md`, README and index edits first | Shared `SKILL.md`, README and index files, so a parallel build on the same skill runs its doc step apart from this one |
 <!-- /ANCHOR:dependencies -->
 
 ---

@@ -1,0 +1,9 @@
+Everything is on disk and both verification commands have been run. The scenario matches the MODEL's shape (frontmatter keys `title`/`description`/`version`, sections 1-5, `Provenance:` anchor), with every switch, line and number taken from `facts.txt` and the script's own code. Scenario ID 463 and `version: 4.6.0.0` follow FACTS (orchestrator ruling 2 supersedes the design's stale "462" and `v4.5.0.0`).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md (+104/-0)
+EDITS: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md:1 created the scenario file, MODEL tooling-and-scripts/completion-claim-audit.md shape: overview, scenario contract (census run with stubs, 29-row label-gate stop, 30-row stub-backend skip, vitest), 10 commands, expected/evidence/pass-fail/triage, source files, source metadata
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md -> "✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md / Document type: playbook_feature / Total issues: 0" (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md -> no output, file is new and untracked (git status shows only "?? .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md") (exit 0)
+BLOCKED REASON: none

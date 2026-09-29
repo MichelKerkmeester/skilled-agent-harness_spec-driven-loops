@@ -1,0 +1,2 @@
+.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs
+.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts

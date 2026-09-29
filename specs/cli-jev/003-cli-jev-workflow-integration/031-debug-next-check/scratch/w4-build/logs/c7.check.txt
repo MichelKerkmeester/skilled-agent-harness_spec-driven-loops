@@ -1,0 +1,55 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ❯ runtime/tests/debug-next-check.vitest.ts (30 tests | 1 failed) 206610ms
+     ✓ default run  4315ms
+     ✓ seam planted 91ms
+     ✓ seam clean 64ms
+     ✓ mined corpus  4022ms
+     ✓ --jev without --out  717ms
+     ✓ --deem without --out 36ms
+     ✓ fixture valid 6ms
+     ✓ unknown label 32ms
+     ✓ fixture inside repo 30ms
+     ✓ gate at 29  4690ms
+     ✓ gate at 30  6303ms
+     ✓ baseline best  5686ms
+     ✓ baseline tie  5603ms
+     ✓ no headroom  6410ms
+     ✓ withheld row  6961ms
+     ✓ no accepted row  5992ms
+     ✓ jev gate pass  7841ms
+     ✓ jev gate skip  5911ms
+     ✓ jev wrong version  6290ms
+     ✓ jev K  7410ms
+     ✓ deem gate pass  9137ms
+     ✓ deem stub backend  10190ms
+     ✓ deem exit 4 new pair  17571ms
+     ✓ verdict keep  13127ms
+     × verdict kill 10410ms
+     ✓ verdict coverage  13771ms
+     ✓ requalify  12822ms
+     ✓ report line  15076ms
+     ✓ unstable row  11690ms
+     ✓ no row text  14403ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  runtime/tests/debug-next-check.vitest.ts > score-debug-next-check > verdict kill
+AssertionError: expected [ 'seam: none', …(14) ] to include 'verdict deem: kill K=30 M=30 A=5 B=12…'
+ ❯ runtime/tests/debug-next-check.vitest.ts:646:23
+    644|
+    645|     expect(run.code).toBe(0);
+    646|     expect(run.lines).toContain(
+       |                       ^
+    647|       'verdict deem: kill K=30 M=30 A=5 B=12 W=0 L=12 F=0 p=0.0002441'
+    648|       + ' baseline=read_code model=deem-0.8-v1 model_commit=stubmodel …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 29 passed (30)
+   Start at  20:26:24
+   Duration  206.76s (transform 41ms, setup 19ms, import 22ms, tests 206.61s, environment 0ms)
+

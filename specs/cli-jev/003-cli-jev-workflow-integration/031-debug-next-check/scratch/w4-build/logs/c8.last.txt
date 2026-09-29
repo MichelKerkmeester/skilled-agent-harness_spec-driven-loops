@@ -1,0 +1,14 @@
+S8 coverage close-out is complete without edits: all 30 §3 cases exist in T by name, and S parses cleanly.
+
+Verification detail:
+- §3 case names vs T: 30/30 present — `default run`, `--jev without --out`, `--deem without --out`, `seam planted`, `seam clean`, `mined corpus`, `fixture valid`, `unknown label`, `fixture inside repo`, `gate at 29`, `gate at 30`, `baseline best`, `baseline tie`, `no headroom`, `withheld row`, `no accepted row`, `jev gate pass`, `jev gate skip`, `jev wrong version`, `jev K`, `deem gate pass`, `deem stub backend`, `deem exit 4 new pair`, `verdict keep`, `verdict kill`, `verdict coverage`, `requalify`, `report line`, `unstable row`, `no row text`. Nothing to add, so every earlier function and test stays unchanged.
+- Both S and T remain untracked build artifacts (`??`), untouched by this step.
+- Per the brief's run context, the vitest suite and the `goal.md` count record are the orchestrator's to run/write; the sandbox is instructed not to invoke vitest, and `goal.md` is outside this brief's file authority.
+
+STATUS: DONE
+FILES CHANGED: none (no file required an edit; S and T confirmed complete for step S8)
+EDITS: none
+CHECKS:
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` -> no output (clean parse) (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` -> 30 (exit 0)
+BLOCKED REASON: none

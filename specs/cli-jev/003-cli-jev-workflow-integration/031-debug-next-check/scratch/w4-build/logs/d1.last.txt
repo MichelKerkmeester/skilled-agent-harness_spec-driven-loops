@@ -1,0 +1,9 @@
+The row and version bump are in, shaped on the compaction and alignment rows and stated only from the script and FACTS: no usage line exists, the fixture must sit outside the repository and the run makes no model call until an arm switch is set and its gate passes. The scoped diff shows only the two named changes and the validator reports `VALID` with exit 0.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/SKILL.md (+2/-1)
+EDITS: .skilled/skills/system-spec-kit/SKILL.md:5 version 4.5.0.0 -> 4.6.0.0; .skilled/skills/system-spec-kit/SKILL.md:574 new Quick Reference Commands row `Debug next-check measurement` directly after the `Completion claim audit` row
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/SKILL.md -> `✅ VALID: .skilled/skills/system-spec-kit/SKILL.md` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/SKILL.md -> `1 file changed, 2 insertions(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: none

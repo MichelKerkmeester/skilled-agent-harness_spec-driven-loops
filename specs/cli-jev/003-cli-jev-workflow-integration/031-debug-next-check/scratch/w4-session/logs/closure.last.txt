@@ -1,0 +1,48 @@
+All four gates pass from the final state. Summary of the closure:
+
+- **Status: Complete.** The phase printed its label-gate stop (`stop: fewer than 30 labeled rows`, exit 0) from the final state, and parent D4/parent criterion 2 make that a Complete state. Every remaining open row is an operator item (labels, a live Deem run, a Jev run on the operator's yes) plus the seven recorded P2 findings.
+- **Docs recorded:** spec.md Status/description/handoff/seam correction; plan.md Ready and Done boxes with evidence plus the D5 roster correction; tasks.md all 18 tasks with commands and results, T016 left `[B]` with the gate stop as the phase result; goal.md all 6 criteria ticked with 12 progress rows and 15 deviation/finding rows; implementation-summary.md rewritten as a delivered record with the commit `ca40e3c2dc`, review verdicts, and the P1 fix chain c9f/c9g/f1.
+- **Stale premise corrected:** the seam-search claim ("prints nothing") is now recorded as the design's drift, since the generated trigger-phrase fixture folder names `next_check`; the spec records the two exclusions that keep `seam: none` true.
+
+STATUS: DONE
+FILES CHANGED:
+- specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/spec.md (+11/-11)
+- specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/plan.md (+15/-15)
+- specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/tasks.md (+23/-23)
+- specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/goal.md (+44/-16)
+- specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/implementation-summary.md (+84/-20)
+- specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/graph-metadata.json (+48/-40, re-derived by repair-derived.cjs)
+
+EDITS:
+- spec.md:3 description now names the built closure, commit `ca40e3c2dc`
+- spec.md:26 Status Planned to Complete
+- spec.md:33 handoff row records the 2026-09-29 gate stop and the operator-waiting live run
+- spec.md:70 seam sentence corrected to the two-exclusion search
+- spec.md:52, 104, 105, 109, 111, 140, 165 built facts (LOC 1,570, tests 31, `v4.6.0.0.md`, scenario 463, SC-002 closure)
+- plan.md:42-45 Definition of Ready ticked with evidence including the D5 roster
+- plan.md:48-53 Definition of Done ticked with evidence
+- plan.md:85 builder paragraph corrected to parent D5 as amended 2026-09-29
+- plan.md:33 script no longer "(proposed)"
+- plan.md:119-122 dependencies updated (fixture not written, 026 doc files landed)
+- tasks.md:31 notation carries the build record and commit
+- tasks.md:39-71 all 18 tasks ticked with commands and results; T016 left `[B]` with the gate stop as the phase result
+- tasks.md:79-81 completion criteria ticked
+- goal.md:14-28 continuity fields updated (recent_action, next_safe_action, key_files, completion_pct 100, open_questions)
+- goal.md:64-69 six completion criteria ticked, criterion 4 notes the gate-stop closure and the open live-run branch
+- goal.md:87-96 build progress rows added (build, baseline, session verification, gate stop, tests, docs/packages, review, commit, closure, open for operator)
+- goal.md:105-121 fifteen deviation/finding rows added (seam drift, c2f, c7f, c9f/c9g P1, f1, versions, catalog numbering, seven P2s, no build-evidence, premise corrections)
+- implementation-summary.md: full rewrite as a delivered record (status Complete, what was built, 13-row files table, how delivered, key decisions, 15-row verification table, 7 known limitations)
+
+CHECKS:
+- `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder <phase> --apply` -> `inspected=1 repaired=1 failed=0`, re-derived graph metadata (exit 0)
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <phase> --strict` -> `RESULT: PASSED`, `Errors: 0  Warnings: 0`, 0 lines matching `RESULT: FAILED` (exit 0)
+- `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <phase>` -> `RESULT: PASSED (5/5 checks)` (exit 0)
+- `node .skilled/hooks/goal/bin/goal.cjs packet <phase> --workspace "$PWD"` -> `packet_durable_chars=3853` (at or under 4000), `packet_budget=unknown` by design, status OK (exit 0)
+
+BLOCKED REASON: none
+
+ROWS LEFT OPEN (all operator items under parent D4, plus recorded P2s):
+- tasks.md T016 `[B]`: no operator fixture holds 30 labeled rows, so the `--deem`/`--jev` run past the gate did not happen; the phase closed on `stop: fewer than 30 labeled rows` from a 29-row synthetic fixture.
+- goal criterion 4's live-run branch: one live `--deem --out <dir>` run waits on the operator's labels, then a Jev run waits on the operator's yes.
+- Seven review P2 findings recorded, not chased (parent D5), listed in implementation-summary.md Known Limitations 5.
+- No verdict line exists; the Keep Rule path is pinned only on fixtures, and the caller seam and reader remain open questions.

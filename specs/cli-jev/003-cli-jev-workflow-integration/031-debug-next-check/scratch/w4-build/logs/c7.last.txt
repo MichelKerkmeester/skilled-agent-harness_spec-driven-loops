@@ -1,0 +1,27 @@
+Done. Step S7 is implemented in S and T:
+
+**S** (`.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs`)
+- Added `KEEP_RULE_LINE` constant (the exact line printed before calls and stored in the report).
+- New section 12 **KEEP RULE AND VERDICT**: `binomialTail`, `modalPick`, `decideVerdict`, `formatP`, `summarizeColumn`, `verdictLine` — all exported with JSDoc, in the sibling's shape (exact BigInt tails, deciding-tail `p`, `toPrecision(4)`).
+- New section 13 **REPORT**: internal `nearestRank`, `columnLine` (Jev line carries `withheld=<n>`), `readStoredReport`, `requalifyLine`, and exported `buildReport` producing `{ seam, mined, fixtureSha256, labels, constants, baseline, keepRule, columns, skipped, stopped, requalify }`.
+- `main` extended: captures arm results, prints column → requalify → verdict per backend, records stops/skips, and writes `<out>/report.json` on any run with `--out`. Earlier functions and all earlier tests are untouched; only `main` gained the S7 integration.
+
+**T** (`.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts`)
+- Added a pick-schedule stub (`pickStubMain`/`makePickStubs`) with `STUB_PICKS`, `STUB_ORDER0_EXIT`, `STUB_UNSTABLE_ROW`, plus `verdictLabels`/`verdictRows`/`keepSchedule` helpers.
+- Added the seven S7 cases: `verdict keep`, `verdict kill`, `verdict coverage`, `requalify`, `report line`, `unstable row`, `no row text`.
+
+Note: per the run context, vitest is blocked in this sandbox, so the two listed checks were the only ones run; the orchestrator runs the suite.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs (+471/-127)
+                .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts (+188/-2)
+EDITS: score-debug-next-check.mjs:90 added KEEP_RULE_LINE constant
+       score-debug-next-check.mjs:1028-1278 added sections 12 (binomialTail, modalPick, decideVerdict, formatP, summarizeColumn, verdictLine) and 13 (nearestRank, columnLine, readStoredReport, requalifyLine, buildReport)
+       score-debug-next-check.mjs:1341-1550 extended main: capture arm results, print column/requalify/verdict, write report.json under --out; CLI/MAIN banners renumbered to 14/15
+       debug-next-check.vitest.ts:120-182 added pickStubMain, PICK_STUB_SOURCE, makePickStubs, verdictLabels, verdictRows, keepSchedule
+       debug-next-check.vitest.ts:622-732 added verdict keep, verdict kill, verdict coverage, requalify, report line, unstable row, no row text
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs -> no output (exit 0)
+        grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts -> 30 (exit 0)
+BLOCKED REASON: none
+```

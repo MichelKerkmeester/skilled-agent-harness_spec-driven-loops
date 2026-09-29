@@ -1,0 +1,13 @@
+The leaf is written and validated. Summary of what grounded it:
+
+- **R** `design.md` section 4 D5 (sk-doc mode `sk-create-feature-catalog`, model `tooling-and-scripts/compaction-recall-census.md`, facts list) and section 2 (interface), with `rulings.md` overriding (ruling 1 seam exclusion, ruling 3 Jev-first gate order, ruling 4 no claimed `verdict` line).
+- **FACTS** `facts.txt` wins where R differs: 30 tests, `version: 4.6.0.0`, printed lines, the `jev_ok` payload gate, exit 2 refusals.
+- **Script** `score-debug-next-check.mjs` opened to check every switch (`parseCliArgs`), constant (`LABEL_GATE = 30`, `JEV_VERSION = 'jev 0.6.2'`, `ORDERS = 3`), printed line (`main`, `jevGate`, `deemGate`, `KEEP_RULE_LINE`), and the verdict/keep-rule semantics (`decideVerdict`, `summarizeColumn`, `buildReport`). The test file shows 30 `it(` cases with stub `jev`/`cli-deem` binaries first on `PATH`.
+- **Model** matched for frontmatter keys, H1 with the script name in parentheses, template marker, section order 1-4, source tables, and SOURCE METADATA. The model's Related references slot is filled from FACTS placement (index block after the completion-claim audit block), naming `completion-claim-audit.md` before and `alignment-suggestion-measurement.md` after in the category.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md (+68/-0)
+EDITS: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md:1 created the leaf (`version: 4.6.0.0`), sections OVERVIEW, HOW IT WORKS (seam search and mined corpus, fixture/constants/gates, judgment arms, keep rule and verdict), SOURCE FILES (script + vitest file), SOURCE METADATA
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md` -> `✅ VALID: ... Document type: feature_catalog / Total issues: 0` (exit 0); `git diff --stat -- .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md` -> empty output (exit 0, the file is new and untracked); `git status --porcelain -- <same path>` -> `?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md` (exit 0)
+BLOCKED REASON: none
