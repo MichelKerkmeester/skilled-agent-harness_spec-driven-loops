@@ -37,16 +37,18 @@ contextType: "implementation"
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 
+Evidence: `SE` is `scratch/w4-session/session-evidence.md`, this phase's build and session record. There is no `build-evidence.md`, because the session ran the build itself from `scratch/w4-build/briefs/` under parent D5.
+
 ### Definition of Ready
-- [ ] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel
-- [ ] Phase 020's build is not running, since both change `sk-create-skill`'s `SKILL.md`, README and changelog
-- [ ] The Replay Rule, the Keep Rule and the 0.10 margin in `spec.md` are unchanged since 2026-09-29
+- [x] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel. Evidence: the build ran from `scratch/w4-build/briefs/` the same day (`SE` section 1)
+- [x] Phase 020's build is not running, since both change `sk-create-skill`'s `SKILL.md`, README and changelog. Evidence: phase 020 finished under the earlier roster before this build, so the two never shared the paths (parent `goal.md`, row "Directive amendment: no Claude leaves")
+- [x] The Replay Rule, the Keep Rule and the 0.10 margin in `spec.md` are unchanged since 2026-09-29. Evidence: both reviews checked the thresholds in order against `spec.md` and found the boundaries correct, with `tailP(7,5)=29/128` exact (`SE` section 3)
 
 ### Definition of Done
-- [ ] The zero-call replay ran on the real tree, and its per-hub counts and the replay verdict line are in `goal.md`'s log
-- [ ] `node --test` on the test file exits 0 with at least 18 passing tests, and sk-create-skill's script suite fails nothing beyond its baseline
-- [ ] `validate_document.py` exits 0 on every changed skill doc (parent D6)
-- [ ] A cross-family review leaves no open P0 or P1 finding (parent D5)
+- [x] The zero-call replay ran on the real tree, and its per-hub counts and the replay verdict line are in `goal.md`'s log. Evidence: exit 0 with the stub log never created, `total gold=56 scored=55 tied=2 mean_f1=0.9209 exact=49`, `router reads: not measured` and `replay verdict: stop (prose arm covers 0 of 55 rows)`, now in `goal.md`'s log (`SE` section 2)
+- [x] `node --test` on the test file exits 0 with at least 18 passing tests, and sk-create-skill's script suite fails nothing beyond its baseline. Evidence: `tests 37, pass 37, fail 0`, exit 0; the folder run ends `tests 80, pass 79, fail 1`, the baseline's one pre-existing failure (`SE` section 2)
+- [x] `validate_document.py` exits 0 on every changed skill doc (parent D6). Evidence: exit 0 with `Total issues: 0` on all nine changed docs (`SE` section 2)
+- [x] A cross-family review leaves no open P0 or P1 finding (parent D5). Evidence: both reviews returned one P1 each, f1 and f2 closed them, and both rechecks returned `VERDICT: PASS` (`SE` section 3)
 <!-- /ANCHOR:quality-gates -->
 
 ---

@@ -39,14 +39,22 @@
       "arm"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".hermes/skills/sk-create-skill/SKILL.md"
+      "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+      ".hermes/skills/sk-create-skill/SKILL.md",
+      "scratch/w4-session/session-evidence.md",
+      "scratch/w4-build/replay-run.txt",
+      "scratch/w4-build/baseline/node-test.txt",
+      ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md",
+      "scratch/w4-build/rulings.md"
     ],
     "entities": [
       {
@@ -80,9 +88,57 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".hermes/skills/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "replay-run.txt",
+        "kind": "file",
+        "path": "scratch/w4-build/replay-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "node-test.txt",
+        "kind": "file",
+        "path": "scratch/w4-build/baseline/node-test.txt",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "rulings.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/rulings.md",
         "source": "derived"
       },
       {
@@ -144,59 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Replay Rule",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "near-tied",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Routing has two stages",
     "created_at": "2026-09-29T12:42:34Z",
-    "last_save_at": "2026-09-29T13:53:31.861Z",
+    "last_save_at": "2026-09-29T18:06:18.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a718a15492e8b65e3e4bcc6975a87c98ca1c38a77c3a04d48fa49430a62a812",
+    "source_fingerprint": "sha256:38d626d26e6fe91829570c46e3a5e84df070ffe0f63f9c6bc5ef3ffe1f00ddcf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f30a0ed1c64d809fbc5438d4a4364c0c389c985b336bbf808476b070e532a453",
-      "plan.md": "7f7228c29c2d4287d5407a25b148b79a4fd64fe4002421b3d0d1d08d2b0cb87e",
-      "tasks.md": "981dd99ce5b1a888d340e5be637b9dd73ed6dfb70cbed1cdc491277a6f6f8a3a",
-      "implementation-summary.md": "80900b695448d6682a3d97d9b6a359f29050ee9b69c64ed8cb0409521ad32b2a"
+      "spec.md": "a2f187534578fd7f1d18cad2420dbac6f3acb5c6c7bb24a9e826e268395fe0c1",
+      "plan.md": "20f2fa46ce787eadfab67b54051b129cd84f4b19d82adc7cc673ad392690e645",
+      "tasks.md": "f3478b427c9a4c2246891fa08989ca5906f21053d9cf9129bcd14a88529a68d0",
+      "implementation-summary.md": "ca27f5469ed2f97beffbc714a11d9ae169576f5a12c8a67e116c69e88f6404e4"
     },
     "last_active_at": null
   }

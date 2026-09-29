@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 21: stage2-leaf-route-replay"
-description: "Test research R25 offline: a deterministic stage-2 replay of each hub's ROUTER.md keyword block, scored on leaf-set F1 against the committed expected_leaf_resources gold, with zero model calls. A Jev or Deem choice only breaks ties the replay leaves, judged against the replay's own answer. R25 waited because its counted prize is small, so the first slice also recounts ROUTER.md reads. Planned, released 2026-09-29."
+description: "Test research R25 offline: a deterministic stage-2 replay of each hub's ROUTER.md keyword block, scored on leaf-set F1 against the committed expected_leaf_resources gold, with zero model calls. A Jev or Deem choice only breaks ties the replay leaves, judged against the replay's own answer. R25 waited because its counted prize is small, so the first slice also recounts ROUTER.md reads. Built and closed at its replay verdict stop on 2026-09-29, commit fcacc26bf3."
 trigger_phrases:
   - "stage2 leaf route replay"
   - "leaf-route-replay"
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |

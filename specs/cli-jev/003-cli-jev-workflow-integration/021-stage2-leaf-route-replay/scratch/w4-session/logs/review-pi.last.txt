@@ -1,0 +1,26 @@
+Review complete. Verification run: `node --test` → 33 pass / 0 fail (exit 0); zero-switch run reproduces `replay-run.txt` exactly (exit 0, no spawn); `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization'` exits 1; `validate_document.py` exits 0 on SKILL.md, README.md, changelog. Hand-checked sign tail: tailP(7,5) = (C(7,5)+C(7,6)+C(7,7))/2^7 = 29/128 = 0.2266, matching the BigInt path (20n·29 < 128·... boundary at 0.05 correct; kill uses `<=`, sign `<`, per spec).
+
+**Findings**
+
+P1 tests/leaf-route-replay.test.cjs:194 - three of the seven gate skip lines the spec names are never exercised: `makeStubs` defines `STUB_HEALTH=down|model|bad` but no test sets them, so `deem arm skipped: not reachable`, `model` (with its `deem: found=` details line) and `bad health response` print in no test, and main-level byte-identity on a skip is asserted only via `includes` (test.cjs:682) - input `STUB_HEALTH=model` (stub emits `deem-9b-v1`, stub case at :197) must print `deem arm skipped: model` plus `deem: found="deem-9b-v1"`; only `stub backend` (:393, :399) is covered.
+
+P2 tests/leaf-route-replay.test.cjs:528 - the column verdict's `kill` and `stop (coverage)` forms are checked only as `decideVerdict` return labels, never as a printed `verdict <backend>: ...` line (`keep` and `stop (margin)` are printed-level, :648, :665) - a stub whose picks score below baseline on all five tied rows must print `verdict deem: kill ...`, unverified.
+
+P2 leaf-route-replay.cjs:1401 - `jev auth test` exiting 2 stops with `jev arm stopped: auth test failed`, while the fixed exit map gives exit 2 `usage error` (applied to choice calls at :1441) - input: the auth-test spawn returning exit 2.
+
+P2 .skilled/skills/sk-doc/sk-create-skill/README.md:109 - the docs name every switch verbatim but never name the gate as the code spells it (`jev 0.6.2`, `jev auth status --provider <p>`, `cli-deem health`) or its skip lines - a reader of "dormant behind their gates" cannot know what passes the gate.
+
+**Requirements**
+
+REQ-001 met - no-switch run prints the report and `router reads: not measured`, spawns nothing (gates only under `--jev/--deem`), matches replay-run.txt byte-for-byte.
+REQ-002 met - tests cover `preview`/`review` false, delta 1 keeps both, delta 2 keeps top, no-hit `UNKNOWN` with empty leaf set.
+REQ-003 met (behavior) - identity line, `jev 0.6.2` pin, `auth status` exit 0, 2,000 ms health, all seven skip lines spelled, skip exits 0; test gap is filed under REQ-009.
+REQ-004 met - grep exits 1 (ran); Jev stdin carries prompt, fixed `-q`, options only; recount prints counts/bytes only; no key read, logged or passed.
+REQ-005 met - per-hub unscored, unresolvable and `stage1-only` counts print; label gate is this phase's prose-coverage stop (`stop (prose arm covers 0 of 55 rows)`), and no label file is written by a model.
+REQ-006 met - keys + `none_of_these`, comma-joined paths, verbatim instruction before the first call, three rotations, modal pick; none/unstable keeps the union.
+REQ-007 met - calls.jsonl fields complete, 90 s → `unmeasured_timeout`, `partial_rows` on stop, `--out` check exits 2 before output (one exit label nit filed P2).
+REQ-008 met - Jev payload class, planned_calls 3K+1, est tokens; Deem "nothing leaves the machine" with p50 wall; no dollar figure.
+REQ-009 not met - 33 tests pass but the "print each skip line" surface misses three Deem skip lines and the details line (finding 1).
+REQ-010 met - SKILL.md, README and changelog name the script, zero-call default and switches; validate_document.py exits 0 on each (ran).
+
+VERDICT: FAIL

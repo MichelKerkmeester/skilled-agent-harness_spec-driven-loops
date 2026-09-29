@@ -1,0 +1,10 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs (+28/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs:567 added `readProse parses pairs and counts unparsed lines` — temp file with `S-1` (two pairs), `S-2` (one pair), a blank line, `S-3 notapair` and `lonely`; asserts `byId.size === 2`, exact key sets for `S-1`/`S-2` via `leafContract.compositeKey`, and `unparsed === 2`; cleanup in `finally`
+CHECKS:
+- baseline `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` (pre-edit) -> `ℹ pass 36` / `ℹ fail 0` (exit 0)
+- `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` -> `ℹ tests 37` / `ℹ pass 37` / `ℹ fail 0` (exit 0), including `✔ readProse parses pairs and counts unparsed lines (3.828916ms)`
+
+BLOCKED REASON: none
+
+Note: `git status` shows other workers' edits (`scripts/README.md`, `scripts/tests/README.md`) and both script/test files as untracked — none touched by me; S was read-only and no git write commands were run.

@@ -1,0 +1,11 @@
+TASK: add three Deem gate skip tests. One change in T. Change nothing in S.
+S = `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` (read only). T = `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs`. Read both first.
+WHY: a cross-family review found that `deemGate` prints three skip lines no test exercises. `makeStubs` already has `STUB_HEALTH` cases `down` (exit 4 with an error on stderr), `model` (health reports model `deem-9b-v1`) and `bad` (prints `not json`), and no test sets them.
+EDIT: after the test `a stub deem backend skips` (near line 387), add three tests with the same shape (`makeStubs`, `captureSinks`, `S.deemGate({ out, env, repoRoot })`, cleanup in `finally`), one per `STUB_HEALTH` value:
+  1. `an unreachable deem health skips` with `STUB_HEALTH: 'down'`: `result.passed` is false and stdout holds `deem arm skipped: not reachable`.
+  2. `a different deem model skips and names it` with `STUB_HEALTH: 'model'`: `result.passed` is false, stdout holds `deem arm skipped: model` and a line starting `deem: found=` that contains `deem-9b-v1`.
+  3. `a bad deem health response skips` with `STUB_HEALTH: 'bad'`: `result.passed` is false, stdout holds `deem arm skipped: bad health response` and a line starting `deem: found=`.
+Read `deemGate` and `readDeemHealth` in S for the exact lines and their order, and assert what S prints. In each, also assert the stub log holds only `cli-deem health` calls (no `noul` call).
+VERIFY (repo root), paste each result line:
+  node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+Accept when: only T changed; the run prints `pass 36` and `fail 0`. If a test fails because S prints something else, stop and report BLOCKED with the printed lines.

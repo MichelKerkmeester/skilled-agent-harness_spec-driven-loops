@@ -1,0 +1,19 @@
+Read-only recheck complete. No files touched.
+
+**Fix-by-fix:**
+
+1. **closed** — `leaf-route-replay.md:28` now reads "a line that does not fit that grammar is skipped and never guessed". Code confirms: `readProse` (`leaf-route-replay.cjs:610–642`) `continue`s on a malformed line and never derives a key from it; `main:1574` passes only `prose.byId` into `replayVerdict`, and neither stdout nor `report.json` surfaces `unparsed`, so "skipped, never guessed" matches observable behavior. (Residual, non-blocking: the script's internal JSDoc at line 605 and one test name still use "counted/unparsed" wording — internal only, outside the three named files, no doc claim contradicts behavior.)
+
+2. **closed** — `manual-testing-playbook.md:11` now says "SKL-007 and SKL-008 each link the sk-doc hub catalog entry for their script." SKL-007 (`:286`) links `../../feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md` (script `score-clarify-default.cjs`), SKL-008 (`:307`) links `../../feature-catalog/packet-authored-registry-routing/leaf-route-replay.md` (script `leaf-route-replay.cjs`); both targets exist on disk under `.skilled/skills/sk-doc/feature-catalog/`.
+
+3. **closed** — `feature-catalog.md:52` now reads "recounts each hub's router-file reads behind the block"; `rg ROUTER` over the index returns no matches. The package validator's 6 remaining warnings contain **no** `phantom_root_row` and no leaf-route/ROUTER row; they are all in `compiled-routing-and-legacy-fallback.md` / `packet-authored-registry-routing.md` (warn tier, outside this recheck's files).
+
+**New P0/P1 in the three files:** none.
+
+VERDICT: PASS
+
+STATUS: DONE
+FILES CHANGED: none (read-only recheck; no writes)
+EDITS: none — verified `.skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md:28`, `.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:11`, `.skilled/skills/sk-doc/feature-catalog/feature-catalog.md:52` against `leaf-route-replay.cjs` (`readProse` 610–642, `main` 1527–1626)
+CHECKS: `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package sk-doc 2>&1 | grep -E 'tier=|leaf-route|ROUTER'` -> `PACKAGE sk-doc: WARN tier=warn violations=6` (pipeline exit 0; full run exit 0, no phantom_root_row) | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md` -> `VALID ... Total issues: 0` (exit 0) | `... validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog` -> `VALID ... Total issues: 0` (exit 0) | `... validate_document.py .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md --type playbook` -> `VALID ... Total issues: 0` (exit 0)
+BLOCKED REASON: none

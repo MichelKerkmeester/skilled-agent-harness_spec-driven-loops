@@ -1,0 +1,76 @@
+ M .hermes/skills/sk-communication/SKILL.md
+ M .hermes/skills/system-skill-advisor/SKILL.md
+ M .skilled/skills/cli-classifier/README.md
+ M .skilled/skills/cli-classifier/ROUTER.md
+ M .skilled/skills/cli-classifier/SKILL.md
+ M .skilled/skills/cli-classifier/benchmark/README.md
+ M .skilled/skills/cli-classifier/description.json
+ M .skilled/skills/cli-classifier/hub-router.json
+ M .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/cli-classifier/mode-registry.json
+ M .skilled/skills/sk-communication/README.md
+ M .skilled/skills/sk-communication/SKILL.md
+ M .skilled/skills/sk-communication/benchmark/reply-harness/README.md
+ M .skilled/skills/sk-communication/feature-catalog/feature-catalog.md
+ M .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/system-deep-loop/deep-improvement/README.md
+ M .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+ M .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/opt-in-5dim-scorer.md
+ M .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/README.md
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts
+ M .skilled/skills/system-skill-advisor/README.md
+ M .skilled/skills/system-skill-advisor/SKILL.md
+ M .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-skill-advisor/leaf-aliases.json
+ M .skilled/skills/system-skill-advisor/leaf-manifest.json
+ M .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+ M .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/parity/README.md
+ M .skilled/skills/system-spec-kit/README.md
+ M .skilled/skills/system-spec-kit/SKILL.md
+ M .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/graph-metadata.json
+?? .skilled/skills/cli-classifier/benchmark/injection-screen/
+?? .skilled/skills/cli-classifier/changelog/v1.2.0.0.md
+?? .skilled/skills/cli-classifier/feature-catalog/
+?? .skilled/skills/cli-classifier/manual-testing-playbook/measurements/
+?? .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs
+?? .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs
+?? .skilled/skills/sk-communication/changelog/v1.4.0.0.md
+?? .skilled/skills/sk-communication/feature-catalog/evaluation-and-observability/offline-judge-agreement.md
+?? .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md
+?? .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs
+?? .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+?? .skilled/skills/system-deep-loop/deep-improvement/changelog/v1.18.0.0.md
+?? .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/hallucination-grader-agreement.md
+?? .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/unknown-grader-and-d4-census.md
+?? .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs
+?? .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts
+?? .skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md
+?? .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md
+?? .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md
+?? .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+?? .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts
+?? .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md
+?? .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md
+?? .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-session/

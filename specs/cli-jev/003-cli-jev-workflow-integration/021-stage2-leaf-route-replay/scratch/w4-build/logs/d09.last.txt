@@ -1,0 +1,14 @@
+All checks pass and the diff is scoped to the one named file. One note on truth: the `pass 33` figure in the verification row counts the 33 top-level `test(` cases in `scripts/tests/leaf-route-replay.test.cjs` on disk, since this brief's check list excludes running the suite.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/README.md (+14/-1)
+EDITS:
+- .skilled/skills/sk-doc/sk-create-skill/README.md:7 frontmatter `version: 1.2.0.20` bumped to `1.2.0.21`
+- .skilled/skills/sk-doc/sk-create-skill/README.md:100-109 new `### Replaying Stage-Two Leaf Routes` section after the `### Measuring Clarify Defaults` section, two command lines in a bash block, facts: zero-call default, the recount, the prose comparison, both arms dormant behind their gates, a `keep` serves nothing
+- .skilled/skills/sk-doc/sk-create-skill/README.md:171 verification-table row `Leaf-route replay` after the clarify test row
+- .skilled/skills/sk-doc/sk-create-skill/README.md:188 RELATED DOCUMENTS row for `scripts/leaf-route-replay.cjs` after the score-clarify-default row
+CHECKS:
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/README.md -> `✅ VALID: .skilled/skills/sk-doc/sk-create-skill/README.md` / `Total issues: 0` (exit 0)
+- git diff --stat -- .skilled/skills/sk-doc/sk-create-skill/README.md -> `1 file changed, 14 insertions(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: none

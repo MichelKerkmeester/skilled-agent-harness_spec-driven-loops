@@ -1,0 +1,14 @@
+# Session zero-call replay from the final code (stub jev and cli-deem first on PATH, logging every call)
+
+Command: node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --report <dir>   exit 0, stub log never created, git status unchanged, <dir> holds report.json
+
+hub=sk-doc gold=25 unscored=1 unknown=3 unresolvable=0 tied=2 precision=0.8132 recall=0.8746 f1=0.8259 exact=19
+hub=mcp-tooling gold=15 unscored=1 unknown=0 unresolvable=0 tied=0 precision=1.000 recall=1.000 f1=1.000 exact=15
+hub=system-deep-loop gold=6 unscored=14 unknown=0 unresolvable=0 tied=0 precision=1.000 recall=1.000 f1=1.000 exact=6
+hub=cli-external-orchestration gold=5 unscored=19 unknown=0 unresolvable=0 tied=0 precision=1.000 recall=1.000 f1=1.000 exact=5
+hub=sk-design gold=4 unscored=0 unknown=0 unresolvable=0 tied=0 precision=1.000 recall=1.000 f1=1.000 exact=4
+hub=sk-code gold=1 unscored=1 surface slice not replayed
+hub=cli-classifier stage1-only
+total gold=56 scored=55 tied=2 mean_f1=0.9209 exact=49
+router reads: not measured
+replay verdict: stop (prose arm covers 0 of 55 rows) N=55 P=0 keyword_f1=n/a prose_f1=n/a
