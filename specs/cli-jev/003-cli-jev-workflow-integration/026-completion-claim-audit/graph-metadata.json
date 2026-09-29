@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "completion claim audit",
+      "completion claim regex false fire",
+      "score-completion-claims",
+      "completion sentinel claim audit",
+      "research R4 completion claim",
+      "completion claim audit plan",
+      "score-completion-claims plan",
+      "completion claim census plan",
+      "completion claim keep rule",
+      "completion claim audit tasks",
+      "score-completion-claims tasks",
+      "completion claim census tasks"
+    ],
+    "key_topics": [
+      "completion",
+      "claim",
+      "audit",
+      "regex",
+      "false",
+      "fire",
+      "score-completion-claims",
+      "sentinel",
+      "research",
+      "plan",
+      "census",
+      "keep"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs",
+      ".claude/settings.json",
+      ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+      "runtime/scripts/README.md",
+      "runtime/vitest.config.ts",
+      ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-spec-kit/runtime/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "verifier-labeled-set.jsonl",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The completion-evidence sentinel decides that a turn claimed completion when one of ten words, `completed`, `resolved`, `fixed`, `finished`, `shipped`, `released`, `deployed`, `implemented`, `occurred` or `happened`, appears in the last 400 characters of the turn (`.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs:64`, `:70`, `:113-119`)",
+    "created_at": "2026-09-29T12:42:38Z",
+    "last_save_at": "2026-09-29T13:53:40.743Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4d886be7410b24bfca75c0e2a9785d5a603764a1a10c7a13ad351b49fb045f74",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cda1ff9aca24478eaefc6d0d7d2ce88b1a98ab2bf530c95768de8c291a3039a8",
+      "plan.md": "76ce5bacf3d2ab25529cab25f34b76e7d844488e4dd6f659e7bfa98c2fc2ea96",
+      "tasks.md": "67fc59d4804e0531525845561d7e7d9501a7e909a5a81b89e3c664812165d332",
+      "implementation-summary.md": "d138e2716d8817ed65441218ddab8617526ad3bfb75814aac032d97465b97ceb"
+    },
+    "last_active_at": null
+  }
+}

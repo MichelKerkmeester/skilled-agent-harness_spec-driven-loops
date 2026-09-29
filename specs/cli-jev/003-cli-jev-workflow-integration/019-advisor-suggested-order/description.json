@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order",
+  "description": "Test research R3 offline: whether a Jev or Deem choice that reorders the skill advisor's whole near-tie cluster beats the scorer's own order and fits the hook's 2,200 ms advisor budget when timed inside a child like the one the hook spawns.",
+  "keywords": [
+    "r3",
+    "jev",
+    "deem",
+    "offline",
+    "advisor",
+    "suggested",
+    "order"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "019",
+  "folderSlug": "advisor-suggested-order",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

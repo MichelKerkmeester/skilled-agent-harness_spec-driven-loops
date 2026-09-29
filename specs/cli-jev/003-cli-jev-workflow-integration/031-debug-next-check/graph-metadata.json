@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/031-debug-next-check",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/031-debug-next-check",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "debug next_check choice",
+      "score-debug-next-check",
+      "cheapest next check",
+      "debug hypothesis check choice",
+      "research r18 test phase",
+      "debug next check plan",
+      "score-debug-next-check build",
+      "next check label gate plan",
+      "constant answer baseline",
+      "debug next check tasks",
+      "score-debug-next-check tasks",
+      "next check payload gate tests"
+    ],
+    "key_topics": [
+      "debug",
+      "choice",
+      "score-debug-next-check",
+      "cheapest",
+      "next",
+      "check",
+      "hypothesis",
+      "research",
+      "r18",
+      "test",
+      "phase",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/agents/debug.md",
+      ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      "runtime/scripts/compaction-recall/score-compaction-recall.mjs",
+      "runtime/scripts/README.md",
+      "references/debugging/universal-debugging-methodology.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".skilled/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-compaction-recall.mjs",
+        "kind": "file",
+        "path": "runtime/scripts/compaction-recall/score-compaction-recall.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "universal-debugging-methodology.md",
+        "kind": "doc",
+        "path": "references/debugging/universal-debugging-methodology.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The vendored claude-jev integration asks one `choice` per debug hypothesis: which of `readcode`, `runtest`, `reproduce` or `instrument` is the cheapest way to confirm or rule it out (`../context/external repo's/claude-jev-main/src/domain/catalog/hypotheses.ts:10-15`, `:41-45`)",
+    "created_at": "2026-09-29T12:42:43Z",
+    "last_save_at": "2026-09-29T13:53:49.470Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fb8cfc0382f242be90631687010ec981c04c721909da896c04f5b6c3e2f3a120",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "71883c27c275ba8cc7bc0468f3d70667aa05d05fdd5faaddb59f9448b69b0367",
+      "plan.md": "3cc171e10b85e624b690ef43b0ead0153601c4a4a29333c9622d5a22043d346b",
+      "tasks.md": "1237213374a43b0fcc3b40c38c7f875cf9f1a5d34ce6d26830e21ce2d103164a",
+      "implementation-summary.md": "c8ca5f3122ecc63d00de08a7a9f4903c0dc4880f991eedcb06328deaa9c0295c"
+    },
+    "last_active_at": null
+  }
+}

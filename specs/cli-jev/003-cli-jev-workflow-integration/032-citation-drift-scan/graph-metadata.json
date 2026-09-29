@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "citation drift scan",
+      "cite-drift-scan",
+      "skill doc citation drift",
+      "file:line citation check",
+      "citation drift keep rule",
+      "citation drift plan",
+      "cite-drift-scan plan",
+      "citation drift label gate",
+      "citation drift build order",
+      "citation drift tasks",
+      "cite-drift-scan tasks",
+      "citation drift verification"
+    ],
+    "key_topics": [
+      "citation",
+      "drift",
+      "scan",
+      "cite-drift-scan",
+      "skill",
+      "doc",
+      "file",
+      "line",
+      "check",
+      "keep",
+      "rule",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+      ".skilled/skills/sk-doc/shared/scripts/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/README.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".hermes/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/README.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Jev",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Tracked",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill docs cite code as `file:line`, and agents follow those citations to decide what the code does",
+    "created_at": "2026-09-29T12:42:43Z",
+    "last_save_at": "2026-09-29T13:53:51.091Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4ff1d323c9bb5a7cf5fa60c2c73c883464fca11babde39b1c9f6ac3f172a0b97",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "592418bcf4eba8c5812461fa122f700215b3f611d7441dadafe379a6e0d83985",
+      "plan.md": "2a0c90055227dfad294f0bd63c13e436fbc1dd7177e3072a1a588db9f14d97a5",
+      "tasks.md": "dab3839d56a835c897e2cef3cce2aed6e3a05c297b5a100fa8efd86f862e57ea",
+      "implementation-summary.md": "61c464b831cef79f7e9c375bbf637176d38973617448e972a0d4e7af10d25311"
+    },
+    "last_active_at": null
+  }
+}

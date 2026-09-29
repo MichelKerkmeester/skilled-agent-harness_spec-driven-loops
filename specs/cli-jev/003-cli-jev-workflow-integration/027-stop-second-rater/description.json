@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater",
+  "description": "Test research R8 offline: replay archived deep-research lineages, derive the stop each one should have made from its cited sources and measure whether a Jev or Deem score of each iteration's novelty moves the replayed stop closer to that gold than the zero-call stop rules do.",
+  "keywords": [
+    "r8",
+    "jev",
+    "deem",
+    "offline",
+    "stop",
+    "second",
+    "rater"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "027",
+  "folderSlug": "stop-second-rater",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

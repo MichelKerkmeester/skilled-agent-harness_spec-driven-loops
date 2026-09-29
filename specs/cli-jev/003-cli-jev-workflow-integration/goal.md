@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
-    last_updated_at: "2026-09-29T00:55:00Z"
+    last_updated_at: "2026-09-29T13:53:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "009 Complete: cli-jev moved into cli-classifier (ea883967d4), all five criteria ticked"
+    recent_action: "Bound and released 019 to 035, criteria 2 and 5 open"
     next_safe_action: "Operator: the open items in the log row Open for the operator"
     blockers: []
     key_files:
@@ -38,21 +38,19 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Find where a classifier model, Jev (hosted) or Deem (local), cuts the main AI's context and manual review work, and build every remaining Planned phase with its skill docs true to the code.
+**Objective:** Find where a classifier (hosted Jev or local Deem) cuts the main AI's context and review work, and build every released phase with docs true to the code.
 
 ### Decisions
 
-Frozen choices. Changing one is an amendment.
-
 | ID | Decision |
 |----|----------|
-| D1 | Features run on Jev first, else Deem, dormant unless one is available (`jev auth status --provider <p>` exits 0, or Deem's health check passes). With neither, behavior is today's. Jev gets no secret |
-| D2 | Hub `cli-classifier` holds `cli-deem` and, via 009, `cli-jev`. Deem 0.8B bf16 stays served locally and current |
-| D3 | All Planned phases are released in the order 008, 016, 002, 017, 003, 005, 006, 009. Builds with disjoint paths may run in parallel |
-| D4 | Operator, 2026-09-28: 003 and 006 stop at their label gate, no model labels. 016 takes its recommendations. 009 unlocks once 008 is Complete (operator, 2026-09-29) |
-| D5 | This session orchestrates, verifies and commits. Fresh Opus 5.5 xhigh leaves amend specs and run the build, calling CLIs by Bash only: Devin `deepseek-v4-1-flash-max` and Pi `llmgateway/mimo-v2.6-pro` at thinking `high`. Code gets cross-family review. Its P0 and P1 findings get fixed. P2 findings are recorded, not chased |
-| D6 | Changed skills update `SKILL.md`, README, changelog, catalog and playbook through sk-doc. Code follows sk-code's OpenCode route |
-| D7 | Stop only for an install yes beyond D4 or a missing credential. Worktree 069, path-scoped commits, no push or merge to main, no key in a file, no `.env` opened |
+| D1 | Jev first, else Deem, dormant unless one passes its check (`jev auth status --provider <p>` exits 0, or Deem's health check). With neither, behavior is today's. Jev gets no secret |
+| D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`. Deem 0.8B bf16 stays served locally and current |
+| D3 | Built: 002, 003, 005, 006, 008, 009, 016, 017. Released 2026-09-29: 019 to 035 in order, one per research `later` item. Disjoint builds may run in parallel |
+| D4 | 003, 006 and 019 to 035 stop at their label gate, with no model labels. R17 is dropped (operator, 2026-09-29) |
+| D5 | The session orchestrates, verifies and commits. Fresh Opus 5.5 xhigh leaves write specs and build via Bash CLIs: Devin `deepseek-v4-1-flash-max`, Pi `llmgateway/mimo-v2.6-pro` at `high`. Cross-family review: fix P0 and P1, record P2 |
+| D6 | Skill docs change via sk-doc, code via sk-code's OpenCode route |
+| D7 | Stop only for an install yes or a missing credential. Worktree 069, path-scoped commits, no push or merge to main, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -60,11 +58,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here.
+Each child goal binds its phase. Decisions outrank it. Only the criteria below decide done.
 
-| Phase | Goal document |
-|-------|---------------|
+| # | Goal |
+|---|------|
 | 001 | `001-deep-research/goal.md` |
 | 002 | `002-advisor-jev-tiebreak-arm/goal.md` |
 | 003 | `003-goal-verifier-jev-shadow/goal.md` |
@@ -83,12 +80,23 @@ phase and binds as if written here.
 | 016 | `016-deem-local-hardening/goal.md` |
 | 017 | `017-deem-search-narrowing-arm/goal.md` |
 | 018 | `018-worktree-provision-shared-link/goal.md` |
-
-**Precedence.** Decisions above outrank child detail. Child detail outranks any
-summary of it. Name a conflict rather than resolving it silently.
-
-**Stop.** Only the criteria below decide done. An evaluator sees the objective
-string, not these files.
+| 019 | `019-advisor-suggested-order/goal.md` |
+| 020 | `020-routing-clarify-default/goal.md` |
+| 021 | `021-stage2-leaf-route-replay/goal.md` |
+| 022 | `022-alignment-folder-suggestion/goal.md` |
+| 023 | `023-reply-harness-blinded-judge/goal.md` |
+| 024 | `024-hallucination-grader/goal.md` |
+| 025 | `025-reviewer-verdict-fallback/goal.md` |
+| 026 | `026-completion-claim-audit/goal.md` |
+| 027 | `027-stop-second-rater/goal.md` |
+| 028 | `028-confirm-mode-stop-hint/goal.md` |
+| 029 | `029-p0-reread-order/goal.md` |
+| 030 | `030-fanout-merge-shadow-record/goal.md` |
+| 031 | `031-debug-next-check/goal.md` |
+| 032 | `032-citation-drift-scan/goal.md` |
+| 033 | `033-validator-residue-flagger/goal.md` |
+| 034 | `034-hvr-reader-needed-lens/goal.md` |
+| 035 | `035-fetched-text-injection-screen/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -96,11 +104,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 016 and 017 are Complete: each child goal's criteria are ticked with evidence and `validate.sh --strict` passes on each
-- [x] 009 is Complete: `cli-jev` moved into `cli-classifier` with its replay matching
-- [x] `validate_document.py` exits 0 on every skill doc the build changed
-- [x] No code change leaves an open P0 or P1 review finding, and each changed runtime's suite fails nothing beyond its recorded baseline
-- [x] `validate.sh --strict --recursive` on this packet prints `RESULT: PASSED` and `check-goal.cjs` passes on the parent and every child
+- [x] 002, 003, 005, 006, 008, 009, 016 and 017 are Complete
+- [ ] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
+- [x] `validate_document.py` exits 0 on every skill doc a build changed
+- [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
+- [ ] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -156,6 +164,7 @@ and findings belong here.
 | 009 review and fix round | Done | Cross-family and read-only: Pi MiMo reviewed Devin's files and Devin DeepSeek reviewed Pi's, tree hashes equal before and after, both `VERDICT: FAIL`. P1 one, from both: the REQ-008 grep printed 4 generator outputs, closed by `test_readme_verdict_parity.py --write` after staging and the index commit `c0178c093d`. P1 two, from Pi: the `008-cli-classifier` canary harness recorded outcomes without asserting the fixture's expectations, confirmed by the session in 6 of 7 rollout harnesses. Fix round 1: Devin added `assertGoldExpectations`, byte-identical in the twin, with a negative proof that threw `GOLD_MISMATCH`, and Pi made the moved `cli-usage` playbook root validate. The session reran the Pi check with the diff pasted, `VERDICT: PASS`, no findings. Five P2s recorded, not chased (D5). Source: `009-cli-jev-hub-move/scratch/w3-session/session-evidence.md` section 4 |
 | 009 closure and criterion 2 (2026-09-29) | Done | A closure leaf closed 009 from the build and session evidence: 27 of 27 tasks, 6 of 6 goal criteria, `spec.md` and `implementation-summary.md` Status Complete. Its reruns at `c0178c093d`: the move commit's 70 renames and 11 merges, 0 hub files left, and the stale-path grep with no output. 009's gates: `repair-derived.cjs --apply` `failed=0`, `validate.sh --strict` `RESULT: PASSED` with 0 errors and 0 warnings, `check-goal.cjs` 5/5. `sync-phase-map-status` set phase map row 9 to Complete, so all 18 rows read Complete. Criterion 2 ticked in place, wording unchanged. The parent gates after these edits are in the row "009 closure gates (2026-09-29)". Source: `009-cli-jev-hub-move/implementation-summary.md` Verification |
 | 009 closure gates (2026-09-29) | Done | From the final state of the closure edits. `repair-derived.cjs --apply` exit 0 with `failed=0` on 009 and on this packet. `validate.sh --strict --recursive` on this packet exit 0, 19 x `RESULT: PASSED` and 0 `RESULT: FAILED`. 18 folders print `Errors: 0  Warnings: 0`, and this packet prints one advisory warning, `goal.md: recent_action reads long or narrative`. An archive of HEAD `c0178c093d` validated the same way prints that warning too, so it predates this closure. `check-goal.cjs` `RESULT: PASSED (5/5 checks)` on this packet and on 009. `goal.cjs packet` `packet_durable_chars=3969` and `packet_budget=ok`, the length before the tick, and the slice hash moved from `f54206c2...` to `4d829891...` with the tick. Source: the closure pass |
+| Later items phased (2026-09-29) | Done | Source: the operator, 2026-09-29: "leave nothing for later instead of PR item drop that. I want a phase per later item not yet planned or implemented so we can test everything". `create.sh --phase --parent specs/cli-jev/003-cli-jev-workflow-integration --level 1 --with-goal --skip-branch --phases 17` appended 17 children and printed `PHASE_COUNT: 17 (new, 35 total)`. Four spec leaves filled them, one per item the round-3 synthesis ranked `later` (`007-classifier-deep-research/research/research.md` section 12): `019-advisor-suggested-order` R3, `020-routing-clarify-default` R12, `021-stage2-leaf-route-replay` R25, `022-alignment-folder-suggestion` R13, `023-reply-harness-blinded-judge` R6, `024-hallucination-grader` R7, `025-reviewer-verdict-fallback` R5, `026-completion-claim-audit` R4, `027-stop-second-rater` R8, `028-confirm-mode-stop-hint` R9, `029-p0-reread-order` R10, `030-fanout-merge-shadow-record` R15, `031-debug-next-check` R18, `032-citation-drift-scan` R24, `033-validator-residue-flagger` R26, `034-hvr-reader-needed-lens` R22 and `035-fetched-text-injection-screen` R16. Each child's `spec.md` says Status Planned. None is released, because D3 releases 008, 016, 002, 017, 003, 005, 006 and 009 only and releasing these is the operator's call (item 12 of the row "Open for the operator"). R17 has no phase (row "R17 dropped (2026-09-29)"). `spec.md` now shows phase map rows 19 to 35 as Planned with one scope sentence each, handoff rows that read from 009 or from the predecessor a child names (002 for 019, 003 for 026, 027 for 028 and 015 for 030) and the 17 phases in Scope and Files to Change. Docs only, uncommitted. Gates from the final state: `repair-derived.cjs --apply` exit 0 with `failed=0`. `validate.sh --strict --recursive` on this packet exit 0, 36 x `RESULT: PASSED`, 36 x `Errors: 0  Warnings: 0` and 0 `RESULT: FAILED`. `goal.cjs packet` `packet_durable_chars=3969` and `packet_budget=ok`, with the slice hash unchanged at `4d829891...`. `check-goal.cjs` passes 5/5 on each of the 17 new children and fails on this packet, 4/5 with `missing-binding-row findings=17` (row "Binding gap for 019 to 035 (2026-09-29)") |
 
 ### Deviations and findings
 
@@ -216,5 +225,8 @@ and findings belong here.
 | 009 ruling: authored twin of the runtime engine | The authored twin's `014-runtime-engine/lib/{compiled-route,resolve}.cjs` were edited with the runtime copies, because `compiled-route-sync.cjs --check` needs them equal. Source: `009-cli-jev-hub-move/scratch/w3-session/session-evidence.md` section 6 |
 | 009 ruling: `NODE_PATH` for the agent-mirror-sync gate | The pre-commit gate could not load `@spec-kit/shared` in this worktree (`MODULE_NOT_FOUND`: `.skilled/skills/system-deep-loop/node_modules` is not provisioned here). Provisioning is an install that needs the operator's yes, as phase 018 ruled for sk-doc, so the session ran the commits with `NODE_PATH` pointing at a scratch folder holding one link to this worktree's own `system-spec-kit/shared`. Every gate ran and none was bypassed. Run by hand the same way, the checker reported 2 agents checked, all mirrors in sync and OK. Source: `009-cli-jev-hub-move/scratch/w3-session/session-evidence.md` section 6 |
 | 009 ruling: five byte-identical moved docs | `cli-usage/assets/question-shaping-card.md` and `cli-usage/references/{cli-reference,integration-patterns,mcp-server,providers-and-models}.md` fail `validate_document.py` on a missing `overview`. They moved at 100 percent similarity with no byte changed and their HEAD copies fail the same way, so the session recorded the gap as older than 009 and the build as changing none of them. Source: `009-cli-jev-hub-move/scratch/w3-session/session-evidence.md` sections 3 and 6 |
-| Open for the operator | 1. Jev: resolved on 2026-09-29. D4 is amended (row "D1, D4 and criterion 2 amendment (2026-09-29)"), the one live `--jev --out` run of 017 ran from 2026-09-29T05:35:03Z to 05:57:23Z and printed `verdict jev: keep` (row "017 Jev run (2026-09-29)"), and "Jev first" is applied (row "Jev first (2026-09-29)"). 2. Confirm deleting `~/.local/share/deem/bin/deem-ctl.bak-2026-09-28`. 3. Label at least 30 of 003's 50 fixture rows. 4. 003's two post-gate questions: may a Claude row's native pre-label stand under D4, and which Claude transcript directory does the builder read. 5. 006: adopt a rubric and fill the labels (T001, T012, T014, T015, T016, T022). 6. 006's `scripts/README.md:93` and `:100` state exit 2 too narrowly. 7. Children 002, 003, 006, 008, 016 and 017 still quote the old executor roster, which D5 outranks. 8. Push and merge: nothing was pushed, and the branch has no upstream. 9. Whether to open a phase that serves a Jev track pick, since 017 now holds a `keep` for Jev only (row "017 Jev keep caveats (2026-09-29)"). 10. Provision `system-deep-loop` in this worktree with `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision`, an install that needs the operator's yes, or leave the `NODE_PATH` workaround as the record (row "009 ruling: `NODE_PATH` for the agent-mirror-sync gate"). 11. 009's five review P2 findings, recorded and not chased (D5), listed in `009-cli-jev-hub-move/implementation-summary.md` Known Limitations 1. The earlier item to admit `cli-classifier` to compiled routing is done: 009 onboarded it in `ea883967d4` (row "009 move commit"). Source: `scratch/w3-session/session-evidence.md`, "Operator question, 2026-09-28 ~22:55 CEST" and the phase entries, the child docs, `009-cli-jev-hub-move/scratch/w3-session/session-evidence.md` section 7 |
+| R17 dropped (2026-09-29) | Source: the operator, 2026-09-29: "leave nothing for later instead of PR item drop that". R17 was the PR-claims advisory report: one `noul` per claim in a pull request body, judged against the diff, as an advisory report and never a merge gate. Round 1 ranked it `later` because its recipe exists only for the npm `jevctl` package, no labeled PR-claims corpus exists and the flow belongs to sk-git (`001-deep-research/research/research.md:934-951`). Round 3 kept it `later`, ranked 19th, for no gold and no reader (`007-classifier-deep-research/research/research.md:427`, `:704`). No phase exists for it. Phases 019 to 035 cover every other `later` item, and both research records stay as history |
+| Binding gap for 019 to 035 (2026-09-29) | Closed the same day by the row "Directive amendment: bind and release 019 to 035 (2026-09-29)". Before that amendment, `check-goal.cjs` on this packet printed `RESULT: FAILED (4/5 checks)` with `missing-binding-row findings=17`, one per new child. The check wants a BINDING row whose second cell is `<child>/goal.md` for every phase child (`check-goal.cjs:241-267`), and the table listed 001 to 018 only. The fix sat in the durable directive, which the pass that phased these items left frozen. On a scratch copy with the 17 rows added, `goal.cjs packet` printed `packet_durable_chars=4776`, where an unchanged copy printed 3969, so the amendment had to cut at least 776 characters against the 4,000 budget. The amendment added the 17 rows at 3,990 characters, and `check-goal.cjs` on this packet now prints `RESULT: PASSED (5/5 checks)`. Each of the 17 children passes `check-goal.cjs` 5/5 |
+| Directive amendment: bind and release 019 to 035 (2026-09-29) | Source: the operator's answer "Bind and release (Recommended)" to the session's amendment question, 2026-09-29. The session rewrote sections 1 to 3, and this row records what moved. The objective now reads "build every released phase with docs true to the code", where it read "build every remaining Planned phase with its skill docs true to the code". D3 now lists the eight built phases and releases 019 to 035 on 2026-09-29, in number order and one per research `later` item, with disjoint builds free to run in parallel. D4 now stops 003, 006 and 019 to 035 at their label gate with no model labels and records R17 as dropped. Its clauses on 016's recommendations and on 009's unlock are gone, and both phases are Complete. D1, D5, D6 and D7 were shortened with the same meaning, and D7 dropped "beyond D4". D2 was shortened too: it now says the hub holds `cli-jev` and `cli-deem`, since 009 made the move. The line "Frozen choices. Changing one is an amendment." and BINDING's Precedence and Stop paragraphs gave way to one sentence, "Each child goal binds its phase. Decisions outrank it. Only the criteria below decide done." BINDING gained rows 019 to 035. Old criteria 1 and 2 merged into criterion 1, which names 009 beside the seven other built phases. Criterion 2 is new and open: "019 to 035 are Complete: each prints its verdict line or stops at its label gate". Criteria 3 and 4 were shortened with the same meaning. Criterion 5 was shortened and reopened, because it now covers 36 folders. `goal.cjs packet`: `packet_durable_chars=3990` and `packet_budget=ok`. Rollback: restore sections 1 to 3 from `git show 6a4a15ed36:specs/cli-jev/003-cli-jev-workflow-integration/goal.md`, which brings back the 17 `missing-binding-row` findings of the row "Binding gap for 019 to 035 (2026-09-29)" |
+| Open for the operator | 1. Jev: resolved on 2026-09-29. D4 is amended (row "D1, D4 and criterion 2 amendment (2026-09-29)"), the one live `--jev --out` run of 017 ran from 2026-09-29T05:35:03Z to 05:57:23Z and printed `verdict jev: keep` (row "017 Jev run (2026-09-29)"), and "Jev first" is applied (row "Jev first (2026-09-29)"). 2. Confirm deleting `~/.local/share/deem/bin/deem-ctl.bak-2026-09-28`. 3. Label at least 30 of 003's 50 fixture rows. 4. 003's two post-gate questions: may a Claude row's native pre-label stand under D4, and which Claude transcript directory does the builder read. 5. 006: adopt a rubric and fill the labels (T001, T012, T014, T015, T016, T022). 6. 006's `scripts/README.md:93` and `:100` state exit 2 too narrowly. 7. Children 002, 003, 006, 008, 016 and 017 still quote the old executor roster, which D5 outranks. 8. Push and merge: nothing was pushed, and the branch has no upstream. 9. Whether to open a phase that serves a Jev track pick, since 017 now holds a `keep` for Jev only (row "017 Jev keep caveats (2026-09-29)"). 10. Provision `system-deep-loop` in this worktree with `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision`, an install that needs the operator's yes, or leave the `NODE_PATH` workaround as the record (row "009 ruling: `NODE_PATH` for the agent-mirror-sync gate"). 11. 009's five review P2 findings, recorded and not chased (D5), listed in `009-cli-jev-hub-move/implementation-summary.md` Known Limitations 1. The earlier item to admit `cli-classifier` to compiled routing is done: 009 onboarded it in `ea883967d4` (row "009 move commit"). 12. Release of 019 to 035: resolved on 2026-09-29. The operator answered "Bind and release (Recommended)", so D3 now releases 019 to 035 in number order with disjoint builds in parallel, and BINDING lists 001 to 035 (row "Directive amendment: bind and release 019 to 035 (2026-09-29)"). The order constraints the children's specs name still hold. 028 reads a 027 run. 020 and 021 build one after the other, as do 024 and 025. 027 to 030 run their doc steps one after another. 022, 026 and 031 all change system-spec-kit's `SKILL.md`, README and changelog. Fourteen of the 17 stop at an operator label gate before any model call, all but 019, 021 and 028. Source: `scratch/w3-session/session-evidence.md`, "Operator question, 2026-09-28 ~22:55 CEST" and the phase entries, the child docs, `009-cli-jev-hub-move/scratch/w3-session/session-evidence.md` section 7 |
 <!-- /ANCHOR:log -->
