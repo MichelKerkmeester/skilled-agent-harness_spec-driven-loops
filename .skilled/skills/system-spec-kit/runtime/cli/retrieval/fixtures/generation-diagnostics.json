@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 57,
-    "missing-frontmatter": 7360,
+    "missing-frontmatter": 7362,
     "non-yaml-frontmatter": 2,
-    "ok": 12546,
+    "ok": 12553,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23597,
+  "documentsScanned": 23606,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f1b54f72d0f2d997ba0e06fafb384dfc7ae8a2af716587b9c1ec545600fc59a7",
+  "manifestHash": "360b3805a3886d4b9e28af3cb1b703975b8d36bb69e36373f807fa63ca8b6d4a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32678,
+      "ok": 32708,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -58,6 +58,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -244,6 +250,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -71089,6 +71101,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch",
       "reason": "excluded directory"
     },
     {
