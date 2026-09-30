@@ -1,0 +1,18 @@
+P1 #1 (SKILL.md `### Backend` line 111 lacked the fan-out pair replay sentence): **closed** — the sentence is present and every item it states is in `runtime/scripts/score-fanout-pairs.cjs`: exact stop line at :673 (`stop: fewer than 40 labeled pairs`), floors at :60/:61 (`LABEL_GATE = 40`, `CROSS_BODY_LABEL_GATE = 10`), `--jev`/`--deem` at :1339 and :1547–1552, arms-without-`--out` refusal at :1563–1569, per-backend gates `jevGate` :742 and `deemGate` :1156, no-call default and unchanged merge hold (:1727/:1741 arms opt-in; merge only read via `mergeDecision`). The other three replay sentences are byte-identical to HEAD (diff of the extracted tail is empty).
+
+P1 #2 (scripts/README.md lacked the fan-out row gate/stop lines): **closed** — the row now reads "Until 40 pairs carry a label, 10 of them cross-body, the run prints `stop: fewer than 40 labeled pairs` or `stop: fewer than 10 labeled cross-body pairs` and no arm runs"; both strings match :673/:676 exactly, and the row's other claims (`--write-pair-sheet` :573/:1658, `--labels` :619, `--out` call log :854/:1724, "no arm runs" :1729/:1743) are all in the code. (Note: the diff shows this row was added, not amended — the pre-fix file had no fan-out row; the required content is present and accurate.)
+
+REQ-011 **met** — all six named docs carry the script, the 40/10 gate and both switches: hub `SKILL.md` :111; `runtime/README.md` :52 ("label gate below 40 labeled pairs or 10 labeled cross-body pairs … `--jev` and `--deem`"); `runtime/scripts/README.md` :52; `runtime/changelog/v1.9.0.0.md` :25 (both floors, both stop lines) and :26 (both switches); `runtime/feature-catalog/fanout/fanout-pair-replay.md` :65–66 (both stop lines), :70/:86 (both switches); `runtime/manual-testing-playbook/fanout/fanout-pair-replay.md` :21/:65–66 (40 and 10 cross-body) and :83 (both switches).
+
+New P0/P1: none.
+
+VERDICT: PASS
+
+STATUS: DONE
+FILES CHANGED: none (read-only recheck; no file written or edited)
+EDITS: none
+CHECKS: `rg -n 'stop: fewer than|const LABEL_GATE|const CROSS_BODY_LABEL_GATE|usage: score-fanout-pairs' .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs` -> :60 40, :61 10, :673/:676 both stop lines, :1339 `--out <dir> --labels <file> --write-pair-sheet <path> --jev --deem` (exit 0)
+CHECKS: per-file `rg -c` loop over the six REQ-011 docs -> every file ≥1 script name, ≥1 `--jev`, ≥1 `--deem`, ≥1 "40", ≥1 "cross-body" (exit 0)
+CHECKS: `git diff -- .skilled/skills/system-deep-loop/SKILL.md .skilled/skills/system-deep-loop/runtime/scripts/README.md` -> SKILL.md 1 line (fan-out sentence added; stop-rater/stop-hint/severity untouched), scripts/README.md 1 row added; `git status --porcelain` on the six docs -> 2 modified, 3 untracked, 1 (runtime/README.md) modified (exit 0)
+CHECKS: `diff <(git show HEAD:…SKILL.md | sed -n '111p' | grep -o 'The offline stop-rater replay.*improvement stays host-driven.') <(sed -n '111p' … | grep -o …)` -> no output, "IDENTICAL (exit 0): other replay sentences unchanged" (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,15 @@
+Change complete and verified. S is a workstream-new (untracked) file, which is why `git diff` is silent; the edit is confirmed on disk by re-read and `rg`. No test asserts the options object, so T was left untouched.
+
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs` (+2/-1)
+EDITS:
+- `score-fanout-pairs.cjs:125` added one-line comment above the call, naming the 1 MB spawnSync default as the reason
+- `score-fanout-pairs.cjs:126` added `maxBuffer: 268435456` to the `run('git', ['ls-files', '-z'], {...})` options object
+CHECKS:
+- `node --check scripts/score-fanout-pairs.cjs` -> no output (exit 0)
+- `npx vitest run tests/unit/score-fanout-pairs.vitest.ts` -> `Test Files 1 passed (1)` / `Tests 39 passed (39)` (exit 0)
+- `node scripts/score-fanout-pairs.cjs | head -3` -> `runs: research=57 review=46` (exit 1, EPIPE from `head` closing the pipe)
+- `node scripts/score-fanout-pairs.cjs | tail -5` (extra, to separate script health from the pipe) -> `stop: fewer than 40 labeled pairs` (exit 0)
+BLOCKED REASON: none
+
+One honest caveat on check 3: the `runs:` line meets acceptance (`research=57 review=46`, ≥1 run), but that invocation exits 1 because `head` closes stdout after three lines and the script's next `stdout.write` raises `EPIPE` — the same exit occurs without my change. The un-truncated run proves the script itself completes cleanly at exit 0, so I accepted rather than reporting BLOCKED.

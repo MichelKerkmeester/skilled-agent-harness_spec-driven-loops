@@ -1,0 +1,23 @@
+Both fixes verified against the two files. Read-only recheck complete — nothing edited.
+
+**Fix 1 (P0, one-side drop):** `mergeDecision` (`.skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:501-521`) now probes each side alone first (`countOf([{ label: la, registry: { [field]: [fa] } }]) !== 1` → `'undecidable'`, same for b) before the two-registry read, and its JSDoc (490-492) states it: "a side the merge drops even on its own … leaves the pair undecidable". Test `oracle marks a one-side drop` (vitest.ts:333-347) matches the brief exactly: active + resolved review findings → `undecidable` under both settings; the same pair with both active → `same` dedup-on / `different` dedup-off.
+
+**Fix 2 (P1, requalify path):** `jev arm requalifies only when the stored model differs` (vitest.ts:660-688) runs `runJevArm` twice — stored model `old-model` (differs) asserts `requalify: model changed` exists with the verdict on the very next line (`changed[index + 1].startsWith('verdict jev: ')`), and stored `stub-model` asserts the line is absent. `deem arm requalifies only when the stored commit pair differs` (vitest.ts:776-802) does the same against `runDeemArm` with `requalify: model commit changed` and a stored `old123`/`abc123` model commit. Implementation backs the adjacency claim structurally: the requalify `ctx.out` is immediately followed by `ctx.out(column.line)` in both arms (cjs:1049-1052, 1319-1322), so nothing can print between them.
+
+**Census count paths (one-side guard):** Yes, the guard changes both, by design — it sits inside `mergeDecision`, the single oracle the census loop (cjs:1603-1610), `readBaseline` (cjs:541-542) and `baselineCalls` (cjs:1704) all call. On a one-side-drop pair, the `merge decisions:` buckets lose the spurious `same` both settings used to record (one survivor read as a fold) and the pair lands in `merge undecidable:`; the baseline loses an unearned right on either setting, so `onRight`/`offRight`/`right` can drop and a tie can flip `method` selection. Pairs where each side survives alone pass the guard unchanged — identical counts to before. One below-P1 note, not new at this level: in `summarizeColumn` (cjs:1441) an `undecidable` baseline call on a labeled pair reads as baseline-not-right inside the arm's B count, while `readBaseline` excludes it entirely; conservative and pre-existing in shape.
+
+closed - one-side guard at cjs:512-513 probes each side alone and returns `undecidable`; JSDoc 481-499 says so; test vitest.ts:333-347 pins active+resolved → `undecidable` (both settings) and both-active → `same`/`different`
+closed - requalify vitest.ts:660-688 and 776-802 each run the arm twice (differing stored identity → `requalify:` line immediately before `verdict …`, per cjs:1050-1051/1320-1321 adjacency; identical identity → line absent)
+New P0 or P1: none.
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (+0/-0)
+EDITS: none — read-only recheck
+CHECKS: `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs` -> no output, syntax OK (exit 0)
+CHECKS: `rg -c "^\s*it\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts` -> 42 (exit 0) — corroborates orchestrator's `Tests 42 passed (42)`
+CHECKS: `rg -n "mergeDecision|undecidable|one-side" .skilled/.../score-fanout-pairs.cjs` -> guard at 512-513, census reads at 1603-1605, baseline at 541-542 (exit 0)
+CHECKS: `sed -n 280,400p .skilled/.../score-fanout-pairs.vitest.ts` -> `oracle marks a one-side drop` at 333-347 (exit 0)
+CHECKS: `sed -n 600,830p .skilled/.../score-fanout-pairs.vitest.ts` -> requalify tests at 660-688 and 776-802 (exit 0)
+BLOCKED REASON: none

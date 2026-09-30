@@ -1,0 +1,41 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime
+
+ ❯ tests/unit/score-fanout-pairs.vitest.ts (28 tests | 2 failed) 582ms
+     × jev arm withholds an unpublished pair 55ms
+     × jev arm prints keep 163ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/score-fanout-pairs.vitest.ts > score-fanout-pairs jev gate and arm > jev arm withholds an unpublished pair
+ReferenceError: summarizeColumn is not defined
+ ❯ Object.runJevArm scripts/score-fanout-pairs.cjs:1020:18
+ ❯ tests/unit/score-fanout-pairs.vitest.ts:594:5
+    592|     const calls: Record<string, any>[] = [];
+    593|
+    594|     await pairs.runJevArm(
+       |     ^
+    595|       { rows: [row], baselineCalls: new Map() },
+    596|       { path: path.join(stub, 'jev'), provider: 'official' },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/score-fanout-pairs.vitest.ts > score-fanout-pairs jev gate and arm > jev arm prints keep
+ReferenceError: summarizeColumn is not defined
+ ❯ Object.runJevArm scripts/score-fanout-pairs.cjs:1020:18
+ ❯ tests/unit/score-fanout-pairs.vitest.ts:621:5
+    619|     const out: string[] = [];
+    620|
+    621|     await pairs.runJevArm(
+       |     ^
+    622|       { rows, baselineCalls },
+    623|       { path: path.join(stub, 'jev'), provider: 'official' },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 26 passed (28)
+   Start at  20:04:58
+   Duration  714ms (transform 22ms, setup 0ms, import 35ms, tests 582ms, environment 0ms)
+

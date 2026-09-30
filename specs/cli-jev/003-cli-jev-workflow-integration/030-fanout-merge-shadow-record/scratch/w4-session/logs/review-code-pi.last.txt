@@ -1,0 +1,24 @@
+All checks are done. Verification evidence: tests 39/39 pass, secret grep empty (exit 1), comment hygiene clean (only a `HEADROOM` identifier false positive), `fanout-merge.cjs` diff empty, sign test hand-verified (binomialTail(5,5) = 1/32 exact), and the merge oracle probed by run.
+
+Findings:
+
+- P0 .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:513 - mergeDecision reads a one-side drop as a collapse: merged length 1 returns `same` - a classed near-line review pair `{findingId:'R-1',disposition:'active',summary:'shared problem statement'}` + `{findingId:'R-2',disposition:'resolved', same summary}` returns `same` under both settings (verified by run), though `fanout-merge.cjs:860` dropped R-2 and never compared it; the fabricated collapse feeds the baseline and the census's `merge decisions:` lines. Only the both-dropped case (`undecidable`) is handled.
+- P1 tests/unit/score-fanout-pairs.vitest.ts:603 - REQ-010's requalify surface has no test, every arm test passes `stored: null` - rerunning into an out dir whose `report.json` names another model/commit pair (script :1044, :1314) prints `requalify: model changed` / `requalify: model commit changed` on an untested path.
+- P2 score-fanout-pairs.cjs:1443 - `C = expected * M` omits the measured calls of partially measured pairs, while the Keep Rule says "C is the column's measured calls" - 40 labeled pairs where one pair's third call times out after two measured gives C=117, not 119, tightening the flips bound.
+- P2 score-fanout-pairs.cjs:1191 - `nearestRank` is exported with no caller and no test - dead surface.
+- P2 tests/unit/score-fanout-pairs.vitest.ts:127 - `labeledFixture` is defined and never called - dead fixture.
+- P2 score-fanout-pairs.cjs:200 - the Jev withholding check proves only that the registry paths exist at `origin/main` (`cat-file -e`, :723) while the sent text is read from the working tree - a tracked registry edited locally sends unpublished text to Jev.
+
+REQ-001 met - default run spawns nothing but `git ls-files`; test `default run makes no call` and the session's stub proofs confirm.
+REQ-002 met - bands `[0.05, 0.30)` and `>=0.5` in code; body key, stopwords, Jaccard copies match `fanout-merge.cjs:345-392` exactly (diffed); parity tests present.
+REQ-003 not met - one-side drop misreads as `same` (P0); otherwise the two-registry copy, both dedup settings, tie-to-dedup-off and strict `> 90%` headroom are right.
+REQ-004 met - six thresholds in spec order with exact BigInt tails; sign test hand-checked (P(X>=5|n=5)=1/32=0.03125); verdict line format matches verbatim.
+REQ-005 met - 60/class by SHA-256, in-repo refusal exits 2, both stop lines verbatim, bad values named by row with exit 2, no model writes a label.
+REQ-006 met - identity line, pinned `jev 0.6.2`, `auth status --provider <p>`, health gate within 2,000 ms, skip lines verbatim, server never started, skips change nothing.
+REQ-007 met - key grep clean, no `.env`/key read, `-q` plus finding text only, unpublished pairs `unmeasured_unpublished` (P2 caveat on text source).
+REQ-008 met - fixed question, `Finding A:`/`Finding B:` state, AB/BA(/AB), 0.5 cut, modal answer, Deem split `unstable` and wrong.
+REQ-009 met - both cost lines verbatim, `calls.jsonl` fields/statuses complete, exits match phase 002's table including Deem 4 recheck-then-retry-once (002 REQ-010), `--jev`/`--deem` without `--out` exits 2 pre-call.
+REQ-010 met - per-column identity recorded, requalify prints before its verdict, `reader=none named`; untested (P1).
+REQ-011 not checked - vitest exits 0, 39/39, covering every case the acceptance lists; the named skill docs are not written yet and are outside this code-only review.
+
+VERDICT: FAIL

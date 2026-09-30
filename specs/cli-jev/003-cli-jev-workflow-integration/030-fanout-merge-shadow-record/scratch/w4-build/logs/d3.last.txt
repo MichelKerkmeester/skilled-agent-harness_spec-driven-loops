@@ -1,0 +1,14 @@
+Done. One sentence added to `.skilled/skills/system-deep-loop/SKILL.md` §3 `### Backend`, directly after the `runtime/` enumeration and shaped like the scorer clauses on line 111: it names the script at `runtime/scripts/score-fanout-pairs.cjs` (path as FACTS and the script show it), that it reads the merge's own decisions on near-line and cross-body pairs, that it compares a backend's judgment with the operator's labels, and that the merge itself is unchanged. Nothing else in the file changed. The hub `version:` (3.0.1.0) and the changelog are untouched.
+
+SKILL ROUTING: ARTIFACT: sk-doc -> sk-create-skill (mode per step D3, MODEL `SKILL.md` §3 Backend). REPO RULES: skill-hub-routing.md, communication.md, communication-prose.md, evidence-and-proof.md, communication-handoff.md loaded.
+
+Checks, both from the repo root:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/SKILL.md` -> `✅ VALID: .skilled/skills/system-deep-loop/SKILL.md` / `Total issues: 0`, exit 0.
+- `git diff --stat -- .skilled/skills/system-deep-loop/SKILL.md` -> ` 1 file changed, 1 insertion(+), 1 deletion(-)`, exit 0. The scoped diff shows only line 111's paragraph with the one sentence inserted.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/SKILL.md (+1/-1)
+EDITS: .skilled/skills/system-deep-loop/SKILL.md:111 added one sentence after the `runtime/` enumeration naming the offline fan-out pair replay at `runtime/scripts/score-fanout-pairs.cjs`, its reads of the merge's own decisions on near-line and cross-body pairs, its comparison of a backend's judgment with the operator's labels, and that the merge itself is unchanged
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/SKILL.md -> ✅ VALID: .skilled/skills/system-deep-loop/SKILL.md, Total issues: 0 (exit 0) | git diff --stat -- .skilled/skills/system-deep-loop/SKILL.md -> 1 file changed, 1 insertion(+), 1 deletion(-) (exit 0)
+BLOCKED REASON: none

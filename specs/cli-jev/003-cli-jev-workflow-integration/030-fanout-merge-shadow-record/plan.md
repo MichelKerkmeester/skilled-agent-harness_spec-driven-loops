@@ -82,7 +82,7 @@ Lineage registries become cross-lineage pairs. The classifier keeps the two cand
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-**Who builds (parent D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step and runs the CLI executors by Bash only: Devin `deepseek-v4-1-flash-max` and Pi `llmgateway/mimo-v2.6-pro` at thinking `high`. The orchestrator session verifies each step, gets a cross-family review of the code, fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route, and the docs go through sk-doc (parent D6).
+**Who builds (parent D5).** The session orchestrates, verifies and commits. Only Pi writes, by Bash: DeepSeek V4.1 Flash on Cline at `--thinking xhigh`, then OpenCode Go, then LLM Gateway at `--thinking max`, and `llmgateway/mimo-v2.6-pro` at `high`. No Claude leaves. The session writes one single-change brief per step, runs the CLI executors by Bash only, verifies each step against its check, gets a cross-family review (a file goes to the family that did not write it), fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route, and the docs go through sk-doc (parent D6). The design ran on DeepSeek V4.1 Flash through Cline after Devin's daily quota ran out; code steps c1 to c9 and every code fix ran on DeepSeek V4.1 Flash through Cline at `--thinking xhigh`, each checked by the test file, and the docs d1 to d6 ran on Pi MiMo at `high`, written from `scratch/w4-session/docs/facts.txt`.
 
 Each step's observable check:
 
@@ -92,7 +92,7 @@ Each step's observable check:
 4. **Pair sheet and gate.** Check: the sheet refuses a path inside the repository, and both stop lines print on their fixtures.
 5. **Model arms.** Jev first, then Deem. Check: the stub cases pass, one `--provider` appears on every logged `jev` call and a Deem pair with disagreeing orders is `unstable`.
 6. **Verdict.** Check: the `keep`, `kill` and `stop (coverage)` cases pass and every line ends `reader=none named`.
-7. **Runs.** One census and one pair sheet on the real tree. Model runs only after the labels pass the gate. Check: the stop or verdict lines go in `goal.md`'s log.
+7. **Runs.** One census and one pair sheet on the real tree. Model runs only after the labels pass the gate. The 2026-09-30 final run printed `stop: fewer than 40 labeled pairs`, wrote a 60-row sheet with empty labels outside the repository and started no arm, so the stop line is the phase's result and no verdict line exists. Check: the stop line is in `goal.md`'s log.
 8. **Skill docs.** Check: `validate_document.py` exits 0 on each changed doc.
 9. **Review and commit.** Check: no open P0 or P1, `fanout-merge.cjs` unchanged, and the runtime suite fails nothing beyond step 1's baseline.
 <!-- /ANCHOR:phases -->
@@ -121,7 +121,7 @@ Each step's observable check:
 | `fanout-merge.cjs` exports | Internal | Present at `:1404` | The baseline cannot be read without them |
 | Phase 008 `cli-deem` and a served Deem | Internal and external | Complete, served per `deem-local.md` | The Deem arm prints its skip line |
 | `jev` 0.6.2 and a credential for P | External, operator-held | Used once by 017 on 2026-09-29 | The Jev arm prints its skip line |
-| Phases 027, 028 and 029 | Internal | Planned | Shared doc files, so doc steps run one after another |
+| Phases 027, 028 and 029 | Internal | Complete | Shared doc files, so doc steps ran one after another |
 <!-- /ANCHOR:dependencies -->
 
 ---

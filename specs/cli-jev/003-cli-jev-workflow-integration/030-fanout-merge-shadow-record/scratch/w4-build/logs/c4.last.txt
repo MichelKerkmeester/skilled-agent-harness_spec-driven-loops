@@ -1,0 +1,22 @@
+All checks pass. Summary of the C4 step:
+
+**Implemented (S)** — `mergeDecision` and `readBaseline` with JSDoc, in a new `5. MERGE ORACLE` section, exported:
+- `mergeDecision` calls the shipped `mergeResearchRegistries` / `mergeReviewRegistries` on a two-registry copy keyed by the loop's canonical findings field, maps 1 finding → `same`, 2 → `different`, 0 → `undecidable`.
+- `readBaseline` scores both dedup settings against the operator's labels and returns `{method, onRight, offRight, right}`, tying to `dedup-off` (the shipped default).
+- The local `require('./fanout-merge.cjs')` was added with a durable WHY comment.
+
+**Tests (T)** — five named cases in a new `score-fanout-pairs merge oracle` describe, with two fixture helpers: both-decisions (`same`/`different`), today's default (`same` with dedup off), unreadable review pair (`undecidable`, zero right counts), baseline better (`dedup-on`, 30/25 of 40), baseline tie (`dedup-off`, 30/30). Fixture decisions were probed against the real merge before writing the assertions.
+
+S and T are still untracked in this worktree (created by earlier steps); only these two files were edited by this step; other `git status` entries belong to concurrent workers.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs (+82/-5; net +77, now 522 lines)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts (+107/-1; net +106, now 348 lines)
+EDITS: S:20 added local require of fanout-merge.cjs with WHY comment; renumbered section 6 EXPORTS
+EDITS: S:432-503 added `5. MERGE ORACLE` section: `mergeDecision` (456-471) and `readBaseline` (485-500), both JSDoc'd; exports extended at 519-521
+EDITS: T:244-296 added `LabeledPair` type and `labeledPair`/`baselineFixture` helpers
+EDITS: T:298-348 added `score-fanout-pairs merge oracle` describe with the five named tests
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts -> 15 (exit 0)
+BLOCKED REASON: none

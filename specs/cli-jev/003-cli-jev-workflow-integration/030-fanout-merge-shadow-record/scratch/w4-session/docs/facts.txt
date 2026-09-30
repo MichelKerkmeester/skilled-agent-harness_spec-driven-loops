@@ -1,0 +1,42 @@
+# FACTS for the 030 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs` (CommonJS, run with `node` from the repository root). It requires `fanout-merge.cjs` and calls the merge's own functions; `fanout-merge.cjs` is unchanged.
+Test: `.skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts`, 42 tests, all pass (`npx vitest run tests/unit/score-fanout-pairs.vitest.ts` from `runtime`).
+Usage line (constant `USAGE`; nothing prints it): `usage: score-fanout-pairs.cjs [--out <dir>] [--labels <file>] [--write-pair-sheet <path>] [--jev] [--deem]`.
+Versions and IDs, read at doc time after 029's commit (orchestrator ruling 2): the newest runtime changelog is `v1.8.0.0.md` (029's), so this phase writes `changelog/v1.9.0.0.md`, and new entries carry `version: 1.9.0.0`. The highest catalog ID is F058 and the highest playbook ID is DLR-058 (both 029's), so this phase takes F059 and DLR-059. Any other version or ID in the design is stale. The hub `SKILL.md` `version:` (3.0.1.0) and the hub changelog stay unchanged (ruling 3), and step D7's `frontmatter-version.mjs apply` does not run: 027, 028 and 029 set the new files' `version:` by hand from this line, and this phase does the same.
+
+What it does: it reads the recorded fan-out lineage registries (deep-research and deep-review runs with at least two lineages), finds the candidate duplicate pairs the merge judged (near-line and cross-body), and prints the merge's own decision on each with deduplication on and off. It then scores one backend's same-or-different judgment against the operator's labels when an arm is named. The merge is not changed. The default run makes no model call and writes no file.
+A pair is `undecidable` when the merge drops either finding on its own before comparing (a review finding that is not active, or a finding with no id or title), since a one-finding result then says nothing about the pair.
+Labels: `--write-pair-sheet <path>` writes at most the first 60 pairs of each class, ordered by the SHA-256 of the pair key, each row with both findings' text, their lineages, the run path and an empty label. The operator fills `same` or `different`. `--labels <file>` reads the filled sheet back.
+
+Exit 2, each before any census line:
+- `--jev` or `--deem` without `--out` prints `--jev needs --out <dir> so every call is recorded` or `--deem needs --out <dir> so every call is recorded`; both switches without `--out` print `--jev and --deem need --out <dir> so every call is recorded`.
+- A pair-sheet path inside the repository prints `refusing to write the pair sheet inside the repository` and writes no file.
+- A bad labels row prints its row and fault, for example `labels row 3: label must be same or different, got "x"` or `labels row 3: duplicate pair <key>`.
+Zero model calls by default: logging stubs for `cli-deem` and `jev` first on PATH were never called.
+
+Default run on the real tree, exit 0 in about 2 s, full stdout (session run, 2026-09-29):
+    runs: research=57 review=46
+    pairs: research=19 review=105
+    class near-line: research=0 review=0
+    class cross-body: research=19 review=105
+    merge decisions: near-line research dedup-on same=0 different=0 dedup-off same=0 different=0
+    merge decisions: near-line review dedup-on same=0 different=0 dedup-off same=0 different=0
+    merge decisions: cross-body research dedup-on same=0 different=19 dedup-off same=0 different=19
+    merge decisions: cross-body review dedup-on same=0 different=93 dedup-off same=0 different=93
+    title rule: research=410 of 2233 findings carry a title
+    title rule: review=1026 of 1039 findings carry a title
+    body fields: research=690 of 2233 findings carry a body field
+    body fields: review=294 of 1039 findings carry a body field
+    merge undecidable: 12
+    stop: fewer than 40 labeled pairs
+The counts read the live tree, so a later run may differ.
+
+Gates, in order: `stop: fewer than 40 labeled pairs`, then `stop: fewer than 10 labeled cross-body pairs`, then `no headroom` when the merge's own decisions are already right on more than nine pairs in ten.
+Session runs from the final code (`$SP/w4v/030-proof`), with the stubs first on PATH:
+- `--deem --out <dir>` with a stub backend and `--jev --out <dir>` with `jev auth status` exiting 3 each add only `deem arm skipped: label gate` or `jev arm skipped: label gate`, since the label gate runs before the backend gates, and write only `report.json`.
+- `--write-pair-sheet <path outside the repository>` exits 0 and writes 60 rows.
+- `git status --porcelain` was equal before and after, and `fanout-merge.cjs` has no diff.
+
+Arms, each behind its own switch, `--out <dir>` and gate. With both switches the Jev gate and arm run first, then the Deem gate and arm, each regardless of the other's outcome. Below a gate each switch prints `<backend> arm skipped: label gate`, or `<backend> arm skipped: no headroom`. Past the gates the Jev gate can skip with `jev arm skipped: jev not on PATH`, `jev arm skipped: version` or `jev arm skipped: no credential`, and the Deem gate with `deem arm skipped: <reason>`, such as `stub backend`.
+No run has printed a `verdict` line. Docs must not claim one was printed.

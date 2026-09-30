@@ -39,19 +39,28 @@
       "research"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts",
       ".skilled/skills/system-deep-loop/SKILL.md",
-      ".skilled/skills/system-deep-loop/runtime/README.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
       "runtime/README.md",
-      "runtime/scripts/README.md"
+      "runtime/scripts/README.md",
+      ".hermes/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.0.0.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json"
     ],
     "entities": [
       {
@@ -85,9 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+        "name": "score-fanout-pairs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-fanout-pairs.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts",
         "source": "derived"
       },
       {
@@ -97,13 +112,55 @@
         "source": "derived"
       },
       {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pair-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -133,12 +190,6 @@
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -151,57 +202,15 @@
         "source": "derived"
       },
       {
-        "name": "Keep Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "The Keep Rule",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "dedup",
-        "kind": "key_phrase",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A fan-out run merges its lineages' findings in `fanout-merge.cjs`",
     "created_at": "2026-09-29T12:42:42Z",
-    "last_save_at": "2026-09-29T13:53:47.843Z",
+    "last_save_at": "2026-09-30T07:29:11.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78e6b3467ee943207de6b0bc653ca26ae4d31ae62f339b3b9fbb92b800048a4e",
+    "source_fingerprint": "sha256:b2f4a0b85c1908b89bad30265d0d16c32b785ade87fae0f0c8e00025f792f7ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c8307efe03c9efa5cc8aee188ba6d11420768a3417b4337a3ffa3305a6daaf4",
-      "plan.md": "c05f1003bcee51e1fbfe1889cd6eb4332e7d596a0af598495fe349a184b7a218",
-      "tasks.md": "9a6e42440dfdd6b340c5cb0260d2dd69f3329ba95595fa57a7640b3d4e247059",
-      "implementation-summary.md": "f9c20a7988bcde946b6113fb33a3ed6e4986e7cec44d30eacc1852a712bcf2ab"
+      "spec.md": "37ecd15b7df7df8f363125676d3a379cc28574548485927b69d1d3af815cb0d3",
+      "plan.md": "b992a89ecc30f051861e302538915e55b53ea992aed278878abfba4a4ed0240d",
+      "tasks.md": "df14953f4ee464ba44b4bb9da55e10716dc6d5426e681a17fd163154f80c2801",
+      "implementation-summary.md": "b80c991ebdde36d0051808881682485f9d7a68ccfb6f69f552c61b588cb181b9"
     },
     "last_active_at": null
   }

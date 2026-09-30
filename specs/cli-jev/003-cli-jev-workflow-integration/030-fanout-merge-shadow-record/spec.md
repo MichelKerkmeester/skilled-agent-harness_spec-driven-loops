@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 30: fanout-merge-shadow-record"
-description: "Test research R15 offline: find the cross-lineage finding pairs the fan-out merge decides near its 0.15 title line or never compares because their bodies differ, stop at the operator's pair-label gate, then measure whether a Jev or Deem same-or-different judgment matches the labels better than the merge's own decision. Each backend column ends in one verdict line under a keep rule fixed here, and the merge itself never changes."
+description: "Complete at its label gate. score-fanout-pairs.cjs prints the pair census of the recorded fan-out lineage registries with zero model calls, reports the merge's own decision on each near-line and cross-body pair with dedup on and off, writes a 60-row pair sheet outside the repository and stops at stop: fewer than 40 labeled pairs until the operator labels 40 pairs, 10 of them cross-body; past the gate its --jev and --deem arms print one verdict per backend column under the Keep Rule fixed in section 4. Its 42 tests cover both classes, the merge oracle, the label gate, both gates, the Keep Rule and the requalify lines, and the system-deep-loop docs describe it. Built as fe84dd1899."
 trigger_phrases:
   - "fan-out shadow pair record"
   - "fanout merge pair labels"
@@ -23,14 +23,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 30 of 35 |
 | **Predecessor** | 029-p0-reread-order |
 | **Successor** | 031-debug-next-check |
-| **Handoff Criteria** | The zero-call census has printed the fan-out runs, the candidate pairs per class and the merge's decision on each class. Then either the scorer printed a label-gate stop line or `no headroom`, or a run past the gate printed one `verdict <backend>:` line per backend column that ran, or that backend's skip line. The reader of a shadow record stays an open question either way |
+| **Handoff Criteria** | The zero-call census printed the fan-out runs, the candidate pairs per class and the merge's decision on each class: 57 research and 46 review runs, 19 research and 105 review pairs, all 124 in the cross-body class, and `merge undecidable: 12`. The 2026-09-30 final run then printed `stop: fewer than 40 labeled pairs` (parent D4). Past the operator's labels one `--deem --out` run and, on the operator's flag, one `--jev --out` run would print one `verdict <backend>:` line per backend column that ran, or that backend's skip line; no verdict line has printed. The reader of a shadow record stays an open question either way |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,10 +50,10 @@ This is **Phase 30** of the cli-jev workflow integration specification. On 2026-
 - The build roles of parent D5 and the doc route of parent D6, in `plan.md`.
 
 **Deliverables**:
-- `score-fanout-pairs.cjs` (proposed) with the zero-call census by default, a pair-sheet writer, a `--jev` arm and a `--deem` arm (proposed switches)
-- `tests/unit/score-fanout-pairs.vitest.ts` (proposed) against fixture lineage registries with stub `jev` and `cli-deem` binaries
-- One census report and, past the label gate, one report per model arm in a directory the operator names
-- The `system-deep-loop` docs parent D6 names, written through sk-doc
+- `score-fanout-pairs.cjs`, built at 1,826 lines, with the zero-call census by default, a pair-sheet writer, a `--jev` arm and a `--deem` arm
+- `tests/unit/score-fanout-pairs.vitest.ts`, 42 cases, against fixture lineage registries with stub `jev` and `cli-deem` binaries
+- One `report.json` per `--out` run. The final-state runs below the label gate wrote only `report.json` and no `calls.jsonl`; a report per model arm waits on the operator's labels
+- The eight `system-deep-loop` docs parent D6 names, written through sk-doc and committed
 
 **Changelog**:
 - None. The parent packet has no `../changelog/` folder (checked 2026-09-29).
@@ -101,15 +101,15 @@ Owner of every code path below: `system-deep-loop`. The code follows sk-code's O
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs` | Create | Census, pair classes, the merge's decisions, pair sheet, label gate, both arms and the Keep Rule. Proposed name. About 450 to 600 LOC (estimate) |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts` | Create | Fixture-registry, parity, stub-`jev` and stub-`cli-deem` cases |
+| `.skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs` | Create | Census, pair classes, the merge's decisions, pair sheet, label gate, both arms and the Keep Rule. Built at 1,826 lines |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts` | Create | Fixture-registry, parity, stub-`jev` and stub-`cli-deem` cases. Built at 42 cases |
 | `.skilled/skills/system-deep-loop/runtime/scripts/README.md` | Modify | One row for the new script |
-| `.skilled/skills/system-deep-loop/SKILL.md` | Modify | Parent D6: one sentence naming the offline pair replay and saying the merge is unchanged |
+| `.skilled/skills/system-deep-loop/SKILL.md` | Modify | Parent D6: one sentence naming the offline pair replay, its label gate and both switches, with the merge unchanged |
 | `.skilled/skills/system-deep-loop/runtime/README.md` | Modify | Parent D6: one line naming the script, its zero-call default, the label gate and the two switches |
-| `.skilled/skills/system-deep-loop/runtime/changelog/v<next>.md` | Create | Parent D6, through `sk-create-changelog`. The newest file at planning is `v1.5.0.1.md` |
-| `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md` and `feature-catalog.md` | Create, Modify | Parent D6: one entry (proposed name) beside `fanout-merge.md` and its index row |
-| `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md` and `manual-testing-playbook.md` | Create, Modify | Parent D6: the census, the label-gate stop and a stub-backend skip, plus the index row |
-| Generated copies (the Hermes `SKILL.md`, leaf manifests, trigger index) | Regenerate | Only when their own checks report them stale after the doc edits |
+| `.skilled/skills/system-deep-loop/runtime/changelog/v1.9.0.0.md` | Create | Parent D6, through `sk-create-changelog`. Built as `v1.9.0.0.md`, the next version after 029's `v1.8.0.0.md` |
+| `.skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md` and `feature-catalog.md` | Create, Modify | Parent D6: the entry `fanout/fanout-pair-replay.md` (F059) beside `fanout-merge.md` and its index row |
+| `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md` and `manual-testing-playbook.md` | Create, Modify | Parent D6: the entry `fanout/fanout-pair-replay.md` (DLR-059), the census, the label-gate stop and a stub-backend skip, plus the index row |
+| Generated copies (the Hermes `SKILL.md`, two activation manifests, the three compiled deep contracts, trigger index) | Regenerated | The Hermes `SKILL.md` and both re-minted activation manifests landed in the commit, the three contracts recompiled from the staged tree, and the trigger index follows in its own commit |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Read only | Its exports `mergeResearchRegistries` and `mergeReviewRegistries` decide the baseline |
 | `specs/**/{research,review}/lineages/*/` registries | Read only | The pair corpus |
 | `<operator-named label file>`, `<operator-named report dir>/` | Read, Create at run time | The labels, and `report.json` with `calls.jsonl` from a model run |
