@@ -1,0 +1,59 @@
+== exit 0 ==
+== stdout ==
+hub=sk-doc gold=5 unscored=0 unknown=0 unresolvable=0 tied=5 precision=0.5000 recall=1.000 f1=0.6667 exact=0
+hub=mcp-tooling gold=0 unscored=0 unknown=0 unresolvable=0 tied=0 precision=0.000 recall=0.000 f1=0.000 exact=0
+hub=system-deep-loop gold=0 unscored=0 unknown=0 unresolvable=0 tied=0 precision=0.000 recall=0.000 f1=0.000 exact=0
+hub=cli-external-orchestration gold=0 unscored=0 unknown=0 unresolvable=0 tied=0 precision=0.000 recall=0.000 f1=0.000 exact=0
+hub=sk-design gold=0 unscored=0 unknown=0 unresolvable=0 tied=0 precision=0.000 recall=0.000 f1=0.000 exact=0
+hub=sk-code gold=0 unscored=0 surface slice not replayed
+hub=cli-classifier gold=0 unscored=0 unknown=0 unresolvable=0 tied=0 precision=0.000 recall=0.000 f1=0.000 exact=0
+total gold=5 scored=5 tied=5 mean_f1=0.6667 exact=0
+router reads: not measured
+replay verdict: stop (prose arm covers 0 of 5 rows) N=5 P=0 keyword_f1=n/a prose_f1=n/a
+tied: K=5
+baseline: union
+margin: 0.10
+keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(SA-SB) >= M, sign test p < 0.05, flips 10*F <= 3*M
+instruction: -q "Which intent does this request need?"
+jev: path=<STUBS>/jev provider=official
+jev: payload=committed playbook prompts, intent keys and RESOURCE_MAP paths planned_calls=16 est_input_tokens=495
+jev: auth_test provider=official model=stub-jev-model
+verdict jev: stop (margin) K=5 M=5 SA=3.333333333333333 SB=3.333333333333333 W=0 L=0 F=0 p=1.000 baseline=union jev_version=0.6.2 provider=official model=stub-jev-model
+== stderr ==
+
+== stub argv ==
+jev --version
+jev auth status --provider official
+jev auth test --provider official
+jev choice --provider official -q Which intent does this request need? -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone
+jev choice --provider official -q Which intent does this request need? -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md
+jev choice --provider official -q Which intent does this request need? -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md
+jev choice --provider official -q Which intent does this request need? -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone
+jev choice --provider official -q Which intent does this request need? -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md
+jev choice --provider official -q Which intent does this request need? -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md
+jev choice --provider official -q Which intent does this request need? -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone
+jev choice --provider official -q Which intent does this request need? -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md
+jev choice --provider official -q Which intent does this request need? -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md
+jev choice --provider official -q Which intent does this request need? -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone
+jev choice --provider official -q Which intent does this request need? -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md
+jev choice --provider official -q Which intent does this request need? -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md
+jev choice --provider official -q Which intent does this request need? -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone
+jev choice --provider official -q Which intent does this request need? -o ALPHA=pkt-a/references/a.md -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md
+jev choice --provider official -q Which intent does this request need? -o none_of_these=None of these alone -o BETA=pkt-b/references/b.md -o ALPHA=pkt-a/references/a.md
+== calls.jsonl (wall_ms masked) ==
+{"kind":"auth_test","backend":"jev","row_id":null,"order":null,"wall_ms":0,"exit_code":0,"pick":null,"pick_prob":null,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-1","order":0,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-1","order":1,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-1","order":2,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-2","order":0,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-2","order":1,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-2","order":2,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-3","order":0,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-3","order":1,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-3","order":2,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-4","order":0,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-4","order":1,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-4","order":2,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-5","order":0,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-5","order":1,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}
+{"kind":"choice","backend":"jev","row_id":"S-5","order":2,"wall_ms":0,"exit_code":0,"pick":"none_of_these","pick_prob":0.9,"status":"measured","jev_version":"0.6.2","provider":"official","model":"stub-jev-model"}

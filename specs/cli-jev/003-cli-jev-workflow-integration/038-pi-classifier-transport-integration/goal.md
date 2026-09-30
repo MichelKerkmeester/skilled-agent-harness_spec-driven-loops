@@ -12,10 +12,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration"
-    last_updated_at: "2026-09-30T16:30:00Z"
+    last_updated_at: "2026-09-30T19:47:37Z"
     last_updated_by: "markdown-leaf"
-    recent_action: "Authored the durable directive as a Planned phase"
-    next_safe_action: "Build the phase against the completion criteria"
+    recent_action: "Ticked all five criteria from the build's evidence and recorded the closure"
+    next_safe_action: "None. The orchestrator commits the build and the phase docs path-scoped"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-038-pi-classifier-transport-integration"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -60,11 +60,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] With the switch off, every changed caller prints what it printed before, byte for byte, on a stub-backed run
-- [ ] With the switch on, the transport answers a `choice` question through Pi and returns the CLI's result shape, proved by tests with both backends stubbed
-- [ ] A failed Pi gate prints one skip line and follows the rule in `spec.md`, proved by a test for each gate
-- [ ] `cli-jev` and `cli-pi/SKILL.md` document the Pi route, and `validate_document.py` is VALID on every changed doc
-- [ ] Runtime-tree callers are listed as a follow-up with file paths, and `validate.sh --strict` passes for this phase
+- [x] With the switch off, every changed caller prints what it printed before, byte for byte, on a stub-backed run
+- [x] With the switch on, the transport answers a `choice` question through Pi and returns the CLI's result shape, proved by tests with both backends stubbed
+- [x] A failed Pi gate prints one skip line and follows the rule in `spec.md`, proved by a test for each gate
+- [x] `cli-jev` and `cli-pi/SKILL.md` document the Pi route, and `validate_document.py` is VALID on every changed doc
+- [x] Runtime-tree callers are listed as a follow-up with file paths, and `validate.sh --strict` passes for this phase
 <!-- /ANCHOR:completion -->
 
 ---
@@ -81,6 +81,10 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Spec authored | Done | 2026-09-30, docs only, from `scratch/context/context.md`, the 037 verdict and the operator's "Plan the integration". Status Planned, Level 2, priority P1. No build exists |
+| Build | Done | The working tree at HEAD `c5c72d31ec`: M1 the design read and the module with its tests (design steps 1 to 5, `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` and its 22-row suite), M2 the two caller opt-ins with their before and after recordings (steps 6 and 7, `leaf-route-replay.cjs` and `score-clarify-default.cjs`, one call site each), M3 the docs (steps 8 to 12: `cli-jev` 0.1.3.0, `cli-pi` 1.5.13.0, the catalog entry and the playbook scenario with their index rows), with the env-switch test added after review. DeepSeek V4.1 Flash wrote every batch, all STATUS DONE |
+| Review | Done | SWE 2 max on cli-devin, `scratch/verify/review-swe2-r1.txt`, 979 s: `VERDICT: PASS` with all five criteria met. Four P2s, none open at closure: the `calls.jsonl` backend field and the unpinned Pi version recorded, the env-switch test fixed, the stub closure docs closed by this record. No open P0 or P1 |
+| Gates | Done | `scratch/verify/`: both before and after recordings byte-identical (59 and 202 lines); `transport-tests.txt` 22 pass, 0 fail; `leaf-route-replay-tests.txt` 37 pass and `score-clarify-default-tests.txt` 28 pass, equal to baseline; the REQ-006 key grep exit 1 and the three runtime-tree diffs empty; 9 changed docs VALID; `g.txt` all hubs fresh, `l.txt` 15 of 15, `df.txt` 15 of 15, `h.txt` 72 in sync |
+| Closure | Done | This pass: all five criteria ticked, `repair-derived.cjs --apply`, `validate.sh --strict --recursive` `RESULT: PASSED`, `check-goal.cjs` `RESULT: PASSED (5/5 checks)` and `goal.cjs packet` `packet_durable_chars=2146` on this phase with `packet_budget=ok` on the parent |
 
 ### Deviations and findings
 
@@ -89,6 +93,7 @@ and findings belong here.
 | Planned state (2026-09-30) | At authoring, nothing is built and the five completion criteria are open. The five open questions in `spec.md` section 10 each carry a proposed answer, and the gate-failure rule in `spec.md` section 4 is fixed at spec approval, before any wiring |
 | Basis | 037's one approved live run printed `verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022` for `choice` only, on Pi 0.99.1 `openrouter` `typesafe/jev-1.13` against the CLI's `official` `jev-1.13.0`, and it holds on a one-row margin (`../037-pi-native-classifier-transport/scratch/live-run.stdout.txt`) |
 | Out of scope | Any edit under the system-deep-loop, system-skill-advisor or system-spec-kit runtime trees, adopting `bool` or `score` without their own measured run, installing anything, and changing the default transport (D1, D2, parent D7) |
+| Executor roster change mid-build (2026-09-30) | The operator dropped MiMo and the LLM Gateway fallback, keeping DeepSeek V4.1 Flash on cli-pi and moving reviews to SWE 2 max on cli-devin or Luna 6 max fast on cli-codex. The MiMo review that had started was stopped before it reported, and SWE 2 max reviewed once at the end. The roster amendment is commit `c5c72d31ec`, and D6 carries the change |
 <!-- /ANCHOR:log -->
 
 ---

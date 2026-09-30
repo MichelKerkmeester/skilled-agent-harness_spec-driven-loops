@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 38: pi-classifier-transport-integration"
-description: "Planned stub. Nothing is built yet. This phase will add Pi's native classifier runtime as an opt-in transport for Jev `choice` questions beside the jev CLI, with today's default output byte-identical when the switch is off, and it will document the route for Pi workers. The basis is 037's measured `adopt` verdict, held in `../037-pi-native-classifier-transport/scratch/live-run.stdout.txt`."
+description: "Complete. Pi's native classifier runtime is now an opt-in transport for Jev `choice` questions: one shared module answers a `choice` question through Pi and returns the CLI's result shape, two approved callers opt in behind byte-identical switch-off recordings, every gate failure prints one skip line and falls back to the jev CLI, and `cli-jev` and `cli-pi/SKILL.md` document the route. The build sits uncommitted at HEAD `c5c72d31ec`, and the orchestrator commits it path-scoped."
 trigger_phrases:
   - "pi classifier transport summary"
   - "pi transport integration status"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration"
-    last_updated_at: "2026-09-30T16:30:00Z"
+    last_updated_at: "2026-09-30T19:47:37Z"
     last_updated_by: "markdown-leaf"
-    recent_action: "Stubbed as Planned, nothing is built"
-    next_safe_action: "Build the phase, then rewrite this file with the results"
+    recent_action: "Rewrote this file with the build, review and gate results"
+    next_safe_action: "None. The orchestrator commits the build and the phase docs path-scoped"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-038-pi-classifier-transport-integration"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,8 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 038-pi-classifier-transport-integration |
-| **Status** | Planned |
-| **Completed** | Not yet. This file records the plan, not a result |
+| **Status** | Complete |
+| **Completed** | 2026-09-30; the build sits uncommitted at HEAD `c5c72d31ec` in worktree 071 and the orchestrator commits it path-scoped after this pass |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,25 +52,32 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This is the Planned stub for a phase whose docs were authored on 2026-09-30 from `scratch/context/context.md`, the operator's "Plan the integration" and 037's `adopt` verdict. The module, the caller opt-in and the docs all remain to be written, and every completion criterion is open.
+The switch is built and Pi answers when asked. `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` resolves the transport in one place, answers a `choice` question through Pi's classifier runtime on `openrouter` `typesafe/jev-1.13` when the caller or the environment names Pi, and otherwise runs the caller's own `jev` spawn unchanged, so the default path stays byte-identical. Every gate failure prints exactly one skip line and falls back to the CLI. The build sits uncommitted at HEAD `c5c72d31ec`.
 
 ### Phase 38: pi-classifier-transport-integration
 
-The phase will add `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` (proposed), a shared module that answers a `choice` question through Pi's SDK on `openrouter` `typesafe/jev-1.13` and returns the result shape callers read from the jev CLI's JSON today. The `jev` CLI stays the default, Pi is chosen only by an explicit switch, each gate failure prints one skip line and falls back to the CLI, and only the `choice` callers the design approves inside cli-classifier, sk-doc and sk-communication change. Pi's route exists and works today: `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` holds the helpers that call it, and `../037-pi-native-classifier-transport/scratch/live-run.stdout.txt` holds the measured `adopt` verdict this phase builds on.
+**The module.** `jev-transport.mjs` exports `resolveTransport`, `choiceRequestFrom`, `classifierContextFor`, `choicePayloadFor` and `spawnClassifierCall`. `JEV_TRANSPORT` in the caller's env or the `transport` option picks Pi; unset, empty or `jev` stays on the CLI and an unknown value prints `skip: unknown transport '<value>', using jev CLI`. Only a `choice` request reaches Pi. The three gates of `spec.md` section 4 are checked in order, each failure printing exactly one skip line before the CLI branch, and the module has no top-level await, so both `.cjs` callers can `require` it. It calls `ModelRuntime.create()` and reads no credential.
+
+**The callers.** Two approved callers opted in with one `require` and one call-site line each: `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` and `score-clarify-default.cjs`. The 037 scorer's CLI arm was rejected by design, because it is the CLI column of a measurement, and it stays unmodified. The 13 runtime-tree callers of `spec.md` section 3 stay with their owners.
+
+**The docs.** `cli-jev/SKILL.md` gains a Transport Selection section (0.1.2.0 to 0.1.3.0, changelog `v0.1.3.0.md`), `cli-pi/SKILL.md` a classifier section (1.5.12.0 to 1.5.13.0, changelog `v1.5.13.0.md`), and the catalog entry and playbook scenario land with their index rows.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` | Planned create | The opt-in transport module. Proposed name |
-| `.skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs` | Planned create | Every public surface, both backends stubbed. Proposed name |
-| `.skilled/skills/cli-classifier/cli-jev/SKILL.md` | Planned modify | The Pi route, the switch and the gate rule |
-| `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` | Planned modify | A short classifier section for Pi workers |
-| `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md` and `feature-catalog/feature-catalog.md` | Planned create and modify | The catalog entry and its index row. Proposed name |
-| `.skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md` and `manual-testing-playbook/manual-testing-playbook.md` | Planned create and modify | The playbook scenario and its index row. Proposed name |
-| Design-approved `choice` callers inside cli-classifier, sk-doc and sk-communication | Planned modify | One call site each, only after the design approves it |
-| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md` | Modified | The phase record, authored as Planned |
-| `description.json`, `graph-metadata.json` | Derived | Refreshed through `repair-derived.cjs` |
+| `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` | Created | The opt-in transport module: `resolveTransport`, `choiceRequestFrom`, `classifierContextFor`, `choicePayloadFor`, `spawnClassifierCall` (D1 to D4) |
+| `.skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs` | Created | 22 rows over every public surface, both backends stubbed, one row per gate (D4) |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` and `score-clarify-default.cjs` | Modified | One `require` line and one call-site line each, the two approved `choice` callers (D1, D3) |
+| `.skilled/skills/cli-classifier/cli-jev/SKILL.md` and `cli-jev/changelog/v0.1.3.0.md` | Modified and created | The Transport Selection section: the switch, the routes, the skip lines, `choice` only, credentials in Pi's store (D5) |
+| `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` and `cli-pi/changelog/v1.5.13.0.md` | Modified and created | The classifier section for Pi workers; an answer is evidence, never permission (D5) |
+| `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md` and `feature-catalog/feature-catalog.md` | Created and modified | The catalog entry and its index row |
+| `.skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md` and `manual-testing-playbook/manual-testing-playbook.md` | Created and modified | The playbook scenario and its index rows |
+| `.skilled/skills/cli-classifier/SKILL.md` | Modified | The `Offline Measurement` sentence pointing at the entry |
+| The three `.hermes/skills/` copies of `cli-classifier`, `cli-jev` and `cli-pi`, and the two compiled-routing activation manifests | Regenerated | By their own tools, never hand-edited (`scratch/verify/h.txt`, `scratch/verify/g.txt`) |
+| `scratch/w4-build/design.md` and the 17 files under `scratch/verify/` | Created | The design note, the two recorders, both recording pairs, the three suite captures, the review and the session record |
+| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md` | Modified | The phase record, closed in this pass |
+| `description.json`, `graph-metadata.json` | Derived | Re-derived through `repair-derived.cjs` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -78,7 +85,7 @@ The phase will add `.skilled/skills/cli-classifier/shared/scripts/jev-transport.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not started. The plan delivers the module first with both backends stubbed, then the caller opt-in behind a byte-for-byte proof, then the docs through sk-doc and a cross-family review, then the closure gates. DeepSeek V4.1 Flash writes and SWE 2 max on cli-devin or Luna 6 max fast on cli-codex reviews under parent D5 through this phase's D6, with no MiMo or Claude worker. The session runs the switch-off comparisons and the closure gates, and a live smoke call waits on the operator's yes.
+DeepSeek V4.1 Flash on cli-pi (Cline, xhigh) wrote the design and every build step, all STATUS DONE, in three batches: M1 the design read and the module with its tests (design steps 1 to 5), M2 the two caller opt-ins with their before and after recordings (steps 6 and 7), and M3 the docs (steps 8 to 12). The env-switch test landed after review. SWE 2 max on cli-devin reviewed read-only (`scratch/verify/review-swe2-r1.txt`, 979 s): `VERDICT: PASS` with all five criteria met, after the operator dropped MiMo mid-build and stopped the MiMo review that had started; the roster amendment is `c5c72d31ec`. The review's four P2 findings are recorded: the `calls.jsonl` backend field (recorded, it needs a caller record change), the missing env-switch test (fixed with `spawn_call_environment_switch_answers_through_pi`), the unpinned Pi version (recorded) and the still-stub closure docs (closed by this record). No P0 or P1 was open. The session ran the byte comparisons and every gate from the final state, and no live smoke call ran because it is optional and no operator yes was given.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -101,17 +108,19 @@ Not started. The plan delivers the module first with both backends stubbed, then
 <!-- ANCHOR:verification -->
 ## Verification
 
-No build check has run. This phase is Planned, so the table lists the checks the build will run and their expected results. The rows close when the build's own recordings satisfy them.
+All checks ran from the working tree at HEAD `c5c72d31ec`, with the raw outputs under `scratch/verify/`.
 
 | Check | Result |
 |-------|--------|
-| Each changed caller's switch-off `diff` against its pre-change recording | Pending. Expected empty |
-| `node --test` on the transport suite | Pending. Expected 0 failed |
-| The key grep of REQ-006 on the module | Pending. Expected exit 1 |
-| `git diff --stat` on the three runtime trees | Pending. Expected empty |
-| `validate_document.py` on each changed doc | Pending. Expected VALID |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this phase> --strict` | Pending at build time |
-| `check-goal.cjs` and `goal.cjs packet` | Pending at build time |
+| Each changed caller's switch-off `diff` against its pre-change recording | `diff -q` prints nothing: `leaf-route-replay.before.txt`/`.after.txt` (59 lines) and `score-clarify-default.before.txt`/`.after.txt` (202 lines); the reviewer reproduced each before file from HEAD's source in memory and each after file from the current tree, the runs driving 16 and 91 jev calls through the changed call site (`scratch/verify/review-swe2-r1.txt`) |
+| `node --test` on the transport suite | `scratch/verify/transport-tests.txt`: `tests 22`, `pass 22`, `fail 0`, including `spawn_call_environment_switch_answers_through_pi` added after review |
+| The caller suites | `scratch/verify/leaf-route-replay-tests.txt` 37 pass and `scratch/verify/score-clarify-default-tests.txt` 28 pass, both 0 failed and equal to their baselines |
+| The key grep of REQ-006 on the module | `grep -nE 'API_KEY\|TYPESAFE\|Bearer\|Authorization'` prints nothing at exit 1 (this closure pass) |
+| `git diff --stat` on the three runtime trees | No output; the 13 callers stay listed in `spec.md` section 3 (this closure pass) |
+| `validate_document.py` on each changed doc | 9 changed docs VALID; hub playbook PASS with 8 scenarios and `warnings=0`; catalog `cli-classifier` PASS; no cli-classifier version at or above 1.0.0.0 (`scratch/verify/session-evidence.md`, criterion 4) |
+| The hub, leaf, derived and Hermes checks | `scratch/verify/g.txt` all seven hubs fresh or excused, `l.txt` leaf 15 of 15, `df.txt` derived 15 of 15, `h.txt` 72 Hermes skill copies in sync |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this phase and the parent, `--strict --recursive` | `RESULT: PASSED` for every folder in this closure pass |
+| `check-goal.cjs` and `goal.cjs packet` | `RESULT: PASSED (5/5 checks)` on this phase and the parent; `goal.cjs packet` prints `packet_durable_chars=2146` on this phase and `packet_budget=ok` on the parent (this closure pass) |
 
 ### Authoring pass (2026-09-30)
 
@@ -131,10 +140,11 @@ These gates ran on the phase docs only. They prove the record is well formed, no
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Nothing is built.** The completion criteria are open, and no caller, test or doc exists yet.
-2. **`bool` and `score` stay on the CLI.** 037 measured `choice` only, so `noul` and `score` callers keep the CLI route until each passes its own run under 037's keep rule.
-3. **The runtime-tree callers are untouched.** The 13 callers listed in `spec.md` section 3 keep the CLI, and a later phase on the operator's call wires the ones it owns.
-4. **No live smoke call is scheduled.** Tests stub both backends, and one live `choice` call runs only on the operator's yes.
+1. **`calls.jsonl` names the wrong backend when Pi answers.** Both opted-in callers write `backend: "jev"` and the CLI provider even on the Pi path; `model` does pick up `typesafe/jev-1.13`. The module returns the CLI's contract on purpose (D3), so naming the backend needs a caller record change; recorded and not made (review P2-1).
+2. **No Pi version is pinned.** The package gate resolves the installed Pi root and accepts any version, while the 037 verdict holds for 0.99.1. The fixed gate wording says "resolves", so the pin is recorded as a follow-up (review P2-3).
+3. **Only `choice` moves.** `bool` and `score`, including `noul`, stay on the CLI until each passes its own run under 037's keep rule (D2).
+4. **The runtime-tree callers are untouched.** The 13 callers listed in `spec.md` section 3 keep the CLI, and a later phase on the operator's call wires the ones it owns.
+5. **No live smoke call ran, and the build is uncommitted at this pass.** Tests stub both backends, so one live `choice` call waits on the operator's yes, which was not given (REQ-012); the orchestrator commits the build and these docs path-scoped after this pass.
 <!-- /ANCHOR:limitations -->
 
 ---
