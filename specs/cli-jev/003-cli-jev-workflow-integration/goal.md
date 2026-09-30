@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Find where a classifier (hosted Jev or local Deem) cuts the main AI's context and review work, and build every released phase with docs true to the code.
+**Objective:** Find where a classifier cuts the main AI's context and review work, and build every released phase with docs true to the code.
 
 ### Decisions
 
@@ -46,11 +46,11 @@ _memory:
 |----|----------|
 | D1 | Jev first, else Deem, dormant unless one passes its check (`jev auth status --provider <p>` exits 0, or Deem's health check). With neither, behavior is today's. Jev gets no secret |
 | D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`. Deem 0.8B bf16 stays served locally and current |
-| D3 | Built: 002, 003, 005, 006, 008, 009, 016, 017. Released 2026-09-29: 019 to 035 in order, one per research `later` item. Disjoint builds may run in parallel |
+| D3 | Built: 002, 003, 005, 006, 008, 009, 016, 017. Released 2026-09-29: 019 to 035 in order, one per research `later` item, then 036. Disjoint builds may run in parallel |
 | D4 | 003, 006 and 019 to 035 stop at their label gate, with no model labels. R17 is dropped |
 | D5 | The session orchestrates, verifies and commits. Only Pi writes, by Bash: DeepSeek V4.1 Flash on Cline (`xhigh`), then OpenCode Go, then LLM Gateway (`max`), and `llmgateway/mimo-v2.6-pro` at `high`. No Claude leaves. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Skill docs change via sk-doc, code via sk-code's OpenCode route |
-| D7 | Stop only for an install yes or a missing credential. Worktree 069, path-scoped commits, no push or merge to main, no key in a file, no `.env` opened |
+| D7 | Stop only for an install yes or a missing credential. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -58,7 +58,7 @@ _memory:
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-Each child goal binds its phase. Decisions outrank it. Only the criteria below decide done.
+Each child goal binds its phase. Decisions outrank it.
 
 | # | Goal |
 |---|------|
@@ -97,6 +97,7 @@ Each child goal binds its phase. Decisions outrank it. Only the criteria below d
 | 033 | `033-validator-residue-flagger/goal.md` |
 | 034 | `034-hvr-reader-needed-lens/goal.md` |
 | 035 | `035-fetched-text-injection-screen/goal.md` |
+| 036 | `036-sk-code-and-sk-doc-alignment/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -104,7 +105,7 @@ Each child goal binds its phase. Decisions outrank it. Only the criteria below d
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016 and 017 are Complete
+- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 are Complete
 - [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
 - [x] `validate_document.py` exits 0 on every skill doc a build changed
 - [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
@@ -235,4 +236,5 @@ and findings belong here.
 | DeepSeek provider fallback (2026-09-29) | Source: the operator, 2026-09-29, "Fallback to cli pi llmgateway once both opencode go and cline runout". DeepSeek V4.1 Flash now runs on Cline at `--thinking xhigh`, then on OpenCode Go, then on LLM Gateway, the last two at `--thinking max`. A provider counts as run out when a dispatch fails with a quota or rate-limit message, and the session then moves to the next. Probes: `pi -p "Reply with exactly the word OK..." --model opencode-go/deepseek-v4.1-flash --thinking max --mode text --offline </dev/null` and the same with `llmgateway/deepseek-v4.1-flash`, each printed `OK`, exit 0, in 5 s and 4 s. D5 names the chain. Source: `scratch/w4-session/orchestration-log.md` |
 | Open for the operator | 1. Jev: resolved on 2026-09-29. D4 is amended (row "D1, D4 and criterion 2 amendment (2026-09-29)"), the one live `--jev --out` run of 017 ran from 2026-09-29T05:35:03Z to 05:57:23Z and printed `verdict jev: keep` (row "017 Jev run (2026-09-29)"), and "Jev first" is applied (row "Jev first (2026-09-29)"). 2. Confirm deleting `~/.local/share/deem/bin/deem-ctl.bak-2026-09-28`. 3. Label at least 30 of 003's 50 fixture rows. 4. 003's two post-gate questions: may a Claude row's native pre-label stand under D4, and which Claude transcript directory does the builder read. 5. 006: adopt a rubric and fill the labels (T001, T012, T014, T015, T016, T022). 6. 006's `scripts/README.md:93` and `:100` state exit 2 too narrowly. 7. Children 002, 003, 006, 008, 016 and 017 still quote the old executor roster, which D5 outranks. 8. Push and merge: nothing was pushed, and the branch has no upstream. 9. Whether to open a phase that serves a Jev track pick, since 017 now holds a `keep` for Jev only (row "017 Jev keep caveats (2026-09-29)"). 10. Provision `system-deep-loop` in this worktree with `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision`, an install that needs the operator's yes, or leave the `NODE_PATH` workaround as the record (row "009 ruling: `NODE_PATH` for the agent-mirror-sync gate"). 11. 009's five review P2 findings, recorded and not chased (D5), listed in `009-cli-jev-hub-move/implementation-summary.md` Known Limitations 1. The earlier item to admit `cli-classifier` to compiled routing is done: 009 onboarded it in `ea883967d4` (row "009 move commit"). 12. Release of 019 to 035: resolved on 2026-09-29. The operator answered "Bind and release (Recommended)", so D3 now releases 019 to 035 in number order with disjoint builds in parallel, and BINDING lists 001 to 035 (row "Directive amendment: bind and release 019 to 035 (2026-09-29)"). The order constraints the children's specs name still hold. 028 reads a 027 run. 020 and 021 build one after the other, as do 024 and 025. 027 to 030 run their doc steps one after another. 022, 026 and 031 all change system-spec-kit's `SKILL.md`, README and changelog. Fourteen of the 17 stop at an operator label gate before any model call, all but 019, 021 and 028. Source: `scratch/w3-session/session-evidence.md`, "Operator question, 2026-09-28 ~22:55 CEST" and the phase entries, the child docs, `009-cli-jev-hub-move/scratch/w3-session/session-evidence.md` section 7 |
 | Landing on main (2026-09-30) | Source: the operator, "Commit push merge to main", then "First push everything dirt, staged unstaged on main branch to remote. Afterwards merge but handpick and check if they have superseded things we did or that ours complements and could be added on top". This lifts D7's "no push or merge to main" for this landing. The main checkout's uncommitted work went out first as five commits, `a8f0abf18f..41c5b43131`. Merge `7d118aa574` then took main into this branch by hand. 27 files changed on both sides. Content overlaps (root, hooks and advisor READMEs, `fanout-run.cjs` and its test) touch different hunks, so both sides stay and nothing of ours was superseded. SKILL.md versions take the newest changelog entry (deep-review 1.11.1.0, advisor 0.14.0.0, spec-kit 4.6.0.0). Both sides wrote sk-doc v2.2.3.0, so main keeps it and the citation drift scan is v2.2.4.0. Generated files were regenerated from the merged tree |
+| Directive amendment: bind 036 (2026-09-30) | Source: the operator's "Make sure all skills and things we created aligns with sk code opencode and sk doc" and the answer "New phase in 003 (Recommended)". D3 releases 036 after 035. D7 drops "Worktree 069" and "no push or merge to main", which the operator lifted for the 2026-09-30 landing. Criterion 1 adds 036 and is open again until 036 is Complete. The objective and binding line were cut to keep the slice under 4,000 characters |
 <!-- /ANCHOR:log -->

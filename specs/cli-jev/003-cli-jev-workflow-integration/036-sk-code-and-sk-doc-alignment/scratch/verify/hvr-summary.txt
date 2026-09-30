@@ -1,0 +1,3 @@
+hvr hard blockers: 2
+  ('sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md', 68, 'harness')
+  ('sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md', 69, 'harness')

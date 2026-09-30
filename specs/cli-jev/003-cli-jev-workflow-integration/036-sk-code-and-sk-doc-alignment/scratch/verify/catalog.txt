@@ -1,0 +1,1 @@
+validate_catalog_package.py --json: 743 violations fleet-wide, 0 on the packet's 28 catalog entries

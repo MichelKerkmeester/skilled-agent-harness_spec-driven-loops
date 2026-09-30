@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ score-residue-flagger — offline residue-flagger measurement census       ║
+// ║ COMPONENT: score-residue-flagger                                         ║
+// ║ offline residue-flagger measurement census                               ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -1471,7 +1472,7 @@ function parseArgs(argv) {
 async function main(argv, deps = {}) {
   const repoRoot = deps.repoRoot ?? REPO_ROOT;
   const out = deps.out ?? ((line) => process.stdout.write(`${line}\n`));
-  const err = deps.err ?? ((line) => process.stderr.write(`${line}\n`));
+  const err = deps.err ?? ((line) => process.stderr.write(`[score-residue-flagger] ${line}\n`));
   const env = deps.env ?? process.env;
   const timeoutMs = deps.timeoutMs ?? CALL_TIMEOUT_MS;
   const backoffMs = deps.backoffMs ?? BACKOFF_MS;

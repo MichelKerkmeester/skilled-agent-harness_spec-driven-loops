@@ -1544,7 +1544,7 @@ export async function main(argv, deps = {}) {
   const repoRoot = deps.repoRoot ?? DEFAULT_REPO_ROOT;
   const contextDir = deps.contextDir ?? CONTEXT_DIR;
   const out = deps.out ?? ((line) => process.stdout.write(`${line}\n`));
-  const err = deps.err ?? ((line) => process.stderr.write(`${line}\n`));
+  const err = deps.err ?? ((line) => process.stderr.write(`[score-injection-screen] ${line}\n`));
   const env = deps.env ?? process.env;
   const timeoutMs = deps.timeoutMs ?? 90000;
   const backoffMs = deps.backoffMs ?? 2000;

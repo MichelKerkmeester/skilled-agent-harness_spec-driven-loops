@@ -65,13 +65,13 @@ The load-bearing finding differs from the headline: **the default mode hides voc
 
 ## 3. SCORING RULES AND BOUNDARY GOLD
 
-**Admission rows** use the harness's own rules (`.skilled/bin/lib/compiled-route-admission.cjs:12-19`). Every gold mode must be among the routed modes (`:309-318`).
+**Admission rows** use the admission script's own rules (`.skilled/bin/lib/compiled-route-admission.cjs:12-19`). Every gold mode must be among the routed modes (`:309-318`).
 
 **Replay rows** match when the single routed mode equals the gold. All 49 answers were `action: route` with `selectionKind: single`, so no bundle needed a partial-credit rule. The gold is the mode whose playbook holds the scenario, except where the scenario names a different expected route. Four scenarios sit on a boundary and were read by hand.
 
 | Scenario | What the scenario says | Gold scored | Why |
 |---|---|---|---|
-| `SKD-030` | `stage: negative` (`sk-design-fundamentals/manual-testing-playbook/boundary/extraction-defers-to-md-generator.md:4`). Expects `sk-design-md-generator` ranked first (`:33`, `:35`) | `sk-design-md-generator` | The expected target is a mode of this hub, so the scenario's own answer is scoreable at the hub front door. The harness's negative rule (pass only on no route, `compiled-route-admission.cjs:276`, `:288-292`) was not used: it treats "negative" as "not this hub", and this target is inside the hub |
+| `SKD-030` | `stage: negative` (`sk-design-fundamentals/manual-testing-playbook/boundary/extraction-defers-to-md-generator.md:4`). Expects `sk-design-md-generator` ranked first (`:33`, `:35`) | `sk-design-md-generator` | The expected target is a mode of this hub, so the scenario's own answer is scoreable at the hub front door. The admission script's negative rule (pass only on no route, `compiled-route-admission.cjs:276`, `:288-292`) was not used: it treats "negative" as "not this hub", and this target is inside the hub |
 | `SKD-031` | `stage: negative` (`.../boundary/implementation-defers-to-sk-code.md:4`). Expects a route to `sk-code` (`:33`, `:35`) | n/a | `sk-code` is outside this hub. A no-signal prompt always routes to the default mode (`hub-router.json:17`, `canary-router.cjs:301-307`), so no hub-level answer can express the expected result. The scenario's own command scores the advisor stage (`:51`), which this replay does not run |
 | `CMD-002` | Real user request: `When someone says "redraw this drawio", the system should route to the diagram skill.` (`sk-design-diagram/manual-testing-playbook/command-and-hub-integration/hub-registration.md:28`) | `sk-design-diagram` | The owning mode and the stated expectation agree. The replay used the real-user-request bullet, as for every scenario. The `Prompt` field (`:29`) is a registration-check instruction, not a routing prompt |
 | `CHT-008` | Chart and diagram boundary: the chart request goes to chart, the neighbour keeps the diagram request (`.../delivery-and-routing/form-choice-and-the-diagram-boundary.md:36`, `:38`) | `sk-design-chart` | The owning mode and the stated expectation agree |
@@ -189,7 +189,7 @@ Only SD-007's fix is set out, in section 6. The other gaps are named for their o
 
 **The gold is stale against its prompt. The router is doing what its vocabulary says.** **Confirmed.**
 
-The prompt is `Improve doc quality and add flowcharts for the new feature docs.` (`manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md:54-55`). It holds one keyword from any class: `flowchart` (`hub-router.json:126`), as a substring of `flowcharts`. That gives diagram 3. No chart keyword in `hub-router.json:140-172` appears in the prompt, so chart scores 0. A gap of 3 is outside `ambiguityDelta` 1 (`:6`), so the router answers diagram alone. The harness then reports `missing sk-design-chart; routed sk-design-diagram` (`raw/admission.json`, scenario `SD-007`).
+The prompt is `Improve doc quality and add flowcharts for the new feature docs.` (`manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md:54-55`). It holds one keyword from any class: `flowchart` (`hub-router.json:126`), as a substring of `flowcharts`. That gives diagram 3. No chart keyword in `hub-router.json:140-172` appears in the prompt, so chart scores 0. A gap of 3 is outside `ambiguityDelta` 1 (`:6`), so the router answers diagram alone. The admission script then reports `missing sk-design-chart; routed sk-design-diagram` (`raw/admission.json`, scenario `SD-007`).
 
 The gold asks for `sk-design-chart+sk-design-diagram` (`ambiguous-multi-intent.md:6`, `:12-21`). The scenario explains how that happened (`:37-41`). The pair used to be document quality plus flowchart, in the documentation hub. When both canvases moved to the design hub, the gold was re-pointed from document quality to chart and the prompt kept its document-quality wording. The prompt asks for better docs and flowcharts. It names no data and no chart. The body is stale in the same way: it still asks for an intent from `VALUES, REVIEW, CHART, FLOWCHART, EXTRACT` (`:72`) and names "the sk-doc router under test" (`:133`).
 
@@ -202,7 +202,7 @@ node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-design --skill-ro
 node .skilled/bin/compiled-route-status.cjs --hub sk-design
 ```
 
-**Effect.** Chart and diagram both score 3, so the router returns the ordered bundle `sk-design-chart`, `sk-design-diagram`. That meets the harness's must-include rule (`compiled-route-admission.cjs:309-318`), so admission should read 4 of 4. **Derived** from the re-derivation, not observed. It needs the post-change admission run to confirm.
+**Effect.** Chart and diagram both score 3, so the router returns the ordered bundle `sk-design-chart`, `sk-design-diagram`. That meets the admission script's must-include rule (`compiled-route-admission.cjs:309-318`), so admission should read 4 of 4. **Derived** from the re-derivation, not observed. It needs the post-change admission run to confirm.
 
 **Does it move a matching scenario? No.** No other prompt in the corpus contains `flowcharts`: `grep -c flowcharts raw/mode-routing.txt` prints 0, and the re-derivation with the keyword added moves only `SD-007`. `IMP-002` and `SD-005` say `flowchart` in the singular and keep routing to diagram alone. **Derived.**
 
@@ -228,16 +228,16 @@ The fault sits in the gold, because the prompt asks for no chart. Option (a) cha
 
 | File | Holds |
 |---|---|
-| `raw/admission.json` | The admission harness output: 4 scenario rows, counts, coverage and the `drift` verdict |
+| `raw/admission.json` | The admission script's output: 4 scenario rows, counts, coverage and the `drift` verdict |
 | `raw/mode-routing.txt` | Each of the 49 mode scenarios as `### <id> \| <gold mode> \| <source file>`, then its prompt, exit status and route JSON |
 | `raw/mode-routing-run.sh` | The script that produced `mode-routing.txt`, one `probe` line per scenario with the prompt copied verbatim from its real-user-request bullet |
 
-No provider credential was needed. The run calls only the routing front door and the admission harness. The stage-one re-derivation behind the **Hits** column ran in the authoring session and is not kept in `raw/`.
+No provider credential was needed. The run calls only the routing front door and the admission script. The stage-one re-derivation behind the **Hits** column ran in the authoring session and is not kept in `raw/`.
 
 ---
 
 ## 8. DELTA AGAINST BASELINE
 
-Not applicable to this run. Reason: this is the first hub-level routing run archived for sk-design. `benchmark/README.md` section 1 records that no Lane C hub run was archived before that harness was retired. The per-mode baselines under `sk-design-fundamentals/benchmark/` and `sk-design-diagram/benchmark/` measure a mode, not the hub route, so they are not a before-number for this run.
+Not applicable to this run. Reason: this is the first hub-level routing run archived for sk-design. `benchmark/README.md` section 1 records that no Lane C hub run was archived before that runner was retired. The per-mode baselines under `sk-design-fundamentals/benchmark/` and `sk-design-diagram/benchmark/` measure a mode, not the hub route, so they are not a before-number for this run.
 
 The next run after an SD-007 fix compares against this file. A scenario that matches here and misses there is a regression.

@@ -49,7 +49,7 @@ const MAX_TYPE_CHARS = 40;
 // ─────────────────────────────────────────────────────────────────────────────
 
 function fail(message, code) {
-  process.stderr.write(`${message}\n`);
+  process.stderr.write(`[count-pi-goal-nudges] ${message}\n`);
   process.exit(code);
 }
 

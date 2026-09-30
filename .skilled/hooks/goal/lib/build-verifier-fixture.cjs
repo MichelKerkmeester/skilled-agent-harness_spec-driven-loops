@@ -380,28 +380,28 @@ function parseArgs(argv) {
 function main(argv) {
   const parsed = parseArgs(argv);
   if (parsed.error) {
-    process.stderr.write(`${parsed.error}\n`);
+    process.stderr.write(`[build-verifier-fixture] ${parsed.error}\n`);
     return 2;
   }
   const { piDir, claudeDir, out, limitText } = parsed.options;
   if (!piDir && !claudeDir) {
-    process.stderr.write('error: give --pi <dir>, --claude <dir> or both\n');
+    process.stderr.write('[build-verifier-fixture] error: give --pi <dir>, --claude <dir> or both\n');
     return 2;
   }
   if (!out) {
-    process.stderr.write('error: --out <file> is required\n');
+    process.stderr.write('[build-verifier-fixture] error: --out <file> is required\n');
     return 2;
   }
   let limit = DEFAULT_LIMIT;
   if (limitText !== undefined) {
     if (!/^[0-9]+$/.test(limitText) || Number(limitText) < 1) {
-      process.stderr.write('error: --limit must be a positive integer\n');
+      process.stderr.write('[build-verifier-fixture] error: --limit must be a positive integer\n');
       return 2;
     }
     limit = Number(limitText);
   }
   if (existsSync(out)) {
-    process.stderr.write(`error: OUT_EXISTS ${out}\n`);
+    process.stderr.write(`[build-verifier-fixture] error: OUT_EXISTS ${out}\n`);
     return 2;
   }
   const { rows, stats } = buildRows({ piDir, claudeDir, limit });
@@ -410,7 +410,7 @@ function main(argv) {
     writeFileSync(out, text, { mode: 0o600, flag: 'wx' });
   } catch (error) {
     if (error && error.code === 'EEXIST') {
-      process.stderr.write(`error: OUT_EXISTS ${out}\n`);
+      process.stderr.write(`[build-verifier-fixture] error: OUT_EXISTS ${out}\n`);
       return 2;
     }
     throw error;

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ───────────────────────────────────────────────────────────────
-# HVR READER-NEEDED LENS — samples the tells a machine cannot settle
+# COMPONENT: HVR READER-NEEDED LENS — samples the tells a machine cannot settle
 # ───────────────────────────────────────────────────────────────
 
 """Measure how well a classifier spots the Human Voice Rules tells a reader has to settle.

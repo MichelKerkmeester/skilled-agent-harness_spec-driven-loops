@@ -74,7 +74,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Scoring
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F058
 - Feature file path: `scoring/severity-replay.md`
 - Primary sources: `scripts/score-severity-replay.cjs`, `tests/unit/score-severity-replay.vitest.ts`
 

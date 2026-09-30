@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code and sk doc alignment",
+      "alignment audit fixes",
+      "code header conformance",
+      "bracketed stderr tags",
+      "packet doc conformance",
+      "sk code and sk doc alignment plan",
+      "header conformance batches",
+      "stderr tag batch plan",
+      "alignment proof plan",
+      "cross-family review plan",
+      "alignment task batches",
+      "header batch tasks"
+    ],
+    "key_topics": [
+      "code",
+      "doc",
+      "alignment",
+      "audit",
+      "header",
+      "conformance",
+      "bracketed",
+      "stderr",
+      "tags",
+      "packet",
+      "plan",
+      "batches"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/audit/findings.md",
+      ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
+      ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
+      ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs",
+      ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/audit/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-verifier-fixture.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "count-pi-goal-nudges.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verifier-labeled-set.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lint-goal-criteria.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-goal-lint.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-clarify-default.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verdict-fallback.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-d4-agreement.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-residue-flagger.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "judge-agreement.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_reader_lens.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py",
+        "source": "derived"
+      },
+      {
+        "name": "score-injection-screen.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-jev 003 packet shipped 130 files between `f9d701bd13` and `089693d899`, and a read-only audit on 2026-09-30 found conformance gaps against the two skills that own their standards",
+    "created_at": "2026-09-30T11:42:55Z",
+    "last_save_at": "2026-09-30T12:22:23.241Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:be294552587349aeba7146bb78c89e955de0011e0b78b051d295018d32194e5d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "65ce926e98f0f6758edd38bbcfab0650eb0fb7b12e2c373d38b2b49f249c6945",
+      "plan.md": "6b5ba1878437ab11505969214deb55a2162ddda803e2a25b06f888b31b2134fb",
+      "tasks.md": "3813664c15c31596f63bee7e51eacbe3a3ca494b75c7c579da8224be6b57f9e4",
+      "implementation-summary.md": "c0c0c0c7414a092f9c1a0c08f34b508300de72a493aa96bc06d744e073a85362"
+    },
+    "last_active_at": null
+  }
+}

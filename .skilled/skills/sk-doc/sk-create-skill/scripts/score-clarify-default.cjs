@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ score-clarify-default — clarify census and default-pick scorer           ║
+// ║ COMPONENT: score-clarify-default                                         ║
+// ║ clarify census and default-pick scorer                                   ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -1433,7 +1434,7 @@ async function runScoreCommand(args, deps) {
  */
 async function main(argv, deps = {}) {
   const out = deps.out || ((line) => process.stdout.write(line + '\n'));
-  const err = deps.err || ((line) => process.stderr.write(line + '\n'));
+  const err = deps.err || ((line) => process.stderr.write('[score-clarify-default] ' + line + '\n'));
   const env = deps.env || process.env;
 
   const args = parseArgs(argv);

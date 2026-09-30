@@ -95,7 +95,7 @@ invocation or unreadable input, and 1 on an unexpected throw.
 
 | File | Role |
 |---|---|
-| `scripts/score-fanout-pairs.cjs` | `walkRuns`, `selectCandidates`, `classifyPair`, `mergeDecision`, `readBaseline`, `writePairSheet`, `parseLabels`, `gateState`, `runJevArm`, `runDeemArm`, `decideVerdict`, `main()` (guarded behind `require.main === module`); calls the merge's own functions from `fanout-merge.cjs`, which stays unchanged |
+| `scripts/score-fanout-pairs.cjs` | `walkRuns`, `selectCandidates`, `classifyPair`, `mergeDecision`, `readBaseline`, `writePairSheet`, `parseLabels`, `gateState`, `runJevArm`, `runDeemArm`, `decideVerdict`, `main()` (guarded behind `require.main === module`). It calls the merge's own functions from `fanout-merge.cjs`, which stays unchanged |
 
 ### Validation
 
@@ -108,7 +108,6 @@ invocation or unreadable input, and 1 on an unexpected throw.
 ## 4. SOURCE METADATA
 
 - Group: Fan-Out
-- Feature ID: F059
 - Catalog source: `feature-catalog/fanout/fanout-pair-replay.md`
 - Primary source files: `scripts/score-fanout-pairs.cjs`
 Related references:
